@@ -1,28 +1,31 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 import Script from 'next/script';
-import { LANES } from '@/lib/lanes';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import './globals.css';
+
+const display = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  variable: '--font-display',
+  display: 'swap',
+});
+const ui = Inter({ subsets: ['latin'], variable: '--font-ui', display: 'swap' });
 
 export const metadata: Metadata = {
   title: 'The Modest House',
-  description: 'Curated modest fashion — dresses, hijab, swimwear and more.',
+  description: 'Modest style, for everyone — a curated edit of modest fashion.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const skim = process.env.NEXT_PUBLIC_SKIMLINKS_ID;
   return (
-    <html lang="en">
+    <html lang="en" className={`${display.variable} ${ui.variable}`}>
       <body>
-        <header className="border-b">
-          <nav className="max-w-6xl mx-auto flex flex-wrap gap-4 p-4 text-sm items-center">
-            <Link href="/" className="font-semibold">The Modest House</Link>
-            {LANES.map((l) => (
-              <Link key={l.slug} href={`/${l.slug}`}>{l.title}</Link>
-            ))}
-          </nav>
-        </header>
+        <Header />
         {children}
+        <Footer />
         {skim && (
           <Script src={`https://s.skimresources.com/js/${skim}.skimlinks.js`} strategy="afterInteractive" />
         )}

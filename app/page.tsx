@@ -3,17 +3,32 @@ import { LANES } from '@/lib/lanes';
 
 export default function Home() {
   return (
-    <main className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-semibold mb-2">The Modest House</h1>
-      <p className="text-gray-600 mb-8">Modest fashion, curated. Find your edit.</p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {LANES.map((l) => (
-          <Link key={l.slug} href={`/${l.slug}`} className="border rounded-lg p-6 hover:shadow-md">
-            <div className="text-lg font-medium">{l.title}</div>
-            <div className="text-sm text-gray-500 mt-1">{l.intro}</div>
+    <>
+      <section className="aubergine-band">
+        <div className="max-w-6xl mx-auto px-5 py-24 text-center">
+          <div className="eyebrow" style={{ color: '#d9c7d6' }}>modest style, for everyone</div>
+          <h1 className="serif font-light text-5xl md:text-7xl tracking-wide mt-4" style={{ color: '#f7f0f5' }}>
+            The Modest House
+          </h1>
+          <p className="mt-5 text-sm md:text-base max-w-md mx-auto" style={{ color: '#e7d8e4' }}>
+            A curated edit of modest fashion — hijab, dresses, abaya and swim. Find your pieces.
+          </p>
+          <Link href="/hijabi-outfits" className="inline-block mt-8 btn-pill" style={{ background: '#f4ecef', color: 'var(--aubergine)' }}>
+            Shop the edit
           </Link>
-        ))}
-      </div>
-    </main>
+        </div>
+      </section>
+      <section className="max-w-6xl mx-auto px-5 py-16">
+        <div className="eyebrow mb-5">The lanes</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {LANES.map((l) => (
+            <Link key={l.slug} href={`/${l.slug}`} className="product-card block p-6">
+              <div className="section-heading text-lg">{l.title}</div>
+              <div className="text-xs mt-2" style={{ color: 'var(--taupe)' }}>{l.intro}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

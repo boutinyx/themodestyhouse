@@ -21,9 +21,10 @@ export default async function LanePage({ params }: { params: Promise<{ lane: str
   if (!lane) notFound();
   const products = productsForLane(lane.slug);
   return (
-    <main className="max-w-6xl mx-auto p-6">
-      <h1 className="text-2xl font-semibold mb-1">{lane.title}</h1>
-      <p className="text-gray-600 mb-6">{lane.intro}</p>
+    <main className="max-w-6xl mx-auto px-5 py-12">
+      <div className="eyebrow">The edit</div>
+      <h1 className="section-heading text-3xl md:text-4xl mt-2">{lane.title}</h1>
+      <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--taupe)' }}>{lane.intro}</p>
       <ProductGrid products={products} />
     </main>
   );

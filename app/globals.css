@@ -1,26 +1,145 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* base neutrals */
+  --white: #ffffff;
+  --sand: #f1ebe1;
+  --greige: #ded5c7;
+  --taupe: #9a8f86;
+  --ink: #2b2622;
+  --hairline: #e5ded4;
+  /* purple accent scale */
+  --whisper: #eadfe8;
+  --plum: #7d4b74;
+  --plum-deep: #5a2c54;
+  --aubergine: #3b1e3a;
+  /* the one live accent the vibe toggle swaps */
+  --vibe-accent: #5a2c54;
+  /* radii */
+  --radius-image: 2px;
+  --radius-card: 4px;
+  --radius-section: 6px;
+  --radius-button: 999px;
+  --radius-input: 8px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-white: var(--white);
+  --color-sand: var(--sand);
+  --color-greige: var(--greige);
+  --color-taupe: var(--taupe);
+  --color-ink: var(--ink);
+  --color-hairline: var(--hairline);
+  --color-whisper: var(--whisper);
+  --color-plum: var(--plum);
+  --color-plum-deep: var(--plum-deep);
+  --color-aubergine: var(--aubergine);
+  --color-accent: var(--vibe-accent);
+  --font-display: var(--font-display);
+  --font-ui: var(--font-ui);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html { background: var(--white); }
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-ui), 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- editorial voice ---- */
+.serif { font-family: var(--font-display), Georgia, serif; }
+.wordmark {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--ink);
+}
+.eyebrow {
+  font-family: var(--font-ui), sans-serif;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--taupe);
+}
+.section-heading {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* ---- the one rich moment ---- */
+.aubergine-band {
+  background: linear-gradient(120deg, #3b1e3a, #5a2c54 55%, #7d4b74);
+  color: #f4ecef;
+}
+
+/* ---- controls: pill-round ---- */
+.btn-pill {
+  border-radius: var(--radius-button);
+  background: var(--vibe-accent);
+  color: #fff;
+  font-family: var(--font-ui), sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 8px 18px;
+  transition: opacity 0.2s ease-out;
+}
+.btn-pill:hover { opacity: 0.88; }
+
+.chip {
+  border-radius: var(--radius-button);
+  background: var(--sand);
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 6px 14px;
+  border: 1px solid var(--hairline);
+  transition: all 0.2s ease-out;
+}
+.chip[data-active="true"] { background: var(--vibe-accent); color: #fff; border-color: transparent; }
+
+.nav-link {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  transition: color 0.2s ease-out;
+}
+.nav-link:hover { color: var(--plum); }
+
+/* ---- product card ---- */
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color 0.2s ease-out;
+}
+.product-card:hover { border-color: var(--plum); }
+.product-imgwrap {
+  background: var(--sand);
+  border-radius: var(--radius-image);
+  overflow: hidden;
+}
+.product-img { transition: transform 0.4s ease-out; }
+.product-card:hover .product-img { transform: scale(1.04); }
+.brand-label {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* ---- product grid ---- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
 }
