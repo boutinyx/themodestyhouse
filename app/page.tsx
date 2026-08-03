@@ -149,7 +149,7 @@ export default function Home() {
 
       {/* FOR DESIGNERS */}
       <section className="aubergine-band">
-        <div className="max-w-[1220px] mx-auto px-8 py-24">
+        <div className="max-w-[1220px] mx-auto px-8 pt-14 pb-20">
           <div className="max-w-2xl">
             <div>
               <div className="eyebrow" style={{ color: 'var(--brass)' }}>For designers</div>
