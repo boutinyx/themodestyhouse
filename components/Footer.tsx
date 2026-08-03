@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="aubergine-band mt-24">
       <div className="max-w-6xl mx-auto px-5 py-16 text-center">
         <div className="serif italic text-3xl md:text-4xl" style={{ color: 'var(--parchment)' }}>
-          &ldquo;Where modest fashion is found.&rdquo;
+          The archive for everything modest.
         </div>
         <div className="wordmark text-lg mt-8" style={{ color: 'var(--parchment)' }}>
           The Modesty House

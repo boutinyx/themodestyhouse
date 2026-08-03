@@ -10,8 +10,8 @@ const label = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-l
 const ui = Jost({ subsets: ['latin'], variable: '--font-ui', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'The Modesty House — Where modest fashion is found',
-  description: 'The modest fashion directory. A curated index of modest brands and pieces.',
+  title: 'The Modesty House — the archive for everything modest',
+  description: 'The archive for everything modest. A curated index of modest brands and pieces.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

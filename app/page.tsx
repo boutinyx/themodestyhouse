@@ -6,19 +6,18 @@ export default function Home() {
     <>
       <section className="aubergine-band">
         <div className="max-w-6xl mx-auto px-5 py-24 text-center">
-          <div className="eyebrow" style={{ color: '#c9b2c4' }}>The Modest Fashion Directory</div>
-          <h1 className="serif text-5xl md:text-7xl mt-4" style={{ color: 'var(--parchment)' }}>
+          <h1 className="serif text-5xl md:text-7xl" style={{ color: 'var(--parchment)' }}>
             The Modesty House
           </h1>
           <p className="serif italic text-xl md:text-2xl mt-5" style={{ color: '#e7d8e4' }}>
-            Where modest fashion is found.
+            The archive for everything modest.
           </p>
           <Link
             href="/hijabi-outfits"
             className="inline-block mt-8 btn-pill"
             style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}
           >
-            Enter the directory
+            Explore the archive
           </Link>
         </div>
       </section>
