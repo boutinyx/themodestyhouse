@@ -11,34 +11,39 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — full-bleed video with text on top */}
-      <section className="relative overflow-hidden" style={{ height: '88vh', minHeight: 500, background: 'var(--aubergine)' }}>
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: 'center 28%' }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/header-poster.jpg"
+      {/* HERO — floating rounded video, gap under the header pill */}
+      <section className="px-4 mt-4">
+        <div
+          className="relative overflow-hidden rounded-[28px]"
+          style={{ height: '80vh', minHeight: 460, background: 'var(--aubergine)' }}
         >
-          <source src="/header.mp4" type="video/mp4" />
-        </video>
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
-          <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.55)' }}>The archive for everything modest</div>
-          <h1
-            className="serif text-5xl md:text-7xl leading-tight mt-4"
-            style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)' }}
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center 35%' }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/header-poster.jpg"
           >
-            Modest fashion,
-            <br />
-            curated.
-          </h1>
-          <div className="mt-8">
-            <Link href="/hijabi-outfits" className="btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
-              Explore the archive
-            </Link>
+            <source src="/header.mp4" type="video/mp4" />
+          </video>
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
+            <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.55)' }}>The archive for everything modest</div>
+            <h1
+              className="serif text-5xl md:text-7xl leading-tight mt-4"
+              style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)' }}
+            >
+              Modest fashion,
+              <br />
+              curated.
+            </h1>
+            <div className="mt-8">
+              <Link href="/hijabi-outfits" className="btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
+                Explore the archive
+              </Link>
+            </div>
           </div>
         </div>
       </section>
