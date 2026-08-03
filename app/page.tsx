@@ -19,7 +19,7 @@ export default function Home() {
           <br />
           curated.
         </h1>
-        <p className="mt-6 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'var(--muted)' }}>
+        <p className="mt-6 text-lg max-w-lg mx-auto leading-relaxed" style={{ color: 'var(--ink)', opacity: 0.7 }}>
           Hijab, abaya, dresses and swim — from the brands worth knowing, all in one place.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
