@@ -12,27 +12,25 @@ export default function Home() {
   return (
     <>
       {/* HERO — clean, spacious */}
-      <section className="aubergine-band">
-        <div className="max-w-4xl mx-auto px-5 py-28 md:py-36 text-center">
-          <div className="eyebrow" style={{ color: '#c9b2c4' }}>The Modesty House · Est. 2026</div>
-          <h1 className="serif text-4xl md:text-6xl leading-tight mt-6" style={{ color: 'var(--parchment)' }}>
-            The archive for
-            <br />
-            everything modest.
-          </h1>
-          <div className="mx-auto my-8" style={{ width: 64, height: 1, background: 'var(--brass)' }} />
-          <p className="serif italic text-lg md:text-xl max-w-lg mx-auto" style={{ color: '#e7d8e4' }}>
-            Hijab, abaya, dresses and swim — the brands worth knowing, gathered in one place.
-          </p>
-          <div className="mt-10">
-            <Link
-              href="/hijabi-outfits"
-              className="nav-link"
-              style={{ color: 'var(--parchment)', borderBottom: '1px solid var(--brass)', paddingBottom: 4 }}
-            >
-              Explore the archive →
-            </Link>
-          </div>
+      <section className="max-w-4xl mx-auto px-5 pt-20 pb-16 text-center">
+        <div className="eyebrow">The archive for everything modest</div>
+        <h1 className="serif text-5xl md:text-7xl leading-tight mt-5" style={{ color: 'var(--ink)' }}>
+          Modest fashion,
+          <br />
+          curated.
+        </h1>
+        <p className="mt-6 text-lg max-w-lg mx-auto leading-relaxed" style={{ color: 'var(--ink)', opacity: 0.7 }}>
+          Hijab, abaya, dresses and swim — from the brands worth knowing, all in one place.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+          <Link href="/hijabi-outfits" className="btn-pill">Explore the archive</Link>
+          <Link
+            href="/directory"
+            className="btn-pill"
+            style={{ background: 'transparent', color: 'var(--aubergine)', border: '1px solid var(--aubergine)' }}
+          >
+            Browse designers
+          </Link>
         </div>
       </section>
 
