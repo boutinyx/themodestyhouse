@@ -79,6 +79,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FOR DESIGNERS */}
+      <section className="aubergine-band">
+        <div className="max-w-[1220px] mx-auto px-8 pt-14 pb-20">
+          <div className="max-w-2xl">
+            <div>
+              <div className="eyebrow" style={{ color: 'var(--brass)' }}>For designers</div>
+              <h2 className="serif mt-3" style={{ fontSize: 'clamp(28px,4vw,46px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
+                Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
+              </h2>
+              <ol className="mt-6 space-y-3">
+                {[
+                  'Submit your house & lookbook',
+                  'We review craft, sizing and ethics',
+                  'Go live with the verified seal',
+                ].map((step, i) => (
+                  <li key={i} className="flex gap-3" style={{ color: '#e7d8e4' }}>
+                    <span className="serif italic" style={{ color: 'var(--brass)' }}>{['i', 'ii', 'iii'][i]}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+              <a href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
+                Apply for the seal
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* THE EDIT */}
       <section className="max-w-[1220px] mx-auto px-8 py-8">
         <div className="flex items-end justify-between mb-8">
@@ -144,35 +173,6 @@ export default function Home() {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* FOR DESIGNERS */}
-      <section className="aubergine-band">
-        <div className="max-w-[1220px] mx-auto px-8 pt-14 pb-20">
-          <div className="max-w-2xl">
-            <div>
-              <div className="eyebrow" style={{ color: 'var(--brass)' }}>For designers</div>
-              <h2 className="serif mt-3" style={{ fontSize: 'clamp(28px,4vw,46px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
-                Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
-              </h2>
-              <ol className="mt-6 space-y-3">
-                {[
-                  'Submit your house & lookbook',
-                  'We review craft, sizing and ethics',
-                  'Go live with the verified seal',
-                ].map((step, i) => (
-                  <li key={i} className="flex gap-3" style={{ color: '#e7d8e4' }}>
-                    <span className="serif italic" style={{ color: 'var(--brass)' }}>{['i', 'ii', 'iii'][i]}.</span>
-                    <span>{step}</span>
-                  </li>
-                ))}
-              </ol>
-              <a href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
-                Apply for the seal
-              </a>
-            </div>
-          </div>
         </div>
       </section>
 
