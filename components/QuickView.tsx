@@ -68,9 +68,14 @@ function Modal({
   onToggleFav: () => void;
   onClose: () => void;
 }) {
+  const [zoomed, setZoomed] = useState(false);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        if (zoomed) setZoomed(false);
+        else onClose();
+      }
     };
     window.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -78,22 +83,42 @@ function Modal({
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
     };
-  }, [onClose]);
+  }, [onClose, zoomed]);
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      style={{ background: 'rgba(36,27,36,0.55)' }}
-      onClick={onClose}
-    >
+    <>
+      {zoomed && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+          style={{ background: 'rgba(20,15,20,0.92)' }}
+          onClick={() => setZoomed(false)}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={product.image}
+            alt={product.title}
+            className="max-w-full max-h-full object-contain cursor-zoom-out"
+          />
+        </div>
+      )}
       <div
-        className="relative w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 overflow-hidden"
-        style={{ background: 'var(--bone)', borderRadius: 6, maxHeight: '90vh' }}
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        style={{ background: 'rgba(36,27,36,0.55)' }}
+        onClick={onClose}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={product.image} alt={product.title} className="w-full h-64 md:h-full object-cover" />
-        <div className="p-8 flex flex-col">
+        <div
+          className="relative w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 overflow-hidden"
+          style={{ background: 'var(--bone)', borderRadius: 6, maxHeight: '90vh' }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-64 md:h-full object-cover cursor-zoom-in"
+            onClick={() => setZoomed(true)}
+          />
+          <div className="p-8 flex flex-col">
           <button
             onClick={onClose}
             className="absolute top-3 right-4 text-2xl leading-none"
@@ -123,5 +148,6 @@ function Modal({
         </div>
       </div>
     </div>
+    </>
   );
 }
