@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { LANES } from '@/lib/lanes';
+import { BRANDS } from '@/data/brands';
 import { getProducts, productsForLane } from '@/lib/products';
 import { ProductGrid } from '@/components/ProductGrid';
 
@@ -8,6 +9,8 @@ export default function Home() {
   for (const l of LANES) covers[l.slug] = productsForLane(l.slug)[0]?.image;
   const featured = productsForLane('hijabi-outfits').slice(0, 8);
   const total = getProducts().length;
+  const featBrand = BRANDS.find((b) => b.badge === 'editors-pick') || BRANDS[0];
+  const featImg = getProducts().find((p) => p.brandSlug === featBrand.slug)?.image;
 
   return (
     <>
@@ -52,24 +55,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SHOP BY CATEGORY */}
-      <section className="max-w-6xl mx-auto px-5 py-12">
+      {/* SHOP BY CATEGORY — editorial tiles with the name on the image */}
+      <section className="max-w-6xl mx-auto px-5 py-16">
         <div className="eyebrow mb-6 text-center">Shop by category</div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {LANES.map((l) => (
-            <Link key={l.slug} href={`/${l.slug}`} className="group block">
-              <div className="product-imgwrap aspect-[4/5]">
-                {covers[l.slug] ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={covers[l.slug]} alt={l.title} className="product-img w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full" style={{ background: '#ece5d8' }} />
-                )}
+            <Link
+              key={l.slug}
+              href={`/${l.slug}`}
+              className="group relative block overflow-hidden"
+              style={{ borderRadius: 'var(--radius-image)', aspectRatio: '4 / 5', background: 'var(--aubergine)' }}
+            >
+              {covers[l.slug] && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={covers[l.slug]}
+                  alt={l.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              )}
+              <div
+                className="absolute inset-0"
+                style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.55), rgba(36,27,36,0) 55%)' }}
+              />
+              <div className="absolute inset-x-0 bottom-0 p-5 text-center">
+                <div className="serif text-2xl md:text-3xl" style={{ color: 'var(--parchment)' }}>{l.title}</div>
+                <div className="eyebrow mt-1" style={{ color: '#e7d8e4' }}>Shop {l.nav}</div>
               </div>
-              <div className="section-heading text-base mt-3">{l.title}</div>
-              <div className="brand-label mt-1">Shop {l.nav} →</div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* FEATURED DESIGNER */}
+      <section className="max-w-6xl mx-auto px-5 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <a
+            href={featBrand.homepage}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="group block overflow-hidden"
+            style={{ borderRadius: 'var(--radius-image)', border: '1px solid var(--hairline)' }}
+          >
+            {featImg && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={featImg}
+                alt={featBrand.name}
+                className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+            )}
+          </a>
+          <div className="text-center md:text-left">
+            <div className="eyebrow">Featured designer</div>
+            <h2 className="serif text-4xl md:text-5xl mt-3" style={{ color: 'var(--ink)' }}>{featBrand.name}</h2>
+            <div className="brand-label mt-2">{featBrand.category} · {featBrand.city}</div>
+            <p className="mt-5 text-sm leading-relaxed max-w-md mx-auto md:mx-0" style={{ color: 'var(--muted)' }}>
+              An editor&rsquo;s pick from the house — {featBrand.category.toLowerCase()} crafted in {featBrand.city}.
+              One of the modest labels we&rsquo;ve vetted for craft and taste.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3 justify-center md:justify-start">
+              <a href={featBrand.homepage} target="_blank" rel="noopener noreferrer sponsored" className="btn-pill">
+                Shop {featBrand.name} →
+              </a>
+              <Link
+                href="/directory"
+                className="btn-pill"
+                style={{ background: 'transparent', color: 'var(--aubergine)', border: '1px solid var(--aubergine)' }}
+              >
+                All designers
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
