@@ -11,34 +11,43 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — looping video */}
-      <section className="relative overflow-hidden" style={{ height: '82vh', minHeight: 460, background: 'var(--aubergine)' }}>
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/hero-poster.jpg"
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
-          <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>The archive for everything modest</div>
-          <h1
-            className="serif text-5xl md:text-7xl leading-tight mt-4"
-            style={{ color: 'var(--parchment)', textShadow: '0 2px 28px rgba(0,0,0,0.5)' }}
+      {/* HERO — text */}
+      <section className="max-w-4xl mx-auto px-5 pt-20 pb-10 text-center">
+        <div className="eyebrow">The archive for everything modest</div>
+        <h1 className="serif text-5xl md:text-7xl leading-tight mt-5" style={{ color: 'var(--ink)' }}>
+          Modest fashion,
+          <br />
+          curated.
+        </h1>
+        <p className="mt-6 text-lg max-w-lg mx-auto leading-relaxed" style={{ color: 'var(--ink)', opacity: 0.7 }}>
+          Hijab, abaya, dresses and swim — from the brands worth knowing, all in one place.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+          <Link href="/hijabi-outfits" className="btn-pill">Explore the archive</Link>
+          <Link
+            href="/directory"
+            className="btn-pill"
+            style={{ background: 'transparent', color: 'var(--aubergine)', border: '1px solid var(--aubergine)' }}
           >
-            Modest fashion,
-            <br />
-            curated.
-          </h1>
-          <div className="mt-8">
-            <Link href="/hijabi-outfits" className="btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
-              Explore the archive
-            </Link>
-          </div>
+            Browse designers
+          </Link>
+        </div>
+      </section>
+
+      {/* VIDEO — contained band under the hero */}
+      <section className="max-w-6xl mx-auto px-5 pb-8">
+        <div className="overflow-hidden" style={{ borderRadius: 6 }}>
+          <video
+            className="w-full h-auto block"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/hero-poster.jpg"
+          >
+            <source src="/hero.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
