@@ -51,11 +51,4 @@ export const LANES: Lane[] = [
     intro: 'Lightweight, breathable modest pieces for warm days.',
     match: (p) => p.season.includes('summer'),
   },
-  {
-    slug: 'modest-church-outfits',
-    title: 'Modest Church Outfits',
-    nav: 'Church',
-    intro: 'Elegant, covered dresses and skirts perfect for church and Sunday best.',
-    match: (p) => p.community === 'general' && (p.garment === 'dress' || p.garment === 'skirt'),
-  },
 ];

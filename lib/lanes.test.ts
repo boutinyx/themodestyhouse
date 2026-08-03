@@ -15,10 +15,6 @@ describe('LANES', () => {
       expect(slugs).toContain(s);
     }
   });
-  it('church lane matches a general dress', () => {
-    const church = LANES.find((l) => l.slug === 'modest-church-outfits')!;
-    expect(church.match(base)).toBe(true);
-  });
   it('hijabi lane matches a hijabi-brand product', () => {
     const hijabi = LANES.find((l) => l.slug === 'hijabi-outfits')!;
     expect(hijabi.match({ ...base, community: 'hijabi', garment: 'hijab' })).toBe(true);
