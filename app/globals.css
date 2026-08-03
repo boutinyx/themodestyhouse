@@ -1,143 +1,147 @@
 @import "tailwindcss";
 
 :root {
-  /* base neutrals */
-  --white: #ffffff;
-  --sand: #f1ebe1;
-  --greige: #ded5c7;
-  --taupe: #9a8f86;
-  --ink: #2b2622;
-  --hairline: #e5ded4;
-  /* purple accent scale */
-  --whisper: #eadfe8;
-  --plum: #7d4b74;
-  --plum-deep: #5a2c54;
-  --aubergine: #3b1e3a;
-  /* the one live accent the vibe toggle swaps */
-  --vibe-accent: #5a2c54;
+  /* core identity */
+  --aubergine: #441943;   /* primary */
+  --parchment: #f3eee4;   /* ground / page background */
+  --brass: #a98a5b;       /* accent — badges/graphic only, never buttons */
+  /* functional */
+  --ink: #241b24;         /* body text */
+  --bone: #fbfaf6;        /* cards / surfaces */
+  --muted: #8a7d6b;       /* labels, meta (not body) */
+  --hairline: #e4ddcf;    /* borders */
   /* radii */
   --radius-image: 2px;
-  --radius-card: 4px;
-  --radius-section: 6px;
+  --radius-card: 6px;
   --radius-button: 999px;
   --radius-input: 8px;
 }
 
 @theme inline {
-  --color-white: var(--white);
-  --color-sand: var(--sand);
-  --color-greige: var(--greige);
-  --color-taupe: var(--taupe);
-  --color-ink: var(--ink);
-  --color-hairline: var(--hairline);
-  --color-whisper: var(--whisper);
-  --color-plum: var(--plum);
-  --color-plum-deep: var(--plum-deep);
   --color-aubergine: var(--aubergine);
-  --color-accent: var(--vibe-accent);
+  --color-parchment: var(--parchment);
+  --color-brass: var(--brass);
+  --color-ink: var(--ink);
+  --color-bone: var(--bone);
+  --color-muted: var(--muted);
+  --color-hairline: var(--hairline);
   --font-display: var(--font-display);
+  --font-label: var(--font-label);
   --font-ui: var(--font-ui);
 }
 
-html { background: var(--white); }
+html { background: var(--parchment); }
 body {
-  background: var(--white);
+  background: var(--parchment);
   color: var(--ink);
   font-family: var(--font-ui), 'Helvetica Neue', Arial, sans-serif;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---- editorial voice ---- */
-.serif { font-family: var(--font-display), Georgia, serif; }
+/* voice */
+.serif { font-family: var(--font-display), 'Times New Roman', serif; }
 .wordmark {
-  font-family: var(--font-display), Georgia, serif;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  font-weight: 400;
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.06em;
   color: var(--ink);
+  font-weight: 500;
 }
 .eyebrow {
-  font-family: var(--font-ui), sans-serif;
+  font-family: var(--font-label), serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-size: 10px;
-  color: var(--taupe);
+  color: var(--muted);
 }
 .section-heading {
-  font-family: var(--font-display), Georgia, serif;
-  letter-spacing: 0.14em;
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+.nav-link {
+  font-family: var(--font-label), serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 400;
+  color: var(--muted);
+  transition: color 0.2s ease-out;
 }
+.nav-link:hover,
+.nav-link[data-active="true"] { color: var(--aubergine); }
 
-/* ---- the one rich moment ---- */
+/* the one flat colour moment — NO gradient */
 .aubergine-band {
-  background: linear-gradient(120deg, #3b1e3a, #5a2c54 55%, #7d4b74);
-  color: #f4ecef;
+  background: var(--aubergine);
+  color: var(--parchment);
 }
 
-/* ---- controls: pill-round ---- */
+/* controls: aubergine, pill */
 .btn-pill {
   border-radius: var(--radius-button);
-  background: var(--vibe-accent);
-  color: #fff;
+  background: var(--aubergine);
+  color: var(--parchment);
   font-family: var(--font-ui), sans-serif;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 11px;
   padding: 8px 18px;
   transition: opacity 0.2s ease-out;
 }
-.btn-pill:hover { opacity: 0.88; }
+.btn-pill:hover { opacity: 0.9; }
+
+/* brass badge — curation only (Verified / Editor's Pick) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--radius-button);
+  background: var(--brass);
+  color: var(--parchment);
+  font-family: var(--font-label), serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 4px 12px;
+}
 
 .chip {
   border-radius: var(--radius-button);
-  background: var(--sand);
+  background: var(--bone);
   color: var(--ink);
+  font-family: var(--font-ui), sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
   padding: 6px 14px;
   border: 1px solid var(--hairline);
   transition: all 0.2s ease-out;
 }
-.chip[data-active="true"] { background: var(--vibe-accent); color: #fff; border-color: transparent; }
+.chip[data-active="true"] { background: var(--aubergine); color: var(--parchment); border-color: transparent; }
 
-.nav-link {
-  font-family: var(--font-ui), sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--taupe);
-  transition: color 0.2s ease-out;
-}
-.nav-link:hover { color: var(--plum); }
-
-/* ---- product card ---- */
+/* product / listing card */
 .product-card {
-  background: var(--white);
+  background: var(--bone);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-card);
   overflow: hidden;
   transition: border-color 0.2s ease-out;
 }
-.product-card:hover { border-color: var(--plum); }
+.product-card:hover { border-color: var(--brass); }
 .product-imgwrap {
-  background: var(--sand);
+  background: #ece5d8;
   border-radius: var(--radius-image);
   overflow: hidden;
 }
 .product-img { transition: transform 0.4s ease-out; }
 .product-card:hover .product-img { transform: scale(1.04); }
 .brand-label {
-  font-family: var(--font-ui), sans-serif;
+  font-family: var(--font-label), serif;
   font-size: 10px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--taupe);
+  color: var(--muted);
 }
 
-/* ---- product grid ---- */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));

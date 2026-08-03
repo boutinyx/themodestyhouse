@@ -1,27 +1,23 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Inter } from 'next/font/google';
+import { Bodoni_Moda, Marcellus, Jost } from 'next/font/google';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import './globals.css';
 
-const display = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-display',
-  display: 'swap',
-});
-const ui = Inter({ subsets: ['latin'], variable: '--font-ui', display: 'swap' });
+const display = Bodoni_Moda({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
+const label = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-label', display: 'swap' });
+const ui = Jost({ subsets: ['latin'], variable: '--font-ui', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'The Modest House',
-  description: 'Modest style, for everyone — a curated edit of modest fashion.',
+  title: 'The Modesty House — Where modest fashion is found',
+  description: 'The modest fashion directory. A curated index of modest brands and pieces.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const skim = process.env.NEXT_PUBLIC_SKIMLINKS_ID;
   return (
-    <html lang="en" className={`${display.variable} ${ui.variable}`}>
+    <html lang="en" className={`${display.variable} ${label.variable} ${ui.variable}`}>
       <body>
         <Header />
         {children}
