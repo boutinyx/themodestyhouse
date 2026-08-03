@@ -34,18 +34,18 @@ export default function Home() {
             style={{ background: 'radial-gradient(ellipse 55% 42% at 50% 52%, rgba(0,0,0,0.34), rgba(0,0,0,0) 72%)' }}
           />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
-            <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.55)' }}>The archive for everything modest</div>
+            <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.55)' }}>Curated modest fashion</div>
             <h1
-              className="serif text-5xl md:text-7xl leading-tight mt-4"
-              style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)' }}
+              className="serif text-5xl md:text-7xl mt-4"
+              style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)', lineHeight: 1.02 }}
             >
-              Modest fashion,
+              The archive for
               <br />
-              curated.
+              everything modest.
             </h1>
             <div className="mt-8">
               <Link href="/hijabi-outfits" className="btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
-                Explore the archive
+                Explore the edit
               </Link>
             </div>
           </div>
