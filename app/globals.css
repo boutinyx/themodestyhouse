@@ -3,6 +3,7 @@
 :root {
   /* core identity */
   --aubergine: #441943;   /* primary */
+  --plum: #6e4a6b;        /* secondary tint of primary (italic display, accents) */
   --parchment: #faf7f1;   /* ground / page background — brightened */
   --brass: #a98a5b;       /* accent — badges/graphic only, never buttons */
   /* functional */
@@ -19,6 +20,7 @@
 
 @theme inline {
   --color-aubergine: var(--aubergine);
+  --color-plum: var(--plum);
   --color-parchment: var(--parchment);
   --color-brass: var(--brass);
   --color-ink: var(--ink);
