@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lane: str
   const { lane: slug } = await params;
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) return {};
-  return { title: `${lane.title} | The Modest House`, description: lane.intro };
+  return { title: `${lane.title} | The Modesty House`, description: lane.intro };
 }
 
 export default async function LanePage({ params }: { params: Promise<{ lane: string }> }) {
