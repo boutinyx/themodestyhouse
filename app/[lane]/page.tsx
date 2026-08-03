@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { LANES } from '@/lib/lanes';
 import { productsForLane } from '@/lib/products';
-import { ProductGrid } from '@/components/ProductGrid';
+import { FilterableGrid } from '@/components/FilterableGrid';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -24,8 +24,8 @@ export default async function LanePage({ params }: { params: Promise<{ lane: str
     <main className="max-w-6xl mx-auto px-5 py-12">
       <div className="eyebrow">The edit</div>
       <h1 className="section-heading text-3xl md:text-4xl mt-2">{lane.title}</h1>
-      <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--taupe)' }}>{lane.intro}</p>
-      <ProductGrid products={products} />
+      <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>
+      <FilterableGrid products={products} />
     </main>
   );
 }
