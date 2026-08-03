@@ -10,12 +10,14 @@ export function Header() {
           <div className="eyebrow mt-1">The Modest Fashion Directory</div>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
+          <Link href="/directory" className="nav-link">Designers</Link>
           {LANES.map((l) => (
             <Link key={l.slug} href={`/${l.slug}`} className="nav-link">{l.nav}</Link>
           ))}
         </nav>
       </div>
       <nav className="md:hidden flex items-center gap-5 px-5 pb-3 overflow-x-auto">
+        <Link href="/directory" className="nav-link whitespace-nowrap">Designers</Link>
         {LANES.map((l) => (
           <Link key={l.slug} href={`/${l.slug}`} className="nav-link whitespace-nowrap">{l.nav}</Link>
         ))}

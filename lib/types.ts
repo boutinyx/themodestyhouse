@@ -2,13 +2,18 @@ export type Community = 'hijabi' | 'general';
 export type Garment =
   | 'dress' | 'skirt' | 'top' | 'trousers' | 'abaya' | 'hijab' | 'swim' | 'set' | 'other';
 
+export type Badge = 'verified' | 'editors-pick';
+
 export interface Brand {
   slug: string;
   name: string;
-  homepage: string; // e.g. https://ivycityco.com
-  feedUrl: string; // e.g. https://ivycityco.com/products.json
+  homepage: string; // e.g. https://hautehijab.com
+  feedUrl: string; // e.g. https://hautehijab.com/products.json
   community: Community;
   currency: string; // ISO, e.g. 'USD','GBP'
+  category: string; // e.g. 'Hijabs', 'Abayas', 'Modest dresses'
+  city: string; // e.g. 'London', 'New York'
+  badge?: Badge; // curation seal (owner-assigned)
 }
 
 export interface Product {
