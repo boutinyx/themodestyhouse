@@ -34,27 +34,29 @@ export function FilterableGrid({ products }: { products: Product[] }) {
 
   return (
     <div>
-      {occasions.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-3">
-          <button className="chip" data-active={occasion === 'all'} onClick={() => setOccasion('all')}>
-            All occasions
+      <div className="mb-6 p-4 md:p-5" style={{ border: '1px solid var(--hairline)', borderRadius: 24, background: 'var(--bone)' }}>
+        {occasions.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-3">
+            <button className="chip" data-active={occasion === 'all'} onClick={() => setOccasion('all')}>
+              All occasions
+            </button>
+            {occasions.map((o) => (
+              <button key={o} className="chip capitalize" data-active={occasion === o} onClick={() => setOccasion(o)}>
+                {o}
+              </button>
+            ))}
+          </div>
+        )}
+        <div className="flex flex-wrap gap-2">
+          <button className="chip" data-active={brand === 'all'} onClick={() => setBrand('all')}>
+            All brands
           </button>
-          {occasions.map((o) => (
-            <button key={o} className="chip capitalize" data-active={occasion === o} onClick={() => setOccasion(o)}>
-              {o}
+          {brands.map((b) => (
+            <button key={b} className="chip" data-active={brand === b} onClick={() => setBrand(b)}>
+              {b}
             </button>
           ))}
         </div>
-      )}
-      <div className="flex flex-wrap gap-2 mb-5">
-        <button className="chip" data-active={brand === 'all'} onClick={() => setBrand('all')}>
-          All brands
-        </button>
-        {brands.map((b) => (
-          <button key={b} className="chip" data-active={brand === b} onClick={() => setBrand(b)}>
-            {b}
-          </button>
-        ))}
       </div>
 
       <div className="brand-label mb-4">
