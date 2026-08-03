@@ -32,9 +32,15 @@ function matchAll(rules: [string, RegExp][], hay: string): string[] {
 
 export function tagDiscovery(input: { title: string; productType: string; tags: string[] }) {
   const hay = [input.title, input.productType, ...(input.tags || [])].join(' ');
+  // Trust the TITLE first (most accurate), then fall back to type/tags.
   let garment: Garment = 'other';
   for (const [g, re] of GARMENT_RULES) {
-    if (re.test(hay)) { garment = g; break; }
+    if (re.test(input.title)) { garment = g; break; }
+  }
+  if (garment === 'other') {
+    for (const [g, re] of GARMENT_RULES) {
+      if (re.test(hay)) { garment = g; break; }
+    }
   }
   return {
     garment,
