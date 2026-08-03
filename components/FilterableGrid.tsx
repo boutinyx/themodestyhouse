@@ -1,11 +1,14 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductCard } from './ProductCard';
+
+const STEP = 24;
 
 export function FilterableGrid({ products }: { products: Product[] }) {
   const [brand, setBrand] = useState('all');
   const [occasion, setOccasion] = useState('all');
+  const [visible, setVisible] = useState(STEP);
 
   const brands = useMemo(
     () => Array.from(new Set(products.map((p) => p.brandName))).sort(),
@@ -21,6 +24,13 @@ export function FilterableGrid({ products }: { products: Product[] }) {
       (brand === 'all' || p.brandName === brand) &&
       (occasion === 'all' || p.occasion.includes(occasion))
   );
+
+  // reset how many are shown whenever a filter changes
+  useEffect(() => {
+    setVisible(STEP);
+  }, [brand, occasion]);
+
+  const shown = filtered.slice(0, visible);
 
   return (
     <div>
@@ -46,15 +56,32 @@ export function FilterableGrid({ products }: { products: Product[] }) {
           </button>
         ))}
       </div>
-      <div className="brand-label mb-4">{filtered.length} pieces</div>
+
+      <div className="brand-label mb-4">
+        Showing {shown.length} of {filtered.length}
+      </div>
+
       {filtered.length === 0 ? (
         <p className="text-sm" style={{ color: 'var(--muted)' }}>No pieces match.</p>
       ) : (
-        <div className="product-grid">
-          {filtered.map((p) => (
-            <ProductCard key={p.id} p={p} />
-          ))}
-        </div>
+        <>
+          <div className="product-grid">
+            {shown.map((p) => (
+              <ProductCard key={p.id} p={p} />
+            ))}
+          </div>
+          {visible < filtered.length && (
+            <div className="text-center mt-12">
+              <button
+                onClick={() => setVisible((v) => v + STEP)}
+                className="btn-pill"
+                style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
+              >
+                Load more
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
