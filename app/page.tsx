@@ -14,7 +14,7 @@ export default function Home() {
       {/* HERO — floating rounded video, gap under the header pill */}
       <section className="px-4 mt-4">
         <div
-          className="relative overflow-hidden rounded-[28px]"
+          className="max-w-6xl mx-auto relative overflow-hidden"
           style={{ height: '80vh', minHeight: 460, background: 'var(--aubergine)' }}
         >
           <video
