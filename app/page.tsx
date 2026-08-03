@@ -41,7 +41,7 @@ export default function Home() {
             >
               The archive for
               <br />
-              everything modest.
+              <span className="italic">everything</span> modest.
             </h1>
             <div className="mt-14">
               <Link href="/hijabi-outfits" className="btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
