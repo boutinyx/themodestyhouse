@@ -15,41 +15,31 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="max-w-[1220px] mx-auto px-8 pt-32 pb-36">
-        <div className="grid grid-cols-1 md:grid-cols-[1.05fr_.95fr] gap-12 items-center">
-          <div>
-            <div className="eyebrow">The modest fashion directory</div>
-            <h1 className="serif mt-4" style={{ fontSize: 'clamp(44px,7vw,92px)', lineHeight: 0.98, color: 'var(--ink)' }}>
-              The archive for <span className="italic" style={{ color: 'var(--plum)' }}>everything</span> modest.
+      {/* HERO — full-screen video */}
+      <section>
+        <div className="relative overflow-hidden" style={{ height: '100vh', minHeight: 560, background: 'var(--aubergine)' }}>
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center 35%' }}
+            autoPlay loop muted playsInline preload="auto" poster="/header-poster.jpg"
+          >
+            <source src="/header.mp4" type="video/mp4" />
+          </video>
+          <div
+            className="absolute inset-0"
+            style={{ background: 'radial-gradient(ellipse 55% 42% at 50% 52%, rgba(0,0,0,0.34), rgba(0,0,0,0) 72%)' }}
+          />
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
+            <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.55)' }}>Curated modest fashion</div>
+            <h1 className="serif text-5xl md:text-7xl mt-4" style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)', lineHeight: 1.02 }}>
+              The archive for
+              <br />
+              <span className="italic">everything</span> modest.
             </h1>
-            <p className="mt-6 max-w-md" style={{ color: 'var(--muted)', fontSize: 17, lineHeight: 1.6 }}>
-              A curated index of modest fashion houses — vetted for craft and taste. Explore verified designers, not endless catalogues.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/directory" className="btn-pill">Explore the directory</Link>
-              <Link href="/editorial" className="btn-pill" style={{ background: 'transparent', color: 'var(--aubergine)', border: '1px solid var(--aubergine)' }}>
-                Read the edit
+            <div className="mt-14">
+              <Link href="/directory" className="btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
+                Explore the directory
               </Link>
-            </div>
-          </div>
-          <div className="relative overflow-hidden" style={{ borderRadius: 6, height: 600, background: 'var(--aubergine)' }}>
-            <video
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ objectPosition: 'center 30%' }}
-              autoPlay loop muted playsInline preload="auto" poster="/header-poster.jpg"
-            >
-              <source src="/header.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.6), rgba(36,27,36,0) 55%)' }} />
-            <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
-              <span className="eyebrow" style={{ color: '#e7d3b6' }}>Vol. 01 · Autumn</span>
-              <span className="badge">✦ {t.houses} verified houses</span>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 p-6">
-              <p className="serif italic text-xl md:text-2xl" style={{ color: 'var(--parchment)' }}>
-                Quiet luxury, and the houses defining it.
-              </p>
             </div>
           </div>
         </div>
