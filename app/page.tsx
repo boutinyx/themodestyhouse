@@ -220,26 +220,31 @@ export default function Home() {
 
       {/* NEWSLETTER */}
       <section className="max-w-[1220px] mx-auto px-8 py-20">
-        <div className="max-w-2xl mx-auto text-center p-12" style={{ background: 'var(--bone)', border: '1px solid var(--hairline)', borderRadius: 12 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="The Modesty House" className="h-14 w-auto mx-auto" />
-          <h3 className="serif mt-5" style={{ fontSize: 30, color: 'var(--ink)' }}>
-            The Edit, <span className="italic" style={{ color: 'var(--plum)' }}>in your inbox.</span>
-          </h3>
-          <p className="mt-3 text-sm" style={{ color: 'var(--muted)' }}>
-            New houses, editorials, and the occasional drop. Once a week, never more.
-          </p>
-          <form action="mailto:hello@themodestyhouse.com" method="post" className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-            <input
-              type="email"
-              required
-              aria-label="Email address"
-              placeholder="your@email.com"
-              className="flex-1 max-w-xs"
-              style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
-            />
-            <button type="submit" className="btn-pill">Join the house</button>
-          </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center p-8 md:p-12" style={{ background: 'var(--bone)', border: '1px solid var(--hairline)', borderRadius: 12 }}>
+          <div className="overflow-hidden" style={{ borderRadius: 8 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/inbox-preview.png" alt="A Modesty House email in an inbox" className="w-full h-auto" />
+          </div>
+          <div className="text-center md:text-left">
+            <div className="eyebrow">Join the house</div>
+            <h3 className="serif mt-3" style={{ fontSize: 34, color: 'var(--ink)' }}>
+              The Edit, <span className="italic" style={{ color: 'var(--plum)' }}>in your inbox.</span>
+            </h3>
+            <p className="mt-3 text-sm max-w-sm mx-auto md:mx-0" style={{ color: 'var(--muted)' }}>
+              New houses, editorials, and the occasional drop. Once a week, never more.
+            </p>
+            <form action="mailto:hello@themodestyhouse.com" method="post" className="mt-6 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+              <input
+                type="email"
+                required
+                aria-label="Email address"
+                placeholder="your@email.com"
+                className="flex-1 max-w-xs"
+                style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
+              />
+              <button type="submit" className="btn-pill">Join the house</button>
+            </form>
+          </div>
         </div>
       </section>
     </>
