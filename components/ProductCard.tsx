@@ -1,15 +1,14 @@
+'use client';
 import type { Product } from '@/lib/types';
+import { useQuickView } from './QuickView';
 
 export function ProductCard({ p }: { p: Product }) {
+  const { open, isFav, toggleFav } = useQuickView();
+  const fav = isFav(p.id);
   return (
-    <a
-      href={p.url}
-      target="_blank"
-      rel="noopener noreferrer sponsored"
-      className="group block text-center"
-    >
+    <div className="group block text-center cursor-pointer" onClick={() => open(p)}>
       <div
-        className="overflow-hidden border"
+        className="relative overflow-hidden border"
         style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -19,14 +18,20 @@ export function ProductCard({ p }: { p: Product }) {
           className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"
         />
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleFav(p); }}
+          className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center text-sm transition"
+          style={{ background: 'rgba(255,255,255,0.85)', color: fav ? 'var(--aubergine)' : 'var(--muted)' }}
+          aria-label="Add to favourites"
+        >
+          {fav ? '♥' : '♡'}
+        </button>
       </div>
       <div className="brand-label mt-3">{p.brandName}</div>
-      <div className="serif text-sm mt-1 px-2 truncate" style={{ color: 'var(--ink)' }}>
-        {p.title}
-      </div>
+      <div className="serif text-sm mt-1 px-2 truncate" style={{ color: 'var(--ink)' }}>{p.title}</div>
       <div className="text-sm mt-1" style={{ color: 'var(--muted)' }}>
         {p.currency} {p.price.toFixed(2)}
       </div>
-    </a>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { Bodoni_Moda, Marcellus, Jost } from 'next/font/google';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { QuickViewProvider } from '@/components/QuickView';
 import './globals.css';
 
 const display = Bodoni_Moda({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
@@ -27,9 +28,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${ui.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <QuickViewProvider>
+          <Header />
+          {children}
+          <Footer />
+        </QuickViewProvider>
         {skim && (
           <Script src={`https://s.skimresources.com/js/${skim}.skimlinks.js`} strategy="afterInteractive" />
         )}

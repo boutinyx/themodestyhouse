@@ -2,10 +2,13 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Nav } from './Nav';
+import { useQuickView } from './QuickView';
 
 export function Header() {
   const [hidden, setHidden] = useState(false);
   const lastY = useRef(0);
+  const { favs } = useQuickView();
+  const count = Object.keys(favs).length;
 
   useEffect(() => {
     const onScroll = () => {
@@ -47,12 +50,18 @@ export function Header() {
             House
           </span>
         </Link>
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-6">
           <Nav />
+          <Link href="/favourites" className="nav-link" aria-label="Favourites">
+            {count > 0 ? `♥ ${count}` : '♡'}
+          </Link>
         </div>
       </div>
-      <div className="md:hidden px-5 pt-3 overflow-x-auto">
+      <div className="md:hidden flex items-center gap-5 px-5 pt-3 overflow-x-auto">
         <Nav />
+        <Link href="/favourites" className="nav-link whitespace-nowrap" aria-label="Favourites">
+          {count > 0 ? `♥ ${count}` : '♡'}
+        </Link>
       </div>
     </header>
   );
