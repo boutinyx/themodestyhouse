@@ -29,6 +29,10 @@ export default function Home() {
           >
             <source src="/header.mp4" type="video/mp4" />
           </video>
+          <div
+            className="absolute inset-0"
+            style={{ background: 'radial-gradient(ellipse 55% 42% at 50% 52%, rgba(0,0,0,0.34), rgba(0,0,0,0) 72%)' }}
+          />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
             <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.55)' }}>The archive for everything modest</div>
             <h1
