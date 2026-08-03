@@ -1,9 +1,29 @@
+'use client';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import { Nav } from './Nav';
 
 export function Header() {
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      // hide when scrolling down past a threshold, show when scrolling up
+      if (y > lastY.current && y > 120) setHidden(true);
+      else setHidden(false);
+      lastY.current = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 transition-transform duration-300 ease-out"
+      style={{ transform: hidden ? 'translateY(-130%)' : 'translateY(0)' }}
+    >
       <div
         className="max-w-6xl mx-auto flex items-center justify-between gap-6 pl-5 pr-6 py-3 rounded-[28px] border"
         style={{ borderColor: 'var(--hairline)', background: 'var(--bone)' }}
