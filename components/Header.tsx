@@ -10,16 +10,16 @@ export function Header() {
       >
         <Link href="/" className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="The Modesty House crest" className="h-10 w-auto" />
-          <span aria-hidden className="block w-px h-8" style={{ background: 'var(--hairline)' }} />
+          <img src="/logo.png" alt="The Modesty House crest" className="h-9 w-auto" />
+          <span aria-hidden className="block w-px h-7" style={{ background: 'var(--hairline)' }} />
           <span
             className="uppercase"
             style={{
               fontFamily: 'var(--font-label), serif',
               color: 'var(--aubergine)',
-              letterSpacing: '0.22em',
+              letterSpacing: '0.2em',
               lineHeight: 1.3,
-              fontSize: '13px',
+              fontSize: '11px',
             }}
           >
             The&nbsp;Modesty
