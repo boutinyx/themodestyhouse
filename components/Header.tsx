@@ -5,12 +5,23 @@ export function Header() {
   return (
     <header className="border-b" style={{ borderColor: 'var(--hairline)' }}>
       <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-3 leading-none">
+        <Link href="/" className="flex items-center gap-4 leading-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="The Modesty House crest" className="h-11 w-auto" />
-          <span>
-            <span className="wordmark block text-base md:text-lg">The Modesty House</span>
-            <span className="eyebrow block mt-1">The Modest Fashion Directory</span>
+          <img src="/logo.png" alt="The Modest House crest" className="h-14 w-auto" />
+          <span aria-hidden className="block w-px h-9" style={{ background: 'var(--hairline)' }} />
+          <span
+            className="uppercase"
+            style={{
+              fontFamily: 'var(--font-label), serif',
+              color: 'var(--aubergine)',
+              letterSpacing: '0.24em',
+              lineHeight: 1.3,
+              fontSize: '15px',
+            }}
+          >
+            The&nbsp;Modest
+            <br />
+            House
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
