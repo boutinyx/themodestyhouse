@@ -1,34 +1,97 @@
 import Link from 'next/link';
 import { LANES } from '@/lib/lanes';
+import { getProducts, productsForLane } from '@/lib/products';
+import { ProductGrid } from '@/components/ProductGrid';
 
 export default function Home() {
+  const covers: Record<string, string | undefined> = {};
+  for (const l of LANES) covers[l.slug] = productsForLane(l.slug)[0]?.image;
+  const featured = productsForLane('hijabi-outfits').slice(0, 8);
+  const total = getProducts().length;
+
   return (
     <>
-      <section className="aubergine-band">
-        <div className="max-w-6xl mx-auto px-5 py-24 text-center">
-          <h1 className="serif text-5xl md:text-7xl" style={{ color: 'var(--parchment)' }}>
-            The Modesty House
-          </h1>
-          <p className="serif italic text-xl md:text-2xl mt-5" style={{ color: '#e7d8e4' }}>
-            The archive for everything modest.
-          </p>
+      {/* HERO — clean, spacious */}
+      <section className="max-w-4xl mx-auto px-5 pt-20 pb-16 text-center">
+        <div className="eyebrow">The archive for everything modest</div>
+        <h1 className="serif text-5xl md:text-7xl leading-tight mt-5" style={{ color: 'var(--ink)' }}>
+          Modest fashion,
+          <br />
+          curated.
+        </h1>
+        <p className="mt-6 text-base md:text-lg max-w-xl mx-auto" style={{ color: 'var(--muted)' }}>
+          Hijab, abaya, dresses and swim — from the brands worth knowing, all in one place.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+          <Link href="/hijabi-outfits" className="btn-pill">Explore the archive</Link>
           <Link
-            href="/hijabi-outfits"
-            className="inline-block mt-8 btn-pill"
-            style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}
+            href="/directory"
+            className="btn-pill"
+            style={{ background: 'transparent', color: 'var(--aubergine)', border: '1px solid var(--aubergine)' }}
           >
-            Explore the archive
+            Browse designers
           </Link>
         </div>
       </section>
-      <section className="max-w-6xl mx-auto px-5 py-16">
-        <div className="eyebrow mb-5">The edit</div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+      {/* SHOP BY CATEGORY */}
+      <section className="max-w-6xl mx-auto px-5 py-12">
+        <div className="eyebrow mb-6 text-center">Shop by category</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {LANES.map((l) => (
-            <Link key={l.slug} href={`/${l.slug}`} className="product-card block p-6">
-              <div className="section-heading text-lg">{l.title}</div>
-              <div className="text-xs mt-2" style={{ color: 'var(--muted)' }}>{l.intro}</div>
+            <Link key={l.slug} href={`/${l.slug}`} className="group block">
+              <div className="product-imgwrap aspect-[4/5]">
+                {covers[l.slug] ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={covers[l.slug]} alt={l.title} className="product-img w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full" style={{ background: '#ece5d8' }} />
+                )}
+              </div>
+              <div className="section-heading text-base mt-3">{l.title}</div>
+              <div className="brand-label mt-1">Shop {l.nav} →</div>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* EDITORIAL — the aubergine moment */}
+      <section className="aubergine-band my-10">
+        <div className="max-w-3xl mx-auto px-5 py-20 text-center">
+          <div className="eyebrow" style={{ color: '#c9b2c4' }}>A curator, not a catalogue</div>
+          <p className="serif text-2xl md:text-4xl leading-snug mt-4" style={{ color: 'var(--parchment)' }}>
+            We frame the fashion and point you to where it&rsquo;s sold — a curated index of modest brands, vetted for craft and taste.
+          </p>
+          <Link href="/about" className="inline-block mt-8 btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
+            Our story
+          </Link>
+        </div>
+      </section>
+
+      {/* NEW IN */}
+      <section className="max-w-6xl mx-auto px-5 py-12">
+        <div className="flex items-end justify-between mb-6">
+          <div>
+            <div className="eyebrow">New in</div>
+            <h2 className="section-heading text-2xl md:text-3xl mt-1">Fresh from the archive</h2>
+          </div>
+          <Link href="/hijabi-outfits" className="nav-link">View all →</Link>
+        </div>
+        <ProductGrid products={featured} />
+      </section>
+
+      {/* TRUST BAR */}
+      <section className="max-w-6xl mx-auto px-5 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          {[
+            ['Curated by hand', 'Every piece chosen by eye, not an algorithm.'],
+            ['Brands worth knowing', `A vetted index of ${total.toLocaleString()}+ modest pieces.`],
+            ['Always fresh', 'New arrivals added every week.'],
+          ].map(([t, d]) => (
+            <div key={t} className="product-card p-6">
+              <div className="section-heading text-lg">{t}</div>
+              <div className="text-sm mt-2" style={{ color: 'var(--muted)' }}>{d}</div>
+            </div>
           ))}
         </div>
       </section>
