@@ -43,7 +43,7 @@ export default function Home() {
               <br />
               everything modest.
             </h1>
-            <div className="mt-8">
+            <div className="mt-14">
               <Link href="/hijabi-outfits" className="btn-pill" style={{ background: 'var(--parchment)', color: 'var(--aubergine)' }}>
                 Explore the edit
               </Link>
