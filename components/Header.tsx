@@ -7,7 +7,7 @@ export function Header() {
       <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-4 leading-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="The Modest House crest" className="h-14 w-auto" />
+          <img src="/logo.png" alt="The Modesty House crest" className="h-14 w-auto" />
           <span aria-hidden className="block w-px h-9" style={{ background: 'var(--hairline)' }} />
           <span
             className="uppercase"
@@ -19,7 +19,7 @@ export function Header() {
               fontSize: '15px',
             }}
           >
-            The&nbsp;Modest
+            The&nbsp;Modesty
             <br />
             House
           </span>
