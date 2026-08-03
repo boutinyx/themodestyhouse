@@ -51,7 +51,7 @@ export function Footer() {
           </Col>
 
           <Col head="The House">
-            <FLink href="/directory">Designers</FLink>
+            <FLink href="/designers">Designers</FLink>
             <FLink href="/about">About</FLink>
             <FLink href="/favourites">Favourites</FLink>
             <FLink href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal">Apply for the seal</FLink>

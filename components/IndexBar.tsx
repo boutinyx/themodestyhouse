@@ -60,7 +60,7 @@ export function IndexBar() {
           <ChipDropdown label="Category" active items={CATEGORY_LANES.map((l) => ({ href: `/${l.slug}`, label: l.title }))} />
           <ChipDropdown label="Aesthetic" items={VIBES.map((v) => ({ href: `/style/${v.slug}`, label: v.title }))} />
           <Link href="/modest-wedding-guest" className="chip">Occasion</Link>
-          <Link href="/directory" className="chip">Newly verified</Link>
+          <Link href="/designers" className="chip">Newly verified</Link>
         </div>
       </div>
     </div>

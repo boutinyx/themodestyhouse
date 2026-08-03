@@ -1,25 +1,25 @@
 import type { Metadata } from 'next';
-import { BRANDS } from '@/data/brands';
-import { BrandCard } from '@/components/BrandCard';
+import { getProducts } from '@/lib/products';
+import { IndexBar } from '@/components/IndexBar';
+import { FilterableGrid } from '@/components/FilterableGrid';
 
 export const metadata: Metadata = {
-  title: 'Designers | The Modesty House',
-  description: 'A curated index of modest brands, vetted for craft and taste.',
+  title: 'The Directory | The Modesty House',
+  description: 'Browse modest pieces from every verified house.',
 };
 
 export default function DirectoryPage() {
+  const products = getProducts();
   return (
-    <main className="max-w-4xl mx-auto px-5 pt-28 pb-12">
-      <div className="eyebrow">The directory</div>
-      <h1 className="section-heading text-3xl md:text-4xl mt-2">Designers</h1>
-      <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
-        A curated index of modest fashion, brand by brand — vetted for craft and taste.
-      </p>
-      <div className="flex flex-col gap-3">
-        {BRANDS.map((b) => (
-          <BrandCard key={b.slug} b={b} />
-        ))}
+    <main className="max-w-6xl mx-auto px-5 pt-32 pb-16">
+      <div className="text-center mb-6">
+        <div className="eyebrow">The directory</div>
+        <h1 className="section-heading text-3xl md:text-4xl mt-2">Everything modest</h1>
       </div>
+      <div className="mb-10">
+        <IndexBar />
+      </div>
+      <FilterableGrid products={products} />
     </main>
   );
 }

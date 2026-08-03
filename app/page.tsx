@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { newlyVerified, trust, categoryCards } from '@/lib/houses';
-import { IndexBar } from '@/components/IndexBar';
 
 export default function Home() {
   const rail = newlyVerified();
@@ -45,13 +44,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INDEX BAR — signature, floats over the seam */}
-      <div style={{ marginTop: -84, position: 'relative', zIndex: 10 }}>
-        <IndexBar />
-      </div>
-
       {/* TRUST STRIP */}
-      <div className="mt-16" style={{ borderTop: '1px solid var(--hairline)', borderBottom: '1px solid var(--hairline)' }}>
+      <div style={{ borderTop: '1px solid var(--hairline)', borderBottom: '1px solid var(--hairline)' }}>
         <div className="max-w-[1220px] mx-auto px-8 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-center">
           {[
             [`${t.houses}`, 'Verified houses'],
@@ -79,7 +73,7 @@ export default function Home() {
               Houses that just earned the <span className="italic" style={{ color: 'var(--plum)' }}>seal</span>.
             </h2>
           </div>
-          <Link href="/directory" className="nav-link">All designers →</Link>
+          <Link href="/designers" className="nav-link">All designers →</Link>
         </div>
         <div className="flex gap-6 overflow-x-auto pb-4" style={{ scrollSnapType: 'x mandatory' }}>
           {rail.slice(0, 12).map((h) => (
@@ -177,7 +171,7 @@ export default function Home() {
       {/* FOR DESIGNERS */}
       <section className="aubergine-band">
         <div className="max-w-[1220px] mx-auto px-8 py-24">
-          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_.9fr] gap-12 items-center">
+          <div className="max-w-2xl">
             <div>
               <div className="eyebrow" style={{ color: 'var(--brass)' }}>For designers</div>
               <h2 className="serif mt-3" style={{ fontSize: 'clamp(28px,4vw,46px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
@@ -198,11 +192,6 @@ export default function Home() {
               <a href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
                 Apply for the seal
               </a>
-            </div>
-            <div className="text-center p-10" style={{ border: '1px solid rgba(243,238,228,0.2)', borderRadius: 12 }}>
-              <div className="serif" style={{ fontSize: 34, color: 'var(--parchment)' }}>✦</div>
-              <div className="eyebrow mt-4" style={{ color: 'var(--brass)' }}>Verified by</div>
-              <div className="wordmark mt-1" style={{ color: 'var(--parchment)', fontSize: 20 }}>The Modesty House</div>
             </div>
           </div>
         </div>

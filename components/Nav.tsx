@@ -6,18 +6,24 @@ import { CATEGORY_LANES } from '@/lib/lanes';
 
 function Dropdown({
   label,
+  href,
   activeWhen,
   items,
   path,
 }: {
   label: string;
+  href?: string;
   activeWhen: boolean;
   items: { href: string; label: string }[];
   path: string;
 }) {
   return (
     <div className="relative group">
-      <span className="nav-link cursor-default" data-active={activeWhen}>{label}</span>
+      {href ? (
+        <Link href={href} className="nav-link" data-active={activeWhen}>{label}</Link>
+      ) : (
+        <span className="nav-link cursor-default" data-active={activeWhen}>{label}</span>
+      )}
       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block z-50">
         <div
           className="rounded-2xl border p-2 min-w-[180px]"
@@ -48,12 +54,13 @@ export function Nav() {
     <nav className="flex items-center gap-5 md:gap-7">
       <Dropdown
         label="Directory"
-        activeWhen={path === '/' || path.startsWith('/modest') || path.startsWith('/hijabi')}
+        href="/directory"
+        activeWhen={path === '/directory' || path.startsWith('/modest') || path.startsWith('/hijabi')}
         items={categoryItems}
         path={path}
       />
       <Dropdown label="Styles" activeWhen={path.startsWith('/style')} items={styleItems} path={path} />
-      <Link href="/directory" className="nav-link" data-active={path.startsWith('/directory')}>Designers</Link>
+      <Link href="/designers" className="nav-link" data-active={path.startsWith('/designers')}>Designers</Link>
       <Link href="/editorial" className="nav-link" data-active={path.startsWith('/editorial')}>Editorial</Link>
       <Link href="/about" className="nav-link" data-active={path.startsWith('/about')}>About</Link>
     </nav>
