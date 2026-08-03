@@ -3,7 +3,7 @@
 :root {
   /* core identity */
   --aubergine: #441943;   /* primary */
-  --parchment: #f3eee4;   /* ground / page background */
+  --parchment: #faf7f1;   /* ground / page background — brightened */
   --brass: #a98a5b;       /* accent — badges/graphic only, never buttons */
   /* functional */
   --ink: #241b24;         /* body text */

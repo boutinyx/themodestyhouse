@@ -21,7 +21,7 @@ export default async function LanePage({ params }: { params: Promise<{ lane: str
   if (!lane) notFound();
   const products = productsForLane(lane.slug);
   return (
-    <main className="max-w-6xl mx-auto px-5 py-12">
+    <main className="max-w-6xl mx-auto px-5 pt-28 pb-12">
       <div className="eyebrow">The edit</div>
       <h1 className="section-heading text-3xl md:text-4xl mt-2">{lane.title}</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>

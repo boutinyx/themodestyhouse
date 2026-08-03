@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function DirectoryPage() {
   return (
-    <main className="max-w-4xl mx-auto px-5 py-12">
+    <main className="max-w-4xl mx-auto px-5 pt-28 pb-12">
       <div className="eyebrow">The directory</div>
       <h1 className="section-heading text-3xl md:text-4xl mt-2">Designers</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>

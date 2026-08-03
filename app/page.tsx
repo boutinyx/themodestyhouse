@@ -11,11 +11,11 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — floating rounded video, gap under the header pill */}
-      <section className="mt-4">
+      {/* HERO — full-screen video, header overlays the top */}
+      <section>
         <div
           className="relative overflow-hidden"
-          style={{ height: '90vh', minHeight: 520, background: 'var(--aubergine)' }}
+          style={{ height: '100vh', minHeight: 560, background: 'var(--aubergine)' }}
         >
           <video
             className="absolute inset-0 w-full h-full object-cover"

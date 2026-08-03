@@ -3,7 +3,7 @@ import { Nav } from './Nav';
 
 export function Header() {
   return (
-    <header className="px-4 pt-4">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
       <div
         className="max-w-6xl mx-auto flex items-center justify-between gap-6 pl-5 pr-6 py-3 rounded-[28px] border"
         style={{ borderColor: 'var(--hairline)', background: 'var(--bone)' }}
