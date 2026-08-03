@@ -24,10 +24,12 @@ export default function Home() {
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0" style={{ background: 'rgba(59,30,58,0.40)' }} />
         <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
-          <div className="eyebrow" style={{ color: '#e7d8e4' }}>The archive for everything modest</div>
-          <h1 className="serif text-5xl md:text-7xl leading-tight mt-4" style={{ color: 'var(--parchment)' }}>
+          <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>The archive for everything modest</div>
+          <h1
+            className="serif text-5xl md:text-7xl leading-tight mt-4"
+            style={{ color: 'var(--parchment)', textShadow: '0 2px 28px rgba(0,0,0,0.5)' }}
+          >
             Modest fashion,
             <br />
             curated.
