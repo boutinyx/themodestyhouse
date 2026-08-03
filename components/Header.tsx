@@ -26,7 +26,7 @@ export function Header() {
     >
       <div
         className="max-w-6xl mx-auto flex items-center justify-between gap-6 pl-5 pr-6 py-3 rounded-[28px] border"
-        style={{ borderColor: 'var(--hairline)', background: 'var(--bone)' }}
+        style={{ borderColor: 'var(--hairline)', background: '#ffffff', boxShadow: '0 4px 24px rgba(43,38,34,0.14)' }}
       >
         <Link href="/" className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
