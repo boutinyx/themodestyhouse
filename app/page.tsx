@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LANES } from '@/lib/lanes';
+import { LANES, CATEGORY_LANES } from '@/lib/lanes';
 import { BRANDS } from '@/data/brands';
 import { getProducts, productsForLane } from '@/lib/products';
 import { ProductGrid } from '@/components/ProductGrid';
@@ -59,7 +59,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-5 py-16">
         <div className="eyebrow mb-6 text-center">Shop by category</div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {LANES.map((l) => (
+          {CATEGORY_LANES.slice(0, 6).map((l) => (
             <Link
               key={l.slug}
               href={`/${l.slug}`}
