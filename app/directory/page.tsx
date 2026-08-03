@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { getProducts } from '@/lib/products';
-import { IndexBar } from '@/components/IndexBar';
-import { FilterableGrid } from '@/components/FilterableGrid';
+import { DirectoryBrowser } from '@/components/DirectoryBrowser';
 
 export const metadata: Metadata = {
   title: 'The Directory | The Modesty House',
@@ -16,10 +15,7 @@ export default function DirectoryPage() {
         <div className="eyebrow">The directory</div>
         <h1 className="section-heading text-3xl md:text-4xl mt-2">Everything modest</h1>
       </div>
-      <div className="mb-10">
-        <IndexBar />
-      </div>
-      <FilterableGrid products={products} />
+      <DirectoryBrowser products={products} />
     </main>
   );
 }
