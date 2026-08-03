@@ -3,7 +3,7 @@ import type { Product } from '@/lib/types';
 export interface Lane {
   slug: string;
   title: string;
-  nav: string; // short nav label
+  nav: string; // short label
   intro: string;
   match: (p: Product) => boolean;
 }
@@ -24,11 +24,32 @@ export const LANES: Lane[] = [
     match: (p) => p.community === 'hijabi',
   },
   {
+    slug: 'modest-abayas',
+    title: 'Abayas',
+    nav: 'Abaya',
+    intro: 'Open, closed, kimono and butterfly abayas — from plain-sharp to embellished-flowing.',
+    match: (p) => p.garment === 'abaya',
+  },
+  {
     slug: 'modest-swimwear',
     title: 'Modest Swimwear',
     nav: 'Swim',
     intro: 'Full-coverage swimsuits and burkinis for the beach and pool.',
     match: (p) => p.garment === 'swim',
+  },
+  {
+    slug: 'modest-wedding-guest',
+    title: 'Modest Wedding Guest',
+    nav: 'Wedding',
+    intro: 'Covered, elegant looks for weddings and formal occasions.',
+    match: (p) => p.occasion.includes('wedding') || p.occasion.includes('formal'),
+  },
+  {
+    slug: 'modest-summer-outfits',
+    title: 'Modest Summer Outfits',
+    nav: 'Summer',
+    intro: 'Lightweight, breathable modest pieces for warm days.',
+    match: (p) => p.season.includes('summer'),
   },
   {
     slug: 'modest-church-outfits',

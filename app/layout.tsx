@@ -10,8 +10,16 @@ const label = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-l
 const ui = Jost({ subsets: ['latin'], variable: '--font-ui', display: 'swap' });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://themodestyhouse.com'),
   title: 'The Modesty House — the archive for everything modest',
   description: 'The archive for everything modest. A curated index of modest brands and pieces.',
+  openGraph: {
+    title: 'The Modesty House',
+    description: 'The archive for everything modest.',
+    type: 'website',
+    siteName: 'The Modesty House',
+  },
+  twitter: { card: 'summary_large_image', title: 'The Modesty House', description: 'The archive for everything modest.' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
