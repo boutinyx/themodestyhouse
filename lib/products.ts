@@ -1,7 +1,8 @@
 import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
-import type { Product } from '@/lib/types';
+import type { Product, Vibe } from '@/lib/types';
 import { LANES } from '@/lib/lanes';
+import { brandVibe } from '@/lib/vibes';
 
 export function getProducts(): Product[] {
   const f = path.join(process.cwd(), 'data', 'products.json');
@@ -13,4 +14,8 @@ export function productsForLane(slug: string): Product[] {
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) return [];
   return getProducts().filter(lane.match);
+}
+
+export function productsForVibe(vibe: Vibe): Product[] {
+  return getProducts().filter((p) => brandVibe[p.brandSlug] === vibe);
 }
