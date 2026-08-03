@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { newlyVerified, trust, categoryCards } from '@/lib/houses';
+import { newlyVerified, categoryCards } from '@/lib/houses';
 
 export default function Home() {
   const rail = newlyVerified();
-  const t = trust();
   const cats = categoryCards();
   const stories = [
     { cat: 'The List', title: 'The abaya houses defining quiet luxury', href: '/editorial' },
@@ -43,26 +42,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* TRUST STRIP */}
-      <div style={{ borderTop: '1px solid var(--hairline)', borderBottom: '1px solid var(--hairline)' }}>
-        <div className="max-w-[1220px] mx-auto px-8 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-center">
-          {[
-            [`${t.houses}`, 'Verified houses'],
-            [`${t.cities}`, 'Cities'],
-            [`${t.categories}`, 'Categories'],
-            ['Weekly', 'Updated'],
-          ].map(([n, label], i) => (
-            <div key={label} className="flex items-center gap-8">
-              <div className="flex items-baseline gap-2">
-                <span className="serif" style={{ color: 'var(--brass)', fontSize: 22 }}>{n}</span>
-                <span className="eyebrow">{label}</span>
-              </div>
-              {i < 3 && <span aria-hidden style={{ width: 1, height: 16, background: 'var(--brass)', opacity: 0.5 }} />}
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* NEWLY VERIFIED — house rail */}
       <section className="max-w-[1220px] mx-auto px-8 py-20">
