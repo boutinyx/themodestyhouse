@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LANES } from '@/lib/lanes';
+import { Nav } from './Nav';
 
 export function Header() {
   return (
@@ -27,19 +27,13 @@ export function Header() {
             House
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="/directory" className="nav-link">Designers</Link>
-          {LANES.map((l) => (
-            <Link key={l.slug} href={`/${l.slug}`} className="nav-link">{l.nav}</Link>
-          ))}
-        </nav>
+        <div className="hidden md:block">
+          <Nav />
+        </div>
       </div>
-      <nav className="md:hidden flex items-center gap-5 px-5 pt-3 overflow-x-auto">
-        <Link href="/directory" className="nav-link whitespace-nowrap">Designers</Link>
-        {LANES.map((l) => (
-          <Link key={l.slug} href={`/${l.slug}`} className="nav-link whitespace-nowrap">{l.nav}</Link>
-        ))}
-      </nav>
+      <div className="md:hidden px-5 pt-3 overflow-x-auto">
+        <Nav />
+      </div>
     </header>
   );
 }
