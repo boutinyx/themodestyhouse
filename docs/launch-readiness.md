@@ -9,7 +9,13 @@ fact-checking; the P0-A and P0-D findings were additionally confirmed by hand.
 
 ---
 
-## P0-A · Security: the admin surface deploys publicly, unauthenticated
+## P0-A · Security: the admin surface deploys publicly, unauthenticated — **RESOLVED**
+
+> **Status: closed.** The curation routes are no longer emitted by `next build`.
+> See "Local-only curation tooling" in `docs/architecture.md`. The record of the
+> original finding is kept below because the exposure was live and the data it
+> served must be treated as already disclosed.
+
 
 **Evidence.** `npx next build` emits `/admin/curate` as a static route and `/api/curate` +
 `/api/curate/list` as dynamic server functions — the only two in the app. Grepping

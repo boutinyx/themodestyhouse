@@ -5,7 +5,7 @@ import type { Product } from '@/lib/types';
 const PAGE = 60;
 type Filter = 'all' | 'keep' | 'cut' | 'undecided';
 
-export default function CuratePage() {
+export default function CurateClient() {
   const [items, setItems] = useState<Product[]>([]);
   const [decided, setDecided] = useState<Record<string, string>>({});
   const [filter, setFilter] = useState<Filter>('all');

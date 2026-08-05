@@ -23,7 +23,7 @@ database. See [ADR-0001](./decisions/ADR-0001-flat-json-storage.md).
 | Styling | Tailwind v4 (CSS-first) + CSS custom properties | **No `tailwind.config.js`** |
 | Tests | Vitest 4 (node env) | No jsdom, no component tests |
 | Scripts | tsx (for `.mjs` importing `.ts`) | `build-data.mjs` runs under plain node |
-| Hosting | Vercel, deploy-on-push | Read-only filesystem at runtime |
+| Hosting | **Railway**, deploy-on-push | Long-running `next start` container. Filesystem IS writable (ephemeral — lost on redeploy/restart) |
 
 Node version is **not pinned** — no `engines`, no `.nvmrc`, no `packageManager`.
 
@@ -80,10 +80,17 @@ similarly confined to `modest-swimwear` and `modest-activewear`, the only two la
 ## Rendering model
 
 Build output is 32 routes:
-- **Static** — `/`, `/about`, `/designers`, `/directory`, `/editorial`, `/favourites`,
-  `/admin/curate`, `/robots.txt`, `/sitemap.xml`
+- **Static** — `/`, `/about`, `/designers`, `/editorial`, `/favourites`, `/privacy`,
+  `/terms`, `/robots.txt`, `/sitemap.xml`
 - **SSG** — `/[lane]` (×12), `/style/[vibe]` (×3), `/editorial/[slug]`
-- **Dynamic (server functions)** — `/api/curate`, `/api/curate/list` — the *only* two
+- **Dynamic (server functions)** — `/directory`, `/api/csp-report`
+
+**Not in the build at all:** `/admin/curate`, `/api/curate`, `/api/curate/list`. Those
+are local-only tooling. Their source files are named `page.dev.tsx` / `route.dev.ts`,
+and `next.config.ts` registers the `dev.*` page extensions only in
+`PHASE_DEVELOPMENT_SERVER` — so under `next dev` they are ordinary routes, and in any
+build they are not routes at all. See "Local-only curation tooling" below and
+`scripts/verify-gate.mjs`, which asserts this against the real build output in CI.
 
 Routes are **data-driven**: adding a lane to `LANES` produces a route, nav entry, footer
 link, sitemap entry and static params. Never hand-write a route file for a lane or vibe.
