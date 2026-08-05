@@ -20,7 +20,9 @@
     "postrefresh": "npm run --silent translate",
     "refresh:summary": "tsx --no-warnings scripts/refresh-summary.mjs",
     "translate": "[ -x .venv-style/bin/python ] && .venv-style/bin/python scripts/translate_titles.py || echo 'title-translation skipped (no .venv-style)'",
-    "test": "vitest run"
+    "test": "vitest run",
+    "backup:raw": "node scripts/backup-raw.mjs",
+    "restore:raw": "node scripts/backup-raw.mjs restore"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

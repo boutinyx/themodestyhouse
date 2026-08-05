@@ -98,12 +98,18 @@ const csp = [
 ].join('; ');
 
 const securityHeaders = [
-  // REPORT-ONLY on purpose: the Skimlinks host set could not be verified (the
-  // script only renders when NEXT_PUBLIC_SKIMLINKS_ID is set, which is set in
-  // the Railway env only), and enforcing a wrong allowlist against a revenue-generating
-  // affiliate script fails silently. Rename this key to
-  // "Content-Security-Policy" to enforce — that rename is the only change.
-  { key: 'Content-Security-Policy-Report-Only', value: csp },
+  // ENFORCING. Held in Report-Only until the allowlist could be checked against
+  // the real deployment; verified 2026-08-05 against https://themodestyhouse.com:
+  // every <script src> and stylesheet on /, /directory, /editorial,
+  // /editorial/[slug], /designers and /privacy is same-origin, there are zero
+  // iframes, and the only cross-origin subresource is cdn.shopify.com (images).
+  //
+  // Skimlinks was NOT rendering at the time of the flip (NEXT_PUBLIC_SKIMLINKS_ID
+  // unset on Railway — 0 occurrences in the served HTML), which is what made the
+  // flip safe to make now. Its hosts stay allowlisted in script/img/connect so
+  // that setting the key later does not silently break the affiliate script —
+  // but re-verify this policy the first time that script actually ships.
+  { key: 'Content-Security-Policy', value: csp },
   { key: 'Reporting-Endpoints', value: 'csp-endpoint="/api/csp-report"' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   // Enforcing from minute one (frame-ancestors is inert while report-only).
