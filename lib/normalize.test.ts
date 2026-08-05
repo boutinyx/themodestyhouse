@@ -1,8 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { normalizeProduct } from './normalize';
+import { normalizeProduct, normalizeProductDetailed } from './normalize';
 import type { Brand } from '@/lib/types';
 
-const brand: Brand = { slug: 'ivy-city', name: 'Ivy City Co', homepage: 'https://ivycityco.com', feedUrl: '', community: 'general', currency: 'USD' };
+const brand: Brand = {
+  slug: 'ivy-city', name: 'Ivy City Co', homepage: 'https://ivycityco.com', feedUrl: '',
+  community: 'general', currency: 'USD', category: 'Modest dresses', city: 'Salt Lake City', vibe: 'elegant',
+};
 
 const sp = {
   id: 123, title: 'Aurelia Maxi Dress', handle: 'aurelia-maxi-dress', product_type: 'Dresses', tags: ['summer'],
@@ -29,6 +32,38 @@ describe('normalizeProduct', () => {
   });
   it('drops junk (garment other)', () => {
     expect(normalizeProduct({ ...sp, title: 'Gift Card', product_type: '', tags: [] }, brand)).toBeNull();
+  });
+});
+
+// The refresh pipeline needs to know WHY a row was rejected, so that a product
+// the brand still sells but our filters dropped is recorded as `filteredAt`
+// (our fault, possibly a classifier regression) rather than as a delist
+// (the merchant's doing). Merged, 300 rows from a broken regex would look
+// exactly like ordinary churn.
+describe('normalizeProductDetailed', () => {
+  it('returns the product and no reason when it passes', () => {
+    const r = normalizeProductDetailed(sp, brand);
+    expect(r.product!.id).toBe('ivy-city:123');
+    expect(r.reason).toBeUndefined();
+  });
+
+  it('reports no-image', () => {
+    expect(normalizeProductDetailed({ ...sp, images: [] }, brand)).toEqual({ product: null, reason: 'no-image' });
+  });
+
+  it('reports excluded-title for a menswear match', () => {
+    const r = normalizeProductDetailed({ ...sp, title: "Men's Thobe" }, brand);
+    expect(r).toEqual({ product: null, reason: 'excluded-title' });
+  });
+
+  it('reports unclassified when the tagger cannot name the garment', () => {
+    const r = normalizeProductDetailed({ ...sp, title: 'Gift Card', product_type: '', tags: [] }, brand);
+    expect(r).toEqual({ product: null, reason: 'unclassified' });
+  });
+
+  it('normalizeProduct stays behaviourally identical to it', () => {
+    expect(normalizeProduct(sp, brand)).toEqual(normalizeProductDetailed(sp, brand).product);
+    expect(normalizeProduct({ ...sp, images: [] }, brand)).toBeNull();
   });
 });
 

@@ -9,6 +9,7 @@
     "lint": "eslint",
     "scrape": "tsx scripts/scrape.mjs",
     "build:data": "tsx scripts/build-data.mjs",
+    "refresh": "tsx scripts/refresh.mjs",
     "test": "vitest run"
   },
   "dependencies": {

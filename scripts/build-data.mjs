@@ -4,6 +4,7 @@
 // (`npm run build:data`), not bare `node`.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { isNonApparel } from '../lib/nonApparel.ts';
+import { isLifecycleLive, stripLifecycle, brandDropViolations } from '../lib/lifecycle.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
 
@@ -40,8 +41,19 @@ function verdict(p) {
   // (baju kurung, bisht, belted jacket). They go to review, never to deletion.
 }
 
+// Lifecycle counters, reported separately: `delisted` is the merchants' doing
+// (ordinary churn), `filtered` is ours (possibly a classifier regression).
+let delistedCount = 0;
+
 const kept = raw.filter((p) => {
   if (decisions[p.id] !== 'keep' || !p.inStock) return false;
+  if (p.delistedAt) { delistedCount++; return false; }
+  if (p.filteredAt) {
+    // Actionable: the brand still sells this, our own rules dropped it.
+    review.push({ id: p.id, title: p.title, url: p.url, why: `filtered:${p.filterReason || 'unknown'}` });
+    return false;
+  }
+  if (!isLifecycleLive(p)) return false;
   const v = verdict(p);
   if (v) {
     rejected.push({ id: p.id, brandSlug: p.brandSlug, title: p.title, url: p.url, garmentWas: p.garment, ...v });
@@ -116,30 +128,39 @@ for (const [b, n] of Object.entries(byBrand)) {
   }
 }
 
-// ---- GUARD 2: drift ratchet ------------------------------------------------
-// Catches a regex that silently widens. Independent of the veto predicate, so it
-// can go red on a category nobody enumerated.
-const prev = existsSync(U('products.json')) ? JSON.parse(readFileSync(U('products.json'), 'utf8')).length : null;
+// ---- GUARD 2: per-brand collapse guard -------------------------------------
+// Replaces the old global `Math.abs(published - prev) > 40` ratchet, which a
+// real refresh would trip every single time (churn across 32 brands moves the
+// total by hundreds) and which let losses cancel out against gains — a brand
+// whose feed died could vanish entirely while the total barely moved.
+const countByBrand = (rows) => rows.reduce((a, p) => ((a[p.brandSlug] = (a[p.brandSlug] || 0) + 1), a), {});
+const prevRows = existsSync(U('products.json')) ? JSON.parse(readFileSync(U('products.json'), 'utf8')) : null;
 const published = interleaveByBrand(kept);
 
-// Write the audit trail BEFORE the ratchet can throw — the error message tells
+// Write the audit trail BEFORE the guard can throw — the error message tells
 // the operator to review these files, so they have to exist by then.
 writeFileSync(U('rejected.json'), JSON.stringify(rejected, null, 2));
 writeFileSync(U('review.json'), JSON.stringify(review, null, 2));
 
-if (prev !== null && Math.abs(published.length - prev) > 40 && !process.env.ALLOW_LARGE_DIFF) {
-  throw new Error(
-    `Published count moved ${prev} -> ${published.length} (>40). ` +
-    `products.json NOT written. Review data/rejected.json (${rejected.length} rows), ` +
-    `then re-run with ALLOW_LARGE_DIFF=1 if intended.`,
-  );
+if (prevRows && !process.env.ALLOW_LARGE_DIFF) {
+  const drops = brandDropViolations(countByBrand(prevRows), countByBrand(published));
+  if (drops.length) {
+    throw new Error(
+      `products.json NOT written — ${drops.length} brand(s) collapsed:\n` +
+      drops.map((d) => `  ${d.brandSlug}: ${d.prev} -> ${d.next} (-${(d.pct * 100).toFixed(0)}%)`).join('\n') +
+      `\nA dead feed or a broken filter looks exactly like this. Review data/rejected.json ` +
+      `(${rejected.length} rows) and data/refresh-report.json, then re-run with ALLOW_LARGE_DIFF=1 if intended.`,
+    );
+  }
 }
 
-writeFileSync(U('products.json'), JSON.stringify(published, null, 2));
+// Lifecycle bookkeeping is raw-side only: ~5k rows of firstSeen/lastSeen would
+// add ~150 KB to this file AND to every RSC payload (§8's real scaling ceiling).
+writeFileSync(U('products.json'), JSON.stringify(published.map(stripLifecycle), null, 2));
 
 const byReason = rejected.reduce((a, r) => ((a[r.reason] = (a[r.reason] || 0) + 1), a), {});
 console.table(byReason);
 console.log(
   `Published ${published.length} products (mixed across ${new Set(published.map((p) => p.brandSlug)).size} brands) ` +
-  `| rejected ${rejected.length} | review ${review.length}`,
+  `| rejected ${rejected.length} | review ${review.length} | delisted-by-brand ${delistedCount}`,
 );

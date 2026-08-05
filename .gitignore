@@ -41,6 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 data/raw-products.json
+# Pre-refresh snapshots of raw-products.json (scripts/refresh.mjs). Local only —
+# they are the safety net for the one copy of the catalogue that exists.
+data/.backups/
 
 # --- local-only working dirs (never commit; ~3 GB combined) ---
 # CLIP tagger image cache

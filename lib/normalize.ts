@@ -40,29 +40,50 @@ function pickImage(images: ShopifyProduct['images']): string | undefined {
   return images[0].src;
 }
 
-export function normalizeProduct(sp: ShopifyProduct, brand: Brand): Product | null {
+/** Why normalization rejected a product the brand still lists. */
+export type RejectReason = 'no-image' | 'excluded-title' | 'unclassified';
+
+/**
+ * As `normalizeProduct`, but reports WHY it rejected a row.
+ *
+ * The refresh pipeline needs this to tell two very different events apart: a
+ * product the merchant deleted (`delistedAt` — ordinary churn) versus one the
+ * merchant still sells that OUR filters dropped (`filteredAt` — possibly a
+ * classifier regression). Merged into one bucket, a broken regex in lib/tag.ts
+ * would be indistinguishable from brands clearing stock.
+ */
+export function normalizeProductDetailed(
+  sp: ShopifyProduct,
+  brand: Brand,
+): { product: Product | null; reason?: RejectReason } {
   const image = pickImage(sp.images);
-  if (!image) return null;
+  if (!image) return { product: null, reason: 'no-image' };
   const tags = Array.isArray(sp.tags) ? sp.tags : String(sp.tags || '').split(',').map((t) => t.trim());
   const excl = [sp.title, sp.product_type || '', ...tags].join(' ');
-  if (EXCLUDE.test(excl)) return null;
+  if (EXCLUDE.test(excl)) return { product: null, reason: 'excluded-title' };
   const disc = tagDiscovery({ title: sp.title, productType: sp.product_type || '', tags });
-  if (disc.garment === 'other') return null;
+  if (disc.garment === 'other') return { product: null, reason: 'unclassified' };
   const price = parseFloat(sp.variants?.[0]?.price ?? '0') || 0;
   return {
-    id: `${brand.slug}:${sp.id}`,
-    brandSlug: brand.slug,
-    brandName: brand.name,
-    title: sp.title,
-    price,
-    currency: brand.currency,
-    image,
-    url: `${brand.homepage}/products/${sp.handle}`,
-    inStock: (sp.variants || []).some((v) => v.available),
-    garment: disc.garment,
-    community: brand.community,
-    occasion: disc.occasion,
-    season: disc.season,
-    activity: disc.activity,
+    product: {
+      id: `${brand.slug}:${sp.id}`,
+      brandSlug: brand.slug,
+      brandName: brand.name,
+      title: sp.title,
+      price,
+      currency: brand.currency,
+      image,
+      url: `${brand.homepage}/products/${sp.handle}`,
+      inStock: (sp.variants || []).some((v) => v.available),
+      garment: disc.garment,
+      community: brand.community,
+      occasion: disc.occasion,
+      season: disc.season,
+      activity: disc.activity,
+    },
   };
+}
+
+export function normalizeProduct(sp: ShopifyProduct, brand: Brand): Product | null {
+  return normalizeProductDetailed(sp, brand).product;
 }

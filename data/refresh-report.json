@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-05",
+  "totals": {
+    "added": 0,
+    "updated": 20,
+    "delisted": 1,
+    "filtered": 0,
+    "returned": 0,
+    "incomplete": 0
+  },
+  "brands": [
+    {
+      "brandSlug": "sei-sorelle",
+      "complete": true,
+      "fetched": 20,
+      "added": [],
+      "updated": 20,
+      "delisted": 1,
+      "filtered": [],
+      "returned": 0
+    }
+  ]
+}
