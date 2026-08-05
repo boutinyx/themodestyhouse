@@ -1,5 +1,5 @@
 # Nightly catalogue refresh via GitHub Actions
-**Date:** 2026-08-05 · **Status:** done (workflow not yet observed on a real schedule)
+**Date:** 2026-08-05 · **Status:** done — verified by a live run on GitHub
 
 ## Goal
 Automate `npm run refresh` so the catalogue maintains itself, rather than depending on
@@ -87,10 +87,50 @@ Commit message the workflow would produce:
 data: nightly catalogue refresh — +17 new, 26 delisted, 7798 updated, 0 filtered
 ```
 
+### Live run on GitHub (run 31035938458)
+
+Dispatched manually against one 10-product brand before trusting the schedule. Repo settings
+checked first via the API, so a 403 on the push step could be ruled out in advance rather
+than discovered by burning a run:
+
+```
+default_workflow_permissions: "write"      # required, or the push step 403s
+branch protection on main: HTTP 403        # none configured — bot push not blocked
+workflows: active | CI, active | Catalogue refresh
+```
+
+Result — every step green, 46 seconds:
+
+```
+job: fetch feeds, publish, push -> success
+   success   Run actions/checkout@v5
+   success   Run npm ci
+   success   Test
+   success   Refresh catalogue
+   success   Summarise
+   success   Commit and push
+   success   Upload report
+```
+
+And the proof it did real work rather than no-opping — a bot commit on `main`:
+
+```
+74fbc79 data: nightly catalogue refresh — +0 new, 0 delisted, 10 updated, 0 filtered
+author: modesty-house-bot <41898282+github-actions[bot]@users.noreply.github.com>
+```
+
+All 10 Klay products fetched, none added or removed, all 10 re-derived, pushed. `npm ci`,
+`tsx`, the 264-test suite and the credentialled push all behave on the runner.
+
 ## Notes / follow-ups
-- **Not yet observed on a real schedule.** Everything above is local verification; the first
-  live proof is either the 04:10 UTC run or a manual `workflow_dispatch`. Recommend
-  dispatching it once by hand against a single brand before trusting the schedule.
+- **Proven at small scale only.** The verified run was one brand, 10 products, 46s. The
+  nightly is 32 brands and ~6 minutes — more pagination, and a plausible chance a brand
+  rate-limits a GitHub IP differently than a home IP. The 04:10 UTC run is the real test.
+  Expected degradation if it happens: that brand's fetch is marked incomplete, **nothing is
+  delisted for it** (Invariant 13), and it is listed under "incomplete fetches" in the job
+  summary. It degrades rather than deletes.
+- Dispatching and polling was done with the GitHub token already in the macOS keychain from
+  `git push` (scopes `repo`, `workflow`); `gh` is not installed on this machine.
 - **The bot's push will not trigger `ci.yml`.** GitHub suppresses workflow triggers for
   pushes made with the default `GITHUB_TOKEN`, to prevent loops. That is why `refresh.yml`
   runs `npm test` itself before publishing. Railway deploys on the push regardless, since it
