@@ -50,4 +50,10 @@ export const BRANDS: Brand[] = [
   { slug: 'maison-hijab', name: 'Maison Hijab', homepage: 'https://maisonhijab.com', feedUrl: 'https://maisonhijab.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs', city: 'Europe', vibe: 'elegant' },
   { slug: 'merrachi', name: 'MERRACHI', homepage: 'https://bymerrachi.com', feedUrl: 'https://bymerrachi.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Amsterdam', vibe: 'elegant' },
   { slug: 'manzaram', name: 'Manzaram', homepage: 'https://manzaram.nl', feedUrl: 'https://manzaram.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },
+
+  // — user-supplied batch (2026-08-05) —
+  { slug: 'avyaana', name: 'Avyaana', homepage: 'https://avyaana.com', feedUrl: 'https://avyaana.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest & abayas', city: 'UK', vibe: 'elegant' },
+  { slug: 'fares', name: 'Fares', homepage: 'https://shopfares.com', feedUrl: 'https://shopfares.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest', city: 'USA', vibe: 'elegant' },
+  { slug: 'fatima-diallo', name: 'Fatima Diallo', homepage: 'https://shopfatimadiallo.com', feedUrl: 'https://shopfatimadiallo.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest & abayas', city: 'USA', vibe: 'elegant' },
+  { slug: 'madiha', name: 'Madiha', homepage: 'https://www.madiha.co.uk', feedUrl: 'https://www.madiha.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Abayas & scarves', city: 'UK', vibe: 'elegant' },
 ];
