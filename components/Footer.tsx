@@ -23,7 +23,7 @@ function FLink({ href, children }: { href: string; children: React.ReactNode }) 
 
 export function Footer() {
   return (
-    <footer style={{ background: 'var(--ink)', color: '#b9ad9c' }}>
+    <footer style={{ background: 'var(--ink)', color: '#b9ad9c', marginTop: 80 }}>
       <div className="max-w-[1220px] mx-auto px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
           <div className="col-span-2 md:col-span-1">
@@ -50,12 +50,33 @@ export function Footer() {
             <FLink href="/editorial">Interviews</FLink>
           </Col>
 
-          <Col head="The House">
-            <FLink href="/designers">Designers</FLink>
-            <FLink href="/about">About</FLink>
-            <FLink href="/favourites">Favourites</FLink>
-            <FLink href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal">Apply for the seal</FLink>
-          </Col>
+          <div>
+            <div className="eyebrow" style={{ color: 'var(--brass)' }}>The House</div>
+            <ul className="mt-4 space-y-2 text-sm">
+              <FLink href="/designers">Designers</FLink>
+              <FLink href="/about">About</FLink>
+              <FLink href="/favourites">Favourites</FLink>
+              <FLink href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal">Apply for the seal</FLink>
+            </ul>
+
+            {/* Newsletter signup — under Apply for the seal */}
+            <div className="mt-7">
+              <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
+              <form action="mailto:hello@themodestyhouse.com" method="post" className="mt-3">
+                <input
+                  type="email"
+                  required
+                  aria-label="Email address"
+                  placeholder="your@email.com"
+                  className="w-full"
+                  style={{ background: 'transparent', border: '1px solid rgba(243,238,228,0.22)', borderRadius: 40, padding: '9px 16px', fontSize: 13, color: 'var(--parchment)' }}
+                />
+                <button type="submit" className="btn-pill mt-2" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
+                  Join the house
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
 
         <div className="mt-14 pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>

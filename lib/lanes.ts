@@ -1,4 +1,5 @@
 import type { Product } from '@/lib/types';
+import { isSwim, isActivewear } from '@/lib/specialty';
 
 export type LaneKind = 'category' | 'community' | 'occasion' | 'season';
 
@@ -9,6 +10,9 @@ export interface Lane {
   intro: string;
   kind: LaneKind;
   match: (p: Product) => boolean;
+  // Swim/activewear lanes: the ONLY place specialty items show, so
+  // productsForLane must not strip specialty items out of them.
+  specialty?: boolean;
 }
 
 export const LANES: Lane[] = [
@@ -75,7 +79,17 @@ export const LANES: Lane[] = [
     nav: 'Swim',
     intro: 'Full-coverage swimsuits and burkinis for the beach and pool.',
     kind: 'category',
-    match: (p) => p.garment === 'swim',
+    match: (p) => isSwim(p),
+    specialty: true,
+  },
+  {
+    slug: 'modest-activewear',
+    title: 'Modest Activewear',
+    nav: 'Activewear',
+    intro: 'Sports dresses, leggings and covered athleisure for training and everyday movement.',
+    kind: 'category',
+    match: (p) => isActivewear(p),
+    specialty: true,
   },
 
   // — other discovery lanes —

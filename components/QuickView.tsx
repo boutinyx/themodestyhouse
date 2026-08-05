@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { Product } from '@/lib/types';
+import { formatPrice } from '@/lib/price';
 
 type Ctx = {
   open: (p: Product) => void;
@@ -130,7 +131,7 @@ function Modal({
           <div className="brand-label">{product.brandName}</div>
           <h2 className="serif text-2xl mt-2" style={{ color: 'var(--ink)' }}>{product.title}</h2>
           <div className="text-lg mt-3" style={{ color: 'var(--ink)' }}>
-            {product.currency} {product.price.toFixed(2)}
+            {formatPrice(product.price, product.currency)}
           </div>
           <div className="mt-auto pt-8 flex flex-col gap-3">
             <a

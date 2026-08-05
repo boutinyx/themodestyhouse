@@ -1,0 +1,275 @@
+{
+ "haute-hijab:7687721418848": {
+  "primary": "elegant",
+  "secondary": "boho",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Moonlight Meadow Hijab"
+ },
+ "haute-hijab:7563492163680": {
+  "primary": "maximalist",
+  "secondary": "boho",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Emerald Mosaic Hijab"
+ },
+ "vela:9119980716188": {
+  "primary": "boho",
+  "secondary": "elegant",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Deep Berry Fringe"
+ },
+ "vela:9119980945564": {
+  "primary": "elegant",
+  "secondary": "maximalist",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Black Swan Lace"
+ },
+ "veiled:7691894587497": {
+  "primary": "minimal",
+  "secondary": "boho",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Tencel Smocked Skirt - Almond"
+ },
+ "veiled:7650776088681": {
+  "primary": "streetwear",
+  "secondary": null,
+  "confidence": 1,
+  "source": "vision",
+  "title": "Cotton Barrel Leg Pants - Chocolate"
+ },
+ "niswa:10217348399402": {
+  "primary": "elegant",
+  "secondary": "boho",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Aurelia Linen Convertible Dress - Blush"
+ },
+ "niswa:10217348071722": {
+  "primary": "boho",
+  "secondary": "minimal",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Aurelia Linen Convertible Dress - Wheat"
+ },
+ "zahraa:7508377337943": {
+  "primary": "maximalist",
+  "secondary": "elegant",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Reyana Paisley Long Sleeve Maxi Dress"
+ },
+ "zahraa:7658946658391": {
+  "primary": "elegant",
+  "secondary": "boho",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Selena Long Sleeve Maxi Dress - Warda"
+ },
+ "modern-hijabi:9389146505430": {
+  "primary": "elegant",
+  "secondary": "maximalist",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Razan Lace Shirt Dress"
+ },
+ "modern-hijabi:9389107544278": {
+  "primary": "boho",
+  "secondary": "elegant",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Azealia Flare Maxi - Chocolate"
+ },
+ "voile-chic:8648687747325": {
+  "primary": "minimal",
+  "secondary": "elegant",
+  "confidence": 1,
+  "source": "vision",
+  "title": "SMALL PREMIUM CHIFFON HIJAB (NON-SLIP)"
+ },
+ "voile-chic:4696702976082": {
+  "primary": "minimal",
+  "secondary": "elegant",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Small Luxury Chiffon Hijab - White"
+ },
+ "aab:10357807546682": {
+  "primary": "elegant",
+  "secondary": "minimal",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Amalfi Dress Pink"
+ },
+ "aab:10357807448378": {
+  "primary": "minimal",
+  "secondary": "streetwear",
+  "confidence": 1,
+  "source": "vision",
+  "title": "Sahara Dress Sand"
+ },
+ "sei-sorelle:7095557292113": {
+  "primary": "streetwear",
+  "secondary": "minimal",
+  "confidence": 0.6,
+  "source": "vision",
+  "title": "Aiyla (Trousers) - Cloud"
+ },
+ "zahraa:7658948067415": {
+  "primary": "streetwear",
+  "secondary": "minimal",
+  "confidence": 0.68,
+  "source": "vision",
+  "title": "Tasneem Denim Top and Pant Set - Batroun Blue"
+ },
+ "sei-sorelle:7095556538449": {
+  "primary": "streetwear",
+  "secondary": "minimal",
+  "confidence": 0.7,
+  "source": "vision",
+  "title": "Aiyla (Leggings) - Cloud"
+ },
+ "veiled:7653917753449": {
+  "primary": "minimal",
+  "secondary": "streetwear",
+  "confidence": 0.55,
+  "source": "vision",
+  "title": "Knit Top & Pants Set - Spiced Plum"
+ },
+ "lanuuk:15289741443451": {
+  "primary": "streetwear",
+  "secondary": "minimal",
+  "confidence": 0.82,
+  "source": "vision",
+  "title": "Maternity Swim Pants - Black"
+ },
+ "lanuuk:15289739510139": {
+  "primary": "streetwear",
+  "secondary": "minimal",
+  "confidence": 0.85,
+  "source": "vision",
+  "title": "Swim Pants - Grey"
+ },
+ "klay:9317951176856": {
+  "primary": "boho",
+  "secondary": "maximalist",
+  "confidence": 0.72,
+  "source": "vision",
+  "title": "Sunset Fringe Modal"
+ },
+ "glow-modesty:9334093840600": {
+  "primary": "elegant",
+  "secondary": "maximalist",
+  "confidence": 0.7,
+  "source": "vision",
+  "title": "Celine Floral Chiffon Dress"
+ },
+ "niswa:10217348301098": {
+  "primary": "boho",
+  "secondary": "minimal",
+  "confidence": 0.6,
+  "source": "vision",
+  "title": "Aurelia Linen Convertible Dress - Black"
+ },
+ "vela:9119979864220": {
+  "primary": "boho",
+  "secondary": null,
+  "confidence": 0.55,
+  "source": "vision",
+  "title": "Light Olive Fringe"
+ },
+ "niswa:10217348202794": {
+  "primary": "boho",
+  "secondary": "minimal",
+  "confidence": 0.62,
+  "source": "vision",
+  "title": "Aurelia Linen Convertible Dress - Sage"
+ },
+ "urban-modesty:8029959094347": {
+  "primary": "boho",
+  "secondary": "elegant",
+  "confidence": 0.7,
+  "source": "vision",
+  "title": "White Tiered Maxi Skirt"
+ },
+ "hawaa:15924114391413": {
+  "primary": "minimal",
+  "secondary": "streetwear",
+  "confidence": 0.55,
+  "source": "vision",
+  "title": "Espresso Open Abaya"
+ },
+ "mariams:9390708523224": {
+  "primary": "elegant",
+  "secondary": "maximalist",
+  "confidence": 0.8,
+  "source": "vision",
+  "title": "Crystal Beaded Waist Cape Sleeve Maxi Dress(MS499)"
+ },
+ "veiled:7653932433513": {
+  "primary": "minimal",
+  "secondary": "elegant",
+  "confidence": 0.55,
+  "source": "vision",
+  "title": "Knit Button Front Maxi Dress - Deep Taupe"
+ },
+ "modern-hijabi:9389110690006": {
+  "primary": "boho",
+  "secondary": "elegant",
+  "confidence": 0.58,
+  "source": "vision",
+  "title": "Azealia Flare Maxi - Gray"
+ },
+ "aab:10357807513914": {
+  "primary": "minimal",
+  "secondary": "elegant",
+  "confidence": 0.65,
+  "source": "vision",
+  "title": "Riviera Dress White"
+ },
+ "hawaa:15924108886389": {
+  "primary": "minimal",
+  "secondary": "elegant",
+  "confidence": 0.55,
+  "source": "vision",
+  "title": "Butter Yellow Open Abaya"
+ },
+ "mariams:9390539702488": {
+  "primary": "maximalist",
+  "secondary": "elegant",
+  "confidence": 0.62,
+  "source": "vision",
+  "title": "Polka Dot Lace-Trim Open Abaya & Matching Hijab Set(MOA343)"
+ },
+ "lumos:10794055565622": {
+  "primary": "minimal",
+  "secondary": "elegant",
+  "confidence": 0.55,
+  "source": "vision",
+  "title": "LM139 Asymmetric Modest Top & Maxi Skirt Set for Muslim Women"
+ },
+ "glow-modesty:9319409909976": {
+  "primary": "elegant",
+  "secondary": "boho",
+  "confidence": 0.6,
+  "source": "vision",
+  "title": "Cristiana Abaya Set"
+ },
+ "zahraa:7658947739735": {
+  "primary": "minimal",
+  "secondary": "elegant",
+  "confidence": 0.62,
+  "source": "vision",
+  "title": "Aiza Pleated Dress - Khuzama Mist"
+ },
+ "modern-hijabi:9389109510358": {
+  "primary": "boho",
+  "secondary": "elegant",
+  "confidence": 0.6,
+  "source": "vision",
+  "title": "Azealia Flare Maxi - Grape"
+ }
+}

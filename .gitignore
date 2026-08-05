@@ -41,3 +41,17 @@ yarn-error.log*
 next-env.d.ts
 
 data/raw-products.json
+
+# --- local-only working dirs (never commit; ~3 GB combined) ---
+# CLIP tagger image cache
+.cache/
+# python venv for scripts/tag_style.py (full torch install)
+.venv-style/
+# local tooling session transcripts — may contain sensitive context
+conversations/
+
+# Generated hero candidates (46 MB, unreferenced). Kept locally, not versioned —
+# if one gets chosen, move it into public/ properly and commit that single file.
+public/hero-gen/
+# Debug dump from scripts/tag_style.py — regenerable
+data/archetypes.clip.debug.json

@@ -46,8 +46,8 @@ function FilterDropdown({
   );
 }
 
-export function DirectoryBrowser({ products }: { products: Product[] }) {
-  const [q, setQ] = useState('');
+export function DirectoryBrowser({ products, initialQuery = '' }: { products: Product[]; initialQuery?: string }) {
+  const [q, setQ] = useState(initialQuery);
   const [garment, setGarment] = useState('all');
   const [vibe, setVibe] = useState('all');
   const [occasion, setOccasion] = useState('all');

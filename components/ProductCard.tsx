@@ -1,5 +1,6 @@
 'use client';
 import type { Product } from '@/lib/types';
+import { formatPrice } from '@/lib/price';
 import { useQuickView } from './QuickView';
 
 export function ProductCard({ p }: { p: Product }) {
@@ -30,7 +31,7 @@ export function ProductCard({ p }: { p: Product }) {
       <div className="brand-label mt-3">{p.brandName}</div>
       <div className="serif text-sm mt-1 px-2 truncate" style={{ color: 'var(--ink)' }}>{p.title}</div>
       <div className="text-sm mt-1" style={{ color: 'var(--muted)' }}>
-        {p.currency} {p.price.toFixed(2)}
+        {formatPrice(p.price, p.currency)}
       </div>
     </div>
   );

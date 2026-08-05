@@ -4,11 +4,15 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   ['swim', /swim|burkini|bathing|swimsuit|board ?short|beachwear/i],
   ['abaya', /abaya|jilbab|kaftan|kimono/i],
   ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf/i],
-  ['dress', /dress|gown|maxi|midi/i],
+  ['dress', /dress|gown/i],
   ['skirt', /skirt/i],
   ['trousers', /trouser|pant|jean|legging|culotte|wide.?leg/i],
   ['set', /set|co.?ord|two.?piece|coordinate/i],
   ['top', /top|blouse|shirt|tunic|sweater|cardigan|bolero|blazer|vest/i],
+  // Length-only fallback — "maxi"/"midi" describe LENGTH, not garment. A bare
+  // "…Maxi" with no explicit garment word reads as a dress, but this must stay
+  // LAST so "Maxi Skirt", "Maxi Skirt Set" etc. resolve to their real garment.
+  ['dress', /\b(maxi|midi)\b/i],
 ];
 
 const OCCASION_RULES: [string, RegExp][] = [
