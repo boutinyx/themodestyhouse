@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { isNonApparel } from './nonApparel';
 
@@ -170,10 +170,14 @@ describe('non-apparel veto', () => {
     expect(v.rejected, v.evidence ? `vetoed by ${v.tier}:${v.reason} on "${v.evidence}"` : '').toBe(false);
   });
 
-  it('every test string still exists in the raw catalogue', () => {
-    const raw = JSON.parse(
-      readFileSync(path.join(process.cwd(), 'data', 'raw-products.json'), 'utf8'),
-    ) as { title: string }[];
+  // raw-products.json is gitignored (it is the local scrape cache), so this
+  // check can only run on a machine that has scraped. It must SKIP rather than
+  // fail on a clean clone or in CI — verified against a fresh `git clone`.
+  const rawPath = path.join(process.cwd(), 'data', 'raw-products.json');
+  const hasRaw = existsSync(rawPath);
+
+  it.skipIf(!hasRaw)('every test string still exists in the raw catalogue', () => {
+    const raw = JSON.parse(readFileSync(rawPath, 'utf8')) as { title: string }[];
     const titles = new Set(raw.map((r) => r.title));
     const missing = [...MUST_DROP, ...MUST_SURVIVE].filter((t) => !titles.has(t));
     expect(missing).toEqual([]);
