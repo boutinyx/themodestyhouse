@@ -48,7 +48,7 @@ These third parties may set their own cookies and process data (such as your IP 
 
 We also use:
 
-- **Vercel** — our hosting provider, which processes server and request data as described above. Vercel is a US company; see Section 7 on international transfers.
+- **Railway** — our hosting provider, which processes server and request data as described above. Railway is a US company; see Section 7 on international transfers.
 - **Shopify** — product images shown on this site are loaded directly from the brands' own Shopify content network (`cdn.shopify.com`), which means your browser requests those images from Shopify.
 - **Pinterest** — we distribute content on Pinterest; if you arrive from Pinterest, Pinterest's own privacy policy applies to your activity there.
 

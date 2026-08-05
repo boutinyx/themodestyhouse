@@ -22,8 +22,13 @@ export function QuickViewProvider({ children }: { children: React.ReactNode }) {
   const [active, setActive] = useState<Product | null>(null);
   const [favs, setFavs] = useState<Record<string, Product>>({});
 
+  // Hydration-sensitive: favourites live in localStorage, which is not
+  // available during SSR. Reading it lazily in useState would make the
+  // server and client render differ and trip a hydration mismatch, so the
+  // read must happen after mount. TODO: migrate to useSyncExternalStore.
   useEffect(() => {
     try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFavs(JSON.parse(localStorage.getItem('tmh_favs') || '{}'));
     } catch {}
   }, []);

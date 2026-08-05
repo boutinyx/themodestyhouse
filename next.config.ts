@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next';
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
+import { onManagedPlatform } from './lib/devOnly';
 
 /* ------------------------------------------------------------------ *
  * LAYER 1 — build-time exclusion of the local-only curation tooling.
@@ -31,12 +32,18 @@ const isDev = process.env.NODE_ENV === 'development';
  *   cdn.shopify.com      -> data/products.json, all 6409 `image` values are
  *                           cdn.shopify.com and nothing else (verified).
  *   s.skimresources.com  -> app/layout.tsx:37, rendered only when
- *                           NEXT_PUBLIC_SKIMLINKS_ID is set (Vercel only).
+ *                           NEXT_PUBLIC_SKIMLINKS_ID is set (Railway env only,
+ *                           so it never renders on a dev laptop).
  *   *.skimlinks.com      -> Skimlinks link-lookup / pixels. UNVERIFIED host
  *   *.skimresources.com     set — this is the main reason the CSP ships
  *                           Report-Only. Mirrored across script/img/connect so
  *                           the policy is at least internally consistent.
- *   vercel.live, pusher  -> Vercel Toolbar on preview deployments.
+ *
+ * HOST NOTE: this app deploys to RAILWAY (long-running `next start` container),
+ * not Vercel. Earlier drafts of this policy allowlisted vercel.live,
+ * ws-us3.pusher.com and assets.vercel.com for the Vercel Toolbar. Those are
+ * dead weight here and have been removed — every origin below is reachable
+ * from this codebase on this host.
  *
  * Deliberately NOT allowlisted:
  *   fonts.gstatic.com / fonts.googleapis.com — next/font self-hosts. Verified:
@@ -56,18 +63,19 @@ const csp = [
   // exfiltration control, NOT meaningful XSS protection.
   // 'unsafe-eval' is dev-only (React's error overlay); prod bundles contain no
   // eval/new Function (verified by grep over .next/static/chunks: 0 hits).
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://vercel.live`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com`,
   // 118 style={{...}} props -> 146 inline style attributes, plus real inline
   // <style> elements in VerifiedSpotlight.tsx:66, EditMagazine.tsx:50,
   // MagnifierHero.tsx:66.
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://cdn.shopify.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://vercel.live https://vercel.com",
-  "font-src 'self' https://assets.vercel.com",
+  "img-src 'self' data: blob: https://cdn.shopify.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com",
+  // next/font self-hosts every woff2 under /_next/static/media (verified).
+  "font-src 'self'",
   // localhost ws:// is for the Turbopack HMR socket. headers() applies to
   // `next dev` too, and Safari has historically not matched ws:// against
   // 'self'. Cheap insurance so the enforcing flip does not break dev.
-  `connect-src 'self' https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://vercel.live wss://ws-us3.pusher.com${isDev ? ' ws://localhost:* http://localhost:*' : ''}`,
-  "frame-src 'self' https://vercel.live",
+  `connect-src 'self' https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com${isDev ? ' ws://localhost:* http://localhost:*' : ''}`,
+  "frame-src 'none'",
   // No <video>/<audio>/<source> exists today. Declared explicitly so that
   // adding a CDN-hosted one fails loudly against a real directive rather than
   // silently against the default-src fallback.
@@ -91,18 +99,16 @@ const csp = [
 
 const securityHeaders = [
   // REPORT-ONLY on purpose: the Skimlinks host set could not be verified (the
-  // script only renders when NEXT_PUBLIC_SKIMLINKS_ID is set, which is Vercel
-  // only), and enforcing a wrong allowlist against a revenue-generating
+  // script only renders when NEXT_PUBLIC_SKIMLINKS_ID is set, which is set in
+  // the Railway env only), and enforcing a wrong allowlist against a revenue-generating
   // affiliate script fails silently. Rename this key to
   // "Content-Security-Policy" to enforce — that rename is the only change.
   { key: 'Content-Security-Policy-Report-Only', value: csp },
   { key: 'Reporting-Endpoints', value: 'csp-endpoint="/api/csp-report"' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   // Enforcing from minute one (frame-ancestors is inert while report-only).
-  // Trade-off: this also blocks Vercel's dashboard deployment-preview iframe,
-  // costing you the preview thumbnail. Cosmetic. If you want it back, there is
-  // no allowlist syntax for XFO — you must drop this header and rely on
-  // frame-ancestors once the CSP is enforcing.
+  // Nothing legitimately frames this site — on Railway there is no dashboard
+  // preview iframe to worry about — so DENY is unambiguously correct.
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   {
@@ -121,7 +127,11 @@ const securityHeaders = [
 ];
 
 export default function nextConfig(phase: string): NextConfig {
-  const isDevServer = phase === PHASE_DEVELOPMENT_SERVER && !process.env.VERCEL;
+  // `onManagedPlatform()` (lib/devOnly.ts) checks Railway/Vercel/Render/etc
+  // marker env vars. We host on RAILWAY, so a `!process.env.VERCEL` check would
+  // be inert here. The phase check is the load-bearing half; this is belt.
+  const isDevServer =
+    phase === PHASE_DEVELOPMENT_SERVER && !onManagedPlatform();
 
   // TRIPWIRE. `NODE_ENV=development next build` would otherwise flip every
   // NODE_ENV-keyed guard in the codebase at once. Verified: this throws before

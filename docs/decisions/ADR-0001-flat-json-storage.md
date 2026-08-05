@@ -12,12 +12,13 @@ Facts that bear on it:
 
 - The catalogue is **read-only at runtime**. There is no cart, no checkout, no accounts —
   every commercial action is an outbound link to the brand.
-- All catalogue pages are **prerendered at build time**. Data is read by `fs` in the Vercel
-  build container, never per request.
+- All catalogue pages are **prerendered at build time**. Data is read by `fs` in the Railway
+  build step, never per request.
 - Current scale: ~5,000 published rows, 2.8 MB on disk. 32 routes generate in ~370 ms.
 - Growth is an **editorial** process (a human curating brands), not a user-generated one.
-- Vercel's runtime filesystem is **read-only**, so no runtime write can persist to a file
-  regardless of format.
+- Railway's container filesystem IS writable, but **ephemeral**: anything written at runtime
+  is lost on the next redeploy or restart, and is invisible to the build that generates the
+  published pages. So a runtime write still cannot durably change the catalogue.
 
 Measured cost profile: the disk file is cheap; the expensive thing is that server pages pass
 full product arrays into client components, serializing ~471 bytes per record into the RSC

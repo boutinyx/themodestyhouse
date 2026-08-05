@@ -75,6 +75,9 @@ export function DirectoryBrowser({ products, initialQuery = '' }: { products: Pr
       (query === '' || p.title.toLowerCase().includes(query) || p.brandName.toLowerCase().includes(query))
   );
 
+  // Reset the "load more" count whenever a filter changes. See the TODO in
+  // components/FilterableGrid.tsx — same pattern, same planned fix.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setVisible(STEP); }, [garment, vibe, occasion, brand, q]);
   const shown = filtered.slice(0, visible);
 

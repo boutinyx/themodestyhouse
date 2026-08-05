@@ -24,8 +24,12 @@ export default function HeroSearch() {
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   // Auto-changing placeholder. Runs only while the field is idle & empty.
+  // This is a typewriter animation driven by timers, so the state updates are
+  // genuinely time-based rather than derivable from props. TODO: move the
+  // animation into a ref + CSS, or drive it from a reducer outside React state.
   useEffect(() => {
     if (focused || q) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPlaceholder(STATIC_PLACEHOLDER);
       return;
     }

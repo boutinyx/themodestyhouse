@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { assertLocalDev, sentinelPresent } from '@/lib/devOnly';
+import { assertLocalDev, sentinelPresent, onManagedPlatform } from '@/lib/devOnly';
 import nextConfig from '@/next.config';
 import { config as proxyConfig } from '@/proxy';
 
@@ -193,5 +193,29 @@ describe('layer 4 — data-layer sentinel guard (lib/rawData.ts)', () => {
         `${fn}() does not call assertLocalDev()`,
       ).toBe(true);
     }
+  });
+});
+
+describe('platform detection (host is Railway, not Vercel)', () => {
+  it('treats Railway env markers as "not a laptop"', () => {
+    // Regression: IS_LOCAL_DEV used to check only process.env.VERCEL. On Railway
+    // that check is inert, so deploying with NODE_ENV=development had NO backstop
+    // at this layer. Each marker below must independently close the gate.
+    for (const k of ['RAILWAY_ENVIRONMENT', 'RAILWAY_PROJECT_ID', 'RAILWAY_SERVICE_ID']) {
+      expect(onManagedPlatform({ [k]: 'production' }), k).toBe(true);
+    }
+  });
+
+  it('still recognises other managed platforms', () => {
+    expect(onManagedPlatform({ VERCEL: '1' })).toBe(true);
+    expect(onManagedPlatform({ RENDER: 'true' })).toBe(true);
+  });
+
+  it('a bare developer machine is not a managed platform', () => {
+    expect(onManagedPlatform({ HOME: '/Users/tina', PATH: '/usr/bin' })).toBe(false);
+  });
+
+  it('ignores an empty-string marker rather than treating it as set', () => {
+    expect(onManagedPlatform({ RAILWAY_ENVIRONMENT: '' })).toBe(false);
   });
 });

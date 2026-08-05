@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { STYLE_PIECES, type Piece } from '@/lib/stylePieces';
 
 const TOPS = STYLE_PIECES.tops;
@@ -105,7 +106,7 @@ export default function StyleIt() {
               {auto ? '❚❚ Pause' : '▷ Auto'}
             </button>
           </div>
-          <a href="/directory" className="nav-link inline-block mt-5">Shop {t.brand} + {b.brand} →</a>
+          <Link href="/directory" className="nav-link inline-block mt-5">Shop {t.brand} + {b.brand} →</Link>
         </div>
 
         {/* PICKER CARD — right */}

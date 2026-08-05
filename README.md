@@ -6,9 +6,10 @@ Curated modest-fashion discovery + affiliate site. Design/plan live in the Obsid
 1. `npm run scrape`      # pull brand feeds -> data/raw-products.json
 2. `npm run dev` then open http://localhost:3000/admin/curate   # keep/cut with your eye
 3. `npm run build:data`  # kept -> data/products.json
-4. commit + push         # Vercel rebuilds
+4. commit + push         # Railway rebuilds
 
-Set `NEXT_PUBLIC_SKIMLINKS_ID` in Vercel env once you have a Skimlinks account (enables affiliate link wrapping).
+Set `NEXT_PUBLIC_SKIMLINKS_ID` in the Railway env once you have a Skimlinks account (enables affiliate link wrapping).
+Note it is inlined at BUILD time, so changing it requires a redeploy, not just a restart.
 
 ## Scripts
 - `npm run dev` — local dev

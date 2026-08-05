@@ -34,7 +34,9 @@ jobs:
 
       # Fast gates first: typecheck ~2s, tests ~1s, build ~30s+.
       # tsc is not redundant with `next build` (which also type-checks) — it
-      # fails in seconds and survives anyone setting typescript.ignoreBuildErrors.
+      # fails in seconds, covers scripts/*.mjs via allowJs, and survives anyone
+      # setting typescript.ignoreBuildErrors. It also type-checks the *.dev.*
+      # curation files, so the local-only tooling cannot silently rot.
       - name: Typecheck
         run: npm run typecheck
 
@@ -47,12 +49,17 @@ jobs:
       - name: Build
         run: npm run build
 
+      # The build gate (next.config.ts pageExtensions) is the only layer that
+      # actually removes the code, and it relies on a Next internal that is not
+      # documented for this purpose. This step is its regression test: it reads
+      # the real build output, so it catches a Next upgrade changing the
+      # matcher, a merge conflict reinstating app/api/curate/route.ts, or
+      # anyone widening pageExtensions.
+      - name: Assert local-only routes are not deployed
+        run: npm run verify:gate
+
   lint:
-    # ADVISORY until the 6 real findings are cleared (4x react-hooks/
-    # set-state-in-effect, 1x @next/next/no-html-link-for-pages, 1 unused var).
-    # Do NOT add this job to branch protection's required checks yet; once those
-    # are fixed, mark it required and it becomes a real gate with no edits here.
-    name: lint (advisory)
+    name: lint
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

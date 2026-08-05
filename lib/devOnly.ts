@@ -28,7 +28,11 @@ const PLATFORM_MARKERS = [
   'RENDER', 'FLY_APP_NAME', 'DYNO', 'AWS_EXECUTION_ENV', 'K_SERVICE', // others
 ] as const;
 
-export function onManagedPlatform(env: NodeJS.ProcessEnv = process.env): boolean {
+/** Takes a plain record rather than NodeJS.ProcessEnv so tests can pass a
+ *  minimal fixture without having to satisfy the full ProcessEnv type. */
+export function onManagedPlatform(
+  env: Record<string, string | undefined> = process.env,
+): boolean {
   return PLATFORM_MARKERS.some((k) => Boolean(env[k]));
 }
 

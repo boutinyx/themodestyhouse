@@ -25,8 +25,12 @@ export function FilterableGrid({ products }: { products: Product[] }) {
       (occasion === 'all' || p.occasion.includes(occasion))
   );
 
-  // reset how many are shown whenever a filter changes
+  // Reset the "load more" count whenever a filter changes.
+  // TODO: express this as derived state (or remount via key) rather than an
+  // effect; doing so changes paging behaviour, so it is deliberately not
+  // bundled into the deployment-hardening change.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
   }, [brand, occasion]);
 

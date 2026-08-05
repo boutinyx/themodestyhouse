@@ -6,7 +6,7 @@
 // This script is deliberately thin: it does network I/O, file I/O and reporting.
 // Every RULE lives in lib/lifecycle.ts where it is unit-tested. Nothing here
 // decides what gets hidden.
-import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { BRANDS } from '../data/brands.ts';
 import { fetchBrand } from '../lib/ingest.ts';
