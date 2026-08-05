@@ -43,9 +43,10 @@ jobs:
       - name: Test
         run: npm test
 
-      # Builds from data/products.json, which is committed. The scrape/publish
-      # pipeline (build:data, scrape, refresh) needs data/raw-products.json,
-      # which is gitignored — those scripts cannot and must not run here.
+      # Builds from data/products.json, which is committed. data/raw-products.json
+      # is now committed too (2026-08-05), so the pipeline CAN run in Actions —
+      # but only from .github/workflows/refresh.yml, never here. CI must stay
+      # read-only with respect to the catalogue.
       - name: Build
         run: npm run build
 

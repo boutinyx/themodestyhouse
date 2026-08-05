@@ -40,9 +40,18 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-data/raw-products.json
-# Pre-refresh snapshots of raw-products.json (scripts/refresh.mjs). Local only —
-# they are the safety net for the one copy of the catalogue that exists.
+# NOTE: data/raw-products.json is deliberately TRACKED as of 2026-08-05. The
+# nightly refresh workflow needs it in CI, and committing it closes P0-B — the
+# catalogue no longer exists solely on one laptop. Do not re-ignore it without
+# solving both.
+
+# Layer-4 security sentinel (lib/devOnly.ts). Its ABSENCE is what disables the
+# local-only curation tooling in a deployment, so this line is load-bearing —
+# lib/devOnly.test.ts fails if this path stops being ignored.
+data/.local-only
+
+# Pre-refresh snapshots of raw-products.json (scripts/refresh.mjs). Local only;
+# git history is now the real backup.
 data/.backups/
 
 # --- local-only working dirs (never commit; ~3 GB combined) ---

@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { assertLocalDev, sentinelPresent, onManagedPlatform } from '@/lib/devOnly';
+import { assertLocalDev, sentinelPresent, onManagedPlatform, LOCAL_ONLY_SENTINEL } from '@/lib/devOnly';
 import nextConfig from '@/next.config';
 import { config as proxyConfig } from '@/proxy';
 
@@ -179,6 +180,29 @@ describe('layer 4 — data-layer sentinel guard (lib/rawData.ts)', () => {
       // @ts-expect-error - restore
       process.env.NODE_ENV = prev;
     }
+  });
+
+  // THE MISSING GUARD. Layer 4's entire security property is "this file cannot
+  // exist in a deployment", which is true only because the path is gitignored —
+  // an assumption held in a comment, asserted nowhere. The sentinel was
+  // data/raw-products.json until 2026-08-05, when committing that file (so the
+  // refresh workflow could run in CI) would have put the sentinel into every
+  // deployment artifact and silently disarmed the layer, with the suite green:
+  // every other test here injects a fake path, so none of them touch the real one.
+  it('the REAL sentinel path is gitignored, so it can never ship in a deployment', () => {
+    const rel = path.relative(ROOT, LOCAL_ONLY_SENTINEL);
+    const r = spawnSync('git', ['check-ignore', '-q', '--no-index', rel], { cwd: ROOT });
+    expect(
+      r.status,
+      `${rel} is NOT gitignored — it would be present in a deployment, so ` +
+      `assertLocalDev() would stop throwing there. Pick a gitignored sentinel.`,
+    ).toBe(0);
+  });
+
+  it('the sentinel is not a file the pipeline publishes', () => {
+    // A sentinel that doubles as real data is one refactor away from being
+    // committed for an unrelated reason. It must be a dedicated marker.
+    expect(path.basename(LOCAL_ONLY_SENTINEL)).not.toMatch(/products|decisions|exclusions/);
   });
 
   it('every rawData export asserts the guard', () => {

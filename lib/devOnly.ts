@@ -50,15 +50,26 @@ export const IS_LOCAL_DEV =
   process.env.NODE_ENV === 'development' && !onManagedPlatform();
 
 /**
- * `data/raw-products.json` is gitignored (.gitignore:43), so it is physically
- * absent from every deployment artifact. Its presence is therefore proof of a
- * local working copy, and — unlike NODE_ENV — nothing in a deploy config can
+ * A DEDICATED gitignored marker, created by the `predev` npm script. It is
+ * physically absent from every deployment artifact, so its presence is proof of
+ * a local working copy — and unlike NODE_ENV, nothing in a deploy config can
  * fake it.
+ *
+ * WHY A DEDICATED FILE. This was `data/raw-products.json` until 2026-08-05, on
+ * the reasoning that raw was gitignored and therefore never deployed. That
+ * reasoning was correct but fragile: it made a SECURITY property depend on a
+ * DATA file's storage decision. Committing raw — which the refresh workflow
+ * needs, and which closes P0-B — would have put the sentinel into production and
+ * silently stopped this layer throwing, with every test still green.
+ *
+ * The sentinel must therefore be a file with no reason to exist other than being
+ * the sentinel. `lib/devOnly.test.ts` now asserts this path is gitignored, so
+ * the substitution cannot happen silently again.
  */
 export const LOCAL_ONLY_SENTINEL = path.join(
   process.cwd(),
   'data',
-  'raw-products.json',
+  '.local-only',
 );
 
 /** Pure and injectable so the guard itself is unit-testable. */

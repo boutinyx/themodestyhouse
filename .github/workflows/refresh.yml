@@ -1,0 +1,105 @@
+name: Catalogue refresh
+
+# Re-fetches all 32 brand feeds, detects what they added / removed / changed,
+# republishes data/products.json and pushes. Railway redeploys on the push.
+#
+# Design: docs/superpowers/specs/2026-08-05-catalogue-refresh-design.md
+# Rules:  lib/lifecycle.ts (unit-tested; nothing here decides what gets hidden)
+
+on:
+  schedule:
+    # 04:10 UTC daily. Off the hour because GitHub's scheduler is busiest then
+    # and delays runs at :00. Early UTC is the quiet period for both the US and
+    # UK storefronts we scrape.
+    - cron: "10 4 * * *"
+  workflow_dispatch:
+    inputs:
+      brands:
+        description: "Space-separated brand slugs (blank = all 32)"
+        required: false
+        default: ""
+      allow_large_diff:
+        description: "Bypass the per-brand collapse guard (only after reading the report)"
+        type: boolean
+        default: false
+
+# NEVER run two refreshes at once — they clash on data/raw-products.json (§10.7).
+# cancel-in-progress is false on purpose: a run that is already partway through
+# has checkpointed real work, and killing it to start over wastes it.
+concurrency:
+  group: catalogue-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  refresh:
+    name: fetch feeds, publish, push
+    runs-on: ubuntu-latest
+    # A full run is ~6 min, but 429 backoff can add several more per brand.
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Fail before touching the network if the repo is broken. A refresh that
+      # publishes from a broken tree would push bad data to production.
+      - name: Test
+        run: npm test
+
+      - name: Refresh catalogue
+        env:
+          ALLOW_LARGE_DIFF: ${{ inputs.allow_large_diff && '1' || '' }}
+        run: npm run refresh ${{ inputs.brands }}
+
+      # Everything below is skipped if the refresh failed — including the push.
+      # A tripped collapse guard therefore leaves production untouched and the
+      # run red, which is the intended behaviour.
+
+      - name: Summarise
+        if: success()
+        run: npm run refresh:summary >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit and push
+        if: success()
+        run: |
+          set -euo pipefail
+          git config user.name  "modesty-house-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw-products.json data/products.json data/decisions.json \
+                  data/rejected.json data/review.json data/refresh-report.json
+          if git diff --cached --quiet; then
+            echo "No catalogue changes — nothing to push."
+            exit 0
+          fi
+          SUMMARY=$(node -e "
+            const r=require('./data/refresh-report.json').totals;
+            console.log(\`+\${r.added} new, \${r.delisted} delisted, \${r.updated} updated, \${r.filtered} filtered\`);
+          ")
+          git commit -m "data: nightly catalogue refresh — ${SUMMARY}" \
+                     -m "Automated run of scripts/refresh.mjs. See data/refresh-report.json."
+          # Rebase rather than force: a human push during the run must win.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      # Uploaded even on failure — when the collapse guard trips, this report is
+      # the evidence needed to decide whether the collapse was real.
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: refresh-report
+          path: data/refresh-report.json
+          if-no-files-found: warn
+          retention-days: 90
