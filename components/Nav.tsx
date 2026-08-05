@@ -22,9 +22,9 @@ function Dropdown({
       {href ? (
         <Link href={href} className="nav-link" data-active={activeWhen}>{label}</Link>
       ) : (
-        <span className="nav-link cursor-default" data-active={activeWhen}>{label}</span>
+        <button type="button" className="nav-link" data-active={activeWhen} aria-haspopup="true">{label}</button>
       )}
-      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block z-50">
+      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block group-focus-within:block z-50">
         <div
           className="rounded-2xl border p-2 min-w-[180px]"
           style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}

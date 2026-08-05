@@ -7,7 +7,14 @@ export function ProductCard({ p }: { p: Product }) {
   const { open, isFav, toggleFav } = useQuickView();
   const fav = isFav(p.id);
   return (
-    <div className="group block text-center cursor-pointer" onClick={() => open(p)}>
+    <div
+      className="group block text-center cursor-pointer"
+      onClick={() => open(p)}
+      role="button"
+      tabIndex={0}
+      aria-label={`Quick view: ${p.title} by ${p.brandName}`}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(p); } }}
+    >
       <div
         className="relative overflow-hidden border"
         style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}

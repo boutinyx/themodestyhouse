@@ -27,7 +27,7 @@ function FilterDropdown({
       <button type="button" className="chip" data-active={value !== 'all'}>
         {current ? current.label : label} ▾
       </button>
-      <div className="absolute left-0 top-full pt-2 hidden group-hover:block z-40">
+      <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-40">
         <div
           className="rounded-xl border p-2 min-w-[190px] max-h-72 overflow-auto"
           style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}

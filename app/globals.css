@@ -249,6 +249,29 @@ body {
 }
 .chip[data-active="true"] { background: var(--aubergine); color: var(--parchment); border-color: transparent; }
 
+/* ---- interactivity + accessibility ---- */
+/* Real interactive elements get the click cursor (native <button> defaults to an
+   arrow, which is why chips/pills/filters felt un-clickable). */
+button:not(:disabled),
+a[href],
+[role="button"],
+summary,
+label[for] { cursor: pointer; }
+button:disabled { cursor: default; }
+
+/* Visible keyboard focus for everyone who tabs (mouse clicks stay ring-free). */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--aubergine);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* product / listing card */
 .product-card {
   background: var(--bone);
