@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 
-// minimal markdown: ## headings, paragraphs, **bold**, *italic*, [text](url)
+// minimal markdown: ## / ### headings, paragraphs, - bullet lists, --- rules,
+// **bold**, *italic*, [text](url). Deliberately small — extended only as real
+// content needed it (the legal pages added lists and rules).
 function inline(text: string): React.ReactNode[] {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*)/g);
   return parts.map((p, i) => {
@@ -28,11 +30,34 @@ export function Markdown({ body }: { body: string }) {
       {blocks.map((b, i) => {
         const t = b.trim();
         if (!t) return null;
+        if (t === '---') {
+          return <hr key={i} style={{ border: 0, borderTop: '1px solid var(--hairline)', margin: '34px 0' }} />;
+        }
+        if (t.startsWith('### ')) {
+          return (
+            <h3 key={i} className="serif" style={{ fontSize: 'clamp(18px,2vw,22px)', color: 'var(--ink)', lineHeight: 1.2, margin: '30px 0 10px' }}>
+              {inline(t.slice(4))}
+            </h3>
+          );
+        }
         if (t.startsWith('## ')) {
           return (
             <h2 key={i} className="serif" style={{ fontSize: 'clamp(22px,2.6vw,30px)', color: 'var(--ink)', lineHeight: 1.15, margin: '38px 0 14px' }}>
               {inline(t.slice(3))}
             </h2>
+          );
+        }
+        // Bullet list — a block whose every line starts with "- ".
+        const lines = t.split('\n');
+        if (lines.length > 0 && lines.every((l) => l.trim().startsWith('- '))) {
+          return (
+            <ul key={i} style={{ margin: '0 0 20px', paddingLeft: 22, listStyle: 'disc' }}>
+              {lines.map((l, j) => (
+                <li key={j} style={{ margin: '0 0 8px', color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>
+                  {inline(l.trim().slice(2))}
+                </li>
+              ))}
+            </ul>
           );
         }
         return (

@@ -2,11 +2,15 @@
   "name": "modest-house",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^20.9.0 || ^22.0.0 || >=24.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "scrape": "tsx scripts/scrape.mjs",
     "build:data": "tsx scripts/build-data.mjs",
     "refresh": "tsx scripts/refresh.mjs",

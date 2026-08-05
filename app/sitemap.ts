@@ -4,7 +4,7 @@ import { LANES } from '@/lib/lanes';
 const BASE = 'https://themodestyhouse.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ['', '/directory', '/editorial', '/about'];
+  const staticPaths = ['', '/directory', '/editorial', '/about', '/designers', '/privacy', '/terms'];
   const lanePaths = LANES.map((l) => `/${l.slug}`);
   return [...staticPaths, ...lanePaths].map((p) => ({
     url: `${BASE}${p}`,

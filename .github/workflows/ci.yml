@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# A newer push to the same branch/PR cancels the run already in flight.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  verify:
+    name: typecheck / test / build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Fast gates first: typecheck ~2s, tests ~1s, build ~30s+.
+      # tsc is not redundant with `next build` (which also type-checks) — it
+      # fails in seconds and survives anyone setting typescript.ignoreBuildErrors.
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      # Builds from data/products.json, which is committed. The scrape/publish
+      # pipeline (build:data, scrape, refresh) needs data/raw-products.json,
+      # which is gitignored — those scripts cannot and must not run here.
+      - name: Build
+        run: npm run build
+
+  lint:
+    # ADVISORY until the 6 real findings are cleared (4x react-hooks/
+    # set-state-in-effect, 1x @next/next/no-html-link-for-pages, 1 unused var).
+    # Do NOT add this job to branch protection's required checks yet; once those
+    # are fixed, mark it required and it becomes a real gate with no edits here.
+    name: lint (advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
