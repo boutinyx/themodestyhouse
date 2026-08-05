@@ -44,4 +44,10 @@ export const BRANDS: Brand[] = [
   { slug: 'zora', name: 'Zora Designers', homepage: 'https://zoradesigners.com', feedUrl: 'https://zoradesigners.com/products.json', community: 'hijabi', currency: 'MYR', category: 'Modest', city: 'Malaysia', vibe: 'elegant' },
   { slug: 'bemu', name: 'Bemu', homepage: 'https://bemutr.com', feedUrl: 'https://bemutr.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest', city: 'Turkey', vibe: 'elegant' },
   { slug: 'summer-evenings', name: 'Summer Evenings', homepage: 'https://www.summerevenings.us', feedUrl: 'https://www.summerevenings.us/products.json', community: 'hijabi', currency: 'USD', category: 'Modest dresses', city: 'USA', vibe: 'elegant' },
+
+  // — from Vogue NL modest-fashion feature (2026-08-05) —
+  { slug: 'les-atelier', name: 'LES Atelier', homepage: 'https://lesthebrand.com', feedUrl: 'https://lesthebrand.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Europe', vibe: 'elegant' },
+  { slug: 'maison-hijab', name: 'Maison Hijab', homepage: 'https://maisonhijab.com', feedUrl: 'https://maisonhijab.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs', city: 'Europe', vibe: 'elegant' },
+  { slug: 'merrachi', name: 'MERRACHI', homepage: 'https://bymerrachi.com', feedUrl: 'https://bymerrachi.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Amsterdam', vibe: 'elegant' },
+  { slug: 'manzaram', name: 'Manzaram', homepage: 'https://manzaram.nl', feedUrl: 'https://manzaram.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },
 ];

@@ -58,10 +58,13 @@ export function normalizeProductDetailed(
 ): { product: Product | null; reason?: RejectReason } {
   const image = pickImage(sp.images);
   if (!image) return { product: null, reason: 'no-image' };
+  // Some feeds embed HTML in titles (e.g. LES: "LAURA JEANS <span>BLACK</span>").
+  // Strip tags + collapse whitespace so it never shows on the site or fools the tagger.
+  const title = String(sp.title || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
   const tags = Array.isArray(sp.tags) ? sp.tags : String(sp.tags || '').split(',').map((t) => t.trim());
-  const excl = [sp.title, sp.product_type || '', ...tags].join(' ');
+  const excl = [title, sp.product_type || '', ...tags].join(' ');
   if (EXCLUDE.test(excl)) return { product: null, reason: 'excluded-title' };
-  const disc = tagDiscovery({ title: sp.title, productType: sp.product_type || '', tags });
+  const disc = tagDiscovery({ title, productType: sp.product_type || '', tags });
   if (disc.garment === 'other') return { product: null, reason: 'unclassified' };
   const price = parseFloat(sp.variants?.[0]?.price ?? '0') || 0;
   return {
@@ -69,7 +72,7 @@ export function normalizeProductDetailed(
       id: `${brand.slug}:${sp.id}`,
       brandSlug: brand.slug,
       brandName: brand.name,
-      title: sp.title,
+      title,
       price,
       currency: brand.currency,
       image,

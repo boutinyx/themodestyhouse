@@ -24514,5 +24514,135 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Pin"
+  },
+  {
+    "id": "les-atelier:15930587906421",
+    "brandSlug": "les-atelier",
+    "title": "Hijab Magnets Silver",
+    "url": "https://lesthebrand.com/products/hijab-magnets-span-silver-span-copy",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "les-atelier:14680525570421",
+    "brandSlug": "les-atelier",
+    "title": "Hijab Magnets Gold",
+    "url": "https://lesthebrand.com/products/hijab-magnets-light-gold-2-pieces-copy",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "les-atelier:14680525373813",
+    "brandSlug": "les-atelier",
+    "title": "Hijab Magnets Black",
+    "url": "https://lesthebrand.com/products/hijab-magnets-rose-2-pieces-copy",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "les-atelier:9628969206069",
+    "brandSlug": "les-atelier",
+    "title": "Hijab Magnets ROSE",
+    "url": "https://lesthebrand.com/products/hijab-magnets-rose-2-pieces",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "les-atelier:9014535389493",
+    "brandSlug": "les-atelier",
+    "title": "Hijab Magnets Light Gold",
+    "url": "https://lesthebrand.com/products/hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "maison-hijab:6571526750255",
+    "brandSlug": "maison-hijab",
+    "title": "Hijab Magnets - Gunmetal",
+    "url": "https://maisonhijab.com/products/hijab-magnet-gunmetal",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "maison-hijab:6571526619183",
+    "brandSlug": "maison-hijab",
+    "title": "Hijab Magnets - Silver",
+    "url": "https://maisonhijab.com/products/hijab-magnet-silver",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "maison-hijab:6571526389807",
+    "brandSlug": "maison-hijab",
+    "title": "Hijab Magnets - Gold",
+    "url": "https://maisonhijab.com/products/hijab-magnet-gold",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "merrachi:15648029999487",
+    "brandSlug": "merrachi",
+    "title": "Maxi Summer Bag | Light Chai",
+    "url": "https://bymerrachi.com/products/maxi-summer-bag-light-chai",
+    "garmentWas": "dress",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
+  },
+  {
+    "id": "merrachi:15648029966719",
+    "brandSlug": "merrachi",
+    "title": "Maxi Summer Bag | Aqua Gray",
+    "url": "https://bymerrachi.com/products/maxi-summer-bag-aqua-gray",
+    "garmentWas": "dress",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
+  },
+  {
+    "id": "merrachi:15639066116479",
+    "brandSlug": "merrachi",
+    "title": "Scarf Keychain | Pink Bouquet",
+    "url": "https://bymerrachi.com/products/scarf-keychain-pink-bouquet",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Keychain"
+  },
+  {
+    "id": "merrachi:15290114507135",
+    "brandSlug": "merrachi",
+    "title": "Maxi Oval Bag | Black",
+    "url": "https://bymerrachi.com/products/maxi-oval-bag-black",
+    "garmentWas": "dress",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
+  },
+  {
+    "id": "merrachi:15290125386111",
+    "brandSlug": "merrachi",
+    "title": "Maxi Oval Bag | Chocolate",
+    "url": "https://bymerrachi.com/products/maxi-oval-bag-chocolate",
+    "garmentWas": "dress",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
   }
 ]
