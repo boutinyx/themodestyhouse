@@ -15,8 +15,11 @@
     "verify:gate": "node scripts/verify-gate.mjs",
     "scrape": "tsx scripts/scrape.mjs",
     "build:data": "tsx scripts/build-data.mjs",
+    "postbuild:data": "npm run --silent translate",
     "refresh": "tsx scripts/refresh.mjs",
+    "postrefresh": "npm run --silent translate",
     "refresh:summary": "tsx --no-warnings scripts/refresh-summary.mjs",
+    "translate": "[ -x .venv-style/bin/python ] && .venv-style/bin/python scripts/translate_titles.py || echo 'title-translation skipped (no .venv-style)'",
     "test": "vitest run"
   },
   "dependencies": {
