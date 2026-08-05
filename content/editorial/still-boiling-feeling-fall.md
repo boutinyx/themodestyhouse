@@ -5,6 +5,8 @@ category: "Styling"
 author: "The Modesty House"
 date: "2026-08-04"
 slug: "still-boiling-feeling-fall"
+image: "/editorial/outfit-crop.jpg"
+imageAlt: "A layered aubergine modest outfit"
 ---
 
 Nobody warns you about how hard *this* week is to dress. It's still hot, genuinely hot, but your head has already checked out into cosy autumn everything. The mistake is trying to fix that with more clothes. You don't need more clothes. You need smarter ones.

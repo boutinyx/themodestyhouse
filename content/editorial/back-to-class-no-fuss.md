@@ -5,6 +5,8 @@ category: "Guide"
 author: "The Modesty House"
 date: "2026-08-04"
 slug: "back-to-class-no-fuss"
+image: "/editorial/street-jewelry.jpg"
+imageAlt: "A woman in an aubergine coat and hijab on a city street"
 ---
 
 I'll be honest with you: on a proper full day, I do not have it in me to *style an outfit*. So I don't. Here's what I actually do when I wake up.

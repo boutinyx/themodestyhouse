@@ -5,17 +5,15 @@ import HeroSearch from '@/components/HeroSearch';
 import VerifiedSpotlight from '@/components/VerifiedSpotlight';
 import EditorsRail from '@/components/EditorsRail';
 import { getProducts } from '@/lib/products';
+import { getPosts } from '@/lib/posts';
 import { isSpecialty } from '@/lib/specialty';
 
 export default function Home() {
   const rail = newlyVerified();
   const cats = categoryCards();
-  const stories = [
-    { cat: 'The List', title: 'The abaya houses defining quiet luxury', href: '/editorial' },
-    { cat: 'Guide', title: 'How to layer for modest winter', href: '/editorial' },
-    { cat: 'Interview', title: 'On craft, coverage and colour', href: '/editorial' },
-    { cat: 'Feature', title: 'The new wave of hijabi swimwear', href: '/editorial' },
-  ];
+  const posts = getPosts();
+  const feature = posts[0];
+  const moreStories = posts.slice(1, 4);
   const seenBrand = new Set<string>();
   const editorsPicks = getProducts()
     .filter((p) => p.inStock && p.image && !isSpecialty(p) && ['dress', 'abaya', 'skirt', 'top', 'set'].includes(p.garment))
@@ -33,7 +31,7 @@ export default function Home() {
         <div className="relative overflow-hidden" style={{ height: '100vh', minHeight: 560, background: 'var(--aubergine)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/hero-home.jpg?v=17b"
+            src="/hero-home.jpg?v=17d"
             alt="A rail of aubergine modest dresses in a boutique"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: 'center 45%' }}
@@ -147,35 +145,39 @@ export default function Home() {
           </div>
           <Link href="/editorial" className="nav-link">All stories →</Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8">
-          <Link href={stories[0].href} className="relative block overflow-hidden" style={{ borderRadius: 8, minHeight: 460, background: 'var(--aubergine)' }}>
-            {rail[0]?.image && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={rail[0].image} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        {feature && (
+          <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8">
+            <Link href={`/editorial/${feature.slug}`} className="relative block overflow-hidden" style={{ borderRadius: 8, minHeight: 460, background: 'var(--aubergine)' }}>
+              {feature.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={feature.image} alt={feature.imageAlt || ''} className="absolute inset-0 w-full h-full object-cover" />
+              )}
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.78), rgba(36,27,36,0) 55%)' }} />
+              <div className="absolute inset-x-0 bottom-0 p-7">
+                <div className="eyebrow" style={{ color: '#e7d3b6' }}>{feature.category}</div>
+                <div className="serif mt-2" style={{ fontSize: 30, color: 'var(--parchment)', lineHeight: 1.08 }}>{feature.title}</div>
+              </div>
+            </Link>
+            {moreStories.length > 0 && (
+              <div className="flex flex-col gap-4">
+                {moreStories.map((s) => (
+                  <Link key={s.slug} href={`/editorial/${s.slug}`} className="flex gap-4 p-3 items-center" style={{ border: '1px solid var(--hairline)', borderRadius: 8, background: 'var(--bone)' }}>
+                    <div className="shrink-0 overflow-hidden" style={{ width: 84, height: 84, borderRadius: 4, background: '#ece5d8' }}>
+                      {s.image && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={s.image} alt={s.imageAlt || ''} className="w-full h-full object-cover" />
+                      )}
+                    </div>
+                    <div>
+                      <div className="eyebrow">{s.category}</div>
+                      <div className="serif mt-1" style={{ fontSize: 18, color: 'var(--ink)', lineHeight: 1.2 }}>{s.title}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             )}
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.7), rgba(36,27,36,0) 55%)' }} />
-            <div className="absolute inset-x-0 bottom-0 p-7">
-              <div className="eyebrow" style={{ color: '#e7d3b6' }}>{stories[0].cat}</div>
-              <div className="serif mt-2" style={{ fontSize: 30, color: 'var(--parchment)' }}>{stories[0].title}</div>
-            </div>
-          </Link>
-          <div className="flex flex-col gap-4">
-            {stories.slice(1).map((s, i) => (
-              <Link key={i} href={s.href} className="flex gap-4 p-3 items-center" style={{ border: '1px solid var(--hairline)', borderRadius: 8, background: 'var(--bone)' }}>
-                <div className="shrink-0 overflow-hidden" style={{ width: 84, height: 84, borderRadius: 4, background: '#ece5d8' }}>
-                  {rail[i + 1]?.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={rail[i + 1].image} alt="" className="w-full h-full object-cover" />
-                  )}
-                </div>
-                <div>
-                  <div className="eyebrow">{s.cat}</div>
-                  <div className="serif mt-1" style={{ fontSize: 18, color: 'var(--ink)', lineHeight: 1.2 }}>{s.title}</div>
-                </div>
-              </Link>
-            ))}
           </div>
-        </div>
+        )}
       </section>
 
     </>

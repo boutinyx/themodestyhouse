@@ -8,6 +8,8 @@ export type Post = {
   category: string;
   author: string;
   date: string; // ISO yyyy-mm-dd
+  image?: string; // cover image, e.g. /editorial/outfit-crop.jpg
+  imageAlt?: string;
   body: string; // markdown
 };
 
@@ -36,6 +38,8 @@ function parse(file: string): Post {
     category: fm.category || 'Story',
     author: fm.author || 'The Modesty House',
     date: fm.date || '',
+    image: fm.image || undefined,
+    imageAlt: fm.imageAlt || undefined,
     body,
   };
 }

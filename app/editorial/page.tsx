@@ -22,13 +22,21 @@ export default function EditorialPage() {
           <Link
             key={p.slug}
             href={`/editorial/${p.slug}`}
-            className="group block"
+            className={`group items-center ${p.image ? 'md:grid md:grid-cols-[320px_1fr] md:gap-7' : 'block'}`}
             style={{ borderTop: '1px solid var(--hairline)', padding: '28px 0' }}
           >
-            <div className="eyebrow">{p.category} · {formatDate(p.date)}</div>
-            <h2 className="serif mt-2" style={{ fontSize: 'clamp(24px,3.2vw,38px)', lineHeight: 1.08, color: 'var(--ink)' }}>{p.title}</h2>
-            <p className="mt-2" style={{ color: 'var(--muted)', fontSize: 16, maxWidth: '62ch' }}>{p.dek}</p>
-            <div className="nav-link mt-3">Read →</div>
+            {p.image && (
+              <div className="overflow-hidden rounded-xl mb-4 md:mb-0" style={{ aspectRatio: '16 / 10', background: 'var(--bone)' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.image} alt={p.imageAlt || ''} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+            )}
+            <div>
+              <div className="eyebrow">{p.category} · {formatDate(p.date)}</div>
+              <h2 className="serif mt-2" style={{ fontSize: 'clamp(24px,3.2vw,36px)', lineHeight: 1.08, color: 'var(--ink)' }}>{p.title}</h2>
+              <p className="mt-2" style={{ color: 'var(--muted)', fontSize: 16, maxWidth: '62ch' }}>{p.dek}</p>
+              <div className="nav-link mt-3">Read →</div>
+            </div>
           </Link>
         ))}
       </div>

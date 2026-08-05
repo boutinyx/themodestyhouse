@@ -24,6 +24,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <main className="max-w-[720px] mx-auto px-6 pt-32 pb-24">
       <Link href="/editorial" className="nav-link">← The Edit</Link>
 
+      {p.image && (
+        <div className="mt-6 overflow-hidden rounded-2xl" style={{ background: 'var(--bone)' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={p.image} alt={p.imageAlt || ''} className="w-full object-cover" style={{ aspectRatio: '16 / 9' }} />
+        </div>
+      )}
+
       <div className="eyebrow mt-10">{p.category}</div>
       <h1 className="serif mt-3" style={{ fontSize: 'clamp(32px,5.2vw,54px)', lineHeight: 1.03, color: 'var(--ink)' }}>{p.title}</h1>
       <p className="mt-4" style={{ color: 'var(--muted)', fontSize: 18, lineHeight: 1.5 }}>{p.dek}</p>
