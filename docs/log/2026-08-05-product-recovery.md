@@ -5,7 +5,7 @@
 ## Goal
 
 Restore the products permanently deleted from `data/raw-products.json` by the destructive
-brand-replace bug (see `HANDBOOK.md` §10.1), and pull in the two brands that had never
+brand-replace bug, and pull in the two brands that had never
 successfully scraped because of persistent HTTP 429 rate-limiting.
 
 ## What changed

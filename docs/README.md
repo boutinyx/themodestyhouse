@@ -1,7 +1,6 @@
 # Documentation
 
-Project documentation for **The Modesty House**. The internal engineering handbook lives
-at [`../HANDBOOK.md`](../HANDBOOK.md) — read that first.
+Project documentation for **The Modesty House**.
 
 ## Contents
 
@@ -23,8 +22,8 @@ record, not a changelog for marketing — it must include the verification evide
 warranted when a choice constrains future work: storage engine, rendering strategy, auth
 model, pipeline shape, third-party dependency with lock-in.
 
-**Mistakes** go in `HANDBOOK.md` §10, not here — they're operating knowledge, and they need
-to be in the file gets read at the start of a session.
+**Mistakes** go in the local engineering handbook, not here — they're operating knowledge,
+and they need to be in the file that gets read at the start of a working session.
 
 ## Templates
 

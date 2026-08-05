@@ -56,7 +56,7 @@ The dynamic data moves; **the catalogue stays static.**
 
 **Negative / accepted risks**
 - **No transactions.** A partially-written file corrupts the catalogue. Mitigated by
-  upsert-only ingest and per-brand checkpointing (see `HANDBOOK.md` §10.1).
+  upsert-only ingest and per-brand checkpointing.
 - **No concurrency control.** Two scrapes running at once clash. Mitigated by convention
   only: run one at a time.
 - **Whole-file rewrites** produce large diffs and make `decisions.json` awkward in git.

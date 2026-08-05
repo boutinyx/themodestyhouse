@@ -31,3 +31,49 @@ describe('normalizeProduct', () => {
     expect(normalizeProduct({ ...sp, title: 'Gift Card', product_type: '', tags: [] }, brand)).toBeNull();
   });
 });
+
+// Regression guard for §10.11 — the size-chart bug. The rule under test is
+// "portrait must be the DOMINANT format", not "first portrait wins".
+// Dimensions below are copied verbatim from live Shopify feeds.
+describe('pickImage (via normalizeProduct)', () => {
+  const img = (name: string, width: number, height: number) => ({ src: `https://cdn.shopify.com/${name}`, width, height });
+  const withImages = (images: { src: string; width?: number; height?: number }[]) =>
+    normalizeProduct({ ...sp, images }, brand)!.image;
+
+  it('ignores a lone portrait among squares — that is the size chart, not a model shot', () => {
+    // mariams:9114791706840 "3D-Style Rose Garden Embroidered Open Abaya (MOA275)".
+    // Image 8 (521x1200) is the size chart Tina found published on the site.
+    const image = withImages([
+      img('moa275-1019022.png', 1200, 1200),
+      img('moa275-a.png', 1000, 1000),
+      img('moa275-b.png', 1000, 1000),
+      img('moa275-c.png', 1000, 1000),
+      img('moa275-d.png', 1000, 1000),
+      img('moa275-e.png', 1000, 1000),
+      img('moa275-f.png', 1000, 1000),
+      img('moa275-g.png', 832, 832),
+      img('moa275-7828719.png', 521, 1200), // ← the size chart
+    ]);
+    expect(image).toBe('https://cdn.shopify.com/moa275-1019022.png');
+  });
+
+  it('still prefers a model shot when portrait IS the dominant format', () => {
+    const image = withImages([
+      img('flatlay.jpg', 1000, 1000),
+      img('model-1.jpg', 800, 1200),
+      img('model-2.jpg', 800, 1200),
+      img('model-3.jpg', 800, 1200),
+    ]);
+    expect(image).toBe('https://cdn.shopify.com/model-1.jpg');
+  });
+
+  it('falls back to the first image when dimensions are missing', () => {
+    expect(withImages([{ src: 'https://cdn.shopify.com/a.jpg' }, { src: 'https://cdn.shopify.com/b.jpg' }]))
+      .toBe('https://cdn.shopify.com/a.jpg');
+  });
+
+  it('does not treat a single portrait image as dominant', () => {
+    const image = withImages([img('square.jpg', 1000, 1000), img('chart.jpg', 500, 1200)]);
+    expect(image).toBe('https://cdn.shopify.com/square.jpg');
+  });
+});

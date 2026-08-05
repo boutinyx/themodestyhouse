@@ -53,5 +53,8 @@ conversations/
 # Generated hero candidates (46 MB, unreferenced). Kept locally, not versioned —
 # if one gets chosen, move it into public/ properly and commit that single file.
 public/hero-gen/
+# Generated image library (44 MB, unreferenced source material). Same rule as
+# hero-gen: chosen images get moved into public/ and committed individually.
+higgsfield-library/
 # Debug dump from scripts/tag_style.py — regenerable
 data/archetypes.clip.debug.json

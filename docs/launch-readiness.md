@@ -55,7 +55,7 @@ dirty/untracked paths on top. `data/raw-products.json` (6.5 MB — the only rege
 to `build-data.mjs`) is gitignored and unbacked.
 
 This is the finding that already cost us: a destructive scrape permanently deleted
-thousands of products because there was no backup (see `HANDBOOK.md` §10.1).
+thousands of products because there was no backup.
 
 **Fix, in order:**
 
@@ -70,8 +70,8 @@ thousands of products because there was no backup (see `HANDBOOK.md` §10.1).
 5. `git gc --prune=now` to reclaim the ~2.5 GB of loose blobs.
 6. Back up `raw-products.json` somewhere durable (or gzip and track it).
 
-Note `conversations/` is 74 MB of the assistant session transcripts, mode 0600, containing records
-like `{"type":"permission-mode","permissionMode":"bypassPermissions"}`. Do not commit it.
+Note `conversations/` is 74 MB of local tooling session transcripts, mode 0600. Do not
+commit it.
 
 ---
 

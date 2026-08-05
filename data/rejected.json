@@ -24424,5 +24424,95 @@
     "url": "https://ndustry.shop/products/femi-dress-brown",
     "garmentWas": "dress",
     "reason": "brand-blacklist"
+  },
+  {
+    "id": "nasiba:8673129103669",
+    "brandSlug": "nasiba",
+    "title": "Hijab Magnets - Sirocco",
+    "url": "https://nasiba.com/products/hijab-magnets-cream-blush",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "nasiba:8673128153397",
+    "brandSlug": "nasiba",
+    "title": "Hijab Magnets - Soft Shell",
+    "url": "https://nasiba.com/products/hijab-magnets-soft-shell",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "nasiba:8673117798709",
+    "brandSlug": "nasiba",
+    "title": "Hijab Pin Pack - Off white",
+    "url": "https://nasiba.com/products/hijab-pin-pack-off-white",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pin"
+  },
+  {
+    "id": "nasiba:8673102266677",
+    "brandSlug": "nasiba",
+    "title": "Hijab Magnets - Black",
+    "url": "https://nasiba.com/products/hijab-magnets-black",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "nasiba:8673089847605",
+    "brandSlug": "nasiba",
+    "title": "Tangier Lantern Set",
+    "url": "https://nasiba.com/products/tangier-lantern-set",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Lantern"
+  },
+  {
+    "id": "nasiba:8673060061493",
+    "brandSlug": "nasiba",
+    "title": "Hijab Magnets - Grey",
+    "url": "https://nasiba.com/products/hijab-magnets-grey",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "nasiba:8673045152053",
+    "brandSlug": "nasiba",
+    "title": "Hijab Magnets - White",
+    "url": "https://nasiba.com/products/hijab-magnets-white",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "nasiba:8673036599605",
+    "brandSlug": "nasiba",
+    "title": "Clear Headless Hijab Pins",
+    "url": "https://nasiba.com/products/clear-headless-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "nasiba:8673036501301",
+    "brandSlug": "nasiba",
+    "title": "Hijab Pin Pack - Black",
+    "url": "https://nasiba.com/products/hijab-pin-pack-black",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pin"
   }
 ]
