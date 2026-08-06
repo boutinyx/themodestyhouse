@@ -19,7 +19,16 @@ import type { Product } from '@/lib/types';
 const rows = products as unknown as Product[];
 
 // Keep in sync with the img-src directive in next.config.ts.
-const ALLOWED_IMAGE_HOSTS = new Set(['cdn.shopify.com', 'lafemmecollectie.nl']);
+// WooCommerce brands serve images from their own domain (or Jetpack's Photon
+// CDN, i0.wp.com) rather than a shared Shopify CDN, so each one needs adding
+// here AND to img-src in next.config.ts. Keep the two lists in step.
+const ALLOWED_IMAGE_HOSTS = new Set([
+  'cdn.shopify.com',
+  'lafemmecollectie.nl',
+  'kimodesty.com',
+  'chador.nl',
+  'i0.wp.com',
+]);
 
 // Deliberately a floor, not an exact count — the catalogue grows on every
 // refresh. It exists to catch a truncation (an empty or half-written file),

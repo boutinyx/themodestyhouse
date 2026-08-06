@@ -24519,7 +24519,7 @@
     "id": "les-atelier:15930587906421",
     "brandSlug": "les-atelier",
     "title": "Hijab Magnets Silver",
-    "url": "https://lesthebrand.com/products/hijab-magnets-span-silver-span-copy",
+    "url": "https://les-atelier.com/products/hijab-magnets-span-silver-span-copy",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -24529,7 +24529,7 @@
     "id": "les-atelier:14680525570421",
     "brandSlug": "les-atelier",
     "title": "Hijab Magnets Gold",
-    "url": "https://lesthebrand.com/products/hijab-magnets-light-gold-2-pieces-copy",
+    "url": "https://les-atelier.com/products/hijab-magnets-light-gold-2-pieces-copy",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -24539,7 +24539,7 @@
     "id": "les-atelier:14680525373813",
     "brandSlug": "les-atelier",
     "title": "Hijab Magnets Black",
-    "url": "https://lesthebrand.com/products/hijab-magnets-rose-2-pieces-copy",
+    "url": "https://les-atelier.com/products/hijab-magnets-rose-2-pieces-copy",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -24549,7 +24549,7 @@
     "id": "les-atelier:9628969206069",
     "brandSlug": "les-atelier",
     "title": "Hijab Magnets ROSE",
-    "url": "https://lesthebrand.com/products/hijab-magnets-rose-2-pieces",
+    "url": "https://les-atelier.com/products/hijab-magnets-rose-2-pieces",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -24559,7 +24559,7 @@
     "id": "les-atelier:9014535389493",
     "brandSlug": "les-atelier",
     "title": "Hijab Magnets Light Gold",
-    "url": "https://lesthebrand.com/products/hijab-magnets",
+    "url": "https://les-atelier.com/products/hijab-magnets",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -24664,5 +24664,83 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Pin"
+  },
+  {
+    "id": "losyana:9798386483538",
+    "brandSlug": "losyana",
+    "title": "Tote Bag - Black",
+    "url": "https://losyana.nl/products/tote-bag-black",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Tote Bag"
+  },
+  {
+    "id": "losyana:8675775840594",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - white",
+    "url": "https://losyana.nl/products/hijab-clip-white",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8675776561490",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Gold",
+    "url": "https://losyana.nl/products/hijab-clip-gold",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8675776168274",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - silver",
+    "url": "https://losyana.nl/products/hijab-clip-silver",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "mukistore:15186573918473",
+    "brandSlug": "mukistore",
+    "title": "V Neck Pleated Dress Tie Waist Belt",
+    "url": "https://mukistore.com/products/v-neck-pleated-dress-tie-waist-belt",
+    "garmentWas": "dress",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "hijab-boutique:8006645285168",
+    "brandSlug": "hijab-boutique",
+    "title": "Hijab hangers",
+    "url": "https://hijabboutique.nl/products/hijab-hangers",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "hangers"
+  },
+  {
+    "id": "noureen:16657",
+    "brandSlug": "noureen",
+    "title": "Gift box Medium",
+    "url": "https://noureenmodestfashion.com/product/giftbox-medium/",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "noureen:10437",
+    "brandSlug": "noureen",
+    "title": "Hijab Pin",
+    "url": "https://noureenmodestfashion.com/product/hijab-pin/",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pin"
   }
 ]

@@ -6,6 +6,8 @@ export interface ShopifyProduct {
   title: string;
   handle: string;
   product_type: string;
+  /** Product description. Used only as a last-resort classification signal. */
+  body_html?: string;
   tags: string[] | string;
   variants: { price: string; available: boolean }[];
   images: { src: string; width?: number; height?: number }[];
@@ -65,7 +67,9 @@ export function normalizeProductDetailed(
   const tags = Array.isArray(sp.tags) ? sp.tags : String(sp.tags || '').split(',').map((t) => t.trim());
   const excl = [title, sp.product_type || '', ...tags].join(' ');
   if (EXCLUDE.test(excl)) return { product: null, reason: 'excluded-title' };
-  const disc = tagDiscovery({ title, productType: sp.product_type || '', tags });
+  // bodyHtml is a LAST-RESORT signal inside tagDiscovery — it rescues products
+  // whose title is only a colourway ("Hazelnut" = a bamboo jersey hijab).
+  const disc = tagDiscovery({ title, productType: sp.product_type || '', tags, bodyHtml: sp.body_html });
   if (disc.garment === 'other') return { product: null, reason: 'unclassified' };
   const price = parseFloat(sp.variants?.[0]?.price ?? '0') || 0;
   return {

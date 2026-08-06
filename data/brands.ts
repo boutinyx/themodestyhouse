@@ -46,7 +46,8 @@ export const BRANDS: Brand[] = [
   { slug: 'summer-evenings', name: 'Summer Evenings', homepage: 'https://www.summerevenings.us', feedUrl: 'https://www.summerevenings.us/products.json', community: 'hijabi', currency: 'USD', category: 'Modest dresses', city: 'USA', vibe: 'elegant' },
 
   // — from Vogue NL modest-fashion feature (2026-08-05) —
-  { slug: 'les-atelier', name: 'LES Atelier', homepage: 'https://lesthebrand.com', feedUrl: 'https://lesthebrand.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Europe', vibe: 'elegant' },
+  // Domain moved: lesthebrand.com now 301s to les-atelier.com (found 2026-08-06).
+  { slug: 'les-atelier', name: 'LES Atelier', homepage: 'https://les-atelier.com', feedUrl: 'https://les-atelier.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },
   { slug: 'maison-hijab', name: 'Maison Hijab', homepage: 'https://maisonhijab.com', feedUrl: 'https://maisonhijab.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs', city: 'Europe', vibe: 'elegant' },
   { slug: 'merrachi', name: 'MERRACHI', homepage: 'https://bymerrachi.com', feedUrl: 'https://bymerrachi.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Amsterdam', vibe: 'elegant' },
   { slug: 'manzaram', name: 'Manzaram', homepage: 'https://manzaram.nl', feedUrl: 'https://manzaram.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },
@@ -72,4 +73,21 @@ export const BRANDS: Brand[] = [
   { slug: 'latifi', name: 'Latifi', homepage: 'https://latifi.ae', feedUrl: 'https://latifi.ae/products.json', community: 'hijabi', currency: 'AED', category: 'Occasion', city: 'Dubai', vibe: 'maximalist' },                            // 2438px, set-designed; only ~21 SKUs
   // Bouguessa is full RTW, not modest-by-design — expect to curate per product.
   { slug: 'bouguessa', name: 'Bouguessa', homepage: 'https://bouguessa.com', feedUrl: 'https://bouguessa.com/products.json', community: 'general', currency: 'USD', category: 'Contemporary', city: 'Dubai', vibe: 'elegant' },            // 2048px, quiet luxury
+  // — France —
+  // FRENCH-LANGUAGE FEED: registered in data/translate-brands.json as 'fr', or
+  // titles publish as "T-shirt Manches longues matière polo Aube".
+  { slug: 'whiteicy', name: 'White Icy', homepage: 'https://whiteicy.com', feedUrl: 'https://whiteicy.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Paris', vibe: 'streetwear' },                   // 29 SKUs, denim-led separates
+
+  // — 2026-08-06: Dutch & Belgian shops, from the NL/BE survey in
+  //   data/nl-be-modest-shops.csv. Every feed verified live; median image width
+  //   from the live feed noted. All EUR, so no new currency is introduced.
+  { slug: 'losyana', name: 'Losyana', homepage: 'https://losyana.nl', feedUrl: 'https://losyana.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest & hijabs', city: 'Nijmegen', vibe: 'elegant' },                  // 750+ SKUs (429 hijabs), 3082px — German product_type values
+  { slug: 'mukistore', name: 'Mukistore', homepage: 'https://mukistore.com', feedUrl: 'https://mukistore.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Rotterdam', vibe: 'elegant' },               // 250+, 2075px
+  { slug: 'hijab-boutique', name: 'Hijab Boutique', homepage: 'https://hijabboutique.nl', feedUrl: 'https://hijabboutique.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'Arnhem', vibe: 'elegant' }, // 250+, 1600px
+  { slug: 'aniqq', name: 'ANIQQ Exclusive', homepage: 'https://aniqq.nl', feedUrl: 'https://aniqq.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Abayas', city: 'Arnhem', vibe: 'elegant' },                          // 26 SKUs, 3024px
+  { slug: 'abyya', name: 'ABYYA', homepage: 'https://abyya.be', feedUrl: 'https://abyya.be/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Belgium', vibe: 'elegant' },                                    // 26 SKUs, 3052px
+  // WooCommerce — ingested via the Store API, see lib/ingest.ts.
+  { slug: 'kimodesty', name: 'KIMODESTY', homepage: 'https://kimodesty.com', feedUrl: 'https://kimodesty.com/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                         // 100+, 1920px
+  { slug: 'chador', name: 'Chador', homepage: 'https://chador.nl', feedUrl: 'https://chador.nl/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                                       // 113, 1707px
+  { slug: 'noureen', name: 'NOUREEN Modest Fashion', homepage: 'https://noureenmodestfashion.com', feedUrl: 'https://noureenmodestfashion.com/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Hijabs & abayas', city: 'Antwerp', vibe: 'elegant' }, // 100+, 1024px
 ];

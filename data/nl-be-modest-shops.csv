@@ -1,0 +1,53 @@
+name,website,country,city,platform,feed_works,item_count,currency,median_image_px,womens_only,note
+By Rofayda,https://by-rofayda.nl,NL,Netherlands,woocommerce,yes,590,EUR,1707,no,Store API total 590; abayas khimaars jilbabs; sizeable kids line
+Hijab Boutique,https://hijabboutique.nl,NL,Arnhem,shopify,yes,250,EUR,1600,yes,250 is the products.json cap so catalogue is larger; hijabs and clothing; address unconfirmed
+Hijab Heela,https://www.hijabheela.nl,NL,Schoonhoven,shopify,yes,250,EUR,1080,no,At 250 cap; roughly 73 of 250 items are girls/kids
+Islamhanout,https://www.islamhanout.be,BE,,shopify,yes,250,EUR,600,no,Islamic products incl books spices gifts; low image quality
+islamitischekleding.nl,https://islamitischekleding.nl,NL,Amsterdam / Wateringen,shopify,yes,250,EUR,1758,no,At 250 cap; womenswear dominant but explicit Heren Qamis Jongens Kinderen nav
+Libasi,https://libasi.nl,NL,Nieuwkoop,shopify,yes,250,EUR,800,no,ASWAQ BV KVK 88159973; at 250 cap; carries kinderkleding; lowest image quality of its tier
+Losyana,https://losyana.nl,NL,Nijmegen,shopify,yes,250,EUR,3082,yes,At 250 cap; high-res imagery; Amsterdam Osdorp store as well; only ~7 kids items
+MERRACHI,https://merrachi.com,NL,Amsterdam,shopify,yes,250,EUR,3286,yes,At 250 cap; very high-res imagery; bymerrachi.com is the same store and was deduped
+Modest Collection,https://www.modestbd.com,NL,,shopify,yes,250,EUR,1080,yes,Jilbab khimar range; page cap
+Mukistore,https://mukistore.com,NL,Rotterdam,shopify,yes,250,EUR,2075,yes,At 250 cap; Dutch womenswear sets wijde broek maxi jurken abayas
+Safwa Boutique,https://www.safwaboutique.com,BE,Brussels,shopify,yes,250,EUR,1000,no,Hijabs khimars scarves; also sells books
+Saphir Boutique,https://www.bysaphir.com,BE,Brussels,shopify,yes,250,EUR,1365,yes,At 250 cap; French hijab and pret-a-porter lines; feed rate-limits on page 2
+UsW Modest Fashion,https://usw-modestfashion.com,NL,Wateringen,shopify,yes,207,EUR,1758,yes,Abayas jilbabs khimars; sister brand of islamitischekleding.nl; no heren/kinderen
+LES Atelier,https://les-atelier.com,NL,Netherlands,shopify,yes,196,EUR,1080,yes,lesthebrand.com now 301s here; dresses abayas khimaars scarves; titles contain raw HTML spans
+Nisa Boutique,https://nisaboutique.nl,NL,Netherlands,shopify,yes,191,EUR,1080,yes,Fully open; bamboo and premium jersey hijabs plus accessories
+BySaffie,https://bysaffie.nl,NL,Netherlands,shopify,yes,163,EUR,2087,yes,Dresses twinsets blouses rokken abayas sjaals; all womenswear
+BY SELMA,https://www.byselma.be,BE,Belgium,shopify,yes,160,EUR,1688,yes,Full catalogue under cap; jersey hijab sets instant hijabs bonnets
+Caftan Factory,https://caftanfactory.com,BE,Brussel & Antwerpen,woocommerce,yes,146,EUR,1200,no,Two physical stores; caftans takchitas djellabas but full men's and kids lines too
+Hijabie,https://www.hijabie.nl,NL,Netherlands,shopify,yes,118,EUR,2381,yes,Scarf-led with abaya burkini khimar; ships to 26 European countries
+Chador,https://chador.nl,NL,Netherlands,woocommerce,yes,113,EUR,1707,yes,Store API total 113; wrap skirts cape dresses abayas hijabs burkinis
+ModestScarfs,https://www.modestscarfs.com,NL,Utrecht,shopify,yes,105,EUR,1080,yes,Full catalogue under cap; dresses abayas scarves
+KIMODESTY,https://kimodesty.com,NL,Netherlands,woocommerce,yes,100,EUR,1920,yes,100 is the per_page cap so catalogue may be larger; everyday modest wear; best-in-class imagery
+Mina Mode Collection,https://mina-mode.com,NL,Amersfoort,woocommerce,yes,100,EUR,1209,yes,100 is the per_page cap; ribbed twinsets and printed dresses; no men's or kids items
+NOUREEN Modest Fashion,https://noureenmodestfashion.com,BE,Antwerp,woocommerce,yes,100,EUR,1024,yes,100 is the per_page cap; jersey hijabs and abayas; only 4 kids-tagged items
+Modest Label,https://modestlabel.nl,NL,Netherlands,shopify,yes,94,EUR,1242,yes,Abayas blouses djellabas occasion wear; NL/BE region selector
+Manzaram,https://www.manzaram.nl,NL,Amsterdam / Rotterdam / Den Haag,shopify,yes,86,EUR,2500,yes,ALREADY IN YOUR CATALOGUE. Tops maxi dresses two-piece sets; excellent image quality
+Abaya Shop,https://www.abayashop.nl,NL,Tilburg / Eindhoven,shopify,yes,73,EUR,800,yes,Dutch-titled abayas and hijabs; only weakness is 800px imagery
+ABAYATI Chic,https://abayati-chic.nl,NL,Den Haag,woocommerce,yes,69,EUR,1290,yes,Abayas and sets; images are 1290px iPhone-native uploads
+Hijabella,https://hijabella.nl,NL,Netherlands,shopify,yes,67,EUR,2385,yes,Premium jersey and printed hijabs undercaps pins plus some abayas
+Halaal Style,https://halaalstyle.nl,NL,Tilburg,woocommerce,yes,60,EUR,1920,no,Good imagery but ~20 percent men's/kids qamis; Heren Jongens Kinderen nav
+Khayla Modestique,https://bykhayla.com,NL,Netherlands,shopify,yes,51,EUR,1365,yes,Sets abayas rok sets scarf capes; one feed entry is a hemming service not a garment
+MARIYA MODESTY,https://www.mariyamodesty.com,BE,Belgium,shopify,yes,48,EUR,1881,yes,Bonnets jersey hijabs burkinis and sets; trilingual FR/EN/NL; strongest Belgian candidate
+Maison Hijab,https://maisonhijab.com,NL,Netherlands,shopify,yes,42,EUR,967,yes,ALREADY IN YOUR CATALOGUE. Jersey hijabs in seasonal shades plus hijab magnets; small but clean catalogue
+Burkinis.nl,https://burkinis.nl,NL,Netherlands,shopify,yes,38,EUR,1414,yes,Sport hijabs burkinis and swim accessories; thin niche assortment
+By Aicha,https://byaicha.com,NL,Rotterdam,shopify,yes,36,EUR,2419,yes,Best imagery of the batch; abayas khimars burkinis; 2 mother-daughter kids sets only
+Boutique Mani,https://boutiquemani.nl,NL,Netherlands,woocommerce,yes,30,EUR,1365,no,Exactly 30 products; has a Meisjes girls section; in vakantiemodus with shipping around 25 August
+Hoofddoekstore,https://hoofddoekstore.nl,NL,Nijmegen,shopify,yes,29,EUR,2268,yes,Hijabs only across three jersey/satin lines; trading since 2014; no KVK shown
+ABYYA,https://abyya.be,BE,Belgium,shopify,yes,26,EUR,3052,yes,Abayas jumpsuits twinsets and bamboo/modal scarves; small but very high-res
+ANIQQ Exclusive,https://aniqq.nl,NL,Arnhem,shopify,yes,26,EUR,3024,yes,Abaya-led with a jellaba edition; very high-res; NL-facing but NL ownership unconfirmed
+Israya Store,https://israyastore.com,BE,Brussel & Antwerpen,woocommerce,yes,22,EUR,1534,yes,Four boutiques claimed; feed exposes only 22 items mostly belts; caftans sit outside the feed
+byOumich,https://byoumich.com,BE,Belgium,shopify,yes,15,EUR,682,yes,Hijabs pins and under-hijabs; thin 15-SKU catalogue and low-res imagery; oumich.com is the same store
+La Femme Collectie,https://lafemmecollectie.nl,NL,,woocommerce,yes,,EUR,,yes,ALREADY IN YOUR CATALOGUE. ALREADY IN YOUR CATALOGUE - ingested via Woo Store API
+By Sutrah,https://www.bysutrah.nl,BE,Antwerpen,other,no,,EUR,,yes,Custom Vue/Nuxt storefront; khimaars abayas twin-sets burkinis; catalogue must be scraped
+Islamwinkel,https://islamwinkel.be,BE,,other,no,,EUR,,no,Site returns 403 to automated requests; hijabs jilbabs prayer wear
+L'amira Boutique,https://www.lamiraboutique.nl,NL,,other,no,,EUR,,yes,Hijabs abayas; platform not identified
+LAHAA,https://bylahaa.com,NL,,shopify,no,,EUR,,yes,Feed returns 401 - password protected; site live
+Le Boutique,https://www.leboutique.nl,NL,,lightspeed,no,,EUR,,yes,Lightspeed platform - not ingestible as-is
+Louti,https://louti.nl,NL,Netherlands,woocommerce,no,,EUR,,yes,Real women's-only shop but the Woo Store API returns HTTP 500; needs manual entry or a scraper
+Modesva,https://www.modesva.com,BE,Genk,other,no,,EUR,,yes,Webnode site; deep nav of abayas twinsets hoofddoeken bonnets burkini; no product feed
+MyScarf Antwerp,https://www.myscarf.nl,BE,Antwerpen,other,no,,EUR,,yes,JouwWeb site builder; abayas and hijabs only; no feed so HTML scraping required
+Naadje Ben,https://www.naadjeben.com,NL,Rotterdam,lightspeed,no,,EUR,,no,Handmade Moroccan takshita kaftan djelleba abaya; two Rotterdam stores; has a Kids category
+Sham Center,https://shamcenter.nl/nl,NL,Rotterdam,other,no,,EUR,,no,Custom PWA storefront; Dames abaya boerkini gebedskleding but also Heren and non-apparel
