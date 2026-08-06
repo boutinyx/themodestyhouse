@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
   if (!cfg) {
     // Never pretend the message was delivered. A contact form that silently
     // drops mail is worse than one that is visibly down.
-    console.error('contact: email is not configured (CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_EMAIL_TOKEN / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL)');
+    console.error('contact: email is not configured (RESEND_API_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL)');
     return NextResponse.json(
       { ok: false, error: 'The contact form is not available right now. Please email us directly.' },
       { status: 503 },

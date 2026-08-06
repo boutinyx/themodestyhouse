@@ -118,16 +118,16 @@ describe('buildEmail', () => {
 
 describe('emailConfig', () => {
   const full: Record<string, string | undefined> = {
-    CLOUDFLARE_ACCOUNT_ID: 'acct',
-    CLOUDFLARE_EMAIL_TOKEN: 'tok',
+    RESEND_API_KEY: 're_test',
     CONTACT_TO_EMAIL: 'hello@themodestyhouse.com',
-    CONTACT_FROM_EMAIL: 'noreply@themodestyhouse.com',
+    CONTACT_FROM_EMAIL: 'noreply@send.themodestyhouse.com',
   };
 
   it('returns config when every variable is present', () => {
     expect(emailConfig(full)).toEqual({
-      accountId: 'acct', token: 'tok',
-      to: 'hello@themodestyhouse.com', from: 'noreply@themodestyhouse.com',
+      apiKey: 're_test',
+      to: 'hello@themodestyhouse.com',
+      from: 'noreply@send.themodestyhouse.com',
     });
   });
 

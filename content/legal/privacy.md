@@ -6,12 +6,10 @@ This Privacy Policy explains how **The Modesty House** ("we", "us", "the site"),
 
 ## 1. Who is responsible for your data (data controller)
 
-The person responsible for this website and for your personal data is:
+The party responsible for this website and for your personal data is:
 
-- **[OPERATOR NAME]**, operating **The Modesty House** as an individual, based in the Netherlands.
+- **The Modesty House**, based in the Netherlands.
 - Contact: **hello@themodestyhouse.com**
-
-If we later register as a business (eenmanszaak / KvK) we will update this section with the company name and KvK number.
 
 ## 2. What information we collect
 
@@ -21,7 +19,7 @@ We keep data collection to a minimum. We collect:
 - **Your saved favourites.** If you save an item, it is stored **only in your own browser** (in local storage, under the key `tmh_favs`). It never reaches our servers, is not linked to you, and is cleared if you clear your browser data.
 - **Style It selections.** When you mix and match pieces, that happens **entirely in your own browser**. We do not record it.
 - **Messages you send us.** If you email us, we receive your email address and whatever you write, so we can reply.
-- **Contact form submissions.** If you use the form at [/contact](/contact), we receive the name, email address, subject and message you enter. These are sent to us as an email — we do **not** store them in a database. The form is protected by Cloudflare Turnstile, an anti-spam check that verifies you are not a bot; it processes your IP address and limited browser signals for that purpose, and does not track you across sites.
+- **Contact form submissions.** If you use the form at [/contact](/contact), we receive the name, email address, subject and message you enter. These are sent to us as an email via **Resend**, our email delivery provider — we do **not** store them in a database. The form is protected by Cloudflare Turnstile, an anti-spam check that verifies you are not a bot; it processes your IP address and limited browser signals for that purpose, and does not track you across sites. We also briefly hold the IP address a submission came from — in the server's memory only, for about a minute, and never written to disk — so that a single source cannot flood the form.
 
 We do **not** knowingly collect sensitive personal data, and we do not ask you to create an account or give us your name, address, or payment details.
 
@@ -50,6 +48,7 @@ These third parties may set their own cookies and process data (such as your IP 
 
 We also use:
 
+- **Cloudflare** — sits in front of this site and does three things: it provides our network and security layer, which means it sees the IP address and request details of every visit; it runs the Turnstile anti-spam check on the contact form; and it delivers contact form messages to us by email, which means the name, email address and message you send through the form pass through Cloudflare. Cloudflare is a US company; see Section 7 on international transfers.
 - **Railway** — our hosting provider, which processes server and request data as described above. Railway is a US company; see Section 7 on international transfers.
 - **Shopify** — product images shown on this site are loaded directly from the brands' own Shopify content network (`cdn.shopify.com`), which means your browser requests those images from Shopify.
 - **Pinterest** — we distribute content on Pinterest; if you arrive from Pinterest, Pinterest's own privacy policy applies to your activity there.
@@ -76,12 +75,13 @@ and only as far as needed for those purposes, or where we are legally required t
 
 ## 7. International data transfers
 
-Some of our partners — for example our hosting provider, affiliate networks, and the image network described in Section 4 — may process data outside the European Economic Area (EEA), including in the United States. Where that happens, those transfers are covered by safeguards recognised under GDPR, such as the EU Standard Contractual Clauses or an adequacy decision.
+Some of our partners — for example our hosting provider, Cloudflare, affiliate networks, and the image network described in Section 4 — may process data outside the European Economic Area (EEA), including in the United States. Where that happens, those transfers are covered by safeguards recognised under GDPR, such as the EU Standard Contractual Clauses or an adequacy decision.
 
 ## 8. How long we keep data
 
 - **Server logs:** kept only as long as needed for security and troubleshooting, then deleted or anonymised.
 - **Emails and contact form messages:** kept as long as needed to handle your request and for our records, then deleted. Form submissions reach us only as email — no copy is kept on the website.
+- **Contact form anti-flood records:** the IP address a submission came from is held in the server's memory for about a minute and then discarded. It is never written to disk.
 - **Favourites and Style It selections:** never stored by us — they stay in your browser.
 
 ## 9. Your rights under GDPR

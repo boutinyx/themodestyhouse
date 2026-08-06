@@ -63,15 +63,37 @@ Exercised against a real `next start` server on :3100:
 | Malformed JSON | `400` |
 | 6th request in 60s from one IP | `429` |
 
+## Amendment — sender switched to Resend
+The Cloudflare docs state that sending to a verified destination address is free
+on every plan, but **onboarding a domain to Email Sending is gated behind the
+Workers Paid plan ($5/mo)**, so the free path is not reachable in practice. Tina
+hit the paywall in the dashboard.
+
+Switched the outbound leg to **Resend** (free tier: 3,000/month, 100/day, one
+domain). Only `sendContactEmail` and `emailConfig` changed — validation,
+escaping, honeypot, Turnstile, rate limiting and the route are untouched.
+
+**Inbound is unaffected**: `hello@themodestyhouse.com` still arrives through
+Cloudflare Email Routing. Cloudflare Turnstile is also unchanged.
+
+**Verify a SUBDOMAIN in Resend, not the apex.** A domain may have only one SPF
+record, and the apex already carries Cloudflare's
+(`v=spf1 include:_spf.mx.cloudflare.net ~all`). Verifying the apex in Resend
+would require merging both includes into that single record; two SPF records is
+a permanent error that breaks authentication outright. `send.themodestyhouse.com`
+keeps them separate.
+
+Known limit: the free tier caps at **100 sends/day**. Far above normal contact
+traffic, but it is a cap — sends fail with a 502 rather than silently.
+
 ## Notes / follow-ups
-- **Inert until Railway env vars are set**: `CLOUDFLARE_ACCOUNT_ID`,
-  `CLOUDFLARE_EMAIL_TOKEN`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, plus
+- **Inert until Railway env vars are set**: `RESEND_API_KEY`,
+  `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, plus
   `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY`.
 - `NEXT_PUBLIC_*` is inlined at **build** time — setting it in Railway does
   nothing until the next deploy.
-- **`reply_to` is unverified** against the live Cloudflare API. The sender's
-  address is repeated in the message body so it cannot be lost if the field is
-  ignored. Confirm on the first real send.
-- Email Sending is in **public beta**; the API may change before GA.
+- **`reply_to` is unverified** against the live API. The sender's address is
+  repeated in the message body so it cannot be lost if the field is ignored.
+  Confirm on the first real send.
 - The newsletter is deliberately not built — it needs subscriber storage,
   double opt-in and unsubscribe. See `docs/email-service-plan.md` §3.

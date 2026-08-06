@@ -1,15 +1,18 @@
 /**
  * Contact form — validation and delivery.
  *
- * Delivery goes through the Cloudflare Email Service REST API rather than a
- * Workers binding, because this app runs as a long-lived `next start` container
- * on Railway, not on Workers. The REST API is callable from any backend.
+ * WHY RESEND AND NOT CLOUDFLARE: Cloudflare's docs say sending to a verified
+ * destination address is free on every plan, but onboarding a domain to Email
+ * Sending is gated behind the Workers Paid plan ($5/mo), so the free path is
+ * not actually reachable. Resend's free tier (3,000/month, 100/day, one domain)
+ * covers a contact form many times over at no cost.
  *
- * COST NOTE: we send only to CONTACT_TO_EMAIL, which is a *verified destination
- * address* on the Cloudflare account. Cloudflare bills sends to verified
- * destinations at zero on every plan — no Workers Paid plan needed. Sending to
- * arbitrary recipients (a newsletter) is a different product tier; do not reuse
- * this module for that without re-reading the pricing.
+ * Inbound mail is unaffected — hello@themodestyhouse.com still arrives via
+ * Cloudflare Email Routing. Only the outbound leg is Resend.
+ *
+ * The daily cap is 100. That is far above normal contact-form traffic, but it
+ * is a cap: a determined spammer past the honeypot, Turnstile and the rate
+ * limiter could exhaust it. Sends fail loudly (502) rather than silently.
  */
 
 import { TOPICS, type Topic } from '@/lib/contactTopics';
@@ -114,8 +117,7 @@ export function buildEmail(f: ContactFields) {
 }
 
 export interface EmailConfig {
-  accountId: string;
-  token: string;
+  apiKey: string;
   to: string;
   from: string;
 }
@@ -125,36 +127,34 @@ export interface EmailConfig {
  * fail loudly with a 503 rather than silently pretending a message was sent.
  */
 export function emailConfig(env: Record<string, string | undefined> = process.env): EmailConfig | null {
-  const accountId = env.CLOUDFLARE_ACCOUNT_ID;
-  const token = env.CLOUDFLARE_EMAIL_TOKEN;
+  const apiKey = env.RESEND_API_KEY;
   const to = env.CONTACT_TO_EMAIL;
   const from = env.CONTACT_FROM_EMAIL;
-  if (!accountId || !token || !to || !from) return null;
-  return { accountId, token, to, from };
+  if (!apiKey || !to || !from) return null;
+  return { apiKey, to, from };
 }
 
 export async function sendContactEmail(f: ContactFields, cfg: EmailConfig): Promise<void> {
   const { subject, text, html } = buildEmail(f);
-  const res = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${cfg.accountId}/email/sending/send`,
-    {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${cfg.token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        to: cfg.to,
-        from: cfg.from,
-        reply_to: sanitizeHeader(f.email),
-        subject,
-        text,
-        html,
-      }),
-    },
-  );
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${cfg.apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from: cfg.from,
+      to: [cfg.to],
+      // Puts the sender one keypress away: replying to the notification
+      // replies to them, not to the noreply address.
+      reply_to: sanitizeHeader(f.email),
+      subject,
+      text,
+      html,
+    }),
+  });
   if (!res.ok) {
-    // Include the body: Cloudflare puts the actionable reason (unverified
-    // destination, bad token, domain not onboarded) there, not in the status.
+    // Include the body: Resend puts the actionable reason (unverified domain,
+    // bad key, daily cap reached) there, not in the status code.
     const body = await res.text().catch(() => '');
-    throw new Error(`Cloudflare send failed: ${res.status} ${body.slice(0, 500)}`);
+    throw new Error(`Resend send failed: ${res.status} ${body.slice(0, 500)}`);
   }
 }
 
