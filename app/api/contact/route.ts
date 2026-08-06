@@ -40,6 +40,28 @@ function clientIp(req: NextRequest): string {
   );
 }
 
+/**
+ * Config probe. Reports ONLY whether each variable is present — never a value,
+ * never a prefix, never a length. Exists because a 503 from POST cannot
+ * distinguish "variable missing" from "stale build that predates the variable",
+ * and the alternative is guessing at a deploy platform's UI.
+ */
+export async function GET() {
+  const env = process.env;
+  return NextResponse.json({
+    configured: {
+      RESEND_API_KEY: Boolean(env.RESEND_API_KEY),
+      CONTACT_TO_EMAIL: Boolean(env.CONTACT_TO_EMAIL),
+      CONTACT_FROM_EMAIL: Boolean(env.CONTACT_FROM_EMAIL),
+      TURNSTILE_SECRET_KEY: Boolean(env.TURNSTILE_SECRET_KEY),
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY),
+    },
+    ready: Boolean(emailConfig()),
+    // Proves which build is answering, so "did it redeploy?" is never a guess.
+    builtFrom: process.env.RAILWAY_GIT_COMMIT_SHA?.slice(0, 7) ?? 'unknown',
+  });
+}
+
 export async function POST(req: NextRequest) {
   const ip = clientIp(req);
 
