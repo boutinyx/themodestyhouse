@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { normalizeProduct, normalizeProductDetailed } from './normalize';
+import {normalizeProduct, normalizeProductDetailed, normalizeTitle } from './normalize';
 import type { Brand } from '@/lib/types';
 
 const brand: Brand = {
@@ -110,5 +110,38 @@ describe('pickImage (via normalizeProduct)', () => {
   it('does not treat a single portrait image as dominant', () => {
     const image = withImages([img('square.jpg', 1000, 1000), img('chart.jpg', 500, 1200)]);
     expect(image).toBe('https://cdn.shopify.com/square.jpg');
+  });
+});
+
+describe('normalizeTitle', () => {
+  it('decodes HTML entities that WooCommerce feeds return encoded', () => {
+    // 141 live titles were rendering a literal "&#8211;" on the site.
+    expect(normalizeTitle('COTTON TOP &#8211; NAVY')).toBe('Cotton Top – Navy');
+    expect(normalizeTitle('Rose &amp; Sand')).toBe('Rose & Sand');
+  });
+
+  it('de-SHOUTS fully-uppercase titles', () => {
+    expect(normalizeTitle('SMALL PREMIUM CHIFFON HIJAB (NON-SLIP)')).toBe('Small Premium Chiffon Hijab (Non-Slip)');
+    expect(normalizeTitle('ESSENTIAL WRAP SKIRT')).toBe('Essential Wrap Skirt');
+  });
+
+  it('leaves mixed-case titles exactly alone', () => {
+    // A brand's own styling is not ours to change.
+    expect(normalizeTitle('Ruffle Dress - Chocolate')).toBe('Ruffle Dress - Chocolate');
+    expect(normalizeTitle('The Jane Kurung In Bask')).toBe('The Jane Kurung In Bask');
+  });
+
+  it('preserves SKU-style tokens when re-casing', () => {
+    // Tokens containing a digit survive: "F25" must not become "F25"->"f25".
+    expect(normalizeTitle('CLASSY LIQUID F25 BLACK')).toBe('Classy Liquid F25 Black');
+    expect(normalizeTitle('LM369 PLUS SIZE COWL NECK')).toBe('LM369 Plus Size Cowl Neck');
+  });
+
+  it('does not re-case short strings that may be acronyms', () => {
+    expect(normalizeTitle('USA SET')).toBe('USA SET');
+  });
+
+  it('still strips embedded HTML tags', () => {
+    expect(normalizeTitle('LAURA JEANS <span>BLACK</span>')).toBe('Laura Jeans Black');
   });
 });

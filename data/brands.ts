@@ -95,4 +95,7 @@ export const BRANDS: Brand[] = [
   // HUM introduces INR (renders as ₹, so no bare-code display problem).
   { slug: 'hum', name: 'HUM Clothing', homepage: 'https://humclothing.in', feedUrl: 'https://humclothing.in/products.json', community: 'general', currency: 'INR', category: 'Contemporary modest', city: 'India', vibe: 'elegant' },                              // 38 SKUs, 2752px, satin separates
   { slug: 'chic-modesty', name: 'Chic & Modesty', homepage: 'https://chicandmodesty.com', feedUrl: 'https://chicandmodesty.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'France', vibe: 'elegant' },              // 250+, 1000px, French-language titles
+  // Oomah: curated to the BOTTOMS collection only (owner asked for the pants),
+  // not the full catalogue — same pattern as Feradje above.
+  { slug: 'oomah', name: 'Oomah', homepage: 'https://www.oomah.co.uk', feedUrl: 'https://www.oomah.co.uk/collections/bottoms/products.json', community: 'hijabi', currency: 'GBP', category: 'Trousers', city: 'UK', vibe: 'elegant' },                            // 2 SKUs, 3419px
 ];

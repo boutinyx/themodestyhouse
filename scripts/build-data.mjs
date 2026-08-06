@@ -7,6 +7,7 @@ import { isNonApparel } from '../lib/nonApparel.ts';
 import { isLifecycleLive, stripLifecycle, brandDropViolations } from '../lib/lifecycle.ts';
 import { demoteGarment } from '../lib/ordering.ts';
 import { isSpecialty } from '../lib/specialty.ts';
+import { normalizeTitle } from '../lib/normalize.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
 
@@ -145,7 +146,13 @@ const prevRows = existsSync(U('products.json')) ? JSON.parse(readFileSync(U('pro
 // sequence the shopper sees, and capping against any other one moves abayas the
 // wrong way (measured: 12% -> 21% when computed over the raw list).
 const inMixedGrid = (p) => p.garment !== 'hijab' && !isSpecialty(p);
-const published = demoteGarment(interleaveByBrand(kept), 'abaya', inMixedGrid);
+// Re-clean titles at PUBLISH time, not just at ingest. build-data never re-runs
+// normalizeProduct, so rows scraped before a normalizeTitle change keep their old
+// title forever — that is the "raw rows are frozen" landmine in CLAUDE.md §8.
+// Doing it here fixes 141 titles showing a literal "&#8211;" and 460 SHOUTING
+// titles across every brand, with no re-scrape.
+const published = demoteGarment(interleaveByBrand(kept), 'abaya', inMixedGrid)
+  .map((p) => ({ ...p, title: normalizeTitle(p.title) }));
 
 // Write the audit trail BEFORE the guard can throw — the error message tells
 // the operator to review these files, so they have to exist by then.

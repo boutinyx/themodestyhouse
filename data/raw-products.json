@@ -414610,5 +414610,47 @@
     "lastSeen": "2026-08-06",
     "delistedAt": null,
     "filteredAt": null
+  },
+  {
+    "id": "oomah:7656653455439",
+    "brandSlug": "oomah",
+    "brandName": "Oomah",
+    "title": "FOLD UP JEANS",
+    "price": 15.99,
+    "currency": "GBP",
+    "image": "https://cdn.shopify.com/s/files/1/0611/8339/3871/files/3EC7BFC7-FBB6-4328-A1A8-2B5BCA79393E_1_201_a.jpg?v=1734449760",
+    "url": "https://www.oomah.co.uk/products/fold-up-jeans-coming-soon",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-06",
+    "lastSeen": "2026-08-06",
+    "delistedAt": null,
+    "filteredAt": null
+  },
+  {
+    "id": "oomah:7624224440399",
+    "brandSlug": "oomah",
+    "brandName": "Oomah",
+    "title": "ESSENTIAL WOOL TROUSERS",
+    "price": 22.99,
+    "currency": "GBP",
+    "image": "https://cdn.shopify.com/s/files/1/0611/8339/3871/files/69419E35-144D-4541-B20D-BD9F0AA1F458.jpg?v=1733785539",
+    "url": "https://www.oomah.co.uk/products/wide-leg-wool-bottoms",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [
+      "winter"
+    ],
+    "activity": [],
+    "firstSeen": "2026-08-06",
+    "lastSeen": "2026-08-06",
+    "delistedAt": null,
+    "filteredAt": null
   }
 ]

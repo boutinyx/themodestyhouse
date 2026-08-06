@@ -22,8 +22,6 @@
     "prayer cap",
     "skull ?cap",
     "menswear",
-    "waistcoat",
-    "welt pocket",
     "perfum",
     "fragrance",
     "cologne",
@@ -66,7 +64,8 @@
     "shukr:8547812704545",
     "shukr:8797354885409",
     "zora:9157154472099",
-    "chi-ka:8236804014241"
+    "chi-ka:8236804014241",
+    "lumos:10767306916150"
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],
