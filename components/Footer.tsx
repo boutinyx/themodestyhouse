@@ -56,25 +56,19 @@ export function Footer() {
               <FLink href="/designers">Designers</FLink>
               <FLink href="/about">About</FLink>
               <FLink href="/favourites">Favourites</FLink>
-              <FLink href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal">Apply for the seal</FLink>
+              <FLink href="/contact?topic=seal">Apply for the seal</FLink>
+              <FLink href="/contact">Contact</FLink>
             </ul>
 
-            {/* Newsletter signup — under Apply for the seal */}
+            {/* The newsletter needs subscriber storage, double opt-in and an
+                unsubscribe flow before it can exist — see docs/email-service-plan.md.
+                Until then this points at the contact form rather than a form that
+                silently does nothing. */}
             <div className="mt-7">
               <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
-              <form action="mailto:hello@themodestyhouse.com" method="post" className="mt-3">
-                <input
-                  type="email"
-                  required
-                  aria-label="Email address"
-                  placeholder="your@email.com"
-                  className="w-full"
-                  style={{ background: 'transparent', border: '1px solid rgba(243,238,228,0.22)', borderRadius: 40, padding: '9px 16px', fontSize: 13, color: 'var(--parchment)' }}
-                />
-                <button type="submit" className="btn-pill mt-2" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
-                  Join the house
-                </button>
-              </form>
+              <p className="mt-2 text-sm" style={{ color: 'rgba(243,238,228,0.7)' }}>
+                Coming soon. In the meantime, <FLink href="/contact">write to us</FLink>.
+              </p>
             </div>
           </div>
         </div>

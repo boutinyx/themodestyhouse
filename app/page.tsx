@@ -126,7 +126,7 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
-              <a href="mailto:hello@themodestyhouse.com?subject=Apply%20for%20the%20seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
+              <a href="/contact?topic=seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
                 Apply for the seal
               </a>
             </div>

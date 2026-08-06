@@ -63,7 +63,7 @@ const csp = [
   // exfiltration control, NOT meaningful XSS protection.
   // 'unsafe-eval' is dev-only (React's error overlay); prod bundles contain no
   // eval/new Function (verified by grep over .next/static/chunks: 0 hits).
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://challenges.cloudflare.com`,
   // 118 style={{...}} props -> 146 inline style attributes, plus real inline
   // <style> elements in VerifiedSpotlight.tsx:66, EditMagazine.tsx:50,
   // MagnifierHero.tsx:66.
@@ -78,18 +78,20 @@ const csp = [
   // `next dev` too, and Safari has historically not matched ws:// against
   // 'self'. Cheap insurance so the enforcing flip does not break dev.
   `connect-src 'self' https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com${isDev ? ' ws://localhost:* http://localhost:*' : ''}`,
-  "frame-src 'none'",
+  // Turnstile renders its widget in an iframe on challenges.cloudflare.com;
+  // with frame-src 'none' the challenge silently fails to appear and every
+  // submission is then rejected server-side.
+  "frame-src https://challenges.cloudflare.com",
   // No <video>/<audio>/<source> exists today. Declared explicitly so that
   // adding a CDN-hosted one fails loudly against a real directive rather than
   // silently against the default-src fallback.
   "media-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",
-  // mailto: is required by the newsletter form at components/Footer.tsx:65.
-  // That form is itself broken (method="post" to mailto: does not work in
-  // modern browsers) — when it is replaced with a real endpoint, tighten this
-  // back to "form-action 'self'".
-  "form-action 'self' mailto:",
+  // Tightened from "'self' mailto:" once /api/contact replaced the broken
+  // mailto: form in components/Footer.tsx. Every form on the site now posts
+  // to our own origin.
+  "form-action 'self'",
   "frame-ancestors 'none'",
   // NOTE: per CSP3 this directive is IGNORED while the policy is Report-Only.
   // It becomes active on the flip to enforcing.

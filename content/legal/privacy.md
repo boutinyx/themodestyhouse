@@ -21,6 +21,7 @@ We keep data collection to a minimum. We collect:
 - **Your saved favourites.** If you save an item, it is stored **only in your own browser** (in local storage, under the key `tmh_favs`). It never reaches our servers, is not linked to you, and is cleared if you clear your browser data.
 - **Style It selections.** When you mix and match pieces, that happens **entirely in your own browser**. We do not record it.
 - **Messages you send us.** If you email us, we receive your email address and whatever you write, so we can reply.
+- **Contact form submissions.** If you use the form at [/contact](/contact), we receive the name, email address, subject and message you enter. These are sent to us as an email — we do **not** store them in a database. The form is protected by Cloudflare Turnstile, an anti-spam check that verifies you are not a bot; it processes your IP address and limited browser signals for that purpose, and does not track you across sites.
 
 We do **not** knowingly collect sensitive personal data, and we do not ask you to create an account or give us your name, address, or payment details.
 
@@ -29,7 +30,8 @@ We do **not** knowingly collect sensitive personal data, and we do not ask you t
 Under the EU General Data Protection Regulation (GDPR), we must have a legal basis for using your data. We rely on:
 
 - **Keeping the site secure and working** (server logs) — to prevent abuse and fix problems. Legal basis: legitimate interest, Art. 6(1)(f).
-- **Replying to your emails** — to answer your question. Legal basis: legitimate interest, or your consent.
+- **Replying to your emails and contact form messages** — to answer your question. Legal basis: legitimate interest, or your consent.
+- **Anti-spam and abuse prevention on the contact form** (Cloudflare Turnstile, rate limiting) — to stop automated abuse. Legal basis: legitimate interest, Art. 6(1)(f).
 - **Affiliate click tracking by third-party networks** — to earn the commission that funds the site. Legal basis: legitimate interest, or consent where required.
 - **Any analytics we add later** — to understand which pages are useful. Legal basis: consent, where the law requires it.
 
@@ -79,7 +81,7 @@ Some of our partners — for example our hosting provider, affiliate networks, a
 ## 8. How long we keep data
 
 - **Server logs:** kept only as long as needed for security and troubleshooting, then deleted or anonymised.
-- **Emails:** kept as long as needed to handle your request and for our records, then deleted.
+- **Emails and contact form messages:** kept as long as needed to handle your request and for our records, then deleted. Form submissions reach us only as email — no copy is kept on the website.
 - **Favourites and Style It selections:** never stored by us — they stay in your browser.
 
 ## 9. Your rights under GDPR
