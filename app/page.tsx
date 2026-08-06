@@ -126,9 +126,9 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
-              <a href="/contact?topic=seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
+              <Link href="/contact?topic=seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
                 Apply for the seal
-              </a>
+              </Link>
             </div>
           </div>
         </div>
