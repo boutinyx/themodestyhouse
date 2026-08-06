@@ -48,7 +48,8 @@ These third parties may set their own cookies and process data (such as your IP 
 
 We also use:
 
-- **Cloudflare** — sits in front of this site and does three things: it provides our network and security layer, which means it sees the IP address and request details of every visit; it runs the Turnstile anti-spam check on the contact form; and it delivers contact form messages to us by email, which means the name, email address and message you send through the form pass through Cloudflare. Cloudflare is a US company; see Section 7 on international transfers.
+- **Cloudflare** — sits in front of this site and does three things: it provides our network and security layer, which means it sees the IP address and request details of every visit; it runs the Turnstile anti-spam check on the contact form; and it routes inbound mail addressed to **hello@themodestyhouse.com**, so anything you email us passes through it. Cloudflare is a US company; see Section 7 on international transfers.
+- **Resend** — our outbound email provider. Messages you send through the contact form are delivered to us through Resend, which means the name, email address and message you enter pass through it. Resend is a US company; see Section 7 on international transfers.
 - **Railway** — our hosting provider, which processes server and request data as described above. Railway is a US company; see Section 7 on international transfers.
 - **Shopify** — product images shown on this site are loaded directly from the brands' own Shopify content network (`cdn.shopify.com`), which means your browser requests those images from Shopify.
 - **Pinterest** — we distribute content on Pinterest; if you arrive from Pinterest, Pinterest's own privacy policy applies to your activity there.
@@ -75,7 +76,7 @@ and only as far as needed for those purposes, or where we are legally required t
 
 ## 7. International data transfers
 
-Some of our partners — for example our hosting provider, Cloudflare, affiliate networks, and the image network described in Section 4 — may process data outside the European Economic Area (EEA), including in the United States. Where that happens, those transfers are covered by safeguards recognised under GDPR, such as the EU Standard Contractual Clauses or an adequacy decision.
+Some of our partners — for example our hosting provider, Cloudflare, Resend, affiliate networks, and the image network described in Section 4 — may process data outside the European Economic Area (EEA), including in the United States. Where that happens, those transfers are covered by safeguards recognised under GDPR, such as the EU Standard Contractual Clauses or an adequacy decision.
 
 ## 8. How long we keep data
 
