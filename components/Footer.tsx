@@ -80,7 +80,7 @@ export function Footer() {
           style={{ borderTop: '1px solid rgba(243,238,228,0.12)', color: '#8a7d6b', fontSize: 12, lineHeight: 1.6, maxWidth: 720 }}
         >
           The Modesty House is a discovery and affiliate site — we don&rsquo;t sell anything
-          ourselves. Some links are affiliate links, and if you buy through one we may earn a
+          ourselves. Some links may be affiliate links, and if you buy through one we may earn a
           commission at no extra cost to you. Prices are shown in each brand&rsquo;s own
           currency and can change; always check the brand&rsquo;s site before buying.{' '}
           <Link href="/terms" style={{ color: '#c8bda9', textDecoration: 'underline', textUnderlineOffset: 2 }}>

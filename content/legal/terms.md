@@ -10,7 +10,7 @@ Welcome to **The Modesty House** ("we", "us", "the site"), available at **themod
 
 ## 2. Affiliate disclosure
 
-**The Modesty House** takes part in affiliate programs (such as Skimlinks, Awin, and LTK). This means some links on the site are affiliate links. If you click one and make a purchase, we may earn a small commission **at no extra cost to you**. This helps fund the site. We only feature items we choose to feature; being an affiliate does not change the price you pay, and it does not influence whether a brand earns our seal.
+**The Modesty House** may take part in affiliate programs (such as Skimlinks, Awin, and LTK). This means some links on the site may be affiliate links. If you click one and make a purchase, we may earn a small commission **at no extra cost to you**. This helps fund the site. We only feature items we choose to feature; being an affiliate does not change the price you pay, and it does not influence whether a brand earns our seal.
 
 ## 3. Product information, prices, and availability
 
@@ -29,7 +29,7 @@ The site links to third-party websites (brands, retailers, affiliate networks, P
 
 ## 5. Intellectual property
 
-- The site's own design, layout, text, and curation are owned by **[OPERATOR NAME]** / **The Modesty House** and may not be copied or reused without permission.
+- The site's own design, layout, text, and curation are owned by **The Modesty House** and may not be copied or reused without permission.
 - **Product images and brand names** belong to their respective owners (the brands). They are shown for discovery and referral purposes. If you are a brand and want an image or listing changed or removed, contact us at **hello@themodestyhouse.com** and we will act promptly.
 
 ## 6. Acceptable use
@@ -47,7 +47,7 @@ The site is provided **"as is"** and **"as available"**, without warranties of a
 
 ## 8. Limitation of liability
 
-To the fullest extent permitted by law, **The Modesty House** and **[OPERATOR NAME]** are not liable for any loss or damage arising from:
+To the fullest extent permitted by law, **The Modesty House** is not liable for any loss or damage arising from:
 
 - Your use of, or inability to use, the site.
 - Any purchase you make from a third-party brand or retailer.

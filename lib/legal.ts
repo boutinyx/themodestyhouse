@@ -1,35 +1,39 @@
 import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 
-/** The one field only the site owner can supply — the natural person named as
- *  GDPR data controller. Set NEXT_PUBLIC_OPERATOR_NAME (or fill it here) before
- *  launch; until then the pages render a visible warning rather than publishing
- *  a legal document with a placeholder in it. */
-export const OPERATOR_PLACEHOLDER = '[OPERATOR NAME]';
+/**
+ * Loader for the two legal documents rendered by /privacy and /terms.
+ *
+ * This used to substitute an `[OPERATOR NAME]` placeholder from
+ * NEXT_PUBLIC_OPERATOR_NAME and render a "not ready to publish" banner while it
+ * was unset. That machinery is gone: the GDPR data controller is now named
+ * directly in the markdown (The Modesty House, based in the Netherlands), so
+ * the env var was indirection around a constant — and because NEXT_PUBLIC_* is
+ * inlined at BUILD time, forgetting to set it in Railway would have shipped the
+ * banner to production.
+ *
+ * The guard it provided is not lost, it moved earlier: lib/legal.test.ts fails
+ * if any document under content/legal/ still contains an unfilled placeholder.
+ * That breaks CI instead of a visitor's screen.
+ */
 
 export interface LegalDoc {
   title: string;
   body: string;
-  /** True when [OPERATOR NAME] is still unfilled — blocks a clean launch. */
-  incomplete: boolean;
 }
 
 export function getLegalDoc(slug: 'privacy' | 'terms'): LegalDoc | null {
   const file = path.join(process.cwd(), 'content', 'legal', `${slug}.md`);
   if (!existsSync(file)) return null;
-  let body = readFileSync(file, 'utf8');
-
-  const operator = process.env.NEXT_PUBLIC_OPERATOR_NAME?.trim();
-  const incomplete = !operator && body.includes(OPERATOR_PLACEHOLDER);
-  if (operator) body = body.split(OPERATOR_PLACEHOLDER).join(operator);
 
   return {
     title: slug === 'privacy' ? 'Privacy Policy' : 'Terms of Service',
-    body,
-    incomplete,
+    body: readFileSync(file, 'utf8'),
   };
 }
 
 /** Shown as the "Last updated" date. Sourced from the file's own git-tracked
- *  content rather than build time, so it doesn't churn on every deploy. */
-export const LEGAL_LAST_UPDATED = '5 August 2026';
+ *  content rather than build time, so it doesn't churn on every deploy.
+ *  Bump this whenever content/legal/*.md changes in a way a reader would care
+ *  about. */
+export const LEGAL_LAST_UPDATED = '6 August 2026';
