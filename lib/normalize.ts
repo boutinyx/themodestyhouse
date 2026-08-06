@@ -9,6 +9,7 @@ export interface ShopifyProduct {
   tags: string[] | string;
   variants: { price: string; available: boolean }[];
   images: { src: string; width?: number; height?: number }[];
+  url?: string; // full product URL when the source isn't Shopify (e.g. WooCommerce permalink)
 }
 
 // Drop men's & children's products — this is a women's directory.
@@ -76,7 +77,7 @@ export function normalizeProductDetailed(
       price,
       currency: brand.currency,
       image,
-      url: `${brand.homepage}/products/${sp.handle}`,
+      url: sp.url ?? `${brand.homepage}/products/${sp.handle}`,
       inStock: (sp.variants || []).some((v) => v.available),
       garment: disc.garment,
       community: brand.community,

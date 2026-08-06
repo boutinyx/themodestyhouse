@@ -16,6 +16,7 @@ export interface Brand {
   city: string; // e.g. 'London', 'New York'
   vibe: Vibe; // aesthetic: elegant | streetwear | maximalist
   badge?: Badge; // curation seal (owner-assigned)
+  platform?: 'shopify' | 'woo'; // feed type; default 'shopify'. 'woo' = WooCommerce Store API.
 }
 
 export interface Product {

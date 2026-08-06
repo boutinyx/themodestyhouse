@@ -56,4 +56,20 @@ export const BRANDS: Brand[] = [
   { slug: 'fares', name: 'Fares', homepage: 'https://shopfares.com', feedUrl: 'https://shopfares.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest', city: 'USA', vibe: 'elegant' },
   { slug: 'fatima-diallo', name: 'Fatima Diallo', homepage: 'https://shopfatimadiallo.com', feedUrl: 'https://shopfatimadiallo.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest & abayas', city: 'USA', vibe: 'elegant' },
   { slug: 'madiha', name: 'Madiha', homepage: 'https://www.madiha.co.uk', feedUrl: 'https://www.madiha.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Abayas & scarves', city: 'UK', vibe: 'elegant' },
+  // WooCommerce (not Shopify) — ingested via the Store API, see lib/ingest.ts.
+  { slug: 'lafemme', name: 'La Femme Collectie', homepage: 'https://lafemmecollectie.nl', feedUrl: 'https://lafemmecollectie.nl/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },
+
+  // — 2026-08-06: selected for PHOTOGRAPHY and trend-forward silhouettes, after a
+  //   brand hunt where the primary filter was image quality rather than feed
+  //   availability. Every one had sample product images inspected by eye before
+  //   being added; median image widths measured from the live feed are noted.
+  //   NOTE: four of the five are Gulf labels priced in AED, which renders as
+  //   "AED 580" (no symbol) beside "$120"/"£120" — accepted deliberately, see
+  //   ADR-0002 on why prices are shown in native currency.
+  { slug: 'cult-abaya', name: 'Cult Abaya', homepage: 'https://cultabaya.com', feedUrl: 'https://cultabaya.com/products.json', community: 'hijabi', currency: 'AED', category: 'Modern abayas', city: 'Dubai', vibe: 'elegant' },        // 3394px, campaign photography, 0% floral
+  { slug: 'kamin', name: 'Kamin', homepage: 'https://kamin.ae', feedUrl: 'https://kamin.ae/products.json', community: 'hijabi', currency: 'AED', category: 'Modern abayas', city: 'Dubai', vibe: 'elegant' },                              // 2213px, contemporary tailoring
+  { slug: 'chi-ka', name: 'CHI-KA', homepage: 'https://chikacollection.com', feedUrl: 'https://chikacollection.com/products.json', community: 'hijabi', currency: 'AED', category: 'Kaftans & abayas', city: 'Dubai', vibe: 'elegant' },   // 1667px, most consistent art direction
+  { slug: 'latifi', name: 'Latifi', homepage: 'https://latifi.ae', feedUrl: 'https://latifi.ae/products.json', community: 'hijabi', currency: 'AED', category: 'Occasion', city: 'Dubai', vibe: 'maximalist' },                            // 2438px, set-designed; only ~21 SKUs
+  // Bouguessa is full RTW, not modest-by-design — expect to curate per product.
+  { slug: 'bouguessa', name: 'Bouguessa', homepage: 'https://bouguessa.com', feedUrl: 'https://bouguessa.com/products.json', community: 'general', currency: 'USD', category: 'Contemporary', city: 'Dubai', vibe: 'elegant' },            // 2048px, quiet luxury
 ];

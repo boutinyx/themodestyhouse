@@ -1294,6 +1294,14 @@
     "evidence": "Hijab Magnet"
   },
   {
+    "id": "voile-chic:8876398805245",
+    "brandSlug": "voile-chic",
+    "title": "BLACK ESSENTIALS - GIFT SET",
+    "url": "https://voilechic.com/products/bundle-essentials",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
     "id": "voile-chic:8876398641405",
     "brandSlug": "voile-chic",
     "title": "CREAM ESSENTIALS - GIFT SET",
@@ -1306,6 +1314,14 @@
     "brandSlug": "voile-chic",
     "title": "BLENDED ELEMENTS - GIFT SET",
     "url": "https://voilechic.com/products/bundle-elements",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "voile-chic:8876397560061",
+    "brandSlug": "voile-chic",
+    "title": "NEUTRALS JERSEY - GIFT SET",
+    "url": "https://voilechic.com/products/neutrals-jersey",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
@@ -24630,23 +24646,23 @@
     "evidence": "Bag"
   },
   {
-    "id": "fares:7648008044735",
-    "brandSlug": "fares",
-    "title": "Hijab Scrunchie - Ivory",
-    "url": "https://shopfares.com/products/us-hijab-scrunchie-ivory",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hair",
+    "id": "chi-ka:8200082423969",
+    "brandSlug": "chi-ka",
+    "title": "Suit Fitted Abaya in Light Pin Stripe Grey",
+    "url": "https://chikacollection.com/products/ss25_07",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:hardware",
     "tier": "B",
-    "evidence": "Scrunchie"
+    "evidence": "Pin"
   },
   {
-    "id": "fares:7648007520447",
-    "brandSlug": "fares",
-    "title": "Hijab Scrunchie - Brown",
-    "url": "https://shopfares.com/products/us-hijab-scrunchie-brown",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hair",
+    "id": "chi-ka:8075118444705",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Gray Pin Stripe",
+    "url": "https://chikacollection.com/products/jacket-abaya-in-gray-pin-stripe",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:hardware",
     "tier": "B",
-    "evidence": "Scrunchie"
+    "evidence": "Pin"
   }
 ]

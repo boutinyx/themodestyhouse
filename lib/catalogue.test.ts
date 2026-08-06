@@ -19,7 +19,7 @@ import type { Product } from '@/lib/types';
 const rows = products as unknown as Product[];
 
 // Keep in sync with the img-src directive in next.config.ts.
-const ALLOWED_IMAGE_HOSTS = new Set(['cdn.shopify.com']);
+const ALLOWED_IMAGE_HOSTS = new Set(['cdn.shopify.com', 'lafemmecollectie.nl']);
 
 // Deliberately a floor, not an exact count — the catalogue grows on every
 // refresh. It exists to catch a truncation (an empty or half-written file),

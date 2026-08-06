@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { paginateFeed, classifyFeed } from './ingest';
+import { paginateFeed, classifyFeed, wooToShopify } from './ingest';
 import { isCompleteFetch } from './lifecycle';
 import type { Brand } from '@/lib/types';
 import type { ShopifyProduct } from './normalize';
@@ -71,5 +71,32 @@ describe('classifyFeed', () => {
 
   it('carries the completeness flag through untouched', () => {
     expect(classifyFeed([sp(1)], brand, false).complete).toBe(false);
+  });
+});
+
+describe('wooToShopify (WooCommerce Store API → ShopifyProduct)', () => {
+  it('maps name, permalink url, minor-unit price, categories and images', () => {
+    const sh = wooToShopify({
+      id: 42,
+      name: 'EMIRATI Satin Dress',
+      slug: 'emirati-satin-dress',
+      permalink: 'https://lafemmecollectie.nl/product/emirati-satin-dress',
+      is_in_stock: true,
+      prices: { price: '4999', currency_minor_unit: 2 },
+      categories: [{ name: 'Dresses' }, { name: 'New in' }],
+      images: [{ src: 'https://x/1.jpg' }, { src: 'https://x/2.jpg' }],
+    });
+    expect(sh.id).toBe(42);
+    expect(sh.title).toBe('EMIRATI Satin Dress');
+    expect(sh.url).toBe('https://lafemmecollectie.nl/product/emirati-satin-dress');
+    expect(sh.variants[0]).toEqual({ price: '49.99', available: true });
+    expect(sh.product_type).toBe('Dresses');
+    expect(sh.tags).toEqual(['Dresses', 'New in']);
+    expect(sh.images.map((i) => i.src)).toEqual(['https://x/1.jpg', 'https://x/2.jpg']);
+  });
+  it('defaults minor unit to 2 and drops empty images', () => {
+    const sh = wooToShopify({ id: 1, name: 'X', prices: { price: '1050' }, images: [{ src: '' }] });
+    expect(sh.variants[0].price).toBe('10.5');
+    expect(sh.images).toEqual([]);
   });
 });

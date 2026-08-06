@@ -114,8 +114,73 @@ export function httpPageFetcher(brand: Brand, pause = sleep): PageFetcher {
   };
 }
 
-/** Fetches and classifies one brand's whole feed. */
+// --- WooCommerce Store API fetcher (brand.platform === 'woo') ---------------
+// Maps a WooCommerce Store API product to the ShopifyProduct shape so the rest
+// of the pipeline (normalizeProductDetailed, tagDiscovery, filters) is unchanged.
+// feedUrl for a woo brand is the Store API list endpoint, e.g.
+//   https://lafemmecollectie.nl/wp-json/wc/store/v1/products
+
+interface WooProduct {
+  id: number;
+  name?: string;
+  slug?: string;
+  permalink?: string;
+  is_in_stock?: boolean;
+  prices?: { price?: string; currency_minor_unit?: number };
+  categories?: { name?: string }[];
+  images?: { src?: string }[];
+}
+
+export function wooToShopify(w: WooProduct): ShopifyProduct {
+  const minor = typeof w.prices?.currency_minor_unit === 'number' ? w.prices.currency_minor_unit : 2;
+  const price = String(Number(w.prices?.price ?? '0') / 10 ** minor);
+  const cats = (w.categories || []).map((c) => c?.name).filter(Boolean) as string[];
+  return {
+    id: w.id,
+    title: w.name || '',
+    handle: w.slug || String(w.id),
+    url: w.permalink, // Woo product URL differs from Shopify's /products/<handle>
+    product_type: cats[0] || '',
+    tags: cats,
+    variants: [{ price, available: !!w.is_in_stock }],
+    images: (w.images || []).map((im) => ({ src: im.src || '' })).filter((i) => i.src),
+  };
+}
+
+/** WooCommerce Store API page fetcher — array response, per_page cap 100. */
+export function wooPageFetcher(brand: Brand, pause = sleep): PageFetcher {
+  return async (page: number): Promise<PageResult> => {
+    const url = `${brand.feedUrl}?per_page=100&page=${page}`;
+    if (page > 1) await pause(1500);
+    for (let attempt = 0; attempt < 14; attempt++) {
+      let res: Response;
+      try {
+        res = await fetch(url, { headers: { 'User-Agent': UA } });
+      } catch (e) {
+        console.warn(`   fetch error: ${(e as Error).message}; retrying`);
+        await pause(5000);
+        continue;
+      }
+      if (res.status === 429) {
+        const wait = Math.min(8000 + attempt * 4000, 45000);
+        console.warn(`   429 rate-limited; backing off ${wait / 1000}s (attempt ${attempt + 1})`);
+        await pause(wait);
+        continue;
+      }
+      if (!res.ok) return { status: res.status, products: null };
+      const data = await res.json().catch(() => null);
+      // A valid array (possibly empty) is a real page; anything else is an error,
+      // never conflated with the empty-page end-of-pagination signal (§10.3).
+      if (!Array.isArray(data)) return { status: res.status, products: null };
+      return { status: 200, products: (data as WooProduct[]).map(wooToShopify) };
+    }
+    return { status: 429, products: null, gaveUp: true };
+  };
+}
+
+/** Fetches and classifies one brand's whole feed (Shopify or WooCommerce). */
 export async function fetchBrand(brand: Brand): Promise<BrandFetchResult & { outcome: FetchOutcome }> {
-  const { products, outcome } = await paginateFeed(httpPageFetcher(brand));
+  const fetcher = brand.platform === 'woo' ? wooPageFetcher(brand) : httpPageFetcher(brand);
+  const { products, outcome } = await paginateFeed(fetcher);
   return { ...classifyFeed(products, brand, isCompleteFetch(outcome)), outcome };
 }

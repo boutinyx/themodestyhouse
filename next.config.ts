@@ -68,7 +68,10 @@ const csp = [
   // <style> elements in VerifiedSpotlight.tsx:66, EditMagazine.tsx:50,
   // MagnifierHero.tsx:66.
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://cdn.shopify.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com",
+  // WooCommerce brands (e.g. La Femme) serve images from their own domain, not a
+  // shared CDN — each such host is allowlisted explicitly (kept in sync with
+  // ALLOWED_IMAGE_HOSTS in lib/catalogue.test.ts).
+  "img-src 'self' data: blob: https://cdn.shopify.com https://lafemmecollectie.nl https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com",
   // next/font self-hosts every woff2 under /_next/static/media (verified).
   "font-src 'self'",
   // localhost ws:// is for the Turbopack HMR socket. headers() applies to
