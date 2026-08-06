@@ -1,20 +1,441 @@
 {
-  "date": "2026-08-05",
+  "date": "2026-08-06",
   "totals": {
-    "added": 0,
-    "updated": 10,
-    "delisted": 0,
-    "filtered": 0,
+    "added": 23,
+    "updated": 10015,
+    "delisted": 3,
+    "filtered": 1,
     "returned": 0,
     "incomplete": 0
   },
   "brands": [
+    {
+      "brandSlug": "haute-hijab",
+      "complete": true,
+      "fetched": 190,
+      "added": [],
+      "updated": 190,
+      "delisted": 1,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "vela",
+      "complete": true,
+      "fetched": 616,
+      "added": [],
+      "updated": 616,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "veiled",
+      "complete": true,
+      "fetched": 1058,
+      "added": [
+        "Alice Lace Up Back Top - Mushroom",
+        "Alice Lace Up Back Top - Pistachio",
+        "Cotton Skirt - Black",
+        "Chenille Cape Top - Espresso",
+        "Pearl Cape Maxi Dress - Coconut Milk",
+        "Asymmetric Sleeve Maxi Dress - Frost",
+        "Asymmetric Drape Top - Fig",
+        "Asymmetric Top & Pants Set - Vanilla",
+        "Mink Midi Cardigan",
+        "Safina Wrap Sarong & Pants Set - Black",
+        "Linen Maxi Top",
+        "Embroidered Abaya Dress - Beige",
+        "Dalal Embroidered Open Abaya - Pistachio"
+      ],
+      "updated": 1045,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "niswa",
+      "complete": true,
+      "fetched": 487,
+      "added": [],
+      "updated": 487,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "zahraa",
+      "complete": true,
+      "fetched": 404,
+      "added": [],
+      "updated": 404,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "modern-hijabi",
+      "complete": true,
+      "fetched": 337,
+      "added": [],
+      "updated": 337,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "voile-chic",
+      "complete": true,
+      "fetched": 198,
+      "added": [],
+      "updated": 198,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "jaida",
+      "complete": true,
+      "fetched": 63,
+      "added": [],
+      "updated": 63,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "culture-hijab",
+      "complete": true,
+      "fetched": 38,
+      "added": [],
+      "updated": 38,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "aab",
+      "complete": true,
+      "fetched": 781,
+      "added": [],
+      "updated": 781,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "inayah",
+      "complete": true,
+      "fetched": 24,
+      "added": [],
+      "updated": 24,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "nasiba",
+      "complete": true,
+      "fetched": 577,
+      "added": [],
+      "updated": 577,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "urban-modesty",
+      "complete": true,
+      "fetched": 200,
+      "added": [
+        "Black Zipper Modest Swimsuit",
+        "Navy Zipper Modest Swimsuit",
+        "Black Short Sleeve Swimsuit",
+        "Blue Abstract Modest Swimsuit",
+        "Purple Ombre Modest Swimsuit",
+        "Black 3 Piece Modest Swimsuit",
+        "Lilac 3 Piece Modest Swimsuit",
+        "Modest Swimsuit",
+        "Brown Abstract Liquid Jersey Hijab"
+      ],
+      "updated": 191,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "hawaa",
+      "complete": true,
+      "fetched": 103,
+      "added": [],
+      "updated": 103,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
     {
       "brandSlug": "klay",
       "complete": true,
       "fetched": 10,
       "added": [],
       "updated": 10,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "mariams",
+      "complete": true,
+      "fetched": 1182,
+      "added": [],
+      "updated": 1182,
+      "delisted": 2,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "lumos",
+      "complete": true,
+      "fetched": 180,
+      "added": [],
+      "updated": 180,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "glow-modesty",
+      "complete": true,
+      "fetched": 158,
+      "added": [],
+      "updated": 158,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "jawda",
+      "complete": true,
+      "fetched": 140,
+      "added": [
+        "Black Elasticated Skirt"
+      ],
+      "updated": 139,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "feradje",
+      "complete": true,
+      "fetched": 29,
+      "added": [],
+      "updated": 29,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "lanuuk",
+      "complete": true,
+      "fetched": 127,
+      "added": [],
+      "updated": 127,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "sei-sorelle",
+      "complete": true,
+      "fetched": 20,
+      "added": [],
+      "updated": 20,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "dignitii",
+      "complete": true,
+      "fetched": 52,
+      "added": [],
+      "updated": 52,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "qupid",
+      "complete": true,
+      "fetched": 34,
+      "added": [],
+      "updated": 34,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "diversity-modest",
+      "complete": true,
+      "fetched": 45,
+      "added": [],
+      "updated": 45,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "esme-ny",
+      "complete": true,
+      "fetched": 64,
+      "added": [],
+      "updated": 64,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "arakai",
+      "complete": true,
+      "fetched": 266,
+      "added": [],
+      "updated": 266,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "emlavish",
+      "complete": true,
+      "fetched": 47,
+      "added": [],
+      "updated": 47,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "sistrs",
+      "complete": true,
+      "fetched": 26,
+      "added": [],
+      "updated": 26,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "zora",
+      "complete": true,
+      "fetched": 120,
+      "added": [],
+      "updated": 120,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "bemu",
+      "complete": true,
+      "fetched": 88,
+      "added": [],
+      "updated": 88,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "summer-evenings",
+      "complete": true,
+      "fetched": 171,
+      "added": [],
+      "updated": 171,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "les-atelier",
+      "complete": true,
+      "fetched": 143,
+      "added": [],
+      "updated": 143,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "maison-hijab",
+      "complete": true,
+      "fetched": 41,
+      "added": [],
+      "updated": 41,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "merrachi",
+      "complete": true,
+      "fetched": 1582,
+      "added": [],
+      "updated": 1582,
+      "delisted": 0,
+      "filtered": [
+        {
+          "title": "Short Trench Jacket | Dark Brown",
+          "reason": "unclassified"
+        }
+      ],
+      "returned": 0
+    },
+    {
+      "brandSlug": "manzaram",
+      "complete": true,
+      "fetched": 61,
+      "added": [],
+      "updated": 61,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "avyaana",
+      "complete": true,
+      "fetched": 60,
+      "added": [],
+      "updated": 60,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "fares",
+      "complete": true,
+      "fetched": 256,
+      "added": [],
+      "updated": 256,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "fatima-diallo",
+      "complete": true,
+      "fetched": 48,
+      "added": [],
+      "updated": 48,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "madiha",
+      "complete": true,
+      "fetched": 12,
+      "added": [],
+      "updated": 12,
       "delisted": 0,
       "filtered": [],
       "returned": 0

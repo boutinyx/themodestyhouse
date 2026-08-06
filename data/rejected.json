@@ -1294,14 +1294,6 @@
     "evidence": "Hijab Magnet"
   },
   {
-    "id": "voile-chic:8876398805245",
-    "brandSlug": "voile-chic",
-    "title": "BLACK ESSENTIALS - GIFT SET",
-    "url": "https://voilechic.com/products/bundle-essentials",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "voile-chic:8876398641405",
     "brandSlug": "voile-chic",
     "title": "CREAM ESSENTIALS - GIFT SET",
@@ -1314,14 +1306,6 @@
     "brandSlug": "voile-chic",
     "title": "BLENDED ELEMENTS - GIFT SET",
     "url": "https://voilechic.com/products/bundle-elements",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "voile-chic:8876397560061",
-    "brandSlug": "voile-chic",
-    "title": "NEUTRALS JERSEY - GIFT SET",
-    "url": "https://voilechic.com/products/neutrals-jersey",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
@@ -22974,7 +22958,7 @@
   {
     "id": "modern-hijabi:7552164069590",
     "brandSlug": "modern-hijabi",
-    "title": "Maximum Strength Hijab Magnets  - Matte Basics",
+    "title": "Maximum Strength Hijab Magnets - Matte Basics",
     "url": "https://modernhijabi.com/products/maximum-strength-hijab-magnets-matte-basics-pack",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
@@ -22984,7 +22968,7 @@
   {
     "id": "modern-hijabi:4775849525327",
     "brandSlug": "modern-hijabi",
-    "title": "Maximum Strength Hijab Magnets  - Gunmetal",
+    "title": "Maximum Strength Hijab Magnets - Gunmetal",
     "url": "https://modernhijabi.com/products/no-snag-hijab-magnets-gunmetle",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
@@ -23004,7 +22988,7 @@
   {
     "id": "modern-hijabi:4775844905039",
     "brandSlug": "modern-hijabi",
-    "title": "MAXIMUM STRENGTH HIJAB MAGNETS  - ROSE GOLD",
+    "title": "MAXIMUM STRENGTH HIJAB MAGNETS - ROSE GOLD",
     "url": "https://modernhijabi.com/products/no-snag-hijab-magnets-rose-gold",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
@@ -23632,7 +23616,7 @@
   {
     "id": "mariams:9018562445528",
     "brandSlug": "mariams",
-    "title": "Luxury Minimalist Glossy High-grade Shiny Bracelets -   Simple Temperament Cold-Tone Bangles (MAC242)",
+    "title": "Luxury Minimalist Glossy High-grade Shiny Bracelets - Simple Temperament Cold-Tone Bangles (MAC242)",
     "url": "https://mariam-col.com/products/luxury-minimalist-glossy-high-grade-shiny-bracelets-simple-temperament-cold-tone-bangles-mac242",
     "garmentWas": "abaya",
     "reason": "non-apparel:jewellery",
@@ -23732,7 +23716,7 @@
   {
     "id": "mariams:8759908532440",
     "brandSlug": "mariams",
-    "title": "Eco-Friendly elegant Prayer Mat & Tasbeeh sets(MR066)",
+    "title": "Eco-Friendly elegant Prayer Mat & Tasbeeh sets(MR066)",
     "url": "https://mariam-col.com/products/eco-friendly-elegant-prayer-mat-tasbeeh-setsmr066",
     "garmentWas": "set",
     "reason": "non-apparel:prayer-goods",
@@ -24092,7 +24076,7 @@
   {
     "id": "mariams:8439494312152",
     "brandSlug": "mariams",
-    "title": "MAC128  Stylish Rhinestone Tassel Jewelry Set",
+    "title": "MAC128 Stylish Rhinestone Tassel Jewelry Set",
     "url": "https://mariam-col.com/products/mac128-stylish-rhinestone-tassel-jewelry-set",
     "garmentWas": "set",
     "reason": "non-apparel:jewellery",
@@ -24112,7 +24096,7 @@
   {
     "id": "mariams:8415550996696",
     "brandSlug": "mariams",
-    "title": "MAC091  Jewelry Set",
+    "title": "MAC091 Jewelry Set",
     "url": "https://mariam-col.com/products/mac091-jewelry-set",
     "garmentWas": "set",
     "reason": "non-apparel:jewellery",
@@ -24644,5 +24628,25 @@
     "reason": "non-apparel:bags",
     "tier": "B",
     "evidence": "Bag"
+  },
+  {
+    "id": "fares:7648008044735",
+    "brandSlug": "fares",
+    "title": "Hijab Scrunchie - Ivory",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-ivory",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "fares:7648007520447",
+    "brandSlug": "fares",
+    "title": "Hijab Scrunchie - Brown",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-brown",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
   }
 ]
