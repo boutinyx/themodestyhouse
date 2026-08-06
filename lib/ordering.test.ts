@@ -80,4 +80,48 @@ describe('demoteGarment', () => {
     expect(twice).toHaveLength(rows.length);
     expect(shareIn(twice, 0, 100)).toBeLessThan(0.20);
   });
+
+  // /directory calls browseProducts(), which strips hijabs and swim/activewear
+  // BEFORE rendering. Capping the share across the full published list therefore
+  // measures the wrong sequence: removing those rows re-concentrates abayas, and
+  // the first attempt at this pushed them from 12% UP to 21%. The cap has to be
+  // computed over the visible subsequence only.
+  it('caps the share within the VISIBLE subsequence, not the raw list', () => {
+    const mixed: Product[] = [];
+    for (let i = 0; i < 3000; i++) {
+      mixed.push({ ...build(1, 999)[0], id: `x:${i}`, garment: i % 3 === 0 ? 'abaya' : 'dress' } as Product);
+      mixed.push({ ...build(1, 999)[0], id: `h:${i}`, garment: 'hijab' } as Product);
+    }
+    const isVisible = (p: Product) => p.garment !== 'hijab';
+    const out = demoteGarment(mixed, 'abaya', isVisible);
+
+    const visible = out.filter(isVisible);
+    const share = visible.slice(0, 100).filter((p) => p.garment === 'abaya').length / 100;
+    expect(share).toBeGreaterThan(0.10);
+    expect(share).toBeLessThan(0.20);
+  });
+
+  it('leaves invisible rows where they were, so other lanes are untouched', () => {
+    const mixed: Product[] = [];
+    for (let i = 0; i < 200; i++) {
+      mixed.push({ ...build(1, 999)[0], id: `x:${i}`, garment: i % 3 === 0 ? 'abaya' : 'dress' } as Product);
+      mixed.push({ ...build(1, 999)[0], id: `h:${i}`, garment: 'hijab' } as Product);
+    }
+    const isVisible = (p: Product) => p.garment !== 'hijab';
+    const out = demoteGarment(mixed, 'abaya', isVisible);
+    const posBefore = mixed.map((p, i) => [p.id, i] as const).filter(([id]) => id.startsWith('h:'));
+    const posAfter = out.map((p, i) => [p.id, i] as const).filter(([id]) => id.startsWith('h:'));
+    expect(posAfter).toEqual(posBefore);
+  });
+
+  // Comparing the CUMULATIVE share forces catch-up: everything held back early
+  // has to be repaid to drag the running average up to the natural rate, which
+  // produced a 59%-abaya stretch at positions 200-300 — worse than doing
+  // nothing. The schedule must track the LOCAL rate, not the running average.
+  it('does not produce a catch-up burst after the ramp', () => {
+    const out = demoteGarment(build(6000, 3), 'abaya');
+    for (let a = 100; a < 1000; a += 100) {
+      expect(shareIn(out, a, a + 100), `burst at ${a}-${a + 100}`).toBeLessThan(0.45);
+    }
+  });
 });

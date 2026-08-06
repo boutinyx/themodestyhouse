@@ -141,3 +141,36 @@ describe('pass 3 — description lead (last resort only)', () => {
     expect(tagDiscovery({ title: 'Mystery', productType: '', tags: [] }).garment).toBe('other');
   });
 });
+
+describe('non-English garment vocabulary (fallback only)', () => {
+  const g = (title: string, productType = '') =>
+    tagDiscovery({ title, productType, tags: [] }).garment;
+
+  it('classifies French, German and Dutch garment names', () => {
+    expect(g('Robe évasée Lilas Pastel')).toBe('dress');       // fr
+    expect(g('Tenerife', 'Kleid')).toBe('dress');              // de, via product_type
+    expect(g('La Palma', 'Zweiteiler')).toBe('set');           // de
+    expect(g('Jupe été froncée sauge')).toBe('skirt');         // fr
+    expect(g('Pantalon ample coton blanc')).toBe('trousers');  // fr
+  });
+
+  it('never lets a foreign word beat an English classification', () => {
+    // These are the cases that made `robe` unsafe inside GARMENT_RULES. Because
+    // FOREIGN_RULES runs only after that list fails, they resolve correctly.
+    expect(g('Waffle Knit Robe Cardigan')).toBe('top');
+    expect(g('Cape Robe trench')).toBe('top');
+  });
+
+  it('keeps abaya distinct from dress', () => {
+    // Some feeds set product_type "Robe" on what this catalogue calls an abaya.
+    // Measured: as an equal-priority rule this flipped 201 products.
+    expect(g('Abaya Essential - Soft Green')).toBe('abaya');
+    expect(g('Abaya - Grey', 'Robe')).toBe('abaya');
+  });
+
+  it('omits foreign words that collide with English', () => {
+    // German "rock" (skirt) vs rock/rocky, "Hose" (trousers) vs hose/hosiery.
+    expect(g('Sample', 'rock')).toBe('other');
+    expect(g('Rocky Ridge Bag Charm')).not.toBe('skirt');
+  });
+});

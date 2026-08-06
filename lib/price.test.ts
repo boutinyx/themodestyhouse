@@ -17,7 +17,7 @@ const NB = ' ';
 /** Every currency the catalogue is allowed to contain. Adding a brand with a new
  *  currency must fail here until someone adds an explicit expectation below —
  *  that is the point. */
-const KNOWN = ['USD', 'GBP', 'EUR', 'AUD', 'CAD', 'MYR', 'EGP', 'AED'];
+const KNOWN = ['USD', 'GBP', 'EUR', 'AUD', 'CAD', 'MYR', 'EGP', 'AED', 'INR'];
 
 describe('formatPrice', () => {
   it('formats each catalogue currency in its native form', () => {
@@ -29,6 +29,7 @@ describe('formatPrice', () => {
     expect(formatPrice(44.95, 'MYR')).toBe(`MYR${NB}44.95`);
     expect(formatPrice(44.95, 'EGP')).toBe(`EGP${NB}44.95`);
     expect(formatPrice(44.95, 'AED')).toBe(`AED${NB}44.95`);
+    expect(formatPrice(44.95, 'INR')).toBe('₹44.95');
   });
 
   it('drops the decimals on whole numbers', () => {

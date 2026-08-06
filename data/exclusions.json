@@ -64,7 +64,9 @@
     "shukr:10383022981409",
     "shukr:10382232322337",
     "shukr:8547812704545",
-    "shukr:8797354885409"
+    "shukr:8797354885409",
+    "zora:9157154472099",
+    "chi-ka:8236804014241"
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],

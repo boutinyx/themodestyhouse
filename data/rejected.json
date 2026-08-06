@@ -22886,6 +22886,14 @@
     "reason": "title-pattern"
   },
   {
+    "id": "zora:9157154472099",
+    "brandSlug": "zora",
+    "title": "The Dreamgirl Halter Neck Top in Ballerina",
+    "url": "https://zoradesigners.com/products/the-dreamgirl-halter-neck-top-in-ballerina",
+    "garmentWas": "top",
+    "reason": "id-pin"
+  },
+  {
     "id": "zora:9126893879459",
     "brandSlug": "zora",
     "title": "The Jannah Blouse to Martha’s Closet Enamel Pin",
@@ -24646,6 +24654,14 @@
     "evidence": "Bag"
   },
   {
+    "id": "chi-ka:8236804014241",
+    "brandSlug": "chi-ka",
+    "title": "Travel Set : Sleeveless Long Jacket and Pants in Blue Jacquard Satin",
+    "url": "https://chikacollection.com/products/sum-25-58",
+    "garmentWas": "trousers",
+    "reason": "id-pin"
+  },
+  {
     "id": "chi-ka:8200082423969",
     "brandSlug": "chi-ka",
     "title": "Suit Fitted Abaya in Light Pin Stripe Grey",
@@ -24742,5 +24758,105 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Pin"
+  },
+  {
+    "id": "chic-modesty:10322908971346",
+    "brandSlug": "chic-modesty",
+    "title": "Lot 3 clips magnétiques mat noir",
+    "url": "https://chicandmodesty.com/products/lot-3-clips-magnetiques-mat-noir",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10323164823890",
+    "brandSlug": "chic-modesty",
+    "title": "Lot 2 clips magnétiques pearly",
+    "url": "https://chicandmodesty.com/products/lot-3-clips-magnetiques-mat-taupe-339",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10323163840850",
+    "brandSlug": "chic-modesty",
+    "title": "Lot 2 clips magnétiques ambre",
+    "url": "https://chicandmodesty.com/products/lot-3-clips-magnetiques-mat-taupe-616",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10323162759506",
+    "brandSlug": "chic-modesty",
+    "title": "Lot 3 clips magnétiques cristal pastel",
+    "url": "https://chicandmodesty.com/products/lot-3-clips-magnetiques-mat-taupe-845",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10323161579858",
+    "brandSlug": "chic-modesty",
+    "title": "Lot 3 clips magnétiques cristal natural",
+    "url": "https://chicandmodesty.com/products/lot-3-clips-magnetiques-mat-taupe-478",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10323160170834",
+    "brandSlug": "chic-modesty",
+    "title": "Lot 3 clips magnétiques pearly",
+    "url": "https://chicandmodesty.com/products/lot-3-clips-magnetiques-mat-taupe-831",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10322766397778",
+    "brandSlug": "chic-modesty",
+    "title": "Boite pins noir",
+    "url": "https://chicandmodesty.com/products/boite-pins-noir",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "pins"
+  },
+  {
+    "id": "chic-modesty:10322766233938",
+    "brandSlug": "chic-modesty",
+    "title": "Boite pins blanc",
+    "url": "https://chicandmodesty.com/products/boite-pins-blanc",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "pins"
+  },
+  {
+    "id": "chic-modesty:10322658984274",
+    "brandSlug": "chic-modesty",
+    "title": "Boîte Firdous cristal pins blanc",
+    "url": "https://chicandmodesty.com/products/boite-firdous-cristal-pins-blanc",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "pins"
+  },
+  {
+    "id": "chic-modesty:10322658853202",
+    "brandSlug": "chic-modesty",
+    "title": "Boîte Firdous cristal pins noir",
+    "url": "https://chicandmodesty.com/products/boite-firdous-cristal-pins-noir",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "pins"
   }
 ]

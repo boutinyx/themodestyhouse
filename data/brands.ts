@@ -90,4 +90,9 @@ export const BRANDS: Brand[] = [
   { slug: 'kimodesty', name: 'KIMODESTY', homepage: 'https://kimodesty.com', feedUrl: 'https://kimodesty.com/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                         // 100+, 1920px
   { slug: 'chador', name: 'Chador', homepage: 'https://chador.nl', feedUrl: 'https://chador.nl/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                                       // 113, 1707px
   { slug: 'noureen', name: 'NOUREEN Modest Fashion', homepage: 'https://noureenmodestfashion.com', feedUrl: 'https://noureenmodestfashion.com/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Hijabs & abayas', city: 'Antwerp', vibe: 'elegant' }, // 100+, 1024px
+
+  // — 2026-08-06: owner-selected. Both feed-verified and image-checked by eye.
+  // HUM introduces INR (renders as ₹, so no bare-code display problem).
+  { slug: 'hum', name: 'HUM Clothing', homepage: 'https://humclothing.in', feedUrl: 'https://humclothing.in/products.json', community: 'general', currency: 'INR', category: 'Contemporary modest', city: 'India', vibe: 'elegant' },                              // 38 SKUs, 2752px, satin separates
+  { slug: 'chic-modesty', name: 'Chic & Modesty', homepage: 'https://chicandmodesty.com', feedUrl: 'https://chicandmodesty.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'France', vibe: 'elegant' },              // 250+, 1000px, French-language titles
 ];

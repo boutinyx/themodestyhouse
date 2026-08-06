@@ -72,3 +72,6 @@ public/hero-gen/
 higgsfield-library/
 # Debug dump from scripts/tag_style.py — regenerable
 data/archetypes.clip.debug.json
+
+# Local curation review page (throwaway, regenerable). Self-contained ~1.5 MB.
+sleeveless-review.html

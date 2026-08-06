@@ -5,6 +5,8 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { isNonApparel } from '../lib/nonApparel.ts';
 import { isLifecycleLive, stripLifecycle, brandDropViolations } from '../lib/lifecycle.ts';
+import { demoteGarment } from '../lib/ordering.ts';
+import { isSpecialty } from '../lib/specialty.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
 
@@ -135,7 +137,15 @@ for (const [b, n] of Object.entries(byBrand)) {
 // whose feed died could vanish entirely while the total barely moved.
 const countByBrand = (rows) => rows.reduce((a, p) => ((a[p.brandSlug] = (a[p.brandSlug] || 0) + 1), a), {});
 const prevRows = existsSync(U('products.json')) ? JSON.parse(readFileSync(U('products.json'), 'utf8')) : null;
-const published = interleaveByBrand(kept);
+// Brand round-robin first, then push abayas lower. Abayas are ~37% of the
+// browsable catalogue and dominated the scroll; this thins them to ~15% over the
+// first 100 and blends back to their natural share by ~300. Their order relative
+// to each other is untouched, so /modest-abayas is unaffected (lib/ordering.ts).
+// The predicate MUST match browseProducts() in lib/products.ts — that is the
+// sequence the shopper sees, and capping against any other one moves abayas the
+// wrong way (measured: 12% -> 21% when computed over the raw list).
+const inMixedGrid = (p) => p.garment !== 'hijab' && !isSpecialty(p);
+const published = demoteGarment(interleaveByBrand(kept), 'abaya', inMixedGrid);
 
 // Write the audit trail BEFORE the guard can throw — the error message tells
 // the operator to review these files, so they have to exist by then.
