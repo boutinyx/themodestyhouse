@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { getLegalDoc, LEGAL_LAST_UPDATED } from './legal';
 
 /**
@@ -80,6 +82,30 @@ describe('GDPR disclosures that must not silently regress', () => {
 
   it('names the supervisory authority for the stated country of establishment', () => {
     expect(privacy).toMatch(/Autoriteit Persoonsgegevens/);
+  });
+
+  // Couples the running code to the disclosure rather than trusting anyone to
+  // remember. Reads app/layout.tsx and next.config.ts directly: if the analytics
+  // script is shipped, or its hosts are allowlisted in the CSP, the policy MUST
+  // name the provider. This is the guard that was missing when outbound email
+  // moved to Resend and §4 silently went stale.
+  it('discloses analytics whenever the analytics script is actually shipped', () => {
+    const layout = readFileSync(path.join(process.cwd(), 'app', 'layout.tsx'), 'utf8');
+    const config = readFileSync(path.join(process.cwd(), 'next.config.ts'), 'utf8');
+    const shipped = layout.includes('js.ciphera.net') || config.includes('js.ciphera.net');
+
+    if (shipped) {
+      expect(privacy).toMatch(/\*\*Pulse\*\*|\*\*Pulse \(ciphera\.net\)\*\*/);
+      // §5 must not still claim we run no analytics.
+      expect(privacy).not.toMatch(/do \*\*not\*\* currently use advertising cookies, analytics/);
+    }
+  });
+
+  it('does not promise a consent banner it never shows', () => {
+    // §5 previously promised "ask for your consent through a cookie banner
+    // first" for any analytics. Shipping cookieless analytics under legitimate
+    // interest without a banner makes that promise false, so it must be gone.
+    expect(privacy).not.toMatch(/ask for your consent through a cookie banner first/);
   });
 });
 

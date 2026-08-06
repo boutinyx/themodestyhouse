@@ -36,6 +36,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {skim && (
           <Script src={`https://s.skimresources.com/js/${skim}.skimlinks.js`} strategy="afterInteractive" />
         )}
+        {/* Pulse — first-party audience measurement (ciphera.net).
+            Cookieless: no document.cookie, no persistent visitor id. localStorage
+            holds only a self-exclusion flag, sessionStorage only a per-session
+            pageview dedup record. Honours doNotTrack and globalPrivacyControl.
+            Disclosed in content/legal/privacy.md §2/§4/§5 — keep those in sync.
+
+            PRODUCTION ONLY. Unlike Plausible, this script has no built-in
+            localhost exclusion (verified: 0 occurrences of "localhost" in
+            script.js), so without this gate every `npm run dev` page view would
+            be counted. Gated on NODE_ENV rather than a NEXT_PUBLIC_* var
+            deliberately: NEXT_PUBLIC_* is inlined at build time and is exactly
+            what left NEXT_PUBLIC_SKIMLINKS_ID unset on Railway for weeks.
+
+            CSP: js.ciphera.net is in script-src and pulse-api.ciphera.net is in
+            connect-src (next.config.ts). The script and its event endpoint are
+            DIFFERENT hosts — allowlisting only the former loads the script and
+            silently drops every event. */}
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            defer
+            data-domain="themodestyhouse.com"
+            src="https://js.ciphera.net/script.js"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

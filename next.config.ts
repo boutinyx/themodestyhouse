@@ -63,7 +63,10 @@ const csp = [
   // exfiltration control, NOT meaningful XSS protection.
   // 'unsafe-eval' is dev-only (React's error overlay); prod bundles contain no
   // eval/new Function (verified by grep over .next/static/chunks: 0 hits).
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://challenges.cloudflare.com`,
+  // js.ciphera.net -> app/layout.tsx, the Pulse analytics script (production
+  // only). Served from BunnyCDN AMS1. Note its event endpoint is a DIFFERENT
+  // host and belongs in connect-src, not here.
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://challenges.cloudflare.com https://js.ciphera.net`,
   // 118 style={{...}} props -> 146 inline style attributes, plus real inline
   // <style> elements in VerifiedSpotlight.tsx:66, EditMagazine.tsx:50,
   // MagnifierHero.tsx:66.
@@ -77,7 +80,11 @@ const csp = [
   // localhost ws:// is for the Turbopack HMR socket. headers() applies to
   // `next dev` too, and Safari has historically not matched ws:// against
   // 'self'. Cheap insurance so the enforcing flip does not break dev.
-  `connect-src 'self' https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com${isDev ? ' ws://localhost:* http://localhost:*' : ''}`,
+  // pulse-api.ciphera.net -> where js.ciphera.net/script.js POSTs to
+  // (/api/v1/events). Verified by reading the script, not assumed: the CDN host
+  // that serves the script is NOT the host that receives the beacons, so
+  // omitting this would let the script load and then drop every event silently.
+  `connect-src 'self' https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://pulse-api.ciphera.net${isDev ? ' ws://localhost:* http://localhost:*' : ''}`,
   // Turnstile renders its widget in an iframe on challenges.cloudflare.com;
   // with frame-src 'none' the challenge silently fails to appear and every
   // submission is then rejected server-side.

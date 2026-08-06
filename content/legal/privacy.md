@@ -18,6 +18,7 @@ We keep data collection to a minimum. We collect:
 - **Technical/server data (automatic).** Our hosting provider automatically records standard technical information when you visit, such as your IP address, browser type, device type, the pages you view, and the date and time of your visit. This is normal for any website and is used for security, troubleshooting, and keeping the site running.
 - **Your saved favourites.** If you save an item, it is stored **only in your own browser** (in local storage, under the key `tmh_favs`). It never reaches our servers, is not linked to you, and is cleared if you clear your browser data.
 - **Style It selections.** When you mix and match pieces, that happens **entirely in your own browser**. We do not record it.
+- **Page views (analytics).** We use **Pulse** to count how many people visit and which pages are useful. It records the page address you visited, the site that referred you, and general technical details such as browser, device type and country. It sets **no cookies** and stores **no identifier for you**, so it cannot recognise you on a later visit or follow you to other websites. If your browser sends a **Do Not Track** or **Global Privacy Control** signal, your visit is not recorded at all.
 - **Messages you send us.** If you email us, we receive your email address and whatever you write, so we can reply.
 - **Contact form submissions.** If you use the form at [/contact](/contact), we receive the name, email address, subject and message you enter. These are sent to us as an email via **Resend**, our email delivery provider — we do **not** store them in a database. The form is protected by Cloudflare Turnstile, an anti-spam check that verifies you are not a bot; it processes your IP address and limited browser signals for that purpose, and does not track you across sites. We also briefly hold the IP address a submission came from — in the server's memory only, for about a minute, and never written to disk — so that a single source cannot flood the form.
 
@@ -31,7 +32,7 @@ Under the EU General Data Protection Regulation (GDPR), we must have a legal bas
 - **Replying to your emails and contact form messages** — to answer your question. Legal basis: legitimate interest, or your consent.
 - **Anti-spam and abuse prevention on the contact form** (Cloudflare Turnstile, rate limiting) — to stop automated abuse. Legal basis: legitimate interest, Art. 6(1)(f).
 - **Affiliate click tracking by third-party networks** — to earn the commission that funds the site. Legal basis: legitimate interest, or consent where required.
-- **Any analytics we add later** — to understand which pages are useful. Legal basis: consent, where the law requires it.
+- **Measuring how the site is used** (Pulse analytics) — to understand which pages are useful. Because it uses no cookies and stores no identifier for you, we rely on legitimate interest, Art. 6(1)(f). If we ever add analytics that identify you or follow you across sites, we will ask for your consent first.
 
 ## 4. Affiliate links and third parties
 
@@ -49,6 +50,7 @@ These third parties may set their own cookies and process data (such as your IP 
 We also use:
 
 - **Cloudflare** — sits in front of this site and does three things: it provides our network and security layer, which means it sees the IP address and request details of every visit; it runs the Turnstile anti-spam check on the contact form; and it routes inbound mail addressed to **hello@themodestyhouse.com**, so anything you email us passes through it. Cloudflare is a US company; see Section 7 on international transfers.
+- **Pulse (ciphera.net)** — our analytics provider. It receives the page-view information described in Section 2. Its script and its event endpoint are delivered through a European content network (Amsterdam); see Section 7.
 - **Resend** — our outbound email provider. Messages you send through the contact form are delivered to us through Resend, which means the name, email address and message you enter pass through it. Resend is a US company; see Section 7 on international transfers.
 - **Railway** — our hosting provider, which processes server and request data as described above. Railway is a US company; see Section 7 on international transfers.
 - **Shopify** — product images shown on this site are loaded directly from the brands' own Shopify content network (`cdn.shopify.com`), which means your browser requests those images from Shopify.
@@ -59,9 +61,11 @@ We also use:
 A cookie is a small file stored on your device. We use cookies and similar storage only where needed:
 
 - **Strictly necessary storage** — used for the site to function, such as remembering the items you have favourited. This stays in your browser and does not require consent.
+- **A short-lived analytics record** — so the same page view is not counted twice during one visit. It is cleared when you close the tab, and contains no identifier for you.
+- **An opt-out flag** — stored only if you choose to exclude yourself from analytics, so we can remember that choice.
 - **Third-party affiliate cookies** — set by affiliate networks (Section 4) when you click a product link, so a sale can be credited to us.
 
-We do **not** currently use advertising cookies, analytics, or invasive tracking. If we add analytics or marketing cookies in the future, we will update this policy and, where the law requires it, ask for your consent through a cookie banner first.
+We use **no advertising cookies and no analytics cookies**. Our analytics (Section 2) is cookieless — it stores no identifier for you and cannot follow you between websites — which is why we do not ask you to accept a cookie banner for it, and why it does not build a profile of you. If we ever add advertising or cross-site tracking cookies, we will update this policy and ask for your consent first.
 
 You can block or delete cookies in your browser settings at any time. Some features may not work as well if you do.
 
@@ -76,13 +80,14 @@ and only as far as needed for those purposes, or where we are legally required t
 
 ## 7. International data transfers
 
-Some of our partners — for example our hosting provider, Cloudflare, Resend, affiliate networks, and the image network described in Section 4 — may process data outside the European Economic Area (EEA), including in the United States. Where that happens, those transfers are covered by safeguards recognised under GDPR, such as the EU Standard Contractual Clauses or an adequacy decision.
+Some of our partners — for example our hosting provider, Cloudflare, Resend, Pulse, affiliate networks, and the image network described in Section 4 — may process data outside the European Economic Area (EEA), including in the United States. Where that happens, those transfers are covered by safeguards recognised under GDPR, such as the EU Standard Contractual Clauses or an adequacy decision.
 
 ## 8. How long we keep data
 
 - **Server logs:** kept only as long as needed for security and troubleshooting, then deleted or anonymised.
 - **Emails and contact form messages:** kept as long as needed to handle your request and for our records, then deleted. Form submissions reach us only as email — no copy is kept on the website.
 - **Contact form anti-flood records:** the IP address a submission came from is held in the server's memory for about a minute and then discarded. It is never written to disk.
+- **Analytics:** we receive aggregated visitor statistics only. Because no identifier is stored, there is no record that can be traced back to you or deleted on request.
 - **Favourites and Style It selections:** never stored by us — they stay in your browser.
 
 ## 9. Your rights under GDPR
