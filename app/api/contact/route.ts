@@ -40,43 +40,6 @@ function clientIp(req: NextRequest): string {
   );
 }
 
-/**
- * Last upstream send failure, kept in memory for diagnosis. TEMPORARY — remove
- * once delivery is confirmed working. Holds only what the provider returned
- * (verification state, invalid-field messages); the API key is never in a
- * response body, and is never logged.
- */
-let lastSendError: string | null = null;
-
-/**
- * Config probe. Reports ONLY whether each variable is present — never a value,
- * never a prefix, never a length. Exists because a 503 from POST cannot
- * distinguish "variable missing" from "stale build that predates the variable",
- * and the alternative is guessing at a deploy platform's UI.
- */
-export async function GET() {
-  const env = process.env;
-  return NextResponse.json({
-    configured: {
-      RESEND_API_KEY: Boolean(env.RESEND_API_KEY),
-      CONTACT_TO_EMAIL: Boolean(env.CONTACT_TO_EMAIL),
-      CONTACT_FROM_EMAIL: Boolean(env.CONTACT_FROM_EMAIL),
-      TURNSTILE_SECRET_KEY: Boolean(env.TURNSTILE_SECRET_KEY),
-      NEXT_PUBLIC_TURNSTILE_SITE_KEY: Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY),
-    },
-    ready: Boolean(emailConfig()),
-    // Not secret: the From address appears in the header of every email we
-    // send, and the To address is published on the site. Exposed because a
-    // mismatch between these and the domain verified at the provider is the
-    // most common cause of an accepted key that still cannot send.
-    from: env.CONTACT_FROM_EMAIL ?? null,
-    to: env.CONTACT_TO_EMAIL ?? null,
-    lastSendError,
-    // Proves which build is answering, so "did it redeploy?" is never a guess.
-    builtFrom: process.env.RAILWAY_GIT_COMMIT_SHA?.slice(0, 7) ?? 'unknown',
-  });
-}
-
 export async function POST(req: NextRequest) {
   const ip = clientIp(req);
 
@@ -136,7 +99,6 @@ export async function POST(req: NextRequest) {
   try {
     await sendContactEmail(result.fields, cfg);
   } catch (e) {
-    lastSendError = e instanceof Error ? e.message.slice(0, 400) : String(e).slice(0, 400);
     console.error('contact: send failed', e);
     return NextResponse.json(
       { ok: false, error: 'We could not send that just now. Please try again, or email us directly.' },

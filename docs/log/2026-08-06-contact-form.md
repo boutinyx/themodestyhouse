@@ -1,5 +1,5 @@
 # Contact form on Cloudflare Email Service
-**Date:** 2026-08-06 · **Status:** done (code) — **inert until env vars are set**
+**Date:** 2026-08-06 · **Status:** done — **live and verified end to end**
 
 ## Goal
 Replace the site's broken email surfaces with a working contact form, per
@@ -97,3 +97,57 @@ traffic, but it is a cap — sends fail with a 502 rather than silently.
   Confirm on the first real send.
 - The newsletter is deliberately not built — it needs subscriber storage,
   double opt-in and unsubscribe. See `docs/email-service-plan.md` §3.
+
+
+---
+
+## Bringing it live — and what the delay actually was
+
+Delivery is confirmed working. A real submission to the live endpoint returned
+`{"ok":true}` (HTTP 200) and arrived through
+form → server → Resend → Cloudflare Email Routing → inbox.
+
+Getting there took far longer than the work warranted, for two reasons worth
+recording.
+
+### 1. A push that silently did nothing
+The Resend switch was committed while this checkout sat on a branch another
+session had created (`legal/privacy-controller-and-accuracy`). `git push origin
+main` pushes the local `main` ref — not `HEAD` — so it pushed nothing and exited
+0. Production kept serving the **Cloudflare** version of `lib/contact.ts`, so
+`RESEND_API_KEY` was never read and the endpoint kept returning 503.
+
+Several rounds were spent testing a build that did not contain the code under
+test. The fix was to cherry-pick the four email commits onto `main` in a
+separate worktree, leaving the other session's in-progress legal work untouched.
+
+**Rule:** after any push, verify the commit is an ancestor of the remote branch
+(`git merge-base --is-ancestor <sha> origin/main`). "Pushed" is not the same as
+"deployed", and `git push origin main` from a detached or differently-named
+branch is a silent no-op.
+
+### 2. A config error indistinguishable from the above
+Underneath that, `CONTACT_FROM_EMAIL` was `noreply@themodestyhouse.com` while
+the domain verified in Resend was `send.themodestyhouse.com`. Resend accepts the
+API key and then rejects the send:
+
+```
+403 {"statusCode":403,"message":"The themodestyhouse.com domain is not verified…"}
+```
+
+A 503 (config missing) and a 502 (send rejected) look identical from outside.
+
+### What ended it
+A temporary `GET /api/contact` probe reporting, as booleans, which variables the
+**running container** could see, plus the commit it was built from, plus the
+last upstream error. `builtFrom` immediately exposed the stale-deploy problem;
+`lastSendError` gave Resend's own diagnosis verbatim.
+
+The probe has since been removed. Building a diagnostic beats reading a
+dashboard over someone's shoulder — but it should have come out at round two,
+not round six.
+
+### Still open
+- **Turnstile is not configured.** Both keys unset, so spam protection is
+  honeypot + validation + rate limiting only. No code change needed to enable —
+  set the two variables and redeploy.
