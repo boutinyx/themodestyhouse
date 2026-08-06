@@ -70,9 +70,9 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
               />
               <span className="badge absolute top-3 left-3">✦ Editor&rsquo;s pick</span>
             </div>
-            <div className="eyebrow mt-3">{p.brandName}</div>
-            <div className="serif mt-1" style={{ fontSize: 17, color: 'var(--ink)', lineHeight: 1.2 }}>{p.title}</div>
-            <div className="brand-label mt-1">{formatPrice(p.price, p.currency)}</div>
+            <div className="brand-label mt-3">{p.brandName}</div>
+            <div className="card-title card-title-lg mt-1">{p.title}</div>
+            <div className="price mt-1">{formatPrice(p.price, p.currency)}</div>
           </a>
         ))}
       </div>

@@ -36,10 +36,8 @@ export function ProductCard({ p }: { p: Product }) {
         </button>
       </div>
       <div className="brand-label mt-3">{p.brandName}</div>
-      <div className="serif text-sm mt-1 px-2 truncate" style={{ color: 'var(--ink)' }}>{p.title}</div>
-      <div className="text-sm mt-1" style={{ color: 'var(--muted)' }}>
-        {formatPrice(p.price, p.currency)}
-      </div>
+      <div className="card-title mt-1 px-2">{p.title}</div>
+      <div className="price mt-1">{formatPrice(p.price, p.currency)}</div>
     </div>
   );
 }

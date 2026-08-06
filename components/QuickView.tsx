@@ -134,8 +134,8 @@ function Modal({
             ×
           </button>
           <div className="brand-label">{product.brandName}</div>
-          <h2 className="serif text-2xl mt-2" style={{ color: 'var(--ink)' }}>{product.title}</h2>
-          <div className="text-lg mt-3" style={{ color: 'var(--ink)' }}>
+          <h2 className="card-title card-title-xl mt-2">{product.title}</h2>
+          <div className="price price-lg mt-3">
             {formatPrice(product.price, product.currency)}
           </div>
           <div className="mt-auto pt-8 flex flex-col gap-3">

@@ -145,6 +145,27 @@
   --radius-card: 6px;
   --radius-button: 999px;
   --radius-input: 8px;
+
+  /* --- typography system (2026-08-06) ---------------------------------
+     ONE fallback stack per token, so a stack is never re-typed by hand. */
+  --font-display-stack: var(--font-display), 'Times New Roman', Times, serif;
+  --font-label-stack:   var(--font-label), 'Times New Roman', Times, serif;
+  --font-ui-stack:      var(--font-ui), 'Helvetica Neue', Arial, sans-serif;
+
+  /* Card type scale. Prices and card titles are DISPLAY type — they name a
+     product, so they belong to the serif voice, not the UI font. */
+  --t-card:    15px;   /* grid card title */
+  --t-card-lg: 17px;   /* rail card title */
+  --t-card-xl: 24px;   /* QuickView title */
+
+  /* Label tracking: two values, not the eleven ad-hoc ones that were in use. */
+  --track-eyebrow: 0.24em;
+  --track-label:   0.18em;
+
+  /* Brass at accessible contrast. --brass stays for fills/graphics; these are
+     for TEXT. --brass on --parchment is 3.07:1 and fails AA at label sizes. */
+  --brass-ink:     #8a6a33;  /* on parchment/bone — 4.74:1 */
+  --brass-on-dark: #c4a476;  /* on aubergine/ink  — 6.08:1 */
 }
 
 @theme inline {
@@ -212,10 +233,12 @@ body {
   border-radius: var(--radius-button);
   background: var(--aubergine);
   color: var(--parchment);
-  font-family: var(--font-ui), sans-serif;
-  letter-spacing: 0.1em;
+  /* Marcellus, not Jost: buttons were the only uppercase label on the site in a
+     fourth typeface. 12px because reversed-out serif reads thinner than Jost. */
+  font-family: var(--font-label-stack);
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 12px;
   padding: 8px 18px;
   transition: opacity 0.2s ease-out;
 }
@@ -228,9 +251,9 @@ body {
   gap: 5px;
   border-radius: var(--radius-button);
   background: var(--brass);
-  color: var(--parchment);
-  font-family: var(--font-label), serif;
-  letter-spacing: 0.14em;
+  color: var(--ink);              /* was --parchment: 3.07:1 -> 5.15:1 */
+  font-family: var(--font-label-stack);
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   font-size: 10px;
   padding: 4px 12px;
@@ -311,3 +334,33 @@ summary:focus-visible {
 /* Hero glass search (option 3A) — placeholder + focus over the video */
 .glass-search input::placeholder { color: rgba(251, 250, 246, 0.75); }
 .glass-search:focus-within { border-color: rgba(251, 250, 246, 0.7); }
+
+/* --- the product card: ONE class per datum ---------------------------------
+   Before this, the SAME card rendered in three typefaces: brand in Marcellus,
+   title in Bodoni, and the price in whatever the parent inherited — Jost in
+   ProductCard/QuickView, and Marcellus UPPERCASE in EditorsRail because the
+   price was wearing .brand-label. That is the "letter types keep changing"
+   the owner reported. Role now decides the font. */
+.card-title {
+  font-family: var(--font-display-stack);
+  font-size: var(--t-card);
+  line-height: 1.25;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-title-lg { font-size: var(--t-card-lg); }
+.card-title-xl { font-size: var(--t-card-xl); -webkit-line-clamp: 3; }
+
+.price {
+  font-family: var(--font-display-stack);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--ink);   /* not --muted: that is 3.88:1 on --bone */
+}
+.price-lg { font-size: 19px; }
