@@ -36,4 +36,4 @@ export function getLegalDoc(slug: 'privacy' | 'terms'): LegalDoc | null {
  *  content rather than build time, so it doesn't churn on every deploy.
  *  Bump this whenever content/legal/*.md changes in a way a reader would care
  *  about. */
-export const LEGAL_LAST_UPDATED = '6 August 2026';
+export const LEGAL_LAST_UPDATED = '7 August 2026';

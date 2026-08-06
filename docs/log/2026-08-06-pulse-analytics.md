@@ -101,3 +101,44 @@ CURRENT trips either:               false  (clean)
 - **P0-D:** the "no cookie consent" gap is now narrower, not wider — analytics is
   cookieless. It reopens the moment `NEXT_PUBLIC_SKIMLINKS_ID` is set, because Skimlinks
   *does* set third-party cookies.
+
+---
+
+## Addendum — 2026-08-07: vendor disclosure text incorporated
+
+Ciphera supplied their own privacy wording for Pulse. Incorporated, after checking each
+claim against `js.ciphera.net/script.js` rather than taking it on trust:
+
+| Vendor claim | Verified in the script? |
+|---|---|
+| screen resolution | yes — `screen: screenSize` from `window.innerWidth`/`innerHeight` |
+| browser language | yes — `language: navigator.language` |
+| time zone | yes — `Intl.DateTimeFormat` (1 occurrence) |
+| referrer | yes — `referrer: document.referrer` |
+| operating system | yes — `hint: clientOSHint` |
+| bots / referrer spam excluded | yes — `hs: humanSignals` |
+| no cookies, no persistent identifier | yes — `document.cookie`: 0 occurrences |
+| respects Do Not Track | yes — plus `globalPrivacyControl`, which the vendor text omits |
+| raw event data deleted after 6 months | **vendor claim, not independently verifiable** |
+
+The data list matched the code exactly — nothing over- or under-stated.
+
+**Changes:** §2 rewritten with the full field list, the bot/referrer-spam exclusion and the
+"not used to identify individuals" wording; §4 links to
+[the Pulse FAQ](https://pulse.ciphera.net/faq) (confirmed HTTP 200 before linking — a dead
+link in a privacy policy is its own defect); §8 now states the **6-month** raw-event
+retention, replacing the earlier placeholder wording written when retention was unknown.
+`LEGAL_LAST_UPDATED` → 7 August 2026.
+
+**Verification:** 344 tests pass, `tsc` clean, build 34/34. All nine new disclosure strings
+confirmed present in `.next/server/app/privacy.html`, and the rendered date reads
+7 August 2026.
+
+**Note for the record.** The collected combination — screen resolution, browser language,
+time zone, OS, browser, country — is a recognised browser-fingerprinting surface even
+without a stored identifier. Pulse states it does not build identifiers and the script
+contains no canvas or `navigator.userAgent` fingerprinting (both verified, 0 occurrences),
+so publishing "anonymous" is defensible. Flagged because the site, not Ciphera, is the
+controller and carries the Art. 5(2) accountability for that claim. The 6-month retention
+and the "privacy-preserving processing" claim are Ciphera's assertions and should be
+captured in the Art. 28 DPA, which remains outstanding.
