@@ -9,8 +9,8 @@ export type Piece = {
    *  below it, it holds a piece at its established size while the frame grows.
    *  Deliberately NOT applied to the frame: the arrows are positioned by the
    *  frame, so a per-piece frame makes them jump as you cycle dresses.
-   *  Ceiling is 184px — 160px frame plus the 12px arrow gap either side, less
-   *  3px so the artwork does not sit flush against a control. */
+   *  Ceiling is 168px — the 148px frame plus the 12px arrow gap either side, less
+   *  2px so the artwork does not sit flush against a control. */
   maxW?: number;
 };
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
@@ -115,7 +115,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "brand": "Veiled",
       "label": "Butterfly Abaya",
       "color": "#1c2c24",
-      "maxW": 180
+      "maxW": 168
     }
   ]
 };

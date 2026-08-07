@@ -25,10 +25,17 @@ const CAPTION_H = 28;   // .eyebrow caption + its mt-3
  *  as the controls drifting to the edge.
  *
  *  So the frame is fixed and a wide garment overflows it instead — up to
- *  frame + 2*gap-3 = 184px before it touches an arrow. 160 is the balance point:
- *  large enough that the abaya reaches 180px, small enough that the arrows stay
- *  close to the three narrow dresses (7.5px further out than a 145 frame). */
-const DRESS_FRAME = { w: 160, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
+ *  frame + 2*gap-4 = frame+20 before it touches an arrow. That makes this number
+ *  the single dial between the two things being traded:
+ *
+ *      frame  arrows from centre   widest dress
+ *        160        92px              180px
+ *        148        86px              168px   <- here
+ *        145      84.5px              165px
+ *
+ *  Pulling the arrows in past this shrinks the abaya faster than it gains, since
+ *  the other three dresses are 129-145px and already clear the arrows. */
+const DRESS_FRAME = { w: 148, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
 /** The artwork's own size, kept at what it was before the frame was made
  *  full-height. The FRAME spans the column so the dress can centre inside it;
  *  this cap stops the dress growing to fill that taller box. */
