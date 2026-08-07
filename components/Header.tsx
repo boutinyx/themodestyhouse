@@ -56,10 +56,11 @@ export function Header() {
             row below. That row is `overflow-x-auto`, which establishes a clipping
             context — a dropdown opened inside it would be cut off on mobile. It
             also means the heart is declared once instead of twice. */}
-        {/* gap-8 (32px) not gap-6. Measured off the live header: the nav labels
-            sit ~27px apart, so 24px here made the heart/divider/currency cluster
-            read tighter than the row it joins. */}
-        <div className="flex items-center gap-5 md:gap-8">
+        {/* gap-10 (40px). The nav labels sit ~27px apart (measured off the live
+            header), so the control cluster is deliberately airier than the row
+            it joins — these are controls, not navigation, and the extra space is
+            what separates the two groups. */}
+        <div className="flex items-center gap-6 md:gap-10">
           <div className="hidden md:block">
             <Nav />
           </div>

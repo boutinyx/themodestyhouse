@@ -50,7 +50,7 @@ export function CurrencySwitcher() {
         data-active={preference !== null}
         /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space AFTER
            the last glyph and pushes an icon left of true centre. */
-        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 8 : 0 }}
+        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 10 : 0 }}
       >
         {/* 1px UP, and this one is MEASURED rather than judged by eye. Against a
             screenshot of the live header, the nav labels and the divider all
