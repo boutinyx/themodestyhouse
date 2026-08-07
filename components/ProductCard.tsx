@@ -9,14 +9,13 @@ export function ProductCard({ p }: { p: Product }) {
   const { price } = useCurrency();
   const fav = isFav(p.id);
   return (
-    <div
-      className="group block text-center cursor-pointer"
-      onClick={() => open(p)}
-      role="button"
-      tabIndex={0}
-      aria-label={`Quick view: ${p.title} by ${p.brandName}`}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(p); } }}
-    >
+    // The card WRAPPER is no longer interactive. It used to be a
+    // div[role="button"][tabindex=0] with the favourites <button> inside it, so
+    // every card nested one control inside another — axe flags this as
+    // `nested-interactive` (24 per grid page), and a screen reader cannot
+    // announce either control reliably. The two are now SIBLINGS: a transparent
+    // button covering the image opens quick view, and the heart sits above it.
+    <div className="group block text-center">
       <div
         className="relative overflow-hidden border"
         style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}
@@ -28,9 +27,18 @@ export function ProductCard({ p }: { p: Product }) {
           className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"
         />
+        {/* Covers the photograph, sits BELOW the heart. Real <button>, so Enter
+            and Space work without a hand-rolled onKeyDown. */}
         <button
-          onClick={(e) => { e.stopPropagation(); toggleFav(p); }}
-          className="absolute top-2 right-2 w-10 h-10 rounded-full flex items-center justify-center transition"
+          type="button"
+          onClick={() => open(p)}
+          aria-label={`Quick view: ${p.title} by ${p.brandName}`}
+          className="absolute inset-0 z-10 cursor-pointer"
+        />
+        <button
+          type="button"
+          onClick={() => toggleFav(p)}
+          className="absolute top-2 right-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
           style={{
             background: 'rgba(255,255,255,0.85)',
             color: fav ? 'var(--aubergine)' : 'var(--muted)',

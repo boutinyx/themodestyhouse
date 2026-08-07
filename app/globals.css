@@ -138,7 +138,12 @@
   /* functional */
   --ink: #241b24;         /* body text */
   --bone: #fbfaf6;        /* cards / surfaces */
-  --muted: #8a7d6b;       /* labels, meta (not body) */
+  /* Darkened from #8a7d6b on 2026-08-07. The old value was 3.76:1 on parchment
+     — below the 4.5:1 AA floor — and it is the label colour, so axe reported
+     9-41 contrast failures on every page. #796e5e is the LIGHTEST value on the
+     same hue that clears AA on both grounds (4.67:1 on parchment, 4.78:1 on
+     bone), so the look shifts as little as the standard allows. */
+  --muted: #796e5e;       /* labels, meta (not body) */
   --hairline: #e4ddcf;    /* borders */
   /* radii */
   --radius-image: 2px;
@@ -166,6 +171,10 @@
      for TEXT. --brass on --parchment is 3.07:1 and fails AA at label sizes. */
   --brass-ink:     #8a6a33;  /* on parchment/bone — 4.74:1 */
   --brass-on-dark: #c4a476;  /* on aubergine/ink  — 6.08:1 */
+  /* The same split for --muted. The footer sits on --ink, where the label colour
+     has to go LIGHTER, not darker: #8a7d6b was 4.16:1 there and darkening it to
+     #796e5e made it 3.34:1. Mirrors --brass / --brass-on-dark. */
+  --muted-on-dark: #a89b8a;  /* on ink          — 6.14:1 */
 }
 
 @theme inline {
@@ -228,6 +237,14 @@ body {
   display: inline-flex;
   align-items: center;
   line-height: 1;
+  /* WCAG 2.2 SC 2.5.8 asks for a 24x24 CSS px target. line-height:1 on 12px type
+     gives a 12px-tall box, so every nav item was half the minimum on a phone.
+     min-height grows the HIT AREA without adding padding that would also stack
+     onto the menu rows (which already carry py-2), and align-items keeps the
+     text optically where it was. */
+  min-height: 24px;
+  min-width: 24px;
+  justify-content: center;
 }
 .nav-link:hover,
 .nav-link[data-active="true"] { color: var(--aubergine); }

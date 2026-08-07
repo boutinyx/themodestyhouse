@@ -29,7 +29,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
           <div className="col-span-2 md:col-span-1">
             <div className="wordmark text-lg" style={{ color: 'var(--parchment)' }}>The Modesty House</div>
-            <p className="mt-3 text-sm max-w-xs" style={{ color: '#8a7d6b' }}>
+            <p className="mt-3 text-sm max-w-xs" style={{ color: 'var(--muted-on-dark)' }}>
               A curated index of modest fashion houses — vetted for craft and taste.
             </p>
             <div className="flex items-center gap-4 mt-5" style={{ color: '#b9ad9c' }}>
@@ -77,7 +77,7 @@ export function Footer() {
             interaction — it is the disclosure a regulator looks for first. */}
         <div
           className="mt-14 pt-6"
-          style={{ borderTop: '1px solid rgba(243,238,228,0.12)', color: '#8a7d6b', fontSize: 12, lineHeight: 1.6, maxWidth: 720 }}
+          style={{ borderTop: '1px solid rgba(243,238,228,0.12)', color: 'var(--muted-on-dark)', fontSize: 12, lineHeight: 1.6, maxWidth: 720 }}
         >
           The Modesty House is a discovery and affiliate site — we don&rsquo;t sell anything
           ourselves. Some links may be affiliate links, and if you buy through one we may earn a
@@ -90,8 +90,8 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>
-          <div className="eyebrow" style={{ color: '#8a7d6b' }}>© 2026 The Modesty House · themodestyhouse.com</div>
-          <div className="eyebrow flex items-center gap-3" style={{ color: '#8a7d6b' }}>
+          <div className="eyebrow" style={{ color: 'var(--muted-on-dark)' }}>© 2026 The Modesty House · themodestyhouse.com</div>
+          <div className="eyebrow flex items-center gap-3" style={{ color: 'var(--muted-on-dark)' }}>
             <Link href="/privacy" style={{ color: 'inherit' }}>Privacy</Link>
             <span aria-hidden="true">·</span>
             <Link href="/terms" style={{ color: 'inherit' }}>Terms</Link>

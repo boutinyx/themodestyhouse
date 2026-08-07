@@ -78,3 +78,6 @@ sleeveless-review.html
 
 # Local one-off image picker (throwaway, regenerable)
 aab-hero-picker.html
+
+# Playwright mobile/a11y audit output (screenshots + report)
+.audit/

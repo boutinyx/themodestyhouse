@@ -130,7 +130,7 @@ export default async function DesignersPage({
               ← Previous
             </Link>
           ) : (
-            <span className="nav-link" style={{ opacity: 0.35 }}>← Previous</span>
+            <span className="nav-link" aria-disabled="true" style={{ opacity: 0.45 }}>← Previous</span>
           )}
           <span className="eyebrow">
             {page} / {pages}
@@ -140,7 +140,7 @@ export default async function DesignersPage({
               Next →
             </Link>
           ) : (
-            <span className="nav-link" style={{ opacity: 0.35 }}>Next →</span>
+            <span className="nav-link" aria-disabled="true" style={{ opacity: 0.45 }}>Next →</span>
           )}
         </nav>
       )}

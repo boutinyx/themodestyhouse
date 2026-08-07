@@ -117,7 +117,10 @@ export default function Home() {
                   'Go live with the verified seal',
                 ].map((step, i) => (
                   <li key={i} className="flex gap-3" style={{ color: '#e7d8e4' }}>
-                    <span className="serif italic" style={{ color: 'var(--brass)' }}>{['i', 'ii', 'iii'][i]}.</span>
+                    {/* --brass-on-dark, not --brass: this sits on the aubergine band, where
+                        plain brass is 4.42:1 and the on-dark variant is 6.08:1. That is
+                        exactly the distinction the two tokens exist to make. */}
+                    <span className="serif italic" style={{ color: 'var(--brass-on-dark)' }}>{['i', 'ii', 'iii'][i]}.</span>
                     <span>{step}</span>
                   </li>
                 ))}

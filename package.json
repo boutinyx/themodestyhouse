@@ -22,7 +22,8 @@
     "translate": "[ -x .venv-style/bin/python ] && .venv-style/bin/python scripts/translate_titles.py || echo 'title-translation skipped (no .venv-style)'",
     "test": "vitest run",
     "backup:raw": "node scripts/backup-raw.mjs",
-    "restore:raw": "node scripts/backup-raw.mjs restore"
+    "restore:raw": "node scripts/backup-raw.mjs restore",
+    "audit:mobile": "node scripts/mobile-audit.mjs"
   },
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-rc.0",
@@ -32,12 +33,14 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "tsx": "^4.23.4",
     "typescript": "^5",

@@ -63,7 +63,13 @@ export function NavMenu({
       // container has no line box, so every nav item shares one vertical centre.
       className="relative flex items-center"
     >
-      <NavigationMenu.List className="flex items-center gap-5 md:gap-7 list-none m-0 p-0">
+      <NavigationMenu.List
+        // Base UI's Composite layer stamps aria-orientation onto this <ul>.
+        // aria-orientation is not a permitted attribute on a list, so axe flags
+        // it as `aria-allowed-attr` (critical) on every page of the site.
+        aria-orientation={undefined}
+        className="flex items-center gap-5 md:gap-7 list-none m-0 p-0"
+      >
         {groups.map((g) => (
           <NavigationMenu.Item key={g.label} className="relative flex items-center">
             <NavigationMenu.Trigger
