@@ -52,10 +52,13 @@ export function CurrencySwitcher() {
            the last glyph and pushes an icon left of true centre. */
         style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 5 : 0 }}
       >
-        {/* 1px DOWN. The heart beside it is nudged 1px up because its visual mass
-            sits low in its bounding box; the dollar glyph has the opposite
-            problem — its stroke ends are clipped short of the box, so a
-            geometrically centred glyph reads high next to the heart. */}
+        {/* 1px UP, and this one is MEASURED rather than judged by eye. Against a
+            screenshot of the live header, the nav labels and the divider all
+            centre on y=69.0; with a +1px nudge the disc centred on y=71.0, i.e.
+            2px low. The +1px was carried over from the stroked glyph, but the
+            fill weight is a symmetric disc whose geometric centre already IS its
+            visual centre, so the nudge only pushed it down. -1px lands it on
+            69.0, level with the labels and the rule. */}
         {/* weight="fill" is a DELIBERATE choice, confirmed by Tina 2026-08-07.
             Note it does not merely thicken the strokes: Phosphor's fill variant
             for this glyph is a solid disc with the dollar knocked out of it
@@ -65,7 +68,7 @@ export function CurrencySwitcher() {
         <CurrencyDollar
           size={18}
           weight={preference ? 'fill' : 'regular'}
-          style={{ transform: 'translateY(1px)', display: 'block' }}
+          style={{ transform: 'translateY(-1px)', display: 'block' }}
         />
         {preference ?? null}
       </Menu.Trigger>
@@ -87,6 +90,11 @@ export function CurrencySwitcher() {
                 <Menu.RadioItem
                   key={o ?? NATIVE}
                   value={o ?? NATIVE}
+                  // Base UI leaves radio items open on click (`closeOnClick`
+                  // defaults to false, so a radio group can be adjusted several
+                  // times). A currency is picked once, so the menu lingering
+                  // after the choice just reads as stuck.
+                  closeOnClick
                   className="block w-full text-center nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
                   data-active={preference === o}
                 >
