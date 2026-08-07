@@ -32,6 +32,15 @@ export function CurrencySwitcher() {
   return (
     <Menu.Root>
       <Menu.Trigger
+        // Opens on hover AS WELL AS click, so it behaves like the Directory and
+        // Styles menus next to it. Base UI's `Menu` is click-only by default
+        // while `NavigationMenu` opens on hover, and that difference is felt
+        // immediately: pointing at the dollar did nothing while its neighbours
+        // opened. closeDelay gives you time to travel from the trigger down into
+        // the panel without it shutting on the way.
+        openOnHover
+        delay={100}
+        closeDelay={150}
         aria-label={preference ? `Prices in ${preference}. Change currency` : 'Prices as listed. Change currency'}
         className="nav-link inline-flex items-center justify-center leading-none"
         data-active={preference !== null}
