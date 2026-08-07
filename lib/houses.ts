@@ -49,8 +49,23 @@ const GARMENT_RANK: Record<string, number> = {
  *  .jpg/.webp is a photograph. Same signal pickImage uses (lib/normalize.ts). */
 const isCutout = (src: string) => /\.png(\?|$)/i.test(src);
 
-function score(garment: string, image: string): number {
-  return (GARMENT_RANK[garment] ?? 4) * 2 + (isCutout(image) ? 1 : 0);
+/**
+ * Layering pieces — slips, underdresses, inner tops. `garment` calls these
+ * dresses, and correctly: they ARE dresses. But they are worn UNDER something,
+ * so they are photographed plainly and make a poor portrait of a house. Aab's
+ * card was "Full Slip Rose" for exactly this reason.
+ *
+ * Word boundaries throughout: an unanchored `slip` also matches "slipper" and
+ * "slip-on", which is the §10.5/§10.10 mistake in a new place.
+ */
+const LAYERING = /\b(slip|underdress|under[- ]?dress|underskirt|inner|layering|layer|cami|camisole|bodysuit|shapewear)\b/i;
+
+function score(garment: string, image: string, title: string): number {
+  return (
+    (GARMENT_RANK[garment] ?? 4) * 4 +
+    (LAYERING.test(title) ? 2 : 0) +
+    (isCutout(image) ? 1 : 0)
+  );
 }
 
 function imagesByBrand(): { pool: Record<string, string[]>; override: Record<string, string> } {
@@ -58,7 +73,7 @@ function imagesByBrand(): { pool: Record<string, string[]>; override: Record<str
   const override: Record<string, string> = {};
   for (const p of getProducts()) {
     if (!p.image) continue;
-    (scored[p.brandSlug] ??= []).push({ image: p.image, score: score(p.garment, p.image) });
+    (scored[p.brandSlug] ??= []).push({ image: p.image, score: score(p.garment, p.image, p.title) });
     const handle = HERO_OVERRIDE[p.brandSlug];
     if (handle && p.url.endsWith(`/products/${handle}`)) override[p.brandSlug] = p.image;
   }
