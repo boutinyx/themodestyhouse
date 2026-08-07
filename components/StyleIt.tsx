@@ -17,6 +17,9 @@ const CAPTION_H = 28;   // .eyebrow caption + its mt-3
  *  class's 10px is 12.5px. The dress caption stacks onto two lines, and this is
  *  what it costs. */
 const CAPTION_LINE = 13;
+/** The dress caption runs brand / middot / piece, so it is two lines longer than
+ *  a mix slot's single line. */
+const DRESS_CAPTION_EXTRA_LINES = 2;
 /** The dress frame spans the FULL height of the mix column, so the artwork
  *  centres against the two stacked pieces rather than hugging the top. Derived,
  *  not a literal: the dress column was 76px shorter than the mix column and
@@ -42,11 +45,11 @@ const CAPTION_LINE = 13;
  *  the other three dresses are 129-145px and already clear the arrows. */
 const DRESS_FRAME = {
   w: 148,
-  /* Less one caption line: the dress caption is stacked and the mix captions are
-     not, so without this the dress column runs a line taller than the mix column
-     and hands the mix pieces dead space under them — the thing the note above
-     says this height exists to remove. */
-  h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H - CAPTION_LINE,
+  /* Less the caption lines the dress has and the mix slots do not: without this
+     the dress column runs taller than the mix column and hands the mix pieces
+     dead space under them — the thing the note above says this height exists to
+     remove. */
+  h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H - CAPTION_LINE * DRESS_CAPTION_EXTRA_LINES,
 };
 /** The artwork's own size. The FRAME spans the column so the dress can centre
  *  inside it; this cap stops the dress growing to fill that taller box.
@@ -137,8 +140,12 @@ function Slot({
           decouples the two so the image always sits in the middle. */}
       <div className="eyebrow mt-3 w-full text-center">
         {stackCaption ? (
+          /* Same three parts as the mix slots, middot and all — only the line
+             breaks differ, so the two columns still read as one set of labels.
+             The middot sits on its own line, centred between the two. */
           <>
             <div style={{ color: 'var(--ink)' }}>{piece.brand}</div>
+            <div>·</div>
             <div>{piece.label}</div>
           </>
         ) : (
