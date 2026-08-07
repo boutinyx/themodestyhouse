@@ -72,8 +72,8 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
     },
     {
       "src": "/style-it/top_10.png",
-      "label": "Leopard High-Neck",
-      "color": "#967e74"
+      "label": "Printed High-Neck",
+      "color": "#9f947a"
     }
   ],
   "bottoms": [
