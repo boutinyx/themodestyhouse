@@ -44,12 +44,13 @@ export function NavMenu({
     href?: string;
     activeWhen: boolean;
     items: NavItem[];
+    /** How many columns the panel is split into. */
     columns?: number;
-    /** Target row count. Takes precedence over `columns`: the column count is
-     *  derived as ceil(items / rows), so the panel keeps this many rows even if
-     *  items are added later. Hard-coding `columns` instead silently grows a
-     *  third row the moment the list does. */
-    rows?: number;
+    /** Fill order. 'down' stacks each column top-to-bottom before starting the
+     *  next (so with 9 items in 2 columns you get 5 + 4); the default fills
+     *  left-to-right across each row. The row count is derived either way, so
+     *  the shape holds if items are added. */
+    flow?: 'across' | 'down';
   }[];
   links: { href: string; label: string; activeWhen: boolean }[];
   path: string;
@@ -91,11 +92,22 @@ export function NavMenu({
                 // minmax(0,…) lets a column shrink below its content width, which
                 // made the whitespace-nowrap labels overlap. max-content sizes
                 // each column to its widest label.
-                style={{
-                  gridTemplateColumns: `repeat(${
-                    g.rows ? Math.ceil(g.items.length / g.rows) : (g.columns ?? 1)
-                  }, max-content)`,
-                }}
+                style={
+                  g.flow === 'down'
+                    ? {
+                        // Explicit ROWS + column flow. Setting grid-template-columns
+                        // would fill left-to-right and interleave the two lists;
+                        // pinning the row count is what makes each column read
+                        // straight down. gridAutoColumns must be max-content too,
+                        // since the columns here are implicit tracks.
+                        gridTemplateRows: `repeat(${Math.ceil(
+                          g.items.length / (g.columns ?? 1)
+                        )}, auto)`,
+                        gridAutoFlow: 'column',
+                        gridAutoColumns: 'max-content',
+                      }
+                    : { gridTemplateColumns: `repeat(${g.columns ?? 1}, max-content)` }
+                }
               >
                 {g.items.map((it) => (
                   <NavigationMenu.Link

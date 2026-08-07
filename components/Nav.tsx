@@ -18,10 +18,11 @@ export function Nav() {
           href: '/directory',
           activeWhen: path === '/directory' || path.startsWith('/modest') || path.startsWith('/hijabi'),
           items: categoryItems,
-          // 9 categories in one column was a very tall menu. Asking for 2 rows
-          // makes it a wide, shallow panel: the column count is derived, so this
-          // stays 2 rows if a category is added.
-          rows: 2,
+          // Two columns, each read top-to-bottom: 9 categories split 5 + 4.
+          // The row count is derived from the item count, so adding a category
+          // lengthens the columns rather than breaking the shape.
+          columns: 2,
+          flow: 'down',
         },
         {
           label: 'Styles',

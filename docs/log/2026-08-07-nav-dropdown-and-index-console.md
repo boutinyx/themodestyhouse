@@ -215,3 +215,39 @@ The earlier `measure-nav.mjs` selectors stopped matching: the `NavMenu` refactor
 panel through a NavigationMenu viewport, outside `<nav>`, and mounts the grid only on open
 (`grids: 0` before hover). Probes for this menu must search the whole document and hover
 first — scoping to `nav` silently reports "closed".
+
+---
+
+## Addendum 2 — 2026-08-07: Directory panel to 2 columns, read downward
+
+The previous addendum's "2 rows" was the wrong reading. Clarified with Tina against two
+drawn options; she chose **2 columns × 5 rows, each column read top-to-bottom**.
+
+`rows` is removed — it had one caller and became dead — replaced by `flow: 'across' | 'down'`
+alongside `columns`, so there is one knob for the split and one for the order rather than
+two overlapping ways to express a shape.
+
+`flow: 'down'` sets **grid-template-ROWS** plus `grid-auto-flow: column` and
+`grid-auto-columns: max-content`. Setting `grid-template-columns` instead would fill
+left-to-right and interleave the two lists; pinning the row count is what makes each column
+read straight down. `grid-auto-columns` must also be `max-content` because with column flow
+the columns are implicit tracks — leaving it `auto` reintroduces the collapse this file
+already documents.
+
+### Measured (headless Chrome, real `next start`)
+
+```
+cols: 2   rows: 5   count: 9   overlaps: 0   zeroWidth: 0   panel: 369 x 140
+
+column 1 → Modest Dresses, Abayas, Hijabs & Scarves, Skirts, Tops
+column 2 → Trousers, Co-ord Sets, Modest Swimwear, Modest Activewear
+```
+
+Row count is derived from the item count, so a tenth category lengthens the columns rather
+than breaking the shape.
+
+### Note
+Three layout attempts for one menu (3 cols across → 5 cols across → 2 cols down). The first
+two came from guessing at an ambiguous description. Showing two drawn options and asking
+settled it in one exchange — cheaper than either wrong build. For a layout the user can see
+but has not precisely specified, draw it before building it.
