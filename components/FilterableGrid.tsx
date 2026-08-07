@@ -27,15 +27,21 @@ export function FilterableGrid({ products }: { products: Product[] }) {
 
   // Same match rule as DirectoryBrowser — title or brand, case-insensitive — so
   // searching behaves identically wherever the index console appears.
+  // Memoised for the same reason as DirectoryBrowser: unmemoised it re-filtered
+  // the whole lane on every render, including every keystroke.
   const query = q.trim().toLowerCase();
-  const filtered = products.filter(
-    (p) =>
-      (brand === 'all' || p.brandName === brand) &&
-      (occasion === 'all' || p.occasion.includes(occasion)) &&
-      (vibe === 'all' || brandVibe[p.brandSlug] === vibe) &&
-      (query === '' ||
-        p.title.toLowerCase().includes(query) ||
-        p.brandName.toLowerCase().includes(query))
+  const filtered = useMemo(
+    () =>
+      products.filter(
+        (p) =>
+          (brand === 'all' || p.brandName === brand) &&
+          (occasion === 'all' || p.occasion.includes(occasion)) &&
+          (vibe === 'all' || brandVibe[p.brandSlug] === vibe) &&
+          (query === '' ||
+            p.title.toLowerCase().includes(query) ||
+            p.brandName.toLowerCase().includes(query))
+      ),
+    [products, brand, occasion, vibe, query]
   );
 
   // Reset the "load more" count whenever a filter changes.

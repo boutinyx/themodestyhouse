@@ -30,14 +30,21 @@ export function DirectoryBrowser({ products, initialQuery = '' }: { products: Pr
   const brands = useMemo(() => Array.from(new Set(products.map((p) => p.brandName))).sort().map((b) => ({ value: b, label: b })), [products]);
   const vibes = VIBES.map((v) => ({ value: v.slug, label: v.title }));
 
+  // Memoised: this walks the WHOLE catalogue (~6.5k rows), and without a memo it
+  // re-ran on every render — so every keystroke in the search box filtered 6,500
+  // objects before React had even started reconciling.
   const query = q.trim().toLowerCase();
-  const filtered = products.filter(
-    (p) =>
-      (garment === 'all' || p.garment === garment) &&
-      (vibe === 'all' || brandVibe[p.brandSlug] === vibe) &&
-      (occasion === 'all' || p.occasion.includes(occasion)) &&
-      (brand === 'all' || p.brandName === brand) &&
-      (query === '' || p.title.toLowerCase().includes(query) || p.brandName.toLowerCase().includes(query))
+  const filtered = useMemo(
+    () =>
+      products.filter(
+        (p) =>
+          (garment === 'all' || p.garment === garment) &&
+          (vibe === 'all' || brandVibe[p.brandSlug] === vibe) &&
+          (occasion === 'all' || p.occasion.includes(occasion)) &&
+          (brand === 'all' || p.brandName === brand) &&
+          (query === '' || p.title.toLowerCase().includes(query) || p.brandName.toLowerCase().includes(query))
+      ),
+    [products, garment, vibe, occasion, brand, query]
   );
 
   // Reset the "load more" count whenever a filter changes. See the TODO in
