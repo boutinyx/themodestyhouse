@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPost, getPosts, formatDate } from '@/lib/posts';
 import { Markdown } from '@/components/Markdown';
+import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -27,7 +28,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {p.image && (
         <div className="mt-6 overflow-hidden rounded-2xl" style={{ background: 'var(--bone)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={p.image} alt={p.imageAlt || ''} className="w-full object-cover" style={{ aspectRatio: '16 / 9' }} />
+          <img
+            src={editorialVariant(p.image, 900) ?? p.image}
+            srcSet={editorialSrcSet(p.image)}
+            sizes="(max-width: 768px) 100vw, 720px"
+            alt={p.imageAlt || ''}
+            className="w-full object-cover"
+            style={{ aspectRatio: '16 / 9' }}
+            decoding="async"
+          />
         </div>
       )}
 

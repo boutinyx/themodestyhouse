@@ -66,8 +66,37 @@ for (const route of ROUTES) {
       scrollWidth: document.documentElement.scrollWidth,
       overflows: document.documentElement.scrollWidth > vw + 1,
       offenders: offenders.slice(0, 6),
+      // Text stacked on top of other text. An absolutely-positioned child whose
+      // card is made `position: static` by a mobile media query loses its
+      // containing block and resolves against a further-out ancestor instead —
+      // so every sibling lands on the SAME point and renders as mush. That is a
+      // real bug this audit shipped a clean report over (VerifiedSpotlight, all
+      // four captions at (54,3018) on iPhone 13). Identical rect + different
+      // text is the signature, and it almost never happens by accident.
+      stackedText: (() => {
+        const byRect = new Map();
+        for (const el of document.querySelectorAll('body *')) {
+          if (getComputedStyle(el).position !== 'absolute') continue;
+          const t = (el.textContent || '').trim();
+          if (!t) continue;
+          const r = el.getBoundingClientRect();
+          if (r.width === 0 || r.height === 0) continue;
+          const key = `${Math.round(r.x)},${Math.round(r.y)},${Math.round(r.width)}`;
+          if (!byRect.has(key)) byRect.set(key, []);
+          byRect.get(key).push(t.slice(0, 30));
+        }
+        return [...byRect.entries()]
+          .filter(([, texts]) => new Set(texts).size > 1)
+          .slice(0, 4)
+          .map(([at, texts]) => ({ at, texts }));
+      })(),
       // Tap targets below the 24x24 CSS px floor in WCAG 2.2 (2.5.8).
       smallTargets: [...document.querySelectorAll('a,button,[role="button"],input,select')]
+        // Nothing a person can reach is a tap target. tabindex=-1 and
+        // aria-hidden are how the spam honeypot in NewsletterSignup and the
+        // duplicated marquee copy declare themselves unreachable — reporting
+        // them as 1x1 failures trains the reader to ignore this whole list.
+        .filter((el) => el.getAttribute('tabindex') !== '-1' && !el.closest('[aria-hidden="true"]'))
         .map((el) => ({ el, r: el.getBoundingClientRect() }))
         .filter(({ r }) => r.width > 0 && r.height > 0 && (r.width < 24 || r.height < 24))
         .slice(0, 8)
@@ -85,6 +114,10 @@ for (const route of ROUTES) {
 
   const name = route === '/' ? 'home' : route.replace(/\//g, '-').replace(/^-/, '');
   await page.screenshot({ path: new URL(`${name}.png`, OUT).pathname, fullPage: false });
+  // ALSO full-page. The above-the-fold shot is what made a screenful of
+  // overlapping captions invisible to a reviewer reading a clean report — the
+  // defect was simply further down the page than the screenshot went.
+  await page.screenshot({ path: new URL(`${name}-full.png`, OUT).pathname, fullPage: true });
 
   report.push({
     route,
@@ -108,6 +141,7 @@ for (const r of report) {
   console.log(`\n${r.route}  [${r.status}]  ${flag}`);
   for (const o of r.offenders) console.log(`   overflow: <${o.tag}> right=${o.right} w=${o.width} .${o.cls}`);
   for (const t of r.smallTargets) console.log(`   tap target ${t.w}x${t.h}: <${t.tag}> ${t.text}`);
+  for (const s of r.stackedText || []) console.log(`   STACKED TEXT at ${s.at}: ${s.texts.join(' | ')}`);
   const byImpact = {};
   for (const v of r.violations) (byImpact[v.impact] ??= []).push(v);
   for (const [imp, vs] of Object.entries(byImpact)) {
@@ -116,6 +150,7 @@ for (const r of report) {
 }
 const totalV = report.reduce((a, r) => a + (r.violations?.length || 0), 0);
 const over = report.filter((r) => r.overflows).length;
+const stacked = report.reduce((a, r) => a + (r.stackedText?.length || 0), 0);
 console.log(`\n${'='.repeat(58)}`);
-console.log(`pages overflowing: ${over}/${report.length} | distinct a11y violations: ${totalV}`);
+console.log(`pages overflowing: ${over}/${report.length} | distinct a11y violations: ${totalV} | stacked text: ${stacked}`);
 console.log(`screenshots + report.json in .audit/`);

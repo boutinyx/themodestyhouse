@@ -1,8 +1,9 @@
 'use client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { Product } from '@/lib/types';
-import { Heart } from '@phosphor-icons/react';
+import { Heart, X, ArrowUpRight } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
+import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 
 type Ctx = {
   open: (p: Product) => void;
@@ -101,6 +102,10 @@ function Modal({
           style={{ background: 'rgba(20,15,20,0.92)' }}
           onClick={() => setZoomed(false)}
         >
+          {/* DELIBERATELY the unresized original. This is the zoomed view — the
+              whole point is the full-resolution photograph, so it must not be
+              routed through shopifyImage(). It loads only on click, so it costs
+              nothing until someone asks for it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.image}
@@ -121,19 +126,27 @@ function Modal({
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={product.image}
+            src={shopifyImage(product.image, 600)}
+            srcSet={shopifySrcSet(product.image, DETAIL_WIDTHS)}
+            /* Full width of the modal on a phone, half of it once the panel
+               goes side-by-side at md. */
+            sizes="(max-width: 768px) 100vw, 50vw"
             alt={product.title}
             className="w-full h-64 md:h-full object-cover cursor-zoom-in"
             onClick={() => setZoomed(true)}
+            decoding="async"
           />
           <div className="p-8 flex flex-col">
+          {/* Phosphor X, not the × character (CLAUDE.md §6). The glyph rendered
+              at a different weight and optical centre on every platform, and
+              sat in a 24px box on a phone; this is a 44px target. */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-4 text-2xl leading-none"
-            style={{ color: 'var(--muted)' }}
+            className="absolute top-2 right-2 inline-flex items-center justify-center leading-none"
+            style={{ color: 'var(--muted)', width: 44, height: 44 }}
             aria-label="Close"
           >
-            ×
+            <X size={20} />
           </button>
           <div className="brand-label">{product.brandName}</div>
           <h2 className="card-title card-title-xl mt-2">{product.title}</h2>
@@ -145,9 +158,10 @@ function Modal({
               href={product.url}
               target="_blank"
               rel="noopener noreferrer sponsored"
-              className="btn-pill text-center"
+              className="btn-pill text-center inline-flex items-center justify-center gap-2"
             >
-              Shop at {product.brandName} →
+              Shop at {product.brandName}
+              <ArrowUpRight size={15} weight="bold" />
             </a>
             <button onClick={onToggleFav} className="chip w-full py-3 inline-flex items-center justify-center gap-2" data-active={isFav}>
               <Heart size={17} weight={isFav ? 'fill' : 'regular'} />

@@ -3,9 +3,8 @@
 import { Menu } from '@base-ui-components/react/menu';
 import { CurrencyDollar } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
-import { DISPLAY_CURRENCIES, type CurrencyPreference } from '@/lib/fx';
+import { DISPLAY_CURRENCIES, CURRENCY_LABEL as LABEL, NATIVE_LABEL, type CurrencyPreference } from '@/lib/fx';
 
-const LABEL: Record<string, string> = { USD: '$ USD', GBP: '£ GBP', EUR: '€ EUR' };
 const NATIVE = 'native';
 
 /**
@@ -109,7 +108,7 @@ export function CurrencySwitcher() {
                   className="w-full justify-start text-left nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
                   data-active={preference === o}
                 >
-                  {o ? LABEL[o] : 'As listed'}
+                  {o ? LABEL[o] : NATIVE_LABEL}
                 </Menu.RadioItem>
               ))}
             </Menu.RadioGroup>

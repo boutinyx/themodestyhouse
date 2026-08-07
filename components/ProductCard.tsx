@@ -3,6 +3,7 @@ import type { Product } from '@/lib/types';
 import { Heart } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
+import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
 export function ProductCard({ p }: { p: Product }) {
   const { open, isFav, toggleFav } = useQuickView();
@@ -20,12 +21,19 @@ export function ProductCard({ p }: { p: Product }) {
         className="relative overflow-hidden border"
         style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}
       >
+        {/* srcset/sizes, so the CDN sends a card-sized photograph instead of the
+            1500–2600px original the brand uploaded. `sizes` describes the grid:
+            two columns below the 820px hand-written breakpoint, four above.
+            Measured effect: see docs/log/2026-08-07-mobile-overhaul.md. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={p.image}
+          src={shopifyImage(p.image, 400)}
+          srcSet={shopifySrcSet(p.image)}
+          sizes="(max-width: 820px) 50vw, 25vw"
           alt={p.title}
           className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"
+          decoding="async"
         />
         {/* Covers the photograph, sits BELOW the heart. Real <button>, so Enter
             and Space work without a hand-rolled onKeyDown. */}

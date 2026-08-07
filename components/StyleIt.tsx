@@ -3,6 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { STYLE_PIECES, type Piece } from '@/lib/stylePieces';
+// Phosphor, not the ‹ › glyphs these replace. Text glyphs vary in weight and
+// alignment across platforms, never match the brand letterforms, and cannot
+// take a `weight` prop — CLAUDE.md §6.
+import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 const TOPS = STYLE_PIECES.tops;
 const BOTTOMS = STYLE_PIECES.bottoms;
@@ -83,6 +87,15 @@ const ARROW_STYLE: React.CSSProperties = {
   border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)',
   alignSelf: 'flex-start',
 };
+/** The mix frame on a phone, where the two pieces sit SIDE BY SIDE rather than
+ *  stacked (Tina's call — stacked, the picker ran most of a screen tall).
+ *
+ *  Derived, not picked: at 390px the section's px-8 leaves 326, the card's 20px
+ *  padding leaves 286, the column's px-2 leaves 270, and a gap-3 between two
+ *  slots leaves 129 each. 116 fits that with room for the caption, and every
+ *  garment keeps its relative size because the artwork cap is SCALED by
+ *  116/170 rather than flattened to one number. */
+const MIX_FRAME_SM = { w: 116, h: 128 };
 
 function Slot({
   piece,
@@ -92,6 +105,7 @@ function Slot({
   arrowAt,
   artMaxH,
   stackCaption,
+  sm,
 }: {
   piece: Piece;
   frame: { w: number; h: number };
@@ -107,6 +121,11 @@ function Slot({
    *  with a middot. Costs a CAPTION_LINE of height, which DRESS_FRAME accounts
    *  for, so it is passed only by the dress slot. */
   stackCaption?: boolean;
+  /** Phone-sized frame. When given, the slot shrinks to it below `md` and the
+   *  arrows drop UNDERNEATH the artwork instead of flanking it — two flanked
+   *  slots cannot fit side by side in 390px, because the arrows alone are 92px
+   *  of the 129px each slot gets. Omitted by the dress, which is desktop-only. */
+  sm?: { w: number; h: number };
 }) {
   /* piece.maxW is a px cap on the ARTWORK, which may exceed the frame — that is
      how one garment gets bigger without dragging the arrows out with it. It is
@@ -117,37 +136,73 @@ function Slot({
     ? `min(${piece.maxW}px, ${((piece.maxW / frame.w) * 100).toFixed(1)}%)`
     : '100%';
 
+  /* Everything responsive here goes through CSS custom properties rather than a
+     viewport check in JS. A `useMediaQuery` would have no answer during SSR, so
+     it would either mismatch on hydration or flash the desktop size in first.
+     The class names below are static strings, which is also what Tailwind needs
+     in order to generate them at all — `w-[${x}px]` would never be emitted. */
+  const smFrame = sm ?? frame;
+  const artDesktop = piece.maxH ?? artMaxH ?? frame.h;
+  // Scaled, not flattened: each top carries its own maxH so they cover equal
+  // AREA (see Piece.maxH), and one shared phone cap would throw that away.
+  const artSm = Math.round(artDesktop * (smFrame.h / frame.h));
+
   return (
-    <div className="flex flex-col items-center">
+    <div
+      className="flex flex-col items-center min-w-0 flex-1 md:flex-initial"
+      style={{
+        ['--fw-sm' as string]: `${smFrame.w}px`,
+        ['--fh-sm' as string]: `${smFrame.h}px`,
+        ['--fw' as string]: `${frame.w}px`,
+        ['--fh' as string]: `${frame.h}px`,
+        ['--art-sm' as string]: `${artSm}px`,
+        ['--art' as string]: `${artDesktop}px`,
+        ['--amt' as string]: `${(arrowAt ?? frame.h / 2) - ARROW / 2}px`,
+      }}
+    >
       {/* minWidth:0 lets the frame shrink instead of overflowing. The arrows
           stay shrink-0, so at narrow widths the ARTWORK gives way, not the
           controls. Without this a fixed 182px frame + two 34px arrows only
           fitted the column at exactly 1220px and spilled at every width below,
           which is what made the dress look off-centre. */}
-      <div className="flex items-start gap-3 justify-center w-full" style={{ minWidth: 0 }}>
+      {/* flex-wrap + order + basis-full is what moves the arrows under the
+          artwork on a phone without a second copy of the markup: below `md` the
+          image claims the whole line (order-1), so both arrows wrap onto the
+          next one; at `md` nothing wraps and `order` puts them back to
+          prev / image / next. */}
+      <div
+        className="flex flex-wrap md:flex-nowrap items-start justify-center w-full gap-x-6 gap-y-2 md:gap-3"
+        style={{ minWidth: 0 }}
+      >
         <button
           aria-label="Previous"
           onClick={onPrev}
-          className="shrink-0 flex items-center justify-center"
-          style={{ ...ARROW_STYLE, marginTop: (arrowAt ?? frame.h / 2) - ARROW / 2 }}
+          className="shrink-0 flex items-center justify-center order-2 md:order-1 mt-0 md:mt-[var(--amt)]"
+          style={ARROW_STYLE}
         >
-          ‹
+          <CaretLeft size={16} weight="bold" />
         </button>
-        <div className="flex items-center justify-center" style={{ width: frame.w, maxWidth: '100%', height: frame.h, minWidth: 0 }}>
+        <div className="flex items-center justify-center basis-full md:basis-auto order-1 md:order-2 min-w-0 w-[var(--fw-sm)] h-[var(--fh-sm)] md:w-[var(--fw)] md:h-[var(--fh)] max-w-full mx-auto md:mx-0">
+          {/* lazy: this is also what keeps the desktop-only dress column from
+              costing a phone anything — a lazy image in a display:none box is
+              never fetched. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={piece.src}
             alt={piece.brand ? `${piece.brand} ${piece.label}` : piece.label}
-            style={{ maxWidth: artMaxW, maxHeight: piece.maxH ?? artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            loading="lazy"
+            decoding="async"
+            className="max-h-[var(--art-sm)] md:max-h-[var(--art)]"
+            style={{ maxWidth: artMaxW, objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button
           aria-label="Next"
           onClick={onNext}
-          className="shrink-0 flex items-center justify-center"
-          style={{ ...ARROW_STYLE, marginTop: (arrowAt ?? frame.h / 2) - ARROW / 2 }}
+          className="shrink-0 flex items-center justify-center order-3 mt-0 md:mt-[var(--amt)]"
+          style={ARROW_STYLE}
         >
-          ›
+          <CaretRight size={16} weight="bold" />
         </button>
       </div>
       {/* w-full + text-center: the caption is longer than the arrows+image row
@@ -247,17 +302,34 @@ export default function StyleIt() {
             <div className="flex-1 flex flex-col items-center px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Mix &amp; match</div>
               <div className="eyebrow mt-1">Top + Bottom</div>
-              <div className="flex-1 flex flex-col items-center justify-start gap-5 mt-4">
-                <Slot piece={t} frame={TOP_FRAME} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
-                <Slot piece={b} frame={TOP_FRAME} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
+              {/* Side by side on a phone, stacked from md up. Stacked, the two
+                  slots plus their captions ran ~460px tall on their own, which
+                  is most of a phone screen for one component. */}
+              <div className="flex-1 w-full flex flex-row md:flex-col items-start md:items-center justify-center gap-3 md:gap-5 mt-4">
+                <Slot piece={t} frame={TOP_FRAME} sm={MIX_FRAME_SM} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
+                <Slot piece={b} frame={TOP_FRAME} sm={MIX_FRAME_SM} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
               </div>
             </div>
 
             <div className="hidden md:block" style={{ width: 1, background: 'var(--hairline)' }} />
-            <div className="block md:hidden" style={{ height: 1, background: 'var(--hairline)', margin: '24px 0' }} />
 
-            {/* DRESS */}
-            <div className="flex-1 flex flex-col items-center px-2" style={{ minWidth: 0 }}>
+            {/* DRESS — desktop only.
+                On a phone this used to stack UNDER the mix-and-match column, which
+                made the card roughly twice as tall as the screen and pushed the
+                whole picker into a long scroll. Tina's call: the phone shows the
+                mix-and-match pair only.
+
+                Hidden with CSS rather than removed from the tree, deliberately:
+                dropping it conditionally would need a viewport check that does not
+                exist during SSR, so it would either mismatch on hydration or flash
+                the dress in before removing it. The images below carry
+                loading="lazy", and a lazy image inside a display:none box is never
+                fetched — verified, see docs/log/2026-08-07-mobile-overhaul.md — so
+                the hidden column costs a phone no bytes.
+
+                NOTE: the paragraph on the left still reads "or find the dress".
+                That is Tina's copy and is left untouched (§10.18). */}
+            <div className="hidden md:flex flex-1 flex-col items-center px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Or a dress</div>
               <div className="eyebrow mt-1">One &amp; done</div>
               <div className="flex-1 flex items-start justify-center mt-4">

@@ -35,63 +35,63 @@ export type Piece = {
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
   "tops": [
     {
-      "src": "/style-it/top_8.png",
+      "src": "/style-it/top_8.webp",
       "brand": "Hijab Boutique",
       "label": "Oversized Top",
       "color": "#d5ada4",
       "maxH": 140
     },
     {
-      "src": "/style-it/top_9.png",
+      "src": "/style-it/top_9.webp",
       "brand": "Hijab Boutique",
       "label": "Ruffle Blouse",
       "color": "#f7e4a9",
       "maxH": 147
     },
     {
-      "src": "/style-it/top_11.png",
+      "src": "/style-it/top_11.webp",
       "brand": "Jawda",
       "label": "Olive Print Top",
       "color": "#9f947a",
       "maxH": 136
     },
     {
-      "src": "/style-it/top_0.png",
+      "src": "/style-it/top_0.webp",
       "brand": "Veiled",
       "label": "Rouched Top",
       "color": "#cab8a1",
       "maxH": 157
     },
     {
-      "src": "/style-it/top_1.png",
+      "src": "/style-it/top_1.webp",
       "brand": "Glow Modesty",
       "label": "Poplin Shirt",
       "color": "#4b2e2a",
       "maxH": 147
     },
     {
-      "src": "/style-it/top_3.png",
+      "src": "/style-it/top_3.webp",
       "brand": "PLT",
       "label": "Cape Ruched Top",
       "color": "#ecded7",
       "maxH": 163
     },
     {
-      "src": "/style-it/top_4.png",
+      "src": "/style-it/top_4.webp",
       "brand": "Veiled",
       "label": "Layla Top",
       "color": "#d8a676",
       "maxH": 145
     },
     {
-      "src": "/style-it/top_5.png",
+      "src": "/style-it/top_5.webp",
       "brand": "Veiled",
       "label": "Textured Top",
       "color": "#442f34",
       "maxH": 176
     },
     {
-      "src": "/style-it/top_6.png",
+      "src": "/style-it/top_6.webp",
       "brand": "Veiled",
       "label": "Knit Drape Top",
       "color": "#e5c8bf",
@@ -100,49 +100,49 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
   ],
   "bottoms": [
     {
-      "src": "/style-it/bottom_7.png",
+      "src": "/style-it/bottom_7.webp",
       "brand": "Nasiba",
       "label": "Solace Wide Leg",
       "color": "#545253"
     },
     {
-      "src": "/style-it/bottom_8.png",
+      "src": "/style-it/bottom_8.webp",
       "brand": "Merrachi",
       "label": "Frayed Hem Pants",
       "color": "#d6cdbb"
     },
     {
-      "src": "/style-it/bottom_0.png",
+      "src": "/style-it/bottom_0.webp",
       "brand": "Niswa",
       "label": "Maha Pleated",
       "color": "#503325"
     },
     {
-      "src": "/style-it/bottom_2.png",
+      "src": "/style-it/bottom_2.webp",
       "brand": "Glow Modesty",
       "label": "Gilded Maxi",
       "color": "#746440"
     },
     {
-      "src": "/style-it/bottom_3.png",
+      "src": "/style-it/bottom_3.webp",
       "brand": "Bershka",
       "label": "Flare Jean",
       "color": "#7492ab"
     },
     {
-      "src": "/style-it/bottom_4.png",
+      "src": "/style-it/bottom_4.webp",
       "brand": "PLT",
       "label": "Satin Maxi Skirt",
       "color": "#eed1cf"
     },
     {
-      "src": "/style-it/bottom_5.png",
+      "src": "/style-it/bottom_5.webp",
       "brand": "Veiled",
       "label": "Layla Pants",
       "color": "#d4a072"
     },
     {
-      "src": "/style-it/bottom_6.png",
+      "src": "/style-it/bottom_6.webp",
       "brand": "Veiled",
       "label": "Leather Pants",
       "color": "#4e1f2a"
@@ -150,26 +150,26 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
   ],
   "dresses": [
     {
-      "src": "/style-it/dress_0.png",
+      "src": "/style-it/dress_0.webp",
       "brand": "Glow Modesty",
       "label": "Floral Chiffon",
       "color": "#dfb7b9",
       "maxW": 145
     },
     {
-      "src": "/style-it/dress_2.png",
+      "src": "/style-it/dress_2.webp",
       "brand": "Glow Modesty",
       "label": "Celestia Maxi",
       "color": "#b0be9d"
     },
     {
-      "src": "/style-it/dress_3.png",
+      "src": "/style-it/dress_3.webp",
       "brand": "Niswa",
       "label": "Chiffon Maxi",
       "color": "#746647"
     },
     {
-      "src": "/style-it/dress_4.png",
+      "src": "/style-it/dress_4.webp",
       "brand": "Veiled",
       "label": "Butterfly Abaya",
       "color": "#1c2c24",

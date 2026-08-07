@@ -1,4 +1,7 @@
 import Link from 'next/link';
+// ssr entrypoint: this is a server component (CLAUDE.md §6).
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { shopifyImage } from '@/lib/shopifyImage';
 
 type House = {
   slug: string;
@@ -32,15 +35,22 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
             Every label here has passed our review for craft, sizing and ethics, freshly
             stamped and added to the house.
           </p>
-          <Link className="tmh-link" href="/designers">All designers &rarr;</Link>
+          {/* Phosphor, not &rarr; (CLAUDE.md §6). The underline is on the link
+              itself, so the icon has to sit inside it to be underlined too. */}
+          <Link className="tmh-link" href="/designers">
+            All designers <ArrowRight size={13} weight="bold" />
+          </Link>
         </div>
 
         {/* RIGHT: fanned cards */}
         <div className="tmh-stage">
           {list.map((h, i) => {
             const verified = i === list.length - 1;
+            // A CSS background cannot carry srcset, so the width is requested
+            // directly. The card renders ~228px wide; 460 covers it at 2x. One
+            // of these was measured at 155KB before.
             const bg = h.image
-              ? `${OVERLAY}, url("${h.image}")`
+              ? `${OVERLAY}, url("${shopifyImage(h.image, 460)}")`
               : `${OVERLAY}, ${FALLBACK[i % FALLBACK.length]}`;
             return (
               <a
@@ -72,7 +82,7 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
         .tmh-title{font-family:var(--font-display),serif;font-weight:500;font-size:clamp(40px,5.6vw,64px);line-height:1.02;color:var(--ink)}
         .tmh-title em{font-style:italic;color:var(--plum)}
         .tmh-copy{color:#6f6353;font-size:17px;line-height:1.6;max-width:42ch;margin-top:22px}
-        .tmh-link{display:inline-block;margin-top:26px;font-family:var(--font-label),serif;text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--aubergine);border-bottom:1px solid var(--aubergine);padding-bottom:3px}
+        .tmh-link{display:inline-flex;align-items:center;gap:6px;min-height:32px;margin-top:26px;font-family:var(--font-label),serif;text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--aubergine);border-bottom:1px solid var(--aubergine);padding-bottom:3px}
 
         .tmh-stage{position:relative;height:500px;max-width:560px}
         .tmh-card{
@@ -104,7 +114,16 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
           .tmh-vtext{order:0}
           .tmh-stage{order:1}
           .tmh-stage{height:auto;display:flex;gap:16px;overflow-x:auto;padding:8px 2px 16px}
-          .tmh-card{position:static;flex:0 0 auto;transform:none;--rot:0deg}
+          /* position:relative, NOT static. .tmh-cap and .tmh-badge are absolutely
+             positioned against their card; making the card static removed it as
+             their containing block, so all four captions resolved against
+             .tmh-stage instead and stacked on the identical point — measured at
+             iPhone 13: every caption at (54, 3018), rendering "Veiled", "Inayah",
+             "Glow Modesty" and "Aab" on top of one another as illegible mush.
+             left/top must be reset too: .p1–.p4 set them for the desktop fan, and
+             under position:relative they would become offsets rather than being
+             ignored as they are under static. */
+          .tmh-card{position:relative;left:auto;top:auto;flex:0 0 auto;transform:none;--rot:0deg}
           .tmh-card:hover{transform:translateY(-6px)}
         }
       `}</style>

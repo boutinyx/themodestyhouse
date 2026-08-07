@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getPosts, formatDate } from '@/lib/posts';
+import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 
 export const metadata: Metadata = {
   title: 'The Edit | The Modesty House',
@@ -27,7 +28,15 @@ export default function EditorialPage() {
             {p.image && (
               <div className="overflow-hidden rounded-xl mb-4 md:mb-0" style={{ aspectRatio: '16 / 10', background: 'var(--bone)' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.image} alt={p.imageAlt || ''} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img
+                  src={editorialVariant(p.image, 900) ?? p.image}
+                  srcSet={editorialSrcSet(p.image)}
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  alt={p.imageAlt || ''}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             )}
             <div>

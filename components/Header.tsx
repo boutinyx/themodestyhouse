@@ -35,8 +35,12 @@ export function Header() {
         style={{ borderColor: 'var(--hairline)', background: '#ffffff', boxShadow: '0 4px 24px rgba(43,38,34,0.14)' }}
       >
         <Link href="/" className="flex items-center gap-4">
+          {/* logo-240.webp, not logo.png: the PNG was 308KB to fill a 34px-wide
+              box, on every page of the site. New filename rather than new bytes
+              at the old path — public/ is served with a 4-hour max-age and is
+              not fingerprinted (CLAUDE.md §6). */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="The Modesty House crest" className="h-12 w-auto" />
+          <img src="/logo-240.webp" alt="The Modesty House crest" width={44} height={48} className="h-12 w-auto" />
           <span aria-hidden className="block w-px h-10" style={{ background: 'var(--hairline)' }} />
           <span
             className="uppercase"
@@ -82,8 +86,15 @@ export function Header() {
               and the SAME LENGTH (h-10). It was h-8 on the reasoning that a row
               of controls needs less than the full-height crest, but two rules in
               one bar reading at different lengths just looks unresolved. */}
-          <span aria-hidden className="block w-px h-10 shrink-0" style={{ background: 'var(--hairline)' }} />
-          <CurrencySwitcher />
+          {/* Currency is DESKTOP-ONLY in the bar. On a phone it moved inside the
+              menu panel (components/MobileNav) — Tina's call, so the pill has
+              room to breathe: crest + wordmark + heart + hamburger was four
+              controls and two dividers in 390px, and the heart ended up crammed
+              against the "HOUSE" of the wordmark. Its divider goes with it. */}
+          <span aria-hidden className="hidden md:block w-px h-10 shrink-0" style={{ background: 'var(--hairline)' }} />
+          <div className="hidden md:block">
+            <CurrencySwitcher />
+          </div>
           {/* Phone navigation, INSIDE the pill. What it replaces was a
               horizontally-scrolling row sitting on the hero photograph: measured
               at iPhone 13 width, 485px of content in a 358px box, with Editorial

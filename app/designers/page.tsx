@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { houses, type House } from '@/lib/houses';
+import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
 export const metadata: Metadata = {
   title: 'Designers | The Modesty House',
@@ -51,9 +52,13 @@ function Tile({ b, eager, seal }: { b: House; eager: boolean; seal: boolean }) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={b.image}
+          src={shopifyImage(b.image, 600)}
+          srcSet={shopifySrcSet(b.image)}
+          /* Two-up on a phone, six-up on the widest grid. */
+          sizes="(max-width: 820px) 50vw, 200px"
           alt={b.name}
           loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           /* Pulled down from the top: the arch eats the upper corners, and on a
              model shot that is where the head and neckline sit. */

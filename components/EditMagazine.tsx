@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { shopifyImage } from '@/lib/shopifyImage';
 
 export default function EditMagazine({ featureImage }: { featureImage?: string }) {
   return (
@@ -34,7 +35,9 @@ export default function EditMagazine({ featureImage }: { featureImage?: string }
             className="edit-feature"
             style={{
               backgroundImage: featureImage
-                ? `linear-gradient(180deg,transparent 40%,rgba(28,12,34,.8)), url("${featureImage}")`
+                /* No srcset on a CSS background, so the size is requested in
+                   the URL. Local editorial images pass through untouched. */
+                ? `linear-gradient(180deg,transparent 40%,rgba(28,12,34,.8)), url("${shopifyImage(featureImage, 900)}")`
                 : 'linear-gradient(160deg,#c9cbb0,#8f9670)',
             }}
           >

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useCurrency } from './CurrencyProvider';
+import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
 type Pick = {
   id: string;
@@ -64,10 +65,16 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
             <div className="relative overflow-hidden" style={{ borderRadius: 6, border: '1px solid var(--hairline)', background: 'var(--bone)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={p.image}
+                src={shopifyImage(p.image, 460)}
+                srcSet={shopifySrcSet(p.image)}
+                /* The card is a fixed 230px at every width (see the wrapper),
+                   so `sizes` is a constant rather than a viewport expression. */
+                sizes="230px"
                 alt={p.title}
                 className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 style={{ height: 300 }}
+                loading="lazy"
+                decoding="async"
               />
               <span className="badge absolute top-3 left-3">✦ Editor&rsquo;s pick</span>
             </div>

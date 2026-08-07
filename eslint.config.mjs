@@ -21,6 +21,10 @@ const eslintConfig = defineConfig([
     "higgsfield-library/**",
     "public/hero-gen/**",
     "data/.backups/**",
+    // Output of `npm run audit:mobile` — screenshots, report.json and any
+    // throwaway measuring scripts. Gitignored, so linting it can only ever
+    // fail the build on a file that is not part of the product.
+    ".audit/**",
   ]),
 ]);
 

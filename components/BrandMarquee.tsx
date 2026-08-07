@@ -1,4 +1,5 @@
 import type { House } from '@/lib/houses';
+import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
 /**
  * The 3D wall of houses on /designers — the brands that are not among the six
@@ -68,9 +69,16 @@ export function BrandMarquee({ houses, columns = 4 }: { houses: House[]; columns
                     {h.image && (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={h.image}
+                        src={shopifyImage(h.image, 352)}
+                        srcSet={shopifySrcSet(h.image, [176, 264, 352])}
+                        /* Fixed 176px tile at every width (see the wrapper's
+                           inline width), so this is a constant, not a viewport
+                           expression. The marquee duplicates its columns, so a
+                           tile is fetched once and reused by the copy. */
+                        sizes="176px"
                         alt={h.name}
                         loading="lazy"
+                        decoding="async"
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     )}

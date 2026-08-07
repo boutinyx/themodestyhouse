@@ -29,6 +29,14 @@ export type DisplayCurrency = (typeof DISPLAY_CURRENCIES)[number];
  *  mode in which a displayed price is exact. */
 export type CurrencyPreference = DisplayCurrency | null;
 
+/** Labels for the currency choices. Lives here, not in a component, because
+ *  there are now TWO controls offering the same choice — the desktop header
+ *  (components/CurrencySwitcher) and the phone menu (components/MobileNav) —
+ *  and they must not be able to drift apart. */
+export const CURRENCY_LABEL: Record<string, string> = { USD: '$ USD', GBP: '£ GBP', EUR: '€ EUR' };
+/** What `preference === null` is called in the UI. */
+export const NATIVE_LABEL = 'As listed';
+
 export function hasRate(currency: string): boolean {
   return typeof FX_RATES[currency] === 'number' && FX_RATES[currency] > 0;
 }

@@ -15,7 +15,16 @@ function Col({ head, children }: { head: string; children: React.ReactNode }) {
 function FLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={href} className="hover:opacity-100 transition" style={{ color: '#b9ad9c' }}>
+      {/* inline-flex + min-height: at 14px type with the list's own spacing the
+          hit area was a 20px-tall strip, against the 24px floor in WCAG 2.2
+          SC 2.5.8 — and 20px is simply hard to hit with a thumb. Growing the
+          BOX rather than adding padding keeps the visual rhythm of the column
+          unchanged. */}
+      <Link
+        href={href}
+        className="inline-flex items-center hover:opacity-100 transition"
+        style={{ color: '#b9ad9c', minHeight: 32 }}
+      >
         {children}
       </Link>
     </li>
@@ -32,10 +41,10 @@ export function Footer() {
             <p className="mt-3 text-sm max-w-xs" style={{ color: 'var(--muted-on-dark)' }}>
               A curated index of modest fashion houses — vetted for craft and taste.
             </p>
-            <div className="flex items-center gap-4 mt-5" style={{ color: '#b9ad9c' }}>
-              <a href="https://pinterest.com" aria-label="Pinterest" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition"><PinterestLogo size={20} /></a>
-              <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition"><InstagramLogo size={20} /></a>
-              <a href="https://tiktok.com" aria-label="TikTok" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition"><TiktokLogo size={20} /></a>
+            <div className="flex items-center gap-1 mt-5" style={{ color: '#b9ad9c' }}>
+              <a href="https://pinterest.com" aria-label="Pinterest" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center hover:opacity-70 transition" style={{ width: 44, height: 44, marginLeft: -12 }}><PinterestLogo size={20} /></a>
+              <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center hover:opacity-70 transition" style={{ width: 44, height: 44 }}><InstagramLogo size={20} /></a>
+              <a href="https://tiktok.com" aria-label="TikTok" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center hover:opacity-70 transition" style={{ width: 44, height: 44 }}><TiktokLogo size={20} /></a>
             </div>
           </div>
 
@@ -91,10 +100,13 @@ export function Footer() {
 
         <div className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>
           <div className="eyebrow" style={{ color: 'var(--muted-on-dark)' }}>© 2026 The Modesty House · themodestyhouse.com</div>
+          {/* 10px eyebrow type gave these a 15px-tall hit area. inline-flex with
+              a min-height grows the target without changing the type or the
+              baseline the row sits on. */}
           <div className="eyebrow flex items-center gap-3" style={{ color: 'var(--muted-on-dark)' }}>
-            <Link href="/privacy" style={{ color: 'inherit' }}>Privacy</Link>
+            <Link href="/privacy" className="inline-flex items-center" style={{ color: 'inherit', minHeight: 32 }}>Privacy</Link>
             <span aria-hidden="true">·</span>
-            <Link href="/terms" style={{ color: 'inherit' }}>Terms</Link>
+            <Link href="/terms" className="inline-flex items-center" style={{ color: 'inherit', minHeight: 32 }}>Terms</Link>
           </div>
         </div>
       </div>
