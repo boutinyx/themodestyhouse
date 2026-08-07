@@ -24,14 +24,53 @@ function hash(s: string): number {
   return h >>> 0;
 }
 
+/**
+ * How EDITORIAL a garment photograph tends to be, lower is better.
+ *
+ * A house's card is a portrait of the house, so it wants a full-length look. The
+ * card used to be a pure hash over every product, which is stable but blind: on
+ * Dignitii it landed on a headless crop of tracksuit bottoms and trainers. Full-
+ * length garments are shot head-to-toe on a model; trousers and tops are shot
+ * cropped; a hijab is a head-and-shoulders shot; swim is both a crop and rarely
+ * the face a brand leads with.
+ */
+const GARMENT_RANK: Record<string, number> = {
+  abaya: 0,
+  dress: 0,
+  set: 1,
+  skirt: 2,
+  top: 3,
+  trousers: 4,
+  hijab: 5,
+  swim: 6,
+};
+
+/** A .png in these feeds is almost always a flat cutout or packshot; a
+ *  .jpg/.webp is a photograph. Same signal pickImage uses (lib/normalize.ts). */
+const isCutout = (src: string) => /\.png(\?|$)/i.test(src);
+
+function score(garment: string, image: string): number {
+  return (GARMENT_RANK[garment] ?? 4) * 2 + (isCutout(image) ? 1 : 0);
+}
+
 function imagesByBrand(): { pool: Record<string, string[]>; override: Record<string, string> } {
-  const pool: Record<string, string[]> = {};
+  const scored: Record<string, { image: string; score: number }[]> = {};
   const override: Record<string, string> = {};
   for (const p of getProducts()) {
     if (!p.image) continue;
-    (pool[p.brandSlug] ??= []).push(p.image);
+    (scored[p.brandSlug] ??= []).push({ image: p.image, score: score(p.garment, p.image) });
     const handle = HERO_OVERRIDE[p.brandSlug];
     if (handle && p.url.endsWith(`/products/${handle}`)) override[p.brandSlug] = p.image;
+  }
+  // Keep only the best-scoring tier per house, then let the existing hash choose
+  // within it — so the pick stays deterministic and still varies per surface,
+  // but chooses among the brand's most editorial photographs rather than all of
+  // them. Brands that only shoot one kind of thing are unaffected: their whole
+  // pool shares a score and the tier is the pool.
+  const pool: Record<string, string[]> = {};
+  for (const [slug, list] of Object.entries(scored)) {
+    const best = Math.min(...list.map((x) => x.score));
+    pool[slug] = list.filter((x) => x.score === best).map((x) => x.image);
   }
   return { pool, override };
 }
