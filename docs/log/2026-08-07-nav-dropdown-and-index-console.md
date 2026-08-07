@@ -109,3 +109,69 @@ search input present:       1
   screenshot was of production, running an older build. Nothing was changed for this.
 - `IndexBar.tsx` is unreferenced dead code and duplicates the directory console. Deleting
   it would remove a file that will otherwise keep drifting out of sync with the real one.
+
+---
+
+## Addendum — 2026-08-07: both visual fixes were wrong, and are now measured
+
+Tina reported the deployed dropdown rendering as a heap of overlapping labels. Both visual
+changes in the original entry shipped unverified — the note above said they "need an eye on
+localhost", which was not good enough: a CSS layout was shipped that had never been rendered.
+
+**Fixed by measuring, not guessing.** Node 24 has a native `WebSocket`, and Chrome is
+installed, so headless Chrome was driven over the DevTools Protocol against a real
+`next start` build: hover Directory, then read `getBoundingClientRect()` for every nav item
+and every panel cell.
+Script: `scratchpad/measure-nav.mjs` (not committed).
+
+### Bug 1 — the panel collapsed and overlapped
+`gridTemplateColumns: repeat(3, minmax(0, 1fr))`. The panel is absolutely positioned, so it
+shrink-to-fits; `minmax(0, …)` explicitly permits a column to shrink **below its content
+width**, and because the items are `whitespace-nowrap` the labels then overflowed their
+tracks and drew on top of each other.
+
+Fix: `repeat(3, max-content)`. Measured after:
+
+```
+templateColumns: "150.5px 175.281px 186.969px"
+panel: 560.8 x 84    items: 9    rows: 3    cols: 3
+zeroWidth: []        overlaps: []
+```
+
+### Bug 2 — the alignment fix did not fix the alignment
+The `line-height: 1` change equalised the item *heights* (all 12px) but not their
+*positions*. Measured:
+
+```
+Directory 47.75   Styles 47.75   Designers 47.00   Editorial 47.00   About 47.00
+```
+
+The real cause was the wrapper `<div className="relative">` around the two dropdowns. As a
+plain block it placed its inline-flex child in a **line box**, and the line box's leading
+pushed those two items down 0.75px. The bare links have no wrapper and no line box — which
+is why exactly the un-wrapped items ("Designers" and its neighbours) sat higher.
+
+Fix: `className="relative flex items-center"`, removing the line box. Measured after:
+
+```
+Directory 47   Styles 47   Designers 47   Editorial 47   About 47   (all height 12)
+```
+
+## Verification
+
+```
+$ npm run lint  → 0     $ npx tsc --noEmit → clean     $ npm test → 362 passed
+$ npm run build → 34/34
+```
+
+Plus a rendered screenshot of the open panel, checked by eye: 3x3 grid, no overlap, nav
+level.
+
+## Rule earned
+
+**A CSS layout change is not done until it has been rendered and measured.** "Tests pass and
+it builds" says nothing about layout — every check that passed here passed just as happily
+while the menu was unreadable. Where a browser is not wired up, headless Chrome over CDP
+takes about five minutes to set up and turns a guess into a measurement. Flagging a visual
+change as "please check this yourself" is not a substitute; it ships the defect and moves
+the cost onto Tina.

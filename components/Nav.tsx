@@ -34,7 +34,13 @@ function Dropdown({
 
   return (
     <div
-      className="relative"
+      // `flex items-center`, not just `relative`. As a plain block this wrapper
+      // put its inline-flex child in a LINE BOX, and the line box's leading
+      // pushed Directory and Styles 0.75px below Designers/Editorial/About,
+      // which have no wrapper. Measured, not guessed: the two groups reported
+      // top 47.75 vs 47.00. Making the wrapper a flex container removes the line
+      // box entirely, so every nav item shares one vertical centre.
+      className="relative flex items-center"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       onKeyDown={(e) => {
@@ -74,9 +80,15 @@ function Dropdown({
               boxShadow: '0 8px 30px rgba(43,38,34,0.14)',
             }}
           >
+            {/* max-content, NOT minmax(0,1fr). This panel is absolutely
+                positioned, so it shrink-to-fits; minmax(0,…) explicitly lets a
+                column shrink below its content width, and because the items are
+                whitespace-nowrap the labels then overflowed and overlapped each
+                other. max-content sizes each column to its widest label, which
+                is what makes the panel a wide rectangle rather than a heap. */}
             <div
-              className="grid gap-x-5"
-              style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+              className="grid gap-x-6"
+              style={{ gridTemplateColumns: `repeat(${columns}, max-content)` }}
             >
               {items.map((it) => (
                 <Link
