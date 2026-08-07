@@ -12,10 +12,15 @@ const BADGE: Record<string, string> = {
   'editors-pick': "✦ Editor's Pick",
 };
 
-/** The founder's pick, in the order Tina gave them. Chosen by hand, so it is a
- *  list of slugs rather than anything derived — a badge or a catalogue count
- *  would only approximate it and would drift the moment either changed. */
-const FOUNDERS_PICK = ['veiled', 'aab', 'summer-evenings', 'inayah', 'glow-modesty'];
+/** Reading order for the vetted row, as Tina gave them. MEMBERSHIP is not set
+ *  here — that is the `badge` in data/brands.ts, the one source of truth, which
+ *  the homepage rail reads too. This only decides who stands where; a house
+ *  badged later and not listed here simply falls in after them. */
+const VERIFIED_ORDER = ['veiled', 'aab', 'summer-evenings', 'inayah', 'glow-modesty'];
+const rank = (slug: string) => {
+  const i = VERIFIED_ORDER.indexOf(slug);
+  return i === -1 ? VERIFIED_ORDER.length : i;
+};
 
 const PER_ROW = 5;
 const ROWS_PER_PAGE = 6;
@@ -84,21 +89,12 @@ export default async function DesignersPage({
   searchParams: Promise<{ page?: string }>;
 }) {
   const all = houses();
-  const bySlug = new Map(all.map((h) => [h.slug, h]));
-  const picked = FOUNDERS_PICK.map((s) => bySlug.get(s)).filter((h): h is House => Boolean(h));
 
-  // Vetted houses lead the index — there are exactly five, so they fill the
-  // first row on their own — then everyone else in catalogue order.
-  //
-  // The founder's pick is held out of that tail, or four of the five would
-  // appear twice on page one: Inayah and Glow Modesty sit inside the first
-  // twenty-five by catalogue order. Veiled and Aab still repeat, because they
-  // are genuinely in both selections — she picked two vetted houses.
-  const vetted = all.filter((h) => h.badge);
-  const index = [
-    ...vetted,
-    ...all.filter((h) => !h.badge && !FOUNDERS_PICK.includes(h.slug)),
-  ];
+  // The vetted houses lead, and there are exactly five, so they fill the first
+  // row on their own. Everyone else follows in catalogue order. No house is
+  // listed twice: the pick and the vetted set are now the same five.
+  const vetted = all.filter((h) => h.badge).sort((a, b) => rank(a.slug) - rank(b.slug));
+  const index = [...vetted, ...all.filter((h) => !h.badge)];
 
   const pages = Math.max(1, Math.ceil(index.length / PER_PAGE));
   const raw = Number((await searchParams).page ?? '1');
@@ -112,22 +108,7 @@ export default async function DesignersPage({
         A curated index of modest fashion, brand by brand — vetted for craft and taste.
       </p>
 
-      {page === 1 && (
-        <>
-          <h2 className="eyebrow mt-14 mb-6">Founder&rsquo;s pick</h2>
-          <div className={grid}>
-            {picked.map((b) => (
-              <Tile key={b.slug} b={b} eager seal={false} />
-            ))}
-          </div>
-        </>
-      )}
-
-      <h2 className="eyebrow mt-20 mb-6">
-        The index · {index.length}
-        {pages > 1 && <> · page {page} of {pages}</>}
-      </h2>
-      <div className={grid}>
+      <div className={`${grid} mt-14`}>
         {shown.map((b, i) => (
           <Tile
             key={b.slug}
