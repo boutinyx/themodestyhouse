@@ -101,7 +101,11 @@ export function CurrencySwitcher() {
                   // times). A currency is picked once, so the menu lingering
                   // after the choice just reads as stuck.
                   closeOnClick
-                  className="block w-full text-center nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
+                  // justify-center, not just text-center: .nav-link sets
+                  // `display: inline-flex`, so the row is a flex container and
+                  // text-align has nothing to act on — which is why these stayed
+                  // left-aligned when text-center was added.
+                  className="w-full justify-center text-center nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
                   data-active={preference === o}
                 >
                   {o ? LABEL[o] : 'As listed'}

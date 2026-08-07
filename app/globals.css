@@ -299,35 +299,38 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
-summary:focus-visible,
-/* Base UI (header nav, currency) renders menu parts as DIVS carrying menu roles,
-   not <button>/<a>, so the list above never matched them and Chrome fell back to
-   its own blue ring. These belong to the same rule. */
-[role="menuitem"]:focus-visible,
-[role="menuitemradio"]:focus-visible,
-[role="menuitemcheckbox"]:focus-visible {
+summary:focus-visible {
   outline: 2px solid var(--aubergine);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* The popup CONTAINER takes focus as an implementation detail of the menu
-   opening — that is not the user focusing anything, so it gets no ring. The
-   items inside it are what show focus. */
+/* Menu rows carry NO box at all — no ring, no fill.
+   Base UI moves DOM focus onto a row as you hover it, which is how it drives
+   keyboard navigation. That meant the ordinary focus ring above fired on plain
+   mouse hover, drawing a heavy 2px outline around whichever row the pointer
+   happened to be over, and an earlier parchment fill did the same thing in
+   another way. Both read as a selected box rather than a hover.
+   Feedback is carried by COLOUR instead, which is what the rest of the site
+   does: .nav-link:hover already goes aubergine, and [data-highlighted] extends
+   the same treatment to keyboard navigation. */
 [role="menu"]:focus,
 [role="menu"]:focus-visible,
+[role="menuitem"]:focus,
+[role="menuitem"]:focus-visible,
+[role="menuitemradio"]:focus,
+[role="menuitemradio"]:focus-visible,
+[role="menuitemcheckbox"]:focus,
+[role="menuitemcheckbox"]:focus-visible,
 [data-base-ui-popup]:focus,
 [data-base-ui-popup]:focus-visible {
   outline: none;
 }
 
-/* Pointer highlight for menu rows. Base UI focuses a row when you hover it, so
-   without this the row you are pointing at gives no feedback at all. */
 [role="menuitem"][data-highlighted],
 [role="menuitemradio"][data-highlighted],
 [role="menuitemcheckbox"][data-highlighted] {
-  background: var(--parchment);
-  border-radius: 6px;
+  color: var(--aubergine);
 }
 
 /* product / listing card */
