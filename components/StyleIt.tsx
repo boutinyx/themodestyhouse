@@ -12,6 +12,11 @@ const ARROW = 34;
 const TOP_FRAME = { w: 138, h: 184 };
 const SLOT_GAP = 20;    // gap-5 between the two stacked mix slots
 const CAPTION_H = 28;   // .eyebrow caption + its mt-3
+/** One .eyebrow line. Marcellus carries no line-height of its own, so `normal`
+ *  comes from its hhea metrics: (1995 + 573 + 0) / 2048 = 1.2539, which at the
+ *  class's 10px is 12.5px. The dress caption stacks onto two lines, and this is
+ *  what it costs. */
+const CAPTION_LINE = 13;
 /** The dress frame spans the FULL height of the mix column, so the artwork
  *  centres against the two stacked pieces rather than hugging the top. Derived,
  *  not a literal: the dress column was 76px shorter than the mix column and
@@ -35,11 +40,21 @@ const CAPTION_H = 28;   // .eyebrow caption + its mt-3
  *
  *  Pulling the arrows in past this shrinks the abaya faster than it gains, since
  *  the other three dresses are 129-145px and already clear the arrows. */
-const DRESS_FRAME = { w: 148, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
-/** The artwork's own size, kept at what it was before the frame was made
- *  full-height. The FRAME spans the column so the dress can centre inside it;
- *  this cap stops the dress growing to fill that taller box. */
-const DRESS_ART_H = 340;
+const DRESS_FRAME = {
+  w: 148,
+  /* Less one caption line: the dress caption is stacked and the mix captions are
+     not, so without this the dress column runs a line taller than the mix column
+     and hands the mix pieces dead space under them — the thing the note above
+     says this height exists to remove. */
+  h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H - CAPTION_LINE,
+};
+/** The artwork's own size. The FRAME spans the column so the dress can centre
+ *  inside it; this cap stops the dress growing to fill that taller box.
+ *
+ *  287px is the Floral Chiffon's height, which is set by width rather than by
+ *  this cap. At the old 340 the two slimmer dresses ran to the full cap and so
+ *  stood a head taller than it; matching the cap to it levels all four. */
+const DRESS_ART_H = 287;
 /** Arrow centres sit at the middle of the TOP frame in BOTH columns, so all
  *  four controls line up across the card. Centring each slot on its own frame
  *  put the dress arrows at 170px and the top arrows at 92px. */
@@ -57,6 +72,7 @@ function Slot({
   onNext,
   arrowAt,
   artMaxH,
+  stackCaption,
 }: {
   piece: Piece;
   frame: { w: number; h: number };
@@ -68,6 +84,10 @@ function Slot({
   /** Caps the artwork's height inside a frame that is taller than the artwork,
    *  so the piece can be CENTRED in the column without being enlarged. */
   artMaxH?: number;
+  /** Puts the brand and the piece on separate lines instead of splitting them
+   *  with a middot. Costs a CAPTION_LINE of height, which DRESS_FRAME accounts
+   *  for, so it is passed only by the dress slot. */
+  stackCaption?: boolean;
 }) {
   /* piece.maxW is a px cap on the ARTWORK, which may exceed the frame — that is
      how one garment gets bigger without dragging the arrows out with it. It is
@@ -116,7 +136,16 @@ function Slot({
           column's width and pulled the artwork off-centre. Filling the column
           decouples the two so the image always sits in the middle. */}
       <div className="eyebrow mt-3 w-full text-center">
-        <span style={{ color: 'var(--ink)' }}>{piece.brand}</span> · {piece.label}
+        {stackCaption ? (
+          <>
+            <div style={{ color: 'var(--ink)' }}>{piece.brand}</div>
+            <div>{piece.label}</div>
+          </>
+        ) : (
+          <>
+            <span style={{ color: 'var(--ink)' }}>{piece.brand}</span> · {piece.label}
+          </>
+        )}
       </div>
     </div>
   );
@@ -198,7 +227,7 @@ export default function StyleIt() {
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Or a dress</div>
               <div className="eyebrow mt-1">One &amp; done</div>
               <div className="flex-1 flex items-start justify-center mt-4">
-                <Slot piece={DRESSES[dress]} frame={DRESS_FRAME} arrowAt={ARROW_CENTER_Y} artMaxH={DRESS_ART_H} onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
+                <Slot piece={DRESSES[dress]} frame={DRESS_FRAME} arrowAt={ARROW_CENTER_Y} artMaxH={DRESS_ART_H} stackCaption onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
               </div>
             </div>
           </div>
