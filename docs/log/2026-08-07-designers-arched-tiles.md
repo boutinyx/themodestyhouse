@@ -44,6 +44,22 @@ npm run build        Compiled successfully
 Served page: 6 arched featured tiles at 3:4, 0 scrims left in the featured grid,
 5 badges, objectPosition applied.
 
+## Revision, same day: founder's pick, five across, marquee removed
+
+Tina named the five herself — Veiled, Aab, Summer Evenings, Inayah, Glow Modesty
+— so they are a list of slugs in the page, not anything derived. A badge or a
+catalogue count would only approximate her choice and would drift the moment
+either changed.
+
+  - The drifting marquee is gone. All 53 remaining houses now sit under the pick
+    in the same arched grid, so the page has one treatment rather than two.
+  - Both grids are five across on desktop (2 on mobile, 3 at sm).
+  - `components/BrandMarquee.tsx` is now unreferenced. Left on disk rather than
+    deleted — as with `BrandCard.tsx`, removing it is a separate decision. Its
+    keyframes remain in `globals.css`.
+
+Served page: 58 tiles, all arched, the pick in her order, no marquee markup.
+
 ## Notes / follow-ups
 
 - The page had been rebuilt by a concurrent session (featured six + marquee)
