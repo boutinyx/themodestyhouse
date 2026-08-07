@@ -75,12 +75,12 @@ function Slot({
         >
           ‹
         </button>
-        <div className="flex items-center justify-center" style={{ width: frame.w, maxWidth: '100%', height: frame.h, minWidth: 0 }}>
+        <div className="flex items-center justify-center" style={{ width: piece.maxW ?? frame.w, maxWidth: '100%', height: frame.h, minWidth: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={piece.src}
             alt={`${piece.brand} ${piece.label}`}
-            style={{ maxWidth: piece.maxW ?? '100%', maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            style={{ maxWidth: '100%', maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button

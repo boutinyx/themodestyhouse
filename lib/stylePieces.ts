@@ -4,10 +4,12 @@ export type Piece = {
   brand: string;
   label: string;
   color: string;
-  /** Overrides the frame's width cap for THIS artwork only. The frame is sized
-   *  for the typical dress, so a wider silhouette (an abaya) hits the cap on
-   *  width and renders short. Raising it here grows that one piece without
-   *  moving the arrows, which are positioned by the frame, not the image. */
+  /** Widens the FRAME for this artwork only. The frame is sized for the typical
+   *  dress, so a wider silhouette (an abaya) hits the cap on width and renders
+   *  short. Because the arrows are positioned by the frame, they step outwards
+   *  for this piece — the cost of showing it larger, and confined to the one
+   *  piece that needs it. Ceiling is 191px: the column is 283px and the arrows
+   *  and their gaps take 92px of it. */
   maxW?: number;
 };
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
@@ -111,7 +113,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "brand": "Veiled",
       "label": "Butterfly Abaya",
       "color": "#1c2c24",
-      "maxW": 165
+      "maxW": 185
     }
   ]
 };
