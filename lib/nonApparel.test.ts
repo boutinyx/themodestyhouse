@@ -170,17 +170,41 @@ describe('non-apparel veto', () => {
     expect(v.rejected, v.evidence ? `vetoed by ${v.tier}:${v.reason} on "${v.evidence}"` : '').toBe(false);
   });
 
-  // raw-products.json is gitignored (it is the local scrape cache), so this
-  // check can only run on a machine that has scraped. It must SKIP rather than
-  // fail on a clean clone or in CI — verified against a fresh `git clone`.
+  // An AUTHORING check, not a behaviour check: it proves the fixtures above are
+  // real catalogue titles rather than invented ones. It is therefore useful at
+  // the moment someone adds a fixture, and only a liability afterwards.
+  //
+  // IT MUST NOT RUN IN CI. The original comment here said raw-products.json was
+  // gitignored so this "can only run on a machine that has scraped" — true when
+  // written, false since 2026-08-05, when raw was committed to close P0-B and to
+  // let the nightly refresh workflow run. That silently turned a local-only
+  // check into a CI gate over a dataset a bot rewrites every night, and on
+  // 2026-08-07 it did exactly what you would expect: the 05:48 refresh picked up
+  // three re-cased titles ("STRAIGHT HIJAB PINS…" -> "Straight Hijab Pins…") and
+  // CI went red at 08:24 over a data change, with no code defect at all.
+  // Same root cause as §10.15: logic keyed to raw being gitignored.
+  //
+  // Delisting has the same effect, and delisting is a designed, routine event —
+  // so left in CI this fails on a schedule. Skipped there; still runs locally,
+  // where a stale fixture is worth knowing about.
   const rawPath = path.join(process.cwd(), 'data', 'raw-products.json');
   const hasRaw = existsSync(rawPath);
+  const inCI = !!process.env.CI;
 
-  it.skipIf(!hasRaw)('every test string still exists in the raw catalogue', () => {
+  it.skipIf(!hasRaw || inCI)('every test string still exists in the raw catalogue', () => {
     const raw = JSON.parse(readFileSync(rawPath, 'utf8')) as { title: string }[];
-    const titles = new Set(raw.map((r) => r.title));
-    const missing = [...MUST_DROP, ...MUST_SURVIVE].filter((t) => !titles.has(t));
-    expect(missing).toEqual([]);
+    // Compare case- and whitespace-insensitively. Brands re-case titles
+    // constantly; that is not evidence a fixture was invented, which is the only
+    // thing this check exists to catch.
+    const norm = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').trim();
+    const titles = new Set(raw.map((r) => norm(r.title)));
+    const missing = [...MUST_DROP, ...MUST_SURVIVE].filter((t) => !titles.has(norm(t)));
+    expect(
+      missing,
+      'These fixture titles are no longer in the catalogue. If the product was ' +
+      'delisted, replace it with a current title that exercises the same rule — ' +
+      'do not simply delete the case.',
+    ).toEqual([]);
   });
 
   it('a digital line-item is vetoed on requires_shipping alone', () => {
