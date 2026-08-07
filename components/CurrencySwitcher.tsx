@@ -39,8 +39,12 @@ export function CurrencySwitcher() {
         // opened. closeDelay gives you time to travel from the trigger down into
         // the panel without it shutting on the way.
         openOnHover
-        delay={100}
-        closeDelay={150}
+        // delay 0: the default 100ms before opening is small on paper but reads
+        // as lag, because the pointer is already still by the time it fires.
+        // closeDelay stays non-zero — that one is not lag, it is the grace
+        // period for travelling from the trigger down into the panel.
+        delay={0}
+        closeDelay={120}
         aria-label={preference ? `Prices in ${preference}. Change currency` : 'Prices as listed. Change currency'}
         className="nav-link inline-flex items-center justify-center leading-none"
         data-active={preference !== null}
@@ -69,7 +73,10 @@ export function CurrencySwitcher() {
       <Menu.Portal>
         <Menu.Positioner sideOffset={10} align="end" collisionPadding={{ left: 16, right: 16 }} className="z-50">
           <Menu.Popup
-            className="rounded-xl border p-2 min-w-[210px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-150 ease-out data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:scale-95 data-[ending-style]:opacity-0"
+            // 100ms and a shallower scale: the open animation is the other half
+            // of the perceived lag, and 150ms with a 5% scale reads as the panel
+            // arriving late rather than as motion.
+            className="rounded-xl border p-2 min-w-[210px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
             style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
           >
             <Menu.RadioGroup
@@ -80,7 +87,7 @@ export function CurrencySwitcher() {
                 <Menu.RadioItem
                   key={o ?? NATIVE}
                   value={o ?? NATIVE}
-                  className="block w-full text-left nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
+                  className="block w-full text-center nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
                   data-active={preference === o}
                 >
                   {o ? LABEL[o] : 'As listed'}
