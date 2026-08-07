@@ -87,14 +87,14 @@ const ARROW_STYLE: React.CSSProperties = {
   border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)',
   alignSelf: 'flex-start',
 };
-/** The mix frame on a phone, where the two pieces sit SIDE BY SIDE rather than
- *  stacked (Tina's call — stacked, the picker ran most of a screen tall).
+/** The mix frame on a phone. The two pieces stay STACKED — they were briefly
+ *  side by side and Tina reverted it — but at ~68% of the desktop frame, which
+ *  is what keeps the picker card from running most of a screen tall.
  *
- *  Derived, not picked: at 390px the section's px-8 leaves 326, the card's 20px
- *  padding leaves 286, the column's px-2 leaves 270, and a gap-3 between two
- *  slots leaves 129 each. 116 fits that with room for the caption, and every
- *  garment keeps its relative size because the artwork cap is SCALED by
- *  116/170 rather than flattened to one number. */
+ *  Every garment keeps its relative size because the artwork cap is SCALED by
+ *  116/170 rather than flattened to one number: each top carries its own maxH so
+ *  that the tops cover equal AREA (see Piece.maxH), and a single shared phone cap
+ *  would throw that tuning away. */
 const MIX_FRAME_SM = { w: 116, h: 128 };
 
 function Slot({
@@ -121,10 +121,8 @@ function Slot({
    *  with a middot. Costs a CAPTION_LINE of height, which DRESS_FRAME accounts
    *  for, so it is passed only by the dress slot. */
   stackCaption?: boolean;
-  /** Phone-sized frame. When given, the slot shrinks to it below `md` and the
-   *  arrows drop UNDERNEATH the artwork instead of flanking it — two flanked
-   *  slots cannot fit side by side in 390px, because the arrows alone are 92px
-   *  of the 129px each slot gets. Omitted by the dress, which is desktop-only. */
+  /** Phone-sized frame: the slot shrinks to this below `md`, and the artwork cap
+   *  scales with it. Omitted by the dress, which is desktop-only. */
   sm?: { w: number; h: number };
 }) {
   /* piece.maxW is a px cap on the ARTWORK, which may exceed the frame — that is
@@ -158,6 +156,10 @@ function Slot({
         ['--art-sm' as string]: `${artSm}px`,
         ['--art' as string]: `${artDesktop}px`,
         ['--amt' as string]: `${(arrowAt ?? frame.h / 2) - ARROW / 2}px`,
+        // The same centring against the phone-sized frame. `arrowAt` is scaled
+        // rather than reused: it is a distance from the frame's top, so a
+        // desktop value would sit below a 128px frame's middle.
+        ['--amt-sm' as string]: `${Math.round((arrowAt ?? frame.h / 2) * (smFrame.h / frame.h)) - ARROW / 2}px`,
       }}
     >
       {/* minWidth:0 lets the frame shrink instead of overflowing. The arrows
@@ -165,24 +167,21 @@ function Slot({
           controls. Without this a fixed 182px frame + two 34px arrows only
           fitted the column at exactly 1220px and spilled at every width below,
           which is what made the dress look off-centre. */}
-      {/* flex-wrap + order + basis-full is what moves the arrows under the
-          artwork on a phone without a second copy of the markup: below `md` the
-          image claims the whole line (order-1), so both arrows wrap onto the
-          next one; at `md` nothing wraps and `order` puts them back to
-          prev / image / next. */}
-      <div
-        className="flex flex-wrap md:flex-nowrap items-start justify-center w-full gap-x-6 gap-y-2 md:gap-3"
-        style={{ minWidth: 0 }}
-      >
+      {/* The arrows FLANK the artwork at every width. They briefly moved
+          underneath on a phone, which was only ever needed to fit the two slots
+          side by side; stacked, a 116px frame plus two 34px arrows and their
+          gaps is 208px inside a 270px column, so there is no reason to move
+          them. */}
+      <div className="flex items-start justify-center w-full gap-3" style={{ minWidth: 0 }}>
         <button
           aria-label="Previous"
           onClick={onPrev}
-          className="shrink-0 flex items-center justify-center order-2 md:order-1 mt-0 md:mt-[var(--amt)]"
+          className="shrink-0 flex items-center justify-center mt-[var(--amt-sm)] md:mt-[var(--amt)]"
           style={ARROW_STYLE}
         >
           <CaretLeft size={16} weight="bold" />
         </button>
-        <div className="flex items-center justify-center basis-full md:basis-auto order-1 md:order-2 min-w-0 w-[var(--fw-sm)] h-[var(--fh-sm)] md:w-[var(--fw)] md:h-[var(--fh)] max-w-full mx-auto md:mx-0">
+        <div className="flex items-center justify-center min-w-0 w-[var(--fw-sm)] h-[var(--fh-sm)] md:w-[var(--fw)] md:h-[var(--fh)] max-w-full">
           {/* lazy: this is also what keeps the desktop-only dress column from
               costing a phone anything — a lazy image in a display:none box is
               never fetched. */}
@@ -199,7 +198,7 @@ function Slot({
         <button
           aria-label="Next"
           onClick={onNext}
-          className="shrink-0 flex items-center justify-center order-3 mt-0 md:mt-[var(--amt)]"
+          className="shrink-0 flex items-center justify-center mt-[var(--amt-sm)] md:mt-[var(--amt)]"
           style={ARROW_STYLE}
         >
           <CaretRight size={16} weight="bold" />
@@ -269,7 +268,7 @@ export default function StyleIt() {
   const b = BOTTOMS[bottom];
 
   return (
-    <section className="max-w-[1220px] mx-auto px-8 py-20">
+    <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
       <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-12 items-center">
         {/* COPY — left */}
         <div>
@@ -302,10 +301,11 @@ export default function StyleIt() {
             <div className="flex-1 flex flex-col items-center px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Mix &amp; match</div>
               <div className="eyebrow mt-1">Top + Bottom</div>
-              {/* Side by side on a phone, stacked from md up. Stacked, the two
-                  slots plus their captions ran ~460px tall on their own, which
-                  is most of a phone screen for one component. */}
-              <div className="flex-1 w-full flex flex-row md:flex-col items-start md:items-center justify-center gap-3 md:gap-5 mt-4">
+              {/* Stacked at every width. It was briefly side by side on a phone;
+                  Tina reverted that. The phone still gets the SMALLER frame
+                  (MIX_FRAME_SM), which is what keeps the card compact — the
+                  height came from the artwork, not from the orientation. */}
+              <div className="flex-1 w-full flex flex-col items-center justify-start gap-4 md:gap-5 mt-4">
                 <Slot piece={t} frame={TOP_FRAME} sm={MIX_FRAME_SM} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
                 <Slot piece={b} frame={TOP_FRAME} sm={MIX_FRAME_SM} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
               </div>

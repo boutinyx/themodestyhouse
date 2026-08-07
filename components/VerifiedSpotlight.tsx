@@ -140,7 +140,9 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
 
              Tighter section padding buys the fan 32px of width, which is a whole
              card-width of ~9%. */
-          .tmh-verified-sec{padding:56px 16px}
+          /* 40px, matching the py-10 every other section drops to on a phone —
+             80px top and bottom put 160px of dead space between each one. */
+          .tmh-verified-sec{padding:40px 16px}
 
           /* The cards span 0%–90.5% of the stage (p4 sits at 48% and is 42.5%
              wide), so the leftover 9.5% is all on the right and the cluster

@@ -73,7 +73,7 @@ export default function Home() {
       <StyleIt />
 
       {/* EDITOR'S PICKS — scrollable rail */}
-      <section className="max-w-[1220px] mx-auto px-8 py-20">
+      <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>
@@ -89,7 +89,7 @@ export default function Home() {
       <VerifiedSpotlight houses={rail.slice(0, 8)} />
 
       {/* BROWSE BY CATEGORY */}
-      <section className="max-w-[1220px] mx-auto px-8 py-20">
+      <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>By category.</h2>
@@ -127,8 +127,8 @@ export default function Home() {
       </section>
 
       {/* FOR DESIGNERS */}
-      <section className="aubergine-band my-20">
-        <div className="max-w-[1220px] mx-auto px-8 py-20">
+      <section className="aubergine-band my-10 md:my-20">
+        <div className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-2xl">
             <div>
               <h2 className="serif mt-3" style={{ fontSize: 'clamp(28px,4vw,46px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* THE EDIT */}
-      <section className="max-w-[1220px] mx-auto px-8 py-20">
+      <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>

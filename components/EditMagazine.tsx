@@ -3,7 +3,7 @@ import { shopifyImage } from '@/lib/shopifyImage';
 
 export default function EditMagazine({ featureImage }: { featureImage?: string }) {
   return (
-    <section className="max-w-[1220px] mx-auto px-8 py-20">
+    <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
       <div className="edit-mag">
         {/* masthead */}
         <div className="edit-head">

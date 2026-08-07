@@ -106,13 +106,19 @@ Verified end-to-end on `/directory` at iPhone 13: prices `["$135","£81","$189"]
 which is ADR-0002 behaving correctly — only converted prices are marked approximate. Survives
 a reload.
 
-**The mix-and-match pair sits side by side and smaller on a phone** (Tina's call). Stacked at
-full size it was most of a screen for one component. Measured at iPhone 13:
+**The mix-and-match pair is smaller on a phone, and STACKED.** It was briefly side by side;
+Tina reverted that. The size is what mattered — the height came from the artwork, not the
+orientation. Measured at iPhone 13:
 
-| | picker card | whole section |
-|---|---|---|
-| stacked, full size | 629px | 1161px |
-| **side by side, `MIX_FRAME_SM`** | **323px** | **855px** |
+| | picker card |
+|---|---|
+| stacked, full size (original) | 629px |
+| side by side, `MIX_FRAME_SM` | 323px |
+| **stacked, `MIX_FRAME_SM`** (current) | **437px** |
+
+The arrows FLANK the artwork again at every width. They moved underneath only to make two
+slots fit side by side; stacked, a 116px frame plus two 34px arrows and their gaps is 208px
+inside a 270px column, so there was never a reason to move them.
 
 `MIX_FRAME_SM = {w:116, h:128}` is derived, not picked: at 390px the section's `px-8` leaves
 326, the card's 20px padding leaves 286, the column's `px-2` leaves 270, and a `gap-3` between
@@ -176,6 +182,15 @@ overflow, four distinct caption positions.
 `fullPage: false` and it had no overlap check. `scripts/mobile-audit.mjs` now also writes
 `<route>-full.png` and reports **stacked text**. Proven by reverting the CSS fix and
 confirming it fires (`STACKED TEXT at 54,3018,197: Inayah… | Aab…`), then restoring.
+
+**Section spacing halved on a phone.** Every homepage section carried `py-20` — 80px top AND
+bottom, so 160px of empty space between each pair, on a 664px-tall screen. Now
+`py-10 md:py-20` (and `my-10 md:my-20` on the aubergine band, 40px on VerifiedSpotlight), so
+sections sit 80px apart. Desktop is unchanged. Page height 6564px -> 6052px.
+
+**The category grid keeps its card height** (Tina's explicit instruction, with a screenshot).
+`grid-auto-rows` was not touched: verified still `168px`, all five cards 168px, before and
+after. The 80px that section lost is entirely its own padding.
 
 **Tap targets** — footer links and the Privacy/Terms row grew from 15–20px to 32px boxes;
 footer social icons to 44px squares. `scripts/mobile-audit.mjs` now ignores `tabindex="-1"`
