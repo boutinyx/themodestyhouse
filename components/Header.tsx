@@ -69,9 +69,12 @@ export function Header() {
                of true centre. leading-none removes the same problem vertically. */
             style={{ fontSize: 13, letterSpacing: 0 }}
           >
-            {/* 1px up: the heart's visual mass sits low in its bounding box, so a
-                geometrically centred glyph still reads slightly low. */}
-            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ transform: 'translateY(-1px)' }} />
+            {/* No nudge. It carried translateY(-1px) on the argument that a
+                heart's visual mass sits low in its box — but measured on the
+                current header every other element centres on y=53 and the heart
+                sat on 52, i.e. a pixel HIGH, and visibly out of line with the
+                currency icon beside it. Re-measure before reintroducing one. */}
+            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ display: 'block' }} />
             {count > 0 ? count : null}
           </Link>
           {/* Same hairline rule as the one between the crest and the wordmark,
