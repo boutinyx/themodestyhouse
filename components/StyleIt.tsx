@@ -18,9 +18,12 @@ const TOP_FRAME = { w: 170, h: 184 };
 /** Tops are capped shorter than the frame; bottoms are not. Letting a top fill
  *  the frame made it 184 tall AND up to 198 wide, next to trousers that are 184
  *  tall but only 74-99 wide — so the top read as much the bigger garment. At 150
- *  a top is 109-165 wide, which sits alongside the trousers rather than looming
- *  over them, and it is where the original six already sat (134-176, mean 153).
- *  It also removes every per-piece `maxW` from the tops: nothing overflows now. */
+ *  a top sits alongside the trousers rather than looming over them, and it is
+ *  where the original six already sat (134-176, mean 153).
+ *
+ *  This is only the fallback: each top carries its own `maxH`, set so they cover
+ *  equal AREA rather than equal height (see Piece.maxH). 150 is the median of
+ *  those, and applies to any piece added without one. */
 const TOP_ART_H = 150;
 const SLOT_GAP = 20;    // gap-5 between the two stacked mix slots
 const CAPTION_H = 28;   // .eyebrow caption + its mt-3
@@ -135,7 +138,7 @@ function Slot({
           <img
             src={piece.src}
             alt={piece.brand ? `${piece.brand} ${piece.label}` : piece.label}
-            style={{ maxWidth: artMaxW, maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            style={{ maxWidth: artMaxW, maxHeight: piece.maxH ?? artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button

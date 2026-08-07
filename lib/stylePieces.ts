@@ -18,6 +18,19 @@ export type Piece = {
    *  bottom (170 frame). Only the dresses use it — tops and bottoms are capped by
    *  height and none of them reaches the frame's width. */
   maxW?: number;
+  /** Per-piece height cap on the ARTWORK, in px, overriding the slot's own.
+   *
+   *  Set so every top covers the same area of CLOTH, not so every top occupies
+   *  the same height. Those are different: a tall narrow garment — the Textured
+   *  Top, whose asymmetric hem runs to a point — spends its height on shape
+   *  rather than fabric, and at a common 150px height covered 0.72x the ink of
+   *  the median piece while the Olive Print covered 1.22x. It read as smaller,
+   *  because it was.
+   *
+   *  Each value is `sqrt(target / (inkFraction * w * h)) * h`, with target the
+   *  median ink area — so the middle of the set barely moves and the outliers
+   *  come to it. Recompute if a piece's artwork is replaced. */
+  maxH?: number;
 };
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
   "tops": [
@@ -25,61 +38,71 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "src": "/style-it/top_7.png",
       "brand": "Hijab Boutique",
       "label": "Olive Blouse",
-      "color": "#8a7619"
+      "color": "#8a7619",
+      "maxH": 156
     },
     {
       "src": "/style-it/top_8.png",
       "brand": "Hijab Boutique",
       "label": "Oversized Top",
-      "color": "#d5ada4"
+      "color": "#d5ada4",
+      "maxH": 140
     },
     {
       "src": "/style-it/top_9.png",
       "brand": "Hijab Boutique",
       "label": "Ruffle Blouse",
-      "color": "#f7e4a9"
+      "color": "#f7e4a9",
+      "maxH": 147
     },
     {
       "src": "/style-it/top_11.png",
       "brand": "Jawda",
       "label": "Olive Print Top",
-      "color": "#9f947a"
+      "color": "#9f947a",
+      "maxH": 136
     },
     {
       "src": "/style-it/top_0.png",
       "brand": "Veiled",
       "label": "Rouched Top",
-      "color": "#cab8a1"
+      "color": "#cab8a1",
+      "maxH": 157
     },
     {
       "src": "/style-it/top_1.png",
       "brand": "Glow Modesty",
       "label": "Poplin Shirt",
-      "color": "#4b2e2a"
+      "color": "#4b2e2a",
+      "maxH": 147
     },
     {
       "src": "/style-it/top_3.png",
       "brand": "PLT",
       "label": "Cape Ruched Top",
-      "color": "#ecded7"
+      "color": "#ecded7",
+      "maxH": 163
     },
     {
       "src": "/style-it/top_4.png",
       "brand": "Veiled",
       "label": "Layla Top",
-      "color": "#d8a676"
+      "color": "#d8a676",
+      "maxH": 145
     },
     {
       "src": "/style-it/top_5.png",
       "brand": "Veiled",
       "label": "Textured Top",
-      "color": "#442f34"
+      "color": "#442f34",
+      "maxH": 176
     },
     {
       "src": "/style-it/top_6.png",
       "brand": "Veiled",
       "label": "Knit Drape Top",
-      "color": "#e5c8bf"
+      "color": "#e5c8bf",
+      "maxH": 153
     }
   ],
   "bottoms": [

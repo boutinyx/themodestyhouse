@@ -113,3 +113,38 @@ monogrammed label in the first place.
 
 Note `Hijab Boutique`, `Jawda` and `Merrachi` are not all in `data/brands.ts` —
 `lib/stylePieces.ts` has always carried brands outside `BRANDS` (§8 landmines).
+
+## Second revision: equal AREA, not equal height
+
+Tina spotted the Veiled Textured Top reading smaller than the rest. It was —
+measured, not guessed. Rendering every top at a common 150px height does not
+make them the same size, because height and size are not the same thing: a tall
+narrow garment spends its height on shape rather than cloth. The Textured Top's
+asymmetric hem runs to a point, so at 150 tall it covered **0.72×** the garment
+area of the median piece, while the Olive Print covered **1.22×**.
+
+Each top now carries its own `maxH`, set so all ten cover the same ink area:
+
+```
+                    was        now
+top_5  Textured    118x150 -> 138x176     0.72x -> 0.99x
+top_3  Cape Ruched 138x150 -> 150x163     0.85x -> 1.00x
+top_0  Rouched     138x150 -> 145x157     0.91x -> 1.00x
+top_7  Olive       109x150 -> 113x156     0.92x -> 0.99x
+top_6  Knit Drape  126x150 -> 128x153     0.96x -> 1.00x
+top_9  Ruffle      127x150 -> 125x147     1.04x -> 0.99x
+top_1  Poplin      142x150 -> 139x147     1.05x -> 1.00x
+top_4  Layla       154x150 -> 149x145     1.07x -> 0.99x
+top_8  Oversized   152x150 -> 142x140     1.15x -> 1.00x
+top_11 Olive Print 165x150 -> 150x136     1.22x -> 1.00x
+```
+
+Spread 0.99–1.00×, from 0.72–1.22×. The target is the **median** ink area, so the
+middle of the set barely moves and only the outliers travel. Every width stays
+inside the 170px frame, so no arrow moves and no artwork overflows.
+
+`TOP_ART_H` survives as the fallback for a piece added without a `maxH`.
+
+**If a piece's artwork is replaced, its `maxH` must be recomputed** —
+`sqrt(target / (inkFraction * w * h)) * h`. The value is a property of that
+specific file, not of the garment.
