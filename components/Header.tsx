@@ -52,14 +52,26 @@ export function Header() {
         </Link>
         <div className="hidden md:flex items-center gap-6">
           <Nav />
-          <Link href="/favourites" className="nav-link" aria-label="Favourites">
+          <Link
+            href="/favourites"
+            className="nav-link"
+            aria-label="Favourites"
+            /* .nav-link is 12px, which is right for words and too small for a
+               glyph — the heart is the one item here people aim at. */
+            style={{ fontSize: 16, letterSpacing: '0.08em' }}
+          >
             {count > 0 ? `♥ ${count}` : '♡'}
           </Link>
         </div>
       </div>
       <div className="md:hidden flex items-center gap-5 px-5 pt-3 overflow-x-auto">
         <Nav />
-        <Link href="/favourites" className="nav-link whitespace-nowrap" aria-label="Favourites">
+        <Link
+          href="/favourites"
+          className="nav-link whitespace-nowrap"
+          aria-label="Favourites"
+          style={{ fontSize: 16, letterSpacing: '0.08em' }}
+        >
           {count > 0 ? `♥ ${count}` : '♡'}
         </Link>
       </div>

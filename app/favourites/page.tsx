@@ -12,31 +12,40 @@ export default function FavouritesPage() {
 
   // Removal is destructive and one tap away, and favourites live only in this
   // browser — there is no server copy to recover from. So every removal is
-  // undoable rather than confirmed: a confirm dialog on each heart would make
+  // undoable rather than confirmed: a confirm dialog on every heart would make
   // clearing a long list miserable, while undo costs nothing until it is needed.
   const [undoable, setUndoable] = useState<Product[]>([]);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const armUndo = useCallback((removed: Product[]) => {
-    setUndoable(removed);
+  // The heart lives inside ProductCard and calls toggleFav directly, so this
+  // page never learns about a removal by being clicked. Instead it WATCHES the
+  // favourites map and reacts to anything that disappears — which covers the
+  // heart here, the heart in quick view, and Clear all, with one mechanism.
+  const prev = useRef<Record<string, Product>>({});
+  const restoring = useRef(false);
+
+  useEffect(() => {
+    const gone = Object.values(prev.current).filter((p) => !favs[p.id]);
+    prev.current = favs;
+
+    if (restoring.current) { restoring.current = false; return; }
+    if (gone.length === 0) return;
+
+    setUndoable(gone);
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => setUndoable([]), UNDO_MS);
-  }, []);
+  }, [favs]);
 
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
 
-  const remove = useCallback((p: Product) => {
-    toggleFav(p); // toggling an existing favourite removes it
-    armUndo([p]);
-  }, [toggleFav, armUndo]);
-
   const clearAll = useCallback(() => {
-    const all = Object.values(favs);
-    all.forEach(toggleFav);
-    armUndo(all);
-  }, [favs, toggleFav, armUndo]);
+    // Each toggle removes one; the watcher above collects them into a single
+    // undoable batch, so this needs no undo bookkeeping of its own.
+    Object.values(favs).forEach(toggleFav);
+  }, [favs, toggleFav]);
 
   const undo = useCallback(() => {
+    restoring.current = true;
     // Guard each one: the shopper may have re-saved a piece by hand in the
     // meantime, and toggling it again would remove it a second time.
     undoable.forEach((p) => { if (!isFav(p.id)) toggleFav(p); });
@@ -68,27 +77,7 @@ export default function FavouritesPage() {
       ) : (
         <div className="product-grid mt-8">
           {items.map((p) => (
-            // The remove control is a SIBLING of the card, not a child: the whole
-            // card is a button that opens quick view, so nesting would put a
-            // button inside a button (invalid) and the click would fall through.
-            <div key={p.id} className="relative">
-              <ProductCard p={p} />
-              <button
-                onClick={(e) => { e.stopPropagation(); remove(p); }}
-                className="absolute top-2 left-2 w-8 h-8 rounded-full flex items-center justify-center transition"
-                style={{
-                  background: 'rgba(255,255,255,0.9)',
-                  color: 'var(--ink)',
-                  border: '1px solid var(--hairline)',
-                  fontSize: 15,
-                  lineHeight: 1,
-                }}
-                aria-label={`Remove ${p.title} from favourites`}
-                title="Remove from favourites"
-              >
-                ×
-              </button>
-            </div>
+            <ProductCard key={p.id} p={p} />
           ))}
         </div>
       )}

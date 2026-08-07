@@ -29,9 +29,14 @@ export function ProductCard({ p }: { p: Product }) {
         />
         <button
           onClick={(e) => { e.stopPropagation(); toggleFav(p); }}
-          className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center text-sm transition"
-          style={{ background: 'rgba(255,255,255,0.85)', color: fav ? 'var(--aubergine)' : 'var(--muted)' }}
-          aria-label="Add to favourites"
+          className="absolute top-2 right-2 w-10 h-10 rounded-full flex items-center justify-center transition"
+          style={{
+            background: 'rgba(255,255,255,0.85)',
+            color: fav ? 'var(--aubergine)' : 'var(--muted)',
+            fontSize: 19,
+            lineHeight: 1,
+          }}
+          aria-label={fav ? 'Remove from favourites' : 'Add to favourites'}
         >
           {fav ? '♥' : '♡'}
         </button>
