@@ -148,7 +148,17 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
              it is invisible; in a 390px viewport it is a 34px gap against 16px.
              A transform, not a margin: it must not change the stage's layout box
              and push the page into horizontal scroll. */
-          .tmh-stage{transform:translateX(12px)}
+          .tmh-stage{transform:translateX(17px)}
+
+          /* The front / verified card centred. The three behind it span 0%–90.5%
+             (p4 sits at 48% and cards are 42.5% wide), so the cluster's centre is
+             45.25%; a 42.5%-wide card centres on that at left:24%. It was 15%,
+             which put its centre at 36.25% — visibly left of the stack it sits in
+             front of. Combined with the 12px nudge above, its centre lands within
+             5px of the viewport centre at 390px.
+             Mobile only: the desktop composition is the one Tina already signed
+             off, and its asymmetry reads as deliberate at that size. */
+          .p3{left:24%}
 
           .tmh-card{border-width:4px;box-shadow:0 18px 34px -20px rgba(42,18,38,.5)}
           /* No hover on a touch screen, and :hover sticks after a tap. */
