@@ -54,10 +54,11 @@ const DRESS_FRAME = {
 /** The artwork's own size. The FRAME spans the column so the dress can centre
  *  inside it; this cap stops the dress growing to fill that taller box.
  *
- *  287px is the Floral Chiffon's height, which is set by width rather than by
- *  this cap. At the old 340 the two slimmer dresses ran to the full cap and so
- *  stood a head taller than it; matching the cap to it levels all four. */
-const DRESS_ART_H = 287;
+ *  Only the two slim dresses ever reach it — the Floral Chiffon and the abaya
+ *  are held by their widths at 287 and 271 — so this number moves those two
+ *  alone. At the original 340 they stood a head above the rest; 287 levelled
+ *  them exactly with the Floral Chiffon, and 305 sets them a touch above it. */
+const DRESS_ART_H = 305;
 /** Arrow centres sit at the middle of the TOP frame in BOTH columns, so all
  *  four controls line up across the card. Centring each slot on its own frame
  *  put the dress arrows at 170px and the top arrows at 92px. */
