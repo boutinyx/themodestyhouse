@@ -20,6 +20,26 @@ export type Piece = {
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
   "tops": [
     {
+      "src": "/style-it/top_7.png",
+      "label": "Satin Collar Blouse",
+      "color": "#8a7619"
+    },
+    {
+      "src": "/style-it/top_8.png",
+      "label": "Oversized Tee",
+      "color": "#d5ada4"
+    },
+    {
+      "src": "/style-it/top_9.png",
+      "label": "Ruffle Blouse",
+      "color": "#f7e4a9"
+    },
+    {
+      "src": "/style-it/top_10.png",
+      "label": "Printed High-Neck",
+      "color": "#9f947a"
+    },
+    {
       "src": "/style-it/top_0.png",
       "brand": "Veiled",
       "label": "Rouched Top",
@@ -54,29 +74,19 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "brand": "Veiled",
       "label": "Knit Drape Top",
       "color": "#e5c8bf"
-    },
-    {
-      "src": "/style-it/top_7.png",
-      "label": "Satin Collar Blouse",
-      "color": "#8a7619"
-    },
-    {
-      "src": "/style-it/top_8.png",
-      "label": "Oversized Tee",
-      "color": "#d5ada4"
-    },
-    {
-      "src": "/style-it/top_9.png",
-      "label": "Ruffle Blouse",
-      "color": "#f7e4a9"
-    },
-    {
-      "src": "/style-it/top_10.png",
-      "label": "Printed High-Neck",
-      "color": "#9f947a"
     }
   ],
   "bottoms": [
+    {
+      "src": "/style-it/bottom_7.png",
+      "label": "Wide-Leg Trouser",
+      "color": "#545253"
+    },
+    {
+      "src": "/style-it/bottom_8.png",
+      "label": "Linen Wide-Leg",
+      "color": "#d6cdbb"
+    },
     {
       "src": "/style-it/bottom_0.png",
       "brand": "Niswa",
@@ -112,16 +122,6 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "brand": "Veiled",
       "label": "Leather Pants",
       "color": "#4e1f2a"
-    },
-    {
-      "src": "/style-it/bottom_7.png",
-      "label": "Wide-Leg Trouser",
-      "color": "#545253"
-    },
-    {
-      "src": "/style-it/bottom_8.png",
-      "label": "Linen Wide-Leg",
-      "color": "#d6cdbb"
     }
   ],
   "dresses": [
