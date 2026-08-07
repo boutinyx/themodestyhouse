@@ -35,13 +35,6 @@ export type Piece = {
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
   "tops": [
     {
-      "src": "/style-it/top_7.png",
-      "brand": "Hijab Boutique",
-      "label": "Olive Blouse",
-      "color": "#8a7619",
-      "maxH": 156
-    },
-    {
       "src": "/style-it/top_8.png",
       "brand": "Hijab Boutique",
       "label": "Oversized Top",
