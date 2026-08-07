@@ -129,9 +129,26 @@ export function houses(variant = 0): House[] {
   });
 }
 
-// "Newly verified" rail — verified/editor's-pick houses first, then the rest.
+/**
+ * The house that takes the FRONT card in the homepage spotlight — the one the
+ * eye lands on. An editorial choice, in the same spirit as HERO_OVERRIDE.
+ *
+ * VerifiedSpotlight lays its four cards out with POS = ['p1','p2','p4','p3'],
+ * and p3 is both the highest z-index and the card that carries the Verified
+ * badge — so the front card is whichever house sorts LAST, not first. Naming it
+ * here beats relying on that ordering coincidence.
+ */
+const SPOTLIGHT_FRONT = 'aab';
+
+// "Newly verified" rail — verified/editor's-pick houses first, then the rest,
+// with the chosen house moved into the spotlight's front slot (4th).
 export function newlyVerified(): House[] {
-  return houses().sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0));
+  const sorted = houses().sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0));
+  const front = sorted.findIndex((h) => h.slug === SPOTLIGHT_FRONT);
+  if (front === -1) return sorted;
+  const [chosen] = sorted.splice(front, 1);
+  sorted.splice(3, 0, chosen); // index 3 = the last of the four cards = p3
+  return sorted;
 }
 
 export function trust() {
