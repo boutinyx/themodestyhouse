@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQuickView } from '@/components/QuickView';
 import { ProductCard } from '@/components/ProductCard';
+import { Heart } from '@phosphor-icons/react';
 import type { Product } from '@/lib/types';
 
 const UNDO_MS = 8000;
@@ -72,7 +73,7 @@ export default function FavouritesPage() {
 
       {items.length === 0 ? (
         <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
-          No favourites yet. Tap the ♡ on any piece to save it here.
+          No favourites yet. Tap the <Heart size={15} className="inline align-[-2px]" /> on any piece to save it here.
         </p>
       ) : (
         <div className="product-grid mt-8">

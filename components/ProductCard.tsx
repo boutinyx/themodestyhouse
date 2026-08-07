@@ -1,5 +1,6 @@
 'use client';
 import type { Product } from '@/lib/types';
+import { Heart } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 
@@ -33,12 +34,11 @@ export function ProductCard({ p }: { p: Product }) {
           style={{
             background: 'rgba(255,255,255,0.85)',
             color: fav ? 'var(--aubergine)' : 'var(--muted)',
-            fontSize: 19,
             lineHeight: 1,
           }}
           aria-label={fav ? 'Remove from favourites' : 'Add to favourites'}
         >
-          {fav ? '♥' : '♡'}
+          <Heart size={22} weight={fav ? 'fill' : 'regular'} />
         </button>
       </div>
       <div className="brand-label mt-3">{p.brandName}</div>

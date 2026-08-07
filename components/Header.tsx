@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { Heart } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
 import { Nav } from './Nav';
 import { useQuickView } from './QuickView';
@@ -60,7 +61,10 @@ export function Header() {
                glyph — the heart is the one item here people aim at. */
             style={{ fontSize: 16, letterSpacing: '0.08em' }}
           >
-            {count > 0 ? `♥ ${count}` : '♡'}
+            <span className="inline-flex items-center gap-1.5">
+              <Heart size={20} weight={count > 0 ? 'fill' : 'regular'} />
+              {count > 0 ? count : null}
+            </span>
           </Link>
         </div>
       </div>
@@ -72,7 +76,10 @@ export function Header() {
           aria-label="Favourites"
           style={{ fontSize: 16, letterSpacing: '0.08em' }}
         >
-          {count > 0 ? `♥ ${count}` : '♡'}
+          <span className="inline-flex items-center gap-1.5">
+            <Heart size={20} weight={count > 0 ? 'fill' : 'regular'} />
+            {count > 0 ? count : null}
+          </span>
         </Link>
       </div>
     </header>

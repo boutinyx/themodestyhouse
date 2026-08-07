@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { Product } from '@/lib/types';
+import { Heart } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 
 type Ctx = {
@@ -148,8 +149,9 @@ function Modal({
             >
               Shop at {product.brandName} →
             </a>
-            <button onClick={onToggleFav} className="chip w-full py-3" data-active={isFav}>
-              {isFav ? '♥  Saved to favourites' : '♡  Add to favourites'}
+            <button onClick={onToggleFav} className="chip w-full py-3 inline-flex items-center justify-center gap-2" data-active={isFav}>
+              <Heart size={17} weight={isFav ? 'fill' : 'regular'} />
+              {isFav ? 'Saved to favourites' : 'Add to favourites'}
             </button>
           </div>
         </div>
