@@ -52,12 +52,28 @@ function Slot({
         >
           ‹
         </button>
-        <div className="flex items-center justify-center" style={{ width: frame.w, maxWidth: '100%', height: frame.h, minWidth: 0 }}>
+        {/* The frame HUGS the garment instead of being a fixed box.
+            Tops fill their 138px frame, but dresses are tall and narrow and were
+            rendering 129-130px inside a 182px frame — 26px of dead space each
+            side, which is what pushed the arrows away from the clothing.
+            Fixing the HEIGHT and letting width follow the artwork puts every
+            arrow the same 12px from the garment itself. frame.w is now a CAP,
+            not a size, so a wide dress still cannot overflow the column. */}
+        <div
+          className="flex items-center justify-center"
+          style={{ height: frame.h, maxWidth: '100%', minWidth: 0 }}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={piece.src}
             alt={`${piece.brand} ${piece.label}`}
-            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            style={{
+              height: '100%',
+              width: 'auto',
+              maxWidth: frame.w,
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))',
+            }}
           />
         </div>
         <button
