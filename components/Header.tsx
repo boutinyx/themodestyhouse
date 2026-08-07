@@ -4,6 +4,7 @@ import { Heart } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
 import { Nav } from './Nav';
 import { useQuickView } from './QuickView';
+import { CurrencySwitcher } from './CurrencySwitcher';
 
 export function Header() {
   const [hidden, setHidden] = useState(false);
@@ -51,8 +52,14 @@ export function Header() {
             House
           </span>
         </Link>
-        <div className="hidden md:flex items-center gap-6">
-          <Nav />
+        {/* Favourites and currency live HERE at every width, not in the scrolling
+            row below. That row is `overflow-x-auto`, which establishes a clipping
+            context — a dropdown opened inside it would be cut off on mobile. It
+            also means the heart is declared once instead of twice. */}
+        <div className="flex items-center gap-4 md:gap-6">
+          <div className="hidden md:block">
+            <Nav />
+          </div>
           <Link
             href="/favourites"
             className="nav-link inline-flex items-center gap-1.5 leading-none"
@@ -67,21 +74,14 @@ export function Header() {
             <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ transform: 'translateY(-1px)' }} />
             {count > 0 ? count : null}
           </Link>
+          {/* Same hairline rule as the one between the crest and the wordmark
+              above, shortened to suit a single row of controls. */}
+          <span aria-hidden className="block w-px h-5 shrink-0" style={{ background: 'var(--hairline)' }} />
+          <CurrencySwitcher />
         </div>
       </div>
       <div className="md:hidden flex items-center gap-5 px-5 pt-3 overflow-x-auto">
         <Nav />
-        <Link
-          href="/favourites"
-          className="nav-link whitespace-nowrap inline-flex items-center gap-1.5 leading-none"
-          aria-label="Favourites"
-          style={{ fontSize: 13, letterSpacing: 0 }}
-        >
-          {/* 1px up: the heart's visual mass sits low in its bounding box, so a
-                geometrically centred glyph still reads slightly low. */}
-            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ transform: 'translateY(-1px)' }} />
-          {count > 0 ? count : null}
-        </Link>
       </div>
     </header>
   );

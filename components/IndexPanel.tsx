@@ -1,6 +1,5 @@
 'use client';
 import { useCallback, useRef, useState } from 'react';
-import { CurrencySwitcher } from './CurrencySwitcher';
 
 /**
  * The index console — the search field and filter row shared by /directory and
@@ -123,15 +122,13 @@ export function IndexPanel({
           style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
         />
       </div>
+      {/* The currency control used to sit here, pushed right. It moved to the
+          header (2026-08-07): currency is a site-wide preference, so having it
+          only on the pages that happen to carry an index console meant it was
+          missing everywhere else and duplicated on the two that had it. */}
       <div className="flex flex-wrap items-center gap-2 mt-4">
         <span className="eyebrow mr-1">Filter</span>
         {children}
-        {/* Pushed to the right: it changes how prices READ, it does not filter
-            the grid, so it should not sit in the run of filter chips. */}
-        <div className="ml-auto flex items-center gap-2">
-          <span className="eyebrow">Prices in</span>
-          <CurrencySwitcher />
-        </div>
       </div>
     </div>
   );
