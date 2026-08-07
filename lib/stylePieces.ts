@@ -35,7 +35,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "color": "#f7e4a9"
     },
     {
-      "src": "/style-it/top_10.png",
+      "src": "/style-it/top_11.png",
       "label": "Printed High-Neck",
       "color": "#9f947a"
     },
