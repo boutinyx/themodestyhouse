@@ -52,9 +52,19 @@ export function NewsletterSignup() {
 
   return (
     <form onSubmit={submit} className="mt-3">
+      {/* Optical alignment, not box alignment. The pill's EDGE already sat flush
+          with the "The Edit, in your inbox" eyebrow above it (both measured at
+          x=1085), but the placeholder inside started at 1102 — pushed right by
+          this border (1px) plus the input's padding-left (16px) — so the field
+          read as indented under its own label. Pulling the pill back by exactly
+          that 17px puts "Your email" under the E of "THE EDIT". The cost, chosen
+          deliberately: the pill now overhangs the footer column by 17px.
+          If the border width or the input padding changes, this number must
+          change with them. */}
       <div
         className="flex items-center overflow-hidden"
         style={{
+          marginLeft: -17,
           borderRadius: 'var(--radius-button)',
           border: '1px solid rgba(243,238,228,0.22)',
           background: 'rgba(243,238,228,0.06)',
