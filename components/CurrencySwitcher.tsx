@@ -52,6 +52,12 @@ export function CurrencySwitcher() {
             sits low in its bounding box; the dollar glyph has the opposite
             problem — its stroke ends are clipped short of the box, so a
             geometrically centred glyph reads high next to the heart. */}
+        {/* weight="fill" is a DELIBERATE choice, confirmed by Tina 2026-08-07.
+            Note it does not merely thicken the strokes: Phosphor's fill variant
+            for this glyph is a solid disc with the dollar knocked out of it
+            (the `A104,104` arc in its path), so an active currency reads as a
+            coin badge — heavier than the outlined heart beside it. That contrast
+            is wanted. Do not "correct" it to bold or regular. */}
         <CurrencyDollar
           size={18}
           weight={preference ? 'fill' : 'regular'}
