@@ -175,3 +175,43 @@ while the menu was unreadable. Where a browser is not wired up, headless Chrome 
 takes about five minutes to set up and turns a guess into a measurement. Flagging a visual
 change as "please check this yourself" is not a substitute; it ships the defect and moves
 the cost onto Tina.
+
+---
+
+## Addendum — 2026-08-07: Directory panel to 2 rows
+
+Tina asked for 2 rows instead of 3.
+
+Expressed as a **`rows`** target on the nav group rather than a hard-coded column count.
+`NavMenu` derives `ceil(items.length / rows)` columns, so:
+- the reading order stays row-major (left to right), unlike `grid-auto-flow: column`, and
+- it remains 2 rows if a category is ever added. Hard-coding `columns: 5` would silently
+  become 3 rows the moment `CATEGORY_LANES` grew to 11.
+
+`columns` is kept on the type for any group that wants to specify it directly; `rows` wins
+when both are present.
+
+### Measured (headless Chrome, real `next start`)
+
+```
+cols:      150.5px 123.391px 175.281px 186.969px 60.8594px
+rows: 2    colCount: 5    items: 9
+overlaps: 0    zeroWidth: 0
+panel: 793 x 56     (was 560.8 x 84 at 3 rows)
+```
+
+```
+$ npm run lint → 0   $ npx tsc --noEmit → clean   $ npm test → 362   $ npm run build → 34/34
+```
+
+### Note on appearance
+Column widths are max-content **per column across both rows**, so column 4 is sized by
+"Modest Activewear" in row 2, not by "Skirts" in row 1 — which leaves a visible gap after
+the shorter label. That is normal grid behaviour, not a bug, but it does read slightly
+ragged. Raised with Tina; left as-is pending her call.
+
+### Probe note
+The earlier `measure-nav.mjs` selectors stopped matching: the `NavMenu` refactor renders the
+panel through a NavigationMenu viewport, outside `<nav>`, and mounts the grid only on open
+(`grids: 0` before hover). Probes for this menu must search the whole document and hover
+first — scoping to `nav` silently reports "closed".

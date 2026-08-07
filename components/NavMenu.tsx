@@ -39,7 +39,18 @@ export function NavMenu({
   links,
   path,
 }: {
-  groups: { label: string; href?: string; activeWhen: boolean; items: NavItem[]; columns?: number }[];
+  groups: {
+    label: string;
+    href?: string;
+    activeWhen: boolean;
+    items: NavItem[];
+    columns?: number;
+    /** Target row count. Takes precedence over `columns`: the column count is
+     *  derived as ceil(items / rows), so the panel keeps this many rows even if
+     *  items are added later. Hard-coding `columns` instead silently grows a
+     *  third row the moment the list does. */
+    rows?: number;
+  }[];
   links: { href: string; label: string; activeWhen: boolean }[];
   path: string;
 }) {
@@ -80,7 +91,11 @@ export function NavMenu({
                 // minmax(0,…) lets a column shrink below its content width, which
                 // made the whitespace-nowrap labels overlap. max-content sizes
                 // each column to its widest label.
-                style={{ gridTemplateColumns: `repeat(${g.columns ?? 1}, max-content)` }}
+                style={{
+                  gridTemplateColumns: `repeat(${
+                    g.rows ? Math.ceil(g.items.length / g.rows) : (g.columns ?? 1)
+                  }, max-content)`,
+                }}
               >
                 {g.items.map((it) => (
                   <NavigationMenu.Link

@@ -18,9 +18,10 @@ export function Nav() {
           href: '/directory',
           activeWhen: path === '/directory' || path.startsWith('/modest') || path.startsWith('/hijabi'),
           items: categoryItems,
-          // 9 categories in one column was a very tall menu. Three columns makes
-          // it a wide panel instead — 3 rows rather than 9.
-          columns: 3,
+          // 9 categories in one column was a very tall menu. Asking for 2 rows
+          // makes it a wide, shallow panel: the column count is derived, so this
+          // stays 2 rows if a category is added.
+          rows: 2,
         },
         {
           label: 'Styles',
