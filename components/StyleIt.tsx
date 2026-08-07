@@ -8,16 +8,33 @@ const TOPS = STYLE_PIECES.tops;
 const BOTTOMS = STYLE_PIECES.bottoms;
 const DRESSES = STYLE_PIECES.dresses;
 
+const ARROW = 34;
+const TOP_FRAME = { w: 138, h: 184 };
+const DRESS_FRAME = { w: 182, h: 340 };
+/** Arrow centres sit at the middle of the TOP frame in BOTH columns, so all
+ *  four controls line up across the card. Centring each slot on its own frame
+ *  put the dress arrows at 170px and the top arrows at 92px. */
+const ARROW_CENTER_Y = TOP_FRAME.h / 2;
+const ARROW_STYLE: React.CSSProperties = {
+  width: ARROW, height: ARROW, borderRadius: 999,
+  border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)',
+  alignSelf: 'flex-start',
+};
+
 function Slot({
   piece,
   frame,
   onPrev,
   onNext,
+  arrowAt,
 }: {
   piece: Piece;
   frame: { w: number; h: number };
   onPrev: () => void;
   onNext: () => void;
+  /** Distance from the frame's top to the arrow centres. Defaults to the frame's
+   *  own middle; the dress passes ARROW_CENTER_Y so it matches the top slot. */
+  arrowAt?: number;
 }) {
   return (
     <div className="flex flex-col items-center">
@@ -26,12 +43,12 @@ function Slot({
           controls. Without this a fixed 182px frame + two 34px arrows only
           fitted the column at exactly 1220px and spilled at every width below,
           which is what made the dress look off-centre. */}
-      <div className="flex items-center gap-3 justify-center w-full" style={{ minWidth: 0 }}>
+      <div className="flex items-start gap-3 justify-center w-full" style={{ minWidth: 0 }}>
         <button
           aria-label="Previous"
           onClick={onPrev}
           className="shrink-0 flex items-center justify-center"
-          style={{ width: 34, height: 34, borderRadius: 999, border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)' }}
+          style={{ ...ARROW_STYLE, marginTop: (arrowAt ?? frame.h / 2) - ARROW / 2 }}
         >
           ‹
         </button>
@@ -47,7 +64,7 @@ function Slot({
           aria-label="Next"
           onClick={onNext}
           className="shrink-0 flex items-center justify-center"
-          style={{ width: 34, height: 34, borderRadius: 999, border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)' }}
+          style={{ ...ARROW_STYLE, marginTop: (arrowAt ?? frame.h / 2) - ARROW / 2 }}
         >
           ›
         </button>
@@ -125,9 +142,9 @@ export default function StyleIt() {
             <div className="flex-1 flex flex-col items-center px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Mix &amp; match</div>
               <div className="eyebrow mt-1">Top + Bottom</div>
-              <div className="flex-1 flex flex-col items-center justify-center gap-5 mt-4">
-                <Slot piece={t} frame={{ w: 138, h: 184 }} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
-                <Slot piece={b} frame={{ w: 138, h: 184 }} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
+              <div className="flex-1 flex flex-col items-center justify-start gap-5 mt-4">
+                <Slot piece={t} frame={TOP_FRAME} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
+                <Slot piece={b} frame={TOP_FRAME} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
               </div>
             </div>
 
@@ -138,8 +155,8 @@ export default function StyleIt() {
             <div className="flex-1 flex flex-col items-center px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Or a dress</div>
               <div className="eyebrow mt-1">One &amp; done</div>
-              <div className="flex-1 flex items-center justify-center mt-4">
-                <Slot piece={DRESSES[dress]} frame={{ w: 182, h: 340 }} onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
+              <div className="flex-1 flex items-start justify-center mt-4">
+                <Slot piece={DRESSES[dress]} frame={DRESS_FRAME} arrowAt={ARROW_CENTER_Y} onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
               </div>
             </div>
           </div>
