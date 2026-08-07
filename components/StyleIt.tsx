@@ -19,6 +19,10 @@ const CAPTION_H = 28;   // .eyebrow caption + its mt-3
  *  Sizing the frame this way also keeps the frame's TOP aligned, which is what
  *  holds the arrows level with the top slot's. */
 const DRESS_FRAME = { w: 182, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
+/** The artwork's own size, kept at what it was before the frame was made
+ *  full-height. The FRAME spans the column so the dress can centre inside it;
+ *  this cap stops the dress growing to fill that taller box. */
+const DRESS_ART_H = 340;
 /** Arrow centres sit at the middle of the TOP frame in BOTH columns, so all
  *  four controls line up across the card. Centring each slot on its own frame
  *  put the dress arrows at 170px and the top arrows at 92px. */
@@ -35,6 +39,7 @@ function Slot({
   onPrev,
   onNext,
   arrowAt,
+  artMaxH,
 }: {
   piece: Piece;
   frame: { w: number; h: number };
@@ -43,6 +48,9 @@ function Slot({
   /** Distance from the frame's top to the arrow centres. Defaults to the frame's
    *  own middle; the dress passes ARROW_CENTER_Y so it matches the top slot. */
   arrowAt?: number;
+  /** Caps the artwork's height inside a frame that is taller than the artwork,
+   *  so the piece can be CENTRED in the column without being enlarged. */
+  artMaxH?: number;
 }) {
   return (
     <div className="flex flex-col items-center">
@@ -65,7 +73,7 @@ function Slot({
           <img
             src={piece.src}
             alt={`${piece.brand} ${piece.label}`}
-            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            style={{ maxWidth: '100%', maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button
@@ -164,7 +172,7 @@ export default function StyleIt() {
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Or a dress</div>
               <div className="eyebrow mt-1">One &amp; done</div>
               <div className="flex-1 flex items-start justify-center mt-4">
-                <Slot piece={DRESSES[dress]} frame={DRESS_FRAME} arrowAt={ARROW_CENTER_Y} onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
+                <Slot piece={DRESSES[dress]} frame={DRESS_FRAME} arrowAt={ARROW_CENTER_Y} artMaxH={DRESS_ART_H} onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
               </div>
             </div>
           </div>
