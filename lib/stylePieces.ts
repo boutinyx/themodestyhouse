@@ -9,12 +9,13 @@ export type Piece = {
   /** Carried for every piece but currently read by nothing. */
   color: string;
   /** Per-piece width cap on the ARTWORK, in px. Above the frame width it lets a
-   *  wide silhouette (an abaya) overflow the frame rather than render short;
-   *  below it, it holds a piece at its established size while the frame grows.
+   *  wide silhouette overflow the frame rather than render short; below it, it
+   *  holds a piece at its established size while the frame grows.
    *  Deliberately NOT applied to the frame: the arrows are positioned by the
-   *  frame, so a per-piece frame makes them jump as you cycle dresses.
-   *  Ceiling is 168px — the 148px frame plus the 12px arrow gap either side, less
-   *  2px so the artwork does not sit flush against a control. */
+   *  frame, so a per-piece frame makes them jump as you cycle.
+   *  The artwork touches an arrow at `frame.w + 24` (a 12px gap either side), so
+   *  that is the hard ceiling: 172 for a dress (148 frame), 204 for a top or
+   *  bottom (180 frame). Values in use stop 2-3px short of it. */
   maxW?: number;
 };
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
@@ -27,7 +28,8 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
     {
       "src": "/style-it/top_8.png",
       "label": "Oversized Tee",
-      "color": "#d5ada4"
+      "color": "#d5ada4",
+      "maxW": 187
     },
     {
       "src": "/style-it/top_9.png",
@@ -37,7 +39,8 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
     {
       "src": "/style-it/top_11.png",
       "label": "Printed High-Neck",
-      "color": "#9f947a"
+      "color": "#9f947a",
+      "maxW": 198
     },
     {
       "src": "/style-it/top_0.png",
@@ -61,7 +64,8 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "src": "/style-it/top_4.png",
       "brand": "Veiled",
       "label": "Layla Top",
-      "color": "#d8a676"
+      "color": "#d8a676",
+      "maxW": 189
     },
     {
       "src": "/style-it/top_5.png",

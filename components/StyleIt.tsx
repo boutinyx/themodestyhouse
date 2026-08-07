@@ -9,7 +9,16 @@ const BOTTOMS = STYLE_PIECES.bottoms;
 const DRESSES = STYLE_PIECES.dresses;
 
 const ARROW = 34;
-const TOP_FRAME = { w: 138, h: 184 };
+/** Width was 138, which is narrower than several garments are wide. A flat-lay of
+ *  an oversized top is about as wide as it is tall, so in a 138x184 frame width
+ *  ran out first and it rendered short — 125px against the 176px of a slim knit,
+ *  which read as the new pieces being a different size from the old ones. At 180
+ *  nearly every top is limited by HEIGHT instead, so they all land on 184.
+ *
+ *  180 rather than 190: the mix column is 282px and the arrows with their gaps
+ *  take 92px, so 190 would leave nothing. The three pieces still short of 184 at
+ *  this width close the gap with a per-piece `maxW` instead. */
+const TOP_FRAME = { w: 180, h: 184 };
 const SLOT_GAP = 20;    // gap-5 between the two stacked mix slots
 const CAPTION_H = 28;   // .eyebrow caption + its mt-3
 /** One .eyebrow line. Marcellus carries no line-height of its own, so `normal`
