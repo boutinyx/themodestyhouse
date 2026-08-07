@@ -11,6 +11,7 @@ Project documentation for **The Modesty House**.
 | [`launch-readiness.md`](./launch-readiness.md) | Prioritized launch blockers with evidence and fixes |
 | [`decisions/`](./decisions/) | ADRs — decisions that constrain future work |
 | [`log/`](./log/) | One entry per step of work: what changed, and the evidence it works |
+| [`reference/`](./reference/) | Third-party source we adapted from, kept verbatim so it never has to be pasted into a session again |
 
 ## How we document
 
