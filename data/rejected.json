@@ -1256,12 +1256,12 @@
   {
     "id": "voile-chic:2401269383250",
     "brandSlug": "voile-chic",
-    "title": "STRAIGHT HIJAB PINS - WHITE (ENTIRE WHEEL)",
+    "title": "Straight Hijab Pins - White (Entire Wheel)",
     "url": "https://voilechic.com/products/hijab-pins-white",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
-    "evidence": "HIJAB PINS"
+    "evidence": "Hijab Pins"
   },
   {
     "id": "voile-chic:8718108262653",
@@ -1294,17 +1294,9 @@
     "evidence": "Hijab Magnet"
   },
   {
-    "id": "voile-chic:8876398805245",
-    "brandSlug": "voile-chic",
-    "title": "BLACK ESSENTIALS - GIFT SET",
-    "url": "https://voilechic.com/products/bundle-essentials",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "voile-chic:8876398641405",
     "brandSlug": "voile-chic",
-    "title": "CREAM ESSENTIALS - GIFT SET",
+    "title": "Cream Essentials - Gift Set",
     "url": "https://voilechic.com/products/bundle-creams",
     "garmentWas": "set",
     "reason": "title-pattern"
@@ -1312,28 +1304,20 @@
   {
     "id": "voile-chic:8876398543101",
     "brandSlug": "voile-chic",
-    "title": "BLENDED ELEMENTS - GIFT SET",
+    "title": "Blended Elements - Gift Set",
     "url": "https://voilechic.com/products/bundle-elements",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "voile-chic:8876397560061",
-    "brandSlug": "voile-chic",
-    "title": "NEUTRALS JERSEY - GIFT SET",
-    "url": "https://voilechic.com/products/neutrals-jersey",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
     "id": "voile-chic:8840383529213",
     "brandSlug": "voile-chic",
-    "title": "GIFT WRAP MY ORDER",
+    "title": "Gift Wrap My Order",
     "url": "https://voilechic.com/products/gift-box-assembled",
     "garmentWas": "set",
     "reason": "non-apparel:non-product",
     "tier": "0",
-    "evidence": "GIFT WRAP"
+    "evidence": "Gift Wrap"
   },
   {
     "id": "voile-chic:8718014546173",
@@ -22822,42 +22806,10 @@
     "evidence": "Prayer Mat"
   },
   {
-    "id": "culture-hijab:10189268746538",
-    "brandSlug": "culture-hijab",
-    "title": "The Modal Collection Gift Set",
-    "url": "https://culturehijab.com/products/the-modal-collection",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "culture-hijab:10189268222250",
-    "brandSlug": "culture-hijab",
-    "title": "The Luxe Hijab Edit Gift Set",
-    "url": "https://culturehijab.com/products/the-luxe-hijab-edit",
-    "garmentWas": "hijab",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "culture-hijab:10189267927338",
-    "brandSlug": "culture-hijab",
-    "title": "The Neutrals Gift Set",
-    "url": "https://culturehijab.com/products/the-neutrals-set",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "culture-hijab:10189267829034",
     "brandSlug": "culture-hijab",
     "title": "Eid Celebration Gift Set",
     "url": "https://culturehijab.com/products/eid-celebration-box",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "culture-hijab:10189267730730",
-    "brandSlug": "culture-hijab",
-    "title": "Modal Luxe Collection Gift Set",
-    "url": "https://culturehijab.com/products/modal-luxe-collection",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
@@ -22874,14 +22826,6 @@
     "brandSlug": "culture-hijab",
     "title": "Satin Glow Gift Set",
     "url": "https://culturehijab.com/products/satin-glow-duo",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "culture-hijab:10189266845994",
-    "brandSlug": "culture-hijab",
-    "title": "Modal Comfort Gift Set",
-    "url": "https://culturehijab.com/products/modal-comfort-set",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
@@ -23020,12 +22964,12 @@
   {
     "id": "modern-hijabi:4775844905039",
     "brandSlug": "modern-hijabi",
-    "title": "MAXIMUM STRENGTH HIJAB MAGNETS - ROSE GOLD",
+    "title": "Maximum Strength Hijab Magnets - Rose Gold",
     "url": "https://modernhijabi.com/products/no-snag-hijab-magnets-rose-gold",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
-    "evidence": "HIJAB MAGNETS"
+    "evidence": "Hijab Magnets"
   },
   {
     "id": "modern-hijabi:4775861551183",
@@ -24662,6 +24606,26 @@
     "evidence": "Bag"
   },
   {
+    "id": "fares:7648008044735",
+    "brandSlug": "fares",
+    "title": "Hijab Scrunchie - Ivory",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-ivory",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "fares:7648007520447",
+    "brandSlug": "fares",
+    "title": "Hijab Scrunchie - Brown",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-brown",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
     "id": "chi-ka:8236804014241",
     "brandSlug": "chi-ka",
     "title": "Travel Set : Sleeveless Long Jacket and Pants in Blue Jacquard Satin",
@@ -24866,5 +24830,631 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "pins"
+  },
+  {
+    "id": "haute-hijab:170406504",
+    "brandSlug": "haute-hijab",
+    "title": "Gift e-Card",
+    "url": "https://www.hautehijab.com/products/gift-card",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:non-product",
+    "tier": "0",
+    "evidence": "e-Card"
+  },
+  {
+    "id": "vela:7987746406556",
+    "brandSlug": "vela",
+    "title": "VELA Gift Box",
+    "url": "https://velascarves.com/products/vela-gift-box",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "vela:8791368302748",
+    "brandSlug": "vela",
+    "title": "The VELA Pouch",
+    "url": "https://velascarves.com/products/the-vela-pouch",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Pouch"
+  },
+  {
+    "id": "vela:6058452254876",
+    "brandSlug": "vela",
+    "title": "Matte Magnets Nude/Black",
+    "url": "https://velascarves.com/products/matte-magnet-set",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
+  },
+  {
+    "id": "vela:6058452058268",
+    "brandSlug": "vela",
+    "title": "Metallic Magnets Silver/Gold",
+    "url": "https://velascarves.com/products/metallic-magnet-set",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
+  },
+  {
+    "id": "vela:7638071050396",
+    "brandSlug": "vela",
+    "title": "Matte Magnets truffle/navy",
+    "url": "https://velascarves.com/products/matte-magnets-chocolate-navy",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
+  },
+  {
+    "id": "vela:7638070689948",
+    "brandSlug": "vela",
+    "title": "Matte Magnets olive/chocolate",
+    "url": "https://velascarves.com/products/matte-magnets-olive-truffle",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
+  },
+  {
+    "id": "vela:8198539706524",
+    "brandSlug": "vela",
+    "title": "Matte Magnets Nude/Nude",
+    "url": "https://velascarves.com/products/matte-magnets-nude-nude",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
+  },
+  {
+    "id": "veiled:7600557031529",
+    "brandSlug": "veiled",
+    "title": "Signature Magnet Pins - Gold",
+    "url": "https://veiled.com/products/signature-magnet-pins-gold",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "veiled:7600558080105",
+    "brandSlug": "veiled",
+    "title": "Signature Magnet Pins - Silver",
+    "url": "https://veiled.com/products/signature-magnet-pins-silver",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "veiled:7144473985129",
+    "brandSlug": "veiled",
+    "title": "Signature Magnet Pins - Natural",
+    "url": "https://veiled.com/products/signature-magnet-pins-natural",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "veiled:7144473919593",
+    "brandSlug": "veiled",
+    "title": "Signature Magnet Pins - Cloud",
+    "url": "https://veiled.com/products/signature-magnet-pins-cloud",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "veiled:7144473854057",
+    "brandSlug": "veiled",
+    "title": "Signature Magnet Pins - Black",
+    "url": "https://veiled.com/products/signature-magnet-pins-black",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "veiled:7144473788521",
+    "brandSlug": "veiled",
+    "title": "Signature Magnet Pins - Sage",
+    "url": "https://veiled.com/products/signature-magnet-pins-sage",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "veiled:7144473690217",
+    "brandSlug": "veiled",
+    "title": "Signature Magnet Pins - Deep Taupe",
+    "url": "https://veiled.com/products/signature-magnet-pins-deep-taupe",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "veiled:4635574501481",
+    "brandSlug": "veiled",
+    "title": "Straight Pins - White",
+    "url": "https://veiled.com/products/straight-pins-white",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Straight Pins"
+  },
+  {
+    "id": "veiled:4635573649513",
+    "brandSlug": "veiled",
+    "title": "Straight Pins - Black",
+    "url": "https://veiled.com/products/straight-pins-black",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Straight Pins"
+  },
+  {
+    "id": "culture-hijab:10186784932138",
+    "brandSlug": "culture-hijab",
+    "title": "Magnet Pins",
+    "url": "https://culturehijab.com/products/magnet-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnet"
+  },
+  {
+    "id": "culture-hijab:4519059783727",
+    "brandSlug": "culture-hijab",
+    "title": "Bow Scrunchie BLACK",
+    "url": "https://culturehijab.com/products/bow-scrunchie-in-black",
+    "garmentWas": "top",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "aab:9831021805882",
+    "brandSlug": "aab",
+    "title": "Silani Oud Bakhoor",
+    "url": "https://us.aabcollection.com/products/silani-oud-bakhoor",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nasiba:10362625327413",
+    "brandSlug": "nasiba",
+    "title": "Mahabba Brooch",
+    "url": "https://nasiba.com/products/mahabba-brooch",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Brooch"
+  },
+  {
+    "id": "nasiba:10312034320693",
+    "brandSlug": "nasiba",
+    "title": "Scrunchie Off White",
+    "url": "https://nasiba.com/products/scrunchie-off-white",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "nasiba:10312001061173",
+    "brandSlug": "nasiba",
+    "title": "Scrunchie Shadow",
+    "url": "https://nasiba.com/products/scrunchie-shadow",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "nasiba:10311992049973",
+    "brandSlug": "nasiba",
+    "title": "Scrunchie Cream Blush",
+    "url": "https://nasiba.com/products/scrunchie-cream-blush",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "nasiba:8673046921525",
+    "brandSlug": "nasiba",
+    "title": "Safety Pins",
+    "url": "https://nasiba.com/products/safety-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Safety Pins"
+  },
+  {
+    "id": "mariams:9217585414360",
+    "brandSlug": "mariams",
+    "title": "Vintage Large Circular Handle Rhinestone Sparkly Clutch Bag(MAC430)",
+    "url": "https://mariam-col.com/products/vintage-large-circular-handle-rhinestone-sparkly-clutch-bag-mac430",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Clutch"
+  },
+  {
+    "id": "mariams:9107676528856",
+    "brandSlug": "mariams",
+    "title": "Pearl Acrylic Clutch Collection(MAC377)",
+    "url": "https://mariam-col.com/products/pearl-acrylic-clutch-collectionmac377",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Clutch"
+  },
+  {
+    "id": "mariams:9046800662744",
+    "brandSlug": "mariams",
+    "title": "Elegance Pearl Earrings & Necklace Ensemble (MAC313)",
+    "url": "https://mariam-col.com/products/elegance-pearl-earrings-necklace-ensemble-mac313",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Earrings"
+  },
+  {
+    "id": "mariams:9036960727256",
+    "brandSlug": "mariams",
+    "title": "Rhinestone Rose Embroidery Beaded Vintage Clutch Bag (MAC292)",
+    "url": "https://mariam-col.com/products/rhinestone-rose-embroidery-beaded-vintage-clutch-bag-mac292",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Clutch"
+  },
+  {
+    "id": "mariams:9036960497880",
+    "brandSlug": "mariams",
+    "title": "Gold Reflective Evening Clutch with Diamond-Studded Circular Handle (MAC294)",
+    "url": "https://mariam-col.com/products/gold-reflective-evening-clutch-with-diamond-studded-circular-handle-mac294",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Clutch"
+  },
+  {
+    "id": "mariams:9036355535064",
+    "brandSlug": "mariams",
+    "title": "Round Evening Clutch Handbag with Braided Accent (MAC287)",
+    "url": "https://mariam-col.com/products/round-evening-clutch-handbag-with-braided-accent-mac287",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Handbag"
+  },
+  {
+    "id": "mariams:9035821875416",
+    "brandSlug": "mariams",
+    "title": "Hand-Beaded Pearl Evening Elegance Handbag (MAC286)",
+    "url": "https://mariam-col.com/products/hand-beaded-pearl-evening-elegance-handbag-mac286",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Handbag"
+  },
+  {
+    "id": "mariams:9018143932632",
+    "brandSlug": "mariams",
+    "title": "Artisan Asymmetric Diamond Ring Edgy Glamour for Standout Moments (MAC282)",
+    "url": "https://mariam-col.com/products/artisan-asymmetric-diamond-ring-edgy-glamour-for-standout-moments-mac282",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Ring"
+  },
+  {
+    "id": "mariams:9014823911640",
+    "brandSlug": "mariams",
+    "title": "Crystal-Embellished Clutch Bag with Tassels – Versatile Evening Purse for Weddings & Galas (MAC276)",
+    "url": "https://mariam-col.com/products/crystal-embellished-clutch-bag-with-tassels-versatile-evening-purse-for-weddings-galas-mac276",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Clutch"
+  },
+  {
+    "id": "mariams:9014314238168",
+    "brandSlug": "mariams",
+    "title": "Stunning Crystal-Front Glitter-Back Clutch – Trendy Square Evening Bag for Parties & Galas (MAC275)",
+    "url": "https://mariam-col.com/products/stunning-crystal-front-glitter-back-clutch-trendy-square-evening-bag-for-parties-galas-mac275",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Evening Bag"
+  },
+  {
+    "id": "mariams:9014312632536",
+    "brandSlug": "mariams",
+    "title": "Geometric Brilliance Ring Minimalist High-Shine Bands for Stacking & Styling (MAC272)",
+    "url": "https://mariam-col.com/products/geometric-brilliance-ring-minimalist-high-shine-bands-for-stacking-styling-mac272",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Ring"
+  },
+  {
+    "id": "mariams:9010821759192",
+    "brandSlug": "mariams",
+    "title": "Elegance Brilliant Diamond Bag - Handcrafted Evening Box Bag for Soirées & Weddings (MAC269)",
+    "url": "https://mariam-col.com/products/elegance-brilliant-diamond-bag-handcrafted-evening-box-bag-for-soirees-weddings-mac269",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
+  },
+  {
+    "id": "mariams:7924731773144",
+    "brandSlug": "mariams",
+    "title": "MR014 Ramadan Sticker, 90 Pcs Stickers Eid Mubarak Decoration",
+    "url": "https://mariam-col.com/products/eid-self-adhesive-sticker-letter",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Decoration"
+  },
+  {
+    "id": "mariams:8154928677080",
+    "brandSlug": "mariams",
+    "title": "MR052 Portable Foldable Travel Prayer Mat",
+    "url": "https://mariam-col.com/products/mr052-foldable-travel-prayer-mat",
+    "garmentWas": "top",
+    "reason": "non-apparel:prayer-goods",
+    "tier": "0",
+    "evidence": "Prayer Mat"
+  },
+  {
+    "id": "lanuuk:6544720363578",
+    "brandSlug": "lanuuk",
+    "title": "Lanuuk Gift Card",
+    "url": "https://lanuuk.com/products/lanuuk-gift-card",
+    "garmentWas": "swim",
+    "reason": "non-apparel:non-product",
+    "tier": "0",
+    "evidence": "Gift Card"
+  },
+  {
+    "id": "arakai:10898861523290",
+    "brandSlug": "arakai",
+    "title": "Tiara Panel-Seamed Voile Crush Yellow",
+    "url": "https://www.arakaistudio.com/products/tiara-panel-seamed-voile-crush-yellow",
+    "garmentWas": "skirt",
+    "reason": "non-apparel:jewellery",
+    "tier": "A",
+    "evidence": "Tiara"
+  },
+  {
+    "id": "arakai:10860763185498",
+    "brandSlug": "arakai",
+    "title": "Tiara Panel-Seamed Voile Crush White",
+    "url": "https://www.arakaistudio.com/products/tiara-panel-seamed-voile-crush-white",
+    "garmentWas": "skirt",
+    "reason": "non-apparel:jewellery",
+    "tier": "A",
+    "evidence": "Tiara"
+  },
+  {
+    "id": "arakai:10860763054426",
+    "brandSlug": "arakai",
+    "title": "Tiara Panel-Seamed Voile Crush Brown",
+    "url": "https://www.arakaistudio.com/products/tiara-panel-seamed-voile-crush-brown",
+    "garmentWas": "skirt",
+    "reason": "non-apparel:jewellery",
+    "tier": "A",
+    "evidence": "Tiara"
+  },
+  {
+    "id": "arakai:10859503976794",
+    "brandSlug": "arakai",
+    "title": "Tiara Panel-Seamed Voile Crush Green",
+    "url": "https://www.arakaistudio.com/products/tiara-panel-seamed-voile-crush-green",
+    "garmentWas": "skirt",
+    "reason": "non-apparel:jewellery",
+    "tier": "A",
+    "evidence": "Tiara"
+  },
+  {
+    "id": "bemu:10283682136355",
+    "brandSlug": "bemu",
+    "title": "Starfish Chain Belt",
+    "url": "https://bemutr.com/products/starfish-chain-belt",
+    "garmentWas": "dress",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "maison-hijab:14996121420101",
+    "brandSlug": "maison-hijab",
+    "title": "MH Gift Card",
+    "url": "https://maisonhijab.com/products/mh-gift-card",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:non-product",
+    "tier": "0",
+    "evidence": "Gift Card"
+  },
+  {
+    "id": "merrachi:15290117915007",
+    "brandSlug": "merrachi",
+    "title": "The Mini Tote | Brown Rice",
+    "url": "https://bymerrachi.com/products/the-mini-tote-brown-rice",
+    "garmentWas": "top",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Tote"
+  },
+  {
+    "id": "merrachi:15090629575039",
+    "brandSlug": "merrachi",
+    "title": "The Mini Canvas Bag | Ivory",
+    "url": "https://bymerrachi.com/products/the-mini-canvas-bag-ivory",
+    "garmentWas": "top",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
+  },
+  {
+    "id": "merrachi:15090629640575",
+    "brandSlug": "merrachi",
+    "title": "The Mini Canvas Bag | Almond",
+    "url": "https://bymerrachi.com/products/the-mini-canvas-bag-almond",
+    "garmentWas": "top",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
+  },
+  {
+    "id": "kamin:9749760278745",
+    "brandSlug": "kamin",
+    "title": "Lulwa Vase",
+    "url": "https://kamin.ae/products/lulwa-vase",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Vase"
+  },
+  {
+    "id": "kamin:9307987214553",
+    "brandSlug": "kamin",
+    "title": "Entrée | Starter Plate",
+    "url": "https://kamin.ae/products/entree-starter-plate",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Plate"
+  },
+  {
+    "id": "kamin:9307979350233",
+    "brandSlug": "kamin",
+    "title": "Pebble | Dinner Bowl",
+    "url": "https://kamin.ae/products/pebble-dinner-bowl",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Bowl"
+  },
+  {
+    "id": "kamin:9307979022553",
+    "brandSlug": "kamin",
+    "title": "Pebble | Medium Serving Bowl",
+    "url": "https://kamin.ae/products/pebble-medium-serving-bowl",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Bowl"
+  },
+  {
+    "id": "kamin:9307978039513",
+    "brandSlug": "kamin",
+    "title": "Entrée | Side Plate",
+    "url": "https://kamin.ae/products/entree-side-plate",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Plate"
+  },
+  {
+    "id": "kamin:9307976925401",
+    "brandSlug": "kamin",
+    "title": "Entrée | Large Dinner Plate",
+    "url": "https://kamin.ae/products/entree-large-dinner-platte",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Plate"
+  },
+  {
+    "id": "kamin:9307976630489",
+    "brandSlug": "kamin",
+    "title": "Entrée | Dinner Plate",
+    "url": "https://kamin.ae/products/entree-dinner-plate",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Plate"
+  },
+  {
+    "id": "kamin:9307975483609",
+    "brandSlug": "kamin",
+    "title": "Entrée | Serving Plate",
+    "url": "https://kamin.ae/products/entree-serving-plate",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Plate"
+  },
+  {
+    "id": "kamin:9307961983193",
+    "brandSlug": "kamin",
+    "title": "Pebble | Appetizer Plate",
+    "url": "https://kamin.ae/products/pebble-appetizer-plate",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Plate"
+  },
+  {
+    "id": "kamin:9307960803545",
+    "brandSlug": "kamin",
+    "title": "Pebble | Large Serving Bowl",
+    "url": "https://kamin.ae/products/pebble-large-serving-plate",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Bowl"
+  },
+  {
+    "id": "kamin:9307959787737",
+    "brandSlug": "kamin",
+    "title": "Entrée | Serving Bowl",
+    "url": "https://kamin.ae/products/entree-serving-bowl",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Bowl"
+  },
+  {
+    "id": "kamin:9307957297369",
+    "brandSlug": "kamin",
+    "title": "Pebble | Small Serving Bowl",
+    "url": "https://kamin.ae/products/pebble-small-serving-bowl",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Bowl"
+  },
+  {
+    "id": "kamin:9307956707545",
+    "brandSlug": "kamin",
+    "title": "Entrée | Soup Bowl",
+    "url": "https://kamin.ae/products/entree-soup-bowl",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Bowl"
+  },
+  {
+    "id": "kamin:9307956379865",
+    "brandSlug": "kamin",
+    "title": "Entrée | Rice & Cereal Bowl",
+    "url": "https://kamin.ae/products/entree-rice-and-cereal-bowl",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Bowl"
   }
 ]
