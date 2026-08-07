@@ -21,7 +21,12 @@ function Slot({
 }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-center gap-3 justify-center">
+      {/* minWidth:0 lets the frame shrink instead of overflowing. The arrows
+          stay shrink-0, so at narrow widths the ARTWORK gives way, not the
+          controls. Without this a fixed 182px frame + two 34px arrows only
+          fitted the column at exactly 1220px and spilled at every width below,
+          which is what made the dress look off-centre. */}
+      <div className="flex items-center gap-3 justify-center w-full" style={{ minWidth: 0 }}>
         <button
           aria-label="Previous"
           onClick={onPrev}
@@ -30,7 +35,7 @@ function Slot({
         >
           ‹
         </button>
-        <div className="flex items-center justify-center" style={{ width: frame.w, height: frame.h }}>
+        <div className="flex items-center justify-center" style={{ width: frame.w, maxWidth: '100%', height: frame.h, minWidth: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={piece.src}
@@ -88,7 +93,7 @@ export default function StyleIt() {
 
   return (
     <section className="max-w-[1220px] mx-auto px-8 py-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-12 items-center">
         {/* COPY — left */}
         <div>
           <h2 className="serif" style={{ fontSize: 'clamp(40px,5.6vw,64px)', lineHeight: 1.02, color: 'var(--ink)' }}>
@@ -134,7 +139,7 @@ export default function StyleIt() {
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Or a dress</div>
               <div className="eyebrow mt-1">One &amp; done</div>
               <div className="flex-1 flex items-center justify-center mt-4">
-                <Slot piece={DRESSES[dress]} frame={{ w: 182, h: 392 }} onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
+                <Slot piece={DRESSES[dress]} frame={{ w: 182, h: 340 }} onPrev={() => cycle(setDress, DRESSES.length, -1)} onNext={() => cycle(setDress, DRESSES.length, 1)} />
               </div>
             </div>
           </div>
