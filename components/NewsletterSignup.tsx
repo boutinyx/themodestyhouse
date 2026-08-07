@@ -56,15 +56,19 @@ export function NewsletterSignup() {
           with the "The Edit, in your inbox" eyebrow above it (both measured at
           x=1085), but the placeholder inside started at 1102 — pushed right by
           this border (1px) plus the input's padding-left (16px) — so the field
-          read as indented under its own label. Pulling the pill back by exactly
-          that 17px puts "Your email" under the E of "THE EDIT". The cost, chosen
-          deliberately: the pill now overhangs the footer column by 17px.
-          If the border width or the input padding changes, this number must
-          change with them. */}
+          read as indented under its own label. 17px of this is the mechanical
+          correction — border + padding — which lands the placeholder exactly on
+          the eyebrow's 1085. The extra 3px is Tina's optical call: the eyebrow
+          is Marcellus at 10px with 0.28em tracking and the placeholder is Jost
+          at 13px, and their differing left side-bearings make a geometric match
+          still read a touch right. The cost, chosen deliberately: the pill
+          overhangs the footer column by 20px.
+          If the border width or the input padding changes, the 17 must change
+          with them; the 3 is taste and can stay. */}
       <div
         className="flex items-center overflow-hidden"
         style={{
-          marginLeft: -17,
+          marginLeft: -20,
           borderRadius: 'var(--radius-button)',
           border: '1px solid rgba(243,238,228,0.22)',
           background: 'rgba(243,238,228,0.06)',
