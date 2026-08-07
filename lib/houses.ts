@@ -16,6 +16,12 @@ const HERO_OVERRIDE: Record<string, string> = {
   // measured on the centre of each photograph rather than guessed from the
   // colour word in the title.
   aab: 'capri-dress-butter-yellow',
+  // Owner-chosen, 2026-08-07. These outrank the scoring on purpose: two of them
+  // are SKIRTS, which the ranking demotes below full-length looks — a sensible
+  // default that is simply wrong for these three houses.
+  inayah: 'maariyyah-falling-petal-dress-original',
+  veiled: 'textured-maxi-skirt-stone',
+  'summer-evenings': 'orchid-chiffon-low-waisted-set',
 };
 
 /** FNV-1a. Any stable hash would do; the point is that a house's picture is
