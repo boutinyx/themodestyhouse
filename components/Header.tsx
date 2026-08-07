@@ -74,10 +74,11 @@ export function Header() {
             <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ transform: 'translateY(-1px)' }} />
             {count > 0 ? count : null}
           </Link>
-          {/* Same hairline rule as the one between the crest and the wordmark
-              (h-10). Slightly shorter here because it divides a single row of
-              controls rather than the full-height crest. */}
-          <span aria-hidden className="block w-px h-8 shrink-0" style={{ background: 'var(--hairline)' }} />
+          {/* Same hairline rule as the one between the crest and the wordmark,
+              and the SAME LENGTH (h-10). It was h-8 on the reasoning that a row
+              of controls needs less than the full-height crest, but two rules in
+              one bar reading at different lengths just looks unresolved. */}
+          <span aria-hidden className="block w-px h-10 shrink-0" style={{ background: 'var(--hairline)' }} />
           <CurrencySwitcher />
         </div>
       </div>

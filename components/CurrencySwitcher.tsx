@@ -56,14 +56,14 @@ export function CurrencySwitcher() {
            divider, which was not the ask. */
         style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 12 : 0 }}
       >
-        {/* 1px UP, MEASURED rather than judged by eye. On a screenshot of the
-            live header the nav labels (EDITORIAL, ABOUT…) and the divider all
-            centre on y=69.0. With no nudge the disc centres on 70.0 and with
-            +1px on 71.0 — both sit low, because the +1px was carried over from
-            the STROKED glyph, whose strokes stop short of the box. The fill
-            weight is a symmetric disc whose geometric centre already is its
-            visual centre, so any downward nudge only drops it. -1px lands it on
-            69.0: the same height as the words beside it, which is the ask. */}
+        {/* No vertical nudge. Re-measured 2026-08-07 on the current header:
+            every box in the bar — nav links, favourites, this trigger, both
+            dividers — centres on y=53, and with translateY(-1px) the disc
+            centred on 52, i.e. a pixel ABOVE the words beside it. The earlier
+            -1px was measured against an older header whose numbers no longer
+            hold. The fill weight is a symmetric disc, so its geometric centre is
+            its visual centre and no correction is needed. Re-measure before
+            reintroducing any nudge here. */}
         {/* weight="fill" is a DELIBERATE choice, confirmed by Tina 2026-08-07.
             Note it does not merely thicken the strokes: Phosphor's fill variant
             for this glyph is a solid disc with the dollar knocked out of it
@@ -73,7 +73,7 @@ export function CurrencySwitcher() {
         <CurrencyDollar
           size={18}
           weight={preference ? 'fill' : 'regular'}
-          style={{ transform: 'translateY(-1px)', display: 'block' }}
+          style={{ display: 'block' }}
         />
         {preference ?? null}
       </Menu.Trigger>
@@ -100,11 +100,12 @@ export function CurrencySwitcher() {
                   // times). A currency is picked once, so the menu lingering
                   // after the choice just reads as stuck.
                   closeOnClick
-                  // justify-center, not just text-center: .nav-link sets
+                  // justify-start, not just text-left: .nav-link sets
                   // `display: inline-flex`, so the row is a flex container and
-                  // text-align has nothing to act on — which is why these stayed
-                  // left-aligned when text-center was added.
-                  className="w-full justify-center text-center nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
+                  // text-align has nothing to act on. Changing text-align alone
+                  // here does nothing at all — the flex property is the one that
+                  // moves these.
+                  className="w-full justify-start text-left nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
                   data-active={preference === o}
                 >
                   {o ? LABEL[o] : 'As listed'}
