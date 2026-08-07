@@ -57,7 +57,9 @@ export function BrandMarquee({ houses, columns = 4 }: { houses: House[]; columns
                     style={{
                       width: 176,
                       height: 220,
-                      borderRadius: 4,
+                      // Arched, matching the featured six above. Only the top is
+                      // shaped, so the name sitting at the foot is untouched.
+                      borderRadius: '999px 999px 4px 4px',
                       background: 'var(--bone)',
                       border: '1px solid var(--hairline)',
                     }}

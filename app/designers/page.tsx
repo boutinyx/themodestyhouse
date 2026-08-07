@@ -29,59 +29,58 @@ export default function DesignersPage() {
         A curated index of modest fashion, brand by brand — vetted for craft and taste.
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-9">
         {list.map((b, i) => (
           <a
             key={b.slug}
             href={b.homepage}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="group relative block overflow-hidden"
-            style={{
-              aspectRatio: '1 / 1',
-              borderRadius: 4,
-              background: 'var(--bone)',
-              border: '1px solid var(--hairline)',
-            }}
+            className="group block"
           >
-            {/* aspectRatio on the tile reserves the box before the image loads, so
-                the grid does not shift as 58 hotlinked images arrive. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={b.image}
-              alt={b.name}
-              loading={i < 10 ? 'eager' : 'lazy'}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-            />
+            {/* The arch. A 3:4 portrait, because fashion is shot vertically and a
+                square crop cuts most garments off at the waist.
 
-            {/* The name sits ON the photograph, so it needs its own ground. The
-                scrim is transparent across the top two-thirds and only gathers
-                where the type is. */}
+                aspectRatio reserves the box before the image loads, so the grid
+                does not shift as the photographs arrive — the site has no
+                next/image and CLS on grids is a known landmine. */}
             <span
-              className="absolute inset-0"
+              className="relative block overflow-hidden"
               style={{
-                background:
-                  'linear-gradient(180deg, rgba(28,12,34,0) 46%, rgba(28,12,34,.30) 66%, rgba(28,12,34,.80))',
+                aspectRatio: '3 / 4',
+                borderRadius: '999px 999px 4px 4px',
+                background: 'var(--bone)',
+                border: '1px solid var(--hairline)',
               }}
-            />
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={b.image}
+                alt={b.name}
+                loading={i < 6 ? 'eager' : 'lazy'}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                /* Pulled down from the top: the arch eats the upper corners, and
+                   on a model shot that is where the head and neckline sit. */
+                style={{ objectPosition: 'center 22%' }}
+              />
+            </span>
 
-            {b.badge && (
-              <span className="badge absolute top-2.5 left-2.5">{BADGE[b.badge]}</span>
-            )}
-
-            <span className="absolute left-3 right-3 bottom-3">
+            {/* Nothing is set on the photograph — that is the point of this
+                treatment. No scrim, so the image is never dimmed to make room
+                for type, and the name never has to fight a busy picture. */}
+            <span className="block text-center mt-3">
               <span
                 className="serif block"
-                style={{ fontSize: 17, lineHeight: 1.12, color: 'var(--parchment)' }}
+                style={{ fontSize: 17, lineHeight: 1.15, color: 'var(--ink)' }}
               >
                 {b.name}
               </span>
-              <span
-                className="eyebrow block mt-1"
-                style={{ color: 'var(--parchment)', opacity: 0.82 }}
-              >
-                {b.city}
-              </span>
+              <span className="eyebrow block mt-1.5">{b.city}</span>
+              {/* The seal moves under the name. On an arched tile the top-left
+                  corner is the one place it cannot go — the radius clips it. */}
+              {b.badge && (
+                <span className="badge mt-2">{BADGE[b.badge]}</span>
+              )}
             </span>
           </a>
         ))}
