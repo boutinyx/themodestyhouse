@@ -75,3 +75,6 @@ data/archetypes.clip.debug.json
 
 # Local curation review page (throwaway, regenerable). Self-contained ~1.5 MB.
 sleeveless-review.html
+
+# Local one-off image picker (throwaway, regenerable)
+aab-hero-picker.html

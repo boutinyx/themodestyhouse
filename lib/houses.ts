@@ -11,6 +11,11 @@ export type House = Brand & { image?: string };
 // used, so it still benefits from the model-photo preference in normalize.
 const HERO_OVERRIDE: Record<string, string> = {
   nasiba: 'solace-versatile-shirt-charcoal',
+  // Aab's scored pick was a black abaya, then a black crossover abaya. Asked for
+  // colour: this is the most saturated full-length look in its 442 candidates,
+  // measured on the centre of each photograph rather than guessed from the
+  // colour word in the title.
+  aab: 'capri-dress-butter-yellow',
 };
 
 /** FNV-1a. Any stable hash would do; the point is that a house's picture is
