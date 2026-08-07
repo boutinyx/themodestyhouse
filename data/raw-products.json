@@ -432750,5 +432750,50 @@
     "lastSeen": "2026-08-07",
     "delistedAt": null,
     "filteredAt": null
+  },
+  {
+    "id": "zayda:9399111024872",
+    "brandSlug": "zayda",
+    "brandName": "Zayda",
+    "title": "Mina Denim Dress",
+    "price": 99.95,
+    "currency": "AUD",
+    "image": "https://cdn.shopify.com/s/files/1/0789/1150/4616/files/IMG_2893_62c9d5d3-78b4-425c-a7ab-cdd46ec9f510.jpg?v=1785912420",
+    "url": "https://www.zayda.com.au/products/mina-denim-dress",
+    "inStock": true,
+    "garment": "dress",
+    "community": "hijabi",
+    "occasion": [
+      "formal"
+    ],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-07",
+    "lastSeen": "2026-08-07",
+    "delistedAt": null,
+    "filteredAt": null
+  },
+  {
+    "id": "zayda:9399787389160",
+    "brandSlug": "zayda",
+    "brandName": "Zayda",
+    "title": "Capo Blazer Dress",
+    "price": 149.95,
+    "currency": "AUD",
+    "image": "https://cdn.shopify.com/s/files/1/0789/1150/4616/files/Edited.png?v=1780738622",
+    "url": "https://www.zayda.com.au/products/capo-blazer-dress",
+    "inStock": true,
+    "garment": "dress",
+    "community": "hijabi",
+    "occasion": [
+      "formal",
+      "work"
+    ],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-07",
+    "lastSeen": "2026-08-07",
+    "delistedAt": null,
+    "filteredAt": null
   }
 ]

@@ -98,4 +98,12 @@ export const BRANDS: Brand[] = [
   // Oomah: curated to the BOTTOMS collection only (owner asked for the pants),
   // not the full catalogue — same pattern as Feradje above.
   { slug: 'oomah', name: 'Oomah', homepage: 'https://www.oomah.co.uk', feedUrl: 'https://www.oomah.co.uk/collections/bottoms/products.json', community: 'hijabi', currency: 'GBP', category: 'Trousers', city: 'UK', vibe: 'elegant' },                            // 2 SKUs, 3419px
+
+  // Zayda: a very small Australian label — the ENTIRE catalogue is 2 products,
+  // confirmed three ways (products.json page 2 empty, /collections/all also 2,
+  // sitemap 1 entry). Added on the owner's instruction with that understood.
+  // Photography is the reason it earns a place: 6 images per product, every one
+  // portrait, up to 4284px. Ships to Australia "and to selected international
+  // destinations" — NOT worldwide (policies/shipping-policy).
+  { slug: 'zayda', name: 'Zayda', homepage: 'https://www.zayda.com.au', feedUrl: 'https://www.zayda.com.au/products.json', community: 'hijabi', currency: 'AUD', category: 'Modest dresses', city: 'Australia', vibe: 'elegant' },                              // 2 SKUs, 4284px
 ];
