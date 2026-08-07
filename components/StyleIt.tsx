@@ -10,7 +10,15 @@ const DRESSES = STYLE_PIECES.dresses;
 
 const ARROW = 34;
 const TOP_FRAME = { w: 138, h: 184 };
-const DRESS_FRAME = { w: 182, h: 340 };
+const SLOT_GAP = 20;    // gap-5 between the two stacked mix slots
+const CAPTION_H = 28;   // .eyebrow caption + its mt-3
+/** The dress frame spans the FULL height of the mix column, so the artwork
+ *  centres against the two stacked pieces rather than hugging the top. Derived,
+ *  not a literal: the dress column was 76px shorter than the mix column and
+ *  top-aligned, so every one of those 76px sat as dead space under the dress.
+ *  Sizing the frame this way also keeps the frame's TOP aligned, which is what
+ *  holds the arrows level with the top slot's. */
+const DRESS_FRAME = { w: 182, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
 /** Arrow centres sit at the middle of the TOP frame in BOTH columns, so all
  *  four controls line up across the card. Centring each slot on its own frame
  *  put the dress arrows at 170px and the top arrows at 92px. */
