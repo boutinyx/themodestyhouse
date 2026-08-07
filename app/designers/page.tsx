@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { houses } from '@/lib/houses';
+import { BrandMarquee } from '@/components/BrandMarquee';
 
 export const metadata: Metadata = {
   title: 'Designers | The Modesty House',
@@ -11,8 +12,15 @@ const BADGE: Record<string, string> = {
   'editors-pick': "✦ Editor's Pick",
 };
 
+const FEATURED = 6;
+
 export default function DesignersPage() {
-  const list = houses();
+  const all = houses();
+  // Badged houses lead — there are five, so the sixth is the next in catalogue
+  // order rather than a hardcoded slug, which keeps this correct as badges move.
+  const ranked = [...all].sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0));
+  const list = ranked.slice(0, FEATURED);
+  const rest = ranked.slice(FEATURED);
 
   return (
     <main className="max-w-[1220px] mx-auto px-5 md:px-8 pt-40 pb-20">
@@ -21,7 +29,7 @@ export default function DesignersPage() {
         A curated index of modest fashion, brand by brand — vetted for craft and taste.
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {list.map((b, i) => (
           <a
             key={b.slug}
@@ -78,6 +86,16 @@ export default function DesignersPage() {
           </a>
         ))}
       </div>
+
+      {rest.length > 0 && (
+        <section className="mt-20">
+          <h2 className="section-heading text-2xl md:text-3xl">The rest of the index</h2>
+          <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
+            Every other house we carry — {rest.length} of them. Hover to hold a column still.
+          </p>
+          <BrandMarquee houses={rest} />
+        </section>
+      )}
     </main>
   );
 }

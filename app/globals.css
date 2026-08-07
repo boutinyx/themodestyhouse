@@ -444,3 +444,25 @@ summary:focus-visible {
    Opacity rather than display:none so it eases out instead of popping. */
 .menu-scroll[data-scrollable='false']::after,
 .menu-scroll[data-at-end='true']::after { opacity: 0; }
+
+/* Vertical marquee — used by the designers wall (components/BrandMarquee).
+   Two keyframe sets and one class rather than the tw-animate-css dependency the
+   upstream component wanted: this is ~15 lines and it keeps colour and motion in
+   the same stylesheet as the rest of the house rules. */
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(-100% - var(--gap, 1rem))); }
+}
+
+.marquee-col {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+.marquee-col[data-reverse='true'] { animation-direction: reverse; }
+.marquee:hover .marquee-col { animation-play-state: paused; }
+
+/* An endlessly moving wall is exactly what this setting exists to switch off.
+   The content stays — it simply stops travelling. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-col { animation: none; }
+  .marquee { overflow-y: auto; }
+}
