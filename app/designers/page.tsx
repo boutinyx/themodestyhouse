@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 export default function DesignersPage() {
   return (
     <main className="max-w-4xl mx-auto px-5 pt-40 pb-12">
-      <div className="eyebrow">The house index</div>
       <h1 className="section-heading text-3xl md:text-4xl mt-2">Designers</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
         A curated index of modest fashion, brand by brand — vetted for craft and taste.

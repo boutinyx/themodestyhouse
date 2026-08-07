@@ -7,7 +7,6 @@ export default function FavouritesPage() {
   const items = Object.values(favs);
   return (
     <main className="max-w-6xl mx-auto px-5 pt-28 pb-16">
-      <div className="eyebrow">Your edit</div>
       <h1 className="section-heading text-3xl md:text-4xl mt-2">Favourites</h1>
       {items.length === 0 ? (
         <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>

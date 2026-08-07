@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { formatPrice } from '@/lib/price';
+import { useCurrency } from './CurrencyProvider';
 
 type Pick = {
   id: string;
@@ -15,6 +15,7 @@ type Pick = {
 
 
 export default function EditorsRail({ picks }: { picks: Pick[] }) {
+  const { price } = useCurrency();
   const scroller = useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = useState(false);
   const [canRight, setCanRight] = useState(false);
@@ -72,7 +73,7 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
             </div>
             <div className="brand-label mt-3">{p.brandName}</div>
             <div className="card-title card-title-lg mt-1">{p.title}</div>
-            <div className="price mt-1">{formatPrice(p.price, p.currency)}</div>
+            <div className="price mt-1">{price(p.price, p.currency).text}</div>
           </a>
         ))}
       </div>

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductCard } from './ProductCard';
 import { brandVibe, VIBES } from '@/lib/vibes';
+import { CurrencySwitcher } from './CurrencySwitcher';
 
 const STEP = 24;
 const GARMENT_LABEL: Record<string, string> = {
@@ -108,6 +109,12 @@ export function DirectoryBrowser({ products, initialQuery = '' }: { products: Pr
           <FilterDropdown label="Aesthetic" value={vibe} options={vibes} onSelect={setVibe} />
           <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
           <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+          {/* Pushed to the right: it changes how prices READ, it does not filter
+              the grid, so it should not sit in the run of filter chips. */}
+          <div className="ml-auto flex items-center gap-2">
+            <span className="eyebrow">Prices in</span>
+            <CurrencySwitcher />
+          </div>
         </div>
       </div>
 

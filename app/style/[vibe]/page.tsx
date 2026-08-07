@@ -22,7 +22,6 @@ export default async function StylePage({ params }: { params: Promise<{ vibe: st
   const products = productsForVibe(v.slug);
   return (
     <main className="max-w-6xl mx-auto px-5 pt-40 pb-12">
-      <div className="eyebrow">Shop by style</div>
       <h1 className="section-heading text-3xl md:text-4xl mt-2">{v.title}</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{v.intro}</p>
       <FilterableGrid products={products} />

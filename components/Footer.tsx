@@ -68,9 +68,6 @@ export function Footer() {
                 which is invalid HTML and produced a stray bullet in the footer. */}
             <div className="mt-7">
               <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
-              <p className="mt-2 text-sm" style={{ color: 'rgba(243,238,228,0.7)' }}>
-                New houses and the occasional edit. No spam.
-              </p>
               <NewsletterSignup />
             </div>
           </div>

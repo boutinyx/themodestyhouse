@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { Product } from '@/lib/types';
-import { formatPrice } from '@/lib/price';
+import { useCurrency } from './CurrencyProvider';
 
 type Ctx = {
   open: (p: Product) => void;
@@ -74,6 +74,7 @@ function Modal({
   onToggleFav: () => void;
   onClose: () => void;
 }) {
+  const { price } = useCurrency();
   const [zoomed, setZoomed] = useState(false);
 
   useEffect(() => {
@@ -136,7 +137,7 @@ function Modal({
           <div className="brand-label">{product.brandName}</div>
           <h2 className="card-title card-title-xl mt-2">{product.title}</h2>
           <div className="price price-lg mt-3">
-            {formatPrice(product.price, product.currency)}
+            {price(product.price, product.currency).text}
           </div>
           <div className="mt-auto pt-8 flex flex-col gap-3">
             <a

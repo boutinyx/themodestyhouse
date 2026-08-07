@@ -52,7 +52,6 @@ export default function MagnifierHero() {
 
         {/* copy */}
         <div className="mag-copy">
-          <div className="eyebrow" style={{ color: 'var(--parchment)', letterSpacing: '.3em' }}>Look closer</div>
           <h1 className="serif mag-h">
             The archive for
             <br />

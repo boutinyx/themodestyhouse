@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuickViewProvider } from '@/components/QuickView';
+import { CurrencyProvider } from '@/components/CurrencyProvider';
 import './globals.css';
 
 const display = Bodoni_Moda({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
@@ -28,11 +29,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${display.variable} ${label.variable} ${ui.variable}`}>
       <body>
+        <CurrencyProvider>
         <QuickViewProvider>
           <Header />
           {children}
           <Footer />
         </QuickViewProvider>
+        </CurrencyProvider>
         {skim && (
           <Script src={`https://s.skimresources.com/js/${skim}.skimlinks.js`} strategy="afterInteractive" />
         )}

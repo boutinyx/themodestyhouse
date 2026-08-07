@@ -1,10 +1,11 @@
 'use client';
 import type { Product } from '@/lib/types';
-import { formatPrice } from '@/lib/price';
+import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 
 export function ProductCard({ p }: { p: Product }) {
   const { open, isFav, toggleFav } = useQuickView();
+  const { price } = useCurrency();
   const fav = isFav(p.id);
   return (
     <div
@@ -37,7 +38,7 @@ export function ProductCard({ p }: { p: Product }) {
       </div>
       <div className="brand-label mt-3">{p.brandName}</div>
       <div className="card-title mt-1 px-2">{p.title}</div>
-      <div className="price mt-1">{formatPrice(p.price, p.currency)}</div>
+      <div className="price mt-1">{price(p.price, p.currency).text}</div>
     </div>
   );
 }

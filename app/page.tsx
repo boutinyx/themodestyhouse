@@ -45,7 +45,6 @@ export default function Home() {
             style={{ background: 'radial-gradient(ellipse 55% 42% at 50% 54%, rgba(0,0,0,0.30), rgba(0,0,0,0) 72%)' }}
           />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
-            <div className="eyebrow" style={{ color: 'var(--parchment)', textShadow: '0 1px 12px rgba(0,0,0,0.55)' }}>Curated modest fashion</div>
             <h1 className="serif text-4xl md:text-6xl mt-4" style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)', lineHeight: 1.02 }}>
               The archive for
               <br />
@@ -65,7 +64,6 @@ export default function Home() {
       <section className="max-w-[1220px] mx-auto px-8 py-20">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <div className="eyebrow">Picks from the editor</div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>
               Chosen by <span className="italic" style={{ color: 'var(--plum)' }}>hand</span>.
             </h2>
@@ -82,7 +80,6 @@ export default function Home() {
       <section className="max-w-[1220px] mx-auto px-8 py-20">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <div className="eyebrow">Browse the index</div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>By category.</h2>
           </div>
           <Link href="/directory" className="nav-link">All categories →</Link>
@@ -110,7 +107,6 @@ export default function Home() {
         <div className="max-w-[1220px] mx-auto px-8 py-20">
           <div className="max-w-2xl">
             <div>
-              <div className="eyebrow" style={{ color: 'var(--brass)' }}>For designers</div>
               <h2 className="serif mt-3" style={{ fontSize: 'clamp(28px,4vw,46px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
                 Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
               </h2>
@@ -138,7 +134,6 @@ export default function Home() {
       <section className="max-w-[1220px] mx-auto px-8 py-20">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <div className="eyebrow">The Edit</div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>
               Reading, not just <span className="italic" style={{ color: 'var(--plum)' }}>shopping</span>.
             </h2>

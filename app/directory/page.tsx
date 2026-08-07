@@ -13,7 +13,6 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   return (
     <main className="max-w-6xl mx-auto px-5 pt-32 pb-16">
       <div className="text-center mb-6">
-        <div className="eyebrow">The directory</div>
         <h1 className="section-heading text-3xl md:text-4xl mt-2">
           {q ? <>Results for “{q}”</> : 'Everything modest'}
         </h1>

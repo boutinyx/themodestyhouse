@@ -25,7 +25,6 @@ export default async function ContactPage({
   return (
     <main className="max-w-xl mx-auto px-5 pt-32 pb-24">
       <div className="text-center">
-        <div className="eyebrow">Contact</div>
         <h1 className="section-heading text-3xl md:text-4xl mt-3">Get in touch</h1>
         <p className="mt-4 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
           Brand submissions, press, corrections, or anything else — write to us here and

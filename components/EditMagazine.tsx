@@ -15,7 +15,6 @@ export default function EditMagazine({ featureImage }: { featureImage?: string }
         <div className="edit-grid">
           {/* lead story */}
           <div className="edit-lead">
-            <div className="eyebrow">The List</div>
             <h3 className="edit-h">The abaya houses defining quiet luxury.</h3>
             <div className="edit-cols">
               <p className="edit-body">
@@ -40,7 +39,6 @@ export default function EditMagazine({ featureImage }: { featureImage?: string }
             }}
           >
             <div className="edit-feat-cap">
-              <div className="eyebrow" style={{ color: '#e7d3b6' }}>Interview</div>
               <div className="edit-feat-title">On craft, coverage and colour</div>
             </div>
           </Link>

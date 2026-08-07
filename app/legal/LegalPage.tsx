@@ -5,7 +5,6 @@ import { LEGAL_LAST_UPDATED, type LegalDoc } from '@/lib/legal';
 export function LegalPage({ doc }: { doc: LegalDoc }) {
   return (
     <main className="max-w-[720px] mx-auto px-6 pt-32 pb-24">
-      <div className="eyebrow">The House</div>
       <h1 className="serif mt-3" style={{ fontSize: 'clamp(32px,5.2vw,54px)', lineHeight: 1.03, color: 'var(--ink)' }}>
         {doc.title}
       </h1>

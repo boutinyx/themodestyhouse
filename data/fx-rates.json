@@ -1,0 +1,16 @@
+{
+  "base": "USD",
+  "fetchedAt": "Fri, 07 Aug 2026 00:02:31 +0000",
+  "source": "https://open.er-api.com/v6/latest/USD",
+  "rates": {
+    "USD": 1,
+    "GBP": 0.743043,
+    "EUR": 0.867316,
+    "AED": 3.6725,
+    "AUD": 1.421461,
+    "CAD": 1.401227,
+    "MYR": 4.089859,
+    "INR": 95.266754,
+    "EGP": 49.788892
+  }
+}

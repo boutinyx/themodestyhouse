@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="max-w-3xl mx-auto px-5 pt-32 pb-24 text-center">
-      <div className="eyebrow">About</div>
       <h1 className="section-heading text-3xl md:text-4xl mt-3">The archive for everything modest</h1>
       <p className="mt-4 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
         The Modesty House is a curated index of modest fashion — brand by brand, piece by piece.

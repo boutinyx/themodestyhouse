@@ -27,7 +27,6 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
       <div className="tmh-vin">
         {/* LEFT: text */}
         <div className="tmh-vtext">
-          <p className="tmh-eyebrow">Newly verified</p>
           <h2 className="tmh-title">Houses that just<br />earned the <em>seal</em>.</h2>
           <p className="tmh-copy">
             Every label here has passed our review for craft, sizing and ethics, freshly
