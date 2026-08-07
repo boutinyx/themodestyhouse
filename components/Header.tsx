@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Nav } from './Nav';
 import { useQuickView } from './QuickView';
 import { CurrencySwitcher } from './CurrencySwitcher';
+import { MobileNav } from './MobileNav';
 
 export function Header() {
   const [hidden, setHidden] = useState(false);
@@ -83,10 +84,15 @@ export function Header() {
               one bar reading at different lengths just looks unresolved. */}
           <span aria-hidden className="block w-px h-10 shrink-0" style={{ background: 'var(--hairline)' }} />
           <CurrencySwitcher />
+          {/* Phone navigation, INSIDE the pill. What it replaces was a
+              horizontally-scrolling row sitting on the hero photograph: measured
+              at iPhone 13 width, 485px of content in a 358px box, with Editorial
+              and About entirely off-screen. */}
+          <span aria-hidden className="md:hidden block w-px h-10 shrink-0" style={{ background: 'var(--hairline)' }} />
+          <div className="md:hidden">
+            <MobileNav />
+          </div>
         </div>
-      </div>
-      <div className="md:hidden flex items-center gap-5 px-5 pt-3 overflow-x-auto">
-        <Nav />
       </div>
     </header>
   );
