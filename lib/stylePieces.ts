@@ -4,12 +4,13 @@ export type Piece = {
   brand: string;
   label: string;
   color: string;
-  /** Widens the FRAME for this artwork only. The frame is sized for the typical
-   *  dress, so a wider silhouette (an abaya) hits the cap on width and renders
-   *  short. Because the arrows are positioned by the frame, they step outwards
-   *  for this piece — the cost of showing it larger, and confined to the one
-   *  piece that needs it. Ceiling is 191px: the column is 283px and the arrows
-   *  and their gaps take 92px of it. */
+  /** Per-piece width cap on the ARTWORK, in px. Above the frame width it lets a
+   *  wide silhouette (an abaya) overflow the frame rather than render short;
+   *  below it, it holds a piece at its established size while the frame grows.
+   *  Deliberately NOT applied to the frame: the arrows are positioned by the
+   *  frame, so a per-piece frame makes them jump as you cycle dresses.
+   *  Ceiling is 184px — 160px frame plus the 12px arrow gap either side, less
+   *  3px so the artwork does not sit flush against a control. */
   maxW?: number;
 };
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
@@ -94,7 +95,8 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "src": "/style-it/dress_0.png",
       "brand": "Glow Modesty",
       "label": "Floral Chiffon",
-      "color": "#dfb7b9"
+      "color": "#dfb7b9",
+      "maxW": 145
     },
     {
       "src": "/style-it/dress_2.png",
@@ -113,7 +115,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "brand": "Veiled",
       "label": "Butterfly Abaya",
       "color": "#1c2c24",
-      "maxW": 185
+      "maxW": 180
     }
   ]
 };

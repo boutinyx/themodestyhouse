@@ -18,14 +18,17 @@ const CAPTION_H = 28;   // .eyebrow caption + its mt-3
  *  top-aligned, so every one of those 76px sat as dead space under the dress.
  *  Sizing the frame this way also keeps the frame's TOP aligned, which is what
  *  holds the arrows level with the top slot's. */
-/** Width is a CAP on the artwork, and it is what sets the arrows' distance from
- *  the dress: whatever the frame is wider than the garment shows up as dead space
- *  between the two. Dresses render 129-182px, so a 182px frame left up to 27px of
- *  it. 145 brings the worst case down to 20px. Narrowing further keeps pulling the
- *  arrows in, but
- *  the widest dresses become width-constrained and render shorter, so this is the
- *  balance point rather than the minimum. */
-const DRESS_FRAME = { w: 145, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
+/** Width sets the arrows' distance from the dress, and it is deliberately the
+ *  SAME for every dress: the arrows are anchored to the frame, so any per-piece
+ *  width makes them jump when you cycle. A frame of 185 (fitting the widest
+ *  garment outright) threw them 20px further out on that one dress, which reads
+ *  as the controls drifting to the edge.
+ *
+ *  So the frame is fixed and a wide garment overflows it instead — up to
+ *  frame + 2*gap-3 = 184px before it touches an arrow. 160 is the balance point:
+ *  large enough that the abaya reaches 180px, small enough that the arrows stay
+ *  close to the three narrow dresses (7.5px further out than a 145 frame). */
+const DRESS_FRAME = { w: 160, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
 /** The artwork's own size, kept at what it was before the frame was made
  *  full-height. The FRAME spans the column so the dress can centre inside it;
  *  this cap stops the dress growing to fill that taller box. */
@@ -59,6 +62,15 @@ function Slot({
    *  so the piece can be CENTRED in the column without being enlarged. */
   artMaxH?: number;
 }) {
+  /* piece.maxW is a px cap on the ARTWORK, which may exceed the frame — that is
+     how one garment gets bigger without dragging the arrows out with it. It is
+     paired with the equivalent percentage so the overflow shrinks along with the
+     frame on narrow viewports: as a bare px value it would keep its full size
+     while the frame collapsed, and run into the arrows. */
+  const artMaxW = piece.maxW
+    ? `min(${piece.maxW}px, ${((piece.maxW / frame.w) * 100).toFixed(1)}%)`
+    : '100%';
+
   return (
     <div className="flex flex-col items-center">
       {/* minWidth:0 lets the frame shrink instead of overflowing. The arrows
@@ -75,12 +87,12 @@ function Slot({
         >
           ‹
         </button>
-        <div className="flex items-center justify-center" style={{ width: piece.maxW ?? frame.w, maxWidth: '100%', height: frame.h, minWidth: 0 }}>
+        <div className="flex items-center justify-center" style={{ width: frame.w, maxWidth: '100%', height: frame.h, minWidth: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={piece.src}
             alt={`${piece.brand} ${piece.label}`}
-            style={{ maxWidth: '100%', maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            style={{ maxWidth: artMaxW, maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button
