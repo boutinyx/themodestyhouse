@@ -28,18 +28,24 @@ function FilterDropdown({
         {current ? current.label : label} ▾
       </button>
       <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-40">
+        {/* menu-scroll hides the scrollbar and fades the last row instead — the
+            fade is the scroll affordance. data-scrollable turns the fade off for
+            short lists, so a 3-item menu isn't told it can scroll. */}
         <div
-          className="rounded-xl border p-2 min-w-[190px] max-h-72 overflow-auto"
+          className="menu-scroll rounded-xl border min-w-[190px]"
+          data-scrollable={options.length > 7}
           style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
         >
-          <button type="button" onClick={() => onSelect('all')} className="block w-full text-left nav-link py-2 px-3">
-            All {label.toLowerCase()}
-          </button>
-          {options.map((o) => (
-            <button key={o.value} type="button" onClick={() => onSelect(o.value)} className="block w-full text-left nav-link py-2 px-3 whitespace-nowrap">
-              {o.label}
+          <div className="menu-scroll-list p-2">
+            <button type="button" onClick={() => onSelect('all')} className="block w-full text-left nav-link py-2 px-3">
+              All {label.toLowerCase()}
             </button>
-          ))}
+            {options.map((o) => (
+              <button key={o.value} type="button" onClick={() => onSelect(o.value)} className="block w-full text-left nav-link py-2 px-3 whitespace-nowrap">
+                {o.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

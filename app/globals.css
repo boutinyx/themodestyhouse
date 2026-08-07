@@ -364,3 +364,35 @@ summary:focus-visible {
   color: var(--ink);   /* not --muted: that is 3.88:1 on --bone */
 }
 .price-lg { font-size: 19px; }
+
+/* --- scrollable dropdown menu ------------------------------------------------
+   The native scrollbar in the filter dropdowns is visually loud against the
+   card. Hidden here (.no-scrollbar already exists for rails), and replaced with
+   a soft fade over the last row so it still reads as scrollable — the affordance
+   the scrollbar was providing. The fade sits ABOVE the list but must not eat
+   clicks, hence pointer-events: none. */
+.menu-scroll {
+  position: relative;
+}
+.menu-scroll-list {
+  max-height: 18rem;
+  overflow-y: auto;
+  -ms-overflow-style: none;   /* IE / Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.menu-scroll-list::-webkit-scrollbar {
+  display: none;              /* Chrome / Safari */
+}
+.menu-scroll::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46px;
+  pointer-events: none;
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 70%, #fff 100%);
+}
+/* No fade when the list is short enough not to scroll. */
+.menu-scroll[data-scrollable='false']::after { display: none; }

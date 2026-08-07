@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { PinterestLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr';
 import { CATEGORY_LANES } from '@/lib/lanes';
+import { NewsletterSignup } from './NewsletterSignup';
 
 function Col({ head, children }: { head: string; children: React.ReactNode }) {
   return (
@@ -60,15 +61,17 @@ export function Footer() {
               <FLink href="/contact">Contact</FLink>
             </ul>
 
-            {/* The newsletter needs subscriber storage, double opt-in and an
-                unsubscribe flow before it can exist — see docs/email-service-plan.md.
-                Until then this points at the contact form rather than a form that
-                silently does nothing. */}
+            {/* Sign-up posts to /api/subscribe, which emails the address to us.
+                There is still no subscriber database (see lib/subscribe.ts), so
+                the copy says "we'll add you", not "an issue is on its way".
+                NOTE: the old version rendered <FLink> — an <li> — inside a <p>,
+                which is invalid HTML and produced a stray bullet in the footer. */}
             <div className="mt-7">
               <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
               <p className="mt-2 text-sm" style={{ color: 'rgba(243,238,228,0.7)' }}>
-                Coming soon. In the meantime, <FLink href="/contact">write to us</FLink>.
+                New houses and the occasional edit. No spam.
               </p>
+              <NewsletterSignup />
             </div>
           </div>
         </div>

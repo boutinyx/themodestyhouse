@@ -47,7 +47,11 @@ function Slot({
           ›
         </button>
       </div>
-      <div className="eyebrow mt-3">
+      {/* w-full + text-center: the caption is longer than the arrows+image row
+          ("GLOW MODESTY · FLORAL CHIFFON"), and as a shrink-to-fit box it set the
+          column's width and pulled the artwork off-centre. Filling the column
+          decouples the two so the image always sits in the middle. */}
+      <div className="eyebrow mt-3 w-full text-center">
         <span style={{ color: 'var(--ink)' }}>{piece.brand}</span> · {piece.label}
       </div>
     </div>

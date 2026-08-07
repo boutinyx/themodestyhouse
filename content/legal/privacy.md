@@ -22,6 +22,8 @@ We keep data collection to a minimum. We collect:
 - **Messages you send us.** If you email us, we receive your email address and whatever you write, so we can reply.
 - **Contact form submissions.** If you use the form at [/contact](/contact), we receive the name, email address, subject and message you enter. These are sent to us as an email via **Resend**, our email delivery provider — we do **not** store them in a database. The form is protected by Cloudflare Turnstile, an anti-spam check that verifies you are not a bot; it processes your IP address and limited browser signals for that purpose, and does not track you across sites. We also briefly hold the IP address a submission came from — in the server's memory only, for about a minute, and never written to disk — so that a single source cannot flood the form.
 
+- **Newsletter sign-ups.** If you enter your email address in the sign-up field in our footer, we receive that address by email so we can add you to our mailing list. We do **not** store it in a database on this website. You can ask us to remove you at any time by emailing **hello@themodestyhouse.com**, and every newsletter we send will include an unsubscribe link.
+
 We do **not** knowingly collect sensitive personal data, and we do not ask you to create an account or give us your name, address, or payment details.
 
 ## 3. Why we use your data and our legal basis (GDPR)
@@ -29,6 +31,7 @@ We do **not** knowingly collect sensitive personal data, and we do not ask you t
 Under the EU General Data Protection Regulation (GDPR), we must have a legal basis for using your data. We rely on:
 
 - **Keeping the site secure and working** (server logs) — to prevent abuse and fix problems. Legal basis: legitimate interest, Art. 6(1)(f).
+- **Sending you the newsletter, if you signed up for it** — to send occasional updates you asked for. Legal basis: your consent, which you can withdraw at any time.
 - **Replying to your emails and contact form messages** — to answer your question. Legal basis: legitimate interest, or your consent.
 - **Anti-spam and abuse prevention on the contact form** (Cloudflare Turnstile, rate limiting) — to stop automated abuse. Legal basis: legitimate interest, Art. 6(1)(f).
 - **Affiliate click tracking by third-party networks** — to earn the commission that funds the site. Legal basis: legitimate interest, or consent where required.
