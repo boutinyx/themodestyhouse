@@ -78,7 +78,38 @@ npm run build        Compiled successfully
 Checked visually by letterboxing every top into the real 180×184 frame with the
 frame outlined, before and after.
 
-## Notes / follow-ups
+## Revision, same day: capped by height instead
 
-- Brands for the six new pieces are still unknown — see
-  `2026-08-07-style-it-six-new-pieces.md`.
+Levelling every top at 184 made them the same as each other but *bigger than the
+trousers beside them* — 184 tall and up to 198 wide, against trousers that are
+184 tall but 74-99 wide. The top loomed over the outfit.
+
+So the frame came back to 170 and tops are capped at `TOP_ART_H = 150`, which is
+below every top's fitted height. All ten now render exactly 150 tall, 109-165
+wide, sitting alongside the trousers rather than over them — and 150 is where the
+original six already were (134-176, mean 153). Bottoms still fill at 184.
+
+Every per-piece `maxW` came off the tops: at this cap nothing reaches the frame's
+width, so nothing needs to overflow it. Only the dresses use `maxW` now.
+
+## Brands, confirmed
+
+Tina supplied the six source URLs. Each was checked against the store's own
+`/products/<handle>.json` — vendor and title — and the store photo compared with
+the cutout to confirm the piece:
+
+```
+Hijab Boutique   Blouse - Olive                     -> top_7
+Hijab Boutique   Oversized Cotton Top - Roze        -> top_8    ("Roze" dropped, 4)
+Hijab Boutique   Ruffle Blouse - Yellow             -> top_9
+Jawda            Olive Print Top                    -> top_11
+Nasiba           Solace Wide Leg Pants - Charcoal   -> bottom_7
+Merrachi         Frayed Hem Pants | Sand            -> bottom_8
+```
+
+The Merrachi identification is independently corroborated: the cutout carries an
+embroidered **M** at its frayed hem, which is what prompted looking for a
+monogrammed label in the first place.
+
+Note `Hijab Boutique`, `Jawda` and `Merrachi` are not all in `data/brands.ts` —
+`lib/stylePieces.ts` has always carried brands outside `BRANDS` (§8 landmines).

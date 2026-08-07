@@ -10,15 +10,18 @@ const DRESSES = STYLE_PIECES.dresses;
 
 const ARROW = 34;
 /** Width was 138, which is narrower than several garments are wide. A flat-lay of
- *  an oversized top is about as wide as it is tall, so in a 138x184 frame width
- *  ran out first and it rendered short — 125px against the 176px of a slim knit,
- *  which read as the new pieces being a different size from the old ones. At 180
- *  nearly every top is limited by HEIGHT instead, so they all land on 184.
- *
- *  180 rather than 190: the mix column is 282px and the arrows with their gaps
- *  take 92px, so 190 would leave nothing. The three pieces still short of 184 at
- *  this width close the gap with a per-piece `maxW` instead. */
-const TOP_FRAME = { w: 180, h: 184 };
+ *  an oversized top is about as wide as it is tall, so in a 138-wide frame width
+ *  ran out first and the piece rendered short — 125px against a slim knit's 176px,
+ *  which read as the new pieces being a different size from the old ones. At 170
+ *  every top is limited by TOP_ART_H instead, so they all come out identical. */
+const TOP_FRAME = { w: 170, h: 184 };
+/** Tops are capped shorter than the frame; bottoms are not. Letting a top fill
+ *  the frame made it 184 tall AND up to 198 wide, next to trousers that are 184
+ *  tall but only 74-99 wide — so the top read as much the bigger garment. At 150
+ *  a top is 109-165 wide, which sits alongside the trousers rather than looming
+ *  over them, and it is where the original six already sat (134-176, mean 153).
+ *  It also removes every per-piece `maxW` from the tops: nothing overflows now. */
+const TOP_ART_H = 150;
 const SLOT_GAP = 20;    // gap-5 between the two stacked mix slots
 const CAPTION_H = 28;   // .eyebrow caption + its mt-3
 /** One .eyebrow line. Marcellus carries no line-height of its own, so `normal`
@@ -242,7 +245,7 @@ export default function StyleIt() {
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Mix &amp; match</div>
               <div className="eyebrow mt-1">Top + Bottom</div>
               <div className="flex-1 flex flex-col items-center justify-start gap-5 mt-4">
-                <Slot piece={t} frame={TOP_FRAME} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
+                <Slot piece={t} frame={TOP_FRAME} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
                 <Slot piece={b} frame={TOP_FRAME} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
               </div>
             </div>

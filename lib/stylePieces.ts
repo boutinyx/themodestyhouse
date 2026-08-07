@@ -14,33 +14,36 @@ export type Piece = {
    *  Deliberately NOT applied to the frame: the arrows are positioned by the
    *  frame, so a per-piece frame makes them jump as you cycle.
    *  The artwork touches an arrow at `frame.w + 24` (a 12px gap either side), so
-   *  that is the hard ceiling: 172 for a dress (148 frame), 204 for a top or
-   *  bottom (180 frame). Values in use stop 2-3px short of it. */
+   *  that is the hard ceiling: 172 for a dress (148 frame), 194 for a top or
+   *  bottom (170 frame). Only the dresses use it — tops and bottoms are capped by
+   *  height and none of them reaches the frame's width. */
   maxW?: number;
 };
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
   "tops": [
     {
       "src": "/style-it/top_7.png",
-      "label": "Satin Collar Blouse",
+      "brand": "Hijab Boutique",
+      "label": "Olive Blouse",
       "color": "#8a7619"
     },
     {
       "src": "/style-it/top_8.png",
-      "label": "Oversized Tee",
-      "color": "#d5ada4",
-      "maxW": 187
+      "brand": "Hijab Boutique",
+      "label": "Oversized Cotton Top",
+      "color": "#d5ada4"
     },
     {
       "src": "/style-it/top_9.png",
+      "brand": "Hijab Boutique",
       "label": "Ruffle Blouse",
       "color": "#f7e4a9"
     },
     {
       "src": "/style-it/top_11.png",
-      "label": "Printed High-Neck",
-      "color": "#9f947a",
-      "maxW": 198
+      "brand": "Jawda",
+      "label": "Olive Print Top",
+      "color": "#9f947a"
     },
     {
       "src": "/style-it/top_0.png",
@@ -64,8 +67,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "src": "/style-it/top_4.png",
       "brand": "Veiled",
       "label": "Layla Top",
-      "color": "#d8a676",
-      "maxW": 189
+      "color": "#d8a676"
     },
     {
       "src": "/style-it/top_5.png",
@@ -83,12 +85,14 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
   "bottoms": [
     {
       "src": "/style-it/bottom_7.png",
-      "label": "Wide-Leg Trouser",
+      "brand": "Nasiba",
+      "label": "Solace Wide Leg",
       "color": "#545253"
     },
     {
       "src": "/style-it/bottom_8.png",
-      "label": "Linen Wide-Leg",
+      "brand": "Merrachi",
+      "label": "Frayed Hem Pants",
       "color": "#d6cdbb"
     },
     {
