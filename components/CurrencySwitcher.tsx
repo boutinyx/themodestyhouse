@@ -50,11 +50,12 @@ export function CurrencySwitcher() {
         data-active={preference !== null}
         /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space AFTER
            the last glyph and pushes an icon left of true centre.
-           gap 12px is the space between the DISC and its currency code — the one
-           that was actually meant by "more spacing". The surrounding cluster gap
-           (Header.tsx) stays at its original gap-6; widening that moved the
-           divider, which was not the ask. */
-        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 12 : 0 }}
+           gap is the space between the DISC and its currency code — the one that
+           was actually meant by "more spacing", and tightened from 12 to 8 on
+           2026-08-07. The surrounding cluster gap (Header.tsx) stays at its
+           original gap-6; widening that moved the divider, which was not the
+           ask. */
+        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 8 : 0 }}
       >
         {/* No vertical nudge. Re-measured 2026-08-07 on the current header:
             every box in the bar — nav links, favourites, this trigger, both
