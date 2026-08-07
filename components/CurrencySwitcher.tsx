@@ -50,7 +50,7 @@ export function CurrencySwitcher() {
         data-active={preference !== null}
         /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space AFTER
            the last glyph and pushes an icon left of true centre. */
-        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 5 : 0 }}
+        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 8 : 0 }}
       >
         {/* 1px UP, and this one is MEASURED rather than judged by eye. Against a
             screenshot of the live header, the nav labels and the divider all
@@ -58,7 +58,9 @@ export function CurrencySwitcher() {
             2px low. The +1px was carried over from the stroked glyph, but the
             fill weight is a symmetric disc whose geometric centre already IS its
             visual centre, so the nudge only pushed it down. -1px lands it on
-            69.0, level with the labels and the rule. */}
+            69.0, level with the labels and the rule.
+            Then nudged back to 0 on request — Tina wanted it a hair lower than
+            dead level, which puts the disc 1px below the labels. Deliberate. */}
         {/* weight="fill" is a DELIBERATE choice, confirmed by Tina 2026-08-07.
             Note it does not merely thicken the strokes: Phosphor's fill variant
             for this glyph is a solid disc with the dollar knocked out of it
@@ -68,7 +70,7 @@ export function CurrencySwitcher() {
         <CurrencyDollar
           size={18}
           weight={preference ? 'fill' : 'regular'}
-          style={{ transform: 'translateY(-1px)', display: 'block' }}
+          style={{ transform: 'translateY(0)', display: 'block' }}
         />
         {preference ?? null}
       </Menu.Trigger>
