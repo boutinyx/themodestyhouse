@@ -130,7 +130,15 @@
   }
   .tmh-cat-feat {
     grid-column: span 2;
-    grid-row: span 1;
+    /* TWO rows, as on desktop. At span 1 the feature card was 326x240 — a
+       landscape box holding a 390x585 portrait, so it was the worst-cropped card
+       of the five despite being the biggest. Two rows make it 326x494, and 326
+       at the image's own 2:3 works out to 489, so the feature is now within 5px
+       of showing the whole photograph.
+       The structure is unchanged: it still spans the full width above a two-up
+       grid, because it takes both columns of the first two rows and the other
+       four cards flow into the two rows beneath it. */
+    grid-row: span 2;
   }
   .tmh-cat-feat .tmh-cat-cap .lbl {
     font-size: 26px;
