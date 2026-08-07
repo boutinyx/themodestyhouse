@@ -18,7 +18,13 @@ const CAPTION_H = 28;   // .eyebrow caption + its mt-3
  *  top-aligned, so every one of those 76px sat as dead space under the dress.
  *  Sizing the frame this way also keeps the frame's TOP aligned, which is what
  *  holds the arrows level with the top slot's. */
-const DRESS_FRAME = { w: 182, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
+/** Width is a CAP on the artwork, and it is what sets the arrows' distance from
+ *  the dress: whatever the frame is wider than the garment shows up as dead space
+ *  between the two. Dresses render 129-182px, so a 182px frame left up to 27px of
+ *  it. 155 halves that. Narrowing further would keep pulling the arrows in, but
+ *  the widest dresses become width-constrained and render shorter, so this is the
+ *  balance point rather than the minimum. */
+const DRESS_FRAME = { w: 155, h: TOP_FRAME.h * 2 + SLOT_GAP + CAPTION_H };
 /** The artwork's own size, kept at what it was before the frame was made
  *  full-height. The FRAME spans the column so the dress can centre inside it;
  *  this cap stops the dress growing to fill that taller box. */
