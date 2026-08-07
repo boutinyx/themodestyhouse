@@ -121,7 +121,7 @@ function Slot({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={piece.src}
-            alt={`${piece.brand} ${piece.label}`}
+            alt={piece.brand ? `${piece.brand} ${piece.label}` : piece.label}
             style={{ maxWidth: artMaxW, maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
@@ -139,18 +139,29 @@ function Slot({
           column's width and pulled the artwork off-centre. Filling the column
           decouples the two so the image always sits in the middle. */}
       <div className="eyebrow mt-3 w-full text-center">
+        {/* The middot separates two things, so a piece with no brand yet shows
+            the garment alone rather than a caption hanging off a stray dot. */}
         {stackCaption ? (
           /* Same three parts as the mix slots, middot and all — only the line
              breaks differ, so the two columns still read as one set of labels.
              The middot sits on its own line, centred between the two. */
           <>
-            <div style={{ color: 'var(--ink)' }}>{piece.brand}</div>
-            <div>·</div>
+            {piece.brand && (
+              <>
+                <div style={{ color: 'var(--ink)' }}>{piece.brand}</div>
+                <div>·</div>
+              </>
+            )}
             <div>{piece.label}</div>
           </>
         ) : (
           <>
-            <span style={{ color: 'var(--ink)' }}>{piece.brand}</span> · {piece.label}
+            {piece.brand && (
+              <>
+                <span style={{ color: 'var(--ink)' }}>{piece.brand}</span> ·{' '}
+              </>
+            )}
+            {piece.label}
           </>
         )}
       </div>

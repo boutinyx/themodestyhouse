@@ -1,8 +1,12 @@
 // Auto-generated from the Style-It prototype. Carved flat, no-body product cutouts.
 export type Piece = {
   src: string;
-  brand: string;
+  /** Optional because a piece may be in the picker before its label is known.
+   *  The caption then shows the garment alone — the one thing not to do is put a
+   *  guessed name under someone else's photograph. */
+  brand?: string;
   label: string;
+  /** Carried for every piece but currently read by nothing. */
   color: string;
   /** Per-piece width cap on the ARTWORK, in px. Above the frame width it lets a
    *  wide silhouette (an abaya) overflow the frame rather than render short;
@@ -50,6 +54,26 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "brand": "Veiled",
       "label": "Knit Drape Top",
       "color": "#e5c8bf"
+    },
+    {
+      "src": "/style-it/top_7.png",
+      "label": "Satin Collar Blouse",
+      "color": "#8a7619"
+    },
+    {
+      "src": "/style-it/top_8.png",
+      "label": "Oversized Tee",
+      "color": "#d5ada4"
+    },
+    {
+      "src": "/style-it/top_9.png",
+      "label": "Ruffle Blouse",
+      "color": "#f7e4a9"
+    },
+    {
+      "src": "/style-it/top_10.png",
+      "label": "Leopard High-Neck",
+      "color": "#967e74"
     }
   ],
   "bottoms": [
@@ -88,6 +112,16 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "brand": "Veiled",
       "label": "Leather Pants",
       "color": "#4e1f2a"
+    },
+    {
+      "src": "/style-it/bottom_7.png",
+      "label": "Wide-Leg Trouser",
+      "color": "#545253"
+    },
+    {
+      "src": "/style-it/bottom_8.png",
+      "label": "Linen Wide-Leg",
+      "color": "#d6cdbb"
     }
   ],
   "dresses": [
