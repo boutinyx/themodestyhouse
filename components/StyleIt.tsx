@@ -80,7 +80,7 @@ function Slot({
           <img
             src={piece.src}
             alt={`${piece.brand} ${piece.label}`}
-            style={{ maxWidth: '100%', maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            style={{ maxWidth: piece.maxW ?? '100%', maxHeight: artMaxH ?? '100%', objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button

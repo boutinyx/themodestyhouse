@@ -1,5 +1,15 @@
 // Auto-generated from the Style-It prototype. Carved flat, no-body product cutouts.
-export type Piece = { src: string; brand: string; label: string; color: string };
+export type Piece = {
+  src: string;
+  brand: string;
+  label: string;
+  color: string;
+  /** Overrides the frame's width cap for THIS artwork only. The frame is sized
+   *  for the typical dress, so a wider silhouette (an abaya) hits the cap on
+   *  width and renders short. Raising it here grows that one piece without
+   *  moving the arrows, which are positioned by the frame, not the image. */
+  maxW?: number;
+};
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
   "tops": [
     {
@@ -100,7 +110,8 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "src": "/style-it/dress_4.png",
       "brand": "Veiled",
       "label": "Butterfly Abaya",
-      "color": "#1c2c24"
+      "color": "#1c2c24",
+      "maxW": 165
     }
   ]
 };
