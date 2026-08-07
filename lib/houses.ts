@@ -13,21 +13,55 @@ const HERO_OVERRIDE: Record<string, string> = {
   nasiba: 'solace-versatile-shirt-charcoal',
 };
 
-function firstImageByBrand(): Record<string, string> {
-  const first: Record<string, string> = {};
+/** FNV-1a. Any stable hash would do; the point is that a house's picture is
+ *  decided by its slug and not by feed order, so it does not change under it. */
+function hash(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function imagesByBrand(): { pool: Record<string, string[]>; override: Record<string, string> } {
+  const pool: Record<string, string[]> = {};
   const override: Record<string, string> = {};
   for (const p of getProducts()) {
-    if (!first[p.brandSlug]) first[p.brandSlug] = p.image;
+    if (!p.image) continue;
+    (pool[p.brandSlug] ??= []).push(p.image);
     const handle = HERO_OVERRIDE[p.brandSlug];
     if (handle && p.url.endsWith(`/products/${handle}`)) override[p.brandSlug] = p.image;
   }
-  // Override wins where it resolved; otherwise fall back to the first product.
-  return { ...first, ...override };
+  return { pool, override };
 }
 
-export function houses(): House[] {
-  const img = firstImageByBrand();
-  return BRANDS.map((b) => ({ ...b, image: img[b.slug] }));
+/**
+ * Every house, with a picture.
+ *
+ * `variant` picks a DIFFERENT product per house. The site used to show each
+ * house's first product everywhere it appeared — the homepage rail and the
+ * designers grid were always the same photograph, on catalogues with a median
+ * of 111 products to choose from. Give each surface its own variant and they
+ * stop echoing each other.
+ *
+ * The choice is deterministic — seeded on the slug — so a house's picture is
+ * stable across builds and across a refresh. It is not random: a picture that
+ * changed under the reader would make the page feel broken, and it would differ
+ * between the server render and the client.
+ */
+export function houses(variant = 0): House[] {
+  const { pool, override } = imagesByBrand();
+  return BRANDS.map((b) => {
+    const list = pool[b.slug] ?? [];
+    // Seeded per variant rather than offset by a stride: an additive stride
+    // collides whenever a house's product count divides it, and `sistrs` has
+    // exactly 37 products, so `+37` landed straight back on the same picture.
+    const picked = list.length ? list[hash(`${b.slug}:${variant}`) % list.length] : undefined;
+    // The hand-picked hero is an explicit editorial choice, so it outranks the
+    // variant everywhere.
+    return { ...b, image: override[b.slug] ?? picked };
+  });
 }
 
 // "Newly verified" rail — verified/editor's-pick houses first, then the rest.

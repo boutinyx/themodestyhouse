@@ -88,7 +88,7 @@ export default async function DesignersPage({
 }: {
   searchParams: Promise<{ page?: string }>;
 }) {
-  const all = houses();
+  const all = houses(1); // variant 1: a different photo per house than the homepage rail
 
   // The vetted houses lead, and there are exactly five, so they fill the first
   // row on their own. Everyone else follows in catalogue order. No house is
