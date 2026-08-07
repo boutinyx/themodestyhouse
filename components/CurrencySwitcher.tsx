@@ -56,15 +56,14 @@ export function CurrencySwitcher() {
            divider, which was not the ask. */
         style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 12 : 0 }}
       >
-        {/* 1px UP, and this one is MEASURED rather than judged by eye. Against a
-            screenshot of the live header, the nav labels and the divider all
-            centre on y=69.0; with a +1px nudge the disc centred on y=71.0, i.e.
-            2px low. The +1px was carried over from the stroked glyph, but the
-            fill weight is a symmetric disc whose geometric centre already IS its
-            visual centre, so the nudge only pushed it down. -1px lands it on
-            69.0, level with the labels and the rule.
-            Then nudged back to 0 on request — Tina wanted it a hair lower than
-            dead level, which puts the disc 1px below the labels. Deliberate. */}
+        {/* 1px UP, MEASURED rather than judged by eye. On a screenshot of the
+            live header the nav labels (EDITORIAL, ABOUT…) and the divider all
+            centre on y=69.0. With no nudge the disc centres on 70.0 and with
+            +1px on 71.0 — both sit low, because the +1px was carried over from
+            the STROKED glyph, whose strokes stop short of the box. The fill
+            weight is a symmetric disc whose geometric centre already is its
+            visual centre, so any downward nudge only drops it. -1px lands it on
+            69.0: the same height as the words beside it, which is the ask. */}
         {/* weight="fill" is a DELIBERATE choice, confirmed by Tina 2026-08-07.
             Note it does not merely thicken the strokes: Phosphor's fill variant
             for this glyph is a solid disc with the dollar knocked out of it
@@ -74,7 +73,7 @@ export function CurrencySwitcher() {
         <CurrencyDollar
           size={18}
           weight={preference ? 'fill' : 'regular'}
-          style={{ transform: 'translateY(0)', display: 'block' }}
+          style={{ transform: 'translateY(-1px)', display: 'block' }}
         />
         {preference ?? null}
       </Menu.Trigger>
