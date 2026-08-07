@@ -39,7 +39,7 @@ export function Footer() {
             </div>
           </div>
 
-          <Col head="Directory">
+          <Col head="Products">
             {CATEGORY_LANES.slice(0, 6).map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
             ))}

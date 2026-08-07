@@ -3,7 +3,7 @@ import { browseProducts } from '@/lib/products';
 import { DirectoryBrowser } from '@/components/DirectoryBrowser';
 
 export const metadata: Metadata = {
-  title: 'The Directory | The Modesty House',
+  title: 'Products | The Modesty House',
   description: 'Browse modest pieces from every verified house.',
 };
 
@@ -17,7 +17,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   return (
     <main className="max-w-6xl mx-auto px-5 pt-40 pb-16">
       <h1 className="section-heading text-3xl md:text-4xl">
-        {q ? <>Results for “{q}”</> : 'All'}
+        {q ? <>Results for “{q}”</> : 'Products'}
       </h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
         Browse modest pieces from every verified house.

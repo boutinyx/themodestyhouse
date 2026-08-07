@@ -14,7 +14,7 @@ export function Nav() {
       path={path}
       groups={[
         {
-          label: 'Directory',
+          label: 'Products',
           href: '/directory',
           activeWhen: path === '/directory' || path.startsWith('/modest') || path.startsWith('/hijabi'),
           items: categoryItems,
