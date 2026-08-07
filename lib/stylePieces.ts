@@ -30,7 +30,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
     {
       "src": "/style-it/top_8.png",
       "brand": "Hijab Boutique",
-      "label": "Oversized Cotton Top",
+      "label": "Oversized Top",
       "color": "#d5ada4"
     },
     {
