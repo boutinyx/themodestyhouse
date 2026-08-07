@@ -55,16 +55,15 @@ export function Header() {
           <Nav />
           <Link
             href="/favourites"
-            className="nav-link"
+            className="nav-link inline-flex items-center gap-1.5 leading-none"
             aria-label="Favourites"
-            /* .nav-link is 12px, which is right for words and too small for a
-               glyph — the heart is the one item here people aim at. */
-            style={{ fontSize: 16, letterSpacing: '0.08em' }}
+            /* letterSpacing is reset to 0: .nav-link sets 0.18em, which adds
+               trailing space AFTER the last character and pushes the icon left
+               of true centre. leading-none removes the same problem vertically. */
+            style={{ fontSize: 13, letterSpacing: 0 }}
           >
-            <span className="inline-flex items-center gap-1.5">
-              <Heart size={20} weight={count > 0 ? 'fill' : 'regular'} />
-              {count > 0 ? count : null}
-            </span>
+            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} />
+            {count > 0 ? count : null}
           </Link>
         </div>
       </div>
@@ -72,14 +71,12 @@ export function Header() {
         <Nav />
         <Link
           href="/favourites"
-          className="nav-link whitespace-nowrap"
+          className="nav-link whitespace-nowrap inline-flex items-center gap-1.5 leading-none"
           aria-label="Favourites"
-          style={{ fontSize: 16, letterSpacing: '0.08em' }}
+          style={{ fontSize: 13, letterSpacing: 0 }}
         >
-          <span className="inline-flex items-center gap-1.5">
-            <Heart size={20} weight={count > 0 ? 'fill' : 'regular'} />
-            {count > 0 ? count : null}
-          </span>
+          <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} />
+          {count > 0 ? count : null}
         </Link>
       </div>
     </header>
