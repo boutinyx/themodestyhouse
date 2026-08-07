@@ -22,6 +22,12 @@ const HERO_OVERRIDE: Record<string, string> = {
   inayah: 'maariyyah-falling-petal-dress-original',
   veiled: 'textured-maxi-skirt-stone',
   'summer-evenings': 'orchid-chiffon-low-waisted-set',
+  // "Florina - Lace Dress". Note the handle does NOT match the title: the brand
+  // renamed the piece and kept the old slug. Harmless here, but it is the §8
+  // landmine in the wild — these overrides key on the handle, so if a brand ever
+  // changes THAT, the override stops applying and the card silently falls back
+  // to the scored pick.
+  'glow-modesty': 'nasrin-white-neck-floral-lace-dress',
 };
 
 /** FNV-1a. Any stable hash would do; the point is that a house's picture is
