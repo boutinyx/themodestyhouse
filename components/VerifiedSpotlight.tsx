@@ -84,9 +84,21 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
         .tmh-copy{color:#6f6353;font-size:17px;line-height:1.6;max-width:42ch;margin-top:22px}
         .tmh-link{display:inline-flex;align-items:center;gap:6px;min-height:32px;margin-top:26px;font-family:var(--font-label),serif;text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--aubergine);border-bottom:1px solid var(--aubergine);padding-bottom:3px}
 
-        .tmh-stage{position:relative;height:500px;max-width:560px}
+        /* PROPORTIONAL, not fixed. The fan used to be a 560x500 stage holding
+           238px cards, which is why it could not shrink and why the phone had to
+           throw it away for a flat scrolling row. Expressed as an aspect-ratio
+           box with a percentage-width card, the WHOLE fan scales with whatever
+           width it is given — the p1–p4 offsets are already percentages, so they
+           follow for free.
+
+           At desktop this is a no-op: the column is 586px, max-width caps the
+           stage at 560, 560 x 500/560 = 500px tall, and 42.5% of 560 = 238px.
+           Identical to the numbers it replaces. It also fixes a latent bug
+           between 820 and 1220px, where the two-column grid gave the stage less
+           than 560px but the cards stayed 238px and the fan spilled out. */
+        .tmh-stage{position:relative;width:100%;max-width:560px;aspect-ratio:560/500}
         .tmh-card{
-          position:absolute;width:238px;aspect-ratio:3/4;border-radius:16px;overflow:hidden;
+          position:absolute;width:42.5%;aspect-ratio:3/4;border-radius:16px;overflow:hidden;
           border:6px solid var(--bone);
           background-size:cover;background-position:center;
           box-shadow:0 34px 60px -30px rgba(42,18,38,.55);
@@ -113,18 +125,39 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
           .tmh-vin{grid-template-columns:1fr;gap:30px}
           .tmh-vtext{order:0}
           .tmh-stage{order:1}
-          .tmh-stage{height:auto;display:flex;gap:16px;overflow-x:auto;padding:8px 2px 16px}
-          /* position:relative, NOT static. .tmh-cap and .tmh-badge are absolutely
-             positioned against their card; making the card static removed it as
-             their containing block, so all four captions resolved against
-             .tmh-stage instead and stacked on the identical point — measured at
-             iPhone 13: every caption at (54, 3018), rendering "Veiled", "Inayah",
-             "Glow Modesty" and "Aab" on top of one another as illegible mush.
-             left/top must be reset too: .p1–.p4 set them for the desktop fan, and
-             under position:relative they would become offsets rather than being
-             ignored as they are under static. */
-          .tmh-card{position:relative;left:auto;top:auto;flex:0 0 auto;transform:none;--rot:0deg}
-          .tmh-card:hover{transform:translateY(-6px)}
+
+          /* THE FAN IS KEPT ON A PHONE, just smaller — Tina's call, from the
+             desktop rendering. It used to be replaced here by a horizontally
+             scrolling row of upright cards, which lost the tilt, the overlap and
+             the whole point of the composition.
+
+             Nothing about the geometry is restated: .tmh-stage is an
+             aspect-ratio box and .tmh-card is a percentage of it, so the fan
+             simply redraws at whatever width the phone gives it. Only the things
+             that do NOT scale with a percentage are adjusted below — type, border
+             and inset are absolute lengths, and at ~40% of the desktop card they
+             would otherwise swamp it.
+
+             Tighter section padding buys the fan 32px of width, which is a whole
+             card-width of ~9%. */
+          .tmh-verified-sec{padding:56px 16px}
+
+          /* The cards span 0%–90.5% of the stage (p4 sits at 48% and is 42.5%
+             wide), so the leftover 9.5% is all on the right and the cluster
+             reads left-of-centre. On desktop the stage sits in a wide column and
+             it is invisible; in a 390px viewport it is a 34px gap against 16px.
+             A transform, not a margin: it must not change the stage's layout box
+             and push the page into horizontal scroll. */
+          .tmh-stage{transform:translateX(12px)}
+
+          .tmh-card{border-width:4px;box-shadow:0 18px 34px -20px rgba(42,18,38,.5)}
+          /* No hover on a touch screen, and :hover sticks after a tap. */
+          .tmh-card:hover{transform:rotate(var(--rot));box-shadow:0 18px 34px -20px rgba(42,18,38,.5)}
+
+          .tmh-cap{left:12px;bottom:12px;right:10px}
+          .tmh-cap h3{font-size:17px}
+          .tmh-cap p{font-size:8px;letter-spacing:.1em;margin-top:4px}
+          .tmh-badge{top:9px;left:9px;padding:4px 9px;font-size:8px;letter-spacing:.1em;gap:4px}
         }
       `}</style>
     </section>

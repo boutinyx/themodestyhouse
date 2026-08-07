@@ -151,6 +151,27 @@ absolutely-positioned `.tmh-cap`/`.tmh-badge`, so all four resolved against `.tm
 landed on the same coordinates (measured: every caption at (54, 3018), cards correctly at
 x=34/288/542/796). Now `position:relative` with `left:auto;top:auto`. → CLAUDE.md §10.22.
 
+**The fanned card stack is now KEPT on a phone, scaled** (Tina's call, from the desktop
+rendering). Mobile had been replacing it with a horizontally-scrolling row of upright cards,
+which threw away the tilt, the overlap and the composition.
+
+It could not scale before because the geometry was fixed pixels: a 560x500 stage holding
+238px cards. `.tmh-stage` is now an aspect-ratio box (`width:100%; max-width:560px;
+aspect-ratio:560/500`) and `.tmh-card` a percentage of it (`42.5%`), so the whole fan redraws
+at whatever width it is given — the `p1–p4` offsets were already percentages and follow for
+free. **Desktop is arithmetically identical**: the column is 586px, max-width caps the stage
+at 560, and 42.5% of 560 = 238px. It also fixes a latent bug between 820 and 1220px, where the
+two-column grid gave the stage under 560px while the cards stayed 238px and the fan spilled.
+
+Only the absolute lengths needed a phone value — type, border, insets and the badge, which at
+~40% of the desktop card would otherwise swamp it. Plus `translateX(12px)`: the cards span
+0%–90.5% of the stage, so the leftover sits entirely on the right and the cluster reads
+left-of-centre at 390px. A transform, not a margin, so the stage's layout box cannot push the
+page into horizontal scroll.
+
+Measured at iPhone 13: stage 358x320, cards ~152x203, no spill right or bottom, no document
+overflow, four distinct caption positions.
+
 **The audit was blind to that**, and had reported this page clean — its screenshots were
 `fullPage: false` and it had no overlap check. `scripts/mobile-audit.mjs` now also writes
 `<route>-full.png` and reports **stacked text**. Proven by reverting the CSS fix and
