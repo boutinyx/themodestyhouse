@@ -218,6 +218,16 @@ body {
   text-transform: uppercase;
   color: var(--muted);
   transition: color 0.2s ease-out;
+  /* Normalise the box so every nav item sits on the same baseline. The row mixes
+     <a> (Designers, Editorial, About), <button> (Styles) and <a> wrapped in a
+     positioning div (Directory). <button> inherits line-height:normal from the
+     UA stylesheet while <a> inherits the body's, so the items rendered boxes of
+     different heights and one word sat higher than its neighbours. Fixing
+     line-height and making the box a centred inline-flex removes the difference
+     at the source rather than nudging one item with a margin. */
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 .nav-link:hover,
 .nav-link[data-active="true"] { color: var(--aubergine); }

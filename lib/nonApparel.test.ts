@@ -13,7 +13,7 @@ import { isNonApparel } from './nonApparel';
 
 const MUST_DROP = [
   "Hijab Magnet",
-  "STRAIGHT HIJAB PINS - WHITE (ENTIRE WHEEL)",
+  "Straight Hijab Pins - White (Entire Wheel)",
   "Magnet Pins - NISWA GOLD",
   "Pocket Magnets - All Sets (24 Colors)",
   "No-Snag Pins - Black, Brown and Neutral Set",
@@ -63,7 +63,7 @@ const MUST_DROP = [
   "MMU035 Yizhilian 4pcs Heart Puff Blender Set",
   "Jaida E-Gift Card",
   "Mariam's Collection VIP Gift Card",
-  "GIFT WRAP MY ORDER",
+  "Gift Wrap My Order",
   "5 Abayas for $99",
   "Mariam's Colection Custom Clothing",
   "Creative Triangle Cake Gift Blind Box Set (MAC387)",
@@ -133,7 +133,7 @@ const MUST_SURVIVE = [
   "Kohl Chiffon Silk Hijab",
   "Kohl Kaftan - Final Sale",
   "Everyday Chiffon Hijab - Ballet Slipper",
-  "PRINTED MODAL - SUNSET MARBLE",
+  "Printed Modal - Sunset Marble",
   "Blue Topaz",
   "Sculpted Button Up Beige",
   "Tonal Chain Stitch Embroidered Set(MS501)",

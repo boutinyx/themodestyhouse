@@ -56,7 +56,7 @@ export function IndexBar() {
           <button type="submit" className="btn-pill" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>Search</button>
         </form>
         <div className="flex flex-wrap items-center gap-2 mt-4">
-          <span className="eyebrow mr-1">Refine</span>
+          <span className="eyebrow mr-1">Filter</span>
           <ChipDropdown label="Category" active items={CATEGORY_LANES.map((l) => ({ href: `/${l.slug}`, label: l.title }))} />
           <ChipDropdown label="Aesthetic" items={VIBES.map((v) => ({ href: `/style/${v.slug}`, label: v.title }))} />
           <Link href="/modest-wedding-guest" className="chip">Occasion</Link>

@@ -103,7 +103,7 @@ export function DirectoryBrowser({ products, initialQuery = '' }: { products: Pr
           />
         </div>
         <div className="flex flex-wrap items-center gap-2 mt-4">
-          <span className="eyebrow mr-1">Refine</span>
+          <span className="eyebrow mr-1">Filter</span>
           <FilterDropdown label="Category" value={garment} options={garments} onSelect={setGarment} />
           <FilterDropdown label="Aesthetic" value={vibe} options={vibes} onSelect={setVibe} />
           <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
