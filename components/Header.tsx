@@ -62,7 +62,9 @@ export function Header() {
                of true centre. leading-none removes the same problem vertically. */
             style={{ fontSize: 13, letterSpacing: 0 }}
           >
-            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} />
+            {/* 1px up: the heart's visual mass sits low in its bounding box, so a
+                geometrically centred glyph still reads slightly low. */}
+            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ transform: 'translateY(-1px)' }} />
             {count > 0 ? count : null}
           </Link>
         </div>
@@ -75,7 +77,9 @@ export function Header() {
           aria-label="Favourites"
           style={{ fontSize: 13, letterSpacing: 0 }}
         >
-          <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} />
+          {/* 1px up: the heart's visual mass sits low in its bounding box, so a
+                geometrically centred glyph still reads slightly low. */}
+            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ transform: 'translateY(-1px)' }} />
           {count > 0 ? count : null}
         </Link>
       </div>
