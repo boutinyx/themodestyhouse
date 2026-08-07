@@ -3,7 +3,7 @@
 import { Menu } from '@base-ui-components/react/menu';
 import { CurrencyDollar } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
-import { DISPLAY_CURRENCIES, FX_UPDATED, type CurrencyPreference } from '@/lib/fx';
+import { DISPLAY_CURRENCIES, type CurrencyPreference } from '@/lib/fx';
 
 const LABEL: Record<string, string> = { USD: '$ USD', GBP: '£ GBP', EUR: '€ EUR' };
 const NATIVE = 'native';
@@ -126,9 +126,7 @@ export function CurrencySwitcher() {
               }}
             >
               Converted prices are approximate. You pay the brand&rsquo;s own currency at
-              checkout. Rates from {new Date(FX_UPDATED).toLocaleDateString('en-GB', {
-                day: 'numeric', month: 'short', year: 'numeric',
-              })}.
+              checkout.
             </p>
           </Menu.Popup>
         </Menu.Positioner>
