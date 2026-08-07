@@ -12,9 +12,20 @@ Remove the currency button from the index console.
 presentation:
 - Trigger is a `CurrencyDollar` icon (Phosphor, the house set) instead of an `As listed ▾`
   chip. It fills and shows the code when a preference is set, matching how the heart fills.
-- **Opens on click, not hover.** It sits beside a link in a fixed header, where a
-  hover-triggered panel opens whenever the pointer crosses it on the way somewhere else.
-  Click also makes it reachable on touch. Closes on outside click, Escape, and selection.
+- **Built on Base UI's `Menu`** — the same library as the header nav (`components/NavMenu`),
+  rather than a third hand-rolled dropdown. First pass hand-rolled the open state with
+  `document` mousedown/keydown listeners; that is all deleted. Base UI supplies open/close,
+  outside click, Escape, focus management, keyboard navigation and collision-aware
+  positioning, and it **portals**, so the panel cannot be clipped by an ancestor's overflow.
+- `Menu.RadioGroup` / `Menu.RadioItem` rather than plain items: it is one choice out of four,
+  and each row gets a real `aria-checked`.
+- Opens on click, not hover — it sits beside a link in a fixed header, where a hover panel
+  opens whenever the pointer crosses it on the way somewhere else.
+
+**Alignment**, per follow-up: the icon is centred in its trigger, nudged **1px down** (the
+heart is nudged 1px *up* because its mass sits low; the dollar glyph has the opposite
+problem and read high beside it), and the divider lengthened from `h-5` to `h-8` against the
+crest divider's `h-10`.
 
 **`components/Header.tsx`** — heart, then the same `w-px` hairline rule used between the
 crest and the wordmark, then the currency control.
@@ -41,6 +52,10 @@ $ npm run build      Compiled successfully
 
 Served from a real `next start`:
 ```
+Base UI menu trigger present:           true
+icon nudged 1px down:                   true
+divider h-8 (was h-5):                  true
+hand-rolled mousedown listeners gone:   true
 heart declared once:                    true   (was 2)
 currency declared once:                 true
 order heart → divider → dollar:         true

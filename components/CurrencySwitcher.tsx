@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Menu } from '@base-ui-components/react/menu';
 import { CurrencyDollar } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { DISPLAY_CURRENCIES, FX_UPDATED, type CurrencyPreference } from '@/lib/fx';
 
 const LABEL: Record<string, string> = { USD: '$ USD', GBP: '£ GBP', EUR: '€ EUR' };
+const NATIVE = 'native';
 
 /**
  * Lets a visitor see every price in one currency so they can compare across
@@ -17,70 +18,60 @@ const LABEL: Record<string, string> = { USD: '$ USD', GBP: '£ GBP', EUR: '€ E
  * and duplicated on the two that had it. Currency is a site-wide preference, so
  * it belongs in site-wide furniture.
  *
- * Opens on CLICK, not hover: this sits next to a link in a fixed header, and a
- * hover-triggered panel there opens whenever the pointer crosses it on its way
- * somewhere else. Click also makes it reachable on touch.
+ * Built on the same Base UI primitives as the header nav (components/NavMenu),
+ * rather than a third hand-rolled dropdown. That hands over open/close, outside
+ * click, Escape, focus management, keyboard navigation and collision-aware
+ * positioning — and it PORTALS, so the panel cannot be clipped by an ancestor's
+ * overflow. RadioGroup is the honest semantic here: one choice out of four, and
+ * it gives each row a real `aria-checked`.
  */
 export function CurrencySwitcher() {
   const { preference, setPreference } = useCurrency();
-  const [open, setOpen] = useState(false);
-  const wrap = useRef<HTMLDivElement>(null);
   const options: CurrencyPreference[] = [null, ...DISPLAY_CURRENCIES];
 
-  useEffect(() => {
-    if (!open) return;
-    const onDown = (e: MouseEvent) => {
-      if (!wrap.current?.contains(e.target as Node)) setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
-    document.addEventListener('mousedown', onDown);
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.removeEventListener('mousedown', onDown);
-      document.removeEventListener('keydown', onKey);
-    };
-  }, [open]);
-
   return (
-    <div className="relative" ref={wrap}>
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-haspopup="menu"
-        aria-expanded={open}
+    <Menu.Root>
+      <Menu.Trigger
         aria-label={preference ? `Prices in ${preference}. Change currency` : 'Prices as listed. Change currency'}
-        className="nav-link inline-flex items-center gap-1 leading-none"
+        className="nav-link inline-flex items-center justify-center leading-none"
         data-active={preference !== null}
-        /* Matches the favourites link exactly: .nav-link's 0.18em tracking adds
-           trailing space after the last glyph and shoves the icon off centre. */
-        style={{ fontSize: 13, letterSpacing: 0 }}
+        /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space AFTER
+           the last glyph and pushes an icon left of true centre. */
+        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 5 : 0 }}
       >
-        <CurrencyDollar size={17} weight={preference ? 'fill' : 'regular'} style={{ transform: 'translateY(-1px)' }} />
+        {/* 1px DOWN. The heart beside it is nudged 1px up because its visual mass
+            sits low in its bounding box; the dollar glyph has the opposite
+            problem — its stroke ends are clipped short of the box, so a
+            geometrically centred glyph reads high next to the heart. */}
+        <CurrencyDollar
+          size={18}
+          weight={preference ? 'fill' : 'regular'}
+          style={{ transform: 'translateY(1px)', display: 'block' }}
+        />
         {preference ?? null}
-      </button>
+      </Menu.Trigger>
 
-      {open && (
-        <div className="absolute right-0 top-full pt-2 z-50">
-          <div
-            className="rounded-xl border p-2 min-w-[210px]"
+      <Menu.Portal>
+        <Menu.Positioner sideOffset={10} align="end" collisionPadding={{ left: 16, right: 16 }} className="z-50">
+          <Menu.Popup
+            className="rounded-xl border p-2 min-w-[210px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-150 ease-out data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:scale-95 data-[ending-style]:opacity-0"
             style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
           >
-            {options.map((o) => (
-              <button
-                key={o ?? 'native'}
-                type="button"
-                onClick={() => {
-                  setPreference(o);
-                  setOpen(false);
-                }}
-                className="block w-full text-left nav-link py-2 px-3 whitespace-nowrap"
-                data-active={preference === o}
-              >
-                {o ? LABEL[o] : 'As listed'}
-              </button>
-            ))}
+            <Menu.RadioGroup
+              value={preference ?? NATIVE}
+              onValueChange={(v) => setPreference(v === NATIVE ? null : (v as CurrencyPreference))}
+            >
+              {options.map((o) => (
+                <Menu.RadioItem
+                  key={o ?? NATIVE}
+                  value={o ?? NATIVE}
+                  className="block w-full text-left nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
+                  data-active={preference === o}
+                >
+                  {o ? LABEL[o] : 'As listed'}
+                </Menu.RadioItem>
+              ))}
+            </Menu.RadioGroup>
             <p
               className="px-3 pt-2 pb-1"
               style={{
@@ -99,9 +90,9 @@ export function CurrencySwitcher() {
                 day: 'numeric', month: 'short', year: 'numeric',
               })}.
             </p>
-          </div>
-        </div>
-      )}
-    </div>
+          </Menu.Popup>
+        </Menu.Positioner>
+      </Menu.Portal>
+    </Menu.Root>
   );
 }

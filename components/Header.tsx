@@ -75,8 +75,9 @@ export function Header() {
             {count > 0 ? count : null}
           </Link>
           {/* Same hairline rule as the one between the crest and the wordmark
-              above, shortened to suit a single row of controls. */}
-          <span aria-hidden className="block w-px h-5 shrink-0" style={{ background: 'var(--hairline)' }} />
+              (h-10). Slightly shorter here because it divides a single row of
+              controls rather than the full-height crest. */}
+          <span aria-hidden className="block w-px h-8 shrink-0" style={{ background: 'var(--hairline)' }} />
           <CurrencySwitcher />
         </div>
       </div>
