@@ -196,7 +196,13 @@ function Slot({
                Both desktop caps are px, never percentages — a percentage
                max-height against an aspect-ratio parent is the iOS bug in §10.24. */
             className="absolute inset-0 w-full h-full object-contain md:static md:w-auto md:h-auto md:max-w-[var(--amw)] md:max-h-[var(--art)]"
-            style={{ objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            /* No drop-shadow. It cast a soft brown pool under every hem, which on
+               a wide flat garment reads as a dirty rectangle rather than as lift,
+               and on a flat grey trouser it just makes the fabric look muddy.
+               Tina asked why there was a shadow under the clothing — that was it.
+               These are flat product cutouts on a flat card; nothing about them
+               is meant to float. */
+            style={{ objectFit: 'contain' }}
           />
         </div>
         <button
