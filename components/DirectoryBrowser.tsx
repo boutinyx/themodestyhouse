@@ -2,7 +2,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductCard } from './ProductCard';
-import { brandVibe, VIBES } from '@/lib/vibes';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 
 const STEP = 24;
@@ -14,7 +13,6 @@ const GARMENT_LABEL: Record<string, string> = {
 export function DirectoryBrowser({ products, initialQuery = '' }: { products: Product[]; initialQuery?: string }) {
   const [q, setQ] = useState(initialQuery);
   const [garment, setGarment] = useState('all');
-  const [vibe, setVibe] = useState('all');
   const [occasion, setOccasion] = useState('all');
   const [brand, setBrand] = useState('all');
   const [visible, setVisible] = useState(STEP);
@@ -28,7 +26,6 @@ export function DirectoryBrowser({ products, initialQuery = '' }: { products: Pr
     [products]
   );
   const brands = useMemo(() => Array.from(new Set(products.map((p) => p.brandName))).sort().map((b) => ({ value: b, label: b })), [products]);
-  const vibes = VIBES.map((v) => ({ value: v.slug, label: v.title }));
 
   // Memoised: this walks the WHOLE catalogue (~6.5k rows), and without a memo it
   // re-ran on every render — so every keystroke in the search box filtered 6,500
@@ -39,18 +36,17 @@ export function DirectoryBrowser({ products, initialQuery = '' }: { products: Pr
       products.filter(
         (p) =>
           (garment === 'all' || p.garment === garment) &&
-          (vibe === 'all' || brandVibe[p.brandSlug] === vibe) &&
           (occasion === 'all' || p.occasion.includes(occasion)) &&
           (brand === 'all' || p.brandName === brand) &&
           (query === '' || p.title.toLowerCase().includes(query) || p.brandName.toLowerCase().includes(query))
       ),
-    [products, garment, vibe, occasion, brand, query]
+    [products, garment, occasion, brand, query]
   );
 
   // Reset the "load more" count whenever a filter changes. See the TODO in
   // components/FilterableGrid.tsx — same pattern, same planned fix.
   // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { setVisible(STEP); }, [garment, vibe, occasion, brand, q]);
+  useEffect(() => { setVisible(STEP); }, [garment, occasion, brand, q]);
   const shown = filtered.slice(0, visible);
 
   return (
@@ -58,7 +54,6 @@ export function DirectoryBrowser({ products, initialQuery = '' }: { products: Pr
       {/* the index — one console, filters as dropdowns (components/IndexPanel) */}
       <IndexPanel q={q} onQ={setQ}>
         <FilterDropdown label="Category" value={garment} options={garments} onSelect={setGarment} />
-        <FilterDropdown label="Aesthetic" value={vibe} options={vibes} onSelect={setVibe} />
         <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
       </IndexPanel>

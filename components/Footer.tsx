@@ -48,8 +48,24 @@ export function Footer() {
             </div>
           </div>
 
+          {/* All 9 CATEGORY_LANES, not a slice. This was `.slice(0, 6)`, which
+              silently dropped /modest-sets, /modest-swimwear and
+              /modest-activewear — and since CATEGORY_LANES is itself
+              LANES.filter(kind === 'category'), that left 6 of 12 lanes with no
+              internal link anywhere on the site. The sitemap gets an unlinked
+              page crawled, but internal links are what pass ranking signal and
+              tell a crawler the page matters, and the footer is the only link
+              position that appears on every page. Measured 2026-08-08.
+
+              The three non-category lanes (/hijabi-outfits, /modest-wedding-guest,
+              /modest-summer-outfits) are still excluded by the CATEGORY_LANES
+              filter and stay that way for now: /hijabi-outfits alone matches
+              10,919 of 11,203 products, so linking it prominently would point
+              search engines at a near-duplicate of /directory. That is the
+              "fix or retire it" item in CLAUDE.md §8 and should be decided
+              before it gets more links, not after. */}
           <Col head="Products">
-            {CATEGORY_LANES.slice(0, 6).map((l) => (
+            {CATEGORY_LANES.map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
             ))}
           </Col>

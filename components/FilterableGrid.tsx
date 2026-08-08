@@ -3,14 +3,12 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
-import { brandVibe, VIBES } from '@/lib/vibes';
 
 const STEP = 24;
 
 export function FilterableGrid({ products }: { products: Product[] }) {
   const [brand, setBrand] = useState('all');
   const [occasion, setOccasion] = useState('all');
-  const [vibe, setVibe] = useState('all');
   const [q, setQ] = useState('');
   const [visible, setVisible] = useState(STEP);
 
@@ -23,7 +21,6 @@ export function FilterableGrid({ products }: { products: Product[] }) {
       .map((o) => ({ value: o, label: o.charAt(0).toUpperCase() + o.slice(1) })),
     [products]
   );
-  const vibes = VIBES.map((v) => ({ value: v.slug, label: v.title }));
 
   // Same match rule as DirectoryBrowser — title or brand, case-insensitive — so
   // searching behaves identically wherever the index console appears.
@@ -36,12 +33,11 @@ export function FilterableGrid({ products }: { products: Product[] }) {
         (p) =>
           (brand === 'all' || p.brandName === brand) &&
           (occasion === 'all' || p.occasion.includes(occasion)) &&
-          (vibe === 'all' || brandVibe[p.brandSlug] === vibe) &&
           (query === '' ||
             p.title.toLowerCase().includes(query) ||
             p.brandName.toLowerCase().includes(query))
       ),
-    [products, brand, occasion, vibe, query]
+    [products, brand, occasion, query]
   );
 
   // Reset the "load more" count whenever a filter changes.
@@ -51,7 +47,7 @@ export function FilterableGrid({ products }: { products: Product[] }) {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [brand, occasion, vibe, q]);
+  }, [brand, occasion, q]);
 
   const shown = filtered.slice(0, visible);
 
@@ -60,7 +56,6 @@ export function FilterableGrid({ products }: { products: Product[] }) {
       {/* The same index console as /directory — one instrument across the site.
           No Category dropdown: this page already IS one category. */}
       <IndexPanel q={q} onQ={setQ} className="mb-8">
-        <FilterDropdown label="Aesthetic" value={vibe} options={vibes} onSelect={setVibe} />
         {occasions.length > 0 && (
           <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
         )}

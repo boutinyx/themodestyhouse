@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { List as ListIcon, X as XIcon, CaretRight } from '@phosphor-icons/react';
 import { Dialog } from '@base-ui-components/react/dialog';
-import { VIBES } from '@/lib/vibes';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL, NATIVE_LABEL } from '@/lib/fx';
 import { useCurrency } from './CurrencyProvider';
@@ -24,7 +23,7 @@ import { useCurrency } from './CurrencyProvider';
  * header row, where centring a small inline box is right. Reused on a full-width
  * row in a vertical panel it flattened the whole thing: the `pl-6` indent on the
  * sub-items computed to 24px and then had no effect at all, so the hierarchy
- * (Products, then its categories, then aesthetics, then pages) never rendered.
+ * (Products, then its categories, then pages) never rendered.
  * `.nav-link` is therefore NOT used here — this file styles its own rows, so
  * that fixing the phone menu cannot regress the desktop header.
  *
@@ -159,17 +158,17 @@ export function MobileNav() {
           >
             <div className="pt-3">{row('/directory', 'Products')}</div>
 
-            {/* "Category" and "Aesthetic" are the labels already used on the
-                /directory filter bar — reused rather than invented, so the menu
-                and the filters name the same things the same way.
-                They are the ONLY thing carrying the grouping now that the rows
-                are all flush left, which is why they stay: 18 identical rows
-                with no grouping is the wall this menu started as. */}
+            {/* "Category" is the label already used on the /directory filter
+                bar — reused rather than invented, so the menu and the filters
+                name the same things the same way.
+                It is the ONLY thing carrying the grouping now that the rows are
+                all flush left, which is why it stays: a run of identical rows
+                with no grouping is the wall this menu started as.
+                (An "Aesthetic" group sat below this one until 2026-08-09, when
+                the /style/[vibe] pages were removed — see
+                docs/log/2026-08-09-remove-style-vibe-feature.md.) */}
             <p className="eyebrow pt-5 pb-1">Category</p>
             {CATEGORY_LANES.map((l) => row(`/${l.slug}`, l.title))}
-
-            <p className="eyebrow pt-5 pb-1">Aesthetic</p>
-            {VIBES.map((v) => row(`/style/${v.slug}`, v.title))}
 
             <div className="mt-5 pt-2" style={{ borderTop: '1px solid var(--hairline)' }}>
               {row('/designers', 'Designers')}
