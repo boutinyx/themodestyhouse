@@ -90,6 +90,28 @@ engines · axe full ruleset on `/about` = **0 violations**. The served build was
 confirmed current by grepping the response for a string only the new build
 contains, before any measurement was trusted.
 
+## Third pass — "Where this is going" (same day)
+
+Tina set the forward direction: bring in mainstream/high-street pieces with the
+site's own styling on them, for women who layer and who want to buy something
+they can try on in person — while the modest houses keep the bigger podium.
+
+New band 7, "Layering, and the high street", covering all four points: the
+layering use case, mainstream pieces with our own take, physical shopping as the
+thing the independents structurally cannot offer (almost all are online-only and
+ship from abroad), and the podium staying with the modest houses.
+
+**One contradiction had to be resolved, not papered over.** Band 6 read "No
+mass-market or budget labels" — H&M and Bershka are precisely that, so the page
+would have banned in one band what it promised in the next, two screens apart.
+The bullet is now "No mass-market or budget labels **among the houses**", which
+matches the actual distinction Tina drew: high-street pieces enter as styling
+material, not as featured houses.
+
+Verified again: 407/407 · tsc 0 · lint 0 · build ✓ · audit 0/9 overflow, 0 a11y
+both engines · axe on `/about` = 0 violations. Served build confirmed current
+before measuring.
+
 ## Notes / follow-ups
 
 - **Status is `partial`, not `done`.** Band 2's `MISSION` constant is an empty copy
