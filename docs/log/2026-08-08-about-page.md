@@ -63,6 +63,33 @@ Two regressions were found by the audit and fixed before this commit:
    44px without overlapping the lines around it, so they became a standalone row with
    `minHeight: 44`.
 
+## Second pass — restructured to Tina's brief (same day)
+
+Tina asked for the page to cover **what we do, what problem we solve, how we
+solve that, then the people behind the application** — which also reverses the
+earlier "unnamed house voice" decision recorded in the spec.
+
+- **New band: What we do / The problem.** Two columns. The problem side cites the
+  live figures (`{houses}` storefronts, `{currencies}` currencies) from
+  `aboutStats()` rather than asserting scale in adjectives.
+- **New band: How we solve it.** Four numbered steps describing the actual
+  mechanism — read each house's own product feed, discard most of it, re-check
+  nightly so dead stock stops showing, link out to the house. The mechanism is
+  the differentiator; naming it is more persuasive than praising it.
+- **New band: The people.** Renders only when `PEOPLE` has entries. It ships
+  **empty**: names, roles and biographies are facts about real, identifiable
+  people, and inventing any of them would be fabricating a claim about a person.
+- **`aboutStats()` gained `currencies`** — distinct currencies across `BRANDS`.
+  Deliberately not a country count: `Brand.city` mixes granularity ('USA',
+  'London', 'Arnhem'), so countries would need a hand-written map whose errors
+  would be false claims about real companies. Currency is required and unambiguous.
+
+Re-verified after the restructure: 407/407 tests · `tsc` exit 0 · lint exit 0 ·
+build ✓ · `audit:mobile` 0/9 overflow, 0 a11y, 0 stacked, 0 broken aspect on both
+engines · axe full ruleset on `/about` = **0 violations**. The served build was
+confirmed current by grepping the response for a string only the new build
+contains, before any measurement was trusted.
+
 ## Notes / follow-ups
 
 - **Status is `partial`, not `done`.** Band 2's `MISSION` constant is an empty copy
