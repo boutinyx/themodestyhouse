@@ -24576,6 +24576,14 @@
     "evidence": "Bag"
   },
   {
+    "id": "merrachi:15675922415999",
+    "brandSlug": "merrachi",
+    "title": "Zebra Scarf Gift Box | Multi Color",
+    "url": "https://bymerrachi.com/products/zebra-scarf-gift-box-multi-color",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
     "id": "merrachi:15639066116479",
     "brandSlug": "merrachi",
     "title": "Scarf Keychain | Pink Bouquet",
@@ -24692,16 +24700,6 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab clip"
-  },
-  {
-    "id": "mukistore:15186573918473",
-    "brandSlug": "mukistore",
-    "title": "V Neck Pleated Dress Tie Waist Belt",
-    "url": "https://mukistore.com/products/v-neck-pleated-dress-tie-waist-belt",
-    "garmentWas": "dress",
-    "reason": "non-apparel:care",
-    "tier": "B",
-    "evidence": "Belt"
   },
   {
     "id": "hijab-boutique:8006645285168",
@@ -25456,5 +25454,23 @@
     "reason": "non-apparel:home",
     "tier": "B",
     "evidence": "Bowl"
+  },
+  {
+    "id": "mariams:9399128490200",
+    "brandSlug": "mariams",
+    "title": "Floral Bridal Jewelry Set for Women（MAC444）",
+    "url": "https://mariam-col.com/products/floral-bridal-jewelry-set-for-women-mac444",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "0",
+    "evidence": "Jewelry"
+  },
+  {
+    "id": "mariams:9394899583192",
+    "brandSlug": "mariams",
+    "title": "Premium Muslimah Essentials Gift Set | Abaya, Prayer Mat, Tasbih & Tote Bag (MR090)",
+    "url": "https://mariam-col.com/products/premium-muslim-prayer-set-for-womenmr090",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
   }
 ]
