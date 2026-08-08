@@ -256,15 +256,28 @@ export default function StyleIt() {
 
   return (
     <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-      {/* flex-column on a phone, grid from md up. As a flex column the children
-          simply stack in source order, which is what puts the "Shop X + Y" link
-          UNDERNEATH the picker card (Tina's ask) with no duplicated markup and no
-          order juggling. `items-stretch` matters: `items-center` on a flex column
-          works on the horizontal axis and would shrink the copy to its content
-          width, which it does not do in the grid. */}
-      <div className="flex flex-col items-stretch gap-8 md:grid md:grid-cols-[0.85fr_1.15fr] md:gap-12 md:items-center">
+      {/* flex-column on a phone, grid from md up.
+          `items-stretch` matters: `items-center` on a flex column acts on the
+          HORIZONTAL axis and would shrink the copy to its content width, which it
+          does not do in the grid. */}
+      <div className="flex flex-col items-stretch gap-6 md:grid md:grid-cols-[0.85fr_1.15fr] md:gap-12 md:items-center">
+        {/* The left column is ONE grid item on desktop and `display: contents` on
+            a phone.
+            That is what lets the phone put the controls and the "Shop X + Y" link
+            BELOW the picker card (Tina's ask) while desktop keeps them in the left
+            column, from a single copy of the markup: `contents` dissolves this
+            wrapper on a phone so its three children become flex items of the row
+            above and can be ordered around the card, and `md:block` restores it to
+            a normal grid item above 768px.
+            The first attempt placed all four as separate grid cells instead, and
+            it regressed desktop badly: the card is taller than the copy, so the
+            three left-hand rows stretched to match it and opened a large gap
+            between the paragraph and the buttons. As one item there is only one
+            row to stretch, and the margins below control the spacing exactly as
+            they did before. */}
+        <div className="contents md:block">
         {/* COPY — left */}
-        <div>
+        <div className="order-1">
           <h2 className="serif" style={{ fontSize: 'clamp(40px,5.6vw,64px)', lineHeight: 1.02, color: 'var(--ink)' }}>
             Every modest brand,
             <br />
@@ -274,10 +287,15 @@ export default function StyleIt() {
             Discover and shop hundreds of modest labels in one place. Mix a top from one house
             with a skirt from another — or find the dress.
           </p>
-          {/* Smaller on a phone. The ! modifiers are needed because .btn-pill and
-              .nav-link set their own padding and font-size in globals.css, and a
-              plain utility would be a specificity coin-toss against them. */}
-          <div className="mt-6 md:mt-8 flex items-center gap-2 md:gap-3">
+          </div>
+
+          {/* CONTROLS. order-3 puts them after the card on a phone; on desktop
+              they are simply the next block inside this wrapper, with the margin
+              they always had.
+              The ! modifiers are needed because .btn-pill and .nav-link set their
+              own padding and font-size in globals.css, and a plain utility would
+              be a specificity coin-toss against them. */}
+          <div className="order-3 flex items-center gap-2 md:gap-3 md:mt-8">
             <button
               className="btn-pill !text-[11px] !px-3.5 !py-2 md:!text-xs md:!px-[18px]"
               onClick={() => { takeOver(); shuffle(); }}
@@ -292,13 +310,20 @@ export default function StyleIt() {
               {auto ? '❚❚ Pause' : '▷ Auto'}
             </button>
           </div>
+
+          <Link
+            href="/directory"
+            className="nav-link order-4 flex md:inline-flex items-center gap-1.5 !text-[11px] md:!text-xs md:mt-5"
+          >
+            Shop {t.brand} + {b.brand} <ArrowRight size={12} weight="bold" />
+          </Link>
         </div>
 
         {/* PICKER CARD — right */}
         {/* Tighter padding on a phone — 20px a side was 40px of the 326 available,
             and every pixel of it comes off the garment. */}
         <div
-          className="px-3 py-4 md:px-5 md:py-[22px] md:col-start-2 md:row-start-1 md:row-span-2"
+          className="order-2 px-3 py-4 md:px-5 md:py-[22px]"
           style={{ background: 'var(--bone)', border: '1px solid var(--hairline)', borderRadius: 18, boxShadow: '0 30px 60px -34px rgba(68,25,67,0.22)' }}
         >
           <div className="flex flex-col md:flex-row">
@@ -345,17 +370,6 @@ export default function StyleIt() {
           </div>
         </div>
 
-        {/* Third child of the wrapper, so on a phone it simply falls UNDERNEATH
-            the picker card in source order — Tina's ask. On desktop it is placed
-            back in the left column under the copy, which is where it has always
-            been; the card above spans both rows so it still centres against the
-            full height of that column. */}
-        <Link
-          href="/directory"
-          className="nav-link inline-flex items-center gap-1.5 !text-[11px] md:!text-xs md:col-start-1 md:row-start-2 md:justify-self-start"
-        >
-          Shop {t.brand} + {b.brand} <ArrowRight size={12} weight="bold" />
-        </Link>
       </div>
     </section>
   );
