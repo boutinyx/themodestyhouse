@@ -86,8 +86,18 @@ export function Header() {
             header on every tablet.
             Below 1024 the phone menu takes over, which is a full-screen panel
             and is entirely at home at tablet size. */}
+        {/* Each wrapper below is `flex`, never `block`.
+            A block wrapper around an inline-flex control (which is what
+            `.nav-link` makes the trigger) puts that control in a LINE BOX, so it
+            aligns on a text baseline and reserves room for a descender that has
+            no text in it. The control then sits high inside its own wrapper.
+            Measured on an iPhone: the favourites heart — a direct flex item, no
+            line box — centred exactly on the pill's y=53, while the menu button
+            in a `block` wrapper centred on y=50.8. Two icons side by side, 2.2px
+            apart, which is what reads as "not centred". `flex` removes the line
+            box and the strut with it. */}
         <div className="flex items-center gap-4 lg:gap-6 min-w-0">
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center">
             <Nav />
           </div>
           <Link
@@ -117,7 +127,7 @@ export function Header() {
               controls and two dividers in 390px, and the heart ended up crammed
               against the "HOUSE" of the wordmark. Its divider goes with it. */}
           <span aria-hidden className="hidden lg:block w-px h-10 shrink-0" style={{ background: 'var(--hairline)' }} />
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center">
             <CurrencySwitcher />
           </div>
           {/* Phone navigation, INSIDE the pill. What it replaces was a
@@ -127,7 +137,7 @@ export function Header() {
           {/* No divider before the menu on a phone — Tina's call. With the
               currency switcher moved into the panel there are only two controls
               left in the pill, and a rule between them is dividing nothing. */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center">
             <MobileNav />
           </div>
         </div>

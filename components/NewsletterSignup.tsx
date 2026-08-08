@@ -52,23 +52,28 @@ export function NewsletterSignup() {
 
   return (
     <form onSubmit={submit} className="mt-3">
-      {/* Optical alignment, not box alignment. The pill's EDGE already sat flush
-          with the "The Edit, in your inbox" eyebrow above it (both measured at
-          x=1085), but the placeholder inside started at 1102 — pushed right by
-          this border (1px) plus the input's padding-left (16px) — so the field
-          read as indented under its own label. 17px of this is the mechanical
-          correction — border + padding — which lands the placeholder exactly on
-          the eyebrow's 1085. The extra 3px is Tina's optical call: the eyebrow
-          is Marcellus at 10px with 0.28em tracking and the placeholder is Jost
-          at 13px, and their differing left side-bearings make a geometric match
-          still read a touch right. The cost, chosen deliberately: the pill
-          overhangs the footer column by 20px.
-          If the border width or the input padding changes, the 17 must change
-          with them; the 3 is taste and can stay. */}
+      {/* BOX alignment, not optical alignment — reversed 2026-08-09.
+          This pill used to carry `marginLeft: -20`, so that the PLACEHOLDER
+          text lined up with the eyebrow above it rather than the pill's edge.
+          The cost was written down at the time and accepted: the pill hangs 20px
+          into the gutter. Seen on a real phone that is the only thing you
+          notice — the field starts left of every other element in the footer,
+          and Tina's read was that it is not aligned with the other words.
+          Measured at 390px: column and eyebrow at x=32, pill at x=12.
+          So the pill's edge now sits on the column like everything else, and the
+          17px of border + padding that the old offset was cancelling is simply
+          the normal inset of text inside a field.
+
+          items-stretch, not items-center. The button sets its own height from
+          its 11px type; the input sets its own from 16px (forced on touch
+          devices so iOS does not zoom the page on focus — globals.css). Centred,
+          the shorter one floats: measured 36.5px of brass inside a 42px pill,
+          i.e. 3.8px of dark gap above and below the button, which is what made
+          it read as broken. Stretched, the brass fills the cap and the pill is
+          one shape again. */}
       <div
-        className="flex items-center overflow-hidden"
+        className="flex items-stretch overflow-hidden"
         style={{
-          marginLeft: -20,
           borderRadius: 'var(--radius-button)',
           border: '1px solid rgba(243,238,228,0.22)',
           background: 'rgba(243,238,228,0.06)',
@@ -115,7 +120,9 @@ export function NewsletterSignup() {
             textTransform: 'uppercase',
             letterSpacing: 'var(--track-label)',
             fontSize: 11,
-            padding: '10px 18px',
+            // Vertical padding is gone: the button now takes its height from the
+            // row (items-stretch above), so a fixed 10px here would fight it.
+            padding: '0 18px',
             opacity: state === 'sending' ? 0.7 : 1,
           }}
         >
