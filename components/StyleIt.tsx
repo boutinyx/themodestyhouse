@@ -82,6 +82,38 @@ const DRESS_ART_H = 305;
  *  four controls line up across the card. Centring each slot on its own frame
  *  put the dress arrows at 170px and the top arrows at 92px. */
 const ARROW_CENTER_Y = TOP_FRAME.h / 2;
+/** How much of the FRAME a piece covers in cloth once `object-fit: contain` has
+ *  fitted it. Depends only on the two aspect ratios and the piece's ink share, so
+ *  it holds at any frame size — which matters because the phone frame is fluid.
+ *
+ *  Fitting a garment into a fixed box does NOT make two garments look the same
+ *  size. A top is roughly square, so it fills the frame's width; a trouser is
+ *  tall and narrow, so it only fills the height. Measured across the picker,
+ *  tops covered 48-67% of the frame in cloth and bottoms 35-44% — the tops read
+ *  as half again as big, which is what Tina saw. */
+const FRAME_ASPECT = TOP_FRAME.w / TOP_FRAME.h;
+const inkOfFrame = (p: Piece) => {
+  const a = p.w / p.h;
+  return (Math.min(a, FRAME_ASPECT) / Math.max(a, FRAME_ASPECT)) * p.ink;
+};
+
+/** The coverage every mix piece is brought to on a phone.
+ *
+ *  The 25th percentile, not the median: a piece can always be shrunk but never
+ *  grown past the frame, so the target has to sit near the bottom of the range
+ *  or the narrow trousers simply cap out and stay small while everything else
+ *  comes down to meet nothing. At the 25th percentile every top scales down and
+ *  only the two narrowest bottoms fall short, by about a tenth.
+ *
+ *  Computed from the data rather than written as a number, so adding or
+ *  re-cutting a piece re-levels the set instead of silently drifting. */
+const MIX_TARGET_INK = (() => {
+  const v = [...TOPS, ...BOTTOMS].map(inkOfFrame).sort((a, b) => a - b);
+  return v[Math.floor(v.length * 0.25)];
+})();
+/** Never above 1: the artwork already fills its frame, so growing would crop. */
+const evenScale = (p: Piece) => Math.min(1, Math.sqrt(MIX_TARGET_INK / inkOfFrame(p)));
+
 const ARROW_STYLE: React.CSSProperties = {
   width: ARROW, height: ARROW, borderRadius: 999,
   border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)',
@@ -146,6 +178,8 @@ function Slot({
         ['--far' as string]: `${frame.w}/${frame.h}`,
         ['--art' as string]: `${artDesktop}px`,
         ['--amw' as string]: artMaxW,
+        // Phone only — desktop keeps its hand-tuned px caps (md:scale-100 below).
+        ['--even' as string]: String(evenScale(piece)),
         ['--amt' as string]: `${(arrowAt ?? frame.h / 2) - ARROW / 2}px`,
       }}
     >
@@ -195,7 +229,7 @@ function Slot({
                four slots are framed identically.
                Both desktop caps are px, never percentages — a percentage
                max-height against an aspect-ratio parent is the iOS bug in §10.24. */
-            className="absolute inset-0 w-full h-full object-contain md:static md:w-auto md:h-auto md:max-w-[var(--amw)] md:max-h-[var(--art)]"
+            className="absolute inset-0 w-full h-full object-contain scale-[var(--even)] md:static md:w-auto md:h-auto md:scale-100 md:max-w-[var(--amw)] md:max-h-[var(--art)]"
             /* No drop-shadow. It cast a soft brown pool under every hem, which on
                a wide flat garment reads as a dirty rectangle rather than as lift,
                and on a flat grey trouser it just makes the fabric look muddy.
