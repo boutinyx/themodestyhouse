@@ -100,7 +100,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
   ],
   "bottoms": [
     {
-      "src": "/style-it/bottom_7-v2.webp",
+      "src": "/style-it/bottom_7-v3.webp",
       "brand": "Nasiba",
       "label": "Solace Wide Leg",
       "color": "#545253"
