@@ -127,22 +127,17 @@ function Slot({
      The class names below are static strings, which is also what Tailwind needs
      in order to generate them at all — `w-[${x}px]` would never be emitted. */
   const artDesktop = piece.maxH ?? artMaxH ?? frame.h;
-  /* On a phone the frame is FLUID, so the per-piece cap cannot be a pixel value.
-     It is a SCALE FACTOR, not a percentage max-height.
-     That distinction is the whole bug this replaces: `max-height: 76.1%` against
-     a parent whose height comes from `aspect-ratio` computes to `none` in WebKit
-     — verified in Playwright's WebKit 26.5, where the same element reported
-     `max-height: 76.1%` in Chromium and `none` in WebKit. With no cap the artwork
-     rendered at its natural size and covered the captions on Tina's iPhone.
-     The image now fills the frame with `object-fit: contain`, which cannot
-     overflow in either axis by construction, and this factor reproduces each
-     piece's tuned share of it (tops carry their own maxH so they cover equal
-     AREA — see Piece.maxH). A transform needs no percentage resolution at all. */
-  const artScale = (artDesktop / frame.h).toFixed(3);
+  /* The phone deliberately applies NEITHER cap: the image fills the frame with
+     `object-fit: contain`, which cannot overflow in either axis by construction.
+     A percentage `max-height` was tried here and is the iOS bug in §10.24 — it
+     computes to `none` in WebKit, so the artwork rendered at natural size and
+     covered its captions. A per-piece `scale` was tried next; it was safe but
+     shrank each garment by a different amount, which read as the tops and
+     bottoms being randomly mismatched. */
 
   return (
     <div
-      className="flex flex-col items-center min-w-0 flex-1 md:flex-initial"
+      className="flex flex-col items-center min-w-0 w-full md:w-auto md:flex-initial"
       style={{
         ['--fw' as string]: `${frame.w}px`,
         ['--fh' as string]: `${frame.h}px`,
@@ -150,7 +145,7 @@ function Slot({
         // is whatever the row leaves over.
         ['--far' as string]: `${frame.w}/${frame.h}`,
         ['--art' as string]: `${artDesktop}px`,
-        ['--art-k' as string]: artScale,
+        ['--amw' as string]: artMaxW,
         ['--amt' as string]: `${(arrowAt ?? frame.h / 2) - ARROW / 2}px`,
       }}
     >
@@ -159,6 +154,13 @@ function Slot({
           controls. Without this a fixed 182px frame + two 34px arrows only
           fitted the column at exactly 1220px and spilled at every width below,
           which is what made the dress look off-centre. */}
+      {/* w-full, NOT flex-1. As a flex-1 item in the column each slot shared the
+          container's height, so a caption that wrapped to two lines left its slot
+          less height — and because the frame is an aspect-ratio box, less height
+          means a NARROWER frame. Measured: 150x163 next to 100x109 for two slots
+          that should be identical. That is what made some tops smaller than the
+          bottoms and some bottoms smaller than the tops. Sized by content, both
+          frames take the full column width and come out the same. */}
       {/* The arrows FLANK the artwork at every width. They briefly moved
           underneath on a phone, which was only ever needed to fit the two slots
           side by side; stacked, a 116px frame plus two 34px arrows and their
@@ -183,8 +185,18 @@ function Slot({
             alt={piece.brand ? `${piece.brand} ${piece.label}` : piece.label}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-contain scale-[var(--art-k)] md:static md:w-auto md:h-auto md:scale-100 md:max-h-[var(--art)]"
-            style={{ maxWidth: artMaxW, objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
+            /* On a phone: fill the frame and stop. No per-piece scale and no
+               per-piece max-width — those are the DESKTOP tuning, and applying
+               them to a frame that is already small made every garment smaller
+               again by a DIFFERENT amount each (a top scaled 0.761 next to
+               trousers at 1.000), which is why some tops read smaller than the
+               bottoms and some bottoms smaller than the tops. Filling the same
+               box means every piece is as large as its own shape allows, and all
+               four slots are framed identically.
+               Both desktop caps are px, never percentages — a percentage
+               max-height against an aspect-ratio parent is the iOS bug in §10.24. */
+            className="absolute inset-0 w-full h-full object-contain md:static md:w-auto md:h-auto md:max-w-[var(--amw)] md:max-h-[var(--art)]"
+            style={{ objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button
@@ -300,7 +312,7 @@ export default function StyleIt() {
               The ! modifiers are needed because .btn-pill and .nav-link set their
               own padding and font-size in globals.css, and a plain utility would
               be a specificity coin-toss against them. */}
-          <div className="order-3 flex items-center gap-2 md:gap-3 md:mt-8">
+          <div className="order-4 flex items-center gap-2 md:gap-3 md:order-none md:mt-8">
             <button
               className="btn-pill !text-[11px] !px-3.5 !py-2 md:!text-xs md:!px-[18px]"
               onClick={() => { takeOver(); shuffle(); }}
@@ -318,7 +330,7 @@ export default function StyleIt() {
 
           <Link
             href="/directory"
-            className="nav-link order-4 flex md:inline-flex items-center gap-1.5 !text-[11px] md:!text-xs md:mt-5"
+            className="nav-link order-3 self-start inline-flex items-center gap-1.5 !text-[11px] md:!text-xs md:order-none md:mt-5"
           >
             Shop {t.brand} + {b.brand} <ArrowRight size={12} weight="bold" />
           </Link>
