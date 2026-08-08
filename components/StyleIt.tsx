@@ -127,13 +127,18 @@ function Slot({
      The class names below are static strings, which is also what Tailwind needs
      in order to generate them at all — `w-[${x}px]` would never be emitted. */
   const artDesktop = piece.maxH ?? artMaxH ?? frame.h;
-  /* On a phone the frame is FLUID — it takes whatever the row has left after the
-     two arrows, so the garment is as large as the screen allows and grows with
-     the phone. That means the artwork cap cannot stay a pixel value: expressed as
-     a PERCENTAGE of the frame it keeps each piece's share exactly as tuned on
-     desktop (each top carries its own maxH so the tops cover equal AREA — see
-     Piece.maxH) while scaling with whatever height the frame resolves to. */
-  const artPct = ((artDesktop / frame.h) * 100).toFixed(1);
+  /* On a phone the frame is FLUID, so the per-piece cap cannot be a pixel value.
+     It is a SCALE FACTOR, not a percentage max-height.
+     That distinction is the whole bug this replaces: `max-height: 76.1%` against
+     a parent whose height comes from `aspect-ratio` computes to `none` in WebKit
+     — verified in Playwright's WebKit 26.5, where the same element reported
+     `max-height: 76.1%` in Chromium and `none` in WebKit. With no cap the artwork
+     rendered at its natural size and covered the captions on Tina's iPhone.
+     The image now fills the frame with `object-fit: contain`, which cannot
+     overflow in either axis by construction, and this factor reproduces each
+     piece's tuned share of it (tops carry their own maxH so they cover equal
+     AREA — see Piece.maxH). A transform needs no percentage resolution at all. */
+  const artScale = (artDesktop / frame.h).toFixed(3);
 
   return (
     <div
@@ -145,7 +150,7 @@ function Slot({
         // is whatever the row leaves over.
         ['--far' as string]: `${frame.w}/${frame.h}`,
         ['--art' as string]: `${artDesktop}px`,
-        ['--art-pct' as string]: `${artPct}%`,
+        ['--art-k' as string]: artScale,
         ['--amt' as string]: `${(arrowAt ?? frame.h / 2) - ARROW / 2}px`,
       }}
     >
@@ -168,7 +173,7 @@ function Slot({
         >
           <CaretLeft size={16} weight="bold" />
         </button>
-        <div className="flex items-center justify-center min-w-0 flex-1 aspect-[var(--far)] md:flex-none md:aspect-auto md:w-[var(--fw)] md:h-[var(--fh)] max-w-full">
+        <div className="relative flex items-center justify-center min-w-0 flex-1 aspect-[var(--far)] md:flex-none md:aspect-auto md:w-[var(--fw)] md:h-[var(--fh)] max-w-full">
           {/* lazy: this is also what keeps the desktop-only dress column from
               costing a phone anything — a lazy image in a display:none box is
               never fetched. */}
@@ -178,7 +183,7 @@ function Slot({
             alt={piece.brand ? `${piece.brand} ${piece.label}` : piece.label}
             loading="lazy"
             decoding="async"
-            className="max-h-[var(--art-pct)] md:max-h-[var(--art)]"
+            className="absolute inset-0 w-full h-full object-contain scale-[var(--art-k)] md:static md:w-auto md:h-auto md:scale-100 md:max-h-[var(--art)]"
             style={{ maxWidth: artMaxW, objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>

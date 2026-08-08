@@ -1,12 +1,20 @@
-// Mobile + accessibility audit. Renders every route in headless Chromium at
-// phone size, then reports the two things that cannot be established by reading
-// source: what actually overflows the viewport, and what axe flags.
+// Mobile + accessibility audit. Renders every route at phone size in BOTH
+// Chromium and WebKit, then reports the things that cannot be established by
+// reading source: what actually overflows the viewport, what text is drawn on
+// top of other text, what is too small to tap, and what axe flags.
 //
-//   npm run audit:mobile            # against a local `next start`
+//   npm run audit:mobile              # against a local `next start`
+//   ENGINE=chromium npm run audit:mobile      # one engine only, quicker
 //   BASE=https://themodestyhouse.com npm run audit:mobile
 //
-// Screenshots land in .audit/ (gitignored).
-import { chromium, devices } from 'playwright';
+// WHY BOTH ENGINES: every iPhone is WebKit, and the two disagree. Shipped
+// 2026-08-08: a percentage `max-height` against a parent sized by `aspect-ratio`
+// computes to the percentage in Chromium and to `none` in WebKit, so the
+// StyleIt artwork had no cap on iOS, rendered at natural size and covered its
+// captions. Chromium-only auditing reported that page clean. → CLAUDE.md §10.24.
+//
+// Screenshots land in .audit/ (gitignored), suffixed per engine.
+import { chromium, webkit, devices } from 'playwright';
 import { AxeBuilder } from '@axe-core/playwright';
 import { mkdirSync, writeFileSync } from 'node:fs';
 
@@ -15,22 +23,59 @@ const ROUTES = [
   '/', '/directory', '/designers', '/editorial', '/about',
   '/favourites', '/contact', '/modest-dresses', '/privacy',
 ];
+const ENGINES = { chromium, webkit };
+const PICK = process.env.ENGINE;
+const TO_RUN = PICK ? [[PICK, ENGINES[PICK]]] : Object.entries(ENGINES);
+if (PICK && !ENGINES[PICK]) {
+  console.error(`Unknown ENGINE "${PICK}" — use chromium or webkit.`);
+  process.exit(1);
+}
+/** Local http only. The site sends HSTS and `upgrade-insecure-requests`, both
+ *  right in production; over plain http WebKit honours them, rewrites every
+ *  subresource to https:// and fails TLS, so the page renders with NO CSS and
+ *  every measurement below is meaningless. Chromium exempts localhost, WebKit
+ *  does not. The site is untouched — this only affects the test client. */
+const LOCAL = /^http:\/\/localhost:/.test(BASE);
 
 const OUT = new URL('../.audit/', import.meta.url);
 mkdirSync(OUT, { recursive: true });
 
-const browser = await chromium.launch();
-const context = await browser.newContext({ ...devices['iPhone 13'] });
-const page = await context.newPage();
 const report = [];
+for (const [engineName, engine] of TO_RUN) {
+const browser = await engine.launch();
+const context = await browser.newContext({ ...devices['iPhone 13'], bypassCSP: LOCAL });
+if (LOCAL) {
+  await context.route('**/*', async (route) => {
+    const url = route.request().url().replace(/^https:\/\/localhost:/, 'http://localhost:');
+    try {
+      const res = await route.fetch({ url });
+      const headers = { ...res.headers() };
+      delete headers['strict-transport-security'];
+      if (headers['content-security-policy']) {
+        headers['content-security-policy'] = headers['content-security-policy'].replace('upgrade-insecure-requests', '');
+      }
+      await route.fulfill({ response: res, headers });
+    } catch {
+      await route.abort();
+    }
+  });
+}
+const page = await context.newPage();
 
 for (const route of ROUTES) {
   const url = `${BASE}${route}`;
   let res;
   try {
-    res = await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
+    // 'networkidle' as a hard requirement makes this unusable against `next dev`:
+    // the HMR websocket never goes quiet, so WebKit times out on every route.
+    // Load first, then give the network a bounded chance to settle so lazy
+    // images have arrived before anything is measured.
+    res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
   } catch (e) {
-    report.push({ route, error: e.message });
+    // engine tag matters: the summary groups by it, so an untagged failure
+    // silently vanishes from the report instead of being counted.
+    report.push({ engine: engineName, route, error: e.message });
     continue;
   }
 
@@ -90,6 +135,44 @@ for (const route of ROUTES) {
           .slice(0, 4)
           .map(([at, texts]) => ({ at, texts }));
       })(),
+      // A box with a declared `aspect-ratio` that is NOT at that ratio, which
+      // means its content grew and pushed it out of shape.
+      // This is the signature of the WebKit bug in the header comment. Checking
+      // "does the image overflow its parent" does NOT catch it: the frame is an
+      // aspect-ratio box, so an oversized image makes the FRAME grow rather than
+      // spilling out of it, and the damage lands on whatever sat next to it.
+      // Measuring the ratio itself catches the cause instead of the symptom.
+      brokenAspect: [...document.querySelectorAll('body *')]
+        .map((el) => {
+          const cs = getComputedStyle(el);
+          const ar = cs.aspectRatio;
+          if (!ar || ar === 'auto') return null;
+          // A rotated or scaled box reports its axis-aligned BOUNDING box, which
+          // legitimately does not match the declared ratio. The fanned cards in
+          // VerifiedSpotlight are rotated by design and were flagged 4x per page.
+          if (cs.transform && cs.transform !== 'none') return null;
+          if (cs.rotate && cs.rotate !== 'none') return null;
+          if (cs.scale && cs.scale !== 'none' && cs.scale !== '1') return null;
+          // Computed form is either "a / b" or a bare number.
+          const m = ar.match(/^([\d.]+)\s*\/\s*([\d.]+)$/);
+          const ratio = m ? Number(m[1]) / Number(m[2]) : Number(ar);
+          if (!ratio || !isFinite(ratio)) return null;
+          const r = el.getBoundingClientRect();
+          if (r.width < 8 || r.height < 8) return null;
+          const expected = r.width / ratio;
+          const off = r.height - expected;
+          if (Math.abs(off) <= 2) return null;
+          return {
+            tag: el.tagName.toLowerCase(),
+            cls: (el.className || '').toString().slice(0, 46),
+            declared: ar,
+            box: `${Math.round(r.width)}x${Math.round(r.height)}`,
+            expectedH: Math.round(expected),
+            offBy: Math.round(off),
+          };
+        })
+        .filter(Boolean)
+        .slice(0, 6),
       // Tap targets below the 24x24 CSS px floor in WCAG 2.2 (2.5.8).
       smallTargets: [...document.querySelectorAll('a,button,[role="button"],input,select')]
         // Nothing a person can reach is a tap target. tabindex=-1 and
@@ -108,11 +191,21 @@ for (const route of ROUTES) {
     };
   });
 
-  const axe = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-    .analyze();
+  // Non-fatal. Against `next dev` an HMR reload can destroy the execution
+  // context mid-analysis and take the whole run down with it; one route's
+  // missing a11y pass is not worth losing the other eight routes' layout data.
+  // Run against a production build (`next start`) for a complete report.
+  let axe = { violations: [] };
+  try {
+    axe = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze();
+  } catch (e) {
+    console.error(`   (axe failed on ${route} in ${engineName}: ${e.message.split('\n')[0]})`);
+  }
 
-  const name = route === '/' ? 'home' : route.replace(/\//g, '-').replace(/^-/, '');
+  const base = route === '/' ? 'home' : route.replace(/\//g, '-').replace(/^-/, '');
+  const name = `${base}-${engineName}`;
   await page.screenshot({ path: new URL(`${name}.png`, OUT).pathname, fullPage: false });
   // ALSO full-page. The above-the-fold shot is what made a screenful of
   // overlapping captions invisible to a reviewer reading a clean report — the
@@ -120,6 +213,7 @@ for (const route of ROUTES) {
   await page.screenshot({ path: new URL(`${name}-full.png`, OUT).pathname, fullPage: true });
 
   report.push({
+    engine: engineName,
     route,
     status: res?.status(),
     ...layout,
@@ -131,26 +225,38 @@ for (const route of ROUTES) {
 }
 
 await browser.close();
+}
 writeFileSync(new URL('report.json', OUT), JSON.stringify(report, null, 2));
 
 // ---- console summary -------------------------------------------------------
-console.log(`\nMOBILE AUDIT — ${BASE} @ iPhone 13 (390px)\n${'='.repeat(58)}`);
-for (const r of report) {
-  if (r.error) { console.log(`\n${r.route}\n  FAILED: ${r.error}`); continue; }
-  const flag = r.overflows ? `OVERFLOWS to ${r.scrollWidth}px` : 'fits';
-  console.log(`\n${r.route}  [${r.status}]  ${flag}`);
-  for (const o of r.offenders) console.log(`   overflow: <${o.tag}> right=${o.right} w=${o.width} .${o.cls}`);
-  for (const t of r.smallTargets) console.log(`   tap target ${t.w}x${t.h}: <${t.tag}> ${t.text}`);
-  for (const s of r.stackedText || []) console.log(`   STACKED TEXT at ${s.at}: ${s.texts.join(' | ')}`);
-  const byImpact = {};
-  for (const v of r.violations) (byImpact[v.impact] ??= []).push(v);
-  for (const [imp, vs] of Object.entries(byImpact)) {
-    for (const v of vs) console.log(`   a11y [${imp}] ${v.id} x${v.nodes} — ${v.help}`);
+console.log(`\nMOBILE AUDIT — ${BASE} @ iPhone 13 (390px)`);
+for (const [engineName] of TO_RUN) {
+  const rows = report.filter((r) => r.engine === engineName);
+  console.log(`\n${'='.repeat(58)}\n${engineName.toUpperCase()}\n${'='.repeat(58)}`);
+  for (const r of rows) {
+    if (r.error) { console.log(`\n${r.route}\n  FAILED: ${r.error}`); continue; }
+    const flag = r.overflows ? `OVERFLOWS to ${r.scrollWidth}px` : 'fits';
+    console.log(`\n${r.route}  [${r.status}]  ${flag}`);
+    for (const o of r.offenders) console.log(`   overflow: <${o.tag}> right=${o.right} w=${o.width} .${o.cls}`);
+    for (const t of r.smallTargets) console.log(`   tap target ${t.w}x${t.h}: <${t.tag}> ${t.text}`);
+    for (const s of r.stackedText || []) console.log(`   STACKED TEXT at ${s.at}: ${s.texts.join(' | ')}`);
+    for (const a of r.brokenAspect || []) console.log(`   ASPECT BROKEN <${a.tag}> declared ${a.declared}, box ${a.box}, expected h=${a.expectedH} (off by ${a.offBy}px) .${a.cls}`);
+    const byImpact = {};
+    for (const v of r.violations) (byImpact[v.impact] ??= []).push(v);
+    for (const [imp, vs] of Object.entries(byImpact)) {
+      for (const v of vs) console.log(`   a11y [${imp}] ${v.id} x${v.nodes} — ${v.help}`);
+    }
   }
 }
-const totalV = report.reduce((a, r) => a + (r.violations?.length || 0), 0);
-const over = report.filter((r) => r.overflows).length;
-const stacked = report.reduce((a, r) => a + (r.stackedText?.length || 0), 0);
 console.log(`\n${'='.repeat(58)}`);
-console.log(`pages overflowing: ${over}/${report.length} | distinct a11y violations: ${totalV} | stacked text: ${stacked}`);
+for (const [engineName] of TO_RUN) {
+  const rows = report.filter((r) => r.engine === engineName);
+  const totalV = rows.reduce((a, r) => a + (r.violations?.length || 0), 0);
+  const over = rows.filter((r) => r.overflows).length;
+  const stacked = rows.reduce((a, r) => a + (r.stackedText?.length || 0), 0);
+  const spill = rows.reduce((a, r) => a + (r.brokenAspect?.length || 0), 0);
+  console.log(
+    `${engineName.padEnd(9)} overflowing ${over}/${rows.length} | a11y ${totalV} | stacked text ${stacked} | broken aspect ${spill}`
+  );
+}
 console.log(`screenshots + report.json in .audit/`);
