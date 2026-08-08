@@ -207,6 +207,44 @@
   --font-ui: var(--font-ui);
 }
 
+/* Full-height hero. `svh` is the SMALL viewport height — the screen with the
+   mobile browser's chrome showing — so the hero is never taller than what is
+   actually visible. `dvh` would be "correct" too but resizes as the URL bar
+   collapses, which drags the whole page under the reader's thumb mid-scroll.
+   The `vh` line above it is the fallback for anything that does not know `svh`;
+   this is why it cannot live in a React `style={{}}` object, where one property
+   can only be written once. */
+.hero-vh {
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+}
+
+/* iOS Safari ZOOMS the whole page when a form field smaller than 16px takes
+   focus, and there is no way to undo it — the reader is left on a page they now
+   have to pinch back out of, with the layout shifted under them. Every field on
+   this site was under that floor: the contact form at 14px, the index console at
+   15px, the newsletter pill at 13px. Only the hero search was safe, and only
+   because a comment there had already worked this out.
+   Applied by POINTER, not by width: it is about touch keyboards, not screen
+   size, and an iPad at 1024px zooms exactly like an iPhone at 390. Desktop keeps
+   the smaller, quieter type it was designed with. */
+@media (pointer: coarse) {
+  /* !important is load-bearing here, not laziness. Every one of these fields
+     sets its own `fontSize` in an inline `style={{}}` — the house convention
+     (§6) — and an inline declaration beats any stylesheet rule that is not
+     !important. Verified under iPhone 13 emulation: with this rule but without
+     the flag, `(pointer: coarse)` matched and the fields still computed to
+     14px. The alternative is to strip fontSize out of four components' inline
+     styles and re-declare it in CSS, which spreads one accessibility floor
+     across four files instead of stating it once. */
+  input:not([type='checkbox']):not([type='radio']),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
 html { background: var(--parchment); }
 body {
   background: var(--parchment);
@@ -214,6 +252,18 @@ body {
   font-family: var(--font-ui), 'Helvetica Neue', Arial, sans-serif;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Form controls do not inherit font-family — every UA stylesheet gives them
+   their own. Left alone, any field without an explicit family renders in the
+   browser's default sans, which is the one piece of body-weight text on a page
+   not in the house typeface, and it always lands on the one element a visitor
+   is looking straight at. Stated once here rather than per component. */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
 }
 
 /* voice */
@@ -264,6 +314,48 @@ body {
 }
 .nav-link:hover,
 .nav-link[data-active="true"] { color: var(--aubergine); }
+
+/* A row inside a dropdown panel. Same voice as .nav-link, but a BLOCK-level
+   flex row rather than an inline-flex one — and that difference is the whole
+   reason this class exists.
+
+   .nav-link is built for the horizontal desktop header, where `display:
+   inline-flex` and `justify-content: center` are both right. Reused for a
+   full-width menu row it does two things wrong, and neither is visible from
+   the call site:
+     - `justify-content: center` centres every option. A Tailwind `justify-start`
+       does NOT override it: Tailwind v4 emits utilities inside `@layer
+       utilities`, and an UNLAYERED rule like .nav-link beats any layered one
+       regardless of source order or specificity. Both dropdowns carried
+       `justify-start` and both still rendered centred.
+     - `w-full` on an inline-level box inside a shrink-to-fit popup inflates the
+       popup instead of filling it. Measured: the Category filter, seven options
+       none longer than "All category", opened a 603px-wide panel.
+   This is the third time .nav-link's header-specific rules have leaked into a
+   vertical list — components/MobileNav.tsx stopped using it for the same
+   reason, and says so at the top of the file. */
+.menu-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  white-space: nowrap;
+  font-family: var(--font-label-stack);
+  font-size: 12px;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--muted);
+  min-height: 24px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease-out;
+}
+.menu-row:hover,
+.menu-row[data-highlighted],
+.menu-row[data-active="true"] { color: var(--aubergine); }
 
 /* the one flat colour moment — NO gradient */
 .aubergine-band {

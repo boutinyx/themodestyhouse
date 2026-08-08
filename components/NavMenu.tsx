@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { NavigationMenu } from '@base-ui-components/react/navigation-menu';
+import { CaretDown } from '@phosphor-icons/react';
 
 /**
  * The header navigation menu, built on Base UI's NavigationMenu primitive.
@@ -19,18 +20,18 @@ import { NavigationMenu } from '@base-ui-components/react/navigation-menu';
 
 export type NavItem = { href: string; label: string };
 
+/** Phosphor CaretDown, not a hand-drawn path (CLAUDE.md §6). The old inline
+ *  <svg> was a 1.2px stroke with round caps, against Phosphor's own geometry on
+ *  every other caret in the header — visibly a different pen at the same size.
+ *  The rotate-on-open class carries over unchanged. */
 function Chevron() {
   return (
-    <svg
-      width="9"
-      height="6"
-      viewBox="0 0 9 6"
-      fill="none"
+    <CaretDown
+      size={10}
+      weight="bold"
       aria-hidden="true"
       className="ms-1.5 transition-transform duration-200 group-data-[popup-open]:rotate-180"
-    >
-      <path d="M1 1L4.5 4.5L8 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
+    />
   );
 }
 

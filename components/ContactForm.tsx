@@ -21,6 +21,39 @@ const field: React.CSSProperties = {
   padding: '11px 14px',
   fontSize: 14,
   color: 'var(--ink)',
+  // Form controls do NOT inherit font-family from the page — the UA stylesheet
+  // sets its own. Without this the Subject select rendered "General enquiry" in
+  // Arial/Helvetica: the only body-weight text on the page not in the house
+  // typeface, sitting in the middle of the form.
+  fontFamily: 'var(--font-ui-stack)',
+};
+
+/** The Subject select, which needs two things the other fields do not.
+ *
+ *  `appearance: none` — WITHOUT IT WEBKIT DISCARDS border-radius AND padding on
+ *  a menulist select, so on every iPhone and iPad this one field rendered as a
+ *  squat native control in the middle of an otherwise styled form: measured 23px
+ *  tall against its siblings' 43px, square corners against their 12px radius,
+ *  text inset 9px against their 19px, and the native double-chevron stepper
+ *  instead of a single caret. Chromium honoured all of it, so the form looked
+ *  correct in every Chromium check and wrong on the whole of iOS.
+ *
+ *  Dropping the native arrow means drawing one: an inline SVG data-URI caret,
+ *  with right padding to clear it. It is a background image rather than a
+ *  Phosphor component because a <select> cannot contain an element (§6 is about
+ *  icons in markup; there is no markup available here).
+ */
+const CARET =
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%23796e5e' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>";
+const selectField: React.CSSProperties = {
+  ...field,
+  appearance: 'none',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  paddingRight: 38,
+  backgroundImage: `url("${CARET}")`,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'right 14px center',
 };
 
 export function ContactForm({ siteKey, defaultTopic }: { siteKey?: string; defaultTopic?: string }) {
@@ -117,7 +150,7 @@ export function ContactForm({ siteKey, defaultTopic }: { siteKey?: string; defau
 
       <div>
         <label htmlFor="topic" className="eyebrow block mb-1">Subject</label>
-        <select id="topic" name="topic" defaultValue={defaultTopic ?? 'general'} style={field}>
+        <select id="topic" name="topic" defaultValue={defaultTopic ?? 'general'} style={selectField}>
           {TOPICS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
         </select>
         {err('topic')}

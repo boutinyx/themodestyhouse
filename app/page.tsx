@@ -29,10 +29,21 @@ export default function Home() {
     .slice(0, 12);
 
   return (
-    <>
+    // A <main> landmark. Every other page has one; the homepage did not, so the
+    // whole of it was outside any landmark and "skip to content" had nothing to
+    // skip to. app/[lane], /about, /designers, /directory, /editorial,
+    // /favourites and the legal shell all already do this.
+    <main>
       {/* HERO — editorial modest-fashion image */}
       <section>
-        <div className="relative overflow-hidden" style={{ height: '100vh', minHeight: 560, background: 'var(--aubergine)' }}>
+        {/* .hero-vh, not an inline height. The height has to be `100svh` with a
+            `100vh` fallback, and the same property cannot be declared twice in a
+            React style object — the second wins outright and the first is not a
+            fallback at all. `100vh` on iOS is the URL-bar-COLLAPSED height, so
+            the hero was taller than the screen it was measured against: the
+            search field sat lower than the optical centre and the bottom of the
+            photograph was under the browser chrome. */}
+        <div className="relative overflow-hidden hero-vh" style={{ background: 'var(--aubergine)' }}>
           {/* The LCP element on a phone. It was one 1920px JPEG (227KB) served
               to every width; a 390px viewport now takes the 640 variant at 19KB.
               fetchPriority=high because it is above the fold and must not queue
@@ -106,7 +117,10 @@ export default function Home() {
           <div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>By category.</h2>
           </div>
-          <Link href="/directory" className="nav-link inline-flex items-center gap-1.5">All categories <ArrowRight size={13} weight="bold" /></Link>
+          {/* Same treatment as the two sections above and below: beside the
+              heading from md up, under the content on a phone. See the note in
+              the Editor's Picks header for why `!hidden` needs the `!`. */}
+          <Link href="/directory" className="nav-link !hidden md:!inline-flex items-center gap-1.5">All categories <ArrowRight size={13} weight="bold" /></Link>
         </div>
         <div className="tmh-cat-grid">
           {cats.slice(0, 5).map((c, i) => (
@@ -136,6 +150,9 @@ export default function Home() {
             </Link>
           ))}
         </div>
+        <Link href="/directory" className="nav-link md:!hidden inline-flex items-center gap-1.5 mt-6">
+          All categories <ArrowRight size={13} weight="bold" />
+        </Link>
       </section>
 
       {/* FOR DESIGNERS */}
@@ -177,10 +194,22 @@ export default function Home() {
               Reading, not just <span className="italic" style={{ color: 'var(--plum)' }}>shopping</span>.
             </h2>
           </div>
-          <Link href="/editorial" className="nav-link inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
+          {/* Under the content on a phone, like its two siblings. Measured at
+              390px: "All stories" wrapped onto two lines and printed into the
+              descender of the italic "shopping." beside it. */}
+          <Link href="/editorial" className="nav-link !hidden md:!inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
         </div>
+        {/* The side column only earns its place once there are at least two
+            stories to put in it. There are two posts in content/editorial today,
+            so `posts.slice(1, 4)` yields ONE — a 110px card beside a 460px
+            feature, leaving 350px of bare parchment in the right half of the
+            section. It read as a section that had failed to load.
+            With fewer than two, the grid stays single-column: the feature takes
+            the full width and the remaining story sits under it as a wide row,
+            which is the same card doing the same job. The moment a third post is
+            published the intended two-column composition comes back on its own. */}
         {feature && (
-          <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8">
+          <div className={`grid grid-cols-1 gap-8 ${moreStories.length >= 2 ? 'md:grid-cols-[1.5fr_1fr]' : ''}`}>
             <Link href={`/editorial/${feature.slug}`} className="relative block overflow-hidden" style={{ borderRadius: 8, minHeight: 460, background: 'var(--aubergine)' }}>
               {feature.image && (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -228,8 +257,11 @@ export default function Home() {
             )}
           </div>
         )}
+        <Link href="/editorial" className="nav-link md:!hidden inline-flex items-center gap-1.5 mt-6">
+          All stories <ArrowRight size={13} weight="bold" />
+        </Link>
       </section>
 
-    </>
+    </main>
   );
 }

@@ -1,5 +1,7 @@
 'use client';
 import { useCallback, useRef, useState } from 'react';
+import { Menu } from '@base-ui-components/react/menu';
+import { CaretDown } from '@phosphor-icons/react';
 
 /**
  * The index console — the search field and filter row shared by /directory and
@@ -44,45 +46,98 @@ export function FilterDropdown({
   }, []);
 
   return (
-    <div className="relative group">
-      <button type="button" className="chip" data-active={value !== 'all'}>
-        {current ? current.label : label} ▾
-      </button>
-      <div
-        className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-40"
-        // The panel is shown with CSS, never unmounted, so the list keeps the
-        // scroll position and atEnd value from last time. Re-measure as it opens.
-        onMouseEnter={syncAtEnd}
-        onFocus={syncAtEnd}
+    /* A REAL menu primitive, not a CSS hover trick.
+     *
+     * What this replaces: a panel shown by `hidden group-hover:block
+     * group-focus-within:block`. Neither half of that is a tap. A touch screen
+     * has no hover, and Safari — every iPhone and every iPad — deliberately does
+     * NOT move focus to a <button> when you click it, so `:focus-within` never
+     * became true either. Driven under WebKit at 390px and 819px, tapping
+     * "Category" did nothing at all: the filters on /directory and on all twelve
+     * lane pages were unreachable on every Apple device. Chromium hid it, because
+     * its emulated tap does focus the button.
+     *
+     * Base UI is what the header nav and the currency switcher already use, so
+     * this is the third instance of one pattern rather than a third hand-rolled
+     * dropdown. It brings pointer + touch + keyboard, Escape, outside-click, a
+     * focus ring that follows arrow keys, and collision-aware positioning — the
+     * last of which also fixes the panel running off the right edge of a phone,
+     * since it was absolutely positioned at `left: 0` with no awareness of the
+     * viewport. RadioGroup is the honest semantics: one choice out of N, and
+     * every row gets a real aria-checked.
+     */
+    <Menu.Root
+      // The panel is unmounted while closed, so `atEnd` is stale from last time
+      // by the time it reopens. rAF because the list has to be laid out before
+      // scrollHeight means anything.
+      onOpenChange={(open) => { if (open) requestAnimationFrame(syncAtEnd); }}
+    >
+      <Menu.Trigger
+        // openOnHover keeps the desktop behaviour the CSS version had — point at
+        // a chip and it opens — while click/tap now works everywhere. delay 0
+        // because the pointer is already still by the time a delay would fire;
+        // closeDelay is the grace period for travelling into the panel.
+        openOnHover
+        delay={0}
+        closeDelay={120}
+        className="chip inline-flex items-center gap-1.5"
+        data-active={value !== 'all'}
       >
-        {/* menu-scroll hides the scrollbar and fades the last row instead — the
-            fade is the scroll affordance. data-scrollable turns the fade off for
-            short lists, so a 3-item menu isn't told it can scroll; data-at-end
-            turns it off once you have actually reached the bottom. */}
-        <div
-          className="menu-scroll rounded-xl border min-w-[190px]"
-          data-scrollable={options.length > 7}
-          data-at-end={atEnd}
-          style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
+        {current ? current.label : label}
+        {/* Phosphor, not the ▾ character (CLAUDE.md §6). */}
+        <CaretDown size={11} weight="bold" />
+      </Menu.Trigger>
+
+      <Menu.Portal>
+        <Menu.Positioner
+          sideOffset={8}
+          align="start"
+          collisionPadding={{ top: 8, bottom: 8, left: 12, right: 12 }}
+          className="z-50"
         >
-          <div className="menu-scroll-list p-2" ref={listRef} onScroll={syncAtEnd}>
-            <button type="button" onClick={() => onSelect('all')} className="block w-full text-left nav-link py-2 px-3">
-              All {label.toLowerCase()}
-            </button>
-            {options.map((o) => (
-              <button
-                key={o.value}
-                type="button"
-                onClick={() => onSelect(o.value)}
-                className="block w-full text-left nav-link py-2 px-3 whitespace-nowrap"
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+          <Menu.Popup
+            /* menu-scroll hides the scrollbar and fades the last row instead —
+               the fade is the scroll affordance. data-scrollable turns the fade
+               off for short lists, so a 3-item menu isn't told it can scroll;
+               data-at-end turns it off once you have actually reached the
+               bottom. */
+            className="menu-scroll rounded-xl border min-w-[190px] max-w-[var(--available-width)] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
+            data-scrollable={options.length > 7}
+            data-at-end={atEnd}
+            style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
+          >
+            <Menu.RadioGroup
+              value={value}
+              onValueChange={(v) => onSelect(v as string)}
+              className="menu-scroll-list p-2"
+              ref={listRef}
+              onScroll={syncAtEnd}
+            >
+              {[{ value: 'all', label: `All ${label.toLowerCase()}` }, ...options].map((o) => (
+                <Menu.RadioItem
+                  key={o.value}
+                  value={o.value}
+                  // Base UI leaves radio items open on click so a group can be
+                  // adjusted repeatedly. A filter is picked once and the grid
+                  // behind it changes, so a menu that lingers reads as stuck.
+                  closeOnClick
+                  // .menu-row, NOT .nav-link. See the note on .menu-row in
+                  // globals.css: .nav-link is inline-flex and centres its
+                  // content, which a Tailwind `justify-start` cannot override
+                  // (unlayered beats layered in Tailwind v4), and `w-full` on an
+                  // inline-level row inflated this panel to 603px for seven
+                  // one-word options.
+                  className="menu-row"
+                  data-active={value === o.value}
+                >
+                  {o.label}
+                </Menu.RadioItem>
+              ))}
+            </Menu.RadioGroup>
+          </Menu.Popup>
+        </Menu.Positioner>
+      </Menu.Portal>
+    </Menu.Root>
   );
 }
 
@@ -118,7 +173,7 @@ export function IndexPanel({
           value={q}
           onChange={(e) => onQ(e.target.value)}
           placeholder="Search houses, pieces…"
-          className="flex-1"
+          className="flex-1 min-w-0"
           style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
         />
       </div>

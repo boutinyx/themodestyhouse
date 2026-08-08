@@ -76,7 +76,12 @@ export function Footer() {
             <FLink href="/editorial">Interviews</FLink>
           </Col>
 
-          <div>
+          {/* col-span-2 on a phone. This column carries the sign-up pill, and in
+              a half-width footer column the pill had 163px to work with: the
+              button took 95 of them and the email field was left 66px wide,
+              showing "Your er". Given the full row the field is ~230px and the
+              pill reads as a pill again. */}
+          <div className="col-span-2 md:col-span-1">
             <div className="eyebrow" style={{ color: 'var(--brass)' }}>The House</div>
             <ul className="mt-4 space-y-2 text-sm">
               <FLink href="/designers">Designers</FLink>
@@ -100,18 +105,35 @@ export function Footer() {
 
         {/* FTC / EU affiliate disclosure. Must stay site-wide and visible without
             interaction — it is the disclosure a regulator looks for first. */}
+        {/* The rule spans the full column; only the TEXT is capped at 720.
+            It used to be one element carrying both, so the hairline stopped
+            where the paragraph did — 720px — while the identical hairline above
+            the copyright row ran the full width. Measured: 720 vs 960 at
+            1024px, 720 vs 1156 at 1440. Two stacked rules in the same footer
+            ending at different points made the upper one read as a stub. */}
         <div
           className="mt-14 pt-6"
-          style={{ borderTop: '1px solid rgba(243,238,228,0.12)', color: 'var(--muted-on-dark)', fontSize: 12, lineHeight: 1.6, maxWidth: 720 }}
+          style={{ borderTop: '1px solid rgba(243,238,228,0.12)', color: 'var(--muted-on-dark)', fontSize: 12, lineHeight: 1.6 }}
         >
+        <div style={{ maxWidth: 720 }}>
           The Modesty House is a discovery and affiliate site — we don&rsquo;t sell anything
           ourselves. Some links may be affiliate links, and if you buy through one we may earn a
           commission at no extra cost to you. Prices are shown in each brand&rsquo;s own
           currency and can change; always check the brand&rsquo;s site before buying.{' '}
-          <Link href="/terms" style={{ color: '#c8bda9', textDecoration: 'underline', textUnderlineOffset: 2 }}>
+          {/* inline-flex + min-height, the same correction as <FLink> above: at
+              12px inside a 1.6 line-height this link's hit area was 72x18, under
+              the 24px floor in WCAG 2.2 SC 2.5.8. It was reported on every one
+              of the 312 pages the audit rendered — the single most common
+              finding, because it is in the site-wide footer. */}
+          <Link
+            href="/terms"
+            className="inline-flex items-center"
+            style={{ color: '#c8bda9', textDecoration: 'underline', textUnderlineOffset: 2, minHeight: 24 }}
+          >
             Full disclosure
           </Link>
           .
+        </div>
         </div>
 
         <div className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>

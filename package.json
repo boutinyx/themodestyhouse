@@ -23,7 +23,10 @@
     "test": "vitest run",
     "backup:raw": "node scripts/backup-raw.mjs",
     "restore:raw": "node scripts/backup-raw.mjs restore",
-    "audit:mobile": "node scripts/mobile-audit.mjs"
+    "audit:mobile": "node scripts/mobile-audit.mjs",
+    "audit:visual": "node scripts/visual-audit.mjs",
+    "audit:interaction": "node scripts/interaction-audit.mjs",
+    "audit:sheets": "node scripts/contact-sheet.mjs"
   },
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-rc.0",

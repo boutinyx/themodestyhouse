@@ -23,7 +23,7 @@ export default async function ContactPage({
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
-    <main className="max-w-xl mx-auto px-5 pt-32 pb-24">
+    <main className="max-w-xl mx-auto px-8 pt-32 md:pt-40 pb-24">
       <div className="text-center">
         <h1 className="section-heading text-3xl md:text-4xl mt-3">Get in touch</h1>
         <p className="mt-4 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>

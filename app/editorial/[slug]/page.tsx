@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { getPost, getPosts, formatDate } from '@/lib/posts';
 import { Markdown } from '@/components/Markdown';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
@@ -22,8 +23,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   if (!p) notFound();
 
   return (
-    <main className="max-w-[720px] mx-auto px-6 pt-32 pb-24">
-      <Link href="/editorial" className="nav-link">← The Edit</Link>
+    <main className="max-w-[720px] mx-auto px-8 pt-32 md:pt-40 pb-24">
+      {/* Phosphor, not the ← character (CLAUDE.md §6). */}
+      <Link href="/editorial" className="nav-link inline-flex items-center gap-1.5">
+        <ArrowLeft size={12} weight="bold" /> The Edit
+      </Link>
 
       {p.image && (
         <div className="mt-6 overflow-hidden rounded-2xl" style={{ background: 'var(--bone)' }}>

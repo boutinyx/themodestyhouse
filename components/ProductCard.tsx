@@ -22,14 +22,25 @@ export function ProductCard({ p }: { p: Product }) {
         style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}
       >
         {/* srcset/sizes, so the CDN sends a card-sized photograph instead of the
-            1500–2600px original the brand uploaded. `sizes` describes the grid:
-            two columns below the 820px hand-written breakpoint, four above.
-            Measured effect: see docs/log/2026-08-07-mobile-overhaul.md. */}
+            1500–2600px original the brand uploaded.
+            Measured effect: see docs/log/2026-08-07-mobile-overhaul.md.
+
+            `sizes` has to describe THIS grid, and it was describing a different
+            one: "(max-width: 820px) 50vw, 25vw" — two columns under 820, four
+            above. `.product-grid` is two columns under 768 and THREE above
+            (globals.css), inside a 1220px container with 32px gutters and a 26px
+            gap. So between 820 and about 1300 the browser was asked for a
+            quarter of the viewport to fill a third of it and picked a variant
+            ~25% too small: soft, slightly mushy product photographs on exactly
+            the widths most people browse at.
+            The three arms below are the three real regimes: 2-up, 3-up fluid,
+            and 3-up against the capped container, where the card stops growing
+            at (1220 - 52) / 3 = 389px. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={shopifyImage(p.image, 400)}
           srcSet={shopifySrcSet(p.image)}
-          sizes="(max-width: 820px) 50vw, 25vw"
+          sizes="(max-width: 767px) 50vw, (max-width: 1284px) 31vw, 389px"
           alt={p.title}
           className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"

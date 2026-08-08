@@ -6,7 +6,7 @@ import { STYLE_PIECES, type Piece } from '@/lib/stylePieces';
 // Phosphor, not the ‹ › glyphs these replace. Text glyphs vary in weight and
 // alignment across platforms, never match the brand letterforms, and cannot
 // take a `weight` prop — CLAUDE.md §6.
-import { CaretLeft, CaretRight, ArrowRight } from '@phosphor-icons/react';
+import { CaretLeft, CaretRight, ArrowRight, Sparkle, Pause, Play } from '@phosphor-icons/react';
 
 const TOPS = STYLE_PIECES.tops;
 const BOTTOMS = STYLE_PIECES.bottoms;
@@ -117,7 +117,7 @@ const evenScale = (p: Piece) => Math.min(1, Math.sqrt(MIX_TARGET_INK / inkOfFram
 const ARROW_STYLE: React.CSSProperties = {
   width: ARROW, height: ARROW, borderRadius: 999,
   border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)',
-  // alignSelf lives on the button's classes (self-center md:self-start), not
+  // alignSelf lives on the button's classes (self-center lg:self-start), not
   // here: an inline style would win over them.
 };
 function Slot({
@@ -167,9 +167,22 @@ function Slot({
      shrank each garment by a different amount, which read as the tops and
      bottoms being randomly mismatched. */
 
+  /* BREAKPOINT NOTE for every `lg:` below (and the `xl:` on the dress column in
+     the section beneath). These were all `md:` — 768px — and the card does not
+     fit there. Measured: the desktop card is arrow(34) + gap(12) + frame(170) +
+     gap(12) + arrow(34) + padding for the mix column, the same again at 148 for
+     the dress, plus a divider = 575px of MIN-CONTENT. In the two-column grid at
+     768 that leaves the copy 129px, so the heading broke one word per line, the
+     "Style me" pill wrapped inside itself, and the card ran 54px off the right
+     edge of the screen — a horizontal scrollbar on the homepage on every iPad.
+     So: below 1024 the section stacks (the phone layout, which is fluid and
+     fits anything); 1024-1279 it goes two-column with the mix pair only, which
+     needs 318px and leaves the copy 594; and the dress column — the 257px that
+     do not fit — returns at 1280 where the original hand-tuned geometry has the
+     room it was tuned for. Nothing about the desktop composition changes. */
   return (
     <div
-      className="flex flex-col items-center min-w-0 w-full md:w-auto md:flex-initial"
+      className="flex flex-col items-center min-w-0 w-full lg:w-auto lg:flex-initial"
       style={{
         ['--fw' as string]: `${frame.w}px`,
         ['--fh' as string]: `${frame.h}px`,
@@ -178,7 +191,8 @@ function Slot({
         ['--far' as string]: `${frame.w}/${frame.h}`,
         ['--art' as string]: `${artDesktop}px`,
         ['--amw' as string]: artMaxW,
-        // Phone only — desktop keeps its hand-tuned px caps (md:scale-100 below).
+        // Below lg only — the two-column layout keeps its hand-tuned px caps
+        // (lg:scale-100 below).
         ['--even' as string]: String(evenScale(piece)),
         ['--amt' as string]: `${(arrowAt ?? frame.h / 2) - ARROW / 2}px`,
       }}
@@ -204,12 +218,12 @@ function Slot({
         <button
           aria-label="Previous"
           onClick={onPrev}
-          className="shrink-0 flex items-center justify-center self-center md:self-start mt-0 md:mt-[var(--amt)]"
+          className="shrink-0 flex items-center justify-center self-center lg:self-start mt-0 lg:mt-[var(--amt)]"
           style={ARROW_STYLE}
         >
           <CaretLeft size={16} weight="bold" />
         </button>
-        <div className="relative flex items-center justify-center min-w-0 flex-1 aspect-[var(--far)] md:flex-none md:aspect-auto md:w-[var(--fw)] md:h-[var(--fh)] max-w-full">
+        <div className="relative flex items-center justify-center min-w-0 flex-1 aspect-[var(--far)] lg:flex-none lg:aspect-auto lg:w-[var(--fw)] lg:h-[var(--fh)] max-w-full">
           {/* lazy: this is also what keeps the desktop-only dress column from
               costing a phone anything — a lazy image in a display:none box is
               never fetched. */}
@@ -229,7 +243,7 @@ function Slot({
                four slots are framed identically.
                Both desktop caps are px, never percentages — a percentage
                max-height against an aspect-ratio parent is the iOS bug in §10.24. */
-            className="absolute inset-0 w-full h-full object-contain scale-[var(--even)] md:static md:w-auto md:h-auto md:scale-100 md:max-w-[var(--amw)] md:max-h-[var(--art)]"
+            className="absolute inset-0 w-full h-full object-contain scale-[var(--even)] lg:static lg:w-auto lg:h-auto lg:scale-100 lg:max-w-[var(--amw)] lg:max-h-[var(--art)]"
             /* No drop-shadow. It cast a soft brown pool under every hem, which on
                a wide flat garment reads as a dirty rectangle rather than as lift,
                and on a flat grey trouser it just makes the fabric look muddy.
@@ -242,7 +256,7 @@ function Slot({
         <button
           aria-label="Next"
           onClick={onNext}
-          className="shrink-0 flex items-center justify-center self-center md:self-start mt-0 md:mt-[var(--amt)]"
+          className="shrink-0 flex items-center justify-center self-center lg:self-start mt-0 lg:mt-[var(--amt)]"
           style={ARROW_STYLE}
         >
           <CaretRight size={16} weight="bold" />
@@ -302,6 +316,41 @@ export default function StyleIt() {
     return () => { if (timer.current) clearInterval(timer.current); };
   }, [auto, shuffle]);
 
+  /* Warm the cache for every piece, once, after first paint.
+     Each cutout is `loading="lazy"`, so it is not fetched until the shuffle
+     first puts it on screen — and a swapped `src` renders NOTHING until the new
+     file has arrived. Measured on a production build over localhost: a piece
+     shown for the first time left its frame EMPTY for 30-300ms, so for the first
+     half-minute on the page the picker regularly showed a caption with no
+     garment above it. Two of the audit screenshots caught exactly that.
+     This costs no extra bytes: the autoplay walks the whole set within about
+     thirty seconds anyway, so this only moves the same requests earlier and off
+     the critical path. The dress column is display:none below xl and its images
+     are never fetched there, so it is warmed only when it is actually shown —
+     otherwise this would ADD ~66KB to every phone. */
+  useEffect(() => {
+    const warm = () => {
+      const wide = window.matchMedia('(min-width: 1280px)').matches;
+      const pieces = [...TOPS, ...BOTTOMS, ...(wide ? DRESSES : [])];
+      for (const p of pieces) {
+        const img = new Image();
+        img.decoding = 'async';
+        // Low priority so this cannot compete with the hero photograph, which
+        // is the LCP element on this page.
+        img.fetchPriority = 'low';
+        img.src = p.src;
+      }
+    };
+    const ric = window.requestIdleCallback;
+    if (ric) {
+      const id = ric(warm, { timeout: 3000 });
+      return () => window.cancelIdleCallback?.(id);
+    }
+    // Safari has no requestIdleCallback before 17; a timeout is the fallback.
+    const id = setTimeout(warm, 1200);
+    return () => clearTimeout(id);
+  }, []);
+
   const takeOver = () => setAuto(false);
   const cycle = (set: React.Dispatch<React.SetStateAction<number>>, len: number, dir: number) => {
     takeOver();
@@ -313,26 +362,30 @@ export default function StyleIt() {
 
   return (
     <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-      {/* flex-column on a phone, grid from md up.
+      {/* Stacked below lg, grid from lg up.
           `items-stretch` matters: `items-center` on a flex column acts on the
           HORIZONTAL axis and would shrink the copy to its content width, which it
-          does not do in the grid. */}
-      <div className="flex flex-col items-stretch gap-6 md:grid md:grid-cols-[0.85fr_1.15fr] md:gap-12 md:items-center">
-        {/* The left column is ONE grid item on desktop and `display: contents` on
-            a phone.
-            That is what lets the phone put the controls and the "Shop X + Y" link
-            BELOW the picker card (Tina's ask) while desktop keeps them in the left
-            column, from a single copy of the markup: `contents` dissolves this
-            wrapper on a phone so its three children become flex items of the row
-            above and can be ordered around the card, and `md:block` restores it to
-            a normal grid item above 768px.
+          does not do in the grid.
+          Two column ratios: `1fr auto` from 1024, where the card is only the mix
+          pair and should take exactly the width it needs rather than a share of
+          the row; the original `0.85fr 1.15fr` from 1280, where the dress column
+          is back and the card is the wider half again. */}
+      <div className="flex flex-col items-stretch gap-6 lg:grid lg:grid-cols-[1fr_auto] lg:gap-10 lg:items-center xl:grid-cols-[0.85fr_1.15fr] xl:gap-12">
+        {/* The left column is ONE grid item on desktop and `display: contents`
+            below lg.
+            That is what lets the stacked layout put the controls and the
+            "Shop X + Y" link BELOW the picker card (Tina's ask) while desktop
+            keeps them in the left column, from a single copy of the markup:
+            `contents` dissolves this wrapper so its three children become flex
+            items of the row above and can be ordered around the card, and
+            `lg:block` restores it to a normal grid item above 1024px.
             The first attempt placed all four as separate grid cells instead, and
             it regressed desktop badly: the card is taller than the copy, so the
             three left-hand rows stretched to match it and opened a large gap
             between the paragraph and the buttons. As one item there is only one
             row to stretch, and the margins below control the spacing exactly as
             they did before. */}
-        <div className="contents md:block">
+        <div className="contents lg:block">
         {/* COPY — left */}
         <div className="order-1">
           <h2 className="serif" style={{ fontSize: 'clamp(40px,5.6vw,64px)', lineHeight: 1.02, color: 'var(--ink)' }}>
@@ -352,25 +405,33 @@ export default function StyleIt() {
               The ! modifiers are needed because .btn-pill and .nav-link set their
               own padding and font-size in globals.css, and a plain utility would
               be a specificity coin-toss against them. */}
-          <div className="order-4 flex items-center gap-2 md:gap-3 md:order-none md:mt-8">
+          {/* Phosphor, not ✦ / ❚❚ / ▷ (CLAUDE.md §6). Those three were text
+              glyphs: they render at a different weight, size and optical centre
+              on every platform, they cannot take a `weight` prop, and ❚❚ in
+              particular is a pair of BOX-DRAWING characters that fall back to a
+              system font and so never matched the letterforms beside them. */}
+          <div className="order-4 flex items-center gap-2 lg:gap-3 lg:order-none lg:mt-8">
             <button
-              className="btn-pill !text-[11px] !px-3.5 !py-2 md:!text-xs md:!px-[18px]"
+              className="btn-pill !text-[11px] !px-3.5 !py-2 lg:!text-xs lg:!px-[18px] inline-flex items-center gap-1.5"
               onClick={() => { takeOver(); shuffle(); }}
             >
-              ✦ Style me
+              <Sparkle size={12} weight="fill" />
+              Style me
             </button>
             <button
               onClick={() => setAuto((a) => !a)}
-              className="nav-link !text-[11px] md:!text-xs"
+              className="nav-link !text-[11px] lg:!text-xs inline-flex items-center gap-1.5"
               style={{ border: '1px solid var(--hairline)', borderRadius: 999, padding: '7px 14px', background: 'transparent' }}
             >
-              {auto ? '❚❚ Pause' : '▷ Auto'}
+              {auto
+                ? <><Pause size={11} weight="fill" /> Pause</>
+                : <><Play size={11} weight="fill" /> Auto</>}
             </button>
           </div>
 
           <Link
             href="/directory"
-            className="nav-link order-3 self-start inline-flex items-center gap-1.5 !text-[11px] md:!text-xs md:order-none md:mt-5"
+            className="nav-link order-3 self-start inline-flex items-center gap-1.5 !text-[11px] lg:!text-xs lg:order-none lg:mt-5"
           >
             Shop {t.brand} + {b.brand} <ArrowRight size={12} weight="bold" />
           </Link>
@@ -380,12 +441,12 @@ export default function StyleIt() {
         {/* Tighter padding on a phone — 20px a side was 40px of the 326 available,
             and every pixel of it comes off the garment. */}
         <div
-          className="order-2 px-3 py-4 md:px-5 md:py-[22px]"
+          className="order-2 w-full max-w-[400px] mx-auto px-3 py-4 lg:max-w-none lg:mx-0 lg:px-5 lg:py-[22px]"
           style={{ background: 'var(--bone)', border: '1px solid var(--hairline)', borderRadius: 18, boxShadow: '0 30px 60px -34px rgba(68,25,67,0.22)' }}
         >
-          <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col xl:flex-row">
             {/* MIX */}
-            <div className="flex-1 flex flex-col items-center px-0 md:px-2" style={{ minWidth: 0 }}>
+            <div className="flex-1 flex flex-col items-center px-0 xl:px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Mix &amp; match</div>
               <div className="eyebrow mt-1">Top + Bottom</div>
               {/* Stacked at every width. It was briefly side by side on a phone;
@@ -393,19 +454,24 @@ export default function StyleIt() {
                   takes whatever the row has left after the arrows — so the
                   garment is as large as the screen allows and the block grows
                   taller to fit it, rather than being pinned to a fixed size. */}
-              <div className="flex-1 w-full flex flex-col items-center justify-start gap-4 md:gap-5 mt-4">
+              <div className="flex-1 w-full flex flex-col items-center justify-start gap-4 lg:gap-5 mt-4">
                 <Slot piece={t} frame={TOP_FRAME} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
                 <Slot piece={b} frame={TOP_FRAME} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
               </div>
             </div>
 
-            <div className="hidden md:block" style={{ width: 1, background: 'var(--hairline)' }} />
+            <div className="hidden xl:block" style={{ width: 1, background: 'var(--hairline)' }} />
 
-            {/* DRESS — desktop only.
+            {/* DRESS — 1280 and up only.
                 On a phone this used to stack UNDER the mix-and-match column, which
                 made the card roughly twice as tall as the screen and pushed the
                 whole picker into a long scroll. Tina's call: the phone shows the
                 mix-and-match pair only.
+
+                It is now hidden up to 1280 rather than 768, because that is where
+                its 257px of hand-tuned geometry actually fit beside the mix pair
+                and the copy. Below that the card carries the mix pair alone; see
+                the breakpoint note above Slot().
 
                 Hidden with CSS rather than removed from the tree, deliberately:
                 dropping it conditionally would need a viewport check that does not
@@ -413,11 +479,12 @@ export default function StyleIt() {
                 the dress in before removing it. The images below carry
                 loading="lazy", and a lazy image inside a display:none box is never
                 fetched — verified, see docs/log/2026-08-07-mobile-overhaul.md — so
-                the hidden column costs a phone no bytes.
+                the hidden column costs a phone no bytes. The cache-warming effect
+                above honours the same rule.
 
                 NOTE: the paragraph on the left still reads "or find the dress".
                 That is Tina's copy and is left untouched (§10.18). */}
-            <div className="hidden md:flex flex-1 flex-col items-center px-2" style={{ minWidth: 0 }}>
+            <div className="hidden xl:flex flex-1 flex-col items-center px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Or a dress</div>
               <div className="eyebrow mt-1">One &amp; done</div>
               <div className="flex-1 flex items-start justify-center mt-4">

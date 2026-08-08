@@ -28,8 +28,31 @@ const MISSION = '';
  */
 const PEOPLE: { name: string; role: string; line?: string }[] = [];
 
-const BAND = 'px-5 md:px-8 py-16 md:py-24';
-const INNER = 'max-w-[1220px] mx-auto';
+// px-8 at every width, matching every other page shell and the footer.
+/** A narrow measure for the prose bands.
+ *
+ *  This exists because `${INNER} max-w-3xl` DOES NOT WORK, and fails silently.
+ *  Two max-width utilities on one element are two declarations of the same
+ *  property, so the winner is whichever Tailwind emits later in the stylesheet
+ *  — not whichever is written last in the class string. `max-w-[1220px]` wins,
+ *  and every band that thought it had a 768px measure was running at 1220.
+ *  Measured on the shipped desktop build: the "Layering, and the high street"
+ *  paragraphs set to 1219px, about 150 characters a line, against the 65-75 a
+ *  reader can track. So the cap goes on its own element, nested inside INNER. */
+const MEASURE = 'max-w-3xl';
+
+/* The gutter lives on INNER, with the max-width — NOT on the full-bleed band.
+   Those two orders are not the same thing. With `px-8` on the section and
+   `max-w-[1220px] mx-auto` on the child, the child is 1220px wide and centred
+   INSIDE the already-padded 1376px area, so at 1440 the page body ran
+   110 → 1330 while the header pill and the footer (which put both on one
+   element) ran 142 → 1298. Every band, card and rule on this page hung 32px
+   outboard of the furniture above and below it, on both sides, at every desktop
+   width. Padding inside the max-width puts this page on the same grid as the
+   rest of the site. Every section here has an INNER child, so the band keeps
+   only its vertical rhythm and its background colour. */
+const BAND = 'py-16 md:py-24';
+const INNER = 'max-w-[1220px] mx-auto px-8';
 
 /** How the catalogue is actually built. Mechanism, not marketing. */
 const HOW = [
@@ -69,7 +92,8 @@ export default function AboutPage() {
     <main>
       {/* 1 — STATEMENT */}
       <section className={BAND} style={{ background: 'var(--parchment)' }}>
-        <div className={`${INNER} max-w-3xl text-center pt-16`}>
+        <div className={`${INNER} pt-16`}>
+          <div className={`${MEASURE} mx-auto text-center`}>
           <div className="eyebrow">About</div>
           <h1
             className="section-heading mt-3"
@@ -82,6 +106,7 @@ export default function AboutPage() {
             piece. A curator, not a catalogue: we frame the fashion and point you to where
             it&rsquo;s sold.
           </p>
+          </div>
         </div>
       </section>
 
@@ -327,7 +352,8 @@ export default function AboutPage() {
 
       {/* 7 — WHERE THIS IS GOING */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
-        <div className={`${INNER} max-w-3xl`}>
+        <div className={INNER}>
+          <div className={MEASURE}>
           <div className="eyebrow">Where this is going</div>
           <h2
             className="section-heading mt-3"
@@ -351,6 +377,7 @@ export default function AboutPage() {
             not as houses to feature: the independents keep the front page, the seal and the
             editorial, and the space to show what they can do.
           </p>
+          </div>
         </div>
       </section>
 
@@ -386,7 +413,8 @@ export default function AboutPage() {
 
       {/* 9 — HOW THIS IS PAID FOR */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
-        <div className={`${INNER} max-w-3xl`}>
+        <div className={INNER}>
+          <div className={MEASURE}>
           <div className="eyebrow">Disclosure</div>
           <h2
             className="section-heading mt-3"
@@ -427,6 +455,7 @@ export default function AboutPage() {
                 {l.label}
               </Link>
             ))}
+          </div>
           </div>
         </div>
       </section>

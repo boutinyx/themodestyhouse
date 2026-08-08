@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQuickView } from '@/components/QuickView';
 import { ProductCard } from '@/components/ProductCard';
@@ -55,7 +56,7 @@ export default function FavouritesPage() {
   }, [undoable, toggleFav, isFav]);
 
   return (
-    <main className="max-w-6xl mx-auto px-5 pt-28 pb-16">
+    <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-16">
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
         <h1 className="section-heading text-3xl md:text-4xl mt-2">
           Favourites{items.length > 0 ? <span style={{ color: 'var(--muted)' }}> ({items.length})</span> : null}
@@ -72,9 +73,22 @@ export default function FavouritesPage() {
       </div>
 
       {items.length === 0 ? (
-        <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
-          No favourites yet. Tap the <Heart size={15} className="inline align-[-2px]" /> on any piece to save it here.
-        </p>
+        <>
+          <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
+            No favourites yet. Tap the <Heart size={15} className="inline align-[-2px]" /> on any piece to save it here.
+          </p>
+          {/* A way out. The sentence above tells the shopper to tap a heart "on
+              any piece" and then gives her no route to a piece — the empty state
+              was a dead end, and on a desktop it left the page as a heading, one
+              muted line, and 165px of bare parchment above a footer that filled
+              two thirds of the screen.
+              The label is NOT new copy: "Browse the directory" is the exact
+              string already on the button that closes /about. Reused rather than
+              written, per CLAUDE.md §10.18. */}
+          <Link href="/directory" className="btn-pill inline-block mt-6">
+            Browse the directory
+          </Link>
+        </>
       ) : (
         <div className="product-grid mt-8">
           {items.map((p) => (

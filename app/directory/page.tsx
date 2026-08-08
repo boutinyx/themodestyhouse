@@ -12,10 +12,17 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   const products = browseProducts();
   // Same header shape as app/[lane]/page.tsx — left-aligned h1 with a short line
   // under it — so the directory reads as one of the category pages rather than a
-  // different template. pt-40 matches theirs too; it was pt-32. The intro is this
-  // page's own metadata description, reused rather than newly written.
+  // different template. The intro is this page's own metadata description,
+  // reused rather than newly written.
+  //
+  // SHELL: max-w-[1220px] + px-8 + pt-32 md:pt-40. Those three values are now
+  // the same on every page and on the footer. They were max-w-6xl + px-5, which
+  // put this page's content edge 22px inside the footer's at 1440 and 12px
+  // inside it on a phone — two boxes stacked directly on top of one another and
+  // not lining up. The top padding clears the fixed header, whose bottom edge is
+  // at 88px at every width.
   return (
-    <main className="max-w-6xl mx-auto px-5 pt-40 pb-16">
+    <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-16">
       <h1 className="section-heading text-3xl md:text-4xl">
         {q ? <>Results for “{q}”</> : 'Products'}
       </h1>

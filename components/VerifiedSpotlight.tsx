@@ -1,6 +1,6 @@
 import Link from 'next/link';
 // ssr entrypoint: this is a server component (CLAUDE.md §6).
-import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { shopifyImage } from '@/lib/shopifyImage';
 
 type House = {
@@ -61,7 +61,15 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
                 className={`tmh-card ${POS[i] || 'p1'}`}
                 style={{ backgroundImage: bg }}
               >
-                {verified && <span className="tmh-badge">&#10022; Verified</span>}
+                {/* Phosphor Sparkle, not &#10022; (CLAUDE.md §6). The character
+                    is a four-pointed star with no bold weight, and at the sizes
+                    this badge takes it fell back to a system font. */}
+                {verified && (
+                  <span className="tmh-badge">
+                    <Sparkle size={10} weight="fill" />
+                    Verified
+                  </span>
+                )}
                 <div className="tmh-cap">
                   <h3>{h.name}</h3>
                   <p>{h.category} &middot; {h.city}</p>
@@ -73,7 +81,21 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
       </div>
 
       <style>{`
-        .tmh-verified-sec{padding:80px 32px}
+        /* overflow-x: clip, because the mobile rule below nudges the stage with
+           a transform — and a transform DOES contribute to scrollable overflow
+           even though it does not change the layout box. (The note on that rule
+           used to claim the opposite; it was wrong.) The stage carries ~9.5% of
+           empty width on its right — the cards only span 0-90.5% of it — so the
+           nudge pushes that EMPTY strip past the right edge and the document
+           gained 3px of horizontal scroll at 430px. Nothing visible is clipped:
+           at 430 the rightmost card lands at 413.9px against a 414px content
+           edge.
+           clip, not hidden: hidden would make this a scroll container.
+           NOTE, again: NO BACKTICKS anywhere in this block. It lives inside a
+           template literal and one of them closes the string and breaks the
+           whole component — which is exactly what happened when this comment was
+           first written, two lines under the existing warning saying so. */
+        .tmh-verified-sec{padding:80px 32px;overflow-x:clip}
         .tmh-vin{max-width:1220px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
         .tmh-stage{order:1}
         .tmh-vtext{order:2}
@@ -96,10 +118,30 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
            Identical to the numbers it replaces. It also fixes a latent bug
            between 820 and 1220px, where the two-column grid gave the stage less
            than 560px but the cards stayed 238px and the fan spilled out. */
-        .tmh-stage{position:relative;width:100%;max-width:560px;aspect-ratio:560/500}
+        /* container-type, so everything INSIDE the fan can be sized against the
+           fan's own width rather than the viewport's.
+           This is the fix for a real defect: the type below used to be restated
+           at a 820px media query — 28px/11px above it, 17px/8px below — on the
+           assumption that below 820 the stage is phone-sized. It is not. The
+           stage is max-width:560, so anywhere from about 600 to 820px it is at
+           its FULL desktop size while the media query is still handing it the
+           phone's 17px and 8px. Measured on an iPad in portrait: 238px cards
+           carrying 8px captions.
+           Against the container there is no such gap. cqi is 1% of the stage's
+           inline size, so 5cqi is 28px at 560 and 17.9px at 358 — the two values
+           that were being hand-written — and every width between resolves on the
+           same line instead of jumping at a breakpoint. The clamps pin both
+           ends to the sizes already signed off, with ONE deliberate exception:
+           the meta line and the badge floor at 9px, not the 8px the phone used
+           to hard-code. 8px uppercase at 0.14em tracking is below anything
+           readable, and the proportional value dips under 9 again in the
+           820-1220 band where the stage is about 456px wide — so a 9px floor is
+           what makes the whole range legible. It is a 1px change to a signed-off
+           composition and is worth saying out loud rather than shipping quietly. */
+        .tmh-stage{position:relative;width:100%;max-width:560px;aspect-ratio:560/500;container-type:inline-size}
         .tmh-card{
           position:absolute;width:42.5%;aspect-ratio:3/4;border-radius:16px;overflow:hidden;
-          border:6px solid var(--bone);
+          border:clamp(4px,1.07cqi,6px) solid var(--bone);
           background-size:cover;background-position:center;
           box-shadow:0 34px 60px -30px rgba(42,18,38,.55);
           transform:rotate(var(--rot));
@@ -112,13 +154,16 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
         .p3{left:15%; top:22%; --rot:2deg;  z-index:5}
 
         .tmh-badge{
-          position:absolute;top:16px;left:16px;display:inline-flex;align-items:center;gap:6px;
-          background:var(--brass);color:var(--ink);border-radius:30px;padding:6px 14px;
-          font-family:var(--font-label),serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;
+          position:absolute;top:clamp(9px,2.86cqi,16px);left:clamp(9px,2.86cqi,16px);
+          display:inline-flex;align-items:center;gap:clamp(4px,1.07cqi,6px);
+          background:var(--brass);color:var(--ink);border-radius:30px;
+          padding:clamp(4px,1.07cqi,6px) clamp(9px,2.5cqi,14px);
+          font-family:var(--font-label),serif;text-transform:uppercase;letter-spacing:.12em;
+          font-size:clamp(9px,1.96cqi,11px);
         }
-        .tmh-cap{position:absolute;left:22px;bottom:22px;color:var(--parchment)}
-        .tmh-cap h3{font-family:var(--font-display),serif;font-weight:500;font-size:28px;line-height:1}
-        .tmh-cap p{font-family:var(--font-label),serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;margin-top:7px;opacity:.9}
+        .tmh-cap{position:absolute;left:clamp(12px,3.93cqi,22px);bottom:clamp(12px,3.93cqi,22px);right:clamp(10px,3.57cqi,20px);color:var(--parchment)}
+        .tmh-cap h3{font-family:var(--font-display),serif;font-weight:500;font-size:clamp(17px,5cqi,28px);line-height:1}
+        .tmh-cap p{font-family:var(--font-label),serif;text-transform:uppercase;letter-spacing:.14em;font-size:clamp(9px,1.96cqi,11px);margin-top:clamp(4px,1.25cqi,7px);opacity:.9}
 
         @media (prefers-reduced-motion:reduce){.tmh-card{transition:none}}
         @media (max-width:820px){
@@ -142,15 +187,36 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
              card-width of ~9%. */
           /* 40px, matching the py-10 every other section drops to on a phone —
              80px top and bottom put 160px of dead space between each one. */
+          /* 16px, so the fanned cards get the full width — but that put the
+             HEADING and copy 16px from the edge while every other section on the
+             page sits at 32px (px-8), and the text read as falling off the left.
+             Measured: this heading at 16, "By category" and "Chosen by hand"
+             both at 32. The text gets the missing 16 back below; only the stage
+             keeps the wider bleed.
+             NOTE: no backticks in this block — it lives inside a template
+             literal, and one closes the string and breaks the whole component. */
           .tmh-verified-sec{padding:40px 16px}
+          .tmh-vtext{padding-left:16px;padding-right:16px}
 
           /* The cards span 0%–90.5% of the stage (p4 sits at 48% and is 42.5%
              wide), so the leftover 9.5% is all on the right and the cluster
              reads left-of-centre. On desktop the stage sits in a wide column and
              it is invisible; in a 390px viewport it is a 34px gap against 16px.
-             A transform, not a margin: it must not change the stage's layout box
-             and push the page into horizontal scroll. */
-          .tmh-stage{transform:translateX(17px)}
+             A transform, not a margin, so the stage's layout box is unchanged.
+             NOTE what that does and does not buy: a transform is invisible to
+             layout but it DOES contribute to scrollable overflow, so this alone
+             still gave the document 3px of horizontal scroll at 430px. The
+             overflow-x: clip on the section is the other half of the fix.
+             4.75% — half the leftover — not 17px. Same thing at 358px wide,
+             which is what 17px was measured for, but it stays correct once the
+             stage is bigger: at tablet size the fixed 17px was a fifth of the
+             nudge it needed to be.
+             margin-inline goes with it. In ONE column the stage is capped at
+             560px, so from about 600px up it stopped filling its row and sat
+             hard left with a growing band of empty parchment beside it — 227px
+             of it at 819px wide, which read as a section that had failed to
+             load. Centred, the fan is the composition again at every width. */
+          .tmh-stage{margin-inline:auto;transform:translateX(4.75%)}
 
           /* The front / verified card centred. The three behind it span 0%–90.5%
              (p4 sits at 48% and cards are 42.5% wide), so the cluster's centre is
@@ -162,14 +228,16 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
              off, and its asymmetry reads as deliberate at that size. */
           .p3{left:24%}
 
-          .tmh-card{border-width:4px;box-shadow:0 18px 34px -20px rgba(42,18,38,.5)}
+          .tmh-card{box-shadow:0 18px 34px -20px rgba(42,18,38,.5)}
           /* No hover on a touch screen, and :hover sticks after a tap. */
           .tmh-card:hover{transform:rotate(var(--rot));box-shadow:0 18px 34px -20px rgba(42,18,38,.5)}
 
-          .tmh-cap{left:12px;bottom:12px;right:10px}
-          .tmh-cap h3{font-size:17px}
-          .tmh-cap p{font-size:8px;letter-spacing:.1em;margin-top:4px}
-          .tmh-badge{top:9px;left:9px;padding:4px 9px;font-size:8px;letter-spacing:.1em;gap:4px}
+          /* Nothing about the TYPE is restated here any more. Border width,
+             caption inset, badge inset, and both font sizes are container
+             queries on .tmh-stage above, so they scale with the fan itself
+             rather than stepping at a viewport width the fan does not share.
+             This block is now layout only: one column, tighter section padding,
+             the stage centred, and the front card recentred over the stack. */
         }
       `}</style>
     </section>

@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { MagnifyingGlass } from '@phosphor-icons/react';
 
 // Frosted-glass search that floats over the homepage video hero (hero option 3A).
 // Submits to the directory, which reads ?q= and filters (see DirectoryBrowser).
@@ -100,10 +101,11 @@ export default function HeroSearch() {
         boxShadow: '0 14px 34px -16px rgba(0,0,0,0.7)',
       }}
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(251,250,246,0.85)" strokeWidth="2" aria-hidden="true" style={{ flex: 'none' }}>
-        <circle cx="11" cy="11" r="7" />
-        <path d="m20 20-3-3" />
-      </svg>
+      {/* Phosphor, not a hand-drawn <svg> (CLAUDE.md §6: every icon comes from
+          Phosphor). The hand-rolled circle-and-stick was the only icon on the
+          site not from the set — a different stroke weight and a different
+          corner radius from the carets and arrows it sits among. */}
+      <MagnifyingGlass size={20} weight="bold" aria-hidden="true" style={{ flex: 'none', color: 'rgba(251,250,246,0.85)' }} />
       <input
         aria-label="Search modest pieces, brands and categories"
         value={q}

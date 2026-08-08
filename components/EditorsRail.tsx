@@ -1,6 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+// Phosphor, never a text glyph — CLAUDE.md §6. These replace ‹ › and ✦, which
+// render at a different weight and optical centre on every platform and cannot
+// take a `weight` prop.
+import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
@@ -76,7 +80,7 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
                 loading="lazy"
                 decoding="async"
               />
-              <span className="badge absolute top-3 left-3">✦ Editor&rsquo;s pick</span>
+              <span className="badge absolute top-3 left-3"><Sparkle size={10} weight="fill" />Editor&rsquo;s pick</span>
             </div>
             <div className="brand-label mt-3">{p.brandName}</div>
             <div className="card-title card-title-lg mt-1">{p.title}</div>
@@ -92,7 +96,7 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
         className="rail-arrow rail-arrow-left"
         style={{ opacity: canLeft ? 1 : 0, pointerEvents: canLeft ? 'auto' : 'none' }}
       >
-        ‹
+        <CaretLeft size={18} weight="bold" />
       </button>
       <button
         type="button"
@@ -101,7 +105,7 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
         className="rail-arrow rail-arrow-right"
         style={{ opacity: canRight ? 1 : 0, pointerEvents: canRight ? 'auto' : 'none' }}
       >
-        ›
+        <CaretRight size={18} weight="bold" />
       </button>
     </div>
   );

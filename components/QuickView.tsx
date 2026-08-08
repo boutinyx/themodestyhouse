@@ -119,9 +119,24 @@ function Modal({
         style={{ background: 'rgba(36,27,36,0.55)' }}
         onClick={onClose}
       >
+        {/* role/aria-modal/aria-labelledby: this is a dialog and was not
+            announced as one, so a screen reader met it as a stray group of
+            links in the middle of the page.
+
+            The panel keeps `overflow-hidden` — it is what clips the photograph
+            to the rounded corner, and it is what keeps the close button, which
+            is absolutely positioned against this box, from scrolling away. The
+            SCROLLING happens in the text column instead (see below).
+
+            dvh, not vh: on iOS `vh` is the URL-bar-collapsed height, so 90vh is
+            more than 90% of what is actually on screen — the same trap the phone
+            menu already documents. */}
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="quickview-title"
           className="relative w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 overflow-hidden"
-          style={{ background: 'var(--bone)', borderRadius: 6, maxHeight: '90vh' }}
+          style={{ background: 'var(--bone)', borderRadius: 6, maxHeight: '90dvh' }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -136,7 +151,16 @@ function Modal({
             onClick={() => setZoomed(true)}
             decoding="async"
           />
-          <div className="p-8 flex flex-col">
+          {/* This column scrolls, and `min-h-0` is what lets it.
+              The panel is capped at 90dvh; on a phone it is ONE column — a 256px
+              photograph, then brand, a title that can run to three lines, price
+              and two stacked buttons. With the panel clipping and this column
+              unable to shrink below its content, the overflow was simply CUT,
+              and what sits at the bottom is "Shop at …" — the only thing this
+              modal exists to offer. A grid item's default `min-height: auto`
+              refuses to shrink past its content, so overflow-y alone would have
+              done nothing here. */}
+          <div className="p-8 flex flex-col min-h-0 overflow-y-auto overscroll-contain">
           {/* Phosphor X, not the × character (CLAUDE.md §6). The glyph rendered
               at a different weight and optical centre on every platform, and
               sat in a 24px box on a phone; this is a 44px target. */}
@@ -149,7 +173,7 @@ function Modal({
             <X size={20} />
           </button>
           <div className="brand-label">{product.brandName}</div>
-          <h2 className="card-title card-title-xl mt-2">{product.title}</h2>
+          <h2 id="quickview-title" className="card-title card-title-xl mt-2">{product.title}</h2>
           <div className="price price-lg mt-3">
             {price(product.price, product.currency).text}
           </div>

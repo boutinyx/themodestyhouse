@@ -84,7 +84,12 @@ export function CurrencySwitcher() {
             // 100ms and a shallower scale: the open animation is the other half
             // of the perceived lag, and 150ms with a 5% scale reads as the panel
             // arriving late rather than as motion.
-            className="rounded-xl border p-2 min-w-[210px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
+            // max-w caps the panel at a readable measure. Without it the note at
+            // the foot is one unbroken line, and since the panel shrink-to-fits
+            // its content that made the whole menu 421px wide to hold four
+            // one-word options. 260 wraps the note to three short lines and puts
+            // the panel back in proportion with the header it drops out of.
+            className="rounded-xl border p-2 min-w-[210px] max-w-[260px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
             style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
           >
             <Menu.RadioGroup
@@ -100,12 +105,15 @@ export function CurrencySwitcher() {
                   // times). A currency is picked once, so the menu lingering
                   // after the choice just reads as stuck.
                   closeOnClick
-                  // justify-start, not just text-left: .nav-link sets
-                  // `display: inline-flex`, so the row is a flex container and
-                  // text-align has nothing to act on. Changing text-align alone
-                  // here does nothing at all — the flex property is the one that
-                  // moves these.
-                  className="w-full justify-start text-left nav-link py-2 px-3 whitespace-nowrap cursor-pointer"
+                  // .menu-row, NOT `w-full … nav-link`. The old line was right
+                  // about WHY (the row is a flex container, so text-align has
+                  // nothing to act on) and wrong about the fix: a Tailwind
+                  // `justify-start` cannot beat .nav-link, because Tailwind v4
+                  // emits utilities inside @layer utilities and an unlayered
+                  // rule wins over any layered one. Measured on the shipped
+                  // build: these rows were still centred. .menu-row owns the
+                  // property outright. See globals.css.
+                  className="menu-row"
                   data-active={preference === o}
                 >
                   {o ? LABEL[o] : NATIVE_LABEL}

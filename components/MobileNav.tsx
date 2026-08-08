@@ -45,11 +45,14 @@ export function MobileNav() {
   // the lint on it. The click is the event that should close it anyway.
   const close = () => setOpen(false);
 
-  // The trigger lives in an `md:hidden` wrapper, but the panel is portalled to
+  // The trigger lives in an `lg:hidden` wrapper, but the panel is portalled to
   // the body — so growing past the desktop breakpoint while it is open would
   // leave a full-screen phone menu over the desktop layout.
+  // 1024 must match the `lg:hidden` on the trigger in components/Header.tsx. It
+  // was 768 while the trigger was `md:hidden`; the two are one decision written
+  // in two places, and they have to move together.
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
+    const mq = window.matchMedia('(min-width: 1024px)');
     const onChange = () => mq.matches && setOpen(false);
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);
@@ -124,8 +127,11 @@ export function MobileNav() {
             style={{ height: 88, borderBottom: '1px solid var(--hairline)' }}
           >
             <Link href="/" onClick={close} className="flex items-center gap-3">
+              {/* width/height are the file's INTRINSIC size (240x337), not the
+                  rendered box — they exist to reserve the right shape before it
+                  loads, and 44x48 reserved the wrong one. Matches Header.tsx. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-240.webp" alt="The Modesty House crest" width={44} height={48} className="h-12 w-auto" />
+              <img src="/logo-240.webp" alt="The Modesty House crest" width={240} height={337} className="h-12 w-auto" />
               <span
                 className="uppercase"
                 style={{
