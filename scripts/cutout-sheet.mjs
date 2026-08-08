@@ -25,8 +25,10 @@ const pieces = readFileSync(`${ROOT}lib/stylePieces.ts`, 'utf8');
  *  else that is absent is simply unused — top_7 has been an orphan since before
  *  any of this — and must not be labelled as broken. */
 const KNOWN_BAD = {
-  'top_8.webp': 'right sleeve sliced through, torn edge',
-  'bottom_8.webp': 'right leg ragged full height, notch cut out (the HEM fringe is the real garment)',
+  // top_8 and bottom_8 lived here — right sleeve sliced through, right leg
+  // ragged — until Tina re-cut the whole set on 2026-08-08. The replacements
+  // are the `-v2` files and the originals are retired. Kept as a comment so the
+  // next defect gets recorded the same way rather than re-discovered.
 };
 /** In the picker = referenced by lib/stylePieces.ts. */
 const inPicker = (file) => pieces.includes(`/style-it/${file}`);

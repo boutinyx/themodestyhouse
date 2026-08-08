@@ -84,3 +84,6 @@ aab-hero-picker.html
 
 # Generated review sheet — rebuild with `node scripts/cutout-sheet.mjs`.
 style-cutouts.html
+
+# Working folder for re-cut cutout sources (large masters, kept locally).
+public/style-it/png's trans/
