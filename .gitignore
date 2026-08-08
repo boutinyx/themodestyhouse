@@ -81,3 +81,6 @@ aab-hero-picker.html
 
 # Playwright mobile/a11y audit output (screenshots + report)
 .audit/
+
+# Generated review sheet — rebuild with `node scripts/cutout-sheet.mjs`.
+style-cutouts.html
