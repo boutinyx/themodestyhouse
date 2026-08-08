@@ -105,5 +105,13 @@ export const BRANDS: Brand[] = [
   // Photography is the reason it earns a place: 6 images per product, every one
   // portrait, up to 4284px. Ships to Australia "and to selected international
   // destinations" — NOT worldwide (policies/shipping-policy).
+  // ByHasanat: UK modest label, 122 SKUs. Their shop also sells MEN'S and
+  // CHILDREN'S thobes — 4 + 4 + 7 children's abayas. Verified against their own
+  // /collections/mens and /collections/boys rather than by reading titles (see
+  // the mistakes log on men's items with gender-neutral names): every one carries
+  // 'Thobe' or 'Children' in product_type, so the EXCLUDE regex drops them.
+  // Post-ingest counts below confirm it. Ships worldwide from the UK (DPD/Evri/FedEx).
+  { slug: 'by-hasanat', name: 'ByHasanat', homepage: 'https://byhasanat.co.uk', feedUrl: 'https://byhasanat.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Hijabs & modest', city: 'UK', vibe: 'elegant' },                     // 122 SKUs, 4284px
+
   { slug: 'zayda', name: 'Zayda', homepage: 'https://www.zayda.com.au', feedUrl: 'https://www.zayda.com.au/products.json', community: 'hijabi', currency: 'AUD', category: 'Modest dresses', city: 'Australia', vibe: 'elegant' },                              // 2 SKUs, 4284px
 ];
