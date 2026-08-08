@@ -23,8 +23,16 @@ describe('aboutStats', () => {
     expect(s.sealed).toBeLessThanOrEqual(s.houses);
   });
 
+  it('counts the distinct currencies the houses trade in', () => {
+    expect(s.currencies).toBe(new Set(BRANDS.map((b) => b.currency)).size);
+  });
+
+  it('never claims more currencies than houses', () => {
+    expect(s.currencies).toBeLessThanOrEqual(s.houses);
+  });
+
   it('returns whole positive numbers the page can print', () => {
-    for (const n of [s.houses, s.pieces, s.sealed]) {
+    for (const n of [s.houses, s.pieces, s.sealed, s.currencies]) {
       expect(Number.isInteger(n)).toBe(true);
       expect(n).toBeGreaterThan(0);
     }

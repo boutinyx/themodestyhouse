@@ -16,6 +16,16 @@ export type AboutStats = {
   pieces: number;
   /** Brands carrying the verified seal. */
   sealed: number;
+  /**
+   * Distinct currencies the houses trade in — the honest measure of reach.
+   *
+   * Deliberately not a country count: `city` on a Brand mixes granularity
+   * ('USA', 'London', 'Arnhem'), so deriving countries needs a hand-written
+   * map, and a wrong entry would be a factual claim about a real company.
+   * Currency is already a required, unambiguous field. Ties to ADR-0002: the
+   * price on screen is what the shopper pays on the brand's own site.
+   */
+  currencies: number;
 };
 
 export function aboutStats(): AboutStats {
@@ -23,6 +33,7 @@ export function aboutStats(): AboutStats {
     houses: BRANDS.length,
     pieces: getProducts().length,
     sealed: BRANDS.filter((b) => b.badge === 'verified').length,
+    currencies: new Set(BRANDS.map((b) => b.currency)).size,
   };
 }
 

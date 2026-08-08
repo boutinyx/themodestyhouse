@@ -7,25 +7,61 @@ import { aboutSrcSet } from '@/lib/staticImage';
 export const metadata: Metadata = {
   title: 'About | The Modesty House',
   description:
-    'A curated index of modest fashion — how houses are chosen, what the seal means, and how the site is paid for.',
+    'What The Modesty House does, the problem it solves, how it solves it, and who is behind it.',
 };
 
 /**
- * COPY SLOT — Tina writes this. ~120 words, why the site exists.
+ * COPY SLOT — Tina writes this. ~120 words, why the site exists, in her voice.
  * Left empty deliberately: inventing brand voice is the §10.18 mistake. Band 2
  * renders as a clean image band until it is filled, never as an empty box.
  */
 const MISSION = '';
 
+/**
+ * COPY SLOT — the people behind the application.
+ *
+ * Empty on purpose. These are real, identifiable people; names, roles and
+ * biographies are facts, and inventing any of them would be fabricating a claim
+ * about a person. The band does not render until this has real entries.
+ *
+ * Shape: { name, role, line } — `line` is one sentence, optional.
+ */
+const PEOPLE: { name: string; role: string; line?: string }[] = [];
+
 const BAND = 'px-5 md:px-8 py-16 md:py-24';
 const INNER = 'max-w-[1220px] mx-auto';
 
+/** How the catalogue is actually built. Mechanism, not marketing. */
+const HOW = [
+  {
+    step: '01',
+    title: 'We read the houses directly',
+    body: 'Every house publishes its own product feed. We read all of them, so the catalogue is the houses’ own stock — not a reseller’s copy of it.',
+  },
+  {
+    step: '02',
+    title: 'We throw most of it away',
+    body: 'Menswear, perfume, bakhoor, candles and gift sets are removed before anything is published. Whole labels are cut when they do not meet the standard, and cut labels stay cut.',
+  },
+  {
+    step: '03',
+    title: 'We check it again every night',
+    body: 'The catalogue is re-read nightly. New arrivals appear, and anything a house has removed or sold out stops being shown — so what you click still exists.',
+  },
+  {
+    step: '04',
+    title: 'We send you to the house',
+    body: 'There is no cart here. Every piece links to the house that made it, at its own price in its own currency, and you buy from them.',
+  },
+];
+
 export default function AboutPage() {
-  const { houses, pieces, sealed } = aboutStats();
+  const { houses, pieces, sealed, currencies } = aboutStats();
 
   const figures = [
     { value: String(houses), label: 'houses indexed' },
     { value: roundedPieces(pieces), label: 'pieces catalogued' },
+    { value: String(currencies), label: 'currencies' },
     { value: String(sealed), label: 'carrying the seal' },
   ];
 
@@ -49,10 +85,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2 — WHY THIS EXISTS. Full-bleed photograph.
-          The composition puts the lattice hard left and leaves the right half
-          empty plum, so from md up the note sits INSIDE the image. Below that it
-          stacks — parchment text over a busy gold lattice at 393px is unreadable. */}
+      {/* 2 — Full-bleed photograph. The composition puts the lattice hard left
+          and leaves the right half empty plum, so from md up the note sits
+          INSIDE the image. Below that it stacks — parchment text over a busy
+          gold lattice at 393px is unreadable. */}
       <section>
         <div className="relative md:min-h-[560px]" style={{ background: 'var(--aubergine)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -65,7 +101,6 @@ export default function AboutPage() {
             decoding="async"
             loading="lazy"
           />
-          {/* Scrim only from md up, where text overlays the photograph. */}
           {MISSION ? (
             <div
               className="hidden md:block md:absolute md:inset-0"
@@ -80,9 +115,8 @@ export default function AboutPage() {
               className={`relative ${INNER} px-5 md:px-8 py-12 md:py-24 md:min-h-[560px] md:flex md:items-center md:justify-end`}
             >
               <div className="md:w-1/2">
-                {/* Same lighter brass as the receipts band — --brass fails AA
-                    on this ground, and would start failing the day MISSION is
-                    filled in rather than now. */}
+                {/* Not --brass: it fails AA on this ground. #e7d3b6 is the
+                    lighter brass the homepage already uses on aubergine. */}
                 <div className="eyebrow" style={{ color: '#e7d3b6' }}>
                   Why this exists
                 </div>
@@ -97,13 +131,13 @@ export default function AboutPage() {
 
       {/* 3 — RECEIPTS */}
       <section className={`aubergine-band ${BAND}`}>
-        <div className={`${INNER} grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 text-center`}>
+        <div className={`${INNER} grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center`}>
           {figures.map((f) => (
             <div key={f.label}>
               <div
                 className="serif"
                 style={{
-                  fontSize: 'clamp(38px,6vw,60px)',
+                  fontSize: 'clamp(34px,5vw,56px)',
                   lineHeight: 1,
                   color: 'var(--parchment)',
                 }}
@@ -111,8 +145,7 @@ export default function AboutPage() {
                 {f.value}
               </div>
               {/* Not --brass: #a98a5b on --aubergine measures 4.41:1, just under
-                  AA at this 10px size. #e7d3b6 is the lighter brass the homepage
-                  already uses for an eyebrow on aubergine (app/page.tsx). */}
+                  AA at this 10px size. #e7d3b6 is the homepage's lighter brass. */}
               <div className="eyebrow mt-3" style={{ color: '#e7d3b6' }}>
                 {f.label}
               </div>
@@ -121,7 +154,89 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4 — THE STANDARD */}
+      {/* 4 — WHAT WE DO / THE PROBLEM */}
+      <section className={BAND} style={{ background: 'var(--parchment)' }}>
+        <div className={`${INNER} grid gap-12 md:grid-cols-2`}>
+          <div>
+            <div className="eyebrow">What we do</div>
+            <h2
+              className="section-heading mt-3"
+              style={{ fontSize: 'clamp(24px,3.5vw,36px)', lineHeight: 1.1, color: 'var(--ink)' }}
+            >
+              One place for modest womenswear
+            </h2>
+            <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+              We index modest womenswear from independent houses and put it in one place, so it can
+              be looked through the way a wardrobe is — by shape, by occasion, by mood — instead of
+              one shop at a time.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+              We do not sell anything. Every piece links out to the house that made it.
+            </p>
+          </div>
+
+          <div>
+            <div className="eyebrow">The problem</div>
+            <h2
+              className="section-heading mt-3"
+              style={{ fontSize: 'clamp(24px,3.5vw,36px)', lineHeight: 1.1, color: 'var(--ink)' }}
+            >
+              It is scattered, and hard to trust
+            </h2>
+            <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+              Modest fashion lives on {houses} separate storefronts trading in {currencies}{' '}
+              currencies. There is no single window onto it, so finding a piece means remembering
+              which house carries what, and opening a dozen tabs to compare.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+              Search does not help much either: it rewards whoever spends the most, which is rarely
+              the houses doing the most interesting work.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 5 — HOW WE SOLVE IT */}
+      <section className={BAND} style={{ background: 'var(--bone)' }}>
+        <div className={INNER}>
+          <div className="eyebrow">How we solve it</div>
+          <h2
+            className="section-heading mt-3"
+            style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
+          >
+            Read everything, publish very little
+          </h2>
+
+          <ol className="mt-10 grid gap-8 md:grid-cols-2">
+            {HOW.map((h) => (
+              <li
+                key={h.step}
+                className="p-6"
+                style={{
+                  background: 'var(--parchment)',
+                  border: '1px solid var(--hairline)',
+                  borderRadius: 8,
+                }}
+              >
+                <div className="eyebrow" style={{ color: 'var(--plum)' }}>
+                  {h.step}
+                </div>
+                <h3
+                  className="serif mt-3"
+                  style={{ fontSize: 20, lineHeight: 1.2, color: 'var(--ink)' }}
+                >
+                  {h.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                  {h.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* 6 — THE STANDARD */}
       <section className={BAND} style={{ background: 'var(--parchment)' }}>
         <div className={INNER}>
           <div className="eyebrow">The standard</div>
@@ -207,8 +322,38 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5 — HOW THIS IS PAID FOR */}
-      <section className={BAND} style={{ background: 'var(--bone)' }}>
+      {/* 7 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
+      {PEOPLE.length > 0 ? (
+        <section className={BAND} style={{ background: 'var(--bone)' }}>
+          <div className={INNER}>
+            <div className="eyebrow">Who is behind it</div>
+            <h2
+              className="section-heading mt-3"
+              style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
+            >
+              The people
+            </h2>
+            <div className="mt-10 grid gap-8 md:grid-cols-3">
+              {PEOPLE.map((p) => (
+                <div key={p.name}>
+                  <div className="serif" style={{ fontSize: 22, color: 'var(--ink)' }}>
+                    {p.name}
+                  </div>
+                  <div className="eyebrow mt-2">{p.role}</div>
+                  {p.line ? (
+                    <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                      {p.line}
+                    </p>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* 8 — HOW THIS IS PAID FOR */}
+      <section className={BAND} style={{ background: 'var(--parchment)' }}>
         <div className={`${INNER} max-w-3xl`}>
           <div className="eyebrow">Disclosure</div>
           <h2
@@ -227,8 +372,7 @@ export default function AboutPage() {
           </p>
           {/* Standalone links, not inline in the sentence. Inline they measured
               32x20 and 82x20 — under the 44px tap target minimum, and a link
-              inside running text cannot be padded to 44px without overlapping
-              the lines around it. */}
+              inside running text cannot be padded without overlapping its lines. */}
           <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
             The full detail is in the legal pages.
           </p>
@@ -255,7 +399,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 6 — CLOSE */}
+      {/* 9 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} text-center`}>
           <h2
