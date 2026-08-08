@@ -34,14 +34,7 @@ export type Piece = {
 };
 export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] } = {
   "tops": [
-    {
-      "src": "/style-it/top_8.webp",
-      "brand": "Hijab Boutique",
-      "label": "Oversized Top",
-      "color": "#d5ada4",
-      "maxH": 140
-    },
-    {
+        {
       "src": "/style-it/top_9.webp",
       "brand": "Hijab Boutique",
       "label": "Ruffle Blouse",
@@ -105,13 +98,7 @@ export const STYLE_PIECES: { tops: Piece[]; bottoms: Piece[]; dresses: Piece[] }
       "label": "Solace Wide Leg",
       "color": "#545253"
     },
-    {
-      "src": "/style-it/bottom_8.webp",
-      "brand": "Merrachi",
-      "label": "Frayed Hem Pants",
-      "color": "#d6cdbb"
-    },
-    {
+        {
       "src": "/style-it/bottom_0.webp",
       "brand": "Niswa",
       "label": "Maha Pleated",
