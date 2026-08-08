@@ -273,7 +273,10 @@ export default function AboutPage() {
               {[
                 'Women’s clothing only.',
                 'Clothing only — no perfume, bakhoor, candles or gift sets.',
-                'No mass-market or budget labels.',
+                // "among the houses", not a flat ban: the band below says
+                // high-street pieces are coming in as styling material. Stated
+                // absolutely, that line would contradict it two screens later.
+                'No mass-market or budget labels among the houses.',
               ].map((t) => (
                 <li
                   key={t}
@@ -322,9 +325,38 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 7 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
+      {/* 7 — WHERE THIS IS GOING */}
+      <section className={BAND} style={{ background: 'var(--bone)' }}>
+        <div className={`${INNER} max-w-3xl`}>
+          <div className="eyebrow">Where this is going</div>
+          <h2
+            className="section-heading mt-3"
+            style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
+          >
+            Layering, and the high street
+          </h2>
+          <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+            Modest dressing is not only bought from modest houses. A great deal of it is layering —
+            a mainstream dress over a polo neck, a longer shirt worn open, a slip under something
+            sheer. We want to cover that too, with our own styling on it, so the pieces you already
+            own are part of the picture.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+            It also answers something the independent houses cannot. Almost all of them are online
+            only and ship from abroad, so nothing can be tried on before it arrives. High-street
+            names — an H&amp;M, a Bershka — are already on the street where you live.
+          </p>
+          <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+            The podium stays with the modest houses. High-street pieces come in as things to layer,
+            not as houses to feature: the independents keep the front page, the seal and the
+            editorial, and the space to show what they can do.
+          </p>
+        </div>
+      </section>
+
+      {/* 8 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
       {PEOPLE.length > 0 ? (
-        <section className={BAND} style={{ background: 'var(--bone)' }}>
+        <section className={BAND} style={{ background: 'var(--parchment)' }}>
           <div className={INNER}>
             <div className="eyebrow">Who is behind it</div>
             <h2
@@ -352,8 +384,8 @@ export default function AboutPage() {
         </section>
       ) : null}
 
-      {/* 8 — HOW THIS IS PAID FOR */}
-      <section className={BAND} style={{ background: 'var(--parchment)' }}>
+      {/* 9 — HOW THIS IS PAID FOR */}
+      <section className={BAND} style={{ background: 'var(--bone)' }}>
         <div className={`${INNER} max-w-3xl`}>
           <div className="eyebrow">Disclosure</div>
           <h2
@@ -399,7 +431,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 9 — CLOSE */}
+      {/* 10 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} text-center`}>
           <h2
