@@ -403,8 +403,25 @@ summary:focus-visible {
 }
 
 /* Hero glass search (option 3A) — placeholder + focus over the video */
-.glass-search input::placeholder { color: rgba(251, 250, 246, 0.75); }
+.glass-search input::placeholder {
+  color: rgba(251, 250, 246, 0.75);
+  /* Smaller than the input itself. The INPUT stays at 16px on purpose: iOS
+     Safari zooms the whole page when a field below 16px receives focus, so
+     shrinking the input would have made every tap on search jolt the layout.
+     iOS reads the input's own font-size, not the placeholder's, so styling the
+     placeholder alone gets the smaller lettering with none of that. */
+  font-size: 14px;
+}
 .glass-search:focus-within { border-color: rgba(251, 250, 246, 0.7); }
+/* The typewriter placeholder is longer than the field on a phone, and it was
+   being chopped mid-letter against a hard edge. This softens the last few
+   millimetres into the glass instead.
+   It is a fade, not a true blur — CSS cannot blur part of an input's text, and
+   faking it (a blurred overlay) would smear the frosted background behind it. */
+.glass-search input {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+}
 
 /* --- the product card: ONE class per datum ---------------------------------
    Before this, the SAME card rendered in three typefaces: brand in Marcellus,

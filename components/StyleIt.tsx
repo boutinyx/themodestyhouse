@@ -6,7 +6,7 @@ import { STYLE_PIECES, type Piece } from '@/lib/stylePieces';
 // Phosphor, not the ‹ › glyphs these replace. Text glyphs vary in weight and
 // alignment across platforms, never match the brand letterforms, and cannot
 // take a `weight` prop — CLAUDE.md §6.
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
+import { CaretLeft, CaretRight, ArrowRight } from '@phosphor-icons/react';
 
 const TOPS = STYLE_PIECES.tops;
 const BOTTOMS = STYLE_PIECES.bottoms;
@@ -85,18 +85,9 @@ const ARROW_CENTER_Y = TOP_FRAME.h / 2;
 const ARROW_STYLE: React.CSSProperties = {
   width: ARROW, height: ARROW, borderRadius: 999,
   border: '1px solid var(--hairline)', background: 'var(--parchment)', color: 'var(--ink)',
-  alignSelf: 'flex-start',
+  // alignSelf lives on the button's classes (self-center md:self-start), not
+  // here: an inline style would win over them.
 };
-/** The mix frame on a phone. The two pieces stay STACKED — they were briefly
- *  side by side and Tina reverted it — but at ~68% of the desktop frame, which
- *  is what keeps the picker card from running most of a screen tall.
- *
- *  Every garment keeps its relative size because the artwork cap is SCALED by
- *  116/170 rather than flattened to one number: each top carries its own maxH so
- *  that the tops cover equal AREA (see Piece.maxH), and a single shared phone cap
- *  would throw that tuning away. */
-const MIX_FRAME_SM = { w: 116, h: 128 };
-
 function Slot({
   piece,
   frame,
@@ -105,7 +96,6 @@ function Slot({
   arrowAt,
   artMaxH,
   stackCaption,
-  sm,
 }: {
   piece: Piece;
   frame: { w: number; h: number };
@@ -121,9 +111,6 @@ function Slot({
    *  with a middot. Costs a CAPTION_LINE of height, which DRESS_FRAME accounts
    *  for, so it is passed only by the dress slot. */
   stackCaption?: boolean;
-  /** Phone-sized frame: the slot shrinks to this below `md`, and the artwork cap
-   *  scales with it. Omitted by the dress, which is desktop-only. */
-  sm?: { w: number; h: number };
 }) {
   /* piece.maxW is a px cap on the ARTWORK, which may exceed the frame — that is
      how one garment gets bigger without dragging the arrows out with it. It is
@@ -139,27 +126,27 @@ function Slot({
      it would either mismatch on hydration or flash the desktop size in first.
      The class names below are static strings, which is also what Tailwind needs
      in order to generate them at all — `w-[${x}px]` would never be emitted. */
-  const smFrame = sm ?? frame;
   const artDesktop = piece.maxH ?? artMaxH ?? frame.h;
-  // Scaled, not flattened: each top carries its own maxH so they cover equal
-  // AREA (see Piece.maxH), and one shared phone cap would throw that away.
-  const artSm = Math.round(artDesktop * (smFrame.h / frame.h));
+  /* On a phone the frame is FLUID — it takes whatever the row has left after the
+     two arrows, so the garment is as large as the screen allows and grows with
+     the phone. That means the artwork cap cannot stay a pixel value: expressed as
+     a PERCENTAGE of the frame it keeps each piece's share exactly as tuned on
+     desktop (each top carries its own maxH so the tops cover equal AREA — see
+     Piece.maxH) while scaling with whatever height the frame resolves to. */
+  const artPct = ((artDesktop / frame.h) * 100).toFixed(1);
 
   return (
     <div
       className="flex flex-col items-center min-w-0 flex-1 md:flex-initial"
       style={{
-        ['--fw-sm' as string]: `${smFrame.w}px`,
-        ['--fh-sm' as string]: `${smFrame.h}px`,
         ['--fw' as string]: `${frame.w}px`,
         ['--fh' as string]: `${frame.h}px`,
-        ['--art-sm' as string]: `${artSm}px`,
+        // The frame's shape, used to derive its height on a phone once its width
+        // is whatever the row leaves over.
+        ['--far' as string]: `${frame.w}/${frame.h}`,
         ['--art' as string]: `${artDesktop}px`,
+        ['--art-pct' as string]: `${artPct}%`,
         ['--amt' as string]: `${(arrowAt ?? frame.h / 2) - ARROW / 2}px`,
-        // The same centring against the phone-sized frame. `arrowAt` is scaled
-        // rather than reused: it is a distance from the frame's top, so a
-        // desktop value would sit below a 128px frame's middle.
-        ['--amt-sm' as string]: `${Math.round((arrowAt ?? frame.h / 2) * (smFrame.h / frame.h)) - ARROW / 2}px`,
       }}
     >
       {/* minWidth:0 lets the frame shrink instead of overflowing. The arrows
@@ -176,12 +163,12 @@ function Slot({
         <button
           aria-label="Previous"
           onClick={onPrev}
-          className="shrink-0 flex items-center justify-center mt-[var(--amt-sm)] md:mt-[var(--amt)]"
+          className="shrink-0 flex items-center justify-center self-center md:self-start mt-0 md:mt-[var(--amt)]"
           style={ARROW_STYLE}
         >
           <CaretLeft size={16} weight="bold" />
         </button>
-        <div className="flex items-center justify-center min-w-0 w-[var(--fw-sm)] h-[var(--fh-sm)] md:w-[var(--fw)] md:h-[var(--fh)] max-w-full">
+        <div className="flex items-center justify-center min-w-0 flex-1 aspect-[var(--far)] md:flex-none md:aspect-auto md:w-[var(--fw)] md:h-[var(--fh)] max-w-full">
           {/* lazy: this is also what keeps the desktop-only dress column from
               costing a phone anything — a lazy image in a display:none box is
               never fetched. */}
@@ -191,14 +178,14 @@ function Slot({
             alt={piece.brand ? `${piece.brand} ${piece.label}` : piece.label}
             loading="lazy"
             decoding="async"
-            className="max-h-[var(--art-sm)] md:max-h-[var(--art)]"
+            className="max-h-[var(--art-pct)] md:max-h-[var(--art)]"
             style={{ maxWidth: artMaxW, objectFit: 'contain', filter: 'drop-shadow(0 10px 12px rgba(90,60,40,0.18))' }}
           />
         </div>
         <button
           aria-label="Next"
           onClick={onNext}
-          className="shrink-0 flex items-center justify-center mt-[var(--amt-sm)] md:mt-[var(--amt)]"
+          className="shrink-0 flex items-center justify-center self-center md:self-start mt-0 md:mt-[var(--amt)]"
           style={ARROW_STYLE}
         >
           <CaretRight size={16} weight="bold" />
@@ -269,7 +256,13 @@ export default function StyleIt() {
 
   return (
     <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-      <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-12 items-center">
+      {/* flex-column on a phone, grid from md up. As a flex column the children
+          simply stack in source order, which is what puts the "Shop X + Y" link
+          UNDERNEATH the picker card (Tina's ask) with no duplicated markup and no
+          order juggling. `items-stretch` matters: `items-center` on a flex column
+          works on the horizontal axis and would shrink the copy to its content
+          width, which it does not do in the grid. */}
+      <div className="flex flex-col items-stretch gap-8 md:grid md:grid-cols-[0.85fr_1.15fr] md:gap-12 md:items-center">
         {/* COPY — left */}
         <div>
           <h2 className="serif" style={{ fontSize: 'clamp(40px,5.6vw,64px)', lineHeight: 1.02, color: 'var(--ink)' }}>
@@ -281,33 +274,46 @@ export default function StyleIt() {
             Discover and shop hundreds of modest labels in one place. Mix a top from one house
             with a skirt from another — or find the dress.
           </p>
-          <div className="mt-8 flex items-center gap-3">
-            <button className="btn-pill" onClick={() => { takeOver(); shuffle(); }}>✦ Style me</button>
+          {/* Smaller on a phone. The ! modifiers are needed because .btn-pill and
+              .nav-link set their own padding and font-size in globals.css, and a
+              plain utility would be a specificity coin-toss against them. */}
+          <div className="mt-6 md:mt-8 flex items-center gap-2 md:gap-3">
+            <button
+              className="btn-pill !text-[11px] !px-3.5 !py-2 md:!text-xs md:!px-[18px]"
+              onClick={() => { takeOver(); shuffle(); }}
+            >
+              ✦ Style me
+            </button>
             <button
               onClick={() => setAuto((a) => !a)}
-              className="nav-link"
-              style={{ border: '1px solid var(--hairline)', borderRadius: 999, padding: '9px 18px', background: 'transparent' }}
+              className="nav-link !text-[11px] md:!text-xs"
+              style={{ border: '1px solid var(--hairline)', borderRadius: 999, padding: '7px 14px', background: 'transparent' }}
             >
               {auto ? '❚❚ Pause' : '▷ Auto'}
             </button>
           </div>
-          <Link href="/directory" className="nav-link inline-block mt-5">Shop {t.brand} + {b.brand} →</Link>
         </div>
 
         {/* PICKER CARD — right */}
-        <div style={{ background: 'var(--bone)', border: '1px solid var(--hairline)', borderRadius: 18, padding: '22px 20px', boxShadow: '0 30px 60px -34px rgba(68,25,67,0.22)' }}>
+        {/* Tighter padding on a phone — 20px a side was 40px of the 326 available,
+            and every pixel of it comes off the garment. */}
+        <div
+          className="px-3 py-4 md:px-5 md:py-[22px] md:col-start-2 md:row-start-1 md:row-span-2"
+          style={{ background: 'var(--bone)', border: '1px solid var(--hairline)', borderRadius: 18, boxShadow: '0 30px 60px -34px rgba(68,25,67,0.22)' }}
+        >
           <div className="flex flex-col md:flex-row">
             {/* MIX */}
-            <div className="flex-1 flex flex-col items-center px-2" style={{ minWidth: 0 }}>
+            <div className="flex-1 flex flex-col items-center px-0 md:px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Mix &amp; match</div>
               <div className="eyebrow mt-1">Top + Bottom</div>
               {/* Stacked at every width. It was briefly side by side on a phone;
-                  Tina reverted that. The phone still gets the SMALLER frame
-                  (MIX_FRAME_SM), which is what keeps the card compact — the
-                  height came from the artwork, not from the orientation. */}
+                  Tina reverted that. On a phone each frame is now FLUID — it
+                  takes whatever the row has left after the arrows — so the
+                  garment is as large as the screen allows and the block grows
+                  taller to fit it, rather than being pinned to a fixed size. */}
               <div className="flex-1 w-full flex flex-col items-center justify-start gap-4 md:gap-5 mt-4">
-                <Slot piece={t} frame={TOP_FRAME} sm={MIX_FRAME_SM} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
-                <Slot piece={b} frame={TOP_FRAME} sm={MIX_FRAME_SM} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
+                <Slot piece={t} frame={TOP_FRAME} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
+                <Slot piece={b} frame={TOP_FRAME} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
               </div>
             </div>
 
@@ -338,6 +344,18 @@ export default function StyleIt() {
             </div>
           </div>
         </div>
+
+        {/* Third child of the wrapper, so on a phone it simply falls UNDERNEATH
+            the picker card in source order — Tina's ask. On desktop it is placed
+            back in the left column under the copy, which is where it has always
+            been; the card above spans both rows so it still centres against the
+            full height of that column. */}
+        <Link
+          href="/directory"
+          className="nav-link inline-flex items-center gap-1.5 !text-[11px] md:!text-xs md:col-start-1 md:row-start-2 md:justify-self-start"
+        >
+          Shop {t.brand} + {b.brand} <ArrowRight size={12} weight="bold" />
+        </Link>
       </div>
     </section>
   );

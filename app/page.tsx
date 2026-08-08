@@ -74,15 +74,27 @@ export default function Home() {
 
       {/* EDITOR'S PICKS — scrollable rail */}
       <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-        <div className="flex items-end justify-between mb-8">
+        <div className="flex items-end justify-between mb-6 md:mb-8">
           <div>
             <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>
               Chosen by <span className="italic" style={{ color: 'var(--plum)' }}>hand</span>.
             </h2>
           </div>
-          <Link href="/editorial" className="nav-link inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
+          {/* Beside the heading from md up; on a phone it moves BELOW the rail
+              (Tina's call) — at 390px it was sharing a line with a 28px display
+              heading and the two collided. */}
+          {/* !hidden / !inline-flex, not the bare utilities: `.nav-link` sets
+              `display: inline-flex` in globals.css at the same specificity, and
+              wins on source order — so `hidden` did nothing and BOTH copies of
+              this link rendered at every width. */}
+          <Link href="/directory" className="nav-link !hidden md:!inline-flex items-center gap-1.5">
+            All products <ArrowRight size={13} weight="bold" />
+          </Link>
         </div>
         <EditorsRail picks={editorsPicks} />
+        <Link href="/directory" className="nav-link md:!hidden inline-flex items-center gap-1.5 mt-6">
+          All products <ArrowRight size={13} weight="bold" />
+        </Link>
       </section>
 
       {/* NEWLY VERIFIED — spotlight */}

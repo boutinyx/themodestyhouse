@@ -123,10 +123,12 @@ export default function HeroSearch() {
           padding: '14px 12px',
         }}
       />
+      {/* Smaller pill, and smaller on a phone again — at 390px a 24px-padded
+          button was taking a quarter of the field's width from the text. */}
       <button
         type="submit"
-        className="btn-pill"
-        style={{ background: 'var(--parchment)', color: 'var(--aubergine)', flex: 'none', padding: '13px 24px' }}
+        className="btn-pill !text-[11px] !px-4 !py-2.5 md:!text-xs md:!px-5 md:!py-3"
+        style={{ background: 'var(--parchment)', color: 'var(--aubergine)', flex: 'none' }}
       >
         Search
       </button>
