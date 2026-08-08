@@ -60,6 +60,15 @@ const JOBS = [
     suffixWidth: true,
     opts: { quality: 78, effort: 5 },
   },
+  {
+    // Full-bleed band on /about. Same job as the hero — it spans the viewport,
+    // so the 900px editorial ceiling is visibly soft on a desktop display.
+    dir: 'about',
+    match: /\.jpe?g$/i,
+    widths: [640, 1024, 1440, 1920],
+    suffixWidth: true,
+    opts: { quality: 78, effort: 5 },
+  },
 ];
 
 const kb = (n) => `${(n / 1024).toFixed(0)}KB`;
