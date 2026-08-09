@@ -7,6 +7,7 @@ import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL, NATIVE_LABEL } from '@/lib/fx';
 import { useCurrency } from './CurrencyProvider';
+import { useScrollFade } from './useScrollFade';
 
 /**
  * The phone navigation: a full-screen takeover.
@@ -44,6 +45,12 @@ export function MobileNav() {
   // [path])` is a cascading render, and react-hooks/set-state-in-effect fails
   // the lint on it. The click is the event that should close it anyway.
   const close = () => setOpen(false);
+
+  // The panel holds more rows than any phone can show — measured, not assumed:
+  // 1024px of content in a 756px scrollport at iPhone 13 size. The scrollbar is
+  // hidden at rest on iOS, so without this the hidden rows have no affordance
+  // at all. See lib/scrollFade.ts.
+  const { ref: navRef, fade } = useScrollFade<HTMLElement>('y');
 
   // The trigger lives in an `lg:hidden` wrapper, but the panel is portalled to
   // the body — so growing past the desktop breakpoint while it is open would
@@ -156,11 +163,37 @@ export function MobileNav() {
             </Dialog.Close>
           </div>
 
-          {/* overscrollBehavior: contain — without it, flicking past the end of
-              this list chains the scroll to the document behind the panel. */}
+          {/* This wrapper exists only to be the fade's containing block, and it
+              must NOT be the scroller: an absolutely positioned pseudo resolves
+              against its originating element's padding box, and a scroll
+              container's padding box moves with the content, so a fade on the
+              <nav> would scroll away on the first flick.
+
+              min-h-0 is required, not decoration. The panel is a flex column;
+              a flex item's default min-height is auto, i.e. "at least my
+              content", so this wrapper would refuse to shrink below its 1024px
+              of rows, the <nav> inside would never be shorter than its content,
+              and nothing would scroll at all.
+
+              --fade-to is --parchment because that is what Dialog.Popup paints
+              above; the class defaults to #fff, which would read as a pale
+              rectangle on this ground.
+
+              Measured on production 2026-08-09, both engines, iPhone 13:
+              1024px of rows in a 756px scrollport — 268px, about five tappable
+              rows, hidden with no scrollbar at rest on iOS. */}
+          <div
+            className="scroll-fade flex-1 min-h-0"
+            data-fade={fade}
+            style={{ ['--fade-to' as string]: 'var(--parchment)' }}
+          >
+          {/* overscrollBehavior lives in .scroll-fade-port now — without it,
+              flicking past the end of this list chains the scroll to the
+              document behind the panel. */}
           <nav
-            className="flex-1 overflow-y-auto px-5 pb-10"
-            style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
+            ref={navRef}
+            className="scroll-fade-port h-full overflow-y-auto px-5 pb-10"
+            style={{ WebkitOverflowScrolling: 'touch' }}
           >
             <div className="pt-3">{row('/directory', 'Products')}</div>
 
@@ -224,6 +257,7 @@ export function MobileNav() {
               checkout.
             </p>
           </nav>
+          </div>
         </Dialog.Popup>
       </Dialog.Portal>
     </Dialog.Root>

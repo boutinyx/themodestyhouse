@@ -545,47 +545,104 @@ summary:focus-visible {
 }
 .price-lg { font-size: 19px; }
 
-/* --- scrollable dropdown menu ------------------------------------------------
-   The native scrollbar in the filter dropdowns is visually loud against the
-   card. Hidden here (.no-scrollbar already exists for rails), and replaced with
-   a soft fade over the last row so it still reads as scrollable — the affordance
-   the scrollbar was providing. The fade sits ABOVE the list but must not eat
-   clicks, hence pointer-events: none. */
-.menu-scroll {
+/* --- scroll fade -------------------------------------------------------------
+   A hidden scrollbar with nothing in its place is a surface that gives no hint
+   it can scroll. This paints a soft fade over the clipped edge instead — the
+   affordance the scrollbar was providing.
+
+   Generalised on 2026-08-09 from `.menu-scroll`, which served the filter
+   dropdowns only. Three parts:
+
+     wrapper   .scroll-fade        NOT the scroller — carries the pseudos
+     scroller  .scroll-fade-port   the overflow:auto box, a CHILD of the wrapper
+     state     data-fade="none|start|end|both" on the WRAPPER, written from a
+               real measurement by useScrollFade()
+
+   WHY the pseudos live on a wrapper and never on the scroller: an absolutely
+   positioned ::after resolves against its originating element's PADDING box,
+   and a scroll container's padding box travels with the content. Put the fade
+   on the scroller and it slides out of view on the first wheel tick.
+
+   WHY the default is opacity:0. The old rule painted unconditionally and
+   switched OFF through two negative selectors, so every failure mode — JS not
+   wired, attribute mistyped, server render before hydration — failed LIT: a
+   list that cannot scroll wearing a permanent wash over its last row, on top of
+   live rows. Inverted, all of those show nothing, which is the honest state for
+   a surface nobody has measured.
+
+   Vertical only, deliberately: the horizontal rails are photographs, not
+   buttons, and are not in scope yet. Adding an x axis is a second pair of
+   rules with left/right/width in place of top/bottom/height. */
+.scroll-fade {
   position: relative;
+
+  /* --fade-to is the colour the fade resolves INTO, so one class works on the
+     white filter popup and on a --parchment phone panel. Default #fff, which is
+     exactly what the filter popup paints — that surface therefore needs to set
+     nothing and renders as before.
+
+     rgb(from …) is how ONE token yields all three stops. The alternative is
+     asking every caller to also hand in an alpha-zero copy of its own
+     background: two properties that can disagree, and they will. It is NOT
+     equivalent to the `transparent` keyword — measured in both engines on
+     2026-08-09, a white->transparent ramp reads rgba(125,125,125,.49) at its
+     midpoint, i.e. it darkens through grey. That is why the rule this replaced
+     spelled out rgba(255,255,255,0), and the same care is kept here.
+     Supported: Safari 16.4+ / Chrome 119+, both verified with CSS.supports.
+
+     The good kind of failure: if --fade-to is ever set to a non-colour the
+     declaration is invalid at computed-value time and the background falls to
+     `none` — no fade, never a wrong-coloured smear. */
+  --fade-stops:
+    rgb(from var(--fade-to, #fff) r g b / 0)   0%,
+    rgb(from var(--fade-to, #fff) r g b / .92) 70%,
+    rgb(from var(--fade-to, #fff) r g b / 1)   100%;
 }
-.menu-scroll-list {
-  max-height: 18rem;
-  overflow-y: auto;
-  /* Stop the scroll chaining to the page. Without this, once the list bottoms
-     out the browser hands the remaining wheel delta to the document and the
-     whole page starts moving underneath an open menu. */
-  overscroll-behavior: contain;
+
+.scroll-fade-port {
+  /* The scrollbar is the affordance this class replaces, so it goes. */
   -ms-overflow-style: none;   /* IE / Edge */
   scrollbar-width: none;      /* Firefox */
+  /* Stop the scroll chaining to the page. Without this, once the list bottoms
+     out the browser hands the remaining wheel delta to the document and the
+     whole page starts moving underneath an open menu or panel. */
+  overscroll-behavior: contain;
 }
-.menu-scroll-list::-webkit-scrollbar {
-  display: none;              /* Chrome / Safari */
-}
-.menu-scroll::after {
+.scroll-fade-port::-webkit-scrollbar { display: none; }  /* Chrome / Safari */
+
+.scroll-fade::before,
+.scroll-fade::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  height: 46px;
+  height: var(--fade-size, 46px);
+  /* NEVER remove. This strip lies over live, tappable rows; without it the last
+     46px of every menu silently stops taking taps. */
   pointer-events: none;
-  border-radius: 0 0 12px 12px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 70%, #fff 100%);
-  opacity: 1;
+  opacity: 0;
   transition: opacity 0.18s ease-out;
+  /* `inherit` takes the wrapper's own radius, so the strip follows whatever the
+     surface has — 12px on the filter popup, 0 on a square panel — rather than
+     the hardcoded `0 0 12px 12px` this replaces, which was one caller's
+     Tailwind class written into a shared rule. */
+  border-radius: inherit;
 }
-/* The fade means "there is more below", so it must be off in both cases where
-   that is untrue: a list too short to scroll, and a list already scrolled to its
-   last row. Leaving it lit at the bottom is why the menu read as endless.
-   Opacity rather than display:none so it eases out instead of popping. */
-.menu-scroll[data-scrollable='false']::after,
-.menu-scroll[data-at-end='true']::after { opacity: 0; }
+.scroll-fade::before { top: 0;    background: linear-gradient(to top,    var(--fade-stops)); }
+.scroll-fade::after  { bottom: 0; background: linear-gradient(to bottom, var(--fade-stops)); }
+
+/* State. The fade means "there is more content this way", so each edge lights
+   only when that is true. Opacity rather than display:none so it eases in and
+   out instead of popping. */
+.scroll-fade[data-fade='start']::before,
+.scroll-fade[data-fade='both']::before,
+.scroll-fade[data-fade='end']::after,
+.scroll-fade[data-fade='both']::after { opacity: 1; }
+
+/* Opt out of the leading edge. The filter menu has only ever faded its bottom,
+   and a top fade there would be a change to a surface that already reads
+   correctly — this keeps it identical while new surfaces get both. */
+.scroll-fade[data-edges='end']::before { opacity: 0; }
 
 /* Vertical marquee — used by the designers wall (components/BrandMarquee).
    Two keyframe sets and one class rather than the tw-animate-css dependency the

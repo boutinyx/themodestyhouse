@@ -1,7 +1,7 @@
 'use client';
-import { useCallback, useRef, useState } from 'react';
 import { Menu } from '@base-ui-components/react/menu';
 import { CaretDown } from '@phosphor-icons/react';
+import { useScrollFade } from './useScrollFade';
 
 /**
  * The index console — the search field and filter row shared by /directory and
@@ -26,24 +26,13 @@ export function FilterDropdown({
 }) {
   const current = options.find((o) => o.value === value);
 
-  // Whether the list is scrolled to its last row. The fade is a "there is more
-  // below" signal, so it has to switch OFF at the bottom — otherwise it still
-  // reads as more content and you keep scrolling at a list that has ended.
-  // data-scrollable alone could not do this: it is a static
-  // `options.length > 7`, answering "can this scroll at all", never "are we
-  // there yet".
-  const [atEnd, setAtEnd] = useState(false);
-  const listRef = useRef<HTMLDivElement>(null);
-
-  const syncAtEnd = useCallback(() => {
-    const el = listRef.current;
-    if (!el) return;
-    // 1px tolerance: scrollHeight/scrollTop are fractional on HiDPI, so an
-    // exact === comparison never becomes true at the bottom.
-    const bottomed = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
-    // A list that does not overflow is trivially "at the end" — no fade.
-    setAtEnd(bottomed || el.scrollHeight <= el.clientHeight);
-  }, []);
+  // Which edges carry the fade, from a real measurement of this list. This
+  // replaces a pair of hand-rolled attributes: `data-at-end`, computed here,
+  // and `data-scrollable`, which was the static guess `options.length > 7`.
+  // That guess was off by a whole list — a 30px nowrap row in a 272px content
+  // box overflows at 10 rows, i.e. 9 options, not 8 — and, worse, had no
+  // runtime path back on when it guessed low. See lib/scrollFade.ts.
+  const { ref: listRef, fade } = useScrollFade<HTMLDivElement>('y');
 
   return (
     /* A REAL menu primitive, not a CSS hover trick.
@@ -66,12 +55,10 @@ export function FilterDropdown({
      * viewport. RadioGroup is the honest semantics: one choice out of N, and
      * every row gets a real aria-checked.
      */
-    <Menu.Root
-      // The panel is unmounted while closed, so `atEnd` is stale from last time
-      // by the time it reopens. rAF because the list has to be laid out before
-      // scrollHeight means anything.
-      onOpenChange={(open) => { if (open) requestAnimationFrame(syncAtEnd); }}
-    >
+    // No onOpenChange rAF any more: Base UI unmounts the popup while closed, so
+    // the hook's effect re-runs on every open, and ResizeObserver delivers an
+    // initial observation after layout — exactly what the rAF was buying.
+    <Menu.Root>
       <Menu.Trigger
         // openOnHover keeps the desktop behaviour the CSS version had — point at
         // a chip and it opens — while click/tap now works everywhere. delay 0
@@ -96,22 +83,30 @@ export function FilterDropdown({
           className="z-50"
         >
           <Menu.Popup
-            /* menu-scroll hides the scrollbar and fades the last row instead —
-               the fade is the scroll affordance. data-scrollable turns the fade
-               off for short lists, so a 3-item menu isn't told it can scroll;
-               data-at-end turns it off once you have actually reached the
-               bottom. */
-            className="menu-scroll rounded-xl border min-w-[190px] max-w-[var(--available-width)] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
-            data-scrollable={options.length > 7}
-            data-at-end={atEnd}
+            /* .scroll-fade hides the scrollbar and fades the clipped edge
+               instead — the fade IS the scroll affordance. data-fade is now a
+               measurement of this element rather than a guess about it.
+               No --fade-to here on purpose: the class falls back to #fff, which
+               is what this popup paints on the line below, so this surface
+               renders exactly as it did. data-edges="end" suppresses the new
+               leading fade, because this menu has only ever faded its bottom. */
+            className="scroll-fade rounded-xl border min-w-[190px] max-w-[var(--available-width)] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
+            data-fade={fade}
+            data-edges="end"
             style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
           >
             <Menu.RadioGroup
               value={value}
               onValueChange={(v) => onSelect(v as string)}
-              className="menu-scroll-list p-2"
+              /* max-h-72 is 18rem, the cap .menu-scroll-list used to impose —
+                 it is this caller's layout decision, not the shared class's.
+                 overflow-x-hidden closes an accidental scroller: per CSS
+                 Overflow, `overflow-y: auto` makes a `visible` overflow-x
+                 compute to `auto`, and .menu-row is nowrap, so a long brand
+                 name made this list horizontally scrollable with the scrollbar
+                 hidden and no fade on that axis. */
+              className="scroll-fade-port max-h-72 overflow-y-auto overflow-x-hidden p-2"
               ref={listRef}
-              onScroll={syncAtEnd}
             >
               {[{ value: 'all', label: `All ${label.toLowerCase()}` }, ...options].map((o) => (
                 <Menu.RadioItem

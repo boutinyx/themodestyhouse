@@ -193,7 +193,13 @@ for (const engineName of engineNames) {
       await chip.click();
       await page.waitForTimeout(500);
       const opened = await page.evaluate(() => {
-        const panels = [...document.querySelectorAll('.menu-scroll')];
+        // `.scroll-fade` — renamed from `.menu-scroll` on 2026-08-09 when the
+        // fade was generalised. The rename silently broke this check: it found
+        // nothing and reported "PANEL DID NOT OPEN ON TAP" at every viewport in
+        // both engines, on a dropdown that opens perfectly well. A selector in
+        // a script is a reference the compiler cannot see, so a class rename
+        // must be grepped across scripts/ too, not just app/components/lib.
+        const panels = [...document.querySelectorAll('.scroll-fade')];
         return panels.map((p) => {
           const r = p.getBoundingClientRect();
           const cs = getComputedStyle(p.parentElement);
