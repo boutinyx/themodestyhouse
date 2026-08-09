@@ -1,21 +1,21 @@
 {
-  "date": "2026-08-08",
+  "date": "2026-08-09",
   "totals": {
-    "added": 5,
-    "updated": 15311,
-    "delisted": 12,
+    "added": 54,
+    "updated": 15465,
+    "delisted": 13,
     "filtered": 0,
     "returned": 0,
-    "incomplete": 2
+    "incomplete": 1
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
-      "complete": false,
-      "fetched": 136,
+      "complete": true,
+      "fetched": 194,
       "added": [],
-      "updated": 136,
-      "delisted": 0,
+      "updated": 194,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -32,8 +32,57 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1076,
-      "added": [],
+      "fetched": 1124,
+      "added": [
+        "Ombre Modal Hijab - Sea Depths",
+        "Ombre Modal Hijab - Terrain",
+        "Ombre Modal Hijab - Chocolate Fawn",
+        "Ombre Modal Hijab - Honeycomb",
+        "Ombre Modal Hijab - Midnight Mist",
+        "Modal Hijab - Vintage Indigo",
+        "Modal Hijab - Dark Olive",
+        "Modal Hijab - Spice",
+        "Pleat Pants - White",
+        "Stella Maxi Dress - Black Coffee",
+        "Asymmetric Side Tie Top - Olive",
+        "Linen Button Down Top & Pants Set - Off White",
+        "Ombre Modal Hijab - Bracken",
+        "Ombre Modal Hijab - Lava Falls",
+        "Modal Hijab - Orchid",
+        "Modal Hijab - Acorn",
+        "Modal Hijab - Shitake",
+        "Modal Hijab - Fog",
+        "Modal Hijab - Cobblestone",
+        "Modal Hijab - Sphinx",
+        "Chiffon LITE Hijab - Jade",
+        "Chiffon LITE Hijab - Stillwater",
+        "Chiffon LITE Hijab - Green Moss",
+        "Chiffon LITE Hijab - Deep Teal",
+        "Chiffon LITE Hijab - Light Natural",
+        "Chiffon LITE Hijab - Deep Taupe",
+        "Essential Chiffon Hijab - Eggplant",
+        "Modal Hijab - Pomegranate",
+        "Modal Hijab - Emerald",
+        "Modal Hijab - Fig",
+        "Modal Hijab - Raincloud",
+        "Modal Hijab - Purple Velvet",
+        "Bamboo Jersey Hijab - Kambaba",
+        "Bamboo Jersey Hijab - Ginger Snap",
+        "Bamboo Jersey Hijab - Wistful Mauve",
+        "Bamboo Jersey Hijab - Grape",
+        "Bamboo Jersey Hijab - Fudge",
+        "Modal Hijab - Iron",
+        "Modal Hijab - Seagrass",
+        "Modal Hijab - Sage",
+        "Bamboo Jersey Hijab - Moonlight",
+        "Chiffon LITE Hijab - Loden Frost",
+        "Chiffon LITE Hijab - Deep Red",
+        "Chiffon LITE Hijab - Navy Blazer",
+        "Chiffon LITE Hijab - Night Sky",
+        "Chiffon LITE Hijab - Willow",
+        "Chiffon LITE Hijab - Iris Storm",
+        "Modal Hijab - Black Forest"
+      ],
       "updated": 1076,
       "delisted": 0,
       "filtered": [],
@@ -45,7 +94,7 @@
       "fetched": 484,
       "added": [],
       "updated": 484,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -132,8 +181,14 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 205,
-      "added": [],
+      "fetched": 210,
+      "added": [
+        "Beige Longline Abaya & Pants Set",
+        "Black Longline Abaya & Pants Set",
+        "Black Bedazzled Butterfly Abaya",
+        "Brown Bedazzled Butterfly Abaya",
+        "Navy Bedazzled Butterfly Abaya"
+      ],
       "updated": 205,
       "delisted": 0,
       "filtered": [],
@@ -163,13 +218,9 @@
       "brandSlug": "mariams",
       "complete": true,
       "fetched": 1204,
-      "added": [
-        "Floral Bridal Jewelry Set for Women（MAC444）",
-        "Luxury 3D Floral Beaded Embroidered Mesh Open Abaya– Lavender Occasion Abaya (MOA304)",
-        "Premium Muslimah Essentials Gift Set | Abaya, Prayer Mat, Tasbih & Tote Bag (MR090)"
-      ],
-      "updated": 1201,
-      "delisted": 1,
+      "added": [],
+      "updated": 1204,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -276,10 +327,10 @@
     {
       "brandSlug": "arakai",
       "complete": true,
-      "fetched": 284,
+      "fetched": 276,
       "added": [],
-      "updated": 284,
-      "delisted": 0,
+      "updated": 276,
+      "delisted": 8,
       "filtered": [],
       "returned": 0
     },
@@ -339,7 +390,7 @@
       "fetched": 185,
       "added": [],
       "updated": 185,
-      "delisted": 4,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -369,7 +420,7 @@
       "fetched": 79,
       "added": [],
       "updated": 79,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -436,10 +487,12 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 357,
-      "added": [],
-      "updated": 357,
-      "delisted": 0,
+      "fetched": 354,
+      "added": [
+        "The Shamma | Beige"
+      ],
+      "updated": 353,
+      "delisted": 4,
       "filtered": [],
       "returned": 0
     },
@@ -467,10 +520,8 @@
       "brandSlug": "bouguessa",
       "complete": true,
       "fetched": 331,
-      "added": [
-        "Rabea Skirt - Black"
-      ],
-      "updated": 330,
+      "added": [],
+      "updated": 331,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -481,7 +532,7 @@
       "fetched": 28,
       "added": [],
       "updated": 28,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -491,7 +542,7 @@
       "fetched": 792,
       "added": [],
       "updated": 792,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -579,11 +630,9 @@
       "brandSlug": "chic-modesty",
       "complete": true,
       "fetched": 469,
-      "added": [
-        "Jupe coton Anthracite grey"
-      ],
-      "updated": 468,
-      "delisted": 1,
+      "added": [],
+      "updated": 469,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -593,6 +642,16 @@
       "fetched": 2,
       "added": [],
       "updated": 2,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "by-hasanat",
+      "complete": true,
+      "fetched": 103,
+      "added": [],
+      "updated": 103,
       "delisted": 0,
       "filtered": [],
       "returned": 0
