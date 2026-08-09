@@ -15,8 +15,7 @@ export const metadata: Metadata = {
  * Left empty deliberately: inventing brand voice is the §10.18 mistake. Band 2
  * renders as a clean image band until it is filled, never as an empty box.
  */
-const MISSION =
-  "I've never been the average-outfit type. I'm a layerer — the kind of person who takes a matching set, splits the top from the bottom, and builds two completely different looks from it. To me, that's what modesty actually is: not a restriction, but the anatomy of an outfit — how you layer, how you balance, how you put it together.\n\nThe Modest House started because modest fashion is having a moment — a huge wave of brands, all rising at once, but scattered everywhere. Beautiful labels, impossible to find, buried across a hundred different sites. I wanted to give them a podium — a place where getting dressed feels creative again.";
+const MISSION = '';
 
 /**
  * COPY SLOT — the people behind the application.
@@ -146,15 +145,9 @@ export default function AboutPage() {
                 <div className="eyebrow" style={{ color: '#e7d3b6' }}>
                   Why this exists
                 </div>
-                {MISSION.split('\n\n').map((para, i) => (
-                  <p
-                    key={i}
-                    className={`${i === 0 ? 'mt-4' : 'mt-3'} text-sm leading-relaxed`}
-                    style={{ color: 'var(--parchment)' }}
-                  >
-                    {para}
-                  </p>
-                ))}
+                <p className="mt-4 text-sm leading-relaxed" style={{ color: 'var(--parchment)' }}>
+                  {MISSION}
+                </p>
               </div>
             </div>
           ) : null}
