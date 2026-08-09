@@ -101,6 +101,21 @@ Three things this forced, none cosmetic:
 Re-verified: `tsc` clean, eslint clean, 407 tests, and visual-audit over `/about` at 9
 widths × 2 engines — 12 renders, **0 findings, `no-css 0` on all 12** — then read at 1:1.
 
+## Three further passes on the same band, same day
+
+Each is one commit, each verified the same way — `tsc`, eslint, the suite, and
+visual-audit over `/about` at 9 widths × 2 engines (12 renders, 0 findings, `no-css 0`),
+then read at 1:1.
+
+| commit | ask | what it actually took |
+|---|---|---|
+| `608b955` | *"make it as wide as the screen"* | `MEASURE` off the block, so it runs the full `INNER`. **Stopped at 1220px, not the viewport edge** — that is the line the header pill and the footer sit on, and INNER's own comment records that a band running outboard of them was a measured defect. Measured the cost live with a Range over the first text node rather than estimating: **1156px, ~186 characters a line**, against the 65–75 the MEASURE comment names. Reported to her as a trade, not hidden. |
+| `ae6ed42` | *"…this can go"* (the standfirst) | Cut. It predated her copy and repeated her own "So this is a curator, not a catalogue" one band below. **Verified against the SERVED HTML**, not the source: the standfirst's unique phrase `point you to where` → 0. The one remaining `curated index of modest fashion` hit is the site-wide footer, out of scope. |
+| this one | *"more why this exists more up"* | Band 1 stops using `BAND`; its `pb` drops 64/96 → 20/28, `pt` kept verbatim so nothing above moves. Measured **96px → 28px** between the headline's box and the eyebrow, live-vs-local, with the live page already carrying `ae6ed42` so the baseline was honest. |
+
+The two are one opening now — same parchment, no rule between them — which is why BAND's
+full rhythm was wrong there: it is for separating bands that *differ*.
+
 ## Notes / follow-ups
 
 - **The duplicate band.** "Where this is going — Layering, and the high street" (three

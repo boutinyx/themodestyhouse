@@ -106,8 +106,13 @@ export default function AboutPage() {
 
   return (
     <main>
-      {/* 1 — STATEMENT */}
-      <section className={BAND} style={{ background: 'var(--parchment)' }}>
+      {/* 1 — STATEMENT.
+          NOT `BAND`. Its `pb` is cut from 64/96 to 20/28 so "Why this exists"
+          sits up close under the headline instead of a band's width away.
+          The two are one opening now — same parchment, no rule between them —
+          and BAND's full vertical rhythm is for separating bands that differ.
+          The `pt` half of BAND is kept verbatim, so nothing above moves. */}
+      <section className="pt-16 md:pt-24 pb-5 md:pb-7" style={{ background: 'var(--parchment)' }}>
         <div className={`${INNER} pt-16`}>
           <div className={`${MEASURE} mx-auto text-center`}>
           <div className="eyebrow">About</div>
