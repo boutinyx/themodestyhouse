@@ -385,35 +385,29 @@ export default function AboutPage() {
             ))}
           </ul>
 
-          <div
-            className="mt-10 pt-9"
-            style={{ borderTop: '1px solid rgba(250,247,241,0.16)' }}
+          {/* One sentence, no rule above it, per Tina — it now reads as the
+              closing clause of the list rather than as a second section.
+
+              This is a COMPRESSION of the three lines that were here, not new
+              copy: "Women's clothing only" is menswear out, "clothing only" is
+              the non-apparel veto, and the third is unchanged. All three are
+              the editorial rules in CLAUDE.md §7, so the sentence cannot drift
+              from what the pipeline actually does.
+
+              "among the houses" is kept and is load-bearing. Stated as a flat
+              ban on mass-market labels it would contradict "Layering, and the
+              high street" one band below, which says high-street pieces are
+              coming in as styling material. */}
+          <p
+            className="mt-8 text-sm leading-relaxed"
+            style={{ color: 'var(--parchment)' }}
           >
-            <div className="eyebrow" style={{ color: '#e7d3b6' }}>
+            <span className="eyebrow" style={{ color: '#e7d3b6', marginRight: 8 }}>
               What we don&rsquo;t do
-            </div>
-            {/* No icons, and therefore no icon gutter — these hang on the same
-                left edge as the heading above rather than being indented into
-                a column that no longer exists. */}
-            <ul className="mt-4 space-y-3">
-              {[
-                'Women’s clothing only.',
-                'Clothing only — no perfume, bakhoor, candles or gift sets.',
-                // "among the houses", not a flat ban: the band below says
-                // high-street pieces are coming in as styling material. Stated
-                // absolutely, that line would contradict it two screens later.
-                'No mass-market or budget labels among the houses.',
-              ].map((t) => (
-                <li
-                  key={t}
-                  className="text-sm leading-relaxed"
-                  style={{ color: 'var(--parchment)' }}
-                >
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
+            </span>
+            Menswear, perfume, bakhoor, candles, gift sets, or mass-market and budget labels among
+            the houses.
+          </p>
 
           {/* The seal, and its limits. The negative clause is load-bearing:
               without it the page implies a guarantee the site cannot honour. */}
