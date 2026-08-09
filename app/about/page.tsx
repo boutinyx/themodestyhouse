@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SealCheck, Prohibit, Sparkle, ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { SealCheck, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { aboutSrcSet } from '@/lib/staticImage';
+import HowBlocks from '@/components/HowBlocks';
 
 export const metadata: Metadata = {
   title: 'About | The Modesty House',
@@ -115,7 +116,8 @@ export default function AboutPage() {
       <section className="pt-16 md:pt-24 pb-5 md:pb-7" style={{ background: 'var(--parchment)' }}>
         <div className={`${INNER} pt-16`}>
           <div className={`${MEASURE} mx-auto text-center`}>
-          <div className="eyebrow">About</div>
+          {/* No "About" eyebrow — cut on Tina's word. The <title>, the nav's
+              active state and the headline itself all already say it. */}
           <h1
             className="section-heading mt-3"
             style={{ fontSize: 'clamp(30px,5vw,52px)', lineHeight: 1.05, color: 'var(--ink)' }}
@@ -265,43 +267,63 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 6 — HOW WE SOLVE IT */}
+      {/* 6 — HOW WE SOLVE IT. Photograph left, words and blocks right.
+          The picture is `08-rail` from the Higgsfield library, copied into
+          `public/about/` and given its WebP variants — that folder is
+          GITIGNORED (.gitignore:72), so an <img> pointing into it renders on
+          this laptop and 404s in production (Invariant 11). It also had to go
+          through scripts/optimise-images.mjs or lib/staticImage.test.ts fails
+          on a missing variant. 1,015KB jpg -> 8/15/23/28KB webp.
+
+          A rail of garments is the literal picture of the heading above it:
+          everything the houses publish, of which very little is kept. */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
         <div className={INNER}>
-          <div className="eyebrow">How we solve it</div>
-          <h2
-            className="section-heading mt-3"
-            style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
-          >
-            Read everything, publish very little
-          </h2>
+          <div className="grid gap-9 md:gap-14 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] md:items-start">
+            {/* Square at md, not 4:5. Measured on the shipped render: at 4:5
+                the figure stood 609px against a 407px text column and hung
+                200px below the last block. A square is 460px there, which
+                lands between the closed height and the height with a block
+                open, so it reads as level either way.
+                NOTE the comment sits ABOVE the element, not among the
+                attributes: a JSX expression comment inside an opening tag is a
+                syntax error. Writing this note is what proved it twice — first
+                by putting it in the tag, then by quoting the brace-slash-star
+                form inside a JSX comment, which closed the comment early.
+                §10.27, in a third place. */}
+            <figure
+              className="m-0 overflow-hidden aspect-[16/10] md:aspect-square"
+              style={{ borderRadius: 18, background: 'var(--aubergine)' }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/about/rail-1024.webp"
+                srcSet={aboutSrcSet('/about/rail.jpg')}
+                /* This is a COLUMN, not the viewport: below md it is the full
+                   width, above it roughly 40% of a 1220px-capped page. `100vw`
+                   here would have the browser pick the 1920 candidate to fill
+                   a 460px box. */
+                sizes="(min-width: 768px) 40vw, 100vw"
+                alt="A brass rail hung with modest garments against a plum wall"
+                className="w-full h-full object-cover"
+                decoding="async"
+                loading="lazy"
+              />
+            </figure>
 
-          <ol className="mt-10 grid gap-8 md:grid-cols-2">
-            {HOW.map((h) => (
-              <li
-                key={h.step}
-                className="p-6"
-                style={{
-                  background: 'var(--parchment)',
-                  border: '1px solid var(--hairline)',
-                  borderRadius: 8,
-                }}
+            <div>
+              <div className="eyebrow">How we solve it</div>
+              <h2
+                className="section-heading mt-3"
+                style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
               >
-                <div className="eyebrow" style={{ color: 'var(--plum)' }}>
-                  {h.step}
-                </div>
-                <h3
-                  className="serif mt-3"
-                  style={{ fontSize: 20, lineHeight: 1.2, color: 'var(--ink)' }}
-                >
-                  {h.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-                  {h.body}
-                </p>
-              </li>
-            ))}
-          </ol>
+                Read everything, publish very little
+              </h2>
+              <div className="mt-8">
+                <HowBlocks blocks={HOW} />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -316,29 +338,39 @@ export default function AboutPage() {
             What gets in
           </h2>
 
-          <div className="mt-10 grid gap-10 md:grid-cols-2">
-            <ul className="space-y-4">
-              {[
-                'Independent houses that design their own clothes.',
-                'Pieces we would put in front of someone whose taste we respect.',
-                'Stock a shopper can actually buy today, checked on every refresh.',
-              ].map((t) => (
-                <li
-                  key={t}
-                  className="flex gap-3 text-sm leading-relaxed"
-                  style={{ color: 'var(--ink)' }}
-                >
-                  <Sparkle
-                    size={16}
-                    weight="fill"
-                    style={{ color: 'var(--brass)', flexShrink: 0, marginTop: 3 }}
-                  />
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
+          {/* One column, not two. The three that get in carry the seal mark;
+              the three that do not carry nothing at all — Tina's call, and it
+              is the clearer of the two anyway: an icon on both lists made them
+              read as one list of six in which three happened to be crossed
+              out, which is exactly what went wrong on the phone earlier. */}
+          <ul className="mt-9 space-y-4">
+            {[
+              'Independent houses that design their own clothes.',
+              'Pieces we would put in front of someone whose taste we respect.',
+              'Stock a shopper can actually buy today, checked on every refresh.',
+            ].map((t) => (
+              <li
+                key={t}
+                className="flex gap-3 text-sm leading-relaxed"
+                style={{ color: 'var(--ink)' }}
+              >
+                <SealCheck
+                  size={17}
+                  weight="fill"
+                  aria-hidden
+                  style={{ color: 'var(--brass)', flexShrink: 0, marginTop: 2 }}
+                />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
 
-            <ul className="space-y-4">
+          <div className="mt-10">
+            <div className="eyebrow">What we don&rsquo;t do</div>
+            {/* No icons, and therefore no icon gutter — these hang on the same
+                left edge as the heading above rather than being indented into
+                a column that no longer exists. */}
+            <ul className="mt-4 space-y-3">
               {[
                 'Women’s clothing only.',
                 'Clothing only — no perfume, bakhoor, candles or gift sets.',
@@ -347,57 +379,64 @@ export default function AboutPage() {
                 // absolutely, that line would contradict it two screens later.
                 'No mass-market or budget labels among the houses.',
               ].map((t) => (
-                <li
-                  key={t}
-                  className="flex gap-3 text-sm leading-relaxed"
-                  style={{ color: 'var(--ink)' }}
-                >
-                  <Prohibit
-                    size={16}
-                    weight="bold"
-                    style={{ color: 'var(--plum)', flexShrink: 0, marginTop: 3 }}
-                  />
-                  <span>{t}</span>
+                <li key={t} className="text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                  {t}
                 </li>
               ))}
             </ul>
           </div>
+        </div>
+      </section>
 
-          {/* The seal, and its limits. The negative clause is load-bearing:
-              without it the page implies a guarantee the site cannot honour. */}
-          <div
-            className="mt-12 p-6 md:p-8"
-            style={{
-              background: 'var(--bone)',
-              border: '1px solid var(--hairline)',
-              borderRadius: 8,
-            }}
-          >
+      {/* 8 — WHAT THE SEAL MEANS, as an aubergine band rather than a bordered
+          card — the same treatment as the figures band, per Tina.
+          The negative clause is load-bearing: without it the page implies a
+          guarantee the site cannot honour.
+          Every colour here is the dark-ground variant. --brass on aubergine is
+          4.41:1 and fails AA at label sizes, and --muted goes the WRONG WAY on
+          a dark ground; #e7d3b6 and --muted-on-dark are the tokens the rest of
+          the site already uses for exactly this. */}
+      <section className={`aubergine-band ${BAND}`}>
+        <div className={INNER}>
+          <div className={MEASURE}>
             <div className="flex gap-3 items-center">
-              <SealCheck size={20} weight="fill" style={{ color: 'var(--brass)' }} />
-              <div className="eyebrow" style={{ color: 'var(--ink)' }}>
+              <SealCheck size={22} weight="fill" aria-hidden style={{ color: '#e7d3b6' }} />
+              <div className="eyebrow" style={{ color: '#e7d3b6' }}>
                 What the seal means
               </div>
             </div>
-            <p className="mt-4 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+            <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--parchment)' }}>
               A seal is a judgement about craft and design — that we have looked at the clothes and
               think they are well made and well designed.
             </p>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--muted-on-dark)' }}>
               It is not a promise about shipping, service or returns. Those are between you and the
               house, on the house&rsquo;s own site, under its own terms.
             </p>
-            <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-6">
+            <Link
+              href="/designers"
+              className="nav-link inline-flex items-center gap-1.5 mt-7"
+              style={{ color: '#e7d3b6' }}
+            >
               See the houses <ArrowRight size={13} weight="bold" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 8 — WHERE THIS IS GOING */}
+      {/* 9 — WHERE THIS IS GOING, with the disclosure alongside it on the
+          right. Two columns of one band rather than two stacked bands, per
+          Tina.
+
+          `MEASURE` is off both columns: each is already about 47% of a
+          1220px-capped page, which is ~540px — inside the 65-75 characters a
+          measure exists to enforce, so capping at 768 would do nothing but
+          leave a gap. Below md the grid collapses and they stack in the same
+          order, disclosure last, which is where it was. */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
         <div className={INNER}>
-          <div className={MEASURE}>
+          <div className="grid gap-12 md:gap-16 md:grid-cols-2 md:items-start">
+          <div>
           <div className="eyebrow">Where this is going</div>
           <h2
             className="section-heading mt-3"
@@ -422,43 +461,8 @@ export default function AboutPage() {
             editorial, and the space to show what they can do.
           </p>
           </div>
-        </div>
-      </section>
 
-      {/* 9 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
-      {PEOPLE.length > 0 ? (
-        <section className={BAND} style={{ background: 'var(--parchment)' }}>
-          <div className={INNER}>
-            <div className="eyebrow">Who is behind it</div>
-            <h2
-              className="section-heading mt-3"
-              style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
-            >
-              The people
-            </h2>
-            <div className="mt-10 grid gap-8 md:grid-cols-3">
-              {PEOPLE.map((p) => (
-                <div key={p.name}>
-                  <div className="serif" style={{ fontSize: 22, color: 'var(--ink)' }}>
-                    {p.name}
-                  </div>
-                  <div className="eyebrow mt-2">{p.role}</div>
-                  {p.line ? (
-                    <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-                      {p.line}
-                    </p>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      {/* 10 — HOW THIS IS PAID FOR */}
-      <section className={BAND} style={{ background: 'var(--bone)' }}>
-        <div className={INNER}>
-          <div className={MEASURE}>
+          <div>
           <div className="eyebrow">Disclosure</div>
           <h2
             className="section-heading mt-3"
@@ -501,8 +505,39 @@ export default function AboutPage() {
             ))}
           </div>
           </div>
+          </div>
         </div>
       </section>
+
+      {/* 10 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
+      {PEOPLE.length > 0 ? (
+        <section className={BAND} style={{ background: 'var(--parchment)' }}>
+          <div className={INNER}>
+            <div className="eyebrow">Who is behind it</div>
+            <h2
+              className="section-heading mt-3"
+              style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
+            >
+              The people
+            </h2>
+            <div className="mt-10 grid gap-8 md:grid-cols-3">
+              {PEOPLE.map((p) => (
+                <div key={p.name}>
+                  <div className="serif" style={{ fontSize: 22, color: 'var(--ink)' }}>
+                    {p.name}
+                  </div>
+                  <div className="eyebrow mt-2">{p.role}</div>
+                  {p.line ? (
+                    <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                      {p.line}
+                    </p>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* 11 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
