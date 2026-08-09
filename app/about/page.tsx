@@ -116,13 +116,14 @@ export default function AboutPage() {
       <section className="pt-16 md:pt-24 pb-5 md:pb-7" style={{ background: 'var(--parchment)' }}>
         <div className={`${INNER} pt-16`}>
           <div className={`${MEASURE} mx-auto text-center`}>
-          {/* No "About" eyebrow — cut on Tina's word. The <title>, the nav's
-              active state and the headline itself all already say it. */}
+          {/* Just "About", and no eyebrow above it. Both on Tina's word, in
+              that order: the eyebrow went because it duplicated the word, and
+              the headline is now the word. */}
           <h1
-            className="section-heading mt-3"
+            className="section-heading"
             style={{ fontSize: 'clamp(30px,5vw,52px)', lineHeight: 1.05, color: 'var(--ink)' }}
           >
-            The archive for everything modest
+            About
           </h1>
           {/* The standfirst that sat here — "a curated index of modest fashion
               … a curator, not a catalogue" — was cut on Tina's word. It was
@@ -451,40 +452,54 @@ export default function AboutPage() {
             the houses.
           </p>
 
-          {/* The seal, and its limits. The negative clause is load-bearing:
-              without it the page implies a guarantee the site cannot honour. */}
-          <div
-            className="mt-12 pt-10"
-            style={{ borderTop: '1px solid rgba(250,247,241,0.16)' }}
-          >
+        </div>
+      </section>
+
+      {/* 8 — THE SEAL. Out of the purple and into a band of its own with a
+          real heading, per Tina — it was a small labelled block tacked onto
+          the end of "The standard", and the seal is its own subject.
+
+          Back on a light ground, so every colour goes back to its light
+          variant: the label and icon to --brass-ink (--brass itself is 3.07:1
+          on parchment and fails AA at label sizes, which is exactly what
+          --brass-ink exists for), the body to --ink, the caveat to --muted,
+          and the link loses its dark-ground override. The rule that used to
+          separate it inside the purple band is gone with it — a band boundary
+          does that job now.
+
+          The negative clause is load-bearing: without it the page implies a
+          guarantee the site cannot honour. */}
+      <section className={BAND} style={{ background: 'var(--parchment)' }}>
+        <div className={INNER}>
           <div className={MEASURE}>
             <div className="flex gap-3 items-center">
-              <SealCheck size={22} weight="fill" aria-hidden style={{ color: '#e7d3b6' }} />
-              <div className="eyebrow" style={{ color: '#e7d3b6' }}>
-                What the seal means
+              <SealCheck size={20} weight="fill" aria-hidden style={{ color: 'var(--brass-ink)' }} />
+              <div className="eyebrow" style={{ color: 'var(--brass-ink)' }}>
+                The seal
               </div>
             </div>
-            <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--parchment)' }}>
+            <h2
+              className="section-heading mt-4"
+              style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
+            >
+              What the seal means
+            </h2>
+            <p className="mt-6 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
               A seal is a judgement about craft and design — that we have looked at the clothes and
               think they are well made and well designed.
             </p>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--muted-on-dark)' }}>
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
               It is not a promise about shipping, service or returns. Those are between you and the
               house, on the house&rsquo;s own site, under its own terms.
             </p>
-            <Link
-              href="/designers"
-              className="nav-link inline-flex items-center gap-1.5 mt-7"
-              style={{ color: '#e7d3b6' }}
-            >
+            <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-7">
               See the houses <ArrowRight size={13} weight="bold" />
             </Link>
-          </div>
           </div>
         </div>
       </section>
 
-      {/* 8 — WHERE THIS IS GOING, with the disclosure alongside it on the
+      {/* 9 — WHERE THIS IS GOING, with the disclosure alongside it on the
           right. Two columns of one band rather than two stacked bands, per
           Tina.
 
@@ -569,7 +584,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 9 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
+      {/* 10 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
       {PEOPLE.length > 0 ? (
         <section className={BAND} style={{ background: 'var(--parchment)' }}>
           <div className={INNER}>
@@ -599,7 +614,7 @@ export default function AboutPage() {
         </section>
       ) : null}
 
-      {/* 10 — CLOSE */}
+      {/* 11 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} text-center`}>
           <h2
