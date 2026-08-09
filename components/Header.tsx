@@ -109,12 +109,30 @@ export function Header() {
                of true centre. leading-none removes the same problem vertically. */
             style={{ fontSize: 13, letterSpacing: 0 }}
           >
-            {/* No nudge. It carried translateY(-1px) on the argument that a
-                heart's visual mass sits low in its box — but measured on the
-                current header every other element centres on y=53 and the heart
-                sat on 52, i.e. a pixel HIGH, and visibly out of line with the
-                currency icon beside it. Re-measure before reintroducing one. */}
-            <Heart size={17} weight={count > 0 ? 'fill' : 'regular'} style={{ display: 'block' }} />
+            {/* translateY(-1px), reinstated 2026-08-09 — and this note is the
+                third time it has moved, so here is how to settle it.
+
+                Measure the INK, not the box. Those are different things and the
+                difference is exactly 1px here. A previous pass removed this
+                nudge because the heart's BOX centred on 52 against everyone
+                else's 53; that was true, and fixing the box (the wrapper is
+                `flex` now, see above) left the box perfect at 53.00 — while the
+                heart still read low, because Phosphor's heart glyph is not
+                vertically centred inside its own viewBox. Screenshotted at
+                DPR 4 and trimmed to the drawn pixels: heart ink centres on
+                54.00 against a 53.00 box, in BOTH the regular and fill weights,
+                on the phone and at 1440. The hamburger and the currency disc
+                measure 0.00 offset, so this is the heart alone.
+
+                To re-check: render the icon, crop its box with some padding,
+                `magick … -fuzz 25% -trim` to the ink, and compare that centre
+                with the box centre. Do not compare bounding boxes and conclude
+                anything about what a reader sees. */}
+            <Heart
+              size={17}
+              weight={count > 0 ? 'fill' : 'regular'}
+              style={{ display: 'block', transform: 'translateY(-1px)' }}
+            />
             {count > 0 ? count : null}
           </Link>
           {/* Same hairline rule as the one between the crest and the wordmark,
