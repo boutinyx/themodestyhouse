@@ -415,12 +415,28 @@ export default function AboutPage() {
 
           The negative clause is load-bearing: without it the page implies a
           guarantee the site cannot honour. */}
-      <section className={BAND} style={{ background: 'var(--parchment)' }}>
+      {/* #f0e8d9 — the darker beige Tina asked for. It is 1.14:1 against
+          --parchment, which is a visible step without becoming a second brand
+          colour.
+
+          THE TEXT HAD TO MOVE WITH IT, and this is not fussiness. Measured on
+          this ground, --brass-ink falls to 4.12:1 and --muted to 4.10:1,
+          both under the 4.5 AA floor for label and body text — and every
+          beige darker than --parchment does this, including ones far lighter
+          than the one chosen. #826430 and #726758 are the darkest-by-one-step
+          variants of those two tokens that clear it here (4.52 and 4.54), and
+          they still clear it on parchment (5.15, 5.17) so they read as the
+          same colours, not new ones. --ink is 13.72 and needs nothing.
+
+          They are literals rather than tokens because they exist for this one
+          band; promoting them would imply a second light ground the rest of
+          the site does not have. */}
+      <section className={BAND} style={{ background: '#f0e8d9' }}>
         <div className={INNER}>
           <div className={MEASURE}>
             <div className="flex gap-3 items-center">
-              <SealCheck size={20} weight="fill" aria-hidden style={{ color: 'var(--brass-ink)' }} />
-              <div className="eyebrow" style={{ color: 'var(--brass-ink)' }}>
+              <SealCheck size={20} weight="fill" aria-hidden style={{ color: '#826430' }} />
+              <div className="eyebrow" style={{ color: '#826430' }}>
                 The seal
               </div>
             </div>
@@ -434,30 +450,58 @@ export default function AboutPage() {
               A seal is a judgement about craft and design — that we have looked at the clothes and
               think they are well made and well designed.
             </p>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: '#726758' }}>
               It is not a promise about shipping, service or returns. Those are between you and the
               house, on the house&rsquo;s own site, under its own terms.
             </p>
-            <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-7">
+            {/* The colour override is required, not decorative. `.nav-link`
+                takes `color: var(--muted)` from the STYLESHEET, so it is not
+                visible at this call site — and on this darker ground --muted
+                is 4.10:1. axe caught it as the only violation on the page
+                after the ground changed: I had hand-checked every colour
+                written in the markup and missed the one inherited from a
+                class. #726758 is the same darkened muted the caveat above
+                uses, at 4.54:1. Hover still resolves to --aubergine, which is
+                far above the floor here. */}
+            <Link
+              href="/designers"
+              className="nav-link inline-flex items-center gap-1.5 mt-7"
+              style={{ color: '#726758' }}
+            >
               See the houses <ArrowRight size={13} weight="bold" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 8 — WHERE THIS IS GOING, with the disclosure alongside it on the
-          right. Two columns of one band rather than two stacked bands, per
-          Tina.
+      {/* 8 — WHERE THIS IS GOING, the full width of the page.
+          The two-column grid is gone with the disclosure that used to fill the
+          right half, so this runs the whole of INNER, as Tina asked.
 
-          `MEASURE` is off both columns: each is already about 47% of a
-          1220px-capped page, which is ~540px — inside the 65-75 characters a
-          measure exists to enforce, so capping at 768 would do nothing but
-          leave a gap. Below md the grid collapses and they stack in the same
-          order, disclosure last, which is where it was. */}
+          `MEASURE` is deliberately off it: at 1156px and 14px this sets about
+          180 characters a line, well past the 65-75 the MEASURE comment names
+          — the same trade she made for the mission band above (whose "Why this
+          exists" eyebrow she later removed, though the full-width measure
+          stayed), and the same reason it is stated here rather than quietly
+          capped.
+
+          THE DISCLOSURE THAT WAS HERE IS DELETED, on her word. Kept verbatim
+          for a paste-back, since re-typing a legal paragraph from memory is
+          how one quietly changes:
+            "Some links on this site are affiliate links. If you click one and
+             buy something, we may earn a small commission — at no extra cost
+             to you. It is what funds the site."
+            "Commission never influences whether a house earns the seal, and it
+             never changes the price you pay. We are not a shop: you buy from
+             the house, on its own site."
+            "The full detail is in the legal pages." + Terms / Privacy policy
+          The site is NOT left without an FTC disclosure: components/Footer.tsx
+          carries one on every page, plus a "Full disclosure" link, and its
+          comment says it must stay site-wide and visible. Verified in the
+          served HTML, not assumed. P0-D in CLAUDE.md §11 is about the site
+          having a disclosure at all, and the footer is what satisfies it. */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
         <div className={INNER}>
-          <div className="grid gap-12 md:gap-16 md:grid-cols-2 md:items-start">
-          <div>
           <div className="eyebrow">Where this is going</div>
           <h2
             className="section-heading mt-3"
@@ -481,52 +525,6 @@ export default function AboutPage() {
             not as houses to feature: the independents keep the front page, the seal and the
             editorial, and the space to show what they can do.
           </p>
-          </div>
-
-          <div>
-          <div className="eyebrow">Disclosure</div>
-          <h2
-            className="section-heading mt-3"
-            style={{ fontSize: 'clamp(24px,3.5vw,34px)', lineHeight: 1.1, color: 'var(--ink)' }}
-          >
-            How this is paid for
-          </h2>
-          <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-            Some links on this site are affiliate links. If you click one and buy something, we may
-            earn a small commission — at no extra cost to you. It is what funds the site.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-            Commission never influences whether a house earns the seal, and it never changes the
-            price you pay. We are not a shop: you buy from the house, on its own site.
-          </p>
-          {/* Standalone links, not inline in the sentence. Inline they measured
-              32x20 and 82x20 — under the 44px tap target minimum, and a link
-              inside running text cannot be padded without overlapping its lines. */}
-          <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-            The full detail is in the legal pages.
-          </p>
-          <div className="mt-2 flex flex-wrap gap-x-8">
-            {[
-              { href: '/terms', label: 'Terms' },
-              { href: '/privacy', label: 'Privacy policy' },
-            ].map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="inline-flex items-center text-sm"
-                style={{
-                  minHeight: 44,
-                  color: 'var(--plum)',
-                  textDecoration: 'underline',
-                  textUnderlineOffset: 3,
-                }}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
-          </div>
-          </div>
         </div>
       </section>
 
