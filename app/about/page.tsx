@@ -135,8 +135,11 @@ export default function AboutPage() {
   return (
     <main>
       {/* 1 — STATEMENT.
-          NOT `BAND`. Its `pb` is cut from 64/96 to 20/28 so "Why this exists"
-          sits up close under the headline instead of a band's width away.
+          NOT `BAND`. Its `pb` is cut from 64/96 to 20/28 so the mission prose
+          sits up close under the headline instead of a band's width away. (It
+          was cut for the "Why this exists" eyebrow, removed on Tina's word
+          2026-08-09; the tight `pb` is still right without it — the first
+          paragraph, rather than a label, now sits close under.)
           The two are one opening now — same parchment, no rule between them —
           and BAND's full vertical rhythm is for separating bands that differ.
           The `pt` half of BAND is kept verbatim, so nothing above moves. */}
@@ -193,11 +196,10 @@ export default function AboutPage() {
               she made, not an oversight; if the lines read long, two columns
               at md would buy back the measure without giving up the width. */}
           <div className={INNER}>
-            <div className="eyebrow">Why this exists</div>
             {MISSION.map((para, i) => (
               <p
                 key={para}
-                className={`${i === 0 ? 'mt-5' : 'mt-3'} text-sm leading-relaxed`}
+                className={`${i === 0 ? '' : 'mt-3'} text-sm leading-relaxed`}
                 style={{ color: 'var(--ink)' }}
               >
                 {para}
