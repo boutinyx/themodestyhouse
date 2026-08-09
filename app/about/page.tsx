@@ -142,19 +142,32 @@ export default function AboutPage() {
           ground between two text blocks of the same colour. */}
       {MISSION.length ? (
         <section className="pb-16 md:pb-24" style={{ background: 'var(--parchment)' }}>
+          {/* NO `MEASURE` here — Tina asked for this block full width, so it
+              runs the whole of INNER instead of the 768px the other prose
+              bands use.
+
+              INNER's 1220px cap is the widest anything on this site goes: the
+              header pill and the footer both sit on that line, and the long
+              comment on INNER above exists because a band that ran outboard of
+              them was a measured defect. Edge-to-edge would recreate it.
+
+              The cost is line length. At 1156px of usable width and 14px Jost
+              this sets about 180 characters a line, against the 65-75 a reader
+              tracks without losing the return sweep — the same measurement the
+              MEASURE comment above was written for. That is a deliberate trade
+              she made, not an oversight; if the lines read long, two columns
+              at md would buy back the measure without giving up the width. */}
           <div className={INNER}>
-            <div className={MEASURE}>
-              <div className="eyebrow">Why this exists</div>
-              {MISSION.map((para, i) => (
-                <p
-                  key={para}
-                  className={`${i === 0 ? 'mt-5' : 'mt-3'} text-sm leading-relaxed`}
-                  style={{ color: 'var(--ink)' }}
-                >
-                  {para}
-                </p>
-              ))}
-            </div>
+            <div className="eyebrow">Why this exists</div>
+            {MISSION.map((para, i) => (
+              <p
+                key={para}
+                className={`${i === 0 ? 'mt-5' : 'mt-3'} text-sm leading-relaxed`}
+                style={{ color: 'var(--ink)' }}
+              >
+                {para}
+              </p>
+            ))}
           </div>
         </section>
       ) : null}
