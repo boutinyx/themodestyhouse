@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SealCheck, ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { SealCheck, Sparkle, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { aboutSrcSet } from '@/lib/staticImage';
 import HowBlocks from '@/components/HowBlocks';
@@ -327,22 +327,42 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 7 — THE STANDARD */}
-      <section className={BAND} style={{ background: 'var(--parchment)' }}>
+      {/* 7 — THE STANDARD, on the purple. Tina asked for "what gets in" in the
+          banner too, and the seal band was already directly beneath it, so
+          these are ONE band rather than two aubergine sections stacked. Two
+          would have read as one block anyway, but with a double-padded seam
+          down the middle of it and two <section>s a screen reader announces
+          separately.
+
+          EVERY COLOUR HERE IS A DARK-GROUND VARIANT, and none of it is
+          cosmetic. --ink is unreadable on aubergine. --brass is 4.41:1 there,
+          which fails AA at label sizes. --muted goes the WRONG WAY on a dark
+          ground — it was darkened to clear AA on parchment, so it gets worse
+          here, which is exactly why --muted-on-dark exists. #e7d3b6 is the
+          lighter brass the homepage already uses on this ground.
+
+          The internal rules are parchment at 16%, not --hairline: a hairline
+          picked for a light ground disappears on a dark one. */}
+      <section className={`aubergine-band ${BAND}`}>
         <div className={INNER}>
-          <div className="eyebrow">The standard</div>
+          <div className="eyebrow" style={{ color: '#e7d3b6' }}>
+            The standard
+          </div>
           <h2
             className="section-heading mt-3"
-            style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
+            style={{
+              fontSize: 'clamp(26px,4vw,40px)',
+              lineHeight: 1.05,
+              color: 'var(--parchment)',
+            }}
           >
             What gets in
           </h2>
 
-          {/* One column, not two. The three that get in carry the seal mark;
-              the three that do not carry nothing at all — Tina's call, and it
-              is the clearer of the two anyway: an icon on both lists made them
-              read as one list of six in which three happened to be crossed
-              out, which is exactly what went wrong on the phone earlier. */}
+          {/* Phosphor Sparkle, filled — the mark the Verified badge already
+              carries on the homepage rail, the spotlight and /designers, so the
+              qualifying list is stamped with the site's own seal rather than a
+              second icon invented for this page. */}
           <ul className="mt-9 space-y-4">
             {[
               'Independent houses that design their own clothes.',
@@ -352,21 +372,26 @@ export default function AboutPage() {
               <li
                 key={t}
                 className="flex gap-3 text-sm leading-relaxed"
-                style={{ color: 'var(--ink)' }}
+                style={{ color: 'var(--parchment)' }}
               >
-                <SealCheck
-                  size={17}
+                <Sparkle
+                  size={16}
                   weight="fill"
                   aria-hidden
-                  style={{ color: 'var(--brass)', flexShrink: 0, marginTop: 2 }}
+                  style={{ color: '#e7d3b6', flexShrink: 0, marginTop: 3 }}
                 />
                 <span>{t}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-10">
-            <div className="eyebrow">What we don&rsquo;t do</div>
+          <div
+            className="mt-10 pt-9"
+            style={{ borderTop: '1px solid rgba(250,247,241,0.16)' }}
+          >
+            <div className="eyebrow" style={{ color: '#e7d3b6' }}>
+              What we don&rsquo;t do
+            </div>
             {/* No icons, and therefore no icon gutter — these hang on the same
                 left edge as the heading above rather than being indented into
                 a column that no longer exists. */}
@@ -379,25 +404,23 @@ export default function AboutPage() {
                 // absolutely, that line would contradict it two screens later.
                 'No mass-market or budget labels among the houses.',
               ].map((t) => (
-                <li key={t} className="text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                <li
+                  key={t}
+                  className="text-sm leading-relaxed"
+                  style={{ color: 'var(--parchment)' }}
+                >
                   {t}
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-      </section>
 
-      {/* 8 — WHAT THE SEAL MEANS, as an aubergine band rather than a bordered
-          card — the same treatment as the figures band, per Tina.
-          The negative clause is load-bearing: without it the page implies a
-          guarantee the site cannot honour.
-          Every colour here is the dark-ground variant. --brass on aubergine is
-          4.41:1 and fails AA at label sizes, and --muted goes the WRONG WAY on
-          a dark ground; #e7d3b6 and --muted-on-dark are the tokens the rest of
-          the site already uses for exactly this. */}
-      <section className={`aubergine-band ${BAND}`}>
-        <div className={INNER}>
+          {/* The seal, and its limits. The negative clause is load-bearing:
+              without it the page implies a guarantee the site cannot honour. */}
+          <div
+            className="mt-12 pt-10"
+            style={{ borderTop: '1px solid rgba(250,247,241,0.16)' }}
+          >
           <div className={MEASURE}>
             <div className="flex gap-3 items-center">
               <SealCheck size={22} weight="fill" aria-hidden style={{ color: '#e7d3b6' }} />
@@ -421,10 +444,11 @@ export default function AboutPage() {
               See the houses <ArrowRight size={13} weight="bold" />
             </Link>
           </div>
+          </div>
         </div>
       </section>
 
-      {/* 9 — WHERE THIS IS GOING, with the disclosure alongside it on the
+      {/* 8 — WHERE THIS IS GOING, with the disclosure alongside it on the
           right. Two columns of one band rather than two stacked bands, per
           Tina.
 
@@ -509,7 +533,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 10 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
+      {/* 9 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
       {PEOPLE.length > 0 ? (
         <section className={BAND} style={{ background: 'var(--parchment)' }}>
           <div className={INNER}>
@@ -539,7 +563,7 @@ export default function AboutPage() {
         </section>
       ) : null}
 
-      {/* 11 — CLOSE */}
+      {/* 10 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} text-center`}>
           <h2
