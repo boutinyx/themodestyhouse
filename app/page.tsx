@@ -199,17 +199,20 @@ export default function Home() {
               descender of the italic "shopping." beside it. */}
           <Link href="/editorial" className="nav-link !hidden md:!inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
         </div>
-        {/* The side column only earns its place once there are at least two
-            stories to put in it. There are two posts in content/editorial today,
-            so `posts.slice(1, 4)` yields ONE — a 110px card beside a 460px
-            feature, leaving 350px of bare parchment in the right half of the
-            section. It read as a section that had failed to load.
-            With fewer than two, the grid stays single-column: the feature takes
-            the full width and the remaining story sits under it as a wide row,
-            which is the same card doing the same job. The moment a third post is
-            published the intended two-column composition comes back on its own. */}
+        {/* KNOWN AND ACCEPTED, so please do not "fix" it again.
+            `moreStories` is posts.slice(1, 4) — this layout wants three stories
+            in the right column and content/editorial holds two posts, so it gets
+            one. At 1440 that is a 110px card beside a 460px feature and about
+            350px of empty parchment under it.
+            It was made to collapse to a single column below two side stories on
+            2026-08-09, and Tina reverted that the same day: it took the feature
+            from 674px to 1156px and turned the second story into a full-width
+            110px letterbox with its thumbnail marooned at one end, which trades a
+            vertical gap for a horizontal one. This is her composition and it
+            resolves itself the moment a third post is published — the answer is a
+            post, not a breakpoint. */}
         {feature && (
-          <div className={`grid grid-cols-1 gap-8 ${moreStories.length >= 2 ? 'md:grid-cols-[1.5fr_1fr]' : ''}`}>
+          <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8">
             <Link href={`/editorial/${feature.slug}`} className="relative block overflow-hidden" style={{ borderRadius: 8, minHeight: 460, background: 'var(--aubergine)' }}>
               {feature.image && (
                 // eslint-disable-next-line @next/next/no-img-element
