@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SealCheck, Sparkle, ArrowRight } from '@phosphor-icons/react/dist/ssr';
+// Sparkle went with the purple "The standard" band — its three criteria are
+// step 02 of HOW now, and the blocks are numbered rather than iconed.
+import { SealCheck, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { aboutSrcSet } from '@/lib/staticImage';
 import HowBlocks from '@/components/HowBlocks';
@@ -74,7 +76,24 @@ const MEASURE = 'max-w-3xl';
 const BAND = 'py-16 md:py-24';
 const INNER = 'max-w-[1220px] mx-auto px-8';
 
-/** How the catalogue is actually built. Mechanism, not marketing. */
+/** How the catalogue is actually built. Mechanism, not marketing.
+ *
+ *  "The standard" was a purple band of its own until 2026-08-09; Tina asked
+ *  for it gone and folded in here. Two things happened rather than a paste:
+ *
+ *  - "What gets in" became step 02 — its three criteria are the filter, and
+ *    the filter belongs between reading everything and throwing most of it
+ *    away. Nothing about it was reworded.
+ *  - "What we don't do" did NOT become a sixth step. Its list — menswear,
+ *    perfume, bakhoor, candles, gift sets — was already step 03's body, word
+ *    for word, so a separate block would have been the same duplication this
+ *    page has spent the day losing. The one thing it said that step 03 did
+ *    not, "no mass-market or budget labels", is now a sentence inside it.
+ *
+ *  "among the houses" is kept, and is load-bearing: as a flat ban it would
+ *  contradict "Layering, and the high street" further down the page, which
+ *  says high-street pieces are coming in as styling material.
+ */
 const HOW = [
   {
     step: '01',
@@ -83,16 +102,21 @@ const HOW = [
   },
   {
     step: '02',
-    title: 'We throw most of it away',
-    body: 'Menswear, perfume, bakhoor, candles and gift sets are removed before anything is published. Whole labels are cut when they do not meet the standard, and cut labels stay cut.',
+    title: 'What gets in',
+    body: 'Independent houses that design their own clothes. Pieces we would put in front of someone whose taste we respect. Stock a shopper can actually buy today, checked on every refresh.',
   },
   {
     step: '03',
+    title: 'We throw most of it away',
+    body: 'Menswear, perfume, bakhoor, candles and gift sets are removed before anything is published, and no mass-market or budget labels among the houses. Whole labels are cut when they do not meet the standard, and cut labels stay cut.',
+  },
+  {
+    step: '04',
     title: 'We check it again every night',
     body: 'The catalogue is re-read nightly. New arrivals appear, and anything a house has removed or sold out stops being shown — so what you click still exists.',
   },
   {
-    step: '04',
+    step: '05',
     title: 'We send you to the house',
     body: 'There is no cart here. Every piece links to the house that made it, at its own price in its own currency, and you buy from them.',
   },
@@ -421,96 +445,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 8 — THE STANDARD, on the purple. Tina asked for "what gets in" in the
-          banner too. It is ONE band rather than two aubergine sections
-          stacked: two would have read as one block anyway, but with a
-          double-padded seam down the middle of it, and as two regions a screen
-          reader announces separately.
-
-          The seal band now sits ABOVE this one rather than below — swapped on
-          2026-08-09 at Tina's request. Nothing here depends on that order any
-          more; the one line that did is the note on "among the houses" below,
-          and "Layering, and the high street" is still the band underneath.
-
-          EVERY COLOUR HERE IS A DARK-GROUND VARIANT, and none of it is
-          cosmetic. --ink is unreadable on aubergine. --brass is 4.41:1 there,
-          which fails AA at label sizes. --muted goes the WRONG WAY on a dark
-          ground — it was darkened to clear AA on parchment, so it gets worse
-          here, which is exactly why --muted-on-dark exists. #e7d3b6 is the
-          lighter brass the homepage already uses on this ground.
-
-          The internal rules are parchment at 16%, not --hairline: a hairline
-          picked for a light ground disappears on a dark one. */}
-      <section className={`aubergine-band ${BAND}`}>
-        <div className={INNER}>
-          <div className="eyebrow" style={{ color: '#e7d3b6' }}>
-            The standard
-          </div>
-          <h2
-            className="section-heading mt-3"
-            style={{
-              fontSize: 'clamp(26px,4vw,40px)',
-              lineHeight: 1.05,
-              color: 'var(--parchment)',
-            }}
-          >
-            What gets in
-          </h2>
-
-          {/* Phosphor Sparkle, filled — the mark the Verified badge already
-              carries on the homepage rail, the spotlight and /designers, so the
-              qualifying list is stamped with the site's own seal rather than a
-              second icon invented for this page. */}
-          <ul className="mt-9 space-y-4">
-            {[
-              'Independent houses that design their own clothes.',
-              'Pieces we would put in front of someone whose taste we respect.',
-              'Stock a shopper can actually buy today, checked on every refresh.',
-            ].map((t) => (
-              <li
-                key={t}
-                className="flex gap-3 text-sm leading-relaxed"
-                style={{ color: 'var(--parchment)' }}
-              >
-                <Sparkle
-                  size={16}
-                  weight="fill"
-                  aria-hidden
-                  style={{ color: '#e7d3b6', flexShrink: 0, marginTop: 3 }}
-                />
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* One sentence, no rule above it, per Tina — it now reads as the
-              closing clause of the list rather than as a second section.
-
-              This is a COMPRESSION of the three lines that were here, not new
-              copy: "Women's clothing only" is menswear out, "clothing only" is
-              the non-apparel veto, and the third is unchanged. All three are
-              the editorial rules in CLAUDE.md §7, so the sentence cannot drift
-              from what the pipeline actually does.
-
-              "among the houses" is kept and is load-bearing. Stated as a flat
-              ban on mass-market labels it would contradict "Layering, and the
-              high street" one band below, which says high-street pieces are
-              coming in as styling material. */}
-          <p
-            className="mt-8 text-sm leading-relaxed"
-            style={{ color: 'var(--parchment)' }}
-          >
-            <span className="eyebrow" style={{ color: '#e7d3b6', marginRight: 8 }}>
-              What we don&rsquo;t do
-            </span>
-            Menswear, perfume, bakhoor, candles, gift sets, or mass-market and budget labels among
-            the houses.
-          </p>
-
-        </div>
-      </section>
-
-      {/* 9 — WHERE THIS IS GOING, with the disclosure alongside it on the
+      {/* 8 — WHERE THIS IS GOING, with the disclosure alongside it on the
           right. Two columns of one band rather than two stacked bands, per
           Tina.
 
@@ -595,7 +530,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 10 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
+      {/* 9 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
       {PEOPLE.length > 0 ? (
         <section className={BAND} style={{ background: 'var(--parchment)' }}>
           <div className={INNER}>
@@ -625,7 +560,7 @@ export default function AboutPage() {
         </section>
       ) : null}
 
-      {/* 11 — CLOSE */}
+      {/* 10 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} text-center`}>
           <h2
