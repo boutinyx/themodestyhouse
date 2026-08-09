@@ -21,17 +21,20 @@ export const metadata: Metadata = {
  * §10.18: the copy on this site is hers, and nothing here may invent a line of
  * it or tidy one.
  *
- * An ARRAY, not the string this was, because it is six paragraphs. Rendered as
- * one block of text they would run together into a wall inside a half-width
- * overlay; the map below is the only structural change to the original band.
+ * An ARRAY rather than one string, so each paragraph is its own <p>.
+ *
+ * CUT on her word, 2026-08-09 — four paragraphs that were here and are now on
+ * the page nowhere:
+ *   "It's also for the ones who work the other way — …make it modest anyway."
+ *   "Modest style, for everyone. Wherever you're coming from."
+ *   "Where this is headed: partnering with modest brands, …do it well."
+ *   "Welcome to The Modesty House."
+ * Recorded verbatim here rather than only in git, because they are hers and
+ * putting any of them back should be a copy-and-paste, not a retype.
  */
 const MISSION = [
   'The Modesty House started because modest fashion is having a moment — a huge wave of brands, all rising at once — but they’re scattered everywhere. Beautiful labels, impossible to find, buried across a hundred different sites. I wanted to give them a podium.',
   'So this is a curator, not a catalogue. A place where modest brands get a stage, and where getting dressed feels creative again.',
-  'It’s also for the ones who work the other way — who fall in love with something from H&M, Stradivarius, or Bershka that was never meant to be modest, and make it modest anyway. That’s the art. Taking anything and making it yours.',
-  'Modest style, for everyone. Wherever you’re coming from.',
-  'Where this is headed: partnering with modest brands, building edits from the high-street names too, and turning this into a place where we share ideas and keep each other inspired — because the best reason to show up modest is seeing someone else do it well.',
-  'Welcome to The Modesty House.',
 ];
 
 /**
@@ -370,12 +373,64 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 7 — THE STANDARD, on the purple. Tina asked for "what gets in" in the
-          banner too, and the seal band was already directly beneath it, so
-          these are ONE band rather than two aubergine sections stacked. Two
-          would have read as one block anyway, but with a double-padded seam
-          down the middle of it and two <section>s a screen reader announces
-          separately.
+      {/* 7 — THE SEAL, in a band of its own with a real heading, per Tina — it
+          was a small labelled block tacked onto the end of "The standard", and
+          the seal is its own subject.
+
+          It now runs BEFORE "What gets in" — swapped on 2026-08-09 at Tina's
+          request. The two moved as whole blocks, each keeping its own ground,
+          so the band rhythm still alternates (bone, parchment, aubergine,
+          bone) and no two same-coloured bands touch.
+
+          A light ground, so every colour is a light variant: the label and
+          icon --brass-ink (--brass itself is 3.07:1 on parchment and fails AA
+          at label sizes, which is exactly what --brass-ink exists for), the
+          body --ink, the caveat --muted, and the link with no dark-ground
+          override. The rule that used to separate it inside the purple band is
+          gone — a band boundary does that job now.
+
+          The negative clause is load-bearing: without it the page implies a
+          guarantee the site cannot honour. */}
+      <section className={BAND} style={{ background: 'var(--parchment)' }}>
+        <div className={INNER}>
+          <div className={MEASURE}>
+            <div className="flex gap-3 items-center">
+              <SealCheck size={20} weight="fill" aria-hidden style={{ color: 'var(--brass-ink)' }} />
+              <div className="eyebrow" style={{ color: 'var(--brass-ink)' }}>
+                The seal
+              </div>
+            </div>
+            <h2
+              className="section-heading mt-4"
+              style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
+            >
+              What the seal means
+            </h2>
+            <p className="mt-6 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+              A seal is a judgement about craft and design — that we have looked at the clothes and
+              think they are well made and well designed.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+              It is not a promise about shipping, service or returns. Those are between you and the
+              house, on the house&rsquo;s own site, under its own terms.
+            </p>
+            <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-7">
+              See the houses <ArrowRight size={13} weight="bold" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 8 — THE STANDARD, on the purple. Tina asked for "what gets in" in the
+          banner too. It is ONE band rather than two aubergine sections
+          stacked: two would have read as one block anyway, but with a
+          double-padded seam down the middle of it, and as two regions a screen
+          reader announces separately.
+
+          The seal band now sits ABOVE this one rather than below — swapped on
+          2026-08-09 at Tina's request. Nothing here depends on that order any
+          more; the one line that did is the note on "among the houses" below,
+          and "Layering, and the high street" is still the band underneath.
 
           EVERY COLOUR HERE IS A DARK-GROUND VARIANT, and none of it is
           cosmetic. --ink is unreadable on aubergine. --brass is 4.41:1 there,
@@ -452,50 +507,6 @@ export default function AboutPage() {
             the houses.
           </p>
 
-        </div>
-      </section>
-
-      {/* 8 — THE SEAL. Out of the purple and into a band of its own with a
-          real heading, per Tina — it was a small labelled block tacked onto
-          the end of "The standard", and the seal is its own subject.
-
-          Back on a light ground, so every colour goes back to its light
-          variant: the label and icon to --brass-ink (--brass itself is 3.07:1
-          on parchment and fails AA at label sizes, which is exactly what
-          --brass-ink exists for), the body to --ink, the caveat to --muted,
-          and the link loses its dark-ground override. The rule that used to
-          separate it inside the purple band is gone with it — a band boundary
-          does that job now.
-
-          The negative clause is load-bearing: without it the page implies a
-          guarantee the site cannot honour. */}
-      <section className={BAND} style={{ background: 'var(--parchment)' }}>
-        <div className={INNER}>
-          <div className={MEASURE}>
-            <div className="flex gap-3 items-center">
-              <SealCheck size={20} weight="fill" aria-hidden style={{ color: 'var(--brass-ink)' }} />
-              <div className="eyebrow" style={{ color: 'var(--brass-ink)' }}>
-                The seal
-              </div>
-            </div>
-            <h2
-              className="section-heading mt-4"
-              style={{ fontSize: 'clamp(26px,4vw,40px)', lineHeight: 1.05, color: 'var(--ink)' }}
-            >
-              What the seal means
-            </h2>
-            <p className="mt-6 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-              A seal is a judgement about craft and design — that we have looked at the clothes and
-              think they are well made and well designed.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-              It is not a promise about shipping, service or returns. Those are between you and the
-              house, on the house&rsquo;s own site, under its own terms.
-            </p>
-            <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-7">
-              See the houses <ArrowRight size={13} weight="bold" />
-            </Link>
-          </div>
         </div>
       </section>
 
