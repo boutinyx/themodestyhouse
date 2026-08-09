@@ -225,10 +225,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5 — WHAT WE DO / THE PROBLEM */}
+      {/* 5 — WHAT WE DO / THE PROBLEM.
+          The two columns are locked to a SUBGRID, so the eyebrows, the
+          headings and the body copy each sit on a shared baseline.
+
+          Tina sent a screenshot of this band reading "so uneven", and it was:
+          "One place for modest womenswear" wraps to two lines in a ~560px
+          column at 36px while "It is scattered, and hard to trust" fits on
+          one, so the left body started a whole line lower than the right. Two
+          independent columns have no way to know that.
+
+          Fixed with `grid-template-rows: subgrid`, not by nudging: each column
+          spans the parent's three rows and inherits their heights, so every
+          row is as tall as the taller of the two — at every width, and however
+          either heading happens to wrap. A `min-height` on the headings would
+          have papered over 1440 and broken again at 768, and left an empty
+          line at any width where both fit on one.
+
+          `gap-y-0` at md is deliberate: the row gap would otherwise land
+          BETWEEN eyebrow, heading and body. The spacing inside a column stays
+          on the margins it always used. Below md there is one column, the
+          subgrid is off, and gap-y separates the two blocks as before.
+
+          Browsers without subgrid (pre-Safari 16 / pre-Chrome 117) get exactly
+          today's behaviour — unaligned, not broken. */}
       <section className={BAND} style={{ background: 'var(--parchment)' }}>
-        <div className={`${INNER} grid gap-12 md:grid-cols-2`}>
-          <div>
+        <div
+          className={`${INNER} grid gap-y-12 gap-x-12 md:gap-y-0 md:gap-x-16 md:grid-cols-2 md:grid-rows-[auto_auto_auto]`}
+        >
+          <div className="md:grid md:grid-rows-subgrid md:row-span-3">
             <div className="eyebrow">What we do</div>
             <h2
               className="section-heading mt-3"
@@ -236,17 +261,19 @@ export default function AboutPage() {
             >
               One place for modest womenswear
             </h2>
-            <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-              We index modest womenswear from independent houses and put it in one place, so it can
-              be looked through the way a wardrobe is — by shape, by occasion, by mood — instead of
-              one shop at a time.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-              We do not sell anything. Every piece links out to the house that made it.
-            </p>
+            <div className="mt-5">
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                We index modest womenswear from independent houses and put it in one place, so it
+                can be looked through the way a wardrobe is — by shape, by occasion, by mood —
+                instead of one shop at a time.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                We do not sell anything. Every piece links out to the house that made it.
+              </p>
+            </div>
           </div>
 
-          <div>
+          <div className="md:grid md:grid-rows-subgrid md:row-span-3">
             <div className="eyebrow">The problem</div>
             <h2
               className="section-heading mt-3"
@@ -254,15 +281,17 @@ export default function AboutPage() {
             >
               It is scattered, and hard to trust
             </h2>
-            <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-              Modest fashion lives on {houses} separate storefronts trading in {currencies}{' '}
-              currencies. There is no single window onto it, so finding a piece means remembering
-              which house carries what, and opening a dozen tabs to compare.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-              Search does not help much either: it rewards whoever spends the most, which is rarely
-              the houses doing the most interesting work.
-            </p>
+            <div className="mt-5">
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                Modest fashion lives on {houses} separate storefronts trading in {currencies}{' '}
+                currencies. There is no single window onto it, so finding a piece means remembering
+                which house carries what, and opening a dozen tabs to compare.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
+                Search does not help much either: it rewards whoever spends the most, which is
+                rarely the houses doing the most interesting work.
+              </p>
+            </div>
           </div>
         </div>
       </section>
