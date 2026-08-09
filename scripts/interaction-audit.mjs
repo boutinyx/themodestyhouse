@@ -19,6 +19,13 @@ mkdirSync(OUT, { recursive: true });
 const VIEWPORTS = {
   'mobile-390': { width: 390, height: 844, touch: true },
   'tablet-819': { width: 819, height: 1180, touch: true },
+  // iPad landscape. The one combination the other three miss: TOUCH at
+  // >=1024px, i.e. a device that gets the full desktop header — including the
+  // currency switcher, which lives in `hidden lg:flex` — while having no hover
+  // at all. That is precisely the blind spot behind CLAUDE.md §10.25, where
+  // hover-only filter dropdowns were unreachable on every Apple device.
+  // tablet-819 does not cover it: below 1024 the desktop header is not there.
+  'ipad-1366': { width: 1366, height: 1024, touch: true },
   'desktop-1440': { width: 1440, height: 900, touch: false },
 };
 const ENGINES = { chromium, webkit };
@@ -247,14 +254,61 @@ for (const engineName of engineNames) {
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'favourites-populated', error: e.message.split('\n')[0] }); }
 
     // ---- 6. currency switcher (desktop bar) -------------------------------
+    //
+    // The old locator here was `header button` filtered by hasText
+    // /GBP|USD|EUR|Native|Brand/. The trigger renders `{preference ?? null}`,
+    // so on the DEFAULT "As listed" setting it has no text at all — the filter
+    // never matched, isVisible() was false, and this section logged
+    // "not present at this width" on every run at every width. It had never
+    // actually opened the menu. Match on the aria-label instead, which exists
+    // in both states.
     try {
       await go('/directory');
-      const cur = page.locator('header button').filter({ hasText: /GBP|USD|EUR|Native|Brand/i }).first();
+      const cur = page.locator('header button[aria-label*="currency" i]').first();
       if (await cur.isVisible().catch(() => false)) {
-        await cur.click();
-        await page.waitForTimeout(450);
-        await shot('currency-open');
-        note({ engine: engineName, viewport: vpName, state: 'currency-menu-open', ...(await page.evaluate(PROBE)) });
+        const open = () => page.evaluate(() => {
+          const m = document.querySelector('[role="menu"],[role="radiogroup"]');
+          return !!m && m.getBoundingClientRect().width > 0;
+        });
+
+        if (vp.touch) {
+          // §10.25 guard. A touch device has no hover, so tap is the only way
+          // in. This is the case that matters at >=1024px: an iPad in landscape
+          // gets the desktop header, and a hover-only trigger would be dead.
+          await cur.tap();
+          await page.waitForTimeout(500);
+          const opened = await open();
+          await shot('currency-open');
+          note({ engine: engineName, viewport: vpName, state: 'currency-menu-open',
+                 openedOnTap: opened, ...(opened ? {} : { PROBLEM: 'TAP DID NOT OPEN THE CURRENCY MENU' }) });
+        } else {
+          // Hover drives it on a mouse. The bug this replaced: clicking the
+          // trigger PINNED the menu open (Base UI promotes a hover-opened menu
+          // to click-opened), so moving the pointer away no longer closed it —
+          // reported as "when i click the currency button it stays".
+          await cur.hover();
+          await page.waitForTimeout(450);
+          const openedOnHover = await open();
+          await shot('currency-open');
+
+          await cur.click();
+          await page.waitForTimeout(450);
+          const survivedClick = await open();
+
+          await page.mouse.move(20, vp.height - 60);
+          await page.waitForTimeout(700);
+          const closedAfterClick = !(await open());
+
+          note({
+            engine: engineName, viewport: vpName, state: 'currency-menu-open',
+            openedOnHover, survivedClick, closedAfterClick,
+            ...(openedOnHover && survivedClick && closedAfterClick ? {} : {
+              PROBLEM: !openedOnHover ? 'HOVER DID NOT OPEN THE CURRENCY MENU'
+                : !survivedClick ? 'CLICK CLOSED IT — hover and click are fighting'
+                : 'PINNED OPEN AFTER A CLICK — hover-out no longer closes it',
+            }),
+          });
+        }
       } else {
         note({ engine: engineName, viewport: vpName, state: 'currency-menu-open', skipped: 'not present at this width' });
       }
@@ -307,6 +361,13 @@ for (const r of report) {
     }
   }
   if (r.reach?.found && r.reach.lastBottom > r.reach.vh) bits.push(`menu last row below fold after scroll (${r.reach.lastBottom} > ${r.reach.vh})`);
+  // Generic escape hatch, and it is load-bearing. This reporter builds its
+  // output from a hard-coded list of keys, so a note carrying a field the loop
+  // does not know about produces NO bits and prints "ok" — a failing check that
+  // reports success. That happened: the currency assertions below were added,
+  // set `PROBLEM`, and the audit cheerfully passed on code that had the bug.
+  // Any check may set PROBLEM and be seen. Prefer it to adding another key here.
+  if (r.PROBLEM) bits.push(r.PROBLEM);
   if (!bits.length) bits.push('ok');
   console.log(`${r.state.padEnd(26)} ${r.viewport.padEnd(13)} ${r.engine.padEnd(9)} ${bits.join('\n' + ' '.repeat(50))}`);
 }

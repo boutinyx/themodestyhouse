@@ -31,12 +31,13 @@ export function CurrencySwitcher() {
   return (
     <Menu.Root>
       <Menu.Trigger
-        // Opens on hover AS WELL AS click, so it behaves like the Directory and
-        // Styles menus next to it. Base UI's `Menu` is click-only by default
-        // while `NavigationMenu` opens on hover, and that difference is felt
-        // immediately: pointing at the dollar did nothing while its neighbours
-        // opened. closeDelay gives you time to travel from the trigger down into
-        // the panel without it shutting on the way.
+        // Opens on hover, like the Products menu next to it. Base UI's `Menu`
+        // is click-only by default while `NavigationMenu` opens on hover, and
+        // that difference is felt immediately: pointing at the dollar did
+        // nothing while its neighbour opened. closeDelay gives you time to
+        // travel from the trigger down into the panel without it shutting on
+        // the way. (The "Styles" menu this used to sit beside was removed on
+        // 2026-08-09 with the /style/[vibe] pages.)
         openOnHover
         // delay 0: the default 100ms before opening is small on paper but reads
         // as lag, because the pointer is already still by the time it fires.
@@ -44,6 +45,40 @@ export function CurrencySwitcher() {
         // period for travelling from the trigger down into the panel.
         delay={0}
         closeDelay={120}
+        /* MOUSE: swallow the press, so hover alone drives this menu.
+         *
+         * Tina's report was "when i click the currency button it stays". Base UI
+         * distinguishes a HOVER-opened menu from a CLICK-opened one: the first
+         * closes when the pointer leaves, the second is pinned open until an
+         * outside click or Escape. So pointing at the dollar and then clicking
+         * it — the natural thing to do — silently promoted the menu to
+         * click-opened, and from then on moving the pointer away did nothing.
+         *
+         * Preventing the press on a mouse means it is never promoted: hover
+         * opens, moving away closes, and the click is inert.
+         *
+         * The `pointerType` test is what keeps this honest on touch. A tap
+         * reports 'touch' (a stylus 'pen') and is let through, so tap-to-open
+         * still works. This control renders inside `hidden lg:flex`
+         * (Header.tsx), so a phone never sees it — MobileNav carries its own
+         * currency rows — but an iPad in landscape is >=1024px, gets this
+         * header, and has no hover at all. Gating on pointerType rather than
+         * deleting the click is what stops this repeating §10.25, where the
+         * filter dropdowns were unreachable on every Apple device for as long
+         * as they existed.
+         *
+         * A first attempt instead dropped the CLOSE whose reason was
+         * `trigger-press`, via a controlled Menu.Root. It made the click
+         * harmless but left the menu click-PROMOTED, so hovering away still
+         * would not close it — i.e. it preserved the exact complaint. The probe
+         * caught that; do not go back to it.
+         */
+        onPointerDown={(e) => {
+          if (e.pointerType === 'mouse') {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }}
         aria-label={preference ? `Prices in ${preference}. Change currency` : 'Prices as listed. Change currency'}
         className="nav-link inline-flex items-center justify-center leading-none"
         data-active={preference !== null}
