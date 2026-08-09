@@ -279,7 +279,20 @@ export default function AboutPage() {
               className="section-heading mt-3"
               style={{ fontSize: 'clamp(24px,3.5vw,36px)', lineHeight: 1.1, color: 'var(--ink)' }}
             >
-              It is scattered, and hard to trust
+              {/* A manual break, deliberately — and the one place on this page
+                  where that is right. The h1 has a note saying a hard break is
+                  one width's rag frozen and wrong at the others; that holds
+                  when you are fighting the wrap. Here the two-line shape IS the
+                  decision: the subgrid makes the heading row two lines tall
+                  because the left heading needs two, and Tina asked for this
+                  one to fill it rather than leave a gap under a single line.
+                  Safe at every audited width — the longer half, "and hard to
+                  trust", is ~213px at the 27px this sets at 768, inside a
+                  320px column — and if a width ever did wrap it to three, the
+                  subgrid absorbs it and the columns stay level. */}
+              It is scattered,
+              <br />
+              and hard to trust
             </h2>
             <div className="mt-5">
               <p className="text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
