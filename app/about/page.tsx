@@ -117,11 +117,11 @@ export default function AboutPage() {
           >
             The archive for everything modest
           </h1>
-          <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-            The Modesty House is a curated index of modest fashion — brand by brand, piece by
-            piece. A curator, not a catalogue: we frame the fashion and point you to where
-            it&rsquo;s sold.
-          </p>
+          {/* The standfirst that sat here — "a curated index of modest fashion
+              … a curator, not a catalogue" — was cut on Tina's word. It was
+              written before her copy existed and said the same thing as her
+              own "So this is a curator, not a catalogue" one band below, in a
+              voice that was not hers. */}
           </div>
         </div>
       </section>
