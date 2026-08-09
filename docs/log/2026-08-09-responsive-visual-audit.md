@@ -330,3 +330,70 @@ measurement pass before the sweep reported it.
   `.next` underneath a running `next start`, which invalidated an entire audit pass (165 of
   234 rows served 500s for their own chunks). The visual audit's stylesheet assertion is
   what caught it; without that it would have read as ~40 new defects.
+
+---
+
+## Follow-on, same day — four things Tina caught after the first push
+
+The audit above was pushed as `1858059`. Everything below came from Tina looking at the
+result on a real iPhone and a real desktop, which found things 276 automated renders did not.
+That is the honest summary of this session: the matrix caught the structural breakage, and
+the owner's eye caught the last few pixels.
+
+**`b12f52e` — the header icons were not centred, and the sign-up pill sat 20px left.**
+The menu button was 2.2px above the favourites heart. The heart is a direct flex item and
+centred on the pill's y=53; the menu button sat in a `block` wrapper, which puts an
+inline-flex control in a LINE BOX — it then aligns on a text baseline and reserves descender
+space that has no text in it, and centred on y=50.8. Every wrapper in that row is `flex` now.
+The sign-up pill carried `marginLeft: -20`, an old deliberate trade (align the PLACEHOLDER
+with the eyebrow, at the cost of the pill hanging into the gutter). On a phone the overhang
+is the only thing you see. Its edge now sits on the column. The brass button was also
+floating — 36.5px inside a 42px pill — which **was caused by this session's own iOS fix**:
+forcing inputs to 16px made the input taller than the button and `items-center` centred the
+shorter one. `items-stretch`.
+
+**`b0b4df4` — the heart, again, this time on its ink.** Tina: still not centred. It was, by
+box, exactly — and that is why it was hard to see. Phosphor's heart glyph is not vertically
+centred inside its own viewBox: screenshotted at DPR 4 and trimmed to the drawn pixels, ink
+centre 54.00 against a 53.00 box, in both weights, phone and desktop. Hamburger and currency
+disc both measure 0.00. `translateY(-1px)` restored — the third time that nudge has moved,
+because a previous pass removed it on a **bounding-box** measurement that was correct and
+irrelevant. The comment now records the method, not the verdict.
+
+**`0296517` — the Edit-grid collapse was reverted, at Tina's instruction.** Item 22 above
+fixed a real 350px void, but paid for it by taking her feature photograph from 674px to
+1156px and turning the second story into a full-width 110px letterbox. A vertical gap traded
+for a horizontal one, and widening the hero on the homepage is composition, not a defect fix.
+It should have been raised, not shipped. The comment left behind records that the gap is
+known, measured and accepted, and that **the answer is a third post, not a breakpoint**.
+
+**`9040f03` — the Style-It pieces sit side by side on a tablet.** Tina's ask. Stacked, the
+card was a 400px column 779px tall in an 819px row with ~184px of dead parchment either side.
+From 768–1023 the two slots are a row and the card fills the width, so its left edge lines up
+with the copy, the shop link and the buttons. Measured at 819: 400x779 → 755x402, section
+height 1253 → 876. Below 768 unchanged (stacked, 208x225). From 1024 they stack again because
+the card moves into the right-hand grid column. Frames capped at 240px from `md` so a 1023px
+tablet does not balloon the garments past their desktop size.
+
+## And the harness lied a fourth time — caught by someone else
+
+A concurrent session fixing the currency menu (`08cb573`,
+`docs/log/2026-08-09-currency-switcher-hover.md`) found three defects in
+`scripts/interaction-audit.mjs`, which this session wrote:
+
+1. **The currency check had never run, on any pass.** Its locator matched the trigger by
+   TEXT, and the trigger renders `{preference ?? null}` — no text at all on the default
+   "As listed". Every run logged `skipped (not present at this width)`. Now matched on
+   `aria-label`, which exists in both states.
+2. **The reporter could not represent a failing check.** It built its line from a hard-coded
+   list of keys and printed `ok` when none matched, so new assertions setting a `PROBLEM`
+   field passed silently on code that had the bug — confirmed with a negative control against
+   the unfixed component. This is §10.26 reproduced *inside* the harness written to catch it.
+3. **No viewport was both touch and >=1024px.** `tablet-819` is touch but below `lg`, so it
+   never sees the desktop header; `desktop-1440` is wide but not touch. The iPad-landscape
+   combination that §10.25 is *about* was untested. `ipad-1366` added.
+
+So three "clean" interaction results reported in this entry were weaker than stated: the
+currency row was never exercised, and a failing assertion could not have surfaced. The
+page-level matrix in `scripts/visual-audit.mjs` is unaffected — its checks are counted, not
+keyed.
