@@ -471,13 +471,37 @@ export default function AboutPage() {
                 class. #726758 is the same darkened muted the caveat above
                 uses, at 4.54:1. Hover still resolves to --aubergine, which is
                 far above the floor here. */}
-            <Link
-              href="/designers"
-              className="nav-link inline-flex items-center gap-1.5 mt-7"
-              style={{ color: '#726758' }}
-            >
-              See the houses <ArrowRight size={13} weight="bold" />
-            </Link>
+            {/* The seal's own call to action, moved here on Tina's word
+                2026-08-09 when the closing "Start with the directory" band was
+                removed. It belongs on the section that explains the seal, not
+                in a band at the foot of the page.
+
+                The fill is #826430, NOT --brass. --brass (#a98a5b) is what the
+                pill carried on the aubergine band, and against this ground it
+                measures 2.66:1 — under the 3:1 WCAG 2.2 SC 1.4.11 asks of a
+                control's boundary, so the pill would have had no discernible
+                edge. #826430 is the brass this band already uses for its icon
+                and eyebrow: 4.52:1 on the ground, and --parchment on it is
+                5.15:1, clearing AA at the pill's 12px. --ink would NOT (3.03:1)
+                — the text colour has to flip with the fill. The token's own
+                comment says --brass is "badges/graphic only, never buttons",
+                which is the same rule reached from the other end. */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <Link
+                href="/contact?topic=seal"
+                className="btn-pill inline-block"
+                style={{ background: '#826430', color: 'var(--parchment)' }}
+              >
+                Apply for the seal
+              </Link>
+              <Link
+                href="/designers"
+                className="nav-link inline-flex items-center gap-1.5"
+                style={{ color: '#726758' }}
+              >
+                See the houses <ArrowRight size={13} weight="bold" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -566,33 +590,6 @@ export default function AboutPage() {
         </section>
       ) : null}
 
-      {/* 10 — CLOSE */}
-      <section className={`aubergine-band ${BAND}`}>
-        <div className={`${INNER} text-center`}>
-          <h2
-            className="section-heading"
-            style={{ fontSize: 'clamp(24px,3.5vw,36px)', lineHeight: 1.1, color: 'var(--parchment)' }}
-          >
-            Start with the directory
-          </h2>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <Link
-              href="/directory"
-              className="btn-pill inline-block"
-              style={{ background: 'var(--parchment)', color: 'var(--ink)' }}
-            >
-              Browse the directory
-            </Link>
-            <Link
-              href="/contact?topic=seal"
-              className="btn-pill inline-block"
-              style={{ background: 'var(--brass)', color: 'var(--ink)' }}
-            >
-              Apply for the seal
-            </Link>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
