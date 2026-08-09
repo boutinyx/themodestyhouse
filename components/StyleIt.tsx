@@ -182,7 +182,7 @@ function Slot({
      room it was tuned for. Nothing about the desktop composition changes. */
   return (
     <div
-      className="flex flex-col items-center min-w-0 w-full lg:w-auto lg:flex-initial"
+      className="flex flex-col items-center min-w-0 w-full md:flex-1 md:w-auto lg:w-auto lg:flex-initial"
       style={{
         ['--fw' as string]: `${frame.w}px`,
         ['--fh' as string]: `${frame.h}px`,
@@ -223,7 +223,7 @@ function Slot({
         >
           <CaretLeft size={16} weight="bold" />
         </button>
-        <div className="relative flex items-center justify-center min-w-0 flex-1 aspect-[var(--far)] lg:flex-none lg:aspect-auto lg:w-[var(--fw)] lg:h-[var(--fh)] max-w-full">
+        <div className="relative flex items-center justify-center min-w-0 flex-1 aspect-[var(--far)] max-w-full md:max-w-[240px] lg:flex-none lg:aspect-auto lg:w-[var(--fw)] lg:h-[var(--fh)] lg:max-w-none">
           {/* lazy: this is also what keeps the desktop-only dress column from
               costing a phone anything — a lazy image in a display:none box is
               never fetched. */}
@@ -441,7 +441,7 @@ export default function StyleIt() {
         {/* Tighter padding on a phone — 20px a side was 40px of the 326 available,
             and every pixel of it comes off the garment. */}
         <div
-          className="order-2 w-full max-w-[400px] mx-auto px-3 py-4 lg:max-w-none lg:mx-0 lg:px-5 lg:py-[22px]"
+          className="order-2 w-full max-w-[400px] mx-auto px-3 py-4 md:max-w-none md:mx-0 md:px-5 md:py-6 lg:px-5 lg:py-[22px]"
           style={{ background: 'var(--bone)', border: '1px solid var(--hairline)', borderRadius: 18, boxShadow: '0 30px 60px -34px rgba(68,25,67,0.22)' }}
         >
           <div className="flex flex-col xl:flex-row">
@@ -449,12 +449,21 @@ export default function StyleIt() {
             <div className="flex-1 flex flex-col items-center px-0 xl:px-2" style={{ minWidth: 0 }}>
               <div className="serif italic" style={{ fontSize: 20, color: 'var(--ink)' }}>Mix &amp; match</div>
               <div className="eyebrow mt-1">Top + Bottom</div>
-              {/* Stacked at every width. It was briefly side by side on a phone;
-                  Tina reverted that. On a phone each frame is now FLUID — it
-                  takes whatever the row has left after the arrows — so the
-                  garment is as large as the screen allows and the block grows
-                  taller to fit it, rather than being pinned to a fixed size. */}
-              <div className="flex-1 w-full flex flex-col items-center justify-start gap-4 lg:gap-5 mt-4">
+              {/* Stacked on a phone, SIDE BY SIDE from 768 to 1023, stacked
+                  again from 1024.
+                  Not a contradiction of the old note here, which said side by
+                  side was tried on a PHONE and Tina reverted it — at 390px two
+                  frames plus four arrows leaves nothing for the cloth. A tablet
+                  is the opposite problem: stacked, the card was a 400px column
+                  779px TALL sitting in an 819px row with ~184px of dead
+                  parchment either side. Tina's call, 2026-08-09.
+                  From 1024 they stack again because the card moves into the
+                  right-hand grid column beside the copy and no longer has the
+                  width for a row.
+                  Each frame is FLUID and takes whatever the row has left after
+                  the arrows, capped at 240px from md so a wide tablet does not
+                  balloon the garments past their desktop size. */}
+              <div className="flex-1 w-full flex flex-col md:flex-row lg:flex-col items-center md:items-start lg:items-center justify-start gap-4 md:gap-6 lg:gap-5 mt-4">
                 <Slot piece={t} frame={TOP_FRAME} artMaxH={TOP_ART_H} onPrev={() => cycle(setTop, TOPS.length, -1)} onNext={() => cycle(setTop, TOPS.length, 1)} />
                 <Slot piece={b} frame={TOP_FRAME} onPrev={() => cycle(setBottom, BOTTOMS.length, -1)} onNext={() => cycle(setBottom, BOTTOMS.length, 1)} />
               </div>
