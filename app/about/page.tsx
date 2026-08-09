@@ -196,6 +196,12 @@ export default function AboutPage() {
               she made, not an oversight; if the lines read long, two columns
               at md would buy back the measure without giving up the width. */}
           <div className={INNER}>
+            {/* The "Why this exists" eyebrow is gone, on Tina's word
+                2026-08-09. The first paragraph loses its mt-5 with it: that
+                margin existed to separate the prose FROM the eyebrow, and left
+                behind it would read as an unexplained gap under the headline
+                rather than as spacing. The band's own pb, and section 1's
+                deliberately tight pb above it, now carry the whole rhythm. */}
             {MISSION.map((para, i) => (
               <p
                 key={para}
