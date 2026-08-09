@@ -371,18 +371,22 @@ export default function AboutPage() {
           <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
             Modest dressing is not only bought from modest houses. A great deal of it is layering —
             a mainstream dress over a polo neck, a longer shirt worn open, a slip under something
-            sheer. We want to cover that too, with our own styling on it, so the pieces you already
-            own are part of the picture.
+            sheer. It&rsquo;s also for the ones who work the other way — who fall in love with
+            something from H&amp;M, Stradivarius or Bershka that was never meant to be modest, and
+            make it modest anyway. That&rsquo;s the art: taking anything and making it yours.
           </p>
           <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
             It also answers something the independent houses cannot. Almost all of them are online
             only and ship from abroad, so nothing can be tried on before it arrives. High-street
-            names — an H&amp;M, a Bershka — are already on the street where you live.
+            names — an H&amp;M, a Bershka, a Stradivarius — are already on the street where you live.
           </p>
           <p className="mt-5 text-sm leading-relaxed" style={{ color: 'var(--ink)' }}>
-            The podium stays with the modest houses. High-street pieces come in as things to layer,
-            not as houses to feature: the independents keep the front page, the seal and the
-            editorial, and the space to show what they can do.
+            Where this is headed: partnering with more modest houses, building edits from the
+            high-street names too, and turning this into a place to share ideas and keep each other
+            inspired — because the best reason to show up modest is seeing someone else do it well.
+            The podium stays with the modest houses: high-street pieces come in as things to layer,
+            not as houses to feature, so the independents keep the front page, the seal and the
+            editorial.
           </p>
           </div>
         </div>
@@ -470,12 +474,20 @@ export default function AboutPage() {
       {/* 10 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} text-center`}>
+          {/* Not --brass: it fails AA on aubergine. #e7d3b6 is the lighter
+              brass used for every other eyebrow on this background. */}
+          <div className="eyebrow" style={{ color: '#e7d3b6' }}>
+            Welcome to The Modest House
+          </div>
           <h2
-            className="section-heading"
+            className="section-heading mt-3"
             style={{ fontSize: 'clamp(24px,3.5vw,36px)', lineHeight: 1.1, color: 'var(--parchment)' }}
           >
-            Start with the directory
+            Modest style, for everyone.
           </h2>
+          <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--parchment)' }}>
+            Wherever you&rsquo;re coming from. Start with the directory.
+          </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link
               href="/directory"
