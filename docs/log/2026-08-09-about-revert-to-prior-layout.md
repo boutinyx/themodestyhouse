@@ -77,6 +77,30 @@ Then read at 1:1, because green is not the same as right. Desktop: her six parag
 on the right half over the plum, inside the 560px band, no growth needed. Phone: the band
 stacks below the photograph on aubergine and all six paragraphs are legible.
 
+## Follow-up, same day — the copy moved above the photograph
+
+Tina: *"i want the why this exsist before the photo"*.
+
+The band split in two. "Why this exists" is now its own parchment section between the
+statement and the picture; the photograph is a full-bleed image carrying nothing — which is
+exactly the "clean image band" the copy slot's original comment described for the empty
+case, now permanent rather than a fallback.
+
+Three things this forced, none cosmetic:
+
+- **Two colours had to change.** The paragraphs were `--parchment` because they sat on
+  plum — on parchment they are invisible. The eyebrow was `#e7d3b6`, the lighter brass kept
+  for dark grounds, which measures about 1.7:1 on parchment. Both revert to the light-ground
+  defaults, `--ink` and the plain `.eyebrow`. A move between grounds is never just a move.
+- **`pt-0` on the new section.** Band 1 above is also parchment and already carries BAND's
+  bottom padding; `py` on both would have left ~190px of dead ground between two text
+  blocks of the same colour, which reads as a fault rather than as rhythm.
+- **Every band comment after it was renumbered**, 4→5 through 10→11. Stale numbering in
+  comments is the cheapest possible lie for a file to tell.
+
+Re-verified: `tsc` clean, eslint clean, 407 tests, and visual-audit over `/about` at 9
+widths × 2 engines — 12 renders, **0 findings, `no-css 0` on all 12** — then read at 1:1.
+
 ## Notes / follow-ups
 
 - **The duplicate band.** "Where this is going — Layering, and the high street" (three

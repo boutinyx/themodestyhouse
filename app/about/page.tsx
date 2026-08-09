@@ -126,10 +126,45 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2 — Full-bleed photograph. The composition puts the lattice hard left
-          and leaves the right half empty plum, so from md up the note sits
-          INSIDE the image. Below that it stacks — parchment text over a busy
-          gold lattice at 393px is unreadable. */}
+      {/* 2 — WHY THIS EXISTS. Tina's words, on the page's own ground and BEFORE
+          the photograph rather than overlaid on it — her call: the words first,
+          the picture after.
+
+          Taking the copy off a dark photograph forces two colours to change,
+          and neither is cosmetic. The paragraphs were `--parchment` because
+          they sat on plum; on parchment that is invisible. The eyebrow was
+          #e7d3b6, the lighter brass kept for dark grounds; on parchment it
+          measures about 1.7:1. Both revert to the light-ground defaults —
+          `--ink` and the plain `.eyebrow`.
+
+          `pt-0`: band 1 above is also parchment and already carries its own
+          bottom padding, so BAND's `py` on both would leave ~190px of dead
+          ground between two text blocks of the same colour. */}
+      {MISSION.length ? (
+        <section className="pb-16 md:pb-24" style={{ background: 'var(--parchment)' }}>
+          <div className={INNER}>
+            <div className={MEASURE}>
+              <div className="eyebrow">Why this exists</div>
+              {MISSION.map((para, i) => (
+                <p
+                  key={para}
+                  className={`${i === 0 ? 'mt-5' : 'mt-3'} text-sm leading-relaxed`}
+                  style={{ color: 'var(--ink)' }}
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* 3 — Full-bleed photograph, carrying nothing. This is exactly the
+          "clean image band" the copy slot's original comment described for the
+          empty case; with the words moved above it, that is now its permanent
+          shape rather than its fallback. The composition puts the lattice hard
+          left and leaves the right half in plum, which is why it survives
+          being cropped to 256px on a phone. */}
       <section>
         <div className="relative md:min-h-[560px]" style={{ background: 'var(--aubergine)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -142,41 +177,10 @@ export default function AboutPage() {
             decoding="async"
             loading="lazy"
           />
-          {MISSION.length ? (
-            <div
-              className="hidden md:block md:absolute md:inset-0"
-              style={{
-                background:
-                  'linear-gradient(90deg, rgba(37,10,36,0) 30%, rgba(37,10,36,0.55) 55%, rgba(37,10,36,0.78) 100%)',
-              }}
-            />
-          ) : null}
-          {MISSION.length ? (
-            <div
-              className={`relative ${INNER} px-5 md:px-8 py-12 md:py-24 md:min-h-[560px] md:flex md:items-center md:justify-end`}
-            >
-              <div className="md:w-1/2">
-                {/* Not --brass: it fails AA on this ground. #e7d3b6 is the
-                    lighter brass the homepage already uses on aubergine. */}
-                <div className="eyebrow" style={{ color: '#e7d3b6' }}>
-                  Why this exists
-                </div>
-                {MISSION.map((para, i) => (
-                  <p
-                    key={para}
-                    className={`${i === 0 ? 'mt-4' : 'mt-3'} text-sm leading-relaxed`}
-                    style={{ color: 'var(--parchment)' }}
-                  >
-                    {para}
-                  </p>
-                ))}
-              </div>
-            </div>
-          ) : null}
         </div>
       </section>
 
-      {/* 3 — RECEIPTS */}
+      {/* 4 — RECEIPTS */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center`}>
           {figures.map((f) => (
@@ -201,7 +205,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4 — WHAT WE DO / THE PROBLEM */}
+      {/* 5 — WHAT WE DO / THE PROBLEM */}
       <section className={BAND} style={{ background: 'var(--parchment)' }}>
         <div className={`${INNER} grid gap-12 md:grid-cols-2`}>
           <div>
@@ -243,7 +247,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5 — HOW WE SOLVE IT */}
+      {/* 6 — HOW WE SOLVE IT */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
         <div className={INNER}>
           <div className="eyebrow">How we solve it</div>
@@ -283,7 +287,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 6 — THE STANDARD */}
+      {/* 7 — THE STANDARD */}
       <section className={BAND} style={{ background: 'var(--parchment)' }}>
         <div className={INNER}>
           <div className="eyebrow">The standard</div>
@@ -372,7 +376,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 7 — WHERE THIS IS GOING */}
+      {/* 8 — WHERE THIS IS GOING */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
         <div className={INNER}>
           <div className={MEASURE}>
@@ -403,7 +407,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 8 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
+      {/* 9 — THE PEOPLE. Renders only once PEOPLE has real entries. */}
       {PEOPLE.length > 0 ? (
         <section className={BAND} style={{ background: 'var(--parchment)' }}>
           <div className={INNER}>
@@ -433,7 +437,7 @@ export default function AboutPage() {
         </section>
       ) : null}
 
-      {/* 9 — HOW THIS IS PAID FOR */}
+      {/* 10 — HOW THIS IS PAID FOR */}
       <section className={BAND} style={{ background: 'var(--bone)' }}>
         <div className={INNER}>
           <div className={MEASURE}>
@@ -482,7 +486,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 10 — CLOSE */}
+      {/* 11 — CLOSE */}
       <section className={`aubergine-band ${BAND}`}>
         <div className={`${INNER} text-center`}>
           <h2
