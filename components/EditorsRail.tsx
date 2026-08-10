@@ -10,6 +10,8 @@ import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
 type Pick = {
   id: string;
+  brandSlug: string;
+  garment: string;
   url: string;
   image: string;
   title: string;
@@ -63,6 +65,9 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
             href={p.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
+            data-brand={p.brandSlug}
+            data-garment={p.garment}
+            data-surface="editors-rail"
             className="group shrink-0"
             style={{ width: 230, scrollSnapAlign: 'start' }}
           >

@@ -6,6 +6,8 @@ export function BrandCard({ b }: { b: Brand }) {
       href={b.homepage}
       target="_blank"
       rel="noopener noreferrer sponsored"
+      data-brand={b.slug}
+      data-surface="designers"
       className="product-card flex items-center justify-between gap-4 px-5 py-4"
     >
       <div>

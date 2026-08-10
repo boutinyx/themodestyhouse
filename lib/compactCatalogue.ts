@@ -8,6 +8,11 @@ import type { Brand, Garment, Product } from '@/lib/types';
  */
 export interface CardProduct {
   id: string;
+  /** Both of these are DERIVED from data the encoding already carries
+   *  (brandIdx, garmentIdx), so exposing them costs no extra payload bytes.
+   *  Needed by the outbound-click tracking — see lib/pulse.ts. */
+  brandSlug: string;
+  garment: Garment;
   title: string;
   brandName: string;
   price: number;
@@ -176,6 +181,8 @@ export function decodeCard(cat: CompactCatalogue, row: number): CardProduct {
   const image = cat.imagePrefixes[cat.rows.imagePrefixIdx[row]] + cat.rows.imageFile[row];
   return {
     id: `${brand.slug}:${cat.rows.shopifyId[row]}`,
+    brandSlug: brand.slug,
+    garment: cat.garments[cat.rows.garmentIdx[row]],
     title: cat.rows.title[row],
     brandName: brand.name,
     price: cat.rows.price[row],

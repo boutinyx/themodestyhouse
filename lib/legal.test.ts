@@ -101,6 +101,22 @@ describe('GDPR disclosures that must not silently regress', () => {
     }
   });
 
+  // Same coupling as above, for CUSTOM EVENTS. §2 enumerates exactly what Pulse
+  // collects, so shipping a new event without extending that list makes the
+  // policy quietly false — the §10.19 failure, in the one file where it is a
+  // legal problem rather than a red build.
+  it('discloses outbound-click tracking whenever the event is actually emitted', () => {
+    const pulse = readFileSync(path.join(process.cwd(), 'lib', 'pulse.ts'), 'utf8');
+    if (!pulse.includes("'outbound_click'")) return;
+    expect(privacy).toMatch(/Clicks through to a brand/);
+    // The disclosure names three dimensions; the code must not emit a fourth.
+    const props = pulse.match(/OUTBOUND_PROPS = \[([^\]]*)\]/);
+    expect(props, 'OUTBOUND_PROPS not found in lib/pulse.ts').toBeTruthy();
+    expect(props![1].match(/'/g)!.length / 2).toBe(3);
+    // And must not claim we record the product or the destination url.
+    expect(privacy).toMatch(/do \*\*not\*\* record which specific product/);
+  });
+
   it('does not promise a consent banner it never shows', () => {
     // §5 previously promised "ask for your consent through a cookie banner
     // first" for any analytics. Shipping cookieless analytics under legitimate

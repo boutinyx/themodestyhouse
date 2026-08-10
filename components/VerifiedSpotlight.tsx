@@ -58,6 +58,8 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
                 href={h.homepage}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
+                data-brand={h.slug}
+                data-surface="spotlight"
                 className={`tmh-card ${POS[i] || 'p1'}`}
                 style={{ backgroundImage: bg }}
               >

@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuickViewProvider } from '@/components/QuickView';
 import { CurrencyProvider } from '@/components/CurrencyProvider';
+import { OutboundTracking } from '@/components/OutboundTracking';
 import './globals.css';
 
 const display = Bodoni_Moda({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
@@ -39,6 +40,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {skim && (
           <Script src={`https://s.skimresources.com/js/${skim}.skimlinks.js`} strategy="afterInteractive" />
         )}
+        {/* Records a Pulse `outbound_click` when a visitor leaves for a brand —
+            one delegated listener, so the server components that render outbound
+            links stay server components. Inert until the script below loads. */}
+        <OutboundTracking />
         {/* Pulse — first-party audience measurement (ciphera.net).
             Cookieless: no document.cookie, no persistent visitor id. localStorage
             holds only a self-exclusion flag, sessionStorage only a per-session

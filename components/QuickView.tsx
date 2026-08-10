@@ -185,6 +185,9 @@ function Modal({
               href={product.url}
               target="_blank"
               rel="noopener noreferrer sponsored"
+              data-brand={product.brandSlug}
+              data-garment={product.garment}
+              data-surface="quickview"
               className="btn-pill text-center inline-flex items-center justify-center gap-2"
             >
               Shop at {product.brandName}

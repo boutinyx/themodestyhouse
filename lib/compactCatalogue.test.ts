@@ -63,6 +63,8 @@ describe('encodeCatalogue / decodeCard', () => {
     const card = decodeCard(cat, 0);
     expect(card).toEqual({
       id: PRODUCT.id,
+      brandSlug: PRODUCT.brandSlug,
+      garment: PRODUCT.garment,
       title: PRODUCT.title,
       brandName: PRODUCT.brandName,
       price: PRODUCT.price,

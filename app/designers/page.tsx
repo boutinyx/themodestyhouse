@@ -36,6 +36,8 @@ function Tile({ b, eager, seal }: { b: House; eager: boolean; seal: boolean }) {
       href={b.homepage}
       target="_blank"
       rel="noopener noreferrer sponsored"
+      data-brand={b.slug}
+      data-surface="designers"
       className="group block"
     >
       {/* The arch. A 3:4 portrait, because fashion is shot vertically and a

@@ -54,6 +54,8 @@ export function BrandMarquee({ houses, columns = 4 }: { houses: House[]; columns
                     href={h.homepage}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
+                    data-brand={h.slug}
+                    data-surface="marquee"
                     className="group relative block overflow-hidden shrink-0"
                     style={{
                       width: 176,
