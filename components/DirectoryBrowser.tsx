@@ -5,6 +5,8 @@ import { decodeCard } from '@/lib/compactCatalogue';
 import type { Garment } from '@/lib/types';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
+import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
+import { useCurrency } from './CurrencyProvider';
 
 const STEP = 24;
 const GARMENT_LABEL: Record<string, string> = {
@@ -18,6 +20,8 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   const [occasion, setOccasion] = useState('all');
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   const [visible, setVisible] = useState(STEP);
+  const [sort, setSort] = useState<SortKey>('featured');
+  const { preference } = useCurrency();
 
   const garments = useMemo(() => {
     const present = new Set(cat.garments);
@@ -57,14 +61,22 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     return rows;
   }, [cat, garmentIdx, brandIdx, occasionBit, query]);
 
+  const sortedRows = useMemo(
+    () => sortRowIndices(cat, filteredRows, sort, preference),
+    [cat, filteredRows, sort, preference],
+  );
+
   // Reset the "load more" count whenever a filter changes. See the TODO in
   // components/FilterableGrid.tsx — same pattern, same planned fix.
+  // `sort` is deliberately NOT in this dependency array: reordering the same
+  // set of rows is not a change of set, so discarding what has already been
+  // loaded would be gratuitous.
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
   }, [garment, occasion, brand, q]);
 
-  const shownRows = filteredRows.slice(0, visible);
+  const shownRows = sortedRows.slice(0, visible);
   const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
 
   return (
@@ -74,10 +86,19 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
         <FilterDropdown label="Category" value={garment} options={garments} onSelect={setGarment} />
         <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {/* Unlike the three above, this dropdown's options include its own
+            default ('featured'), and the synthetic 'all' row FilterDropdown
+            always injects is mapped back onto it — 'all' is not a SortKey. */}
+        <FilterDropdown
+          label="Sort"
+          value={sort}
+          options={SORT_OPTIONS}
+          onSelect={(v) => setSort(v === 'all' ? 'featured' : (v as SortKey))}
+        />
       </IndexPanel>
 
-      <div className="brand-label mt-8 mb-4">Showing {shownCards.length} of {filteredRows.length}</div>
-      {filteredRows.length === 0 ? (
+      <div className="brand-label mt-8 mb-4">Showing {shownCards.length} of {sortedRows.length}</div>
+      {sortedRows.length === 0 ? (
         <p className="text-sm" style={{ color: 'var(--muted)' }}>No pieces match.</p>
       ) : (
         <>
@@ -86,7 +107,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
               <ProductCard key={p.id} p={p} />
             ))}
           </div>
-          {visible < filteredRows.length && (
+          {visible < sortedRows.length && (
             <div className="text-center mt-12">
               <button onClick={() => setVisible((v) => v + STEP)} className="btn-pill" style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}>
                 Load more
