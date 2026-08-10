@@ -107,7 +107,20 @@ def main():
     if args.dry:
         print("\n(dry run — nothing written)")
         return
-    PRODUCTS.write_text(json.dumps(products, ensure_ascii=False))
+    # indent=2 MATCHES scripts/build-data.mjs:176, which writes this same file
+    # with JSON.stringify(..., null, 2) moments earlier. Without it this hook
+    # re-serialised the whole catalogue onto one line, so a publish that added
+    # six products produced a 189,462-line deletion and a 198-line insertion —
+    # a diff nobody can review, on the largest tracked file in the repo.
+    #
+    # Worse, it was INTERMITTENT: `npm run translate` is guarded on
+    # `[ -x .venv-style/bin/python ]`, so a machine with the venv minified the
+    # file and a machine without it left build-data's pretty output alone. The
+    # committed format therefore flipped depending on who published last, which
+    # is the same trap CLAUDE.md §8 records for decisions.json (add-brands
+    # writes it minified, app/api/curate pretty-printed) — undocumented for this
+    # file until 2026-08-10.
+    PRODUCTS.write_text(json.dumps(products, ensure_ascii=False, indent=2))
     CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=0))
     print(f"\nwrote {PRODUCTS.relative_to(APP)} and cached {len(cache)} translations")
 

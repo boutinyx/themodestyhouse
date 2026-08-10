@@ -114,4 +114,29 @@ export const BRANDS: Brand[] = [
   { slug: 'by-hasanat', name: 'ByHasanat', homepage: 'https://byhasanat.co.uk', feedUrl: 'https://byhasanat.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Hijabs & modest', city: 'UK', vibe: 'elegant' },                     // 122 SKUs, 4284px
 
   { slug: 'zayda', name: 'Zayda', homepage: 'https://www.zayda.com.au', feedUrl: 'https://www.zayda.com.au/products.json', community: 'hijabi', currency: 'AUD', category: 'Modest dresses', city: 'Australia', vibe: 'elegant' },                              // 2 SKUs, 4284px
+
+  // Khair Archives: a very small Dutch label — the ENTIRE catalogue is 7
+  // products, confirmed three ways (products.json page 2 empty, /collections/all
+  // also 7, and the feed's own length). Beldi co-ords and linen maxi dresses;
+  // women's only, no menswear, no non-apparel, so nothing here needs an
+  // exclusion.
+  //
+  // CURRENCY IS EUR, and it was verified rather than inferred from the price
+  // numbers (139.99 reads equally as GBP or USD): the storefront reports
+  // "currency":"EUR", moneyFormat "€{{amount_with_comma_separator}}", and
+  // cart.js returns EUR. Shopify's own payload gives "countryCode":"NL" and
+  // merchantName "Khair Archives". Per §3 the currency comes from THIS record
+  // and never from the feed, so getting it wrong would misprice every row.
+  //
+  // NL-based but the titles are ENGLISH ("The Sayf Dress", "Diva Beldi Co-Ord"),
+  // so it does NOT go in data/translate-brands.json. That check exists because
+  // of §10.16 — the French feed whose "jean" meant denim, not trousers — and it
+  // is the reason a Dutch store is not assumed to need translating.
+  //
+  // Classification verified by running the real normalizeProduct over the live
+  // feed before adding it: 7 kept, 0 dropped, 4 `set` and 3 `dress`. Photography
+  // is strong — 34 images, 4.9 per product, EVERY ONE portrait JPG up to 5760px,
+  // so pickImage's portrait-dominant test picks a model shot rather than a
+  // flat-lay (§7, §10.11).
+  { slug: 'khair-archives', name: 'Khair Archives', homepage: 'https://khairarchives.com', feedUrl: 'https://khairarchives.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest dresses', city: 'Netherlands', vibe: 'elegant' },      // 7 SKUs, 5760px
 ];
