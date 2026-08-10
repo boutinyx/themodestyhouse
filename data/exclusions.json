@@ -37,7 +37,14 @@
     "shampoo",
     "\\blotion\\b",
     "oud oil",
-    "air freshener"
+    "air freshener",
+    "\\bhommes?\\b",
+    "\\b(heren|mannen)\\b",
+    "\\b(herren|männer)\\b",
+    "\\b(uomo|uomini)\\b",
+    "\\b(herre|herrer|mænd)\\b",
+    "\\berkek\\b",
+    "\\b(pria|laki-laki)\\b"
   ],
   "urlPatterns": [
     "[/=_-]mens?(?:[/=_-]|$)",
@@ -73,5 +80,6 @@
   "brandNonApparelExpected": [
     "klay",
     "culture-hijab"
-  ]
+  ],
+  "_commentGenderNonEnglish": "Men's-wear words in every language the catalogue now carries (fr/nl/de/it/da/tr/id). Added 2026-08-10 after 'Box ramadan homme - bleu' published: exclusions run on the ORIGINAL title, translation runs later at publish time, so an English-only gender filter cannot see foreign menswear at all. Each is \\b-anchored (§10.5) and was measured against the full raw catalogue before adding — fr matched 1 (the leak), the other six matched 0."
 }

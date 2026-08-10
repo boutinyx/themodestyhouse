@@ -25482,5 +25482,1453 @@
     "url": "https://mariam-col.com/products/premium-muslim-prayer-set-for-womenmr090",
     "garmentWas": "abaya",
     "reason": "title-pattern"
+  },
+  {
+    "id": "headed-somewear:7709230825630",
+    "brandSlug": "headed-somewear",
+    "title": "Silver & Gold Metallic - Hijab Magnets",
+    "url": "https://headedsomewear.com/products/silver-gold-metallic-hijab-magnets-1",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "headed-somewear:7709229416606",
+    "brandSlug": "headed-somewear",
+    "title": "Black & Tan Matte - Hijab Magnets",
+    "url": "https://headedsomewear.com/products/black-tan-matte-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "headed-somewear:7337314877598",
+    "brandSlug": "headed-somewear",
+    "title": "Black Matte - Hijab Magnets",
+    "url": "https://headedsomewear.com/products/black-matte-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "nihan:15059679281515",
+    "brandSlug": "nihan",
+    "title": "Kimonolu Etekli Viskon Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/kimonolu-etekli-viskon-takim-zumrut",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15028377780587",
+    "brandSlug": "nihan",
+    "title": "Parlak Taşlı Kanvas Pantolon Pamuk Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/parlak-tasli-kanvas-pantolon-pamuk-takim-zumrut",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15002642841963",
+    "brandSlug": "nihan",
+    "title": "Dar Paça Kanvas Pamuk Pantolon - Zümrüt",
+    "url": "https://nihan.com.tr/products/dar-paca-kanvas-pamuk-pantolon-zumrut",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919311851883",
+    "brandSlug": "nihan",
+    "title": "Lyocell Pantolon Etek - Zümrüt",
+    "url": "https://nihan.com.tr/products/lyocell-pantolon-etek-zumrut",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919290978667",
+    "brandSlug": "nihan",
+    "title": "Beli Lastikli Kanvas Bol Paça Basic Pamuk Pantolon - Zümrüt",
+    "url": "https://nihan.com.tr/products/beli-lastikli-kanvas-bol-paca-pantolon-zumrut",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919290192235",
+    "brandSlug": "nihan",
+    "title": "Kanvas Bol Paça Pamuk Basic Pantolon - Zümrüt",
+    "url": "https://nihan.com.tr/products/kanvas-bol-paca-pantolon-zumrut",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919289045355",
+    "brandSlug": "nihan",
+    "title": "%100 Keten Palazzo Pantolon - Zümrüt",
+    "url": "https://nihan.com.tr/products/100-keten-palazzo-pantolon-zumrut",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abaya-lounge:8182350839958",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Taupe Brown",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-taupe-brown",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182307618966",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Sage Green",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-sage-green",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182303588502",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Brown",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-brown",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182301819030",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Yellow",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-yellow",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182291234966",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Emerald Green",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-emerald-green",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182288679062",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Mint",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-mint",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182282322070",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Mauve",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-mauve",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182281339030",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Grey",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-grey",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182279438486",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - White",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-white",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abaya-lounge:8182277308566",
+    "brandSlug": "abaya-lounge",
+    "title": "Plaited Rope Tassel Belt - Black",
+    "url": "https://abayalounge.com/products/plaited-rope-tassel-belt-black",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "jennah-boutique:7800520868016",
+    "brandSlug": "jennah-boutique",
+    "title": "Box ramadan homme - bleu",
+    "url": "https://jennah-boutique.com/products/box-ramadan-homme-bleu",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "yasmin-jay:8075930108080",
+    "brandSlug": "yasmin-jay",
+    "title": "U Pins",
+    "url": "https://www.yasminjay.com.au/products/untitled-jul2_07-58-52",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Pins"
+  },
+  {
+    "id": "yasmin-jay:7967968067760",
+    "brandSlug": "yasmin-jay",
+    "title": "Duo Hijab Magnets",
+    "url": "https://www.yasminjay.com.au/products/duo-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "yasmin-jay:7535479226544",
+    "brandSlug": "yasmin-jay",
+    "title": "Silver Scarf Rings",
+    "url": "https://www.yasminjay.com.au/products/silver-hijab-rings",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Scarf Rings"
+  },
+  {
+    "id": "yasmin-jay:7535477293232",
+    "brandSlug": "yasmin-jay",
+    "title": "Gold Scarf Rings",
+    "url": "https://www.yasminjay.com.au/products/gold-hijab-rings",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Scarf Rings"
+  },
+  {
+    "id": "modesty-in-style:10532883202358",
+    "brandSlug": "modesty-in-style",
+    "title": "Magnets",
+    "url": "https://modestyinstyle.com.au/products/hijab-magnet",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
+  },
+  {
+    "id": "lameera-moda:7460656316584",
+    "brandSlug": "lameera-moda",
+    "title": "Black Stone Necklace & Ring Set | Premium",
+    "url": "https://lameeramoda.com/products/black-stone-necklace-premium",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Ring"
+  },
+  {
+    "id": "lameera-moda:7460616896680",
+    "brandSlug": "lameera-moda",
+    "title": "Friendship : صداقه Ring Set | Premium",
+    "url": "https://lameeramoda.com/products/friendship-ring-set-premium",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Ring"
+  },
+  {
+    "id": "lameera-moda:6655571034280",
+    "brandSlug": "lameera-moda",
+    "title": "Custom Gift Box",
+    "url": "https://lameeramoda.com/products/custom-gift-box",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:16110935572858",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Umrah Mubarak",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box-umrah-mubarak",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:16110925414778",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Hajj Mubarak",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box-hajj-mubarak",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:15733104935290",
+    "brandSlug": "abayabuth",
+    "title": "Two Pack Premium Hijab Magnet - Mocha and Nude",
+    "url": "https://abayabuth.com/products/two-pack-premium-hijab-magnet-mocha-and-nude",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:15760763748730",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Spoilt",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box-3",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:15760750150010",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Thank You",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box-2",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:15760748970362",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Barakah",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box-eid-mubarak-copy",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:15760735469946",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Ramadan Mubarak",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box-1",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:15760732422522",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Love",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:15760697196922",
+    "brandSlug": "abayabuth",
+    "title": "Luxurious AbayaButh Keepsake Gift Box - Milestone",
+    "url": "https://abayabuth.com/products/luxurious-abayabuth-keepsake-gift-box-milestone",
+    "garmentWas": "abaya",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "abayabuth:15078565937530",
+    "brandSlug": "abayabuth",
+    "title": "Two Pack Premium Hijab Magnet - Matte Black",
+    "url": "https://abayabuth.com/products/two-pack-premium-hijab-magnet-matte-black-1",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:8442148454616",
+    "brandSlug": "abayabuth",
+    "title": "Three Pack Premium Hijab Magnet - Caviar, Matt Black and Nude",
+    "url": "https://abayabuth.com/products/three-pack-premium-hijab-magnet-caviar-matt-black-and-nude",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:7940213080280",
+    "brandSlug": "abayabuth",
+    "title": "Two Pack Premium Hijab Magnet - Matte Latte",
+    "url": "https://abayabuth.com/products/two-pack-premium-hijab-magnet-matte-latte",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:7940212195544",
+    "brandSlug": "abayabuth",
+    "title": "Two Pack Premium Hijab Magnet - Matte Mocha",
+    "url": "https://abayabuth.com/products/two-pack-premium-hijab-magnet-matte-mocha",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:7940212555992",
+    "brandSlug": "abayabuth",
+    "title": "Two Pack Premium Hijab Magnet - Matte Mink",
+    "url": "https://abayabuth.com/products/two-pack-premium-hijab-magnet-matte-mink",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:7931223933144",
+    "brandSlug": "abayabuth",
+    "title": "Rose Blush Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/rose-blush-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7931229438168",
+    "brandSlug": "abayabuth",
+    "title": "Powder Pink Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/powder-pink-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7931227275480",
+    "brandSlug": "abayabuth",
+    "title": "Sweet Blush Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/sweet-blush-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7931226718424",
+    "brandSlug": "abayabuth",
+    "title": "Mint Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/mint-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7931225899224",
+    "brandSlug": "abayabuth",
+    "title": "Deep Plum Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/deep-plum-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7931224064216",
+    "brandSlug": "abayabuth",
+    "title": "Maroon Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/maroon-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7931222622424",
+    "brandSlug": "abayabuth",
+    "title": "Ivory Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/ivory-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7918731722968",
+    "brandSlug": "abayabuth",
+    "title": "Olive Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/olive-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:7840942981336",
+    "brandSlug": "abayabuth",
+    "title": "Chocolate Brown Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/chocolate-brown-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:5832253145238",
+    "brandSlug": "abayabuth",
+    "title": "AbayaButh Gift Card",
+    "url": "https://abayabuth.com/products/abayabuth-gift-card",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:non-product",
+    "tier": "0",
+    "evidence": "Gift Card"
+  },
+  {
+    "id": "abayabuth:6912456786070",
+    "brandSlug": "abayabuth",
+    "title": "Cinnamon Spice Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/cinnamon-spice-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:6564308713622",
+    "brandSlug": "abayabuth",
+    "title": "Grey Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/grey-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:6826903437462",
+    "brandSlug": "abayabuth",
+    "title": "Premium Hijab Pins - Black & White",
+    "url": "https://abayabuth.com/products/premium-hijab-pins-black-white",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "abayabuth:6826902880406",
+    "brandSlug": "abayabuth",
+    "title": "Premium Hijab Pins - Neutral",
+    "url": "https://abayabuth.com/products/premium-hijab-pins-neutral",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "abayabuth:6826872373398",
+    "brandSlug": "abayabuth",
+    "title": "Two Pack Premium Hijab Magnet - Silver",
+    "url": "https://abayabuth.com/products/premium-hijab-magnet-2-pack-silver",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:6826864771222",
+    "brandSlug": "abayabuth",
+    "title": "Two Pack Premium Hijab Magnet - Rose Gold",
+    "url": "https://abayabuth.com/products/premium-hijab-magnet-2-pack-rose-gold",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:6664952217750",
+    "brandSlug": "abayabuth",
+    "title": "Blush Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/blush-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:6564302291094",
+    "brandSlug": "abayabuth",
+    "title": "Navy Slim Plaited Rope Tassel Belt",
+    "url": "https://abayabuth.com/products/navy-slim-plaited-rope-tassel-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "abayabuth:5658952958102",
+    "brandSlug": "abayabuth",
+    "title": "Black Fabric Belt",
+    "url": "https://abayabuth.com/products/black-fabric-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "modista:8906489004322",
+    "brandSlug": "modista",
+    "title": "Heart Magnets",
+    "url": "https://modistaapparel.com/products/heart-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
+  },
+  {
+    "id": "modista:8560605364514",
+    "brandSlug": "modista",
+    "title": "Hair Tie",
+    "url": "https://modistaapparel.com/products/hair-tie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "A",
+    "evidence": "Hair Tie"
+  },
+  {
+    "id": "ilovemodesty:10026328686913",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver Classic Line Bangles Set",
+    "url": "https://ilovemodesty.com/products/aya-silver-classic-line-bangles-set",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Bangles"
+  },
+  {
+    "id": "ilovemodesty:10026329866561",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Gold Duo Chain Bracelet Set",
+    "url": "https://ilovemodesty.com/products/aya-gold-duo-chain-bracelet-set",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Bracelet"
+  },
+  {
+    "id": "ilovemodesty:10026330915137",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver Duo Chain Bracelet Set",
+    "url": "https://ilovemodesty.com/products/aya-silver-duo-chain-bracelet-set",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Bracelet"
+  },
+  {
+    "id": "ilovemodesty:10026351788353",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver Chain With Bezel Set Bracelet",
+    "url": "https://ilovemodesty.com/products/aya-silver-chain-with-bezel-set-bracelet",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Bracelet"
+  },
+  {
+    "id": "ilovemodesty:10026357326145",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Gold Orb Bangles Set",
+    "url": "https://ilovemodesty.com/products/aya-gold-orb-bangles",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Bangles"
+  },
+  {
+    "id": "ilovemodesty:10026963534145",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Gold With Black Disc Drop Earrings",
+    "url": "https://ilovemodesty.com/products/aya-gold-with-black-disc-drop-earrings",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Earrings"
+  },
+  {
+    "id": "ilovemodesty:10026963697985",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Matte Gold Wide Hoop Earrings",
+    "url": "https://ilovemodesty.com/products/aya-matte-gold-wide-hoop-earrings",
+    "garmentWas": "dress",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Earrings"
+  },
+  {
+    "id": "ilovemodesty:10026965205313",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver Pave Crystal Hoop Earrings",
+    "url": "https://ilovemodesty.com/products/aya-silver-pave-crystal-hoop-earrings",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Earrings"
+  },
+  {
+    "id": "ilovemodesty:10026966024513",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Rose Gold Pave Crystal Hoop Earrings",
+    "url": "https://ilovemodesty.com/products/aya-rose-gold-pave-crystal-hoop-earrings",
+    "garmentWas": "set",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Earrings"
+  },
+  {
+    "id": "ilovemodesty:10026972741953",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver Square Crystal & Pearl Stud Earrings",
+    "url": "https://ilovemodesty.com/products/aya-silver-square-crystal-pearl-stud-earrings",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Stud"
+  },
+  {
+    "id": "ilovemodesty:10026976215361",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver Duo-Cushion Crystal Studs Earrings",
+    "url": "https://ilovemodesty.com/products/aya-silver-duo-cushion-crystal-studs-earrings",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Studs"
+  },
+  {
+    "id": "ilovemodesty:10026983883073",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Gold with Black Oval Stud Earrings",
+    "url": "https://ilovemodesty.com/products/aya-gold-with-black-oval-stud-earrings",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Stud"
+  },
+  {
+    "id": "ilovemodesty:10026987979073",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver with Black Square Stud Earrings",
+    "url": "https://ilovemodesty.com/products/aya-silver-with-black-square-stud-earrings",
+    "garmentWas": "set",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Stud"
+  },
+  {
+    "id": "ilovemodesty:10027018813761",
+    "brandSlug": "ilovemodesty",
+    "title": "AYA Silver Orbit Earrings",
+    "url": "https://ilovemodesty.com/products/aya-silver-orbit-earrings",
+    "garmentWas": "top",
+    "reason": "non-apparel:jewellery",
+    "tier": "B",
+    "evidence": "Earrings"
+  },
+  {
+    "id": "ilovemodesty:9992006304065",
+    "brandSlug": "ilovemodesty",
+    "title": "Black & White Diamond Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/black-white-diamond-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986463924545",
+    "brandSlug": "ilovemodesty",
+    "title": "White Pearl Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/white-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986463957313",
+    "brandSlug": "ilovemodesty",
+    "title": "Black & White Pearl Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/black-white-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986464121153",
+    "brandSlug": "ilovemodesty",
+    "title": "Multi Colored Oval Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/multi-colored-oval-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986464973121",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Oval Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/black-oval-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986472182081",
+    "brandSlug": "ilovemodesty",
+    "title": "White Rhinestone Flower Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/white-rhinestone-flower-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986474901825",
+    "brandSlug": "ilovemodesty",
+    "title": "Multi Colored Oval Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/multi-oval-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986475688257",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Rhinestone Flower Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/black-rhinestone-flower-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986487189825",
+    "brandSlug": "ilovemodesty",
+    "title": "Neutral Diamond Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/neutral-diamond-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986464055617",
+    "brandSlug": "ilovemodesty",
+    "title": "Multi Colored Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/multi-colored-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986465890625",
+    "brandSlug": "ilovemodesty",
+    "title": "Rose Gold Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/rose-gold-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986474606913",
+    "brandSlug": "ilovemodesty",
+    "title": "Gold Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/gold-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986474770753",
+    "brandSlug": "ilovemodesty",
+    "title": "Silver Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/silver-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986487320897",
+    "brandSlug": "ilovemodesty",
+    "title": "Metallic Multi Colored Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/metallic-multi-colored-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986489647425",
+    "brandSlug": "ilovemodesty",
+    "title": "Metallic Grey Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/metallic-grey-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986489090369",
+    "brandSlug": "ilovemodesty",
+    "title": "Black & White Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/black-white-mini-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986490859841",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Small Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/black-small-head-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9986554462529",
+    "brandSlug": "ilovemodesty",
+    "title": "Rose Bisque Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/bisque-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986827157825",
+    "brandSlug": "ilovemodesty",
+    "title": "Peach Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/peach-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986555969857",
+    "brandSlug": "ilovemodesty",
+    "title": "Dusty Blue Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/dusty-blue-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986826043713",
+    "brandSlug": "ilovemodesty",
+    "title": "Cool Grey Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/cool-grey-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986826895681",
+    "brandSlug": "ilovemodesty",
+    "title": "Dark Beige Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/dark-beige-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986553741633",
+    "brandSlug": "ilovemodesty",
+    "title": "White Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/white-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986827649345",
+    "brandSlug": "ilovemodesty",
+    "title": "Nude Pink Satin Scrunchie",
+    "url": "https://ilovemodesty.com/products/nude-satin-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986828140865",
+    "brandSlug": "ilovemodesty",
+    "title": "Warm Sand Satin Scrunchie",
+    "url": "https://ilovemodesty.com/products/warm-sand-satin-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986828435777",
+    "brandSlug": "ilovemodesty",
+    "title": "Rose Satin Scrunchie",
+    "url": "https://ilovemodesty.com/products/rose-tan-satin-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986829058369",
+    "brandSlug": "ilovemodesty",
+    "title": "Ivory Cream Satin Scrunchie",
+    "url": "https://ilovemodesty.com/products/cream-pink-satin-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986829320513",
+    "brandSlug": "ilovemodesty",
+    "title": "Plum Satin Scrunchie",
+    "url": "https://ilovemodesty.com/products/plum-satin-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986829451585",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Satin Scrunchie",
+    "url": "https://ilovemodesty.com/products/black-satin-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986555085121",
+    "brandSlug": "ilovemodesty",
+    "title": "Pearl Pink Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/pearl-pink-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986554691905",
+    "brandSlug": "ilovemodesty",
+    "title": "Tea Rose Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/tea-rose-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986554790209",
+    "brandSlug": "ilovemodesty",
+    "title": "Pastel Pink Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/pastel-pink-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986827026753",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/black-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986826568001",
+    "brandSlug": "ilovemodesty",
+    "title": "Olive Green Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/olive-green-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9986826600769",
+    "brandSlug": "ilovemodesty",
+    "title": "Bottle Green Chiffon Scrunchie",
+    "url": "https://ilovemodesty.com/products/bottle-green-chiffon-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9942820716865",
+    "brandSlug": "ilovemodesty",
+    "title": "Platinum Black Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/platinum-black-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9942820815169",
+    "brandSlug": "ilovemodesty",
+    "title": "White Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/white-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9942820946241",
+    "brandSlug": "ilovemodesty",
+    "title": "Cream Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/sage-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9942821044545",
+    "brandSlug": "ilovemodesty",
+    "title": "Dusty Taupe Mauve Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/dusty-taupe-mauve-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9944113447233",
+    "brandSlug": "ilovemodesty",
+    "title": "Deep Taupe Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/deep-taupe-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9944113545537",
+    "brandSlug": "ilovemodesty",
+    "title": "Deep Terracotta Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/deep-terracotta-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9944114626881",
+    "brandSlug": "ilovemodesty",
+    "title": "Deep Brown Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/deep-brown-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9944115085633",
+    "brandSlug": "ilovemodesty",
+    "title": "Gold Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/gold-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9944116330817",
+    "brandSlug": "ilovemodesty",
+    "title": "Camel Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/camel-hijab-magnets",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9665886748993",
+    "brandSlug": "ilovemodesty",
+    "title": "Ilovemodesty E-Gift Card",
+    "url": "https://ilovemodesty.com/products/ilovemodesty-gift-card",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:non-product",
+    "tier": "0",
+    "evidence": "Gift Card"
+  },
+  {
+    "id": "ilovemodesty:9804332335425",
+    "brandSlug": "ilovemodesty",
+    "title": "Black and White Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/black-hijab-magnets-in-store-only",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9804334104897",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Rhinestone Hijab Pins",
+    "url": "https://ilovemodesty.com/products/long-black-rhinestone-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9804333973825",
+    "brandSlug": "ilovemodesty",
+    "title": "Multi Colored Rhinestone Flower Head Hijab Pins",
+    "url": "https://ilovemodesty.com/products/long-flowerhead-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9804333908289",
+    "brandSlug": "ilovemodesty",
+    "title": "Black & White Rhinestone Hijab Pins",
+    "url": "https://ilovemodesty.com/products/long-black-clear-rhinestone-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9804333613377",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Safety Hijab Pins (8 Pack)",
+    "url": "https://ilovemodesty.com/products/black-safety-hijab-pins-8-pack",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9762748891457",
+    "brandSlug": "ilovemodesty",
+    "title": "White Rhinestone Hijab Pins",
+    "url": "https://ilovemodesty.com/products/long-clear-rhinestone-hijab-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9660977643841",
+    "brandSlug": "ilovemodesty",
+    "title": "Beige Hijab Magnets",
+    "url": "https://ilovemodesty.com/products/gold-hijab-magnets-3",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "ilovemodesty:9660921086273",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Net Scrunchie",
+    "url": "https://ilovemodesty.com/products/black-net-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ilovemodesty:9660909191489",
+    "brandSlug": "ilovemodesty",
+    "title": "Multi-Colored Safety Hijab Pins (8 Pack)",
+    "url": "https://ilovemodesty.com/products/multi-coloured-hijab-safety-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9656872501569",
+    "brandSlug": "ilovemodesty",
+    "title": "Long Hijab Pins - Multi-Colored Oval Head",
+    "url": "https://ilovemodesty.com/products/long-hijab-pinwheel-oval-head-multi",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Pins"
+  },
+  {
+    "id": "ilovemodesty:9656141283649",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Velvet Scrunchie",
+    "url": "https://ilovemodesty.com/products/black-scrunchie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "ria-miranda:9282015297794",
+    "brandSlug": "ria-miranda",
+    "title": "Kufi Set Hampers",
+    "url": "https://riamiranda.com/products/kufi-set-hampers",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "ria-miranda:9282016674050",
+    "brandSlug": "ria-miranda",
+    "title": "Kufi Gift Box Set",
+    "url": "https://riamiranda.com/products/kufi-gift-box-set",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "ria-miranda:9274146947330",
+    "brandSlug": "ria-miranda",
+    "title": "Zyran Boy Koko",
+    "url": "https://riamiranda.com/products/zyran-boy-koko",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "ria-miranda:9069003964674",
+    "brandSlug": "ria-miranda",
+    "title": "Gift Set Box",
+    "url": "https://riamiranda.com/products/gift-set-box",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "ria-miranda:8772309319938",
+    "brandSlug": "ria-miranda",
+    "title": "Zalene Bag",
+    "url": "https://riamiranda.com/products/zalene-bag",
+    "garmentWas": "top",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Bag"
+  },
+  {
+    "id": "ria-miranda:8272590209282",
+    "brandSlug": "ria-miranda",
+    "title": "Jalila Socks Set",
+    "url": "https://riamiranda.com/products/jalila-socks-set",
+    "garmentWas": "set",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Socks"
+  },
+  {
+    "id": "hidayah:9154191524187",
+    "brandSlug": "hidayah",
+    "title": "Tilfældig Farve - Satin Velvet Scrunchie (Medium)",
+    "url": "https://hidayah.dk/products/satin-velvet-scrunchie-medium-sort",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "nour-al-houda:7687564165168",
+    "brandSlug": "nour-al-houda",
+    "title": "Hijab Magnet - Chocolate",
+    "url": "https://nouralhouda.com.au/products/hijab-magnet-chocolate",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "nour-al-houda:7687564460080",
+    "brandSlug": "nour-al-houda",
+    "title": "Hijab Magnet - Petal",
+    "url": "https://nouralhouda.com.au/products/hijab-magnet-petal",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "nour-al-houda:7687564197936",
+    "brandSlug": "nour-al-houda",
+    "title": "Hijab Magnet - Mocha",
+    "url": "https://nouralhouda.com.au/products/hijab-magnet-mocha",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "nour-al-houda:7687564034096",
+    "brandSlug": "nour-al-houda",
+    "title": "Hijab Magnet - Onyx",
+    "url": "https://nouralhouda.com.au/products/hijab-magnet-onyx",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "nour-al-houda:7894194847792",
+    "brandSlug": "nour-al-houda",
+    "title": "Hijab Magnet - Snow",
+    "url": "https://nouralhouda.com.au/products/hijab-magnet-ivory-copy",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "nour-al-houda:2934840721472",
+    "brandSlug": "nour-al-houda",
+    "title": "Small Headed Pins - Black",
+    "url": "https://nouralhouda.com.au/products/a152",
+    "garmentWas": "top",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Pins"
+  },
+  {
+    "id": "nour-al-houda:7210425253936",
+    "brandSlug": "nour-al-houda",
+    "title": "Al Absar Parfum - Kasuf Dhahabi",
+    "url": "https://nouralhouda.com.au/products/al-absar-attar-kasuf-dhahabi",
+    "garmentWas": "top",
+    "reason": "non-apparel:fragrance",
+    "tier": "0",
+    "evidence": "Parfum"
+  },
+  {
+    "id": "nour-al-houda:7210425516080",
+    "brandSlug": "nour-al-houda",
+    "title": "Al Absar Parfum - Musk Candy",
+    "url": "https://nouralhouda.com.au/products/absar-attar-musk-candy",
+    "garmentWas": "top",
+    "reason": "non-apparel:fragrance",
+    "tier": "0",
+    "evidence": "Parfum"
   }
 ]

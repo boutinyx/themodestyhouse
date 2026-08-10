@@ -13,9 +13,19 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 const OUT = new URL('../data/fx-rates.json', import.meta.url);
 const SOURCE = 'https://open.er-api.com/v6/latest/USD';
 
-// Every currency the catalogue actually uses. Keep in step with data/brands.ts;
-// lib/fx.test.ts fails if a published currency is missing a rate.
-const WANTED = ['USD', 'GBP', 'EUR', 'AED', 'AUD', 'CAD', 'MYR', 'INR', 'EGP'];
+// Every currency the catalogue actually uses — DERIVED from data/brands.ts, not
+// listed here. It used to be a literal array with a comment asking the next
+// person to "keep in step with data/brands.ts", and on 2026-08-10 a batch of 48
+// brands introduced 8 new currencies and it did not get kept in step: SEK, TRY,
+// SGD, IDR, NOK, QAR, KWD and DKK all published with no rate, and lib/fx.test.ts
+// was the only thing that noticed.
+//
+// Read as TEXT rather than imported, deliberately: this script runs under plain
+// `node` (see package.json), and importing a .ts module would need tsx —
+// Invariant 7. A regex over the one source of truth beats a second copy of it.
+const BRANDS_SRC = readFileSync(new URL('../data/brands.ts', import.meta.url), 'utf8');
+const WANTED = [...new Set([...BRANDS_SRC.matchAll(/currency:\s*'([A-Z]{3})'/g)].map((m) => m[1]))].sort();
+if (WANTED.length < 5) throw new Error(`only ${WANTED.length} currencies parsed from data/brands.ts — the shape changed`);
 
 const res = await fetch(SOURCE, { headers: { 'User-Agent': 'themodestyhouse/1.0' } });
 if (!res.ok) throw new Error(`rates fetch failed: HTTP ${res.status}`);

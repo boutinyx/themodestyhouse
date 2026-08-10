@@ -28,6 +28,13 @@ const ALLOWED_IMAGE_HOSTS = new Set([
   'kimodesty.com',
   'chador.nl',
   'i0.wp.com',
+  // The three WooCommerce brands from the 2026-08-10 batch. Unlike the Shopify
+  // feeds they serve images from their own domain, not cdn.shopify.com — which
+  // is exactly what this test exists to catch, since a missing img-src entry
+  // fails silently until the CSP is enforced in production.
+  'www.aneesaitaly.com',
+  'vivizubedi.com',
+  'abayasboutique.com',
 ]);
 
 // Deliberately a floor, not an exact count — the catalogue grows on every

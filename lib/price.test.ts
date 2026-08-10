@@ -17,7 +17,11 @@ const NB = ' ';
 /** Every currency the catalogue is allowed to contain. Adding a brand with a new
  *  currency must fail here until someone adds an explicit expectation below —
  *  that is the point. */
-const KNOWN = ['USD', 'GBP', 'EUR', 'AUD', 'CAD', 'MYR', 'EGP', 'AED', 'INR'];
+const KNOWN = ['USD', 'GBP', 'EUR', 'AUD', 'CAD', 'MYR', 'EGP', 'AED', 'INR',
+  // Added with the 2026-08-10 batch of 48 brands. Every one of these falls
+  // through to the ISO-code form — `Intl` has no distinct symbol for them in
+  // en-US — which is the documented degrade in lib/price.ts, not a gap.
+  'TRY', 'KWD', 'QAR', 'DKK', 'NOK', 'SEK', 'IDR', 'SGD'];
 
 describe('formatPrice', () => {
   it('formats each catalogue currency in its native form', () => {
@@ -30,6 +34,17 @@ describe('formatPrice', () => {
     expect(formatPrice(44.95, 'EGP')).toBe(`EGP${NB}44.95`);
     expect(formatPrice(44.95, 'AED')).toBe(`AED${NB}44.95`);
     expect(formatPrice(44.95, 'INR')).toBe('₹44.95');
+    // The 2026-08-10 additions. NB is the non-breaking space Intl inserts
+    // between an ISO code and the amount — asserted explicitly so a change in
+    // that separator fails here rather than reaching a price on the site.
+    expect(formatPrice(44.95, 'TRY')).toBe(`TRY${NB}44.95`);
+    expect(formatPrice(44.95, 'KWD')).toBe(`KWD${NB}44.95`);
+    expect(formatPrice(44.95, 'QAR')).toBe(`QAR${NB}44.95`);
+    expect(formatPrice(44.95, 'DKK')).toBe(`DKK${NB}44.95`);
+    expect(formatPrice(44.95, 'NOK')).toBe(`NOK${NB}44.95`);
+    expect(formatPrice(44.95, 'SEK')).toBe(`SEK${NB}44.95`);
+    expect(formatPrice(44.95, 'IDR')).toBe(`IDR${NB}44.95`);
+    expect(formatPrice(44.95, 'SGD')).toBe(`SGD${NB}44.95`);
   });
 
   it('drops the decimals on whole numbers', () => {

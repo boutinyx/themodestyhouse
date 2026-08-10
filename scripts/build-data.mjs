@@ -107,6 +107,17 @@ let delistedCount = 0;
 
 const kept = raw.filter((p) => {
   if (decisions[p.id] !== 'keep' || !p.inStock) return false;
+  // A product with no price is not a product a shopper can act on. Found when
+  // the 2026-08-10 batch surfaced 12 rows priced 0 — İpekstil's "Kombin Kutusu"
+  // (outfit-box) configurators and one Vivi Zubedi row, all of which list no
+  // price in the feed at all. `lib/catalogue.test.ts` already treats price 0 as
+  // an unpopulated required field, so the pipeline agreeing with it is the fix;
+  // the alternative was 12 hand-written ids in exclusions.json that would say
+  // nothing about the next feed that does this.
+  if (!(p.price > 0)) {
+    review.push({ id: p.id, title: p.title, url: p.url, why: 'no-price' });
+    return false;
+  }
   if (p.delistedAt) { delistedCount++; return false; }
   if (p.filteredAt) {
     // Actionable: the brand still sells this, our own rules dropped it.
