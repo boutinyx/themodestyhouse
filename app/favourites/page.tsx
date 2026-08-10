@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQuickView } from '@/components/QuickView';
 import { ProductCard } from '@/components/ProductCard';
 import { Heart } from '@phosphor-icons/react';
-import type { Product } from '@/lib/types';
+import type { CardProduct } from '@/lib/compactCatalogue';
 
 const UNDO_MS = 8000;
 
@@ -16,14 +16,14 @@ export default function FavouritesPage() {
   // browser — there is no server copy to recover from. So every removal is
   // undoable rather than confirmed: a confirm dialog on every heart would make
   // clearing a long list miserable, while undo costs nothing until it is needed.
-  const [undoable, setUndoable] = useState<Product[]>([]);
+  const [undoable, setUndoable] = useState<CardProduct[]>([]);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // The heart lives inside ProductCard and calls toggleFav directly, so this
   // page never learns about a removal by being clicked. Instead it WATCHES the
   // favourites map and reacts to anything that disappears — which covers the
   // heart here, the heart in quick view, and Clear all, with one mechanism.
-  const prev = useRef<Record<string, Product>>({});
+  const prev = useRef<Record<string, CardProduct>>({});
   const restoring = useRef(false);
 
   useEffect(() => {

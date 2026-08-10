@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { browseProducts } from '@/lib/products';
 import { DirectoryBrowser } from '@/components/DirectoryBrowser';
+import { encodeCatalogue } from '@/lib/compactCatalogue';
+import { BRANDS } from '@/data/brands';
 
 export const metadata: Metadata = {
   title: 'Products | The Modesty House',
@@ -9,7 +11,7 @@ export const metadata: Metadata = {
 
 export default async function DirectoryPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q } = await searchParams;
-  const products = browseProducts();
+  const catalogue = encodeCatalogue(browseProducts(), BRANDS);
   // Same header shape as app/[lane]/page.tsx — left-aligned h1 with a short line
   // under it — so the directory reads as one of the category pages rather than a
   // different template. The intro is this page's own metadata description,
@@ -29,7 +31,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
         Browse modest pieces from every verified house.
       </p>
-      <DirectoryBrowser products={products} initialQuery={q ?? ''} />
+      <DirectoryBrowser catalogue={catalogue} initialQuery={q ?? ''} />
     </main>
   );
 }

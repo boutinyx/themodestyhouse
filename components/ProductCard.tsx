@@ -1,11 +1,11 @@
 'use client';
-import type { Product } from '@/lib/types';
+import type { CardProduct } from '@/lib/compactCatalogue';
 import { Heart } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
-export function ProductCard({ p }: { p: Product }) {
+export function ProductCard({ p }: { p: CardProduct }) {
   const { open, isFav, toggleFav } = useQuickView();
   const { price } = useCurrency();
   const fav = isFav(p.id);

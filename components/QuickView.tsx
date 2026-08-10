@@ -1,14 +1,14 @@
 'use client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import type { Product } from '@/lib/types';
+import type { CardProduct } from '@/lib/compactCatalogue';
 import { Heart, X, ArrowUpRight } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 
 type Ctx = {
-  open: (p: Product) => void;
-  favs: Record<string, Product>;
-  toggleFav: (p: Product) => void;
+  open: (p: CardProduct) => void;
+  favs: Record<string, CardProduct>;
+  toggleFav: (p: CardProduct) => void;
   isFav: (id: string) => boolean;
 };
 
@@ -21,8 +21,11 @@ export function useQuickView(): Ctx {
 }
 
 export function QuickViewProvider({ children }: { children: React.ReactNode }) {
-  const [active, setActive] = useState<Product | null>(null);
-  const [favs, setFavs] = useState<Record<string, Product>>({});
+  const [active, setActive] = useState<CardProduct | null>(null);
+  // Existing localStorage entries are full Product objects written before this
+  // change — a structural superset of CardProduct, so they still satisfy this
+  // type and need no migration.
+  const [favs, setFavs] = useState<Record<string, CardProduct>>({});
 
   // Hydration-sensitive: favourites live in localStorage, which is not
   // available during SSR. Reading it lazily in useState would make the
@@ -35,7 +38,7 @@ export function QuickViewProvider({ children }: { children: React.ReactNode }) {
     } catch {}
   }, []);
 
-  const toggleFav = useCallback((p: Product) => {
+  const toggleFav = useCallback((p: CardProduct) => {
     setFavs((prev) => {
       const next = { ...prev };
       if (next[p.id]) delete next[p.id];
@@ -48,7 +51,7 @@ export function QuickViewProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const isFav = useCallback((id: string) => !!favs[id], [favs]);
-  const open = useCallback((p: Product) => setActive(p), []);
+  const open = useCallback((p: CardProduct) => setActive(p), []);
 
   return (
     <QuickViewCtx.Provider value={{ open, favs, toggleFav, isFav }}>
@@ -71,7 +74,7 @@ function Modal({
   onToggleFav,
   onClose,
 }: {
-  product: Product;
+  product: CardProduct;
   isFav: boolean;
   onToggleFav: () => void;
   onClose: () => void;
