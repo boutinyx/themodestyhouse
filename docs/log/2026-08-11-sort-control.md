@@ -62,9 +62,18 @@ Add a Sort dropdown (Featured / Price Low→High / Price High→Low / Newest / O
 
 - No re-publish (`npm run build:data`) was run — `products.json` at HEAD still has no
   `firstSeen` values (the field was always stripped before this change). Newest/Oldest will
-  show every row as the `-1`/unknown bucket (in whatever stable order they arrive in) until the
-  next real `npm run refresh` populates real dates. This is expected, not a bug — see the
-  design spec's "Out of scope" section.
+  show every row as the `-1`/unknown bucket (in whatever stable order they arrive in) until a
+  publish runs. This is expected, not a bug — see the design spec's "Out of scope" section.
+- **What actually populates it is a plain `npm run build:data`, not `npm run refresh`.**
+  `firstSeen` is already on the raw rows and `stripLifecycle` no longer removes it, so the
+  publish needs no network and no feed fetch. Measured 2026-08-11 by joining
+  `data/products.json` against `data/raw-products.json`: **17,033 of the 23,142 published rows
+  (73.6%) would get a real date** from an offline republish; the remaining 6,109 pre-date
+  lifecycle tracking (2026-08-05) and would publish `null`. So Newest/Oldest are one small,
+  deliberate command away from working over three quarters of the catalogue — not waiting on
+  an unowned refresh cadence. The republish is left to Tina on purpose: it rewrites most of
+  `products.json` (CLAUDE.md §8, `interleaveByBrand`) and has to be reviewed on counts and the
+  `brandDropViolations` guard.
 - `firstSeen` coverage is **24,327 of 37,954 raw rows (64.1%)** as measured 2026-08-11
   (tracking started 2026-08-05); it improves naturally as brands get refreshed, never
   retroactively.
@@ -75,7 +84,10 @@ Each of these was raised during the per-task reviews of Tasks 1–5, judged **Mi
 deliberately deferred to the whole-branch review rather than fixed inline. None is a
 regression introduced by this branch except where stated.
 
-1. **The Sort chip always shows its current value, never a static "Sort" label.** Category /
+1. ~~**The Sort chip always shows its current value, never a static "Sort" label.**~~
+   **FIXED in the final review pass** — `FilterDropdown` now takes an optional `defaultValue`
+   (default `'all'`, so Category/Occasion/Brand are untouched). See
+   `docs/log/2026-08-11-sort-control-final-review-fixes.md`. Original text: Category /
    Occasion / Brand fall back to the dimension name until a non-default choice is made; Sort
    reads "Featured" from the start. This is an unavoidable consequence of `SORT_OPTIONS`
    including `'featured'` as a real, selectable option (an approved design choice) — the
@@ -100,8 +112,9 @@ regression introduced by this branch except where stated.
    rows carry `firstSeen`, because no `npm run build:data` republish has happened on this
    branch. Stated again here, prominently, because it is the single most likely thing to look
    like a bug to anyone testing the live site today: two of the five options appear to do
-   nothing. They are wired correctly; there is simply no data to sort on yet. The next real
-   `npm run refresh` (which publishes itself) populates it.
+   nothing. They are wired correctly; there is simply no data to sort on yet. **An offline
+   `npm run build:data` is the trigger** — not a refresh — and it would give real dates to
+   17,033 of the 23,142 rows (73.6%) today. See the Notes section above.
 
 5. **Cross-currency price sort in "As listed" mode compares raw numbers across currencies with
    no conversion.** This is spec-correct — ADR-0002 is the site's standing no-conversion-by-
@@ -112,8 +125,8 @@ regression introduced by this branch except where stated.
 6. **Minor test-coverage gaps**, none blocking:
    - `lib/lifecycle.test.ts` — the `stripLifecycle` tests assert the lifecycle fields are
      removed but do not assert that non-lifecycle fields survive the strip.
-   - `lib/sortRows.ts` — no tie-stability test, no empty-array test, and no exhaustiveness
-     guard (e.g. a `never` default case) on its `switch`.
+   - `lib/sortRows.ts` — no tie-stability test and no empty-array test. (The missing
+     exhaustiveness guard on its `switch` was **fixed** in the final review pass.)
    - The missing-FX-rate cross-currency comparison path is untested.
 
 These six are reserved for the final whole-branch review to triage; nothing here was fixed in

@@ -172,7 +172,7 @@ export function isLifecycleLive(row: LifecycleRow): boolean {
 /**
  * Drops lifecycle bookkeeping before publish, EXCEPT firstSeen — that one is now
  * a published field (it powers the Newest/Oldest sort, lib/sortRows.ts). Rows
- * carrying delistedAt/filteredAt never publish anyway. lastSeen on ~5k published
+ * carrying delistedAt/filteredAt never publish anyway. lastSeen on ~23k published
  * rows would add real weight to products.json AND every RSC payload — which §8
  * names as the real scaling ceiling of this site — so it stays stripped; the
  * compact catalogue only ever needs firstSeen compressed to a day-index

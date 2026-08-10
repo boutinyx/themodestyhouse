@@ -14,7 +14,7 @@
 - `firstSeen` on `Product` is optional (`string | null | undefined`) — most existing fixtures across the test suite don't set it and must keep passing.
 - No bulk/string date field may leak into `CompactCatalogue` — only the numeric `firstSeenDay` column (Invariant 15 concern from the spec).
 - Every new/changed function needs a test before being trusted; run `npx tsc --noEmit` and `npm test` clean before each commit.
-- `npm run build:data` is NOT run as part of this plan — no re-publish happens; this is a schema/UI change only. The next real `npm run refresh` will populate `products.json` with real `firstSeen` values through the updated pipeline.
+- `npm run build:data` is NOT run as part of this plan — no re-publish happens; this is a schema/UI change only. A plain, offline `npm run build:data` is what populates `products.json` with real `firstSeen` values (NOT `npm run refresh` — no feed fetch is needed, the dates are already on the raw rows). Measured 2026-08-11: 17,033 of the 23,142 currently published rows (73.6%) already carry a `firstSeen` in `data/raw-products.json` and would get a real date from that publish; the other 6,109 pre-date lifecycle tracking and stay `null`.
 
 ---
 
