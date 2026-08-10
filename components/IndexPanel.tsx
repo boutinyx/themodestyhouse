@@ -16,15 +16,36 @@ import { useScrollFade } from './useScrollFade';
 export function FilterDropdown({
   label,
   value,
+  defaultValue = 'all',
   options,
   onSelect,
 }: {
   label: string;
   value: string;
+  /**
+   * The value that means "nothing chosen here". While `value` equals it the
+   * chip reads the generic `label` and is not styled active. Defaults to
+   * 'all', which is what Category / Occasion / Brand use and what the synthetic
+   * top row carried when this component only ever had one such sentinel.
+   * The Sort control's default is a REAL key ('featured'), so it needs to say so.
+   */
+  defaultValue?: string;
   options: { value: string; label: string }[];
   onSelect: (v: string) => void;
 }) {
-  const current = options.find((o) => o.value === value);
+  // Deliberately not `options.find(...)`: when the default is a real, listed
+  // option — as 'featured' is for Sort — a plain lookup always matches, so the
+  // chip would show "Featured" from first paint and never the word "Sort".
+  const current = value === defaultValue ? undefined : options.find((o) => o.value === value);
+
+  // The top row IS the default. If `options` already describes that value
+  // (Sort's 'featured'), borrow its label and drop the duplicate from the list;
+  // otherwise synthesise the `All <label>` row this menu has always had.
+  const defaultOption = options.find((o) => o.value === defaultValue);
+  const rows = [
+    { value: defaultValue, label: defaultOption ? defaultOption.label : `All ${label.toLowerCase()}` },
+    ...options.filter((o) => o.value !== defaultValue),
+  ];
 
   // Which edges carry the fade, from a real measurement of this list. This
   // replaces a pair of hand-rolled attributes: `data-at-end`, computed here,
@@ -68,7 +89,7 @@ export function FilterDropdown({
         delay={0}
         closeDelay={120}
         className="chip inline-flex items-center gap-1.5"
-        data-active={value !== 'all'}
+        data-active={value !== defaultValue}
       >
         {current ? current.label : label}
         {/* Phosphor, not the ▾ character (CLAUDE.md §6). */}
@@ -108,7 +129,7 @@ export function FilterDropdown({
               className="scroll-fade-port max-h-72 overflow-y-auto overflow-x-hidden p-2"
               ref={listRef}
             >
-              {[{ value: 'all', label: `All ${label.toLowerCase()}` }, ...options].map((o) => (
+              {rows.map((o) => (
                 <Menu.RadioItem
                   key={o.value}
                   value={o.value}

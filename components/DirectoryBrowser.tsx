@@ -86,14 +86,17 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
         <FilterDropdown label="Category" value={garment} options={garments} onSelect={setGarment} />
         <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
-        {/* Unlike the three above, this dropdown's options include its own
-            default ('featured'), and the synthetic 'all' row FilterDropdown
-            always injects is mapped back onto it — 'all' is not a SortKey. */}
+        {/* Unlike the three above, this dropdown's "nothing chosen" value is a
+            real key: 'featured' IS a sort order, not the absence of one. It is
+            also listed in SORT_OPTIONS, so FilterDropdown labels its default
+            row from there rather than synthesising "All sort", and renders that
+            row once rather than twice. */}
         <FilterDropdown
           label="Sort"
           value={sort}
+          defaultValue="featured"
           options={SORT_OPTIONS}
-          onSelect={(v) => setSort(v === 'all' ? 'featured' : (v as SortKey))}
+          onSelect={(v) => setSort(v as SortKey)}
         />
       </IndexPanel>
 

@@ -55,6 +55,13 @@ export function sortRowIndices(
     case 'oldest':
       withKeys.sort((a, b) => a.day - b.day);
       break;
+    default: {
+      // Exhaustiveness guard. Adding a SortKey without a case here is a compile
+      // error rather than a silent fall-through to featured order — which would
+      // look like a working control that simply never sorts.
+      const _exhaustive: never = sort;
+      throw new Error(`sortRowIndices: unhandled sort key ${String(_exhaustive)}`);
+    }
   }
 
   return withKeys.map((k) => k.row);
