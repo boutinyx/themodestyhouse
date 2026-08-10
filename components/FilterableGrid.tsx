@@ -4,6 +4,8 @@ import type { CompactCatalogue } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
+import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
+import { useCurrency } from './CurrencyProvider';
 
 const STEP = 24;
 
@@ -12,6 +14,8 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
   const [occasion, setOccasion] = useState('all');
   const [q, setQ] = useState('');
   const [visible, setVisible] = useState(STEP);
+  const [sort, setSort] = useState<SortKey>('featured');
+  const { preference } = useCurrency();
 
   const brands = useMemo(
     () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
@@ -48,13 +52,21 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
     return rows;
   }, [cat, brandIdx, occasionBit, query]);
 
+  const sortedRows = useMemo(
+    () => sortRowIndices(cat, filteredRows, sort, preference),
+    [cat, filteredRows, sort, preference],
+  );
+
   // Reset the "load more" count whenever a filter changes.
+  // `sort` is deliberately NOT in this dependency array: reordering the same
+  // set of rows is not a change of set, so discarding what has already been
+  // loaded would be gratuitous. Same reasoning as DirectoryBrowser.tsx.
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
   }, [brand, occasion, q]);
 
-  const shownRows = filteredRows.slice(0, visible);
+  const shownRows = sortedRows.slice(0, visible);
   const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
 
   return (
@@ -66,13 +78,22 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
           <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
         )}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {/* Unlike the two above, this dropdown's options include its own
+            default ('featured'), and the synthetic 'all' row FilterDropdown
+            always injects is mapped back onto it — 'all' is not a SortKey. */}
+        <FilterDropdown
+          label="Sort"
+          value={sort}
+          options={SORT_OPTIONS}
+          onSelect={(v) => setSort(v === 'all' ? 'featured' : (v as SortKey))}
+        />
       </IndexPanel>
 
       <div className="brand-label mb-4">
-        Showing {shownCards.length} of {filteredRows.length}
+        Showing {shownCards.length} of {sortedRows.length}
       </div>
 
-      {filteredRows.length === 0 ? (
+      {sortedRows.length === 0 ? (
         <p className="text-sm" style={{ color: 'var(--muted)' }}>No pieces match.</p>
       ) : (
         <>
@@ -81,7 +102,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
               <ProductCard key={p.id} p={p} />
             ))}
           </div>
-          {visible < filteredRows.length && (
+          {visible < sortedRows.length && (
             <div className="text-center mt-12">
               <button
                 onClick={() => setVisible((v) => v + STEP)}
