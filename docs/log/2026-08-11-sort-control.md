@@ -53,9 +53,10 @@ Add a Sort dropdown (Featured / Price Low→High / Price High→Low / Newest / O
   `tsbuildinfo` was removed first so `incremental: true` could not mask a repeat run —
   CLAUDE.md §4).
 
-- Manual: `/directory` and a lane page, Sort chip opens, all five options reorder the grid
-  correctly, composes with Category/Occasion/Brand/search, survives a currency-preference
-  switch, Load More count survives a sort change.
+- Manual: `/directory` and a lane page, Sort chip opens; Featured / Price: Low to High /
+  Price: High to Low reorder the grid correctly; composes with Category/Occasion/Brand/search;
+  survives a currency-preference switch; Load More count survives a sort change. Newest /
+  Oldest select cleanly but are inert on current data — see limitation 4 below.
 
 ## Notes / follow-ups
 
@@ -79,7 +80,10 @@ regression introduced by this branch except where stated.
    reads "Featured" from the start. This is an unavoidable consequence of `SORT_OPTIONS`
    including `'featured'` as a real, selectable option (an approved design choice) — the
    fallback in the shared `FilterDropdown` only fires when nothing is selected. Fixing it
-   means changing `components/IndexPanel.tsx`, which is outside this plan's scope.
+   means changing `components/IndexPanel.tsx`, which is outside this plan's scope. Same root
+   cause produces two more visible effects: the menu renders a literal "All sort" row above
+   Featured (`IndexPanel.tsx` always injects one), and the Sort chip renders permanently in
+   its active/highlighted state (`data-active={value !== 'all'}` is never false for Sort).
 
 2. **Stale comment in `components/DirectoryBrowser.tsx` (lines 69–70).** It reads *"See the
    TODO in components/FilterableGrid.tsx — same pattern, same planned fix"*, but no such TODO
