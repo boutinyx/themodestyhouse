@@ -18,6 +18,63 @@ const decisions = existsSync(U('decisions.json')) ? JSON.parse(readFileSync(U('d
 // women's modest-fashion directory; see data/exclusions.json. Enforced here so a
 // rebuild can never reintroduce excluded items.
 const excl = JSON.parse(readFileSync(U('exclusions.json'), 'utf8'));
+
+/* Title translation, applied HERE at publish time rather than by the Python
+ * post-hook. This is the fix for a regression that ran for as long as the
+ * nightly refresh has existed.
+ *
+ * What was wrong: `postbuild:data` / `postrefresh` call `npm run translate`,
+ * which is guarded on `[ -x .venv-style/bin/python ]`. The GitHub runner in
+ * .github/workflows/refresh.yml sets up Node and nothing else, so that guard is
+ * always false in CI — the hook prints "skipped" and the refresh commits and
+ * pushes untranslated titles. A local publish translated them, the next nightly
+ * refresh reverted them, and neither left a mark. Measured 2026-08-10: 561
+ * published rows carrying Dutch and French titles whose English versions were
+ * sitting in the committed cache the whole time.
+ *
+ * Why applying the cache is enough, and why there is no network call here: the
+ * cache is keyed by the ORIGINAL feed title and raw-products.json still holds
+ * those originals, so a pure lookup translates everything the cache knows —
+ * 2,238 rows as of today — deterministically, with no Python, no venv and no
+ * HTTP. scripts/translate_titles.py keeps its job: it POPULATES the cache for
+ * titles never seen before, which does need the network. That split means CI
+ * can never again publish a title the project has already translated.
+ *
+ * The two files are read defensively. A missing translate-brands.json means "no
+ * brand needs translating", which is the correct reading of an absent list, and
+ * a missing cache means "nothing translated yet" — neither should fail a build
+ * whose real job is publishing the catalogue.
+ */
+const translateBrands = existsSync(U('translate-brands.json'))
+  ? JSON.parse(readFileSync(U('translate-brands.json'), 'utf8'))
+  : {};
+const titleCache = existsSync(U('title-translations.json'))
+  ? JSON.parse(readFileSync(U('title-translations.json'), 'utf8'))
+  : {};
+const translationStats = { translated: 0, uncached: 0 };
+
+/** The published title: cleaned, and translated when the brand is non-English.
+ *
+ *  Looked up under BOTH the cleaned and the raw title. translate_titles.py reads
+ *  products.json, i.e. titles that have already been through normalizeTitle, so
+ *  its keys are cleaned ones — but rows scraped before a normalizeTitle change
+ *  are keyed raw. Checking both is what keeps old cache entries usable instead
+ *  of silently missing and re-translating.
+ */
+function publishTitle(p) {
+  const cleaned = normalizeTitle(p.title);
+  if (!translateBrands[p.brandSlug]) return cleaned;
+  const hit = titleCache[cleaned] ?? titleCache[p.title];
+  if (hit) {
+    if (hit !== cleaned) translationStats.translated += 1;
+    return normalizeTitle(hit);
+  }
+  // Not a failure — just a title the cache has not seen. Counted and reported
+  // so the gap is visible rather than silent; run scripts/translate_titles.py
+  // locally to fill it.
+  translationStats.uncached += 1;
+  return cleaned;
+}
 const titleRes = (excl.patterns || []).map((s) => new RegExp(s, 'i'));
 const urlRes = (excl.urlPatterns || []).map((s) => new RegExp(s, 'i'));
 const excludedIds = new Set(excl.ids || []);
@@ -146,13 +203,15 @@ const prevRows = existsSync(U('products.json')) ? JSON.parse(readFileSync(U('pro
 // sequence the shopper sees, and capping against any other one moves abayas the
 // wrong way (measured: 12% -> 21% when computed over the raw list).
 const inMixedGrid = (p) => p.garment !== 'hijab' && !isSpecialty(p);
-// Re-clean titles at PUBLISH time, not just at ingest. build-data never re-runs
-// normalizeProduct, so rows scraped before a normalizeTitle change keep their old
-// title forever — that is the "raw rows are frozen" landmine in CLAUDE.md §8.
-// Doing it here fixes 141 titles showing a literal "&#8211;" and 460 SHOUTING
-// titles across every brand, with no re-scrape.
+// Re-clean AND translate titles at PUBLISH time, not just at ingest. build-data
+// never re-runs normalizeProduct, so rows scraped before a normalizeTitle change
+// keep their old title forever — that is the "raw rows are frozen" landmine in
+// CLAUDE.md §8. Doing it here fixes 141 titles showing a literal "&#8211;" and
+// 460 SHOUTING titles across every brand, with no re-scrape — and, since
+// 2026-08-10, applies the translation cache so CI cannot publish a title the
+// project has already translated. See publishTitle() above.
 const published = demoteGarment(interleaveByBrand(kept), 'abaya', inMixedGrid)
-  .map((p) => ({ ...p, title: normalizeTitle(p.title) }));
+  .map((p) => ({ ...p, title: publishTitle(p) }));
 
 // Write the audit trail BEFORE the guard can throw — the error message tells
 // the operator to review these files, so they have to exist by then.
@@ -180,4 +239,14 @@ console.table(byReason);
 console.log(
   `Published ${published.length} products (mixed across ${new Set(published.map((p) => p.brandSlug)).size} brands) ` +
   `| rejected ${rejected.length} | review ${review.length} | delisted-by-brand ${delistedCount}`,
+);
+// Reported unconditionally, including the zeroes. The regression this replaced
+// was invisible precisely because the skipped hook printed a cheerful
+// "title-translation skipped" and nothing downstream ever counted the result.
+console.log(
+  `Titles: ${translationStats.translated} translated from cache` +
+  (translationStats.uncached
+    ? ` | ${translationStats.uncached} in non-English brands NOT in the cache ` +
+      `— run scripts/translate_titles.py locally to fill them`
+    : ' | cache covers every non-English title'),
 );
