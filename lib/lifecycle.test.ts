@@ -216,23 +216,27 @@ describe('isLifecycleLive', () => {
 });
 
 describe('stripLifecycle', () => {
-  it('removes every lifecycle field so they never reach products.json or the RSC payload', () => {
+  it('keeps firstSeen but drops the rest of the lifecycle bookkeeping', () => {
     const row: LifecycleRow = {
       ...product('inayah:1'),
-      firstSeen: TODAY,
-      lastSeen: TODAY,
+      firstSeen: '2026-08-05',
+      lastSeen: '2026-08-10',
       delistedAt: null,
       filteredAt: null,
-      filterReason: 'no-image',
+      filterReason: undefined,
     };
-    const out = stripLifecycle(row);
-    expect(out).not.toHaveProperty('firstSeen');
-    expect(out).not.toHaveProperty('lastSeen');
-    expect(out).not.toHaveProperty('delistedAt');
-    expect(out).not.toHaveProperty('filteredAt');
-    expect(out).not.toHaveProperty('filterReason');
-    expect(out.id).toBe('inayah:1');
-    expect(out.title).toBe('Product inayah:1');
+    const stripped = stripLifecycle(row) as Product & { lastSeen?: unknown; delistedAt?: unknown; filteredAt?: unknown; filterReason?: unknown };
+    expect(stripped.firstSeen).toBe('2026-08-05');
+    expect('lastSeen' in stripped).toBe(false);
+    expect('delistedAt' in stripped).toBe(false);
+    expect('filteredAt' in stripped).toBe(false);
+    expect('filterReason' in stripped).toBe(false);
+  });
+
+  it('keeps firstSeen: null (pre-dates tracking) rather than dropping it', () => {
+    const row: LifecycleRow = { ...product('inayah:2'), firstSeen: null, lastSeen: '2026-08-10' };
+    const stripped = stripLifecycle(row) as Product & { firstSeen?: string | null };
+    expect(stripped.firstSeen).toBeNull();
   });
 });
 
