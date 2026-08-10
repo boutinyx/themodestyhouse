@@ -1,9 +1,37 @@
 import type { Garment } from '@/lib/types';
 
+/**
+ * A Unicode-aware word boundary, for rules that have to hold outside ASCII.
+ *
+ * JavaScript's `\b` is defined against `\w`, which is exactly [A-Za-z0-9_]. In
+ * Turkish that makes `ı ş ğ ü ö ç İ` NON-word characters, so `\b` finds a
+ * boundary in the middle of a word: `/\bkap\b/i` matches "Kapüşonlu" (hooded)
+ * and "Kapitone" (quilted), which published a quilted HANDBAG as a top.
+ *
+ * §10.5 and §10.10 say "always use \b". That is necessary and, off the ASCII
+ * range, not sufficient — every rule below written for a non-English feed uses
+ * this instead. Guarded by the last test in `Turkish garment vocabulary`.
+ */
+const word = (alternatives: string): RegExp =>
+  new RegExp(`(?<![\\p{L}\\p{M}\\d])(?:${alternatives})(?![\\p{L}\\p{M}\\d])`, 'iu');
+
+/**
+ * Turkish has four i's — i ı İ I — and `'İ'.toLowerCase()` is `i` followed by
+ * U+0307 COMBINING DOT ABOVE, a two-code-point string no `/i/` regex folds:
+ * `/elbise/i.test('ELBİSE')` is **false**. 37 catalogue rows are titled in
+ * caps, so every Turkish rule spells its i's with this class. The dot is written
+ * as the escape sequence U+0307 on purpose: the bare mark is invisible in source.
+ */
+const TR_I = '[iıİI]\\u0307?';
+
 const GARMENT_RULES: [Garment, RegExp][] = [
   ['swim', /swim|burkini|bathing|swimsuit|board ?short|beachwear/i],
   ['abaya', /abaya|jilbab|kaftan|kimono/i],
-  ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf/i],
+  // `(open|ninja|tube) cap` are underscarf caps, not headwear in general — a
+  // bare /\bcap\b/ would drag in baseball caps and men's taqiyahs. 148 corpus
+  // hits, all of them hijab caps; without it Nour Al Houda's 14 published caps
+  // match no rule at all once `set` is anchored.
+  ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf|\b(?:open|ninja|tube) caps?\b/i],
   ['dress', /dress|gown/i],
   ['skirt', /skirt|\bjupe\b/i],
   // OUTERWEAR + French tops, deliberately placed BEFORE `trousers` AND before
@@ -33,8 +61,15 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // this list has already failed. English layering pieces match `top` here and
   // never reach it, while "Robe évasée Lilas Pastel" does. Verified against both.
   ['top', /\b(veste|trench|manteau|chemisier|chemise|haut)\b/i],
-  ['trousers', /trouser|pant|jean|legging|culotte|wide.?leg/i],
-  ['set', /set|co.?ord|two.?piece|coordinate|\bensemble\b/i],
+  // BOUNDED 2026-08-10. Both of these were unanchored, which is the §10.10 bug
+  // class the same section records as fixed — these two were missed. `set`
+  // matched inside sun**set**, cor**set**, ro**sette** and Te**set**tür;
+  // `pant` inside **pant**ies and Lou**jean**. Every alternative below is a
+  // word that really occurs in the corpus, enumerated from it rather than
+  // guessed: the compounds (sweatpants, twinset, joggingset, setje, seti) are
+  // listed because a plain `\bsets?\b` would silently stop matching them.
+  ['trousers', word(`trousers?|(?:sweat|track|cargo)?pants?|jeans?|leggings?|culottes?|pantalons?|pantolon(?:lu)?|wide.?legs?`)],
+  ['set', word(`(?:twin|jogging)?sets?|set${TR_I}|setjes?|co.?ords?|two.?pieces?|coordinate|ensemble`)],
   // `coat` and `jacket` are new here (below `set`, so sets still win): they
   // matched NO rule before, leaving ~94 real outerwear products unclassified.
   ['top', /top|blouse|shirt|tunic|sweater|cardigan|bolero|blazer|vest|coat|jacket/i],
@@ -45,15 +80,48 @@ const GARMENT_RULES: [Garment, RegExp][] = [
 ];
 
 /** Non-English garment words, applied ONLY as a fallback (see tagDiscovery pass 3).
- *  fr = French, de = German, nl = Dutch — the languages actually present in the
- *  catalogue's feeds. Words that collide with English are deliberately absent. */
+ *  fr = French, de = German, nl = Dutch, tr = Turkish, ms = Malay — the languages
+ *  actually present in the catalogue's feeds. Words that collide with English are
+ *  deliberately absent, and the non-ASCII rules use word() rather than \b. */
 const FOREIGN_RULES: [Garment, RegExp][] = [
-  ['dress',    /\brobes?\b|\bkleid(er)?\b|\bjurk(en)?\b/i],        // fr / de / nl
+  // `kleid` is deliberately open on the LEFT: German compounds every noun, so
+  // Aurora Abaya ships "Silkkleid" and "Baumwollkleid" as well as "Kleid". 31
+  // corpus hits, all of them dresses; no English word ends in -kleid.
+  ['dress',    /\brobes?\b|kleid(er)?\b|\bjurk(en)?\b/i],           // fr / de / nl
   ['skirt',    /\bjupes?\b|\brokken\b/i],                          // fr / nl  (not de "rock")
   ['trousers', /\bpantalons?\b|\bbroek(en)?\b/i],                   // fr / nl  (not de "Hose")
   ['top',      /\boberteil\b|\bchemisiers?\b/i],                    // de / fr
   ['set',      /\bensembles?\b|\bzweiteiler\b|\btwinsets?\b/i],    // fr / de / nl
   ['abaya',    /\bdjellabas?\b/i],
+
+  // --- Turkish (baqa, beyza, ipekstil, nihan, zuhre) + Malay (alia-anggun) ---
+  //
+  // ADDED 2026-08-10, and not optional: anchoring `set`/`pant` above left ~296
+  // PUBLISHED Turkish garments matching no rule at all, and `garment: 'other'`
+  // is dropped by normalizeProduct. Every word was derived from the 36,754-
+  // record feed corpus — mostly from each feed's own product_type, which is
+  // clean where titles are not — and measured against the whole corpus before
+  // being added (§10.16). Two candidates were measured and REJECTED: `bone`,
+  // because in this catalogue it is a colour ("Abaya in Bone") and not the
+  // Turkish word for an underscarf; and a bare `cap`, see the hijab rule above.
+  //
+  // ORDER MATTERS within this block, and mirrors GARMENT_RULES: `takım` means
+  // "set", so without swim sitting first a "Bikini Takımı" publishes as a
+  // co-ord — and §7 keeps swimwear on its own lane.
+  ['swim',     word(`b${TR_I}k${TR_I}n${TR_I}(?:ler)?|mayo(?:lar)?`)],
+  // A ferace is a full-length loose overgarment — the garment class this
+  // catalogue already means by abaya|jilbab|kaftan. Tina's call, 2026-08-10.
+  ['abaya',    word(`ferace(?:s${TR_I})?`)],
+  ['hijab',    word(`selendang`)],                                  // ms — a shawl
+  ['dress',    word(`elb${TR_I}se(?:ler|s${TR_I})?`)],
+  ['skirt',    word(`etek(?:ler)?|eteğ${TR_I}`)],
+  // `kurung` (ms) is a two-piece baju kurung. Mapped to `set` because that is
+  // what those rows already classify as today — this rule keeps them alive
+  // once `set` is anchored without also moving them to a different lane.
+  ['set',      word(`tak${TR_I}m(?:${TR_I}|lar)?|alt ?-? ?üst|kurung`)],
+  ['top',      word(`tun${TR_I}k|bluz(?:lar)?|gömlek|kazak|h${TR_I}rka|ceket|tren` +
+                    `çkot|trenç|kaban|panço(?:su)?|panco|peler${TR_I}n|yelek|` +
+                    `g${TR_I}y ?ç${TR_I}k|kap|pardesü|yağmurluk|süveter`)],
 ];
 
 const OCCASION_RULES: [string, RegExp][] = [

@@ -24138,7 +24138,7 @@
     "brandSlug": "zora",
     "title": "The Jannah Blouse to Martha’s Closet Enamel Pin",
     "url": "https://zoradesigners.com/products/martha-s-jannah-blouse-enamel-pin",
-    "garmentWas": "set",
+    "garmentWas": "top",
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Enamel Pin"
@@ -24686,26 +24686,6 @@
     "url": "https://mariam-col.com/products/hollow-moon-candle-holder-ramadan-decorative-accent-mac379",
     "garmentWas": "top",
     "reason": "title-pattern"
-  },
-  {
-    "id": "mariams:9107325976792",
-    "brandSlug": "mariams",
-    "title": "Rosette Cloud Clutch(MAC373)",
-    "url": "https://mariam-col.com/products/rosette-cloud-clutchmac373",
-    "garmentWas": "set",
-    "reason": "non-apparel:bags",
-    "tier": "B",
-    "evidence": "Clutch"
-  },
-  {
-    "id": "mariams:9107325845720",
-    "brandSlug": "mariams",
-    "title": "Acrylic Shell Clutch with Woven Inset(MAC372)",
-    "url": "https://mariam-col.com/products/acrylic-shell-clutch-with-woven-insetmac372",
-    "garmentWas": "set",
-    "reason": "non-apparel:bags",
-    "tier": "B",
-    "evidence": "Clutch"
   },
   {
     "id": "mariams:9101735035096",
@@ -25316,16 +25296,6 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Magnet"
-  },
-  {
-    "id": "mariams:8529035231448",
-    "brandSlug": "mariams",
-    "title": "MAC187 Copper Sset Zircon Personalized Multi-Layered Open Ring",
-    "url": "https://mariam-col.com/products/mac187-copper-sset-zircon-personalized-multi-layered-open-ring",
-    "garmentWas": "set",
-    "reason": "non-apparel:jewellery",
-    "tier": "A",
-    "evidence": "Zircon"
   },
   {
     "id": "mariams:8529027170520",
@@ -26000,14 +25970,6 @@
     "evidence": "hangers"
   },
   {
-    "id": "noureen:16657",
-    "brandSlug": "noureen",
-    "title": "Gift box Medium",
-    "url": "https://noureenmodestfashion.com/product/giftbox-medium/",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "noureen:10437",
     "brandSlug": "noureen",
     "title": "Hijab Pin",
@@ -26404,16 +26366,6 @@
     "evidence": "Clutch"
   },
   {
-    "id": "mariams:9036960497880",
-    "brandSlug": "mariams",
-    "title": "Gold Reflective Evening Clutch with Diamond-Studded Circular Handle (MAC294)",
-    "url": "https://mariam-col.com/products/gold-reflective-evening-clutch-with-diamond-studded-circular-handle-mac294",
-    "garmentWas": "set",
-    "reason": "non-apparel:bags",
-    "tier": "B",
-    "evidence": "Clutch"
-  },
-  {
     "id": "mariams:9036355535064",
     "brandSlug": "mariams",
     "title": "Round Evening Clutch Handbag with Braided Accent (MAC287)",
@@ -26612,16 +26564,6 @@
     "reason": "non-apparel:bags",
     "tier": "B",
     "evidence": "Bag"
-  },
-  {
-    "id": "kamin:9749760278745",
-    "brandSlug": "kamin",
-    "title": "Lulwa Vase",
-    "url": "https://kamin.ae/products/lulwa-vase",
-    "garmentWas": "set",
-    "reason": "non-apparel:home",
-    "tier": "B",
-    "evidence": "Vase"
   },
   {
     "id": "kamin:9307987214553",
@@ -27468,16 +27410,6 @@
     "evidence": "Earrings"
   },
   {
-    "id": "ilovemodesty:10026972741953",
-    "brandSlug": "ilovemodesty",
-    "title": "AYA Silver Square Crystal & Pearl Stud Earrings",
-    "url": "https://ilovemodesty.com/products/aya-silver-square-crystal-pearl-stud-earrings",
-    "garmentWas": "set",
-    "reason": "non-apparel:hardware",
-    "tier": "B",
-    "evidence": "Stud"
-  },
-  {
     "id": "ilovemodesty:10026976215361",
     "brandSlug": "ilovemodesty",
     "title": "AYA Silver Duo-Cushion Crystal Studs Earrings",
@@ -28218,5 +28150,189 @@
     "reason": "non-apparel:fragrance",
     "tier": "0",
     "evidence": "Parfum"
+  },
+  {
+    "id": "nihan:15086406402411",
+    "brandSlug": "nihan",
+    "title": "Modal Kumaş Etek Bluz Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/modal-kumas-etek-bluz-takim-zumrut",
+    "garmentWas": "skirt",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15086400504171",
+    "brandSlug": "nihan",
+    "title": "Taş Detaylı Etek Ceket Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/tas-detayli-etek-ceket-takim-zumrut",
+    "garmentWas": "skirt",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15086385660267",
+    "brandSlug": "nihan",
+    "title": "Organze Kollu Etek Ceket Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/organze-kollu-etek-ceket-takim-zumrut",
+    "garmentWas": "skirt",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15086224867691",
+    "brandSlug": "nihan",
+    "title": "Nervür Detaylı Gömlek - Zümrüt",
+    "url": "https://nihan.com.tr/products/nervur-detayli-gomlek-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15086191116651",
+    "brandSlug": "nihan",
+    "title": "Dilimli Asimetrik Etek - Zümrüt",
+    "url": "https://nihan.com.tr/products/dilimli-asimetrik-etek-zumrut",
+    "garmentWas": "skirt",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15086104772971",
+    "brandSlug": "nihan",
+    "title": "Kruvaze Kapama Lyocell Bluz - Zümrüt",
+    "url": "https://nihan.com.tr/products/kruvaze-kapama-lyocell-bluz-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15086095073643",
+    "brandSlug": "nihan",
+    "title": "Volan ve Büzgü Detaylı Romantik Lyocell Bluz - Zümrüt",
+    "url": "https://nihan.com.tr/products/volan-ve-buzgu-detayli-romantik-lyocell-bluz-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15028455342443",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Kol Detaylı Şık Tunik - Zümrüt",
+    "url": "https://nihan.com.tr/products/buyuk-beden-kol-detayli-sik-tunik-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15028000751979",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Gömlek Yaka Viskon Tunik - Zümrüt",
+    "url": "https://nihan.com.tr/products/buyuk-beden-gomlek-yaka-viskon-tunik-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15027933184363",
+    "brandSlug": "nihan",
+    "title": "Gömlek Yaka Modal Tunik - Zümrüt",
+    "url": "https://nihan.com.tr/products/gomlek-yaka-modal-tunik-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15027666551147",
+    "brandSlug": "nihan",
+    "title": "Balon Kollu Püskül Dokulu Modal Elbise - Zümrüt",
+    "url": "https://nihan.com.tr/products/balon-kollu-puskul-dokulu-modal-elbise-zumrut",
+    "garmentWas": "dress",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15003281391979",
+    "brandSlug": "nihan",
+    "title": "Yanları Detaylı Viskon Tunik - Zümrüt",
+    "url": "https://nihan.com.tr/products/yanlari-detayli-viskon-tunik-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15003230273899",
+    "brandSlug": "nihan",
+    "title": "Yanları Detaylı Modal Tunik - Zümrüt",
+    "url": "https://nihan.com.tr/products/yanlari-detayli-modal-tunik-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15002890010987",
+    "brandSlug": "nihan",
+    "title": "Düşük Kollu Rahat Kalıp Gömlek - Zümrüt",
+    "url": "https://nihan.com.tr/products/dusuk-kollu-rahat-kalip-gomlek-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15002775519595",
+    "brandSlug": "nihan",
+    "title": "Taş Kemerli Keten Karışımlı Elbise - Zümrüt",
+    "url": "https://nihan.com.tr/products/tas-kemerli-keten-karisimli-elbise-zumrut",
+    "garmentWas": "dress",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919416971627",
+    "brandSlug": "nihan",
+    "title": "%100 Keten Oversize Gömlek Yaka Tunik - Zümrüt",
+    "url": "https://nihan.com.tr/products/100-keten-oversize-gomlek-yaka-tunik-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919395934571",
+    "brandSlug": "nihan",
+    "title": "Crop Gömlekli Lyocell Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/crop-gomlekli-lyocell-takim-zumrut",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919389348203",
+    "brandSlug": "nihan",
+    "title": "Kanvas Etekli Pamuk Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/kanvas-etekli-yelek-takim-zumrut",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919379419499",
+    "brandSlug": "nihan",
+    "title": "Dikiş Detaylı Kanvas Etek Gömlek Pamuk Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/dikis-detayli-kanvas-etek-gomlek-takim-zumrut",
+    "garmentWas": "skirt",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919367655787",
+    "brandSlug": "nihan",
+    "title": "Yeleği Bağlamalı Etekli Lyocell Takım - Zümrüt",
+    "url": "https://nihan.com.tr/products/yelegi-baglamali-etekli-lyocell-takim-zumrut",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "ipekstil:9206733111531",
+    "brandSlug": "ipekstil",
+    "title": "Düğmeli Tam Boy Trençkot SİYAH",
+    "url": "https://ipekstil.com/products/dugmeli-tam-boy-trenckot-siyah",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "ipekstil:9206733078763",
+    "brandSlug": "ipekstil",
+    "title": "Düğmeli Tam Boy Trençkot Taş Yeşili",
+    "url": "https://ipekstil.com/products/dugmeli-tam-boy-trenckot-tas-yesili",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "ipekstil:9206733177067",
+    "brandSlug": "ipekstil",
+    "title": "Düğmeli Tam Boy Trençkot BEJ",
+    "url": "https://ipekstil.com/products/dugmeli-tam-boy-trenckot-bej",
+    "garmentWas": "top",
+    "reason": "title-pattern"
   }
 ]
