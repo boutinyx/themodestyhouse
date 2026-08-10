@@ -241,8 +241,11 @@ if (prevRows && !process.env.ALLOW_LARGE_DIFF) {
   }
 }
 
-// Lifecycle bookkeeping is raw-side only: ~5k rows of firstSeen/lastSeen would
-// add ~150 KB to this file AND to every RSC payload (§8's real scaling ceiling).
+// Most lifecycle bookkeeping is raw-side only and stripped here — lastSeen on
+// ~5k rows would add real weight to this file AND to every RSC payload (§8's
+// real scaling ceiling). firstSeen is the one exception: it's now a published
+// field (stripLifecycle keeps it) so the Sort control's Newest/Oldest options
+// have real data — see lib/lifecycle.ts and lib/compactCatalogue.ts.
 writeFileSync(U('products.json'), JSON.stringify(published.map(stripLifecycle), null, 2));
 
 const byReason = rejected.reduce((a, r) => ((a[r.reason] = (a[r.reason] || 0) + 1), a), {});
