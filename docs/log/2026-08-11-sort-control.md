@@ -66,9 +66,10 @@ Add a Sort dropdown (Featured / Price Low→High / Price High→Low / Newest / O
   publish runs. This is expected, not a bug — see the design spec's "Out of scope" section.
 - **What actually populates it is a plain `npm run build:data`, not `npm run refresh`.**
   `firstSeen` is already on the raw rows and `stripLifecycle` no longer removes it, so the
-  publish needs no network and no feed fetch. Measured 2026-08-11 by joining
-  `data/products.json` against `data/raw-products.json`: **17,033 of the 23,142 published rows
-  (73.6%) would get a real date** from an offline republish; the remaining 6,109 pre-date
+  publish needs no feed fetch (the `postbuild:data` translate hook still runs and does hit the
+  network when `.venv-style` exists — "no feed fetch", not "fully offline"). Measured
+  2026-08-11 by joining `data/products.json` against `data/raw-products.json`: **17,033 of the
+  23,142 published rows (73.6%) would get a real date** from that publish; the remaining 6,109 pre-date
   lifecycle tracking (2026-08-05) and would publish `null`. So Newest/Oldest are one small,
   deliberate command away from working over three quarters of the catalogue — not waiting on
   an unowned refresh cadence. The republish is left to Tina on purpose: it rewrites most of
@@ -112,9 +113,9 @@ regression introduced by this branch except where stated.
    rows carry `firstSeen`, because no `npm run build:data` republish has happened on this
    branch. Stated again here, prominently, because it is the single most likely thing to look
    like a bug to anyone testing the live site today: two of the five options appear to do
-   nothing. They are wired correctly; there is simply no data to sort on yet. **An offline
-   `npm run build:data` is the trigger** — not a refresh — and it would give real dates to
-   17,033 of the 23,142 rows (73.6%) today. See the Notes section above.
+   nothing. They are wired correctly; there is simply no data to sort on yet. **A plain
+   `npm run build:data` is the trigger** — not a refresh, no feed fetch — and it would give
+   real dates to 17,033 of the 23,142 rows (73.6%) today. See the Notes section above.
 
 5. **Cross-currency price sort in "As listed" mode compares raw numbers across currencies with
    no conversion.** This is spec-correct — ADR-0002 is the site's standing no-conversion-by-
