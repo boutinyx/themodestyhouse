@@ -87,3 +87,6 @@ style-cutouts.html
 
 # Working folder for re-cut cutout sources (large masters, kept locally).
 public/style-it/png's trans/
+
+# Local worktrees for isolated feature work (superpowers:using-git-worktrees).
+.worktrees/
