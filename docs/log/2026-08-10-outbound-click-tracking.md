@@ -106,6 +106,49 @@ reads back what *would* have been sent.
    tolerated it, so three earlier worktrees in this session never noticed. A
    worktree that must run `next build` needs a real `npm ci`.
 
+## Verified on production
+
+```
+$ BASE=https://themodestyhouse.com npm run audit:outbound
+outbound /designers        chromium  ok {"brand":"veiled","surface":"designers"}
+negative /designers        chromium  ok internal link emitted nothing
+outbound /modest-dresses   chromium  ok {"brand":"niswa","garment":"dress","surface":"quickview"}
+negative /modest-dresses   chromium  ok internal link emitted nothing
+outbound /                 chromium  ok {"brand":"niswa","garment":"dress","surface":"editors-rail"}
+negative /                 chromium  ok internal link emitted nothing
+   … identical for webkit …
+ALL PASS
+```
+
+## THREE more harness faults, all found against production
+
+Local green was not enough, and every one of these first presented as a site
+defect. This is §10.26 three more times, in a script written to honour it.
+
+1. **The audit read only `window.pulseQueue`.** `lib/pulse.ts` uses the queue as
+   a FALLBACK; where the script really loads it calls `window.pulse.track()`
+   directly. So on production the check was a race — it passed or failed on
+   whether the click beat the script, and reported "no outbound_click" for a
+   click that had worked perfectly. It now records both paths.
+2. **It waited for markup instead of hydration.** It waited for
+   `a[rel~="sponsored"]` to exist — but those anchors are SERVER-rendered and
+   present long before the listener attaches, so the first click on every page
+   was lost. Visible only because the retry note fired identically on every run
+   rather than randomly. `OutboundTracking` now sets `data-outbound-ready` on
+   `<html>` from inside its effect, so the audit waits on the listener's own
+   claim that it is attached. §10.28 rule 2.
+3. **Intercepting every request starved Chromium.** To stop clicks reaching real
+   brand sites the audit aborted all off-origin requests. `/designers` and
+   `/modest-dresses` then reported "listener never attached" in Chromium while
+   WebKit passed the same routes — §10.26 #1 exactly, which is why the
+   interaction audit is already WebKit-only. Replaced with
+   `page.on('popup', …close())`, which is all the isolation a `target="_blank"`
+   link needs. (First attempt used `ctx.on('page')`, which also fires for the
+   pages the script opens itself and closed all of them — 6 PROBLEMs.)
+
+**A one-engine pass is not a pass.** In two of the three, the engines disagreed,
+and the disagreement was the signal.
+
 ## Notes / follow-ups
 
 - **`components/BrandCard.tsx` is dead code** — imported nowhere; `/designers`

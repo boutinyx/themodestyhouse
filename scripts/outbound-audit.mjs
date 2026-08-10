@@ -47,13 +47,23 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
       } catch { return route.abort(); }
     });
   }
-  // Never let a click actually navigate away or open a real brand tab.
-  if (!(LOCAL && engineName === 'webkit')) {
-    await ctx.route('**/*', (route) => route.request().url().startsWith(BASE) ? route.continue() : route.abort());
-  }
+  // Outbound links are target="_blank", so a click opens a brand's real site in
+  // a NEW tab and leaves the page under test in place. Closing that tab is all
+  // the isolation needed.
+  //
+  // An earlier version instead intercepted every request and aborted anything
+  // off-origin. That is §10.26 #1 exactly: in Chromium the interception raced
+  // and starved the page, and `/designers` and `/modest-dresses` reported
+  // "listener never attached" on a site that was hydrating perfectly well —
+  // a harness fault presenting as a product defect, in both directions
+  // (WebKit passed the same routes). Interception is now used ONLY where it is
+  // unavoidable: WebKit against plain-http localhost, above.
+  // NB: must be `page.on('popup')`, not `ctx.on('page')` — the latter also fires
+  // for the pages this script opens itself, and closed every one of them.
 
   for (const c of CASES) {
     const page = await ctx.newPage();
+    page.on('popup', (pop) => { pop.close().catch(() => {}); });
     try {
       await page.goto(`${BASE}${c.path}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
 
