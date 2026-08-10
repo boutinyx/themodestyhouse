@@ -31,7 +31,17 @@ export function OutboundTracking() {
     };
     // Pointer-device clicks and keyboard activation both surface as 'click'.
     document.addEventListener('click', onClick, { capture: true });
-    return () => document.removeEventListener('click', onClick, { capture: true });
+    // Declares that the listener is LIVE, so `npm run audit:outbound` can wait
+    // for hydration rather than for markup. The anchors are server-rendered and
+    // therefore present well before this effect runs — an audit that waited for
+    // them clicked too early and silently lost the first click on every page
+    // (§10.28 rule 2: an interaction result is void unless the page is
+    // interactive). Costs one attribute; nothing else reads it.
+    document.documentElement.setAttribute('data-outbound-ready', '');
+    return () => {
+      document.removeEventListener('click', onClick, { capture: true });
+      document.documentElement.removeAttribute('data-outbound-ready');
+    };
   }, []);
 
   return null;
