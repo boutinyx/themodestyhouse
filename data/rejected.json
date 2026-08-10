@@ -12174,12 +12174,1300 @@
     "evidence": "Hijab Magnet"
   },
   {
+    "id": "lumos:10761144566070",
+    "brandSlug": "lumos",
+    "title": "LM367 Lace-Trim Modest Maxi Dress & Matching Hijab Set",
+    "url": "https://lumosmodesty.com/products/lm367-lace-trim-modest-maxi-dress-hijab-set",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10794055565622",
+    "brandSlug": "lumos",
+    "title": "LM139 Asymmetric Modest Top & Maxi Skirt Set for Muslim Women",
+    "url": "https://lumosmodesty.com/products/asymmetric-modest-top-maxi-skirt-set",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
     "id": "lumos:10767306916150",
     "brandSlug": "lumos",
     "title": "LM369 Plus Size Ice Silk Cowl Neck Nightdress – Lightweight Summer Sleep Dress",
     "url": "https://lumosmodesty.com/products/lm369-plus-size-ice-silk-cowl-neck-nightdress",
     "garmentWas": "dress",
-    "reason": "id-pin"
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10755098411318",
+    "brandSlug": "lumos",
+    "title": "LM366 Lace-Panel Cape Sleeve Modest Maxi Dress – Loose Round Neck Fit",
+    "url": "https://lumosmodesty.com/products/lm366-lace-panel-cape-sleeve-modest-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10708559397174",
+    "brandSlug": "lumos",
+    "title": "LM365 Luxury Satin Floral Robe – Long Sleeve Kimono Bathrobe Nightgown for Women",
+    "url": "https://lumosmodesty.com/products/lm365-luxury-satin-floral-robe-nightgown",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10705242390838",
+    "brandSlug": "lumos",
+    "title": "LM364 Floral Lace Modest Maxi Dress – Long Sleeve Elegant Eid Dress for Muslim Women",
+    "url": "https://lumosmodesty.com/products/lm364-floral-lace-modest-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10705231380790",
+    "brandSlug": "lumos",
+    "title": "LM363 Luxury Beige Butterfly Sleeve Sequin Abaya Dress – Elegant Eid Kaftan for Muslim Women",
+    "url": "https://lumosmodesty.com/products/lm363-beige-butterfly-sleeve-sequin-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10705191665974",
+    "brandSlug": "lumos",
+    "title": "LM362 Luxury Champagne Beaded Lace Abaya Dress – Handmade Elegant Eid & Evening Kaftan",
+    "url": "https://lumosmodesty.com/products/lm362-champagne-beaded-lace-eid-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10702149878070",
+    "brandSlug": "lumos",
+    "title": "LM360 Gradient Abaya Set with Headscarf – Modest Two Piece Cardigan Dress",
+    "url": "https://lumosmodesty.com/products/products-lm360-gradient-abaya-headscarf-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10702144766262",
+    "brandSlug": "lumos",
+    "title": "LM359 Embroidered 3-Piece Abaya Set – Loose Modest Outer Dress with Inner Dress & Hijab",
+    "url": "https://lumosmodesty.com/products/products-lm359-embroidered-3piece-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10698635510070",
+    "brandSlug": "lumos",
+    "title": "LM358 Satin Floral Kimono Robe – Luxury Silk Touch Short Sleepwear, Lightweight Loungewear Bathrobe for Women",
+    "url": "https://lumosmodesty.com/products/products-lm358-satin-kimono-robe",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10698633380150",
+    "brandSlug": "lumos",
+    "title": "LM357 Satin Printed Kaftan Nightgown – Luxury Modest Sleepwear Maxi Dress",
+    "url": "https://lumosmodesty.com/products/products-lm357-satin-printed-kaftan-nightgown",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10698631414070",
+    "brandSlug": "lumos",
+    "title": "LM356 Lace Patchwork Abaya Dress with Hijab – Elegant Modest Maxi Dress for Women",
+    "url": "https://lumosmodesty.com/products/products-lm356-lace-patchwork-abaya-hijab-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10691269034294",
+    "brandSlug": "lumos",
+    "title": "LM355 Embroidered Two Piece Abaya Set – Luxury Open Front Cardigan Abaya Dress for Eid & Formal Wear",
+    "url": "https://lumosmodesty.com/products/products-lm355-embroidered-two-piece-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10691117318454",
+    "brandSlug": "lumos",
+    "title": "LM354 Plaid Sequin Embroidered Abaya Dress – Elegant Modest Party Maxi",
+    "url": "https://lumosmodesty.com/products/products-lm354-plaid-sequin-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10690890268982",
+    "brandSlug": "lumos",
+    "title": "LM352 Luxury Beaded Open Abaya Set – Embroidered Modest Eid Kimono Dress",
+    "url": "https://lumosmodesty.com/products/products-lm352-beaded-open-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10690821685558",
+    "brandSlug": "lumos",
+    "title": "LM351 Sequin Embroidered Abaya Dress for Women | Elegant V Neck Modest Maxi Kaftan",
+    "url": "https://lumosmodesty.com/products/lm351-sequin-embroidered-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10688217186614",
+    "brandSlug": "lumos",
+    "title": "LM350 Luxury Floral Print Beaded Abaya Dress for Women | Elegant Modest Eid Maxi Kaftan",
+    "url": "https://lumosmodesty.com/products/lm350-floral-beaded-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10688214466870",
+    "brandSlug": "lumos",
+    "title": "LM349 Luxury Embroidered Sequin Abaya Dress – Elegant Pink Modest Kaftan for Eid & Special Occasions",
+    "url": "https://lumosmodesty.com/products/lm349-embroidered-sequin-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10688091980086",
+    "brandSlug": "lumos",
+    "title": "LM348 Elegant Embroidered Double Layer Abaya Dress – Luxury Modest Maxi Gown",
+    "url": "https://lumosmodesty.com/products/products-embroidered-double-layer-abaya-dress-lm348",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10688081854774",
+    "brandSlug": "lumos",
+    "title": "LM347 three-dimensional flower mesh cardigan + hijab",
+    "url": "https://lumosmodesty.com/products/products-3d-floral-mesh-open-abaya-cardigan-lm347",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10656905756982",
+    "brandSlug": "lumos",
+    "title": "LM337 Floral Print Cardigan Robe Dress - Lightweight Holiday Modest Outerwear for Women",
+    "url": "https://lumosmodesty.com/products/lm337-floral-cardigan-robe-dress-lightweight-modest-holiday-outerwear",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10650756415798",
+    "brandSlug": "lumos",
+    "title": "LM336 Cotton Retro Lapel Cardigan & Long Skirt Set – Modest 2-Piece Outfit",
+    "url": "https://lumosmodesty.com/products/lm336-cotton-retro-lapel-cardigan-long-skirt-set",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10650739376438",
+    "brandSlug": "lumos",
+    "title": "LM335 Pearl Starry Sky 2-Piece Dress Set - Loose Long Modest Muslim Women Fashion",
+    "url": "https://lumosmodesty.com/products/lm335-pearl-starry-sky-2-piece-dress-set-muslim-women",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10650726596918",
+    "brandSlug": "lumos",
+    "title": "LM334 Silk Chiffon Modest Set with Hijab & Pearl Belt - Muslim Women Elegant Fashion| Transparent Sleeves⚠️",
+    "url": "https://lumosmodesty.com/products/lm334-silk-chiffon-modest-set-hijab-pearl-belt-muslim-women",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10650664960310",
+    "brandSlug": "lumos",
+    "title": "LM332 Elegant Solid Color Cardigan 2-Piece Set - Muslim Women Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm332-solid-color-cardigan-2-piece-set-muslim-women",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10650594738486",
+    "brandSlug": "lumos",
+    "title": "LM331 Plus Size Abaya Dress - Muslim Women Modest Fashion Autumn Winter",
+    "url": "https://lumosmodesty.com/products/lm331-plus-size-abaya-dress-muslim-women",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10648884019510",
+    "brandSlug": "lumos",
+    "title": "LM330 Printed Abaya Cardigan with Hijab - Muslim Women Islamic Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm330-printed-abaya-cardigan-with-hijab-muslim-women",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10648423399734",
+    "brandSlug": "lumos",
+    "title": "LM329 Printed Button 2-Piece Set - Muslim Women Modest Fashion Suit",
+    "url": "https://lumosmodesty.com/products/lm329-printed-button-modest-set-muslim-women",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10642848514358",
+    "brandSlug": "lumos",
+    "title": "LM328 Long Sleeve Printed Abaya Robe - Muslim Women Islamic Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm328-long-sleeve-printed-abaya-robe-muslim-women",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10642822201654",
+    "brandSlug": "lumos",
+    "title": "LM327 Printed Abaya Cardigan with Hijab - Muslim Women Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm327-printed-abaya-cardigan-with-hijab-muslim-women",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10642767774006",
+    "brandSlug": "lumos",
+    "title": "LM326 Printed Abaya Cardigan with Hijab - Muslim Women Islamic Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm326-printed-embroidery-abaya-cardigan-with-hijab",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10641651237174",
+    "brandSlug": "lumos",
+    "title": "LM325 Thick Knit Winter 2-Piece Set - Warm Modest Fashion for Muslim Women",
+    "url": "https://lumosmodesty.com/products/lm325-thick-knit-winter-modest-set-muslim-women",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10641643667766",
+    "brandSlug": "lumos",
+    "title": "LM324 Floral Embroidery Abaya Cardigan - Muslim Women Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm324-floral-embroidery-abaya-cardigan-muslim-women",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10640847765814",
+    "brandSlug": "lumos",
+    "title": "LM323 Muslim Abaya Dress Set with Hijab - Islamic Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm323-muslim-abaya-dress-set-with-hijab",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10640844030262",
+    "brandSlug": "lumos",
+    "title": "LM322 2-Piece Modest Set - Top & Pants Outfit",
+    "url": "https://lumosmodesty.com/products/lm322-2-piece-modest-set",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10637800800566",
+    "brandSlug": "lumos",
+    "title": "LM321 Knitted 3-Piece Set - Skirt, Top & Cardigan Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm321-knitted-3-piece-set",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10633053045046",
+    "brandSlug": "lumos",
+    "title": "LM320 Beaded Shawl & Long Sleeve Dress Set - 2-Piece Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm320-beaded-shawl-dress-set",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10622831067446",
+    "brandSlug": "lumos",
+    "title": "LM319 Embroidered Abaya Cardigan - Elegant Modest Outerwear",
+    "url": "https://lumosmodesty.com/products/lm319-embroidered-abaya-cardigan",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10622823792950",
+    "brandSlug": "lumos",
+    "title": "LM318 Luxury Tiered Abaya Dress - Long Sleeve Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm318-luxury-tiered-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10622819008822",
+    "brandSlug": "lumos",
+    "title": "LM317 Printed Cardigan & Hijab Set - 2-Piece Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm317-printed-cardigan-hijab-set",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10622812389686",
+    "brandSlug": "lumos",
+    "title": "LM316 Elegant Bow Cardigan - Premium Modest Outerwear",
+    "url": "https://lumosmodesty.com/products/lm316-bow-cardigan-modest-fashion",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10536016576822",
+    "brandSlug": "lumos",
+    "title": "LM315 Crinkle Chiffon Prayer Dress with Oversized Hijab Set - Solid Color Abaya for Muslim Women",
+    "url": "https://lumosmodesty.com/products/crinkle-chiffon-prayer-dress-oversized-hijab-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10536015069494",
+    "brandSlug": "lumos",
+    "title": "LM314 Floral Embroidery Cardigan with Hijab Set - 2 Piece Elegant Modest Outfit for Muslim Women",
+    "url": "https://lumosmodesty.com/products/floral-embroidery-cardigan-hijab-set-modest-muslim-women",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10535367868726",
+    "brandSlug": "lumos",
+    "title": "LM311 Luxury Bow Rhinestone Sleeve Abaya Dress - Elegant Beaded Maxi Dress for Muslim Women",
+    "url": "https://lumosmodesty.com/products/luxury-bow-rhinestone-sleeve-abaya-beaded-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10535303282998",
+    "brandSlug": "lumos",
+    "title": "LM310 Lace Cuff Jilbab Abaya Dress - Elegant Modest Maxi Dress for Muslim Women",
+    "url": "https://lumosmodesty.com/products/lace-cuff-jilbab-abaya-modest-dress-muslim-women",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10530967879990",
+    "brandSlug": "lumos",
+    "title": "LM9999 Ice Silk Crinkle Solid Color Inner Tank Top",
+    "url": "https://lumosmodesty.com/products/lm9999-solid-color-inner-tank-top",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10465330430262",
+    "brandSlug": "lumos",
+    "title": "LM309 Modal Jersey Khimar Prayer Set – Soft One-Piece Khimar & Long Modest Dress",
+    "url": "https://lumosmodesty.com/products/lm309-modal-jersey-khimar-set",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10413052887350",
+    "brandSlug": "lumos",
+    "title": "LM308 Abaya Dress with Pockets – Long Sleeve Maxi with Wide Cuffs",
+    "url": "https://lumosmodesty.com/products/lm308-abaya-dress-pockets",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10413052526902",
+    "brandSlug": "lumos",
+    "title": "LM307 Ice Silk Two-Piece Set – Peplum Tunic & Wide Leg Pants Modest Outfit",
+    "url": "https://lumosmodesty.com/products/lm307-ice-silk-two-piece-set",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10413051871542",
+    "brandSlug": "lumos",
+    "title": "LM306 Cotton Linen Two-Piece Set – Asymmetric Top & Maxi Skirt Modest Outfit",
+    "url": "https://lumosmodesty.com/products/lm306-cotton-linen-two-piece",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10413050790198",
+    "brandSlug": "lumos",
+    "title": "LM305 Double Layer Abaya Dress – Soft Tencel Knit Long Sleeve Maxi",
+    "url": "https://lumosmodesty.com/products/lm305-double-layer-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10413050396982",
+    "brandSlug": "lumos",
+    "title": "LM304 Printed Abaya Set – 2-Piece Open Cardigan with Matching Hijab",
+    "url": "https://lumosmodesty.com/products/lm304-printed-abaya-hijab-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10412594954550",
+    "brandSlug": "lumos",
+    "title": "LM302 Ribbed Winter Abaya with Belt – Long Sleeve Modest Dress for Women",
+    "url": "https://lumosmodesty.com/products/lm302-ribbed-winter-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10410577920310",
+    "brandSlug": "lumos",
+    "title": "LM301 Embroidered Abaya Dress for Women – Elegant Muslim Wedding Party Gown",
+    "url": "https://lumosmodesty.com/products/lm301-embroidered-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10400963854646",
+    "brandSlug": "lumos",
+    "title": "LM300 Khimar Prayer Set – 4-Piece Modest Outfit with Lace Trim",
+    "url": "https://lumosmodesty.com/products/lm300-khimar-prayer-set",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10399715230006",
+    "brandSlug": "lumos",
+    "title": "LM229 Winter Knit Abaya Set – 2-Piece Modest Co-ord with Pockets",
+    "url": "https://lumosmodesty.com/products/lm229-winter-knit-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10399715197238",
+    "brandSlug": "lumos",
+    "title": "LM228 Hooded Abaya for Women – Thick-Knit Oversized Sweater Dress",
+    "url": "https://lumosmodesty.com/products/lm228-hooded-abaya-sweater",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10399715164470",
+    "brandSlug": "lumos",
+    "title": "LM227 Winter Abaya with Pockets – Belted Long Sleeve Modest Dress",
+    "url": "https://lumosmodesty.com/products/lm227-winter-abaya-pockets",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10399715131702",
+    "brandSlug": "lumos",
+    "title": "LM226 Winter Knit 3-Piece Abaya Set for Muslim Women – Modest Co-ord",
+    "url": "https://lumosmodesty.com/products/lm226-winter-knit-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10399715098934",
+    "brandSlug": "lumos",
+    "title": "LM225 Winter Knit 3-Piece Abaya Set for Muslim Women – Modest Co-ord",
+    "url": "https://lumosmodesty.com/products/lm225-winter-knit-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10360808669494",
+    "brandSlug": "lumos",
+    "title": "LM224 Winter Knit Modest Set – 2-Piece Co-ord (Long-Sleeve Top + Maxi Knit Skirt) | Hijab-Friendly, Opaque & Warm",
+    "url": "https://lumosmodesty.com/products/winter-knit-modest-set-lm224",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10360705089846",
+    "brandSlug": "lumos",
+    "title": "LM223 Crinkle Open Abaya – Textured Maxi Duster with Wide Sleeves, Winter Layering, Tall 60-Inch Length Option (S–XXL)",
+    "url": "https://lumosmodesty.com/products/crinkle-abaya-60in-lm223",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10360694800694",
+    "brandSlug": "lumos",
+    "title": "LM222 Modal Cotton Abaya Dress – Plain Solid, Long Sleeve Maxi; Optional Inner/Base Dress for Layering (Scarf Not Included)",
+    "url": "https://lumosmodesty.com/products/modal-cotton-abaya-lm222",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10359847878966",
+    "brandSlug": "lumos",
+    "title": "LM221 Abaya 3-Piece Set – Cardigan, Mock-Neck Top & Wide-Leg Pants with Geometric Jacquard Cuffs & Hem | Modest Winter Layering",
+    "url": "https://lumosmodesty.com/products/abaya-3-piece-set-lm221",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10355611959606",
+    "brandSlug": "lumos",
+    "title": "LM220 Hooded Abaya Dress for Women – Batwing Sleeve, Drawstring Hood, Shirred Cuffs, Solid Color",
+    "url": "https://lumosmodesty.com/products/hooded-abaya-dress-lm220",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10348521881910",
+    "brandSlug": "lumos",
+    "title": "LM092 Loose Abaya Dress for Women – Oversized, Balloon Sleeve, Full-Length Modest Islamic Wear",
+    "url": "https://lumosmodesty.com/products/loose-abaya-dress-lm092",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10341780947254",
+    "brandSlug": "lumos",
+    "title": "LM091 Nursing-Friendly Abaya Dress – Puff Sleeve, Round Neck Maxi",
+    "url": "https://lumosmodesty.com/products/nursing-friendly-abaya-lm091",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10311454228790",
+    "brandSlug": "lumos",
+    "title": "LM020 Nursing-Friendly Abaya – Round-Neck Zip Pocket, Plus-Size Maxi Prayer/Umrah Dress",
+    "url": "https://lumosmodesty.com/products/lm020-nursing-zip-pocket-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10308003266870",
+    "brandSlug": "lumos",
+    "title": "LM131 Women’s Solid Button Front Shirt& Tie Front Wide Leg Pants With Pocket Tow-piece Set",
+    "url": "https://lumosmodesty.com/products/modest-shirt-pants-set",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10307519316278",
+    "brandSlug": "lumos",
+    "title": "ML187 Embroidered Sequin Abaya Dress – Elegant V-Neck Modest Long Robe",
+    "url": "https://lumosmodesty.com/products/embroidered-sequin-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10303881675062",
+    "brandSlug": "lumos",
+    "title": "LM126 Elegant 3-Piece Pearl Beaded Abaya Set – Floral Kimono, Inner Dress & Matching Scarf",
+    "url": "https://lumosmodesty.com/products/pearl-beaded-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10298800800054",
+    "brandSlug": "lumos",
+    "title": "LM178 Sakura Pink Kimono Abaya Dress – Embroidered Modest Wear for Eid & Weddings（Ships immediately）",
+    "url": "https://lumosmodesty.com/products/sakura-pink-kimono-abaya-178",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10295376838966",
+    "brandSlug": "lumos",
+    "title": "LM183 Luxury Embroidered Abaya Dress | Modest Maxi Kaftan with Rhinestone Details",
+    "url": "https://lumosmodesty.com/products/lm183-luxury-embroidered-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10295379165494",
+    "brandSlug": "lumos",
+    "title": "LM186 Summer Dubai Abaya Dress | Lightweight Gold Print Modest Maxi Kaftan",
+    "url": "https://lumosmodesty.com/products/summer-dubai-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10295378379062",
+    "brandSlug": "lumos",
+    "title": "LM185 Summer Cotton Abaya 2 Piece Set | Breathable Embroidered Maxi Kaftan Dress",
+    "url": "https://lumosmodesty.com/products/lm185-summer-cotton-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10295377330486",
+    "brandSlug": "lumos",
+    "title": "LM184 Elegant Embroidered Abaya Dress | Beaded Modest Maxi Kaftan for Eid & Parties",
+    "url": "https://lumosmodesty.com/products/lm184-embroidered-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10295375593782",
+    "brandSlug": "lumos",
+    "title": "LM181 Elegant Embroidered Abaya Dress | Dubai-Style Evening Modest Kaftan",
+    "url": "https://lumosmodesty.com/products/ky902-embroidered-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10295375298870",
+    "brandSlug": "lumos",
+    "title": "LM180 Elegant Lantern Sleeve Abaya Dress | Modest Maxi Kaftan for Eid & Evening Wear",
+    "url": "https://lumosmodesty.com/products/ds057-lantern-sleeve-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10294844948790",
+    "brandSlug": "lumos",
+    "title": "LM158 Elegant Modest Abaya Kaftan Dress | Loose Oversized Maxi for Women",
+    "url": "https://lumosmodesty.com/products/elegant-modest-abaya-kaftan-lm158",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10211693166902",
+    "brandSlug": "lumos",
+    "title": "LM110 Linen Textured Pleated Abaya with Pockets | Modest Open Cardigan Dress",
+    "url": "https://lumosmodesty.com/products/lm110-linen-textured-pleated-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10181278564662",
+    "brandSlug": "lumos",
+    "title": "LM122 Gold Lace Kaftan Abaya with Inner Belt – Modest Khaleeji Maxi Dress for Eid & Formal Events",
+    "url": "https://lumosmodesty.com/products/kaftan-abaya-gold-lm122",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10196667662646",
+    "brandSlug": "lumos",
+    "title": "LM053 Modest Tie Kimono Cardigan – Crepe Linen Look Open Abaya Style",
+    "url": "https://lumosmodesty.com/products/odest-tie-kimono-cardigan",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10184140226870",
+    "brandSlug": "lumos",
+    "title": "LM089 Hira Butterfly Abaya Set | Khaleeji Jacquard Prayer Dress with Batwing Sleeves Hijab Set",
+    "url": "https://lumosmodesty.com/products/hira-butterfly-abaya-lm089",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10184154579254",
+    "brandSlug": "lumos",
+    "title": "LM093 Rhinestone Open Abaya with Hijab | Diamond Beaded 2-Piece Modest Cardigan Set",
+    "url": "https://lumosmodesty.com/products/lm093-rhinestone-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10152240841014",
+    "brandSlug": "lumos",
+    "title": "LM078 Corduroy Cuff Sleeves Abaya Dress | Modest Essential Winter Wear with Ribbed Detailing",
+    "url": "https://lumosmodesty.com/products/lm078-winter-corduroy-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10152218165558",
+    "brandSlug": "lumos",
+    "title": "LM074 Warm Knitted Open Abaya Cardigan | Modest Winter Layering Piece with Open Front Design",
+    "url": "https://lumosmodesty.com/products/knitted-abaya-cardigan-lm074",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10131301433654",
+    "brandSlug": "lumos",
+    "title": "LM088 Coquette Abaya Cardigan | TikTok Trend 2025 Modest Nidha Silk Design",
+    "url": "https://lumosmodesty.com/products/lm088-coquette-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10131296649526",
+    "brandSlug": "lumos",
+    "title": "LM087 Silky Satin Cape Abaya Dress | Elegant Modest Eid 2025 Gown",
+    "url": "https://lumosmodesty.com/products/lm087-satin-cape-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10121227895094",
+    "brandSlug": "lumos",
+    "title": "LM064 Summer 2025 Tie-Waist Abaya Dress Crepe Jazz One-Piece Modest Essential Lightweight Daily Hijab Outfit",
+    "url": "https://lumosmodesty.com/products/summer-abaya-tie-waist",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10121207710006",
+    "brandSlug": "lumos",
+    "title": "LM062 Kimono Tie Crepe Abaya Dress – Modest Jazz Fabric Style | Lightweight Everyday Wear",
+    "url": "https://lumosmodesty.com/products/lm062-kimono-crepe-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10121161015606",
+    "brandSlug": "lumos",
+    "title": "LM058 Winter Thermal Abaya Dress – Twist Waist & Back Zipper for Warm Modest Fashion",
+    "url": "https://lumosmodesty.com/products/winter-thermal-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10121136832822",
+    "brandSlug": "lumos",
+    "title": "LM057 Winter Corduroy Abaya Dress Reversible Balloon Sleeves & A-Line Silhouette Thick Warm Modest Fashion",
+    "url": "https://lumosmodesty.com/products/lm057-corduroy-winter-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10121090335030",
+    "brandSlug": "lumos",
+    "title": "LM048 Crepe Jazz Abaya Set 4-Piece Hijab, Slip, Belt | Lightweight Modest Summer Outfit",
+    "url": "https://lumosmodesty.com/products/lm048-crepe-jazz-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10107339899190",
+    "brandSlug": "lumos",
+    "title": "LM070 Nursing-Friendly Tie-Wrist Abaya | Flora Cuff | Soft Nidha Fabric",
+    "url": "https://lumosmodesty.com/products/lm070-nursing-friendly-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10107351564598",
+    "brandSlug": "lumos",
+    "title": "LM114 Corduroy Winter Abaya | Split Sleeve with Bow Detail | Modest Dress",
+    "url": "https://lumosmodesty.com/products/corduroy-winter-abaya-lm114",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10103259070774",
+    "brandSlug": "lumos",
+    "title": "LM096 Eid Rhinestone Butterfly Abaya Set with Slip Dress | Batwing Kaftan for Ramadan & Iftar",
+    "url": "https://lumosmodesty.com/products/eid-rhinestone-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10103131242806",
+    "brandSlug": "lumos",
+    "title": "LM098 Sparkling Khaleeji Abaya Cardigan with Sequins | Modest Eid Dress",
+    "url": "https://lumosmodesty.com/products/khaleeji-sparkling-abaya-eid",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10103108206902",
+    "brandSlug": "lumos",
+    "title": "LM097 Pearl Beaded Khaleeji Abaya Cardigan – Modest Eid & Iftar Open Kaftan",
+    "url": "https://lumosmodesty.com/products/khaleeji-pearl-eid-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10103010525494",
+    "brandSlug": "lumos",
+    "title": "LM099 Ironless Co-ord Set – Crepe Abaya & Jazz Pants | Modest Eid Style",
+    "url": "https://lumosmodesty.com/products/lm099-crepe-abaya-coord-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10101633188150",
+    "brandSlug": "lumos",
+    "title": "LM515 Nidha Adjustable Nidha Khimar with Side Ties – Breathable Maxi Headscarf",
+    "url": "https://lumosmodesty.com/products/nidha-khimar-adjustable",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10101735162166",
+    "brandSlug": "lumos",
+    "title": "LM517 Jersey Long Khimar | One Layer Maxi Headscarves | Tudong Prayer Shawl for Muslim Women",
+    "url": "https://lumosmodesty.com/products/lm517-jersey-long-khimar-one",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9184303841590",
+    "brandSlug": "lumos",
+    "title": "LM031 Elegant Moon Kimono Style Abaya with Hijab Set | Modest Islamic Wear for Women",
+    "url": "https://lumosmodesty.com/products/moon-kimono-abaya-hijab",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10101589082422",
+    "brandSlug": "lumos",
+    "title": "LM514 Pearl Khimar Hijab – Cottagecore Double-Layer Chiffon for Prayer & Modest Wear",
+    "url": "https://lumosmodesty.com/products/pearl-khimar-hijab",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10101546484022",
+    "brandSlug": "lumos",
+    "title": "LM079 Plus Size Kaftan Abaya – Shiny Eid & Iftar Batwing Dress with Belt",
+    "url": "https://lumosmodesty.com/products/lm079-kaftan-abaya-plus-size",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10100651524406",
+    "brandSlug": "lumos",
+    "title": "LM081 Embroidered Abaya Cardigan | Summer Eid 2025 Modest Dress with Hijab",
+    "url": "https://lumosmodesty.com/products/embroidered-abaya-cardigan",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10101456535862",
+    "brandSlug": "lumos",
+    "title": "LM068 Satin Eid Abaya with Embroidered Bows & Bell Sleeves | Luxe Modest Dress for Eid & Iftar",
+    "url": "https://lumosmodesty.com/products/satin-eid-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10100721353014",
+    "brandSlug": "lumos",
+    "title": "LM080 Metallic Satin Abaya Set – Luxe Modest Dress with Hijab & Belt for Eid & Iftar",
+    "url": "https://lumosmodesty.com/products/metallic-satin-abaya-set",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10100697530678",
+    "brandSlug": "lumos",
+    "title": "LM082 Floral Embroidered Nidha Abaya Cardigan – Elegant Open Style for Modest Occasions",
+    "url": "https://lumosmodesty.com/products/floral-nidha-abaya-cardigan",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10100562329910",
+    "brandSlug": "lumos",
+    "title": "LM100 Elegant Tie-back Linen Cotton Abaya – Slim Fit, Size Up for Comfort | Modest Eid Dress",
+    "url": "https://lumosmodesty.com/products/lm100-cotton-linen-abaya-slim-fit",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10101556412726",
+    "brandSlug": "lumos",
+    "title": "LM090 Jacquard Butterfly Abaya with Hijab | Luxe Floral Batwing Design",
+    "url": "https://lumosmodesty.com/products/lm090-butterfly-jacquard-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:10021464375606",
+    "brandSlug": "lumos",
+    "title": "LM505 Cape Khimar One Layer Maxi Scarf Crepe Jazz Ironless Modest",
+    "url": "https://lumosmodesty.com/products/lm505-crepe-jazz-ironless-khimar",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9954432188726",
+    "brandSlug": "lumos",
+    "title": "Smart Electric Heating Scarf for Women | Winter Warmth, Ideal for Hijab Wearers",
+    "url": "https://lumosmodesty.com/products/smart-electric-heating-scarf-for-women-winter-warmth-ideal-for-hijab-wearers",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9923017802038",
+    "brandSlug": "lumos",
+    "title": "LM052 Corduroy Winter Abaya | Cozy Open Style with Closed Sleeves for Modest Wear",
+    "url": "https://lumosmodesty.com/products/corduroy-winter-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9899611685174",
+    "brandSlug": "lumos",
+    "title": "Cozy Winter Abaya Maxi Dress – Knitted Closed Design for Modest Women | LM075",
+    "url": "https://lumosmodesty.com/products/cozy-winter-abaya-maxi-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9832145682742",
+    "brandSlug": "lumos",
+    "title": "LM054 Floral Satin Open Abaya | Khaleeji Style with Embroidery for Eid & Daily Modesty",
+    "url": "https://lumosmodesty.com/products/floral-satin-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9739932926262",
+    "brandSlug": "lumos",
+    "title": "LM063 Summer Crepe Kimono Abaya with Jazz Tie | Lightweight Open Abaya for Women",
+    "url": "https://lumosmodesty.com/products/kimono-summer-abaya-lm063",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9684438614326",
+    "brandSlug": "lumos",
+    "title": "Hatta Qawah Black Printed Hijab Scarf | Stylish Keffiyeh Kuffiyeh for Modest Islamic Wear",
+    "url": "https://lumosmodesty.com/products/hatta-qawah-printed-hijab-scarf",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9675067883830",
+    "brandSlug": "lumos",
+    "title": "LM049 Corduroy Abaya Winter Maxi Dress | Thick Closed Modest Islamic Wear",
+    "url": "https://lumosmodesty.com/products/corduroy-abaya-winter-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9577502179638",
+    "brandSlug": "lumos",
+    "title": "LM046 Keffiyeh Inspired Modest Kimono Abaya | Belt & Tassels Design",
+    "url": "https://lumosmodesty.com/products/keffiyeh-kimono-abaya-lm046",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9571559768374",
+    "brandSlug": "lumos",
+    "title": "LM028 Elegant Heart Embroidered Linen Textured Kimono Style Open Abaya Cardigan | Modest Islamic Wear for Women",
+    "url": "https://lumosmodesty.com/products/heart-linen-embroidery-kimono-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9564013199670",
+    "brandSlug": "lumos",
+    "title": "LM040 Linen Open Abaya with Embroidery | Modest Front Open Kaftan Cardigan",
+    "url": "https://lumosmodesty.com/products/inen-open-abaya-cardigan",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9563892252982",
+    "brandSlug": "lumos",
+    "title": "LM027 Elegant Sahāb Linen Textured Kimono Style Open Abaya Cardigan | Modest Islamic Wear for Women",
+    "url": "https://lumosmodesty.com/products/cloud-kimono-linen-open-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9559520149814",
+    "brandSlug": "lumos",
+    "title": "LM026 Roya Floral Embroidered Abaya | Satin Maxi Dress with Belt",
+    "url": "https://lumosmodesty.com/products/roya-floral-abaya-lm026",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9559466541366",
+    "brandSlug": "lumos",
+    "title": "LM039 Linen Embroidered Abaya with Belt & Pockets | Modest Open Style for Eid & Daily Wear",
+    "url": "https://lumosmodesty.com/products/linen-embroidered-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9559300997430",
+    "brandSlug": "lumos",
+    "title": "LM025 Linen Embroidery Abaya with Belt | Elegant Modest Dress",
+    "url": "https://lumosmodesty.com/products/linen-embroidery-abaya-belt-lm025",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9554705580342",
+    "brandSlug": "lumos",
+    "title": "LM037 Ruched Long Sleeve Crepe Linen Slip Dress with Tie Shirring",
+    "url": "https://lumosmodesty.com/products/crepe-linen-slip-dress",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9553809015094",
+    "brandSlug": "lumos",
+    "title": "LM036 Elegant Flowers Bouquet Embroidered Linen Texture Maxi Dress Closed Abaya",
+    "url": "https://lumosmodesty.com/products/linen-abaya-flowers-embroidery",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9547404968246",
+    "brandSlug": "lumos",
+    "title": "LM085 Elegant Daisy Embroidered Linen Texture Maxi Dress Closed Abaya",
+    "url": "https://lumosmodesty.com/products/modesty-daisy-embroidery-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9545332490550",
+    "brandSlug": "lumos",
+    "title": "LM014 Plus Size Butterfly Abaya with Hijab Set – Modest Batwing Sleeves Dress for Muslim Women",
+    "url": "https://lumosmodesty.com/products/lm014-plus-size-butterfly-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9545310372150",
+    "brandSlug": "lumos",
+    "title": "LM084 Elegant Daisy Embroidered Linen Texture Open Abaya | Modest Islamic Wear for Women",
+    "url": "https://lumosmodesty.com/products/daisy-embroidery-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9542558220598",
+    "brandSlug": "lumos",
+    "title": "LM061 Galaxy Glitter Abaya with Rhinestone and Diamond Embellishments and Belt | Modest Islamic Wear for Women",
+    "url": "https://lumosmodesty.com/products/galaxy-abaya-diamonds-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9538463793462",
+    "brandSlug": "lumos",
+    "title": "LM083 Bow Linen Abaya – Elegant Open Cardigan with Crochet & Ribbon Details",
+    "url": "https://lumosmodesty.com/products/bow-linen-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9533099344182",
+    "brandSlug": "lumos",
+    "title": "LM510 Double Layers Long Khimar in Maxi Chiffon | Lightweight Modest Islamic Headscarf for Women",
+    "url": "https://lumosmodesty.com/products/lm510-double-layers-long-khimar",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9450976608566",
+    "brandSlug": "lumos",
+    "title": "LM051 Metallic Open Abaya Kaftan – Luxury Eid 2025 Dress for Muslim Women",
+    "url": "https://lumosmodesty.com/products/metallic-open-abaya-kaftan",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9352867414326",
+    "brandSlug": "lumos",
+    "title": "LM003 Hooded Abaya Hijab -Attached With Scarf - Pockets (Buy One Get One Free）",
+    "url": "https://lumosmodesty.com/products/lm003-hooded-abaya-hijab-attached",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9203161399606",
+    "brandSlug": "lumos",
+    "title": "LM024 Shimmering Sequin Abaya Maxi Dress with Belt – Modest Evening Wear",
+    "url": "https://lumosmodesty.com/products/shimmering-sequin-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9184315146550",
+    "brandSlug": "lumos",
+    "title": "LM013 One-Piece Crepe Hooded Abaya with Hijab | Modest Prayer Dress for Women",
+    "url": "https://lumosmodesty.com/products/crepe-hooded-abaya-hijab",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9184308298038",
+    "brandSlug": "lumos",
+    "title": "LM043 Wave Pattern Open Abaya with Hijab Set | Lightweight Modest Cardigan",
+    "url": "https://lumosmodesty.com/products/open-abaya-lm043",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9184283427126",
+    "brandSlug": "lumos",
+    "title": "Keffiyeh Chiffon Hijab – Breathable Lightweight Islamic Scarf for Women | Vela Collection (ADD $5(USD) EXTRA GET ONE MORE）",
+    "url": "https://lumosmodesty.com/products/keffiyeh-chiffon-hijab",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9184280084790",
+    "brandSlug": "lumos",
+    "title": "LM041 Holiday Open Abaya Cardigan – Coconut Palm Embroidered",
+    "url": "https://lumosmodesty.com/products/holiday-open-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9184273826102",
+    "brandSlug": "lumos",
+    "title": "LM032 Elegant Floral Embroidered Linen Abaya with Hijab Set for Women",
+    "url": "https://lumosmodesty.com/products/floral-embroidered-linen-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:9184258556214",
+    "brandSlug": "lumos",
+    "title": "LM042 Diamond Sleeves Cardigan Abaya – Intricate Modest Open Front Design",
+    "url": "https://lumosmodesty.com/products/diamond-sleeves-cardigan-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8957006676278",
+    "brandSlug": "lumos",
+    "title": "Umrah Collection White Satin Hooded Abaya Come With A White Niqab And White Undercap Islamic Translucent Muslim Women",
+    "url": "https://lumosmodesty.com/products/umrah-collection-white-satin-hooded-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8873818882358",
+    "brandSlug": "lumos",
+    "title": "Elegant Balloon Sleeves Abaya with Pockets – Modest Islamic Dress | LM021",
+    "url": "https://lumosmodesty.com/products/balloon-sleeves-abaya-pockets",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8730122191158",
+    "brandSlug": "lumos",
+    "title": "LM030 Diamond Abaya-embellished petals sleeve two pieces abaya set",
+    "url": "https://lumosmodesty.com/products/diamond-embellished-petals-sleeve-two",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8506156482870",
+    "brandSlug": "lumos",
+    "title": "LM509 Lightweight Three Layer Chiffon Khimar Hijab | Modest Full Coverage for Muslim Women",
+    "url": "https://lumosmodesty.com/products/hiffon-khimar-lm509",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8488035057974",
+    "brandSlug": "lumos",
+    "title": "LM019 Butterfly Abaya in Various Colors – Elegant Flowing Modest Dress",
+    "url": "https://lumosmodesty.com/products/butterfly-abaya-colors",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8470544908598",
+    "brandSlug": "lumos",
+    "title": "LM017 Shimmering Diamond Tassel Abaya",
+    "url": "https://lumosmodesty.com/products/shimmering-abaya-tassel-lm017",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8462067597622",
+    "brandSlug": "lumos",
+    "title": "LM015 Luxury Gold Embroidered Open Abaya | Premium Elegant Islamic Dress for Muslim Women",
+    "url": "https://lumosmodesty.com/products/lm015-gold-embroidered-open-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349766844726",
+    "brandSlug": "lumos",
+    "title": "LM508 Two Layers Crepe Khimar – Modest Lightweight Headscarf for Prayer & Everyday Wear",
+    "url": "https://lumosmodesty.com/products/crepe-khimar-modest-hijab",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349763109174",
+    "brandSlug": "lumos",
+    "title": "LM503 Three Layer Chiffon Khimar – Lightweight Modest Islamic Headscarf for Women",
+    "url": "https://lumosmodesty.com/products/three-layer-khimar",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349749575990",
+    "brandSlug": "lumos",
+    "title": "LM501 One Layer Nidha Khimar | Lightweight Travel-Friendly Modest Headscarf",
+    "url": "https://lumosmodesty.com/products/one-layer-khimar-lm501",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349738402102",
+    "brandSlug": "lumos",
+    "title": "LM011 Luxury Multi-Color Two-Piece Jilbab Set | Elegant Islamic Dress for Women",
+    "url": "https://lumosmodesty.com/products/jilbab-islamic-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349724868918",
+    "brandSlug": "lumos",
+    "title": "LM010 Two-Piece Abaya Set with Maxi Scarf | Modest Islamic Outfit for Women",
+    "url": "https://lumosmodesty.com/products/two-piece-abaya-set-lm010",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349706420534",
+    "brandSlug": "lumos",
+    "title": "LM009 Thick Abaya Dress with Belt & Pockets – Warm Winter Abaya",
+    "url": "https://lumosmodesty.com/products/thick-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349692363062",
+    "brandSlug": "lumos",
+    "title": "LM008 Crepe Slip Abaya Dress with Pockets | Lightweight Modest Islamic Wear for Women",
+    "url": "https://lumosmodesty.com/products/crepe-slip-abaya",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349673357622",
+    "brandSlug": "lumos",
+    "title": "LM007 Linen Open Abaya with Belt & Pockets | Lightweight Modest Wear",
+    "url": "https://lumosmodesty.com/products/linen-open-abaya-lm007",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349661233462",
+    "brandSlug": "lumos",
+    "title": "LM006 Embroidery Abaya-Nidha-With Clip Buttons- Tassel Belt",
+    "url": "https://lumosmodesty.com/products/embroidery-abaya-nidha",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349646094646",
+    "brandSlug": "lumos",
+    "title": "LM005 Premium Eid Abaya | Shiny Open Abaya with Balloon Sleeves | Modest Fashion Islamic Clothing for Women",
+    "url": "https://lumosmodesty.com/products/eid-shiny-open-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349602251062",
+    "brandSlug": "lumos",
+    "title": "LM004 Rich colors -Butterfly hijab Abaya Dress-islamic clothing- Batwing Sleeves",
+    "url": "https://lumosmodesty.com/products/butterfly-abaya-hijab-dress-islamic",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "lumos:8349483237686",
+    "brandSlug": "lumos",
+    "title": "LM001 Muslim Dress for Women | One-Piece Jilbab Abaya | Modest Prayer Clothes & Islamic Khimar Dubai Outfits",
+    "url": "https://lumosmodesty.com/products/one-piece-satin-jilbab-niqab",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
   },
   {
     "id": "kabayare:8921651249330",

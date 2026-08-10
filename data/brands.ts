@@ -23,7 +23,6 @@ export const BRANDS: Brand[] = [
 
   // — abaya specialists —
   { slug: 'mariams', name: "Mariam's Collection", homepage: 'https://mariam-col.com', feedUrl: 'https://mariam-col.com/products.json', community: 'hijabi', currency: 'USD', category: 'Abayas', city: 'USA', vibe: 'maximalist' },
-  { slug: 'lumos', name: 'LumosModesty', homepage: 'https://lumosmodesty.com', feedUrl: 'https://lumosmodesty.com/products.json', community: 'hijabi', currency: 'USD', category: 'Abayas & hijabs', city: 'USA', vibe: 'elegant' },
   { slug: 'glow-modesty', name: 'Glow Modesty', homepage: 'https://glowmodesty.com', feedUrl: 'https://glowmodesty.com/products.json', community: 'hijabi', currency: 'USD', category: 'Abayas', city: 'USA', vibe: 'elegant', badge: 'verified' },
   { slug: 'jawda', name: 'Jawda', homepage: 'https://jawda.co.uk', feedUrl: 'https://jawda.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Abayas', city: 'London', vibe: 'elegant' },
   // Feradje: curated to their BEST SELLERS collection only (per curation choice), not full catalogue.

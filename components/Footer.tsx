@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { PinterestLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { NewsletterSignup } from './NewsletterSignup';
+import { FooterCurrency } from './FooterCurrency';
 
 function Col({ head, children }: { head: string; children: React.ReactNode }) {
   return (
@@ -141,7 +142,14 @@ export function Footer() {
           {/* 10px eyebrow type gave these a 15px-tall hit area. inline-flex with
               a min-height grows the target without changing the type or the
               baseline the row sits on. */}
+          {/* The currency control sits with Privacy/Terms rather than up in a
+              column: it is site furniture, not a destination, and the foot of
+              the page is where a shopper looks for it after scrolling a grid
+              past the header's copy of the same control. Both write the one
+              CurrencyProvider context, so they can never disagree. */}
           <div className="eyebrow flex items-center gap-3" style={{ color: 'var(--muted-on-dark)' }}>
+            <FooterCurrency />
+            <span aria-hidden="true">·</span>
             <Link href="/privacy" className="inline-flex items-center" style={{ color: 'inherit', minHeight: 32 }}>Privacy</Link>
             <span aria-hidden="true">·</span>
             <Link href="/terms" className="inline-flex items-center" style={{ color: 'inherit', minHeight: 32 }}>Terms</Link>

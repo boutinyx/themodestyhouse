@@ -357,6 +357,15 @@ button {
 .menu-row[data-highlighted],
 .menu-row[data-active="true"] { color: var(--aubergine); }
 
+/* The currency trigger in the footer. Colour lives HERE, not inline on the
+   element, because an inline style beats any selector — with `color` set inline
+   the hover and open states below would never apply. #b9ad9c is the footer's
+   own link colour; parchment on hover rather than aubergine, because the footer
+   ground is var(--ink), where aubergine is nearly invisible. */
+.footer-currency-trigger { color: #b9ad9c; transition: color 0.2s ease-out; }
+.footer-currency-trigger:hover,
+.footer-currency-trigger[data-popup-open] { color: var(--parchment); }
+
 /* the one flat colour moment — NO gradient */
 .aubergine-band {
   background: var(--aubergine);

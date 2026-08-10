@@ -70,6 +70,13 @@ const PROBE = () => {
     const cs = getComputedStyle(el);
     if (cs.visibility === 'hidden' || cs.display === 'none') continue;
     if (el.getAttribute('tabindex') === '-1' || el.closest('[aria-hidden="true"]')) continue;
+    // Base UI parks a pair of 1x1 `role="button"` focus guards at (-1,-1),
+    // `position:fixed` and `clip`ped to nothing, around every open popup. They
+    // are not controls and are not visible, but they are tabbable — so they
+    // pass every test above and were reported as two CLIPPED controls on each
+    // WebKit run the moment a check opened a portalled menu. §10.26: a whole
+    // category failing at once, in one engine only, is the harness.
+    if (el.hasAttribute('data-base-ui-focus-guard')) continue;
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) continue;
     if (inRail(el)) continue;
@@ -167,14 +174,56 @@ for (const engineName of engineNames) {
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'mobile-menu-open', error: e.message.split('\n')[0] }); }
 
     // ---- 2. desktop nav dropdown ----------------------------------------
+    //
+    // DEAD FROM 2026-08-09 TO 2026-08-10, and worth reading before trusting any
+    // other check here. The locator was `getByRole('button', {name: /styles/i})`
+    // — the "Styles" group, deleted with the /style/[vibe] pages on 2026-08-09.
+    // Nothing has matched it since, so this logged "desktop nav hidden at this
+    // width" at EVERY width in BOTH engines, including 1440 where the nav is
+    // plainly visible and open-able by hand. §10.28: a check that skips every
+    // run is a check you do not have — and this is the one that should have
+    // caught the panel's rows rendering centred.
+    //
+    // "Products" is a LINK, not a button (the group carries an href to
+    // /directory), which is why it is matched by text; and it opens on hover
+    // with a mouse, on tap without one.
     try {
-      await go('/');
-      const products = page.locator('header').getByRole('button', { name: /styles/i }).first();
+      await go('/directory');
+      const products = page.locator('header').getByText('Products', { exact: true }).first();
       if (await products.isVisible().catch(() => false)) {
-        await products.click();
-        await page.waitForTimeout(400);
-        await shot('nav-styles-open');
-        note({ engine: engineName, viewport: vpName, state: 'nav-dropdown-open', ...(await page.evaluate(PROBE)) });
+        if (vp.touch) await products.tap(); else await products.hover();
+        await page.waitForTimeout(600);
+        const panel = await page.evaluate(() => {
+          // Found STRUCTURALLY — the portalled <nav> outside the header that
+          // holds the links — not by the row's class. A check keyed to the
+          // class of the fix reports "panel did not open" the moment the class
+          // changes, i.e. it fails for a reason that has nothing to do with
+          // what it is testing (§10.29, where a rename broke this very file).
+          const popup = [...document.querySelectorAll('nav')]
+            .find((n) => !n.closest('header') && n.querySelectorAll('a[href]').length >= 4);
+          const rows = popup ? [...popup.querySelectorAll('a[href]')] : [];
+          if (!rows.length) return { PROBLEM: 'NAV PANEL DID NOT OPEN' };
+          // A column is a set of rows sharing a box left edge. Within one, every
+          // row must start its TEXT at the same x. Measuring the text and not
+          // the box is the whole point: the box is stretched to the column by
+          // the grid either way, so a centred row and a left-aligned row have
+          // identical boxes and differ only in where the glyphs land.
+          const cols = {};
+          for (const a of rows) {
+            const box = a.getBoundingClientRect();
+            const range = document.createRange();
+            range.selectNodeContents(a);
+            (cols[Math.round(box.left)] ||= []).push(Math.round(range.getBoundingClientRect().left));
+          }
+          const ragged = Object.entries(cols).filter(([, xs]) => new Set(xs).size > 1);
+          return {
+            navRows: rows.length,
+            navColumns: Object.keys(cols).length,
+            ...(ragged.length ? { PROBLEM: `NAV ROWS NOT LEFT-ALIGNED — text starts at ${JSON.stringify(ragged)}` } : {}),
+          };
+        });
+        await shot('nav-products-open');
+        note({ engine: engineName, viewport: vpName, state: 'nav-dropdown-open', ...(await page.evaluate(PROBE)), ...panel });
       } else {
         note({ engine: engineName, viewport: vpName, state: 'nav-dropdown-open', skipped: 'desktop nav hidden at this width' });
       }
@@ -341,6 +390,58 @@ for (const engineName of engineNames) {
         note({ engine: engineName, viewport: vpName, state: 'contact-form', ...(await page.evaluate(PROBE)) });
       }
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'contact-form', error: e.message.split('\n')[0] }); }
+
+    // ---- 9. currency control in the footer (new 2026-08-10) ---------------
+    //
+    // Not covered by §6 above, which tests the HEADER control: that one lives
+    // in `hidden lg:flex` and opens on hover, this one is present at every
+    // width and opens on click/tap. The failure mode specific to it is
+    // position: it sits in the last row of the page and opens UPWARDS, so a
+    // popup that lands off the bottom edge would be both unusable and
+    // invisible to any static render. Runs LAST because picking a currency
+    // writes a site-wide preference to localStorage.
+    try {
+      await go('/directory');
+      const trg = page.locator('.footer-currency-trigger').first();
+      await trg.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(300);
+      if (vp.touch) await trg.tap(); else await trg.click();
+      await page.waitForTimeout(600);
+      const menu = await page.evaluate(() => {
+        const items = [...document.querySelectorAll('[role="menuitemradio"]')];
+        if (!items.length) return { PROBLEM: 'FOOTER CURRENCY MENU DID NOT OPEN ON TAP' };
+        const pop = items[0].closest('[data-base-ui-popup]') || items[0].parentElement;
+        const r = pop.getBoundingClientRect();
+        const inView = r.top >= -1 && r.bottom <= window.innerHeight + 1
+          && r.left >= -1 && r.right <= document.documentElement.clientWidth + 1;
+        const flagless = items.filter((i) => !i.querySelector('svg')).map((i) => i.textContent.trim());
+        return {
+          currencyOptions: items.length,
+          ...(!inView
+            ? { PROBLEM: `FOOTER CURRENCY MENU OUTSIDE THE VIEWPORT (${Math.round(r.top)}..${Math.round(r.bottom)} / ${window.innerHeight})` }
+            : flagless.length
+              ? { PROBLEM: `FOOTER CURRENCY OPTION WITH NO FLAG: ${flagless.join(', ')}` }
+              : {}),
+        };
+      });
+      await shot('footer-currency-open');
+      // Opening it is half the check. Pick GBP and confirm the preference
+      // actually took — a menu that opens and changes nothing is the §10.28
+      // shape, where a check passes because it never asserted the outcome.
+      let applied = null;
+      const gbp = page.locator('[role="menuitemradio"]', { hasText: 'GBP' }).first();
+      if (await gbp.count()) {
+        if (vp.touch) await gbp.tap(); else await gbp.click();
+        await page.waitForTimeout(600);
+        applied = (await trg.innerText()).trim();
+      }
+      note({
+        engine: engineName, viewport: vpName, state: 'footer-currency', applied, ...menu,
+        ...(!menu.PROBLEM && applied !== null && !/GBP/.test(applied)
+          ? { PROBLEM: `CHOOSING A CURRENCY DID NOT APPLY — trigger still reads "${applied}"` }
+          : {}),
+      });
+    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'footer-currency', error: e.message.split('\n')[0] }); }
 
     await context.close();
   }

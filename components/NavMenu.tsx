@@ -120,7 +120,16 @@ export function NavMenu({
                   <NavigationMenu.Link
                     key={it.href}
                     render={<Link href={it.href} />}
-                    className="block nav-link py-2 px-3 whitespace-nowrap rounded-lg"
+                    // .menu-row, NOT `block nav-link`. `.nav-link` is the
+                    // horizontal-header class and sets `justify-content: center`
+                    // (globals.css) — so every option in this panel rendered
+                    // centred inside its column, and the two columns read as two
+                    // ragged centred stacks rather than two lists. Tailwind
+                    // cannot override it (`block`, `justify-start`, `text-left`
+                    // all live in @layer utilities, and an unlayered rule beats
+                    // any layered one), which is exactly why .menu-row exists.
+                    // Same fix as the currency menu and the filter dropdowns.
+                    className="menu-row"
                     data-active={path === it.href}
                   >
                     {it.label}
