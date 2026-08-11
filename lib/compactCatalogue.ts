@@ -1,5 +1,20 @@
 import type { Brand, Garment, Product } from '@/lib/types';
 
+/** Reference point for the compact day-index — see rows.firstSeenDay below. */
+export const FIRST_SEEN_EPOCH = Date.parse('2026-01-01T00:00:00.000Z');
+
+/** A product with no firstSeen (pre-dates lifecycle tracking, ~36% of raw rows
+ *  as of 2026-08-11) sorts as older than every dated row — a true statement,
+ *  since 2026-08-05 is the earliest date tracking can produce. */
+const FIRST_SEEN_UNKNOWN = -1;
+
+function encodeFirstSeenDay(firstSeen: string | null | undefined): number {
+  if (!firstSeen) return FIRST_SEEN_UNKNOWN;
+  const ms = Date.parse(firstSeen);
+  if (Number.isNaN(ms)) return FIRST_SEEN_UNKNOWN;
+  return Math.floor((ms - FIRST_SEEN_EPOCH) / 86_400_000);
+}
+
 /**
  * The subset of a Product the UI actually renders — ProductCard and
  * QuickView between them read exactly these seven fields. Deliberately NOT
@@ -48,6 +63,9 @@ export interface CompactCatalogue {
     garmentIdx: number[];
     /** Bit i set iff `occasions[i]` is in the product's occasion list. */
     occasionMask: number[];
+    /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
+     *  decoded into CardProduct, same treatment as occasionMask. */
+    firstSeenDay: number[];
   };
 }
 
@@ -81,6 +99,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     price: [],
     garmentIdx: [],
     occasionMask: [],
+    firstSeenDay: [],
   };
 
   for (const p of products) {
@@ -169,6 +188,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     rows.price.push(p.price);
     rows.garmentIdx.push(gIdx);
     rows.occasionMask.push(mask);
+    rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
   }
 
   return { brands: compactBrands, imagePrefixes, garments, occasions, rows };

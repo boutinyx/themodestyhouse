@@ -120,3 +120,30 @@ describe('encodeCatalogue / decodeCard', () => {
     expect(cat.rows.garmentIdx[0]).toBe(cat.garments.indexOf('dress'));
   });
 });
+
+describe('firstSeenDay encoding', () => {
+  it('encodes a real firstSeen date as days since the epoch', () => {
+    const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: '2026-08-05' }], [BRAND]);
+    // 2026-01-01 -> 2026-08-05 is 216 days (31+28+31+30+31+30+31+4).
+    expect(cat.rows.firstSeenDay[0]).toBe(216);
+  });
+
+  it('encodes firstSeen: null as the -1 sentinel', () => {
+    const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: null }], [BRAND]);
+    expect(cat.rows.firstSeenDay[0]).toBe(-1);
+  });
+
+  it('encodes a missing firstSeen (absent field) as the -1 sentinel', () => {
+    // PRODUCT (defined above, shared by every test in this file) has no
+    // firstSeen field at all — exactly the "never stamped" case.
+    const cat = encodeCatalogue([PRODUCT], [BRAND]);
+    expect(cat.rows.firstSeenDay[0]).toBe(-1);
+  });
+
+  it('does not add firstSeen to the decoded card', () => {
+    const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: '2026-08-05' }], [BRAND]);
+    const card = decodeCard(cat, 0);
+    expect('firstSeen' in card).toBe(false);
+    expect('firstSeenDay' in card).toBe(false);
+  });
+});

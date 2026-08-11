@@ -9,9 +9,11 @@
 // functions rather than reimplementing them.
 import type { Product } from '@/lib/types';
 
-/** Lifecycle bookkeeping. Lives on raw rows ONLY — stripped before publish. */
+/** Lifecycle bookkeeping. `firstSeen` is published (see stripLifecycle below);
+ *  the rest lives on raw rows ONLY and is stripped before publish. */
 export interface Lifecycle {
-  /** ISO date first ingested. `null` = pre-dates tracking; absent = never stamped. */
+  /** ISO date first ingested. `null` = pre-dates tracking; absent = never stamped.
+   *  PUBLISHED — also declared on Product itself (lib/types.ts). */
   firstSeen?: string | null;
   /** ISO date of the last fetch (complete or partial) that contained this product. */
   lastSeen?: string;
@@ -24,7 +26,7 @@ export interface Lifecycle {
 
 export type LifecycleRow = Product & Lifecycle;
 
-const LIFECYCLE_KEYS = ['firstSeen', 'lastSeen', 'delistedAt', 'filteredAt', 'filterReason'] as const;
+const LIFECYCLE_KEYS = ['lastSeen', 'delistedAt', 'filteredAt', 'filterReason'] as const;
 
 // --- the complete-fetch contract -------------------------------------------
 
@@ -168,10 +170,13 @@ export function isLifecycleLive(row: LifecycleRow): boolean {
 }
 
 /**
- * Drops lifecycle bookkeeping before publish. Rows carrying delistedAt/filteredAt
- * never publish anyway, but firstSeen/lastSeen on ~5k published rows would add
- * ~150 KB to products.json AND to every RSC payload — which §8 names as the real
- * scaling ceiling of this site.
+ * Drops lifecycle bookkeeping before publish, EXCEPT firstSeen — that one is now
+ * a published field (it powers the Newest/Oldest sort, lib/sortRows.ts). Rows
+ * carrying delistedAt/filteredAt never publish anyway. lastSeen on ~23k published
+ * rows would add real weight to products.json AND every RSC payload — which §8
+ * names as the real scaling ceiling of this site — so it stays stripped; the
+ * compact catalogue only ever needs firstSeen compressed to a day-index
+ * (lib/compactCatalogue.ts), never the ISO string, for the same reason.
  */
 export function stripLifecycle(row: LifecycleRow): Product {
   const out = { ...row } as Record<string, unknown>;

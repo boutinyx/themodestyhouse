@@ -29,6 +29,13 @@ export interface Product {
   image: string; // primary image URL
   url: string; // product page on brand site
   inStock: boolean;
+  /** ISO date first ingested by the refresh pipeline. `null` = confirmed
+   *  present but pre-dates lifecycle tracking (before 2026-08-05); absent on
+   *  any row a script constructs without lifecycle data (e.g. most test
+   *  fixtures) — treat both as "unknown, at least as old as tracking start."
+   *  Powers the Newest/Oldest sort (lib/sortRows.ts). Never stripped before
+   *  publish as of 2026-08-11 — see lib/lifecycle.ts. */
+  firstSeen?: string | null;
   garment: Garment;
   community: Community;
   occasion: string[];
