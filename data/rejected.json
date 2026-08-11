@@ -28334,5 +28334,15 @@
     "url": "https://ipekstil.com/products/dugmeli-tam-boy-trenckot-bej",
     "garmentWas": "top",
     "reason": "title-pattern"
+  },
+  {
+    "id": "mariams:9404201140440",
+    "brandSlug": "mariams",
+    "title": "Lip Shaped Scarf Ring Clip（MAC445）",
+    "url": "https://mariam-col.com/products/lip-shaped-scarf-ring-clip-mac445",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Scarf Ring"
   }
 ]

@@ -1,12 +1,12 @@
 {
-  "date": "2026-08-10",
+  "date": "2026-08-11",
   "totals": {
-    "added": 20,
-    "updated": 15448,
-    "delisted": 78,
-    "filtered": 0,
+    "added": 9,
+    "updated": 31254,
+    "delisted": 47,
+    "filtered": 21,
     "returned": 0,
-    "incomplete": 1
+    "incomplete": 2
   },
   "brands": [
     {
@@ -32,30 +32,20 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1133,
-      "added": [
-        "Asymmetric Rouched Bamboo Top - Cherry Lacquer",
-        "Asymmetric Rouched Bamboo Top - Coconut Milk",
-        "Asymmetric Rouched Bamboo Top - Spice",
-        "Asymmetric Rouched Bamboo Top - Stone",
-        "Asymmetric Rouched Bamboo Top - Matcha",
-        "Asymmetric Rouched Bamboo Top - Steel Blue",
-        "Asymmetric Rouched Bamboo Top - Smokey Lavender",
-        "Asymmetric Rouched Bamboo Top - Strawberry",
-        "Asymmetric Rouched Bamboo Top - Peppercorn"
-      ],
-      "updated": 1124,
-      "delisted": 0,
+      "fetched": 1132,
+      "added": [],
+      "updated": 1132,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "niswa",
       "complete": true,
-      "fetched": 484,
+      "fetched": 481,
       "added": [],
-      "updated": 484,
-      "delisted": 0,
+      "updated": 481,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -132,23 +122,27 @@
     {
       "brandSlug": "nasiba",
       "complete": true,
-      "fetched": 653,
+      "fetched": 659,
       "added": [],
-      "updated": 653,
+      "updated": 659,
       "delisted": 0,
-      "filtered": [],
+      "filtered": [
+        {
+          "title": "Tangier Ramadan Banner",
+          "reason": "unclassified"
+        }
+      ],
       "returned": 0
     },
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 211,
+      "fetched": 212,
       "added": [
-        "Silver Organza Hijab Head Scarf",
-        "Black Organza Hijab Head Scarf"
+        "Duster and Skirt Set"
       ],
-      "updated": 209,
-      "delisted": 1,
+      "updated": 211,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -175,21 +169,32 @@
     {
       "brandSlug": "mariams",
       "complete": true,
-      "fetched": 1204,
-      "added": [],
-      "updated": 1204,
+      "fetched": 1203,
+      "added": [
+        "Lip Shaped Scarf Ring Clip（MAC445）",
+        "Premium One-Piece Hijab Abaya for Women | Nida Fabric Travel Abaya (MJ024)",
+        "Essential Zoom Open Front Abaya with Tie Closure & Pockets (UKMOA309)"
+      ],
+      "updated": 1200,
       "delisted": 0,
-      "filtered": [],
-      "returned": 0
-    },
-    {
-      "brandSlug": "lumos",
-      "complete": true,
-      "fetched": 180,
-      "added": [],
-      "updated": 180,
-      "delisted": 0,
-      "filtered": [],
+      "filtered": [
+        {
+          "title": "Rosette Cloud Clutch(MAC373)",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Acrylic Shell Clutch with Woven Inset(MAC372)",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Gold Reflective Evening Clutch with Diamond-Studded Circular Handle (MAC294)",
+          "reason": "unclassified"
+        },
+        {
+          "title": "MAC187 Copper Sset Zircon Personalized Multi-Layered Open Ring",
+          "reason": "unclassified"
+        }
+      ],
       "returned": 0
     },
     {
@@ -205,13 +210,10 @@
     {
       "brandSlug": "jawda",
       "complete": true,
-      "fetched": 142,
-      "added": [
-        "Navy Powder Touch Crepe Side Wrap Two-Piece",
-        "Khaki Powder Touch Crepe Side Wrap Two-Piece"
-      ],
-      "updated": 140,
-      "delisted": 0,
+      "fetched": 138,
+      "added": [],
+      "updated": 138,
+      "delisted": 4,
       "filtered": [],
       "returned": 0
     },
@@ -278,8 +280,10 @@
     {
       "brandSlug": "esme-ny",
       "complete": true,
-      "fetched": 64,
-      "added": [],
+      "fetched": 65,
+      "added": [
+        "MOONLIGHT Kaftan Dress | A shimmery silver kaftan dress | Final batch"
+      ],
       "updated": 64,
       "delisted": 0,
       "filtered": [],
@@ -299,10 +303,8 @@
       "brandSlug": "emlavish",
       "complete": true,
       "fetched": 49,
-      "added": [
-        "Crinkle Belted Blouse"
-      ],
-      "updated": 48,
+      "added": [],
+      "updated": 49,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -320,9 +322,9 @@
     {
       "brandSlug": "zora",
       "complete": true,
-      "fetched": 124,
+      "fetched": 169,
       "added": [],
-      "updated": 124,
+      "updated": 169,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -331,13 +333,8 @@
       "brandSlug": "bemu",
       "complete": true,
       "fetched": 99,
-      "added": [
-        "Layering Dress-Green",
-        "Knit Maxi Dress-Blue",
-        "Knit Maxi Dress-Green",
-        "Knit Maxi Dress-Brown"
-      ],
-      "updated": 95,
+      "added": [],
+      "updated": 99,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -345,8 +342,10 @@
     {
       "brandSlug": "summer-evenings",
       "complete": true,
-      "fetched": 171,
-      "added": [],
+      "fetched": 172,
+      "added": [
+        "Yellow Bow Tie Tunic- Final Sale"
+      ],
       "updated": 171,
       "delisted": 0,
       "filtered": [],
@@ -356,11 +355,9 @@
       "brandSlug": "les-atelier",
       "complete": true,
       "fetched": 119,
-      "added": [
-        "Sakina Longsleeve Taupe"
-      ],
-      "updated": 118,
-      "delisted": 67,
+      "added": [],
+      "updated": 119,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -457,11 +454,36 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 353,
+      "fetched": 347,
       "added": [],
-      "updated": 353,
-      "delisted": 1,
-      "filtered": [],
+      "updated": 347,
+      "delisted": 0,
+      "filtered": [
+        {
+          "title": "Lulwa Vase",
+          "reason": "unclassified"
+        },
+        {
+          "title": "LEAF | Large Blue Platter",
+          "reason": "unclassified"
+        },
+        {
+          "title": "LEAF | Small Yellow Platter",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Pebble | Serving Platter",
+          "reason": "unclassified"
+        },
+        {
+          "title": "LEAF | Large Yellow Platter",
+          "reason": "unclassified"
+        },
+        {
+          "title": "LEAF | Small Blue Platter",
+          "reason": "unclassified"
+        }
+      ],
       "returned": 0
     },
     {
@@ -517,11 +539,24 @@
     {
       "brandSlug": "mukistore",
       "complete": true,
-      "fetched": 1592,
+      "fetched": 1589,
       "added": [],
-      "updated": 1592,
+      "updated": 1589,
       "delisted": 0,
-      "filtered": [],
+      "filtered": [
+        {
+          "title": "Diamond Net Panty",
+          "reason": "unclassified"
+        },
+        {
+          "title": "GROTE MAAT Anti ladder fleece panty super hit L/XL & XL/XXL",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Anti ladder fleece panty super hit",
+          "reason": "unclassified"
+        }
+      ],
       "returned": 0
     },
     {
@@ -577,11 +612,20 @@
     {
       "brandSlug": "noureen",
       "complete": true,
-      "fetched": 227,
+      "fetched": 225,
       "added": [],
-      "updated": 227,
+      "updated": 225,
       "delisted": 0,
-      "filtered": [],
+      "filtered": [
+        {
+          "title": "Gift box Medium",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Gift Box Magneet Large",
+          "reason": "unclassified"
+        }
+      ],
       "returned": 0
     },
     {
@@ -598,11 +642,9 @@
       "brandSlug": "chic-modesty",
       "complete": true,
       "fetched": 461,
-      "added": [
-        "Burkini petite fille pétrole"
-      ],
-      "updated": 460,
-      "delisted": 9,
+      "added": [],
+      "updated": 461,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -642,6 +684,515 @@
       "fetched": 7,
       "added": [],
       "updated": 7,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "feeya",
+      "complete": true,
+      "fetched": 16,
+      "added": [],
+      "updated": 16,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "illi-studio",
+      "complete": true,
+      "fetched": 160,
+      "added": [],
+      "updated": 160,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "headed-somewear",
+      "complete": true,
+      "fetched": 42,
+      "added": [],
+      "updated": 42,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "amariah",
+      "complete": true,
+      "fetched": 104,
+      "added": [],
+      "updated": 104,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "ellem-atelier",
+      "complete": true,
+      "fetched": 23,
+      "added": [],
+      "updated": 23,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "almotahajiba",
+      "complete": true,
+      "fetched": 212,
+      "added": [],
+      "updated": 212,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "nihan",
+      "complete": false,
+      "fetched": 3952,
+      "added": [],
+      "updated": 3952,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "baqa",
+      "complete": true,
+      "fetched": 313,
+      "added": [],
+      "updated": 313,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "abaya-lounge",
+      "complete": true,
+      "fetched": 241,
+      "added": [],
+      "updated": 241,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "touche-prive",
+      "complete": true,
+      "fetched": 1081,
+      "added": [
+        "Pleated Waisted Shirt With Stones"
+      ],
+      "updated": 1080,
+      "delisted": 26,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "daska-fashion",
+      "complete": true,
+      "fetched": 35,
+      "added": [],
+      "updated": 35,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "jennah-boutique",
+      "complete": true,
+      "fetched": 388,
+      "added": [],
+      "updated": 388,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "aneesa",
+      "complete": true,
+      "fetched": 2,
+      "added": [],
+      "updated": 2,
+      "delisted": 0,
+      "filtered": [
+        {
+          "title": "Abito Fantasia in Seta",
+          "reason": "unclassified"
+        }
+      ],
+      "returned": 0
+    },
+    {
+      "brandSlug": "yasmin-jay",
+      "complete": true,
+      "fetched": 144,
+      "added": [],
+      "updated": 144,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "alia-anggun",
+      "complete": true,
+      "fetched": 47,
+      "added": [],
+      "updated": 47,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "ayaana",
+      "complete": true,
+      "fetched": 41,
+      "added": [],
+      "updated": 41,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "bait-hanayen",
+      "complete": true,
+      "fetched": 140,
+      "added": [],
+      "updated": 140,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "elaa-the-label",
+      "complete": true,
+      "fetched": 59,
+      "added": [],
+      "updated": 59,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "eynaa-paris",
+      "complete": true,
+      "fetched": 70,
+      "added": [],
+      "updated": 70,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "malikaat",
+      "complete": true,
+      "fetched": 118,
+      "added": [],
+      "updated": 118,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "modesty-in-style",
+      "complete": true,
+      "fetched": 383,
+      "added": [],
+      "updated": 383,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "labayah",
+      "complete": true,
+      "fetched": 33,
+      "added": [],
+      "updated": 33,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "ipekstil",
+      "complete": true,
+      "fetched": 338,
+      "added": [],
+      "updated": 338,
+      "delisted": 0,
+      "filtered": [
+        {
+          "title": "Citrus Garden Kombin Kutusu",
+          "reason": "unclassified"
+        }
+      ],
+      "returned": 0
+    },
+    {
+      "brandSlug": "vivi-zubedi",
+      "complete": true,
+      "fetched": 343,
+      "added": [],
+      "updated": 343,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "we-are-elegance",
+      "complete": true,
+      "fetched": 112,
+      "added": [],
+      "updated": 112,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "beyond-label",
+      "complete": true,
+      "fetched": 66,
+      "added": [],
+      "updated": 66,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "lameera-moda",
+      "complete": true,
+      "fetched": 446,
+      "added": [],
+      "updated": 446,
+      "delisted": 0,
+      "filtered": [
+        {
+          "title": "Kaaba Coordinates Ring | Premium",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Kaaba Coordinates Necklace | Premium",
+          "reason": "unclassified"
+        }
+      ],
+      "returned": 0
+    },
+    {
+      "brandSlug": "meriam-abdulaziz",
+      "complete": true,
+      "fetched": 28,
+      "added": [],
+      "updated": 28,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "beyza",
+      "complete": true,
+      "fetched": 393,
+      "added": [],
+      "updated": 393,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "store-wf",
+      "complete": true,
+      "fetched": 259,
+      "added": [],
+      "updated": 259,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "serrb",
+      "complete": true,
+      "fetched": 431,
+      "added": [],
+      "updated": 431,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "abayabuth",
+      "complete": true,
+      "fetched": 963,
+      "added": [],
+      "updated": 963,
+      "delisted": 5,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "abadia",
+      "complete": true,
+      "fetched": 128,
+      "added": [],
+      "updated": 128,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "ahlam-collections",
+      "complete": true,
+      "fetched": 38,
+      "added": [],
+      "updated": 38,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "aurora-abaya",
+      "complete": true,
+      "fetched": 74,
+      "added": [],
+      "updated": 74,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "modista",
+      "complete": true,
+      "fetched": 41,
+      "added": [],
+      "updated": 41,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "awrah-abayas",
+      "complete": true,
+      "fetched": 29,
+      "added": [],
+      "updated": 29,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "ilovemodesty",
+      "complete": true,
+      "fetched": 631,
+      "added": [],
+      "updated": 631,
+      "delisted": 0,
+      "filtered": [
+        {
+          "title": "AYA Silver Square Crystal & Pearl Stud Earrings",
+          "reason": "unclassified"
+        }
+      ],
+      "returned": 0
+    },
+    {
+      "brandSlug": "rutba-abaya",
+      "complete": true,
+      "fetched": 243,
+      "added": [],
+      "updated": 243,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "zuhre",
+      "complete": true,
+      "fetched": 1061,
+      "added": [],
+      "updated": 1061,
+      "delisted": 7,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "ria-miranda",
+      "complete": true,
+      "fetched": 342,
+      "added": [],
+      "updated": 342,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "nurmire",
+      "complete": true,
+      "fetched": 46,
+      "added": [],
+      "updated": 46,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "zaskia-sungkar",
+      "complete": true,
+      "fetched": 140,
+      "added": [],
+      "updated": 140,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "hidayah",
+      "complete": true,
+      "fetched": 163,
+      "added": [],
+      "updated": 163,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "modest-timeless",
+      "complete": true,
+      "fetched": 25,
+      "added": [],
+      "updated": 25,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "aeon-abaya",
+      "complete": true,
+      "fetched": 707,
+      "added": [
+        "Delegate",
+        "Commander"
+      ],
+      "updated": 705,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "nour-al-houda",
+      "complete": true,
+      "fetched": 899,
+      "added": [],
+      "updated": 899,
+      "delisted": 1,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "abayas-boutique",
+      "complete": true,
+      "fetched": 391,
+      "added": [],
+      "updated": 391,
       "delisted": 0,
       "filtered": [],
       "returned": 0
