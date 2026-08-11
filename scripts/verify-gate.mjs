@@ -61,6 +61,9 @@ const NEEDLES = [
   'Curate — tap', // literal UI copy from CurateClient.dev.tsx
   'raw-products.json',
   'saveDecision',
+  'ReviewClient',
+  'Garment review —', // literal UI copy from ReviewClient.dev.tsx
+  'saveGarmentOverride',
 ];
 
 function walk(dir) {
