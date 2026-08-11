@@ -25748,6 +25748,62 @@
     "evidence": "Bag"
   },
   {
+    "id": "kamin:9774594195673",
+    "brandSlug": "kamin",
+    "title": "GAMRA | Beverage Dispenser with Gahwa & Tea Set",
+    "url": "https://kamin.ae/products/gamra-beverage-dispenser-with-gahwa-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9774594752729",
+    "brandSlug": "kamin",
+    "title": "SAMRA | Beverage Dispenser with Gahwa & Tea Set",
+    "url": "https://kamin.ae/products/samra-beverage-dispenser-with-gahwa-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9769485336793",
+    "brandSlug": "kamin",
+    "title": "Samra Gahwa & Tea Set",
+    "url": "https://kamin.ae/products/s-a-m-r-a-gahwa-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9769485238489",
+    "brandSlug": "kamin",
+    "title": "Gamra Gahwa & Tea set",
+    "url": "https://kamin.ae/products/g-a-m-r-a-gahwa-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9749760803033",
+    "brandSlug": "kamin",
+    "title": "Remal Gahwa & Tea Set",
+    "url": "https://kamin.ae/products/remal-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9749760704729",
+    "brandSlug": "kamin",
+    "title": "Vogue Gahwa & Tea Set",
+    "url": "https://kamin.ae/products/vogue-gahwa-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9749760540889",
+    "brandSlug": "kamin",
+    "title": "Axis Gahwa & Tea Set",
+    "url": "https://kamin.ae/products/axis-gahwa-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
     "id": "kamin:9687983128793",
     "brandSlug": "kamin",
     "title": "PEBBLE | Set for 6",
@@ -25894,6 +25950,22 @@
     "reason": "id-pin"
   },
   {
+    "id": "chic-modesty:10474535223634",
+    "brandSlug": "chic-modesty",
+    "title": "Pinces anti trou basic noir",
+    "url": "https://chicandmodesty.com/products/pinces-anti-trou-noir",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "chic-modesty:10474543939922",
+    "brandSlug": "chic-modesty",
+    "title": "Pinces anti trou basic blanche",
+    "url": "https://chicandmodesty.com/products/pinces-anti-trou-basic-blanche",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
     "id": "chic-modesty:10323164823890",
     "brandSlug": "chic-modesty",
     "title": "Lot 2 clips magnétiques pearly",
@@ -25942,6 +26014,22 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10323097092434",
+    "brandSlug": "chic-modesty",
+    "title": "Sticker scarf hijab",
+    "url": "https://chicandmodesty.com/products/sticker-scarf-hijab",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "chic-modesty:10322908512594",
+    "brandSlug": "chic-modesty",
+    "title": "Aiguille pic pour hijab noir",
+    "url": "https://chicandmodesty.com/products/aiguille-pic-pour-hijab-noir",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
   },
   {
     "id": "chic-modesty:10322766397778",
@@ -26606,6 +26694,22 @@
     "url": "https://mariam-col.com/products/premium-muslim-prayer-set-for-womenmr090",
     "garmentWas": "abaya",
     "reason": "title-pattern"
+  },
+  {
+    "id": "by-hasanat:15850222223733",
+    "brandSlug": "by-hasanat",
+    "title": "Soft Girl Essentials 3D Sticker Set",
+    "url": "https://byhasanat.co.uk/products/soft-girl-essentials-3d-sticker-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "by-hasanat:15850223894901",
+    "brandSlug": "by-hasanat",
+    "title": "Milk and Honey 3D Sticker Set",
+    "url": "https://byhasanat.co.uk/products/milk-and-honey-3d-sticker-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
   },
   {
     "id": "headed-somewear:7709230825630",
