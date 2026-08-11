@@ -439,6 +439,26 @@ summary:focus-visible {
   border-radius: 4px;
 }
 
+/* The rule above is usually enough on its own — native :focus-visible already
+   knows a direct mouse click shouldn't ring. The one case it gets wrong: Base
+   UI's Menu (every dropdown chip, the header nav, the currency switcher)
+   returns DOM focus to its trigger button after closing via a raw
+   element.focus() call, and the browser can't always attribute that call to
+   the mouse click that actually closed the menu — so picking a filter with
+   the mouse can leave the trigger ringed afterwards. data-input-modality
+   (components/InputModality.tsx) tracks the real last input device and this
+   override only fires when it says "mouse", so keyboard users (Tab, or
+   arrow-key + Enter inside an open menu) are completely unaffected. */
+html[data-input-modality="mouse"] a:focus-visible,
+html[data-input-modality="mouse"] button:focus-visible,
+html[data-input-modality="mouse"] [role="button"]:focus-visible,
+html[data-input-modality="mouse"] input:focus-visible,
+html[data-input-modality="mouse"] select:focus-visible,
+html[data-input-modality="mouse"] textarea:focus-visible,
+html[data-input-modality="mouse"] summary:focus-visible {
+  outline: none;
+}
+
 /* Menu rows carry NO box at all — no ring, no fill.
    Base UI moves DOM focus onto a row as you hover it, which is how it drives
    keyboard navigation. That meant the ordinary focus ring above fired on plain
