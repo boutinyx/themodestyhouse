@@ -81,8 +81,21 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // measured against the full catalogue before adding (§10.11): anchoring
   // `shirt`/`coat` alone regressed 51 sweatshirt/tshirt rows and 25
   // overcoat/waistcoat/trenchcoat rows from `top` to unclassified.
+  // tee/hoodie/cape/crewneck/button-up added 2026-08-12, found via the
+  // overnight review-queue audit: merrachi/fares titles like "High Neck Tee"
+  // and "Colour Block Buttery Crewneck" matched no GARMENT_RULES word at all
+  // (product_type/tags explicitly say "Tops" for all of them) and fell
+  // through to a noisy hay match on an unrelated "Sets" collection tag.
+  // Measured against the full 38,074-row corpus before adding: 161 changed,
+  // 159 confirmed correct. 2 ACCEPTED tradeoffs, both `cape`: German
+  // "Zweiteiler mit Cape" (lit. "two-piece with cape") now matches `top` on
+  // `cape` in GARMENT_RULES before it can ever reach FOREIGN_RULES' German
+  // `zweiteiler` -> `set` mapping, which only runs as a fallback after
+  // GARMENT_RULES fails entirely. A caped two-piece item is defensible as
+  // either `top` or `set`; not worth a special case for 2 rows.
   ['top', word('tops?|blouses?|shirts?|tunics?|sweaters?|cardigans?|boleros?|blazers?|vests?|coats?|jackets?' +
-    '|overshirts?|sweatshirts?|t-?shirts?|overcoats?|waistcoats?|trenchcoats?|trenhcoats?')],
+    '|overshirts?|sweatshirts?|t-?shirts?|overcoats?|waistcoats?|trenchcoats?|trenhcoats?' +
+    '|tees?|hoodies?|capes?|crewnecks?|button.?ups?')],
   // Length-only fallback — "maxi"/"midi" describe LENGTH, not garment. A bare
   // "…Maxi" with no explicit garment word reads as a dress, but this must stay
   // LAST so "Maxi Skirt", "Maxi Skirt Set" etc. resolve to their real garment.

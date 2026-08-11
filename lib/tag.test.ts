@@ -339,3 +339,20 @@ describe('GARMENT_VALUES / GARMENT_LABELS', () => {
     expect(GARMENT_VALUES).toContain('other');
   });
 });
+
+describe('top vocabulary: tee/hoodie/cape/crewneck/button-up (2026-08-12)', () => {
+  // Found via the overnight review-queue audit: real titles with a real top
+  // word that matched no GARMENT_RULES rule at all, so they either fell to
+  // 'other' or landed on a noisy hay match. Measured against the full
+  // 38,074-row corpus before adding: 161 rows changed, all but 2 confirmed
+  // correct fixes — see the GARMENT_RULES comment for the 2 accepted
+  // tradeoffs (German "Zweiteiler mit Cape" losing its FOREIGN_RULES 'set'
+  // match once 'cape' matches first in English).
+  it('classifies real corpus titles that previously matched nothing', () => {
+    expect(tagDiscovery({ title: 'High Neck Tee | Dark Cherry', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Comfy Hoodie | White Honey', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Fluid Cape | Taupe Rose', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Colour Block Buttery Crewneck - Toasted Marshmallo', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Lace Trim Longline Button Up - Haze', productType: '', tags: [] }).garment).toBe('top');
+  });
+});
