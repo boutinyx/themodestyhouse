@@ -1294,6 +1294,14 @@
     "evidence": "Hijab Magnet"
   },
   {
+    "id": "voile-chic:8876398805245",
+    "brandSlug": "voile-chic",
+    "title": "Black Essentials - Gift Set",
+    "url": "https://voilechic.com/products/bundle-essentials",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
     "id": "voile-chic:8876398641405",
     "brandSlug": "voile-chic",
     "title": "Cream Essentials - Gift Set",
@@ -1306,6 +1314,14 @@
     "brandSlug": "voile-chic",
     "title": "Blended Elements - Gift Set",
     "url": "https://voilechic.com/products/bundle-elements",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "voile-chic:8876397560061",
+    "brandSlug": "voile-chic",
+    "title": "Neutrals Jersey - Gift Set",
+    "url": "https://voilechic.com/products/neutrals-jersey",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
@@ -24480,124 +24496,12 @@
     "evidence": "Jewelry"
   },
   {
-    "id": "mariams:9112134156504",
-    "brandSlug": "mariams",
-    "title": "Islamic Hollow Pattern Acrylic Tabletop Decor (MAC404)",
-    "url": "https://mariam-col.com/products/islamic-hollow-pattern-acrylic-tabletop-decor-mac404",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "0",
-    "evidence": "Tabletop"
-  },
-  {
-    "id": "mariams:9112133894360",
-    "brandSlug": "mariams",
-    "title": "Festive Home Craft Ornament Ramadan Countdown Acrylic Tabletop Decor (MAC403)",
-    "url": "https://mariam-col.com/products/festive-home-craft-ornament-ramadan-countdown-acrylic-tabletop-decor-mac403",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "0",
-    "evidence": "Tabletop"
-  },
-  {
-    "id": "mariams:9112131993816",
-    "brandSlug": "mariams",
-    "title": "Festive Home Craft Decor Ramadan Hollow Moroccan Iron Lantern (MAC402)",
-    "url": "https://mariam-col.com/products/festive-home-craft-decor-ramadan-hollow-moroccan-iron-lantern-mac402",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "B",
-    "evidence": "Decor"
-  },
-  {
-    "id": "mariams:9111805165784",
-    "brandSlug": "mariams",
-    "title": "Islamic Castle Lantern Decorative Hanging & Table Lamp (MAC397)",
-    "url": "https://mariam-col.com/products/islamic-castle-lantern-decorative-hanging-table-lamp-mac397",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "B",
-    "evidence": "Lantern"
-  },
-  {
-    "id": "mariams:9111724622040",
-    "brandSlug": "mariams",
-    "title": "Islamic Acrylic Folding Screen Hollow Pattern Desktop Decor (MAC402)",
-    "url": "https://mariam-col.com/products/islamic-acrylic-folding-screen-hollow-pattern-desktop-decor-mac402",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "0",
-    "evidence": "Desktop"
-  },
-  {
-    "id": "mariams:9111724392664",
-    "brandSlug": "mariams",
-    "title": "Resin Decorative Heart-Shaped Cube Incense Burner (MAC401)",
-    "url": "https://mariam-col.com/products/resin-decorative-heart-shaped-cube-incense-burner-mac401",
-    "garmentWas": "top",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "mariams:9111724163288",
-    "brandSlug": "mariams",
-    "title": "Crescent Ceramic Desktop Incense Burner (MAC400)",
-    "url": "https://mariam-col.com/products/crescent-ceramic-desktop-incense-burner-mac400",
-    "garmentWas": "top",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "mariams:9111724032216",
-    "brandSlug": "mariams",
-    "title": "Ramadan Iron Star & Crescent Lamp Festive Candle Holder Decor (MAC399)",
-    "url": "https://mariam-col.com/products/ramadan-iron-star-crescent-lamp-festive-candle-holder-decor-mac399",
-    "garmentWas": "top",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "mariams:9111723737304",
-    "brandSlug": "mariams",
-    "title": "Islamic Crescent with Islamic Motifs Acrylic Desktop Ornament (MAC398)",
-    "url": "https://mariam-col.com/products/islamic-crescent-with-islamic-motifs-acrylic-desktop-ornament-mac398",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "0",
-    "evidence": "Desktop"
-  },
-  {
-    "id": "mariams:9111633756376",
-    "brandSlug": "mariams",
-    "title": "Eid Wooden LED Decorative Desktop Ornaments (MAC395)",
-    "url": "https://mariam-col.com/products/eid-wooden-led-decorative-desktop-ornaments-mac395",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "0",
-    "evidence": "Desktop"
-  },
-  {
-    "id": "mariams:9111633166552",
-    "brandSlug": "mariams",
-    "title": "Ramadan Incense Burner Creative Tabletop Home Decor (MAC394)",
-    "url": "https://mariam-col.com/products/ramadan-incense-burner-creative-tabletop-home-decor-mac394",
-    "garmentWas": "top",
-    "reason": "title-pattern"
-  },
-  {
     "id": "mariams:9111624057048",
     "brandSlug": "mariams",
     "title": "Ramadan Scented Candle Glass Holder Set (MAC391)",
     "url": "https://mariam-col.com/products/ramadan-scented-candle-glass-holder-set-mac391",
     "garmentWas": "set",
     "reason": "title-pattern"
-  },
-  {
-    "id": "mariams:9111205904600",
-    "brandSlug": "mariams",
-    "title": "Islamic Style Mosque Acrylic Tabletop Decor (MAC386)",
-    "url": "https://mariam-col.com/products/islamic-style-mosque-acrylic-tabletop-decor-mac386",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "0",
-    "evidence": "Tabletop"
   },
   {
     "id": "mariams:9111203774680",
@@ -24640,16 +24544,6 @@
     "evidence": "Placemat"
   },
   {
-    "id": "mariams:9109664104664",
-    "brandSlug": "mariams",
-    "title": "Ramadan Rotating Countdown Wooden Tabletop Decor (MAC378)",
-    "url": "https://mariam-col.com/products/ramadan-rotating-countdown-wooden-tabletop-decor-mac378",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "0",
-    "evidence": "Tabletop"
-  },
-  {
     "id": "mariams:9109660795096",
     "brandSlug": "mariams",
     "title": "Ramadan 1–30 Countdown Calendar Gift Bag Set Drawstring Hanging Pouches (MAC385)",
@@ -24660,16 +24554,6 @@
     "evidence": "Gift Bag"
   },
   {
-    "id": "mariams:9108228997336",
-    "brandSlug": "mariams",
-    "title": "Creative Ramadan Countdown Acrylic Ornament (MAC381)",
-    "url": "https://mariam-col.com/products/creative-ramadan-countdown-acrylic-ornament-mac381",
-    "garmentWas": "top",
-    "reason": "non-apparel:home",
-    "tier": "B",
-    "evidence": "Ornament"
-  },
-  {
     "id": "mariams:9108226343128",
     "brandSlug": "mariams",
     "title": "Festive Ramadan Iron Tray Candy Box 3-Piece Set (MAC382)",
@@ -24678,14 +24562,6 @@
     "reason": "non-apparel:home",
     "tier": "B",
     "evidence": "Tray"
-  },
-  {
-    "id": "mariams:9108217561304",
-    "brandSlug": "mariams",
-    "title": "Hollow Moon Candle Holder – Iron Ramadan Decorative Accent (MAC379)",
-    "url": "https://mariam-col.com/products/hollow-moon-candle-holder-ramadan-decorative-accent-mac379",
-    "garmentWas": "top",
-    "reason": "title-pattern"
   },
   {
     "id": "mariams:9101735035096",
@@ -25872,26 +25748,6 @@
     "evidence": "Bag"
   },
   {
-    "id": "fares:7648008044735",
-    "brandSlug": "fares",
-    "title": "Hijab Scrunchie - Ivory",
-    "url": "https://shopfares.com/products/us-hijab-scrunchie-ivory",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hair",
-    "tier": "B",
-    "evidence": "Scrunchie"
-  },
-  {
-    "id": "fares:7648007520447",
-    "brandSlug": "fares",
-    "title": "Hijab Scrunchie - Brown",
-    "url": "https://shopfares.com/products/us-hijab-scrunchie-brown",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hair",
-    "tier": "B",
-    "evidence": "Scrunchie"
-  },
-  {
     "id": "chi-ka:8236804014241",
     "brandSlug": "chi-ka",
     "title": "Travel Set : Sleeveless Long Jacket and Pants in Blue Jacquard Satin",
@@ -26256,24 +26112,6 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Magnet"
-  },
-  {
-    "id": "culture-hijab:4519059783727",
-    "brandSlug": "culture-hijab",
-    "title": "Bow Scrunchie BLACK",
-    "url": "https://culturehijab.com/products/bow-scrunchie-in-black",
-    "garmentWas": "top",
-    "reason": "non-apparel:hair",
-    "tier": "B",
-    "evidence": "Scrunchie"
-  },
-  {
-    "id": "aab:9831021805882",
-    "brandSlug": "aab",
-    "title": "Silani Oud Bakhoor",
-    "url": "https://us.aabcollection.com/products/silani-oud-bakhoor",
-    "garmentWas": "top",
-    "reason": "title-pattern"
   },
   {
     "id": "nasiba:10362625327413",
@@ -26742,6 +26580,16 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "almotahajiba:10361719193875",
+    "brandSlug": "almotahajiba",
+    "title": "Frame Veil",
+    "url": "https://www.almotahajiba.com/products/5012a5266sb1",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:home",
+    "tier": "B",
+    "evidence": "Frame"
   },
   {
     "id": "nihan:15059679281515",
@@ -27375,16 +27223,6 @@
     "title": "AYA Gold With Black Disc Drop Earrings",
     "url": "https://ilovemodesty.com/products/aya-gold-with-black-disc-drop-earrings",
     "garmentWas": "set",
-    "reason": "non-apparel:jewellery",
-    "tier": "B",
-    "evidence": "Earrings"
-  },
-  {
-    "id": "ilovemodesty:10026963697985",
-    "brandSlug": "ilovemodesty",
-    "title": "AYA Matte Gold Wide Hoop Earrings",
-    "url": "https://ilovemodesty.com/products/aya-matte-gold-wide-hoop-earrings",
-    "garmentWas": "dress",
     "reason": "non-apparel:jewellery",
     "tier": "B",
     "evidence": "Earrings"
