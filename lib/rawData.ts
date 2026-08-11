@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
-import type { Product } from '@/lib/types';
+import type { Product, Garment } from '@/lib/types';
 import { assertLocalDev } from '@/lib/devOnly';
 
 /**
@@ -21,6 +21,8 @@ export type Decision = 'keep' | 'cut';
 
 const rawFile = () => path.join(process.cwd(), 'data', 'raw-products.json');
 const decisionsFile = () => path.join(process.cwd(), 'data', 'decisions.json');
+const garmentOverridesFile = () => path.join(process.cwd(), 'data', 'garment-overrides.json');
+const reviewFile = () => path.join(process.cwd(), 'data', 'review.json');
 
 export function loadRaw(): Product[] {
   assertLocalDev();
@@ -41,4 +43,25 @@ export function saveDecision(id: string, decision: Decision): void {
   const decisions = loadDecisions();
   decisions[id] = decision;
   writeFileSync(decisionsFile(), JSON.stringify(decisions, null, 2));
+}
+
+export function loadGarmentOverrides(): Record<string, Garment> {
+  assertLocalDev();
+  const f = garmentOverridesFile();
+  if (!existsSync(f)) return {};
+  return JSON.parse(readFileSync(f, 'utf8')) as Record<string, Garment>;
+}
+
+export function saveGarmentOverride(id: string, garment: Garment): void {
+  assertLocalDev();
+  const overrides = loadGarmentOverrides();
+  overrides[id] = garment;
+  writeFileSync(garmentOverridesFile(), JSON.stringify(overrides, null, 2));
+}
+
+export function loadReview(): unknown[] {
+  assertLocalDev();
+  const f = reviewFile();
+  if (!existsSync(f)) return [];
+  return JSON.parse(readFileSync(f, 'utf8')) as unknown[];
 }
