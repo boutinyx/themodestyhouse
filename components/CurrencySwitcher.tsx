@@ -1,8 +1,8 @@
 'use client';
 
 import { Menu } from '@base-ui-components/react/menu';
-import { CurrencyDollar } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
+import { CurrencyFlag } from './CurrencyFlag';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL as LABEL, NATIVE_LABEL, type CurrencyPreference } from '@/lib/fx';
 
 const NATIVE = 'native';
@@ -84,33 +84,22 @@ export function CurrencySwitcher() {
         data-active={preference !== null}
         /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space AFTER
            the last glyph and pushes an icon left of true centre.
-           gap is the space between the DISC and its currency code — the one that
-           was actually meant by "more spacing", and tightened from 12 to 8 on
-           2026-08-07. The surrounding cluster gap (Header.tsx) stays at its
-           original gap-6; widening that moved the divider, which was not the
-           ask. */
-        style={{ fontSize: 13, letterSpacing: 0, gap: preference ? 8 : 0 }}
+           gap is the space between the flag/globe and its label — always shown
+           now (the trigger used to render nothing but a bare disc in native
+           mode; see CurrencyFlag/NATIVE_LABEL below), so the gap is now
+           unconditional rather than only appearing once a real currency was
+           picked. */
+        style={{ fontSize: 13, letterSpacing: 0, gap: 8 }}
       >
-        {/* No vertical nudge. Re-measured 2026-08-07 on the current header:
-            every box in the bar — nav links, favourites, this trigger, both
-            dividers — centres on y=53, and with translateY(-1px) the disc
-            centred on 52, i.e. a pixel ABOVE the words beside it. The earlier
-            -1px was measured against an older header whose numbers no longer
-            hold. The fill weight is a symmetric disc, so its geometric centre is
-            its visual centre and no correction is needed. Re-measure before
-            reintroducing any nudge here. */}
-        {/* weight="fill" is a DELIBERATE choice, confirmed by Tina 2026-08-07.
-            Note it does not merely thicken the strokes: Phosphor's fill variant
-            for this glyph is a solid disc with the dollar knocked out of it
-            (the `A104,104` arc in its path), so an active currency reads as a
-            coin badge — heavier than the outlined heart beside it. That contrast
-            is wanted. Do not "correct" it to bold or regular. */}
-        <CurrencyDollar
-          size={18}
-          weight={preference ? 'fill' : 'regular'}
-          style={{ display: 'block' }}
-        />
-        {preference ?? null}
+        {/* Was a fixed CurrencyDollar glyph regardless of the selected
+            currency — misleading once GBP/EUR was picked, and with no label at
+            all in native mode (the trigger rendered a bare $ and nothing else).
+            CurrencyFlag (already used by the footer's equivalent control) shows
+            the flag that's actually selected, or the globe for native — same
+            icon, same label source (LABEL/NATIVE_LABEL) as the footer, so the
+            two controls read as one preference rather than two different UIs. */}
+        <CurrencyFlag currency={preference} />
+        {preference ? LABEL[preference] : NATIVE_LABEL}
       </Menu.Trigger>
 
       <Menu.Portal>
@@ -150,7 +139,9 @@ export function CurrencySwitcher() {
                   // property outright. See globals.css.
                   className="menu-row"
                   data-active={preference === o}
+                  style={{ gap: 10 }}
                 >
+                  <CurrencyFlag currency={o} />
                   {o ? LABEL[o] : NATIVE_LABEL}
                 </Menu.RadioItem>
               ))}
