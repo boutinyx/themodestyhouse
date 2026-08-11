@@ -78,6 +78,11 @@ const MUST_DROP = [
 ];
 
 const MUST_SURVIVE = [
+  // "bikini" was missing from GARMENT_NOUN — real, live title (Turkish;
+  // translates to "Buckle Detailed Bikini") was wrongly vetoed as hardware
+  // ("Buckle") because nothing recognized "Bikini" as the garment head.
+  // Found 2026-08-12 while auditing non-apparel items in the directory.
+  "Toka Detaylı Bikini",
   "Abaya With Lantern Sleeves Made Of Crepe Material (MA124)",
   "Women's Prayer Set - Black",
   "2-Piece Prayer Set of Abaya and Hijab-Pink trim",

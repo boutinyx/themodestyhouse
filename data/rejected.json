@@ -25748,6 +25748,38 @@
     "evidence": "Bag"
   },
   {
+    "id": "kamin:9687983128793",
+    "brandSlug": "kamin",
+    "title": "PEBBLE | Set for 6",
+    "url": "https://kamin.ae/products/pebble-set-for-6",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9359036645593",
+    "brandSlug": "kamin",
+    "title": "PEBBLE | Set for 4",
+    "url": "https://kamin.ae/products/pebble-set-for-4",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9334915236057",
+    "brandSlug": "kamin",
+    "title": "ENTRÉE | Set for 6",
+    "url": "https://kamin.ae/products/entree-set-for-6",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9334912221401",
+    "brandSlug": "kamin",
+    "title": "ENTRÉE | Set for 4",
+    "url": "https://kamin.ae/products/entree-set-for-4",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
     "id": "chi-ka:8236804014241",
     "brandSlug": "chi-ka",
     "title": "Travel Set : Sleeveless Long Jacket and Pants in Blue Jacquard Satin",
@@ -25816,6 +25848,14 @@
     "evidence": "Hijab clip"
   },
   {
+    "id": "mukistore:9491509641481",
+    "brandSlug": "mukistore",
+    "title": "Premium Gebedskleed Koepel Design Anti Slip",
+    "url": "https://mukistore.com/products/premium-gebedskleed-koepel-design-anti-slip",
+    "garmentWas": "abaya",
+    "reason": "id-pin"
+  },
+  {
     "id": "hijab-boutique:8006645285168",
     "brandSlug": "hijab-boutique",
     "title": "Hijab hangers",
@@ -25844,6 +25884,14 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10474532667730",
+    "brandSlug": "chic-modesty",
+    "title": "Epingles hijab mat noir",
+    "url": "https://chicandmodesty.com/products/epingles-hijab-mat-copie",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
   },
   {
     "id": "chic-modesty:10323164823890",
@@ -26474,6 +26522,14 @@
     "evidence": "Plate"
   },
   {
+    "id": "kamin:9307974500569",
+    "brandSlug": "kamin",
+    "title": "Entrée | Deep Dish",
+    "url": "https://kamin.ae/products/entree-deep-dish",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
     "id": "kamin:9307961983193",
     "brandSlug": "kamin",
     "title": "Pebble | Appetizer Plate",
@@ -26796,6 +26852,14 @@
     "evidence": "Scarf Rings"
   },
   {
+    "id": "eynaa-paris:10422240117079",
+    "brandSlug": "eynaa-paris",
+    "title": "Épingles À Hijab",
+    "url": "https://eynaaparis.fr/products/epingles-a-hijab",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
     "id": "modesty-in-style:10532883202358",
     "brandSlug": "modesty-in-style",
     "title": "Magnets",
@@ -26804,6 +26868,22 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Magnets"
+  },
+  {
+    "id": "ipekstil:9364740735211",
+    "brandSlug": "ipekstil",
+    "title": "Charmlı Midi Çanta ACI KAHVE",
+    "url": "https://ipekstil.com/products/charmli-midi-canta-aci-kahve",
+    "garmentWas": "dress",
+    "reason": "id-pin"
+  },
+  {
+    "id": "ipekstil:9364741062891",
+    "brandSlug": "ipekstil",
+    "title": "Charmlı Midi Çanta SİYAH",
+    "url": "https://ipekstil.com/products/charmli-midi-canta-si̇yah",
+    "garmentWas": "dress",
+    "reason": "id-pin"
   },
   {
     "id": "lameera-moda:7460656316584",
@@ -27900,6 +27980,38 @@
     "evidence": "Socks"
   },
   {
+    "id": "hidayah:7406689681579",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke”(Cappuccino)",
+    "url": "https://hidayah.dk/products/staerk-hijab-magnet-2stk-chocolate",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:8510293246299",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Beige)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-beige",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:7406689452203",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Hvid)",
+    "url": "https://hidayah.dk/products/staerk-hijab-magnet-2stk-snow",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:7406689353899",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Sort)",
+    "url": "https://hidayah.dk/products/staerk-hijab-magnet-2stk-black",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
     "id": "hidayah:9154191524187",
     "brandSlug": "hidayah",
     "title": "Tilfældig Farve - Satin Velvet Scrunchie (Medium)",
@@ -27908,6 +28020,86 @@
     "reason": "non-apparel:hair",
     "tier": "B",
     "evidence": "Scrunchie"
+  },
+  {
+    "id": "hidayah:9122596290907",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Army)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-army",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:9122595307867",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Midnight)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-midnight",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:9122595111259",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Navy)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-navy",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:8731730051419",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Rosegold)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-rosegold-1",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:8510291476827",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Graphine)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-graphine",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:8510288232795",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Gold)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-rosegold",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:8510286791003",
+    "brandSlug": "hidayah",
+    "title": "Hijab-magneter 2sæt “Stærke” (Silver)",
+    "url": "https://hidayah.dk/products/hijab-magneter-2saet-staerke-silver",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:7442435604651",
+    "brandSlug": "hidayah",
+    "title": "8 stk Hijab Sikkerhedsnåle (Hvid)",
+    "url": "https://hidayah.dk/products/hijab-sikkerhedsnale-8-stk-snow",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:7406693318827",
+    "brandSlug": "hidayah",
+    "title": "8 stk Hijab Sikkerhedsnåle (Sort)",
+    "url": "https://hidayah.dk/products/hijab-sikkerhedsnale-8-stk-black",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "hidayah:7401361539243",
+    "brandSlug": "hidayah",
+    "title": "50 stk Små hijabnåle (løse - ikke i æske)",
+    "url": "https://hidayah.dk/products/sma-hijabnale-50stk",
+    "garmentWas": "hijab",
+    "reason": "id-pin"
   },
   {
     "id": "nour-al-houda:7687564165168",

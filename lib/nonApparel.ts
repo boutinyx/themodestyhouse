@@ -56,7 +56,7 @@ const FABRIC = /\b(cotton|chiffon|modal|jersey|satin|silk|viscose|bamboo|crinkle
 const MOTIF = /\b(print|printed|pattern|patterned|weave|woven|motif|jacquard|embroider\w*|applique|design|stitch|trim|edge|fringe)\b/i;
 
 /** Head-noun arbitration vocabulary. GLOBAL flag — always reset lastIndex. */
-export const GARMENT_NOUN = /\b(abayah?s?|jilbabs?|kaftans?|caftans?|kimonos?|hijabs?|scarf|scarves|shawls?|khimars?|dress(es)?|gowns?|skirts?|tops?|blouses?|shirts?|tunics?|sweat(er|shirt)s?|cardigans?|cardis?|boleros?|blazers?|vests?|trousers?|pants?|jeans|leggings?|culottes?|swimsuits?|swimwear|burkinis?|jumpsuits?|jumpers?|coats?|jackets?|capes?|ponchos?|rompers?|bodysuits?|hoodies?|tees?|isdal|telekung|mukena|undercaps?|underscarf|shrugs?|kurungs?|bishts?|outerwear|nightdress(es)?|sundress(es)?|underdress(es)?|niqabs?|amiras?|tudungs?|slips?|robes?|knitwear|loungewear|activewear|modest\s*wear)\b/gi;
+export const GARMENT_NOUN = /\b(abayah?s?|jilbabs?|kaftans?|caftans?|kimonos?|hijabs?|scarf|scarves|shawls?|khimars?|dress(es)?|gowns?|skirts?|tops?|blouses?|shirts?|tunics?|sweat(er|shirt)s?|cardigans?|cardis?|boleros?|blazers?|vests?|trousers?|pants?|jeans|leggings?|culottes?|swimsuits?|swimwear|burkinis?|bikinis?|jumpsuits?|jumpers?|coats?|jackets?|capes?|ponchos?|rompers?|bodysuits?|hoodies?|tees?|isdal|telekung|mukena|undercaps?|underscarf|shrugs?|kurungs?|bishts?|outerwear|nightdress(es)?|sundress(es)?|underdress(es)?|niqabs?|amiras?|tudungs?|slips?|robes?|knitwear|loungewear|activewear|modest\s*wear)\b/gi;
 
 // ---------------------------------------------------------------------------
 // PROTECT — wearables whose names collide with homeware/hardware.
