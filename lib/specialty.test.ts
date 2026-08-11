@@ -48,10 +48,23 @@ describe('isLayering', () => {
     expect(isLayering(p('Modest Shoulder-Cover Base Layer Versatile Sleeveless Inner Top with Attached Sleeves'))).toBe(true); // mariams
     expect(isLayering(p('Body - Arm Sleeves', 'hijab'))).toBe(true); // losyana, misfiled as hijab
     expect(isLayering(p('Khaki One Piece Sleeves'))).toBe(true); // ilovemodesty, shrug-shaped sleeve extender
+    expect(isLayering(p('Fleurel Shirt Extender'))).toBe(true); // ria-miranda
+    expect(isLayering(p('Second Skin Top Ebony'))).toBe(true); // aab
+    expect(isLayering(p('Peter Can Collar Poplin Under Shirt'))).toBe(true); // touche-prive
   });
 
   it('does not match a real one-piece garment that happens to have sleeves', () => {
     expect(isLayering(p('Black One Piece Swimsuit', 'swim'))).toBe(false);
+  });
+
+  it('keeps the full-length "Second Skin" leggings and slip dress in their own lanes', () => {
+    expect(isLayering(p('Second Skin Leggings Ebony', 'trousers'))).toBe(false); // aab
+    expect(isLayering(p('Second Skin Full Slip Ebony', 'dress'))).toBe(false); // aab
+  });
+
+  it('does not treat "cover-up" as a layering signal — it names real cardigans, abayas and swim cover-ups', () => {
+    expect(isLayering(p('Cardigan Cover Up - Ocean Ripple'))).toBe(false); // veiled, a real standalone cardigan
+    expect(isLayering(p('V-Neck Abaya Cardigan Robe | Bat Sleeve Kimono Cover-Up With Pearl Buttons', 'abaya'))).toBe(false); // mariams
   });
 
   it('does not match hijab/underscarf/bonnet titles, even when they cover the neck', () => {

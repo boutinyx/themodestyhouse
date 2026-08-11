@@ -79,6 +79,35 @@ published as `top` x10. Added `\bone.?piece sleeves?\b` to `LAYERING_RE`
 `layering-basics` published count 49 → 59. `tsc`/491 tests/lint/build all
 clean before republish.
 
+## Addendum 2 (2026-08-12) — broader vocabulary sweep
+Tina asked to find and add others. Swept a wider set of candidate terms
+against the raw corpus (shrug, capelet, cover-up, second skin, extender,
+under shirt, half sleeve, sleeve slip, cami, thumb hole…) and manually
+reviewed every hit before deciding what to add — most were rejected as real
+standalone garments:
+- **Added:** `shirt extender` (ria-miranda x5 + jaida x1, e.g. "Fleurel
+  Shirt Extender" — a piece worn under a shirt to extend its hem/coverage),
+  `second skin top` (aab x7 — narrowed to the top variant only, since aab
+  also sells "Second Skin Leggings"/"Second Skin (Full) Slip", both complete
+  standalone garments), `under shirt`/`undershirt` (touche-prive x2).
+- **Rejected — shrug (44 hits, eastessence):** "shrug" here names a complete
+  2-piece abaya silhouette (an open cardigan-style outer piece bundled with
+  its own inner dress), not a standalone accessory. Moving it would have
+  pulled real abayas out of /modest-abayas.
+- **Rejected — cover-up (28 hits):** real name for cardigans ("Cardigan
+  Cover Up", veiled), full abayas, and swim/sun-protection cover-ups — all
+  complete garments already correctly laned. Too ambiguous to use as a signal.
+- **Rejected — capelet, half sleeve, sleeve slip:** each hit was a complete
+  standalone dress describing its own silhouette/sleeve length ("Capelet
+  Dress", "Long Sleeve Slip Dress"), not an accessory worn under something
+  else.
+- **Rejected — bare "cami" (1 hit):** too ambiguous on its own (a cami can be
+  a standalone strappy top) to generalize from a single example.
+
+Regression tests added for every accept/reject decision above. Republished:
+same 23,088 ids, `layering-basics` published count 59 → 73. `tsc`/493
+tests/lint/build all clean before republish.
+
 ## Notes / follow-ups
 - 49 published items is a real but small category — reasonable for a v1.
   Deliberately did NOT chase every brand's own "basics" line-naming (e.g.

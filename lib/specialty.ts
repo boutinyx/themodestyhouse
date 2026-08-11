@@ -19,16 +19,22 @@ const ACTIVE_GARMENTS = new Set(['trousers', 'top', 'set']);
 // Piece Sleeves" (just a shoulder cap + sleeves, no torso) — all scattered
 // across dress/set/top because nothing in the classifier distinguished them.
 // Vocabulary below is every phrase actually found in the raw catalogue for
-// this concept — 65 rows across 11 brands, checked 2026-08-11 — not a
+// this concept — 80 rows across 14 brands, last swept 2026-08-12 — not a
 // guessed pattern; each term is unambiguous on its own (a "dickey" or "neck
 // cover" is never a complete outfit). `\bbase layer\b` excludes a trailing
 // "dress"/"abaya" because a full-length base-layer DRESS (e.g. mariams'
 // MS157/MS190) is still a complete, standalone garment — only the
-// accessory-scale pieces belong here. `\bone.?piece sleeves?\b` requires
-// "sleeves" right after "one piece" so it never catches a "one piece
-// swimsuit". Deliberately excludes hijab/underscarf/bonnet titles: those
-// stay in Hijabs per Tina's call, even when they also happen to cover the neck.
-const LAYERING_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bbase layer\b(?!\s+(?:abaya\s+)?dress)|\bshoulder.?cover\b|\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bcollar (?:cover|insert)\b|\binner top\b|\bbody top\b|\bsinglet\b/i;
+// accessory-scale pieces belong here. Same reasoning kept `\bsecond skin
+// top\b` narrow to the top variant only — aab's "Second Skin Leggings" and
+// "Second Skin (Full) Slip" are complete trousers/dresses, not accessories.
+// `\bone.?piece sleeves?\b` requires "sleeves" right after "one piece" so it
+// never catches a "one piece swimsuit". Deliberately excludes
+// hijab/underscarf/bonnet titles: those stay in Hijabs per Tina's call, even
+// when they also happen to cover the neck. Deliberately excludes "cover-up"
+// entirely — checked, and it's a real name for cardigans, full abayas and
+// swim cover-ups (all complete, standalone garments already in the right
+// lane), not a signal for this category the way "neck cover" or "dickey" is.
+const LAYERING_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bbase layer\b(?!\s+(?:abaya\s+)?dress)|\bshoulder.?cover\b|\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bshirt extenders?\b|\bcollar (?:cover|insert)\b|\binner top\b|\bbody top\b|\bsecond skin top\b|\bunder.?shirts?\b|\bsinglet\b/i;
 const LAYERING_HIJAB_RE = /\bhijab\b|\bunderscarf\b|\bbonnet\b/i;
 
 export function isSwim(p: Product): boolean {
