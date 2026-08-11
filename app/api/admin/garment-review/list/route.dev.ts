@@ -10,7 +10,7 @@ export async function GET() {
 
   // LAYER 4 (sentinel based) guards inside each loader.
   const items = (loadReview() as { why?: string }[]).filter((r) =>
-    ['signal-conflict', 'weak-signal', 'unclassified'].includes(r.why || ''),
+    ['signal-conflict', 'unclassified'].includes(r.why || ''),
   );
   return NextResponse.json({ items, overrides: loadGarmentOverrides() });
 }
