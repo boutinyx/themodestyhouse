@@ -7,12 +7,20 @@ import { isNonApparel } from '../lib/nonApparel.ts';
 import { isLifecycleLive, stripLifecycle, brandDropViolations } from '../lib/lifecycle.ts';
 import { demoteGarment } from '../lib/ordering.ts';
 import { isSpecialty } from '../lib/specialty.ts';
-import { normalizeTitle } from '../lib/normalize.ts';
+import { normalizeTitle, stripRawSignals } from '../lib/normalize.ts';
+import { resolveGarment } from '../lib/garmentReview.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
 
 const raw = JSON.parse(readFileSync(U('raw-products.json'), 'utf8'));
 const decisions = existsSync(U('decisions.json')) ? JSON.parse(readFileSync(U('decisions.json'), 'utf8')) : {};
+// Manual garment corrections from the /admin/review UI. Checked FIRST in the
+// re-derivation below, and never written by any automated path — the same
+// separation decisions.json already relies on (§10.13: automation must never
+// silently revisit a human decision).
+const garmentOverrides = existsSync(U('garment-overrides.json'))
+  ? JSON.parse(readFileSync(U('garment-overrides.json'), 'utf8'))
+  : {};
 
 // Persistent exclusion list (men's items, cut brands, pinned ids). This is a
 // women's modest-fashion directory; see data/exclusions.json. Enforced here so a
@@ -130,8 +138,18 @@ const kept = raw.filter((p) => {
     rejected.push({ id: p.id, brandSlug: p.brandSlug, title: p.title, url: p.url, garmentWas: p.garment, ...v });
     return false;
   }
-  if (p.garment === 'other') review.push({ id: p.id, title: p.title, url: p.url, why: 'unclassified' });
-  else if (p.raw?.classifiedFrom === 'meta') review.push({ id: p.id, title: p.title, url: p.url, why: 'meta-only' });
+  const decision = resolveGarment(p, garmentOverrides);
+  if (decision.status === 'held') {
+    review.push({
+      id: p.id, title: p.title, url: p.url, why: decision.why,
+      titleGuess: decision.titleGuess, typeGuess: decision.typeGuess,
+    });
+    return false;
+  }
+  // Safe: `raw` was freshly parsed this run and nothing reads `p` before this
+  // point in the pipeline — interleaveByBrand/demoteGarment/publishTitle all
+  // run AFTER this filter, so they see the resolved value.
+  p.garment = decision.garment;
   return true;
 });
 
@@ -246,7 +264,7 @@ if (prevRows && !process.env.ALLOW_LARGE_DIFF) {
 // real scaling ceiling). firstSeen is the one exception: it's now a published
 // field (stripLifecycle keeps it) so the Sort control's Newest/Oldest options
 // have real data — see lib/lifecycle.ts and lib/compactCatalogue.ts.
-writeFileSync(U('products.json'), JSON.stringify(published.map(stripLifecycle), null, 2));
+writeFileSync(U('products.json'), JSON.stringify(published.map(stripLifecycle).map(stripRawSignals), null, 2));
 
 const byReason = rejected.reduce((a, r) => ((a[r.reason] = (a[r.reason] || 0) + 1), a), {});
 console.table(byReason);
