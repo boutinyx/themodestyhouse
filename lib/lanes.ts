@@ -1,5 +1,5 @@
 import type { Product } from '@/lib/types';
-import { isSwim, isActivewear } from '@/lib/specialty';
+import { isSwim, isActivewear, isLayering } from '@/lib/specialty';
 
 export type LaneKind = 'category' | 'community' | 'occasion' | 'season';
 
@@ -89,6 +89,15 @@ export const LANES: Lane[] = [
     intro: 'Sports dresses, leggings and covered athleisure for training and everyday movement.',
     kind: 'category',
     match: (p) => isActivewear(p),
+    specialty: true,
+  },
+  {
+    slug: 'layering-basics',
+    title: 'Layering Basics',
+    nav: 'Layering',
+    intro: 'Base layers, neck covers and inner tops — coverage essentials worn under everything else.',
+    kind: 'category',
+    match: (p) => isLayering(p),
     specialty: true,
   },
 

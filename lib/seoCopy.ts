@@ -66,6 +66,10 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     title: 'Modest Activewear Online — Covered Sportswear for Women',
     description: 'Shop modest activewear online: sports dresses, leggings and covered athleisure for training and everyday movement.',
   },
+  '/layering-basics': {
+    title: 'Layering Basics — Base Layers & Neck Covers',
+    description: 'Shop layering basics online: base layers, dickeys and neck covers worn under abayas, blouses and dresses for extra coverage.',
+  },
   '/hijabi-outfits': {
     title: 'Hijab Fashion & Hijabi Outfits — Shop Modest Style',
     description: 'Hijabs, abayas and modest pieces from hijabi-owned brands — hijab fashion and hijabi outfit inspiration, all in one place.',
