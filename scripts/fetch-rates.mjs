@@ -24,8 +24,23 @@ const SOURCE = 'https://open.er-api.com/v6/latest/USD';
 // `node` (see package.json), and importing a .ts module would need tsx —
 // Invariant 7. A regex over the one source of truth beats a second copy of it.
 const BRANDS_SRC = readFileSync(new URL('../data/brands.ts', import.meta.url), 'utf8');
-const WANTED = [...new Set([...BRANDS_SRC.matchAll(/currency:\s*'([A-Z]{3})'/g)].map((m) => m[1]))].sort();
-if (WANTED.length < 5) throw new Error(`only ${WANTED.length} currencies parsed from data/brands.ts — the shape changed`);
+const BRAND_CURRENCIES = [...new Set([...BRANDS_SRC.matchAll(/currency:\s*'([A-Z]{3})'/g)].map((m) => m[1]))];
+if (BRAND_CURRENCIES.length < 5) throw new Error(`only ${BRAND_CURRENCIES.length} currencies parsed from data/brands.ts — the shape changed`);
+
+// A brand's native currency always needs a rate (to convert FROM it), and so
+// does every currency the switcher lets a visitor convert TO — lib/fx.ts's
+// DISPLAY_CURRENCIES, which as of 2026-08-12 includes SAR/BSD/etc. that no
+// brand is actually priced in. Missing either half silently breaks something
+// different: a missing brand currency means that BRAND's prices can never be
+// converted; a missing display currency means NO price can ever be shown in
+// it, and the switcher option quietly does nothing (falls back to native).
+const FX_SRC = readFileSync(new URL('../lib/fx.ts', import.meta.url), 'utf8');
+const DISPLAY_MATCH = FX_SRC.match(/DISPLAY_CURRENCIES = \[([^\]]+)\]/);
+if (!DISPLAY_MATCH) throw new Error('could not find DISPLAY_CURRENCIES in lib/fx.ts — the shape changed');
+const DISPLAY_CURRENCIES = [...DISPLAY_MATCH[1].matchAll(/'([A-Z]{3})'/g)].map((m) => m[1]);
+if (DISPLAY_CURRENCIES.length < 3) throw new Error(`only ${DISPLAY_CURRENCIES.length} currencies parsed from lib/fx.ts DISPLAY_CURRENCIES — the shape changed`);
+
+const WANTED = [...new Set([...BRAND_CURRENCIES, ...DISPLAY_CURRENCIES])].sort();
 
 const res = await fetch(SOURCE, { headers: { 'User-Agent': 'themodestyhouse/1.0' } });
 if (!res.ok) throw new Error(`rates fetch failed: HTTP ${res.status}`);

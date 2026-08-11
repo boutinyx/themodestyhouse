@@ -20,20 +20,43 @@ export const FX_BASE = rates.base;
 export const FX_UPDATED = rates.fetchedAt;
 export const FX_RATES: Record<string, number> = rates.rates;
 
-/** Currencies a visitor may switch the display to. Deliberately a short list of
- *  the ones our audience actually uses, not every currency we hold a rate for. */
-export const DISPLAY_CURRENCIES = ['USD', 'GBP', 'EUR'] as const;
+/** Currencies a visitor may switch the display to. Set by Tina 2026-08-12 from
+ *  the site's actual visitor-country breakdown (Pulse), minus a single China
+ *  hit judged to be a bot: Netherlands/France/Belgium/Slovenia -> EUR, United
+ *  States -> USD, United Kingdom -> GBP, Canada -> CAD, Denmark -> DKK,
+ *  Australia -> AUD, Saudi Arabia -> SAR, Bahamas -> BSD, Türkiye -> TRY.
+ *  This is a curated list of what our audience actually uses, not every
+ *  currency we hold a rate for (see FX_RATES, which also covers every brand's
+ *  own native currency for a different reason). */
+export const DISPLAY_CURRENCIES = ['USD', 'GBP', 'EUR', 'CAD', 'AUD', 'DKK', 'TRY', 'SAR', 'BSD'] as const;
 export type DisplayCurrency = (typeof DISPLAY_CURRENCIES)[number];
 
-/** `null` means "show each brand's own currency" — the default, and the only
- *  mode in which a displayed price is exact. */
+/** `null` means "show each brand's own currency" — the only mode in which a
+ *  displayed price is exact. No switcher offers it as of 2026-08-12 (USD is
+ *  the default instead, at Tina's request — see ADR-0002's Supersession
+ *  section), but it is kept as a defensive fallback throughout this module. */
 export type CurrencyPreference = DisplayCurrency | null;
 
 /** Labels for the currency choices. Lives here, not in a component, because
- *  there are now TWO controls offering the same choice — the desktop header
- *  (components/CurrencySwitcher) and the phone menu (components/MobileNav) —
- *  and they must not be able to drift apart. */
-export const CURRENCY_LABEL: Record<string, string> = { USD: '$ USD', GBP: '£ GBP', EUR: '€ EUR' };
+ *  there are now THREE controls offering the same choice — the desktop header
+ *  (components/CurrencySwitcher), the footer (components/FooterCurrency) and
+ *  the phone menu (components/MobileNav) — and they must not be able to drift
+ *  apart. Symbols are the commonly recognised informal ones, not necessarily
+ *  what `Intl.NumberFormat('en-US', ...)` renders in an actual price (verified
+ *  separately: DKK/TRY/SAR/BSD render as their bare ISO code in en-US ICU, not
+ *  a symbol — a label reading "DKK DKK" would be redundant, so this table uses
+ *  krona/lira/riyal/dollar shorthand instead; it never touches price text). */
+export const CURRENCY_LABEL: Record<string, string> = {
+  USD: '$ USD',
+  GBP: '£ GBP',
+  EUR: '€ EUR',
+  CAD: 'CA$ CAD',
+  AUD: 'A$ AUD',
+  DKK: 'kr DKK',
+  TRY: '₺ TRY',
+  SAR: 'SR SAR',
+  BSD: 'B$ BSD',
+};
 /** What `preference === null` is called in the UI. */
 export const NATIVE_LABEL = 'As listed';
 
