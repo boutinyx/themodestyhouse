@@ -38,8 +38,8 @@ describe('sortRowIndices', () => {
     expect(sortRowIndices(cat, allRows, 'featured', null)).toEqual([0, 1, 2]);
   });
 
-  it('price-asc sorts by native price when no currency preference is set', () => {
-    // native: inayah:1=£100, aab:1=$50, inayah:2=£30 -> compared as raw numbers 100, 50, 30
+  it('price-asc converts to FX_BASE when no currency preference is set', () => {
+    // inayah:1=£100, aab:1=$50, inayah:2=£30 -> converted to USD: ~$134.85, $50, ~$40.45
     expect(sortRowIndices(cat, allRows, 'price-asc', null)).toEqual([2, 1, 0]);
   });
 
@@ -47,18 +47,17 @@ describe('sortRowIndices', () => {
     expect(sortRowIndices(cat, allRows, 'price-desc', null)).toEqual([0, 1, 2]);
   });
 
-  it('price-asc converts to the selected display currency before comparing', () => {
-    // The fixture has to be one whose ORDER FLIPS under conversion. The previous
-    // version of this test used the shared `cat` above, whose rows happen to sort
-    // identically converted or not — so it passed just as happily against a
-    // comparablePrice() that ignored currencyPreference entirely, and was no
-    // regression guard at all.
+  it('price-asc converts to a common currency before comparing, with or without a display preference', () => {
+    // The fixture has to be one whose ORDER FLIPS under conversion — otherwise a
+    // comparablePrice() that ignored currency entirely could pass it by accident,
+    // and it would be no regression guard at all.
     //
-    // £60 vs $70: compared as raw numbers 60 < 70, so NATIVE order is GBP-first.
-    // data/fx-rates.json is USD-based with GBP = 0.741549, so
+    // £60 vs $70: compared as raw numbers 60 < 70, so a NAIVE native-only order
+    // is GBP-first. data/fx-rates.json is USD-based with GBP = 0.741549, so
     //   £60 -> 60 / 0.741549 = $80.91  which is ABOVE $70,
-    // and CONVERTED order is USD-first. Native comparison alone can never produce
-    // that, so the assertions below cannot be satisfied without real conversion.
+    // and the real, converted order is USD-first. Native comparison alone can
+    // never produce that, so the assertions below cannot be satisfied without
+    // real conversion.
     const flipProducts: Product[] = [
       { ...base, id: 'inayah:9', brandSlug: 'inayah', brandName: 'Inayah', currency: 'GBP', price: 60, firstSeen: '2026-08-06' }, // row 0
       { ...base, id: 'aab:9', brandSlug: 'aab', brandName: 'Aab', currency: 'USD', price: 70, firstSeen: '2026-08-06' },          // row 1
@@ -74,9 +73,10 @@ describe('sortRowIndices', () => {
     expect(sixtyPoundsInUsd).not.toBeNull();
     expect(sixtyPoundsInUsd as number).toBeGreaterThan(70);
 
-    // Native: £60 (row 0) then $70 (row 1).
-    expect(sortRowIndices(flipCat, pair, 'price-asc', null)).toEqual([0, 1]);
-    // Converted to USD: $70 (row 1) then ≈$80.91 (row 0) — the reverse.
+    // No display preference ("As listed") still has to compare in ONE currency
+    // (FX_BASE) to produce a real price order — not the raw £60-vs-$70 numbers.
+    expect(sortRowIndices(flipCat, pair, 'price-asc', null)).toEqual([1, 0]);
+    // Explicit USD preference: same converted order.
     expect(sortRowIndices(flipCat, pair, 'price-asc', 'USD')).toEqual([1, 0]);
     // price-desc must flip with it, not just price-asc.
     expect(sortRowIndices(flipCat, pair, 'price-desc', 'USD')).toEqual([0, 1]);

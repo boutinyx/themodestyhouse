@@ -2,7 +2,7 @@
 // DirectoryBrowser.tsx and FilterableGrid.tsx so the two grids can never
 // drift on what "Newest" or "Price: Low to High" means.
 import type { CompactCatalogue } from './compactCatalogue';
-import { convert, type CurrencyPreference } from './fx';
+import { convert, FX_BASE, type CurrencyPreference } from './fx';
 
 export type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'newest' | 'oldest';
 
@@ -15,16 +15,21 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
 ];
 
 /**
- * The value a price comparison uses for one row. Mirrors lib/fx.ts's own
- * displayPrice() fallback exactly, so a sort can never disagree with what's
- * on screen: converted amount when a display currency is chosen and a rate
- * exists, native amount otherwise.
+ * The value a price comparison uses for one row. ADR-0002 keeps DISPLAY in
+ * each brand's native currency by default, but a sort has no such option —
+ * an order has to pick one unit. With no display preference, comparing raw
+ * native amounts mixes currencies as if they were equal (£15 sorting below
+ * $900), which is not a price order at all. So ordering always converts to
+ * a single reference currency — the visitor's display preference when one
+ * is set (keeping order consistent with what's on screen), FX_BASE
+ * otherwise — and only falls back to the raw amount when no rate exists for
+ * that row's currency.
  */
 function comparablePrice(cat: CompactCatalogue, row: number, preference: CurrencyPreference): number {
   const price = cat.rows.price[row];
-  if (!preference) return price;
   const nativeCurrency = cat.brands[cat.rows.brandIdx[row]].currency;
-  const converted = convert(price, nativeCurrency, preference);
+  const target = preference ?? FX_BASE;
+  const converted = convert(price, nativeCurrency, target);
   return converted ?? price;
 }
 
