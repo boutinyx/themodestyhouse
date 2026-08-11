@@ -108,6 +108,67 @@ Regression tests added for every accept/reject decision above. Republished:
 same 23,088 ids, `layering-basics` published count 59 → 73. `tsc`/493
 tests/lint/build all clean before republish.
 
+## Addendum 3 (2026-08-12) — visual sweep with Playwright, per Tina's request
+Tina asked to "use playwright in the directory to find more." Text-grep alone
+can't find a layering piece with a generic title (BNAH's own "Core Cotton
+Body Top" was only ever confirmed by looking at the photo, back in the first
+pass) — so this pass drove the live `/directory` search with Playwright,
+screenshotted every ambiguous "basics"-sounding title, and judged each one on
+the actual product photo, price tier and styling, the same way the original
+two BNAH screenshots were judged.
+
+**Added** (6 rows, all visually confirmed):
+- BNAH **"Core Top"** ($23, plain unbranded long-sleeve crew) — same family
+  as "Core Cotton Body Top", already included.
+- BNAH **"Luxe Basic Top"** ($8, photographed peeking out from under a hijab
+  cap — the classic underlayer merchandising shot).
+- ria-miranda **"Comfy Sleeveless/Long Sleeve/Short Sleeve Top"** (3 rows) —
+  their "ri-flex" base-layer sub-line (own logo/tagline on the product
+  photo), flat-lay shots, no branding. Brand-scoped in code (`\bcomfy ...
+  top\b` only applied when `brandSlug === 'ria-miranda'`) since the phrase
+  itself is generic.
+
+**Checked and rejected** (real, standalone garments, confirmed by photo):
+BNAH's "Core Ribbed Tank" (branded, $40, styled as a going-out tank),
+"Comfort Top"/"Comfort High Neck Top" ($28-66, styled as complete outfits),
+"Modal Ruched Top"/"Modal Turtleneck Top" ($25-61, fashion pieces),
+"Everyday Crew Neck Top"/"Everyday Relaxed Top" (styled as complete
+outfits), "Tencel Tank Top" (tunic-length, worn over other clothing),
+"Cotton Contour Top" (tailored, styled as a complete outfit); aab's
+"Cropped Cotton Top" ($47-55, real premium cropped top, price alone ruled
+it out); ria-miranda's "Shera Inner Tee" (its name suggested a base layer,
+but the photo shows a zip-collar, RIAMIRANDA-logo-printed top styled as a
+complete athletic outfit — correctly activewear, not layering).
+
+**Bug found and fixed along the way:** all four of the ria-miranda items
+above (the 3 added + Shera Inner Tee) carry a noisy `activity: ["gym"]` tag
+on the feed. `isActivewear()` was treating that as sufficient (garment
+`top` + `activity: gym` → activewear) with no override, which hid the three
+real layering pieces from both `/directory` search and `/layering-basics`
+entirely — they were silently in `/modest-activewear` instead. Added the
+same precedence `isActivewear()` already gives `isSwim()` — a confirmed
+`isLayering()` piece is never also counted as activewear — while leaving
+"Shera Inner Tee" (a genuine gym top) untouched.
+
+**Publish deferred.** `npm run build:data` was NOT run this pass. Another
+session is concurrently working in this same working tree on a garment
+classification/refresh feature (`lib/garmentReview.ts`,
+`app/api/admin/garment-review/`, 15 commits already on `origin/main` ahead
+of where this branch of work left off) and has an uncommitted, in-progress
+`data/raw-products.json`/`decisions.json` refresh sitting in the working
+tree. Running `build:data` against it tripped the brand-collapse guard hard
+(`amariah` 44→30, `feeya` 16→0, `ahlam-collections` 38→0, etc. — real drops
+in THEIR in-progress data, nothing to do with this change). Publishing
+through that with `ALLOW_LARGE_DIFF=1` would have baked their unfinished
+work into this commit under this message, which is exactly the mistake
+CLAUDE.md §10.30 already logged once. Committed only `lib/specialty.ts` +
+`lib/specialty.test.ts` (verified via `tsc`/520 tests/lint, all clean) and
+left every file that session touched — `data/*.json`,
+`app/api/admin/garment-review/list/route.dev.ts`, `lib/garmentReview.*` —
+untouched. **Follow-up: once that session's work lands, run `npm run
+build:data` again** to actually publish these 6 new rows into
+`data/products.json` — until then the code is correct but not live.
+
 ## Notes / follow-ups
 - 49 published items is a real but small category — reasonable for a v1.
   Deliberately did NOT chase every brand's own "basics" line-naming (e.g.

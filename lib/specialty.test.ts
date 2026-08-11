@@ -8,7 +8,8 @@ const base: Product = {
   occasion: [], season: [], activity: [],
 };
 
-const p = (title: string, garment: Product['garment'] = 'top'): Product => ({ ...base, title, garment });
+const p = (title: string, garment: Product['garment'] = 'top', extra: Partial<Product> = {}): Product =>
+  ({ ...base, title, garment, ...extra });
 
 describe('isSwim', () => {
   it('matches burkini/swim titles', () => {
@@ -28,6 +29,13 @@ describe('isActivewear', () => {
   });
   it('never overlaps swim', () => {
     expect(isActivewear(p('Swim Leggings', 'trousers'))).toBe(false);
+  });
+  it('never overlaps a confirmed layering piece, even when the feed tags it "gym"', () => {
+    // ria-miranda's ri-flex base-layer line carries this noisy tag on the real feed.
+    expect(isActivewear(p('Comfy Sleeveless Top', 'top', { brandSlug: 'ria-miranda', activity: ['gym'] }))).toBe(false);
+  });
+  it('still trusts the gym tag for a real activewear top from the same brand', () => {
+    expect(isActivewear(p('Shera Inner Tee', 'top', { brandSlug: 'ria-miranda', activity: ['gym'] }))).toBe(true);
   });
 });
 
@@ -51,6 +59,29 @@ describe('isLayering', () => {
     expect(isLayering(p('Fleurel Shirt Extender'))).toBe(true); // ria-miranda
     expect(isLayering(p('Second Skin Top Ebony'))).toBe(true); // aab
     expect(isLayering(p('Peter Can Collar Poplin Under Shirt'))).toBe(true); // touche-prive
+    expect(isLayering(p('Core Top - Taupe'))).toBe(true); // nour-al-houda, $23, same family as Core Cotton Body Top
+    expect(isLayering(p('Luxe Basic Top - Fawn'))).toBe(true); // nour-al-houda, $8, shot peeking under a hijab
+    expect(isLayering(p('Comfy Sleeveless Top', 'top', { brandSlug: 'ria-miranda' }))).toBe(true); // ri-flex line
+    expect(isLayering(p('Comfy Long Sleeve Top', 'top', { brandSlug: 'ria-miranda' }))).toBe(true);
+    expect(isLayering(p('Comfy Short Sleeve Top', 'top', { brandSlug: 'ria-miranda' }))).toBe(true);
+  });
+
+  it('scopes the ria-miranda "Comfy ... Top" match to that brand only — the phrase is generic', () => {
+    expect(isLayering(p('Comfy Sleeveless Top', 'top', { brandSlug: 'some-other-brand' }))).toBe(false);
+  });
+
+  it('does not treat a real branded activewear top as layering just because its name says "Inner"', () => {
+    expect(isLayering(p('Shera Inner Tee', 'top', { brandSlug: 'ria-miranda' }))).toBe(false); // zip-collar, logo-printed, styled as a full athletic outfit
+  });
+
+  it('does not pull BNAH\'s visually near-identical but standalone "basics" siblings', () => {
+    expect(isLayering(p('Core Ribbed Tank - Espresso'))).toBe(false); // branded, $40, styled as a going-out tank
+    expect(isLayering(p('Comfort Top - Dove'))).toBe(false); // $28, styled as a complete outfit
+    expect(isLayering(p('Modal Ruched Top - Black'))).toBe(false); // $61, fashion-forward draping
+    expect(isLayering(p('Everyday Crew Neck Top - Navy'))).toBe(false); // styled as a complete outfit
+    expect(isLayering(p('Everyday Relaxed Top - Walnut'))).toBe(false); // oversized tunic, styled as a complete outfit
+    expect(isLayering(p('Tencel Tank Top - White'))).toBe(false); // tunic-length, worn over other clothing
+    expect(isLayering(p('Cotton Contour Top - Sage'))).toBe(false); // tailored, styled as a complete outfit
   });
 
   it('does not match a real one-piece garment that happens to have sleeves', () => {
