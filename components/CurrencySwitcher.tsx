@@ -3,14 +3,17 @@
 import { Menu } from '@base-ui-components/react/menu';
 import { useCurrency } from './CurrencyProvider';
 import { CurrencyFlag } from './CurrencyFlag';
-import { DISPLAY_CURRENCIES, CURRENCY_LABEL as LABEL, NATIVE_LABEL, type CurrencyPreference } from '@/lib/fx';
-
-const NATIVE = 'native';
+import { DISPLAY_CURRENCIES, CURRENCY_LABEL as LABEL, type CurrencyPreference } from '@/lib/fx';
 
 /**
  * Lets a visitor see every price in one currency so they can compare across
- * brands. Native ("As listed") is the default and the only exact option —
- * converted prices are approximate and labelled as such, per ADR-0002.
+ * brands. USD is the default as of 2026-08-12 (Tina's call — supersedes
+ * ADR-0002's native-by-default decision; see
+ * docs/decisions/ADR-0002-currency-display.md). Converted prices are still
+ * approximate and labelled as such (the "≈" and the footnote below), and a
+ * visitor can switch to GBP/EUR — or, if they want exact native prices, that
+ * option still exists internally (`lib/fx.ts`'s `CurrencyPreference` keeps
+ * `null`) but is no longer offered by any switcher.
  *
  * Lives in the header beside favourites. It used to sit inside the index console
  * on /directory and each lane, which meant it was absent from every other page
@@ -21,12 +24,12 @@ const NATIVE = 'native';
  * rather than a third hand-rolled dropdown. That hands over open/close, outside
  * click, Escape, focus management, keyboard navigation and collision-aware
  * positioning — and it PORTALS, so the panel cannot be clipped by an ancestor's
- * overflow. RadioGroup is the honest semantic here: one choice out of four, and
+ * overflow. RadioGroup is the honest semantic here: one choice out of three, and
  * it gives each row a real `aria-checked`.
  */
 export function CurrencySwitcher() {
   const { preference, setPreference } = useCurrency();
-  const options: CurrencyPreference[] = [null, ...DISPLAY_CURRENCIES];
+  const options = DISPLAY_CURRENCIES;
 
   return (
     <Menu.Root>
@@ -79,27 +82,25 @@ export function CurrencySwitcher() {
             e.stopPropagation();
           }
         }}
-        aria-label={preference ? `Prices in ${preference}. Change currency` : 'Prices as listed. Change currency'}
+        aria-label={`Prices in ${preference ?? 'USD'}. Change currency`}
         className="nav-link inline-flex items-center justify-center leading-none"
-        data-active={preference !== null}
+        data-active={true}
         /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space AFTER
            the last glyph and pushes an icon left of true centre.
-           gap is the space between the flag/globe and its label — always shown
-           now (the trigger used to render nothing but a bare disc in native
-           mode; see CurrencyFlag/NATIVE_LABEL below), so the gap is now
-           unconditional rather than only appearing once a real currency was
-           picked. */
+           gap is the space between the flag and its currency code. */
         style={{ fontSize: 13, letterSpacing: 0, gap: 8 }}
       >
-        {/* Was a fixed CurrencyDollar glyph regardless of the selected
-            currency — misleading once GBP/EUR was picked, and with no label at
-            all in native mode (the trigger rendered a bare $ and nothing else).
-            CurrencyFlag (already used by the footer's equivalent control) shows
-            the flag that's actually selected, or the globe for native — same
-            icon, same label source (LABEL/NATIVE_LABEL) as the footer, so the
-            two controls read as one preference rather than two different UIs. */}
+        {/* CurrencyFlag (already used by the footer's equivalent control)
+            shows the flag of the actually-selected currency — was a fixed
+            CurrencyDollar glyph regardless of selection, misleading once
+            GBP/EUR was picked. Same icon, same label source (LABEL) as the
+            footer, so the two controls read as one preference.
+            `preference ?? 'USD'`: CurrencyPreference's type still permits
+            `null` (lib/fx.ts keeps it as a defensive fallback), but no
+            switcher offers it any more, so this never actually reads as the
+            fallback at runtime — it exists to satisfy the type. */}
         <CurrencyFlag currency={preference} />
-        {preference ? LABEL[preference] : NATIVE_LABEL}
+        {LABEL[preference ?? 'USD']}
       </Menu.Trigger>
 
       <Menu.Portal>
@@ -117,13 +118,13 @@ export function CurrencySwitcher() {
             style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
           >
             <Menu.RadioGroup
-              value={preference ?? NATIVE}
-              onValueChange={(v) => setPreference(v === NATIVE ? null : (v as CurrencyPreference))}
+              value={preference ?? 'USD'}
+              onValueChange={(v) => setPreference(v as CurrencyPreference)}
             >
               {options.map((o) => (
                 <Menu.RadioItem
-                  key={o ?? NATIVE}
-                  value={o ?? NATIVE}
+                  key={o}
+                  value={o}
                   // Base UI leaves radio items open on click (`closeOnClick`
                   // defaults to false, so a radio group can be adjusted several
                   // times). A currency is picked once, so the menu lingering
@@ -142,7 +143,7 @@ export function CurrencySwitcher() {
                   style={{ gap: 10 }}
                 >
                   <CurrencyFlag currency={o} />
-                  {o ? LABEL[o] : NATIVE_LABEL}
+                  {LABEL[o]}
                 </Menu.RadioItem>
               ))}
             </Menu.RadioGroup>

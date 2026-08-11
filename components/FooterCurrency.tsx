@@ -4,14 +4,7 @@ import { Menu } from '@base-ui-components/react/menu';
 import { CaretUp } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { CurrencyFlag } from './CurrencyFlag';
-import {
-  DISPLAY_CURRENCIES,
-  CURRENCY_LABEL as LABEL,
-  NATIVE_LABEL,
-  type CurrencyPreference,
-} from '@/lib/fx';
-
-const NATIVE = 'native';
+import { DISPLAY_CURRENCIES, CURRENCY_LABEL as LABEL, type CurrencyPreference } from '@/lib/fx';
 
 /**
  * The currency control, repeated at the foot of every page.
@@ -22,6 +15,11 @@ const NATIVE = 'native';
  * for on arrival; this is the one you reach for after scrolling a grid, where
  * the header is off screen. Region/currency at the foot is also where most
  * retail sites put it.
+ *
+ * USD is the default as of 2026-08-12 (Tina's call — supersedes ADR-0002's
+ * native-by-default decision; see docs/decisions/ADR-0002-currency-display.md).
+ * "As listed"/native is no longer offered here or in any switcher — see
+ * CurrencyProvider.tsx and CurrencySwitcher.tsx.
  *
  * DIFFERENCES FROM THE HEADER CONTROL, all deliberate:
  *   - Flags, at Tina's request. See components/CurrencyFlag for why they are
@@ -42,16 +40,12 @@ const NATIVE = 'native';
  */
 export function FooterCurrency() {
   const { preference, setPreference } = useCurrency();
-  const options: CurrencyPreference[] = [null, ...DISPLAY_CURRENCIES];
+  const options = DISPLAY_CURRENCIES;
 
   return (
     <Menu.Root>
       <Menu.Trigger
-        aria-label={
-          preference
-            ? `Prices in ${preference}. Change currency`
-            : 'Prices as listed. Change currency'
-        }
+        aria-label={`Prices in ${preference ?? 'USD'}. Change currency`}
         // `group` is what the caret's rotate-on-open hangs off.
         className="footer-currency-trigger group inline-flex items-center"
         style={{
@@ -71,7 +65,7 @@ export function FooterCurrency() {
         }}
       >
         <CurrencyFlag currency={preference} />
-        {preference ? LABEL[preference] : NATIVE_LABEL}
+        {LABEL[preference ?? 'USD']}
         <CaretUp
           size={9}
           weight="bold"
@@ -97,15 +91,13 @@ export function FooterCurrency() {
             }}
           >
             <Menu.RadioGroup
-              value={preference ?? NATIVE}
-              onValueChange={(v) =>
-                setPreference(v === NATIVE ? null : (v as CurrencyPreference))
-              }
+              value={preference ?? 'USD'}
+              onValueChange={(v) => setPreference(v as CurrencyPreference)}
             >
               {options.map((o) => (
                 <Menu.RadioItem
-                  key={o ?? NATIVE}
-                  value={o ?? NATIVE}
+                  key={o}
+                  value={o}
                   // A currency is picked once; leaving the menu open after the
                   // choice (Base UI's default for a radio group) reads as stuck.
                   closeOnClick
@@ -114,7 +106,7 @@ export function FooterCurrency() {
                   style={{ gap: 10 }}
                 >
                   <CurrencyFlag currency={o} />
-                  {o ? LABEL[o] : NATIVE_LABEL}
+                  {LABEL[o]}
                 </Menu.RadioItem>
               ))}
             </Menu.RadioGroup>

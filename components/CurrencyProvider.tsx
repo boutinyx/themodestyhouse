@@ -11,7 +11,10 @@ import {
 const STORAGE_KEY = 'tmh_currency';
 
 type Ctx = {
-  /** null = show each brand's own currency. The default, and the only exact mode. */
+  /** USD by default, at Tina's request (2026-08-12) — supersedes ADR-0002's
+   *  native-by-default decision, see docs/decisions/ADR-0002-currency-display.md.
+   *  `null` (native/"As listed") is no longer offered by any switcher, but the
+   *  type keeps it as a defensive fallback for lib/fx.ts's conversion helpers. */
   preference: CurrencyPreference;
   setPreference: (c: CurrencyPreference) => void;
   /** Formats a price for display, honouring the current preference. */
@@ -31,22 +34,23 @@ function isDisplayCurrency(v: unknown): v is DisplayCurrency {
 }
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  // Starts as null on BOTH server and client. Reading localStorage during the
-  // initial render would make the two disagree and trip a hydration mismatch,
-  // so the stored choice is applied after mount — same approach as favourites
-  // in QuickView.tsx.
-  const [preference, setPref] = useState<CurrencyPreference>(null);
+  // 'USD' on BOTH server and client — a hardcoded default, not user-specific
+  // data, so server and client agree from the first render with no hydration
+  // mismatch. A returning visitor's own explicit choice (if different) is
+  // applied after mount, once localStorage is readable — same approach as
+  // favourites in QuickView.tsx.
+  const [preference, setPref] = useState<CurrencyPreference>('USD');
 
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      // Deliberate: localStorage is unavailable during SSR, so the stored choice
+      // Deliberate: localStorage is unavailable during SSR, so a stored choice
       // can only be applied after mount. Reading it in useState would desync the
       // server and client render. Same pattern as favourites in QuickView.tsx.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       if (isDisplayCurrency(saved)) setPref(saved);
     } catch {
-      /* private mode / storage disabled — native currency is a fine fallback */
+      /* private mode / storage disabled — USD default is a fine fallback */
     }
   }, []);
 

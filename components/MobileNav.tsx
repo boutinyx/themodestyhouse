@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { List as ListIcon, X as XIcon, CaretRight } from '@phosphor-icons/react';
 import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
-import { DISPLAY_CURRENCIES, CURRENCY_LABEL, NATIVE_LABEL } from '@/lib/fx';
+import { DISPLAY_CURRENCIES, CURRENCY_LABEL } from '@/lib/fx';
 import { useCurrency } from './CurrencyProvider';
 import { useScrollFade } from './useScrollFade';
 
@@ -230,9 +230,9 @@ export function MobileNav() {
                 strings, reused verbatim from the header control (§10.18). */}
             <p className="eyebrow pt-6 pb-2">Currency</p>
             <div className="flex flex-wrap gap-2">
-              {[null, ...DISPLAY_CURRENCIES].map((o) => (
+              {DISPLAY_CURRENCIES.map((o) => (
                 <button
-                  key={o ?? 'native'}
+                  key={o}
                   type="button"
                   onClick={() => setPreference(o)}
                   className="chip"
@@ -240,7 +240,7 @@ export function MobileNav() {
                   aria-pressed={preference === o}
                   style={{ minHeight: 40, paddingLeft: 16, paddingRight: 16 }}
                 >
-                  {o ? CURRENCY_LABEL[o] : NATIVE_LABEL}
+                  {CURRENCY_LABEL[o]}
                 </button>
               ))}
             </div>
