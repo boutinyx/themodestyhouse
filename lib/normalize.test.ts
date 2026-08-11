@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {normalizeProduct, normalizeProductDetailed, normalizeTitle } from './normalize';
+import {normalizeProduct, normalizeProductDetailed, normalizeTitle, stripRawSignals } from './normalize';
 import type { Brand } from '@/lib/types';
 
 const brand: Brand = {
@@ -32,6 +32,26 @@ describe('normalizeProduct', () => {
   });
   it('drops junk (garment other)', () => {
     expect(normalizeProduct({ ...sp, title: 'Gift Card', product_type: '', tags: [] }, brand)).toBeNull();
+  });
+});
+
+describe('normalizeProduct raw signals', () => {
+  it('persists product_type, tags and classifiedFrom for later re-derivation', () => {
+    const p = normalizeProduct(sp, brand)!;
+    expect(p.raw).toEqual({ productType: 'Dresses', tags: ['summer'], classifiedFrom: 'title' });
+  });
+});
+
+describe('stripRawSignals', () => {
+  it('removes the raw field', () => {
+    const p = normalizeProduct(sp, brand)!;
+    expect(p.raw).toBeDefined();
+    expect(stripRawSignals(p).raw).toBeUndefined();
+  });
+  it('does not mutate the input', () => {
+    const p = normalizeProduct(sp, brand)!;
+    stripRawSignals(p);
+    expect(p.raw).toBeDefined();
   });
 });
 

@@ -41,4 +41,14 @@ export interface Product {
   occasion: string[];
   season: string[];
   activity: string[];
+  /** Classification signals, RAW-ONLY — never survives to products.json (see
+   *  lib/normalize.ts::stripRawSignals, called at publish time). Lets
+   *  build-data.mjs re-derive `garment` from the current lib/tag.ts logic
+   *  without a re-scrape. Absent on rows scraped before 2026-08-12; absent on
+   *  most test fixtures. */
+  raw?: {
+    productType: string;
+    tags: string[];
+    classifiedFrom: 'title' | 'meta' | 'foreign' | 'description';
+  };
 }

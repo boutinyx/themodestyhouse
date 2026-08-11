@@ -125,10 +125,20 @@ export function normalizeProductDetailed(
       occasion: disc.occasion,
       season: disc.season,
       activity: disc.activity,
+      raw: { productType: sp.product_type || '', tags, classifiedFrom: disc.source },
     },
   };
 }
 
 export function normalizeProduct(sp: ShopifyProduct, brand: Brand): Product | null {
   return normalizeProductDetailed(sp, brand).product;
+}
+
+/** Drops classification-signal bookkeeping before publish — raw-only, never
+ *  reaches products.json (Invariant 15: bulk text never goes on the public
+ *  Product). Mirrors lib/lifecycle.ts::stripLifecycle in shape; lives here
+ *  because this is where `raw` is produced. */
+export function stripRawSignals(product: Product): Product {
+  const { raw: _raw, ...rest } = product;
+  return rest;
 }
