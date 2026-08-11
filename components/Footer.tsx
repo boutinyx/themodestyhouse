@@ -87,6 +87,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               <FLink href="/designers">Designers</FLink>
               <FLink href="/about">About</FLink>
+              <FLink href="/faq">FAQ</FLink>
               <FLink href="/favourites">Favourites</FLink>
               <FLink href="/contact?topic=seal">Apply for the seal</FLink>
               <FLink href="/contact">Contact</FLink>

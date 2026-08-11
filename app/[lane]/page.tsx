@@ -7,6 +7,7 @@ import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { BRANDS } from '@/data/brands';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
+import { SEO_COPY } from '@/lib/seoCopy';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -16,9 +17,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lane: str
   const { lane: slug } = await params;
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) return {};
+  const seo = SEO_COPY[`/${lane.slug}`];
   return {
-    title: lane.title,
-    description: lane.intro,
+    title: seo?.title ?? lane.title,
+    description: seo?.description ?? lane.intro,
     alternates: { canonical: `/${lane.slug}` },
   };
 }

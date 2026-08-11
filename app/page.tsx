@@ -12,8 +12,15 @@ import { getPosts } from '@/lib/posts';
 import { isSpecialty } from '@/lib/specialty';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
+import { SEO_COPY } from '@/lib/seoCopy';
 
-export const metadata: Metadata = { alternates: { canonical: '/' } };
+// title/description are the keyword-forward SERP-facing copy (lib/seoCopy.ts)
+// — deliberately separate from the hero's own h1, which stays untouched.
+export const metadata: Metadata = {
+  title: SEO_COPY['/'].title,
+  description: SEO_COPY['/'].description,
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
   const rail = newlyVerified();

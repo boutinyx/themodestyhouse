@@ -48,7 +48,7 @@ const BASE = 'https://themodestyhouse.com';
  * them but other crawlers still read them, and they cost nothing.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ['', '/directory', '/editorial', '/about', '/designers', '/contact', '/privacy', '/terms'];
+  const staticPaths = ['', '/directory', '/editorial', '/about', '/designers', '/faq', '/contact', '/privacy', '/terms'];
   const lanePaths = LANES.map((l) => `/${l.slug}`);
 
   const pages: MetadataRoute.Sitemap = [...staticPaths, ...lanePaths].map((p) => ({

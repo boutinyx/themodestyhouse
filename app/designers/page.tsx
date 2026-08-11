@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { houses, type House } from '@/lib/houses';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
-
-const DESCRIPTION = 'A curated index of modest brands, vetted for craft and taste.';
+import { SEO_COPY } from '@/lib/seoCopy';
 
 // Each page of the index self-canonicalises to its own URL (page 1 -> the
 // bare path), rather than all pages pointing at page 1 — Google's current
@@ -15,8 +14,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const raw = Number((await searchParams).page ?? '1');
   const page = Number.isFinite(raw) && raw > 1 ? Math.trunc(raw) : 1;
   return {
-    title: 'Designers',
-    description: DESCRIPTION,
+    title: SEO_COPY['/designers'].title,
+    description: SEO_COPY['/designers'].description,
     alternates: { canonical: page === 1 ? '/designers' : `/designers?page=${page}` },
   };
 }

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { organizationSchema, websiteSchema, breadcrumbSchema, collectionPageSchema, articleSchema, jsonLdGraph } from './schema';
+import { organizationSchema, websiteSchema, breadcrumbSchema, collectionPageSchema, articleSchema, faqPageSchema, jsonLdGraph } from './schema';
 
 describe('organizationSchema', () => {
   it('carries the site identity', () => {
@@ -69,6 +69,17 @@ describe('articleSchema', () => {
   it('omits image entirely when the post has none', () => {
     const a = articleSchema({ title: 'T', description: 'D', path: '/editorial/t', datePublished: '2026-08-04', authorName: 'A' });
     expect(a).not.toHaveProperty('image');
+  });
+});
+
+describe('faqPageSchema', () => {
+  it('maps question/answer pairs into schema.org Question/Answer nodes', () => {
+    const faq = faqPageSchema([{ question: 'Is this a shop?', answer: 'No.' }]);
+    expect(faq.mainEntity[0]).toMatchObject({
+      '@type': 'Question',
+      name: 'Is this a shop?',
+      acceptedAnswer: { '@type': 'Answer', text: 'No.' },
+    });
   });
 });
 

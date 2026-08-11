@@ -142,6 +142,18 @@ CLAUDE.md §1.
    `docs/launch-readiness.md` decision on price freshness. Revisit if/when the catalogue
    gets a freshness guarantee tighter than "last refresh".
 
+## Phase 1.6 — keyword-facing metadata + FAQ, shipped same day
+
+Tina flagged that the original analysis covered technical SEO but nothing about keywords,
+then authorized broad follow-up work. Implemented: `lib/seoCopy.ts` (keyword-forward
+`<title>`/meta-description per page, grounded in real competitor titles and search-behaviour
+research — no paid keyword-volume tool was available, so no invented numbers), and a new
+`/faq` page with `FAQPage` JSON-LD, content paraphrased from copy that already exists
+elsewhere on the site rather than invented. Visible on-page copy (every h1, every lane's
+intro paragraph, the homepage hero) was deliberately left untouched — a judgement call, not a
+literal reading of "do whatever," explained in
+`docs/log/2026-08-11-seo-geo-aeo-keywords-and-faq.md`.
+
 ## Not done, lower priority
 
 - `getProducts()` is still uncached (3x re-parse of ~5.6 MB per home render) — a performance

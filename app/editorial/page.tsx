@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { getPosts, formatDate } from '@/lib/posts';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
+import { SEO_COPY } from '@/lib/seoCopy';
 
 export const metadata: Metadata = {
-  title: 'The Edit',
-  description: 'Stories, edits and styling from The Modesty House.',
+  title: SEO_COPY['/editorial'].title,
+  description: SEO_COPY['/editorial'].description,
   alternates: { canonical: '/editorial' },
 };
 

@@ -112,6 +112,22 @@ export function articleSchema(opts: {
   };
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export function faqPageSchema(items: FaqItem[]) {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: items.map((it) => ({
+      '@type': 'Question',
+      name: it.question,
+      acceptedAnswer: { '@type': 'Answer', text: it.answer },
+    })),
+  };
+}
+
 /** Wraps one or more schema nodes in a @context envelope ready to serialize. */
 export function jsonLdGraph(...nodes: object[]) {
   return { '@context': 'https://schema.org', '@graph': nodes };
