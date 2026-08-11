@@ -165,6 +165,28 @@ function descriptionLead(bodyHtml?: string): string {
     .slice(0, 200);
 }
 
+export type ClassificationSource = 'title' | 'meta' | 'foreign' | 'description';
+
+export const GARMENT_VALUES: Garment[] = [
+  'dress', 'skirt', 'top', 'trousers', 'abaya', 'hijab', 'swim', 'set', 'other',
+];
+export const GARMENT_LABELS: Record<Garment, string> = {
+  dress: 'Dress', skirt: 'Skirt', top: 'Top', trousers: 'Trousers', abaya: 'Abaya',
+  hijab: 'Hijab', swim: 'Swim', set: 'Set', other: 'Other / unclassifiable',
+};
+
+/** Classifies from a Shopify product_type string alone — the title-tier rules
+ *  only, no hay fallback, no foreign/description passes. Used as an
+ *  independent second opinion against the title-based result (see
+ *  lib/garmentReview.ts), not as another chance at the same fuzzy match. */
+export function classifyFromType(productType: string): Garment {
+  const type = productType || '';
+  for (const [g, re] of GARMENT_RULES) {
+    if (re.test(type)) return g;
+  }
+  return 'other';
+}
+
 export function tagDiscovery(input: {
   title: string;
   productType: string;
@@ -175,12 +197,13 @@ export function tagDiscovery(input: {
   const hay = [input.title, input.productType, ...(input.tags || [])].join(' ');
   // Trust the TITLE first (most accurate), then fall back to type/tags.
   let garment: Garment = 'other';
+  let source: ClassificationSource = 'meta';
   for (const [g, re] of GARMENT_RULES) {
-    if (re.test(input.title)) { garment = g; break; }
+    if (re.test(input.title)) { garment = g; source = 'title'; break; }
   }
   if (garment === 'other') {
     for (const [g, re] of GARMENT_RULES) {
-      if (re.test(hay)) { garment = g; break; }
+      if (re.test(hay)) { garment = g; source = 'meta'; break; }
     }
   }
   // PASS 3 — non-English garment vocabulary, FALLBACK ONLY.
@@ -199,7 +222,7 @@ export function tagDiscovery(input: {
   // vs pull-on.
   if (garment === 'other') {
     for (const [g, re] of FOREIGN_RULES) {
-      if (re.test(input.title) || re.test(input.productType || '')) { garment = g; break; }
+      if (re.test(input.title) || re.test(input.productType || '')) { garment = g; source = 'foreign'; break; }
     }
   }
 
@@ -217,12 +240,13 @@ export function tagDiscovery(input: {
     const lead = descriptionLead(input.bodyHtml);
     if (lead) {
       for (const [g, re] of GARMENT_RULES) {
-        if (re.test(lead)) { garment = g; break; }
+        if (re.test(lead)) { garment = g; source = 'description'; break; }
       }
     }
   }
   return {
     garment,
+    source,
     occasion: matchAll(OCCASION_RULES, hay),
     season: matchAll(SEASON_RULES, hay),
     activity: matchAll(ACTIVITY_RULES, hay),

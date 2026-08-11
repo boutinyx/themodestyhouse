@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { tagDiscovery } from './tag';
+import { tagDiscovery, classifyFromType, GARMENT_VALUES, GARMENT_LABELS } from './tag';
 
 describe('tagDiscovery', () => {
   it('detects a swim garment', () => {
@@ -295,5 +295,47 @@ describe('word-boundary hardening (2026-08-12)', () => {
     expect(tagDiscovery({ title: 'Wool Overcoat', productType: '', tags: [] }).garment).toBe('top');
     expect(tagDiscovery({ title: 'Quilted Vest', productType: '', tags: [] }).garment).toBe('top');
     expect(tagDiscovery({ title: 'Bridesmaid Sundress', productType: '', tags: [] }).garment).toBe('dress');
+  });
+});
+
+describe('classification source', () => {
+  it('reports "title" when the title itself matched', () => {
+    expect(tagDiscovery({ title: 'Chiffon Silk Hijab', productType: 'Hijabs', tags: [] }).source).toBe('title');
+  });
+  it('reports "meta" when only product_type/tags matched, not the title', () => {
+    const r = tagDiscovery({ title: 'Navy Blue Square Neck Cover', productType: 'Tops', tags: [] });
+    expect(r.garment).toBe('top');
+    expect(r.source).toBe('meta');
+  });
+  it('reports "foreign" when a foreign-vocabulary rule matched', () => {
+    const r = tagDiscovery({ title: 'Robe évasée Lilas Pastel', productType: '', tags: [] });
+    expect(r.garment).toBe('dress');
+    expect(r.source).toBe('foreign');
+  });
+  it('reports "description" when only the description lead matched', () => {
+    const r = tagDiscovery({
+      title: 'Hazelnut', productType: '', tags: [],
+      bodyHtml: '<p>A bamboo jersey hijab in a warm hazelnut tone.</p>',
+    });
+    expect(r.garment).toBe('hijab');
+    expect(r.source).toBe('description');
+  });
+});
+
+describe('classifyFromType', () => {
+  it('classifies from product_type alone', () => {
+    expect(classifyFromType('Dresses')).toBe('dress');
+    expect(classifyFromType('Trousers')).toBe('trousers');
+  });
+  it('returns "other" for an empty or non-matching type', () => {
+    expect(classifyFromType('')).toBe('other');
+    expect(classifyFromType('Accessories')).toBe('other');
+  });
+});
+
+describe('GARMENT_VALUES / GARMENT_LABELS', () => {
+  it('has a label for every garment value, and only those values', () => {
+    for (const g of GARMENT_VALUES) expect(GARMENT_LABELS[g]).toBeTruthy();
+    expect(GARMENT_VALUES).toContain('other');
   });
 });
