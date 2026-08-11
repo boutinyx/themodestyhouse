@@ -154,6 +154,21 @@ intro paragraph, the homepage hero) was deliberately left untouched — a judgem
 literal reading of "do whatever," explained in
 `docs/log/2026-08-11-seo-geo-aeo-keywords-and-faq.md`.
 
+## Phase 1.7 — visible-copy content depth + IndexNow, shipped same day
+
+Tina: "do whatever the claude seo thingie said to do." Read the actual installed sub-skill
+docs (`~/.claude/skills/seo-*/SKILL.md`), not just the earlier summary. Two corrections
+surfaced: `FAQPage` schema produces no Google rich result as of 2026-05-07 (kept, but its
+value is GEO/LLM-parsing only), and `llms.txt` is explicitly confirmed ignored by Google
+Search per its own AI optimization guide (kept, low-confidence value elsewhere). The real
+finding: `seo-programmatic`'s thin-content quality gates describe this site's 12 lane pages
+almost exactly — near-identical templates with only the garment name swapped. Added
+`lib/laneAnswers.ts`: a genuinely differentiated 100-160 word answer block per lane (not a
+templated sentence with one word changed), rendered below the grid, plus contextual
+"Also browse" cross-links. Also implemented IndexNow (Bing/Yandex instant indexing),
+verified security headers and back-button-hijacking exposure (both already clean). Full
+detail in `docs/log/2026-08-11-seo-geo-aeo-visible-content-and-indexnow.md`.
+
 ## Not done, lower priority
 
 - `getProducts()` is still uncached (3x re-parse of ~5.6 MB per home render) — a performance
