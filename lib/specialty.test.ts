@@ -47,6 +47,11 @@ describe('isLayering', () => {
     expect(isLayering(p('All Purpose Base layer'))).toBe(true); // zaskia-sungkar
     expect(isLayering(p('Modest Shoulder-Cover Base Layer Versatile Sleeveless Inner Top with Attached Sleeves'))).toBe(true); // mariams
     expect(isLayering(p('Body - Arm Sleeves', 'hijab'))).toBe(true); // losyana, misfiled as hijab
+    expect(isLayering(p('Khaki One Piece Sleeves'))).toBe(true); // ilovemodesty, shrug-shaped sleeve extender
+  });
+
+  it('does not match a real one-piece garment that happens to have sleeves', () => {
+    expect(isLayering(p('Black One Piece Swimsuit', 'swim'))).toBe(false);
   });
 
   it('does not match hijab/underscarf/bonnet titles, even when they cover the neck', () => {

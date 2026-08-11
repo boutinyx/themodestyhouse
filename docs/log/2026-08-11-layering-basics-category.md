@@ -70,6 +70,15 @@ Rendered a production build on :4917 and fetched the real HTML:
 title tag, h1, footer link, sitemap entry and 24 product cards all present,
 including "Black Neck Cover" and "Long Neck Cover" titles in the grid.
 
+## Addendum — ilovemodesty "One Piece Sleeves"
+Tina flagged a third screenshot: ilovemodesty's "[Color] One Piece Sleeves" —
+a shrug-shaped sleeve extender (shoulder cap + sleeves only, no torso),
+published as `top` x10. Added `\bone.?piece sleeves?\b` to `LAYERING_RE`
+(requires "sleeves" immediately after "one piece" so it can never match a
+"one piece swimsuit"). Regression test added. Republished: same 23,088 ids,
+`layering-basics` published count 49 → 59. `tsc`/491 tests/lint/build all
+clean before republish.
+
 ## Notes / follow-ups
 - 49 published items is a real but small category — reasonable for a v1.
   Deliberately did NOT chase every brand's own "basics" line-naming (e.g.
