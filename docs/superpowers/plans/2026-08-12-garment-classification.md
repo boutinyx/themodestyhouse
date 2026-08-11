@@ -22,6 +22,16 @@
 
 ### Task 1: Harden `GARMENT_RULES` word boundaries
 
+**DONE — deviated from plan, in the direction §10.11 warns about.** Naive anchoring (as
+written below) regressed 92 real products off the whole corpus before compounds like
+`sweatshirt`/`overcoat`/`sundress` (no space, so a boundary-anchored suffix can't see them)
+were added as explicit alternatives — same treatment as the existing `sweatpants`/`twinset`
+compounds. Caught by re-running the corpus diff script (`/tmp/tagcheck/diff.mjs`, ad hoc, not
+committed) before committing, per the plan's own "no placeholders / verify against real data"
+constraint. Final commit `705d76d` — see its message for the full before/after numbers. The
+steps below are left as originally planned for the record; the actual shipped regex additions
+are wider than Step 3 shows.
+
 **Files:**
 - Modify: `lib/tag.ts:75` (the catch-all `top` rule), `lib/tag.ts:35` (`dress`), and the `skirt` rule (currently line 36, plain `/skirt|\bjupe\b/i`)
 - Test: `lib/tag.test.ts`
