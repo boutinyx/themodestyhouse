@@ -36,7 +36,9 @@ looks wired and never sorts. Now `const _exhaustive: never = sort` + a throw.
 **3. Docs: `npm run refresh` was the wrong trigger.** Both `docs/log/2026-08-11-sort-control.md`
 and the plan's Global Constraints said Newest/Oldest stay inert until the next `npm run refresh`.
 Wrong: `firstSeen` is already on the raw rows and `stripLifecycle` no longer removes it, so a
-plain, **offline `npm run build:data`** — no network, no feed fetch — is all it takes. Measured
+plain **`npm run build:data`** — no feed fetch — is all it takes (the `postbuild:data`
+translate hook still runs and does hit the network when `.venv-style` exists, so this is
+"no feed fetch", not "fully offline"). Measured
 below. Also corrected `scripts/build-data.mjs` and `lib/lifecycle.ts`, which both said lifecycle
 fields would sit on "~5k published rows" when the catalogue is 23,142.
 
@@ -113,7 +115,7 @@ the regression evidence for the three already-shipped controls.
 
 ## Notes / follow-ups
 
-- Newest / Oldest remain inert on the live data. One offline `npm run build:data` gives real
+- Newest / Oldest remain inert on the live data. One plain `npm run build:data` gives real
   dates to 17,033 of 23,142 rows (73.6%); the other 6,109 pre-date lifecycle tracking
   (2026-08-05) and stay `null`, which sorts into the unknown bucket by design. Now warned about
   in CLAUDE.md §8 as well as here, because `docs/log/` is not read by every session.
