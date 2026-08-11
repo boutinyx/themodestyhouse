@@ -3,7 +3,7 @@ import { ContactForm } from '@/components/ContactForm';
 import { TOPICS } from '@/lib/contactTopics';
 
 export const metadata: Metadata = {
-  title: 'Contact | The Modesty House',
+  title: 'Contact',
   description: 'Get in touch with The Modesty House — enquiries, brand submissions, press and corrections.',
   alternates: { canonical: '/contact' },
 };

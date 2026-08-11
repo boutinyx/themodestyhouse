@@ -5,6 +5,8 @@ import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { getPost, getPosts, formatDate } from '@/lib/posts';
 import { Markdown } from '@/components/Markdown';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
+import { JsonLd } from '@/components/JsonLd';
+import { articleSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/schema';
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -13,8 +15,26 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = getPost(slug);
-  if (!p) return { title: 'Not found | The Modesty House' };
-  return { title: `${p.title} | The Modesty House`, description: p.dek };
+  if (!p) return { title: 'Not found' };
+  return {
+    title: p.title,
+    description: p.dek,
+    alternates: { canonical: `/editorial/${p.slug}` },
+    openGraph: {
+      title: p.title,
+      description: p.dek,
+      type: 'article',
+      publishedTime: p.date,
+      authors: [p.author],
+      ...(p.image ? { images: [{ url: p.image }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: p.title,
+      description: p.dek,
+      ...(p.image ? { images: [p.image] } : {}),
+    },
+  };
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -24,6 +44,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <main className="max-w-[720px] mx-auto px-8 pt-32 md:pt-40 pb-24">
+      <JsonLd
+        data={jsonLdGraph(
+          breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'The Edit', path: '/editorial' }, { name: p.title, path: `/editorial/${p.slug}` }]),
+          articleSchema({ title: p.title, description: p.dek, path: `/editorial/${p.slug}`, datePublished: p.date, authorName: p.author, image: p.image }),
+        )}
+      />
       {/* Phosphor, not the ← character (CLAUDE.md §6). */}
       <Link href="/editorial" className="nav-link inline-flex items-center gap-1.5">
         <ArrowLeft size={12} weight="bold" /> The Edit

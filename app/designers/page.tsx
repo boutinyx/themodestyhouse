@@ -4,10 +4,22 @@ import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { houses, type House } from '@/lib/houses';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 
-export const metadata: Metadata = {
-  title: 'Designers | The Modesty House',
-  description: 'A curated index of modest brands, vetted for craft and taste.',
-};
+const DESCRIPTION = 'A curated index of modest brands, vetted for craft and taste.';
+
+// Each page of the index self-canonicalises to its own URL (page 1 -> the
+// bare path), rather than all pages pointing at page 1 — Google's current
+// guidance treats rel=prev/next as retired signal and expects paginated
+// series to be independently indexable. Page >1 also gets an explicit
+// canonical for the first time; previously it inherited none at all.
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
+  const raw = Number((await searchParams).page ?? '1');
+  const page = Number.isFinite(raw) && raw > 1 ? Math.trunc(raw) : 1;
+  return {
+    title: 'Designers',
+    description: DESCRIPTION,
+    alternates: { canonical: page === 1 ? '/designers' : `/designers?page=${page}` },
+  };
+}
 
 // Phosphor Sparkle rather than the ✦ character these labels used to carry
 // (CLAUDE.md §6) — the same badge mark as the homepage rail and the spotlight.

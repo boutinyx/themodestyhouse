@@ -7,30 +7,67 @@ import { QuickViewProvider } from '@/components/QuickView';
 import { CurrencyProvider } from '@/components/CurrencyProvider';
 import { OutboundTracking } from '@/components/OutboundTracking';
 import { InputModality } from '@/components/InputModality';
+import { JsonLd } from '@/components/JsonLd';
+import { organizationSchema, websiteSchema, jsonLdGraph } from '@/lib/schema';
 import './globals.css';
 
 const display = Bodoni_Moda({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
 const label = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-label', display: 'swap' });
 const ui = Jost({ subsets: ['latin'], variable: '--font-ui', display: 'swap' });
 
+// OG/Twitter image is the existing hero photograph, reused rather than a
+// new asset invented for this — no brand-new art without Tina's say (§10.18
+// is about copy, but the same principle applies to imagery).
+const DEFAULT_OG_IMAGE = '/hero-poster.jpg';
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://themodestyhouse.com'),
-  title: 'The Modesty House — the archive for everything modest',
+  title: {
+    default: 'The Modesty House — the archive for everything modest',
+    template: '%s | The Modesty House',
+  },
   description: 'The archive for everything modest. A curated index of modest brands and pieces.',
   openGraph: {
     title: 'The Modesty House',
     description: 'The archive for everything modest.',
     type: 'website',
     siteName: 'The Modesty House',
+    images: [{ url: DEFAULT_OG_IMAGE }],
   },
-  twitter: { card: 'summary_large_image', title: 'The Modesty House', description: 'The archive for everything modest.' },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Modesty House',
+    description: 'The archive for everything modest.',
+    images: [DEFAULT_OG_IMAGE],
+  },
+};
+
+// Same-origin prefetch for the header/footer's own links (nav, footer
+// category lanes) — Speculation Rules API, native browser support, no JS
+// cost. "moderate" eagerness prefetches on hover/focus rather than for
+// every link on the page. See docs/log/2026-08-11-seo-geo-aeo-phase1.md.
+const SPECULATION_RULES = {
+  prefetch: [
+    {
+      source: 'document',
+      where: { and: [{ href_matches: '/*' }, { not: { href_matches: '/api/*' } }, { not: { href_matches: '/admin/*' } }] },
+      eagerness: 'moderate',
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const skim = process.env.NEXT_PUBLIC_SKIMLINKS_ID;
   return (
-    <html lang="en" className={`${display.variable} ${label.variable} ${ui.variable}`}>
+    <html lang="en-GB" className={`${display.variable} ${label.variable} ${ui.variable}`}>
+      <head>
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SPECULATION_RULES) }}
+        />
+      </head>
       <body>
+        <JsonLd data={jsonLdGraph(organizationSchema(), websiteSchema())} />
         <CurrencyProvider>
         <QuickViewProvider>
           <Header />

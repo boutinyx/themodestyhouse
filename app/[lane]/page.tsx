@@ -3,8 +3,10 @@ import type { Metadata } from 'next';
 import { LANES } from '@/lib/lanes';
 import { productsForLane } from '@/lib/products';
 import { FilterableGrid } from '@/components/FilterableGrid';
-import { encodeCatalogue } from '@/lib/compactCatalogue';
+import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { BRANDS } from '@/data/brands';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -14,7 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lane: str
   const { lane: slug } = await params;
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) return {};
-  return { title: `${lane.title} | The Modesty House`, description: lane.intro };
+  return {
+    title: lane.title,
+    description: lane.intro,
+    alternates: { canonical: `/${lane.slug}` },
+  };
 }
 
 export default async function LanePage({ params }: { params: Promise<{ lane: string }> }) {
@@ -22,8 +28,18 @@ export default async function LanePage({ params }: { params: Promise<{ lane: str
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) notFound();
   const catalogue = encodeCatalogue(productsForLane(lane.slug), BRANDS);
+  const listedItems = catalogue.rows.title.slice(0, 24).map((_, i) => {
+    const c = decodeCard(catalogue, i);
+    return { title: c.title, url: c.url, image: c.image, brandName: c.brandName };
+  });
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-12">
+      <JsonLd
+        data={jsonLdGraph(
+          breadcrumbSchema([{ name: 'Home', path: '/' }, { name: lane.title, path: `/${lane.slug}` }]),
+          collectionPageSchema({ name: lane.title, description: lane.intro, path: `/${lane.slug}`, items: listedItems }),
+        )}
+      />
       <h1 className="section-heading text-3xl md:text-4xl">{lane.title}</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>
       <FilterableGrid catalogue={catalogue} />

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 // ssr entrypoint: app/page.tsx is a server component (CLAUDE.md §6).
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
@@ -11,6 +12,8 @@ import { getPosts } from '@/lib/posts';
 import { isSpecialty } from '@/lib/specialty';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
+
+export const metadata: Metadata = { alternates: { canonical: '/' } };
 
 export default function Home() {
   const rail = newlyVerified();

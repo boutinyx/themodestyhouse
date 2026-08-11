@@ -4,7 +4,7 @@ import { getLegalDoc } from '@/lib/legal';
 import { LegalPage } from '../legal/LegalPage';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | The Modesty House',
+  title: 'Privacy Policy',
   description: 'How The Modesty House handles information about visitors.',
   alternates: { canonical: '/privacy' },
 };

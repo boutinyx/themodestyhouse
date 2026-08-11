@@ -8,7 +8,7 @@ import { aboutSrcSet } from '@/lib/staticImage';
 import HowBlocks from '@/components/HowBlocks';
 
 export const metadata: Metadata = {
-  title: 'About | The Modesty House',
+  title: 'About',
   description:
     'What The Modesty House does, the problem it solves, how it solves it, and who is behind it.',
 };

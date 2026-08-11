@@ -1,6 +1,6 @@
 'use client';
 import type { CardProduct } from '@/lib/compactCatalogue';
-import { Heart } from '@phosphor-icons/react';
+import { Heart, Eye } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
@@ -10,13 +10,24 @@ export function ProductCard({ p }: { p: CardProduct }) {
   const { price } = useCurrency();
   const fav = isFav(p.id);
   return (
-    // The card WRAPPER is no longer interactive. It used to be a
-    // div[role="button"][tabindex=0] with the favourites <button> inside it, so
-    // every card nested one control inside another — axe flags this as
-    // `nested-interactive` (24 per grid page), and a screen reader cannot
-    // announce either control reliably. The two are now SIBLINGS: a transparent
-    // button covering the image opens quick view, and the heart sits above it.
-    <div className="group block text-center">
+    // The card's primary action is now a real outbound link, not a modal — a
+    // crawler (or a shopping agent) can follow it, which it never could when
+    // this was a div[onClick]/button pair. Card, quick-view button and heart
+    // are still SIBLINGS, never nested: the anchor covers the whole card
+    // (image + text) at z-10, and the two buttons sit above it at z-20. Nesting
+    // a <button> inside the <a> is exactly the `nested-interactive` axe
+    // violation this file was already rewritten once to remove (see below).
+    <div className="group relative block text-center">
+      <a
+        href={p.url}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        aria-label={`${p.title} by ${p.brandName} — opens ${p.brandName}'s site`}
+        data-brand={p.brandSlug}
+        data-garment={p.garment}
+        data-surface="product-card"
+        className="absolute inset-0 z-10"
+      />
       <div
         className="relative overflow-hidden border"
         style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}
@@ -46,14 +57,19 @@ export function ProductCard({ p }: { p: CardProduct }) {
           loading="lazy"
           decoding="async"
         />
-        {/* Covers the photograph, sits BELOW the heart. Real <button>, so Enter
-            and Space work without a hand-rolled onKeyDown. */}
+        {/* Quick view — the card's former primary action, demoted to a secondary
+            affordance now that the card itself goes straight to the brand.
+            Still opens the same modal, which still has its own "Shop at
+            {brand}" outbound link for anyone who previews first. */}
         <button
           type="button"
           onClick={() => open(p)}
           aria-label={`Quick view: ${p.title} by ${p.brandName}`}
-          className="absolute inset-0 z-10 cursor-pointer"
-        />
+          className="absolute top-2 left-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
+          style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
+        >
+          <Eye size={20} weight="regular" />
+        </button>
         <button
           type="button"
           onClick={() => toggleFav(p)}

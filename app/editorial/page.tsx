@@ -5,8 +5,9 @@ import { getPosts, formatDate } from '@/lib/posts';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 
 export const metadata: Metadata = {
-  title: 'The Edit | The Modesty House',
+  title: 'The Edit',
   description: 'Stories, edits and styling from The Modesty House.',
+  alternates: { canonical: '/editorial' },
 };
 
 export default function EditorialPage() {
