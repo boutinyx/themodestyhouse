@@ -73,7 +73,11 @@ export default function FaqPage() {
       <p className="mt-3 mb-10 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
         How The Modesty House works, in plain terms.
       </p>
-      <HowBlocks blocks={FAQ.map((f, i) => ({ step: String(i + 1).padStart(2, '0'), title: f.q, body: f.a }))} />
+      {/* h2, not the default h3 — this page has no other h2 for these to nest under. */}
+      <HowBlocks
+        blocks={FAQ.map((f, i) => ({ step: String(i + 1).padStart(2, '0'), title: f.q, body: f.a }))}
+        headingLevel="h2"
+      />
     </main>
   );
 }

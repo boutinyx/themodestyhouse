@@ -52,8 +52,16 @@ export type HowBlock = { step: string; title: string; body: string };
  * `aria-expanded`. The delayed visibility transition lets the close animate
  * before the content is taken away.
  */
-export default function HowBlocks({ blocks }: { blocks: HowBlock[] }) {
+export default function HowBlocks({ blocks, headingLevel = 'h3' }: { blocks: HowBlock[]; headingLevel?: 'h2' | 'h3' }) {
   const [openStep, setOpenStep] = useState<string | null>(null);
+  // The disclosure button's title becomes a real heading (WAI-ARIA Accordion
+  // Pattern: heading wraps the trigger button), not a styled <span> — this
+  // used to render 10 "questions" on /faq with zero actual <h2>/<h3> tags,
+  // which is both an accessibility gap (no heading-navigation) and an AEO
+  // one (claude-seo's seo-geo skill names question-based headings as a
+  // strong AI-citability signal). Caller picks the level since /about's use
+  // sits under its own h2 (needs h3) while /faq has no other h2 (needs h2).
+  const Heading = headingLevel;
 
   return (
     <ol className="grid gap-3" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
@@ -80,41 +88,48 @@ export default function HowBlocks({ blocks }: { blocks: HowBlock[] }) {
               boxShadow: isOpen ? '0 18px 40px -28px rgba(68,25,67,0.35)' : 'none',
             }}
           >
-            <button
-              type="button"
-              aria-expanded={isOpen}
-              aria-controls={`how-body-${b.step}`}
-              onClick={() => setOpenStep((s) => (s === b.step ? null : b.step))}
-              className="w-full flex items-center gap-4 text-left"
-              /* 56px of height, comfortably over the 44px tap-target floor the
-                 mobile audit enforces, without padding that would double up on
-                 the body underneath. */
-              style={{ padding: '17px 20px', minHeight: 56, background: 'none', border: 0 }}
-            >
-              <span
-                className="eyebrow"
-                style={{ color: 'var(--plum)', fontVariantNumeric: 'lining-nums tabular-nums' }}
+            <Heading style={{ margin: 0 }}>
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                aria-controls={`how-body-${b.step}`}
+                onClick={() => setOpenStep((s) => (s === b.step ? null : b.step))}
+                className="w-full flex items-center gap-4 text-left"
+                /* 56px of height, comfortably over the 44px tap-target floor the
+                   mobile audit enforces, without padding that would double up on
+                   the body underneath. */
+                style={{ padding: '17px 20px', minHeight: 56, background: 'none', border: 0 }}
               >
-                {b.step}
-              </span>
-              <span
-                className="serif"
-                style={{ fontSize: 17, lineHeight: 1.25, color: 'var(--ink)', flex: 1 }}
-              >
-                {b.title}
-              </span>
-              <CaretDown
-                size={14}
-                weight="bold"
-                aria-hidden
-                style={{
-                  color: 'var(--muted)',
-                  flexShrink: 0,
-                  transition: 'transform 260ms ease',
-                  transform: isOpen ? 'rotate(180deg)' : 'none',
-                }}
-              />
-            </button>
+                {/* aria-hidden: the step number is decorative for the heading's
+                    accessible name — "01 What is an abaya?" reads worse than
+                    "What is an abaya?" to a screen reader, and it's still
+                    visible to sighted users. */}
+                <span
+                  className="eyebrow"
+                  aria-hidden="true"
+                  style={{ color: 'var(--plum)', fontVariantNumeric: 'lining-nums tabular-nums' }}
+                >
+                  {b.step}
+                </span>
+                <span
+                  className="serif"
+                  style={{ fontSize: 17, lineHeight: 1.25, color: 'var(--ink)', flex: 1 }}
+                >
+                  {b.title}
+                </span>
+                <CaretDown
+                  size={14}
+                  weight="bold"
+                  aria-hidden
+                  style={{
+                    color: 'var(--muted)',
+                    flexShrink: 0,
+                    transition: 'transform 260ms ease',
+                    transform: isOpen ? 'rotate(180deg)' : 'none',
+                  }}
+                />
+              </button>
+            </Heading>
 
             {/* 0fr -> 1fr on a grid row is what animates an unknown height.
                 A max-height guess either clips a long body or eases against a
