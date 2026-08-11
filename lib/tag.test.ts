@@ -280,3 +280,20 @@ describe('non-English garment vocabulary (fallback only)', () => {
     expect(g('Rocky Ridge Bag Charm')).not.toBe('skirt');
   });
 });
+
+describe('word-boundary hardening (2026-08-12)', () => {
+  it('does not classify a Spanish dress ("Vestido") as a top via the unanchored "vest" match', () => {
+    expect(tagDiscovery({ title: 'Vestido Largo Azul', productType: '', tags: [] }).garment).not.toBe('top');
+  });
+  it('does not classify a petticoat as a top via the unanchored "coat" match', () => {
+    expect(tagDiscovery({ title: 'Cotton Petticoat Underskirt', productType: '', tags: [] }).garment).not.toBe('top');
+  });
+  it('does not classify a headdress as a dress via the unanchored "dress" match', () => {
+    expect(tagDiscovery({ title: 'Beaded Headdress', productType: '', tags: [] }).garment).not.toBe('dress');
+  });
+  it('still classifies real tops/dresses containing these substrings as themselves', () => {
+    expect(tagDiscovery({ title: 'Wool Overcoat', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Quilted Vest', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Bridesmaid Sundress', productType: '', tags: [] }).garment).toBe('dress');
+  });
+});

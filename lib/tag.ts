@@ -32,8 +32,12 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // hits, all of them hijab caps; without it Nour Al Houda's 14 published caps
   // match no rule at all once `set` is anchored.
   ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf|\b(?:open|ninja|tube) caps?\b/i],
-  ['dress', /dress|gown/i],
-  ['skirt', /skirt|\bjupe\b/i],
+  // sundress/underdress are real, common compounds with no space (32 + 1
+  // corpus hits) — anchoring `dress` alone (below) cannot see a suffix with
+  // no boundary before it, so they need their own alternative, same
+  // treatment as the trousers/set compounds already in this file.
+  ['dress', word('dress(?:es)?|gowns?|sundress(?:es)?|underdress(?:es)?')],
+  ['skirt', word('skirts?|jupes?')],
   // OUTERWEAR + French tops, deliberately placed BEFORE `trousers` AND before
   // the `robe` rule below. Two separate reasons, both load-bearing:
   //
@@ -72,7 +76,13 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   ['set', word(`(?:twin|jogging)?sets?|set${TR_I}|setjes?|co.?ords?|two.?pieces?|coordinate|ensemble`)],
   // `coat` and `jacket` are new here (below `set`, so sets still win): they
   // matched NO rule before, leaving ~94 real outerwear products unclassified.
-  ['top', /top|blouse|shirt|tunic|sweater|cardigan|bolero|blazer|vest|coat|jacket/i],
+  // overshirt/sweatshirt/tshirt/overcoat/waistcoat/trenchcoat (+ "trenhcoat",
+  // a real typo variant found in-corpus) are compounds with no space —
+  // measured against the full catalogue before adding (§10.11): anchoring
+  // `shirt`/`coat` alone regressed 51 sweatshirt/tshirt rows and 25
+  // overcoat/waistcoat/trenchcoat rows from `top` to unclassified.
+  ['top', word('tops?|blouses?|shirts?|tunics?|sweaters?|cardigans?|boleros?|blazers?|vests?|coats?|jackets?' +
+    '|overshirts?|sweatshirts?|t-?shirts?|overcoats?|waistcoats?|trenchcoats?|trenhcoats?')],
   // Length-only fallback — "maxi"/"midi" describe LENGTH, not garment. A bare
   // "…Maxi" with no explicit garment word reads as a dress, but this must stay
   // LAST so "Maxi Skirt", "Maxi Skirt Set" etc. resolve to their real garment.
