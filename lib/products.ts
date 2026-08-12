@@ -5,19 +5,28 @@ import { LANES } from '@/lib/lanes';
 import { brandVibe } from '@/lib/vibes';
 import { isSpecialty } from '@/lib/specialty';
 import { getCutIds } from '@/lib/liveCuts';
+import { getLiveGarmentOverrides } from '@/lib/liveGarmentOverrides';
 
-// Filtered here, once, so every consumer of getProducts() — every lane, the
-// directory, home rails, favourites — picks up a live /staff/curate cut
-// immediately with no separate wiring. See docs/log/2026-08-12-staff-curate.md:
-// this is the runtime layer; data/decisions.json (the git-tracked source of
-// truth) only gets updated later, by scripts/merge-live-cuts.mjs.
+// Filtered/overridden here, once, so every consumer of getProducts() —
+// every lane, the directory, home rails, favourites — picks up a live
+// /staff edit (cut or garment move) immediately with no separate wiring.
+// See docs/log/2026-08-12-inline-staff-editing.md: this is the runtime
+// layer; data/decisions.json and data/garment-overrides.json (the
+// git-tracked sources of truth) only get updated later, by
+// scripts/merge-live-edits.mjs.
 export function getProducts(): Product[] {
   const f = path.join(process.cwd(), 'data', 'products.json');
   if (!existsSync(f)) return [];
   const all = JSON.parse(readFileSync(f, 'utf8')) as Product[];
   const cutIds = getCutIds();
-  if (cutIds.size === 0) return all;
-  return all.filter((p) => !cutIds.has(p.id));
+  const overrides = getLiveGarmentOverrides();
+  const hasOverrides = Object.keys(overrides).length > 0;
+  const kept = cutIds.size === 0 ? all : all.filter((p) => !cutIds.has(p.id));
+  if (!hasOverrides) return kept;
+  return kept.map((p) => {
+    const o = overrides[p.id];
+    return o ? { ...p, garment: o.garment } : p;
+  });
 }
 
 // Products for the mixed "everything" browse (directory, home rails). Hijabs are
