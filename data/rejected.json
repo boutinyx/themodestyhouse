@@ -1294,14 +1294,6 @@
     "evidence": "Hijab Magnet"
   },
   {
-    "id": "voile-chic:8876398805245",
-    "brandSlug": "voile-chic",
-    "title": "Black Essentials - Gift Set",
-    "url": "https://voilechic.com/products/bundle-essentials",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "voile-chic:8876398641405",
     "brandSlug": "voile-chic",
     "title": "Cream Essentials - Gift Set",
@@ -1314,14 +1306,6 @@
     "brandSlug": "voile-chic",
     "title": "Blended Elements - Gift Set",
     "url": "https://voilechic.com/products/bundle-elements",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "voile-chic:8876397560061",
-    "brandSlug": "voile-chic",
-    "title": "Neutrals Jersey - Gift Set",
-    "url": "https://voilechic.com/products/neutrals-jersey",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
@@ -25786,6 +25770,26 @@
     "reason": "non-apparel:bags",
     "tier": "B",
     "evidence": "Bag"
+  },
+  {
+    "id": "fares:7648008044735",
+    "brandSlug": "fares",
+    "title": "Hijab Scrunchie - Ivory",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-ivory",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
+  },
+  {
+    "id": "fares:7648007520447",
+    "brandSlug": "fares",
+    "title": "Hijab Scrunchie - Brown",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-brown",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
   },
   {
     "id": "kamin:9774594195673",
