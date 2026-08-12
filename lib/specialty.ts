@@ -83,6 +83,22 @@ const RUCHED_BODY_TOP_RE = /\bruched\b.{0,20}\bbody top\b/i;
 // accessories page would be a real mistake — deliberately left in Abayas.
 const UNDER_DRESS_RE = /\bunder.?dress\b|\binner dress\b/i;
 
+// "Maxi Dress with Floral Print and Fixed Inner Dress" (mukistore, €46,
+// garment:'dress') — Tina flagged this 2026-08-12: it's one complete maxi
+// dress, not two pieces. The raw feed title is Dutch ("Vaste Binnenjurk"),
+// translated to this English title by build-data.mjs at publish time
+// (CLAUDE.md §4) before it ever reaches data/products.json — and this
+// function runs on THAT published title (getProducts() reads
+// data/products.json), which is how "inner dress" ends up matching at all.
+// "Vast" = fixed/attached: the inner lining is SEWN IN as a construction
+// detail of this one garment, the same "bundled, not a separate accessory"
+// situation the `garment !== 'abaya'` guard above exists for — except this
+// is garment:'dress', so that guard doesn't catch it. Checked: the only
+// title in the whole published catalogue combining "fixed" with "inner
+// dress"/"under dress", so this stays narrow rather than a garment-wide
+// carve-out.
+const FIXED_INNER_RE = /\bfixed\b.{0,20}(?:\binner dress\b|\bunder.?dress\b)/i;
+
 // ria-miranda's "ri-flex" line (their own base-layer sub-brand — logo reads
 // "ri•flex, feel light, flexibly you" on the product photo itself, no title
 // vocabulary in common with the rest of LAYERING_RE) is tagged `activity:
@@ -102,6 +118,7 @@ export function isSwim(p: Product): boolean {
 export function isLayering(p: Product): boolean {
   if (LAYERING_HIJAB_RE.test(p.title)) return false;
   if (RUCHED_BODY_TOP_RE.test(p.title)) return false;
+  if (FIXED_INNER_RE.test(p.title)) return false;
   if (LAYERING_RE.test(p.title)) return true;
   if (UNDER_DRESS_RE.test(p.title) && p.garment !== 'abaya') return true;
   return p.brandSlug === 'ria-miranda' && RIA_MIRANDA_LAYERING_RE.test(p.title);

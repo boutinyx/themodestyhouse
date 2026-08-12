@@ -162,6 +162,16 @@ describe('isLayering', () => {
     expect(isLayering(p('Luxury Crystal Embellished Cape Abaya Set with Inner Dress (MA390)', 'abaya'))).toBe(false); // mariams
     expect(isLayering(p('2pcs Set Kimono + Underdress Linneneffect', 'abaya', { brandSlug: 'mukistore' }))).toBe(false);
   });
+
+  // Tina flagged this 2026-08-12: one complete floral maxi dress, not two
+  // pieces. Raw feed title is Dutch ("Vaste Binnenjurk"), translated to
+  // "Fixed Inner Dress" at publish time — "vast" = fixed/attached, i.e. the
+  // lining is sewn INTO this one garment as a construction detail, the same
+  // "bundled, not a separate accessory" situation as the abaya set listings
+  // above, just on a garment:'dress' the `!== 'abaya'` guard can't catch.
+  it('does not pull a dress whose "inner dress" is a sewn-in lining, not a separate accessory', () => {
+    expect(isLayering(p('Maxi Dress with Floral Print and Fixed Inner Dress', 'dress', { brandSlug: 'mukistore' }))).toBe(false);
+  });
 });
 
 // The "Type" filter on /layering-basics (Tina's call 2026-08-12, after
