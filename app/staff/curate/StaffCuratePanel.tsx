@@ -6,7 +6,7 @@ import type { Product } from '@/lib/types';
 const PAGE = 60;
 type Filter = 'all' | 'undecided' | 'keep' | 'cut';
 
-export function StaffCurateClient() {
+export function StaffCuratePanel() {
   const router = useRouter();
   const [items, setItems] = useState<Product[]>([]);
   const [decided, setDecided] = useState<Record<string, 'keep' | 'cut'>>({});
@@ -83,7 +83,7 @@ export function StaffCurateClient() {
       <div className="flex items-start justify-between flex-wrap gap-3 mb-3">
         <div>
           <h1 className="serif text-xl" style={{ color: 'var(--ink)' }}>
-            Curate — tap ✕ to cut, ✓ to keep
+            Live catalogue review — tap ✕ to cut, ✓ to keep
           </h1>
           <p className="text-sm" style={{ color: 'var(--muted)' }}>
             {items.length} live products · {counts.keep} kept · {counts.cut} cut this session
