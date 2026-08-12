@@ -159,13 +159,24 @@ describe('layeringSubtype', () => {
 
   it('sorts each confirmed layering piece into exactly the right group', () => {
     expect(layeringSubtype(p('Black Neck Cover', 'dress'))).toBe('neck-cover');
-    expect(layeringSubtype(p('Fleurel Shirt Extender'))).toBe('sleeve-extender');
     expect(layeringSubtype(p('Khaki One Piece Sleeves'))).toBe('sleeve-extender');
     expect(layeringSubtype(p('Royal Blue Cropped Long Sleeve Body Shirt'))).toBe('cropped-body-shirt');
     expect(layeringSubtype(p('The Ruqa Underdress | Black', 'dress'))).toBe('under-dress');
     expect(layeringSubtype(p('Core Top - Taupe'))).toBe('base-layer-top');
     expect(layeringSubtype(p('Second Skin Top Ebony'))).toBe('base-layer-top');
     expect(layeringSubtype(p('Comfy Sleeveless Top', 'top', { brandSlug: 'ria-miranda' }))).toBe('base-layer-top');
+  });
+
+  // Split out 2026-08-12 after Tina flagged these as visually nothing like a
+  // sleeve extender: checked the photos, and every one is a waist-tied wrap
+  // panel that hangs down to extend a top's HEM, not its sleeves. "Extender"
+  // alone was a false-friend signal — different body part, different group.
+  it('puts "Shirt Extender" pieces in their own group, not sleeve-extender', () => {
+    expect(layeringSubtype(p('Fleurel Shirt Extender', 'top', { brandSlug: 'ria-miranda' }))).toBe('shirt-extender');
+    expect(layeringSubtype(p('Elva Shirt Extender', 'top', { brandSlug: 'ria-miranda' }))).toBe('shirt-extender');
+    expect(layeringSubtype(p('Lisa Shirt Extender', 'top', { brandSlug: 'ria-miranda' }))).toBe('shirt-extender');
+    expect(layeringSubtype(p('Linaya Shirt Extender', 'top', { brandSlug: 'ria-miranda' }))).toBe('shirt-extender');
+    expect(layeringSubtype(p('Jaida Modest Shirt Extender Slip — Cotton Layering Skirt', 'skirt', { brandSlug: 'jaida' }))).toBe('shirt-extender');
   });
 
   it('every currently-published layering item gets a real subtype, never a silent null', () => {

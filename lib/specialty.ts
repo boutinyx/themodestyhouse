@@ -104,6 +104,14 @@ export function isLayering(p: Product): boolean {
  * from every Type filter option while still being on the page, unfindable
  * by type.
  *
+ * A 6th group, `shirt-extender`, was split out the same day after Tina
+ * flagged ria-miranda's "Fleurel/Elva/Lisa/Linaya Shirt Extender" and
+ * jaida's "Modest Shirt Extender Slip" (5 items total) — checked photos:
+ * these are a waist-tied wrap panel that hangs down to extend a top's HEM
+ * length, nothing to do with sleeves or arm coverage. They'd been lumped
+ * into `sleeve-extender` on the word "extender" alone, which was wrong —
+ * different body part, different function, deserved their own group.
+ *
  * Each regex reuses the exact vocabulary LAYERING_RE/UNDER_DRESS_RE were
  * already built from — this function only decides WHICH group a match
  * belongs to, never whether something is layering at all (that's still
@@ -112,6 +120,7 @@ export function isLayering(p: Product): boolean {
 export type LayeringSubtype =
   | 'neck-cover'
   | 'sleeve-extender'
+  | 'shirt-extender'
   | 'cropped-body-shirt'
   | 'under-dress'
   | 'base-layer-top';
@@ -119,13 +128,15 @@ export type LayeringSubtype =
 export const LAYERING_SUBTYPE_LABELS: Record<LayeringSubtype, string> = {
   'neck-cover': 'Neck Covers & Dickeys',
   'sleeve-extender': 'Sleeve Extenders',
+  'shirt-extender': 'Shirt Extenders',
   'base-layer-top': 'Base-Layer Tops',
   'cropped-body-shirt': 'Cropped Body Shirts',
   'under-dress': 'Under-Dresses',
 };
 
 const NECK_COVER_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bcollar (?:cover|insert)\b/i;
-const SLEEVE_EXTENDER_RE = /\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bshirt extenders?\b/i;
+const SLEEVE_EXTENDER_RE = /\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b/i;
+const SHIRT_EXTENDER_RE = /\bshirt extenders?\b/i;
 const CROPPED_BODY_SHIRT_RE = /\bcropped .{0,20}body shirt\b/i;
 
 /** Returns null for anything that isn't a layering piece at all — always
@@ -133,6 +144,7 @@ const CROPPED_BODY_SHIRT_RE = /\bcropped .{0,20}body shirt\b/i;
 export function layeringSubtype(p: Product): LayeringSubtype | null {
   if (!isLayering(p)) return null;
   if (NECK_COVER_RE.test(p.title)) return 'neck-cover';
+  if (SHIRT_EXTENDER_RE.test(p.title)) return 'shirt-extender';
   if (SLEEVE_EXTENDER_RE.test(p.title)) return 'sleeve-extender';
   if (CROPPED_BODY_SHIRT_RE.test(p.title)) return 'cropped-body-shirt';
   if (UNDER_DRESS_RE.test(p.title)) return 'under-dress';
