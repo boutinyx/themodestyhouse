@@ -31,7 +31,15 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // bare /\bcap\b/ would drag in baseball caps and men's taqiyahs. 148 corpus
   // hits, all of them hijab caps; without it Nour Al Houda's 14 published caps
   // match no rule at all once `set` is anchored.
-  ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf|\b(?:open|ninja|tube) caps?\b/i],
+  // "neck cover(s)" added 2026-08-12: a real accessory word for exactly the
+  // hijab-adjacent category (underscarf/undercap-style neck coverage), added
+  // after an iLoveModesty "Neck Cover" (no product_type, tags "Cover-Ups"/
+  // "Neck Covers") landed as `dress` — the last-resort description pass
+  // parsed unrelated cross-sell prose, and with no bodyHtml at publish time
+  // it can never be re-verified (see lib/garmentReview.ts). Matching it here
+  // means it classifies from the title/tag directly and never reaches that
+  // risky fallback at all.
+  ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf|neck\s*covers?|\b(?:open|ninja|tube) caps?\b/i],
   // sundress/underdress are real, common compounds with no space (32 + 1
   // corpus hits) — anchoring `dress` alone (below) cannot see a suffix with
   // no boundary before it, so they need their own alternative, same

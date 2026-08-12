@@ -43,7 +43,7 @@ describe('resolveGarment', () => {
     // Revised 2026-08-12: meta reads a structured field (product_type/tags) a
     // merchant deliberately set, and was already being trusted with zero
     // review before this system existed — see the function's own doc comment.
-    const row = { id: 'brand:5', garment: 'other' as const, title: 'Navy Blue Square Neck Cover',
+    const row = { id: 'brand:5', garment: 'other' as const, title: 'The Boa Label',
       raw: { productType: 'Tops', tags: [], classifiedFrom: 'meta' as const } };
     expect(resolveGarment(row, {})).toEqual({ status: 'confident', garment: 'top' });
   });

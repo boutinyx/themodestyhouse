@@ -303,7 +303,7 @@ describe('classification source', () => {
     expect(tagDiscovery({ title: 'Chiffon Silk Hijab', productType: 'Hijabs', tags: [] }).source).toBe('title');
   });
   it('reports "meta" when only product_type/tags matched, not the title', () => {
-    const r = tagDiscovery({ title: 'Navy Blue Square Neck Cover', productType: 'Tops', tags: [] });
+    const r = tagDiscovery({ title: 'The Boa Label', productType: 'Tops', tags: [] });
     expect(r.garment).toBe('top');
     expect(r.source).toBe('meta');
   });
@@ -375,5 +375,22 @@ describe('jumpsuit/romper/gilet/parka + German "bluse" + Turkish "tulum" (2026-0
   it('reads German "Bluse" and Turkish "Tulum" as fallbacks', () => {
     expect(tagDiscovery({ title: 'Chiffon-dot Bluse', productType: '', tags: [] }).garment).toBe('top');
     expect(tagDiscovery({ title: 'Kemer Detaylı Kahverengi Tulum', productType: '', tags: [] }).garment).toBe('dress');
+  });
+});
+
+describe('"neck cover" classifies as hijab, not a fallback guess (2026-08-12)', () => {
+  // The exact case that started the whole garment-classification project (a
+  // Reddit screenshot of an iLoveModesty "Neck Cover" showing as a "dress").
+  // Root cause: no product_type, tags "Cover-Ups"/"Neck Covers", so it fell
+  // through title/meta/foreign to the description pass, which parsed
+  // unrelated cross-sell prose. Fixed at the source instead of papering over
+  // it in confidence scoring — see lib/garmentReview.ts's doc comment for why
+  // that path can never re-verify a description-sourced guess.
+  it('classifies from the title directly', () => {
+    expect(tagDiscovery({ title: 'Navy Blue Square Neck Cover', productType: '', tags: [] }).garment).toBe('hijab');
+    expect(tagDiscovery({ title: 'Black Neck Cover', productType: '', tags: [] }).garment).toBe('hijab');
+  });
+  it('beats an unanchored "set" match (nasiba: "Long Neck Cover" was landing as set)', () => {
+    expect(tagDiscovery({ title: 'Long Neck Cover - Port Royale', productType: '', tags: [] }).garment).toBe('hijab');
   });
 });
