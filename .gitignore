@@ -100,3 +100,9 @@ data/.live-cuts.json
 # (lib/liveGarmentOverrides.ts). scripts/merge-live-edits.mjs folds it into
 # data/garment-overrides.json on purpose, later.
 data/.live-garment-overrides.json
+
+# Same reasoning again, for the two specialty-lane moves (Modest Activewear,
+# Layering Basics) not reachable via a garment override
+# (lib/liveLaneOverrides.ts). scripts/merge-live-edits.mjs folds it into
+# data/lane-overrides.json on purpose, later.
+data/.live-lane-overrides.json

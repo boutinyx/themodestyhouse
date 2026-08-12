@@ -4,7 +4,7 @@ vi.mock('@/lib/staffSession', () => ({ requireStaffSession: vi.fn() }));
 const { setLiveGarmentOverride } = vi.hoisted(() => ({ setLiveGarmentOverride: vi.fn() }));
 vi.mock('@/lib/liveGarmentOverrides', () => ({ setLiveGarmentOverride }));
 
-import type { NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
 import { POST } from './route';
 
@@ -22,7 +22,7 @@ beforeEach(() => {
 describe('POST /api/staff/live-edit/move', () => {
   it('401s when not signed in', async () => {
     vi.mocked(requireStaffSession).mockResolvedValue(
-      new Response(null, { status: 401 }),
+      NextResponse.json({ ok: false }, { status: 401 }),
     );
     const res = await POST(req({ id: 'x:1', garment: 'skirt' }));
     expect(res.status).toBe(401);

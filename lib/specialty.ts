@@ -1,4 +1,10 @@
 import type { Product } from '@/lib/types';
+import type { LayeringSubtype } from '@/lib/types';
+
+// Re-exported so existing call sites (lib/compactCatalogue.ts) don't need
+// to change their import — the type itself now lives in lib/types.ts to
+// avoid a circular import (Product carries a field of this type).
+export type { LayeringSubtype };
 
 // "Specialty" = swimwear + activewear + layering. These should NOT intermix
 // with everyday clothing (dresses, trousers, tops…). They only surface on
@@ -111,11 +117,20 @@ const FIXED_INNER_RE = /\bfixed\b.{0,20}(?:\binner dress\b|\bunder.?dress\b)/i;
 // and this is the only brand it was verified against.
 const RIA_MIRANDA_LAYERING_RE = /\bcomfy (?:sleeveless|long sleeve|short sleeve) top\b/i;
 
+// A staff `forcedLane` (lib/types.ts, set via the inline edit controls —
+// see docs/log/2026-08-12-lane-overrides.md) is authoritative and
+// EXCLUSIVE: it short-circuits every classifier below rather than adding to
+// what title/garment regex would already find, so a corrected item can't
+// simultaneously "belong" to two lanes. Modest Swimwear has no such
+// override because `garment === 'swim'` (the existing garment-override
+// mechanism) already satisfies isSwim() below.
 export function isSwim(p: Product): boolean {
+  if (p.forcedLane) return false;
   return p.garment === 'swim' || SWIM_RE.test(p.title);
 }
 
 export function isLayering(p: Product): boolean {
+  if (p.forcedLane) return p.forcedLane === 'layering-basics';
   if (LAYERING_HIJAB_RE.test(p.title)) return false;
   if (RUCHED_BODY_TOP_RE.test(p.title)) return false;
   if (FIXED_INNER_RE.test(p.title)) return false;
@@ -146,16 +161,9 @@ export function isLayering(p: Product): boolean {
  * Each regex reuses the exact vocabulary LAYERING_RE/UNDER_DRESS_RE were
  * already built from — this function only decides WHICH group a match
  * belongs to, never whether something is layering at all (that's still
- * isLayering()'s job, called first).
+ * isLayering()'s job, called first). `LayeringSubtype` itself now lives in
+ * lib/types.ts — see the comment on that declaration.
  */
-export type LayeringSubtype =
-  | 'neck-cover'
-  | 'sleeve-extender'
-  | 'shirt-extender'
-  | 'cropped-body-shirt'
-  | 'under-dress'
-  | 'base-layer-top';
-
 export const LAYERING_SUBTYPE_LABELS: Record<LayeringSubtype, string> = {
   'neck-cover': 'Neck Covers & Dickeys',
   'sleeve-extender': 'Sleeve Extenders',
@@ -174,6 +182,7 @@ const CROPPED_BODY_SHIRT_RE = /\bcropped .{0,20}body shirt\b/i;
  *  call after (or alongside) isLayering(), never as a substitute for it. */
 export function layeringSubtype(p: Product): LayeringSubtype | null {
   if (!isLayering(p)) return null;
+  if (p.forcedLane === 'layering-basics' && p.forcedLayeringSubtype) return p.forcedLayeringSubtype;
   if (NECK_COVER_RE.test(p.title)) return 'neck-cover';
   if (SHIRT_EXTENDER_RE.test(p.title)) return 'shirt-extender';
   if (SLEEVE_EXTENDER_RE.test(p.title)) return 'sleeve-extender';
@@ -183,6 +192,7 @@ export function layeringSubtype(p: Product): LayeringSubtype | null {
 }
 
 export function isActivewear(p: Product): boolean {
+  if (p.forcedLane) return p.forcedLane === 'modest-activewear';
   if (isSwim(p)) return false; // swimwear belongs to the swim lane, not activewear
   if (isLayering(p)) return false; // e.g. ria-miranda's ri-flex line carries a noisy activity:"gym" tag
   if (ACTIVE_RE.test(p.title)) return true;

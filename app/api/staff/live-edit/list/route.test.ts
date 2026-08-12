@@ -16,12 +16,13 @@ vi.mock('node:fs', () => ({
   existsSync: () => true,
 }));
 
+import { NextResponse } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
 import { GET } from './route';
 
 describe('GET /api/staff/live-edit/list', () => {
   it('401s when not signed in', async () => {
-    vi.mocked(requireStaffSession).mockResolvedValue(new Response(null, { status: 401 }));
+    vi.mocked(requireStaffSession).mockResolvedValue(NextResponse.json({ ok: false }, { status: 401 }));
     const res = await GET();
     expect(res.status).toBe(401);
   });

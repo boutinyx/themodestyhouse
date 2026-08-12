@@ -17,11 +17,15 @@ vi.mock('@/lib/liveCuts', () => ({ getCutIds: () => getCutIds() }));
 const getLiveGarmentOverrides = vi.fn<() => Record<string, { garment: string; decidedAt: string }>>(() => ({}));
 vi.mock('@/lib/liveGarmentOverrides', () => ({ getLiveGarmentOverrides: () => getLiveGarmentOverrides() }));
 
+const getLiveLaneOverrides = vi.fn<() => Record<string, { lane: string; subtype?: string; decidedAt: string }>>(() => ({}));
+vi.mock('@/lib/liveLaneOverrides', () => ({ getLiveLaneOverrides: () => getLiveLaneOverrides() }));
+
 describe('getProducts', () => {
   beforeEach(() => {
     vi.resetModules();
     getCutIds.mockReturnValue(new Set());
     getLiveGarmentOverrides.mockReturnValue({});
+    getLiveLaneOverrides.mockReturnValue({});
   });
 
   it('returns every row when nothing is live-cut', async () => {
@@ -58,5 +62,29 @@ describe('getProducts', () => {
     getLiveGarmentOverrides.mockReturnValue({ 'a:1': { garment: 'dress', decidedAt: '2026-01-01T00:00:00.000Z' } });
     const { productsForLane } = await import('./products');
     expect(productsForLane('modest-dresses').find((p) => p.id === 'a:1')).toBeDefined();
+  });
+
+  it('a live lane override stamps forcedLane on the returned product', async () => {
+    getLiveLaneOverrides.mockReturnValue({ 'a:1': { lane: 'modest-activewear', decidedAt: '2026-01-01T00:00:00.000Z' } });
+    const { getProducts } = await import('./products');
+    const changed = getProducts().find((p) => p.id === 'a:1');
+    expect(changed?.forcedLane).toBe('modest-activewear');
+  });
+
+  it('a live lane override to layering-basics with a subtype now appears in productsForLane("layering-basics")', async () => {
+    getLiveLaneOverrides.mockReturnValue({
+      'a:1': { lane: 'layering-basics', subtype: 'under-dress', decidedAt: '2026-01-01T00:00:00.000Z' },
+    });
+    const { productsForLane } = await import('./products');
+    const rows = productsForLane('layering-basics');
+    const changed = rows.find((p) => p.id === 'a:1');
+    expect(changed?.forcedLane).toBe('layering-basics');
+    expect(changed?.forcedLayeringSubtype).toBe('under-dress');
+  });
+
+  it('a product forced to layering-basics disappears from browseProducts()', async () => {
+    getLiveLaneOverrides.mockReturnValue({ 'a:1': { lane: 'layering-basics', decidedAt: '2026-01-01T00:00:00.000Z' } });
+    const { browseProducts } = await import('./products');
+    expect(browseProducts().find((p) => p.id === 'a:1')).toBeUndefined();
   });
 });

@@ -5,6 +5,26 @@ export type Garment =
 export type Badge = 'verified' | 'editors-pick';
 export type Vibe = 'elegant' | 'streetwear' | 'maximalist';
 
+/** Sub-categories WITHIN Layering Basics — see lib/specialty.ts for the
+ *  classification logic. Declared here (not in lib/specialty.ts, which
+ *  imports Product from this file) to avoid a circular import now that
+ *  Product carries a `forcedLayeringSubtype` of this type. Re-exported from
+ *  lib/specialty.ts for existing call sites. */
+export type LayeringSubtype =
+  | 'neck-cover'
+  | 'sleeve-extender'
+  | 'shirt-extender'
+  | 'cropped-body-shirt'
+  | 'under-dress'
+  | 'base-layer-top';
+
+/** The two specialty lanes (lib/lanes.ts) whose membership is NOT derived
+ *  from `garment` alone — Modest Swimwear is (garment === 'swim' already
+ *  satisfies isSwim()), so it never needed this. A staff override here is
+ *  authoritative and exclusive: see lib/specialty.ts's isActivewear/
+ *  isLayering. */
+export type ForcedLane = 'modest-activewear' | 'layering-basics';
+
 export interface Brand {
   slug: string;
   name: string;
@@ -51,4 +71,16 @@ export interface Product {
     tags: string[];
     classifiedFrom: 'title' | 'meta' | 'foreign' | 'description';
   };
+  /** Staff override forcing lane placement for the two specialty lanes
+   *  title/garment-based classification can't reach directly. Baked into
+   *  data/products.json at publish time from data/lane-overrides.json
+   *  (permanent), and applied live on top of that by
+   *  lib/products.ts::getProducts() from the gitignored
+   *  data/.live-lane-overrides.json (immediate, pre-republish). See
+   *  docs/log/2026-08-12-lane-overrides.md. */
+  forcedLane?: ForcedLane;
+  /** Only meaningful alongside forcedLane === 'layering-basics'. Absent
+   *  means "let layeringSubtype() guess from the title", same fallback a
+   *  naturally-classified layering item already uses. */
+  forcedLayeringSubtype?: LayeringSubtype;
 }

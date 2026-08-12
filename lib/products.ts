@@ -6,26 +6,36 @@ import { brandVibe } from '@/lib/vibes';
 import { isSpecialty } from '@/lib/specialty';
 import { getCutIds } from '@/lib/liveCuts';
 import { getLiveGarmentOverrides } from '@/lib/liveGarmentOverrides';
+import { getLiveLaneOverrides } from '@/lib/liveLaneOverrides';
 
 // Filtered/overridden here, once, so every consumer of getProducts() —
 // every lane, the directory, home rails, favourites — picks up a live
-// /staff edit (cut or garment move) immediately with no separate wiring.
-// See docs/log/2026-08-12-inline-staff-editing.md: this is the runtime
-// layer; data/decisions.json and data/garment-overrides.json (the
-// git-tracked sources of truth) only get updated later, by
-// scripts/merge-live-edits.mjs.
+// /staff edit (cut, garment move, or lane move) immediately with no
+// separate wiring. See docs/log/2026-08-12-inline-staff-editing.md and
+// docs/log/2026-08-12-lane-overrides.md: this is the runtime layer;
+// data/decisions.json, data/garment-overrides.json and
+// data/lane-overrides.json (the git-tracked sources of truth) only get
+// updated later, by scripts/merge-live-edits.mjs.
 export function getProducts(): Product[] {
   const f = path.join(process.cwd(), 'data', 'products.json');
   if (!existsSync(f)) return [];
   const all = JSON.parse(readFileSync(f, 'utf8')) as Product[];
   const cutIds = getCutIds();
-  const overrides = getLiveGarmentOverrides();
-  const hasOverrides = Object.keys(overrides).length > 0;
+  const garmentOverrides = getLiveGarmentOverrides();
+  const laneOverrides = getLiveLaneOverrides();
+  const hasGarmentOverrides = Object.keys(garmentOverrides).length > 0;
+  const hasLaneOverrides = Object.keys(laneOverrides).length > 0;
   const kept = cutIds.size === 0 ? all : all.filter((p) => !cutIds.has(p.id));
-  if (!hasOverrides) return kept;
+  if (!hasGarmentOverrides && !hasLaneOverrides) return kept;
   return kept.map((p) => {
-    const o = overrides[p.id];
-    return o ? { ...p, garment: o.garment } : p;
+    const g = garmentOverrides[p.id];
+    const l = laneOverrides[p.id];
+    if (!g && !l) return p;
+    return {
+      ...p,
+      ...(g ? { garment: g.garment } : {}),
+      ...(l ? { forcedLane: l.lane, forcedLayeringSubtype: l.subtype } : {}),
+    };
   });
 }
 

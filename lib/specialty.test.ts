@@ -236,3 +236,38 @@ describe('isSpecialty', () => {
     expect(isSpecialty(p('2-Piece Prayer Set (Jilbab)', 'abaya'))).toBe(true);
   });
 });
+
+// A staff forcedLane override (lib/types.ts) is authoritative and
+// exclusive — it short-circuits classification rather than adding to it,
+// so a corrected item can't simultaneously match two lanes.
+describe('forcedLane override', () => {
+  it('forces isActivewear true regardless of title/garment', () => {
+    expect(isActivewear(p('Plain Cotton Dress', 'dress', { forcedLane: 'modest-activewear' }))).toBe(true);
+  });
+  it('forces isLayering true regardless of title/garment', () => {
+    expect(isLayering(p('Plain Cotton Dress', 'dress', { forcedLane: 'layering-basics' }))).toBe(true);
+  });
+  it('a forced-activewear item stops matching isLayering, even if its title would', () => {
+    expect(isLayering(p('Black Neck Cover', 'dress', { forcedLane: 'modest-activewear' }))).toBe(false);
+  });
+  it('a forced-layering item stops matching isActivewear, even if its title would', () => {
+    expect(isActivewear(p('Yoga Leggings', 'trousers', { forcedLane: 'layering-basics' }))).toBe(false);
+  });
+  it('forces isSwim false even on garment: swim, once forced elsewhere', () => {
+    expect(isSwim(p('Full Coverage Burkini', 'swim', { forcedLane: 'modest-activewear' }))).toBe(false);
+  });
+  it('layeringSubtype honours an explicit forcedLayeringSubtype', () => {
+    expect(
+      layeringSubtype(
+        p('Plain Cotton Dress', 'dress', { forcedLane: 'layering-basics', forcedLayeringSubtype: 'under-dress' }),
+      ),
+    ).toBe('under-dress');
+  });
+  it('layeringSubtype falls back to title-guessing when forced into the lane with no explicit subtype', () => {
+    expect(layeringSubtype(p('Black Neck Cover', 'dress', { forcedLane: 'layering-basics' }))).toBe('neck-cover');
+  });
+  it('a forced-activewear item is specialty; a forced-layering item is specialty', () => {
+    expect(isSpecialty(p('Plain Cotton Dress', 'dress', { forcedLane: 'modest-activewear' }))).toBe(true);
+    expect(isSpecialty(p('Plain Cotton Dress', 'dress', { forcedLane: 'layering-basics' }))).toBe(true);
+  });
+});
