@@ -105,9 +105,14 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // GARMENT_RULES fails entirely. A caped two-piece item is defensible as
   // either `top` or `set`; not worth a special case for 2 rows.
   // gilet/parka added same audit pass as tee/hoodie above (20 + 6 corpus hits).
+  // "pull maille" (French, lit. "knit sweater") is the narrow, safe compound
+  // for exactly 2 real corpus rows — bare French "pull" stays deliberately
+  // excluded (see FOREIGN_RULES comment below: collides with English
+  // "pull-on"), but "maille" never appears anywhere else in the whole
+  // 38,096-row corpus, so this specific two-word phrase is zero-risk.
   ['top', word('tops?|blouses?|shirts?|tunics?|sweaters?|cardigans?|boleros?|blazers?|vests?|coats?|jackets?' +
     '|overshirts?|sweatshirts?|t-?shirts?|overcoats?|waistcoats?|trenchcoats?|trenhcoats?' +
-    '|tees?|hoodies?|capes?|crewnecks?|button.?ups?|gilets?|parkas?')],
+    '|tees?|hoodies?|capes?|crewnecks?|button.?ups?|gilets?|parkas?|pull\\s*maille')],
   // Length-only fallback — "maxi"/"midi" describe LENGTH, not garment. A bare
   // "…Maxi" with no explicit garment word reads as a dress, but this must stay
   // LAST so "Maxi Skirt", "Maxi Skirt Set" etc. resolve to their real garment.

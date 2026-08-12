@@ -1,12 +1,12 @@
 {
-  "date": "2026-08-11",
+  "date": "2026-08-12",
   "totals": {
-    "added": 111,
-    "updated": 31274,
-    "delisted": 158,
-    "filtered": 80,
-    "returned": 1,
-    "incomplete": 3
+    "added": 67,
+    "updated": 31200,
+    "delisted": 9,
+    "filtered": 65,
+    "returned": 0,
+    "incomplete": 5
   },
   "brands": [
     {
@@ -15,15 +15,25 @@
       "fetched": 192,
       "added": [],
       "updated": 192,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "vela",
       "complete": true,
-      "fetched": 637,
-      "added": [],
+      "fetched": 646,
+      "added": [
+        "Al-Sudan Hoodie",
+        "Free Palestine Black Rhinestone Hoodie",
+        "Asymmetric Hoodie",
+        "Free Palestine Pink Rhinestone Hoodie",
+        "Free Palestine Green Rhinestone Hoodie",
+        "Qawiyah Hoodie",
+        "Moon Phases Hoodie",
+        "Baladi Breeze Zip Up",
+        "Vela Print Crewneck"
+      ],
       "updated": 637,
       "delisted": 0,
       "filtered": [
@@ -57,94 +67,11 @@
     {
       "brandSlug": "zahraa",
       "complete": true,
-      "fetched": 529,
+      "fetched": 530,
       "added": [
-        "🎁 Slate Print Modal Hijab (100% off)",
-        "🎁 Premium Jersey Hijab- Lama (100% off)",
-        "🎁 Premium Jersey Hijab- Jenan (100% off)",
-        "🎁 Premium Jersey Hijab- Ghadir (100% off)",
-        "🎁 Premium Jersey Hijab- Fayrouz (100% off)",
-        "🎁 Premium Jersey Hijab- Amal (100% off)",
-        "🎁 Premium Jersey Hijab- Aisha (100% off)",
-        "🎁 Premium Jersey Hijab- Abeer (100% off)",
-        "🎁 Premium Chiffon Hijab - Sapphire (100% off)",
-        "🎁 Premium Chiffon Hijab - Powder (100% off)",
-        "🎁 Premium Chiffon Hijab - Moss (100% off)",
-        "🎁 Premium Chiffon Hijab - Khaki (100% off)",
-        "🎁 Premium Chiffon Hijab - Heather (100% off)",
-        "🎁 Premium Chiffon Hijab - Clay (100% off)",
-        "🎁 Premium Chiffon Hijab - Blush (100% off)",
-        "🎁 Premium Chiffon Hijab - Autumn (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - White (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - Terra Rose (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - Off White (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - Minted Meadow (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - Indigo Isles (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - Burnt Ochre (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - Blush Stone (100% off)",
-        "🎁 OEKO-TEX™ Bamboo Jersey Hijab Set - Azure Sky (100% off)",
-        "🎁 Nada Matching Hijab - Black (100% off)",
-        "🎁 Modal Matching Hijab Set- White (100% off)",
-        "🎁 Modal Matching Hijab Set- Stone (100% off)",
-        "🎁 Modal Matching Hijab Set- Sepia (100% off)",
-        "🎁 Modal Matching Hijab Set- Sandshell (100% off)",
-        "🎁 Modal Matching Hijab Set- Praline (100% off)",
-        "🎁 Modal Matching Hijab Set- Pink Yarrow (100% off)",
-        "🎁 Modal Matching Hijab Set- Pink Parfait (100% off)",
-        "🎁 Modal Matching Hijab Set- Orchid (100% off)",
-        "🎁 Modal Matching Hijab Set- Hibiscus (100% off)",
-        "🎁 Modal Matching Hijab Set- Desert Flower (100% off)",
-        "🎁 Modal Matching Hijab Set- Coral Almond (100% off)",
-        "🎁 Modal Matching Hijab Set- Coffee Bean (100% off)",
-        "🎁 Modal Matching Hijab Set- Canyon Clay (100% off)",
-        "🎁 Modal Matching Hijab Set- Blooming Dahlia (100% off)",
-        "🎁 Modal Matching Hijab Set- Arabian Spice (100% off)",
-        "🎁 Modal Matching Hijab Set- Apricot Ice (100% off)",
-        "🎁 Modal Matching Hijab Set- Anise (100% off)",
-        "🎁 Modal Matching Hijab Set- Almond (100% off)",
-        "🎁 Matching Hijab & Undercap Bundle - Black (100% off)",
-        "🎁 Fayruz Matching Hijab - Black (100% off)",
-        "🎁 Essential Modal Hijab - White (100% off)",
-        "🎁 Essential Modal Hijab - Praline (100% off)",
-        "🎁 Essential Modal Hijab - Pink Yarrow (100% off)",
-        "🎁 Essential Modal Hijab - Pink Parfait (100% off)",
-        "🎁 Essential Modal Hijab - Pear (100% off)",
-        "🎁 Essential Modal Hijab - Orchid (100% off)",
-        "🎁 Essential Modal Hijab - Magenta Haze (100% off)",
-        "🎁 Essential Modal Hijab - Incense (100% off)",
-        "🎁 Essential Modal Hijab - Desert Flower (100% off)",
-        "🎁 Essential Modal Hijab - Coral Almond (100% off)",
-        "🎁 Essential Modal Hijab - Coffee Bean (100% off)",
-        "🎁 Essential Modal Hijab - Clear Sky (100% off)",
-        "🎁 Essential Modal Hijab - Carribean (100% off)",
-        "🎁 Essential Modal Hijab - Blue Jasper (100% off)",
-        "🎁 Essential Modal Hijab - Blooming Dahlia (100% off)",
-        "🎁 Essential Modal Hijab - Black (100% off)",
-        "🎁 Essential Modal Hijab - Apricot Ice (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Zaina (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Narjis (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Nadeen (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Medina (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Mecca (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Malak (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Layah (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Jamila (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Hiba (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Fatimah (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Faten (100% off)",
-        "🎁 Basic Luxe Chiffon Hijab- Farah (100% off)",
-        "🎁 Premium Rayon Hijab- Safa (100% off)",
-        "🎁 Premium Rayon Hijab- Ruqayah (100% off)",
-        "🎁 Premium Rayon Hijab- Rola (100% off)",
-        "🎁 Premium Rayon Hijab- Loubna (100% off)",
-        "🎁 Premium Rayon Hijab- Lana (100% off)",
-        "🎁 Premium Rayon Hijab- Iqra (100% off)",
-        "🎁 Premium Rayon Hijab- Haila (100% off)",
-        "🎁 Premium Rayon Hijab- Ghada (100% off)",
-        "🎁 Premium Rayon Hijab- Diana (100% off)",
-        "🎁 Premium Rayon Hijab- Assiyah (100% off)"
+        "Deniz Knit Cape - Almond"
       ],
-      "updated": 445,
+      "updated": 529,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -237,14 +164,11 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 216,
+      "fetched": 217,
       "added": [
-        "Black Three Piece Pants Abaya Set",
-        "Olive Three Piece Pants Abaya Set",
-        "Black Three Piece Abaya Set",
-        "Brown Longline Abaya & Pants Set"
+        "Criss Cross Long Sleeve Jumpsuit-CLEARANCE"
       ],
-      "updated": 212,
+      "updated": 216,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -272,10 +196,14 @@
     {
       "brandSlug": "mariams",
       "complete": true,
-      "fetched": 1186,
-      "added": [],
+      "fetched": 1189,
+      "added": [
+        "Hooded Balaclava with Shoulder Cape(MAC376)",
+        "Pearl Embellished Bridal Cape(MAC374)",
+        "Free Palestine Hoodie | Palestine Lives Matter Hoodie (MT016)"
+      ],
       "updated": 1186,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Islamic Hollow Pattern Acrylic Tabletop Decor (MAC404)",
@@ -363,8 +291,10 @@
     {
       "brandSlug": "glow-modesty",
       "complete": true,
-      "fetched": 163,
-      "added": [],
+      "fetched": 164,
+      "added": [
+        "Liona - long sleeves"
+      ],
       "updated": 163,
       "delisted": 0,
       "filtered": [],
@@ -374,12 +304,9 @@
       "brandSlug": "jawda",
       "complete": true,
       "fetched": 139,
-      "added": [
-        "Navy Cotton Wide Leg Trousers",
-        "Stone Beige Cotton Wide Leg Trousers"
-      ],
-      "updated": 137,
-      "delisted": 1,
+      "added": [],
+      "updated": 139,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -466,8 +393,10 @@
     {
       "brandSlug": "emlavish",
       "complete": true,
-      "fetched": 49,
-      "added": [],
+      "fetched": 50,
+      "added": [
+        "Relaxed Dual-Zip Hoodie"
+      ],
       "updated": 49,
       "delisted": 0,
       "filtered": [],
@@ -496,8 +425,13 @@
     {
       "brandSlug": "bemu",
       "complete": true,
-      "fetched": 99,
-      "added": [],
+      "fetched": 103,
+      "added": [
+        "Lace Cape-Beige",
+        "Lace Cape-Black",
+        "Silk Cape- Black",
+        "Silk Cape-Beige"
+      ],
       "updated": 99,
       "delisted": 0,
       "filtered": [],
@@ -516,8 +450,10 @@
     {
       "brandSlug": "les-atelier",
       "complete": true,
-      "fetched": 119,
-      "added": [],
+      "fetched": 120,
+      "added": [
+        "Sofia Hoodie Light Taupe"
+      ],
       "updated": 119,
       "delisted": 0,
       "filtered": [],
@@ -535,10 +471,10 @@
     },
     {
       "brandSlug": "merrachi",
-      "complete": true,
-      "fetched": 1700,
+      "complete": false,
+      "fetched": 1427,
       "added": [],
-      "updated": 1700,
+      "updated": 1427,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -596,11 +532,11 @@
     {
       "brandSlug": "lafemme",
       "complete": true,
-      "fetched": 44,
+      "fetched": 45,
       "added": [
-        "Gingham Dress"
+        "Oversized Gilet"
       ],
-      "updated": 43,
+      "updated": 44,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -656,11 +592,11 @@
     },
     {
       "brandSlug": "chi-ka",
-      "complete": false,
-      "fetched": 499,
+      "complete": true,
+      "fetched": 757,
       "added": [],
-      "updated": 499,
-      "delisted": 0,
+      "updated": 757,
+      "delisted": 8,
       "filtered": [],
       "returned": 0
     },
@@ -688,10 +624,8 @@
       "brandSlug": "whiteicy",
       "complete": true,
       "fetched": 29,
-      "added": [
-        "Ensemble jupe Daryna"
-      ],
-      "updated": 28,
+      "added": [],
+      "updated": 29,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -708,10 +642,21 @@
     },
     {
       "brandSlug": "mukistore",
-      "complete": true,
-      "fetched": 1583,
-      "added": [],
-      "updated": 1583,
+      "complete": false,
+      "fetched": 1423,
+      "added": [
+        "Knitwear Hoodie Cap",
+        "Thick Hoodie Bonjour",
+        "Hoodie Jogging Material Taille Detail",
+        "Jumpsuit Tie Belt BumBag Pocket Details",
+        "Tie Belt Strap Jumpsuit Ankle Knot Detail",
+        "One Shoulder Super Soft Cheesecloth Jumpsuit",
+        "Tie Belt Jumpsuit V Neck Straps",
+        "Bestseller Seam Jumpsuit Cargo Silver Detail",
+        "Straps Lace Jumpsuit Musthave",
+        "Zipper Jumpsuit Tie Belt Half Sleeves"
+      ],
+      "updated": 1413,
       "delisted": 0,
       "filtered": [
         {
@@ -732,22 +677,6 @@
         },
         {
           "title": "Eau de parfum Gris",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Long Plaid Shackett",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Long Plaid Shacket",
-          "reason": "unclassified"
-        },
-        {
-          "title": "GROTE MAAT Anti ladder fleece panty super hit L/XL & XL/XXL",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Anti ladder fleece panty super hit",
           "reason": "unclassified"
         }
       ],
@@ -775,10 +704,10 @@
     },
     {
       "brandSlug": "abyya",
-      "complete": true,
-      "fetched": 22,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 22,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -806,8 +735,10 @@
     {
       "brandSlug": "noureen",
       "complete": true,
-      "fetched": 225,
-      "added": [],
+      "fetched": 226,
+      "added": [
+        "Long Hoodie S26 – Black"
+      ],
       "updated": 225,
       "delisted": 0,
       "filtered": [
@@ -835,16 +766,10 @@
     {
       "brandSlug": "chic-modesty",
       "complete": true,
-      "fetched": 463,
-      "added": [
-        "Robe zip jeune fille bleu",
-        "Jupe lin blanche",
-        "Hijab cagoule bambou blush",
-        "Blouse lin sable",
-        "Burkini hijab long noir"
-      ],
-      "updated": 458,
-      "delisted": 1,
+      "fetched": 466,
+      "added": [],
+      "updated": 466,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Pull maille dark brown",
@@ -960,8 +885,13 @@
     {
       "brandSlug": "nihan",
       "complete": false,
-      "fetched": 3942,
-      "added": [],
+      "fetched": 3946,
+      "added": [
+        "Payet Detaylı Şık Tulum - Siyah",
+        "Yarasa Kollu Kuşaklı Abiye - Siyah",
+        "V Yaka Nervür Detaylı Tulum - Siyah",
+        "Hakim Yaka Kolları Piliseli Taşlı Krep Tulum - Siyah"
+      ],
       "updated": 3942,
       "delisted": 0,
       "filtered": [
@@ -1011,15 +941,11 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 307,
+      "fetched": 308,
       "added": [],
-      "updated": 307,
-      "delisted": 1,
+      "updated": 308,
+      "delisted": 0,
       "filtered": [
-        {
-          "title": "Kemer Detaylı Kahverengi Tulum",
-          "reason": "unclassified"
-        },
         {
           "title": "Mini Topuklu Deri Ayakkabı",
           "reason": "unclassified"
@@ -1052,47 +978,12 @@
     {
       "brandSlug": "touche-prive",
       "complete": true,
-      "fetched": 1025,
-      "added": [
-        "Organza Shirt",
-        "Full Tulle Skirt",
-        "Poplin Shirt With Wide Cuff",
-        "100% Linen Embroidered Shirt",
-        "Gold Buckle Tunic And Trouser Set"
-      ],
-      "updated": 1020,
-      "delisted": 55,
-      "filtered": [
-        {
-          "title": "Striped V-Neck Jumpsuit",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Sleeveless Kupra Jersey",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Jumpsuit With Relax Straps",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Gathered Shoulder Cupra Gilet",
-          "reason": "unclassified"
-        },
-        {
-          "title": "V-Neck Denim GİLet",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Gathered Shoulder Cupra Gilet",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Gathered Shoulder Cupra Gilet",
-          "reason": "unclassified"
-        }
-      ],
-      "returned": 1
+      "fetched": 1031,
+      "added": [],
+      "updated": 1031,
+      "delisted": 1,
+      "filtered": [],
+      "returned": 0
     },
     {
       "brandSlug": "daska-fashion",
@@ -1107,23 +998,20 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 387,
+      "fetched": 392,
       "added": [],
-      "updated": 387,
+      "updated": 392,
       "delisted": 0,
-      "filtered": [
-        {
-          "title": "Parka à capuche burgundy",
-          "reason": "unclassified"
-        }
-      ],
+      "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "aneesa",
       "complete": true,
-      "fetched": 2,
-      "added": [],
+      "fetched": 3,
+      "added": [
+        "Jumpsuit in Raso"
+      ],
       "updated": 2,
       "delisted": 0,
       "filtered": [
@@ -1279,7 +1167,7 @@
       "fetched": 445,
       "added": [],
       "updated": 445,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1308,7 +1196,7 @@
       "fetched": 321,
       "added": [],
       "updated": 321,
-      "delisted": 72,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1325,8 +1213,12 @@
     {
       "brandSlug": "serrb",
       "complete": true,
-      "fetched": 431,
-      "added": [],
+      "fetched": 434,
+      "added": [
+        "Aw23 L30",
+        "AW22 L11 - Pearl(Cream)",
+        "AW22 L11 - Pearl(Cream)"
+      ],
       "updated": 431,
       "delisted": 0,
       "filtered": [],
@@ -1335,14 +1227,15 @@
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 967,
+      "fetched": 972,
       "added": [
-        "Luxury Ice White Glimmer Embellished Open Abaya",
-        "Luxury Eternal Night Garden Open Abaya",
-        "Luxury Soft Crush Hijab - Warm Oat",
-        "Luxury Soft Crush Hijab - Black"
+        "Luxury Organza Silk Embellished Cape - Moonstruck",
+        "Luxury Crown Jewel Emerald Velvet Embellished Cape",
+        "Luxury Sapphire Bloom Velvet Embellished Cape",
+        "Luxury Rich Wineberry Velvet Embellished Cape",
+        "Luxury Twilight Bloom Velvet Cape - Daffodil Dream - LIMITED EDITION"
       ],
-      "updated": 963,
+      "updated": 967,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1370,16 +1263,11 @@
     {
       "brandSlug": "aurora-abaya",
       "complete": true,
-      "fetched": 73,
+      "fetched": 79,
       "added": [],
-      "updated": 73,
+      "updated": 79,
       "delisted": 0,
-      "filtered": [
-        {
-          "title": "Chiffon-dot Bluse",
-          "reason": "unclassified"
-        }
-      ],
+      "filtered": [],
       "returned": 0
     },
     {
@@ -1405,8 +1293,12 @@
     {
       "brandSlug": "ilovemodesty",
       "complete": true,
-      "fetched": 630,
-      "added": [],
+      "fetched": 633,
+      "added": [
+        "Iced Pink Belted Tee",
+        "Black Lettuce Trim Tee",
+        "Mocha Brown Lettuce Trim Tee"
+      ],
       "updated": 630,
       "delisted": 0,
       "filtered": [
@@ -1435,15 +1327,9 @@
       "brandSlug": "zuhre",
       "complete": true,
       "fetched": 1042,
-      "added": [
-        "Yuvarlak Yaka Düğme Detaylı Ikili Inci Ekru Takım 1706",
-        "Denim Evaze Mavi Etek 0144",
-        "Monogram Desenli Siyah Etek 0174",
-        "Kemerli Çift Cepli Gömlek Yaka Bej Tunik 1667",
-        "Crop Ceketli Bağcıklı Uzun Elbise Kahve Takım 1848"
-      ],
-      "updated": 1037,
-      "delisted": 20,
+      "added": [],
+      "updated": 1042,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Soft Çiçek Desenli Toprak Şal 0058",
@@ -1467,16 +1353,13 @@
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 341,
-      "added": [],
-      "updated": 341,
-      "delisted": 0,
-      "filtered": [
-        {
-          "title": "Cita Cape",
-          "reason": "unclassified"
-        }
+      "fetched": 343,
+      "added": [
+        "Flo Cape Extender"
       ],
+      "updated": 342,
+      "delisted": 0,
+      "filtered": [],
       "returned": 0
     },
     {
@@ -1522,18 +1405,37 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 703,
-      "added": [],
+      "fetched": 716,
+      "added": [
+        "Violet Garden Jumpsuit",
+        "Desert Wrap Jumpsuit",
+        "Amaris Jumpsuit",
+        "Black Jumpsuit",
+        "Cocoa Jumpsuit",
+        "Dark Purple Jumpsuit",
+        "Latte Jumpsuit",
+        "Green Jumpsuit",
+        "White Jumpsuit",
+        "Grey Jumpsuit",
+        "Serah - Black sleeveless jumpsuit",
+        "Thread - Beige linen jumpsuit",
+        "Floral Grace"
+      ],
       "updated": 703,
-      "delisted": 4,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "nour-al-houda",
       "complete": true,
-      "fetched": 899,
-      "added": [],
+      "fetched": 903,
+      "added": [
+        "Chiffon Cape - Crimson",
+        "Chiffon Cape - Navy",
+        "Chiffon Cape - Petal Pink",
+        "Chiffon Cape - Lilac"
+      ],
       "updated": 899,
       "delisted": 0,
       "filtered": [],

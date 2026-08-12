@@ -130,7 +130,11 @@
     "mariams:9250618081496",
     "mariams:9025093009624",
     "mariams:8530085019864",
-    "mariams:8526370341080"
+    "mariams:8526370341080",
+
+    "nasiba:8673046659381",
+    "nasiba:8673040892213",
+    "nasiba:8673089126709"
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],

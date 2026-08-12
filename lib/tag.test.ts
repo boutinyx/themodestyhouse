@@ -394,3 +394,17 @@ describe('"neck cover" classifies as hijab, not a fallback guess (2026-08-12)', 
     expect(tagDiscovery({ title: 'Long Neck Cover - Port Royale', productType: '', tags: [] }).garment).toBe('hijab');
   });
 });
+
+describe('"pull maille" classifies at ingest time, not via override (2026-08-12)', () => {
+  // French "pull" (sweater) stays deliberately excluded bare — collides with
+  // English "pull-on" — but "maille" (knit) never appears anywhere else in
+  // the whole corpus, so this specific two-word phrase is zero-risk. Found
+  // when a garment-override for these 2 ids turned out to be structurally
+  // powerless: an item that fails classification at INGEST time never gets
+  // added to raw-products.json at all, so a publish-time override has
+  // nothing to attach to. Fixed at the source instead.
+  it('classifies from the title directly', () => {
+    expect(tagDiscovery({ title: 'Pull maille dark brown', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Pull maille beige', productType: '', tags: [] }).garment).toBe('top');
+  });
+});

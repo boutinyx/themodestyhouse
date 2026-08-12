@@ -25586,6 +25586,14 @@
     "evidence": "Lantern"
   },
   {
+    "id": "nasiba:8673089126709",
+    "brandSlug": "nasiba",
+    "title": "Cupcake Wrapper Set",
+    "url": "https://nasiba.com/products/cupcake-wrapper-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
     "id": "nasiba:8673060061493",
     "brandSlug": "nasiba",
     "title": "Hijab Magnets - Grey",
@@ -25596,6 +25604,14 @@
     "evidence": "Hijab Magnets"
   },
   {
+    "id": "nasiba:8673046659381",
+    "brandSlug": "nasiba",
+    "title": "Ramadan Foil Balloon Set",
+    "url": "https://nasiba.com/products/ramadan-foil-balloon-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
     "id": "nasiba:8673045152053",
     "brandSlug": "nasiba",
     "title": "Hijab Magnets - White",
@@ -25604,6 +25620,14 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "nasiba:8673040892213",
+    "brandSlug": "nasiba",
+    "title": "Hajj Foil Balloon Set",
+    "url": "https://nasiba.com/products/hajj-balloon-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
   },
   {
     "id": "nasiba:8673036599605",
