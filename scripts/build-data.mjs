@@ -9,6 +9,7 @@ import { demoteGarment } from '../lib/ordering.ts';
 import { isSpecialty } from '../lib/specialty.ts';
 import { normalizeTitle, stripRawSignals } from '../lib/normalize.ts';
 import { resolveGarment } from '../lib/garmentReview.ts';
+import { qualityFlagTag } from '../lib/qualityFlags.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
 
@@ -20,6 +21,14 @@ const decisions = existsSync(U('decisions.json')) ? JSON.parse(readFileSync(U('d
 // silently revisit a human decision).
 const garmentOverrides = existsSync(U('garment-overrides.json'))
   ? JSON.parse(readFileSync(U('garment-overrides.json'), 'utf8'))
+  : {};
+// Ids reviewed via the /admin/photo-review UI and confirmed fine — stops a
+// dismissed item from being pushed back into review on every publish.
+// Never written by any automated path. An item found to actually be broken
+// is removed via data/exclusions.json instead (verdict() catches it before
+// this file is ever consulted), not tracked here.
+const photoReviewDismissed = existsSync(U('photo-review-decisions.json'))
+  ? JSON.parse(readFileSync(U('photo-review-decisions.json'), 'utf8'))
   : {};
 
 // Persistent exclusion list (men's items, cut brands, pinned ids). This is a
@@ -150,6 +159,15 @@ const kept = raw.filter((p) => {
   // point in the pipeline — interleaveByBrand/demoteGarment/publishTitle all
   // run AFTER this filter, so they see the resolved value.
   p.garment = decision.garment;
+  // Informational only — does NOT hold the item back. A merchant flagging
+  // their own listing ("retakephotos" etc.) is usually still a fine photo
+  // (measured: 9/10 for one brand's tag), not proof it's broken. This is
+  // what should have caught the lameera-moda CDN-glitch listing before Tina
+  // found it live — the tag was already there, nothing was reading it.
+  const flag = p.raw && qualityFlagTag(p.raw.tags);
+  if (flag && !photoReviewDismissed[p.id]) {
+    review.push({ id: p.id, title: p.title, url: p.url, image: p.image, why: 'brand-flagged-photo-issue', tag: flag });
+  }
   return true;
 });
 

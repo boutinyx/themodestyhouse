@@ -64,6 +64,10 @@ const NEEDLES = [
   'ReviewClient',
   'Garment review —', // literal UI copy from ReviewClient.dev.tsx
   'saveGarmentOverride',
+  'PhotoReviewClient',
+  'Photo review —', // literal UI copy from PhotoReviewClient.dev.tsx
+  'dismissPhotoReview',
+  'excludeProduct',
 ];
 
 function walk(dir) {

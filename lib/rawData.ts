@@ -23,6 +23,8 @@ const rawFile = () => path.join(process.cwd(), 'data', 'raw-products.json');
 const decisionsFile = () => path.join(process.cwd(), 'data', 'decisions.json');
 const garmentOverridesFile = () => path.join(process.cwd(), 'data', 'garment-overrides.json');
 const reviewFile = () => path.join(process.cwd(), 'data', 'review.json');
+const photoReviewFile = () => path.join(process.cwd(), 'data', 'photo-review-decisions.json');
+const exclusionsFile = () => path.join(process.cwd(), 'data', 'exclusions.json');
 
 export function loadRaw(): Product[] {
   assertLocalDev();
@@ -64,4 +66,33 @@ export function loadReview(): unknown[] {
   const f = reviewFile();
   if (!existsSync(f)) return [];
   return JSON.parse(readFileSync(f, 'utf8')) as unknown[];
+}
+
+/** Ids reviewed via /admin/photo-review and confirmed the photo is fine —
+ *  stops a dismissed item from being re-surfaced on every publish. */
+export function loadPhotoReviewDismissed(): Record<string, true> {
+  assertLocalDev();
+  const f = photoReviewFile();
+  if (!existsSync(f)) return {};
+  return JSON.parse(readFileSync(f, 'utf8')) as Record<string, true>;
+}
+
+export function dismissPhotoReview(id: string): void {
+  assertLocalDev();
+  const dismissed = loadPhotoReviewDismissed();
+  dismissed[id] = true;
+  writeFileSync(photoReviewFile(), JSON.stringify(dismissed, null, 2));
+}
+
+/** Permanently removes a product — used when a flagged photo turns out to
+ *  actually be broken. Appends to exclusions.json's `ids` list, the same
+ *  permanent mechanism as every other exclusion (Invariant 3) — never
+ *  hand-edits products.json, never touches decisions.json. */
+export function excludeProduct(id: string): void {
+  assertLocalDev();
+  const f = exclusionsFile();
+  const excl = JSON.parse(readFileSync(f, 'utf8')) as { ids?: string[] };
+  const ids = excl.ids ?? (excl.ids = []);
+  if (!ids.includes(id)) ids.push(id);
+  writeFileSync(f, JSON.stringify(excl, null, 2));
 }
