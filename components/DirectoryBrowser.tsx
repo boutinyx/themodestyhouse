@@ -17,7 +17,6 @@ const GARMENT_LABEL: Record<string, string> = {
 export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalogue: CompactCatalogue; initialQuery?: string }) {
   const [q, setQ] = useState(initialQuery);
   const [garment, setGarment] = useState('all'); // Garment value, or 'all'
-  const [occasion, setOccasion] = useState('all');
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   const [visible, setVisible] = useState(STEP);
   const [sort, setSort] = useState<SortKey>('featured');
@@ -27,10 +26,6 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     const present = new Set(cat.garments);
     return Object.keys(GARMENT_LABEL).filter((g) => present.has(g as Garment)).map((g) => ({ value: g, label: GARMENT_LABEL[g] }));
   }, [cat]);
-  const occasions = useMemo(
-    () => [...cat.occasions].sort().map((o) => ({ value: o, label: o.charAt(0).toUpperCase() + o.slice(1) })),
-    [cat]
-  );
   const brands = useMemo(
     () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
     [cat]
@@ -41,8 +36,6 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   const query = q.trim().toLowerCase();
   const garmentIdx = garment === 'all' ? -1 : cat.garments.indexOf(garment as Garment);
   const brandIdx = brand === 'all' ? -1 : cat.brands.findIndex((b) => b.slug === brand);
-  const occasionIdx = occasion === 'all' ? -1 : cat.occasions.indexOf(occasion);
-  const occasionBit = occasionIdx === -1 ? 0 : 1 << occasionIdx;
 
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
@@ -50,7 +43,6 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     for (let i = 0; i < n; i++) {
       if (garmentIdx !== -1 && cat.rows.garmentIdx[i] !== garmentIdx) continue;
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
-      if (occasionBit !== 0 && (cat.rows.occasionMask[i] & occasionBit) === 0) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -59,7 +51,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
       rows.push(i);
     }
     return rows;
-  }, [cat, garmentIdx, brandIdx, occasionBit, query]);
+  }, [cat, garmentIdx, brandIdx, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -74,7 +66,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [garment, occasion, brand, q]);
+  }, [garment, brand, q]);
 
   const shownRows = sortedRows.slice(0, visible);
   const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
@@ -84,7 +76,12 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
       {/* the index — one console, filters as dropdowns (components/IndexPanel) */}
       <IndexPanel q={q} onQ={setQ}>
         <FilterDropdown label="Category" value={garment} options={garments} onSelect={setGarment} />
-        <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
+        {/* Occasion filter pulled from the UI 2026-08-12 at Tina's request —
+            broken, pending a fix. The underlying data (cat.occasions,
+            rows.occasionMask) is untouched in lib/compactCatalogue.ts;
+            restoring this is re-adding the state/memo/filter-branch removed
+            here, not re-deriving anything. See
+            docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
         {/* Unlike the three above, this dropdown's "nothing chosen" value is a
             real key: 'featured' IS a sort order, not the absence of one. It is

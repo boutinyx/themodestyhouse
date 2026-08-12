@@ -12,7 +12,6 @@ const STEP = 24;
 
 export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue }) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
-  const [occasion, setOccasion] = useState('all');
   const [type, setType] = useState('all'); // layering subtype, or 'all'
   const [q, setQ] = useState('');
   const [visible, setVisible] = useState(STEP);
@@ -23,14 +22,11 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
     () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
     [cat]
   );
-  const occasions = useMemo(
-    () => [...cat.occasions].sort().map((o) => ({ value: o, label: o.charAt(0).toUpperCase() + o.slice(1) })),
-    [cat]
-  );
   // Only ever non-empty on /layering-basics (the only lane with any
-  // layeringSubtype != null) — see the same `.length > 0` gating pattern
-  // already used for Occasion below. Kept in cat.layeringSubtypes' own
-  // canonical order (lib/specialty.ts), not resorted here.
+  // layeringSubtype != null) — see the same `.length > 0` gating pattern the
+  // Occasion dropdown used before it was pulled (2026-08-12). Kept in
+  // cat.layeringSubtypes' own canonical order (lib/specialty.ts), not
+  // resorted here.
   const types = useMemo(
     () => cat.layeringSubtypes.map((t) => ({ value: t, label: LAYERING_SUBTYPE_LABELS[t] })),
     [cat]
@@ -43,8 +39,6 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
   // product, and only the rows actually shown get decoded into cards below.
   const query = q.trim().toLowerCase();
   const brandIdx = brand === 'all' ? -1 : cat.brands.findIndex((b) => b.slug === brand);
-  const occasionIdx = occasion === 'all' ? -1 : cat.occasions.indexOf(occasion);
-  const occasionBit = occasionIdx === -1 ? 0 : 1 << occasionIdx;
   const typeIdx = type === 'all' ? -1 : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
   const filteredRows = useMemo(() => {
@@ -52,7 +46,6 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
     const n = cat.rows.title.length;
     for (let i = 0; i < n; i++) {
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
-      if (occasionBit !== 0 && (cat.rows.occasionMask[i] & occasionBit) === 0) continue;
       if (typeIdx !== -1 && cat.rows.layeringSubtypeIdx[i] !== typeIdx) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
@@ -62,7 +55,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, occasionBit, typeIdx, query]);
+  }, [cat, brandIdx, typeIdx, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -76,7 +69,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [brand, occasion, type, q]);
+  }, [brand, type, q]);
 
   const shownRows = sortedRows.slice(0, visible);
   const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
@@ -93,9 +86,12 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
         {types.length > 0 && (
           <FilterDropdown label="Type" value={type} options={types} onSelect={setType} />
         )}
-        {occasions.length > 0 && (
-          <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
-        )}
+        {/* Occasion filter pulled from the UI 2026-08-12 at Tina's request —
+            broken, pending a fix. The underlying data (cat.occasions,
+            rows.occasionMask) is untouched in lib/compactCatalogue.ts;
+            restoring this is re-adding the state/memo/filter-branch removed
+            here, not re-deriving anything. See
+            docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
         {/* Unlike the two above, this dropdown's "nothing chosen" value is a
             real key: 'featured' IS a sort order, not the absence of one. It is
