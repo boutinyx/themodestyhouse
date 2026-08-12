@@ -4,11 +4,20 @@ import type { Product, Vibe } from '@/lib/types';
 import { LANES } from '@/lib/lanes';
 import { brandVibe } from '@/lib/vibes';
 import { isSpecialty } from '@/lib/specialty';
+import { getCutIds } from '@/lib/liveCuts';
 
+// Filtered here, once, so every consumer of getProducts() — every lane, the
+// directory, home rails, favourites — picks up a live /staff/curate cut
+// immediately with no separate wiring. See docs/log/2026-08-12-staff-curate.md:
+// this is the runtime layer; data/decisions.json (the git-tracked source of
+// truth) only gets updated later, by scripts/merge-live-cuts.mjs.
 export function getProducts(): Product[] {
   const f = path.join(process.cwd(), 'data', 'products.json');
   if (!existsSync(f)) return [];
-  return JSON.parse(readFileSync(f, 'utf8')) as Product[];
+  const all = JSON.parse(readFileSync(f, 'utf8')) as Product[];
+  const cutIds = getCutIds();
+  if (cutIds.size === 0) return all;
+  return all.filter((p) => !cutIds.has(p.id));
 }
 
 // Products for the mixed "everything" browse (directory, home rails). Hijabs are

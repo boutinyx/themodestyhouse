@@ -15,6 +15,14 @@ export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
 }
 
+// Keeps these pages statically prerendered (fast, cheap on Railway) while
+// still picking up a live /staff/curate cut within a minute — a full
+// force-dynamic switch would work too but gives up prerendering sitewide for
+// something that only needs to be near-real-time. See
+// docs/log/2026-08-12-staff-curate.md for why "immediately" means this and
+// not a full rebuild.
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: { params: Promise<{ lane: string }> }): Promise<Metadata> {
   const { lane: slug } = await params;
   const lane = LANES.find((l) => l.slug === slug);

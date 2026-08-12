@@ -179,7 +179,7 @@ export default function nextConfig(phase: string): NextConfig {
       return [
         { source: '/(.*)', headers: securityHeaders },
         {
-          source: '/(admin|api)/:path*',
+          source: '/(admin|api|staff)/:path*',
           headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
         },
       ];

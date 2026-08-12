@@ -90,3 +90,8 @@ public/style-it/png's trans/
 
 # Local worktrees for isolated feature work (superpowers:using-git-worktrees).
 .worktrees/
+
+# Runtime cuts made from the live /staff/curate admin (lib/liveCuts.ts). Lives
+# on the production container's disk only — deliberately NOT the git-tracked
+# decisions.json. scripts/merge-live-cuts.mjs folds it in on purpose, later.
+data/.live-cuts.json
