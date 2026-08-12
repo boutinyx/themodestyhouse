@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
 import { getLiveCuts } from '@/lib/liveCuts';
 import { getLiveGarmentOverrides } from '@/lib/liveGarmentOverrides';
+import { getLiveLaneOverrides } from '@/lib/liveLaneOverrides';
 import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import type { Product } from '@/lib/types';
@@ -40,5 +41,14 @@ export async function GET() {
     })
     .filter((m): m is NonNullable<typeof m> => Boolean(m));
 
-  return NextResponse.json({ deletes, moves });
+  const laneOverrides = getLiveLaneOverrides();
+  const laneMoves = Object.entries(laneOverrides)
+    .map(([id, entry]) => {
+      const p = byId.get(id);
+      if (!p) return null;
+      return { id: p.id, title: p.title, url: p.url, image: p.image, to: entry.lane, subtype: entry.subtype };
+    })
+    .filter((m): m is NonNullable<typeof m> => Boolean(m));
+
+  return NextResponse.json({ deletes, moves, laneMoves });
 }

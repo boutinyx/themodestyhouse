@@ -3,11 +3,35 @@ import { useState } from 'react';
 import { Menu } from '@base-ui-components/react/menu';
 import { PencilSimple, CaretRight, Trash } from '@phosphor-icons/react';
 import { GARMENT_LABELS, GARMENT_VALUES } from '@/lib/tag';
-import type { Garment } from '@/lib/types';
+import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
+import { CATEGORY_LANES } from '@/lib/lanes';
+import type { Garment, ForcedLane, LayeringSubtype } from '@/lib/types';
 
 const MOVABLE = GARMENT_VALUES.filter((g) => g !== 'other') as Garment[];
+const LAYERING_SUBTYPES = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
+export const laneLabel = (lane: ForcedLane) => CATEGORY_LANES.find((l) => l.slug === lane)?.title ?? lane;
 
-export type StaffEditResult = { type: 'move'; garment: Garment } | { type: 'delete' };
+// The 8 movable garments map 1:1 onto a category lane slug — everywhere
+// except 'other' (never a move destination) every lane in lib/lanes.ts
+// whose match is `p.garment === X` (plus modest-swimwear, since
+// `garment === 'swim'` already satisfies isSwim()). Used so the picker
+// shows the same recognizable names as the site's own nav ("Modest
+// Swimwear", "Hijabs & Scarves") instead of the bare garment label.
+const GARMENT_LANE_SLUG: Partial<Record<Garment, string>> = {
+  dress: 'modest-dresses', abaya: 'modest-abayas', hijab: 'modest-hijabs',
+  skirt: 'modest-skirts', top: 'modest-tops', trousers: 'modest-trousers',
+  set: 'modest-sets', swim: 'modest-swimwear',
+};
+export const garmentMoveLabel = (g: Garment): string => {
+  const slug = GARMENT_LANE_SLUG[g];
+  const lane = slug && CATEGORY_LANES.find((l) => l.slug === slug);
+  return lane ? lane.title : GARMENT_LABELS[g];
+};
+
+export type StaffEditResult =
+  | { type: 'move'; garment: Garment }
+  | { type: 'moveLane'; lane: ForcedLane; subtype?: LayeringSubtype }
+  | { type: 'delete' };
 
 export function StaffEditControl({
   id,
@@ -38,6 +62,23 @@ export function StaffEditControl({
     }
   }
 
+  async function moveLane(lane: ForcedLane, subtype?: LayeringSubtype) {
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/staff/live-edit/move-lane', {
+        method: 'POST',
+        body: JSON.stringify({ id, lane, subtype }),
+      });
+      if (!res.ok) throw new Error(`${res.status}`);
+      onChanged({ type: 'moveLane', lane, subtype });
+    } catch {
+      setError('Move failed — try again.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function del() {
     setBusy(true);
     setError(null);
@@ -60,7 +101,7 @@ export function StaffEditControl({
       <Menu.Trigger
         disabled={busy}
         aria-label="Edit this product (staff)"
-        className="absolute top-2 left-2 z-30 w-8 h-8 rounded-full flex items-center justify-center"
+        className="absolute bottom-2 left-2 z-30 w-8 h-8 rounded-full flex items-center justify-center"
         style={{ background: 'rgba(255,255,255,0.92)', color: 'var(--aubergine)', lineHeight: 1 }}
       >
         <PencilSimple size={16} weight="bold" />
@@ -85,10 +126,41 @@ export function StaffEditControl({
                     <Menu.RadioGroup value={garment} onValueChange={(v) => move(v as Garment)}>
                       {MOVABLE.map((g) => (
                         <Menu.RadioItem key={g} value={g} closeOnClick className="menu-row" data-active={garment === g}>
-                          {GARMENT_LABELS[g]}
+                          {garmentMoveLabel(g)}
                         </Menu.RadioItem>
                       ))}
                     </Menu.RadioGroup>
+                  </Menu.Popup>
+                </Menu.Positioner>
+              </Menu.Portal>
+            </Menu.SubmenuRoot>
+            {/* The two specialty lanes garment can't reach — isActivewear/
+                isLayering classify from title text, not `garment`, so they
+                need the dedicated forcedLane override (lib/specialty.ts). */}
+            <Menu.Item onClick={() => moveLane('modest-activewear')} closeOnClick className="menu-row">
+              Move to {laneLabel('modest-activewear')}
+            </Menu.Item>
+            <Menu.SubmenuRoot>
+              <Menu.SubmenuTrigger className="menu-row flex items-center justify-between">
+                {laneLabel('layering-basics')}
+                <CaretRight size={12} weight="bold" />
+              </Menu.SubmenuTrigger>
+              <Menu.Portal>
+                <Menu.Positioner sideOffset={4} align="start" className="z-50">
+                  <Menu.Popup
+                    className="rounded-xl border min-w-[190px] p-2"
+                    style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
+                  >
+                    {LAYERING_SUBTYPES.map((s) => (
+                      <Menu.Item
+                        key={s}
+                        onClick={() => moveLane('layering-basics', s)}
+                        closeOnClick
+                        className="menu-row"
+                      >
+                        {LAYERING_SUBTYPE_LABELS[s]}
+                      </Menu.Item>
+                    ))}
                   </Menu.Popup>
                 </Menu.Positioner>
               </Menu.Portal>

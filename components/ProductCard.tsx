@@ -6,8 +6,8 @@ import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { useIsStaff } from './StaffSessionProvider';
-import { StaffEditControl, type StaffEditResult } from './StaffEditControl';
-import { GARMENT_LABELS } from '@/lib/tag';
+import { StaffEditControl, type StaffEditResult, laneLabel, garmentMoveLabel } from './StaffEditControl';
+import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
 
 export function ProductCard({ p }: { p: CardProduct }) {
   const { open, isFav, toggleFav } = useQuickView();
@@ -64,22 +64,23 @@ export function ProductCard({ p }: { p: CardProduct }) {
           decoding="async"
         />
         {/* Staff-only edit control (docs/log/2026-08-12-inline-staff-editing.md).
-            Rendered only for a signed-in staff session, and only until this
-            card has been acted on this page load — no double-submits. */}
-        {isStaff && !staffState && (
+            Rendered only for a signed-in staff session, and stays live after
+            an action — moving or deleting must not hide the control, since
+            a mistaken action needs to be immediately correctable without a
+            reload. Bottom-left, clear of quick-view/favourite up top. */}
+        {isStaff && (
           <StaffEditControl id={p.id} garment={p.garment} onChanged={setStaffState} />
         )}
         {/* Quick view — the card's former primary action, demoted to a secondary
             affordance now that the card itself goes straight to the brand.
             Still opens the same modal, which still has its own "Shop at
-            {brand}" outbound link for anyone who previews first. Shifts right
-            when the staff edit pencil is present so the two never overlap. */}
+            {brand}" outbound link for anyone who previews first. */}
         <button
           type="button"
           onClick={() => open(p)}
           aria-label={`Quick view: ${p.title} by ${p.brandName}`}
-          className="absolute top-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
-          style={{ left: isStaff ? 40 : 8, background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
+          className="absolute top-2 left-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
+          style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
         >
           <Eye size={20} weight="regular" />
         </button>
@@ -102,7 +103,13 @@ export function ProductCard({ p }: { p: CardProduct }) {
       <div className="price mt-1">{price(p.price, p.currency).text}</div>
       {staffState?.type === 'move' && (
         <div className="text-xs mt-1" style={{ color: 'var(--muted)' }}>
-          Moved to {GARMENT_LABELS[staffState.garment]}
+          Moved to {garmentMoveLabel(staffState.garment)}
+        </div>
+      )}
+      {staffState?.type === 'moveLane' && (
+        <div className="text-xs mt-1" style={{ color: 'var(--muted)' }}>
+          Moved to {laneLabel(staffState.lane)}
+          {staffState.subtype && ` — ${LAYERING_SUBTYPE_LABELS[staffState.subtype]}`}
         </div>
       )}
       {staffState?.type === 'delete' && (

@@ -3,6 +3,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 vi.mock('@/lib/staffSession', () => ({ requireStaffSession: vi.fn() }));
 const { setLiveGarmentOverride } = vi.hoisted(() => ({ setLiveGarmentOverride: vi.fn() }));
 vi.mock('@/lib/liveGarmentOverrides', () => ({ setLiveGarmentOverride }));
+const { setLiveCut } = vi.hoisted(() => ({ setLiveCut: vi.fn() }));
+vi.mock('@/lib/liveCuts', () => ({ setLiveCut }));
 
 import { NextResponse, type NextRequest } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
@@ -42,10 +44,11 @@ describe('POST /api/staff/live-edit/move', () => {
     expect(res.status).toBe(400);
   });
 
-  it('sets the override and returns ok on a valid body', async () => {
+  it('sets the override, un-hides the product, and returns ok on a valid body', async () => {
     vi.mocked(requireStaffSession).mockResolvedValue(null);
     const res = await POST(req({ id: 'x:1', garment: 'skirt' }));
     expect(res.status).toBe(200);
     expect(setLiveGarmentOverride).toHaveBeenCalledWith('x:1', 'skirt');
+    expect(setLiveCut).toHaveBeenCalledWith('x:1', 'keep');
   });
 });

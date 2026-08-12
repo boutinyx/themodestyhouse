@@ -22,6 +22,14 @@ const decisions = existsSync(U('decisions.json')) ? JSON.parse(readFileSync(U('d
 const garmentOverrides = existsSync(U('garment-overrides.json'))
   ? JSON.parse(readFileSync(U('garment-overrides.json'), 'utf8'))
   : {};
+// Manual specialty-lane corrections (Modest Activewear, Layering Basics —
+// the two lanes garmentOverrides above can't reach, since lib/specialty.ts
+// classifies them from title text, not `garment`). Same
+// never-written-by-automation guarantee as garmentOverrides. See
+// docs/log/2026-08-12-lane-overrides.md.
+const laneOverrides = existsSync(U('lane-overrides.json'))
+  ? JSON.parse(readFileSync(U('lane-overrides.json'), 'utf8'))
+  : {};
 // Ids reviewed via the /admin/photo-review UI and confirmed fine — stops a
 // dismissed item from being pushed back into review on every publish.
 // Never written by any automated path. An item found to actually be broken
@@ -159,6 +167,11 @@ const kept = raw.filter((p) => {
   // point in the pipeline — interleaveByBrand/demoteGarment/publishTitle all
   // run AFTER this filter, so they see the resolved value.
   p.garment = decision.garment;
+  const laneOverride = laneOverrides[p.id];
+  if (laneOverride) {
+    p.forcedLane = laneOverride.lane;
+    if (laneOverride.subtype) p.forcedLayeringSubtype = laneOverride.subtype;
+  }
   // Informational only — does NOT hold the item back. A merchant flagging
   // their own listing ("retakephotos" etc.) is usually still a fine photo
   // (measured: 9/10 for one brand's tag), not proof it's broken. This is

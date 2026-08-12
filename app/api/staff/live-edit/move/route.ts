@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
 import { setLiveGarmentOverride } from '@/lib/liveGarmentOverrides';
+import { setLiveCut } from '@/lib/liveCuts';
 import { GARMENT_VALUES } from '@/lib/tag';
 import type { Garment } from '@/lib/types';
 
@@ -27,5 +28,9 @@ export async function POST(req: NextRequest) {
   }
 
   setLiveGarmentOverride(id, garment as Garment);
+  // A move is an unambiguous "this belongs, visibly, right here" — clear
+  // any prior delete so a corrected item never stays hidden after being
+  // recategorised. See docs/log/2026-08-12-inline-staff-editing.md.
+  setLiveCut(id, 'keep');
   return NextResponse.json({ ok: true });
 }
