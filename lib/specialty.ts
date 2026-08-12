@@ -93,6 +93,52 @@ export function isLayering(p: Product): boolean {
   return p.brandSlug === 'ria-miranda' && RIA_MIRANDA_LAYERING_RE.test(p.title);
 }
 
+/**
+ * Sub-categories WITHIN Layering Basics, for the "Type" filter on that lane
+ * (components/FilterableGrid.tsx). Tina's call 2026-08-12, after reviewing
+ * the natural split of the 146 published items at the time: 5 groups —
+ * order here is the canonical filter-dropdown order, independent of
+ * catalogue interleaving. Checked once via layeringSubtype's own test
+ * (lib/specialty.test.ts) that every currently-published isLayering() item
+ * gets a non-null subtype — a silent `null` would mean an item vanishes
+ * from every Type filter option while still being on the page, unfindable
+ * by type.
+ *
+ * Each regex reuses the exact vocabulary LAYERING_RE/UNDER_DRESS_RE were
+ * already built from — this function only decides WHICH group a match
+ * belongs to, never whether something is layering at all (that's still
+ * isLayering()'s job, called first).
+ */
+export type LayeringSubtype =
+  | 'neck-cover'
+  | 'sleeve-extender'
+  | 'cropped-body-shirt'
+  | 'under-dress'
+  | 'base-layer-top';
+
+export const LAYERING_SUBTYPE_LABELS: Record<LayeringSubtype, string> = {
+  'neck-cover': 'Neck Covers & Dickeys',
+  'sleeve-extender': 'Sleeve Extenders',
+  'base-layer-top': 'Base-Layer Tops',
+  'cropped-body-shirt': 'Cropped Body Shirts',
+  'under-dress': 'Under-Dresses',
+};
+
+const NECK_COVER_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bcollar (?:cover|insert)\b/i;
+const SLEEVE_EXTENDER_RE = /\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bshirt extenders?\b/i;
+const CROPPED_BODY_SHIRT_RE = /\bcropped .{0,20}body shirt\b/i;
+
+/** Returns null for anything that isn't a layering piece at all — always
+ *  call after (or alongside) isLayering(), never as a substitute for it. */
+export function layeringSubtype(p: Product): LayeringSubtype | null {
+  if (!isLayering(p)) return null;
+  if (NECK_COVER_RE.test(p.title)) return 'neck-cover';
+  if (SLEEVE_EXTENDER_RE.test(p.title)) return 'sleeve-extender';
+  if (CROPPED_BODY_SHIRT_RE.test(p.title)) return 'cropped-body-shirt';
+  if (UNDER_DRESS_RE.test(p.title)) return 'under-dress';
+  return 'base-layer-top'; // base layer / body top / core top / singlet / ria-miranda's Comfy line / etc.
+}
+
 export function isActivewear(p: Product): boolean {
   if (isSwim(p)) return false; // swimwear belongs to the swim lane, not activewear
   if (isLayering(p)) return false; // e.g. ria-miranda's ri-flex line carries a noisy activity:"gym" tag

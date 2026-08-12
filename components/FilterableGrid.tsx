@@ -2,6 +2,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import type { CompactCatalogue } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
+import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
@@ -12,6 +13,7 @@ const STEP = 24;
 export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue }) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   const [occasion, setOccasion] = useState('all');
+  const [type, setType] = useState('all'); // layering subtype, or 'all'
   const [q, setQ] = useState('');
   const [visible, setVisible] = useState(STEP);
   const [sort, setSort] = useState<SortKey>('featured');
@@ -25,6 +27,14 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
     () => [...cat.occasions].sort().map((o) => ({ value: o, label: o.charAt(0).toUpperCase() + o.slice(1) })),
     [cat]
   );
+  // Only ever non-empty on /layering-basics (the only lane with any
+  // layeringSubtype != null) — see the same `.length > 0` gating pattern
+  // already used for Occasion below. Kept in cat.layeringSubtypes' own
+  // canonical order (lib/specialty.ts), not resorted here.
+  const types = useMemo(
+    () => cat.layeringSubtypes.map((t) => ({ value: t, label: LAYERING_SUBTYPE_LABELS[t] })),
+    [cat]
+  );
 
   // Same match rule as DirectoryBrowser — title or brand, case-insensitive — so
   // searching behaves identically wherever the index console appears.
@@ -35,6 +45,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
   const brandIdx = brand === 'all' ? -1 : cat.brands.findIndex((b) => b.slug === brand);
   const occasionIdx = occasion === 'all' ? -1 : cat.occasions.indexOf(occasion);
   const occasionBit = occasionIdx === -1 ? 0 : 1 << occasionIdx;
+  const typeIdx = type === 'all' ? -1 : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
@@ -42,6 +53,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
     for (let i = 0; i < n; i++) {
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
       if (occasionBit !== 0 && (cat.rows.occasionMask[i] & occasionBit) === 0) continue;
+      if (typeIdx !== -1 && cat.rows.layeringSubtypeIdx[i] !== typeIdx) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -50,7 +62,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, occasionBit, query]);
+  }, [cat, brandIdx, occasionBit, typeIdx, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -64,7 +76,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [brand, occasion, q]);
+  }, [brand, occasion, type, q]);
 
   const shownRows = sortedRows.slice(0, visible);
   const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
@@ -72,8 +84,15 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
   return (
     <div>
       {/* The same index console as /directory — one instrument across the site.
-          No Category dropdown: this page already IS one category. */}
+          No Category dropdown: this page already IS one category. Layering
+          Basics is the one exception — it's one category by garment but
+          spans five genuinely different kinds of piece (neck covers vs.
+          under-dresses, say), so it alone gets a "Type" dropdown, gated on
+          `types.length > 0` so no other lane ever renders it. */}
       <IndexPanel q={q} onQ={setQ} className="mb-8">
+        {types.length > 0 && (
+          <FilterDropdown label="Type" value={type} options={types} onSelect={setType} />
+        )}
         {occasions.length > 0 && (
           <FilterDropdown label="Occasion" value={occasion} options={occasions} onSelect={setOccasion} />
         )}

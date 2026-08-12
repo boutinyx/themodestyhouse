@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty } from './specialty';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -144,6 +146,37 @@ describe('isLayering', () => {
     expect(isLayering(p('The Shamsa Abaya & Underdress | Black', 'abaya', { brandSlug: 'kamin' }))).toBe(false); // 520 AED complete set
     expect(isLayering(p('Luxury Crystal Embellished Cape Abaya Set with Inner Dress (MA390)', 'abaya'))).toBe(false); // mariams
     expect(isLayering(p('2pcs Set Kimono + Underdress Linneneffect', 'abaya', { brandSlug: 'mukistore' }))).toBe(false);
+  });
+});
+
+// The "Type" filter on /layering-basics (Tina's call 2026-08-12, after
+// reviewing the natural split of the 146 items published at the time).
+describe('layeringSubtype', () => {
+  it('returns null for anything that is not a layering piece at all', () => {
+    expect(layeringSubtype(p('Everyday Relaxed Top - Walnut'))).toBe(null);
+    expect(layeringSubtype(base)).toBe(null);
+  });
+
+  it('sorts each confirmed layering piece into exactly the right group', () => {
+    expect(layeringSubtype(p('Black Neck Cover', 'dress'))).toBe('neck-cover');
+    expect(layeringSubtype(p('Fleurel Shirt Extender'))).toBe('sleeve-extender');
+    expect(layeringSubtype(p('Khaki One Piece Sleeves'))).toBe('sleeve-extender');
+    expect(layeringSubtype(p('Royal Blue Cropped Long Sleeve Body Shirt'))).toBe('cropped-body-shirt');
+    expect(layeringSubtype(p('The Ruqa Underdress | Black', 'dress'))).toBe('under-dress');
+    expect(layeringSubtype(p('Core Top - Taupe'))).toBe('base-layer-top');
+    expect(layeringSubtype(p('Second Skin Top Ebony'))).toBe('base-layer-top');
+    expect(layeringSubtype(p('Comfy Sleeveless Top', 'top', { brandSlug: 'ria-miranda' }))).toBe('base-layer-top');
+  });
+
+  it('every currently-published layering item gets a real subtype, never a silent null', () => {
+    // A null here would mean an item is on /layering-basics but invisible to
+    // every option in its own "Type" filter — worse than not having the
+    // filter at all, since it would look like the item simply isn't there.
+    const raw = readFileSync(path.join(process.cwd(), 'data', 'products.json'), 'utf8');
+    const products = JSON.parse(raw) as Product[];
+    const layeringItems = products.filter((prod) => isLayering(prod));
+    const missing = layeringItems.filter((prod) => layeringSubtype(prod) === null);
+    expect(missing.map((m) => m.title)).toEqual([]);
   });
 });
 

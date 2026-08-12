@@ -121,6 +121,38 @@ describe('encodeCatalogue / decodeCard', () => {
   });
 });
 
+describe('layering subtype encoding', () => {
+  const NECK_COVER: Product = { ...PRODUCT, id: 'aab:1', title: 'Black Neck Cover', garment: 'dress' };
+  const UNDER_DRESS: Product = { ...PRODUCT, id: 'aab:2', title: 'Long Sleeve Satin Inner Dress' };
+
+  it('gives a non-layering product the -1 sentinel and an empty dictionary', () => {
+    const cat = encodeCatalogue([PRODUCT], [BRAND]);
+    expect(cat.layeringSubtypes).toEqual([]);
+    expect(cat.rows.layeringSubtypeIdx[0]).toBe(-1);
+  });
+
+  it('assigns a real index for a layering product, and only lists subtypes actually present', () => {
+    const cat = encodeCatalogue([NECK_COVER], [BRAND]);
+    expect(cat.layeringSubtypes).toEqual(['neck-cover']);
+    expect(cat.rows.layeringSubtypeIdx[0]).toBe(0);
+  });
+
+  it('orders present subtypes canonically, not by first appearance in the input', () => {
+    // UNDER_DRESS ('under-dress') is listed BEFORE NECK_COVER ('neck-cover')
+    // in the input array, but neck-cover sorts first in LAYERING_SUBTYPE_LABELS.
+    const cat = encodeCatalogue([UNDER_DRESS, NECK_COVER], [BRAND]);
+    expect(cat.layeringSubtypes).toEqual(['neck-cover', 'under-dress']);
+    expect(cat.rows.layeringSubtypeIdx[0]).toBe(cat.layeringSubtypes.indexOf('under-dress'));
+    expect(cat.rows.layeringSubtypeIdx[1]).toBe(cat.layeringSubtypes.indexOf('neck-cover'));
+  });
+
+  it('a mixed catalogue keeps the -1 sentinel for non-layering rows alongside real indices', () => {
+    const cat = encodeCatalogue([PRODUCT, NECK_COVER], [BRAND]);
+    expect(cat.rows.layeringSubtypeIdx[0]).toBe(-1);
+    expect(cat.rows.layeringSubtypeIdx[1]).toBe(0);
+  });
+});
+
 describe('firstSeenDay encoding', () => {
   it('encodes a real firstSeen date as days since the epoch', () => {
     const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: '2026-08-05' }], [BRAND]);
