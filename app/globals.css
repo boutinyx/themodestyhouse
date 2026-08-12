@@ -459,6 +459,28 @@ html[data-input-modality="mouse"] summary:focus-visible {
   outline: none;
 }
 
+/* .chip and .btn-pill define their own shape (var(--radius-button), a true
+ * 999px pill) that the generic 4px fallback two rules up clobbers on focus,
+ * visually squaring off the corners into a rectangle. Reported 2026-08-12
+ * on the Layering Basics Type filter: after picking an option, Base UI
+ * returns DOM focus to the trigger with a raw element.focus() call — exactly
+ * the case the mouse-modality override right above exists for — and the
+ * browser genuinely treats it as :focus-visible. Confirmed live via a real
+ * trusted click, not a synthetic one:
+ * `document.activeElement.matches(':focus-visible')` read true and
+ * `getComputedStyle(...).borderRadius` read "4px" before this rule existed.
+ * The override above only ever cleared the outline, never the radius, so
+ * the pill stayed square for mouse AND keyboard focus alike.
+ * `.chip:focus-visible` has higher specificity than the bare
+ * `button:focus-visible` several rules up regardless of source order (two
+ * class-level selectors beat one class-level + one type-level), so this
+ * restores the pill shape for both input modalities without touching the
+ * outline logic at all. */
+.chip:focus-visible,
+.btn-pill:focus-visible {
+  border-radius: var(--radius-button);
+}
+
 /* Menu rows carry NO box at all — no ring, no fill.
    Base UI moves DOM focus onto a row as you hover it, which is how it drives
    keyboard navigation. That meant the ordinary focus ring above fired on plain
