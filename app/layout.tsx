@@ -5,6 +5,8 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { QuickViewProvider } from '@/components/QuickView';
 import { CurrencyProvider } from '@/components/CurrencyProvider';
+import { StaffSessionProvider } from '@/components/StaffSessionProvider';
+import { hasStaffSession } from '@/lib/staffSession';
 import { OutboundTracking } from '@/components/OutboundTracking';
 import { InputModality } from '@/components/InputModality';
 import { JsonLd } from '@/components/JsonLd';
@@ -56,8 +58,13 @@ const SPECULATION_RULES = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const skim = process.env.NEXT_PUBLIC_SKIMLINKS_ID;
+  // Reads the staff session cookie on every request, so the root layout —
+  // and therefore every page — opts out of static prerendering. Confirmed
+  // with Tina (docs/superpowers/plans/2026-08-12-inline-staff-editing.md,
+  // Task 4): the simplest correct approach, accepted at this site's scale.
+  const isStaff = await hasStaffSession();
   return (
     <html lang="en-GB" className={`${display.variable} ${label.variable} ${ui.variable}`}>
       <head>
@@ -68,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <JsonLd data={jsonLdGraph(organizationSchema(), websiteSchema())} />
+        <StaffSessionProvider isStaff={isStaff}>
         <CurrencyProvider>
         <QuickViewProvider>
           <Header />
@@ -75,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </QuickViewProvider>
         </CurrencyProvider>
+        </StaffSessionProvider>
         {skim && (
           <Script src={`https://s.skimresources.com/js/${skim}.skimlinks.js`} strategy="afterInteractive" />
         )}
