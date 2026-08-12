@@ -124,7 +124,13 @@
     "chic-modesty:10474535223634",
     "chic-modesty:10474543939922",
     "chic-modesty:10322908512594",
-    "chic-modesty:10323097092434"
+    "chic-modesty:10323097092434",
+
+    "mariams:9070477672664",
+    "mariams:9250618081496",
+    "mariams:9025093009624",
+    "mariams:8530085019864",
+    "mariams:8526370341080"
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],
