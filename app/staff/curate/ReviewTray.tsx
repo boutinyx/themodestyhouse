@@ -1,10 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Copy, Check } from '@phosphor-icons/react';
+import { laneLabel } from '@/components/StaffEditControl';
+import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
+import type { ForcedLane, LayeringSubtype } from '@/lib/types';
 
 type ListResponse = {
   deletes: { id: string; title: string; url: string; image: string }[];
   moves: { id: string; title: string; url: string; image: string; from: string; to: string }[];
+  laneMoves: { id: string; title: string; url: string; image: string; to: ForcedLane; subtype?: LayeringSubtype }[];
 };
 
 export function ReviewTray() {
@@ -16,7 +20,7 @@ export function ReviewTray() {
     fetch('/api/staff/live-edit/list')
       .then((r) => r.json())
       .then(setData)
-      .catch(() => setData({ deletes: [], moves: [] }));
+      .catch(() => setData({ deletes: [], moves: [], laneMoves: [] }));
   }, []);
 
   async function copy() {
@@ -33,7 +37,7 @@ export function ReviewTray() {
   }
 
   if (!data) return <main className="p-6">Loading…</main>;
-  const total = data.deletes.length + data.moves.length;
+  const total = data.deletes.length + data.moves.length + data.laneMoves.length;
   const text = JSON.stringify(data, null, 2);
 
   return (
@@ -69,6 +73,19 @@ export function ReviewTray() {
             {data.moves.map((m) => (
               <li key={m.id} className="mb-1">
                 {m.title} — {m.from} → {m.to}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {data.laneMoves.length > 0 && (
+        <>
+          <h2 className="eyebrow mb-2">Lane moves ({data.laneMoves.length})</h2>
+          <ul className="mb-6 text-sm">
+            {data.laneMoves.map((m) => (
+              <li key={m.id} className="mb-1">
+                {m.title} — {laneLabel(m.to)}
+                {m.subtype && ` — ${LAYERING_SUBTYPE_LABELS[m.subtype]}`}
               </li>
             ))}
           </ul>
