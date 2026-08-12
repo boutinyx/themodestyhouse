@@ -64,6 +64,13 @@ describe('isLayering', () => {
     expect(isLayering(p('Comfy Sleeveless Top', 'top', { brandSlug: 'ria-miranda' }))).toBe(true); // ri-flex line
     expect(isLayering(p('Comfy Long Sleeve Top', 'top', { brandSlug: 'ria-miranda' }))).toBe(true);
     expect(isLayering(p('Comfy Short Sleeve Top', 'top', { brandSlug: 'ria-miranda' }))).toBe(true);
+    expect(isLayering(p('Royal Blue Cropped Long Sleeve Body Shirt'))).toBe(true); // ilovemodesty, midriff-baring crop top meant to be worn under something
+    expect(isLayering(p('Black Cropped Long Sleeve Body Shirt'))).toBe(true); // ilovemodesty
+  });
+
+  it('does not pull ilovemodesty\'s UNCROPPED "Full Body Shirt" line — a real, complete standalone top', () => {
+    expect(isLayering(p('Black High Neck Long Sleeve Full Body Shirt'))).toBe(false);
+    expect(isLayering(p('Dark Brown Long Sleeve Full Body Shirt'))).toBe(false);
   });
 
   it('scopes the ria-miranda "Comfy ... Top" match to that brand only — the phrase is generic', () => {

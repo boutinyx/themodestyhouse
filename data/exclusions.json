@@ -44,7 +44,8 @@
     "\\b(uomo|uomini)\\b",
     "\\b(herre|herrer|mænd)\\b",
     "\\berkek\\b",
-    "\\b(pria|laki-laki)\\b"
+    "\\b(pria|laki-laki)\\b",
+    "\\bdutch angels\\b"
   ],
   "urlPatterns": [
     "[/=_-]mens?(?:[/=_-]|$)",
@@ -136,7 +137,15 @@
     "nasiba:8673040892213",
     "nasiba:8673089126709",
 
-    "lameera-moda:5409160757416"
+    "lameera-moda:5409160757416",
+
+    "kamin:9333254586585",
+    "mariams:8820044660952",
+    "mariams:8820018184408",
+    "mariams:8498104205528",
+    "mariams:8496628170968",
+    "mukistore:9491417727241",
+    "mukistore:9491201491209"
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],

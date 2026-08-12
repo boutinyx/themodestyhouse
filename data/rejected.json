@@ -24798,6 +24798,22 @@
     "evidence": "Tote Bag"
   },
   {
+    "id": "mariams:8820044660952",
+    "brandSlug": "mariams",
+    "title": "Ramadan Keffiyeh Customizable Hoodie t-shirt for Adults – High-Quality, Hooded Design (MTC002)",
+    "url": "https://mariam-col.com/products/customized-hooded-sweatshirt-mtc002",
+    "garmentWas": "top",
+    "reason": "id-pin"
+  },
+  {
+    "id": "mariams:8820018184408",
+    "brandSlug": "mariams",
+    "title": "Ramadan Keffiyeh Customizable Sweatshirt for Adults – High-Quality, No-Hood Design (MTC003)",
+    "url": "https://mariam-col.com/products/ramadan-keffiyeh-customizable-sweatshirt",
+    "garmentWas": "top",
+    "reason": "id-pin"
+  },
+  {
     "id": "mariams:8759916560600",
     "brandSlug": "mariams",
     "title": "Haute Eco-Friendly New Prayer Mat and Tasbeeh Set(MR068)",
@@ -25181,6 +25197,14 @@
     "title": "MAC185 Stylish Rhinestone Tassel Headband",
     "url": "https://mariam-col.com/products/mac185-stylish-rhinestone-tassel-headband",
     "garmentWas": "hijab",
+    "reason": "id-pin"
+  },
+  {
+    "id": "mariams:8498104205528",
+    "brandSlug": "mariams",
+    "title": "MS034 Free Palestine Printed Casual T-shirt",
+    "url": "https://mariam-col.com/products/ms034-free-palestine-printed-casual-t-shirt",
+    "garmentWas": "top",
     "reason": "id-pin"
   },
   {
@@ -25956,6 +25980,78 @@
     "reason": "id-pin"
   },
   {
+    "id": "mukistore:9491417727241",
+    "brandSlug": "mukistore",
+    "title": "3 Ties Basic Cardigan 6072",
+    "url": "https://mukistore.com/products/3-ties-basic-cardigan",
+    "garmentWas": "top",
+    "reason": "id-pin"
+  },
+  {
+    "id": "mukistore:9491201491209",
+    "brandSlug": "mukistore",
+    "title": "Gilet Musthave Pockets",
+    "url": "https://mukistore.com/products/gilet-musthave-pockets",
+    "garmentWas": "top",
+    "reason": "id-pin"
+  },
+  {
+    "id": "mukistore:9491107512585",
+    "brandSlug": "mukistore",
+    "title": "Dutch Angels Wings Embroidery Cargo Tracksuit",
+    "url": "https://mukistore.com/products/dutch-angels-wings-embroidery-cargo-tracksuit",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "mukistore:9491107250441",
+    "brandSlug": "mukistore",
+    "title": "Dutch Angels Broken Rose Embroidery Tracksuit",
+    "url": "https://mukistore.com/products/dutch-angels-broken-rose-embroidery-tracksuit",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "mukistore:9491079954697",
+    "brandSlug": "mukistore",
+    "title": "Dutch Angels Fully DA Logo White T-shirt Slim Fit",
+    "url": "https://mukistore.com/products/dutch-angels-fully-da-logo-white-t-shirt-slim-fit",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "mukistore:9491078283529",
+    "brandSlug": "mukistore",
+    "title": "Dutch Angels Broken Teddy White Oversized T-shirt",
+    "url": "https://mukistore.com/products/dutch-angels-broken-teddy-white-oversized-t-shirt",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "mukistore:9491075334409",
+    "brandSlug": "mukistore",
+    "title": "Dutch Angels Dutchogram Black T-shirt Slim Fit",
+    "url": "https://mukistore.com/products/dutch-angels-dutchogram-black-t-shirt-slim-fit",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "mukistore:9491074285833",
+    "brandSlug": "mukistore",
+    "title": "Dutch Angels Dutchogram White T-shirt Slim Fit",
+    "url": "https://mukistore.com/products/dutch-angels-dutchogram-white-t-shirt-slim-fit",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "mukistore:9491073564937",
+    "brandSlug": "mukistore",
+    "title": "Dutch Angels Dutchogram Navy T-shirt Slim Fit",
+    "url": "https://mukistore.com/products/dutch-angels-dutchogram-navy-t-shirt-slim-fit",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
     "id": "hijab-boutique:8006645285168",
     "brandSlug": "hijab-boutique",
     "title": "Hijab hangers",
@@ -26616,6 +26712,14 @@
     "reason": "non-apparel:bags",
     "tier": "B",
     "evidence": "Bag"
+  },
+  {
+    "id": "kamin:9333254586585",
+    "brandSlug": "kamin",
+    "title": "DOT | LID",
+    "url": "https://kamin.ae/products/lid-colors",
+    "garmentWas": "top",
+    "reason": "id-pin"
   },
   {
     "id": "kamin:9307987214553",
@@ -28574,5 +28678,13 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Scarf Ring"
+  },
+  {
+    "id": "mariams:8496628170968",
+    "brandSlug": "mariams",
+    "title": "Free Palestine Hoodie | Palestine Lives Matter Hoodie (MT016)",
+    "url": "https://mariam-col.com/products/free-palestine-hoodie-palestine-lives-matter-hoodie",
+    "garmentWas": "top",
+    "reason": "id-pin"
   }
 ]

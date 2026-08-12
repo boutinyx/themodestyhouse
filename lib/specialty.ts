@@ -37,13 +37,20 @@ const ACTIVE_GARMENTS = new Set(['trousers', 'top', 'set']);
 // "Luxe Basic Top" ($8, photographed peeking out from under a hijab cap,
 // the classic underlayer merchandising shot) cleared the bar. `\bone.?piece
 // sleeves?\b` requires "sleeves" right after "one piece" so it never catches
-// a "one piece swimsuit". Deliberately excludes hijab/underscarf/bonnet
-// titles: those stay in Hijabs per Tina's call, even when they also happen
-// to cover the neck. Deliberately excludes "cover-up" entirely — checked,
-// and it's a real name for cardigans, full abayas and swim cover-ups (all
-// complete, standalone garments already in the right lane), not a signal
-// for this category the way "neck cover" or "dickey" is.
-const LAYERING_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bbase layer\b(?!\s+(?:abaya\s+)?dress)|\bshoulder.?cover\b|\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bshirt extenders?\b|\bcollar (?:cover|insert)\b|\binner top\b|\bbody top\b|\bsecond skin top\b|\bcore top\b|\bluxe basic top\b|\bunder.?shirts?\b|\bsinglet\b/i;
+// a "one piece swimsuit". `\bcropped .{0,20}body shirt\b` is scoped to the
+// CROPPED variant only — ilovemodesty also sells an uncropped, standard-
+// length "Full Body Shirt" line (checked via photo: a plain full-length
+// high-neck top, a real standalone garment) that Tina did not flag and this
+// must not catch. The cropped one photographs as a midriff-baring top, which
+// only makes sense as something worn UNDER a high-waisted skirt/trouser —
+// exactly this category, not a contradiction of "modest". Deliberately
+// excludes hijab/underscarf/bonnet titles: those stay in Hijabs per Tina's
+// call, even when they also happen to cover the neck. Deliberately excludes
+// "cover-up" entirely — checked, and it's a real name for cardigans, full
+// abayas and swim cover-ups (all complete, standalone garments already in
+// the right lane), not a signal for this category the way "neck cover" or
+// "dickey" is.
+const LAYERING_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bbase layer\b(?!\s+(?:abaya\s+)?dress)|\bshoulder.?cover\b|\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bshirt extenders?\b|\bcollar (?:cover|insert)\b|\binner top\b|\bbody top\b|\bcropped .{0,20}body shirt\b|\bsecond skin top\b|\bcore top\b|\bluxe basic top\b|\bunder.?shirts?\b|\bsinglet\b/i;
 const LAYERING_HIJAB_RE = /\bhijab\b|\bunderscarf\b|\bbonnet\b/i;
 
 // ria-miranda's "ri-flex" line (their own base-layer sub-brand — logo reads
