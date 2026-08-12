@@ -1,12 +1,12 @@
 {
   "date": "2026-08-12",
   "totals": {
-    "added": 67,
-    "updated": 31200,
-    "delisted": 9,
-    "filtered": 65,
-    "returned": 0,
-    "incomplete": 5
+    "added": 17,
+    "updated": 31150,
+    "delisted": 77,
+    "filtered": 67,
+    "returned": 1,
+    "incomplete": 3
   },
   "brands": [
     {
@@ -23,18 +23,8 @@
       "brandSlug": "vela",
       "complete": true,
       "fetched": 646,
-      "added": [
-        "Al-Sudan Hoodie",
-        "Free Palestine Black Rhinestone Hoodie",
-        "Asymmetric Hoodie",
-        "Free Palestine Pink Rhinestone Hoodie",
-        "Free Palestine Green Rhinestone Hoodie",
-        "Qawiyah Hoodie",
-        "Moon Phases Hoodie",
-        "Baladi Breeze Zip Up",
-        "Vela Print Crewneck"
-      ],
-      "updated": 637,
+      "added": [],
+      "updated": 646,
       "delisted": 0,
       "filtered": [
         {
@@ -47,8 +37,10 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1132,
-      "added": [],
+      "fetched": 1133,
+      "added": [
+        "Bamboo Jersey Mini Full Coverage Undercap - Black"
+      ],
       "updated": 1132,
       "delisted": 0,
       "filtered": [],
@@ -68,10 +60,8 @@
       "brandSlug": "zahraa",
       "complete": true,
       "fetched": 530,
-      "added": [
-        "Deniz Knit Cape - Almond"
-      ],
-      "updated": 529,
+      "added": [],
+      "updated": 530,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -165,10 +155,8 @@
       "brandSlug": "urban-modesty",
       "complete": true,
       "fetched": 217,
-      "added": [
-        "Criss Cross Long Sleeve Jumpsuit-CLEARANCE"
-      ],
-      "updated": 216,
+      "added": [],
+      "updated": 217,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -196,14 +184,13 @@
     {
       "brandSlug": "mariams",
       "complete": true,
-      "fetched": 1189,
+      "fetched": 1185,
       "added": [
-        "Hooded Balaclava with Shoulder Cape(MAC376)",
-        "Pearl Embellished Bridal Cape(MAC374)",
-        "Free Palestine Hoodie | Palestine Lives Matter Hoodie (MT016)"
+        "Fleece-Lined Winter Balaclava | Full Face Ski Mask with Adjustable Hood(MAC306)",
+        "Modal Ninja Undercap Neck Covered (MH011)"
       ],
-      "updated": 1186,
-      "delisted": 0,
+      "updated": 1183,
+      "delisted": 6,
       "filtered": [
         {
           "title": "Islamic Hollow Pattern Acrylic Tabletop Decor (MAC404)",
@@ -292,10 +279,8 @@
       "brandSlug": "glow-modesty",
       "complete": true,
       "fetched": 164,
-      "added": [
-        "Liona - long sleeves"
-      ],
-      "updated": 163,
+      "added": [],
+      "updated": 164,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -394,10 +379,8 @@
       "brandSlug": "emlavish",
       "complete": true,
       "fetched": 50,
-      "added": [
-        "Relaxed Dual-Zip Hoodie"
-      ],
-      "updated": 49,
+      "added": [],
+      "updated": 50,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -415,8 +398,10 @@
     {
       "brandSlug": "zora",
       "complete": true,
-      "fetched": 169,
-      "added": [],
+      "fetched": 170,
+      "added": [
+        "The Jannah Top in Honey Rose"
+      ],
       "updated": 169,
       "delisted": 0,
       "filtered": [],
@@ -426,13 +411,8 @@
       "brandSlug": "bemu",
       "complete": true,
       "fetched": 103,
-      "added": [
-        "Lace Cape-Beige",
-        "Lace Cape-Black",
-        "Silk Cape- Black",
-        "Silk Cape-Beige"
-      ],
-      "updated": 99,
+      "added": [],
+      "updated": 103,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -451,10 +431,8 @@
       "brandSlug": "les-atelier",
       "complete": true,
       "fetched": 120,
-      "added": [
-        "Sofia Hoodie Light Taupe"
-      ],
-      "updated": 119,
+      "added": [],
+      "updated": 120,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -471,10 +449,10 @@
     },
     {
       "brandSlug": "merrachi",
-      "complete": false,
-      "fetched": 1427,
+      "complete": true,
+      "fetched": 1700,
       "added": [],
-      "updated": 1427,
+      "updated": 1700,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -533,10 +511,8 @@
       "brandSlug": "lafemme",
       "complete": true,
       "fetched": 45,
-      "added": [
-        "Oversized Gilet"
-      ],
-      "updated": 44,
+      "added": [],
+      "updated": 45,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -592,11 +568,11 @@
     },
     {
       "brandSlug": "chi-ka",
-      "complete": true,
-      "fetched": 757,
+      "complete": false,
+      "fetched": 249,
       "added": [],
-      "updated": 757,
-      "delisted": 8,
+      "updated": 249,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -642,21 +618,16 @@
     },
     {
       "brandSlug": "mukistore",
-      "complete": false,
-      "fetched": 1423,
+      "complete": true,
+      "fetched": 1598,
       "added": [
-        "Knitwear Hoodie Cap",
-        "Thick Hoodie Bonjour",
-        "Hoodie Jogging Material Taille Detail",
-        "Jumpsuit Tie Belt BumBag Pocket Details",
-        "Tie Belt Strap Jumpsuit Ankle Knot Detail",
-        "One Shoulder Super Soft Cheesecloth Jumpsuit",
-        "Tie Belt Jumpsuit V Neck Straps",
-        "Bestseller Seam Jumpsuit Cargo Silver Detail",
-        "Straps Lace Jumpsuit Musthave",
-        "Zipper Jumpsuit Tie Belt Half Sleeves"
+        "Jumpsuit Pockets Silver Buttons Tie Belt",
+        "Shiny Ribbed Jumpsuit V Neck Waist Detail",
+        "Hoodie 3D Amour Puffed Sleeves Detail",
+        "Ribbed Jumpsuit Zipper",
+        "Fleece Jumpsuit Zipped"
       ],
-      "updated": 1413,
+      "updated": 1593,
       "delisted": 0,
       "filtered": [
         {
@@ -677,6 +648,22 @@
         },
         {
           "title": "Eau de parfum Gris",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Long Plaid Shackett",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Long Plaid Shacket",
+          "reason": "unclassified"
+        },
+        {
+          "title": "GROTE MAAT Anti ladder fleece panty super hit L/XL & XL/XXL",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Anti ladder fleece panty super hit",
           "reason": "unclassified"
         }
       ],
@@ -704,10 +691,10 @@
     },
     {
       "brandSlug": "abyya",
-      "complete": false,
-      "fetched": 0,
+      "complete": true,
+      "fetched": 22,
       "added": [],
-      "updated": 0,
+      "updated": 22,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -736,10 +723,8 @@
       "brandSlug": "noureen",
       "complete": true,
       "fetched": 226,
-      "added": [
-        "Long Hoodie S26 – Black"
-      ],
-      "updated": 225,
+      "added": [],
+      "updated": 226,
       "delisted": 0,
       "filtered": [
         {
@@ -766,20 +751,11 @@
     {
       "brandSlug": "chic-modesty",
       "complete": true,
-      "fetched": 466,
+      "fetched": 468,
       "added": [],
-      "updated": 466,
+      "updated": 468,
       "delisted": 0,
-      "filtered": [
-        {
-          "title": "Pull maille dark brown",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Pull maille beige",
-          "reason": "unclassified"
-        }
-      ],
+      "filtered": [],
       "returned": 0
     },
     {
@@ -886,13 +862,8 @@
       "brandSlug": "nihan",
       "complete": false,
       "fetched": 3946,
-      "added": [
-        "Payet Detaylı Şık Tulum - Siyah",
-        "Yarasa Kollu Kuşaklı Abiye - Siyah",
-        "V Yaka Nervür Detaylı Tulum - Siyah",
-        "Hakim Yaka Kolları Piliseli Taşlı Krep Tulum - Siyah"
-      ],
-      "updated": 3942,
+      "added": [],
+      "updated": 3946,
       "delisted": 0,
       "filtered": [
         {
@@ -978,10 +949,10 @@
     {
       "brandSlug": "touche-prive",
       "complete": true,
-      "fetched": 1031,
+      "fetched": 1020,
       "added": [],
-      "updated": 1031,
-      "delisted": 1,
+      "updated": 1020,
+      "delisted": 11,
       "filtered": [],
       "returned": 0
     },
@@ -1009,10 +980,8 @@
       "brandSlug": "aneesa",
       "complete": true,
       "fetched": 3,
-      "added": [
-        "Jumpsuit in Raso"
-      ],
-      "updated": 2,
+      "added": [],
+      "updated": 3,
       "delisted": 0,
       "filtered": [
         {
@@ -1095,10 +1064,10 @@
     {
       "brandSlug": "modesty-in-style",
       "complete": true,
-      "fetched": 383,
+      "fetched": 363,
       "added": [],
-      "updated": 383,
-      "delisted": 0,
+      "updated": 363,
+      "delisted": 20,
       "filtered": [],
       "returned": 0
     },
@@ -1214,12 +1183,8 @@
       "brandSlug": "serrb",
       "complete": true,
       "fetched": 434,
-      "added": [
-        "Aw23 L30",
-        "AW22 L11 - Pearl(Cream)",
-        "AW22 L11 - Pearl(Cream)"
-      ],
-      "updated": 431,
+      "added": [],
+      "updated": 434,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1228,14 +1193,8 @@
       "brandSlug": "abayabuth",
       "complete": true,
       "fetched": 972,
-      "added": [
-        "Luxury Organza Silk Embellished Cape - Moonstruck",
-        "Luxury Crown Jewel Emerald Velvet Embellished Cape",
-        "Luxury Sapphire Bloom Velvet Embellished Cape",
-        "Luxury Rich Wineberry Velvet Embellished Cape",
-        "Luxury Twilight Bloom Velvet Cape - Daffodil Dream - LIMITED EDITION"
-      ],
-      "updated": 967,
+      "added": [],
+      "updated": 972,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1294,12 +1253,8 @@
       "brandSlug": "ilovemodesty",
       "complete": true,
       "fetched": 633,
-      "added": [
-        "Iced Pink Belted Tee",
-        "Black Lettuce Trim Tee",
-        "Mocha Brown Lettuce Trim Tee"
-      ],
-      "updated": 630,
+      "added": [],
+      "updated": 633,
       "delisted": 0,
       "filtered": [
         {
@@ -1326,10 +1281,10 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1042,
+      "fetched": 1041,
       "added": [],
-      "updated": 1042,
-      "delisted": 0,
+      "updated": 1041,
+      "delisted": 2,
       "filtered": [
         {
           "title": "Soft Çiçek Desenli Toprak Şal 0058",
@@ -1348,16 +1303,14 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
       "fetched": 343,
-      "added": [
-        "Flo Cape Extender"
-      ],
-      "updated": 342,
+      "added": [],
+      "updated": 343,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1375,8 +1328,10 @@
     {
       "brandSlug": "zaskia-sungkar",
       "complete": true,
-      "fetched": 140,
-      "added": [],
+      "fetched": 141,
+      "added": [
+        "Ella Scarf"
+      ],
       "updated": 140,
       "delisted": 0,
       "filtered": [],
@@ -1406,22 +1361,8 @@
       "brandSlug": "aeon-abaya",
       "complete": true,
       "fetched": 716,
-      "added": [
-        "Violet Garden Jumpsuit",
-        "Desert Wrap Jumpsuit",
-        "Amaris Jumpsuit",
-        "Black Jumpsuit",
-        "Cocoa Jumpsuit",
-        "Dark Purple Jumpsuit",
-        "Latte Jumpsuit",
-        "Green Jumpsuit",
-        "White Jumpsuit",
-        "Grey Jumpsuit",
-        "Serah - Black sleeveless jumpsuit",
-        "Thread - Beige linen jumpsuit",
-        "Floral Grace"
-      ],
-      "updated": 703,
+      "added": [],
+      "updated": 716,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1429,15 +1370,18 @@
     {
       "brandSlug": "nour-al-houda",
       "complete": true,
-      "fetched": 903,
+      "fetched": 872,
       "added": [
-        "Chiffon Cape - Crimson",
-        "Chiffon Cape - Navy",
-        "Chiffon Cape - Petal Pink",
-        "Chiffon Cape - Lilac"
+        "Womens Arm Sleeves - 33 Navy",
+        "Womens Arm Sleeves - Nude",
+        "Womens Arm Sleeves - 80 Skin",
+        "Jersey Neck Cover - White",
+        "Jersey Neck Cover - Skin",
+        "Womens Arm Sleeves - White",
+        "Womens Gloves - White"
       ],
-      "updated": 899,
-      "delisted": 0,
+      "updated": 865,
+      "delisted": 38,
       "filtered": [],
       "returned": 0
     },
