@@ -178,7 +178,7 @@ export const TIER_B: Rule[] = [
   ['hair', /\bscrunchies?\b/i],
   ['care', /\b(belts?|combs?|brushes?|mirrors?|hangers?)\b/i],
   ['care', /\b(slippers?|sandals?|shoes?|trainers?|sneakers?|socks?|footwear)\b/i],
-  ['care', /\b(sunglasses|eyewear|notebooks?|journals?|stationery|bookmarks?)\b/i],
+  ['care', /\b(sunglasses|eyewear|notebooks?|journals?|stationery|bookmarks?|cards?)\b/i],
 ];
 
 // ---------------------------------------------------------------------------
@@ -320,6 +320,27 @@ export function isNonApparel(input: VetoInput): VetoResult {
       if (at <= gIdx) continue;                          // pre-modifier of a garment
       if (descriptorAfter(at + m[0].length)) continue;   // colourway / print name
       return { rejected: true, tier: 'B', reason, evidence: m[0] };
+    }
+  }
+
+  // product_type — a merchant-set structured category label every check
+  // above never sees (all of them read only `title`, despite VetoInput
+  // accepting productType/tags — verified 2026-08-12: neither field was
+  // referenced ANYWHERE in this file). Found via a real miss: "New Year
+  // Preload Card — Prepare for a Mindful Ramadan" (Mariam's Collection) has
+  // no "gift"/"card" match possible in the title text alone reaching TIER_0,
+  // but its product_type is literally "gift card". Checked against TIER_0
+  // ONLY — absolute, position-independent, already validated with zero
+  // false positives against 13,435 real titles, safe to apply to a short
+  // category string too. Deliberately NOT `tags`: measured in the same
+  // audit that tags are full of unrelated marketing/promo noise
+  // ("free-gift-eligible", "gift for women") that would reintroduce exactly
+  // the false-positive class this file exists to avoid.
+  if (input.productType) {
+    const type = normTitle(input.productType);
+    for (const [reason, re] of TIER_0) {
+      const m = type.match(re);
+      if (m) return { rejected: true, tier: '0', reason, evidence: m[0] };
     }
   }
 

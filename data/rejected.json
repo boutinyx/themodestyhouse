@@ -26368,6 +26368,16 @@
     "evidence": "Clutch"
   },
   {
+    "id": "mariams:9100145328344",
+    "brandSlug": "mariams",
+    "title": "New Year Preload Card — Prepare for a Mindful Ramadan",
+    "url": "https://mariam-col.com/products/new-year-preload-card-prepare-for-a-mindful-ramadan",
+    "garmentWas": "set",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Card"
+  },
+  {
     "id": "mariams:9070477672664",
     "brandSlug": "mariams",
     "title": "Minimalist Pearl Draped Waist Chain (MAC351)",
@@ -28094,6 +28104,16 @@
     "reason": "non-apparel:hair",
     "tier": "B",
     "evidence": "Scrunchie"
+  },
+  {
+    "id": "ria-miranda:8908539920642",
+    "brandSlug": "ria-miranda",
+    "title": "Chana Blank Card Set",
+    "url": "https://riamiranda.com/products/chana-black-card-set",
+    "garmentWas": "set",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Card"
   },
   {
     "id": "ria-miranda:9282015297794",

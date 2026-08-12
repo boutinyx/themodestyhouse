@@ -74,7 +74,14 @@ const MUST_DROP = [
   "MAC014 Pearl Hairpin for Hijab",
   "The Jannah Blouse to Martha’s Closet Enamel Pin",
   "Donation Package  10 Women Abayas for Ramadhan",
-  "The Signature Dress Bag"
+  "The Signature Dress Bag",
+  // Found 2026-08-12: bare "card" was entirely missing from the vocabulary
+  // (only "gift card"/"e-gift card" were covered). "Card Set" is a literal
+  // stationery product; "Preload Card" is a top-up/gift card whose title
+  // alone has no "gift" in it (its product_type does — see the dedicated
+  // product_type test below).
+  "Chana Blank Card Set",
+  "New Year Preload Card — Prepare for a Mindful Ramadan"
 ];
 
 const MUST_SURVIVE = [
@@ -214,5 +221,21 @@ describe('non-apparel veto', () => {
 
   it('a digital line-item is vetoed on requires_shipping alone', () => {
     expect(isNonApparel({ title: 'Anything At All', requiresShipping: false }).rejected).toBe(true);
+  });
+
+  // Found 2026-08-12: VetoInput has always accepted productType/tags, but
+  // NOTHING in this file ever read them — every check above only looks at
+  // `title`. "New Year Preload Card — Prepare for a Mindful Ramadan"
+  // (product_type literally "gift card") happens to also say "Card" in its
+  // title, so it's covered by the MUST_DROP fixture above regardless — this
+  // test proves the product_type path itself works, for a title that gives
+  // NO textual signal at all.
+  it('rejects on product_type alone (TIER_0) when the title gives no signal', () => {
+    expect(isNonApparel({ title: 'Golden Edition', productType: 'gift card' }).rejected).toBe(true);
+  });
+  it('does not check tags — measured too noisy (marketing/promo tags like "free-gift-eligible")', () => {
+    expect(isNonApparel({
+      title: 'Premium Chiffon Hijab', tags: ['free-gift-eligible', 'gift for women'],
+    }).rejected).toBe(false);
   });
 });
