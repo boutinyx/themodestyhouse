@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isSwim, isActivewear, isLayering, isSpecialty } from './specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -123,10 +123,47 @@ describe('isLayering', () => {
     expect(isLayering(p('Lazy Style Polo Collar Knit Maxi Dress | Thick Sweater Base Layer Dress(MS157)', 'dress'))).toBe(false);
     expect(isLayering(p('Sleeveless Slip Maxi Dress | Relaxed Fit Base Layer Abaya Dress(MS190)', 'abaya'))).toBe(false);
   });
+
+  // Tina's call 2026-08-12: move every "Under Dress"/"Inner Dress"/
+  // "Underdress" item to Layering Basics, regardless of styling or price —
+  // made after seeing kamin's sheer black mesh "Ruqa Underdress" (clearly
+  // needs a layer over it) and chi-ka's $245 "Under Dress" (photographed as
+  // a complete standalone look) side by side.
+  it('matches standalone "under dress"/"inner dress" pieces regardless of price or styling', () => {
+    expect(isLayering(p('The Ruqa Underdress | Black', 'dress'))).toBe(true); // kamin, sheer mesh
+    expect(isLayering(p('Under Dress in Satin Navy', 'dress', { brandSlug: 'chi-ka' }))).toBe(true); // chi-ka, 900 AED, styled as a complete look
+    expect(isLayering(p('Long Sleeve Satin Inner Dress (MA061)', 'dress'))).toBe(true); // mariams
+    expect(isLayering(p('Knit Underdress', 'dress', { brandSlug: 'vela' }))).toBe(true);
+    expect(isLayering(p('Modest Wear Long Under Dress Slip On Skirt', 'skirt'))).toBe(true); // eastessence
+  });
+
+  it('does not pull a bundled abaya/kimono SET LISTING just because it describes an included inner dress', () => {
+    // Every garment:'abaya' hit for this phrase, checked 2026-08-12, is a
+    // multi-piece set sold as ONE product — moving the whole listing into
+    // an accessories page would remove a real, often expensive abaya.
+    expect(isLayering(p('The Shamsa Abaya & Underdress | Black', 'abaya', { brandSlug: 'kamin' }))).toBe(false); // 520 AED complete set
+    expect(isLayering(p('Luxury Crystal Embellished Cape Abaya Set with Inner Dress (MA390)', 'abaya'))).toBe(false); // mariams
+    expect(isLayering(p('2pcs Set Kimono + Underdress Linneneffect', 'abaya', { brandSlug: 'mukistore' }))).toBe(false);
+  });
+});
+
+describe('isJilbab', () => {
+  it('matches jilbab-titled products regardless of garment or whether it is prayer-specific', () => {
+    expect(isJilbab(p('2-Piece Prayer Set (Jilbab)', 'abaya'))).toBe(true); // explicitly a prayer garment
+    expect(isJilbab(p('One-Piece Jilbab / Prayer Dress With Elasticated Sleeves - Navy', 'abaya'))).toBe(true);
+    expect(isJilbab(p('Black Grey Corduroy Jilbab', 'abaya'))).toBe(true); // eastessence, a fashion abaya using the regional name
+    expect(isJilbab(p('Denim Jacket Style Jilbabs', 'top'))).toBe(true); // eastessence
+  });
+  it('does not match unrelated titles', () => {
+    expect(isJilbab(p('Black Open Abaya', 'abaya'))).toBe(false);
+  });
 });
 
 describe('isSpecialty', () => {
   it('includes layering pieces alongside swim and activewear', () => {
     expect(isSpecialty(p('Black Neck Cover', 'dress'))).toBe(true);
+  });
+  it('includes jilbab-titled products', () => {
+    expect(isSpecialty(p('2-Piece Prayer Set (Jilbab)', 'abaya'))).toBe(true);
   });
 });

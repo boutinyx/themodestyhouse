@@ -53,6 +53,23 @@ const ACTIVE_GARMENTS = new Set(['trousers', 'top', 'set']);
 const LAYERING_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bbase layer\b(?!\s+(?:abaya\s+)?dress)|\bshoulder.?cover\b|\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bshirt extenders?\b|\bcollar (?:cover|insert)\b|\binner top\b|\bbody top\b|\bcropped .{0,20}body shirt\b|\bsecond skin top\b|\bcore top\b|\bluxe basic top\b|\bunder.?shirts?\b|\bsinglet\b/i;
 const LAYERING_HIJAB_RE = /\bhijab\b|\bunderscarf\b|\bbonnet\b/i;
 
+// Dress-length underlayers — "Under Dress"/"Inner Dress"/"Underdress", worn
+// under a sheer or open abaya/kimono. Tina's explicit call 2026-08-12: move
+// ALL of these to Layering Basics regardless of styling or price, after
+// seeing that some (kamin's sheer black mesh "Ruqa Underdress", chi-ka's
+// $245 "Under Dress") are photographed as complete standalone looks. 87 raw
+// rows checked across 19 brands. Deliberately gated on `garment !== 'abaya'`
+// — NOT part of the text pattern, because the distinguishing signal here
+// isn't in the words. 37 of the 87 raw rows are garment:'abaya', and EVERY
+// one of those is a bundled multi-piece SET LISTING where "with inner
+// dress"/"& Underdress" describes an included component of a single sold-
+// together product ("The Shamsa Abaya & Underdress" — kamin, 520 AED;
+// "2pcs Set Kimono + Underdress" — mukistore; "3-Piece Abaya Set... with
+// Inner Dress" — mariams/lumos/bazar-al-haya). Those are complete abaya
+// outfits, not accessories, and moving the whole SET LISTING into an
+// accessories page would be a real mistake — deliberately left in Abayas.
+const UNDER_DRESS_RE = /\bunder.?dress\b|\binner dress\b/i;
+
 // ria-miranda's "ri-flex" line (their own base-layer sub-brand — logo reads
 // "ri•flex, feel light, flexibly you" on the product photo itself, no title
 // vocabulary in common with the rest of LAYERING_RE) is tagged `activity:
@@ -72,6 +89,7 @@ export function isSwim(p: Product): boolean {
 export function isLayering(p: Product): boolean {
   if (LAYERING_HIJAB_RE.test(p.title)) return false;
   if (LAYERING_RE.test(p.title)) return true;
+  if (UNDER_DRESS_RE.test(p.title) && p.garment !== 'abaya') return true;
   return p.brandSlug === 'ria-miranda' && RIA_MIRANDA_LAYERING_RE.test(p.title);
 }
 
@@ -83,7 +101,28 @@ export function isActivewear(p: Product): boolean {
   return (a.includes('gym') || a.includes('swim')) && ACTIVE_GARMENTS.has(p.garment);
 }
 
-// Anything that must stay out of the general/category listings.
+// "Jilbab" is inconsistent across this catalogue's brands: for eastessence
+// and bazar-al-haya it's a regional synonym for a regular fashion abaya
+// (denim jackets, corduroy coats — real everyday garments); for others it
+// specifically means a two-piece prayer set (telekung/mukena-style —
+// "2-Piece Prayer Set (Jilbab)", "One-Piece Jilbab / Prayer Dress"). Tina's
+// explicit call 2026-08-12, after seeing both: route every jilbab-titled
+// product to the Hijabs & Scarves lane regardless of which kind it is, same
+// as any other item she doesn't want intermixed into general browsing. 332
+// raw rows across 15 brands. This does NOT change `garment` — a jilbab
+// product's structured data/breadcrumbs still say what it structurally is —
+// it only changes which lane displays it (see lib/lanes.ts modest-hijabs).
+const JILBAB_RE = /\bjilbabs?\b/i;
+
+export function isJilbab(p: Product): boolean {
+  return JILBAB_RE.test(p.title);
+}
+
+// Anything that must stay out of the general/category listings. Jilbab is
+// folded in here (rather than getting its own lane) because the mechanism —
+// "excluded from every lane except one dedicated one" — is exactly what
+// modest-hijabs already needs to do for it; see the `specialty: true` on
+// that lane in lib/lanes.ts.
 export function isSpecialty(p: Product): boolean {
-  return isSwim(p) || isActivewear(p) || isLayering(p);
+  return isSwim(p) || isActivewear(p) || isLayering(p) || isJilbab(p);
 }

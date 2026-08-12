@@ -28,4 +28,11 @@ describe('LANES', () => {
     const wed = LANES.find((l) => l.slug === 'modest-wedding-guest')!;
     expect(wed.match({ ...base, occasion: ['wedding'] })).toBe(true);
   });
+  it('hijabs lane also matches jilbab-titled products, whatever their garment field, and is specialty', () => {
+    const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
+    expect(hijabs.specialty).toBe(true);
+    expect(hijabs.match({ ...base, garment: 'hijab', title: 'Plain Hijab' })).toBe(true);
+    expect(hijabs.match({ ...base, garment: 'abaya', title: '2-Piece Prayer Set (Jilbab)' })).toBe(true);
+    expect(hijabs.match({ ...base, garment: 'abaya', title: 'Black Open Abaya' })).toBe(false);
+  });
 });

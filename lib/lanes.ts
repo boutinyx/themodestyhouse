@@ -1,5 +1,5 @@
 import type { Product } from '@/lib/types';
-import { isSwim, isActivewear, isLayering } from '@/lib/specialty';
+import { isSwim, isActivewear, isLayering, isJilbab } from '@/lib/specialty';
 
 export type LaneKind = 'category' | 'community' | 'occasion' | 'season';
 
@@ -39,7 +39,14 @@ export const LANES: Lane[] = [
     nav: 'Hijabs',
     intro: 'Chiffon, jersey, satin and crinkle hijabs, shawls and underscarves.',
     kind: 'category',
-    match: (p) => p.garment === 'hijab',
+    // Jilbab-titled products (fashion abayas AND prayer sets, garment field
+    // varies) route here too, per Tina's 2026-08-12 call — see isJilbab().
+    // `specialty: true` because isJilbab() is folded into isSpecialty(),
+    // which productsForLane would otherwise use to strip these back out —
+    // same mechanism modest-swimwear/modest-activewear/layering-basics use
+    // to be the one lane specialty items ARE allowed to appear on.
+    match: (p) => p.garment === 'hijab' || isJilbab(p),
+    specialty: true,
   },
   {
     slug: 'modest-skirts',
