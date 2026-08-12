@@ -21,13 +21,13 @@ import { GET } from './route';
 
 describe('GET /api/staff/live-edit/list', () => {
   it('401s when not signed in', async () => {
-    (requireStaffSession as any).mockResolvedValue(new Response(null, { status: 401 }));
+    vi.mocked(requireStaffSession).mockResolvedValue(new Response(null, { status: 401 }));
     const res = await GET();
     expect(res.status).toBe(401);
   });
 
   it('returns deletes and moves with before/after garment', async () => {
-    (requireStaffSession as any).mockResolvedValue(null);
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
     const res = await GET();
     const body = await res.json();
     expect(body.deletes).toEqual([{ id: 'a:1', title: 'Cut Me', url: 'https://x/a1', image: 'https://x/a1.jpg' }]);

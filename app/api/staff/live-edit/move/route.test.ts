@@ -4,14 +4,15 @@ vi.mock('@/lib/staffSession', () => ({ requireStaffSession: vi.fn() }));
 const { setLiveGarmentOverride } = vi.hoisted(() => ({ setLiveGarmentOverride: vi.fn() }));
 vi.mock('@/lib/liveGarmentOverrides', () => ({ setLiveGarmentOverride }));
 
+import type { NextRequest } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
 import { POST } from './route';
 
-function req(body: unknown) {
+function req(body: unknown): NextRequest {
   return new Request('http://x/api/staff/live-edit/move', {
     method: 'POST',
     body: JSON.stringify(body),
-  }) as any;
+  }) as unknown as NextRequest;
 }
 
 beforeEach(() => {
@@ -20,7 +21,7 @@ beforeEach(() => {
 
 describe('POST /api/staff/live-edit/move', () => {
   it('401s when not signed in', async () => {
-    (requireStaffSession as any).mockResolvedValue(
+    vi.mocked(requireStaffSession).mockResolvedValue(
       new Response(null, { status: 401 }),
     );
     const res = await POST(req({ id: 'x:1', garment: 'skirt' }));
@@ -29,20 +30,20 @@ describe('POST /api/staff/live-edit/move', () => {
   });
 
   it('400s on an unknown garment value', async () => {
-    (requireStaffSession as any).mockResolvedValue(null);
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
     const res = await POST(req({ id: 'x:1', garment: 'not-a-garment' }));
     expect(res.status).toBe(400);
     expect(setLiveGarmentOverride).not.toHaveBeenCalled();
   });
 
   it('400s on a missing id', async () => {
-    (requireStaffSession as any).mockResolvedValue(null);
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
     const res = await POST(req({ garment: 'skirt' }));
     expect(res.status).toBe(400);
   });
 
   it('sets the override and returns ok on a valid body', async () => {
-    (requireStaffSession as any).mockResolvedValue(null);
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
     const res = await POST(req({ id: 'x:1', garment: 'skirt' }));
     expect(res.status).toBe(200);
     expect(setLiveGarmentOverride).toHaveBeenCalledWith('x:1', 'skirt');
