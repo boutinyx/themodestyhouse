@@ -25,7 +25,6 @@ async function checkOne(p) {
     const res = await fetch(p.image, { signal: controller.signal, headers: { Range: 'bytes=0-2048' } });
     clearTimeout(timer);
     const contentType = res.headers.get('content-type') || '';
-    const contentLength = Number(res.headers.get('content-length') || res.headers.get('content-range')?.split('/')[1] || 0);
     if (!res.ok && res.status !== 206) {
       return { id: p.id, title: p.title, brand: p.brandName, image: p.image, problem: `HTTP ${res.status}` };
     }
