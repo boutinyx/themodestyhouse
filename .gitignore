@@ -95,3 +95,8 @@ public/style-it/png's trans/
 # on the production container's disk only — deliberately NOT the git-tracked
 # decisions.json. scripts/merge-live-cuts.mjs folds it in on purpose, later.
 data/.live-cuts.json
+
+# Same reasoning, for garment moves made from the inline staff edit controls
+# (lib/liveGarmentOverrides.ts). scripts/merge-live-edits.mjs folds it into
+# data/garment-overrides.json on purpose, later.
+data/.live-garment-overrides.json
