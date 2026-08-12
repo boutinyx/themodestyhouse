@@ -53,6 +53,19 @@ const ACTIVE_GARMENTS = new Set(['trousers', 'top', 'set']);
 const LAYERING_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bbase layer\b(?!\s+(?:abaya\s+)?dress)|\bshoulder.?cover\b|\bsleeve (?:cover|extender|add.?on)s?\b|\barm sleeves?\b|\bone.?piece sleeves?\b|\bshirt extenders?\b|\bcollar (?:cover|insert)\b|\binner top\b|\bbody top\b|\bcropped .{0,20}body shirt\b|\bsecond skin top\b|\bcore top\b|\bluxe basic top\b|\bunder.?shirts?\b|\bsinglet\b/i;
 const LAYERING_HIJAB_RE = /\bhijab\b|\bunderscarf\b|\bbonnet\b/i;
 
+// "Ruched Body Top" (modesty-in-style, $14-20) — the one "body top" title in
+// the whole catalogue that's a real styled piece, not a plain base layer.
+// Tina flagged it 2026-08-12: checked the photo, a turtleneck top with
+// visible ruched/draped fabric detail, styled with a skirt and jewelry as a
+// complete outfit. "Body Top" alone is a solid signal — the other 20
+// published hits are all plain/unbranded basics confirmed via photo earlier
+// (nour-al-houda's "Jersey Body Top", modern-hijabi's "Sema Basic Body
+// Top") — but "ruched" signals deliberate, VISIBLE styling, the opposite of
+// something meant to disappear under another garment. Checked: no other
+// brand combines "ruched" with "body top", so this stays narrow rather than
+// weakening `\bbody top\b` itself.
+const RUCHED_BODY_TOP_RE = /\bruched\b.{0,20}\bbody top\b/i;
+
 // Dress-length underlayers — "Under Dress"/"Inner Dress"/"Underdress", worn
 // under a sheer or open abaya/kimono. Tina's explicit call 2026-08-12: move
 // ALL of these to Layering Basics regardless of styling or price, after
@@ -88,6 +101,7 @@ export function isSwim(p: Product): boolean {
 
 export function isLayering(p: Product): boolean {
   if (LAYERING_HIJAB_RE.test(p.title)) return false;
+  if (RUCHED_BODY_TOP_RE.test(p.title)) return false;
   if (LAYERING_RE.test(p.title)) return true;
   if (UNDER_DRESS_RE.test(p.title) && p.garment !== 'abaya') return true;
   return p.brandSlug === 'ria-miranda' && RIA_MIRANDA_LAYERING_RE.test(p.title);

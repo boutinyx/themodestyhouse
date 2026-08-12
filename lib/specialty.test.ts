@@ -117,6 +117,21 @@ describe('isLayering', () => {
     expect(isLayering(p('Comfort High Neck Top'))).toBe(false);
   });
 
+  // Tina flagged this 2026-08-12: styled and photographed as a complete
+  // turtleneck outfit with a skirt, not a hidden base layer. "Body Top" is a
+  // reliable signal on its own (see the 20 other published hits, all
+  // plain/unbranded basics), but "ruched" signals deliberate, visible
+  // styling — the opposite of something meant to disappear under another
+  // garment.
+  it('does not pull "Ruched Body Top" — styling wins over the "body top" phrase', () => {
+    expect(isLayering(p('Ruched Body Top', 'top', { brandSlug: 'modesty-in-style' }))).toBe(false);
+  });
+
+  it('still trusts the other "body top" titles that have no styling descriptor', () => {
+    expect(isLayering(p('Jersey Body Top - Espresso', 'top', { brandSlug: 'nour-al-houda' }))).toBe(true);
+    expect(isLayering(p('Sema Basic Body Top - Rose', 'top', { brandSlug: 'modern-hijabi' }))).toBe(true);
+  });
+
   it('trusts a brand explicitly naming its own piece a base-layer top', () => {
     expect(isLayering(p('Fleece-Lined Mock Neck Sweater | Thick Winter Base Layer Top(MS159)'))).toBe(true); // mariams
   });
