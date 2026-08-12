@@ -1,13 +1,19 @@
 'use client';
+import { useState } from 'react';
 import type { CardProduct } from '@/lib/compactCatalogue';
 import { Heart, Eye } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
+import { useIsStaff } from './StaffSessionProvider';
+import { StaffEditControl, type StaffEditResult } from './StaffEditControl';
+import { GARMENT_LABELS } from '@/lib/tag';
 
 export function ProductCard({ p }: { p: CardProduct }) {
   const { open, isFav, toggleFav } = useQuickView();
   const { price } = useCurrency();
+  const isStaff = useIsStaff();
+  const [staffState, setStaffState] = useState<StaffEditResult | null>(null);
   const fav = isFav(p.id);
   return (
     // The card's primary action is now a real outbound link, not a modal — a
@@ -17,7 +23,7 @@ export function ProductCard({ p }: { p: CardProduct }) {
     // (image + text) at z-10, and the two buttons sit above it at z-20. Nesting
     // a <button> inside the <a> is exactly the `nested-interactive` axe
     // violation this file was already rewritten once to remove (see below).
-    <div className="group relative block text-center">
+    <div className="group relative block text-center" style={staffState?.type === 'delete' ? { opacity: 0.35 } : undefined}>
       <a
         href={p.url}
         target="_blank"
@@ -57,16 +63,23 @@ export function ProductCard({ p }: { p: CardProduct }) {
           loading="lazy"
           decoding="async"
         />
+        {/* Staff-only edit control (docs/log/2026-08-12-inline-staff-editing.md).
+            Rendered only for a signed-in staff session, and only until this
+            card has been acted on this page load — no double-submits. */}
+        {isStaff && !staffState && (
+          <StaffEditControl id={p.id} garment={p.garment} onChanged={setStaffState} />
+        )}
         {/* Quick view — the card's former primary action, demoted to a secondary
             affordance now that the card itself goes straight to the brand.
             Still opens the same modal, which still has its own "Shop at
-            {brand}" outbound link for anyone who previews first. */}
+            {brand}" outbound link for anyone who previews first. Shifts right
+            when the staff edit pencil is present so the two never overlap. */}
         <button
           type="button"
           onClick={() => open(p)}
           aria-label={`Quick view: ${p.title} by ${p.brandName}`}
-          className="absolute top-2 left-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
-          style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
+          className="absolute top-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
+          style={{ left: isStaff ? 40 : 8, background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
         >
           <Eye size={20} weight="regular" />
         </button>
@@ -87,6 +100,14 @@ export function ProductCard({ p }: { p: CardProduct }) {
       <div className="brand-label mt-3">{p.brandName}</div>
       <div className="card-title mt-1 px-2">{p.title}</div>
       <div className="price mt-1">{price(p.price, p.currency).text}</div>
+      {staffState?.type === 'move' && (
+        <div className="text-xs mt-1" style={{ color: 'var(--muted)' }}>
+          Moved to {GARMENT_LABELS[staffState.garment]}
+        </div>
+      )}
+      {staffState?.type === 'delete' && (
+        <div className="text-xs mt-1" style={{ color: 'var(--muted)' }}>Removed</div>
+      )}
     </div>
   );
 }
