@@ -38,7 +38,11 @@ for (const [id, entry] of Object.entries(liveCuts)) {
   changed++;
 }
 
-writeFileSync(DECISIONS, JSON.stringify(decisions, null, 2));
+// MINIFIED, no `null, 2` — matches how add-brands.mjs already writes this
+// file. CLAUDE.md §8 documents "decisions.json formatting is contested":
+// whichever writer runs last reflows the whole 427 KB tracked file into a
+// giant diff. Pretty-printing here would BE that flip.
+writeFileSync(DECISIONS, JSON.stringify(decisions));
 
 console.log(`Merged ${Object.keys(liveCuts).length} live decision(s) from ${inputPath}:`);
 console.log(`  ${changed} written to data/decisions.json, ${unchanged} already matched`);
