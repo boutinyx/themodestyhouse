@@ -356,3 +356,24 @@ describe('top vocabulary: tee/hoodie/cape/crewneck/button-up (2026-08-12)', () =
     expect(tagDiscovery({ title: 'Lace Trim Longline Button Up - Haze', productType: '', tags: [] }).garment).toBe('top');
   });
 });
+
+describe('jumpsuit/romper/gilet/parka + German "bluse" + Turkish "tulum" (2026-08-12)', () => {
+  // More gaps found the same audit pass: one-piece garments (jumpsuit/romper)
+  // and outerwear (gilet/parka) matched no rule at all. Measured against the
+  // full corpus before adding: 47 changed, all confirmed correct — including
+  // a jumpsuit correctly beating its own "wide leg" trouser-like description,
+  // since a jumpsuit is fundamentally one-piece, not simply trousers.
+  it('maps one-piece garments to dress', () => {
+    expect(tagDiscovery({ title: 'Striped V-Neck Jumpsuit', productType: '', tags: [] }).garment).toBe('dress');
+    expect(tagDiscovery({ title: 'Cotton Jersey Romper', productType: '', tags: [] }).garment).toBe('dress');
+    expect(tagDiscovery({ title: 'Wide Leg Utility Corduroy Jumpsuit', productType: '', tags: [] }).garment).toBe('dress');
+  });
+  it('maps gilet/parka to top', () => {
+    expect(tagDiscovery({ title: 'Gathered Shoulder Cupra Gilet', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Parka à capuche burgundy', productType: '', tags: [] }).garment).toBe('top');
+  });
+  it('reads German "Bluse" and Turkish "Tulum" as fallbacks', () => {
+    expect(tagDiscovery({ title: 'Chiffon-dot Bluse', productType: '', tags: [] }).garment).toBe('top');
+    expect(tagDiscovery({ title: 'Kemer Detaylı Kahverengi Tulum', productType: '', tags: [] }).garment).toBe('dress');
+  });
+});

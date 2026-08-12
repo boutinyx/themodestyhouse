@@ -36,7 +36,10 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // corpus hits) — anchoring `dress` alone (below) cannot see a suffix with
   // no boundary before it, so they need their own alternative, same
   // treatment as the trousers/set compounds already in this file.
-  ['dress', word('dress(?:es)?|gowns?|sundress(?:es)?|underdress(?:es)?')],
+  // jumpsuit/romper added 2026-08-12 (overnight review-queue audit): one-piece
+  // garments with no existing rule at all (30 + 2 corpus hits) — closest fit
+  // among the existing Garment categories, alongside dress/gown.
+  ['dress', word('dress(?:es)?|gowns?|sundress(?:es)?|underdress(?:es)?|jumpsuits?|rompers?')],
   ['skirt', word('skirts?|jupes?')],
   // OUTERWEAR + French tops, deliberately placed BEFORE `trousers` AND before
   // the `robe` rule below. Two separate reasons, both load-bearing:
@@ -93,9 +96,10 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // `zweiteiler` -> `set` mapping, which only runs as a fallback after
   // GARMENT_RULES fails entirely. A caped two-piece item is defensible as
   // either `top` or `set`; not worth a special case for 2 rows.
+  // gilet/parka added same audit pass as tee/hoodie above (20 + 6 corpus hits).
   ['top', word('tops?|blouses?|shirts?|tunics?|sweaters?|cardigans?|boleros?|blazers?|vests?|coats?|jackets?' +
     '|overshirts?|sweatshirts?|t-?shirts?|overcoats?|waistcoats?|trenchcoats?|trenhcoats?' +
-    '|tees?|hoodies?|capes?|crewnecks?|button.?ups?')],
+    '|tees?|hoodies?|capes?|crewnecks?|button.?ups?|gilets?|parkas?')],
   // Length-only fallback — "maxi"/"midi" describe LENGTH, not garment. A bare
   // "…Maxi" with no explicit garment word reads as a dress, but this must stay
   // LAST so "Maxi Skirt", "Maxi Skirt Set" etc. resolve to their real garment.
@@ -113,7 +117,7 @@ const FOREIGN_RULES: [Garment, RegExp][] = [
   ['dress',    /\brobes?\b|kleid(er)?\b|\bjurk(en)?\b/i],           // fr / de / nl
   ['skirt',    /\bjupes?\b|\brokken\b/i],                          // fr / nl  (not de "rock")
   ['trousers', /\bpantalons?\b|\bbroek(en)?\b/i],                   // fr / nl  (not de "Hose")
-  ['top',      /\boberteil\b|\bchemisiers?\b/i],                    // de / fr
+  ['top',      /\boberteil\b|\bchemisiers?\b|\bbluse\b/i],           // de / fr
   ['set',      /\bensembles?\b|\bzweiteiler\b|\btwinsets?\b/i],    // fr / de / nl
   ['abaya',    /\bdjellabas?\b/i],
 
@@ -136,7 +140,11 @@ const FOREIGN_RULES: [Garment, RegExp][] = [
   // catalogue already means by abaya|jilbab|kaftan. Tina's call, 2026-08-10.
   ['abaya',    word(`ferace(?:s${TR_I})?`)],
   ['hijab',    word(`selendang`)],                                  // ms — a shawl
-  ['dress',    word(`elb${TR_I}se(?:ler|s${TR_I})?`)],
+  // tulum = jumpsuit/overalls, mapped to dress alongside the English
+  // jumpsuit/romper addition above — 2 corpus hits, no collision risk
+  // measured (the only other risk is "Tulum" the Mexican resort town, absent
+  // from the corpus).
+  ['dress',    word(`elb${TR_I}se(?:ler|s${TR_I})?|tulum(?:lar)?`)],
   ['skirt',    word(`etek(?:ler)?|eteğ${TR_I}`)],
   // `kurung` (ms) is a two-piece baju kurung. Mapped to `set` because that is
   // what those rows already classify as today — this rule keeps them alive
