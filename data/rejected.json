@@ -24718,6 +24718,14 @@
     "evidence": "Jewelry"
   },
   {
+    "id": "mariams:9044939768024",
+    "brandSlug": "mariams",
+    "title": "Oversized Round Neck Pullover Sweater | Solid Color Knit Base Layer Top(MS168)",
+    "url": "https://mariam-col.com/products/oversized-round-neck-pullover-sweater-solid-color-knit-base-layer-topms168",
+    "garmentWas": "top",
+    "reason": "id-pin"
+  },
+  {
     "id": "mariams:9018562445528",
     "brandSlug": "mariams",
     "title": "Luxury Minimalist Glossy High-grade Shiny Bracelets - Simple Temperament Cold-Tone Bangles (MAC242)",
@@ -27088,6 +27096,22 @@
     "reason": "non-apparel:care",
     "tier": "B",
     "evidence": "Belt"
+  },
+  {
+    "id": "touche-prive:9650659656008",
+    "brandSlug": "touche-prive",
+    "title": "Peter Can Collar PoplİN Under Shirt",
+    "url": "https://int.toucheprive.com/products/peter-can-collar-popli̇n-under-shirt-1",
+    "garmentWas": "top",
+    "reason": "id-pin"
+  },
+  {
+    "id": "touche-prive:9650659623240",
+    "brandSlug": "touche-prive",
+    "title": "Peter Can Collar PoplİN Under Shirt",
+    "url": "https://int.toucheprive.com/products/peter-can-collar-popli̇n-under-shirt",
+    "garmentWas": "top",
+    "reason": "id-pin"
   },
   {
     "id": "jennah-boutique:7800520868016",
