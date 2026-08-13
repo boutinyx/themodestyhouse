@@ -35,7 +35,7 @@ export function ProductCard({ p }: { p: CardProduct }) {
         className="absolute inset-0 z-10"
       />
       <div
-        className="relative overflow-hidden border"
+        className="product-photo relative overflow-hidden border"
         style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}
       >
         {/* srcset/sizes, so the CDN sends a card-sized photograph instead of the
@@ -79,15 +79,20 @@ export function ProductCard({ p }: { p: CardProduct }) {
           type="button"
           onClick={() => open(p)}
           aria-label={`Quick view: ${p.title} by ${p.brandName}`}
-          className="absolute top-2 left-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
+          className="absolute top-2 left-2 z-20 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition"
           style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
         >
-          <Eye size={20} weight="regular" />
+          {/* Tailwind's w/h beats the SVG's own width/height attributes (a
+              presentation attribute, lowest priority in the cascade), so this
+              overrides `size` per breakpoint without two separate icons. Was a
+              flat 40px circle at every width — on a two-up phone card that ate
+              a quarter of the image; shrunk to 32px there, unchanged at md+. */}
+          <Eye size={20} weight="regular" className="w-4 h-4 md:w-5 md:h-5" />
         </button>
         <button
           type="button"
           onClick={() => toggleFav(p)}
-          className="absolute top-2 right-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
+          className="absolute top-2 right-2 z-20 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition"
           style={{
             background: 'rgba(255,255,255,0.85)',
             color: fav ? 'var(--aubergine)' : 'var(--muted)',
@@ -95,7 +100,7 @@ export function ProductCard({ p }: { p: CardProduct }) {
           }}
           aria-label={fav ? 'Remove from favourites' : 'Add to favourites'}
         >
-          <Heart size={22} weight={fav ? 'fill' : 'regular'} />
+          <Heart size={22} weight={fav ? 'fill' : 'regular'} className="w-[18px] h-[18px] md:w-[22px] md:h-[22px]" />
         </button>
       </div>
       <div className="brand-label mt-3">{p.brandName}</div>

@@ -2,12 +2,17 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { List as ListIcon, X as XIcon, CaretRight } from '@phosphor-icons/react';
+import { List as ListIcon, X as XIcon, CaretRight, CaretDown } from '@phosphor-icons/react';
 import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL } from '@/lib/fx';
+import { OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype } from '@/lib/specialty';
 import { useCurrency } from './CurrencyProvider';
 import { useScrollFade } from './useScrollFade';
+
+// Insertion order of the object literal in lib/specialty.ts, same source the
+// desktop flyout (components/Nav.tsx) and the compact catalogue both read.
+const OUTERWEAR_SUBTYPE_ORDER = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
 
 /**
  * The phone navigation: a full-screen takeover.
@@ -35,6 +40,15 @@ import { useScrollFade } from './useScrollFade';
 export function MobileNav() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
+  // Outerwear alone expands inline to its four subtypes — mirrors the desktop
+  // header's hover flyout (components/Nav.tsx), the touch equivalent of
+  // "hover". Fixed 2026-08-13: this row used to be a plain `row(...)` link
+  // like every other category, so tapping it navigated straight to
+  // /outerwear with no way to reach Blazers/Vests/Cardigans/Coats — Tina:
+  // "clicking on outerwear on mobile the subcategories dont open it takes
+  // you direcly to outerwear". A tap toggles disclosure instead of navigating;
+  // only the four sub-rows are real links.
+  const [outerwearOpen, setOuterwearOpen] = useState(false);
   // Choosing a currency does NOT close the panel — it changes prices on the page
   // behind it, and the visitor may well want to try another one.
   const { preference, setPreference } = useCurrency();
@@ -100,6 +114,62 @@ export function MobileNav() {
       {label}
       <CaretRight size={15} style={{ flexShrink: 0, color: 'var(--muted)' }} />
     </Link>
+  );
+
+  /** Outerwear's row: a disclosure toggle, not a link — see the note on
+   *  `outerwearOpen` above. Sub-rows reuse the plain row's typography but at
+   *  15px with a left indent, since these ARE genuinely nested under a
+   *  parent (unlike the flush-left Category group, which has no parent row
+   *  of its own to indent from). */
+  const outerwearRow = () => (
+    <div key="/outerwear">
+      <button
+        type="button"
+        onClick={() => setOuterwearOpen((v) => !v)}
+        aria-expanded={outerwearOpen}
+        className="flex items-center justify-between gap-4 py-4 w-full text-left"
+        style={{
+          fontFamily: 'var(--font-ui-stack)',
+          fontSize: 17,
+          lineHeight: 1.35,
+          letterSpacing: '0.01em',
+          color: path === '/outerwear' ? 'var(--aubergine)' : 'var(--ink)',
+          fontWeight: path === '/outerwear' ? 500 : 400,
+        }}
+      >
+        Outerwear
+        <CaretDown
+          size={15}
+          style={{
+            flexShrink: 0,
+            color: 'var(--muted)',
+            transition: 'transform 150ms ease-out',
+            transform: outerwearOpen ? 'rotate(180deg)' : undefined,
+          }}
+        />
+      </button>
+      {outerwearOpen && (
+        <div className="pb-2">
+          {OUTERWEAR_SUBTYPE_ORDER.map((t) => (
+            <Link
+              key={t}
+              href={`/outerwear?type=${t}`}
+              onClick={close}
+              className="flex items-center py-3 pl-4"
+              style={{
+                fontFamily: 'var(--font-ui-stack)',
+                fontSize: 15,
+                lineHeight: 1.35,
+                letterSpacing: '0.01em',
+                color: 'var(--ink)',
+              }}
+            >
+              {OUTERWEAR_SUBTYPE_LABELS[t]}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -207,7 +277,7 @@ export function MobileNav() {
                 the /style/[vibe] pages were removed — see
                 docs/log/2026-08-09-remove-style-vibe-feature.md.) */}
             <p className="eyebrow pt-5 pb-1">Category</p>
-            {CATEGORY_LANES.map((l) => row(`/${l.slug}`, l.title))}
+            {CATEGORY_LANES.map((l) => (l.slug === 'outerwear' ? outerwearRow() : row(`/${l.slug}`, l.title)))}
 
             <div className="mt-5 pt-2" style={{ borderTop: '1px solid var(--hairline)' }}>
               {row('/designers', 'Designers')}

@@ -545,6 +545,29 @@ html[data-input-modality="mouse"] summary:focus-visible {
   }
 }
 
+/* Edge-to-edge on a phone (Tina's reference: H&M's mobile grid) — the two
+   photos fill the viewport width with no page margin and almost no gap
+   between them, instead of sitting in the same 32px-padded column as the
+   search bar and headings above. Every page this grid appears on shares the
+   same `px-8` shell (main className="max-w-[1220px] mx-auto px-8 …"), so one
+   rule cancels it everywhere: negative margins equal to that 32px pull the
+   grid back out to the screen edge, and `.product-photo` (the image's own
+   wrapper in ProductCard) drops its border/radius so the two tiles read as
+   flush squares, not cards with a gutter of white around them. Unchanged
+   above 768px — the 3-up grid still sits inside the padded shell like every
+   other page element. */
+@media (max-width: 767px) {
+  .product-grid {
+    margin-left: -32px;
+    margin-right: -32px;
+    gap: 2px;
+  }
+  .product-grid .product-photo {
+    border: none;
+    border-radius: 0;
+  }
+}
+
 /* Hero glass search (option 3A) — placeholder + focus over the video */
 .glass-search input::placeholder {
   color: rgba(251, 250, 246, 0.75);

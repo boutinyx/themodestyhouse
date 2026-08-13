@@ -180,19 +180,14 @@ export function IndexPanel({
         padding: '22px 26px',
       }}
     >
-      <div className="flex flex-col md:flex-row md:items-center gap-3">
-        <span className="serif italic text-lg whitespace-nowrap" style={{ color: 'var(--ink)' }}>
-          Search the index
-        </span>
-        <input
-          aria-label="Search houses and pieces"
-          value={q}
-          onChange={(e) => onQ(e.target.value)}
-          placeholder="Search houses, pieces…"
-          className="flex-1 min-w-0"
-          style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
-        />
-      </div>
+      <input
+        aria-label="Search houses and pieces"
+        value={q}
+        onChange={(e) => onQ(e.target.value)}
+        placeholder="Search houses, pieces…"
+        className="w-full"
+        style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
+      />
       {/* The currency control used to sit here, pushed right. It moved to the
           header (2026-08-07): currency is a site-wide preference, so having it
           only on the pages that happen to carry an index console meant it was
