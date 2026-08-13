@@ -111,14 +111,9 @@ export function FilterableGrid({
     return rows;
   }, [cat, brandIdx, typeIdx, usingOuterwearTypes, query]);
 
-  // One random key per row, generated once when this catalogue mounts (not
-  // per render/filter change) — see the FeaturedShuffle doc in
-  // lib/sortRows.ts. Niswa pinned first per Tina's explicit request.
-  const shuffleKeys = useMemo(() => cat.rows.title.map(() => Math.random()), [cat]);
-
   const sortedRows = useMemo(
-    () => sortRowIndices(cat, filteredRows, sort, preference, { shuffleKeys, pinnedBrandSlug: 'niswa' }),
-    [cat, filteredRows, sort, preference, shuffleKeys],
+    () => sortRowIndices(cat, filteredRows, sort, preference),
+    [cat, filteredRows, sort, preference],
   );
 
   // Reset the "load more" count whenever a filter changes.
