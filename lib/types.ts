@@ -18,12 +18,19 @@ export type LayeringSubtype =
   | 'under-dress'
   | 'base-layer-top';
 
-/** The two specialty lanes (lib/lanes.ts) whose membership is NOT derived
+/** The four sub-categories of the Outerwear lane (lib/lanes.ts) — see
+ *  lib/specialty.ts for the classification logic. Declared here for the
+ *  same reason as LayeringSubtype: avoids a circular import, since a
+ *  future forced-subtype field on Product would need this type and
+ *  lib/specialty.ts imports Product from here. */
+export type OuterwearSubtype = 'blazer' | 'vest' | 'cardigan' | 'coat';
+
+/** The specialty lanes (lib/lanes.ts) whose membership is NOT derived
  *  from `garment` alone — Modest Swimwear is (garment === 'swim' already
  *  satisfies isSwim()), so it never needed this. A staff override here is
  *  authoritative and exclusive: see lib/specialty.ts's isActivewear/
- *  isLayering. */
-export type ForcedLane = 'modest-activewear' | 'layering-basics';
+ *  isLayering/isOuterwear. */
+export type ForcedLane = 'modest-activewear' | 'layering-basics' | 'outerwear';
 
 export interface Brand {
   slug: string;
