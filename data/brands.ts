@@ -70,8 +70,6 @@ export const BRANDS: Brand[] = [
   { slug: 'kamin', name: 'Kamin', homepage: 'https://kamin.ae', feedUrl: 'https://kamin.ae/products.json', community: 'hijabi', currency: 'AED', category: 'Modern abayas', city: 'Dubai', vibe: 'elegant' },                              // 2213px, contemporary tailoring
   { slug: 'chi-ka', name: 'CHI-KA', homepage: 'https://chikacollection.com', feedUrl: 'https://chikacollection.com/products.json', community: 'hijabi', currency: 'AED', category: 'Kaftans & abayas', city: 'Dubai', vibe: 'elegant' },   // 1667px, most consistent art direction
   { slug: 'latifi', name: 'Latifi', homepage: 'https://latifi.ae', feedUrl: 'https://latifi.ae/products.json', community: 'hijabi', currency: 'AED', category: 'Occasion', city: 'Dubai', vibe: 'maximalist' },                            // 2438px, set-designed; only ~21 SKUs
-  // Bouguessa is full RTW, not modest-by-design — expect to curate per product.
-  { slug: 'bouguessa', name: 'Bouguessa', homepage: 'https://bouguessa.com', feedUrl: 'https://bouguessa.com/products.json', community: 'general', currency: 'USD', category: 'Contemporary', city: 'Dubai', vibe: 'elegant' },            // 2048px, quiet luxury
   // — France —
   // FRENCH-LANGUAGE FEED: registered in data/translate-brands.json as 'fr', or
   // titles publish as "T-shirt Manches longues matière polo Aube".
@@ -84,7 +82,6 @@ export const BRANDS: Brand[] = [
   { slug: 'mukistore', name: 'Mukistore', homepage: 'https://mukistore.com', feedUrl: 'https://mukistore.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Rotterdam', vibe: 'elegant' },               // 250+, 2075px
   { slug: 'hijab-boutique', name: 'Hijab Boutique', homepage: 'https://hijabboutique.nl', feedUrl: 'https://hijabboutique.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'Arnhem', vibe: 'elegant' }, // 250+, 1600px
   { slug: 'aniqq', name: 'ANIQQ Exclusive', homepage: 'https://aniqq.nl', feedUrl: 'https://aniqq.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Abayas', city: 'Arnhem', vibe: 'elegant' },                          // 26 SKUs, 3024px
-  { slug: 'abyya', name: 'ABYYA', homepage: 'https://abyya.be', feedUrl: 'https://abyya.be/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Belgium', vibe: 'elegant' },                                    // 26 SKUs, 3052px
   // WooCommerce — ingested via the Store API, see lib/ingest.ts.
   { slug: 'kimodesty', name: 'KIMODESTY', homepage: 'https://kimodesty.com', feedUrl: 'https://kimodesty.com/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                         // 100+, 1920px
   { slug: 'chador', name: 'Chador', homepage: 'https://chador.nl', feedUrl: 'https://chador.nl/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                                       // 113, 1707px
@@ -158,7 +155,6 @@ export const BRANDS: Brand[] = [
   { slug: 'touche-prive', name: 'Touché Privé', homepage: 'https://int.toucheprive.com', feedUrl: 'https://int.toucheprive.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest', city: 'Istanbul', vibe: 'elegant' },
   { slug: 'daska-fashion', name: 'Daska Fashion', homepage: 'https://daskafashion.com', feedUrl: 'https://daskafashion.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest dresses', city: 'United Kingdom', vibe: 'elegant' },
   { slug: 'jennah-boutique', name: 'Jennah Boutique', homepage: 'https://jennah-boutique.com', feedUrl: 'https://jennah-boutique.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest ready-to-wear', city: 'France', vibe: 'streetwear' },
-  { slug: 'aneesa', name: 'Aneesa', homepage: 'https://www.aneesaitaly.com', feedUrl: 'https://www.aneesaitaly.com/wp-json/wc/store/products', community: 'hijabi', currency: 'EUR', category: 'Modest dresses', city: 'Italy', vibe: 'elegant', platform: 'woo' },
   { slug: 'yasmin-jay', name: 'Yasmin Jay', homepage: 'https://www.yasminjay.com.au', feedUrl: 'https://www.yasminjay.com.au/products.json', community: 'hijabi', currency: 'AUD', category: 'Modest dresses & swim', city: 'Sydney', vibe: 'elegant' },
   { slug: 'alia-anggun', name: 'Alia Anggun', homepage: 'https://www.aliaanggun.com', feedUrl: 'https://www.aliaanggun.com/products.json', community: 'hijabi', currency: 'SGD', category: 'Modest dresses', city: 'Singapore', vibe: 'elegant' },
   { slug: 'ayaana', name: 'Ayaana', homepage: 'https://ayaana.ca', feedUrl: 'https://ayaana.ca/products.json', community: 'hijabi', currency: 'USD', category: 'Abayas', city: 'Canada', vibe: 'elegant' },
@@ -176,7 +172,6 @@ export const BRANDS: Brand[] = [
   { slug: 'meriam-abdulaziz', name: 'Meriam Abdulaziz', homepage: 'https://bymeriamabdulaziz.com', feedUrl: 'https://bymeriamabdulaziz.com/products.json', community: 'hijabi', currency: 'AED', category: 'Abayas', city: 'Dubai', vibe: 'elegant' },
   { slug: 'beyza', name: 'Beyza', homepage: 'https://beyzaonline.com', feedUrl: 'https://beyzaonline.com/products.json', community: 'hijabi', currency: 'TRY', category: 'Abayas', city: 'Istanbul', vibe: 'elegant' },
   { slug: 'store-wf', name: 'Store WF', homepage: 'https://storewf.com', feedUrl: 'https://storewf.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest sets & separates', city: 'London', vibe: 'elegant' },
-  { slug: 'serrb', name: 'Serrb', homepage: 'https://www.serrb.com', feedUrl: 'https://www.serrb.com/products.json', community: 'hijabi', currency: 'AED', category: 'Abayas & modest dresses', city: 'Dubai', vibe: 'elegant' },
   { slug: 'abayabuth', name: 'AbayaButh', homepage: 'https://abayabuth.com', feedUrl: 'https://abayabuth.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Abayas', city: 'United Kingdom', vibe: 'elegant' },
   { slug: 'abadia', name: 'Abadia', homepage: 'https://shop.abadia.me', feedUrl: 'https://shop.abadia.me/products.json', community: 'hijabi', currency: 'AED', category: 'Modest dresses & ready-to-wear', city: 'Riyadh', vibe: 'elegant' },
   { slug: 'ahlam-collections', name: 'Ahlam Collections', homepage: 'https://ahlamcollections.com', feedUrl: 'https://ahlamcollections.com/products.json', community: 'hijabi', currency: 'CAD', category: 'Abayas', city: 'Canada', vibe: 'elegant' },
