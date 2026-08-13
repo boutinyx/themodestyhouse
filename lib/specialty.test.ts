@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype } from './specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -228,12 +228,76 @@ describe('isJilbab', () => {
   });
 });
 
+describe('isOuterwear', () => {
+  it('is true for real catalogue titles, garment top', () => {
+    expect(isOuterwear(p('Maren Vest'))).toBe(true); // ria-miranda
+    expect(isOuterwear(p('Jacquard Blazer Jacket - Black'))).toBe(true); // nihan
+    expect(isOuterwear(p('Fitted Cardigan-Beige'))).toBe(true); // bemu
+    expect(isOuterwear(p('Lameesa Lyocell Trench Coat - Black'))).toBe(true); // nour-al-houda
+    expect(isOuterwear(p('Belted Double Breasted Angora Coat - Mink'))).toBe(true); // nihan
+  });
+
+  it('is false when the same words appear on a non-top garment (styling descriptor, not the actual piece)', () => {
+    expect(isOuterwear(p('Capo Blazer Dress', 'dress'))).toBe(false); // zayda — a dress, not a blazer
+    expect(isOuterwear(p('The Oversized Blazer Abaya In Sage Green', 'abaya'))).toBe(false); // madiha
+    expect(isOuterwear(p('Denim Vest Dress 9420', 'dress'))).toBe(false); // beyza
+    expect(isOuterwear(p('Vest And Skirt Set', 'skirt'))).toBe(false); // touche-prive
+    expect(isOuterwear(p('Sage Green Bell Sleeve Cardigan Set', 'set'))).toBe(false); // ilovemodesty
+    expect(isOuterwear(p('Ahd Abaya (Trench Coat)', 'abaya'))).toBe(false); // bait-hanayen
+  });
+
+  it('is false for a top with none of the four words', () => {
+    expect(isOuterwear(p('Basic Long Sleeve Top'))).toBe(false);
+  });
+
+  it('does not overlap with isLayering — layering wins when a title could match both', () => {
+    expect(isOuterwear(p('Under Shirt With Cardigan Detail'))).toBe(false);
+    expect(isLayering(p('Under Shirt With Cardigan Detail'))).toBe(true);
+  });
+});
+
+describe('outerwearSubtype', () => {
+  it('returns null for a non-outerwear product', () => {
+    expect(outerwearSubtype(p('Basic Long Sleeve Top'))).toBeNull();
+    expect(outerwearSubtype(p('Capo Blazer Dress', 'dress'))).toBeNull();
+  });
+
+  it('picks the single matching subtype for an unambiguous title', () => {
+    expect(outerwearSubtype(p('Maren Vest'))).toBe('vest');
+    expect(outerwearSubtype(p('Jacquard Blazer Jacket - Black'))).toBe('blazer');
+    expect(outerwearSubtype(p('Fitted Cardigan-Beige'))).toBe('cardigan');
+    expect(outerwearSubtype(p('Lameesa Lyocell Trench Coat - Black'))).toBe('coat');
+  });
+
+  it("picks the RIGHTMOST matching word when a title names more than one (the head noun, in this catalogue's naming convention)", () => {
+    expect(outerwearSubtype(p('Tailored Blazer Coat'))).toBe('coat'); // real title
+    expect(outerwearSubtype(p('2-in-1 Detachable Vest Trench Coat'))).toBe('coat'); // real title
+    expect(outerwearSubtype(p('Belted Blazer Vest - Black'))).toBe('vest'); // real title, nihan
+    expect(outerwearSubtype(p('Tree Bark Knitwear Blazer Cardigan - Camel'))).toBe('cardigan'); // real title
+  });
+
+  it('checks only the part of the title BEFORE a "|" first, so a marketing subtitle cannot override the actual product name', () => {
+    // Real title, mariams: primary name "Sleeveless Cape Vest" is a vest;
+    // "Gilet Coat" after the pipe is a descriptive subtitle, not the name.
+    expect(outerwearSubtype(p('Sleeveless Cape Vest | Minimalist Long Wool-Blend Gilet Coat (MS204)'))).toBe('vest');
+    // Real title, mariams: primary name is a cardigan.
+    expect(outerwearSubtype(p('Waffle Knit Robe Cardigan | Belted Oversized Sweater Coat(MS198)'))).toBe('cardigan');
+  });
+
+  it('falls back to the whole title (rightmost match) when nothing before the pipe matches', () => {
+    expect(outerwearSubtype(p('Autumn Collection | Classic Wool Coat'))).toBe('coat');
+  });
+});
+
 describe('isSpecialty', () => {
   it('includes layering pieces alongside swim and activewear', () => {
     expect(isSpecialty(p('Black Neck Cover', 'dress'))).toBe(true);
   });
   it('includes jilbab-titled products', () => {
     expect(isSpecialty(p('2-Piece Prayer Set (Jilbab)', 'abaya'))).toBe(true);
+  });
+  it('includes outerwear pieces', () => {
+    expect(isSpecialty(p('Maren Vest'))).toBe(true);
   });
 });
 
@@ -269,5 +333,14 @@ describe('forcedLane override', () => {
   it('a forced-activewear item is specialty; a forced-layering item is specialty', () => {
     expect(isSpecialty(p('Plain Cotton Dress', 'dress', { forcedLane: 'modest-activewear' }))).toBe(true);
     expect(isSpecialty(p('Plain Cotton Dress', 'dress', { forcedLane: 'layering-basics' }))).toBe(true);
+  });
+  it('forces isOuterwear true regardless of title/garment', () => {
+    expect(isOuterwear(p('Plain Cotton Dress', 'dress', { forcedLane: 'outerwear' }))).toBe(true);
+  });
+  it('a forced-outerwear item stops matching isLayering, even if its title would', () => {
+    expect(isLayering(p('Under Shirt With Cardigan Detail', 'top', { forcedLane: 'outerwear' }))).toBe(false);
+  });
+  it('a forced-layering item stops matching isOuterwear, even if its title would', () => {
+    expect(isOuterwear(p('Belted Double Breasted Angora Coat', 'top', { forcedLane: 'layering-basics' }))).toBe(false);
   });
 });

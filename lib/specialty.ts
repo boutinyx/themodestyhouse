@@ -1,10 +1,10 @@
 import type { Product } from '@/lib/types';
-import type { LayeringSubtype } from '@/lib/types';
+import type { LayeringSubtype, OuterwearSubtype } from '@/lib/types';
 
 // Re-exported so existing call sites (lib/compactCatalogue.ts) don't need
 // to change their import — the type itself now lives in lib/types.ts to
 // avoid a circular import (Product carries a field of this type).
-export type { LayeringSubtype };
+export type { LayeringSubtype, OuterwearSubtype };
 
 // "Specialty" = swimwear + activewear + layering. These should NOT intermix
 // with everyday clothing (dresses, trousers, tops…). They only surface on
@@ -223,5 +223,85 @@ export function isJilbab(p: Product): boolean {
 // modest-hijabs already needs to do for it; see the `specialty: true` on
 // that lane in lib/lanes.ts.
 export function isSpecialty(p: Product): boolean {
-  return isSwim(p) || isActivewear(p) || isLayering(p) || isJilbab(p);
+  return isSwim(p) || isActivewear(p) || isLayering(p) || isJilbab(p) || isOuterwear(p);
+}
+
+// Outerwear = blazers, vests, cardigans, coats. Tina's call 2026-08-13: one
+// combined lane pulled out of Tops, with a Type filter breaking it into the
+// four sub-categories, same mechanism as Layering Basics.
+//
+// GATED ON garment === 'top'. Measured against the real catalogue before
+// shipping this: 946 published titles match one of the four words, but only
+// 756 are garment:'top'. The other 190 are dresses, abayas, sets, skirts and
+// trousers that merely MENTION "blazer"/"vest"/"coat" as a styling
+// descriptor — "Capo Blazer Dress" (zayda, a dress), "The Oversized Blazer
+// Abaya In Sage Green" (madiha, an abaya), "Vest And Skirt Set" (touche-prive,
+// a skirt), "Ahd Abaya (Trench Coat)" (bait-hanayen, an abaya styled like a
+// trench coat). Matching on title alone, the §10.10 mistake this project has
+// already made once with unanchored substrings, would have pulled all 190 out
+// of their correct lanes into Outerwear. `\b`-anchoring alone does not fix
+// this — every one of those 190 titles contains the exact whole word.
+const OUTERWEAR_RE = /\b(blazers?|vests?|cardigans?|coats?)\b/i;
+
+export function isOuterwear(p: Product): boolean {
+  if (p.forcedLane) return p.forcedLane === 'outerwear';
+  if (isLayering(p)) return false; // checked empirically: 0 overlap today, but stay defensive — same pattern isActivewear() already uses against isSwim/isLayering
+  return p.garment === 'top' && OUTERWEAR_RE.test(p.title);
+}
+
+export const OUTERWEAR_SUBTYPE_LABELS: Record<OuterwearSubtype, string> = {
+  blazer: 'Blazers',
+  vest: 'Vests',
+  cardigan: 'Cardigans',
+  coat: 'Coats',
+};
+
+// Order matters here only as the fallback iteration order when two matches
+// land at the exact same index (impossible in practice — no word is a
+// substring of another among these four — kept in the order Tina named them).
+const OUTERWEAR_SUBTYPE_RES: [OuterwearSubtype, RegExp][] = [
+  ['blazer', /\bblazers?\b/i],
+  ['vest', /\bvests?\b/i],
+  ['cardigan', /\bcardigans?\b/i],
+  ['coat', /\bcoats?\b/i],
+];
+
+/**
+ * Picks ONE of the four sub-types for a title naming more than one — e.g.
+ * "Belted Blazer Vest - Black" (nihan) or "Tailored Blazer Coat". Real
+ * catalogue titles checked before shipping this (19 multi-word titles found):
+ * the RIGHTMOST matching word is consistently the actual garment, with
+ * everything before it a styling adjective — "Blazer VEST", "Blazer COAT",
+ * "Vest Trench COAT". This mirrors ordinary English compound-noun order
+ * (head noun last).
+ *
+ * Checked BEFORE any "|" first, falling back to the whole title only if
+ * nothing before the pipe matches. Mariam's Collection titles this catalogue
+ * already carries put the real product name before a "|" and a marketing
+ * subtitle after it — "Sleeveless Cape Vest | Minimalist Long Wool-Blend
+ * Gilet Coat (MS204)" is a VEST; picking the rightmost match against the
+ * WHOLE title would have said "coat", wrong, because "Gilet Coat" is
+ * describing the silhouette in the subtitle, not naming the product.
+ */
+export function outerwearSubtype(p: Product): OuterwearSubtype | null {
+  if (!isOuterwear(p)) return null;
+  const head = p.title.split('|')[0];
+  let best: OuterwearSubtype | null = null;
+  let bestIndex = -1;
+  for (const [type, re] of OUTERWEAR_SUBTYPE_RES) {
+    const m = head.match(re);
+    if (m && m.index !== undefined && m.index > bestIndex) {
+      best = type;
+      bestIndex = m.index;
+    }
+  }
+  if (best) return best;
+  for (const [type, re] of OUTERWEAR_SUBTYPE_RES) {
+    const m = p.title.match(re);
+    if (m && m.index !== undefined && m.index > bestIndex) {
+      best = type;
+      bestIndex = m.index;
+    }
+  }
+  return best;
 }
