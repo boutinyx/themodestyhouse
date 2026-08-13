@@ -10,9 +10,25 @@ import { useCurrency } from './CurrencyProvider';
 
 const STEP = 24;
 
-export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue }) {
+export function FilterableGrid({
+  catalogue: cat,
+  initialType,
+}: {
+  catalogue: CompactCatalogue;
+  /** From the lane page's ?type= — e.g. the nav flyout's "Blazers" link
+   *  lands on /outerwear?type=blazer. Only ever set from a controlled list of
+   *  hrefs this codebase generates itself (Nav.tsx), but still validated
+   *  against the catalogue's real subtype columns rather than trusted
+   *  outright — an arbitrary query string is user input. */
+  initialType?: string;
+}) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
-  const [type, setType] = useState('all'); // layering subtype, or 'all'
+  const [type, setType] = useState(() => {
+    if (!initialType) return 'all';
+    if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
+    if ((cat.outerwearSubtypes as string[]).includes(initialType)) return initialType;
+    return 'all';
+  }); // layering OR outerwear subtype, or 'all'
   const [q, setQ] = useState('');
   const [visible, setVisible] = useState(STEP);
   const [sort, setSort] = useState<SortKey>('featured');

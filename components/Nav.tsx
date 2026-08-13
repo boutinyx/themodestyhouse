@@ -1,11 +1,30 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { CATEGORY_LANES } from '@/lib/lanes';
-import { NavMenu } from './NavMenu';
+import { OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype } from '@/lib/specialty';
+import { NavMenu, type NavItem } from './NavMenu';
+
+// Fixed order, matching the Type filter's own canonical order
+// (lib/specialty.ts) rather than object key iteration order.
+const OUTERWEAR_SUBTYPES: OuterwearSubtype[] = ['blazer', 'vest', 'cardigan', 'coat'];
 
 export function Nav() {
   const path = usePathname();
-  const categoryItems = CATEGORY_LANES.map((l) => ({ href: `/${l.slug}`, label: l.title }));
+  const categoryItems: NavItem[] = CATEGORY_LANES.map((l) => ({
+    href: `/${l.slug}`,
+    label: l.title,
+    // Outerwear alone gets a hover flyout to its four subtypes (Tina's
+    // request, 2026-08-13) — each pre-filters the destination page via
+    // ?type=, read by app/[lane]/page.tsx and threaded into FilterableGrid.
+    ...(l.slug === 'outerwear'
+      ? {
+          subItems: OUTERWEAR_SUBTYPES.map((t) => ({
+            href: `/outerwear?type=${t}`,
+            label: OUTERWEAR_SUBTYPE_LABELS[t],
+          })),
+        }
+      : {}),
+  }));
 
   return (
     <NavMenu

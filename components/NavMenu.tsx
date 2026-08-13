@@ -1,7 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { NavigationMenu } from '@base-ui-components/react/navigation-menu';
-import { CaretDown } from '@phosphor-icons/react';
+import { Menu } from '@base-ui-components/react/menu';
+import { CaretDown, CaretRight } from '@phosphor-icons/react';
 
 /**
  * The header navigation menu, built on Base UI's NavigationMenu primitive.
@@ -18,7 +19,18 @@ import { CaretDown } from '@phosphor-icons/react';
  * lucide — the house icon set is @phosphor-icons.
  */
 
-export type NavItem = { href: string; label: string };
+export type NavItem = {
+  href: string;
+  label: string;
+  /** When present, this row opens a hover flyout of narrower links instead of
+   *  being a plain NavigationMenu.Link — Outerwear's Blazers/Vests/Cardigans/
+   *  Coats as of 2026-08-13. NavigationMenu has no row-level submenu of its
+   *  own (only a `nested` root-composition prop for composing independent
+   *  instances), so this one row is a self-contained Base UI `Menu` dropped
+   *  inside the outer NavigationMenu.Content — the same primitive already
+   *  proven for the currency switcher, not a rebuild of the whole panel. */
+  subItems?: { href: string; label: string }[];
+};
 
 /** Phosphor CaretDown, not a hand-drawn path (CLAUDE.md §6). The old inline
  *  <svg> was a 1.2px stroke with round caps, against Phosphor's own geometry on
@@ -116,25 +128,84 @@ export function NavMenu({
                     : { gridTemplateColumns: `repeat(${g.columns ?? 1}, max-content)` }
                 }
               >
-                {g.items.map((it) => (
-                  <NavigationMenu.Link
-                    key={it.href}
-                    render={<Link href={it.href} />}
-                    // .menu-row, NOT `block nav-link`. `.nav-link` is the
-                    // horizontal-header class and sets `justify-content: center`
-                    // (globals.css) — so every option in this panel rendered
-                    // centred inside its column, and the two columns read as two
-                    // ragged centred stacks rather than two lists. Tailwind
-                    // cannot override it (`block`, `justify-start`, `text-left`
-                    // all live in @layer utilities, and an unlayered rule beats
-                    // any layered one), which is exactly why .menu-row exists.
-                    // Same fix as the currency menu and the filter dropdowns.
-                    className="menu-row"
-                    data-active={path === it.href}
-                  >
-                    {it.label}
-                  </NavigationMenu.Link>
-                ))}
+                {g.items.map((it) =>
+                  it.subItems ? (
+                    <Menu.Root key={it.href}>
+                      <Menu.Trigger
+                        // NOT rendered as a Link, deliberately — this row only
+                        // ever opens the flyout, on every pointer type. A first
+                        // cut rendered it as a Link (like the "Products" trigger
+                        // beside it), reasoning the mouse-press-swallow below
+                        // would keep it safe the same way it keeps
+                        // CurrencySwitcher safe. It doesn't transfer: unlike
+                        // Products, whose NavigationMenu.Trigger has NATIVE
+                        // tap-opens-first handling built into that primitive,
+                        // Menu.Trigger has no such concept — bolting a Link onto
+                        // it meant a TOUCH tap navigated to bare /outerwear
+                        // immediately (no ?type=) while the flyout separately
+                        // opened on top of the page it had just left. Caught by
+                        // scripts/interaction-audit.mjs's ipad-1366 pass, then
+                        // reproduced and confirmed live — the header persists
+                        // across the client-side route change (root layout), so
+                        // the stray flyout was visibly still open over the new
+                        // page. Removing the Link removes the race entirely:
+                        // every activation opens the flyout, and the four real
+                        // destinations are its sub-items.
+                        //
+                        // The mouse-press swallow is still needed independent of
+                        // any Link — it's the same fix as CurrencySwitcher.tsx's
+                        // (Base UI promotes a hover-opened menu to click-opened
+                        // on a mouse press, which then never closes on hover-out).
+                        openOnHover
+                        delay={0}
+                        closeDelay={120}
+                        onPointerDown={(e) => {
+                          if (e.pointerType === 'mouse') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }
+                        }}
+                        className="menu-row flex items-center justify-between"
+                        data-active={path === it.href}
+                      >
+                        {it.label}
+                        <CaretRight size={11} weight="bold" aria-hidden="true" className="ms-2 opacity-60" />
+                      </Menu.Trigger>
+                      <Menu.Portal>
+                        <Menu.Positioner side="right" alignOffset={-8} sideOffset={2} collisionPadding={12} className="z-50">
+                          <Menu.Popup
+                            className="rounded-xl border p-2 min-w-[180px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
+                            style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
+                          >
+                            {it.subItems.map((s) => (
+                              <Menu.Item key={s.href} render={<Link href={s.href} />} className="menu-row" closeOnClick>
+                                {s.label}
+                              </Menu.Item>
+                            ))}
+                          </Menu.Popup>
+                        </Menu.Positioner>
+                      </Menu.Portal>
+                    </Menu.Root>
+                  ) : (
+                    <NavigationMenu.Link
+                      key={it.href}
+                      render={<Link href={it.href} />}
+                      // .menu-row, NOT `block nav-link`. `.nav-link` is the
+                      // horizontal-header class and sets `justify-content: center`
+                      // (globals.css) — so every option in this panel rendered
+                      // centred inside its column, and the two columns read as two
+                      // ragged centred stacks rather than two lists. Tailwind
+                      // cannot override it (`block`, `justify-start`, `text-left`
+                      // all live in @layer utilities, and an unlayered rule beats
+                      // any layered one), which is exactly why .menu-row exists.
+                      // Same fix as the currency menu and the filter dropdowns.
+                      className="menu-row"
+                      data-active={path === it.href}
+                    >
+                      {it.label}
+                    </NavigationMenu.Link>
+                  )
+                )}
               </div>
             </NavigationMenu.Content>
           </NavigationMenu.Item>

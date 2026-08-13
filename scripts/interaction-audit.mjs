@@ -229,6 +229,103 @@ for (const engineName of engineNames) {
       }
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'nav-dropdown-open', error: e.message.split('\n')[0] }); }
 
+    // ---- 2b. outerwear nav flyout (new 2026-08-13) ------------------------
+    //
+    // Hovering "Outerwear" inside the Products panel should pop open a
+    // submenu of Blazers/Vests/Cardigans/Coats (Tina's request), each
+    // pre-filtering /outerwear via ?type=. The row itself is not a link (see
+    // NavMenu.tsx for why — an earlier cut that made it one navigated on a
+    // bare touch tap instead of opening), so this also checks for the ghost
+    // of that bug: does clicking a sub-item leave a stray flyout open over
+    // the destination page, the same shape as the currency menu pinning open
+    // after a click (§10.25's note in CurrencySwitcher.tsx).
+    try {
+      await go('/directory');
+      const products = page.locator('header').getByText('Products', { exact: true }).first();
+      if (await products.isVisible().catch(() => false)) {
+        if (vp.touch) await products.tap(); else await products.hover();
+        await page.waitForTimeout(500);
+        // Found by COORDINATES, not page.getByText — NavigationMenu.Viewport
+        // measures its content in an extra, invisible copy before showing it,
+        // so a text locator's `.first()` can resolve to that clone rather
+        // than the one actually on screen, and a synthetic hover on an
+        // invisible element opens nothing. Same family as §10.32 (locate
+        // structurally, not by something that can be duplicated).
+        const rowBox = await page.evaluate(() => {
+          const popup = [...document.querySelectorAll('nav')].find((n) => !n.closest('header') && n.querySelectorAll('a[href]').length >= 4);
+          // The row itself carries no href (it only opens the flyout — see
+          // NavMenu.tsx), so it's the one row in the panel WITHOUT one.
+          const row = popup && [...popup.querySelectorAll('div,button')]
+            .find((el) => el.offsetParent !== null && el.textContent?.trim().startsWith('Outerwear') && !el.querySelector('a'));
+          if (!row) return null;
+          const r = row.getBoundingClientRect();
+          return { x: Math.round(r.left + r.width / 2), y: Math.round(r.top + r.height / 2) };
+        });
+        if (rowBox) {
+          if (vp.touch) await page.touchscreen.tap(rowBox.x, rowBox.y); else await page.mouse.move(rowBox.x, rowBox.y);
+          await page.waitForTimeout(500);
+          const flyout = await page.evaluate(() => {
+            const menus = [...document.querySelectorAll('[role="menu"]')];
+            const sub = menus.find((m) => [...m.querySelectorAll('a[href]')].some((a) => a.getAttribute('href')?.includes('/outerwear?type=')));
+            if (!sub) return { PROBLEM: 'OUTERWEAR FLYOUT DID NOT OPEN' };
+            const labels = [...sub.querySelectorAll('a[href]')].map((a) => a.textContent.trim());
+            const expected = ['Blazers', 'Vests', 'Cardigans', 'Coats'];
+            const mismatch = expected.length !== labels.length || expected.some((l, i) => labels[i] !== l);
+            return { labels, ...(mismatch ? { PROBLEM: `OUTERWEAR FLYOUT ITEMS WRONG: ${JSON.stringify(labels)}` } : {}) };
+          });
+          await shot('outerwear-flyout-open');
+          note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', ...flyout, ...(await page.evaluate(PROBE)) });
+
+          if (!flyout.PROBLEM) {
+            const blazersBox = await page.evaluate(() => {
+              const menus = [...document.querySelectorAll('[role="menu"]')];
+              const sub = menus.find((m) => [...m.querySelectorAll('a[href]')].some((a) => a.getAttribute('href')?.includes('/outerwear?type=')));
+              const a = sub && [...sub.querySelectorAll('a[href]')].find((x) => x.getAttribute('href')?.endsWith('type=blazer'));
+              if (!a) return null;
+              const r = a.getBoundingClientRect();
+              return { x: Math.round(r.left + r.width / 2), y: Math.round(r.top + r.height / 2) };
+            });
+            if (vp.touch) await page.touchscreen.tap(blazersBox.x, blazersBox.y); else await page.mouse.click(blazersBox.x, blazersBox.y);
+            await page.waitForTimeout(700);
+            const landedUrl = page.url();
+            const landed = landedUrl.includes('/outerwear?type=blazer') || landedUrl.endsWith('type=blazer');
+            const stillOpen = await page.evaluate(() => {
+              const m = [...document.querySelectorAll('[role="menu"]')]
+                .find((x) => [...x.querySelectorAll('a[href]')].some((a) => a.getAttribute('href')?.includes('/outerwear?type=')));
+              return !!m && m.getBoundingClientRect().width > 0;
+            });
+            // Polled, not a single read: mobile-emulated Chromium throttles CPU,
+            // and a client-side Link navigation hydrates the new page async — a
+            // single check soon after the click can run before FilterableGrid's
+            // useState initializer has painted the chip. Direct navigation to
+            // the same URL confirmed the pre-filter itself works at this width;
+            // this loop is about giving hydration time, not about the feature.
+            let typeChip = null;
+            for (let i = 0; i < 6 && !typeChip; i++) {
+              typeChip = await page.evaluate(() => {
+                const chip = [...document.querySelectorAll('button')].find((b) => /^Blazers/.test(b.textContent?.trim() || ''));
+                return chip ? chip.textContent.trim() : null;
+              });
+              if (!typeChip) await page.waitForTimeout(300);
+            }
+            note({
+              engine: engineName, viewport: vpName, state: 'outerwear-flyout-navigate',
+              landedUrl, landed, stillOpen, typeChip,
+              ...(landed && !stillOpen && typeChip ? {} : {
+                PROBLEM: !landed ? `SUB-ITEM DID NOT NAVIGATE TO ?type=blazer — at ${landedUrl}`
+                  : stillOpen ? 'FLYOUT STAYED OPEN AFTER NAVIGATING AWAY'
+                    : 'TYPE FILTER DID NOT PRE-SELECT BLAZERS ON LANDING',
+              }),
+            });
+          }
+        } else {
+          note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', skipped: 'Outerwear row not visible after opening Products' });
+        }
+      } else {
+        note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', skipped: 'desktop nav hidden at this width' });
+      }
+    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', error: e.message.split('\n')[0] }); }
+
     // ---- 3. filter dropdown on /directory --------------------------------
     // THE question this exists to answer: the panel is revealed by
     // `group-hover` / `group-focus-within`. Neither is a tap. Safari famously

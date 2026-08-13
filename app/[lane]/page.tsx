@@ -35,10 +35,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lane: str
   };
 }
 
-export default async function LanePage({ params }: { params: Promise<{ lane: string }> }) {
+export default async function LanePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ lane: string }>;
+  searchParams: Promise<{ type?: string }>;
+}) {
   const { lane: slug } = await params;
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) notFound();
+  const { type } = await searchParams;
   const catalogue = encodeCatalogue(productsForLane(lane.slug), BRANDS);
   const listedItems = catalogue.rows.title.slice(0, 24).map((_, i) => {
     const c = decodeCard(catalogue, i);
@@ -55,7 +62,7 @@ export default async function LanePage({ params }: { params: Promise<{ lane: str
       />
       <h1 className="section-heading text-3xl md:text-4xl">{lane.title}</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>
-      <FilterableGrid catalogue={catalogue} />
+      <FilterableGrid catalogue={catalogue} initialType={type} />
       {answer && (
         // Informational copy AFTER the grid, not before it — a shopper wants
         // the products first. Still real, crawlable content: server-rendered,
