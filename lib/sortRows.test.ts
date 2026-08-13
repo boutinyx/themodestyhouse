@@ -12,6 +12,10 @@ const USD_BRAND: Brand = {
   slug: 'aab', name: 'Aab', homepage: 'https://us.aabcollection.com', feedUrl: 'https://us.aabcollection.com/products.json',
   community: 'hijabi', currency: 'USD', category: 'Modest & abayas', city: 'London', vibe: 'elegant',
 };
+const NISWA_BRAND: Brand = {
+  slug: 'niswa', name: 'Niswa Fashion', homepage: 'https://niswafashion.com', feedUrl: 'https://niswafashion.com/products.json',
+  community: 'hijabi', currency: 'USD', category: 'Hijabs & abayas', city: 'Los Angeles', vibe: 'elegant',
+};
 
 const base: Omit<Product, 'id' | 'brandSlug' | 'brandName' | 'currency' | 'price' | 'firstSeen'> = {
   title: 'Item', image: 'https://cdn.shopify.com/a.jpg', url: 'https://x.com/products/a',
@@ -96,5 +100,43 @@ describe('sortRowIndices', () => {
     const input = [0, 1, 2];
     sortRowIndices(cat, input, 'price-asc', null);
     expect(input).toEqual([0, 1, 2]);
+  });
+});
+
+describe('sortRowIndices featured shuffle (2026-08-13)', () => {
+  // idx0 aab, idx1 niswa, idx2 aab, idx3 niswa, idx4 inayah
+  const shuffleProducts: Product[] = [
+    { ...base, id: 'aab:1', brandSlug: 'aab', brandName: 'Aab', currency: 'USD', price: 50, firstSeen: '2026-08-06' },
+    { ...base, id: 'niswa:1', brandSlug: 'niswa', brandName: 'Niswa Fashion', currency: 'USD', price: 50, firstSeen: '2026-08-06' },
+    { ...base, id: 'aab:2', brandSlug: 'aab', brandName: 'Aab', currency: 'USD', price: 50, firstSeen: '2026-08-06' },
+    { ...base, id: 'niswa:2', brandSlug: 'niswa', brandName: 'Niswa Fashion', currency: 'USD', price: 50, firstSeen: '2026-08-06' },
+    { ...base, id: 'inayah:1', brandSlug: 'inayah', brandName: 'Inayah', currency: 'GBP', price: 50, firstSeen: '2026-08-06' },
+  ];
+  const shuffleCat = encodeCatalogue(shuffleProducts, [GBP_BRAND, USD_BRAND, NISWA_BRAND]);
+  const rows = [0, 1, 2, 3, 4];
+
+  it('with no featured option, order is untouched (back-compat)', () => {
+    expect(sortRowIndices(shuffleCat, rows, 'featured', null)).toEqual(rows);
+  });
+
+  it('with shuffleKeys and no pin, orders purely by key', () => {
+    const shuffleKeys = [0.9, 0.1, 0.7, 0.3, 0.5]; // -> 1,3,4,2,0
+    expect(sortRowIndices(shuffleCat, rows, 'featured', null, { shuffleKeys })).toEqual([1, 3, 4, 2, 0]);
+  });
+
+  it('pins the named brand\'s rows first, as a group, both groups still ordered by shuffleKeys', () => {
+    // niswa rows are 1 and 3. Even though row 1's key (0.9) is the LARGEST of
+    // all five, it must still land before every non-niswa row.
+    const shuffleKeys = [0.2, 0.9, 0.4, 0.1, 0.05];
+    // niswa group (1, 3) ordered by key: 3 (0.1) before 1 (0.9).
+    // non-niswa group (0, 2, 4) ordered by key: 4 (0.05), 0 (0.2), 2 (0.4).
+    expect(sortRowIndices(shuffleCat, rows, 'featured', null, { shuffleKeys, pinnedBrandSlug: 'niswa' }))
+      .toEqual([3, 1, 4, 0, 2]);
+  });
+
+  it('does not mutate the input array', () => {
+    const input = [0, 1, 2, 3, 4];
+    sortRowIndices(shuffleCat, input, 'featured', null, { shuffleKeys: [0.5, 0.4, 0.3, 0.2, 0.1], pinnedBrandSlug: 'niswa' });
+    expect(input).toEqual([0, 1, 2, 3, 4]);
   });
 });

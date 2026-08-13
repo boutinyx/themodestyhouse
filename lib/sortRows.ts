@@ -33,13 +33,46 @@ function comparablePrice(cat: CompactCatalogue, row: number, preference: Currenc
   return converted ?? price;
 }
 
+/**
+ * Randomizes "Featured" order per page load, instead of the fixed
+ * publish-time order every visitor otherwise sees forever (the catalogue's
+ * row order only ever changes on a republish). Tina: "I see the products
+ * that we had in the beginning... mix them up a bit." `shuffleKeys` is one
+ * random number per row, generated once by the caller when the page mounts
+ * (not per render — see FilterableGrid.tsx) so the order stays stable while
+ * filtering/searching within a visit, but differs between visits.
+ * `pinnedBrandSlug` keeps one brand's rows first as a group — Niswa, her
+ * explicit exception — sorted among themselves by the same shuffle keys
+ * rather than left in their original relative order, so even the pinned
+ * group doesn't look frozen.
+ */
+export interface FeaturedShuffle {
+  shuffleKeys: number[];
+  pinnedBrandSlug?: string;
+}
+
 export function sortRowIndices(
   cat: CompactCatalogue,
   rowIndices: number[],
   sort: SortKey,
   currencyPreference: CurrencyPreference,
+  featured?: FeaturedShuffle,
 ): number[] {
-  if (sort === 'featured') return rowIndices;
+  if (sort === 'featured') {
+    if (!featured) return rowIndices;
+    const pinnedIdx = featured.pinnedBrandSlug
+      ? cat.brands.findIndex((b) => b.slug === featured.pinnedBrandSlug)
+      : -1;
+    const { shuffleKeys } = featured;
+    return [...rowIndices].sort((a, b) => {
+      if (pinnedIdx !== -1) {
+        const aPinned = cat.rows.brandIdx[a] === pinnedIdx;
+        const bPinned = cat.rows.brandIdx[b] === pinnedIdx;
+        if (aPinned !== bPinned) return aPinned ? -1 : 1;
+      }
+      return shuffleKeys[a] - shuffleKeys[b];
+    });
+  }
 
   const withKeys = rowIndices.map((row) => ({
     row,
