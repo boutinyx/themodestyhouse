@@ -5,6 +5,7 @@ import { LANES } from '@/lib/lanes';
 import { productsForLane } from '@/lib/products';
 import { FilterableGrid } from '@/components/FilterableGrid';
 import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
+import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS } from '@/lib/specialty';
 import { BRANDS } from '@/data/brands';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
@@ -52,6 +53,19 @@ export default async function LanePage({
     return { title: c.title, url: c.url, image: c.image, brandName: c.brandName };
   });
   const answer = LANE_ANSWERS[lane.slug];
+  // Landing via the nav flyout's ?type=blazer should read "Blazers" up top,
+  // not the generic lane title — Tina: "i do wnat to see blazer etc etc
+  // instead of outerwear in the title when i click on it". Validated against
+  // this catalogue's real subtype columns, same as FilterableGrid's own
+  // `initialType` check — an arbitrary query string is user input, and an
+  // invalid one should fall back to the lane title, not print raw garbage.
+  const subtypeTitle =
+    type && (catalogue.layeringSubtypes as string[]).includes(type)
+      ? LAYERING_SUBTYPE_LABELS[type as (typeof catalogue.layeringSubtypes)[number]]
+      : type && (catalogue.outerwearSubtypes as string[]).includes(type)
+        ? OUTERWEAR_SUBTYPE_LABELS[type as (typeof catalogue.outerwearSubtypes)[number]]
+        : null;
+  const pageTitle = subtypeTitle ?? lane.title;
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-12">
       <JsonLd
@@ -60,7 +74,7 @@ export default async function LanePage({
           collectionPageSchema({ name: lane.title, description: lane.intro, path: `/${lane.slug}`, items: listedItems }),
         )}
       />
-      <h1 className="section-heading text-3xl md:text-4xl">{lane.title}</h1>
+      <h1 className="section-heading text-3xl md:text-4xl">{pageTitle}</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>
       <FilterableGrid catalogue={catalogue} initialType={type} />
       {answer && (
