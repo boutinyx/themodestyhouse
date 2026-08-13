@@ -153,6 +153,38 @@ describe('layering subtype encoding', () => {
   });
 });
 
+describe('outerwear subtype encoding', () => {
+  const VEST: Product = { ...PRODUCT, id: 'aab:3', title: 'Maren Vest', garment: 'top' };
+  const COAT: Product = { ...PRODUCT, id: 'aab:4', title: 'Classic Wool Coat', garment: 'top' };
+
+  it('gives a non-outerwear product the -1 sentinel and an empty dictionary', () => {
+    const cat = encodeCatalogue([PRODUCT], [BRAND]);
+    expect(cat.outerwearSubtypes).toEqual([]);
+    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(-1);
+  });
+
+  it('assigns a real index for an outerwear product, and only lists subtypes actually present', () => {
+    const cat = encodeCatalogue([VEST], [BRAND]);
+    expect(cat.outerwearSubtypes).toEqual(['vest']);
+    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(0);
+  });
+
+  it('orders present subtypes canonically, not by first appearance in the input', () => {
+    // COAT is listed BEFORE VEST in the input array, but vest sorts first
+    // in OUTERWEAR_SUBTYPE_LABELS (blazer, vest, cardigan, coat).
+    const cat = encodeCatalogue([COAT, VEST], [BRAND]);
+    expect(cat.outerwearSubtypes).toEqual(['vest', 'coat']);
+    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(cat.outerwearSubtypes.indexOf('coat'));
+    expect(cat.rows.outerwearSubtypeIdx[1]).toBe(cat.outerwearSubtypes.indexOf('vest'));
+  });
+
+  it('a mixed catalogue keeps the -1 sentinel for non-outerwear rows alongside real indices', () => {
+    const cat = encodeCatalogue([PRODUCT, VEST], [BRAND]);
+    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(-1);
+    expect(cat.rows.outerwearSubtypeIdx[1]).toBe(0);
+  });
+});
+
 describe('firstSeenDay encoding', () => {
   it('encodes a real firstSeen date as days since the epoch', () => {
     const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: '2026-08-05' }], [BRAND]);

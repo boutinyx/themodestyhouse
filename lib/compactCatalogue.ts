@@ -1,5 +1,5 @@
 import type { Brand, Garment, Product } from '@/lib/types';
-import { layeringSubtype, LAYERING_SUBTYPE_LABELS, type LayeringSubtype } from '@/lib/specialty';
+import { layeringSubtype, LAYERING_SUBTYPE_LABELS, type LayeringSubtype, outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype } from '@/lib/specialty';
 
 /** Reference point for the compact day-index — see rows.firstSeenDay below. */
 export const FIRST_SEEN_EPOCH = Date.parse('2026-01-01T00:00:00.000Z');
@@ -55,6 +55,8 @@ export interface CompactCatalogue {
    *  FilterableGrid uses to decide whether to render the "Type" filter at
    *  all, the same pattern already used for `occasions`. */
   layeringSubtypes: LayeringSubtype[];
+  /** Same shape as layeringSubtypes, for the Outerwear lane's Type filter. */
+  outerwearSubtypes: OuterwearSubtype[];
   rows: {
     title: string[];
     shopifyId: string[];
@@ -75,6 +77,8 @@ export interface CompactCatalogue {
      *  bitmask like occasionMask — layeringSubtype() returns exactly one
      *  type or null, never several, by construction. */
     layeringSubtypeIdx: number[];
+    /** Same shape as layeringSubtypeIdx, for outerwearSubtypes. */
+    outerwearSubtypeIdx: number[];
     /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
      *  decoded into CardProduct, same treatment as occasionMask. */
     firstSeenDay: number[];
@@ -111,6 +115,10 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
   const presentSubtypes = new Set(products.map((p) => layeringSubtype(p)).filter((t): t is LayeringSubtype => t !== null));
   const layeringSubtypes = layeringSubtypeOrder.filter((t) => presentSubtypes.has(t));
   const layeringSubtypeIndex = new Map(layeringSubtypes.map((t, i) => [t, i]));
+  const outerwearSubtypeOrder = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
+  const presentOuterwearSubtypes = new Set(products.map((p) => outerwearSubtype(p)).filter((t): t is OuterwearSubtype => t !== null));
+  const outerwearSubtypes = outerwearSubtypeOrder.filter((t) => presentOuterwearSubtypes.has(t));
+  const outerwearSubtypeIndex = new Map(outerwearSubtypes.map((t, i) => [t, i]));
 
   const rows: CompactCatalogue['rows'] = {
     title: [],
@@ -123,6 +131,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     garmentIdx: [],
     occasionMask: [],
     layeringSubtypeIdx: [],
+    outerwearSubtypeIdx: [],
     firstSeenDay: [],
   };
 
@@ -214,10 +223,12 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     rows.occasionMask.push(mask);
     const subtype = layeringSubtype(p);
     rows.layeringSubtypeIdx.push(subtype === null ? -1 : layeringSubtypeIndex.get(subtype)!);
+    const outerwearSub = outerwearSubtype(p);
+    rows.outerwearSubtypeIdx.push(outerwearSub === null ? -1 : outerwearSubtypeIndex.get(outerwearSub)!);
     rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
   }
 
-  return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, rows };
+  return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, rows };
 }
 
 export function decodeCard(cat: CompactCatalogue, row: number): CardProduct {
