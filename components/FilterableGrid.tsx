@@ -29,6 +29,29 @@ export function FilterableGrid({
     if ((cat.outerwearSubtypes as string[]).includes(initialType)) return initialType;
     return 'all';
   }); // layering OR outerwear subtype, or 'all'
+  // Re-syncs `type` when `initialType` (or the catalogue it's validated
+  // against) changes — NOT redundant with the useState initializer above,
+  // which only ever runs once, at mount. Clicking a DIFFERENT subtype link
+  // while already on this lane (e.g. the header flyout's Vests link while
+  // viewing /outerwear?type=blazer) is a same-route, search-params-only
+  // client navigation: Next.js re-renders the page with a new `initialType`
+  // prop, but React does not remount FilterableGrid over it, so the lazy
+  // initializer never re-runs and silently keeps showing the OLD subtype's
+  // products while the URL and the <h1> (computed fresh server-side on every
+  // render) both already say the new one. Tina: "it doesnt change the
+  // clothing when i click on a sub catagaorie". Confirmed live: landed on
+  // ?type=blazer (fresh mount, correct), then clicked Vests from the
+  // still-open header flyout — URL and h1 both updated to "vest"/"Vests",
+  // but the grid kept showing blazers until this effect was added.
+  useEffect(() => {
+    const resolved = !initialType
+      ? 'all'
+      : (cat.layeringSubtypes as string[]).includes(initialType) || (cat.outerwearSubtypes as string[]).includes(initialType)
+        ? initialType
+        : 'all';
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setType(resolved);
+  }, [initialType, cat]);
   const [q, setQ] = useState('');
   const [visible, setVisible] = useState(STEP);
   const [sort, setSort] = useState<SortKey>('featured');
