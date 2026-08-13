@@ -1,1 +1,14 @@
-{}
+{
+  "touche-prive:8901029298504": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "culture-hijab:8905073230122": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "jaida:8516350935239": {
+    "lane": "layering-basics",
+    "subtype": "sleeve-extender"
+  }
+}
