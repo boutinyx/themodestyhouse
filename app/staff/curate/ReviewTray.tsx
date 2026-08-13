@@ -36,15 +36,15 @@ export function ReviewTray() {
     }
   }
 
-  if (!data) return <main className="p-6">Loading…</main>;
+  if (!data) return <p className="text-sm" style={{ color: 'var(--muted)' }}>Loading…</p>;
   const total = data.deletes.length + data.moves.length + data.laneMoves.length;
   const text = JSON.stringify(data, null, 2);
 
   return (
-    <main className="p-6 max-w-3xl mx-auto">
-      <h1 className="serif text-xl mb-1" style={{ color: 'var(--ink)' }}>
+    <section>
+      <h2 className="serif text-xl mb-1" style={{ color: 'var(--ink)' }}>
         Live catalogue edits — {total} pending
-      </h1>
+      </h2>
       <p className="text-sm mb-4" style={{ color: 'var(--muted)' }}>
         Everything moved or deleted from the real site this session. Copy
         this and paste it to Claude to merge into the tracked files.
@@ -68,7 +68,7 @@ export function ReviewTray() {
       )}
       {data.moves.length > 0 && (
         <>
-          <h2 className="eyebrow mb-2">Moves ({data.moves.length})</h2>
+          <h3 className="eyebrow mb-2">Moves ({data.moves.length})</h3>
           <ul className="mb-6 text-sm">
             {data.moves.map((m) => (
               <li key={m.id} className="mb-1">
@@ -80,7 +80,7 @@ export function ReviewTray() {
       )}
       {data.laneMoves.length > 0 && (
         <>
-          <h2 className="eyebrow mb-2">Lane moves ({data.laneMoves.length})</h2>
+          <h3 className="eyebrow mb-2">Lane moves ({data.laneMoves.length})</h3>
           <ul className="mb-6 text-sm">
             {data.laneMoves.map((m) => (
               <li key={m.id} className="mb-1">
@@ -93,7 +93,7 @@ export function ReviewTray() {
       )}
       {data.deletes.length > 0 && (
         <>
-          <h2 className="eyebrow mb-2">Deletes ({data.deletes.length})</h2>
+          <h3 className="eyebrow mb-2">Deletes ({data.deletes.length})</h3>
           <ul className="text-sm">
             {data.deletes.map((d) => (
               <li key={d.id} className="mb-1">{d.title}</li>
@@ -102,6 +102,6 @@ export function ReviewTray() {
         </>
       )}
       {total === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>Nothing marked yet — go find something on the real site.</p>}
-    </main>
+    </section>
   );
 }

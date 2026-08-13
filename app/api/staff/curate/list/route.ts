@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
 import { getLiveCuts, getCutIds } from '@/lib/liveCuts';
 import { readFileSync, existsSync } from 'node:fs';
@@ -17,7 +18,18 @@ function loadAllProducts(): Product[] {
   return JSON.parse(readFileSync(f, 'utf8')) as Product[];
 }
 
-export async function GET() {
+// The most recent ingest date in the catalogue, from firstSeen — not
+// hardcoded to any one brand batch, so "recently added" stays correct
+// after every future refresh/add-brands run without code changes.
+function mostRecentFirstSeen(items: Product[]): string | null {
+  let max: string | null = null;
+  for (const p of items) {
+    if (p.firstSeen && (!max || p.firstSeen > max)) max = p.firstSeen;
+  }
+  return max;
+}
+
+export async function GET(req: NextRequest) {
   const blocked = await requireStaffSession();
   if (blocked) return blocked;
 
@@ -25,6 +37,15 @@ export async function GET() {
   const cuts = getLiveCuts();
   const decisions: Record<string, 'keep' | 'cut'> = {};
   for (const [id, entry] of Object.entries(cuts)) decisions[id] = entry.decision;
+
+  // ?scope=recent filters server-side, before the 12MB catalogue ever
+  // reaches the browser — products.json is too large to ship whole to a
+  // page that only wants the newest arrivals.
+  if (req.nextUrl.searchParams.get('scope') === 'recent') {
+    const mostRecent = mostRecentFirstSeen(items);
+    const recent = mostRecent ? items.filter((p) => p.firstSeen === mostRecent) : [];
+    return NextResponse.json({ items: recent, decisions, cutCount: getCutIds().size, mostRecent });
+  }
 
   return NextResponse.json({ items, decisions, cutCount: getCutIds().size });
 }
