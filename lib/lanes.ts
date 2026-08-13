@@ -1,5 +1,5 @@
 import type { Product } from '@/lib/types';
-import { isSwim, isActivewear, isLayering, isJilbab } from '@/lib/specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isOuterwear } from '@/lib/specialty';
 
 export type LaneKind = 'category' | 'community' | 'occasion' | 'season';
 
@@ -62,7 +62,10 @@ export const LANES: Lane[] = [
     nav: 'Tops',
     intro: 'Tunics, blouses, shirts and layering tops.',
     kind: 'category',
-    match: (p) => p.garment === 'top',
+    // isOuterwear() items (blazers/vests/cardigans/coats) moved to their own
+    // lane 2026-08-13 — see the 'outerwear' entry below. Same exclusion
+    // shape isActivewear() already uses against isSwim()/isLayering().
+    match: (p) => p.garment === 'top' && !isOuterwear(p),
   },
   {
     slug: 'modest-trousers',
@@ -105,6 +108,15 @@ export const LANES: Lane[] = [
     intro: 'Base layers, neck covers and inner tops — coverage essentials worn under everything else.',
     kind: 'category',
     match: (p) => isLayering(p),
+    specialty: true,
+  },
+  {
+    slug: 'outerwear',
+    title: 'Outerwear',
+    nav: 'Outerwear',
+    intro: 'Blazers, vests, cardigans and coats to layer over everything else.',
+    kind: 'category',
+    match: (p) => isOuterwear(p),
     specialty: true,
   },
 
