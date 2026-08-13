@@ -574,19 +574,22 @@ html[data-input-modality="mouse"] summary:focus-visible {
   }
 }
 
-/* Index console (search + filter box, IndexPanel.tsx) — mobile only. Same
-   -32px trick as .product-grid above, to cancel the shared `px-8` shell and
-   pull the box back out to the screen edge. Padding and the search pill's
-   height are also trimmed here so the whole console reads less heavy on a
-   narrow screen; unchanged above 767px. */
+/* Index console (search + filter box, IndexPanel.tsx) — mobile only.
+   Tina: same width as the header pill, not edge-to-edge. The header sits in
+   `px-4` (16px each side, Header.tsx:30); this box sits in the page shell's
+   `px-8` (32px each side). Cancelling only half that shell padding
+   (-16px, not the full -32px .product-grid uses) lands this box at the same
+   16px margin as the header, instead of flush with the screen. Padding and
+   the search pill's height are trimmed too, so the console reads lighter;
+   unchanged above 767px. */
 @media (max-width: 767px) {
   .index-panel {
-    margin-left: -32px;
-    margin-right: -32px;
-    padding: 14px 16px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 12px 14px;
   }
   .index-panel-search {
-    padding: 9px 16px;
+    padding: 8px 14px;
   }
 }
 
