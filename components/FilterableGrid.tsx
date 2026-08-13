@@ -2,7 +2,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import type { CompactCatalogue } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
-import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
+import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS } from '@/lib/specialty';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
@@ -22,13 +22,21 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
     () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
     [cat]
   );
-  // Only ever non-empty on /layering-basics (the only lane with any
-  // layeringSubtype != null) — see the same `.length > 0` gating pattern the
-  // Occasion dropdown used before it was pulled (2026-08-12). Kept in
-  // cat.layeringSubtypes' own canonical order (lib/specialty.ts), not
-  // resorted here.
+  // Non-empty on exactly ONE lane at a time — /layering-basics has real
+  // layeringSubtype values and an empty outerwearSubtypes array; /outerwear
+  // is the reverse. Every other lane has both empty, so `types` is `[]` and
+  // the dropdown doesn't render at all (see the `types.length > 0` gate
+  // below) — same pattern the Occasion dropdown used before it was pulled
+  // (2026-08-12). Kept in each column's own canonical order
+  // (lib/specialty.ts), not resorted here. Falls back to outerwear when
+  // layering is empty rather than concatenating the two: a lane is never
+  // both at once, by construction (isLayering/isOuterwear are mutually
+  // exclusive — see lib/specialty.ts::isOuterwear's isLayering() guard).
   const types = useMemo(
-    () => cat.layeringSubtypes.map((t) => ({ value: t, label: LAYERING_SUBTYPE_LABELS[t] })),
+    () =>
+      cat.layeringSubtypes.length > 0
+        ? cat.layeringSubtypes.map((t) => ({ value: t, label: LAYERING_SUBTYPE_LABELS[t] }))
+        : cat.outerwearSubtypes.map((t) => ({ value: t, label: OUTERWEAR_SUBTYPE_LABELS[t] })),
     [cat]
   );
 
@@ -39,14 +47,23 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
   // product, and only the rows actually shown get decoded into cards below.
   const query = q.trim().toLowerCase();
   const brandIdx = brand === 'all' ? -1 : cat.brands.findIndex((b) => b.slug === brand);
-  const typeIdx = type === 'all' ? -1 : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
+  const usingOuterwearTypes = cat.layeringSubtypes.length === 0 && cat.outerwearSubtypes.length > 0;
+  const typeIdx =
+    type === 'all'
+      ? -1
+      : usingOuterwearTypes
+        ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
+        : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
     const n = cat.rows.title.length;
     for (let i = 0; i < n; i++) {
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
-      if (typeIdx !== -1 && cat.rows.layeringSubtypeIdx[i] !== typeIdx) continue;
+      if (typeIdx !== -1) {
+        const rowTypeIdx = usingOuterwearTypes ? cat.rows.outerwearSubtypeIdx[i] : cat.rows.layeringSubtypeIdx[i];
+        if (rowTypeIdx !== typeIdx) continue;
+      }
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -55,7 +72,7 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, typeIdx, query]);
+  }, [cat, brandIdx, typeIdx, usingOuterwearTypes, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -78,9 +95,9 @@ export function FilterableGrid({ catalogue: cat }: { catalogue: CompactCatalogue
     <div>
       {/* The same index console as /directory — one instrument across the site.
           No Category dropdown: this page already IS one category. Layering
-          Basics is the one exception — it's one category by garment but
-          spans five genuinely different kinds of piece (neck covers vs.
-          under-dresses, say), so it alone gets a "Type" dropdown, gated on
+          Basics and Outerwear are the two exceptions — each is one category
+          by garment/specialty-status but spans several genuinely different
+          kinds of piece, so they alone get a "Type" dropdown, gated on
           `types.length > 0` so no other lane ever renders it. */}
       <IndexPanel q={q} onQ={setQ} className="mb-8">
         {types.length > 0 && (
