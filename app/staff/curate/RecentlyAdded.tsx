@@ -18,7 +18,7 @@ type ListResponse = {
  * uses (components/StaffEditControl.tsx), so they take effect on the live
  * site immediately and show up in the review tray below like any other cut.
  */
-export function RecentlyAdded() {
+export function RecentlyAdded({ onDecision }: { onDecision?: () => void }) {
   const [data, setData] = useState<ListResponse | null>(null);
   const [pending, setPending] = useState<Record<string, 'keep' | 'cut'>>({});
   const [error, setError] = useState<string | null>(null);
@@ -39,6 +39,7 @@ export function RecentlyAdded() {
         body: JSON.stringify({ id, decision }),
       });
       if (!res.ok) throw new Error(String(res.status));
+      onDecision?.();
     } catch {
       setError('That decision didn’t save — try again.');
       setPending((p) => {

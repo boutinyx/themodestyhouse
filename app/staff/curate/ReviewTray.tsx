@@ -11,17 +11,20 @@ type ListResponse = {
   laneMoves: { id: string; title: string; url: string; image: string; to: ForcedLane; subtype?: LayeringSubtype }[];
 };
 
-export function ReviewTray() {
+export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
   const [data, setData] = useState<ListResponse | null>(null);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
 
+  // refreshToken bumps whenever RecentlyAdded records a decision (see
+  // CurateConsole) — this tray otherwise only fetched once on mount and had
+  // no way to learn about a cut made in the sibling component above it.
   useEffect(() => {
     fetch('/api/staff/live-edit/list')
       .then((r) => r.json())
       .then(setData)
       .catch(() => setData({ deletes: [], moves: [], laneMoves: [] }));
-  }, []);
+  }, [refreshToken]);
 
   async function copy() {
     if (!data) return;
