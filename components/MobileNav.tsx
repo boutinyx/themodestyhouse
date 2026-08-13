@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { List as ListIcon, X as XIcon, CaretRight, CaretDown } from '@phosphor-icons/react';
 import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
@@ -49,6 +49,25 @@ export function MobileNav() {
   // you direcly to outerwear". A tap toggles disclosure instead of navigating;
   // only the four sub-rows are real links.
   const [outerwearOpen, setOuterwearOpen] = useState(false);
+  const outerwearRowRef = useRef<HTMLDivElement>(null);
+
+  // Outerwear sits near the bottom of the Category list (9th of 10), so
+  // opening it in place pushes its four sub-rows almost entirely below the
+  // fold — measured on production: only "Blazers" got a 1.5px sliver inside
+  // the viewport, Vests/Cardigans/Coats were fully off-screen with nothing
+  // telling anyone to scroll further. Tina: "i want to click outerwear and
+  // that works but the subcatogories not like versts blazers etc" — she could
+  // open the disclosure but the actual links she needed were never on screen
+  // to tap. This is why the FIRST verification of this feature (a Playwright
+  // `.tap()`) looked clean: Playwright auto-scrolls an element into view
+  // before tapping it, which silently hid the exact failure a real finger
+  // hits. Caught only by checking `elementFromPoint`/`getBoundingClientRect`
+  // directly, the same lesson as CLAUDE.md §10.26 — trust the harness's
+  // method, not just its pass/fail.
+  useEffect(() => {
+    if (outerwearOpen) outerwearRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [outerwearOpen]);
+
   // Choosing a currency does NOT close the panel — it changes prices on the page
   // behind it, and the visitor may well want to try another one.
   const { preference, setPreference } = useCurrency();
@@ -122,7 +141,7 @@ export function MobileNav() {
    *  parent (unlike the flush-left Category group, which has no parent row
    *  of its own to indent from). */
   const outerwearRow = () => (
-    <div key="/outerwear">
+    <div key="/outerwear" ref={outerwearRowRef}>
       <button
         type="button"
         onClick={() => setOuterwearOpen((v) => !v)}
