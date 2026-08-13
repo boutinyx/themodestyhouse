@@ -82,6 +82,10 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     title: 'Modest Summer Outfits Online — Lightweight & Breathable',
     description: 'Shop modest summer outfits online: lightweight, breathable pieces for warm days, from independent modest fashion brands.',
   },
+  '/outerwear': {
+    title: 'Modest Outerwear Online — Blazers, Vests & Coats',
+    description: 'Shop modest outerwear online: blazers, vests, cardigans and coats to layer over dresses, tops and abayas.',
+  },
   '/designers': {
     title: 'Modest Fashion Brands & Designers — Curated Directory',
     description: 'A curated index of modest fashion brands, vetted for craft and taste — browse every designer in The Modesty House directory.',

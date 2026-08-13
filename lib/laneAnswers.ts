@@ -92,4 +92,9 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
     body: "Staying cool in full coverage comes down to fabric and cut more than how much skin is covered. Natural, breathable fibres — linen, cotton, viscose — let air move in a way synthetic blends don't, so a linen maxi dress in full sleeves can be cooler than a short synthetic one. Looser, flowier cuts help air circulate against the body rather than trapping heat the way a fitted silhouette does. Lighter colours reflect rather than absorb heat, which is why summer modest pieces skew pale. For hijabs specifically, a lightweight cotton voile or chiffon breathes far better through summer than a heavier jersey, even though jersey is easier to style. The trade-off is upkeep — linen and voile crease more readily than jersey, so summer pieces often need more ironing or steaming to stay crisp.",
     related: ['modest-dresses', 'modest-hijabs'],
   },
+  'outerwear': {
+    h2: "What's the difference between a blazer, vest, cardigan and coat?",
+    body: "Blazers, vests, cardigans and coats all serve the same basic job — adding a layer of structure or warmth over a dress, top or abaya — but differ in cut and how much coverage they add. A blazer is tailored and structured, with a collar and lapels borrowed from menswear, and works best over a fitted dress or trouser co-ord for a sharper, more formal line. A vest is sleeveless, so it adds warmth and shape without bulking the arms, which is why it's often layered under a coat rather than as the outermost piece. Cardigans are soft-knit and unstructured, closer to a cosy layering piece than a tailored one, and suit an everyday base-layer role over a plain top. Coats are the longest and warmest of the four, cut to go over a full outfit as the outermost layer for outdoor wear, with wool and heavier blends replacing the lighter knits and twills used for cardigans and blazers.",
+    related: ['modest-tops', 'modest-dresses'],
+  },
 };
