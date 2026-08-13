@@ -171,7 +171,7 @@ export function IndexPanel({
 }) {
   return (
     <div
-      className={className}
+      className={`index-panel${className ? ` ${className}` : ''}`}
       style={{
         background: 'var(--bone)',
         border: '1px solid var(--hairline)',
@@ -185,7 +185,7 @@ export function IndexPanel({
         value={q}
         onChange={(e) => onQ(e.target.value)}
         placeholder="Search houses, pieces…"
-        className="w-full"
+        className="index-panel-search w-full"
         style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
       />
       {/* The currency control used to sit here, pushed right. It moved to the

@@ -560,11 +560,33 @@ html[data-input-modality="mouse"] summary:focus-visible {
   .product-grid {
     margin-left: -32px;
     margin-right: -32px;
-    gap: 2px;
+    /* row-gap and column-gap split on purpose (2026-08-13): the flush-square
+       look is a HORIZONTAL thing — column-gap stays near 0 — but at the same
+       2px vertically the brand/title/price text of one row sat right on top
+       of the photos in the row below. row-gap alone opens that up without
+       touching the H&M-style edge-to-edge columns. */
+    column-gap: 2px;
+    row-gap: 20px;
   }
   .product-grid .product-photo {
     border: none;
     border-radius: 0;
+  }
+}
+
+/* Index console (search + filter box, IndexPanel.tsx) — mobile only. Same
+   -32px trick as .product-grid above, to cancel the shared `px-8` shell and
+   pull the box back out to the screen edge. Padding and the search pill's
+   height are also trimmed here so the whole console reads less heavy on a
+   narrow screen; unchanged above 767px. */
+@media (max-width: 767px) {
+  .index-panel {
+    margin-left: -32px;
+    margin-right: -32px;
+    padding: 14px 16px;
+  }
+  .index-panel-search {
+    padding: 9px 16px;
   }
 }
 
