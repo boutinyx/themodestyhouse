@@ -10,6 +10,7 @@ import { isSpecialty } from '../lib/specialty.ts';
 import { normalizeTitle, stripRawSignals } from '../lib/normalize.ts';
 import { resolveGarment } from '../lib/garmentReview.ts';
 import { qualityFlagTag } from '../lib/qualityFlags.ts';
+import { convert } from '../lib/fx.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
 
@@ -112,12 +113,29 @@ const expectedHot = new Set(excl.brandNonApparelExpected || []);
 const rejected = [];
 const review = [];
 
+// Price ceiling, Tina's explicit call 2026-08-13: nothing above $550
+// USD-equivalent. Compared on the CONVERTED price (lib/fx.ts::convert(),
+// the same math the site's own USD display already uses), never the raw
+// `price` field — that field is in each brand's native currency, and 550
+// means wildly different things across AED/TRY/GBP/etc. A product whose
+// currency has no FX rate is let through uncapped rather than guessed at
+// or silently dropped — `convert()` returns null for that case.
+const PRICE_CEILING_USD = 550;
+function exceedsPriceCeiling(p) {
+  const usd = convert(p.price, p.currency, 'USD');
+  return usd !== null && usd > PRICE_CEILING_USD;
+}
+
 /** Returns a rejection object, or null to keep. */
 function verdict(p) {
   if (excludedBrands.has(p.brandSlug)) return { reason: 'brand-blacklist' };
   if (excludedIds.has(p.id)) return { reason: 'id-pin' };
   if (titleRes.some((re) => re.test(p.title || ''))) return { reason: 'title-pattern' };
   if (urlRes.some((re) => re.test(p.url || ''))) return { reason: 'url-pattern' };
+  if (exceedsPriceCeiling(p)) {
+    const usd = convert(p.price, p.currency, 'USD');
+    return { reason: 'price-ceiling', evidence: `${p.price} ${p.currency} (~$${Math.round(usd)})` };
+  }
   if (allowIds.has(p.id)) return null;
   const v = isNonApparel({ title: p.title, url: p.url, ...(p.raw || {}) });
   return v.rejected ? { reason: `non-apparel:${v.reason}`, tier: v.tier, evidence: v.evidence } : null;

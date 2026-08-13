@@ -24942,6 +24942,15 @@
     "evidence": "makeup brush"
   },
   {
+    "id": "glow-modesty:9275503313112",
+    "brandSlug": "glow-modesty",
+    "title": "Azura Glimmer Gown",
+    "url": "https://glowmodesty.com/products/azura-glimmer-gown",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "890 USD (~$890)"
+  },
+  {
     "id": "veiled:7684925423721",
     "brandSlug": "veiled",
     "title": "Hijab Ring Circle (5 Pack)",
@@ -25804,6 +25813,87 @@
     "evidence": "Bag"
   },
   {
+    "id": "avyaana:15633453056374",
+    "brandSlug": "avyaana",
+    "title": "Shahzadi Noor",
+    "url": "https://avyaana.com/products/shahzadi-noor-1",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "552 GBP (~$746)"
+  },
+  {
+    "id": "avyaana:15633454727542",
+    "brandSlug": "avyaana",
+    "title": "Amirat Al-Bahar",
+    "url": "https://avyaana.com/products/amirat-al-bahar",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "552 GBP (~$746)"
+  },
+  {
+    "id": "avyaana:8267050516618",
+    "brandSlug": "avyaana",
+    "title": "MANAR",
+    "url": "https://avyaana.com/products/manar-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "433 GBP (~$585)"
+  },
+  {
+    "id": "avyaana:8267053432970",
+    "brandSlug": "avyaana",
+    "title": "Israh Cape Dress",
+    "url": "https://avyaana.com/products/israh-cape-dress-copy",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "577 GBP (~$779)"
+  },
+  {
+    "id": "avyaana:8267053236362",
+    "brandSlug": "avyaana",
+    "title": "Dorra Cape Dress",
+    "url": "https://avyaana.com/products/dorra-cape-dress-copy",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "577 GBP (~$779)"
+  },
+  {
+    "id": "avyaana:8267053138058",
+    "brandSlug": "avyaana",
+    "title": "Pari Cape Dress",
+    "url": "https://avyaana.com/products/pari-cape-dress-copy",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "577 GBP (~$779)"
+  },
+  {
+    "id": "avyaana:8267050844298",
+    "brandSlug": "avyaana",
+    "title": "Nyla",
+    "url": "https://avyaana.com/products/nyla-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "433 GBP (~$585)"
+  },
+  {
+    "id": "avyaana:8267050713226",
+    "brandSlug": "avyaana",
+    "title": "ROHA",
+    "url": "https://avyaana.com/products/roha-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "433 GBP (~$585)"
+  },
+  {
+    "id": "avyaana:8267050614922",
+    "brandSlug": "avyaana",
+    "title": "Ghazal",
+    "url": "https://avyaana.com/products/ghazal-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "433 GBP (~$585)"
+  },
+  {
     "id": "fares:7648008044735",
     "brandSlug": "fares",
     "title": "Hijab Scrunchie - Ivory",
@@ -25912,6 +26002,2031 @@
     "reason": "id-pin"
   },
   {
+    "id": "chi-ka:8642986475681",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Tan with Maroon Center RTW",
+    "url": "https://chikacollection.com/products/straight-cut-silk-kaftan-in-tan-with-maroon-center-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8580372136097",
+    "brandSlug": "chi-ka",
+    "title": "Black and Purple Abaya with Silk Organza Detailing RTW",
+    "url": "https://chikacollection.com/products/black-and-purple-abaya-with-silk-organza-detailing-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8347996324001",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Ivory with Tie-String RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-in-ivory-with-tie-string-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8457257943201",
+    "brandSlug": "chi-ka",
+    "title": "Nude Color Origami Abaya RTW",
+    "url": "https://chikacollection.com/products/nude-color-origami-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8519944601761",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Dusty Pink with Satin Lapel RTW",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-dusty-pink-with-satin-lapel-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8519944536225",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Black with Satin Lapel RTW",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-black-with-satin-lapel-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8419851796641",
+    "brandSlug": "chi-ka",
+    "title": "A-Cut Abaya in Yellowish Green Jacquard",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-ivory-jacquard",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8617591832737",
+    "brandSlug": "chi-ka",
+    "title": "Textured Jacquard Abaya in Antique Grey RTW",
+    "url": "https://chikacollection.com/products/textured-jacquard-abaya-in-antique-grey-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8519937949857",
+    "brandSlug": "chi-ka",
+    "title": "Tencel Twill Abaya in Light Blue with Silk Organza Details RTW",
+    "url": "https://chikacollection.com/products/tencel-twill-abaya-in-light-blue-with-silk-organza-details-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8604353855649",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Gray Green Jacquard RTW",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-gray-green-jacquard-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8281699483809",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Stripe Blue RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-in-stripe-blue-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8434366415009",
+    "brandSlug": "chi-ka",
+    "title": "Blue Stripes Coat-Abaya RTW",
+    "url": "https://chikacollection.com/products/blue-stripes-coat-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8588112101537",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 02 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-02-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8588110561441",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 06 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-06-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3885 AED (~$1058)"
+  },
+  {
+    "id": "chi-ka:8588110069921",
+    "brandSlug": "chi-ka",
+    "title": "KImono Abaya 08 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-08-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3780 AED (~$1029)"
+  },
+  {
+    "id": "chi-ka:8588109775009",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 09 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-09-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3885 AED (~$1058)"
+  },
+  {
+    "id": "chi-ka:8588096077985",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 10 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-10-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8588095619233",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 11 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-11-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4515 AED (~$1229)"
+  },
+  {
+    "id": "chi-ka:8588093784225",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 12 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-12-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8588093161633",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 14 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-14-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4515 AED (~$1229)"
+  },
+  {
+    "id": "chi-ka:8588091293857",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 15 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-15-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8588090736801",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 16 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-16-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8588089688225",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 18 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-18-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8588086673569",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 19 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-19-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8586494509217",
+    "brandSlug": "chi-ka",
+    "title": "Maroon Silk Straight Cut Kaftan with Silver Japanese Yoke Piece RTW",
+    "url": "https://chikacollection.com/products/maroon-silk-straight-cut-kaftan-with-silver-japanese-yoke-piece-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8585513173153",
+    "brandSlug": "chi-ka",
+    "title": "Navy Color Origami Abaya RTW",
+    "url": "https://chikacollection.com/products/navy-color-origami-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8514017788065",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Dark Plum with Satin Lapel",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-dark-plum-with-satin-lapel",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8552843215009",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Dark Plum with Satin Lapel RTW",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-dark-plum-with-satin-lapel-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8566553182369",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya with Satin Lapel in Black RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-with-satin-lapel-in-black-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8476918349985",
+    "brandSlug": "chi-ka",
+    "title": "Double Button Textured Tensil Abaya in Navy RTW",
+    "url": "https://chikacollection.com/products/double-button-textured-tensil-abaya-in-navy-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8522994581665",
+    "brandSlug": "chi-ka",
+    "title": "A-Cut Abaya in Yellowish Green Jacquard RTW",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-yellowish-green-jacquard-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8519972880545",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Black and Navy with Wave-line Neck RTW",
+    "url": "https://chikacollection.com/products/structured-abaya-in-black-and-navy-with-wave-line-neck-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519952498849",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Blue Grey Shimmer with Grey Satin Detailing RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-blue-grey-shimmer-with-grey-satin-detailing-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519952105633",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black Shimmer with Black Satin Detailing RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-shimmer-with-black-satin-detailing-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519951876257",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Navy Shimmer with Grey Satin Detailing RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-navy-shimmer-with-grey-satin-detailing-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519951548577",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Copper Print RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-copper-print-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519950008481",
+    "brandSlug": "chi-ka",
+    "title": "Coat-Style Abaya in Grey Green Linen with Palm Leaf Pattern RTW",
+    "url": "https://chikacollection.com/products/coat-style-abaya-in-grey-green-linen-with-palm-leaf-pattern-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8519949549729",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Black & Gold Pattern RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-black-gold-pattern-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519948370081",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Geometric Print RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-geometric-print-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519947387041",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Light Blue with White Piping Round Neck RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-in-light-blue-with-white-piping-round-neck-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8519946207393",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Light Blue with White Piping RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-in-light-blue-with-white-piping-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8519946043553",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Metallic Lustre Black with Black Satin RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-in-metallic-lustre-black-with-black-satin-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519945879713",
+    "brandSlug": "chi-ka",
+    "title": "Trench Coat Abaya in Stripy Black RTW",
+    "url": "https://chikacollection.com/products/trench-coat-abaya-in-stripy-black-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519945617569",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya with Satin Lapel in Cream RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-with-satin-lapel-in-cream-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8519944896673",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Black and Copper with Satin Collar and Sleeve RTW",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-black-and-copper-with-satin-collar-and-sleeve-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519944700065",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Black and Navy with Satin Detailing RTW",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-black-and-navy-with-satin-detailing-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8519943127201",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Rusty Brown Linen with Grey Blue Satin Detailing RTW",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-rusty-brown-linen-with-grey-blue-satin-detailing-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8519054229665",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 19",
+    "url": "https://chikacollection.com/products/kimono-abaya-21",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8519042728097",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 18",
+    "url": "https://chikacollection.com/products/kimono-abaya-20",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8519032471713",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 17",
+    "url": "https://chikacollection.com/products/kimono-abaya-19",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3885 AED (~$1058)"
+  },
+  {
+    "id": "chi-ka:8519025918113",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 16",
+    "url": "https://chikacollection.com/products/kimono-abaya-18",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8519015366817",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 15",
+    "url": "https://chikacollection.com/products/kimono-abaya-17",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8519002718369",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 14",
+    "url": "https://chikacollection.com/products/kimono-abaya-16",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4515 AED (~$1229)"
+  },
+  {
+    "id": "chi-ka:8518979158177",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 13",
+    "url": "https://chikacollection.com/products/kimono-abaya-15",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8518972735649",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 12",
+    "url": "https://chikacollection.com/products/mono-abaya-12",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8518972309665",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 11",
+    "url": "https://chikacollection.com/products/kimono-abaya-14",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4515 AED (~$1229)"
+  },
+  {
+    "id": "chi-ka:8518971785377",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 10",
+    "url": "https://chikacollection.com/products/kimono-abaya-13",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8518971097249",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 09",
+    "url": "https://chikacollection.com/products/kimono-abaya-09",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3885 AED (~$1058)"
+  },
+  {
+    "id": "chi-ka:8518970441889",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 08",
+    "url": "https://chikacollection.com/products/kimono-abaya-08",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3780 AED (~$1029)"
+  },
+  {
+    "id": "chi-ka:8518608257185",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 06",
+    "url": "https://chikacollection.com/products/kimono-06",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3885 AED (~$1058)"
+  },
+  {
+    "id": "chi-ka:8518480232609",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya with Satin Lapel in Black",
+    "url": "https://chikacollection.com/products/flow-abaya-with-satin-lapel-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514705064097",
+    "brandSlug": "chi-ka",
+    "title": "Trench Coat Abaya in Stripy Black",
+    "url": "https://chikacollection.com/products/trench-coat-abaya-in-stripy-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514704408737",
+    "brandSlug": "chi-ka",
+    "title": "Overlap Sculpted Abaya in Blue Grey Floral Print",
+    "url": "https://chikacollection.com/products/overlap-sculpted-abaya-in-blue-grey-floral-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514703065249",
+    "brandSlug": "chi-ka",
+    "title": "Coat-Style Abaya in Grey Green Linen with Palm Leaf Pattern",
+    "url": "https://chikacollection.com/products/coat-style-abaya-in-grey-green-linen-with-palm-leaf-pattern",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514685894817",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Gray Green Jacquard",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-gray-green-jacquard",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514056519841",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Black & Gold Pattern",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-black-gold-pattern",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514044133537",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Geometric Print",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-geometric-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514029453473",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Copper Print",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-copper-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514028077217",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Blue Grey Shimmer with Grey Satin Detailing",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-blue-grey-shimmer-with-grey-satin-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514027651233",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Navy Shimmer with Grey Satin Detailing",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-navy-shimmer-with-grey-satin-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514027028641",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black Shimmer with Black Satin Detailing",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-shimmer-with-black-satin-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514021982369",
+    "brandSlug": "chi-ka",
+    "title": "Textured Jacquard Abaya in Antique Grey",
+    "url": "https://chikacollection.com/products/textured-jacquard-abaya-in-antique-grey",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8514021687457",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya with Satin Lapel in Cream",
+    "url": "https://chikacollection.com/products/flow-abaya-with-satin-lapel-in-cream",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514019786913",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Cream with Satin Lapel",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-cream-with-satin-lapel",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514019492001",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Black with Satin Lapel",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-black-with-satin-lapel",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514016215201",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya with Satin Lapel in Deep Plum",
+    "url": "https://chikacollection.com/products/flow-abaya-with-satin-lapel-in-deep-plum",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8514013397153",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Black and Navy with Satin Detailing",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-black-and-navy-with-satin-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514013298849",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Black and Copper with Satin Collar and Sleeve",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-black-and-copper-with-satin-collar-and-sleeve",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514012348577",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Black and Copper with Wave-line Neck",
+    "url": "https://chikacollection.com/products/structured-abaya-in-black-and-copper-with-wave-line-neck",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514012020897",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Black and Navy with Wave-line Neck",
+    "url": "https://chikacollection.com/products/structured-abaya-in-black-and-navy-with-wave-line-neck",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514004549793",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Abaya in Rusty Brown Linen with Grey Blue Satin Detailing",
+    "url": "https://chikacollection.com/products/straight-cut-abaya-in-rusty-brown-linen-with-grey-blue-satin-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8514003075233",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Metallic Lustre Black with Black Satin",
+    "url": "https://chikacollection.com/products/flow-abaya-in-metallic-lustre-black-with-black-satin",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8503940120737",
+    "brandSlug": "chi-ka",
+    "title": "Origami Abaya in Navy",
+    "url": "https://chikacollection.com/products/origami-abaya-in-navy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8503893622945",
+    "brandSlug": "chi-ka",
+    "title": "Origami Abaya in Black",
+    "url": "https://chikacollection.com/products/origami-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8503837884577",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Floral Jacquard Abaya in Black",
+    "url": "https://chikacollection.com/products/luxury-floral-jacquard-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8494103429281",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Tan with Maroon Center",
+    "url": "https://chikacollection.com/products/straight",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8489296986273",
+    "brandSlug": "chi-ka",
+    "title": "Navy Color Origami Abaya",
+    "url": "https://chikacollection.com/products/navy-color-origami-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8482728902817",
+    "brandSlug": "chi-ka",
+    "title": "Kaftan in Gold Sheen RTW",
+    "url": "https://chikacollection.com/products/kaftan-in-gold-sheen-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8281714065569",
+    "brandSlug": "chi-ka",
+    "title": "Tencel Linen Abaya with Shawl Collar and Tassel - Button Details RTW",
+    "url": "https://chikacollection.com/products/tencel-linen-abaya-with-shawl-collar-and-tassel-button-details-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8479092146337",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Black with Tie-String RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-in-black-with-tie-string-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8477467377825",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Creme on Creme Piping RTW",
+    "url": "https://chikacollection.com/products/structured-abaya-in-creme-on-creme-piping-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8477461610657",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Creme on Creme Piping",
+    "url": "https://chikacollection.com/products/structured-abaya-in-creme-on-creme-piping",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8224787398817",
+    "brandSlug": "chi-ka",
+    "title": "Blue Palm Jacquard Double Button Abaya RTW",
+    "url": "https://chikacollection.com/products/blue-palm-jacquard-double-button-abaya-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8186893828257",
+    "brandSlug": "chi-ka",
+    "title": "Textured Abaya in Black RTW",
+    "url": "https://chikacollection.com/products/textured-abaya-in-black-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8477330210977",
+    "brandSlug": "chi-ka",
+    "title": "Rich Maroon Jacket Abaya RTW",
+    "url": "https://chikacollection.com/products/rich-maroon-jacket-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8347996422305",
+    "brandSlug": "chi-ka",
+    "title": "Loose Cut Black on Black Pattern Abaya with Satin Trims RTW",
+    "url": "https://chikacollection.com/products/loose-cut-black-on-black-pattern-abaya-with-satin-trims-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8347986690209",
+    "brandSlug": "chi-ka",
+    "title": "Loose Cut Blue on Blue Pattern Abaya with Satin Trims RTW",
+    "url": "https://chikacollection.com/products/loose-cut-blue-on-blue-pattern-abaya-with-satin-trims-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8476926673057",
+    "brandSlug": "chi-ka",
+    "title": "Black Abaya with White Silk Organza Detailing RTW",
+    "url": "https://chikacollection.com/products/black-abaya-with-white-silk-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8477006528673",
+    "brandSlug": "chi-ka",
+    "title": "Loose Double Collar Linen Abaya Black - Gold RTW",
+    "url": "https://chikacollection.com/products/loose-double-collar-linen-abaya-black-gold-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8477004988577",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Emerald Green RTW",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-emerald-green-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8281723830433",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Cool Grey RTW",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-cool-grey-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8476985819297",
+    "brandSlug": "chi-ka",
+    "title": "Pale Pink Kaftan RTW",
+    "url": "https://chikacollection.com/products/pale-pink-kaftan-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8476919890081",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Cuff and Piping in Golden Brushstrokes RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-cuff-and-piping-in-golden-brushstrokes-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8476917104801",
+    "brandSlug": "chi-ka",
+    "title": "Double Button Textured Tensil Abaya in Navy",
+    "url": "https://chikacollection.com/products/double-button-textured-tensil-abaya-in-navy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8476908454049",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Brown on Brown Piping RTW",
+    "url": "https://chikacollection.com/products/structured-abaya-in-brown-on-brown-piping-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8476906946721",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Brown on Brown Piping",
+    "url": "https://chikacollection.com/products/structured-abaya-in-brown-on-brown-piping",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8476882698401",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Printed Black and Gold RTW",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-printed-black-and-gold-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8434364481697",
+    "brandSlug": "chi-ka",
+    "title": "Premium Satin Abaya in Black with Fringe Details RTW",
+    "url": "https://chikacollection.com/products/premium-satin-abaya-in-black-with-fringe-details-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8457293234337",
+    "brandSlug": "chi-ka",
+    "title": "Burgundy Silk Kaftan RTW",
+    "url": "https://chikacollection.com/products/burgundy-silk-kaftan-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8457282027681",
+    "brandSlug": "chi-ka",
+    "title": "Flowy Soft Light Blue Abaya RTW",
+    "url": "https://chikacollection.com/products/flowy-soft-light-blue-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8457274261665",
+    "brandSlug": "chi-ka",
+    "title": "Black Jacquard Coat Abaya RTW",
+    "url": "https://chikacollection.com/products/black-jacquard-coat-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8457267937441",
+    "brandSlug": "chi-ka",
+    "title": "Loose Cut Abaya in Grey RTW",
+    "url": "https://chikacollection.com/products/loose-cut-abaya-in-grey-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8457263874209",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Maroon with Golden Japanese Collar RTW",
+    "url": "https://chikacollection.com/products/straight-cut-silk-kaftan-in-maroon-with-golden-japanese-collar-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8457263612065",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Maroon with Back Detail RTW",
+    "url": "https://chikacollection.com/products/straight-cut-silk-kaftan-in-maroon-with-back-detail-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8457263448225",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Royal Blue RTW",
+    "url": "https://chikacollection.com/products/straight-cut-silk-kaftan-in-royal-blue-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8457263251617",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Ivory with Golden Japanese Collar RTW",
+    "url": "https://chikacollection.com/products/straight-cut-silk-kaftan-in-ivory-with-golden-japanese-collar-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8347991802017",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Black Abaya with Crystal Broach and Lace Trims RTW",
+    "url": "https://chikacollection.com/products/luxury-black-abaya-with-crystal-broach-and-lace-trims-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8347987181729",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Burgundy Pattern RTW",
+    "url": "https://chikacollection.com/products/layer-abaya-in-burgundy-pattern-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8457259057313",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Light Golden Green Jacquard RTW",
+    "url": "https://chikacollection.com/products/layer-abaya-in-light-golden-green-jacquard-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8457258270881",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Stripy Blue and Purple RTW",
+    "url": "https://chikacollection.com/products/layer-abaya-in-stripy-blue-and-purple-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8457255944353",
+    "brandSlug": "chi-ka",
+    "title": "Flowy Soft Caramel Brown Abaya RTW",
+    "url": "https://chikacollection.com/products/flowy-soft-caramel-brown-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8434368381089",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Green with Feather Print RTW",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-green-with-feather-print-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8434368053409",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Navy Jacquard RTW",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-navy-jacquard-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8434364776609",
+    "brandSlug": "chi-ka",
+    "title": "Golden Jacquard Coat Abaya RTW",
+    "url": "https://chikacollection.com/products/golden-jacquard-coat-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8434362548385",
+    "brandSlug": "chi-ka",
+    "title": "Ivory Kaftan with Blue Details RTW",
+    "url": "https://chikacollection.com/products/ivory-kaftan-with-blue-details-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8434360811681",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Light Orange - Maroon RTW",
+    "url": "https://chikacollection.com/products/straight-cut-silk-kaftan-in-light-orange-maroon-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8434152767649",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 03 RTW",
+    "url": "https://chikacollection.com/products/kimono-abaya-03-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "chi-ka:8421360730273",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Navy Jacquard",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-navy-jacquard",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8421277696161",
+    "brandSlug": "chi-ka",
+    "title": "Flowy Soft Light Blue Abaya",
+    "url": "https://chikacollection.com/products/flowy-soft-light-blue-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8421251743905",
+    "brandSlug": "chi-ka",
+    "title": "Flowy Soft Caramel Brown Abaya",
+    "url": "https://chikacollection.com/products/flowy-soft-caramel-brown-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8421237063841",
+    "brandSlug": "chi-ka",
+    "title": "Premium Satin Abaya in Black with Fringe Details",
+    "url": "https://chikacollection.com/products/premium-satin-abaya-in-black-with-fringe-details",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8419884073121",
+    "brandSlug": "chi-ka",
+    "title": "Blue Stripes Coat-Abaya",
+    "url": "https://chikacollection.com/products/blue-stripes-coat-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8419880009889",
+    "brandSlug": "chi-ka",
+    "title": "Golden Jacquard Coat Abaya",
+    "url": "https://chikacollection.com/products/golden-jacquard-coat-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8419876208801",
+    "brandSlug": "chi-ka",
+    "title": "Black Jacquard Coat Abaya",
+    "url": "https://chikacollection.com/products/black-jacquard-coat-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8419870900385",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Green with Feather Print",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-green-with-feather-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8419866902689",
+    "brandSlug": "chi-ka",
+    "title": "A-Cut Abaya in Printed Black and Silver",
+    "url": "https://chikacollection.com/products/a-cut-abaya-in-printed-black-and-silver",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8419863134369",
+    "brandSlug": "chi-ka",
+    "title": "Nude Color Origami Abaya",
+    "url": "https://chikacollection.com/products/origami-abaya-in-oat",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8419854745761",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Light Golden Green Jacquard",
+    "url": "https://chikacollection.com/products/layer-abaya-in-light-golden-green-jacquard",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8419854516385",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Stripy Blue and Purple",
+    "url": "https://chikacollection.com/products/layer-abaya-in-stripy-blue-and-purple",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8419851993249",
+    "brandSlug": "chi-ka",
+    "title": "Black and Purple Abaya with Silk Organza Detailing",
+    "url": "https://chikacollection.com/products/black-and-purple-abaya-with-silk-organza-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8419104522401",
+    "brandSlug": "chi-ka",
+    "title": "A-cut Abaya in Printed Black and Gold",
+    "url": "https://chikacollection.com/products/front-closing-abaya-in-printed-black-and-gold",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8419099312289",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Black with Purple Floral Print",
+    "url": "https://chikacollection.com/products/flow-abaya-in-black-with-purple-floral-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8419094593697",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Black with Copper Floral Print",
+    "url": "https://chikacollection.com/products/flow-abaya-in-black-with-copper-floral-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8425487401121",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Kaftan in Dark Green",
+    "url": "https://chikacollection.com/products/velvet-kaftan-in-dark-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8418957918369",
+    "brandSlug": "chi-ka",
+    "title": "Maroon Silk Straight Cut Kaftan with Silver Japanese Yoke Piece",
+    "url": "https://chikacollection.com/products/maroon-silk-straight-cut-kaftan-with-silver-japanese-yoke-piece",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8418917908641",
+    "brandSlug": "chi-ka",
+    "title": "Kaftan with Orange Collar",
+    "url": "https://chikacollection.com/products/kaftan-dress-in-oats",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8418167947425",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Royal Blue",
+    "url": "https://chikacollection.com/products/blue-kaftan-dress",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8418164834465",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Maroon with Golden Japanese Collar",
+    "url": "https://chikacollection.com/products/maroon-silk-straight-cut-kaftan-with-golden-japanese-neck-yoke",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8418164080801",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Kaftan in Rich Burgundy",
+    "url": "https://chikacollection.com/products/velvet-kaftan-in-rich-burgundy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8418163458209",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Kaftan in Black",
+    "url": "https://chikacollection.com/products/velvet-kaftan-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8418162606241",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Kaftan in Rich Emerald Green",
+    "url": "https://chikacollection.com/products/velvet-kaftan-in-rich-emerald-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8418161328289",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Kaftan in Rich Royal Blue",
+    "url": "https://chikacollection.com/products/velvet-kaftan-in-rich-royal-blue",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8418158379169",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Maroon with Back Detail",
+    "url": "https://chikacollection.com/products/kaftan-3",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8418153398433",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Silk Kaftan in Ivory with Golden Japanese Collar",
+    "url": "https://chikacollection.com/products/off-white-silk-straight-cut-kaftan-with-golden-japanese-yoke-piece",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8418122629281",
+    "brandSlug": "chi-ka",
+    "title": "Burgundy Silk Kaftan",
+    "url": "https://chikacollection.com/products/kaftan-2",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8425383035041",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 03",
+    "url": "https://chikacollection.com/products/kimono-abaya-3",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "chi-ka:8425382641825",
+    "brandSlug": "chi-ka",
+    "title": "Kimono Abaya 02",
+    "url": "https://chikacollection.com/products/kimono-abaya-2",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3570 AED (~$972)"
+  },
+  {
+    "id": "chi-ka:8405678293153",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Ivory Pattern RTW",
+    "url": "https://chikacollection.com/products/jacket-abaya-in-ivory-pattern-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8347988066465",
+    "brandSlug": "chi-ka",
+    "title": "Gray Silver Jacquard Jacket Abaya RTW",
+    "url": "https://chikacollection.com/products/gray-silver-jacquard-jacket-abaya-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8347985772705",
+    "brandSlug": "chi-ka",
+    "title": "Origami Abaya in Dusty Pink RTW",
+    "url": "https://chikacollection.com/products/origami-abaya-in-dusty-pink-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8347985346721",
+    "brandSlug": "chi-ka",
+    "title": "Metallic Linen Abaya in Copper Brown RTW",
+    "url": "https://chikacollection.com/products/metallic-linen-abaya-in-copper-brown-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8347983970465",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Soft Pink RTW",
+    "url": "https://chikacollection.com/products/jacket-abaya-in-soft-pink-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8347983773857",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Polished Fuchsia Pink RTW",
+    "url": "https://chikacollection.com/products/layer-abaya-in-polished-fuchsia-pink-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8347982626977",
+    "brandSlug": "chi-ka",
+    "title": "Loose Cut Abaya in Lilac RTW",
+    "url": "https://chikacollection.com/products/loose-cut-abaya-in-lilac-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329699655841",
+    "brandSlug": "chi-ka",
+    "title": "Black Velvet Lace Abaya",
+    "url": "https://chikacollection.com/products/black-velvet-lace-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8329238479009",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Polished Copper",
+    "url": "https://chikacollection.com/products/aw-77",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329238446241",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Polished Fuchsia Pink",
+    "url": "https://chikacollection.com/products/aw-76",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329238347937",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Soft Pink",
+    "url": "https://chikacollection.com/products/aw-75",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329238315169",
+    "brandSlug": "chi-ka",
+    "title": "Pink Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-74",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329237561505",
+    "brandSlug": "chi-ka",
+    "title": "Metallic Linen Abaya in Golden Brown",
+    "url": "https://chikacollection.com/products/aw-71",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329232973985",
+    "brandSlug": "chi-ka",
+    "title": "Rich Emerald Green Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-66",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329229697185",
+    "brandSlug": "chi-ka",
+    "title": "Origami Abaya in Navy",
+    "url": "https://chikacollection.com/products/aw-64",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329229238433",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Black Pattern",
+    "url": "https://chikacollection.com/products/aw-62",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329229041825",
+    "brandSlug": "chi-ka",
+    "title": "Faux Fur Abaya in Rich Brown",
+    "url": "https://chikacollection.com/products/aw-61",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8329228877985",
+    "brandSlug": "chi-ka",
+    "title": "Deep Brown Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-60",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329228746913",
+    "brandSlug": "chi-ka",
+    "title": "Loose Cut Blue on Blue Pattern Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-59",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329228255393",
+    "brandSlug": "chi-ka",
+    "title": "Burgundy Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-57",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329228189857",
+    "brandSlug": "chi-ka",
+    "title": "Burgundy Brown Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-56",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329228026017",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in Burgundy Pattern",
+    "url": "https://chikacollection.com/products/aw-55",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329227763873",
+    "brandSlug": "chi-ka",
+    "title": "Gray Silver Jacquard Jacket Abaya",
+    "url": "https://chikacollection.com/products/aw-52",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8329226879137",
+    "brandSlug": "chi-ka",
+    "title": "Formal Black Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-49",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329226813601",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Brown Tencel Twill",
+    "url": "https://chikacollection.com/products/aw-48",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8329226715297",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Premium Light Wool",
+    "url": "https://chikacollection.com/products/aw-46",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8329226289313",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Ivory Pattern",
+    "url": "https://chikacollection.com/products/aw-45",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329226092705",
+    "brandSlug": "chi-ka",
+    "title": "Rich Maroon Jacket Abaya",
+    "url": "https://chikacollection.com/products/aw-44",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8329226027169",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Black Pattern",
+    "url": "https://chikacollection.com/products/aw-43",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329225928865",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Black Abaya with Crystal Broach and Lace Trims",
+    "url": "https://chikacollection.com/products/aw-42",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8329225306273",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Floral Jacquard Abaya in Black Brown",
+    "url": "https://chikacollection.com/products/aw-41",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8329225142433",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Brown with Ivory Details",
+    "url": "https://chikacollection.com/products/aw-40",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329224978593",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Blue",
+    "url": "https://chikacollection.com/products/aw-39",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329224552609",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Black",
+    "url": "https://chikacollection.com/products/aw-38",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329223078049",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Black and White",
+    "url": "https://chikacollection.com/products/aw-37",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8329219342497",
+    "brandSlug": "chi-ka",
+    "title": "Black Pattern Flow Abaya",
+    "url": "https://chikacollection.com/products/aw-36",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8329205219489",
+    "brandSlug": "chi-ka",
+    "title": "Trench Coat Abaya in Blue",
+    "url": "https://chikacollection.com/products/aw-31",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8329204433057",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Winter Abaya in Gray",
+    "url": "https://chikacollection.com/products/aw-30",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8329204334753",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Winter Abaya in Navy Blue",
+    "url": "https://chikacollection.com/products/aw-29",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8329204039841",
+    "brandSlug": "chi-ka",
+    "title": "Trench Abaya in Light Brown Alpaca Wool",
+    "url": "https://chikacollection.com/products/aw-28",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8327700349089",
+    "brandSlug": "chi-ka",
+    "title": "Front Panel Black and Brown Abaya",
+    "url": "https://chikacollection.com/products/aw-24",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8327678984353",
+    "brandSlug": "chi-ka",
+    "title": "Elegant Black Front Line Abaya",
+    "url": "https://chikacollection.com/products/aw-23",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8327670235297",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Black Mesh",
+    "url": "https://chikacollection.com/products/aw-22",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8327637237921",
+    "brandSlug": "chi-ka",
+    "title": "Ivory Lace Winter Abaya",
+    "url": "https://chikacollection.com/products/aw-20",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8327602667681",
+    "brandSlug": "chi-ka",
+    "title": "Reversible Shawl Abaya in Black Mauve",
+    "url": "https://chikacollection.com/products/aw-18",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8327590969505",
+    "brandSlug": "chi-ka",
+    "title": "Reversible Shawl Abaya with Blue Pattern",
+    "url": "https://chikacollection.com/products/aw-17",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8327580352673",
+    "brandSlug": "chi-ka",
+    "title": "Reversible Shawl Abaya with Floral Pattern",
+    "url": "https://chikacollection.com/products/aw-16",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8327553548449",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Black Stripe Satin",
+    "url": "https://chikacollection.com/products/aw-15",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8327500726433",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Stone with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-11",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8327396851873",
+    "brandSlug": "chi-ka",
+    "title": "Rich Navy Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-8",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8327369687201",
+    "brandSlug": "chi-ka",
+    "title": "Luxe Gray Blue Abaya in Velvet Jacquard",
+    "url": "https://chikacollection.com/products/aw-7",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8327357890721",
+    "brandSlug": "chi-ka",
+    "title": "Blue Jacquard Jacket Abaya",
+    "url": "https://chikacollection.com/products/aw-6",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8327314210977",
+    "brandSlug": "chi-ka",
+    "title": "Luxe Gray Blue Abaya in Velvet Jacquard with Satin Collar",
+    "url": "https://chikacollection.com/products/aw-5",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8327246905505",
+    "brandSlug": "chi-ka",
+    "title": "Shawl Abaya in Navy Blue",
+    "url": "https://chikacollection.com/products/aw-3",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8327238287521",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Blue with Satin Trims",
+    "url": "https://chikacollection.com/products/aw-2",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8327179206817",
+    "brandSlug": "chi-ka",
+    "title": "Gray Blue Velvet Abaya with Satin Trims",
+    "url": "https://chikacollection.com/products/aw25_35",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8186900873377",
+    "brandSlug": "chi-ka",
+    "title": "Reversible Abaya in Blush-Lavender RTW",
+    "url": "https://chikacollection.com/products/reversible-abaya-in-blush-lavender-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8281737625761",
+    "brandSlug": "chi-ka",
+    "title": "Loose Cut Pleated Abaya in Navy Blue RTW",
+    "url": "https://chikacollection.com/products/loose-cut-pleated-abaya-in-navy-blue-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8281737363617",
+    "brandSlug": "chi-ka",
+    "title": "Double Button Textured Tensil Abaya in Creme RTW",
+    "url": "https://chikacollection.com/products/double-button-textured-tensil-abaya-in-creme-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8281737068705",
+    "brandSlug": "chi-ka",
+    "title": "Side Tie Abaya in Navy Blue RTW",
+    "url": "https://chikacollection.com/products/side-tie-abaya-in-navy-blue-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8281695781025",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Ivory Jacquard Linen RTW",
+    "url": "https://chikacollection.com/products/suit-abaya-in-ivory-jacquard-linen-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8281675890849",
+    "brandSlug": "chi-ka",
+    "title": "Copper Shawl Collar Abaya with Tassel-Button Details RTW",
+    "url": "https://chikacollection.com/products/copper-shawl-collar-abaya-with-tassel-button-details-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8281650987169",
+    "brandSlug": "chi-ka",
+    "title": "Tie-String Cuff Abaya in Ivory RTW",
+    "url": "https://chikacollection.com/products/tie-string-cuff-abaya-in-ivory-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8280320573601",
+    "brandSlug": "chi-ka",
+    "title": "Blush Pink Jacquard Linen Flow Abaya RTW",
+    "url": "https://chikacollection.com/products/blush-pink-jacquard-linen-flow-abaya-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8237408911521",
+    "brandSlug": "chi-ka",
+    "title": "Sage Green Origami Abaya",
+    "url": "https://chikacollection.com/products/sum25-02",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8231778812065",
+    "brandSlug": "chi-ka",
+    "title": "Loose Cut Abaya in Square Pattern Linen",
+    "url": "https://chikacollection.com/products/sum25_04",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8231778123937",
+    "brandSlug": "chi-ka",
+    "title": "Double Button Textured Tensil Abaya in Creme",
+    "url": "https://chikacollection.com/products/sum25_12",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8231777534113",
+    "brandSlug": "chi-ka",
+    "title": "Loose Double Collar Linen Abaya Black - Gold",
+    "url": "https://chikacollection.com/products/sum25_37",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
     "id": "chi-ka:8236804014241",
     "brandSlug": "chi-ka",
     "title": "Travel Set : Sleeveless Long Jacket and Pants in Blue Jacquard Satin",
@@ -25920,14 +28035,1462 @@
     "reason": "id-pin"
   },
   {
+    "id": "chi-ka:8236803686561",
+    "brandSlug": "chi-ka",
+    "title": "Tie-String Cuff Abaya in Ivory",
+    "url": "https://chikacollection.com/products/sum25_48",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8236803621025",
+    "brandSlug": "chi-ka",
+    "title": "Nude Color Origami Abaya",
+    "url": "https://chikacollection.com/products/sum25_46",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8236803522721",
+    "brandSlug": "chi-ka",
+    "title": "Loose Double Collar Linen Abaya White - Gold",
+    "url": "https://chikacollection.com/products/sum25_43",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8236803358881",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Cuff and Piping in Golden Brushstrokes",
+    "url": "https://chikacollection.com/products/sum25_35",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8236613632161",
+    "brandSlug": "chi-ka",
+    "title": "Tie-String Cuff Abaya in Black",
+    "url": "https://chikacollection.com/products/sum25_29",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8236613599393",
+    "brandSlug": "chi-ka",
+    "title": "Side Tie Abaya in Black",
+    "url": "https://chikacollection.com/products/sum-25-40",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8236613533857",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya with Draped Satin Sleeve in Black",
+    "url": "https://chikacollection.com/products/sum25_22",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8236613435553",
+    "brandSlug": "chi-ka",
+    "title": "Copper Shawl Collar Abaya with Tassel-Button Details",
+    "url": "https://chikacollection.com/products/sum25_20",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8236613304481",
+    "brandSlug": "chi-ka",
+    "title": "Two Tone Suit Abaya",
+    "url": "https://chikacollection.com/products/sum25_16",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8236613271713",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Ivory Jacquard Linen",
+    "url": "https://chikacollection.com/products/sum25_15",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8236613173409",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Stripe Blue",
+    "url": "https://chikacollection.com/products/sum25_10",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8236613107873",
+    "brandSlug": "chi-ka",
+    "title": "Tie-String Cuff Abaya in Navy Blue",
+    "url": "https://chikacollection.com/products/sum-25-27",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8236612812961",
+    "brandSlug": "chi-ka",
+    "title": "Side Tie Abaya in Navy blue",
+    "url": "https://chikacollection.com/products/sum25_05",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8231780122785",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Creme with Black Piping Details",
+    "url": "https://chikacollection.com/products/sum25_13",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8224799916193",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Limited Silk Organza in Champagne with Embroidery RTW",
+    "url": "https://chikacollection.com/products/luxury-limited-silk-organza-in-champagne-with-embroidery-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8224796082337",
+    "brandSlug": "chi-ka",
+    "title": "Side Tie Abaya in Black RTW",
+    "url": "https://chikacollection.com/products/side-tie-abaya-in-black-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8224783630497",
+    "brandSlug": "chi-ka",
+    "title": "Double Button Palm Pattern Jacquard Abaya in Black RTW",
+    "url": "https://chikacollection.com/products/double-button-palm-pattern-jacquard-abaya-in-black-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8215756275873",
+    "brandSlug": "chi-ka",
+    "title": "Satin Layer Abaya in Black",
+    "url": "https://chikacollection.com/products/satin-layer-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8215752704161",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Gray with White Detailing",
+    "url": "https://chikacollection.com/products/structured-abaya-in-gray-with-white-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8215754801313",
+    "brandSlug": "chi-ka",
+    "title": "Side Tie Abaya in Black",
+    "url": "https://chikacollection.com/products/side-tie-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8215749099681",
+    "brandSlug": "chi-ka",
+    "title": "Blue Palm Jacquard Double Button Abaya",
+    "url": "https://chikacollection.com/products/blue-palm-jacquard-double-button-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8215526277281",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Silk Kaftan in Indigo",
+    "url": "https://chikacollection.com/products/kaftan-19-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8215525982369",
+    "brandSlug": "chi-ka",
+    "title": "Double Layer Abaya Set in Ivory",
+    "url": "https://chikacollection.com/products/kaftan-r25c_12",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8215525720225",
+    "brandSlug": "chi-ka",
+    "title": "V Kaftan in Emerald Green",
+    "url": "https://chikacollection.com/products/kaftan-r25c_08",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8215525294241",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Silk Kaftan in Plum with Gold Embroidery",
+    "url": "https://chikacollection.com/products/kaftan-r25c_01",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8203864309921",
+    "brandSlug": "chi-ka",
+    "title": "Silk Kaftan in Silver Gray with Red RTW",
+    "url": "https://chikacollection.com/products/silk-kaftan-in-silver-gray-with-red-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8203864244385",
+    "brandSlug": "chi-ka",
+    "title": "Silk Kaftan in Champagne with Red RTW",
+    "url": "https://chikacollection.com/products/silk-kaftan-in-champagne-with-red-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8203864211617",
+    "brandSlug": "chi-ka",
+    "title": "Silk Kaftan in Light Silver Gray with Pink Floral Panel RTW",
+    "url": "https://chikacollection.com/products/silk-kaftan-in-light-silver-gray-with-pink-floral-panel-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8203862802593",
+    "brandSlug": "chi-ka",
+    "title": "Marble Kaftan with Diamond Belt RTW",
+    "url": "https://chikacollection.com/products/marble-kaftan-with-diamond-belt-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8200075116705",
+    "brandSlug": "chi-ka",
+    "title": "Deep Onyx Kaftan with Diamond Belt",
+    "url": "https://chikacollection.com/products/kaf25_04",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8200089600161",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Abaya in Purple Pattern",
+    "url": "https://chikacollection.com/products/velvet-abaya-in-purple",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8200089370785",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Abaya in Burgundy",
+    "url": "https://chikacollection.com/products/velvet-abaya-in-red",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8200089108641",
+    "brandSlug": "chi-ka",
+    "title": "Reversible Abaya in Black & Plum",
+    "url": "https://chikacollection.com/products/ss25_14",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8200088649889",
+    "brandSlug": "chi-ka",
+    "title": "Reversible Abaya in Plum & Black",
+    "url": "https://chikacollection.com/products/ss25_15",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8200083472545",
+    "brandSlug": "chi-ka",
+    "title": "Set : Tencel Twill Abaya in Dark Brown with Velvet Cardigan",
+    "url": "https://chikacollection.com/products/set-tencel-twill-abaya-in-dark-brown-with-velvet-cardigan",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
+  },
+  {
+    "id": "chi-ka:8200089829537",
+    "brandSlug": "chi-ka",
+    "title": "Satin Blazer Abaya in Blue Bronze",
+    "url": "https://chikacollection.com/products/ss25_19",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8200082751649",
+    "brandSlug": "chi-ka",
+    "title": "Set : Tencel Twill Abaya in Ivory with Black Cardigan",
+    "url": "https://chikacollection.com/products/set-tencel-twill-abaya-in-ivory-with-black-cardigan",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
+  },
+  {
     "id": "chi-ka:8200082423969",
     "brandSlug": "chi-ka",
     "title": "Suit Fitted Abaya in Light Pin Stripe Grey",
     "url": "https://chikacollection.com/products/ss25_07",
     "garmentWas": "abaya",
-    "reason": "non-apparel:hardware",
-    "tier": "B",
-    "evidence": "Pin"
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8200081801377",
+    "brandSlug": "chi-ka",
+    "title": "Crushed Velvet Abaya in Black",
+    "url": "https://chikacollection.com/products/crushed-velvet-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8200080818337",
+    "brandSlug": "chi-ka",
+    "title": "Lace Kaftan in Ivory",
+    "url": "https://chikacollection.com/products/kaf25_18",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8200079343777",
+    "brandSlug": "chi-ka",
+    "title": "Silk Organza in White with Golden Cranes",
+    "url": "https://chikacollection.com/products/kaf25_14",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2950 AED (~$803)"
+  },
+  {
+    "id": "chi-ka:8186900316321",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Navy Blue RTW",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-navy-blue-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8186898940065",
+    "brandSlug": "chi-ka",
+    "title": "Linen Abaya in Metallic Brown RTW",
+    "url": "https://chikacollection.com/products/linen-abaya-in-metallic-brown-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156691333281",
+    "brandSlug": "chi-ka",
+    "title": "Structured Navy Blue Abaya with Decorative Button",
+    "url": "https://chikacollection.com/products/structured-navy-blue-abaya-with-decorative-button",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156690415777",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Navy Blue with White Details",
+    "url": "https://chikacollection.com/products/structured-abaya-in-navy-blue-with-white-details",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156690251937",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Abaya in Black",
+    "url": "https://chikacollection.com/products/velvet-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156690120865",
+    "brandSlug": "chi-ka",
+    "title": "Structured Blue Gray Abaya with Decorative Button",
+    "url": "https://chikacollection.com/products/structured-blue-gray-abaya-with-decorative-button",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156689825953",
+    "brandSlug": "chi-ka",
+    "title": "Textured Olive Green Abaya",
+    "url": "https://chikacollection.com/products/textured-olive-green-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8156683370657",
+    "brandSlug": "chi-ka",
+    "title": "Textured Abaya in White",
+    "url": "https://chikacollection.com/products/textured-abaya-in-white",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8156674228385",
+    "brandSlug": "chi-ka",
+    "title": "Stripe Abaya in Black & White",
+    "url": "https://chikacollection.com/products/stripe-abaya-in-black-white",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156647817377",
+    "brandSlug": "chi-ka",
+    "title": "Smart Abaya in Light Green",
+    "url": "https://chikacollection.com/products/smart-abaya-in-light-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8156644737185",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Black with Decorative Button",
+    "url": "https://chikacollection.com/products/suit-abaya-in-black-with-decorative-button",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8156644671649",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Black Tencel Twill",
+    "url": "https://chikacollection.com/products/suit-abaya-in-black-tencel-twill",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8156644638881",
+    "brandSlug": "chi-ka",
+    "title": "Textured Abaya in Black",
+    "url": "https://chikacollection.com/products/textured-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8156643393697",
+    "brandSlug": "chi-ka",
+    "title": "SET: Textured Olive Green Abaya with Cardigan",
+    "url": "https://chikacollection.com/products/set-textured-olive-green-abaya-with-cardigan",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
+  },
+  {
+    "id": "chi-ka:8156692054177",
+    "brandSlug": "chi-ka",
+    "title": "Flowy Black Abaya",
+    "url": "https://chikacollection.com/products/flowy-black-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156690940065",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Navy Blue",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-navy-blue",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8156685140129",
+    "brandSlug": "chi-ka",
+    "title": "Flowy Light Gray Floral Abaya",
+    "url": "https://chikacollection.com/products/flowy-light-gray-floral-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156682748065",
+    "brandSlug": "chi-ka",
+    "title": "Linen Abaya in Metallic Gray",
+    "url": "https://chikacollection.com/products/linen-abaya-in-metallic-gray",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156682059937",
+    "brandSlug": "chi-ka",
+    "title": "Reversible Abaya in Blush-Lavender",
+    "url": "https://chikacollection.com/products/reversible-abaya-in-blush-lavender",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8156681076897",
+    "brandSlug": "chi-ka",
+    "title": "Linen Abaya in Brown",
+    "url": "https://chikacollection.com/products/linen-abaya-in-brown",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8156680880289",
+    "brandSlug": "chi-ka",
+    "title": "Linen Abaya in Metallic Brown",
+    "url": "https://chikacollection.com/products/linen-abaya-in-metallic-brown",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8156677570721",
+    "brandSlug": "chi-ka",
+    "title": "Metallic Multi Layer Abaya",
+    "url": "https://chikacollection.com/products/metallic-multi-layer-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8156674064545",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Greige",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-greige",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8156647653537",
+    "brandSlug": "chi-ka",
+    "title": "Overlap Abaya in Brown",
+    "url": "https://chikacollection.com/products/overlap-abaya-in-brown",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8156643557537",
+    "brandSlug": "chi-ka",
+    "title": "Flight Abaya in Black and White Birds",
+    "url": "https://chikacollection.com/products/flight-abaya-in-black-and-white-birds",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075165401249",
+    "brandSlug": "chi-ka",
+    "title": "Black Abaya with Metallic Sleeves",
+    "url": "https://chikacollection.com/products/black-abaya-with-metallic-sleeves",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075226022049",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Light Green",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-light-green-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075223105697",
+    "brandSlug": "chi-ka",
+    "title": "Double Collar Abaya in White",
+    "url": "https://chikacollection.com/products/double-collar-abaya-in-white-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075222941857",
+    "brandSlug": "chi-ka",
+    "title": "Double Collar Abaya in Light Lavender",
+    "url": "https://chikacollection.com/products/double-collar-abaya-in-light-lavender-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075222352033",
+    "brandSlug": "chi-ka",
+    "title": "Satin Layer Abaya in Midnight Blue",
+    "url": "https://chikacollection.com/products/satin-abaya-in-blue",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075222220961",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Emerald Green",
+    "url": "https://chikacollection.com/products/polished-abaya-in-emerald-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075221663905",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Mint Green",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-mint-green-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075221500065",
+    "brandSlug": "chi-ka",
+    "title": "Polished Layer Abaya in Purple",
+    "url": "https://chikacollection.com/products/polished-layer-abaya-in-purple-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075221303457",
+    "brandSlug": "chi-ka",
+    "title": "Layer Abaya in White with Navy",
+    "url": "https://chikacollection.com/products/layer-abaya-in-white-with-navy-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075220811937",
+    "brandSlug": "chi-ka",
+    "title": "Suit Pocket Abaya in Brown Linen",
+    "url": "https://chikacollection.com/products/suit-pocket-abaya-in-brown-linen-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075220451489",
+    "brandSlug": "chi-ka",
+    "title": "Suit Pocket Abaya in Beige",
+    "url": "https://chikacollection.com/products/suit-pocket-abaya-in-beige-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075219927201",
+    "brandSlug": "chi-ka",
+    "title": "Trench Abaya in Beige Linen",
+    "url": "https://chikacollection.com/products/trench-abaya-in-beige-linen-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075219042465",
+    "brandSlug": "chi-ka",
+    "title": "Olive Green Abaya with Silver Studs",
+    "url": "https://chikacollection.com/products/olive-green-abaya-with-silver-studs-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075218878625",
+    "brandSlug": "chi-ka",
+    "title": "Navy Blue Abaya with Silver Studs",
+    "url": "https://chikacollection.com/products/navy-blue-abaya-with-silver-studs-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075216978081",
+    "brandSlug": "chi-ka",
+    "title": "Mirror Abaya in Dark Grey",
+    "url": "https://chikacollection.com/products/mirror-abaya-in-dark-grey-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8075216781473",
+    "brandSlug": "chi-ka",
+    "title": "Pattern Abaya in Pink",
+    "url": "https://chikacollection.com/products/pattern-abaya-in-pink-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8075216519329",
+    "brandSlug": "chi-ka",
+    "title": "Structured Abaya in Plum",
+    "url": "https://chikacollection.com/products/structured-abaya-in-plum-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075212456097",
+    "brandSlug": "chi-ka",
+    "title": "Layer Flow Abaya in Beige",
+    "url": "https://chikacollection.com/products/layer-flow-abaya-in-beige-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075211079841",
+    "brandSlug": "chi-ka",
+    "title": "Layer Flow Abaya in Purple",
+    "url": "https://chikacollection.com/products/layer-flow-abaya-in-purple-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075199381665",
+    "brandSlug": "chi-ka",
+    "title": "Stripe Abaya in Gold",
+    "url": "https://chikacollection.com/products/stripe-abaya-in-gold",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075197317281",
+    "brandSlug": "chi-ka",
+    "title": "Lux Abaya in Black with Organza Detailing",
+    "url": "https://chikacollection.com/products/lux-abaya-in-black-with-organza-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8075189649569",
+    "brandSlug": "chi-ka",
+    "title": "Textured Loose Cut Abaya in Black",
+    "url": "https://chikacollection.com/products/textured-loose-cut-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075188961441",
+    "brandSlug": "chi-ka",
+    "title": "Satin Abaya in Gold",
+    "url": "https://chikacollection.com/products/satin-abaya-in-gold",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075188830369",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Metallic Black",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-metallic-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075188502689",
+    "brandSlug": "chi-ka",
+    "title": "Abaya in Turquoise Floral",
+    "url": "https://chikacollection.com/products/abaya-in-turquoise-floral",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
+  },
+  {
+    "id": "chi-ka:8075186995361",
+    "brandSlug": "chi-ka",
+    "title": "Charcoal Abaya in Copper",
+    "url": "https://chikacollection.com/products/charcoal-abaya-in-copper",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
+  },
+  {
+    "id": "chi-ka:8075184930977",
+    "brandSlug": "chi-ka",
+    "title": "Pleated Kaftan in Black",
+    "url": "https://chikacollection.com/products/pleated-kaftan-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075176312993",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished White RTW",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-white-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075175952545",
+    "brandSlug": "chi-ka",
+    "title": "Winter Coat Abaya in wool with white organza",
+    "url": "https://chikacollection.com/products/winter-coat-abaya-in-wool-with-white-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8075175821473",
+    "brandSlug": "chi-ka",
+    "title": "Grey Stripe Wool Abaya",
+    "url": "https://chikacollection.com/products/grey-stripe-wool-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8075175526561",
+    "brandSlug": "chi-ka",
+    "title": "Textured Contrast Abaya In Blue",
+    "url": "https://chikacollection.com/products/textured-contrast-abaya-in-blue",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075175264417",
+    "brandSlug": "chi-ka",
+    "title": "Winter Double Layered Abaya in Beige",
+    "url": "https://chikacollection.com/products/winter-double-layered-abaya-in-beige",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2850 AED (~$776)"
+  },
+  {
+    "id": "chi-ka:8075175002273",
+    "brandSlug": "chi-ka",
+    "title": "Winter Double Layered Abaya in Green",
+    "url": "https://chikacollection.com/products/winter-double-layered-abaya-in-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2850 AED (~$776)"
+  },
+  {
+    "id": "chi-ka:8075174903969",
+    "brandSlug": "chi-ka",
+    "title": "Suede Double Layer Abaya",
+    "url": "https://chikacollection.com/products/suede-double-layer-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2850 AED (~$776)"
+  },
+  {
+    "id": "chi-ka:8075174707361",
+    "brandSlug": "chi-ka",
+    "title": "Winter Coat in Sand",
+    "url": "https://chikacollection.com/products/winter-coat-in-sand",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8075174641825",
+    "brandSlug": "chi-ka",
+    "title": "Loose Abaya in Navy Beige",
+    "url": "https://chikacollection.com/products/navy-beige-loose-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075174019233",
+    "brandSlug": "chi-ka",
+    "title": "Winter Zip Coat in Silver Black",
+    "url": "https://chikacollection.com/products/winter-zip-coat-in-silver-black",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8075173888161",
+    "brandSlug": "chi-ka",
+    "title": "Winter Zip Coat in Navy",
+    "url": "https://chikacollection.com/products/winter-zip-coat-in-navy",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8075173724321",
+    "brandSlug": "chi-ka",
+    "title": "Winter Zip Coat in Black",
+    "url": "https://chikacollection.com/products/winter-zip-coat-in-black",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8075173527713",
+    "brandSlug": "chi-ka",
+    "title": "Winter Double Layered Abaya in Navy",
+    "url": "https://chikacollection.com/products/winter-double-layered-abaya-in-navy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2850 AED (~$776)"
+  },
+  {
+    "id": "chi-ka:8075173331105",
+    "brandSlug": "chi-ka",
+    "title": "Winter Coat in Green",
+    "url": "https://chikacollection.com/products/winter-coat-in-green",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8075173232801",
+    "brandSlug": "chi-ka",
+    "title": "Winter Coat in Burgundy",
+    "url": "https://chikacollection.com/products/winter-coat-in-burgundy",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8075173036193",
+    "brandSlug": "chi-ka",
+    "title": "Winter Black Abaya with Detailing",
+    "url": "https://chikacollection.com/products/winter-black-abaya-with-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8075172577441",
+    "brandSlug": "chi-ka",
+    "title": "Jacquard Satin Abaya",
+    "url": "https://chikacollection.com/products/jacquard-satin-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2700 AED (~$735)"
+  },
+  {
+    "id": "chi-ka:8075172413601",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Structured Abaya in Ivory",
+    "url": "https://chikacollection.com/products/butterfly-structured-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075172348065",
+    "brandSlug": "chi-ka",
+    "title": "Winter Gold and Silver Detailing Coat Abaya",
+    "url": "https://chikacollection.com/products/winter-gold-and-silver-detailing-coat-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075172151457",
+    "brandSlug": "chi-ka",
+    "title": "Fancy Jacket Abaya in Black_White",
+    "url": "https://chikacollection.com/products/fancy-jacket-abaya-in-blackwhite",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075171135649",
+    "brandSlug": "chi-ka",
+    "title": "Black and Gold Abaya",
+    "url": "https://chikacollection.com/products/black-and-gold-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075171004577",
+    "brandSlug": "chi-ka",
+    "title": "Suit Polished Abaya in Purple",
+    "url": "https://chikacollection.com/products/suit-polished-abaya-in-purple",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075170775201",
+    "brandSlug": "chi-ka",
+    "title": "Lux Flow Abaya in Black",
+    "url": "https://chikacollection.com/products/lux-flow-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
+  },
+  {
+    "id": "chi-ka:8075169792161",
+    "brandSlug": "chi-ka",
+    "title": "Stripe Abaya in Brick",
+    "url": "https://chikacollection.com/products/stripe-abaya-in-brick",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8075166482593",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished White",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-white",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075166253217",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished Pale Pink",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-pale-pink",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075165171873",
+    "brandSlug": "chi-ka",
+    "title": "Linen in Black with White silk Organza",
+    "url": "https://chikacollection.com/products/linen-in-black-with-white-silk-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075164942497",
+    "brandSlug": "chi-ka",
+    "title": "Diagonal Two Tone Taupe and black",
+    "url": "https://chikacollection.com/products/diagonal-two-tone-taupe-and-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075164844193",
+    "brandSlug": "chi-ka",
+    "title": "Luxury Gold Trim Abaya",
+    "url": "https://chikacollection.com/products/luxury-gold-trim-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075164418209",
+    "brandSlug": "chi-ka",
+    "title": "Black and White Collar Abaya",
+    "url": "https://chikacollection.com/products/black-and-white-collar-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075164188833",
+    "brandSlug": "chi-ka",
+    "title": "Blue Diamond Abaya",
+    "url": "https://chikacollection.com/products/blue-diamond-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8075163992225",
+    "brandSlug": "chi-ka",
+    "title": "Forest Green and Ivory Abaya",
+    "url": "https://chikacollection.com/products/forest-green-and-ivory-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075163828385",
+    "brandSlug": "chi-ka",
+    "title": "Diagonal Two Tone Mint green and Ivory",
+    "url": "https://chikacollection.com/products/diagonal-two-tone-mint-green-and-ivory",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075163631777",
+    "brandSlug": "chi-ka",
+    "title": "Pleated Abaya in Black",
+    "url": "https://chikacollection.com/products/pleated-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075163533473",
+    "brandSlug": "chi-ka",
+    "title": "Black Abaya with Accent Sleeves",
+    "url": "https://chikacollection.com/products/black-abaya-with-accent-sleeves",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075163369633",
+    "brandSlug": "chi-ka",
+    "title": "Black Trench Pattern Abaya",
+    "url": "https://chikacollection.com/products/black-trench-pattern-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075162255521",
+    "brandSlug": "chi-ka",
+    "title": "Textured Abaya in Cedar Ivory",
+    "url": "https://chikacollection.com/products/textured-abaya-in-cedar-ivory",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075162157217",
+    "brandSlug": "chi-ka",
+    "title": "Textured Abaya in Charcoal Gray",
+    "url": "https://chikacollection.com/products/textured-abaya-in-charcoal-gray",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075161993377",
+    "brandSlug": "chi-ka",
+    "title": "Suit Polished Abaya in Light Green",
+    "url": "https://chikacollection.com/products/suit-polished-abaya-in-light-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075161829537",
+    "brandSlug": "chi-ka",
+    "title": "Blue Jacket Abaya with Ivory Collar",
+    "url": "https://chikacollection.com/products/blue-jacket-abaya-with-ivory-collar",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8075161600161",
+    "brandSlug": "chi-ka",
+    "title": "Black Jacket Abaya with Ivory Collar",
+    "url": "https://chikacollection.com/products/black-jacket-abaya-with-ivory-collar",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075161403553",
+    "brandSlug": "chi-ka",
+    "title": "Black and Ivory Sleeve Abaya",
+    "url": "https://chikacollection.com/products/black-and-ivory-sleeve-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075161305249",
+    "brandSlug": "chi-ka",
+    "title": "Brown Stripe Abaya",
+    "url": "https://chikacollection.com/products/brown-stripe-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8075160813729",
+    "brandSlug": "chi-ka",
+    "title": "Linen White Abaya with Taupe Silk organza",
+    "url": "https://chikacollection.com/products/linen-white-abaya-with-taupe-silk-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075160223905",
+    "brandSlug": "chi-ka",
+    "title": "Satin Suit Abaya in Black",
+    "url": "https://chikacollection.com/products/satin-suit-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075159896225",
+    "brandSlug": "chi-ka",
+    "title": "Mint Green Abaya with Metallic Sleeves",
+    "url": "https://chikacollection.com/products/mint-green-abaya-with-metallic-sleeves",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075159666849",
+    "brandSlug": "chi-ka",
+    "title": "Stripe Abaya in Grey Green",
+    "url": "https://chikacollection.com/products/stripe-abaya-in-grey-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075158913185",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished Red",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-red",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075158651041",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished Rusty Rose",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-rusty-rose",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075157405857",
+    "brandSlug": "chi-ka",
+    "title": "Ivory Mustard Abaya",
+    "url": "https://chikacollection.com/products/ivory-mustard-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075157340321",
+    "brandSlug": "chi-ka",
+    "title": "Oatmeal Green Loose Abaya",
+    "url": "https://chikacollection.com/products/oatmeal-green-loose-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075157110945",
+    "brandSlug": "chi-ka",
+    "title": "Two Tone Abaya in Taupe and Ivory",
+    "url": "https://chikacollection.com/products/two-tone-abaya-in-taupe-and-ivory",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075154063521",
+    "brandSlug": "chi-ka",
+    "title": "Trench Abaya in Polished Aqua Blue",
+    "url": "https://chikacollection.com/products/trench-abaya-in-polished-aqua-blue",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075142103201",
+    "brandSlug": "chi-ka",
+    "title": "Winter Navy Blue Tweed Metallic Abaya",
+    "url": "https://chikacollection.com/products/winter-navy-blue-tweed-metallic-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3200 AED (~$871)"
+  },
+  {
+    "id": "chi-ka:8075140235425",
+    "brandSlug": "chi-ka",
+    "title": "Crushed Black Satin Abaya with Bubble Sleeves",
+    "url": "https://chikacollection.com/products/crushed-black-satin-abaya-with-bubble-sleeves",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075128504481",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished Emerald Green",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-emerald-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075121885345",
+    "brandSlug": "chi-ka",
+    "title": "Checkered Tweed With Black Velvet Collar Winter Abaya",
+    "url": "https://chikacollection.com/products/checkered-tweed-with-black-velvet-collar-winter-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3200 AED (~$871)"
+  },
+  {
+    "id": "chi-ka:8075121655969",
+    "brandSlug": "chi-ka",
+    "title": "Checkered Tweed With Black Velvet Winter Abaya",
+    "url": "https://chikacollection.com/products/checkered-tweed-with-black-velvet-winter-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3200 AED (~$871)"
+  },
+  {
+    "id": "chi-ka:8075121393825",
+    "brandSlug": "chi-ka",
+    "title": "Checkered Tweed With Maroon Velvet Winter Abaya",
+    "url": "https://chikacollection.com/products/checkered-tweed-with-maroon-velvet-winter-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3200 AED (~$871)"
+  },
+  {
+    "id": "chi-ka:8075121098913",
+    "brandSlug": "chi-ka",
+    "title": "Winter Coat Abaya In Black With Gold Detailing",
+    "url": "https://chikacollection.com/products/winter-coat-abaya-in-black-with-gold-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075120869537",
+    "brandSlug": "chi-ka",
+    "title": "Sleek Jacket Open Abaya in Polished Navy",
+    "url": "https://chikacollection.com/products/sleek-jacket-open-abaya-in-polished-navy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075120672929",
+    "brandSlug": "chi-ka",
+    "title": "Ivory Black Two Tone Abaya",
+    "url": "https://chikacollection.com/products/ivory-black-two-tone-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075120443553",
+    "brandSlug": "chi-ka",
+    "title": "Classy Black Ribbed A-Cut Abaya",
+    "url": "https://chikacollection.com/products/classy-black-ribbed-a-cut-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075120410785",
+    "brandSlug": "chi-ka",
+    "title": "Winter Structured Ivory Coat",
+    "url": "https://chikacollection.com/products/winter-structured-ivory-coat",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075120246945",
+    "brandSlug": "chi-ka",
+    "title": "Winter Fancy Jacket Abaya in Ivory Wool",
+    "url": "https://chikacollection.com/products/winter-fancy-jacket-abaya-in-ivory-wool",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8075120214177",
+    "brandSlug": "chi-ka",
+    "title": "Sleek Jacket Abaya in Ivory",
+    "url": "https://chikacollection.com/products/sleek-jacket-abaya-in-ivory",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8075119820961",
+    "brandSlug": "chi-ka",
+    "title": "Winter Reversible Abaya in Ivory / Tan",
+    "url": "https://chikacollection.com/products/winter-reversible-abaya-in-ivory-tan",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
+  },
+  {
+    "id": "chi-ka:8075118968993",
+    "brandSlug": "chi-ka",
+    "title": "Winter Reversible Abaya In Caramel-Ivory",
+    "url": "https://chikacollection.com/products/winter-reversible-abaya-in-caramel-ivory",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
+  },
+  {
+    "id": "chi-ka:8075118837921",
+    "brandSlug": "chi-ka",
+    "title": "Winter Blue Tweed with Black Abaya",
+    "url": "https://chikacollection.com/products/winter-blue-tweed-with-black-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 AED (~$708)"
   },
   {
     "id": "chi-ka:8075118444705",
@@ -25935,9 +29498,260 @@
     "title": "Jacket Abaya in Gray Pin Stripe",
     "url": "https://chikacollection.com/products/jacket-abaya-in-gray-pin-stripe",
     "garmentWas": "abaya",
-    "reason": "non-apparel:hardware",
-    "tier": "B",
-    "evidence": "Pin"
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075118411937",
+    "brandSlug": "chi-ka",
+    "title": "Loose Abaya in Black with Fancy Scarf",
+    "url": "https://chikacollection.com/products/loose-abaya-in-black-with-fancy-scarf",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075117887649",
+    "brandSlug": "chi-ka",
+    "title": "Pleated Summer Abaya in Toffee",
+    "url": "https://chikacollection.com/products/pleated-summer-abaya-in-toffee",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075117559969",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished Green",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075117166753",
+    "brandSlug": "chi-ka",
+    "title": "Suit Abaya in Polished Navy",
+    "url": "https://chikacollection.com/products/suit-abaya-in-polished-navy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075116642465",
+    "brandSlug": "chi-ka",
+    "title": "Pleated Summer Abaya in Mauve",
+    "url": "https://chikacollection.com/products/pleated-summer-abaya-in-mauve",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075116609697",
+    "brandSlug": "chi-ka",
+    "title": "Pleated Summer Abaya in Bone",
+    "url": "https://chikacollection.com/products/pleated-summer-abaya-in-bone",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075116380321",
+    "brandSlug": "chi-ka",
+    "title": "Pleated Summer Abaya in Black",
+    "url": "https://chikacollection.com/products/pleated-summer-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075115987105",
+    "brandSlug": "chi-ka",
+    "title": "Tassel Abaya in Navy",
+    "url": "https://chikacollection.com/products/tassel-abaya-in-navy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075115856033",
+    "brandSlug": "chi-ka",
+    "title": "Metallic Abaya in Gun Metal Gray",
+    "url": "https://chikacollection.com/products/metallic-abaya-in-gun-metal-gray",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2350 AED (~$640)"
+  },
+  {
+    "id": "chi-ka:8075115266209",
+    "brandSlug": "chi-ka",
+    "title": "Linen Abaya in Black with Ivory Inner Detail",
+    "url": "https://chikacollection.com/products/linen-abaya-in-black-with-ivory-inner-detail",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075115167905",
+    "brandSlug": "chi-ka",
+    "title": "Jacket Abaya in Taupe",
+    "url": "https://chikacollection.com/products/jacket-abaya-in-taupe",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075114676385",
+    "brandSlug": "chi-ka",
+    "title": "Black Tassel Abaya",
+    "url": "https://chikacollection.com/products/black-tassel-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "chi-ka:8075108122785",
+    "brandSlug": "chi-ka",
+    "title": "Top Cream Honeycomb",
+    "url": "https://chikacollection.com/products/top-cream-honeycomb",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075107958945",
+    "brandSlug": "chi-ka",
+    "title": "Winter Black Scuba with Ivory Wool Sleeve Abaya",
+    "url": "https://chikacollection.com/products/copy-of-test",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2250 AED (~$613)"
+  },
+  {
+    "id": "chi-ka:8075107139745",
+    "brandSlug": "chi-ka",
+    "title": "Winter Navy Blue Coat with Ivory Detailing",
+    "url": "https://chikacollection.com/products/winter-navy-blue-coat-with-ivory-detailing",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "chi-ka:8075106779297",
+    "brandSlug": "chi-ka",
+    "title": "Maroon Checkered Tweed Winter Abaya",
+    "url": "https://chikacollection.com/products/maroon-chequered-tweed-winter-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3200 AED (~$871)"
+  },
+  {
+    "id": "chi-ka:8075106058401",
+    "brandSlug": "chi-ka",
+    "title": "Gray Ripple Abaya with Ivory Detailing",
+    "url": "https://chikacollection.com/products/gray-ripple-abaya-with-ivory-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075105960097",
+    "brandSlug": "chi-ka",
+    "title": "Gray Ripple Abaya",
+    "url": "https://chikacollection.com/products/gray-ripple-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075105829025",
+    "brandSlug": "chi-ka",
+    "title": "Earth Tone Structured Tux",
+    "url": "https://chikacollection.com/products/earth-tone-structured-tux",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075105173665",
+    "brandSlug": "chi-ka",
+    "title": "Black Ripple Abaya with Ivory Detailing",
+    "url": "https://chikacollection.com/products/black-ripple-abaya-with-ivory-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8075105009825",
+    "brandSlug": "chi-ka",
+    "title": "Winter Tweed Chequered Brown Abaya",
+    "url": "https://chikacollection.com/products/winter-tweed-chequered-brown-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3200 AED (~$871)"
+  },
+  {
+    "id": "chi-ka:8075104911521",
+    "brandSlug": "chi-ka",
+    "title": "Winter Aqua Brown Wool Abaya",
+    "url": "https://chikacollection.com/products/winter-aqua-brown-wool-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 AED (~$681)"
+  },
+  {
+    "id": "chi-ka:8075104649377",
+    "brandSlug": "chi-ka",
+    "title": "Maroon Tweed Abaya",
+    "url": "https://chikacollection.com/products/maroon-tweed-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2900 AED (~$790)"
+  },
+  {
+    "id": "chi-ka:8075104518305",
+    "brandSlug": "chi-ka",
+    "title": "Classic Chequered Tweed abaya",
+    "url": "https://chikacollection.com/products/classic-chequered-tweed-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2850 AED (~$776)"
+  },
+  {
+    "id": "chi-ka:8075104288929",
+    "brandSlug": "chi-ka",
+    "title": "Black Wool and Metallic Brown Abaya",
+    "url": "https://chikacollection.com/products/black-wool-and-metallic-brown-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "chi-ka:8075103797409",
+    "brandSlug": "chi-ka",
+    "title": "Black Jersey Abaya",
+    "url": "https://chikacollection.com/products/black-jersey-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "chi-ka:8075101569185",
+    "brandSlug": "chi-ka",
+    "title": "Grey Ripple Abaya with Ivory Detailing",
+    "url": "https://chikacollection.com/products/grey-ripple-abaya-with-ivory-detailing",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "latifi:7900792586489",
+    "brandSlug": "latifi",
+    "title": "Royal REESH",
+    "url": "https://latifi.ae/products/pleated-reesh-kaftan",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2650 AED (~$722)"
   },
   {
     "id": "bouguessa:10526628643103",
@@ -28482,6 +32296,168 @@
     "evidence": "Bag"
   },
   {
+    "id": "avyaana:15633339056502",
+    "brandSlug": "avyaana",
+    "title": "Elenora",
+    "url": "https://avyaana.com/products/elenora-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "455 GBP (~$615)"
+  },
+  {
+    "id": "avyaana:15633334862198",
+    "brandSlug": "avyaana",
+    "title": "BAHIRA",
+    "url": "https://avyaana.com/products/bahira-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "414 GBP (~$559)"
+  },
+  {
+    "id": "avyaana:15633334665590",
+    "brandSlug": "avyaana",
+    "title": "KHAYAL",
+    "url": "https://avyaana.com/products/khayal-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "414 GBP (~$559)"
+  },
+  {
+    "id": "avyaana:15633334468982",
+    "brandSlug": "avyaana",
+    "title": "SEREEN",
+    "url": "https://avyaana.com/products/sereen-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "455 GBP (~$615)"
+  },
+  {
+    "id": "avyaana:15633334042998",
+    "brandSlug": "avyaana",
+    "title": "Haneefa",
+    "url": "https://avyaana.com/products/haneefa-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "455 GBP (~$615)"
+  },
+  {
+    "id": "avyaana:15633333715318",
+    "brandSlug": "avyaana",
+    "title": "RANIA",
+    "url": "https://avyaana.com/products/rania-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "455 GBP (~$615)"
+  },
+  {
+    "id": "avyaana:15633332535670",
+    "brandSlug": "avyaana",
+    "title": "DARIYA",
+    "url": "https://avyaana.com/products/dariya-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "455 GBP (~$615)"
+  },
+  {
+    "id": "avyaana:15449996034422",
+    "brandSlug": "avyaana",
+    "title": "Golden Earth Ombre",
+    "url": "https://avyaana.com/products/mustard-dye",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "552 GBP (~$746)"
+  },
+  {
+    "id": "avyaana:15064073503094",
+    "brandSlug": "avyaana",
+    "title": "Zenab",
+    "url": "https://avyaana.com/products/zenab-1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:15064067375478",
+    "brandSlug": "avyaana",
+    "title": "Amiliya",
+    "url": "https://avyaana.com/products/amiliyah",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:15064063213942",
+    "brandSlug": "avyaana",
+    "title": "Joori",
+    "url": "https://avyaana.com/products/joori",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:14999788552566",
+    "brandSlug": "avyaana",
+    "title": "Ocean Dye",
+    "url": "https://avyaana.com/products/ocean-dye",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "552 GBP (~$746)"
+  },
+  {
+    "id": "avyaana:8267056283786",
+    "brandSlug": "avyaana",
+    "title": "Heyam",
+    "url": "https://avyaana.com/products/heyam-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:8267056218250",
+    "brandSlug": "avyaana",
+    "title": "Dana",
+    "url": "https://avyaana.com/products/dana-copy",
+    "garmentWas": "set",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:8267056152714",
+    "brandSlug": "avyaana",
+    "title": "Lemeis",
+    "url": "https://avyaana.com/products/lemeis-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:8267056021642",
+    "brandSlug": "avyaana",
+    "title": "Lara",
+    "url": "https://avyaana.com/products/lara-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:8267055628426",
+    "brandSlug": "avyaana",
+    "title": "Maya",
+    "url": "https://avyaana.com/products/maya-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
+    "id": "avyaana:8267055431818",
+    "brandSlug": "avyaana",
+    "title": "Surayah",
+    "url": "https://avyaana.com/products/surayah-copy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "620 GBP (~$837)"
+  },
+  {
     "id": "kamin:9333254586585",
     "brandSlug": "kamin",
     "title": "DOT | LID",
@@ -28876,6 +32852,87 @@
     "evidence": "Hijab Magnets"
   },
   {
+    "id": "almotahajiba:10476228280595",
+    "brandSlug": "almotahajiba",
+    "title": "Quiet Horizon",
+    "url": "https://www.almotahajiba.com/products/5012a5502hb17272",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 QAR (~$659)"
+  },
+  {
+    "id": "almotahajiba:10454120857875",
+    "brandSlug": "almotahajiba",
+    "title": "Endless Radiance",
+    "url": "https://www.almotahajiba.com/products/5012a5581sb17296",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10451280494867",
+    "brandSlug": "almotahajiba",
+    "title": "Ethereal Glow",
+    "url": "https://www.almotahajiba.com/products/5012a5505hb17172",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 QAR (~$604)"
+  },
+  {
+    "id": "almotahajiba:10416669393171",
+    "brandSlug": "almotahajiba",
+    "title": "Ink Blossom",
+    "url": "https://www.almotahajiba.com/products/5012a5435eb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 QAR (~$604)"
+  },
+  {
+    "id": "almotahajiba:10416669982995",
+    "brandSlug": "almotahajiba",
+    "title": "Rose Dusk",
+    "url": "https://www.almotahajiba.com/products/5012a5438hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 QAR (~$714)"
+  },
+  {
+    "id": "almotahajiba:10416670048531",
+    "brandSlug": "almotahajiba",
+    "title": "Sapphire Ember",
+    "url": "https://www.almotahajiba.com/products/5012a5450he1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10416670245139",
+    "brandSlug": "almotahajiba",
+    "title": "Frosted Bloom",
+    "url": "https://www.almotahajiba.com/products/5012a5469he2",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 QAR (~$632)"
+  },
+  {
+    "id": "almotahajiba:10416670310675",
+    "brandSlug": "almotahajiba",
+    "title": "Olive Whisper",
+    "url": "https://www.almotahajiba.com/products/5012a5437he1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 QAR (~$687)"
+  },
+  {
+    "id": "almotahajiba:10381516931347",
+    "brandSlug": "almotahajiba",
+    "title": "Midnight Grace",
+    "url": "https://www.almotahajiba.com/products/5012a5310hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 QAR (~$659)"
+  },
+  {
     "id": "almotahajiba:10361719193875",
     "brandSlug": "almotahajiba",
     "title": "Frame Veil",
@@ -28884,6 +32941,276 @@
     "reason": "non-apparel:home",
     "tier": "B",
     "evidence": "Frame"
+  },
+  {
+    "id": "almotahajiba:10345614246163",
+    "brandSlug": "almotahajiba",
+    "title": "Amethyst Dusk",
+    "url": "https://www.almotahajiba.com/products/5012a5145hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 QAR (~$632)"
+  },
+  {
+    "id": "almotahajiba:10324288045331",
+    "brandSlug": "almotahajiba",
+    "title": "Noir Flourish",
+    "url": "https://www.almotahajiba.com/products/noir-flourish",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10323201786131",
+    "brandSlug": "almotahajiba",
+    "title": "Shadow Bloom",
+    "url": "https://www.almotahajiba.com/products/5012a5227hb1shadowbloom",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10323201589523",
+    "brandSlug": "almotahajiba",
+    "title": "Amber Sovereign",
+    "url": "https://www.almotahajiba.com/products/5012a5120eb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 QAR (~$604)"
+  },
+  {
+    "id": "almotahajiba:10283140448531",
+    "brandSlug": "almotahajiba",
+    "title": "Quiet Linen",
+    "url": "https://www.almotahajiba.com/products/quiet-linen",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10283140382995",
+    "brandSlug": "almotahajiba",
+    "title": "Plum Dusk",
+    "url": "https://www.almotahajiba.com/products/plum-dusk",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 QAR (~$659)"
+  },
+  {
+    "id": "almotahajiba:10283737219347",
+    "brandSlug": "almotahajiba",
+    "title": "Elara Luxe",
+    "url": "https://www.almotahajiba.com/products/elara-luxe",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2900 QAR (~$797)"
+  },
+  {
+    "id": "almotahajiba:10269066035475",
+    "brandSlug": "almotahajiba",
+    "title": "Midnight Bloom",
+    "url": "https://www.almotahajiba.com/products/midnight-bloom",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10269106962707",
+    "brandSlug": "almotahajiba",
+    "title": "Noir Celestia",
+    "url": "https://www.almotahajiba.com/products/noir-celestia",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 QAR (~$659)"
+  },
+  {
+    "id": "almotahajiba:10269066101011",
+    "brandSlug": "almotahajiba",
+    "title": "Sable Whisper",
+    "url": "https://www.almotahajiba.com/products/5012a5154eb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 QAR (~$687)"
+  },
+  {
+    "id": "almotahajiba:10269065675027",
+    "brandSlug": "almotahajiba",
+    "title": "Saffron Stillness",
+    "url": "https://www.almotahajiba.com/products/saffron-stillness",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 QAR (~$659)"
+  },
+  {
+    "id": "almotahajiba:10269065511187",
+    "brandSlug": "almotahajiba",
+    "title": "Olive Heirloom",
+    "url": "https://www.almotahajiba.com/products/5012a5106eb1-olive-heirloom",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 QAR (~$687)"
+  },
+  {
+    "id": "almotahajiba:10224055845139",
+    "brandSlug": "almotahajiba",
+    "title": "Silver Veil",
+    "url": "https://www.almotahajiba.com/products/5012a4959la1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 QAR (~$632)"
+  },
+  {
+    "id": "almotahajiba:10224188358931",
+    "brandSlug": "almotahajiba",
+    "title": "Mocha Grace",
+    "url": "https://www.almotahajiba.com/products/5012a5010hb1-mocha-grace",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 QAR (~$714)"
+  },
+  {
+    "id": "almotahajiba:10224187441427",
+    "brandSlug": "almotahajiba",
+    "title": "Starlit Noir",
+    "url": "https://www.almotahajiba.com/products/5012a5058eg1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 QAR (~$604)"
+  },
+  {
+    "id": "almotahajiba:10224182624531",
+    "brandSlug": "almotahajiba",
+    "title": "Golden Veil",
+    "url": "https://www.almotahajiba.com/products/5012a5028hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 QAR (~$1044)"
+  },
+  {
+    "id": "almotahajiba:10224179446035",
+    "brandSlug": "almotahajiba",
+    "title": "Pearl Weave",
+    "url": "https://www.almotahajiba.com/products/5012a5013hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2750 QAR (~$755)"
+  },
+  {
+    "id": "almotahajiba:10224147071251",
+    "brandSlug": "almotahajiba",
+    "title": "Ivory Trace",
+    "url": "https://www.almotahajiba.com/products/5012a4970sb1c-ivory-trace",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2600 QAR (~$714)"
+  },
+  {
+    "id": "almotahajiba:10224136192275",
+    "brandSlug": "almotahajiba",
+    "title": "Graphite Lace",
+    "url": "https://www.almotahajiba.com/products/5012a4965hb1-graphite-lace",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 QAR (~$632)"
+  },
+  {
+    "id": "almotahajiba:10224128721171",
+    "brandSlug": "almotahajiba",
+    "title": "Blue Statement",
+    "url": "https://www.almotahajiba.com/products/bluestatement-blue-statement",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 QAR (~$604)"
+  },
+  {
+    "id": "almotahajiba:10224125378835",
+    "brandSlug": "almotahajiba",
+    "title": "Cashmere Grace",
+    "url": "https://www.almotahajiba.com/products/5012a4958hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2800 QAR (~$769)"
+  },
+  {
+    "id": "almotahajiba:10224120889619",
+    "brandSlug": "almotahajiba",
+    "title": "Velvet Duality",
+    "url": "https://www.almotahajiba.com/products/5012a4975se1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2500 QAR (~$687)"
+  },
+  {
+    "id": "almotahajiba:10224015900947",
+    "brandSlug": "almotahajiba",
+    "title": "Black Meadow",
+    "url": "https://www.almotahajiba.com/products/blackmeadow",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3200 QAR (~$879)"
+  },
+  {
+    "id": "almotahajiba:10151209468179",
+    "brandSlug": "almotahajiba",
+    "title": "Petal Trace",
+    "url": "https://www.almotahajiba.com/products/5012a4982hb2723",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2900 QAR (~$797)"
+  },
+  {
+    "id": "almotahajiba:10147008872723",
+    "brandSlug": "almotahajiba",
+    "title": "Monochrome Flow",
+    "url": "https://www.almotahajiba.com/products/5012a4987hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2050 QAR (~$563)"
+  },
+  {
+    "id": "almotahajiba:10147006120211",
+    "brandSlug": "almotahajiba",
+    "title": "Mocha Elegance Abaya",
+    "url": "https://www.almotahajiba.com/products/mochaeleganceabaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2150 QAR (~$591)"
+  },
+  {
+    "id": "almotahajiba:10147008708883",
+    "brandSlug": "almotahajiba",
+    "title": "Olive Reverie",
+    "url": "https://www.almotahajiba.com/products/5012a4897hb1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10147008741651",
+    "brandSlug": "almotahajiba",
+    "title": "Ebon Lines",
+    "url": "https://www.almotahajiba.com/products/5012a4844hr1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2300 QAR (~$632)"
+  },
+  {
+    "id": "almotahajiba:10147009003795",
+    "brandSlug": "almotahajiba",
+    "title": "Olive Essence",
+    "url": "https://www.almotahajiba.com/products/oliveessence",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10147008905491",
+    "brandSlug": "almotahajiba",
+    "title": "Stone Poise",
+    "url": "https://www.almotahajiba.com/products/5012a4992hr1",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2750 QAR (~$755)"
   },
   {
     "id": "nihan:15059679281515",
@@ -28940,6 +33267,141 @@
     "url": "https://nihan.com.tr/products/100-keten-palazzo-pantolon-zumrut",
     "garmentWas": "trousers",
     "reason": "title-pattern"
+  },
+  {
+    "id": "baqa:9305455231227",
+    "brandSlug": "baqa",
+    "title": "Kontrast Bant Detaylı Oversize Abaya",
+    "url": "https://baqaofficial.com/products/kontrast-bantli-oversize-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "26800 TRY (~$562)"
+  },
+  {
+    "id": "baqa:9315098231035",
+    "brandSlug": "baqa",
+    "title": "Reglan Kol İpek Abaya",
+    "url": "https://baqaofficial.com/products/reglan-kol-ipek-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$828)"
+  },
+  {
+    "id": "baqa:9292286525691",
+    "brandSlug": "baqa",
+    "title": "Manşet Detaylı Oversize Abaya",
+    "url": "https://baqaofficial.com/products/mansetli-oversize-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "31025 TRY (~$650)"
+  },
+  {
+    "id": "baqa:9292803309819",
+    "brandSlug": "baqa",
+    "title": "Kontrast Bant Detaylı Abaya",
+    "url": "https://baqaofficial.com/products/kontrast-bantli-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "29200 TRY (~$612)"
+  },
+  {
+    "id": "baqa:9292081070331",
+    "brandSlug": "baqa",
+    "title": "Üç Renk Bloklu Şifon Elbise",
+    "url": "https://baqaofficial.com/products/uc-renk-bloklu-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$786)"
+  },
+  {
+    "id": "baqa:9292079661307",
+    "brandSlug": "baqa",
+    "title": "Süs Dikişli Bolero Detaylı Ceket",
+    "url": "https://baqaofficial.com/products/sus-dikisli-bolero-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29200 TRY (~$612)"
+  },
+  {
+    "id": "baqa:9243306983675",
+    "brandSlug": "baqa",
+    "title": "Manşetli, Kuşak Detaylı Bordo Abaya",
+    "url": "https://baqaofficial.com/products/mansetli-kusakli-bordo-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9243306950907",
+    "brandSlug": "baqa",
+    "title": "Manşet Renk Detaylı Abaya",
+    "url": "https://baqaofficial.com/products/kontrast-mansetli-siyah-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9232048947451",
+    "brandSlug": "baqa",
+    "title": "Kolda Payet Detay Abaya",
+    "url": "https://baqaofficial.com/products/kolda-payetli-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "34500 TRY (~$723)"
+  },
+  {
+    "id": "baqa:9232048783611",
+    "brandSlug": "baqa",
+    "title": "Püskül Detaylı Siyah Abaya",
+    "url": "https://baqaofficial.com/products/puskullu-siyah-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9232048193787",
+    "brandSlug": "baqa",
+    "title": "Geniş Yakalı Abaya",
+    "url": "https://baqaofficial.com/products/genis-yakali-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9234857459963",
+    "brandSlug": "baqa",
+    "title": "Kolda İşleme Detaylı Abaya",
+    "url": "https://baqaofficial.com/products/kolda-islemeli-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "34500 TRY (~$723)"
+  },
+  {
+    "id": "baqa:9234857328891",
+    "brandSlug": "baqa",
+    "title": "Kolda İşleme Detaylı Abaya",
+    "url": "https://baqaofficial.com/products/islemeli-kol-detayli-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9234747457787",
+    "brandSlug": "baqa",
+    "title": "İki Renk Abaya",
+    "url": "https://baqaofficial.com/products/iki-renkli-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "47500 TRY (~$995)"
+  },
+  {
+    "id": "baqa:9234747425019",
+    "brandSlug": "baqa",
+    "title": "Desenli Abaya",
+    "url": "https://baqaofficial.com/products/ozgun-desenli-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "42500 TRY (~$891)"
   },
   {
     "id": "abaya-lounge:8182350839958",
@@ -29140,6 +33602,285 @@
     "reason": "id-pin"
   },
   {
+    "id": "beyond-label:7651063693503",
+    "brandSlug": "beyond-label",
+    "title": "LB91 Abaya Peach Organza",
+    "url": "https://beyond-label.com/products/lb91-kaftan-peach-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3000 AED (~$817)"
+  },
+  {
+    "id": "beyond-label:7651060285631",
+    "brandSlug": "beyond-label",
+    "title": "LB90 Abaya Fousya Organza",
+    "url": "https://beyond-label.com/products/lb90-kaftan-fousya-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3000 AED (~$817)"
+  },
+  {
+    "id": "beyond-label:7650214346943",
+    "brandSlug": "beyond-label",
+    "title": "LB89 Kaftan Turquoise Organza",
+    "url": "https://beyond-label.com/products/copy-of-lb89-kaftan-turquoise-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4600 AED (~$1253)"
+  },
+  {
+    "id": "beyond-label:7650213560511",
+    "brandSlug": "beyond-label",
+    "title": "LB88 Kaftan Bronze Organza",
+    "url": "https://beyond-label.com/products/lb88-kaftan-bronze-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4600 AED (~$1253)"
+  },
+  {
+    "id": "beyond-label:7650212249791",
+    "brandSlug": "beyond-label",
+    "title": "LB87 Kaftan Pink Organza",
+    "url": "https://beyond-label.com/products/lb87-kaftan-pink-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4600 AED (~$1253)"
+  },
+  {
+    "id": "beyond-label:7649898856639",
+    "brandSlug": "beyond-label",
+    "title": "LB86 Kaftan Purple Organza",
+    "url": "https://beyond-label.com/products/lb86-kaftan-purple-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4600 AED (~$1253)"
+  },
+  {
+    "id": "beyond-label:7649879195839",
+    "brandSlug": "beyond-label",
+    "title": "LB81 Kaftan G.Pink Organza",
+    "url": "https://beyond-label.com/products/lb81-kaftan-g-pink-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4800 AED (~$1307)"
+  },
+  {
+    "id": "beyond-label:7648786874559",
+    "brandSlug": "beyond-label",
+    "title": "LB80 Kaftan G.Yellow Organza",
+    "url": "https://beyond-label.com/products/lb80-kaftan-g-yellow-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4800 AED (~$1307)"
+  },
+  {
+    "id": "beyond-label:7648764592319",
+    "brandSlug": "beyond-label",
+    "title": "LB79 Kaftan S.Brown Organza",
+    "url": "https://beyond-label.com/products/lb79-kaftan-s-brown-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4800 AED (~$1307)"
+  },
+  {
+    "id": "beyond-label:7648758071487",
+    "brandSlug": "beyond-label",
+    "title": "LB78 Kaftan S.Blue Organza",
+    "url": "https://beyond-label.com/products/lb78-kaftan-s-blue-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4800 AED (~$1307)"
+  },
+  {
+    "id": "beyond-label:7648750862527",
+    "brandSlug": "beyond-label",
+    "title": "LB77 Abaya Yellow Taffetta",
+    "url": "https://beyond-label.com/products/lb77-kaftan-yellow-taffetta",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 AED (~$1035)"
+  },
+  {
+    "id": "beyond-label:7648671203519",
+    "brandSlug": "beyond-label",
+    "title": "LB75 Abaya Blue Taffetta",
+    "url": "https://beyond-label.com/products/copy-of-lb75-kaftan-blue-taffetta",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 AED (~$1035)"
+  },
+  {
+    "id": "beyond-label:7647478153407",
+    "brandSlug": "beyond-label",
+    "title": "LB74 Abaya Pink Taffetta",
+    "url": "https://beyond-label.com/products/lb74-kaftan-pink-taffetta",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 AED (~$1035)"
+  },
+  {
+    "id": "beyond-label:7649893580991",
+    "brandSlug": "beyond-label",
+    "title": "LB85 Kaftan Aqua Organza",
+    "url": "https://beyond-label.com/products/lb85-kaftan-aqua-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 AED (~$1035)"
+  },
+  {
+    "id": "beyond-label:7649889616063",
+    "brandSlug": "beyond-label",
+    "title": "LB84 Kaftan Green Organza",
+    "url": "https://beyond-label.com/products/lb84-kaftan-green-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 AED (~$1035)"
+  },
+  {
+    "id": "beyond-label:7649887355071",
+    "brandSlug": "beyond-label",
+    "title": "LB83 Kaftan Brown Organza",
+    "url": "https://beyond-label.com/products/lb83-kaftan-brown-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 AED (~$1035)"
+  },
+  {
+    "id": "beyond-label:7649880834239",
+    "brandSlug": "beyond-label",
+    "title": "LB82 Kaftan Black Organza",
+    "url": "https://beyond-label.com/products/lb82-kaftan-black-organza",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3800 AED (~$1035)"
+  },
+  {
+    "id": "beyond-label:7203166290111",
+    "brandSlug": "beyond-label",
+    "title": "LB56 Rose Satin Taffeta",
+    "url": "https://beyond-label.com/products/lb56-rose-satin-taffeta",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3300 AED (~$899)"
+  },
+  {
+    "id": "beyond-label:7203165569215",
+    "brandSlug": "beyond-label",
+    "title": "LB58 Silk Organza Abaya",
+    "url": "https://beyond-label.com/products/lb58-silk-organza-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4000 AED (~$1089)"
+  },
+  {
+    "id": "beyond-label:7202609430719",
+    "brandSlug": "beyond-label",
+    "title": "LB52 Organza Abaya",
+    "url": "https://beyond-label.com/products/lb55-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4000 AED (~$1089)"
+  },
+  {
+    "id": "beyond-label:7202617393343",
+    "brandSlug": "beyond-label",
+    "title": "LB54 Organza Roman Abaya",
+    "url": "https://beyond-label.com/products/lb56-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4000 AED (~$1089)"
+  },
+  {
+    "id": "beyond-label:7202617852095",
+    "brandSlug": "beyond-label",
+    "title": "LB51 Organza Abaya",
+    "url": "https://beyond-label.com/products/lb57-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3000 AED (~$817)"
+  },
+  {
+    "id": "beyond-label:7202618179775",
+    "brandSlug": "beyond-label",
+    "title": "LB55 Marron Satin Taffeta Abaya",
+    "url": "https://beyond-label.com/products/lb58-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3300 AED (~$899)"
+  },
+  {
+    "id": "beyond-label:7202618671295",
+    "brandSlug": "beyond-label",
+    "title": "LB57 Silk Organza Abaya",
+    "url": "https://beyond-label.com/products/lb59-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4800 AED (~$1307)"
+  },
+  {
+    "id": "beyond-label:7202619031743",
+    "brandSlug": "beyond-label",
+    "title": "LB53 Satin/Taffeta Abaya",
+    "url": "https://beyond-label.com/products/lb60-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "4800 AED (~$1307)"
+  },
+  {
+    "id": "beyond-label:7074057060543",
+    "brandSlug": "beyond-label",
+    "title": "LB41 Black Abaya Bottom Tarboosh",
+    "url": "https://beyond-label.com/products/lb41-black-abaya-bottom-tarboosh",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "beyond-label:7074047656127",
+    "brandSlug": "beyond-label",
+    "title": "LB40 Black Abaya Arm Tarboosh",
+    "url": "https://beyond-label.com/products/lb40-black-abaya-arm-tarboosh",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "beyond-label:7073706049727",
+    "brandSlug": "beyond-label",
+    "title": "LB50 Floral Jacket",
+    "url": "https://beyond-label.com/products/lb50-floral-jacket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3000 AED (~$817)"
+  },
+  {
+    "id": "beyond-label:7073684816063",
+    "brandSlug": "beyond-label",
+    "title": "LB44 Black and Silver Organza Kaftan",
+    "url": "https://beyond-label.com/products/lb44-black-and-silver-organza-kaftan",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "beyond-label:7073630912703",
+    "brandSlug": "beyond-label",
+    "title": "LB43 Navy Organza Abaya",
+    "url": "https://beyond-label.com/products/lb42-navy-organza-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "beyond-label:7073608433855",
+    "brandSlug": "beyond-label",
+    "title": "LB42 Black Organza Abaya",
+    "url": "https://beyond-label.com/products/lb42-black-organza-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
     "id": "lameera-moda:7460656316584",
     "brandSlug": "lameera-moda",
     "title": "Black Stone Necklace & Ring Set | Premium",
@@ -29174,6 +33915,15 @@
     "url": "https://lameeramoda.com/products/luxe-spandex-maxi-skirt-light-pink",
     "garmentWas": "skirt",
     "reason": "id-pin"
+  },
+  {
+    "id": "meriam-abdulaziz:10302945362198",
+    "brandSlug": "meriam-abdulaziz",
+    "title": "The Wedding Abaya",
+    "url": "https://bymeriamabdulaziz.com/products/the-wedding-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
   },
   {
     "id": "serrb:7860104331325",
@@ -32506,6 +37256,699 @@
     "evidence": "Belt"
   },
   {
+    "id": "abadia:8701263544474",
+    "brandSlug": "abadia",
+    "title": "Peplum Midi Dress",
+    "url": "https://shop.abadia.me/products/peplum-midi-dress-black",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2091 AED (~$569)"
+  },
+  {
+    "id": "abadia:8701263577242",
+    "brandSlug": "abadia",
+    "title": "Nuri Dress",
+    "url": "https://shop.abadia.me/products/nuri-dress-blue-brown",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2415 AED (~$658)"
+  },
+  {
+    "id": "abadia:8819723632794",
+    "brandSlug": "abadia",
+    "title": "Eleanor Dress",
+    "url": "https://shop.abadia.me/products/eleanor-dress-pink",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2400 AED (~$654)"
+  },
+  {
+    "id": "abadia:8643428647066",
+    "brandSlug": "abadia",
+    "title": "Cowl Back Dress in Silver",
+    "url": "https://shop.abadia.me/products/cowl-back-dress-in-silver",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2091 AED (~$569)"
+  },
+  {
+    "id": "abadia:8959376359578",
+    "brandSlug": "abadia",
+    "title": "Double Pleat Wide Leg Pants in Black",
+    "url": "https://shop.abadia.me/products/double-pleat-wide-leg-pants-black",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2385 AED (~$649)"
+  },
+  {
+    "id": "abadia:8959375245466",
+    "brandSlug": "abadia",
+    "title": "Waterfall Skirt",
+    "url": "https://shop.abadia.me/products/waterfall-skirt-cream",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "3120 AED (~$850)"
+  },
+  {
+    "id": "abadia:8744589164698",
+    "brandSlug": "abadia",
+    "title": "Abadia Kaftan in Cream",
+    "url": "https://shop.abadia.me/products/abadia-kaftan-cream",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3285 AED (~$894)"
+  },
+  {
+    "id": "abadia:8959376654490",
+    "brandSlug": "abadia",
+    "title": "Elodie Skirt in Cream",
+    "url": "https://shop.abadia.me/products/elodie-skirt-cream",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2550 AED (~$694)"
+  },
+  {
+    "id": "abadia:8643428417690",
+    "brandSlug": "abadia",
+    "title": "Naia Trousers in Black",
+    "url": "https://shop.abadia.me/products/naia-trousers-in-black",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "3375 AED (~$919)"
+  },
+  {
+    "id": "abadia:8966488522906",
+    "brandSlug": "abadia",
+    "title": "Scarf Drape Pant",
+    "url": "https://shop.abadia.me/products/scarf-drape-pant-black-brown",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "2550 AED (~$694)"
+  },
+  {
+    "id": "abadia:8959377571994",
+    "brandSlug": "abadia",
+    "title": "Full Circle Skirt",
+    "url": "https://shop.abadia.me/products/full-circle-skirt-black-cream",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "3285 AED (~$894)"
+  },
+  {
+    "id": "abadia:8959376752794",
+    "brandSlug": "abadia",
+    "title": "Gwyneth Off Shoulder Maxi Dress",
+    "url": "https://shop.abadia.me/products/gwyneth-off-shoulder-maxi-dress-taupe",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4220 AED (~$1149)"
+  },
+  {
+    "id": "abadia:8959376687258",
+    "brandSlug": "abadia",
+    "title": "Mock Neck Drape Dress Long",
+    "url": "https://shop.abadia.me/products/mock-neck-drape-dress-long-cream",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
+  },
+  {
+    "id": "abadia:8959376621722",
+    "brandSlug": "abadia",
+    "title": "Jersey Tuxedo Top",
+    "url": "https://shop.abadia.me/products/jersey-tuxedo-top-taupe",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2020 AED (~$550)"
+  },
+  {
+    "id": "abadia:8959376195738",
+    "brandSlug": "abadia",
+    "title": "Double Pleat Wide Leg Pants in Cotton",
+    "url": "https://shop.abadia.me/products/double-pleat-wide-leg-pants-in-cotton-berry",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "abadia:8959376162970",
+    "brandSlug": "abadia",
+    "title": "Pleated Bodice Maxi Dress",
+    "url": "https://shop.abadia.me/products/pleated-bodice-maxi-dress-red",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "7155 AED (~$1948)"
+  },
+  {
+    "id": "abadia:8959376130202",
+    "brandSlug": "abadia",
+    "title": "Elodie Skirt in Berry",
+    "url": "https://shop.abadia.me/products/elodie-skirt-berry",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2550 AED (~$694)"
+  },
+  {
+    "id": "abadia:8959376031898",
+    "brandSlug": "abadia",
+    "title": "V-Neck Jersey Drape Dress",
+    "url": "https://shop.abadia.me/products/v-neck-jersey-drape-dress-pink",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
+  },
+  {
+    "id": "abadia:8959375769754",
+    "brandSlug": "abadia",
+    "title": "Wide Shoulder Knot Top",
+    "url": "https://shop.abadia.me/products/wide-shoulder-knot-top-berry",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2020 AED (~$550)"
+  },
+  {
+    "id": "abadia:8959375212698",
+    "brandSlug": "abadia",
+    "title": "Sleeveless Sadu Stacking Dress",
+    "url": "https://shop.abadia.me/products/sleeveless-sadu-stacking-dress-taupe",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "6425 AED (~$1749)"
+  },
+  {
+    "id": "abadia:8959374262426",
+    "brandSlug": "abadia",
+    "title": "Ayla Knot Top in Black",
+    "url": "https://shop.abadia.me/products/ayla-knot-top-black",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2020 AED (~$550)"
+  },
+  {
+    "id": "abadia:8701263052954",
+    "brandSlug": "abadia",
+    "title": "Sadu Stacking Dress",
+    "url": "https://shop.abadia.me/products/sadu-stacking-dress-cream",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "6800 AED (~$1852)"
+  },
+  {
+    "id": "abadia:7722264297626",
+    "brandSlug": "abadia",
+    "title": "Cleo in Brown",
+    "url": "https://shop.abadia.me/products/cleo-brown",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "abadia:8040193425562",
+    "brandSlug": "abadia",
+    "title": "Ora Draped Dress in Cream",
+    "url": "https://shop.abadia.me/products/ora-draped-dress-in-cream",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2920 AED (~$795)"
+  },
+  {
+    "id": "abadia:8643456598170",
+    "brandSlug": "abadia",
+    "title": "Scarf Farwa in Wool",
+    "url": "https://shop.abadia.me/products/scarf-farwa-in-wool-cream",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "6425 AED (~$1749)"
+  },
+  {
+    "id": "abadia:8819724648602",
+    "brandSlug": "abadia",
+    "title": "Satin Trouser in Blue",
+    "url": "https://shop.abadia.me/products/satin-trouser-in-blue",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2835 AED (~$772)"
+  },
+  {
+    "id": "abadia:8841284059290",
+    "brandSlug": "abadia",
+    "title": "Oversized Dagla",
+    "url": "https://shop.abadia.me/products/oversized-dagla-blue",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3575 AED (~$973)"
+  },
+  {
+    "id": "abadia:8820370505882",
+    "brandSlug": "abadia",
+    "title": "Tailored Collared Blazer in Green",
+    "url": "https://shop.abadia.me/products/tailored-collared-blazer-in-green",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "abadia:8819740475546",
+    "brandSlug": "abadia",
+    "title": "Sera Dress in Black",
+    "url": "https://shop.abadia.me/products/sera-dress-in-black",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2760 AED (~$752)"
+  },
+  {
+    "id": "abadia:8819739951258",
+    "brandSlug": "abadia",
+    "title": "Silk Shirt Bodysuit",
+    "url": "https://shop.abadia.me/products/silk-shirt-bodysuit-mushrooom",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2185 AED (~$595)"
+  },
+  {
+    "id": "abadia:8819725009050",
+    "brandSlug": "abadia",
+    "title": "Tailored Collared Blazer in Black",
+    "url": "https://shop.abadia.me/products/tailored-collared-blazer-black",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3850 AED (~$1048)"
+  },
+  {
+    "id": "abadia:8819724943514",
+    "brandSlug": "abadia",
+    "title": "Scarf Drape Shirt in Blue",
+    "url": "https://shop.abadia.me/products/scarf-drape-shirt-blue",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "abadia:8819724910746",
+    "brandSlug": "abadia",
+    "title": "Sadu Asymmetric Dress",
+    "url": "https://shop.abadia.me/products/sadu-asymmetric-dress-cream-brown",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3285 AED (~$894)"
+  },
+  {
+    "id": "abadia:8819724746906",
+    "brandSlug": "abadia",
+    "title": "Overlap Scarf Detail Trousers",
+    "url": "https://shop.abadia.me/products/overlap-scarf-detail-trousers-mushroom",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "3150 AED (~$858)"
+  },
+  {
+    "id": "abadia:8819724615834",
+    "brandSlug": "abadia",
+    "title": "Sadu Double Pleat Pants",
+    "url": "https://shop.abadia.me/products/sadu-double-pleat-pants-black",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "abadia:8819724484762",
+    "brandSlug": "abadia",
+    "title": "Sherwal Trousers",
+    "url": "https://shop.abadia.me/products/sherwal-trousers-black",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2550 AED (~$694)"
+  },
+  {
+    "id": "abadia:8819724451994",
+    "brandSlug": "abadia",
+    "title": "Oversized House Jacket",
+    "url": "https://shop.abadia.me/products/oversized-house-jacket-mushroom",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3950 AED (~$1076)"
+  },
+  {
+    "id": "abadia:8819724091546",
+    "brandSlug": "abadia",
+    "title": "Benny Overcoat",
+    "url": "https://shop.abadia.me/products/benny-overcoat-cream",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "4650 AED (~$1266)"
+  },
+  {
+    "id": "abadia:8819723993242",
+    "brandSlug": "abadia",
+    "title": "Siena Maxi Dress",
+    "url": "https://shop.abadia.me/products/siena-maxi-dress-cream-brown",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2800 AED (~$762)"
+  },
+  {
+    "id": "abadia:8819723960474",
+    "brandSlug": "abadia",
+    "title": "Ray Scarf Top in Green",
+    "url": "https://shop.abadia.me/products/ray-scarf-top-green",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "2185 AED (~$595)"
+  },
+  {
+    "id": "abadia:8819723829402",
+    "brandSlug": "abadia",
+    "title": "San Pants in Green",
+    "url": "https://shop.abadia.me/products/san-pants-green",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2295 AED (~$625)"
+  },
+  {
+    "id": "abadia:8819723796634",
+    "brandSlug": "abadia",
+    "title": "Sera Dress in Cream",
+    "url": "https://shop.abadia.me/products/sera-dress-in-cream",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2760 AED (~$752)"
+  },
+  {
+    "id": "abadia:8763207516314",
+    "brandSlug": "abadia",
+    "title": "Twisted Suri Skirt in Black",
+    "url": "https://shop.abadia.me/products/twisted-suri-skirt-in-black",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2925 AED (~$796)"
+  },
+  {
+    "id": "abadia:8819740377242",
+    "brandSlug": "abadia",
+    "title": "Gwen Off Shoulder Drape Dress in Pink",
+    "url": "https://shop.abadia.me/products/gwen-off-shoulder-drape-dress-in-pink",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "abadia:8819725140122",
+    "brandSlug": "abadia",
+    "title": "Grace Halterneck Dress",
+    "url": "https://shop.abadia.me/products/grace-halterneck-dress-cream",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3906 AED (~$1064)"
+  },
+  {
+    "id": "abadia:8819725041818",
+    "brandSlug": "abadia",
+    "title": "Frill Layer Skirt",
+    "url": "https://shop.abadia.me/products/frill-layer-skirt-cream",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2275 AED (~$619)"
+  },
+  {
+    "id": "abadia:8819724812442",
+    "brandSlug": "abadia",
+    "title": "Relax Fit Tailored Pants",
+    "url": "https://shop.abadia.me/products/relax-fit-tailored-pants-pink",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2550 AED (~$694)"
+  },
+  {
+    "id": "abadia:8819724583066",
+    "brandSlug": "abadia",
+    "title": "Oversized Blazer",
+    "url": "https://shop.abadia.me/products/oversized-blazer-pink",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3000 AED (~$817)"
+  },
+  {
+    "id": "abadia:8819723665562",
+    "brandSlug": "abadia",
+    "title": "Frill Layer Mini Dress",
+    "url": "https://shop.abadia.me/products/frill-layer-mini-dress-white",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2950 AED (~$803)"
+  },
+  {
+    "id": "abadia:8819723600026",
+    "brandSlug": "abadia",
+    "title": "Satin Trouser in White Stripes",
+    "url": "https://shop.abadia.me/products/satin-trouser-in-white-stripes",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2835 AED (~$772)"
+  },
+  {
+    "id": "abadia:8819723501722",
+    "brandSlug": "abadia",
+    "title": "Panelled Dress in White Stripes",
+    "url": "https://shop.abadia.me/products/panelled-dress-in-white-stripes",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2299.5 AED (~$626)"
+  },
+  {
+    "id": "abadia:8819723370650",
+    "brandSlug": "abadia",
+    "title": "Suri Volume Skirt",
+    "url": "https://shop.abadia.me/products/suri-volume-skirt-white",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2925 AED (~$796)"
+  },
+  {
+    "id": "abadia:8819723206810",
+    "brandSlug": "abadia",
+    "title": "Scarf Drape Shirt in White Stripes",
+    "url": "https://shop.abadia.me/products/scarf-drape-shirt-in-white-stripes",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "2750 AED (~$749)"
+  },
+  {
+    "id": "abadia:8433749885082",
+    "brandSlug": "abadia",
+    "title": "Abadia Bisht in Brown",
+    "url": "https://shop.abadia.me/products/abadia-bisht-in-brown-1",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "abadia:8701263708314",
+    "brandSlug": "abadia",
+    "title": "Abadia Bisht in Pomegranate",
+    "url": "https://shop.abadia.me/products/abadia-bisht-pomegranate",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "abadia:8701318365338",
+    "brandSlug": "abadia",
+    "title": "Suri Maxi Dress in Pomegranate",
+    "url": "https://shop.abadia.me/products/suri-maxi-dress-pomegranate",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
+  },
+  {
+    "id": "abadia:8701263839386",
+    "brandSlug": "abadia",
+    "title": "Frill Jacket",
+    "url": "https://shop.abadia.me/products/frill-jacket-black-cream",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3300 AED (~$899)"
+  },
+  {
+    "id": "abadia:8701263249562",
+    "brandSlug": "abadia",
+    "title": "V Neck Drape Dress in Black",
+    "url": "https://shop.abadia.me/products/v-neck-drape-dress-black",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4400 AED (~$1198)"
+  },
+  {
+    "id": "abadia:8701263216794",
+    "brandSlug": "abadia",
+    "title": "Sadu Tapered Pants",
+    "url": "https://shop.abadia.me/products/sadu-tapered-pants-black",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "3380 AED (~$920)"
+  },
+  {
+    "id": "abadia:8701263151258",
+    "brandSlug": "abadia",
+    "title": "Cropped Sara",
+    "url": "https://shop.abadia.me/products/cropped-sara-black",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2850 AED (~$776)"
+  },
+  {
+    "id": "abadia:8701262954650",
+    "brandSlug": "abadia",
+    "title": "Layered Organza Jacket",
+    "url": "https://shop.abadia.me/products/layered-organza-jacket-black-cream",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2240 AED (~$610)"
+  },
+  {
+    "id": "abadia:8701262758042",
+    "brandSlug": "abadia",
+    "title": "Draped Skirt with Slit",
+    "url": "https://shop.abadia.me/products/draped-skirt-with-slit-taupe",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2850 AED (~$776)"
+  },
+  {
+    "id": "abadia:8701265445018",
+    "brandSlug": "abadia",
+    "title": "Jacquard Scarf Farwa",
+    "url": "https://shop.abadia.me/products/jacquard-scarf-farwa-blue",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "6425 AED (~$1749)"
+  },
+  {
+    "id": "abadia:8701263642778",
+    "brandSlug": "abadia",
+    "title": "Suri Maxi Dress in Taupe",
+    "url": "https://shop.abadia.me/products/suri-maxi-dress-taupe",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
+  },
+  {
+    "id": "abadia:8458377199770",
+    "brandSlug": "abadia",
+    "title": "Abadia Kaftan in Silver",
+    "url": "https://shop.abadia.me/products/abadia-kaftan-in-silver",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3285 AED (~$894)"
+  },
+  {
+    "id": "abadia:8447116673178",
+    "brandSlug": "abadia",
+    "title": "Gwen Off Shoulder Drape Dress in Black",
+    "url": "https://shop.abadia.me/products/gwen-off-shoulder-drape-dress-in-black",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "abadia:8447116476570",
+    "brandSlug": "abadia",
+    "title": "Gwen Off Shoulder Drape Dress in Cream",
+    "url": "https://shop.abadia.me/products/gwen-off-shoulder-drape-dress-in-cream",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "abadia:8524653494426",
+    "brandSlug": "abadia",
+    "title": "Yara Dress in Butter Yellow",
+    "url": "https://shop.abadia.me/products/yara-long-scarf-dress-butter-yellow",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4220 AED (~$1149)"
+  },
+  {
+    "id": "abadia:1529742262306",
+    "brandSlug": "abadia",
+    "title": "Amaya Dress",
+    "url": "https://shop.abadia.me/products/amaya-white",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "abadia:7937429962906",
+    "brandSlug": "abadia",
+    "title": "Yara Dress in White",
+    "url": "https://shop.abadia.me/products/yara-long-scarf-dress-white",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4220 AED (~$1149)"
+  },
+  {
+    "id": "abadia:7937351090330",
+    "brandSlug": "abadia",
+    "title": "Yara Dress in Silver",
+    "url": "https://shop.abadia.me/products/yara-long-scarf-dress-silver",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4220 AED (~$1149)"
+  },
+  {
+    "id": "abadia:8349920821402",
+    "brandSlug": "abadia",
+    "title": "Yara Scarf Dress in Chocolate",
+    "url": "https://shop.abadia.me/products/yara-scarf-dress-in-chocolate",
+    "garmentWas": "hijab",
+    "reason": "price-ceiling",
+    "evidence": "4220 AED (~$1149)"
+  },
+  {
+    "id": "abadia:8429954695322",
+    "brandSlug": "abadia",
+    "title": "Abadia Kaftan in Taupe",
+    "url": "https://shop.abadia.me/products/abadia-kaftan-in-taupe",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3285 AED (~$894)"
+  },
+  {
+    "id": "abadia:8429904167066",
+    "brandSlug": "abadia",
+    "title": "Abadia Bisht in Blue",
+    "url": "https://shop.abadia.me/products/abadia-bisht-in-blue",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "abadia:8391058030746",
+    "brandSlug": "abadia",
+    "title": "Abadia Kaftan in Beige",
+    "url": "https://shop.abadia.me/products/abadia-kaftan-in-beige",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "3285 AED (~$894)"
+  },
+  {
+    "id": "abadia:8374709059738",
+    "brandSlug": "abadia",
+    "title": "Suri Maxi Dress in Blue",
+    "url": "https://shop.abadia.me/products/suri-maxi-dress-in-blue",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
+  },
+  {
+    "id": "abadia:7931141456026",
+    "brandSlug": "abadia",
+    "title": "Off Shoulder Woven Bodysuit",
+    "url": "https://shop.abadia.me/products/off-shoulder-woven-bodysuit",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2185 AED (~$595)"
+  },
+  {
     "id": "modista:8906489004322",
     "brandSlug": "modista",
     "title": "Heart Magnets",
@@ -34326,6 +39769,78 @@
     "reason": "id-pin"
   },
   {
+    "id": "aeon-abaya:8785714741300",
+    "brandSlug": "aeon-abaya",
+    "title": "Lumière Jardin",
+    "url": "https://aeonabaya.net/products/lumiere-jardin",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "310 KWD (~$1004)"
+  },
+  {
+    "id": "aeon-abaya:8785706188852",
+    "brandSlug": "aeon-abaya",
+    "title": "Rose Élan",
+    "url": "https://aeonabaya.net/products/rose-elan",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "220 KWD (~$713)"
+  },
+  {
+    "id": "aeon-abaya:8785614045236",
+    "brandSlug": "aeon-abaya",
+    "title": "Élégance Azuré",
+    "url": "https://aeonabaya.net/products/elegance-azure",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "275 KWD (~$891)"
+  },
+  {
+    "id": "aeon-abaya:8785614274612",
+    "brandSlug": "aeon-abaya",
+    "title": "Le Bleu Couture",
+    "url": "https://aeonabaya.net/products/le-bleu-couture",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "295 KWD (~$956)"
+  },
+  {
+    "id": "aeon-abaya:8785614962740",
+    "brandSlug": "aeon-abaya",
+    "title": "Jardin Ivoire",
+    "url": "https://aeonabaya.net/products/jardin-ivoire",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "265 KWD (~$858)"
+  },
+  {
+    "id": "aeon-abaya:8785615093812",
+    "brandSlug": "aeon-abaya",
+    "title": "Soleil Jardin",
+    "url": "https://aeonabaya.net/products/soleil-jardin",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "285 KWD (~$923)"
+  },
+  {
+    "id": "aeon-abaya:8785615192116",
+    "brandSlug": "aeon-abaya",
+    "title": "Blush Azuré",
+    "url": "https://aeonabaya.net/products/blush-azure",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "280 KWD (~$907)"
+  },
+  {
+    "id": "aeon-abaya:8785615224884",
+    "brandSlug": "aeon-abaya",
+    "title": "Bleu Impéria",
+    "url": "https://aeonabaya.net/products/bleu-imperia",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "290 KWD (~$939)"
+  },
+  {
     "id": "nour-al-houda:7687564165168",
     "brandSlug": "nour-al-houda",
     "title": "Hijab Magnet - Chocolate",
@@ -34564,6 +40079,357 @@
     "url": "https://nihan.com.tr/products/yelegi-baglamali-etekli-lyocell-takim-zumrut",
     "garmentWas": "set",
     "reason": "title-pattern"
+  },
+  {
+    "id": "baqa:9292803277051",
+    "brandSlug": "baqa",
+    "title": "Dantel Detaylı Beyaz Keten Elbise",
+    "url": "https://baqaofficial.com/products/dantel-detayli-beyaz-keten-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "28500 TRY (~$597)"
+  },
+  {
+    "id": "baqa:9317898551547",
+    "brandSlug": "baqa",
+    "title": "Gömlek Yaka Tunik Elbise",
+    "url": "https://baqaofficial.com/products/gomlek-yaka-tunik-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9232070574331",
+    "brandSlug": "baqa",
+    "title": "Omuz Drapeli İki Renk İpek Elbise",
+    "url": "https://baqaofficial.com/products/omuz-drapeli-iki-renkli-ipek-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9232048554235",
+    "brandSlug": "baqa",
+    "title": "Omuzu Detaylı Çok Renkli Elbise",
+    "url": "https://baqaofficial.com/products/omuz-detayli-cok-renkli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "28500 TRY (~$597)"
+  },
+  {
+    "id": "baqa:9312200950011",
+    "brandSlug": "baqa",
+    "title": "Nakış ve Dantel Detaylı Keten Ceket",
+    "url": "https://baqaofficial.com/products/nakis-dantel-detayli-keten-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9232048750843",
+    "brandSlug": "baqa",
+    "title": "Drapeli Dik Yaka İpek Elbise",
+    "url": "https://baqaofficial.com/products/drapeli-dik-yaka-ipek-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9331311051003",
+    "brandSlug": "baqa",
+    "title": "Dantel ve Baskı Detaylı Şifon Elbise",
+    "url": "https://baqaofficial.com/products/dantel-baski-detayli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9339394261243",
+    "brandSlug": "baqa",
+    "title": "Çiçek Desen Dantelli Şifon Elbise",
+    "url": "https://baqaofficial.com/products/cicek-desen-dantelli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9331346374907",
+    "brandSlug": "baqa",
+    "title": "Nakış ve Fırfır Detaylı Şifon Elbise",
+    "url": "https://baqaofficial.com/products/nakis-firfir-detayli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$786)"
+  },
+  {
+    "id": "baqa:9331311018235",
+    "brandSlug": "baqa",
+    "title": "Baskı ve Saçak Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/baski-sacak-detayli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$828)"
+  },
+  {
+    "id": "baqa:9318059573499",
+    "brandSlug": "baqa",
+    "title": "Çiçek Desen Fırfırlı Şifon Elbise",
+    "url": "https://baqaofficial.com/products/cicek-desenli-firfirli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9181679223035",
+    "brandSlug": "baqa",
+    "title": "Kahverengi Drapeli Uzun Elbise",
+    "url": "https://baqaofficial.com/products/kahverengi-drapeli-uzun-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "30000 TRY (~$629)"
+  },
+  {
+    "id": "baqa:9234747588859",
+    "brandSlug": "baqa",
+    "title": "Jakar Desenli Ceket",
+    "url": "https://baqaofficial.com/products/jakar-desenli-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "27650 TRY (~$579)"
+  },
+  {
+    "id": "baqa:9232030335227",
+    "brandSlug": "baqa",
+    "title": "Yakma Desenli Elbise",
+    "url": "https://baqaofficial.com/products/yakma-desenli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9233447190779",
+    "brandSlug": "baqa",
+    "title": "İşleme ve Fırfır Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/islemeli-firfirli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "26500 TRY (~$555)"
+  },
+  {
+    "id": "baqa:9354018390267",
+    "brandSlug": "baqa",
+    "title": "V Yaka Baskı Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/v-yaka-baski-detayli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "34500 TRY (~$723)"
+  },
+  {
+    "id": "baqa:9354470228219",
+    "brandSlug": "baqa",
+    "title": "Pileli Asimetrik Bluz",
+    "url": "https://baqaofficial.com/products/pileli-asimetrik-bluz-1",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9292284592379",
+    "brandSlug": "baqa",
+    "title": "Kayık Yaka Kolye Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/kayik-yaka-kolyeli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9313784692987",
+    "brandSlug": "baqa",
+    "title": "Ön Yaka Detaylı Keten Ceket",
+    "url": "https://baqaofficial.com/products/on-yaka-detayli-keten-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9331346309371",
+    "brandSlug": "baqa",
+    "title": "Yaka Aksesuar Detaylı Pelerinli Elbise",
+    "url": "https://baqaofficial.com/products/yaka-aksesuarlu-pelerinli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "31600 TRY (~$662)"
+  },
+  {
+    "id": "baqa:9292284690683",
+    "brandSlug": "baqa",
+    "title": "Drape Detaylı Akışkan Şifon Elbise",
+    "url": "https://baqaofficial.com/products/drape-detayli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "38500 TRY (~$807)"
+  },
+  {
+    "id": "baqa:9331311214843",
+    "brandSlug": "baqa",
+    "title": "Halter Yaka Sıfır Kol İpek Elbise",
+    "url": "https://baqaofficial.com/products/halter-yaka-ipek-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "34000 TRY (~$713)"
+  },
+  {
+    "id": "baqa:9317898649851",
+    "brandSlug": "baqa",
+    "title": "Pelerin Detaylı Baskılı Şifon Elbise",
+    "url": "https://baqaofficial.com/products/pelerin-detayli-baskili-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$828)"
+  },
+  {
+    "id": "baqa:9312200917243",
+    "brandSlug": "baqa",
+    "title": "Nakış Detaylı Keten Elbise",
+    "url": "https://baqaofficial.com/products/nakis-detayli-keten-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9292286099707",
+    "brandSlug": "baqa",
+    "title": "Dikiş Detaylı Geniş Yaka Keten Ceket",
+    "url": "https://baqaofficial.com/products/genis-yaka-keten-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9318059802875",
+    "brandSlug": "baqa",
+    "title": "Pelerin Detaylı İpek Elbise",
+    "url": "https://baqaofficial.com/products/pelerin-detayli-ipek-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "49500 TRY (~$1037)"
+  },
+  {
+    "id": "baqa:9303112614139",
+    "brandSlug": "baqa",
+    "title": "Nakış Detaylı Sıfır Yaka Beyaz Elbise",
+    "url": "https://baqaofficial.com/products/nakis-detayli-beyaz-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "29200 TRY (~$612)"
+  },
+  {
+    "id": "baqa:9313782071547",
+    "brandSlug": "baqa",
+    "title": "Düğmeli Şal Yaka Keten Ceket",
+    "url": "https://baqaofficial.com/products/dugmeli-sal-yaka-keten-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9313781842171",
+    "brandSlug": "baqa",
+    "title": "Yan Bağlama Detaylı Keten Ceket",
+    "url": "https://baqaofficial.com/products/yan-baglamali-keten-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29000 TRY (~$608)"
+  },
+  {
+    "id": "baqa:9114047054075",
+    "brandSlug": "baqa",
+    "title": "Kahverengi Süet Kısa Ceket",
+    "url": "https://baqaofficial.com/products/kahverengi-suet-kisa-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "30000 TRY (~$629)"
+  },
+  {
+    "id": "baqa:9292284723451",
+    "brandSlug": "baqa",
+    "title": "V Yaka Keten Elbise",
+    "url": "https://baqaofficial.com/products/v-yaka-keten-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9292291375355",
+    "brandSlug": "baqa",
+    "title": "Nakış Detaylı İki Renk Bluz",
+    "url": "https://baqaofficial.com/products/nakisli-iki-renkli-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "26500 TRY (~$555)"
+  },
+  {
+    "id": "baqa:9292286066939",
+    "brandSlug": "baqa",
+    "title": "Yaka Detaylı Beyaz Keten Ceket",
+    "url": "https://baqaofficial.com/products/yaka-detayli-beyaz-keten-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9292803244283",
+    "brandSlug": "baqa",
+    "title": "Nakış Detaylı Şifon Elbise",
+    "url": "https://baqaofficial.com/products/nakis-detayli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "30800 TRY (~$645)"
+  },
+  {
+    "id": "baqa:9267449364731",
+    "brandSlug": "baqa",
+    "title": "Püsküllü Kadife Elbise",
+    "url": "https://baqaofficial.com/products/puskullu-siyah-kadife-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "44500 TRY (~$933)"
+  },
+  {
+    "id": "baqa:9114174587131",
+    "brandSlug": "baqa",
+    "title": "Kontrast Biyeli Cepli Kaban",
+    "url": "https://baqaofficial.com/products/kontrast-biyeli-cepli-kaban-bej",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9114177274107",
+    "brandSlug": "baqa",
+    "title": "Saten Pelerinli Uzun Elbise",
+    "url": "https://baqaofficial.com/products/saten-pelerinli-uzun-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "28500 TRY (~$597)"
+  },
+  {
+    "id": "baqa:9145506595067",
+    "brandSlug": "baqa",
+    "title": "Pelerin Kaban",
+    "url": "https://baqaofficial.com/products/pelerin-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9114050232571",
+    "brandSlug": "baqa",
+    "title": "Hardal Renk Drapeli Gece Elbisesi",
+    "url": "https://baqaofficial.com/products/hardal-renk-drapeli-gece-elbisesi",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "28500 TRY (~$597)"
   },
   {
     "id": "ipekstil:9206733111531",
