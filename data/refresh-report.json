@@ -1,21 +1,21 @@
 {
-  "date": "2026-08-12",
+  "date": "2026-08-13",
   "totals": {
-    "added": 17,
-    "updated": 31150,
-    "delisted": 77,
-    "filtered": 67,
-    "returned": 1,
+    "added": 81,
+    "updated": 30144,
+    "delisted": 110,
+    "filtered": 66,
+    "returned": 18,
     "incomplete": 3
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
       "complete": true,
-      "fetched": 192,
+      "fetched": 191,
       "added": [],
-      "updated": 192,
-      "delisted": 0,
+      "updated": 191,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -37,11 +37,18 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1133,
+      "fetched": 1141,
       "added": [
-        "Bamboo Jersey Mini Full Coverage Undercap - Black"
+        "Modal Hijab - Pink-a-boo",
+        "Bamboo Ring Top - White",
+        "Cotton Wrap Top - Coffee",
+        "Maria Butterfly Abaya - Iron",
+        "Flare Sleeve Top - Dusty Plum",
+        "Asymmetric Drape Top - Black",
+        "Ruffle Sleeve Knit Top - Peppercorn",
+        "Ghada Satin Open Abaya & Dress Set - Pastel Pink"
       ],
-      "updated": 1132,
+      "updated": 1133,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -114,10 +121,10 @@
     {
       "brandSlug": "aab",
       "complete": true,
-      "fetched": 798,
+      "fetched": 742,
       "added": [],
-      "updated": 798,
-      "delisted": 0,
+      "updated": 742,
+      "delisted": 56,
       "filtered": [
         {
           "title": "Silani Oud Bakhoor",
@@ -154,10 +161,20 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 217,
-      "added": [],
-      "updated": 217,
-      "delisted": 0,
+      "fetched": 219,
+      "added": [
+        "Purple & Gray Floral Maxi Dress",
+        "Brown and Blue Jersey Maxi Dress",
+        "Blue Jersey Maxi Dress",
+        "Teal and Brown Jersey Maxi Dress",
+        "Purple Jersey maxi dress",
+        "Black and Beige Jersey Maxi Dress",
+        "White and Blue Floral Chiffon Maxi Dress",
+        "Gray Three Piece Pants Abaya Set",
+        "Beige Floral Chiffon Maxi Dress"
+      ],
+      "updated": 210,
+      "delisted": 7,
       "filtered": [],
       "returned": 0
     },
@@ -184,13 +201,16 @@
     {
       "brandSlug": "mariams",
       "complete": true,
-      "fetched": 1185,
+      "fetched": 1186,
       "added": [
-        "Fleece-Lined Winter Balaclava | Full Face Ski Mask with Adjustable Hood(MAC306)",
-        "Modal Ninja Undercap Neck Covered (MH011)"
+        "Snap Button Long Tunic & Wide-Leg Trousers Two-Piece Co-ord Set(MS508)",
+        "V-Neck Ruched Waist Gathered Maxi Dress(MS505)",
+        "Satin Cross-Wrap Waist Maxi Dress(MS506)",
+        "Colour-Block Pleated Maxi Dress(MS504)",
+        "Polka Dot Flared Sleeve Maxi Dress(MS503)"
       ],
-      "updated": 1183,
-      "delisted": 6,
+      "updated": 1181,
+      "delisted": 4,
       "filtered": [
         {
           "title": "Islamic Hollow Pattern Acrylic Tabletop Decor (MAC404)",
@@ -399,10 +419,8 @@
       "brandSlug": "zora",
       "complete": true,
       "fetched": 170,
-      "added": [
-        "The Jannah Top in Honey Rose"
-      ],
-      "updated": 169,
+      "added": [],
+      "updated": 170,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -430,8 +448,10 @@
     {
       "brandSlug": "les-atelier",
       "complete": true,
-      "fetched": 120,
-      "added": [],
+      "fetched": 121,
+      "added": [
+        "Bamboo Jersey Orchide"
+      ],
       "updated": 120,
       "delisted": 0,
       "filtered": [],
@@ -460,10 +480,10 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 79,
+      "fetched": 78,
       "added": [],
-      "updated": 79,
-      "delisted": 0,
+      "updated": 78,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -530,10 +550,10 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 346,
+      "fetched": 340,
       "added": [],
-      "updated": 346,
-      "delisted": 0,
+      "updated": 340,
+      "delisted": 6,
       "filtered": [
         {
           "title": "Atelier Trolley",
@@ -587,16 +607,6 @@
       "returned": 0
     },
     {
-      "brandSlug": "bouguessa",
-      "complete": true,
-      "fetched": 331,
-      "added": [],
-      "updated": 331,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 0
-    },
-    {
       "brandSlug": "whiteicy",
       "complete": true,
       "fetched": 29,
@@ -620,14 +630,8 @@
       "brandSlug": "mukistore",
       "complete": true,
       "fetched": 1598,
-      "added": [
-        "Jumpsuit Pockets Silver Buttons Tie Belt",
-        "Shiny Ribbed Jumpsuit V Neck Waist Detail",
-        "Hoodie 3D Amour Puffed Sleeves Detail",
-        "Ribbed Jumpsuit Zipper",
-        "Fleece Jumpsuit Zipped"
-      ],
-      "updated": 1593,
+      "added": [],
+      "updated": 1598,
       "delisted": 0,
       "filtered": [
         {
@@ -690,16 +694,6 @@
       "returned": 0
     },
     {
-      "brandSlug": "abyya",
-      "complete": true,
-      "fetched": 22,
-      "added": [],
-      "updated": 22,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 0
-    },
-    {
       "brandSlug": "kimodesty",
       "complete": true,
       "fetched": 130,
@@ -751,8 +745,17 @@
     {
       "brandSlug": "chic-modesty",
       "complete": true,
-      "fetched": 468,
-      "added": [],
+      "fetched": 476,
+      "added": [
+        "Khimar Jersey premium taupe foncé",
+        "Trench coat coton oversize marron",
+        "Robe froncée ouverte lin jaune beurre",
+        "Hijab prêt à nouer burkini vert eau",
+        "Jupe jean coton light blue",
+        "Hijab jersey satin Black",
+        "Hijab jersey satin Blue night",
+        "Burkini zip vert eau"
+      ],
       "updated": 468,
       "delisted": 0,
       "filtered": [],
@@ -912,10 +915,10 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 308,
+      "fetched": 305,
       "added": [],
-      "updated": 308,
-      "delisted": 0,
+      "updated": 305,
+      "delisted": 3,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -949,12 +952,44 @@
     {
       "brandSlug": "touche-prive",
       "complete": true,
-      "fetched": 1020,
-      "added": [],
-      "updated": 1020,
-      "delisted": 11,
+      "fetched": 1047,
+      "added": [
+        "Tropical Floral Print Draped Maxi Dress",
+        "Shawl Collar Cupra Dress",
+        "Double-Breasted Cupra Kimono",
+        "Oversized Poncho",
+        "Cupra Shirt Dress",
+        "Satin Dress With Buttons",
+        "Ribbed Viscose Trousers",
+        "Embroideried Gabardine Shirt-Jacket",
+        "T-Shirt and Tank Top 2-Piece Set",
+        "Modal A-Line Pinafore Dress",
+        "Shirred Modal Suit",
+        "Maxi Shirt Dress",
+        "Pleated Chiffon Skirt",
+        "100% Linen Elastic-Waist Trousers",
+        "Palm Tree Embroidered Dress",
+        "Oversized Fit Poplin Shirt",
+        "Belted Vest And Trouser Set",
+        "Floral-Print Bomber Jacket",
+        "Allergi-Friendly Poplin Shirt",
+        "Long Shirt With Gold Buttons And Layered Design",
+        "Striped Oversized Shirt",
+        "Contrast Stitched Tunic",
+        "Striped White Collar Shirt",
+        "Front Pleated Poplin Shirt",
+        "Ruffled Relax Shirt",
+        "Balloon Sleeve Belted Seasonal Bomber Jacket",
+        "A-Line Contrast Stitch Skirt",
+        "High Waist Washed Gabardine Pants",
+        "Contrast Stitched Dress",
+        "Poplin Shirt With Wide Cuff",
+        "Balloon Sleeve Tunic"
+      ],
+      "updated": 1016,
+      "delisted": 17,
       "filtered": [],
-      "returned": 0
+      "returned": 13
     },
     {
       "brandSlug": "daska-fashion",
@@ -974,21 +1009,6 @@
       "updated": 392,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
-    },
-    {
-      "brandSlug": "aneesa",
-      "complete": true,
-      "fetched": 3,
-      "added": [],
-      "updated": 3,
-      "delisted": 0,
-      "filtered": [
-        {
-          "title": "Abito Fantasia in Seta",
-          "reason": "unclassified"
-        }
-      ],
       "returned": 0
     },
     {
@@ -1067,7 +1087,7 @@
       "fetched": 363,
       "added": [],
       "updated": 363,
-      "delisted": 20,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1084,8 +1104,10 @@
     {
       "brandSlug": "ipekstil",
       "complete": true,
-      "fetched": 337,
-      "added": [],
+      "fetched": 338,
+      "added": [
+        "Çift Pileli A Kesim Etek LACİVERT"
+      ],
       "updated": 337,
       "delisted": 0,
       "filtered": [
@@ -1133,10 +1155,10 @@
     {
       "brandSlug": "lameera-moda",
       "complete": true,
-      "fetched": 445,
+      "fetched": 443,
       "added": [],
-      "updated": 445,
-      "delisted": 0,
+      "updated": 443,
+      "delisted": 2,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1162,12 +1184,14 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 321,
-      "added": [],
-      "updated": 321,
+      "fetched": 323,
+      "added": [
+        "9174 ElbİSe Modal"
+      ],
+      "updated": 322,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "store-wf",
@@ -1175,16 +1199,6 @@
       "fetched": 259,
       "added": [],
       "updated": 259,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 0
-    },
-    {
-      "brandSlug": "serrb",
-      "complete": true,
-      "fetched": 434,
-      "added": [],
-      "updated": 434,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1281,10 +1295,28 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1041,
-      "added": [],
-      "updated": 1041,
-      "delisted": 2,
+      "fetched": 1052,
+      "added": [
+        "Almeida Z.boy 38-48 Siyah Trençkot 13014",
+        "Ceket Yaka Kol Detaylı Haki Trençkot 12667",
+        "Ceket Yaka Kol Detaylı Vizon Trençkot 12667",
+        "Ceket Yaka Kol Detaylı Kahve Trençkot 12667",
+        "Ceket Yaka Kol Detaylı Lacivert Trençkot 12667",
+        "Ceket Yaka Kol Detaylı Siyah Trençkot 12667",
+        "Broşlu Çizgili İçlikli Üçlü Kombin Füme Takım 2003",
+        "Kemerli Çizgili İçlikli Üçlü Kombin Füme Takım 1990",
+        "Kemerli Çizgili İçlikli Üçlü Kombin Kahve Takım 1990",
+        "Ceket Yaka Kol Detaylı Bitter Trençkot 12667",
+        "Ceket Yaka Kol Detaylı Mürdüm Trençkot 12667",
+        "Gömlek Yaka Kuşaklı Bitter Trençkot 13751",
+        "Gömlek Yaka Kuşaklı Lacivert Trençkot 13751",
+        "Yüksek Bel Düz Kesim Vizon Etek 0160",
+        "Yüksek Bel Düz Kesim Kahve Etek 0160",
+        "Yüksek Bel Düz Kesim Lacivert Etek 0160",
+        "Yüksek Bel Düz Kesim Siyah Etek 0160"
+      ],
+      "updated": 1035,
+      "delisted": 10,
       "filtered": [
         {
           "title": "Soft Çiçek Desenli Toprak Şal 0058",
@@ -1303,7 +1335,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 1
+      "returned": 4
     },
     {
       "brandSlug": "ria-miranda",
@@ -1321,18 +1353,6 @@
       "fetched": 46,
       "added": [],
       "updated": 46,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 0
-    },
-    {
-      "brandSlug": "zaskia-sungkar",
-      "complete": true,
-      "fetched": 141,
-      "added": [
-        "Ella Scarf"
-      ],
-      "updated": 140,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1360,10 +1380,10 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 716,
+      "fetched": 713,
       "added": [],
-      "updated": 716,
-      "delisted": 0,
+      "updated": 713,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -1371,17 +1391,9 @@
       "brandSlug": "nour-al-houda",
       "complete": true,
       "fetched": 872,
-      "added": [
-        "Womens Arm Sleeves - 33 Navy",
-        "Womens Arm Sleeves - Nude",
-        "Womens Arm Sleeves - 80 Skin",
-        "Jersey Neck Cover - White",
-        "Jersey Neck Cover - Skin",
-        "Womens Arm Sleeves - White",
-        "Womens Gloves - White"
-      ],
-      "updated": 865,
-      "delisted": 38,
+      "added": [],
+      "updated": 872,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },

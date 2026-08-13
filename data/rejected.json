@@ -25819,7 +25819,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "552 GBP (~$746)"
+    "evidence": "551 GBP (~$744)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -25828,7 +25828,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "552 GBP (~$746)"
+    "evidence": "551 GBP (~$744)"
   },
   {
     "id": "avyaana:8267050516618",
@@ -32311,7 +32311,7 @@
     "url": "https://avyaana.com/products/bahira-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "414 GBP (~$559)"
+    "evidence": "413 GBP (~$558)"
   },
   {
     "id": "avyaana:15633334665590",
@@ -32320,7 +32320,7 @@
     "url": "https://avyaana.com/products/khayal-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "414 GBP (~$559)"
+    "evidence": "413 GBP (~$558)"
   },
   {
     "id": "avyaana:15633334468982",
@@ -32365,7 +32365,7 @@
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "552 GBP (~$746)"
+    "evidence": "551 GBP (~$744)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -32401,7 +32401,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "552 GBP (~$746)"
+    "evidence": "551 GBP (~$744)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -32861,15 +32861,6 @@
     "evidence": "2400 QAR (~$659)"
   },
   {
-    "id": "almotahajiba:10454120857875",
-    "brandSlug": "almotahajiba",
-    "title": "Endless Radiance",
-    "url": "https://www.almotahajiba.com/products/5012a5581sb17296",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "2100 QAR (~$577)"
-  },
-  {
     "id": "almotahajiba:10451280494867",
     "brandSlug": "almotahajiba",
     "title": "Ethereal Glow",
@@ -32956,6 +32947,15 @@
     "brandSlug": "almotahajiba",
     "title": "Noir Flourish",
     "url": "https://www.almotahajiba.com/products/noir-flourish",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 QAR (~$577)"
+  },
+  {
+    "id": "almotahajiba:10324231323923",
+    "brandSlug": "almotahajiba",
+    "title": "Midnight Heir",
+    "url": "https://www.almotahajiba.com/products/5012a5130hb1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2100 QAR (~$577)"
@@ -40099,15 +40099,6 @@
     "evidence": "29500 TRY (~$618)"
   },
   {
-    "id": "baqa:9232070574331",
-    "brandSlug": "baqa",
-    "title": "Omuz Drapeli İki Renk İpek Elbise",
-    "url": "https://baqaofficial.com/products/omuz-drapeli-iki-renkli-ipek-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "27500 TRY (~$576)"
-  },
-  {
     "id": "baqa:9232048554235",
     "brandSlug": "baqa",
     "title": "Omuzu Detaylı Çok Renkli Elbise",
@@ -40250,15 +40241,6 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "29500 TRY (~$618)"
-  },
-  {
-    "id": "baqa:9331346309371",
-    "brandSlug": "baqa",
-    "title": "Yaka Aksesuar Detaylı Pelerinli Elbise",
-    "url": "https://baqaofficial.com/products/yaka-aksesuarlu-pelerinli-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "31600 TRY (~$662)"
   },
   {
     "id": "baqa:9292284690683",
