@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { NavigationMenu } from '@base-ui-components/react/navigation-menu';
 import { Menu } from '@base-ui-components/react/menu';
@@ -68,8 +69,100 @@ export function NavMenu({
   links: { href: string; label: string; activeWhen: boolean }[];
   path: string;
 }) {
+  // Controlled `value`, entirely to make the Outerwear flyout below survive
+  // the trip from its trigger to itself. NavigationMenu's own close-tracking
+  // only knows about DOM it controls — its Trigger and Popup/Viewport — and
+  // defaults to a 50ms close delay once the pointer leaves them (Base UI's
+  // NAVIGATION_MENU constants). The flyout is a SEPARATE Menu.Root portalled
+  // to document.body, so moving the pointer off "Outerwear" and into it
+  // reads, to NavigationMenu, as having left entirely: it starts closing
+  // before the flyout is reachable. Tina: "when i stand on one of the sub
+  // catagories the box just dissepears before i can click".
+  //
+  // Two things went wrong before landing here, both confirmed live rather
+  // than assumed:
+  // 1. Vetoing every auto-close attempt for as long as the flyout was
+  //    conceptually open (a plain onOpenChange boolean) is not enough on its
+  //    own. NavigationMenu decides to close exactly once per pointer-leave
+  //    and, once vetoed, does not retry — nothing ever asks it to close
+  //    again. Confirmed: moved the pointer fully away and waited, the panel
+  //    just sat open.
+  // 2. Fixing that with an active pointermove check gated on the SAME
+  //    "flyout open" boolean still raced the click: `closeOnClick` on the
+  //    sub-item closes the flyout (and tore down the listener) at the same
+  //    moment navigation starts, so by the time the pointer next moved, the
+  //    thing meant to notice had already unmounted. Confirmed via the DOM
+  //    directly — `[role="menu"]` count 0 (flyout genuinely closed) while
+  //    the outer trigger still read `aria-expanded="true"` (outer stuck).
+  //
+  // What actually holds: a check that runs for as long as the OUTER is open
+  // (`navValue !== null`), not tied to the flyout's own lifecycle, using
+  // `elementFromPoint` rather than either primitive's internal notion of
+  // "inside" — real geometry, not trust. "Still relevant" means the pointer
+  // is over the header (covers every trigger, not just this one), the outer
+  // popup, or the flyout popup (checked via `.contains()`, which works across
+  // the portal boundary since portals are still real DOM under `document`).
+  // A short grace timer absorbs momentary boundary crossings during transit
+  // instead of closing on the first false reading. The click case is ALSO
+  // handled directly and immediately at the `onClick` below — not because
+  // this check can't eventually catch it too, but because "eventually" means
+  // "whenever the pointer next so much as twitches," and a click that isn't
+  // followed by any mouse movement should not leave a stale panel open.
+  const [navValue, setNavValue] = useState<string | null>(null);
+  const outerPopupRef = useRef<HTMLElement | null>(null);
+  const flyoutPopupRef = useRef<HTMLElement | null>(null);
+  // Whether the pointer is CURRENTLY somewhere relevant (header, outer popup,
+  // or the flyout — checked live by the same geometry the active closer below
+  // uses), not whether the flyout happens to be open. An earlier cut vetoed
+  // on the flyout's own open/closed boolean and shipped a third bug: the veto
+  // blocked while the flyout was open, but the moment it closed — for ANY
+  // reason, including simply moving on to a different row in the still-open
+  // outer panel — the veto lifted and let through whatever close
+  // NavigationMenu had already queued up from the ORIGINAL leave-the-trigger
+  // event, closing the whole panel out from under a pointer that was still
+  // legitimately hovering it. Confirmed live: flyout → Blazers → back across
+  // into "Modest Dresses" closed the entire Products panel, trigger included.
+  // Keying the veto off live position instead means it and the active closer
+  // always agree — never a stale answer from a moment that has already passed.
+  const pointerRelevant = useRef(false);
+
+  const closeAll = () => setNavValue(null);
+
+  useEffect(() => {
+    if (navValue === null) return;
+    let closeTimer: ReturnType<typeof setTimeout> | null = null;
+    const onPointerMove = (e: PointerEvent) => {
+      const target = document.elementFromPoint(e.clientX, e.clientY);
+      const stillRelevant =
+        !!target &&
+        (!!target.closest('header') ||
+          (!!outerPopupRef.current && outerPopupRef.current.contains(target)) ||
+          (!!flyoutPopupRef.current && flyoutPopupRef.current.contains(target)));
+      pointerRelevant.current = stillRelevant;
+      if (stillRelevant) {
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+      } else if (!closeTimer) {
+        closeTimer = setTimeout(closeAll, 150);
+      }
+    };
+    window.addEventListener('pointermove', onPointerMove);
+    return () => {
+      window.removeEventListener('pointermove', onPointerMove);
+      if (closeTimer) clearTimeout(closeTimer);
+      pointerRelevant.current = false;
+    };
+  }, [navValue]);
+
   return (
     <NavigationMenu.Root
+      value={navValue}
+      onValueChange={(value) => {
+        if (value === null && pointerRelevant.current) return;
+        setNavValue(value);
+      }}
       // `flex items-center` rather than a plain block. As a block, the inline-flex
       // children sat in a LINE BOX whose leading pushed the menu items 0.75px
       // below the plain links beside them (measured: top 47.75 vs 47.00). A flex
@@ -174,11 +267,25 @@ export function NavMenu({
                       <Menu.Portal>
                         <Menu.Positioner side="right" alignOffset={-8} sideOffset={2} collisionPadding={12} className="z-50">
                           <Menu.Popup
+                            ref={flyoutPopupRef}
                             className="rounded-xl border p-2 min-w-[180px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
                             style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
                           >
                             {it.subItems.map((s) => (
-                              <Menu.Item key={s.href} render={<Link href={s.href} />} className="menu-row" closeOnClick>
+                              <Menu.Item
+                                key={s.href}
+                                render={<Link href={s.href} />}
+                                className="menu-row"
+                                closeOnClick
+                                // Belt and suspenders with the pointermove
+                                // check above: a click is a definitive "done
+                                // here" signal, so close the OUTER panel right
+                                // now rather than waiting for the pointer to
+                                // next move at all (it might not — reading the
+                                // destination page doesn't require moving the
+                                // mouse).
+                                onClick={closeAll}
+                              >
                                 {s.label}
                               </Menu.Item>
                             ))}
@@ -231,6 +338,7 @@ export function NavMenu({
           className="z-50 box-border h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] transition-[top,left,right,bottom] duration-[250ms] ease-out data-[instant]:transition-none"
         >
           <NavigationMenu.Popup
+            ref={outerPopupRef}
             className="relative h-[var(--popup-height)] w-[var(--popup-width)] origin-[var(--transform-origin)] overflow-hidden rounded-2xl border transition-[opacity,transform,width,height] duration-200 ease-out data-[starting-style]:scale-95 data-[starting-style]:opacity-0 data-[ending-style]:scale-95 data-[ending-style]:opacity-0"
             style={{
               background: '#fff',
