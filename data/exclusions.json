@@ -153,7 +153,9 @@
     "touche-prive:9650659656008",
     "touche-prive:9650659623240",
     "mukistore:9491417727241",
-    "mukistore:9491201491209"
+    "mukistore:9491201491209",
+    "golden-dune:10944930709847",
+    "golden-dune:10943574540631"
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],

@@ -40486,5 +40486,65 @@
     "url": "https://zaskiasungkar.com/products/ella-scarf-retrospective-zs",
     "garmentWas": "hijab",
     "reason": "brand-blacklist"
+  },
+  {
+    "id": "hijabipop:8029162176565",
+    "brandSlug": "hijabipop",
+    "title": "Gift Card",
+    "url": "https://hijabipop.com/products/gift-card",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:non-product",
+    "tier": "0",
+    "evidence": "Gift Card"
+  },
+  {
+    "id": "bayt-el-hayat:15192017600886",
+    "brandSlug": "bayt-el-hayat",
+    "title": "Brown Farasha with Inner Belt",
+    "url": "https://baytelhayat.co.uk/products/brown-farasha-with-inner-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "bayt-el-hayat:15192204673398",
+    "brandSlug": "bayt-el-hayat",
+    "title": "Navy Farasha with Inner Belt",
+    "url": "https://baytelhayat.co.uk/products/navy-farasha-with-inner-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "bayt-el-hayat:14648727339382",
+    "brandSlug": "bayt-el-hayat",
+    "title": "Green Farasha with Inner Belt",
+    "url": "https://baytelhayat.co.uk/products/farasha-with-inner-belt-green",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "bayt-el-hayat:7388026011709",
+    "brandSlug": "bayt-el-hayat",
+    "title": "Mocha/Brown Farasha with Inner Belt",
+    "url": "https://baytelhayat.co.uk/products/farasha-with-inner-belt-mocha-1",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "bayt-el-hayat:14856234566006",
+    "brandSlug": "bayt-el-hayat",
+    "title": "Dusky Purple Farasha with Inner Belt",
+    "url": "https://baytelhayat.co.uk/products/dusky-purple-farasha-with-inner-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
   }
 ]

@@ -281,6 +281,49 @@ describe('non-English garment vocabulary (fallback only)', () => {
   });
 });
 
+describe('German/French garment vocabulary added for new brands (2026-08-13)', () => {
+  const g = (title: string, productType = '') =>
+    tagDiscovery({ title, productType, tags: [] }).garment;
+
+  it('reads German compounds that "kleid"-style open-left matching did not cover', () => {
+    // Glamberry Shop — real live-feed titles.
+    expect(g('Hemdbluse mit Taillengürtel aus Baumwolle-Viskose-Mischung')).toBe('top');
+    expect(g('Unterrock aus Viskose')).toBe('skirt');
+    // Golden Dune — "Mäntel" (coats) carried no English match at all before this.
+    expect(g('OVERSIZED MÄNTEL')).toBe('top');
+    expect(g('KIAH MANTEL')).toBe('top');
+  });
+
+  it('reads French garment nouns missing from the original French pass (La Petite Parisienne)', () => {
+    expect(g('Chemise LINA bleue (26CY633)')).toBe('top');
+    expect(g('Veste LEANE courte kaki (w25218)')).toBe('top');
+    expect(g('Haut bustier satiné noir (L2120)')).toBe('top');
+    expect(g('Trench long SARA kaki (W25259)')).toBe('top');
+    expect(g('Bermuda ASIAN beige (MA6815)')).toBe('trousers');
+  });
+
+  it('reads Moroccan robe words with no product_type/tags to fall back on (So Classy)', () => {
+    expect(g('Gandoura Lazraq')).toBe('abaya');
+    expect(g('Jellaba Mahra')).toBe('abaya');
+  });
+
+  it('still lets an English match win first', () => {
+    // "veste" must not fire inside "invested"/"divested"; "mantel" is a real
+    // English word (fireplace mantel) but never appears in this catalogue.
+    expect(g('Invested Interest Tote')).not.toBe('top');
+    expect(g('Bridesmaid Sundress')).toBe('dress');
+  });
+
+  it('reads a few more real gaps found while measuring the new brands (2026-08-13)', () => {
+    expect(g('Snatched Lycra Shayla')).toBe('hijab');          // hijabipop
+    expect(g('Carré de soie Foulard 14')).toBe('hijab');       // la-petite-parisienne
+    expect(g('Teeshirt épaulette blanc')).toBe('top');         // la-petite-parisienne
+    expect(g('LANGE ANZUGWESTE')).toBe('top');                 // golden-dune
+    // "Western Style Abaya" must not become `top` via the open-left "weste" match.
+    expect(g('Cardigan Abaya, Western Style Abaya')).not.toBe('top');
+  });
+});
+
 describe('word-boundary hardening (2026-08-12)', () => {
   it('does not classify a Spanish dress ("Vestido") as a top via the unanchored "vest" match', () => {
     expect(tagDiscovery({ title: 'Vestido Largo Azul', productType: '', tags: [] }).garment).not.toBe('top');

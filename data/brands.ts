@@ -188,4 +188,28 @@ export const BRANDS: Brand[] = [
   { slug: 'aeon-abaya', name: 'Aeon Abaya', homepage: 'https://aeonabaya.net', feedUrl: 'https://aeonabaya.net/products.json', community: 'hijabi', currency: 'KWD', category: 'Abayas & modest separates', city: 'Kuwait City', vibe: 'elegant' },
   { slug: 'nour-al-houda', name: 'Nour Al Houda (BNAH)', homepage: 'https://nouralhouda.com.au', feedUrl: 'https://nouralhouda.com.au/products.json', community: 'hijabi', currency: 'AUD', category: 'Modest & abayas', city: 'Sydney', vibe: 'elegant' },
   { slug: 'abayas-boutique', name: 'Abayas Boutique', homepage: 'https://abayasboutique.com', feedUrl: 'https://abayasboutique.com/wp-json/wc/store/v1/products', community: 'hijabi', currency: 'GBP', category: 'Abayas', city: 'United Kingdom', vibe: 'elegant', platform: 'woo' },
+
+  // — 2026-08-13: Tina's pick from the affordability-ranked candidate list.
+  //   Every feed re-probed live (currency via Shopify.currency.active, not
+  //   guessed from price numbers — §3). Two feeds are non-English and were NOT
+  //   in data/translate-brands.json's language set before today: German
+  //   (golden-dune, glamberry) and French (la-petite-parisienne) needed real
+  //   vocabulary added to lib/tag.ts's FOREIGN_RULES first (chemise/veste/haut/
+  //   trench/bermuda/mantel/unterrock/open-left "bluse"/gandoura/jellaba) —
+  //   measured against each live feed before adding, with regression tests in
+  //   lib/tag.test.ts. So Classy's 'jellaba'/'gandoura' words were already
+  //   needed for a DIFFERENT reason: its entire 26-item feed is 0% in stock as
+  //   of today (verified via variants[].available), so it will publish ZERO
+  //   products until it restocks — added anyway since Tina asked for it and
+  //   `npm run refresh` will pick up stock the moment it returns.
+  { slug: 'golden-dune', name: 'The Golden Dune', homepage: 'https://thegoldendune.com', feedUrl: 'https://thegoldendune.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Germany', vibe: 'elegant' },
+  { slug: 'la-petite-parisienne', name: 'La Petite Parisienne', homepage: 'https://lapetiteparisienne.co', feedUrl: 'https://lapetiteparisienne.co/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'France', vibe: 'elegant' },
+  { slug: 'hijabipop', name: 'Hijabi Pop', homepage: 'https://hijabipop.com', feedUrl: 'https://hijabipop.com/products.json', community: 'hijabi', currency: 'USD', category: 'Hijabs & modest', city: 'USA', vibe: 'elegant' },
+  { slug: 'bayt-el-hayat', name: 'Bayt El Hayat', homepage: 'https://baytelhayat.co.uk', feedUrl: 'https://baytelhayat.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Hijabs & abayas', city: 'United Kingdom', vibe: 'elegant' },
+  { slug: 'mondo-the-label', name: 'Mondo The Label', homepage: 'https://mondothelabel.com', feedUrl: 'https://mondothelabel.com/products.json', community: 'hijabi', currency: 'CAD', category: 'Modest', city: 'Canada', vibe: 'elegant' },
+  { slug: 'glamberry', name: 'Glamberry Shop', homepage: 'https://www.glamberryshop.com', feedUrl: 'https://www.glamberryshop.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'Germany', vibe: 'elegant' },
+  // Entire catalogue is 3 abayas, same pattern as Zayda/Khair Archives above.
+  { slug: 'ay-collection', name: 'AY Collection', homepage: 'https://ay-collection.com', feedUrl: 'https://ay-collection.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Abayas', city: 'Europe', vibe: 'elegant' },
+  { slug: 'so-classy', name: 'So Classy', homepage: 'https://soclassyfr.com', feedUrl: 'https://soclassyfr.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modern abayas', city: 'France', vibe: 'elegant' },
+  { slug: 'bybdsha', name: 'BYBDSHA', homepage: 'https://bybdsha.com', feedUrl: 'https://bybdsha.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest', city: 'United Kingdom', vibe: 'elegant' },
 ];

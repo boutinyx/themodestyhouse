@@ -39,7 +39,11 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // it can never be re-verified (see lib/garmentReview.ts). Matching it here
   // means it classifies from the title/tag directly and never reaches that
   // risky fallback at all.
-  ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf|neck\s*covers?|\b(?:open|ninja|tube) caps?\b/i],
+  // `shayla` added 2026-08-13: a common hijab-style name (Hijabi Pop's
+  // "Snatched Lycra Shayla" had no product_type/tags to fall back on). Zero
+  // collision risk measured against the full corpus — every existing "shayla"
+  // hit is already a real hijab.
+  ['hijab', /hijab|scarf|shawl|khimar|turban|headband|underscarf|neck\s*covers?|shaylas?|\b(?:open|ninja|tube) caps?\b/i],
   // sundress/underdress are real, common compounds with no space (32 + 1
   // corpus hits) — anchoring `dress` alone (below) cannot see a suffix with
   // no boundary before it, so they need their own alternative, same
@@ -110,8 +114,11 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // excluded (see FOREIGN_RULES comment below: collides with English
   // "pull-on"), but "maille" never appears anywhere else in the whole
   // 38,096-row corpus, so this specific two-word phrase is zero-risk.
+  // teeshirts? added 2026-08-13: an alternate spelling of t-shirt (La Petite
+  // Parisienne) that "t-?shirts?" cannot see — no hyphen, so no boundary
+  // between "tee" and "shirt" for the separate "tees?" alternative to match.
   ['top', word('tops?|blouses?|shirts?|tunics?|sweaters?|cardigans?|boleros?|blazers?|vests?|coats?|jackets?' +
-    '|overshirts?|sweatshirts?|t-?shirts?|overcoats?|waistcoats?|trenchcoats?|trenhcoats?' +
+    '|overshirts?|sweatshirts?|t-?shirts?|teeshirts?|overcoats?|waistcoats?|trenchcoats?|trenhcoats?' +
     '|tees?|hoodies?|capes?|crewnecks?|button.?ups?|gilets?|parkas?|pull\\s*maille')],
   // Length-only fallback — "maxi"/"midi" describe LENGTH, not garment. A bare
   // "…Maxi" with no explicit garment word reads as a dress, but this must stay
@@ -128,11 +135,36 @@ const FOREIGN_RULES: [Garment, RegExp][] = [
   // Aurora Abaya ships "Silkkleid" and "Baumwollkleid" as well as "Kleid". 31
   // corpus hits, all of them dresses; no English word ends in -kleid.
   ['dress',    /\brobes?\b|kleid(er)?\b|\bjurk(en)?\b/i],           // fr / de / nl
-  ['skirt',    /\bjupes?\b|\brokken\b/i],                          // fr / nl  (not de "rock")
-  ['trousers', /\bpantalons?\b|\bbroek(en)?\b/i],                   // fr / nl  (not de "Hose")
-  ['top',      /\boberteil\b|\bchemisiers?\b|\bbluse\b/i],           // de / fr
+  // `unterrock` (de, underskirt/slip) is a real garment word, not the bare
+  // "rock" this file already excludes for collision reasons — anchored on
+  // both sides so it can never match bare "rock" inside another word.
+  ['skirt',    /\bjupes?\b|\brokken\b|\bunterrock(?:e|es)?\b/i],    // fr / nl / de
+  // `bermuda(s)` (fr, shorts) has no dedicated category here — mapped to
+  // trousers, the nearest existing bucket, same as English shorts already are.
+  ['trousers', /\bpantalons?\b|\bbroek(en)?\b|\bbermudas?\b/i],     // fr / nl
+  // `bluse` is open on the LEFT like `kleid` above: German compounds nouns, so
+  // Glamberry ships "Hemdbluse" (shirt-blouse) as well as bare "Bluse" — closed
+  // on the left it matched only the latter. Measured against the full corpus
+  // (§10.11 lesson): 4 existing "Bluse" hits, all already `top`, zero collisions
+  // (no English word contains the substring "bluse"). `chemise`/`haut`/`veste`/
+  // `trench`/`mantel`/`mäntel` added from La Petite Parisienne's and Golden
+  // Dune's live feeds — none collide with an English word in this corpus.
+  // `weste` (de, vest/waistcoat) is open on the LEFT for the same compounding
+  // reason as `bluse`/`kleid` (Golden Dune's "Anzugweste"). Measured: the only
+  // two corpus hits are "Western Style Abaya" (no boundary after "weste" in
+  // "Western" — "r" is a word char, so `weste\b` cannot match inside it) and a
+  // real German vest, so this is zero-risk.
+  ['top',      /\boberteil\b|\bchemisiers?\b|\bchemises?\b|blusen?\b|\bhauts?\b|\bvestes?\b|\btrench\b|\bmantel\b|\bmäntel\b|westen?\b/i], // de / fr
   ['set',      /\bensembles?\b|\bzweiteiler\b|\btwinsets?\b/i],    // fr / de / nl
-  ['abaya',    /\bdjellabas?\b/i],
+  // `gandoura`/`jellaba` (the second without the French "dj-" spelling) are
+  // Moroccan robe garments — same family this catalogue already calls abaya.
+  // Added for So Classy, whose entire feed uses these two words with no
+  // product_type/tags to fall back on.
+  ['abaya',    /\bdjellabas?\b|\bgandouras?\b|\bjellabas?\b/i],
+  // `foulard(s)` (fr, silk square scarf) — La Petite Parisienne's "Carré de
+  // soie Foulard" line. Zero corpus collision (word does not appear anywhere
+  // else in the catalogue).
+  ['hijab',    /\bfoulards?\b/i],
 
   // --- Turkish (baqa, beyza, ipekstil, nihan, zuhre) + Malay (alia-anggun) ---
   //
