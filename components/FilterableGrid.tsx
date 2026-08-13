@@ -2,7 +2,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import type { CompactCatalogue } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
-import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS } from '@/lib/specialty';
+import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
@@ -38,21 +38,19 @@ export function FilterableGrid({
     () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
     [cat]
   );
-  // Non-empty on exactly ONE lane at a time — /layering-basics has real
-  // layeringSubtype values and an empty outerwearSubtypes array; /outerwear
-  // is the reverse. Every other lane has both empty, so `types` is `[]` and
-  // the dropdown doesn't render at all (see the `types.length > 0` gate
-  // below) — same pattern the Occasion dropdown used before it was pulled
-  // (2026-08-12). Kept in each column's own canonical order
-  // (lib/specialty.ts), not resorted here. Falls back to outerwear when
-  // layering is empty rather than concatenating the two: a lane is never
-  // both at once, by construction (isLayering/isOuterwear are mutually
-  // exclusive — see lib/specialty.ts::isOuterwear's isLayering() guard).
+  // Layering Basics only. Outerwear USED to get the same in-page dropdown —
+  // removed 2026-08-13 at Tina's explicit request ("i dont want this filter
+  // anymore i only want to be able to filter using the products -> outerwear
+  // -> choose"): the header's hover flyout (components/Nav.tsx /
+  // components/MobileNav.tsx) is now the ONLY way to reach a filtered
+  // Outerwear view. The underlying filtering by outerwear subtype is NOT
+  // removed — `typeIdx`/`usingOuterwearTypes` below still apply it, so a
+  // flyout link's `?type=blazer` still narrows the grid on arrival; only the
+  // in-page control to CHANGE it is gone. Layering Basics has no flyout
+  // equivalent, so its dropdown stays — pulling it too would strand that lane
+  // with no way to filter by subtype at all.
   const types = useMemo(
-    () =>
-      cat.layeringSubtypes.length > 0
-        ? cat.layeringSubtypes.map((t) => ({ value: t, label: LAYERING_SUBTYPE_LABELS[t] }))
-        : cat.outerwearSubtypes.map((t) => ({ value: t, label: OUTERWEAR_SUBTYPE_LABELS[t] })),
+    () => cat.layeringSubtypes.map((t) => ({ value: t, label: LAYERING_SUBTYPE_LABELS[t] })),
     [cat]
   );
 
@@ -111,10 +109,12 @@ export function FilterableGrid({
     <div>
       {/* The same index console as /directory — one instrument across the site.
           No Category dropdown: this page already IS one category. Layering
-          Basics and Outerwear are the two exceptions — each is one category
-          by garment/specialty-status but spans several genuinely different
-          kinds of piece, so they alone get a "Type" dropdown, gated on
-          `types.length > 0` so no other lane ever renders it. */}
+          Basics is the one exception that still gets an in-page "Type"
+          dropdown (gated on `types.length > 0`, so no other lane renders it) —
+          it spans several genuinely different kinds of piece with no header
+          flyout of its own. Outerwear had the same dropdown until 2026-08-13,
+          when Tina asked for it gone in favour of the header flyout alone; see
+          the note on `types` above. */}
       <IndexPanel q={q} onQ={setQ} className="mb-8">
         {types.length > 0 && (
           <FilterDropdown label="Type" value={type} options={types} onSelect={setType} />
