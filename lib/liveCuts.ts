@@ -60,6 +60,17 @@ export function setLiveCut(
   return cuts;
 }
 
+/** Wipes the store — for the "Clear list" staff action, once its contents
+ *  have been merged into data/decisions.json via scripts/merge-live-edits.mjs.
+ *  Same atomic write as setLiveCut, so a concurrent read never sees a
+ *  truncated file. */
+export function clearLiveCuts(storePath: string = STORE_PATH): void {
+  mkdirSync(path.dirname(storePath), { recursive: true });
+  const tmp = `${storePath}.${process.pid}.tmp`;
+  writeFileSync(tmp, JSON.stringify({}));
+  renameSync(tmp, storePath);
+}
+
 /** The set of product ids currently hidden from the public site. */
 export function getCutIds(storePath: string = STORE_PATH): Set<string> {
   const cuts = getLiveCuts(storePath);

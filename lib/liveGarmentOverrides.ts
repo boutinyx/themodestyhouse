@@ -54,4 +54,16 @@ export function setLiveGarmentOverride(
   return overrides;
 }
 
+/** Wipes the store — for the "Clear list" staff action, once its contents
+ *  have been merged into data/garment-overrides.json via
+ *  scripts/merge-live-edits.mjs. Same atomic write as
+ *  setLiveGarmentOverride, so a concurrent read never sees a truncated
+ *  file. */
+export function clearLiveGarmentOverrides(storePath: string = STORE_PATH): void {
+  mkdirSync(path.dirname(storePath), { recursive: true });
+  const tmp = `${storePath}.${process.pid}.tmp`;
+  writeFileSync(tmp, JSON.stringify({}));
+  renameSync(tmp, storePath);
+}
+
 export { STORE_PATH as LIVE_GARMENT_OVERRIDES_PATH };

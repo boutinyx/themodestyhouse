@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Copy, Check } from '@phosphor-icons/react';
+import { Copy, Check, Trash } from '@phosphor-icons/react';
 import { laneLabel, subtypeLabel } from '@/components/StaffEditControl';
 import type { ForcedLane, LayeringSubtype, OuterwearSubtype } from '@/lib/types';
 
@@ -10,10 +10,13 @@ type ListResponse = {
   laneMoves: { id: string; title: string; url: string; image: string; to: ForcedLane; subtype?: LayeringSubtype | OuterwearSubtype }[];
 };
 
+const EMPTY: ListResponse = { deletes: [], moves: [], laneMoves: [] };
+
 export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
   const [data, setData] = useState<ListResponse | null>(null);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
+  const [clearing, setClearing] = useState(false);
 
   // refreshToken bumps whenever RecentlyAdded records a decision (see
   // CurateConsole) — this tray otherwise only fetched once on mount and had
@@ -22,7 +25,7 @@ export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
     fetch('/api/staff/live-edit/list')
       .then((r) => r.json())
       .then(setData)
-      .catch(() => setData({ deletes: [], moves: [], laneMoves: [] }));
+      .catch(() => setData(EMPTY));
   }, [refreshToken]);
 
   async function copy() {
@@ -35,6 +38,25 @@ export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
       setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopyError(true);
+    }
+  }
+
+  // Only meaningful after Claude has already merged this list into the
+  // tracked files (scripts/merge-live-edits.mjs) — clearing first would
+  // lose whatever hadn't been copied yet, with no way to recover it.
+  async function clearList() {
+    if (!data) return;
+    const n = data.deletes.length + data.moves.length + data.laneMoves.length;
+    if (n === 0) return;
+    if (!window.confirm(`Clear all ${n} pending edits? Only do this after they've been copied and merged into the tracked files — this can't be undone.`)) {
+      return;
+    }
+    setClearing(true);
+    try {
+      const res = await fetch('/api/staff/live-edit/clear', { method: 'POST' });
+      if (res.ok) setData(EMPTY);
+    } finally {
+      setClearing(false);
     }
   }
 
@@ -51,15 +73,26 @@ export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
         Everything moved or deleted from the real site this session. Copy
         this and paste it to Claude to merge into the tracked files.
       </p>
-      <button
-        onClick={copy}
-        disabled={total === 0}
-        className="btn-pill mb-4"
-        style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
-      >
-        {copied ? <Check size={16} weight="bold" /> : <Copy size={16} weight="bold" />}
-        {' '}{copied ? 'Copied' : 'Copy for Claude'}
-      </button>
+      <div className="flex items-center gap-3 mb-4">
+        <button
+          onClick={copy}
+          disabled={total === 0}
+          className="btn-pill"
+          style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
+        >
+          {copied ? <Check size={16} weight="bold" /> : <Copy size={16} weight="bold" />}
+          {' '}{copied ? 'Copied' : 'Copy for Claude'}
+        </button>
+        <button
+          onClick={clearList}
+          disabled={total === 0 || clearing}
+          className="btn-pill"
+          style={{ background: 'transparent', color: '#b3261e', border: '1px solid #b3261e' }}
+        >
+          <Trash size={16} weight="bold" />
+          {' '}{clearing ? 'Clearing…' : 'Clear list'}
+        </button>
+      </div>
       {copyError && (
         <div className="mb-4">
           <p className="text-sm mb-2" style={{ color: '#b3261e' }}>
