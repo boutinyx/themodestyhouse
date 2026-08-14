@@ -90,4 +90,10 @@ export interface Product {
    *  means "let layeringSubtype() guess from the title", same fallback a
    *  naturally-classified layering item already uses. */
   forcedLayeringSubtype?: LayeringSubtype;
+  /** Only meaningful alongside forcedLane === 'outerwear'. Same fallback
+   *  reasoning as forcedLayeringSubtype, for outerwearSubtype(). Deliberately
+   *  a separate field rather than reusing forcedLayeringSubtype — a shared
+   *  field would let a subtype from one lane leak onto the other if the lane
+   *  were ever changed without clearing it. */
+  forcedOuterwearSubtype?: OuterwearSubtype;
 }

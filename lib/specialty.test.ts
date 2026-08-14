@@ -330,6 +330,16 @@ describe('forcedLane override', () => {
   it('layeringSubtype falls back to title-guessing when forced into the lane with no explicit subtype', () => {
     expect(layeringSubtype(p('Black Neck Cover', 'dress', { forcedLane: 'layering-basics' }))).toBe('neck-cover');
   });
+  it('outerwearSubtype honours an explicit forcedOuterwearSubtype', () => {
+    expect(
+      outerwearSubtype(
+        p('Plain Cotton Dress', 'dress', { forcedLane: 'outerwear', forcedOuterwearSubtype: 'cardigan' }),
+      ),
+    ).toBe('cardigan');
+  });
+  it('outerwearSubtype falls back to title-guessing when forced into the lane with no explicit subtype', () => {
+    expect(outerwearSubtype(p('Belted Wrap Vest', 'top', { forcedLane: 'outerwear' }))).toBe('vest');
+  });
   it('a forced-activewear item is specialty; a forced-layering item is specialty', () => {
     expect(isSpecialty(p('Plain Cotton Dress', 'dress', { forcedLane: 'modest-activewear' }))).toBe(true);
     expect(isSpecialty(p('Plain Cotton Dress', 'dress', { forcedLane: 'layering-basics' }))).toBe(true);

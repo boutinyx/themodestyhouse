@@ -285,6 +285,7 @@ const OUTERWEAR_SUBTYPE_RES: [OuterwearSubtype, RegExp][] = [
  */
 export function outerwearSubtype(p: Product): OuterwearSubtype | null {
   if (!isOuterwear(p)) return null;
+  if (p.forcedLane === 'outerwear' && p.forcedOuterwearSubtype) return p.forcedOuterwearSubtype;
   const head = p.title.split('|')[0];
   let best: OuterwearSubtype | null = null;
   let bestIndex = -1;

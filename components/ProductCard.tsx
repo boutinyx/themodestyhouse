@@ -6,8 +6,7 @@ import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { useIsStaff } from './StaffSessionProvider';
-import { StaffEditControl, type StaffEditResult, laneLabel, garmentMoveLabel } from './StaffEditControl';
-import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
+import { StaffEditControl, type StaffEditResult, laneLabel, garmentMoveLabel, subtypeLabel } from './StaffEditControl';
 
 export function ProductCard({ p }: { p: CardProduct }) {
   const { open, isFav, toggleFav } = useQuickView();
@@ -114,7 +113,7 @@ export function ProductCard({ p }: { p: CardProduct }) {
       {staffState?.type === 'moveLane' && (
         <div className="text-xs mt-1" style={{ color: 'var(--muted)' }}>
           Moved to {laneLabel(staffState.lane)}
-          {staffState.subtype && ` — ${LAYERING_SUBTYPE_LABELS[staffState.subtype]}`}
+          {staffState.subtype && ` — ${subtypeLabel(staffState.lane, staffState.subtype)}`}
         </div>
       )}
       {staffState?.type === 'delete' && (

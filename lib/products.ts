@@ -34,7 +34,11 @@ export function getProducts(): Product[] {
     return {
       ...p,
       ...(g ? { garment: g.garment } : {}),
-      ...(l ? { forcedLane: l.lane, forcedLayeringSubtype: l.subtype } : {}),
+      ...(l ? {
+        forcedLane: l.lane,
+        ...(l.lane === 'layering-basics' ? { forcedLayeringSubtype: l.subtype as Product['forcedLayeringSubtype'] } : {}),
+        ...(l.lane === 'outerwear' ? { forcedOuterwearSubtype: l.subtype as Product['forcedOuterwearSubtype'] } : {}),
+      } : {}),
     };
   });
 }

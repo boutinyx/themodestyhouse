@@ -3,13 +3,23 @@ import { useState } from 'react';
 import { Menu } from '@base-ui-components/react/menu';
 import { PencilSimple, CaretRight, Trash } from '@phosphor-icons/react';
 import { GARMENT_LABELS, GARMENT_VALUES } from '@/lib/tag';
-import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
+import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS } from '@/lib/specialty';
 import { CATEGORY_LANES } from '@/lib/lanes';
-import type { Garment, ForcedLane, LayeringSubtype } from '@/lib/types';
+import type { Garment, ForcedLane, LayeringSubtype, OuterwearSubtype } from '@/lib/types';
 
 const MOVABLE = GARMENT_VALUES.filter((g) => g !== 'other') as Garment[];
 const LAYERING_SUBTYPES = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
+const OUTERWEAR_SUBTYPES = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
 export const laneLabel = (lane: ForcedLane) => CATEGORY_LANES.find((l) => l.slug === lane)?.title ?? lane;
+
+// Each lane's subtype lives in its own label map — a layering subtype and an
+// outerwear subtype are never valid for the other lane (see the move-lane
+// API route), so look the label up in the map matching the move's own lane.
+export function subtypeLabel(lane: ForcedLane, subtype: LayeringSubtype | OuterwearSubtype): string | undefined {
+  if (lane === 'layering-basics') return LAYERING_SUBTYPE_LABELS[subtype as LayeringSubtype];
+  if (lane === 'outerwear') return OUTERWEAR_SUBTYPE_LABELS[subtype as OuterwearSubtype];
+  return undefined;
+}
 
 // The 8 movable garments map 1:1 onto a category lane slug — everywhere
 // except 'other' (never a move destination) every lane in lib/lanes.ts
@@ -30,7 +40,7 @@ export const garmentMoveLabel = (g: Garment): string => {
 
 export type StaffEditResult =
   | { type: 'move'; garment: Garment }
-  | { type: 'moveLane'; lane: ForcedLane; subtype?: LayeringSubtype }
+  | { type: 'moveLane'; lane: ForcedLane; subtype?: LayeringSubtype | OuterwearSubtype }
   | { type: 'delete' };
 
 export function StaffEditControl({
@@ -62,7 +72,7 @@ export function StaffEditControl({
     }
   }
 
-  async function moveLane(lane: ForcedLane, subtype?: LayeringSubtype) {
+  async function moveLane(lane: ForcedLane, subtype?: LayeringSubtype | OuterwearSubtype) {
     setBusy(true);
     setError(null);
     try {
@@ -159,6 +169,31 @@ export function StaffEditControl({
                         className="menu-row"
                       >
                         {LAYERING_SUBTYPE_LABELS[s]}
+                      </Menu.Item>
+                    ))}
+                  </Menu.Popup>
+                </Menu.Positioner>
+              </Menu.Portal>
+            </Menu.SubmenuRoot>
+            <Menu.SubmenuRoot>
+              <Menu.SubmenuTrigger className="menu-row flex items-center justify-between">
+                {laneLabel('outerwear')}
+                <CaretRight size={12} weight="bold" />
+              </Menu.SubmenuTrigger>
+              <Menu.Portal>
+                <Menu.Positioner sideOffset={4} align="start" className="z-50">
+                  <Menu.Popup
+                    className="rounded-xl border min-w-[190px] p-2"
+                    style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
+                  >
+                    {OUTERWEAR_SUBTYPES.map((s) => (
+                      <Menu.Item
+                        key={s}
+                        onClick={() => moveLane('outerwear', s)}
+                        closeOnClick
+                        className="menu-row"
+                      >
+                        {OUTERWEAR_SUBTYPE_LABELS[s]}
                       </Menu.Item>
                     ))}
                   </Menu.Popup>

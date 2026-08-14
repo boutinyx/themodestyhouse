@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync } from 'node:fs';
 import path from 'node:path';
-import type { ForcedLane, LayeringSubtype } from '@/lib/types';
+import type { ForcedLane, LayeringSubtype, OuterwearSubtype } from '@/lib/types';
 
 /**
  * Runtime-only lane corrections made from the inline staff edit controls
@@ -17,7 +17,7 @@ import type { ForcedLane, LayeringSubtype } from '@/lib/types';
 
 export interface LiveLaneOverrideEntry {
   lane: ForcedLane;
-  subtype?: LayeringSubtype;
+  subtype?: LayeringSubtype | OuterwearSubtype;
   decidedAt: string; // ISO timestamp
 }
 
@@ -39,7 +39,7 @@ export function getLiveLaneOverrides(storePath: string = STORE_PATH): LiveLaneOv
 export function setLiveLaneOverride(
   id: string,
   lane: ForcedLane,
-  subtype: LayeringSubtype | undefined,
+  subtype: LayeringSubtype | OuterwearSubtype | undefined,
   storePath: string = STORE_PATH,
 ): LiveLaneOverrides {
   const overrides = getLiveLaneOverrides(storePath);

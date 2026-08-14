@@ -1,14 +1,13 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Copy, Check } from '@phosphor-icons/react';
-import { laneLabel } from '@/components/StaffEditControl';
-import { LAYERING_SUBTYPE_LABELS } from '@/lib/specialty';
-import type { ForcedLane, LayeringSubtype } from '@/lib/types';
+import { laneLabel, subtypeLabel } from '@/components/StaffEditControl';
+import type { ForcedLane, LayeringSubtype, OuterwearSubtype } from '@/lib/types';
 
 type ListResponse = {
   deletes: { id: string; title: string; url: string; image: string }[];
   moves: { id: string; title: string; url: string; image: string; from: string; to: string }[];
-  laneMoves: { id: string; title: string; url: string; image: string; to: ForcedLane; subtype?: LayeringSubtype }[];
+  laneMoves: { id: string; title: string; url: string; image: string; to: ForcedLane; subtype?: LayeringSubtype | OuterwearSubtype }[];
 };
 
 export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
@@ -88,7 +87,7 @@ export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
             {data.laneMoves.map((m) => (
               <li key={m.id} className="mb-1">
                 {m.title} — {laneLabel(m.to)}
-                {m.subtype && ` — ${LAYERING_SUBTYPE_LABELS[m.subtype]}`}
+                {m.subtype && ` — ${subtypeLabel(m.to, m.subtype)}`}
               </li>
             ))}
           </ul>

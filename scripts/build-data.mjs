@@ -188,7 +188,12 @@ const kept = raw.filter((p) => {
   const laneOverride = laneOverrides[p.id];
   if (laneOverride) {
     p.forcedLane = laneOverride.lane;
-    if (laneOverride.subtype) p.forcedLayeringSubtype = laneOverride.subtype;
+    if (laneOverride.subtype && laneOverride.lane === 'layering-basics') {
+      p.forcedLayeringSubtype = laneOverride.subtype;
+    }
+    if (laneOverride.subtype && laneOverride.lane === 'outerwear') {
+      p.forcedOuterwearSubtype = laneOverride.subtype;
+    }
   }
   // Informational only — does NOT hold the item back. A merchant flagging
   // their own listing ("retakephotos" etc.) is usually still a fine photo

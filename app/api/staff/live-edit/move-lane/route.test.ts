@@ -64,4 +64,33 @@ describe('POST /api/staff/live-edit/move-lane', () => {
     expect(setLiveLaneOverride).toHaveBeenCalledWith('x:1', 'layering-basics', 'under-dress');
     expect(setLiveCut).toHaveBeenCalledWith('x:1', 'keep');
   });
+
+  it('sets a lane override with a subtype for outerwear, and un-hides the product', async () => {
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
+    const res = await POST(req({ id: 'x:1', lane: 'outerwear', subtype: 'cardigan' }));
+    expect(res.status).toBe(200);
+    expect(setLiveLaneOverride).toHaveBeenCalledWith('x:1', 'outerwear', 'cardigan');
+    expect(setLiveCut).toHaveBeenCalledWith('x:1', 'keep');
+  });
+
+  it('400s a layering subtype applied to the outerwear lane', async () => {
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
+    const res = await POST(req({ id: 'x:1', lane: 'outerwear', subtype: 'under-dress' }));
+    expect(res.status).toBe(400);
+    expect(setLiveLaneOverride).not.toHaveBeenCalled();
+  });
+
+  it('400s an outerwear subtype applied to the layering-basics lane', async () => {
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
+    const res = await POST(req({ id: 'x:1', lane: 'layering-basics', subtype: 'cardigan' }));
+    expect(res.status).toBe(400);
+    expect(setLiveLaneOverride).not.toHaveBeenCalled();
+  });
+
+  it('400s any subtype applied to modest-activewear', async () => {
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
+    const res = await POST(req({ id: 'x:1', lane: 'modest-activewear', subtype: 'cardigan' }));
+    expect(res.status).toBe(400);
+    expect(setLiveLaneOverride).not.toHaveBeenCalled();
+  });
 });
