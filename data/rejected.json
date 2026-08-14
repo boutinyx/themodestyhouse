@@ -24440,16 +24440,6 @@
     "evidence": "Hijab Pins"
   },
   {
-    "id": "mariams:9281059619032",
-    "brandSlug": "mariams",
-    "title": "5 Abayas for $99",
-    "url": "https://mariam-col.com/products/5-abayas-for-99",
-    "garmentWas": "abaya",
-    "reason": "non-apparel:non-product",
-    "tier": "0",
-    "evidence": "5 Abayas for $"
-  },
-  {
     "id": "mariams:9115327594712",
     "brandSlug": "mariams",
     "title": "Chain Tassel Crystal Ear Cuff Set (MAC413)",
@@ -24940,6 +24930,15 @@
     "reason": "non-apparel:beauty",
     "tier": "0",
     "evidence": "makeup brush"
+  },
+  {
+    "id": "glow-modesty:9387776639192",
+    "brandSlug": "glow-modesty",
+    "title": "Olivia Evening Gown",
+    "url": "https://glowmodesty.com/products/olivia-evening-gown",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "894 USD (~$894)"
   },
   {
     "id": "glow-modesty:9275503313112",
@@ -40081,15 +40080,6 @@
     "reason": "title-pattern"
   },
   {
-    "id": "baqa:9292803277051",
-    "brandSlug": "baqa",
-    "title": "Dantel Detaylı Beyaz Keten Elbise",
-    "url": "https://baqaofficial.com/products/dantel-detayli-beyaz-keten-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "28500 TRY (~$597)"
-  },
-  {
     "id": "baqa:9317898551547",
     "brandSlug": "baqa",
     "title": "Gömlek Yaka Tunik Elbise",
@@ -40133,6 +40123,15 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9313787314427",
+    "brandSlug": "baqa",
+    "title": "Üç Renk Pelerin Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/uc-renkli-pelerin-detayli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "49500 TRY (~$1037)"
   },
   {
     "id": "baqa:9339394261243",
@@ -40241,6 +40240,15 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9331346309371",
+    "brandSlug": "baqa",
+    "title": "Yaka Aksesuar Detaylı Pelerinli Elbise",
+    "url": "https://baqaofficial.com/products/yaka-aksesuarlu-pelerinli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "31600 TRY (~$662)"
   },
   {
     "id": "baqa:9292284690683",

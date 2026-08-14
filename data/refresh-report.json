@@ -1,11 +1,11 @@
 {
-  "date": "2026-08-13",
+  "date": "2026-08-14",
   "totals": {
-    "added": 81,
-    "updated": 30144,
-    "delisted": 110,
+    "added": 47,
+    "updated": 30766,
+    "delisted": 178,
     "filtered": 66,
-    "returned": 18,
+    "returned": 8,
     "incomplete": 3
   },
   "brands": [
@@ -15,15 +15,17 @@
       "fetched": 191,
       "added": [],
       "updated": 191,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "vela",
       "complete": true,
-      "fetched": 646,
-      "added": [],
+      "fetched": 647,
+      "added": [
+        "Beige Underdress"
+      ],
       "updated": 646,
       "delisted": 0,
       "filtered": [
@@ -37,19 +39,10 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1141,
-      "added": [
-        "Modal Hijab - Pink-a-boo",
-        "Bamboo Ring Top - White",
-        "Cotton Wrap Top - Coffee",
-        "Maria Butterfly Abaya - Iron",
-        "Flare Sleeve Top - Dusty Plum",
-        "Asymmetric Drape Top - Black",
-        "Ruffle Sleeve Knit Top - Peppercorn",
-        "Ghada Satin Open Abaya & Dress Set - Pastel Pink"
-      ],
-      "updated": 1133,
-      "delisted": 0,
+      "fetched": 1036,
+      "added": [],
+      "updated": 1036,
+      "delisted": 105,
       "filtered": [],
       "returned": 0
     },
@@ -124,7 +117,7 @@
       "fetched": 742,
       "added": [],
       "updated": 742,
-      "delisted": 56,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Silani Oud Bakhoor",
@@ -162,19 +155,9 @@
       "brandSlug": "urban-modesty",
       "complete": true,
       "fetched": 219,
-      "added": [
-        "Purple & Gray Floral Maxi Dress",
-        "Brown and Blue Jersey Maxi Dress",
-        "Blue Jersey Maxi Dress",
-        "Teal and Brown Jersey Maxi Dress",
-        "Purple Jersey maxi dress",
-        "Black and Beige Jersey Maxi Dress",
-        "White and Blue Floral Chiffon Maxi Dress",
-        "Gray Three Piece Pants Abaya Set",
-        "Beige Floral Chiffon Maxi Dress"
-      ],
-      "updated": 210,
-      "delisted": 7,
+      "added": [],
+      "updated": 219,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -201,15 +184,11 @@
     {
       "brandSlug": "mariams",
       "complete": true,
-      "fetched": 1186,
+      "fetched": 1183,
       "added": [
-        "Snap Button Long Tunic & Wide-Leg Trousers Two-Piece Co-ord Set(MS508)",
-        "V-Neck Ruched Waist Gathered Maxi Dress(MS505)",
-        "Satin Cross-Wrap Waist Maxi Dress(MS506)",
-        "Colour-Block Pleated Maxi Dress(MS504)",
-        "Polka Dot Flared Sleeve Maxi Dress(MS503)"
+        "Embroidered Sequin Shimmer Hijab Scarf(MH248)"
       ],
-      "updated": 1181,
+      "updated": 1182,
       "delisted": 4,
       "filtered": [
         {
@@ -298,8 +277,10 @@
     {
       "brandSlug": "glow-modesty",
       "complete": true,
-      "fetched": 164,
-      "added": [],
+      "fetched": 165,
+      "added": [
+        "Natasha Floral Waist Maxi Dress"
+      ],
       "updated": 164,
       "delisted": 0,
       "filtered": [],
@@ -449,10 +430,8 @@
       "brandSlug": "les-atelier",
       "complete": true,
       "fetched": 121,
-      "added": [
-        "Bamboo Jersey Orchide"
-      ],
-      "updated": 120,
+      "added": [],
+      "updated": 121,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -483,7 +462,7 @@
       "fetched": 78,
       "added": [],
       "updated": 78,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -530,10 +509,10 @@
     {
       "brandSlug": "lafemme",
       "complete": true,
-      "fetched": 45,
+      "fetched": 42,
       "added": [],
-      "updated": 45,
-      "delisted": 0,
+      "updated": 42,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -550,10 +529,12 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 340,
-      "added": [],
-      "updated": 340,
-      "delisted": 6,
+      "fetched": 342,
+      "added": [
+        "The Sarah | Black"
+      ],
+      "updated": 341,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Atelier Trolley",
@@ -584,7 +565,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "chi-ka",
@@ -609,8 +590,20 @@
     {
       "brandSlug": "whiteicy",
       "complete": true,
-      "fetched": 29,
-      "added": [],
+      "fetched": 40,
+      "added": [
+        "Body Isaline",
+        "Body Calista",
+        "Body Éléonore",
+        "Body Solène",
+        "Body Maëlys",
+        "Trench Elisabeth",
+        "Trench Naëlys",
+        "Trench Héloïse",
+        "Trench à capuche Sélène",
+        "Trench Court Éloane",
+        "Veste similicuir Alba"
+      ],
       "updated": 29,
       "delisted": 0,
       "filtered": [],
@@ -745,19 +738,14 @@
     {
       "brandSlug": "chic-modesty",
       "complete": true,
-      "fetched": 476,
+      "fetched": 478,
       "added": [
-        "Khimar Jersey premium taupe foncé",
-        "Trench coat coton oversize marron",
-        "Robe froncée ouverte lin jaune beurre",
-        "Hijab prêt à nouer burkini vert eau",
-        "Jupe jean coton light blue",
-        "Hijab jersey satin Black",
-        "Hijab jersey satin Blue night",
-        "Burkini zip vert eau"
+        "Hijab prêt à nouer Jersey premium gris",
+        "Hijab modal respirant bleu marine",
+        "Khimar Jersey premium taupe marroné"
       ],
-      "updated": 468,
-      "delisted": 0,
+      "updated": 475,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -865,8 +853,10 @@
       "brandSlug": "nihan",
       "complete": false,
       "fetched": 3946,
-      "added": [],
-      "updated": 3946,
+      "added": [
+        "Parlak Taşlı Geniş Yakalı Angora Kaban - Siyah"
+      ],
+      "updated": 3945,
       "delisted": 0,
       "filtered": [
         {
@@ -915,10 +905,12 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 305,
-      "added": [],
-      "updated": 305,
-      "delisted": 3,
+      "fetched": 302,
+      "added": [
+        "Asimetrik Drapeli Bluz"
+      ],
+      "updated": 301,
+      "delisted": 6,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -937,7 +929,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 2
     },
     {
       "brandSlug": "abaya-lounge",
@@ -952,44 +944,12 @@
     {
       "brandSlug": "touche-prive",
       "complete": true,
-      "fetched": 1047,
-      "added": [
-        "Tropical Floral Print Draped Maxi Dress",
-        "Shawl Collar Cupra Dress",
-        "Double-Breasted Cupra Kimono",
-        "Oversized Poncho",
-        "Cupra Shirt Dress",
-        "Satin Dress With Buttons",
-        "Ribbed Viscose Trousers",
-        "Embroideried Gabardine Shirt-Jacket",
-        "T-Shirt and Tank Top 2-Piece Set",
-        "Modal A-Line Pinafore Dress",
-        "Shirred Modal Suit",
-        "Maxi Shirt Dress",
-        "Pleated Chiffon Skirt",
-        "100% Linen Elastic-Waist Trousers",
-        "Palm Tree Embroidered Dress",
-        "Oversized Fit Poplin Shirt",
-        "Belted Vest And Trouser Set",
-        "Floral-Print Bomber Jacket",
-        "Allergi-Friendly Poplin Shirt",
-        "Long Shirt With Gold Buttons And Layered Design",
-        "Striped Oversized Shirt",
-        "Contrast Stitched Tunic",
-        "Striped White Collar Shirt",
-        "Front Pleated Poplin Shirt",
-        "Ruffled Relax Shirt",
-        "Balloon Sleeve Belted Seasonal Bomber Jacket",
-        "A-Line Contrast Stitch Skirt",
-        "High Waist Washed Gabardine Pants",
-        "Contrast Stitched Dress",
-        "Poplin Shirt With Wide Cuff",
-        "Balloon Sleeve Tunic"
-      ],
-      "updated": 1016,
-      "delisted": 17,
+      "fetched": 1015,
+      "added": [],
+      "updated": 1015,
+      "delisted": 32,
       "filtered": [],
-      "returned": 13
+      "returned": 0
     },
     {
       "brandSlug": "daska-fashion",
@@ -1004,10 +964,10 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 392,
+      "fetched": 387,
       "added": [],
-      "updated": 392,
-      "delisted": 0,
+      "updated": 387,
+      "delisted": 5,
       "filtered": [],
       "returned": 0
     },
@@ -1084,8 +1044,11 @@
     {
       "brandSlug": "modesty-in-style",
       "complete": true,
-      "fetched": 363,
-      "added": [],
+      "fetched": 365,
+      "added": [
+        "Asil Diamond Formal Dress",
+        "Dima Denim Dress"
+      ],
       "updated": 363,
       "delisted": 0,
       "filtered": [],
@@ -1104,12 +1067,14 @@
     {
       "brandSlug": "ipekstil",
       "complete": true,
-      "fetched": 338,
+      "fetched": 334,
       "added": [
-        "Çift Pileli A Kesim Etek LACİVERT"
+        "Yırtmaçlı Takım LACİVERT",
+        "Yırtmaçlı Takım KAHVERENGİ",
+        "Yırtmaçlı Takım HAKİ YEŞİL"
       ],
-      "updated": 337,
-      "delisted": 0,
+      "updated": 331,
+      "delisted": 7,
       "filtered": [
         {
           "title": "Citrus Garden Kombin Kutusu",
@@ -1136,9 +1101,11 @@
       "brandSlug": "we-are-elegance",
       "complete": true,
       "fetched": 112,
-      "added": [],
-      "updated": 112,
-      "delisted": 0,
+      "added": [
+        "Kaftan Black Medina 17/08/26 8pm BST"
+      ],
+      "updated": 111,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1158,7 +1125,7 @@
       "fetched": 443,
       "added": [],
       "updated": 443,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1184,14 +1151,12 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 323,
-      "added": [
-        "9174 ElbİSe Modal"
-      ],
-      "updated": 322,
+      "fetched": 325,
+      "added": [],
+      "updated": 325,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 2
     },
     {
       "brandSlug": "store-wf",
@@ -1206,18 +1171,20 @@
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 972,
+      "fetched": 973,
       "added": [],
-      "updated": 972,
+      "updated": 973,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "abadia",
       "complete": true,
-      "fetched": 128,
-      "added": [],
+      "fetched": 129,
+      "added": [
+        "Mid Rise Bermuda Shorts in Cream"
+      ],
       "updated": 128,
       "delisted": 0,
       "filtered": [],
@@ -1236,8 +1203,13 @@
     {
       "brandSlug": "aurora-abaya",
       "complete": true,
-      "fetched": 79,
-      "added": [],
+      "fetched": 83,
+      "added": [
+        "Polka Dot Baumwollbluse",
+        "Chiffonbluse",
+        "Wickelbluse Oat",
+        "Weste asymmetrisch"
+      ],
       "updated": 79,
       "delisted": 0,
       "filtered": [],
@@ -1266,10 +1238,10 @@
     {
       "brandSlug": "ilovemodesty",
       "complete": true,
-      "fetched": 633,
+      "fetched": 629,
       "added": [],
-      "updated": 633,
-      "delisted": 0,
+      "updated": 629,
+      "delisted": 4,
       "filtered": [
         {
           "title": "AYA Matte Gold Wide Hoop Earrings",
@@ -1295,28 +1267,20 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1052,
+      "fetched": 1056,
       "added": [
-        "Almeida Z.boy 38-48 Siyah Trençkot 13014",
-        "Ceket Yaka Kol Detaylı Haki Trençkot 12667",
-        "Ceket Yaka Kol Detaylı Vizon Trençkot 12667",
-        "Ceket Yaka Kol Detaylı Kahve Trençkot 12667",
-        "Ceket Yaka Kol Detaylı Lacivert Trençkot 12667",
-        "Ceket Yaka Kol Detaylı Siyah Trençkot 12667",
-        "Broşlu Çizgili İçlikli Üçlü Kombin Füme Takım 2003",
-        "Kemerli Çizgili İçlikli Üçlü Kombin Füme Takım 1990",
-        "Kemerli Çizgili İçlikli Üçlü Kombin Kahve Takım 1990",
-        "Ceket Yaka Kol Detaylı Bitter Trençkot 12667",
-        "Ceket Yaka Kol Detaylı Mürdüm Trençkot 12667",
-        "Gömlek Yaka Kuşaklı Bitter Trençkot 13751",
-        "Gömlek Yaka Kuşaklı Lacivert Trençkot 13751",
-        "Yüksek Bel Düz Kesim Vizon Etek 0160",
-        "Yüksek Bel Düz Kesim Kahve Etek 0160",
-        "Yüksek Bel Düz Kesim Lacivert Etek 0160",
-        "Yüksek Bel Düz Kesim Siyah Etek 0160"
+        "Jakarlı Kuşaklı Düğmeli Lacivert Giy Çık 0394",
+        "Kruvaze Yaka Kemerli Kahve Trençkot 14049",
+        "Kuşaklı Düğme Detaylı Akıcı Lacivert Tunik 1653",
+        "Gömlek Yaka Kuşaklı Kahve Trençkot 13751",
+        "Gömlek Yaka Kuşaklı Siyah Trençkot 13751",
+        "TK-1584 SEİDE TAKIM 38-46 Kahve Takım 1584",
+        "Zühre Gizli Düğme Detaylı Kırmızı Tunik T-0767",
+        "Kruvaze Yaka Kol Detaylı Deri Siyah Trençkot 13014",
+        "Kruvaze Yaka Kol Detaylı Deri Camel Trençkot 13014"
       ],
-      "updated": 1035,
-      "delisted": 10,
+      "updated": 1047,
+      "delisted": 7,
       "filtered": [
         {
           "title": "Soft Çiçek Desenli Toprak Şal 0058",
@@ -1335,13 +1299,17 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 4
+      "returned": 2
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 343,
-      "added": [],
+      "fetched": 346,
+      "added": [
+        "Caila Sweatshirt",
+        "Hazel Vest",
+        "Aoloa Top"
+      ],
       "updated": 343,
       "delisted": 0,
       "filtered": [],
@@ -1380,9 +1348,9 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 713,
+      "fetched": 710,
       "added": [],
-      "updated": 713,
+      "updated": 710,
       "delisted": 3,
       "filtered": [],
       "returned": 0
@@ -1400,9 +1368,105 @@
     {
       "brandSlug": "abayas-boutique",
       "complete": true,
-      "fetched": 391,
-      "added": [],
+      "fetched": 392,
+      "added": [
+        "the Summer Smocked Abaya – Black"
+      ],
       "updated": 391,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "golden-dune",
+      "complete": true,
+      "fetched": 159,
+      "added": [
+        "Emry Abaya Coat",
+        "Kurze Trenchcoat Aus Kunstleder",
+        "Kurze Trenchcoat Aus Kunstleder"
+      ],
+      "updated": 156,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "la-petite-parisienne",
+      "complete": true,
+      "fetched": 170,
+      "added": [],
+      "updated": 170,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "hijabipop",
+      "complete": true,
+      "fetched": 40,
+      "added": [],
+      "updated": 40,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "bayt-el-hayat",
+      "complete": true,
+      "fetched": 133,
+      "added": [],
+      "updated": 133,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "mondo-the-label",
+      "complete": true,
+      "fetched": 16,
+      "added": [],
+      "updated": 16,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "glamberry",
+      "complete": true,
+      "fetched": 151,
+      "added": [],
+      "updated": 151,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "ay-collection",
+      "complete": true,
+      "fetched": 3,
+      "added": [],
+      "updated": 3,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "so-classy",
+      "complete": true,
+      "fetched": 26,
+      "added": [],
+      "updated": 26,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
+    },
+    {
+      "brandSlug": "bybdsha",
+      "complete": true,
+      "fetched": 17,
+      "added": [],
+      "updated": 17,
       "delisted": 0,
       "filtered": [],
       "returned": 0
