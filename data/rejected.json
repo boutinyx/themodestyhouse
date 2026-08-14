@@ -40554,5 +40554,21 @@
     "reason": "non-apparel:care",
     "tier": "B",
     "evidence": "Belt"
+  },
+  {
+    "id": "vela:7885139542172",
+    "brandSlug": "vela",
+    "title": "Beige Underdress",
+    "url": "https://velascarves.com/products/beige-under-dress",
+    "garmentWas": "dress",
+    "reason": "id-pin"
+  },
+  {
+    "id": "nihan:14913329791339",
+    "brandSlug": "nihan",
+    "title": "Parlak Taşlı Geniş Yakalı Angora Kaban - Siyah",
+    "url": "https://nihan.com.tr/products/parlak-tasli-genis-yakali-angora-kaban-siyah",
+    "garmentWas": "top",
+    "reason": "id-pin"
   }
 ]

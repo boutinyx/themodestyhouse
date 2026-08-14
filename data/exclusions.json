@@ -155,7 +155,15 @@
     "mukistore:9491417727241",
     "mukistore:9491201491209",
     "golden-dune:10944930709847",
-    "golden-dune:10943574540631"
+    "golden-dune:10943574540631",
+
+    "whiteicy:15679869419860",
+    "whiteicy:15679869387092",
+    "whiteicy:15679869321556",
+    "whiteicy:15679869223252",
+    "whiteicy:15679869157716",
+    "vela:7885139542172",
+    "nihan:14913329791339"
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],

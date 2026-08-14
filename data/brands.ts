@@ -212,4 +212,9 @@ export const BRANDS: Brand[] = [
   { slug: 'ay-collection', name: 'AY Collection', homepage: 'https://ay-collection.com', feedUrl: 'https://ay-collection.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Abayas', city: 'Europe', vibe: 'elegant' },
   { slug: 'so-classy', name: 'So Classy', homepage: 'https://soclassyfr.com', feedUrl: 'https://soclassyfr.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modern abayas', city: 'France', vibe: 'elegant' },
   { slug: 'bybdsha', name: 'BYBDSHA', homepage: 'https://bybdsha.com', feedUrl: 'https://bybdsha.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest', city: 'United Kingdom', vibe: 'elegant' },
+  // German-language feed (lang="de", Shopify.currency EUR verified live) — added to
+  // data/translate-brands.json as 'de'. Dresses/sets/tops/abayas/kimonos, no
+  // product_type or tags on any sampled row, so classification relies on title alone
+  // (already-supported German vocabulary: kleid/oberteil/zweiteiler/abaya/kimono).
+  { slug: 'parladusa', name: 'Parladusa', homepage: 'https://parladusa.com', feedUrl: 'https://parladusa.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Germany', vibe: 'elegant' },
 ];
