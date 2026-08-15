@@ -570,5 +570,128 @@
   "nihan:15059520258411": {
     "lane": "outerwear",
     "subtype": "coat"
+  },
+  "parladusa:15552051904838": {
+    "lane": "modest-activewear"
+  },
+  "ahlam-collections:9302538256695": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "mukistore:15531338301705": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "nasiba:10358348644661": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "nasiba:10358347923765": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "noureen:55231": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "nour-al-houda:7759166210096": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "nour-al-houda:7759166144560": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "golden-dune:10291141378391": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "golden-dune:10291133710679": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "golden-dune:10291126894935": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "ria-miranda:9299693863170": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "ria-miranda:9275072381186": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "jennah-boutique:8003094937776": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "jennah-boutique:8003095003312": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "chic-modesty:10323194708306": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "chic-modesty:10323193823570": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "modern-hijabi:8335981314262": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "modern-hijabi:8335977709782": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "mariams:9150348427480": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "nour-al-houda:7754704617520": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "nour-al-houda:7754704912432": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "nour-al-houda:7754704715824": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "nour-al-houda:7754704584752": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "veiled:7640861474921": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "veiled:7640861081705": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "veiled:7640823300201": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "veiled:7144462057577": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "veiled:7141452939369": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "veiled:7144461762665": {
+    "lane": "layering-basics",
+    "subtype": "cropped-body-shirt"
+  },
+  "mariams:8051980796120": {
+    "lane": "outerwear",
+    "subtype": "cardigan"
   }
 }
