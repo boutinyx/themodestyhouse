@@ -1,5 +1,8 @@
 import type { Product } from '@/lib/types';
-import { isSwim, isActivewear, isLayering, isJilbab, isOuterwear } from '@/lib/specialty';
+import {
+  isSwim, isActivewear, isLayering, isJilbab, isOuterwear, isSpecialty,
+  layeringSubtype, outerwearSubtype, LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS,
+} from '@/lib/specialty';
 
 export type LaneKind = 'category' | 'community' | 'occasion' | 'season';
 
@@ -154,3 +157,37 @@ export const LANES: Lane[] = [
 ];
 
 export const CATEGORY_LANES = LANES.filter((l) => l.kind === 'category');
+
+/**
+ * Human label for whichever CATEGORY_LANES entry a product currently
+ * appears on — the SAME rule lib/products.ts::productsForLane uses, not
+ * just the first lane.match() to return true: a non-specialty lane
+ * (e.g. Tops) additionally requires !isSpecialty(p), because
+ * productsForLane strips specialty items back out of every lane except the
+ * one that declares `specialty: true`. Skipping that second check would
+ * mislabel a layering/outerwear/activewear/swim/jilbab item that happens to
+ * ALSO structurally match a plain garment lane (e.g. a neck-cover top
+ * matches modest-tops's `garment === 'top'` just as much as it matches
+ * layering-basics) as the wrong, non-specialty lane — caught by
+ * lib/lanes.test.ts before this shipped.
+ *
+ * Used by the staff review tools to show "what category is this in right
+ * now" without re-deriving the classification logic, so it can never drift
+ * from what a shopper actually sees. Returns 'Uncategorized' only for a
+ * garment: 'other' row, which normalizeProduct already drops before
+ * publish (CLAUDE.md Invariant 9) — unreachable on any published product,
+ * kept as a safe fallback rather than a non-null assertion.
+ */
+export function currentCategoryLabel(p: Product): string {
+  const lane = CATEGORY_LANES.find((l) => l.match(p) && (l.specialty || !isSpecialty(p)));
+  if (!lane) return 'Uncategorized';
+  if (lane.slug === 'outerwear') {
+    const sub = outerwearSubtype(p);
+    return sub ? `${lane.title} — ${OUTERWEAR_SUBTYPE_LABELS[sub]}` : lane.title;
+  }
+  if (lane.slug === 'layering-basics') {
+    const sub = layeringSubtype(p);
+    return sub ? `${lane.title} — ${LAYERING_SUBTYPE_LABELS[sub]}` : lane.title;
+  }
+  return lane.title;
+}

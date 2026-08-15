@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useState } from 'react';
 import { RecentlyAdded } from './RecentlyAdded';
+import { BrandReview } from './BrandReview';
 import { ReviewTray } from './ReviewTray';
 
 /**
@@ -21,6 +22,7 @@ export function CurateConsole() {
   return (
     <>
       <RecentlyAdded onDecision={onDecision} />
+      <BrandReview onDecision={onDecision} />
       <ReviewTray refreshToken={refreshToken} />
     </>
   );

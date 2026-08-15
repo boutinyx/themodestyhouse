@@ -47,5 +47,14 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ items: recent, decisions, cutCount: getCutIds().size, mostRecent });
   }
 
+  // ?scope=brand&brand=<slug> — everything CURRENTLY PUBLISHED for one
+  // brand, for reviewing/recategorizing a brand wholesale (not just its
+  // newest arrivals). Same server-side filter reasoning as scope=recent.
+  if (req.nextUrl.searchParams.get('scope') === 'brand') {
+    const brand = req.nextUrl.searchParams.get('brand') || '';
+    const forBrand = brand ? items.filter((p) => p.brandSlug === brand) : [];
+    return NextResponse.json({ items: forBrand, decisions, cutCount: getCutIds().size, mostRecent: null });
+  }
+
   return NextResponse.json({ items, decisions, cutCount: getCutIds().size });
 }

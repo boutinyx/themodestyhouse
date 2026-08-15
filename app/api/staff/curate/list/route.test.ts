@@ -8,11 +8,11 @@ vi.mock('@/lib/liveCuts', () => ({
 vi.mock('node:fs', () => ({
   readFileSync: () =>
     JSON.stringify([
-      { id: 'a:1', title: 'Old Cut Item', firstSeen: '2026-08-05', garment: 'top' },
-      { id: 'a:2', title: 'Older Item', firstSeen: '2026-08-10', garment: 'dress' },
-      { id: 'a:3', title: 'Newest Item One', firstSeen: '2026-08-13', garment: 'abaya' },
-      { id: 'a:4', title: 'Newest Item Two', firstSeen: '2026-08-13', garment: 'skirt' },
-      { id: 'a:5', title: 'No Date Item' /* firstSeen absent */, garment: 'set' },
+      { id: 'a:1', brandSlug: 'a', title: 'Old Cut Item', firstSeen: '2026-08-05', garment: 'top' },
+      { id: 'a:2', brandSlug: 'a', title: 'Older Item', firstSeen: '2026-08-10', garment: 'dress' },
+      { id: 'a:3', brandSlug: 'a', title: 'Newest Item One', firstSeen: '2026-08-13', garment: 'abaya' },
+      { id: 'b:4', brandSlug: 'b', title: 'Newest Item Two', firstSeen: '2026-08-13', garment: 'skirt' },
+      { id: 'b:5', brandSlug: 'b', title: 'No Date Item' /* firstSeen absent */, garment: 'set' },
     ]),
   existsSync: () => true,
 }));
@@ -44,6 +44,20 @@ describe('GET /api/staff/curate/list', () => {
     const res = await GET(req('https://x.test/api/staff/curate/list?scope=recent'));
     const body = await res.json();
     expect(body.mostRecent).toBe('2026-08-13');
-    expect(body.items.map((p: { id: string }) => p.id)).toEqual(['a:3', 'a:4']);
+    expect(body.items.map((p: { id: string }) => p.id)).toEqual(['a:3', 'b:4']);
+  });
+
+  it('scope=brand returns only that brand’s rows', async () => {
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
+    const res = await GET(req('https://x.test/api/staff/curate/list?scope=brand&brand=b'));
+    const body = await res.json();
+    expect(body.items.map((p: { id: string }) => p.id)).toEqual(['b:4', 'b:5']);
+  });
+
+  it('scope=brand with no brand param returns nothing', async () => {
+    vi.mocked(requireStaffSession).mockResolvedValue(null);
+    const res = await GET(req('https://x.test/api/staff/curate/list?scope=brand'));
+    const body = await res.json();
+    expect(body.items).toEqual([]);
   });
 });

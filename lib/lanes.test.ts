@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { LANES } from './lanes';
+import { LANES, currentCategoryLabel } from './lanes';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -44,5 +44,27 @@ describe('LANES', () => {
     const prayerSet = { ...base, garment: 'abaya' as const, title: '2-Piece Prayer Set (Jilbab)' };
     expect(hijabs.match(prayerSet)).toBe(false);
     expect(layering.match(prayerSet)).toBe(true);
+  });
+});
+
+describe('currentCategoryLabel', () => {
+  it('labels a plain garment by its category lane title', () => {
+    expect(currentCategoryLabel({ ...base, garment: 'skirt' })).toBe('Skirts');
+    expect(currentCategoryLabel({ ...base, garment: 'trousers' })).toBe('Trousers');
+  });
+
+  it('labels an outerwear item with its subtype', () => {
+    const blazer = { ...base, garment: 'top' as const, title: 'Tailored Blazer' };
+    expect(currentCategoryLabel(blazer)).toBe('Outerwear — Blazers');
+  });
+
+  it('labels a layering item with its subtype', () => {
+    const neckCover = { ...base, garment: 'top' as const, title: 'Black Neck Cover' };
+    expect(currentCategoryLabel(neckCover)).toBe('Layering Basics — Neck Covers & Dickeys');
+  });
+
+  it('reflects a forcedLane override rather than the raw garment', () => {
+    const forced = { ...base, garment: 'top' as const, forcedLane: 'outerwear' as const, forcedOuterwearSubtype: 'vest' as const };
+    expect(currentCategoryLabel(forced)).toBe('Outerwear — Vests');
   });
 });
