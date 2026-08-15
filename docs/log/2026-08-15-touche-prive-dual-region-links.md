@@ -84,14 +84,17 @@ broken option: show US visitors the int link, EU visitors the eu link,
 - `npx vitest run --exclude '.claude/**'` — 41 files, **664 passed** (was
   653; +11 from `lib/regionalLink.test.ts`, +4 net elsewhere).
 - `rm -rf .next && npm run build` — clean.
-- **Not verified**: the actual client-side timezone swap in a real browser.
-  The Chrome extension wasn't connected in this session (`tabs_context_mcp`
-  returned "Browser extension is not connected"), so no live click-through
-  test happened. Confidence instead comes from: the pure routing function is
-  unit-tested directly, and the React wiring is a near-literal copy of
-  `QuickViewProvider`'s existing, already-working post-mount external-read
-  pattern in this same codebase — but this is a real gap, not equivalent to
-  having actually watched it work. Worth a real browser check next session.
+- **Live browser verification, added after this entry was first written.**
+  The Claude Chrome extension wasn't connected in this session, so a
+  standalone Playwright script did the check instead: `chromium.launch()`,
+  two contexts (`timezoneId: 'Europe/Amsterdam'` and `'America/New_York'`),
+  loaded `/modest-dresses` in production (`next start`, the real build),
+  clicked "Load more" until the dual-url "Floral Patterned Chiffon Dress"
+  card appeared, and read its live `href`. **Europe/Amsterdam → routed to
+  `eu.toucheprive.com`. America/New_York → stayed on `int.toucheprive.com`.
+  Both PASS, zero console/page errors in either context.** This confirms the
+  actual React wiring (SSR default → post-mount `useEffect` → DOM `href`
+  update), not just the extracted pure function.
 
 ## Notes / follow-ups
 
