@@ -5,6 +5,7 @@ import { decodeCard } from '@/lib/compactCatalogue';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
+import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
 import { useCurrency } from './CurrencyProvider';
 
 const STEP = 24;
@@ -22,6 +23,11 @@ export function FilterableGrid({
   initialType?: string;
 }) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
+  // Independent of `type` below (the sub-category flyout's URL-driven
+  // state, from 034a985) — this is a plain in-page filter, same shape as
+  // `brand`, not synced to the URL. Only meaningful on lanes where
+  // cat.hijabTypeFilters is non-empty (in practice: only modest-hijabs).
+  const [fabricType, setFabricType] = useState('all');
   const [type, setType] = useState(() => {
     if (!initialType) return 'all';
     if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
@@ -61,6 +67,15 @@ export function FilterableGrid({
 
   const brands = useMemo(
     () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
+    [cat]
+  );
+  // cat.hijabTypeFilters is already in HIJAB_TYPE_FILTER_LABELS's canonical
+  // order (lib/compactCatalogue.ts's pre-pass) and already contains only the
+  // types actually present on this lane — no further sort/filter needed,
+  // same as how `brands` above is the one place that DOES need a sort
+  // (brand names have no canonical order the way subtype keys do).
+  const fabricTypes = useMemo(
+    () => cat.hijabTypeFilters.map((t) => ({ value: t, label: HIJAB_TYPE_FILTER_LABELS[t] })),
     [cat]
   );
   // Outerwear's in-page "Type" dropdown was removed 2026-08-13 at Tina's
@@ -104,6 +119,8 @@ export function FilterableGrid({
           ? cat.hijabSubtypes.indexOf(type as (typeof cat.hijabSubtypes)[number])
           : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
+  const fabricTypeIdx = fabricType === 'all' ? -1 : cat.hijabTypeFilters.indexOf(fabricType as (typeof cat.hijabTypeFilters)[number]);
+
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
     const n = cat.rows.title.length;
@@ -118,6 +135,11 @@ export function FilterableGrid({
               : cat.rows.layeringSubtypeIdx[i];
         if (rowTypeIdx !== typeIdx) continue;
       }
+      // Independent of the typeIdx/typeDomain check above — ANDed, not a
+      // replacement. A visitor can arrive via the Khimars & Jilbabs flyout
+      // link (narrows by sub-category) and also pick "Jersey" here (narrows
+      // further by fabric).
+      if (fabricTypeIdx !== -1 && cat.rows.hijabTypeFilterIdx[i] !== fabricTypeIdx) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -126,7 +148,7 @@ export function FilterableGrid({
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, typeIdx, typeDomain, query]);
+  }, [cat, brandIdx, typeIdx, typeDomain, fabricTypeIdx, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -140,7 +162,7 @@ export function FilterableGrid({
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [brand, type, q]);
+  }, [brand, type, fabricType, q]);
 
   const shownRows = sortedRows.slice(0, visible);
   const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
@@ -161,6 +183,13 @@ export function FilterableGrid({
             here, not re-deriving anything. See
             docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {/* Only rendered on a lane with fabric/style groups to offer — in
+            practice, only /modest-hijabs. Independent of the sub-category
+            flyout (Khimars & Jilbabs/Undercaps, 034a985) — see the comment
+            on fabricTypeIdx above. */}
+        {fabricTypes.length > 0 && (
+          <FilterDropdown label="Type" value={fabricType} options={fabricTypes} onSelect={setFabricType} />
+        )}
         {/* Unlike the two above, this dropdown's "nothing chosen" value is a
             real key: 'featured' IS a sort order, not the absence of one. It is
             also listed in SORT_OPTIONS, so FilterDropdown labels its default
