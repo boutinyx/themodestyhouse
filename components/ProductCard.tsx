@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { CardProduct } from '@/lib/compactCatalogue';
 import { Heart, Eye } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
@@ -7,6 +7,7 @@ import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { useIsStaff } from './StaffSessionProvider';
 import { StaffEditControl, type StaffEditResult, laneLabel, garmentMoveLabel, subtypeLabel } from './StaffEditControl';
+import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
 
 export function ProductCard({ p }: { p: CardProduct }) {
   const { open, isFav, toggleFav } = useQuickView();
@@ -14,6 +15,17 @@ export function ProductCard({ p }: { p: CardProduct }) {
   const isStaff = useIsStaff();
   const [staffState, setStaffState] = useState<StaffEditResult | null>(null);
   const fav = isFav(p.id);
+  // `p.url` is the SSR default (correct for the overwhelming majority of
+  // products, which have no altUrl at all). Only swaps post-mount, and only
+  // for the handful of dual-region items — see lib/regionalLink.ts.
+  const [href, setHref] = useState(p.url);
+  useEffect(() => {
+    if (!p.altUrl) return;
+    // Reading the browser's timezone after mount, same SSR-mismatch reasoning
+    // as QuickViewProvider's localStorage read below.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setHref(pickRegionalUrl(p.url, p.altUrl, readTimeZone()));
+  }, [p.url, p.altUrl]);
   return (
     // The card's primary action is now a real outbound link, not a modal — a
     // crawler (or a shopping agent) can follow it, which it never could when
@@ -24,7 +36,7 @@ export function ProductCard({ p }: { p: CardProduct }) {
     // violation this file was already rewritten once to remove (see below).
     <div className="group relative block text-center" style={staffState?.type === 'delete' ? { opacity: 0.35 } : undefined}>
       <a
-        href={p.url}
+        href={href}
         target="_blank"
         rel="noopener noreferrer sponsored"
         aria-label={`${p.title} by ${p.brandName} — opens ${p.brandName}'s site`}

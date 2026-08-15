@@ -35,6 +35,9 @@ export interface CardProduct {
   currency: string;
   image: string;
   url: string;
+  /** See Product.altUrl. Absent on every row except the small Touché Privé
+   *  dual-region subset. */
+  altUrl?: string;
 }
 
 interface CompactBrand {
@@ -82,6 +85,12 @@ export interface CompactCatalogue {
     /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
      *  decoded into CardProduct, same treatment as occasionMask. */
     firstSeenDay: number[];
+    /** See Product.altUrl. Stored as a full URL, unlike urlTail — it's on a
+     *  different domain than the row's own brand.homepage, so the
+     *  handle-derivation trick urlTail uses doesn't apply, and it's rare
+     *  enough (a few hundred rows out of ~21k) that compacting it further
+     *  isn't worth the complexity. '' means absent. */
+    altUrl: string[];
   };
 }
 
@@ -133,6 +142,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     layeringSubtypeIdx: [],
     outerwearSubtypeIdx: [],
     firstSeenDay: [],
+    altUrl: [],
   };
 
   for (const p of products) {
@@ -226,6 +236,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     const outerwearSub = outerwearSubtype(p);
     rows.outerwearSubtypeIdx.push(outerwearSub === null ? -1 : outerwearSubtypeIndex.get(outerwearSub)!);
     rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
+    rows.altUrl.push(p.altUrl ?? '');
   }
 
   return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, rows };
@@ -236,6 +247,7 @@ export function decodeCard(cat: CompactCatalogue, row: number): CardProduct {
   const urlTail = cat.rows.urlTail[row];
   const url = urlTail.startsWith('http') ? urlTail : `${brand.homepage}/products/${urlTail}`;
   const image = cat.imagePrefixes[cat.rows.imagePrefixIdx[row]] + cat.rows.imageFile[row];
+  const altUrl = cat.rows.altUrl[row];
   return {
     id: `${brand.slug}:${cat.rows.shopifyId[row]}`,
     brandSlug: brand.slug,
@@ -246,6 +258,7 @@ export function decodeCard(cat: CompactCatalogue, row: number): CardProduct {
     currency: brand.currency,
     image,
     url,
+    ...(altUrl ? { altUrl } : {}),
   };
 }
 

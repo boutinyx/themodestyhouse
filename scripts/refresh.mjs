@@ -16,8 +16,19 @@ const U = (f) => new URL(`../data/${f}`, import.meta.url);
 const TODAY = new Date().toISOString().slice(0, 10);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Brands populated by a dedicated script, never by the generic per-brand
+// fetch/refresh loop below — an ordinary refresh of their feed would
+// reintroduce whatever that script was specifically built to avoid. Right
+// now that's just touche-prive-eu (scripts/touche-prive-dual-region.mjs):
+// its feed overlaps ~25% with touche-prive's own, and a generic refresh
+// would re-add every one of those as a duplicate second card. Excluded from
+// the bare/all-brands run; naming it explicitly (`npm run refresh -- touche-prive-eu`)
+// still works but does a plain full-catalog refresh and WILL reintroduce the
+// duplicates — use the dedicated script instead.
+const CUSTOM_MANAGED = new Set(['touche-prive-eu']);
+
 const only = new Set(process.argv.slice(2));
-const targets = only.size ? BRANDS.filter((b) => only.has(b.slug)) : BRANDS;
+const targets = only.size ? BRANDS.filter((b) => only.has(b.slug)) : BRANDS.filter((b) => !CUSTOM_MANAGED.has(b.slug));
 if (only.size && targets.length !== only.size) {
   const missing = [...only].filter((s) => !BRANDS.some((b) => b.slug === s));
   throw new Error(`Unknown brand slug(s): ${missing.join(', ')}`);

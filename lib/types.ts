@@ -16,7 +16,10 @@ export type LayeringSubtype =
   | 'shirt-extender'
   | 'cropped-body-shirt'
   | 'under-dress'
-  | 'base-layer-top';
+  | 'base-layer-top'
+  | 'undercap'
+  | 'khimar'
+  | 'prayer-set';
 
 /** The four sub-categories of the Outerwear lane (lib/lanes.ts) — see
  *  lib/specialty.ts for the classification logic. Declared here for the
@@ -96,4 +99,14 @@ export interface Product {
    *  field would let a subtype from one lane leak onto the other if the lane
    *  were ever changed without clearing it. */
   forcedOuterwearSubtype?: OuterwearSubtype;
+  /** A second, equally-valid product URL on a DIFFERENT regional storefront of
+   *  the same brand — e.g. Touché Privé runs a Shopify geo-redirect app that
+   *  silently sends EU-geolocated visitors from `int.toucheprive.com` to
+   *  `eu.toucheprive.com`, a materially different catalog (own ids, own
+   *  currency) that doesn't carry every `int` handle. `url` stays the
+   *  SSR/crawler default; `altUrl`, when present, is what a European-timezone
+   *  visitor is routed to client-side — see lib/regionalLink.ts. No cookies,
+   *  no IP lookup: picked from `Intl.DateTimeFormat().resolvedOptions().timeZone`
+   *  at click time. See docs/log/2026-08-15-touche-prive-dual-region-links.md. */
+  altUrl?: string;
 }

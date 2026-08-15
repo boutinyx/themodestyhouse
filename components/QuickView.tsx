@@ -5,6 +5,7 @@ import { Heart, X, ArrowUpRight, Copy, Check } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import { SITE_URL } from '@/lib/schema';
+import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
 
 type Ctx = {
   open: (p: CardProduct) => void;
@@ -84,6 +85,15 @@ function Modal({
   const [zoomed, setZoomed] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
+  // Same dual-region routing as ProductCard — see lib/regionalLink.ts.
+  const [shopHref, setShopHref] = useState(product.url);
+  useEffect(() => {
+    if (!product.altUrl) return;
+    // Reading the browser's timezone after mount — same SSR-mismatch
+    // reasoning as QuickViewProvider's localStorage read.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setShopHref(pickRegionalUrl(product.url, product.altUrl, readTimeZone()));
+  }, [product.url, product.altUrl]);
 
   // `id` is always `${brandSlug}:${shopifyId}` (Invariant 1) — stripping the
   // known prefix is safer than splitting on the first ':', since a Shopify id
@@ -202,7 +212,7 @@ function Modal({
           </div>
           <div className="mt-auto pt-8 flex flex-col gap-3">
             <a
-              href={product.url}
+              href={shopHref}
               target="_blank"
               rel="noopener noreferrer sponsored"
               data-brand={product.brandSlug}
