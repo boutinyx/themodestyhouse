@@ -45,7 +45,13 @@ export const LANES: Lane[] = [
     // which productsForLane would otherwise use to strip these back out —
     // same mechanism modest-swimwear/modest-activewear/layering-basics use
     // to be the one lane specialty items ARE allowed to appear on.
-    match: (p) => p.garment === 'hijab' || isJilbab(p),
+    // `&& !isLayering(p)` added 2026-08-15: undercaps, prayer khimaars and
+    // prayer wear generally now belong to Layering Basics instead (Tina's
+    // call) — some of those titles ALSO say "jilbab" (prayer-set dresses
+    // are commonly listed as both), so without this guard they'd show on
+    // both lanes at once. isOuterwear() already excludes isLayering() the
+    // same way, for the same reason.
+    match: (p) => (p.garment === 'hijab' || isJilbab(p)) && !isLayering(p),
     specialty: true,
   },
   {

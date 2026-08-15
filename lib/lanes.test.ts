@@ -32,7 +32,17 @@ describe('LANES', () => {
     const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
     expect(hijabs.specialty).toBe(true);
     expect(hijabs.match({ ...base, garment: 'hijab', title: 'Plain Hijab' })).toBe(true);
-    expect(hijabs.match({ ...base, garment: 'abaya', title: '2-Piece Prayer Set (Jilbab)' })).toBe(true);
+    expect(hijabs.match({ ...base, garment: 'abaya', title: 'Black Corduroy Jilbab' })).toBe(true);
     expect(hijabs.match({ ...base, garment: 'abaya', title: 'Black Open Abaya' })).toBe(false);
+  });
+  // 2026-08-15: a jilbab-titled product that is ALSO prayer wear now belongs
+  // to Layering Basics instead — see lib/specialty.ts's isLayering() and the
+  // `&& !isLayering(p)` guard this lane's match gained the same day.
+  it('hijabs lane defers to Layering Basics for jilbab-titled prayer sets', () => {
+    const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
+    const layering = LANES.find((l) => l.slug === 'layering-basics')!;
+    const prayerSet = { ...base, garment: 'abaya' as const, title: '2-Piece Prayer Set (Jilbab)' };
+    expect(hijabs.match(prayerSet)).toBe(false);
+    expect(layering.match(prayerSet)).toBe(true);
   });
 });

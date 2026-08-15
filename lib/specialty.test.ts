@@ -109,7 +109,22 @@ describe('isLayering', () => {
 
   it('does not match hijab/underscarf/bonnet titles, even when they cover the neck', () => {
     expect(isLayering(p('Lila Neck Cover Hijab-Black', 'hijab'))).toBe(false); // zahraa
-    expect(isLayering(p('Black Neck Cover Underscarf In Cotton - Soft Undercap Bonnet', 'hijab'))).toBe(false); // bazar-al-haya
+  });
+
+  // Undercap/khimar/prayer-set are 2026-08-15 additions — exceptions to the
+  // hijab/underscarf/bonnet exclusion just above, not subject to it.
+  it('matches undercap titles, even alongside hijab/underscarf/bonnet vocabulary', () => {
+    expect(isLayering(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe(true); // nour-al-houda
+    expect(isLayering(p('Black Neck Cover Underscarf In Cotton - Soft Undercap Bonnet', 'hijab'))).toBe(true); // bazar-al-haya — "Undercap" wins
+  });
+  it('matches abaya-length prayer khimaars but not the cape-style hijab khimar', () => {
+    expect(isLayering(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(true); // noureen
+    expect(isLayering(p('Khimar Medina silk', 'hijab'))).toBe(false); // jennah-boutique — a standalone headcover, not layering
+  });
+  it('matches prayer-titled products across every garment', () => {
+    expect(isLayering(p('Prayer Dress Jersey - Navy', 'dress'))).toBe(true); // losyana
+    expect(isLayering(p('Two-Piece Jilbab / Prayer Set Dress With Elasticated Sleeves - Slate Grey', 'abaya'))).toBe(true); // abaya-lounge
+    expect(isLayering(p('Bizra Prayer Set', 'set'))).toBe(true); // ria-miranda
   });
 
   it('does not pull a real, standalone top out of its own lane just for mentioning a neckline', () => {
@@ -202,6 +217,13 @@ describe('layeringSubtype', () => {
     expect(layeringSubtype(p('Lisa Shirt Extender', 'top', { brandSlug: 'ria-miranda' }))).toBe('shirt-extender');
     expect(layeringSubtype(p('Linaya Shirt Extender', 'top', { brandSlug: 'ria-miranda' }))).toBe('shirt-extender');
     expect(layeringSubtype(p('Jaida Modest Shirt Extender Slip — Cotton Layering Skirt', 'skirt', { brandSlug: 'jaida' }))).toBe('shirt-extender');
+  });
+
+  // 2026-08-15 additions.
+  it('sorts undercap/khimar/prayer-set into their own groups', () => {
+    expect(layeringSubtype(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe('undercap');
+    expect(layeringSubtype(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe('khimar');
+    expect(layeringSubtype(p('Prayer Dress Jersey - Navy', 'dress'))).toBe('prayer-set');
   });
 
   it('every currently-published layering item gets a real subtype, never a silent null', () => {

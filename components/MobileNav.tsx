@@ -6,13 +6,14 @@ import { List as ListIcon, X as XIcon, CaretRight, CaretDown } from '@phosphor-i
 import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL } from '@/lib/fx';
-import { OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype } from '@/lib/specialty';
+import { OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, type OuterwearSubtype, type LayeringSubtype } from '@/lib/specialty';
 import { useCurrency } from './CurrencyProvider';
 import { useScrollFade } from './useScrollFade';
 
-// Insertion order of the object literal in lib/specialty.ts, same source the
+// Insertion order of the object literals in lib/specialty.ts, same source the
 // desktop flyout (components/Nav.tsx) and the compact catalogue both read.
 const OUTERWEAR_SUBTYPE_ORDER = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
+const LAYERING_SUBTYPE_ORDER = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
 
 /**
  * The phone navigation: a full-screen takeover.
@@ -50,6 +51,13 @@ export function MobileNav() {
   // only the four sub-rows are real links.
   const [outerwearOpen, setOuterwearOpen] = useState(false);
   const outerwearRowRef = useRef<HTMLDivElement>(null);
+  // Layering Basics got the same disclosure treatment 2026-08-15 (Tina: "i
+  // want the sub catagories of layering basics to be like outerwear sub
+  // catagories... i want to be able to click them") — same reasoning as
+  // outerwearOpen/outerwearRowRef below, own state so opening one doesn't
+  // affect the other.
+  const [layeringOpen, setLayeringOpen] = useState(false);
+  const layeringRowRef = useRef<HTMLDivElement>(null);
 
   // Outerwear sits near the bottom of the Category list (9th of 10), so
   // opening it in place pushes its four sub-rows almost entirely below the
@@ -67,6 +75,9 @@ export function MobileNav() {
   useEffect(() => {
     if (outerwearOpen) outerwearRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [outerwearOpen]);
+  useEffect(() => {
+    if (layeringOpen) layeringRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [layeringOpen]);
 
   // Choosing a currency does NOT close the panel — it changes prices on the page
   // behind it, and the visitor may well want to try another one.
@@ -135,11 +146,36 @@ export function MobileNav() {
     </Link>
   );
 
+  /** The subtype links inside an open disclosure row — no ref involved, so
+   *  this is safe to share as a plain helper (unlike the row itself, which
+   *  the eslint react-hooks/refs rule won't let take a ref through a
+   *  function parameter — it can't statically prove the ref is only ever
+   *  used for `ref=`, so each row below attaches its own ref directly in
+   *  JSX instead of via a shared function). */
+  const subtypeLinks = <T extends string,>(slug: string, order: T[], labels: Record<T, string>) => (
+    <div className="pb-2">
+      {order.map((t) => (
+        <Link
+          key={t}
+          href={`/${slug}?type=${t}`}
+          onClick={close}
+          className="flex items-center py-3 pl-4"
+          style={{
+            fontFamily: 'var(--font-ui-stack)',
+            fontSize: 15,
+            lineHeight: 1.35,
+            letterSpacing: '0.01em',
+            color: 'var(--ink)',
+          }}
+        >
+          {labels[t]}
+        </Link>
+      ))}
+    </div>
+  );
+
   /** Outerwear's row: a disclosure toggle, not a link — see the note on
-   *  `outerwearOpen` above. Sub-rows reuse the plain row's typography but at
-   *  15px with a left indent, since these ARE genuinely nested under a
-   *  parent (unlike the flush-left Category group, which has no parent row
-   *  of its own to indent from). */
+   *  `outerwearOpen` above. */
   const outerwearRow = () => (
     <div key="/outerwear" ref={outerwearRowRef}>
       <button
@@ -167,27 +203,41 @@ export function MobileNav() {
           }}
         />
       </button>
-      {outerwearOpen && (
-        <div className="pb-2">
-          {OUTERWEAR_SUBTYPE_ORDER.map((t) => (
-            <Link
-              key={t}
-              href={`/outerwear?type=${t}`}
-              onClick={close}
-              className="flex items-center py-3 pl-4"
-              style={{
-                fontFamily: 'var(--font-ui-stack)',
-                fontSize: 15,
-                lineHeight: 1.35,
-                letterSpacing: '0.01em',
-                color: 'var(--ink)',
-              }}
-            >
-              {OUTERWEAR_SUBTYPE_LABELS[t]}
-            </Link>
-          ))}
-        </div>
-      )}
+      {outerwearOpen && subtypeLinks('outerwear', OUTERWEAR_SUBTYPE_ORDER, OUTERWEAR_SUBTYPE_LABELS)}
+    </div>
+  );
+
+  /** Layering Basics's row — same shape as Outerwear's, added 2026-08-15
+   *  (Tina: "i want the sub catagories of layering basics to be like
+   *  outerwear sub catagories... i want to be able to click them"). */
+  const layeringRow = () => (
+    <div key="/layering-basics" ref={layeringRowRef}>
+      <button
+        type="button"
+        onClick={() => setLayeringOpen((v) => !v)}
+        aria-expanded={layeringOpen}
+        className="flex items-center justify-between gap-4 py-4 w-full text-left"
+        style={{
+          fontFamily: 'var(--font-ui-stack)',
+          fontSize: 17,
+          lineHeight: 1.35,
+          letterSpacing: '0.01em',
+          color: path === '/layering-basics' ? 'var(--aubergine)' : 'var(--ink)',
+          fontWeight: path === '/layering-basics' ? 500 : 400,
+        }}
+      >
+        Layering Basics
+        <CaretDown
+          size={15}
+          style={{
+            flexShrink: 0,
+            color: 'var(--muted)',
+            transition: 'transform 150ms ease-out',
+            transform: layeringOpen ? 'rotate(180deg)' : undefined,
+          }}
+        />
+      </button>
+      {layeringOpen && subtypeLinks('layering-basics', LAYERING_SUBTYPE_ORDER, LAYERING_SUBTYPE_LABELS)}
     </div>
   );
 
@@ -296,7 +346,9 @@ export function MobileNav() {
                 the /style/[vibe] pages were removed — see
                 docs/log/2026-08-09-remove-style-vibe-feature.md.) */}
             <p className="eyebrow pt-5 pb-1">Category</p>
-            {CATEGORY_LANES.map((l) => (l.slug === 'outerwear' ? outerwearRow() : row(`/${l.slug}`, l.title)))}
+            {CATEGORY_LANES.map((l) =>
+              l.slug === 'outerwear' ? outerwearRow() : l.slug === 'layering-basics' ? layeringRow() : row(`/${l.slug}`, l.title),
+            )}
 
             <div className="mt-5 pt-2" style={{ borderTop: '1px solid var(--hairline)' }}>
               {row('/designers', 'Designers')}
