@@ -1167,5 +1167,21 @@
   "noureen:52151": {
     "lane": "layering-basics",
     "subtype": "undercap"
+  },
+  "touche-prive:9901427884360": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "touche-prive:9470476648776": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "touche-prive:9650666963272": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "touche-prive:9650659164488": {
+    "lane": "outerwear",
+    "subtype": "coat"
   }
 }
