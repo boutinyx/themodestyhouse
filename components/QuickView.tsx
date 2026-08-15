@@ -227,18 +227,19 @@ function Modal({
               <Heart size={17} weight={isFav ? 'fill' : 'regular'} />
               {isFav ? 'Saved to favourites' : 'Add to favourites'}
             </button>
-            {/* Desktop-only: a link back to a page of OURS, not the brand's —
-                the full-card anchor and the button above both leave the site
-                immediately, so there was nothing on themodestyhouse.com to
-                share. `hidden md:inline-flex` matches the modal's own
-                md:grid-cols-2 split — mobile is already a tight single
-                column (see the photo-height comment above), desktop has the
-                room. Links to a noindex page (app/product/[brandSlug]/
-                [shopifyId]) so it works when clicked without repeating the
-                2026-08-05 thin-content mistake. */}
+            {/* A link back to a page of OURS, not the brand's — the full-card
+                anchor and the button above both leave the site immediately,
+                so there was nothing on themodestyhouse.com to share. Shown
+                at every width (Tina asked for it on mobile and tablet too,
+                2026-08-15) — the modal's text column already scrolls
+                (min-h-0 overflow-y-auto above), so a third stacked button
+                costs nothing it can't absorb. Links to a noindex page
+                (app/product/[brandSlug]/[shopifyId]) so it works when
+                clicked without repeating the 2026-08-05 thin-content
+                mistake. */}
             <button
               onClick={copyShareLink}
-              className="chip w-full py-3 hidden md:inline-flex items-center justify-center gap-2"
+              className="chip w-full py-3 inline-flex items-center justify-center gap-2"
             >
               {copied ? <Check size={17} weight="bold" /> : <Copy size={17} />}
               {copied ? 'Link copied' : 'Copy share link'}
