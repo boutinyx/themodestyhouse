@@ -33585,12 +33585,100 @@
     "evidence": "Magnets"
   },
   {
+    "id": "ipekstil:9338258948331",
+    "brandSlug": "ipekstil",
+    "title": "Touch Abaya Takım BEJ",
+    "url": "https://ipekstil.com/products/touch-abaya-takim-bej",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9341596598507",
+    "brandSlug": "ipekstil",
+    "title": "Luxury Abaya Takım SİYAH",
+    "url": "https://ipekstil.com/products/luxury-abaya-takim-si̇yah",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9477094080747",
+    "brandSlug": "ipekstil",
+    "title": "Kimono 3'lü Takım EKRU",
+    "url": "https://ipekstil.com/products/kimono-3lu-takim-ekru",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470484578539",
+    "brandSlug": "ipekstil",
+    "title": "Keten Britli Kısa Kimono KREM",
+    "url": "https://ipekstil.com/products/keten-britli-kisa-kimono-krem",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206777610475",
+    "brandSlug": "ipekstil",
+    "title": "Manşetli Kruvaze Trench KAHVERENGİ",
+    "url": "https://ipekstil.com/products/mansetli-kruvaze-trench-kahverengi",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730752235",
+    "brandSlug": "ipekstil",
+    "title": "Kaşmir Dokulu Uzun Hırka HAKİ YEŞİL",
+    "url": "https://ipekstil.com/products/kasmir-dokulu-uzun-hirka-haki-yesil",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9371779498219",
+    "brandSlug": "ipekstil",
+    "title": "Keten Kimono İkili Takım LACİVERT",
+    "url": "https://ipekstil.com/products/keten-kimono-i̇kili-takim-laci̇vert",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9371779399915",
+    "brandSlug": "ipekstil",
+    "title": "Keten Kimono İkili Takım SİYAH",
+    "url": "https://ipekstil.com/products/keten-kimono-i̇kili-takim-si̇yah",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9371779039467",
+    "brandSlug": "ipekstil",
+    "title": "Keten Kimono İkili Takım YEŞİL",
+    "url": "https://ipekstil.com/products/keten-kimono-i̇kili-takim-yesi̇l",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9371777827051",
+    "brandSlug": "ipekstil",
+    "title": "Keten Kimono İkili Takım Sütlü Kahve",
+    "url": "https://ipekstil.com/products/keten-kimono-i̇kili-takim-sutlu-kahve",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9371777007851",
+    "brandSlug": "ipekstil",
+    "title": "Keten Kimono İkili Takım KAHVERENGİ",
+    "url": "https://ipekstil.com/products/keten-kimono-i̇kili-takim-kahverengi̇",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
     "id": "ipekstil:9364740735211",
     "brandSlug": "ipekstil",
     "title": "Charmlı Midi Çanta ACI KAHVE",
     "url": "https://ipekstil.com/products/charmli-midi-canta-aci-kahve",
     "garmentWas": "dress",
-    "reason": "id-pin"
+    "reason": "brand-blacklist"
   },
   {
     "id": "ipekstil:9364741062891",
@@ -33598,7 +33686,439 @@
     "title": "Charmlı Midi Çanta SİYAH",
     "url": "https://ipekstil.com/products/charmli-midi-canta-si̇yah",
     "garmentWas": "dress",
-    "reason": "id-pin"
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9361869406443",
+    "brandSlug": "ipekstil",
+    "title": "Dikiş Detaylı Palazzo Pantolon SİYAH",
+    "url": "https://ipekstil.com/products/dikis-detayli-palazzo-pantolon-si̇yah-2",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9361869668587",
+    "brandSlug": "ipekstil",
+    "title": "Dikiş Detaylı Palazzo Pantolon KAHVERENGİ",
+    "url": "https://ipekstil.com/products/dikis-detayli-palazzo-pantolon-kahverengi̇",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9361869701355",
+    "brandSlug": "ipekstil",
+    "title": "Dikiş Detaylı Palazzo Pantolon GRİ",
+    "url": "https://ipekstil.com/products/dikis-detayli-palazzo-pantolon-gri̇",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9355695227115",
+    "brandSlug": "ipekstil",
+    "title": "Moon Abaya Takım EKRU",
+    "url": "https://ipekstil.com/products/moon-abaya-takim-ekru",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9355694244075",
+    "brandSlug": "ipekstil",
+    "title": "Moon Abaya Takım KAHVERENGİ",
+    "url": "https://ipekstil.com/products/moon-abaya-takim-kahverengi̇",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730785003",
+    "brandSlug": "ipekstil",
+    "title": "Kaşmir Dokulu Uzun Hırka GRİ",
+    "url": "https://ipekstil.com/products/kasmir-dokulu-uzun-hirka-gri",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206782656747",
+    "brandSlug": "ipekstil",
+    "title": "Aynil Kloş Ferace KAHVERENGİ",
+    "url": "https://ipekstil.com/products/aynil-klos-ferace-kahverengi",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206753984747",
+    "brandSlug": "ipekstil",
+    "title": "Liva Elbise FÜME",
+    "url": "https://ipekstil.com/products/liva-elbise-fume",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206753919211",
+    "brandSlug": "ipekstil",
+    "title": "Liva Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/liva-elbise-kahverengi",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206753853675",
+    "brandSlug": "ipekstil",
+    "title": "Liva Elbise Siyah",
+    "url": "https://ipekstil.com/products/liva-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206753820907",
+    "brandSlug": "ipekstil",
+    "title": "Liva Elbise Sütlü Kahve",
+    "url": "https://ipekstil.com/products/liva-elbise-sutlu-kahve",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736486635",
+    "brandSlug": "ipekstil",
+    "title": "Alya Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/alya-elbise-kahverengi",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736355563",
+    "brandSlug": "ipekstil",
+    "title": "Alya Elbise SİYAH",
+    "url": "https://ipekstil.com/products/alya-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736257259",
+    "brandSlug": "ipekstil",
+    "title": "Alya Elbise SÜTLÜ KAHVE",
+    "url": "https://ipekstil.com/products/alya-elbise-sutlu-kahve",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736158955",
+    "brandSlug": "ipekstil",
+    "title": "Alya Elbise LACİVERT",
+    "url": "https://ipekstil.com/products/alya-elbise-lacivert",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335241998571",
+    "brandSlug": "ipekstil",
+    "title": "Geniş Pileli Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/genis-pileli-etek-kahverengi̇",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335241539819",
+    "brandSlug": "ipekstil",
+    "title": "Geniş Pileli Etek Siyah",
+    "url": "https://ipekstil.com/products/genis-pileli-etek-si̇yah",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9337909510379",
+    "brandSlug": "ipekstil",
+    "title": "Ramadan Kareem Abaya SİYAH",
+    "url": "https://ipekstil.com/products/ramadan-kareem-abaya-si̇yah-1",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9341606199531",
+    "brandSlug": "ipekstil",
+    "title": "Luxury Abaya Takım KREM",
+    "url": "https://ipekstil.com/products/luxury-abaya-takim-krem",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9336064213227",
+    "brandSlug": "ipekstil",
+    "title": "Ramadan Kareem Abaya LACİVERT",
+    "url": "https://ipekstil.com/products/ramadan-kareem-abaya-laci̇vert",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9337642549483",
+    "brandSlug": "ipekstil",
+    "title": "Şerit Düğmeli Abaya SİYAH",
+    "url": "https://ipekstil.com/products/serit-dugmeli-abaya-si̇yah",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9337695404267",
+    "brandSlug": "ipekstil",
+    "title": "Şerit Düğmeli Abaya KREM",
+    "url": "https://ipekstil.com/products/serit-dugmeli-abaya-krem",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9337987072235",
+    "brandSlug": "ipekstil",
+    "title": "Garnili Abaya Takım Siyah-Bej",
+    "url": "https://ipekstil.com/products/garnili-abaya-takim-siyah-bej",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9340746891499",
+    "brandSlug": "ipekstil",
+    "title": "Moon Abaya Takım SİYAH",
+    "url": "https://ipekstil.com/products/moon-abaya-takim-si̇yah-1",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206729441515",
+    "brandSlug": "ipekstil",
+    "title": "Kemer Detaylı Asimetrik Kaban Toprak",
+    "url": "https://ipekstil.com/products/kemer-detayli-asimetrik-kaban-toprak",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730916075",
+    "brandSlug": "ipekstil",
+    "title": "Kaşmir Dokulu Uzun Hırka LACİVERT",
+    "url": "https://ipekstil.com/products/kasmir-dokulu-uzun-hirka-lacivert",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730850539",
+    "brandSlug": "ipekstil",
+    "title": "Kaşmir Dokulu Uzun Hırka KAHVERENGİ",
+    "url": "https://ipekstil.com/products/kasmir-dokulu-uzun-hirka-kahverengi",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206731309291",
+    "brandSlug": "ipekstil",
+    "title": "Modal Basıc Sweatshirt İNDİGO",
+    "url": "https://ipekstil.com/products/modal-basic-sweatshirt-i̇ndigo",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206731899115",
+    "brandSlug": "ipekstil",
+    "title": "Aktif Fit Takım SİYAH",
+    "url": "https://ipekstil.com/products/aktif-fit-takim-siyah",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206731866347",
+    "brandSlug": "ipekstil",
+    "title": "Aktif Fit Takım LACİVERT",
+    "url": "https://ipekstil.com/products/aktif-fit-takim-lacivert",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206731768043",
+    "brandSlug": "ipekstil",
+    "title": "Aktif Fit Takım GRİ",
+    "url": "https://ipekstil.com/products/aktif-fit-takim-gri",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206732685547",
+    "brandSlug": "ipekstil",
+    "title": "Modal Pantolonlu Takım GRİ",
+    "url": "https://ipekstil.com/products/modal-pantolonlu-takim-gri",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206732849387",
+    "brandSlug": "ipekstil",
+    "title": "Modal Pantolonlu Takım BEJ",
+    "url": "https://ipekstil.com/products/modal-pantolonlu-takim-bej",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206732783851",
+    "brandSlug": "ipekstil",
+    "title": "Modal Pantolonlu Takım SİYAH",
+    "url": "https://ipekstil.com/products/modal-pantolonlu-takim-siyah",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206732718315",
+    "brandSlug": "ipekstil",
+    "title": "Modal Pantolonlu Takım LACİVERT",
+    "url": "https://ipekstil.com/products/modal-pantolonlu-takim-lacivert",
+    "garmentWas": "trousers",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206740615403",
+    "brandSlug": "ipekstil",
+    "title": "Bağlamalı Kruvaze Trench İNDİGO",
+    "url": "https://ipekstil.com/products/baglamali-kruvaze-trench-i̇ndigo",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206741434603",
+    "brandSlug": "ipekstil",
+    "title": "Bağlamalı Kruvaze Trench VİZON",
+    "url": "https://ipekstil.com/products/baglamali-kruvaze-trench-vizon",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206741237995",
+    "brandSlug": "ipekstil",
+    "title": "Bağlamalı Kruvaze Trench Siyah",
+    "url": "https://ipekstil.com/products/baglamali-kruvaze-trench-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206740943083",
+    "brandSlug": "ipekstil",
+    "title": "Bağlamalı Kruvaze Trench TOZLU KAHVE",
+    "url": "https://ipekstil.com/products/baglamali-kruvaze-trench-tozlu-kahve",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754410731",
+    "brandSlug": "ipekstil",
+    "title": "Feray Elbise TOZLU KAHVE",
+    "url": "https://ipekstil.com/products/feray-elbise-tozlu-kahve",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754312427",
+    "brandSlug": "ipekstil",
+    "title": "Feray Elbise Siyah",
+    "url": "https://ipekstil.com/products/feray-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754279659",
+    "brandSlug": "ipekstil",
+    "title": "Feray Elbise TAŞ",
+    "url": "https://ipekstil.com/products/feray-elbise-tas",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754246891",
+    "brandSlug": "ipekstil",
+    "title": "Feray Elbise FÜME",
+    "url": "https://ipekstil.com/products/feray-elbise-fume",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754574571",
+    "brandSlug": "ipekstil",
+    "title": "Rahat Fit Takım KAHVERENGİ",
+    "url": "https://ipekstil.com/products/rahat-fit-takim-kahverengi",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754509035",
+    "brandSlug": "ipekstil",
+    "title": "Rahat Fit Takım FÜME",
+    "url": "https://ipekstil.com/products/rahat-fit-takim-fume",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754443499",
+    "brandSlug": "ipekstil",
+    "title": "Rahat Fit Takım BEJ",
+    "url": "https://ipekstil.com/products/rahat-fit-takim-bej",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206754607339",
+    "brandSlug": "ipekstil",
+    "title": "Rahat Fit Takım Siyah",
+    "url": "https://ipekstil.com/products/rahat-fit-takim-siyah",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206757392619",
+    "brandSlug": "ipekstil",
+    "title": "Verda Elbise FÜME",
+    "url": "https://ipekstil.com/products/verda-elbise-fume",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206757196011",
+    "brandSlug": "ipekstil",
+    "title": "Verda Elbise Siyah",
+    "url": "https://ipekstil.com/products/verda-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206757064939",
+    "brandSlug": "ipekstil",
+    "title": "Verda Elbise YEŞİL",
+    "url": "https://ipekstil.com/products/verda-elbise-yesil",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206757556459",
+    "brandSlug": "ipekstil",
+    "title": "Verda Elbise BEJ",
+    "url": "https://ipekstil.com/products/verda-elbise-bej",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206767354091",
+    "brandSlug": "ipekstil",
+    "title": "Kruvaze Trench KAHVERENGİ",
+    "url": "https://ipekstil.com/products/kruvaze-trench-kahverengi",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206770335979",
+    "brandSlug": "ipekstil",
+    "title": "Manşetli Kruvaze Trench SÜTLÜ KAHVE",
+    "url": "https://ipekstil.com/products/mansetli-kruvaze-trench-sutlu-kahve",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206780494059",
+    "brandSlug": "ipekstil",
+    "title": "Manşetli Kruvaze Trench SİYAH",
+    "url": "https://ipekstil.com/products/mansetli-kruvaze-trench-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
   },
   {
     "id": "beyond-label:7651063693503",
@@ -40422,12 +40942,756 @@
     "evidence": "28500 TRY (~$597)"
   },
   {
+    "id": "ipekstil:9206763454699",
+    "brandSlug": "ipekstil",
+    "title": "Bade Elbise Siyah",
+    "url": "https://ipekstil.com/products/bade-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762963179",
+    "brandSlug": "ipekstil",
+    "title": "Afra Elbise Siyah",
+    "url": "https://ipekstil.com/products/afra-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9708775342315",
+    "brandSlug": "ipekstil",
+    "title": "Büzgülü Poplin Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/buzgulu-poplin-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9708779962603",
+    "brandSlug": "ipekstil",
+    "title": "Büzgülü Poplin Etek Siyah",
+    "url": "https://ipekstil.com/products/buzgulu-poplin-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9708779995371",
+    "brandSlug": "ipekstil",
+    "title": "Büzgülü Poplin Etek EKRU",
+    "url": "https://ipekstil.com/products/buzgulu-poplin-etek-ekru",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9708971852011",
+    "brandSlug": "ipekstil",
+    "title": "Büzgülü Poplin Etek BEYAZ",
+    "url": "https://ipekstil.com/products/buzgulu-poplin-etek-beyaz",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206779937003",
+    "brandSlug": "ipekstil",
+    "title": "Duru Ferace KAHVERENGİ",
+    "url": "https://ipekstil.com/products/duru-ferace-kahverengi",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9613836812523",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Pileli Keten Etek Siyah",
+    "url": "https://ipekstil.com/products/katmanli-pileli-keten-etek-si̇yah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9613420101867",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Pileli Keten Etek Kahverengi",
+    "url": "https://ipekstil.com/products/katmanli-pileli-keten-etek-kahverengi̇",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9613052805355",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Pileli Keten Etek Sarı",
+    "url": "https://ipekstil.com/products/katmanli-pileli-keten-etek-sari",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9613030752491",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Pileli Keten Etek BEYAZ",
+    "url": "https://ipekstil.com/products/katmanli-pileli-keten-etek-beyaz",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9613227557099",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Pileli Keten Etek EKRU",
+    "url": "https://ipekstil.com/products/katmanli-pileli-keten-etek-ekru",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206763618539",
+    "brandSlug": "ipekstil",
+    "title": "Sare Elbise Siyah",
+    "url": "https://ipekstil.com/products/sare-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206782460139",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli A Kesim Etek TAŞ",
+    "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-tas",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9517973143787",
+    "brandSlug": "ipekstil",
+    "title": "Boho Elbise YEŞİL",
+    "url": "https://ipekstil.com/products/boho-elbise-yesi-l",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9517915373803",
+    "brandSlug": "ipekstil",
+    "title": "Boho Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/boho-elbise-kahverengi̇",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9517912260843",
+    "brandSlug": "ipekstil",
+    "title": "Boho Elbise Kül",
+    "url": "https://ipekstil.com/products/boho-elbise-kul",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9477877301483",
+    "brandSlug": "ipekstil",
+    "title": "Sık Pileli Pamuk Vual Etek SİYAH",
+    "url": "https://ipekstil.com/products/sik-pileli-pamuk-vual-etek-si̇yah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9476014407915",
+    "brandSlug": "ipekstil",
+    "title": "Flow Kup Dikişli Modal Etek BEYAZ",
+    "url": "https://ipekstil.com/products/flow-kup-dikisli-modal-etek-beyaz",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9476011360491",
+    "brandSlug": "ipekstil",
+    "title": "Flow Kup Dikişli Modal Etek KOYU VİZON",
+    "url": "https://ipekstil.com/products/flow-kup-dikisli-modal-etek-koyu-vi̇zon",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9476007395563",
+    "brandSlug": "ipekstil",
+    "title": "Flow Kup Dikişli Modal Etek YEŞİL",
+    "url": "https://ipekstil.com/products/flow-kup-dikisli-modal-etek-yesi̇l",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9476003692779",
+    "brandSlug": "ipekstil",
+    "title": "Flow Kup Dikişli Modal Etek SARI",
+    "url": "https://ipekstil.com/products/flow-kup-dikisli-modal-etek-sari",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470564794603",
+    "brandSlug": "ipekstil",
+    "title": "Flow Kup Dikişli Modal Etek SİYAH",
+    "url": "https://ipekstil.com/products/flow-kup-dikisli-modal-etek-si̇yah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470550114539",
+    "brandSlug": "ipekstil",
+    "title": "Sık Pileli Pamuk Vual Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/sik-pileli-pamuk-vual-etek-kahverengi̇",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470550081771",
+    "brandSlug": "ipekstil",
+    "title": "Sık Pileli Pamuk Vual Etek YEŞİL",
+    "url": "https://ipekstil.com/products/sik-pileli-pamuk-vual-etek-yesi̇l",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470547820779",
+    "brandSlug": "ipekstil",
+    "title": "Sık Pileli Pamuk Vual Etek PEMBE",
+    "url": "https://ipekstil.com/products/sik-pileli-pamuk-vual-etek-pembe",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470532190443",
+    "brandSlug": "ipekstil",
+    "title": "Sık Pileli Pamuk Vual Etek EKRU",
+    "url": "https://ipekstil.com/products/sik-pileli-pamuk-vual-etek-ekru",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470520295659",
+    "brandSlug": "ipekstil",
+    "title": "Yırtmaç Detaylı Modal Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/yirtmac-detayli-modal-elbise-kahverengi̇",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470517870827",
+    "brandSlug": "ipekstil",
+    "title": "Yırtmaç Detaylı Modal Elbise SİYAH",
+    "url": "https://ipekstil.com/products/yirtmac-detayli-modal-elbise-si̇yah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470504370411",
+    "brandSlug": "ipekstil",
+    "title": "Pileli Dikişli Keten Elbise KREM",
+    "url": "https://ipekstil.com/products/pileli-dikisli-keten-elbise-krem",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470502732011",
+    "brandSlug": "ipekstil",
+    "title": "Pileli Dikişli Keten Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/pileli-dikisli-keten-elbise-kahverengi̇",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9470495424747",
+    "brandSlug": "ipekstil",
+    "title": "Pileli Dikişli Keten Elbise SİYAH",
+    "url": "https://ipekstil.com/products/pileli-dikisli-keten-elbise-si̇yah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736617707",
+    "brandSlug": "ipekstil",
+    "title": "Modal Büzgülü Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/modal-buzgulu-elbise-kahverengi",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206767943915",
+    "brandSlug": "ipekstil",
+    "title": "Garnili Ferace PEMBE",
+    "url": "https://ipekstil.com/products/garnili-ferace-pembe",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206775742699",
+    "brandSlug": "ipekstil",
+    "title": "Sofia Ferace FÜME",
+    "url": "https://ipekstil.com/products/sofia-ferace-fume",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206775611627",
+    "brandSlug": "ipekstil",
+    "title": "Sofia Ferace SİYAH",
+    "url": "https://ipekstil.com/products/sofia-ferace-siyah",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206763258091",
+    "brandSlug": "ipekstil",
+    "title": "Afra Elbise BEJ",
+    "url": "https://ipekstil.com/products/afra-elbise-bej",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206775775467",
+    "brandSlug": "ipekstil",
+    "title": "Sofia Ferace KAHVERENGİ",
+    "url": "https://ipekstil.com/products/sofia-ferace-kahverengi",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206780100843",
+    "brandSlug": "ipekstil",
+    "title": "Duru Ferace SİYAH",
+    "url": "https://ipekstil.com/products/duru-ferace-siyah",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206768009451",
+    "brandSlug": "ipekstil",
+    "title": "Kruvaze Kaban ACI KAHVE",
+    "url": "https://ipekstil.com/products/kruvaze-kaban-aci-kahve",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9368528421099",
+    "brandSlug": "ipekstil",
+    "title": "Godeli Modal Elbise GRİ",
+    "url": "https://ipekstil.com/products/godeli-modal-elbise-gri̇",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9368527274219",
+    "brandSlug": "ipekstil",
+    "title": "Godeli Modal Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/godeli-modal-elbise-kahverengi̇",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9368526782699",
+    "brandSlug": "ipekstil",
+    "title": "Godeli Modal Elbise Dumanlı Siyah",
+    "url": "https://ipekstil.com/products/godeli-modal-elbise-dumanli-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736027883",
+    "brandSlug": "ipekstil",
+    "title": "Nisa Nervürlü Elbise KÜF YEŞİLİ",
+    "url": "https://ipekstil.com/products/nisa-nervurlu-elbise-kuf-yesili",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9346129789163",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Elbise SİYAH",
+    "url": "https://ipekstil.com/products/katmanli-elbise-si̇yah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206783148267",
+    "brandSlug": "ipekstil",
+    "title": "Aynil Kloş Ferace LACİVERT",
+    "url": "https://ipekstil.com/products/aynil-klos-ferace-lacivert",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206782591211",
+    "brandSlug": "ipekstil",
+    "title": "Aynil Kloş Ferace SİYAH",
+    "url": "https://ipekstil.com/products/aynil-klos-ferace-siyah",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206779150571",
+    "brandSlug": "ipekstil",
+    "title": "Aynil Kloş Ferace FÜME",
+    "url": "https://ipekstil.com/products/aynil-klos-ferace-fume",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206777446635",
+    "brandSlug": "ipekstil",
+    "title": "Efnan Elbise FÜME",
+    "url": "https://ipekstil.com/products/efnan-elbise-fume",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206777413867",
+    "brandSlug": "ipekstil",
+    "title": "Efnan Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/efnan-elbise-kahverengi",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206777381099",
+    "brandSlug": "ipekstil",
+    "title": "Efnan Elbise İndigo",
+    "url": "https://ipekstil.com/products/efnan-elbise-i̇ndigo",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206777282795",
+    "brandSlug": "ipekstil",
+    "title": "Efnan Elbise Siyah",
+    "url": "https://ipekstil.com/products/efnan-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206777217259",
+    "brandSlug": "ipekstil",
+    "title": "Efnan Elbise SÜTLÜ KAHVE",
+    "url": "https://ipekstil.com/products/efnan-elbise-sutlu-kahve",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206765125867",
+    "brandSlug": "ipekstil",
+    "title": "Aynil Kloş Ferace Antrasit",
+    "url": "https://ipekstil.com/products/aynil-klos-ferace-antrasit",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206737699051",
+    "brandSlug": "ipekstil",
+    "title": "Nisa Nervürlü Elbise BEJ",
+    "url": "https://ipekstil.com/products/nisa-nervurlu-elbise-bej",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206737633515",
+    "brandSlug": "ipekstil",
+    "title": "Nisa Nervürlü Elbise LACİVERT",
+    "url": "https://ipekstil.com/products/nisa-nervurlu-elbise-lacivert",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206737469675",
+    "brandSlug": "ipekstil",
+    "title": "Nisa Nervürlü Elbise SİYAH",
+    "url": "https://ipekstil.com/products/nisa-nervurlu-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335240851691",
+    "brandSlug": "ipekstil",
+    "title": "Asimetrik Dantel Detaylı Etek SİYAH",
+    "url": "https://ipekstil.com/products/asimetrik-dantel-detayli-etek-si̇yah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335238885611",
+    "brandSlug": "ipekstil",
+    "title": "Godeli Cupra Takım Dumanlı Gece",
+    "url": "https://ipekstil.com/products/godeli-cupra-takim-dumanli-gece",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335238164715",
+    "brandSlug": "ipekstil",
+    "title": "D Tokalı Elbise SİYAH",
+    "url": "https://ipekstil.com/products/d-tokali-elbise-si̇yah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335238033643",
+    "brandSlug": "ipekstil",
+    "title": "D Tokalı Elbise Soft İndigo",
+    "url": "https://ipekstil.com/products/d-tokali-elbise-soft-i̇ndigo",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335237181675",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Elbise LACİVERT",
+    "url": "https://ipekstil.com/products/katmanli-elbise-laci-vert-1",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335236559083",
+    "brandSlug": "ipekstil",
+    "title": "Katmanlı Elbise KAHVERENGİ",
+    "url": "https://ipekstil.com/products/katmanli-elbise-kahverengi̇",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335235248363",
+    "brandSlug": "ipekstil",
+    "title": "Çan Etek SİYAH",
+    "url": "https://ipekstil.com/products/can-etek-si̇yah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335234986219",
+    "brandSlug": "ipekstil",
+    "title": "Çan Etek GRİ",
+    "url": "https://ipekstil.com/products/can-etek-gri̇",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9341397041387",
+    "brandSlug": "ipekstil",
+    "title": "Godeli Cupra Takım Kestane",
+    "url": "https://ipekstil.com/products/godeli-cupra-takim-kestane",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9341063889131",
+    "brandSlug": "ipekstil",
+    "title": "Çizgili Çan Etek SİYAH",
+    "url": "https://ipekstil.com/products/cizgili-can-etek-si̇yah-2",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9335238459627",
+    "brandSlug": "ipekstil",
+    "title": "D Tokalı Elbise YEŞİL",
+    "url": "https://ipekstil.com/products/d-tokali-elbise-yesi̇l",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9339934441707",
+    "brandSlug": "ipekstil",
+    "title": "Pelerinli Panço SİYAH",
+    "url": "https://ipekstil.com/products/pelerinli-panco-si̇yah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9341526442219",
+    "brandSlug": "ipekstil",
+    "title": "Geniş Pileli Etek Sütlü Kahve",
+    "url": "https://ipekstil.com/products/genis-pileli-etek-sutlu-kahve",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206773350635",
+    "brandSlug": "ipekstil",
+    "title": "Duru Ferace CAMEL",
+    "url": "https://ipekstil.com/products/duru-ferace-camel",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206773678315",
+    "brandSlug": "ipekstil",
+    "title": "Kloş Etek SİYAH",
+    "url": "https://ipekstil.com/products/klos-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9291425153259",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli Gabardin Etek MAVİ",
+    "url": "https://ipekstil.com/products/cift-pileli-gabardin-etek-mavi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9291425677547",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli Gabardin Etek Karamel",
+    "url": "https://ipekstil.com/products/cift-pileli-gabardin-etek-karamel",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9291397365995",
+    "brandSlug": "ipekstil",
+    "title": "Kısa Kaşe Kaban AÇIK GRİ",
+    "url": "https://ipekstil.com/products/kisa-kase-kaban-acik-gri",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9291396153579",
+    "brandSlug": "ipekstil",
+    "title": "Kısa Kaşe Kaban Camel",
+    "url": "https://ipekstil.com/products/kisa-kase-kaban-camel-1",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9291378950379",
+    "brandSlug": "ipekstil",
+    "title": "Kısa Kaşe Kaban Siyah",
+    "url": "https://ipekstil.com/products/kisa-kase-kaban-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206728982763",
+    "brandSlug": "ipekstil",
+    "title": "Premium Kaşe Trenç Kaban Siyah",
+    "url": "https://ipekstil.com/products/premium-kase-trenc-kaban-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206728917227",
+    "brandSlug": "ipekstil",
+    "title": "Premium Kaşe Trenç Kaban KAHVERENGİ",
+    "url": "https://ipekstil.com/products/premium-kase-trenc-kaban-kahverengi",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206729015531",
+    "brandSlug": "ipekstil",
+    "title": "Premium Kaşe Trenç Kaban GRİ",
+    "url": "https://ipekstil.com/products/premium-kase-trenc-kaban-gri",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206729507051",
+    "brandSlug": "ipekstil",
+    "title": "Kemer Detaylı Asimetrik Kaban Siyah",
+    "url": "https://ipekstil.com/products/kemer-detayli-asimetrik-kaban-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206729900267",
+    "brandSlug": "ipekstil",
+    "title": "Etek Ucu Tünelli Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/etek-ucu-tunelli-parasut-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730424555",
+    "brandSlug": "ipekstil",
+    "title": "Basıc Etek Açık Haki",
+    "url": "https://ipekstil.com/products/basic-parasut-etek-acik-haki",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730522859",
+    "brandSlug": "ipekstil",
+    "title": "Etek Ucu Tünelli Etek Siyah",
+    "url": "https://ipekstil.com/products/etek-ucu-tunelli-parasut-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730490091",
+    "brandSlug": "ipekstil",
+    "title": "Basıc Etek HAKİ YEŞİL",
+    "url": "https://ipekstil.com/products/basic-parasut-etek-haki-yesil",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730457323",
+    "brandSlug": "ipekstil",
+    "title": "Basıc Etek Siyah",
+    "url": "https://ipekstil.com/products/basic-parasut-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730686699",
+    "brandSlug": "ipekstil",
+    "title": "Pilikaşe Etek BEJ",
+    "url": "https://ipekstil.com/products/pilikase-etek-bej",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206730588395",
+    "brandSlug": "ipekstil",
+    "title": "Etek Ucu Tünelli Etek BEJ",
+    "url": "https://ipekstil.com/products/etek-ucu-tunelli-parasut-etek-bej",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206731735275",
+    "brandSlug": "ipekstil",
+    "title": "Cep Tünelli Etek LACİVERT",
+    "url": "https://ipekstil.com/products/cep-tunelli-parasut-etek-lacivert",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206731702507",
+    "brandSlug": "ipekstil",
+    "title": "Cep Tünelli Etek SİYAH",
+    "url": "https://ipekstil.com/products/cep-tunelli-parasut-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206731669739",
+    "brandSlug": "ipekstil",
+    "title": "Cep Tünelli Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/cep-tunelli-parasut-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206732554475",
+    "brandSlug": "ipekstil",
+    "title": "Düğmeli Basıc Hırka ANTRASİT",
+    "url": "https://ipekstil.com/products/dugmeli-basic-hirka-antrasit",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206732652779",
+    "brandSlug": "ipekstil",
+    "title": "Düğmeli Basıc Hırka SİYAH",
+    "url": "https://ipekstil.com/products/dugmeli-basic-hirka-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
     "id": "ipekstil:9206733111531",
     "brandSlug": "ipekstil",
     "title": "Düğmeli Tam Boy Trençkot SİYAH",
     "url": "https://ipekstil.com/products/dugmeli-tam-boy-trenckot-siyah",
     "garmentWas": "top",
-    "reason": "title-pattern"
+    "reason": "brand-blacklist"
   },
   {
     "id": "ipekstil:9206733078763",
@@ -40435,7 +41699,23 @@
     "title": "Düğmeli Tam Boy Trençkot Taş Yeşili",
     "url": "https://ipekstil.com/products/dugmeli-tam-boy-trenckot-tas-yesili",
     "garmentWas": "top",
-    "reason": "title-pattern"
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206733340907",
+    "brandSlug": "ipekstil",
+    "title": "Modal Parçalı Etek LACİVERT",
+    "url": "https://ipekstil.com/products/modal-parcali-etek-lacivert",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206733275371",
+    "brandSlug": "ipekstil",
+    "title": "Modal Parçalı Etek BEJ",
+    "url": "https://ipekstil.com/products/modal-parcali-etek-bej",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
   },
   {
     "id": "ipekstil:9206733177067",
@@ -40443,7 +41723,647 @@
     "title": "Düğmeli Tam Boy Trençkot BEJ",
     "url": "https://ipekstil.com/products/dugmeli-tam-boy-trenckot-bej",
     "garmentWas": "top",
-    "reason": "title-pattern"
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206733439211",
+    "brandSlug": "ipekstil",
+    "title": "Modal Parçalı Etek Kırık Beyaz",
+    "url": "https://ipekstil.com/products/modal-parcali-etek-kirik-beyaz",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206733406443",
+    "brandSlug": "ipekstil",
+    "title": "Modal Parçalı Etek SİYAH",
+    "url": "https://ipekstil.com/products/modal-parcali-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206734815467",
+    "brandSlug": "ipekstil",
+    "title": "Royal Kaban PUDRA",
+    "url": "https://ipekstil.com/products/royal-kaban-pudra",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206735700203",
+    "brandSlug": "ipekstil",
+    "title": "Oversize Trençkot BEJ",
+    "url": "https://ipekstil.com/products/oversize-trenckot-bej",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206735503595",
+    "brandSlug": "ipekstil",
+    "title": "Oversize Trençkot KAHVERENGİ",
+    "url": "https://ipekstil.com/products/oversize-trenckot-kahverengi",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736847083",
+    "brandSlug": "ipekstil",
+    "title": "Modal Büzgülü Elbise VİZON",
+    "url": "https://ipekstil.com/products/modal-buzgulu-elbise-vizon",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736781547",
+    "brandSlug": "ipekstil",
+    "title": "Modal Büzgülü Elbise LACİVERT",
+    "url": "https://ipekstil.com/products/modal-buzgulu-elbise-lacivert",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206736978155",
+    "brandSlug": "ipekstil",
+    "title": "Modal Büzgülü Elbise SOFT MİNT",
+    "url": "https://ipekstil.com/products/modal-buzgulu-elbise-soft-mint",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206737600747",
+    "brandSlug": "ipekstil",
+    "title": "Modal Büzgülü Elbise SİYAH",
+    "url": "https://ipekstil.com/products/modal-buzgulu-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206747693291",
+    "brandSlug": "ipekstil",
+    "title": "Saten Astar Etek BEYAZ",
+    "url": "https://ipekstil.com/products/saten-astar-etek-beyaz",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206748578027",
+    "brandSlug": "ipekstil",
+    "title": "Elsera Elbise GRİ",
+    "url": "https://ipekstil.com/products/elsera-elbise-gri",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206748512491",
+    "brandSlug": "ipekstil",
+    "title": "Elsera Elbise SÜTLÜ KAHVE",
+    "url": "https://ipekstil.com/products/elsera-elbise-sutlu-kahve",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206748446955",
+    "brandSlug": "ipekstil",
+    "title": "Saten Astar Etek Siyah",
+    "url": "https://ipekstil.com/products/saten-astar-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206748774635",
+    "brandSlug": "ipekstil",
+    "title": "Çizgili Bağlamalı Yelek FÜME",
+    "url": "https://ipekstil.com/products/cizgili-baglamali-yelek-fume",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206748610795",
+    "brandSlug": "ipekstil",
+    "title": "Elsera Elbise SİYAH",
+    "url": "https://ipekstil.com/products/elsera-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206749298923",
+    "brandSlug": "ipekstil",
+    "title": "Çift Kat Yelek Siyah",
+    "url": "https://ipekstil.com/products/cift-kat-yelek-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206749200619",
+    "brandSlug": "ipekstil",
+    "title": "Çift Kat Yelek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/cift-kat-yelek-kahverengi",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206749069547",
+    "brandSlug": "ipekstil",
+    "title": "Çift Kat Yelek GRİ",
+    "url": "https://ipekstil.com/products/cift-kat-yelek-gri",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206749855979",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Kolsuz Elbise GRİ",
+    "url": "https://ipekstil.com/products/pamuk-keten-kolsuz-elbise-gri",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206749626603",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Kolsuz Elbise BEJ",
+    "url": "https://ipekstil.com/products/pamuk-keten-kolsuz-elbise-bej",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206749462763",
+    "brandSlug": "ipekstil",
+    "title": "Çift Kat Yelek Koyu Bej",
+    "url": "https://ipekstil.com/products/cift-kat-yelek-koyu-bej",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206750380267",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Kolsuz Elbise HAKİ YEŞİL",
+    "url": "https://ipekstil.com/products/pamuk-keten-kolsuz-elbise-haki-yesil",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206750249195",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Kolsuz Elbise Siyah",
+    "url": "https://ipekstil.com/products/pamuk-keten-kolsuz-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206750019819",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Kolsuz Elbise LACİVERT",
+    "url": "https://ipekstil.com/products/pamuk-keten-kolsuz-elbise-lacivert",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206750806251",
+    "brandSlug": "ipekstil",
+    "title": "Pilikaşe Etek Siyah",
+    "url": "https://ipekstil.com/products/pilikase-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206752379115",
+    "brandSlug": "ipekstil",
+    "title": "Pilikaşe Etek LACİVERT",
+    "url": "https://ipekstil.com/products/pilikase-etek-lacivert",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206752182507",
+    "brandSlug": "ipekstil",
+    "title": "Pilikaşe Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/pilikase-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206752084203",
+    "brandSlug": "ipekstil",
+    "title": "Pilikaşe Etek GRİ",
+    "url": "https://ipekstil.com/products/pilikase-etek-gri",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762176747",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Etekli Takım BEJ",
+    "url": "https://ipekstil.com/products/pamuk-keten-etekli-takim-bej",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762275051",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Etekli Takım LACİVERT",
+    "url": "https://ipekstil.com/products/pamuk-keten-etekli-takim-lacivert",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762242283",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Etekli Takım SİYAH",
+    "url": "https://ipekstil.com/products/pamuk-keten-etekli-takim-siyah",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762209515",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Etekli Takım GRİ",
+    "url": "https://ipekstil.com/products/pamuk-keten-etekli-takim-gri",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762340587",
+    "brandSlug": "ipekstil",
+    "title": "Pamuk Keten Etekli Takım HAKİ YEŞİL",
+    "url": "https://ipekstil.com/products/pamuk-keten-etekli-takim-haki-yesil",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762701035",
+    "brandSlug": "ipekstil",
+    "title": "Anvelop Etek SİYAH",
+    "url": "https://ipekstil.com/products/anvelop-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762635499",
+    "brandSlug": "ipekstil",
+    "title": "Lina Elbise GRİ",
+    "url": "https://ipekstil.com/products/lina-elbise-gri",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762897643",
+    "brandSlug": "ipekstil",
+    "title": "Anvelop Etek GRİ",
+    "url": "https://ipekstil.com/products/anvelop-etek-gri",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762799339",
+    "brandSlug": "ipekstil",
+    "title": "Anvelop Etek KREM",
+    "url": "https://ipekstil.com/products/anvelop-etek-krem",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762766571",
+    "brandSlug": "ipekstil",
+    "title": "Anvelop Etek TAŞ",
+    "url": "https://ipekstil.com/products/anvelop-etek-tas",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206763127019",
+    "brandSlug": "ipekstil",
+    "title": "Afra Elbise YEŞİL",
+    "url": "https://ipekstil.com/products/afra-elbise-yesil",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206762995947",
+    "brandSlug": "ipekstil",
+    "title": "Afra Elbise GRİ",
+    "url": "https://ipekstil.com/products/afra-elbise-gri",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206763782379",
+    "brandSlug": "ipekstil",
+    "title": "Sare Elbise Acı Kahve",
+    "url": "https://ipekstil.com/products/sare-elbise-aci-kahve",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206763946219",
+    "brandSlug": "ipekstil",
+    "title": "Sare Elbise Sütlü Kahve",
+    "url": "https://ipekstil.com/products/sare-elbise-sutlu-kahve",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206765453547",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli A Kesim Etek SÜTLÜ KAHVE",
+    "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-sutlu-kahve",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206768042219",
+    "brandSlug": "ipekstil",
+    "title": "Kruvaze Kaban LACİVERT",
+    "url": "https://ipekstil.com/products/kruvaze-kaban-lacivert",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206768795883",
+    "brandSlug": "ipekstil",
+    "title": "Denim Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/denim-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206768763115",
+    "brandSlug": "ipekstil",
+    "title": "Denim Etek SİYAH",
+    "url": "https://ipekstil.com/products/denim-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206768730347",
+    "brandSlug": "ipekstil",
+    "title": "Denim Etek LACİVERT",
+    "url": "https://ipekstil.com/products/denim-etek-lacivert",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206768828651",
+    "brandSlug": "ipekstil",
+    "title": "Denim Etek CAMEL",
+    "url": "https://ipekstil.com/products/denim-etek-camel",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206769058027",
+    "brandSlug": "ipekstil",
+    "title": "Oversize Kaban KAHVERENGİ",
+    "url": "https://ipekstil.com/products/oversize-kaban-kahverengi",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206769025259",
+    "brandSlug": "ipekstil",
+    "title": "Oversize Kaban LACİVERT",
+    "url": "https://ipekstil.com/products/oversize-kaban-lacivert",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206769090795",
+    "brandSlug": "ipekstil",
+    "title": "Oversize Kaban YEŞİL",
+    "url": "https://ipekstil.com/products/oversize-kaban-yesil",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206770368747",
+    "brandSlug": "ipekstil",
+    "title": "Sofia Ferace BEJ",
+    "url": "https://ipekstil.com/products/sofia-ferace-bej",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206770598123",
+    "brandSlug": "ipekstil",
+    "title": "A Pileli Trençkot HAKİ YEŞİL",
+    "url": "https://ipekstil.com/products/a-pileli-trenckot-haki-yesil",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206770794731",
+    "brandSlug": "ipekstil",
+    "title": "Retro Kaban LACİVERT",
+    "url": "https://ipekstil.com/products/retro-kaban-lacivert",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206770761963",
+    "brandSlug": "ipekstil",
+    "title": "Retro Kaban ACI KAHVE",
+    "url": "https://ipekstil.com/products/retro-kaban-aci-kahve",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206770663659",
+    "brandSlug": "ipekstil",
+    "title": "A Pileli Trençkot LACİVERT",
+    "url": "https://ipekstil.com/products/a-pileli-trenckot-lacivert",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206771024107",
+    "brandSlug": "ipekstil",
+    "title": "Bağcıklı Etek SÜTLÜ KAHVE",
+    "url": "https://ipekstil.com/products/bagcikli-etek-sutlu-kahve",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206771155179",
+    "brandSlug": "ipekstil",
+    "title": "Bağcıklı Etek YAĞ YEŞİLİ",
+    "url": "https://ipekstil.com/products/bagcikli-etek-yag-yesili",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206771581163",
+    "brandSlug": "ipekstil",
+    "title": "Robalı İpek Cupra Elbise YEŞİL",
+    "url": "https://ipekstil.com/products/robali-i̇pek-cupra-elbise-yesil",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206775546091",
+    "brandSlug": "ipekstil",
+    "title": "Farah Trençkot BEJ",
+    "url": "https://ipekstil.com/products/farah-trenckot-bej",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206777839851",
+    "brandSlug": "ipekstil",
+    "title": "Basıc Kaşe Kaban SİYAH",
+    "url": "https://ipekstil.com/products/basic-kase-kaban-si̇yah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206778331371",
+    "brandSlug": "ipekstil",
+    "title": "Kloş Etek GRİ",
+    "url": "https://ipekstil.com/products/klos-etek-gri",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206778298603",
+    "brandSlug": "ipekstil",
+    "title": "Kloş Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/klos-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206779117803",
+    "brandSlug": "ipekstil",
+    "title": "Pileli Yan Düğmeli Etek MAVİ",
+    "url": "https://ipekstil.com/products/pileli-yan-dugmeli-etek-mavi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206779805931",
+    "brandSlug": "ipekstil",
+    "title": "Retro Kaban SİYAH",
+    "url": "https://ipekstil.com/products/retro-kaban-siyah",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206779314411",
+    "brandSlug": "ipekstil",
+    "title": "Retro Kaban TAŞ",
+    "url": "https://ipekstil.com/products/retro-kaban-tas",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206780002539",
+    "brandSlug": "ipekstil",
+    "title": "Duru Ferace GRİ",
+    "url": "https://ipekstil.com/products/duru-ferace-gri",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206779904235",
+    "brandSlug": "ipekstil",
+    "title": "Retro Kaban GRİ",
+    "url": "https://ipekstil.com/products/retro-kaban-gri",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206782427371",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli A Kesim Etek VİZON",
+    "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-vizon",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206782886123",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli A Kesim Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206783115499",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli A Kesim Etek YAĞ YEŞİLİ",
+    "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-yag-yesili",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206782984427",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli A Kesim Etek SİYAH",
+    "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206783574251",
+    "brandSlug": "ipekstil",
+    "title": "Pamuklu Uzun Elbise Astarı BEYAZ",
+    "url": "https://ipekstil.com/products/pamuklu-uzun-elbise-astari-beyaz",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206783967467",
+    "brandSlug": "ipekstil",
+    "title": "Kruvaze Kaban GRİ",
+    "url": "https://ipekstil.com/products/kruvaze-kaban-gri",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206784884971",
+    "brandSlug": "ipekstil",
+    "title": "Pileli Yan Düğmeli Etek KAHVERENGİ",
+    "url": "https://ipekstil.com/products/pileli-yan-dugmeli-etek-kahverengi",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206785474795",
+    "brandSlug": "ipekstil",
+    "title": "Sahra Kaban CAMEL",
+    "url": "https://ipekstil.com/products/sahra-kaban-camel",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206785245419",
+    "brandSlug": "ipekstil",
+    "title": "Pileli Yan Düğmeli Etek VİZON",
+    "url": "https://ipekstil.com/products/pileli-yan-dugmeli-etek-vizon",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206785048811",
+    "brandSlug": "ipekstil",
+    "title": "Pileli Yan Düğmeli Etek SİYAH",
+    "url": "https://ipekstil.com/products/pileli-yan-dugmeli-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206785540331",
+    "brandSlug": "ipekstil",
+    "title": "Sahra Kaban TAŞ",
+    "url": "https://ipekstil.com/products/sahra-kaban-tas",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206785573099",
+    "brandSlug": "ipekstil",
+    "title": "Retro Kaban CAMEL",
+    "url": "https://ipekstil.com/products/retro-kaban-camel",
+    "garmentWas": "top",
+    "reason": "brand-blacklist"
   },
   {
     "id": "mariams:9404201140440",
@@ -40493,6 +42413,14 @@
     "title": "Ella Scarf",
     "url": "https://zaskiasungkar.com/products/ella-scarf-retrospective-zs",
     "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9206765289707",
+    "brandSlug": "ipekstil",
+    "title": "Çift Pileli A Kesim Etek LACİVERT",
+    "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-lacivert",
+    "garmentWas": "skirt",
     "reason": "brand-blacklist"
   },
   {
@@ -40570,5 +42498,29 @@
     "url": "https://nihan.com.tr/products/parlak-tasli-genis-yakali-angora-kaban-siyah",
     "garmentWas": "top",
     "reason": "id-pin"
+  },
+  {
+    "id": "ipekstil:9853023027435",
+    "brandSlug": "ipekstil",
+    "title": "Yırtmaçlı Takım LACİVERT",
+    "url": "https://ipekstil.com/products/yirtmacli-takim-laci̇vert",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9853025517803",
+    "brandSlug": "ipekstil",
+    "title": "Yırtmaçlı Takım KAHVERENGİ",
+    "url": "https://ipekstil.com/products/yirtmacli-takim-kahverengi̇",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "ipekstil:9853026533611",
+    "brandSlug": "ipekstil",
+    "title": "Yırtmaçlı Takım HAKİ YEŞİL",
+    "url": "https://ipekstil.com/products/yirtmacli-takim-haki-yesi-l",
+    "garmentWas": "set",
+    "reason": "brand-blacklist"
   }
 ]

@@ -182,5 +182,393 @@
   "modesty-in-style:10742796190006": {
     "lane": "outerwear",
     "subtype": "coat"
+  },
+  "ilovemodesty:9656410538305": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656409850177": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656408834369": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656407654721": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9762744795457": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9762744762689": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9762744729921": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9661508616513": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9660910928193": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656413094209": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656412438849": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656411521345": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656163041601": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "ilovemodesty:9656162648385": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "fares:7558184206527": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "chic-modesty:10323235897682": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nour-al-houda:7567922987056": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "nasiba:8673172947253": {
+    "lane": "layering-basics",
+    "subtype": "shirt-extender"
+  },
+  "nasiba:8673138770229": {
+    "lane": "layering-basics",
+    "subtype": "shirt-extender"
+  },
+  "nasiba:8673120813365": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673144275253": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673090601269": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673154236725": {
+    "lane": "layering-basics",
+    "subtype": "shirt-extender"
+  },
+  "nasiba:8673040204085": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673032208693": {
+    "lane": "layering-basics",
+    "subtype": "shirt-extender"
+  },
+  "nasiba:8673095156021": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673078903093": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "fares:7329907703999": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nihan:14919175340395": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nour-al-houda:7885487702064": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7885487800368": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7885487833136": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673180877109": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673170063669": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673157775669": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673146241333": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673138180405": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673132839221": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673113276725": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673107509557": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673090994485": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673081655605": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673078640949": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673069433141": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673066025269": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673057079605": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673054687541": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673045283125": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673038172469": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673035878709": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nasiba:8673030734133": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "mukistore:9491457245449": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "mukistore:15284729315593": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "veiled:7621869863017": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "veiled:7621869404265": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "veiled:7621869109353": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "veiled:7621867896937": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "veiled:7621867733097": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7885487472688": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7885487931440": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7628133498928": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "nour-al-houda:7618886991920": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "nour-al-houda:7618885976112": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "mariams:9086309433560": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "vela:8460521111708": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "modesty-in-style:10649780945206": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "store-wf:15898156827004": {
+    "lane": "outerwear",
+    "subtype": "cardigan"
+  },
+  "vela:8460541067420": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "modesty-in-style:10651271659830": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "store-wf:15898162233724": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "veiled:7639099637865": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "veiled:7639099015273": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "chic-modesty:10323234455890": {
+    "lane": "outerwear",
+    "subtype": "cardigan"
+  },
+  "chic-modesty:10323232227666": {
+    "lane": "outerwear",
+    "subtype": "cardigan"
+  },
+  "modesty-in-style:10689337655606": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "modesty-in-style:10714110722358": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:15059734856043": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:15059621118315": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:15059429425515": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:15027657146731": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "nihan:15027647054187": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "nihan:15027653869931": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "nihan:14998304391531": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:14952540799339": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:14952539226475": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:14919184941419": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:14916457431403": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "modesty-in-style:10701517062454": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nour-al-houda:7838031839280": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7838031740976": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7838031708208": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7838031675440": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "nour-al-houda:7838031642672": {
+    "lane": "layering-basics",
+    "subtype": "base-layer-top"
+  },
+  "chic-modesty:10323236880722": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "modesty-in-style:10608973742390": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:15059604865387": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "nihan:15059520258411": {
+    "lane": "outerwear",
+    "subtype": "coat"
   }
 }
