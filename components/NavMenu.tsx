@@ -270,7 +270,20 @@ export function NavMenu({
                         // place, only this explicit, pointer-type-gated one.
                         openOnHover
                         delay={0}
-                        closeDelay={120}
+                        // Widened 120ms -> 400ms 2026-08-16, same day/reason
+                        // as the OUTER navValue closeTimer just below in this
+                        // file (Tina: "when i hover over and want to click
+                        // onn one of the sub catagories it dissapears", still
+                        // happening after that first fix). This is a
+                        // SEPARATE timer — Base UI's own built-in hover-close
+                        // for THIS inner Menu.Root's popup, independent of
+                        // the outer navValue mechanism, and the first fix
+                        // never touched it. This is very likely the actual
+                        // culprit: the outer panel and the row can both stay
+                        // open/visible while this inner flyout closes on its
+                        // own 120ms clock the moment the pointer crosses the
+                        // small gap between the row and the popup.
+                        closeDelay={400}
                         onPointerDown={(e) => {
                           lastPointerType.current = e.pointerType;
                           if (e.pointerType === 'mouse') {
