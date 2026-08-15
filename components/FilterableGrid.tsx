@@ -26,8 +26,9 @@ export function FilterableGrid({
     if (!initialType) return 'all';
     if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
     if ((cat.outerwearSubtypes as string[]).includes(initialType)) return initialType;
+    if ((cat.hijabSubtypes as string[]).includes(initialType)) return initialType;
     return 'all';
-  }); // layering OR outerwear subtype, or 'all'
+  }); // layering, outerwear OR hijab subtype, or 'all'
   // Re-syncs `type` when `initialType` (or the catalogue it's validated
   // against) changes — NOT redundant with the useState initializer above,
   // which only ever runs once, at mount. Clicking a DIFFERENT subtype link
@@ -45,7 +46,9 @@ export function FilterableGrid({
   useEffect(() => {
     const resolved = !initialType
       ? 'all'
-      : (cat.layeringSubtypes as string[]).includes(initialType) || (cat.outerwearSubtypes as string[]).includes(initialType)
+      : (cat.layeringSubtypes as string[]).includes(initialType) ||
+          (cat.outerwearSubtypes as string[]).includes(initialType) ||
+          (cat.hijabSubtypes as string[]).includes(initialType)
         ? initialType
         : 'all';
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -80,13 +83,26 @@ export function FilterableGrid({
   // product, and only the rows actually shown get decoded into cards below.
   const query = q.trim().toLowerCase();
   const brandIdx = brand === 'all' ? -1 : cat.brands.findIndex((b) => b.slug === brand);
-  const usingOuterwearTypes = cat.layeringSubtypes.length === 0 && cat.outerwearSubtypes.length > 0;
+  // A lane page only ever has ONE of these three non-empty at a time — a
+  // lane is layering-basics, outerwear, or modest-hijabs, never a mix — so
+  // this picks whichever subtype column actually applies here, same pattern
+  // as the old binary `usingOuterwearTypes` just extended to a third case.
+  const typeDomain: 'layering' | 'outerwear' | 'hijab' | 'none' =
+    cat.layeringSubtypes.length > 0
+      ? 'layering'
+      : cat.outerwearSubtypes.length > 0
+        ? 'outerwear'
+        : cat.hijabSubtypes.length > 0
+          ? 'hijab'
+          : 'none';
   const typeIdx =
     type === 'all'
       ? -1
-      : usingOuterwearTypes
+      : typeDomain === 'outerwear'
         ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
-        : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
+        : typeDomain === 'hijab'
+          ? cat.hijabSubtypes.indexOf(type as (typeof cat.hijabSubtypes)[number])
+          : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
@@ -94,7 +110,12 @@ export function FilterableGrid({
     for (let i = 0; i < n; i++) {
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
       if (typeIdx !== -1) {
-        const rowTypeIdx = usingOuterwearTypes ? cat.rows.outerwearSubtypeIdx[i] : cat.rows.layeringSubtypeIdx[i];
+        const rowTypeIdx =
+          typeDomain === 'outerwear'
+            ? cat.rows.outerwearSubtypeIdx[i]
+            : typeDomain === 'hijab'
+              ? cat.rows.hijabSubtypeIdx[i]
+              : cat.rows.layeringSubtypeIdx[i];
         if (rowTypeIdx !== typeIdx) continue;
       }
       if (query !== '') {
@@ -105,7 +126,7 @@ export function FilterableGrid({
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, typeIdx, usingOuterwearTypes, query]);
+  }, [cat, brandIdx, typeIdx, typeDomain, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -128,9 +149,10 @@ export function FilterableGrid({
     <div>
       {/* The same index console as /directory — one instrument across the site.
           No Category dropdown: this page already IS one category. No Type
-          dropdown either, as of 2026-08-15 — both lanes that have subtypes
-          (Outerwear, Layering Basics) filter by them via the header flyout
-          only; see the note on `type`/`typeIdx` above. */}
+          dropdown either, as of 2026-08-15 — all three lanes that have
+          subtypes (Outerwear, Layering Basics, Hijabs & Scarves) filter by
+          them via the header flyout only; see the note on `type`/`typeIdx`
+          above. */}
       <IndexPanel q={q} onQ={setQ} className="mb-8">
         {/* Occasion filter pulled from the UI 2026-08-12 at Tina's request —
             broken, pending a fix. The underlying data (cat.occasions,

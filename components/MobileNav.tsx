@@ -6,7 +6,10 @@ import { List as ListIcon, X as XIcon, CaretRight, CaretDown } from '@phosphor-i
 import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL } from '@/lib/fx';
-import { OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, type OuterwearSubtype, type LayeringSubtype } from '@/lib/specialty';
+import {
+  OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, HIJAB_SUBTYPE_LABELS,
+  type OuterwearSubtype, type LayeringSubtype, type HijabSubtype,
+} from '@/lib/specialty';
 import { useCurrency } from './CurrencyProvider';
 import { useScrollFade } from './useScrollFade';
 
@@ -14,6 +17,7 @@ import { useScrollFade } from './useScrollFade';
 // desktop flyout (components/Nav.tsx) and the compact catalogue both read.
 const OUTERWEAR_SUBTYPE_ORDER = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
 const LAYERING_SUBTYPE_ORDER = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
+const HIJAB_SUBTYPE_ORDER = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
 
 /**
  * The phone navigation: a full-screen takeover.
@@ -58,6 +62,11 @@ export function MobileNav() {
   // affect the other.
   const [layeringOpen, setLayeringOpen] = useState(false);
   const layeringRowRef = useRef<HTMLDivElement>(null);
+  // Hijabs & Scarves got the same disclosure treatment 2026-08-15 evening
+  // (Tina: "i want a dropdown that give khimars and jilbabs undercap et
+  // etc") — same reasoning as outerwearOpen/layeringOpen above.
+  const [hijabsOpen, setHijabsOpen] = useState(false);
+  const hijabsRowRef = useRef<HTMLDivElement>(null);
 
   // Outerwear sits near the bottom of the Category list (9th of 10), so
   // opening it in place pushes its four sub-rows almost entirely below the
@@ -78,6 +87,9 @@ export function MobileNav() {
   useEffect(() => {
     if (layeringOpen) layeringRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [layeringOpen]);
+  useEffect(() => {
+    if (hijabsOpen) hijabsRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [hijabsOpen]);
 
   // Choosing a currency does NOT close the panel — it changes prices on the page
   // behind it, and the visitor may well want to try another one.
@@ -241,6 +253,40 @@ export function MobileNav() {
     </div>
   );
 
+  /** Hijabs & Scarves's row — same shape as Outerwear's/Layering Basics's,
+   *  added 2026-08-15 evening (Tina: "i want a dropdown that give khimars
+   *  and jilbabs undercap et etc"). */
+  const hijabsRow = () => (
+    <div key="/modest-hijabs" ref={hijabsRowRef}>
+      <button
+        type="button"
+        onClick={() => setHijabsOpen((v) => !v)}
+        aria-expanded={hijabsOpen}
+        className="flex items-center justify-between gap-4 py-4 w-full text-left"
+        style={{
+          fontFamily: 'var(--font-ui-stack)',
+          fontSize: 17,
+          lineHeight: 1.35,
+          letterSpacing: '0.01em',
+          color: path === '/modest-hijabs' ? 'var(--aubergine)' : 'var(--ink)',
+          fontWeight: path === '/modest-hijabs' ? 500 : 400,
+        }}
+      >
+        Hijabs & Scarves
+        <CaretDown
+          size={15}
+          style={{
+            flexShrink: 0,
+            color: 'var(--muted)',
+            transition: 'transform 150ms ease-out',
+            transform: hijabsOpen ? 'rotate(180deg)' : undefined,
+          }}
+        />
+      </button>
+      {hijabsOpen && subtypeLinks('modest-hijabs', HIJAB_SUBTYPE_ORDER, HIJAB_SUBTYPE_LABELS)}
+    </div>
+  );
+
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
@@ -347,7 +393,13 @@ export function MobileNav() {
                 docs/log/2026-08-09-remove-style-vibe-feature.md.) */}
             <p className="eyebrow pt-5 pb-1">Category</p>
             {CATEGORY_LANES.map((l) =>
-              l.slug === 'outerwear' ? outerwearRow() : l.slug === 'layering-basics' ? layeringRow() : row(`/${l.slug}`, l.title),
+              l.slug === 'outerwear'
+                ? outerwearRow()
+                : l.slug === 'layering-basics'
+                  ? layeringRow()
+                  : l.slug === 'modest-hijabs'
+                    ? hijabsRow()
+                    : row(`/${l.slug}`, l.title),
             )}
 
             <div className="mt-5 pt-2" style={{ borderTop: '1px solid var(--hairline)' }}>

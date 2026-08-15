@@ -1,10 +1,10 @@
 import type { Product } from '@/lib/types';
-import type { LayeringSubtype, OuterwearSubtype } from '@/lib/types';
+import type { LayeringSubtype, OuterwearSubtype, HijabSubtype } from '@/lib/types';
 
 // Re-exported so existing call sites (lib/compactCatalogue.ts) don't need
 // to change their import — the type itself now lives in lib/types.ts to
 // avoid a circular import (Product carries a field of this type).
-export type { LayeringSubtype, OuterwearSubtype };
+export type { LayeringSubtype, OuterwearSubtype, HijabSubtype };
 
 // "Specialty" = swimwear + activewear + layering. These should NOT intermix
 // with everyday clothing (dresses, trousers, tops…). They only surface on
@@ -272,13 +272,42 @@ export function isJilbab(p: Product): boolean {
   return JILBAB_RE.test(p.title);
 }
 
-// Anything that must stay out of the general/category listings. Jilbab is
-// folded in here (rather than getting its own lane) because the mechanism —
-// "excluded from every lane except one dedicated one" — is exactly what
-// modest-hijabs already needs to do for it; see the `specialty: true` on
-// that lane in lib/lanes.ts.
+// Anything that must stay out of the general/category listings. Jilbab,
+// abaya-length khimaars and undercaps are folded in here (rather than
+// getting their own lane) because the mechanism — "excluded from every lane
+// except one dedicated one" — is exactly what modest-hijabs already needs to
+// do for them; see the `specialty: true` on that lane in lib/lanes.ts.
+// isKhimarAbaya() matters here specifically: those products are
+// garment:'abaya', so without this they'd ALSO satisfy modest-abayas'
+// `garment === 'abaya'` match and show on both lanes at once — caught while
+// adding the Hijabs & Scarves Type filter, 2026-08-15 evening.
 export function isSpecialty(p: Product): boolean {
-  return isSwim(p) || isActivewear(p) || isLayering(p) || isJilbab(p) || isOuterwear(p);
+  return isSwim(p) || isActivewear(p) || isLayering(p) || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p) || isOuterwear(p);
+}
+
+// Sub-categories WITHIN Hijabs & Scarves, for the header flyout / Type
+// filter — same mechanism as Layering Basics and Outerwear, added 2026-08-15
+// evening (Tina: "i want a dropdown that give khimars and jilbabs undercap
+// et etc"). Order here is the canonical filter order: the plain, everyday
+// case first, then the two things she specifically asked to see broken out.
+export const HIJAB_SUBTYPE_LABELS: Record<HijabSubtype, string> = {
+  'hijab': 'Hijabs',
+  'khimar-jilbab': 'Khimars & Jilbabs',
+  'undercap': 'Undercaps',
+};
+
+/** Returns null for anything that isn't on the Hijabs & Scarves lane at all
+ *  — always call after (or alongside) the lane's own match check, never as
+ *  a substitute for it. Mirrors the modest-hijabs lane's match predicate in
+ *  lib/lanes.ts exactly: `(garment==='hijab' || isJilbab || isKhimarAbaya ||
+ *  isUndercap) && !isLayering`. Narrowest/most-specific first, same
+ *  reasoning as layeringSubtype(). */
+export function hijabSubtype(p: Product): HijabSubtype | null {
+  if (isLayering(p)) return null; // e.g. a khimar/jilbab title that's ALSO prayer-titled — stays on Layering Basics
+  if (isUndercap(p)) return 'undercap';
+  if (isKhimarAbaya(p) || isJilbab(p)) return 'khimar-jilbab';
+  if (p.garment === 'hijab') return 'hijab';
+  return null;
 }
 
 // Outerwear = blazers, vests, cardigans, coats. Tina's call 2026-08-13: one

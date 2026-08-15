@@ -185,6 +185,39 @@ describe('outerwear subtype encoding', () => {
   });
 });
 
+describe('hijab subtype encoding', () => {
+  const HIJAB: Product = { ...PRODUCT, id: 'aab:5', title: 'Plain Everyday Hijab', garment: 'hijab' };
+  const JILBAB: Product = { ...PRODUCT, id: 'aab:6', title: 'Black Corduroy Jilbab', garment: 'abaya' };
+  const UNDERCAP: Product = { ...PRODUCT, id: 'aab:7', title: 'Full Coverage Undercap - Walnut', garment: 'hijab' };
+
+  it('gives a non-hijab product the -1 sentinel and an empty dictionary', () => {
+    const cat = encodeCatalogue([PRODUCT], [BRAND]);
+    expect(cat.hijabSubtypes).toEqual([]);
+    expect(cat.rows.hijabSubtypeIdx[0]).toBe(-1);
+  });
+
+  it('assigns a real index for a plain hijab', () => {
+    const cat = encodeCatalogue([HIJAB], [BRAND]);
+    expect(cat.hijabSubtypes).toEqual(['hijab']);
+    expect(cat.rows.hijabSubtypeIdx[0]).toBe(0);
+  });
+
+  it('orders present subtypes canonically (hijab, khimar-jilbab, undercap), not by first appearance', () => {
+    // UNDERCAP is listed BEFORE JILBAB in the input, but khimar-jilbab sorts
+    // first in HIJAB_SUBTYPE_LABELS (hijab, khimar-jilbab, undercap).
+    const cat = encodeCatalogue([UNDERCAP, JILBAB], [BRAND]);
+    expect(cat.hijabSubtypes).toEqual(['khimar-jilbab', 'undercap']);
+    expect(cat.rows.hijabSubtypeIdx[0]).toBe(cat.hijabSubtypes.indexOf('undercap'));
+    expect(cat.rows.hijabSubtypeIdx[1]).toBe(cat.hijabSubtypes.indexOf('khimar-jilbab'));
+  });
+
+  it('a mixed catalogue keeps the -1 sentinel for non-hijab rows alongside real indices', () => {
+    const cat = encodeCatalogue([PRODUCT, HIJAB], [BRAND]);
+    expect(cat.rows.hijabSubtypeIdx[0]).toBe(-1);
+    expect(cat.rows.hijabSubtypeIdx[1]).toBe(0);
+  });
+});
+
 describe('firstSeenDay encoding', () => {
   it('encodes a real firstSeen date as days since the epoch', () => {
     const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: '2026-08-05' }], [BRAND]);

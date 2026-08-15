@@ -26,6 +26,13 @@ export type LayeringSubtype =
  *  lib/specialty.ts imports Product from here. */
 export type OuterwearSubtype = 'blazer' | 'vest' | 'cardigan' | 'coat';
 
+/** The three sub-categories of the Hijabs & Scarves lane (lib/lanes.ts),
+ *  added 2026-08-15 evening — Tina wants the same hover-flyout/Type-filter
+ *  treatment Outerwear and Layering Basics already have. See
+ *  lib/specialty.ts's hijabSubtype() for the classification logic. Declared
+ *  here for the same circular-import reason as the other two. */
+export type HijabSubtype = 'hijab' | 'khimar-jilbab' | 'undercap';
+
 /** The specialty lanes (lib/lanes.ts) whose membership is NOT derived
  *  from `garment` alone — Modest Swimwear is (garment === 'swim' already
  *  satisfies isSwim()), so it never needed this. A staff override here is

@@ -1,15 +1,20 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { CATEGORY_LANES } from '@/lib/lanes';
-import { OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, type OuterwearSubtype, type LayeringSubtype } from '@/lib/specialty';
+import {
+  OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, HIJAB_SUBTYPE_LABELS,
+  type OuterwearSubtype, type LayeringSubtype, type HijabSubtype,
+} from '@/lib/specialty';
 import { NavMenu, type NavItem } from './NavMenu';
 
 // Fixed order, matching the Type filter's own canonical order
 // (lib/specialty.ts) rather than object key iteration order.
 const OUTERWEAR_SUBTYPES: OuterwearSubtype[] = ['blazer', 'vest', 'cardigan', 'coat'];
-// Insertion order of the LAYERING_SUBTYPE_LABELS object literal — same
-// source components/FilterableGrid.tsx and lib/compactCatalogue.ts read.
+// Insertion order of the LAYERING_SUBTYPE_LABELS/HIJAB_SUBTYPE_LABELS object
+// literals — same source components/FilterableGrid.tsx and
+// lib/compactCatalogue.ts read.
 const LAYERING_SUBTYPES = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
+const HIJAB_SUBTYPES = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
 
 export function Nav() {
   const path = usePathname();
@@ -17,13 +22,15 @@ export function Nav() {
     href: `/${l.slug}`,
     label: l.title,
     // Outerwear got a hover flyout to its four subtypes 2026-08-13; Layering
-    // Basics got the same treatment 2026-08-15 (Tina: "i want the sub
-    // catagories of layering basics to be like outerwear sub catagories...
-    // i want to be able to click them") — each pre-filters the destination
-    // page via ?type=, read by app/[lane]/page.tsx and threaded into
-    // FilterableGrid. The in-page "Type" dropdown that used to be Layering
-    // Basics's only way to filter by subtype is gone the same day, matching
-    // what happened to Outerwear's — see components/FilterableGrid.tsx.
+    // Basics got the same treatment 2026-08-15 morning (Tina: "i want the
+    // sub catagories of layering basics to be like outerwear sub
+    // catagories... i want to be able to click them"); Hijabs & Scarves got
+    // it that same evening (Tina: "i want a dropdown that give khimars and
+    // jilbabs undercap et etc"). Each pre-filters the destination page via
+    // ?type=, read by app/[lane]/page.tsx and threaded into FilterableGrid.
+    // The in-page "Type" dropdown that used to be Layering Basics's only way
+    // to filter by subtype is gone the same day, matching what happened to
+    // Outerwear's — see components/FilterableGrid.tsx.
     ...(l.slug === 'outerwear'
       ? {
           subItems: OUTERWEAR_SUBTYPES.map((t) => ({
@@ -37,6 +44,14 @@ export function Nav() {
           subItems: LAYERING_SUBTYPES.map((t) => ({
             href: `/layering-basics?type=${t}`,
             label: LAYERING_SUBTYPE_LABELS[t],
+          })),
+        }
+      : {}),
+    ...(l.slug === 'modest-hijabs'
+      ? {
+          subItems: HIJAB_SUBTYPES.map((t) => ({
+            href: `/modest-hijabs?type=${t}`,
+            label: HIJAB_SUBTYPE_LABELS[t],
           })),
         }
       : {}),

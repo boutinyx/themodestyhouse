@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap } from './specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap, hijabSubtype } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -261,6 +261,32 @@ describe('isUndercap', () => {
   it('matches undercap titles, even alongside hijab/underscarf/bonnet vocabulary', () => {
     expect(isUndercap(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe(true); // nour-al-houda
     expect(isUndercap(p('Black Neck Cover Underscarf In Cotton - Soft Undercap Bonnet', 'hijab'))).toBe(true); // bazar-al-haya
+  });
+});
+
+describe('hijabSubtype', () => {
+  it('sorts a plain hijab, a jilbab, an abaya-length khimaar and an undercap into their groups', () => {
+    expect(hijabSubtype(p('Plain Everyday Hijab', 'hijab'))).toBe('hijab');
+    expect(hijabSubtype(p('Black Corduroy Jilbab', 'abaya'))).toBe('khimar-jilbab');
+    expect(hijabSubtype(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe('khimar-jilbab');
+    expect(hijabSubtype(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe('undercap');
+  });
+  it('returns null for anything not on the Hijabs & Scarves lane at all', () => {
+    expect(hijabSubtype(p('Elowen Wrap Dress', 'dress'))).toBe(null);
+    expect(hijabSubtype(p('Black Open Abaya', 'abaya'))).toBe(null); // plain abaya, not a khimar/jilbab
+  });
+  it('defers to Layering Basics for a jilbab or khimar title that is ALSO prayer-titled', () => {
+    expect(hijabSubtype(p('2-Piece Prayer Set (Jilbab)', 'abaya'))).toBe(null);
+    expect(hijabSubtype(p('Prayer Khimaar Set - Grey', 'abaya'))).toBe(null);
+  });
+  it('every currently-published Hijabs & Scarves item gets a real subtype, never a silent null', () => {
+    const raw = readFileSync(path.join(process.cwd(), 'data', 'products.json'), 'utf8');
+    const products = JSON.parse(raw) as Product[];
+    const hijabsLaneItems = products.filter(
+      (prod) => (prod.garment === 'hijab' || isJilbab(prod) || isKhimarAbaya(prod) || isUndercap(prod)) && !isLayering(prod),
+    );
+    const missing = hijabsLaneItems.filter((prod) => hijabSubtype(prod) === null);
+    expect(missing.map((m) => m.title)).toEqual([]);
   });
 });
 

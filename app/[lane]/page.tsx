@@ -5,7 +5,7 @@ import { LANES } from '@/lib/lanes';
 import { productsForLane } from '@/lib/products';
 import { FilterableGrid } from '@/components/FilterableGrid';
 import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
-import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS } from '@/lib/specialty';
+import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS, HIJAB_SUBTYPE_LABELS } from '@/lib/specialty';
 import { BRANDS } from '@/data/brands';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
@@ -64,7 +64,9 @@ export default async function LanePage({
       ? LAYERING_SUBTYPE_LABELS[type as (typeof catalogue.layeringSubtypes)[number]]
       : type && (catalogue.outerwearSubtypes as string[]).includes(type)
         ? OUTERWEAR_SUBTYPE_LABELS[type as (typeof catalogue.outerwearSubtypes)[number]]
-        : null;
+        : type && (catalogue.hijabSubtypes as string[]).includes(type)
+          ? HIJAB_SUBTYPE_LABELS[type as (typeof catalogue.hijabSubtypes)[number]]
+          : null;
   const pageTitle = subtypeTitle ?? lane.title;
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-12">

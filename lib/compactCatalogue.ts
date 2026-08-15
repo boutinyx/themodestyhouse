@@ -1,5 +1,9 @@
 import type { Brand, Garment, Product } from '@/lib/types';
-import { layeringSubtype, LAYERING_SUBTYPE_LABELS, type LayeringSubtype, outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype } from '@/lib/specialty';
+import {
+  layeringSubtype, LAYERING_SUBTYPE_LABELS, type LayeringSubtype,
+  outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype,
+  hijabSubtype, HIJAB_SUBTYPE_LABELS, type HijabSubtype,
+} from '@/lib/specialty';
 
 /** Reference point for the compact day-index — see rows.firstSeenDay below. */
 export const FIRST_SEEN_EPOCH = Date.parse('2026-01-01T00:00:00.000Z');
@@ -60,6 +64,9 @@ export interface CompactCatalogue {
   layeringSubtypes: LayeringSubtype[];
   /** Same shape as layeringSubtypes, for the Outerwear lane's Type filter. */
   outerwearSubtypes: OuterwearSubtype[];
+  /** Same shape as layeringSubtypes, for the Hijabs & Scarves lane's Type
+   *  filter (added 2026-08-15 evening — see rows.hijabSubtypeIdx). */
+  hijabSubtypes: HijabSubtype[];
   rows: {
     title: string[];
     shopifyId: string[];
@@ -82,6 +89,8 @@ export interface CompactCatalogue {
     layeringSubtypeIdx: number[];
     /** Same shape as layeringSubtypeIdx, for outerwearSubtypes. */
     outerwearSubtypeIdx: number[];
+    /** Same shape as layeringSubtypeIdx, for hijabSubtypes. */
+    hijabSubtypeIdx: number[];
     /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
      *  decoded into CardProduct, same treatment as occasionMask. */
     firstSeenDay: number[];
@@ -128,6 +137,10 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
   const presentOuterwearSubtypes = new Set(products.map((p) => outerwearSubtype(p)).filter((t): t is OuterwearSubtype => t !== null));
   const outerwearSubtypes = outerwearSubtypeOrder.filter((t) => presentOuterwearSubtypes.has(t));
   const outerwearSubtypeIndex = new Map(outerwearSubtypes.map((t, i) => [t, i]));
+  const hijabSubtypeOrder = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
+  const presentHijabSubtypes = new Set(products.map((p) => hijabSubtype(p)).filter((t): t is HijabSubtype => t !== null));
+  const hijabSubtypes = hijabSubtypeOrder.filter((t) => presentHijabSubtypes.has(t));
+  const hijabSubtypeIndex = new Map(hijabSubtypes.map((t, i) => [t, i]));
 
   const rows: CompactCatalogue['rows'] = {
     title: [],
@@ -141,6 +154,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     occasionMask: [],
     layeringSubtypeIdx: [],
     outerwearSubtypeIdx: [],
+    hijabSubtypeIdx: [],
     firstSeenDay: [],
     altUrl: [],
   };
@@ -235,11 +249,13 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     rows.layeringSubtypeIdx.push(subtype === null ? -1 : layeringSubtypeIndex.get(subtype)!);
     const outerwearSub = outerwearSubtype(p);
     rows.outerwearSubtypeIdx.push(outerwearSub === null ? -1 : outerwearSubtypeIndex.get(outerwearSub)!);
+    const hijabSub = hijabSubtype(p);
+    rows.hijabSubtypeIdx.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
     rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
     rows.altUrl.push(p.altUrl ?? '');
   }
 
-  return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, rows };
+  return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, hijabSubtypes, rows };
 }
 
 export function decodeCard(cat: CompactCatalogue, row: number): CardProduct {
