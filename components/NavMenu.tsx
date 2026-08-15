@@ -152,7 +152,21 @@ export function NavMenu({
           closeTimer = null;
         }
       } else if (!closeTimer) {
-        closeTimer = setTimeout(closeAll, 150);
+        // Widened 150ms -> 400ms 2026-08-16, after Tina: "when i hover over
+        // and want to click onn one of the sub catagories it dissapears".
+        // Reproduced once under Playwright with a fast, precise synthetic
+        // mouse path, but NOT reliably across a dozen further attempts
+        // (including a deliberate 180ms pause in the gap between the row
+        // and the flyout) — a genuinely narrow race, not a structural bug in
+        // the elementFromPoint-based check itself. 150ms is tight for a real
+        // trackpad, which moves in coarser, less continuous steps than a
+        // mouse and than Playwright's synthetic interpolation, so a brief,
+        // ordinary aim-then-click pause can plausibly exceed it. 400ms is
+        // still short enough that moving on to something else entirely (the
+        // original motivating bug this whole mechanism exists for) closes
+        // promptly, just no longer razor-thin against normal human
+        // micro-pauses.
+        closeTimer = setTimeout(closeAll, 400);
       }
     };
     window.addEventListener('pointermove', onPointerMove);
