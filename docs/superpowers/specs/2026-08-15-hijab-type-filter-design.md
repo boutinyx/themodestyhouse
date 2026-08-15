@@ -1,42 +1,64 @@
-# Hijab Type filter (fabric + style, one combined list)
+# Hijab Type filter (fabric + style, in-page dropdown)
 
-**Date:** 2026-08-15 · **Status:** approved
+**Date:** 2026-08-15 · **Status:** approved (revised)
 
 ## Goal
 
-A "Type" filter for the Hijabs & Scarves lane (`modest-hijabs`), reachable from the header
-nav flyout the same way Outerwear (Blazers/Vests/Cardigans/Coats) and Layering Basics
-(neck covers/sleeve extenders/etc.) already are — hovering "Hijabs & Scarves" in Products
-shows a list of types, each linking to `/modest-hijabs?type=…`, pre-filtering the grid on
-arrival. Tina's request: a filter for "the types of hijabs there are — prints, jersey,
+An in-page **Type** filter dropdown on the Hijabs & Scarves lane (`/modest-hijabs`), next to
+the existing Brand and Sort dropdowns — narrowing the currently-visible grid by fabric/style
+(Jersey, Chiffon, Instant, Printed, etc.) the same way Brand already narrows it by brand.
+Tina's original request: a filter for "the types of hijabs there are — prints, jersey,
 instant hijabs etc" — a single, folk-taxonomy list mixing fabric (jersey, chiffon, modal…)
-and style/format (instant, underscarf, khimar…), the way a shopper would actually think
-about hijab types, not two separate filter axes.
+and style/format (instant, khimar, underscarf…), the way a shopper would actually think
+about hijab types.
+
+## Revision history
+
+**First draft (superseded):** a header nav hover-flyout, mirroring Outerwear/Layering
+Basics's `?type=` mechanism. Written and approved, then superseded before implementation —
+see below.
+
+**What happened:** while writing the implementation plan, a concurrent session (this repo
+regularly has one — see `docs/log/2026-08-15-session-handoff.md`) independently shipped
+`components/Nav.tsx`/`components/MobileNav.tsx` flyout entries for Hijabs & Scarves already,
+using that exact mechanism, for a *different* taxonomy: three structural sub-categories
+(Hijabs / Khimars & Jilbabs / Undercaps), landed in commit `034a985`. Tina's own explicit
+clarification once she saw both side by side: **"jilbabs and khmars are not a filter like
+the fabrics they are a sub catagory what im asking you to make are filters."** Sub-category
+(khimar/jilbab/undercap — what a garment structurally *is*) and filter (jersey/chiffon/
+instant/printed — an attribute a garment *has*, orthogonal to what it is) are two different
+concepts, and conflating them into one flyout list (an intermediate "combine both" attempt
+was drafted and rejected for exactly this reason) was wrong.
+
+**Final design:** the two features are independent and both stay.
+`components/Nav.tsx`/`components/MobileNav.tsx`'s Khimars & Jilbabs/Undercaps flyout
+(commit `034a985`) is **not touched by this design** — it already shipped, it does its own
+job, and a khimar can also be jersey, so the two need to compose, not merge. This design adds
+a second, separate control: an in-page `FilterDropdown` (`components/IndexPanel.tsx`, the
+same component already powering Brand and Sort) computed over the **whole** lane
+(independent of khimar-jilbab/undercap/plain-hijab status), so "Jersey" can narrow to jersey
+khimars, jersey undercaps and plain jersey hijabs alike, same as Brand already does
+regardless of sub-category.
 
 ## Current state
 
 The `modest-hijabs` lane carries 5,146 published products (measured 2026-08-15, via
-`productsForLane('modest-hijabs')`). `Product.garment` only has one coarse bucket
-(`'hijab'`) for all of them — no existing field distinguishes fabric or style. No keyword
-groups existed before this design; the taxonomy below was built by matching real published
-titles, not guessed.
+`productsForLane('modest-hijabs')`). Nothing distinguishes fabric or style yet. The taxonomy
+below was built by matching real published titles, not guessed.
 
-The mechanism this needs already exists twice, for different categories:
-`layeringSubtype()`/`outerwearSubtype()` (`lib/specialty.ts`) plus their compact-catalogue
-columns (`lib/compactCatalogue.ts`) and their "Type" filtering in
-`components/FilterableGrid.tsx` and `components/Nav.tsx`. Per the Outerwear design doc
-(`docs/superpowers/specs/2026-08-13-outerwear-category-design.md`), this codebase
-deliberately keeps each subtype system as its own narrow parallel implementation rather
-than generalizing across them — "matching how this codebase already prefers a narrow
-parallel implementation over reworking a shipped one." This design follows that same
-convention for a third system rather than refactoring the first two.
+`components/IndexPanel.tsx`'s `FilterDropdown` already powers Brand and Sort on every lane
+page (`components/FilterableGrid.tsx`) — `{ label, value, defaultValue, options, onSelect }`,
+rendering a Base UI `Menu` styled as a chip/dropdown. This design adds a third `FilterDropdown`
+call, rendered only when the lane has fabric/style groups to offer (i.e. only on
+`/modest-hijabs`), exactly the same conditional-rendering shape `initialType`'s subtype
+columns already use to decide whether a lane needs a Type control at all.
 
 ## Taxonomy
 
 15 groups, in priority order (a title matching more than one group's vocabulary resolves to
-whichever is checked first — narrowest/most-functional groups before generic fabric names,
-same reasoning as `outerwearSubtype`'s rightmost-match rule). Counts measured against the
-real `modest-hijabs` lane, 2026-08-15:
+whichever is checked first — narrowest/most-functional groups before generic fabric names).
+Counts measured against the real `modest-hijabs` lane, 2026-08-15, over the **whole** lane —
+independent of the separate khimar-jilbab/undercap/plain-hijab split the flyout uses:
 
 | Order | Group key | Label | Regex (word-boundary anchored, case-insensitive) | Count |
 |---|---|---|---|---|
@@ -55,95 +77,82 @@ real `modest-hijabs` lane, 2026-08-15:
 | 13 | `cotton` | Cotton & Bamboo | `cotton\|bamboo` | 49 |
 | 14 | `satin` | Satin | `satin` | 118 |
 | 15 | `silk-viscose` | Silk & Viscose | `silk\|viscose\|rayon` | 116 |
-| — | *(none — no flyout link)* | — | — | 848 (16.5%) |
+| — | *(none — "All types" shows them)* | — | — | 848 (16.5%) |
 
 The 848 unmatched are plain, color-named titles with no fabric or style word at all (e.g.
-"Riverwalk Blue Hijab", "VZ Severine Scarf – Brown") — still shown on the lane page and in
-search, just not reachable from any specific Type link, per Tina's call.
+"Riverwalk Blue Hijab") — shown under the dropdown's default "All types" state, same as an
+item with no special brand affinity is still shown under Brand's default "All brand" state;
+no dedicated dropdown row for them, matching how `FilterDropdown` already treats "no value"
+for Brand/Sort.
 
-**Correction, made while writing the implementation plan (still 2026-08-15):** the first
-draft's `printed` regex — `\bprints?\b|...` — matches "print"/"prints" but not "printed",
-missing 134 real titles ("Printed Chiffon Hijab", "Printed Modal - Taupe Mirage",
-"Hidayah Bloom Printed Jersey (Zainaara)") that instead fell into whichever fabric group
-they also named. Fixed to `\bprint(?:s|ed)?\b|...`. The table above already reflects the
-corrected regex and counts; verified no other group's regex had the same stem/suffix gap
-(checked pashmina/pashminas, tube/tubes, check/checked, bandana/bandanas, rayon/rayons
-against the real catalogue — none missed anything the strict regex didn't already cover).
+Regex fix applied before this table (kept from the first draft): `printed` matches
+`print(?:s|ed)?`, not just `prints?` — the original missed 134 real "Printed ..." titles.
+Verified no other group had the same stem/suffix gap (pashmina/pashminas, tube/tubes,
+check/checked, bandana/bandanas, rayon/rayons all checked against the real catalogue).
 
 ## Design
 
-**`lib/types.ts`** — new exported type, alongside the existing `LayeringSubtype`/
-`OuterwearSubtype`:
+**`lib/hijabTypeFilter.ts`** (new file — standalone, no edit to `lib/types.ts` or
+`lib/specialty.ts` needed, since this design adds no `forced*` override field to `Product`
+and doesn't touch lane-membership/exclusion logic):
 ```ts
-export type HijabSubtype =
+export type HijabTypeFilter =
   | 'caps-underscarves' | 'khimar' | 'jilbab' | 'instant' | 'sport' | 'shawl' | 'printed'
   | 'set' | 'crinkle' | 'jersey' | 'modal' | 'chiffon' | 'cotton' | 'satin' | 'silk-viscose';
 ```
+Named `HijabTypeFilter`/`hijabTypeFilter()`/`HIJAB_TYPE_FILTER_LABELS` — deliberately
+**not** `HijabSubtype`/`hijabSubtype()`/`HIJAB_SUBTYPE_LABELS`, which commit `034a985` already
+defined in `lib/specialty.ts`/`lib/types.ts` for the (different) khimar-jilbab/undercap/hijab
+sub-category concept. Reusing those names would either collide or, worse, silently shadow the
+existing exports.
+- The 15 regexes from the table above, checked in priority order.
+- `HIJAB_TYPE_FILTER_LABELS: Record<HijabTypeFilter, string>` — the dropdown's option order.
+- `hijabTypeFilter(p): HijabTypeFilter | null` — `null` unless the product is actually on the
+  hijab lane (`p.garment === 'hijab' || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p)`,
+  imported from `lib/specialty.ts`), then the first regex hit, or `null` for the unmatched
+  16.5% (shown under "All types", not excluded).
 
-**`lib/hijabTypes.ts`** (new file — not `lib/specialty.ts`; see rationale below):
-- The 15 regexes from the table above, each a named const.
-- `HIJAB_SUBTYPE_LABELS: Record<HijabSubtype, string>` in the priority order above (Nav.tsx
-  and the compact-catalogue's "canonical order" pre-pass both read this object's key order,
-  same as `OUTERWEAR_SUBTYPE_LABELS`/`LAYERING_SUBTYPE_LABELS`).
-- `hijabSubtype(p): HijabSubtype | null` — returns `null` unless the product is actually on
-  the hijab lane (`p.garment === 'hijab' || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p)`,
-  imported from `lib/specialty.ts`, mirroring the lane's own `match` in `lib/lanes.ts`), then
-  tests the 15 regexes in priority order and returns the first hit, or `null` for the
-  unmatched 16.7%.
+**`lib/compactCatalogue.ts`** — a new, independent column: `hijabTypeFilters:
+HijabTypeFilter[]` and `rows.hijabTypeFilterIdx: number[]`. Parallel in shape to the existing
+`hijabSubtypes`/`rows.hijabSubtypeIdx` (`034a985`), but a **separate** column — the two
+represent different, orthogonal facts about the same row (which sub-category it structurally
+is, vs. which fabric/style it's made of), so a row legitimately has a real index in both at
+once (e.g. a jersey khimar has `hijabSubtypeIdx` → 'khimar-jilbab' AND
+`hijabTypeFilterIdx` → 'jersey').
 
-Why a new file rather than adding to `lib/specialty.ts`: every existing function there
-(`isSwim`, `isLayering`, `isOuterwear`, `isJilbab`, `isSpecialty`…) answers "should this be
-kept off general browsing grids." Hijab-type classification isn't that — the hijab lane is
-already segregated by a separate, existing mechanism (`browseProducts()`'s
-`p.garment !== 'hijab'` check in `lib/products.ts`, plus the lane's own `match`). Bolting a
-15-case fabric/style classifier onto a file whose whole point is exclusion logic would blur
-what that file is for.
+**`components/FilterableGrid.tsx`** — a new local `useState('all')` (call it `fabricType`,
+matching `brand`'s shape exactly: plain client state, not URL-synced — Brand/Sort aren't
+either), a new `<FilterDropdown label="Type" .../>` rendered only when
+`cat.hijabTypeFilters.length > 0`, and one more `continue` guard in the `filteredRows` loop
+comparing `cat.rows.hijabTypeFilterIdx[i]` — **ANDed** with the existing brand/sub-category-
+`type`/search filters, not a replacement for any of them. The existing `?type=` / `typeDomain`
+machinery (`034a985`) is untouched — a visitor can arrive via the Khimars & Jilbabs flyout
+link (narrows by sub-category) and then also pick "Jersey" from this new dropdown (narrows
+further by fabric), same composability Brand + Sort already have with each other.
 
-**`lib/compactCatalogue.ts`** — parallel to the existing `layeringSubtypes`/
-`rows.layeringSubtypeIdx` and `outerwearSubtypes`/`rows.outerwearSubtypeIdx`: a new
-`hijabSubtypes: HijabSubtype[]` (present-subtypes list, empty on every lane except
-Hijabs & Scarves) and `rows.hijabSubtypeIdx: number[]` (index into that list, or `-1`).
-
-**`components/FilterableGrid.tsx`** — the existing two-way
-`usingOuterwearTypes = cat.layeringSubtypes.length === 0 && cat.outerwearSubtypes.length > 0`
-dispatch becomes three-way (add `usingHijabTypes`, checked after the other two are ruled
-out). `initialType` validation (the `useState`/`useEffect` pair that reads `?type=` from the
-URL) gains a third `.includes(initialType)` check against `cat.hijabSubtypes`. Only one of
-the three arrays is ever non-empty for a given lane's compact catalogue — layering, outerwear
-and hijab lane membership are mutually exclusive by construction (`isLayering`/`isOuterwear`
-both explicitly exclude each other and the hijab lane's own `match` excludes
-`isLayering(p)`) — so this stays a branch, not a merge, same as the existing two-way one.
-
-No in-page "Type" dropdown is added — matching your 2026-08-13/15 call to remove it from
-Outerwear and Layering Basics in favor of flyout-only. The underlying `?type=` filtering
-logic above is still needed regardless, so a flyout link actually narrows the grid on
-arrival.
-
-**`components/Nav.tsx`** — a third `subItems` block, keyed off `l.slug === 'modest-hijabs'`,
-listing all 15 `HIJAB_SUBTYPE_LABELS` entries in their canonical order, each linking to
-`/modest-hijabs?type=${key}`. Same `openOnHover`/`closeOnClick`/`elementFromPoint`-driven
-close mechanics already built for the other two flyouts (§10.34's fix) — no new interaction
-code, just a third list of links through the existing flyout component.
+**Not touched by this design:** `lib/types.ts`, `lib/specialty.ts`, `components/Nav.tsx`,
+`components/MobileNav.tsx`, `app/[lane]/page.tsx` — all already correct for the sub-category
+flyout feature (`034a985`) and need no change for this independent filter.
 
 ## Testing
 
-- `lib/hijabTypes.test.ts` — `hijabSubtype()` true/false per group using real catalogue
-  titles (not invented ones, per this project's own `nonApparel.test.ts` precedent), priority
-  resolution for a title matching two groups (e.g. an "Instant Jersey Hijab" title resolves to
-  `instant`, not `jersey`), and `null` for both a non-hijab-lane product and an unmatched
-  plain-color title.
-- `lib/compactCatalogue.test.ts` — `hijabSubtypes`/`rows.hijabSubtypeIdx` encode correctly,
-  including the `-1`/empty-array cases for a catalogue with no hijab items.
+- `lib/hijabTypeFilter.test.ts` — `hijabTypeFilter()` true/false per group using real
+  catalogue titles, priority resolution for a title matching two groups, `null` for a
+  non-hijab-lane product and for an unmatched plain-color title, and a real-data coverage
+  sanity check (not an exact snapshot — `data/products.json` is republished nightly).
+- `lib/compactCatalogue.test.ts` — `hijabTypeFilters`/`rows.hijabTypeFilterIdx` encode
+  correctly, including the `-1`/empty-array cases, and that a row can carry a real index in
+  both `hijabSubtypeIdx` and `hijabTypeFilterIdx` simultaneously (the orthogonality this
+  design depends on).
 
 ## Out of scope / follow-ups
 
-- **No staff manual override** (no `forcedHijabSubtype` field, no curate-UI control) — skipped
-  for this first version at Tina's call; add later the same way Outerwear/Layering got theirs,
-  if a real misclassification turns up.
-- **English vocabulary only.** This catalogue has non-English hijab titles (at minimum
-  Manzaram's Dutch feed, per `data/translate-brands.json`) that these regexes won't cover —
-  same documented gap the Outerwear design left open, not silently assumed away.
-- **The 857-item "Other" bucket has no flyout link**, per Tina's call — reachable only via
-  unfiltered browsing/search on the lane page.
-- **No republish needed.** Pure application code operating on titles already published in
-  `data/products.json` — classification runs at request time, not publish time.
+- **No staff manual override** — same call as the first draft, unchanged.
+- **English vocabulary only** — same gap as the first draft, unchanged.
+- **The 848-item "no type" set has no dedicated dropdown row** — reachable under the default
+  "All types" state, same as Brand/Sort already work.
+- **No republish needed** — pure application code, request-time classification.
+- **No URL sync for this filter** — picking "Jersey" doesn't change the URL, matching Brand's
+  existing behavior. If Tina later wants a shareable filtered link, that's a separate,
+  explicit follow-up (would need its own query param, since `?type=` is already the
+  sub-category flyout's).
