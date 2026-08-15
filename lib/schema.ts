@@ -7,7 +7,7 @@
  * below carry only name/url/image, never price or availability.
  */
 
-const SITE_URL = 'https://themodestyhouse.com';
+export const SITE_URL = 'https://themodestyhouse.com';
 const SITE_NAME = 'The Modesty House';
 
 export function organizationSchema() {

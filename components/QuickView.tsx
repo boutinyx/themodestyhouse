@@ -1,9 +1,10 @@
 'use client';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { CardProduct } from '@/lib/compactCatalogue';
-import { Heart, X, ArrowUpRight } from '@phosphor-icons/react';
+import { Heart, X, ArrowUpRight, Copy, Check } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
+import { SITE_URL } from '@/lib/schema';
 
 type Ctx = {
   open: (p: CardProduct) => void;
@@ -81,6 +82,25 @@ function Modal({
 }) {
   const { price } = useCurrency();
   const [zoomed, setZoomed] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
+
+  // `id` is always `${brandSlug}:${shopifyId}` (Invariant 1) — stripping the
+  // known prefix is safer than splitting on the first ':', since a Shopify id
+  // is numeric and can't itself contain one, but a brand slug never will
+  // either way this stays correct.
+  const shareUrl = `${SITE_URL}/product/${product.brandSlug}/${product.id.slice(product.brandSlug.length + 1)}`;
+
+  async function copyShareLink() {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setCopyError(false);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopyError(true);
+    }
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -197,6 +217,27 @@ function Modal({
               <Heart size={17} weight={isFav ? 'fill' : 'regular'} />
               {isFav ? 'Saved to favourites' : 'Add to favourites'}
             </button>
+            {/* Desktop-only: a link back to a page of OURS, not the brand's —
+                the full-card anchor and the button above both leave the site
+                immediately, so there was nothing on themodestyhouse.com to
+                share. `hidden md:inline-flex` matches the modal's own
+                md:grid-cols-2 split — mobile is already a tight single
+                column (see the photo-height comment above), desktop has the
+                room. Links to a noindex page (app/product/[brandSlug]/
+                [shopifyId]) so it works when clicked without repeating the
+                2026-08-05 thin-content mistake. */}
+            <button
+              onClick={copyShareLink}
+              className="chip w-full py-3 hidden md:inline-flex items-center justify-center gap-2"
+            >
+              {copied ? <Check size={17} weight="bold" /> : <Copy size={17} />}
+              {copied ? 'Link copied' : 'Copy share link'}
+            </button>
+            {copyError && (
+              <p className="text-xs text-center" style={{ color: '#b3261e' }}>
+                Couldn&apos;t copy automatically — copy this instead: {shareUrl}
+              </p>
+            )}
           </div>
         </div>
       </div>
