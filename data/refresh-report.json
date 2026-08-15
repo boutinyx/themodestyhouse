@@ -1,9 +1,9 @@
 {
   "date": "2026-08-15",
   "totals": {
-    "added": 3,
-    "updated": 1070,
-    "delisted": 4,
+    "added": 1,
+    "updated": 1072,
+    "delisted": 2,
     "filtered": 0,
     "returned": 1,
     "incomplete": 0
@@ -14,12 +14,10 @@
       "complete": true,
       "fetched": 1073,
       "added": [
-        "Poplin Dress With Elastic Waistband",
-        "Skirt And Jacket 2-Piece Set",
-        "Natural Flowy Modal Maxi Dress"
+        "Embroidered Jacket"
       ],
-      "updated": 1070,
-      "delisted": 4,
+      "updated": 1072,
+      "delisted": 2,
       "filtered": [],
       "returned": 1
     }
