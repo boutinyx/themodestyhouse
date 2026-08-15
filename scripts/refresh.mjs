@@ -19,13 +19,16 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // Brands populated by a dedicated script, never by the generic per-brand
 // fetch/refresh loop below — an ordinary refresh of their feed would
 // reintroduce whatever that script was specifically built to avoid. Right
-// now that's just touche-prive-eu (scripts/touche-prive-dual-region.mjs):
-// its feed overlaps ~25% with touche-prive's own, and a generic refresh
-// would re-add every one of those as a duplicate second card. Excluded from
-// the bare/all-brands run; naming it explicitly (`npm run refresh -- touche-prive-eu`)
-// still works but does a plain full-catalog refresh and WILL reintroduce the
-// duplicates — use the dedicated script instead.
-const CUSTOM_MANAGED = new Set(['touche-prive-eu']);
+// now that's touche-prive AND touche-prive-eu together
+// (scripts/touche-prive-dual-region.mjs): Tina's policy (2026-08-15) is
+// "only publish a Touché Privé item that exists on BOTH regional stores" —
+// a generic refresh of either brand alone has no way to know that, and
+// would republish every single-store item the dedicated script had
+// deliberately filtered out. Excluded from the bare/all-brands run; naming
+// either one explicitly (`npm run refresh -- touche-prive`) still works but
+// does a plain full-catalog refresh and WILL reintroduce single-store
+// items — use the dedicated script instead.
+const CUSTOM_MANAGED = new Set(['touche-prive', 'touche-prive-eu']);
 
 const only = new Set(process.argv.slice(2));
 const targets = only.size ? BRANDS.filter((b) => only.has(b.slug)) : BRANDS.filter((b) => !CUSTOM_MANAGED.has(b.slug));

@@ -152,15 +152,21 @@ export const BRANDS: Brand[] = [
   { slug: 'nihan', name: 'Nihan', homepage: 'https://nihan.com.tr', feedUrl: 'https://nihan.com.tr/products.json', community: 'hijabi', currency: 'TRY', category: 'Modest', city: 'Turkey', vibe: 'elegant' },
   { slug: 'baqa', name: 'BAQA', homepage: 'https://baqaofficial.com', feedUrl: 'https://baqaofficial.com/products.json', community: 'hijabi', currency: 'TRY', category: 'Modest dresses', city: 'Istanbul', vibe: 'elegant' },
   { slug: 'abaya-lounge', name: 'Abaya Lounge', homepage: 'https://abayalounge.com', feedUrl: 'https://abayalounge.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Abayas', city: 'United Kingdom', vibe: 'elegant' },
+  // Touché Privé (int) AND touche-prive-eu below are BOTH custom-managed —
+  // see scripts/refresh.mjs's CUSTOM_MANAGED set. int.toucheprive.com (USD)
+  // and eu.toucheprive.com (EUR) are two materially different Shopify
+  // stores, own ids, ~75% non-overlapping catalog. Tina's policy
+  // (2026-08-15, after first trying "keep both fully, route by timezone"):
+  // publish ONLY an item that exists on BOTH stores — a single-store item
+  // always fails checkout for someone (eu has no US market at all; an
+  // EU visitor hitting an int-only item can still hit Touché Privé's own
+  // geo-redirect dead end). scripts/touche-prive-dual-region.mjs is the
+  // ONLY thing that ever writes either brand's raw rows: it re-verifies
+  // dual-store presence on every run and sets `altUrl` (int -> eu) on the
+  // survivors — never a bare `npm run refresh`, which has no way to know
+  // this rule and would republish every single-store item again. See
+  // docs/log/2026-08-15-touche-prive-dual-only-policy.md.
   { slug: 'touche-prive', name: 'Touché Privé', homepage: 'https://int.toucheprive.com', feedUrl: 'https://int.toucheprive.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest', city: 'Istanbul', vibe: 'elegant' },
-  // Touché Privé's EU-market storefront — a materially different catalog
-  // (own ids, own EUR pricing, ~75% non-overlapping with the int store
-  // above), NOT a normal second brand. Populated ONLY by
-  // scripts/touche-prive-dual-region.mjs, which also sets `altUrl` on the
-  // int-sourced rows above wherever a matching EU listing exists — never by
-  // a bare `npm run refresh`, which would re-add the ~260 items that
-  // duplicate touche-prive as a second card. See scripts/refresh.mjs's
-  // CUSTOM_MANAGED exclusion and docs/log/2026-08-15-touche-prive-dual-region-links.md.
   { slug: 'touche-prive-eu', name: 'Touché Privé', homepage: 'https://eu.toucheprive.com', feedUrl: 'https://eu.toucheprive.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Istanbul', vibe: 'elegant' },
   { slug: 'daska-fashion', name: 'Daska Fashion', homepage: 'https://daskafashion.com', feedUrl: 'https://daskafashion.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest dresses', city: 'United Kingdom', vibe: 'elegant' },
   { slug: 'jennah-boutique', name: 'Jennah Boutique', homepage: 'https://jennah-boutique.com', feedUrl: 'https://jennah-boutique.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest ready-to-wear', city: 'France', vibe: 'streetwear' },
