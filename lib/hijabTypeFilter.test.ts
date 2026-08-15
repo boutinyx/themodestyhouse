@@ -21,13 +21,31 @@ describe('hijabTypeFilter', () => {
     expect(hijabTypeFilter(p('Riverwalk Blue Hijab'))).toBeNull(); // haute-hijab, real title
   });
 
-  it('sorts a real title from each of the 15 groups into exactly the right group', () => {
+  it('returns null for a "set"-bundle title with no fabric named — "set" is not a type', () => {
+    // Real title, culture-hijab — a bundle of colors/accessories, not a
+    // fabric or a garment style. Only classified when a real fabric or
+    // style word ALSO appears (e.g. "Bamboo Jersey Hijab Set" -> 'jersey').
+    expect(hijabTypeFilter(p('The Culture Starter Set'))).toBeNull();
+    expect(hijabTypeFilter(p('3-Piece Hijab Set'))).toBeNull();
+  });
+
+  // "Hijab Sets" was a 15th group here originally, matching \bsets?\b — Tina
+  // flagged 2026-08-15 that it wasn't a real hijab TYPE: checked the real
+  // 252 items in it, and they're almost all plain jersey/modal/chiffon/
+  // bamboo hijabs sold as a matching bundle ("Bamboo Jersey Hijab Set -
+  // Cedar", "Modal Hijab Set") or plain undercaps — "set" describes how
+  // it's PACKAGED, not what it IS, unlike every other group here. Removed;
+  // those items now fall through to their real fabric group instead of
+  // being hidden behind a fake category.
+  it('sorts a real title from each of the 14 groups into exactly the right group', () => {
     expect(hijabTypeFilter(p('Syrian Full-Neck Underscarf'))).toBe('caps-underscarves'); // jaida
     expect(hijabTypeFilter(p('Khimar Medina silk'))).toBe('khimar'); // jennah-boutique
     expect(hijabTypeFilter(p('Jilbab - Black', 'abaya'))).toBe('jilbab');
     expect(hijabTypeFilter(p('Premium Instant Hijab'))).toBe('instant'); // lafemme
     expect(hijabTypeFilter(p('Lina Knit Sweater and Removable Shawl'))).toBe('shawl'); // mondo-the-label
-    expect(hijabTypeFilter(p('The Culture Starter Set'))).toBe('set'); // culture-hijab
+    // "Hijab Sets" removed — this real title (previously classified 'set')
+    // now correctly falls through to its real fabric, jersey.
+    expect(hijabTypeFilter(p('Bamboo Jersey Hijab Set - Cedar'))).toBe('jersey'); // nour-al-houda
     expect(hijabTypeFilter(p('Airy Jersey Scarf Mocha Brown'))).toBe('jersey'); // diversity-modest
     expect(hijabTypeFilter(p('Navy Lace Trim Modal Hijab'))).toBe('modal'); // urban-modesty
     expect(hijabTypeFilter(p('Small Premium Chiffon Hijab (Non-Slip)'))).toBe('chiffon'); // voile-chic
@@ -43,7 +61,7 @@ describe('hijabTypeFilter', () => {
     expect(hijabTypeFilter(p('Khimar Medina silk'))).toBe('khimar'); // khimar over silk-viscose
     // hidayah, garment:'abaya' — "One-Piece" alone would say instant
     expect(hijabTypeFilter(p('Mirah One-Piece Jilbab (Bordeaux)', 'abaya'))).toBe('jilbab'); // jilbab over instant
-    expect(hijabTypeFilter(p('BreathLite Sports Hijab Set- Ivory Blush - Final Sale'))).toBe('sport'); // sport over set, dignitii
+    expect(hijabTypeFilter(p('BreathLite Sports Hijab Set- Ivory Blush - Final Sale'))).toBe('sport'); // sport over jersey/etc, dignitii — "Sport" wins even with "Set" in the title
     expect(hijabTypeFilter(p('Printed Satin'))).toBe('printed'); // printed over satin, culture-hijab
     expect(hijabTypeFilter(p('Diamond Satin Crinkle (Oat)'))).toBe('crinkle'); // crinkle over satin, hidayah
     expect(hijabTypeFilter(p('Liquid Jersey Instant Hijab'))).toBe('instant'); // instant over jersey, lafemme
@@ -63,7 +81,6 @@ describe('hijabTypeFilter', () => {
       sport: p('BreathLite Sports Hijab Set- Ivory Blush - Final Sale'),
       shawl: p('Lina Knit Sweater and Removable Shawl'),
       printed: p('Printed Satin'),
-      set: p('The Culture Starter Set'),
       crinkle: p('Diamond Satin Crinkle (Oat)'),
       jersey: p('Airy Jersey Scarf Mocha Brown'),
       modal: p('Navy Lace Trim Modal Hijab'),
@@ -81,8 +98,8 @@ describe('hijabTypeFilter', () => {
   // republished nightly (CLAUDE.md §10.35), so pinning an exact count here
   // would fail on ordinary catalogue growth, not a real bug. This only
   // catches the classifier actually breaking (e.g. GROUPS emptied, or
-  // reordered so nothing resolves). Measured 2026-08-15: 5,146 items on the
-  // lane, 83.5% classified.
+  // reordered so nothing resolves). Measured 2026-08-15 (after removing the
+  // "Hijab Sets" group): 5,146 items on the lane, 83.2% classified.
   it('classifies most of the real modest-hijabs lane', () => {
     const items = productsForLane('modest-hijabs');
     const classified = items.filter((prod) => hijabTypeFilter(prod) !== null).length;

@@ -3,11 +3,22 @@ import { isJilbab, isKhimarAbaya, isUndercap } from '@/lib/specialty';
 
 /**
  * The Hijabs & Scarves lane's in-page "Type" filter (Brand/Sort's own
- * FilterDropdown, components/IndexPanel.tsx) — 15 fabric/style groups built
+ * FilterDropdown, components/IndexPanel.tsx) — 14 fabric/style groups built
  * from the real modest-hijabs lane (5,146 products, measured 2026-08-15),
  * not guessed. Full taxonomy table, group-by-group counts, and the priority-
  * order rationale live in
  * docs/superpowers/specs/2026-08-15-hijab-type-filter-design.md.
+ *
+ * A 15th group, "Hijab Sets" (`\bsets?\b`), shipped originally and was
+ * removed the same day — Tina: "hijab sets dont exsist they are just match
+ * undercap and hijab get rid of that". Checked the real 252 items in it:
+ * almost all plain jersey/modal/chiffon/bamboo hijabs sold as a matching
+ * bundle ("Bamboo Jersey Hijab Set - Cedar", "Modal Hijab Set") or bare
+ * bundles with no fabric named at all ("The Culture Starter Set",
+ * "3-Piece Hijab Set"). Unlike every other group here, "set" describes how
+ * an item is PACKAGED, not what it IS — it was stealing real fabric
+ * classifications rather than adding one. Removed; those items now fall
+ * through to their actual fabric group, or to null if none is named.
  *
  * Deliberately NOT named HijabSubtype/hijabSubtype()/HIJAB_SUBTYPE_LABELS —
  * lib/specialty.ts and lib/types.ts already export those, for a DIFFERENT,
@@ -39,7 +50,6 @@ export type HijabTypeFilter =
   | 'sport'
   | 'shawl'
   | 'printed'
-  | 'set'
   | 'crinkle'
   | 'jersey'
   | 'modal'
@@ -56,7 +66,6 @@ export const HIJAB_TYPE_FILTER_LABELS: Record<HijabTypeFilter, string> = {
   sport: 'Sport Hijabs',
   shawl: 'Shawls & Pashminas',
   printed: 'Printed',
-  set: 'Hijab Sets',
   crinkle: 'Crinkle',
   jersey: 'Jersey',
   modal: 'Modal',
@@ -82,7 +91,6 @@ const GROUPS: [HijabTypeFilter, RegExp][] = [
   // caught and fixed before implementation (see the design doc's
   // Correction note).
   ['printed', /\bprint(?:s|ed)?\b|\bfloral\b|\bpolka\b|\banimal print\b|\bstripe[sd]?\b|\bplaid\b|\bcheck(?:ered)?\b/i],
-  ['set', /\bsets?\b/i],
   ['crinkle', /\bcrinkle[d]?\b/i],
   ['jersey', /\bjersey\b/i],
   ['modal', /\bmodal\b/i],
@@ -93,10 +101,11 @@ const GROUPS: [HijabTypeFilter, RegExp][] = [
 ];
 
 /** Returns null for anything not on the Hijabs & Scarves lane, and for the
- *  ~16.5% of real lane items with no fabric/style word in the title at all
- *  (plain color-named titles like "Riverwalk Blue Hijab") — both are
- *  expected, not errors; they're simply shown under the dropdown's default
- *  "All types" state, same as Brand's default. */
+ *  ~16.8% of real lane items with no fabric/style word in the title at all
+ *  (plain color-named titles like "Riverwalk Blue Hijab", and fabric-less
+ *  "set" bundle titles like "The Culture Starter Set") — both are expected,
+ *  not errors; they're simply shown under the dropdown's default "All
+ *  types" state, same as Brand's default. */
 export function hijabTypeFilter(p: Product): HijabTypeFilter | null {
   if (!isHijabLaneItem(p)) return null;
   for (const [type, re] of GROUPS) {

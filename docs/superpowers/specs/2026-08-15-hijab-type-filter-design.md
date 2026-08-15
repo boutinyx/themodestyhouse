@@ -55,7 +55,7 @@ columns already use to decide whether a lane needs a Type control at all.
 
 ## Taxonomy
 
-15 groups, in priority order (a title matching more than one group's vocabulary resolves to
+14 groups, in priority order (a title matching more than one group's vocabulary resolves to
 whichever is checked first — narrowest/most-functional groups before generic fabric names).
 Counts measured against the real `modest-hijabs` lane, 2026-08-15, over the **whole** lane —
 independent of the separate khimar-jilbab/undercap/plain-hijab split the flyout uses:
@@ -69,17 +69,25 @@ independent of the separate khimar-jilbab/undercap/plain-hijab split the flyout 
 | 5 | `sport` | Sport Hijabs | `sports?\|active` | 29 |
 | 6 | `shawl` | Shawls & Pashminas | `shawls?\|pashmina` | 76 |
 | 7 | `printed` | Printed | `print(?:s\|ed)?\|floral\|polka\|animal print\|stripe[sd]?\|plaid\|check(?:ered)?` | 254 |
-| 8 | `set` | Hijab Sets | `sets?` | 252 |
-| 9 | `crinkle` | Crinkle | `crinkle[d]?` | 105 |
-| 10 | `jersey` | Jersey | `jersey` | 1,141 |
-| 11 | `modal` | Modal | `modal` | 517 |
-| 12 | `chiffon` | Chiffon | `chiffon` | 666 |
-| 13 | `cotton` | Cotton & Bamboo | `cotton\|bamboo` | 49 |
-| 14 | `satin` | Satin | `satin` | 118 |
-| 15 | `silk-viscose` | Silk & Viscose | `silk\|viscose\|rayon` | 116 |
-| — | *(none — "All types" shows them)* | — | — | 848 (16.5%) |
+| 8 | `crinkle` | Crinkle | `crinkle[d]?` | 105 |
+| 9 | `jersey` | Jersey | `jersey` | 1,201 |
+| 10 | `modal` | Modal | `modal` | 659 |
+| 11 | `chiffon` | Chiffon | `chiffon` | 700 |
+| 12 | `cotton` | Cotton & Bamboo | `cotton\|bamboo` | 49 |
+| 13 | `satin` | Satin | `satin` | 119 |
+| 14 | `silk-viscose` | Silk & Viscose | `silk\|viscose\|rayon` | 116 |
+| — | *(none — "All types" shows them)* | — | — | 863 (16.8%) |
 
-The 848 unmatched are plain, color-named titles with no fabric or style word at all (e.g.
+**"Hijab Sets" removed 2026-08-15, same day it shipped** — a 15th group, `\bsets?\b`, 252
+items. Tina: "hijab sets dont exsist they are just match undercap and hijab get rid of
+that." Checked the real items: almost all plain jersey/modal/chiffon/bamboo hijabs sold as a
+matching bundle ("Bamboo Jersey Hijab Set - Cedar", "Modal Hijab Set") or bare bundles with
+no fabric named at all ("The Culture Starter Set", "3-Piece Hijab Set"). Unlike every other
+group, "set" describes packaging, not what the item IS — it was stealing real fabric
+classifications (Jersey grew 1,141 → 1,201, Modal 517 → 659, Chiffon 666 → 700 once removed)
+rather than adding a useful one. The table above already reflects its removal.
+
+The 863 unmatched are plain, color-named titles with no fabric or style word at all (e.g.
 "Riverwalk Blue Hijab") — shown under the dropdown's default "All types" state, same as an
 item with no special brand affinity is still shown under Brand's default "All brand" state;
 no dedicated dropdown row for them, matching how `FilterDropdown` already treats "no value"
@@ -98,19 +106,20 @@ and doesn't touch lane-membership/exclusion logic):
 ```ts
 export type HijabTypeFilter =
   | 'caps-underscarves' | 'khimar' | 'jilbab' | 'instant' | 'sport' | 'shawl' | 'printed'
-  | 'set' | 'crinkle' | 'jersey' | 'modal' | 'chiffon' | 'cotton' | 'satin' | 'silk-viscose';
+  | 'crinkle' | 'jersey' | 'modal' | 'chiffon' | 'cotton' | 'satin' | 'silk-viscose';
 ```
 Named `HijabTypeFilter`/`hijabTypeFilter()`/`HIJAB_TYPE_FILTER_LABELS` — deliberately
 **not** `HijabSubtype`/`hijabSubtype()`/`HIJAB_SUBTYPE_LABELS`, which commit `034a985` already
 defined in `lib/specialty.ts`/`lib/types.ts` for the (different) khimar-jilbab/undercap/hijab
 sub-category concept. Reusing those names would either collide or, worse, silently shadow the
 existing exports.
-- The 15 regexes from the table above, checked in priority order.
+- The 14 regexes from the table above, checked in priority order (a 15th, `set`, shipped and
+  was removed the same day — see the Taxonomy section above).
 - `HIJAB_TYPE_FILTER_LABELS: Record<HijabTypeFilter, string>` — the dropdown's option order.
 - `hijabTypeFilter(p): HijabTypeFilter | null` — `null` unless the product is actually on the
   hijab lane (`p.garment === 'hijab' || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p)`,
   imported from `lib/specialty.ts`), then the first regex hit, or `null` for the unmatched
-  16.5% (shown under "All types", not excluded).
+  16.8% (shown under "All types", not excluded).
 
 **`lib/compactCatalogue.ts`** — a new, independent column: `hijabTypeFilters:
 HijabTypeFilter[]` and `rows.hijabTypeFilterIdx: number[]`. Parallel in shape to the existing
