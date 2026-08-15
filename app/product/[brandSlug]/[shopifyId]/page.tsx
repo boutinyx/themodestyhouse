@@ -6,6 +6,7 @@ import { getProducts } from '@/lib/products';
 import { formatPrice } from '@/lib/price';
 import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import type { Product } from '@/lib/types';
+import EditorsRail from '@/components/EditorsRail';
 
 /**
  * A page of OURS for a single product, so there is something on
@@ -65,10 +66,31 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
+// "You might also love" — same garment as the product being viewed, one per
+// brand (seeded with the current brand so its OWN other products don't fill
+// the row) so it reads as a spread across the catalogue rather than one
+// brand's back-catalogue. Cross-brand by construction, which also means it
+// never needs isSpecialty()/browseProducts() gating (Invariant 5): a hijab
+// page only ever draws from other hijabs, an abaya page from other abayas,
+// so hijabs/specialty items never get mixed into an unrelated grid — they
+// just recommend within their own community.
+function relatedPicks(p: Product): Product[] {
+  const seenBrand = new Set<string>([p.brandSlug]);
+  return getProducts()
+    .filter((item) => item.garment === p.garment && item.id !== p.id && item.inStock && item.image)
+    .filter((item) => {
+      if (seenBrand.has(item.brandSlug)) return false;
+      seenBrand.add(item.brandSlug);
+      return true;
+    })
+    .slice(0, 6);
+}
+
 export default async function ProductPage({ params }: { params: Promise<Params> }) {
   const { brandSlug, shopifyId } = await params;
   const p = findProduct(brandSlug, shopifyId);
   if (!p) notFound();
+  const related = relatedPicks(p);
 
   return (
     <main className="max-w-3xl mx-auto px-8 pt-32 md:pt-40 pb-16">
@@ -104,6 +126,20 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           </a>
         </div>
       </div>
+      {/* Fills the open space under "Shop at {brand}" — on desktop that's the
+          right column below the button; on a phone, below the whole stacked
+          block. Tina's own spec: a scrollable row, a couple of cards visible
+          at a time, up to ~5-6 to scroll through. Cross-brand, same garment
+          as the product above (relatedPicks) — never the homepage's own
+          editorial selection, so this page still says something about THIS
+          product. badgeLabel={null}: these are algorithmically similar, not
+          hand-picked, so the Sparkle "Editor's pick" badge would overclaim. */}
+      {related.length >= 2 && (
+        <section className="mt-16 md:mt-20">
+          <h2 className="card-title card-title-lg mb-6">You might also love</h2>
+          <EditorsRail picks={related} surface="product-page-related" badgeLabel={null} />
+        </section>
+      )}
     </main>
   );
 }

@@ -21,7 +21,22 @@ type Pick = {
 };
 
 
-export default function EditorsRail({ picks }: { picks: Pick[] }) {
+export default function EditorsRail({
+  picks,
+  surface = 'editors-rail',
+  badgeLabel = "Editor's pick",
+}: {
+  picks: Pick[];
+  /** data-surface on each card's outbound anchor, for click tracking — lets
+   *  a second placement (e.g. the product page's "similar items" rail) be
+   *  told apart from the homepage's own. */
+  surface?: string;
+  /** The homepage's rail is genuinely hand-curated, hence the Sparkle badge.
+   *  A rail of algorithmically-similar items (same garment, different
+   *  product) is not that claim — pass null to omit the badge rather than
+   *  mislabel it. */
+  badgeLabel?: string | null;
+}) {
   const { price } = useCurrency();
   const scroller = useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = useState(false);
@@ -67,7 +82,7 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
             rel="noopener noreferrer sponsored"
             data-brand={p.brandSlug}
             data-garment={p.garment}
-            data-surface="editors-rail"
+            data-surface={surface}
             className="group shrink-0"
             style={{ width: 230, scrollSnapAlign: 'start' }}
           >
@@ -85,7 +100,9 @@ export default function EditorsRail({ picks }: { picks: Pick[] }) {
                 loading="lazy"
                 decoding="async"
               />
-              <span className="badge absolute top-3 left-3"><Sparkle size={10} weight="fill" />Editor&rsquo;s pick</span>
+              {badgeLabel && (
+                <span className="badge absolute top-3 left-3"><Sparkle size={10} weight="fill" />{badgeLabel}</span>
+              )}
             </div>
             <div className="brand-label mt-3">{p.brandName}</div>
             <div className="card-title card-title-lg mt-1">{p.title}</div>
