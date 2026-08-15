@@ -163,9 +163,30 @@ export function MobileNav() {
    *  the eslint react-hooks/refs rule won't let take a ref through a
    *  function parameter — it can't statically prove the ref is only ever
    *  used for `ref=`, so each row below attaches its own ref directly in
-   *  JSX instead of via a shared function). */
-  const subtypeLinks = <T extends string,>(slug: string, order: T[], labels: Record<T, string>) => (
+   *  JSX instead of via a shared function).
+   *
+   *  Leads with an "All X" link to the bare lane page (no ?type=) — added
+   *  2026-08-15 alongside the same fix in components/Nav.tsx. The row
+   *  itself is a disclosure toggle, never a link (see outerwearRow's own
+   *  comment on why), so before this there was no way to reach the
+   *  unfiltered category view from the phone menu either. */
+  const subtypeLinks = <T extends string,>(slug: string, allLabel: string, order: T[], labels: Record<T, string>) => (
     <div className="pb-2">
+      <Link
+        href={`/${slug}`}
+        onClick={close}
+        className="flex items-center py-3 pl-4"
+        style={{
+          fontFamily: 'var(--font-ui-stack)',
+          fontSize: 15,
+          lineHeight: 1.35,
+          letterSpacing: '0.01em',
+          color: 'var(--ink)',
+          fontWeight: 500,
+        }}
+      >
+        {allLabel}
+      </Link>
       {order.map((t) => (
         <Link
           key={t}
@@ -215,7 +236,7 @@ export function MobileNav() {
           }}
         />
       </button>
-      {outerwearOpen && subtypeLinks('outerwear', OUTERWEAR_SUBTYPE_ORDER, OUTERWEAR_SUBTYPE_LABELS)}
+      {outerwearOpen && subtypeLinks('outerwear', 'All Outerwear', OUTERWEAR_SUBTYPE_ORDER, OUTERWEAR_SUBTYPE_LABELS)}
     </div>
   );
 
@@ -249,7 +270,7 @@ export function MobileNav() {
           }}
         />
       </button>
-      {layeringOpen && subtypeLinks('layering-basics', LAYERING_SUBTYPE_ORDER, LAYERING_SUBTYPE_LABELS)}
+      {layeringOpen && subtypeLinks('layering-basics', 'All Layering Basics', LAYERING_SUBTYPE_ORDER, LAYERING_SUBTYPE_LABELS)}
     </div>
   );
 
@@ -283,7 +304,7 @@ export function MobileNav() {
           }}
         />
       </button>
-      {hijabsOpen && subtypeLinks('modest-hijabs', HIJAB_SUBTYPE_ORDER, HIJAB_SUBTYPE_LABELS)}
+      {hijabsOpen && subtypeLinks('modest-hijabs', 'All Hijabs & Scarves', HIJAB_SUBTYPE_ORDER, HIJAB_SUBTYPE_LABELS)}
     </div>
   );
 
