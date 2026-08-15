@@ -46,20 +46,29 @@ real `modest-hijabs` lane, 2026-08-15:
 | 4 | `instant` | Instant Hijabs | `instant\|one.?piece\|no.?pin\|ready.?to.?wear\|slip.?on` | 113 |
 | 5 | `sport` | Sport Hijabs | `sports?\|active` | 29 |
 | 6 | `shawl` | Shawls & Pashminas | `shawls?\|pashmina` | 76 |
-| 7 | `printed` | Printed | `prints?\|floral\|polka\|animal print\|stripe[sd]?\|plaid\|check(?:ered)?` | 121 |
+| 7 | `printed` | Printed | `print(?:s\|ed)?\|floral\|polka\|animal print\|stripe[sd]?\|plaid\|check(?:ered)?` | 254 |
 | 8 | `set` | Hijab Sets | `sets?` | 252 |
 | 9 | `crinkle` | Crinkle | `crinkle[d]?` | 105 |
-| 10 | `jersey` | Jersey | `jersey` | 1,147 |
-| 11 | `modal` | Modal | `modal` | 609 |
-| 12 | `chiffon` | Chiffon | `chiffon` | 673 |
-| 13 | `cotton` | Cotton & Bamboo | `cotton\|bamboo` | 53 |
-| 14 | `satin` | Satin | `satin` | 120 |
-| 15 | `silk-viscose` | Silk & Viscose | `silk\|viscose\|rayon` | 129 |
-| — | *(none — no flyout link)* | — | — | 857 (16.7%) |
+| 10 | `jersey` | Jersey | `jersey` | 1,141 |
+| 11 | `modal` | Modal | `modal` | 517 |
+| 12 | `chiffon` | Chiffon | `chiffon` | 666 |
+| 13 | `cotton` | Cotton & Bamboo | `cotton\|bamboo` | 49 |
+| 14 | `satin` | Satin | `satin` | 118 |
+| 15 | `silk-viscose` | Silk & Viscose | `silk\|viscose\|rayon` | 116 |
+| — | *(none — no flyout link)* | — | — | 848 (16.5%) |
 
-The 857 unmatched are plain, color-named titles with no fabric or style word at all (e.g.
+The 848 unmatched are plain, color-named titles with no fabric or style word at all (e.g.
 "Riverwalk Blue Hijab", "VZ Severine Scarf – Brown") — still shown on the lane page and in
 search, just not reachable from any specific Type link, per Tina's call.
+
+**Correction, made while writing the implementation plan (still 2026-08-15):** the first
+draft's `printed` regex — `\bprints?\b|...` — matches "print"/"prints" but not "printed",
+missing 134 real titles ("Printed Chiffon Hijab", "Printed Modal - Taupe Mirage",
+"Hidayah Bloom Printed Jersey (Zainaara)") that instead fell into whichever fabric group
+they also named. Fixed to `\bprint(?:s|ed)?\b|...`. The table above already reflects the
+corrected regex and counts; verified no other group's regex had the same stem/suffix gap
+(checked pashmina/pashminas, tube/tubes, check/checked, bandana/bandanas, rayon/rayons
+against the real catalogue — none missed anything the strict regex didn't already cover).
 
 ## Design
 
