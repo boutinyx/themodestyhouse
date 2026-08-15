@@ -32,6 +32,24 @@ export type NavItem = {
    *  inside the outer NavigationMenu.Content — the same primitive already
    *  proven for the currency switcher, not a rebuild of the whole panel. */
   subItems?: { href: string; label: string }[];
+  /** True for a subItems row that sits in the LEFT column of the Products
+   *  panel's 2-column grid (only Hijabs & Scarves today) — added 2026-08-16.
+   *  Its `side="right"` flyout otherwise opens directly on top of the RIGHT
+   *  column's own rows (Layering Basics, Outerwear sit at overlapping
+   *  heights): measured live, column 1 ends at x≈758, column 2 spans
+   *  x≈782–969, so the flyout's default 2px offset lands squarely inside
+   *  column 2. This was the actual cause of "when i hover over and want to
+   *  click onn one of the sub catagories it dissapears" / "the block closes
+   *  in slow motion" — not a timing race at all (the two closeDelay
+   *  widenings that came before this didn't fix it, because there was
+   *  nothing wrong with the timing): the pointer visually lands ON the
+   *  still-open Hijabs flyout instead of reaching the Layering Basics/
+   *  Outerwear row underneath it, so hovering "down" from Hijabs never
+   *  opens the row you're actually trying to reach, and whatever happens
+   *  next reads as the panel getting confused and eventually closing.
+   *  Right-column rows (Layering Basics, Outerwear) don't need this — there
+   *  is no column 3 for their own flyouts to collide with. */
+  wideFlyoutOffset?: boolean;
 };
 
 /** Phosphor CaretDown, not a hand-drawn path (CLAUDE.md §6). The old inline
@@ -111,7 +129,6 @@ export function NavMenu({
   // followed by any mouse movement should not leave a stale panel open.
   const [navValue, setNavValue] = useState<string | null>(null);
   const outerPopupRef = useRef<HTMLElement | null>(null);
-  const flyoutPopupRef = useRef<HTMLElement | null>(null);
   // Whether the pointer is CURRENTLY somewhere relevant (header, outer popup,
   // or the flyout — checked live by the same geometry the active closer below
   // uses), not whether the flyout happens to be open. An earlier cut vetoed
@@ -140,11 +157,27 @@ export function NavMenu({
     let closeTimer: ReturnType<typeof setTimeout> | null = null;
     const onPointerMove = (e: PointerEvent) => {
       const target = document.elementFromPoint(e.clientX, e.clientY);
+      // `.closest('[data-nav-subflyout]')`, NOT a stored ref to one specific
+      // flyout popup — found 2026-08-16 as the real bug behind "the block
+      // closes in slow motion" (Tina, after the two closeDelay widenings
+      // didn't fix it): there are THREE separate sub-flyouts (Outerwear,
+      // Layering Basics, Hijabs & Scarves), each its own <Menu.Root>, but
+      // `flyoutPopupRef` was ONE ref shared across all three Menu.Popup
+      // elements. Whichever one most recently mounted/unmounted wins
+      // `.current` — so this check could easily end up testing the pointer
+      // against a DIFFERENT (hidden) flyout's DOM node than the one
+      // actually open and hovered, reading a real hover as "not relevant"
+      // and queuing a close that had nothing to do with an actual
+      // pointer-leave. The widened delays before this just made that
+      // eventual, spurious close visibly slower, not correct. A live
+      // `closest()` query has no shared-state problem: it always finds
+      // whichever flyout DOM the pointer is actually over, current mount or
+      // not.
       const stillRelevant =
         !!target &&
         (!!target.closest('header') ||
           (!!outerPopupRef.current && outerPopupRef.current.contains(target)) ||
-          (!!flyoutPopupRef.current && flyoutPopupRef.current.contains(target)));
+          !!target.closest('[data-nav-subflyout]'));
       pointerRelevant.current = stillRelevant;
       if (stillRelevant) {
         if (closeTimer) {
@@ -309,9 +342,21 @@ export function NavMenu({
                         <CaretRight size={11} weight="bold" aria-hidden="true" className="ms-2 opacity-60" />
                       </Menu.Trigger>
                       <Menu.Portal>
-                        <Menu.Positioner side="right" alignOffset={-8} sideOffset={2} collisionPadding={12} className="z-50">
+                        <Menu.Positioner
+                          side="right"
+                          alignOffset={-8}
+                          // A column-1 row's flyout otherwise opens directly
+                          // on top of column 2's own rows — see the
+                          // `wideFlyoutOffset` doc comment on NavItem above.
+                          // 230px is measured to clear column 2's right edge
+                          // (x≈969) from column 1's right edge (x≈758) with a
+                          // safety margin, not just its near edge.
+                          sideOffset={it.wideFlyoutOffset ? 230 : 2}
+                          collisionPadding={12}
+                          className="z-50"
+                        >
                           <Menu.Popup
-                            ref={flyoutPopupRef}
+                            data-nav-subflyout
                             className="rounded-xl border p-2 min-w-[180px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
                             style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
                           >

@@ -62,6 +62,12 @@ export function Nav() {
             href: `/modest-hijabs?type=${t}`,
             label: HIJAB_SUBTYPE_LABELS[t],
           })),
+          // Hijabs & Scarves is column 1 of the panel's 2-column grid (index
+          // 2 of 11 category lanes, 6+5 down-flow split) — its flyout needs
+          // the wide offset so it doesn't open on top of column 2's own
+          // rows (Layering Basics, Outerwear). See NavMenu.tsx's
+          // wideFlyoutOffset doc comment.
+          wideFlyoutOffset: true,
         }
       : {}),
   }));
@@ -75,7 +81,7 @@ export function Nav() {
           href: '/directory',
           activeWhen: path === '/directory' || path.startsWith('/modest') || path.startsWith('/hijabi'),
           items: categoryItems,
-          // Two columns, each read top-to-bottom: 9 categories split 5 + 4.
+          // Two columns, each read top-to-bottom: 11 categories split 6 + 5.
           // The row count is derived from the item count, so adding a category
           // lengthens the columns rather than breaking the shape.
           columns: 2,
