@@ -218,6 +218,55 @@ describe('hijab subtype encoding', () => {
   });
 });
 
+describe('hijab type-filter encoding', () => {
+  // Distinct ids from the "hijab subtype encoding" block above's fixtures —
+  // this is a SEPARATE, independent column, not a replacement for it.
+  const JERSEY_HIJAB: Product = { ...PRODUCT, id: 'aab:10', title: 'Airy Jersey Scarf Mocha Brown', garment: 'hijab' };
+  const CHIFFON_HIJAB: Product = { ...PRODUCT, id: 'aab:11', title: 'Small Premium Chiffon Hijab', garment: 'hijab' };
+  const JERSEY_KHIMAR: Product = { ...PRODUCT, id: 'aab:12', title: 'Jersey Khimar Medina', garment: 'hijab' };
+
+  it('gives a non-hijab product the -1 sentinel and an empty dictionary', () => {
+    const cat = encodeCatalogue([PRODUCT], [BRAND]);
+    expect(cat.hijabTypeFilters).toEqual([]);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(-1);
+  });
+
+  it('assigns a real index for a hijab product, and only lists types actually present', () => {
+    const cat = encodeCatalogue([JERSEY_HIJAB], [BRAND]);
+    expect(cat.hijabTypeFilters).toEqual(['jersey']);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(0);
+  });
+
+  it('orders present types canonically, not by first appearance in the input', () => {
+    // CHIFFON_HIJAB ('chiffon') is listed BEFORE JERSEY_HIJAB ('jersey') in
+    // the input array, but jersey sorts first in HIJAB_TYPE_FILTER_LABELS.
+    const cat = encodeCatalogue([CHIFFON_HIJAB, JERSEY_HIJAB], [BRAND]);
+    expect(cat.hijabTypeFilters).toEqual(['jersey', 'chiffon']);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(cat.hijabTypeFilters.indexOf('chiffon'));
+    expect(cat.rows.hijabTypeFilterIdx[1]).toBe(cat.hijabTypeFilters.indexOf('jersey'));
+  });
+
+  it('a mixed catalogue keeps the -1 sentinel for non-hijab rows alongside real indices', () => {
+    const cat = encodeCatalogue([PRODUCT, JERSEY_HIJAB], [BRAND]);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(-1);
+    expect(cat.rows.hijabTypeFilterIdx[1]).toBe(0);
+  });
+
+  it('a row can carry a real index in BOTH hijabSubtypeIdx and hijabTypeFilterIdx at once — the two columns are independent', () => {
+    // JERSEY_KHIMAR is both a structural khimar (034a985's hijabSubtype:
+    // 'khimar-jilbab', via isKhimarAbaya/isJilbab — wait, plain garment:
+    // 'hijab' khimar wording alone does NOT satisfy isKhimarAbaya (abaya-
+    // garment only) or isJilbab, so hijabSubtype() resolves this one to
+    // plain 'hijab' — and separately, via THIS design's own classifier, a
+    // fine-grained 'khimar' type. Both non-null, on the same row, is the
+    // point: this proves the two columns don't clobber each other.
+    const cat = encodeCatalogue([JERSEY_KHIMAR], [BRAND]);
+    expect(cat.rows.hijabSubtypeIdx[0]).not.toBe(-1);
+    expect(cat.rows.hijabTypeFilterIdx[0]).not.toBe(-1);
+    expect(cat.hijabTypeFilters[cat.rows.hijabTypeFilterIdx[0]]).toBe('khimar');
+  });
+});
+
 describe('firstSeenDay encoding', () => {
   it('encodes a real firstSeen date as days since the epoch', () => {
     const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: '2026-08-05' }], [BRAND]);
