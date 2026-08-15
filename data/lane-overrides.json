@@ -576,7 +576,7 @@
   },
   "ahlam-collections:9302538256695": {
     "lane": "layering-basics",
-    "subtype": "cropped-body-shirt"
+    "subtype": "prayer-set"
   },
   "mukistore:15531338301705": {
     "lane": "outerwear",
@@ -592,7 +592,7 @@
   },
   "noureen:55231": {
     "lane": "layering-basics",
-    "subtype": "cropped-body-shirt"
+    "subtype": "khimar"
   },
   "nour-al-houda:7759166210096": {
     "lane": "layering-basics",
@@ -620,15 +620,15 @@
   },
   "ria-miranda:9275072381186": {
     "lane": "layering-basics",
-    "subtype": "cropped-body-shirt"
+    "subtype": "prayer-set"
   },
   "jennah-boutique:8003094937776": {
     "lane": "layering-basics",
-    "subtype": "cropped-body-shirt"
+    "subtype": "prayer-set"
   },
   "jennah-boutique:8003095003312": {
     "lane": "layering-basics",
-    "subtype": "cropped-body-shirt"
+    "subtype": "prayer-set"
   },
   "chic-modesty:10323194708306": {
     "lane": "outerwear",
@@ -693,5 +693,479 @@
   "mariams:8051980796120": {
     "lane": "outerwear",
     "subtype": "cardigan"
+  },
+  "yasmin-jay:8088240652464": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "culture-hijab:10190036599082": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "yasmin-jay:8088240324784": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "yasmin-jay:8088240160944": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "culture-hijab:10186990813482": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "yasmin-jay:8088240029872": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:7484955197611": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "yasmin-jay:8088236032176": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:7484954640555": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "culture-hijab:10186971054378": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "yasmin-jay:8088235933872": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:8526964490587": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "yasmin-jay:8088235868336": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "culture-hijab:10186924392746": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "yasmin-jay:8088234557616": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "culture-hijab:10186896113962": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "chic-modesty:10323096469842": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "headed-somewear:7383455105182": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "chic-modesty:10323215352146": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "headed-somewear:7383452942494": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "headed-somewear:7383437279390": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "modista:8560596943138": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "manzaram:15648858210629": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "manzaram:15674320978245": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "bait-hanayen:7900809658479": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:9700372185435": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hidayah:9700467966299": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hawaa:8388070473979": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hijab-boutique:8571455996243": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hidayah:9699713974619": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "manzaram:15601480139077": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hijab-boutique:10419064865107": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "les-atelier:15905440137589": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "les-atelier:15905440498037": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "les-atelier:15905440432501": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "les-atelier:15905440825717": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hijab-boutique:9749517533523": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "les-atelier:15905441022325": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "losyana:10563082748242": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "mukistore:15484592587017": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "chador:192223": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "aab:10201505300794": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:9697941946715": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "urban-modesty:7509228060747": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "aab:10201505005882": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:9697951908187": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hidayah:9697941750107": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "hidayah:8526964162907": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "voile-chic:8275678626045": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hijab-boutique:8596232208723": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "voile-chic:8275677217021": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "voile-chic:8275680395517": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "urban-modesty:6869848031307": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "voile-chic:8275680231677": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "voile-chic:8275680035069": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hijab-boutique:8419363225939": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "voile-chic:8275679478013": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hijab-boutique:8199703363888": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "voile-chic:8275673547005": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hijab-boutique:8199693369648": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "voile-chic:8275672432893": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "haute-hijab:7307755192416": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hijab-boutique:8199686160688": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:7307747033184": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:9503818973531": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "haute-hijab:7307043045472": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:7484957884587": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "urban-modesty:7509228257355": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "urban-modesty:7509228290123": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "urban-modesty:7509228093515": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "ria-miranda:9365889450242": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "parladusa:14875690729798": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "ilovemodesty:10064075424065": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "chic-modesty:10568692302162": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "noureen:55232": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "chic-modesty:10568691646802": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:6995954532448": {
+    "lane": "modest-activewear"
+  },
+  "noureen:51033": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:6995952074848": {
+    "lane": "modest-activewear"
+  },
+  "hidayah:9119967478107": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:9119966495067": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "haute-hijab:6995952828512": {
+    "lane": "modest-activewear"
+  },
+  "hidayah:9119964528987": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "hidayah:8527167226203": {
+    "lane": "layering-basics",
+    "subtype": "neck-cover"
+  },
+  "hidayah:8476440199515": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "urban-modesty:4475247460427": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "haute-hijab:4801299152992": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "ilovemodesty:10060318212417": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4795678818400": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "urban-modesty:7176391524427": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "ilovemodesty:10060316934465": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4801299349600": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "ilovemodesty:10060316180801": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "ilovemodesty:10060315689281": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4801299578976": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "ilovemodesty:10060121866561": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "ilovemodesty:10060121637185": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "ilovemodesty:10060120523073": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4801299677280": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "ilovemodesty:10060117737793": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4803671490656": {
+    "lane": "modest-activewear"
+  },
+  "ilovemodesty:10060116459841": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4801299415136": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "ilovemodesty:10060116066625": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4801299644512": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "haute-hijab:4801299251296": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "zahraa:6762555899991": {
+    "lane": "layering-basics",
+    "subtype": "neck-cover"
+  },
+  "haute-hijab:4795678916704": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "haute-hijab:4795678883936": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "nasiba:8673138049333": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4795678851168": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "haute-hijab:4801299513440": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
+  },
+  "nasiba:9826847195445": {
+    "lane": "layering-basics",
+    "subtype": "khimar"
+  },
+  "haute-hijab:4795670134880": {
+    "lane": "modest-activewear"
+  },
+  "haute-hijab:4795670102112": {
+    "lane": "modest-activewear"
+  },
+  "haute-hijab:4795670233184": {
+    "lane": "modest-activewear"
+  },
+  "haute-hijab:4795670200416": {
+    "lane": "modest-activewear"
+  },
+  "haute-hijab:4494871363680": {
+    "lane": "modest-activewear"
+  },
+  "nasiba:9560193827125": {
+    "lane": "layering-basics",
+    "subtype": "neck-cover"
+  },
+  "haute-hijab:4494867857504": {
+    "lane": "modest-activewear"
+  },
+  "noureen:52151": {
+    "lane": "layering-basics",
+    "subtype": "undercap"
   }
 }
