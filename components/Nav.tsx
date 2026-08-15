@@ -31,48 +31,37 @@ export function Nav() {
     // The in-page "Type" dropdown that used to be Layering Basics's only way
     // to filter by subtype is gone the same day, matching what happened to
     // Outerwear's — see components/FilterableGrid.tsx.
-    // Every flyout row below leads with an "All X" entry linking to the
-    // BARE lane page (no ?type=) — added 2026-08-15, after Tina: "i cant
-    // click on hijabs and scarfes now and also not outterwear". A row with
-    // subItems renders as a Menu.Trigger, not a Link (see NavMenu.tsx's own
-    // comment on why — a Link+Trigger touch race, deliberate), so clicking
-    // the row itself has NEVER navigated anywhere since Outerwear got this
-    // treatment 2026-08-13 — it only opens the flyout. That was fine while
-    // the flyout's sub-items were the only thing anyone wanted, but it means
-    // there was no way to reach the unfiltered, everything-in-this-category
-    // view at all. This "All X" item is that path, without reintroducing the
-    // Link-on-the-row race the flyout was built to avoid.
+    // A row with subItems ALSO navigates to its own bare href on a mouse
+    // click now (NavMenu.tsx) — added 2026-08-15, after Tina: "i cant click
+    // on hijabs and scarfes now and also not outterwear", then "all i
+    // wanted you to do is make it able to click on this and being able to
+    // open all" when a same-evening first attempt added a separate "All X"
+    // flyout entry instead of making the row itself clickable. That first
+    // attempt is gone — see NavMenu.tsx for how the row itself now handles
+    // both hover-opens-flyout AND mouse-click-navigates without the touch
+    // race that made this row a non-Link Menu.Trigger in the first place.
     ...(l.slug === 'outerwear'
       ? {
-          subItems: [
-            { href: '/outerwear', label: 'All Outerwear' },
-            ...OUTERWEAR_SUBTYPES.map((t) => ({
-              href: `/outerwear?type=${t}`,
-              label: OUTERWEAR_SUBTYPE_LABELS[t],
-            })),
-          ],
+          subItems: OUTERWEAR_SUBTYPES.map((t) => ({
+            href: `/outerwear?type=${t}`,
+            label: OUTERWEAR_SUBTYPE_LABELS[t],
+          })),
         }
       : {}),
     ...(l.slug === 'layering-basics'
       ? {
-          subItems: [
-            { href: '/layering-basics', label: 'All Layering Basics' },
-            ...LAYERING_SUBTYPES.map((t) => ({
-              href: `/layering-basics?type=${t}`,
-              label: LAYERING_SUBTYPE_LABELS[t],
-            })),
-          ],
+          subItems: LAYERING_SUBTYPES.map((t) => ({
+            href: `/layering-basics?type=${t}`,
+            label: LAYERING_SUBTYPE_LABELS[t],
+          })),
         }
       : {}),
     ...(l.slug === 'modest-hijabs'
       ? {
-          subItems: [
-            { href: '/modest-hijabs', label: 'All Hijabs & Scarves' },
-            ...HIJAB_SUBTYPES.map((t) => ({
-              href: `/modest-hijabs?type=${t}`,
-              label: HIJAB_SUBTYPE_LABELS[t],
-            })),
-          ],
+          subItems: HIJAB_SUBTYPES.map((t) => ({
+            href: `/modest-hijabs?type=${t}`,
+            label: HIJAB_SUBTYPE_LABELS[t],
+          })),
         }
       : {}),
   }));

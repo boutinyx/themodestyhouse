@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { NavigationMenu } from '@base-ui-components/react/navigation-menu';
 import { Menu } from '@base-ui-components/react/menu';
 import { CaretDown, CaretRight } from '@phosphor-icons/react';
@@ -125,6 +126,12 @@ export function NavMenu({
   // Keying the veto off live position instead means it and the active closer
   // always agree — never a stale answer from a moment that has already passed.
   const pointerRelevant = useRef(false);
+  // Set from the flyout row's own onPointerDown below, read in its onClick —
+  // lets that one row tell mouse and touch activation apart without a
+  // library flag for it (Menu.Trigger has none). See the row's onClick
+  // comment for why this matters.
+  const lastPointerType = useRef<string>('mouse');
+  const router = useRouter();
 
   const closeAll = () => setNavValue(null);
 
@@ -225,38 +232,48 @@ export function NavMenu({
                   it.subItems ? (
                     <Menu.Root key={it.href}>
                       <Menu.Trigger
-                        // NOT rendered as a Link, deliberately — this row only
-                        // ever opens the flyout, on every pointer type. A first
-                        // cut rendered it as a Link (like the "Products" trigger
-                        // beside it), reasoning the mouse-press-swallow below
-                        // would keep it safe the same way it keeps
-                        // CurrencySwitcher safe. It doesn't transfer: unlike
+                        // STILL NOT rendered as a Link — that was tried once
+                        // (2026-08-13) and caused a real touch bug: unlike
                         // Products, whose NavigationMenu.Trigger has NATIVE
-                        // tap-opens-first handling built into that primitive,
-                        // Menu.Trigger has no such concept — bolting a Link onto
-                        // it meant a TOUCH tap navigated to bare /outerwear
-                        // immediately (no ?type=) while the flyout separately
-                        // opened on top of the page it had just left. Caught by
-                        // scripts/interaction-audit.mjs's ipad-1366 pass, then
-                        // reproduced and confirmed live — the header persists
-                        // across the client-side route change (root layout), so
-                        // the stray flyout was visibly still open over the new
-                        // page. Removing the Link removes the race entirely:
-                        // every activation opens the flyout, and the four real
-                        // destinations are its sub-items.
-                        //
-                        // The mouse-press swallow is still needed independent of
-                        // any Link — it's the same fix as CurrencySwitcher.tsx's
-                        // (Base UI promotes a hover-opened menu to click-opened
-                        // on a mouse press, which then never closes on hover-out).
+                        // tap-opens-first handling, Menu.Trigger has none, so
+                        // bolting a Link on meant a TOUCH tap navigated to the
+                        // bare href immediately WHILE the flyout separately
+                        // opened on top of the page it had just left (caught
+                        // by scripts/interaction-audit.mjs's ipad-1366 pass).
+                        // Fixed differently 2026-08-15 (Tina: "make it able to
+                        // click on this and being able to open all" — a first
+                        // attempt that added a separate "All X" flyout entry
+                        // instead of this missed what she was asking for):
+                        // onClick below navigates directly, but ONLY when
+                        // lastPointerType.current is 'mouse' — set by the
+                        // onPointerDown just below it, the same signal already
+                        // used for the mouse-press swallow. A touch tap still
+                        // just opens the flyout, exactly as before; a mouse
+                        // click navigates AND closes the panel. This sidesteps
+                        // the 2026-08-13 bug entirely because the element is
+                        // still not an `<a>` — there's no default browser
+                        // navigation for a touch tap to fire in the first
+                        // place, only this explicit, pointer-type-gated one.
                         openOnHover
                         delay={0}
                         closeDelay={120}
                         onPointerDown={(e) => {
+                          lastPointerType.current = e.pointerType;
                           if (e.pointerType === 'mouse') {
+                            // Same fix as CurrencySwitcher.tsx's — Base UI
+                            // promotes a hover-opened menu to click-opened on
+                            // a mouse press, which then never closes on
+                            // hover-out. Swallowing the press prevents that
+                            // promotion; the onClick below still fires
+                            // normally afterward.
                             e.preventDefault();
                             e.stopPropagation();
                           }
+                        }}
+                        onClick={() => {
+                          if (lastPointerType.current !== 'mouse') return;
+                          closeAll();
+                          router.push(it.href);
                         }}
                         className="menu-row flex items-center justify-between"
                         data-active={path === it.href}
