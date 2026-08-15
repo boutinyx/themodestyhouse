@@ -45,6 +45,26 @@ describe('LANES', () => {
     expect(hijabs.match(prayerSet)).toBe(false);
     expect(layering.match(prayerSet)).toBe(true);
   });
+  // 2026-08-15 evening: undercaps and abaya-length khimaars moved to Hijabs
+  // & Scarves (from Layering Basics, where they'd briefly landed that same
+  // morning) — Tina wants them grouped with jilbabs there.
+  it('hijabs lane also matches undercaps and abaya-length khimaars, not just jilbabs', () => {
+    const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
+    const layering = LANES.find((l) => l.slug === 'layering-basics')!;
+    const undercap = { ...base, garment: 'hijab' as const, title: 'Full Coverage Undercap - Walnut' };
+    const khimarAbaya = { ...base, garment: 'abaya' as const, title: 'Mastour Khimaar Burnished Lilac' };
+    expect(hijabs.match(undercap)).toBe(true);
+    expect(layering.match(undercap)).toBe(false);
+    expect(hijabs.match(khimarAbaya)).toBe(true);
+    expect(layering.match(khimarAbaya)).toBe(false);
+  });
+  it('a khimar or undercap that is ALSO prayer-titled still defers to Layering Basics', () => {
+    const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
+    const layering = LANES.find((l) => l.slug === 'layering-basics')!;
+    const prayerKhimar = { ...base, garment: 'abaya' as const, title: 'Prayer Khimaar Set - Grey' };
+    expect(hijabs.match(prayerKhimar)).toBe(false);
+    expect(layering.match(prayerKhimar)).toBe(true);
+  });
 });
 
 describe('currentCategoryLabel', () => {

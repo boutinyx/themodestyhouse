@@ -17,8 +17,6 @@ export type LayeringSubtype =
   | 'cropped-body-shirt'
   | 'under-dress'
   | 'base-layer-top'
-  | 'undercap'
-  | 'khimar'
   | 'prayer-set';
 
 /** The four sub-categories of the Outerwear lane (lib/lanes.ts) — see

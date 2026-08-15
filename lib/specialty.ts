@@ -117,37 +117,49 @@ const FIXED_INNER_RE = /\bfixed\b.{0,20}(?:\binner dress\b|\bunder.?dress\b)/i;
 // and this is the only brand it was verified against.
 const RIA_MIRANDA_LAYERING_RE = /\bcomfy (?:sleeveless|long sleeve|short sleeve) top\b/i;
 
-// Three more Layering Basics groups, Tina's call 2026-08-15: undercaps,
-// abaya-length prayer khimaars, and prayer wear generally. Checked against
-// the real catalogue before shipping (211 khimar-titled, 313 undercap-titled,
-// 184 prayer-titled rows) — each is scoped narrower than the raw count
-// because "khimar"/"prayer" both span genuinely different product types:
+// PRAYER_RE: one Layering Basics group, Tina's call 2026-08-15 (morning) —
+// prayer wear generally. Broad and deliberate — her explicit call was "every
+// prayer-titled product, all garments", not just garment:'set'. 184 raw rows
+// checked, spanning dress (21), abaya (114), set (18), skirt (25), trousers
+// (4) and hijab (2) — mostly complete standalone salah outfits (jersey
+// prayer dresses, jilbab/prayer-set dresses with elasticated sleeves), which
+// would normally never be considered "layering" by this file's own
+// under-the-clothes definition. Moved anyway per her explicit scope choice —
+// prayer wear goes over regular clothes as its own kind of covering layer, a
+// different sense of "layering" than the rest of this category, but still
+// what she asked for.
 //
-// - UNDERCAP_RE: clean — 313 rows, effectively all garment:'hijab', no
-//   ambiguity (a "Full Coverage Undercap" is definitionally worn under a
-//   hijab wrap). Checked first, ahead of the hijab/underscarf/bonnet
-//   exclusion below, so a title like "...Underscarf... Undercap Bonnet"
-//   still lands here rather than being blocked by that older rule.
-// - KHIMAR_ABAYA_RE: gated to garment:'abaya' only. Of the 211 khimar
-//   titles, ~190 are garment:'hijab' cape-style headcovers (e.g. "Khimar
-//   Medina silk", "Modal Khimar Black") — a standalone hijab style, not a
-//   layering piece, and explicitly NOT moved. The ~20 garment:'abaya' rows
-//   (e.g. "Mastour Khimaar Burnished Lilac", "Heup Khimaar Lexus EggWhite")
-//   are full-length prayer coverings worn as an outer layer for salah —
-//   those move.
-// - PRAYER_RE: broad and deliberate — Tina's explicit call was "every
-//   prayer-titled product, all garments", not just garment:'set'. The 184
-//   rows span dress (21), abaya (114), set (18), skirt (25), trousers (4)
-//   and hijab (2) — mostly complete standalone salah outfits (jersey prayer
-//   dresses, jilbab/prayer-set dresses with elasticated sleeves), which
-//   would normally never be considered "layering" by this file's own
-//   under-the-clothes definition. Moved anyway per her explicit scope
-//   choice — prayer wear goes over regular clothes as its own kind of
-//   covering layer, a different sense of "layering" than the rest of this
-//   category, but still what she asked for.
-const UNDERCAP_RE = /\bunder.?caps?\b/i;
+// UNDERCAP_RE and KHIMAR_ABAYA_RE (undercaps, and abaya-length prayer
+// khimaars) were ALSO moved here that same morning, then moved back OUT to
+// Hijabs & Scarves that same evening (2026-08-15) at Tina's explicit
+// follow-up call — she wants both grouped with jilbabs there instead. See
+// isKhimarAbaya() and the modest-hijabs lane match in lib/lanes.ts. Kept the
+// two regexes here (not deleted) since isKhimarAbaya() below still needs
+// KHIMAR_ABAYA_RE; UNDERCAP_RE is inlined into isUndercap() the same way.
 const KHIMAR_ABAYA_RE = /\bkhimaa?rs?\b/i;
+const UNDERCAP_RE = /\bunder.?caps?\b/i;
 const PRAYER_RE = /\bprayer\b/i;
+
+// Gated to garment:'abaya' only. Of 211 khimar-titled rows checked
+// 2026-08-15, ~190 are garment:'hijab' cape-style headcovers (e.g. "Khimar
+// Medina silk", "Modal Khimar Black") — a standalone hijab style, always
+// routed to Hijabs & Scarves via the plain garment==='hijab' check and not
+// what this function is for. The ~20 garment:'abaya' rows (e.g. "Mastour
+// Khimaar Burnished Lilac", "Heup Khimaar Lexus EggWhite") are full-length
+// prayer coverings worn as an outer layer for salah — those need this
+// explicit check since their garment field says 'abaya', not 'hijab'.
+export function isKhimarAbaya(p: Product): boolean {
+  return p.garment === 'abaya' && KHIMAR_ABAYA_RE.test(p.title);
+}
+
+// 313 rows checked 2026-08-15, effectively all garment:'hijab' already — a
+// "Full Coverage Undercap" is definitionally worn under a hijab wrap, so it
+// would already match modest-hijabs' plain garment==='hijab' check. This
+// export exists for the rare non-'hijab'-garment title and for readability
+// at the lanes.ts call site.
+export function isUndercap(p: Product): boolean {
+  return UNDERCAP_RE.test(p.title);
+}
 
 // A staff `forcedLane` (lib/types.ts, set via the inline edit controls —
 // see docs/log/2026-08-12-lane-overrides.md) is authoritative and
@@ -163,11 +175,12 @@ export function isSwim(p: Product): boolean {
 
 export function isLayering(p: Product): boolean {
   if (p.forcedLane) return p.forcedLane === 'layering-basics';
-  // Checked ahead of the hijab/underscarf/bonnet exclusion below — these
-  // three are exceptions to that older rule, not subject to it.
-  if (UNDERCAP_RE.test(p.title)) return true;
+  // Checked ahead of the hijab/underscarf/bonnet exclusion below — an
+  // exception to that older rule, not subject to it. Undercaps and
+  // abaya-length khimaars used to be here too (2026-08-15 morning) but moved
+  // to Hijabs & Scarves that same evening — see isKhimarAbaya()/isUndercap()
+  // above and the modest-hijabs lane match in lib/lanes.ts.
   if (PRAYER_RE.test(p.title)) return true;
-  if (p.garment === 'abaya' && KHIMAR_ABAYA_RE.test(p.title)) return true;
   if (LAYERING_HIJAB_RE.test(p.title)) return false;
   if (RUCHED_BODY_TOP_RE.test(p.title)) return false;
   if (FIXED_INNER_RE.test(p.title)) return false;
@@ -208,8 +221,6 @@ export const LAYERING_SUBTYPE_LABELS: Record<LayeringSubtype, string> = {
   'base-layer-top': 'Base-Layer Tops',
   'cropped-body-shirt': 'Cropped Body Shirts',
   'under-dress': 'Under-Dresses',
-  'undercap': 'Undercaps',
-  'khimar': 'Prayer Khimaars',
   'prayer-set': 'Prayer Sets',
 };
 
@@ -224,9 +235,8 @@ export function layeringSubtype(p: Product): LayeringSubtype | null {
   if (!isLayering(p)) return null;
   if (p.forcedLane === 'layering-basics' && p.forcedLayeringSubtype) return p.forcedLayeringSubtype;
   // Narrowest/most-specific groups first — same reasoning as the checks in
-  // isLayering() above.
-  if (UNDERCAP_RE.test(p.title)) return 'undercap';
-  if (p.garment === 'abaya' && KHIMAR_ABAYA_RE.test(p.title)) return 'khimar';
+  // isLayering() above. Undercap/khimar removed 2026-08-15 evening — those
+  // titles no longer reach here at all, isLayering() returns false for them.
   if (PRAYER_RE.test(p.title)) return 'prayer-set';
   if (NECK_COVER_RE.test(p.title)) return 'neck-cover';
   if (SHIRT_EXTENDER_RE.test(p.title)) return 'shirt-extender';

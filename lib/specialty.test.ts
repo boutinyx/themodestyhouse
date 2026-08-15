@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype } from './specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -111,15 +111,15 @@ describe('isLayering', () => {
     expect(isLayering(p('Lila Neck Cover Hijab-Black', 'hijab'))).toBe(false); // zahraa
   });
 
-  // Undercap/khimar/prayer-set are 2026-08-15 additions — exceptions to the
-  // hijab/underscarf/bonnet exclusion just above, not subject to it.
-  it('matches undercap titles, even alongside hijab/underscarf/bonnet vocabulary', () => {
-    expect(isLayering(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe(true); // nour-al-houda
-    expect(isLayering(p('Black Neck Cover Underscarf In Cotton - Soft Undercap Bonnet', 'hijab'))).toBe(true); // bazar-al-haya — "Undercap" wins
-  });
-  it('matches abaya-length prayer khimaars but not the cape-style hijab khimar', () => {
-    expect(isLayering(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(true); // noureen
-    expect(isLayering(p('Khimar Medina silk', 'hijab'))).toBe(false); // jennah-boutique — a standalone headcover, not layering
+  // Undercaps and abaya-length prayer khimaars were briefly a Layering
+  // Basics exception the morning of 2026-08-15, then moved to Hijabs &
+  // Scarves that same evening (Tina's follow-up call) — see isKhimarAbaya()/
+  // isUndercap() and their own describe blocks below. isLayering() no
+  // longer treats either as layering, full stop.
+  it('does not match undercap or abaya-length khimar titles — those belong to Hijabs & Scarves now', () => {
+    expect(isLayering(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe(false); // nour-al-houda
+    expect(isLayering(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(false); // noureen
+    expect(isLayering(p('Khimar Medina silk', 'hijab'))).toBe(false); // jennah-boutique — a standalone headcover, was already false
   });
   it('matches prayer-titled products across every garment', () => {
     expect(isLayering(p('Prayer Dress Jersey - Navy', 'dress'))).toBe(true); // losyana
@@ -219,11 +219,10 @@ describe('layeringSubtype', () => {
     expect(layeringSubtype(p('Jaida Modest Shirt Extender Slip — Cotton Layering Skirt', 'skirt', { brandSlug: 'jaida' }))).toBe('shirt-extender');
   });
 
-  // 2026-08-15 additions.
-  it('sorts undercap/khimar/prayer-set into their own groups', () => {
-    expect(layeringSubtype(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe('undercap');
-    expect(layeringSubtype(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe('khimar');
+  it('sorts prayer-titled products into their own group, and returns null for undercap/khimar (not layering anymore)', () => {
     expect(layeringSubtype(p('Prayer Dress Jersey - Navy', 'dress'))).toBe('prayer-set');
+    expect(layeringSubtype(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe(null);
+    expect(layeringSubtype(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(null);
   });
 
   it('every currently-published layering item gets a real subtype, never a silent null', () => {
@@ -247,6 +246,21 @@ describe('isJilbab', () => {
   });
   it('does not match unrelated titles', () => {
     expect(isJilbab(p('Black Open Abaya', 'abaya'))).toBe(false);
+  });
+});
+
+describe('isKhimarAbaya', () => {
+  it('matches abaya-length khimaars but not the cape-style hijab khimar', () => {
+    expect(isKhimarAbaya(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(true); // noureen
+    expect(isKhimarAbaya(p('Heup Khimaar Lexus EggWhite', 'abaya'))).toBe(true);
+    expect(isKhimarAbaya(p('Khimar Medina silk', 'hijab'))).toBe(false); // jennah-boutique — standalone hijab style, handled by garment==='hijab' instead
+  });
+});
+
+describe('isUndercap', () => {
+  it('matches undercap titles, even alongside hijab/underscarf/bonnet vocabulary', () => {
+    expect(isUndercap(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe(true); // nour-al-houda
+    expect(isUndercap(p('Black Neck Cover Underscarf In Cotton - Soft Undercap Bonnet', 'hijab'))).toBe(true); // bazar-al-haya
   });
 });
 

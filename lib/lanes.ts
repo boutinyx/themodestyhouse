@@ -1,6 +1,6 @@
 import type { Product } from '@/lib/types';
 import {
-  isSwim, isActivewear, isLayering, isJilbab, isOuterwear, isSpecialty,
+  isSwim, isActivewear, isLayering, isJilbab, isOuterwear, isKhimarAbaya, isUndercap, isSpecialty,
   layeringSubtype, outerwearSubtype, LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS,
 } from '@/lib/specialty';
 
@@ -44,17 +44,22 @@ export const LANES: Lane[] = [
     kind: 'category',
     // Jilbab-titled products (fashion abayas AND prayer sets, garment field
     // varies) route here too, per Tina's 2026-08-12 call — see isJilbab().
-    // `specialty: true` because isJilbab() is folded into isSpecialty(),
-    // which productsForLane would otherwise use to strip these back out —
-    // same mechanism modest-swimwear/modest-activewear/layering-basics use
-    // to be the one lane specialty items ARE allowed to appear on.
-    // `&& !isLayering(p)` added 2026-08-15: undercaps, prayer khimaars and
-    // prayer wear generally now belong to Layering Basics instead (Tina's
-    // call) — some of those titles ALSO say "jilbab" (prayer-set dresses
-    // are commonly listed as both), so without this guard they'd show on
-    // both lanes at once. isOuterwear() already excludes isLayering() the
-    // same way, for the same reason.
-    match: (p) => (p.garment === 'hijab' || isJilbab(p)) && !isLayering(p),
+    // Abaya-length prayer khimaars (isKhimarAbaya) and undercaps (isUndercap)
+    // route here too, per Tina's 2026-08-15 evening call — she wants them
+    // grouped with jilbabs as one "khimars and jilbabs" concept rather than
+    // sitting in Layering Basics, where they'd briefly landed that same
+    // morning. `specialty: true` because isJilbab()/isKhimarAbaya() are
+    // folded into isSpecialty(), which productsForLane would otherwise use
+    // to strip these back out — same mechanism modest-swimwear/modest-
+    // activewear/layering-basics use to be the one lane specialty items ARE
+    // allowed to appear on.
+    // `&& !isLayering(p)` stays: prayer wear generally (garment-agnostic
+    // PRAYER_RE, not just khimars/undercaps) still belongs to Layering
+    // Basics — some jilbab/khimar titles ALSO say "prayer" (prayer-set
+    // dresses are commonly listed as both), so without this guard they'd
+    // show on both lanes at once. isOuterwear() already excludes isLayering()
+    // the same way, for the same reason.
+    match: (p) => (p.garment === 'hijab' || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p)) && !isLayering(p),
     specialty: true,
   },
   {
