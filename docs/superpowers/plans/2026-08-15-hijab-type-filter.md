@@ -2,39 +2,39 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a 15-group "Type" filter (fabric + style, e.g. Jersey/Chiffon/Instant/Khimars)
-to the Hijabs & Scarves lane, reachable from the header nav flyout exactly like Outerwear
-and Layering Basics already are.
+**Goal:** Add an in-page **Type** filter dropdown to `/modest-hijabs` (next to the existing
+Brand and Sort dropdowns), narrowing the grid by 15 fabric/style groups (Jersey, Chiffon,
+Instant, Printed, etc.).
 
-**Architecture:** A third parallel subtype-classification system (`lib/hijabTypes.ts`),
-matching the existing `layeringSubtype()`/`outerwearSubtype()` mechanism in
-`lib/specialty.ts` file-for-file: a `HijabSubtype` union type, a priority-ordered regex
-classifier, a labels dictionary, a compact-catalogue column, a three-way branch in the
-existing "Type" filtering logic, and a third flyout/disclosure block in the desktop and
-mobile nav. No new abstraction is introduced — this codebase's own prior design doc
-(`docs/superpowers/specs/2026-08-13-outerwear-category-design.md`) documents a deliberate
-preference for a narrow parallel implementation per category over generalizing the
-mechanism, and this plan follows that.
+**Architecture:** A standalone classifier (`lib/hijabTypeFilter.ts`), a new independent
+column in the compact catalogue, and one new `FilterDropdown` + one new filter guard in
+`components/FilterableGrid.tsx`. This is the SECOND revision of this plan — see
+`docs/superpowers/specs/2026-08-15-hijab-type-filter-design.md`'s "Revision history" for why:
+a concurrent session independently shipped a *different*, structural sub-category flyout
+(Hijabs / Khimars & Jilbabs / Undercaps, commit `034a985`, touching `lib/specialty.ts`,
+`lib/types.ts`, `components/Nav.tsx`, `components/MobileNav.tsx`, `app/[lane]/page.tsx`) for
+what Tina clarified is a *different* concept from what this plan builds. **None of those five
+files are touched by this plan** — this filter is additive and independent, composing with
+their flyout rather than replacing or merging with it.
 
 **Tech Stack:** Next.js 16 App Router, TypeScript 5 (strict), Vitest 4 (node env), no new
 dependencies.
 
 ## Global Constraints
 
-- TypeScript strict mode — every new export must be fully typed, no `any`.
-- Tests are co-located `lib/<module>.test.ts`; import the module relatively (`./hijabTypes`),
-  types via `@/lib/types`.
-- No hand-written route files — this plan touches no routing, `lib/lanes.ts`'s existing
-  `modest-hijabs` entry needs no change.
-- Every icon comes from `@phosphor-icons/react` — not touched by this plan (no new icons).
-- Colour is never a Tailwind class — not touched by this plan (no new styled elements beyond
-  what `Menu.Item`/`.menu-row` already style).
-- `npx tsc --noEmit` and `npm run lint` must both stay clean (they are clean on `main` as of
-  2026-08-15) — treat any failure introduced by this plan as a regression to fix, not report.
+- TypeScript strict mode — every new export fully typed, no `any`.
+- Tests co-located `lib/<module>.test.ts`; import the module relatively.
+- `npx tsc --noEmit` and `npm run lint` must both stay clean.
 - Never claim a step "done" without pasting the real command output that verifies it.
-- This repo has a concurrent session; before staging any file, run `git status` and confirm
-  the only diff present is the one this plan just made (see `docs/log/2026-08-15-session-handoff.md`
-  and `docs/log/2026-08-15-hijab-type-filter-design-and-concurrent-edit.md`).
+- **This repo has at least one concurrent session, actively committing.** Before every `git
+  add`, run `git status` and `git diff --stat` and confirm the only changes present are the
+  ones this plan just made — do not use `git add -A` or stage a file you haven't personally
+  diffed this session. (This plan's own authoring already hit this twice — see
+  `docs/log/2026-08-15-hijab-type-filter-design-and-concurrent-edit.md` and the commit
+  history around `71115fd`/`034a985` for what it looked like when it went wrong.)
+- Do not touch `lib/types.ts`, `lib/specialty.ts`, `components/Nav.tsx`,
+  `components/MobileNav.tsx`, or `app/[lane]/page.tsx` — all already correct for the
+  concurrent session's sub-category flyout feature.
 
 ---
 
@@ -42,66 +42,29 @@ dependencies.
 
 | File | Responsibility |
 |---|---|
-| `lib/types.ts` (modify) | Adds the `HijabSubtype` union type. |
-| `lib/hijabTypes.ts` (create) | The 15-group classifier: `hijabSubtype(p)`, `HIJAB_SUBTYPE_LABELS`. Sole owner of the taxonomy's regex vocabulary. |
-| `lib/hijabTypes.test.ts` (create) | Classification tests against real catalogue titles. |
-| `lib/compactCatalogue.ts` (modify) | Adds the `hijabSubtypes`/`rows.hijabSubtypeIdx` column, mirroring the existing two. |
-| `lib/compactCatalogue.test.ts` (modify) | Encoding tests for the new column, mirroring the existing two `describe` blocks. |
-| `components/FilterableGrid.tsx` (modify) | Extends the existing two-way subtype dispatch to three-way, so `?type=` from a flyout link narrows the grid on arrival. |
-| `components/Nav.tsx` (modify) | Desktop header hover flyout: a third `subItems` list for `modest-hijabs`. |
-| `components/MobileNav.tsx` (modify) | Mobile disclosure row for Hijabs & Scarves, mirroring the existing Outerwear/Layering rows. Not named in the original design doc's file list, but required for the design's own stated goal of full parity with the existing two flyouts — the mobile nav is the touch equivalent of the desktop hover flyout, and skipping it would leave the Hijabs & Scarves row un-openable on phones the way Outerwear was before its 2026-08-13 fix. |
+| `lib/hijabTypeFilter.ts` (create) | The 15-group classifier: `hijabTypeFilter(p)`, `HIJAB_TYPE_FILTER_LABELS`, `HijabTypeFilter` type. Self-contained — no edit to `lib/types.ts` needed. |
+| `lib/hijabTypeFilter.test.ts` (create) | Classification tests against real catalogue titles. |
+| `lib/compactCatalogue.ts` (modify) | Adds the `hijabTypeFilters`/`rows.hijabTypeFilterIdx` column — independent of the existing `hijabSubtypes`/`rows.hijabSubtypeIdx` column from `034a985`. |
+| `lib/compactCatalogue.test.ts` (modify) | Encoding tests for the new column, including one proving a row can carry a real index in both hijab columns at once. |
+| `components/FilterableGrid.tsx` (modify) | New `fabricType` state + `FilterDropdown`, ANDed into the existing filter loop. |
 
 ---
 
-### Task 1: HijabSubtype type + classifier
+### Task 1: HijabTypeFilter classifier
 
 **Files:**
-- Modify: `lib/types.ts:27` (right after the `OuterwearSubtype` declaration)
-- Create: `lib/hijabTypes.ts`
-- Test: `lib/hijabTypes.test.ts`
+- Create: `lib/hijabTypeFilter.ts`
+- Test: `lib/hijabTypeFilter.test.ts`
 
 **Interfaces:**
-- Consumes: `Product` (`lib/types.ts`), `isJilbab`/`isKhimarAbaya`/`isUndercap` (`lib/specialty.ts`, all already exported).
-- Produces: `export type HijabSubtype` (`lib/types.ts`); `export function hijabSubtype(p: Product): HijabSubtype | null` and `export const HIJAB_SUBTYPE_LABELS: Record<HijabSubtype, string>` (`lib/hijabTypes.ts`) — these two are what Tasks 2, 4 and 5 import.
+- Consumes: `Product` (`lib/types.ts`); `isJilbab`/`isKhimarAbaya`/`isUndercap` (`lib/specialty.ts`, read-only — not modified).
+- Produces: `export type HijabTypeFilter`, `export function hijabTypeFilter(p: Product): HijabTypeFilter | null`, `export const HIJAB_TYPE_FILTER_LABELS: Record<HijabTypeFilter, string>` — Task 2 imports all three.
 
-- [ ] **Step 1: Add the `HijabSubtype` type to `lib/types.ts`**
-
-Insert immediately after the existing `OuterwearSubtype` declaration (currently line 27,
-right before the `ForcedLane` comment block):
-
-```ts
-/** The 15 fabric/style groups within the Hijabs & Scarves lane (lib/lanes.ts) —
- *  see lib/hijabTypes.ts's hijabSubtype() for the classification logic and
- *  priority order. Declared here for the same circular-import reason as
- *  LayeringSubtype/OuterwearSubtype. Built from the real modest-hijabs lane
- *  (5,146 products, measured 2026-08-15) — see
- *  docs/superpowers/specs/2026-08-15-hijab-type-filter-design.md. No forced-
- *  override field yet: staff manual override was an explicit out-of-scope
- *  call for this first version, same follow-up shape as Outerwear/Layering
- *  originally had. */
-export type HijabSubtype =
-  | 'caps-underscarves'
-  | 'khimar'
-  | 'jilbab'
-  | 'instant'
-  | 'sport'
-  | 'shawl'
-  | 'printed'
-  | 'set'
-  | 'crinkle'
-  | 'jersey'
-  | 'modal'
-  | 'chiffon'
-  | 'cotton'
-  | 'satin'
-  | 'silk-viscose';
-```
-
-- [ ] **Step 2: Write the failing test file `lib/hijabTypes.test.ts`**
+- [ ] **Step 1: Write the failing test file `lib/hijabTypeFilter.test.ts`**
 
 ```ts
 import { describe, it, expect } from 'vitest';
-import { hijabSubtype, HIJAB_SUBTYPE_LABELS } from './hijabTypes';
+import { hijabTypeFilter, HIJAB_TYPE_FILTER_LABELS } from './hijabTypeFilter';
 import type { Product } from '@/lib/types';
 import { productsForLane } from '@/lib/products';
 
@@ -114,49 +77,49 @@ const base: Product = {
 const p = (title: string, garment: Product['garment'] = 'hijab', extra: Partial<Product> = {}): Product =>
   ({ ...base, title, garment, ...extra });
 
-describe('hijabSubtype', () => {
+describe('hijabTypeFilter', () => {
   it('returns null for a product outside the Hijabs & Scarves lane', () => {
-    expect(hijabSubtype(p('Jersey Maxi Dress', 'dress'))).toBeNull();
+    expect(hijabTypeFilter(p('Jersey Maxi Dress', 'dress'))).toBeNull();
   });
 
   it('returns null for a plain, unclassifiable hijab title', () => {
-    expect(hijabSubtype(p('Riverwalk Blue Hijab'))).toBeNull(); // haute-hijab, real title
+    expect(hijabTypeFilter(p('Riverwalk Blue Hijab'))).toBeNull(); // haute-hijab, real title
   });
 
   it('sorts a real title from each of the 15 groups into exactly the right group', () => {
-    expect(hijabSubtype(p('Syrian Full-Neck Underscarf'))).toBe('caps-underscarves'); // jaida
-    expect(hijabSubtype(p('Khimar Medina silk'))).toBe('khimar'); // jennah-boutique
-    expect(hijabSubtype(p('Jilbab - Black', 'abaya'))).toBe('jilbab');
-    expect(hijabSubtype(p('Premium Instant Hijab'))).toBe('instant'); // lafemme
-    expect(hijabSubtype(p('Lina Knit Sweater and Removable Shawl'))).toBe('shawl'); // mondo-the-label
-    expect(hijabSubtype(p('The Culture Starter Set'))).toBe('set'); // culture-hijab
-    expect(hijabSubtype(p('Airy Jersey Scarf Mocha Brown'))).toBe('jersey'); // diversity-modest
-    expect(hijabSubtype(p('Navy Lace Trim Modal Hijab'))).toBe('modal'); // urban-modesty
-    expect(hijabSubtype(p('Small Premium Chiffon Hijab (Non-Slip)'))).toBe('chiffon'); // voile-chic
-    expect(hijabSubtype(p('Premium Cotton Hijab'))).toBe('cotton');
-    expect(hijabSubtype(p('Scarlet of Granada Satin'))).toBe('satin'); // jaida
-    expect(hijabSubtype(p('Hijab ready to tie burgundy Medina silk'))).toBe('silk-viscose'); // chic-modesty
+    expect(hijabTypeFilter(p('Syrian Full-Neck Underscarf'))).toBe('caps-underscarves'); // jaida
+    expect(hijabTypeFilter(p('Khimar Medina silk'))).toBe('khimar'); // jennah-boutique
+    expect(hijabTypeFilter(p('Jilbab - Black', 'abaya'))).toBe('jilbab');
+    expect(hijabTypeFilter(p('Premium Instant Hijab'))).toBe('instant'); // lafemme
+    expect(hijabTypeFilter(p('Lina Knit Sweater and Removable Shawl'))).toBe('shawl'); // mondo-the-label
+    expect(hijabTypeFilter(p('The Culture Starter Set'))).toBe('set'); // culture-hijab
+    expect(hijabTypeFilter(p('Airy Jersey Scarf Mocha Brown'))).toBe('jersey'); // diversity-modest
+    expect(hijabTypeFilter(p('Navy Lace Trim Modal Hijab'))).toBe('modal'); // urban-modesty
+    expect(hijabTypeFilter(p('Small Premium Chiffon Hijab (Non-Slip)'))).toBe('chiffon'); // voile-chic
+    expect(hijabTypeFilter(p('Premium Cotton Hijab'))).toBe('cotton');
+    expect(hijabTypeFilter(p('Scarlet of Granada Satin'))).toBe('satin'); // jaida
+    expect(hijabTypeFilter(p('Hijab ready to tie burgundy Medina silk'))).toBe('silk-viscose'); // chic-modesty
   });
 
-  // Each pair below is a REAL catalogue title matching two groups at once —
-  // confirms the priority order in GROUPS resolves to the higher one, not
-  // just whichever group happens to be tested first.
+  // Each pair is a REAL catalogue title matching two groups at once — confirms
+  // the priority order resolves to the higher one, not just whichever group
+  // happens to be tested first.
   it('resolves priority order when a real title matches more than one group', () => {
-    expect(hijabSubtype(p('Khimar Medina silk'))).toBe('khimar'); // khimar over silk-viscose
+    expect(hijabTypeFilter(p('Khimar Medina silk'))).toBe('khimar'); // khimar over silk-viscose
     // hidayah, garment:'abaya' — "One-Piece" alone would say instant
-    expect(hijabSubtype(p('Mirah One-Piece Jilbab (Bordeaux)', 'abaya'))).toBe('jilbab'); // jilbab over instant
-    expect(hijabSubtype(p('BreathLite Sports Hijab Set- Ivory Blush - Final Sale'))).toBe('sport'); // sport over set, dignitii
-    expect(hijabSubtype(p('Printed Satin'))).toBe('printed'); // printed over satin, culture-hijab
-    expect(hijabSubtype(p('Diamond Satin Crinkle (Oat)'))).toBe('crinkle'); // crinkle over satin, hidayah
-    expect(hijabSubtype(p('Liquid Jersey Instant Hijab'))).toBe('instant'); // instant over jersey, lafemme
+    expect(hijabTypeFilter(p('Mirah One-Piece Jilbab (Bordeaux)', 'abaya'))).toBe('jilbab'); // jilbab over instant
+    expect(hijabTypeFilter(p('BreathLite Sports Hijab Set- Ivory Blush - Final Sale'))).toBe('sport'); // sport over set, dignitii
+    expect(hijabTypeFilter(p('Printed Satin'))).toBe('printed'); // printed over satin, culture-hijab
+    expect(hijabTypeFilter(p('Diamond Satin Crinkle (Oat)'))).toBe('crinkle'); // crinkle over satin, hidayah
+    expect(hijabTypeFilter(p('Liquid Jersey Instant Hijab'))).toBe('instant'); // instant over jersey, lafemme
   });
 
   it('classifies a khimar-abaya item (garment !== "hijab") via isKhimarAbaya, not the plain garment check', () => {
     // Real title, cited in lib/specialty.ts's own isKhimarAbaya() comment.
-    expect(hijabSubtype(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe('khimar');
+    expect(hijabTypeFilter(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe('khimar');
   });
 
-  it('every label in HIJAB_SUBTYPE_LABELS is reachable — regression guard against a group with a label but no working regex', () => {
+  it('every label in HIJAB_TYPE_FILTER_LABELS is reachable — regression guard against a group with a label but no working regex', () => {
     const realExampleByGroup: Record<string, Product> = {
       'caps-underscarves': p('Syrian Full-Neck Underscarf'),
       khimar: p('Khimar Medina silk'),
@@ -174,45 +137,53 @@ describe('hijabSubtype', () => {
       satin: p('Scarlet of Granada Satin'),
       'silk-viscose': p('Hijab ready to tie burgundy Medina silk'),
     };
-    for (const key of Object.keys(HIJAB_SUBTYPE_LABELS)) {
-      expect(hijabSubtype(realExampleByGroup[key])).toBe(key);
+    for (const key of Object.keys(HIJAB_TYPE_FILTER_LABELS)) {
+      expect(hijabTypeFilter(realExampleByGroup[key])).toBe(key);
     }
   });
 
   // Regression guard, not an exact snapshot — data/products.json is
-  // republished nightly by the refresh workflow (CLAUDE.md §10.35), so
-  // pinning an exact count here would fail on ordinary catalogue growth,
-  // not a real bug. This only catches the classifier actually breaking
-  // (e.g. GROUPS emptied, or reordered so nothing resolves). Measured
-  // 2026-08-15: 5,146 items on the lane, 83.5% classified.
+  // republished nightly (CLAUDE.md §10.35), so pinning an exact count here
+  // would fail on ordinary catalogue growth, not a real bug. This only
+  // catches the classifier actually breaking (e.g. GROUPS emptied, or
+  // reordered so nothing resolves). Measured 2026-08-15: 5,146 items on the
+  // lane, 83.5% classified.
   it('classifies most of the real modest-hijabs lane', () => {
     const items = productsForLane('modest-hijabs');
-    const classified = items.filter((prod) => hijabSubtype(prod) !== null).length;
+    const classified = items.filter((prod) => hijabTypeFilter(prod) !== null).length;
     expect(items.length).toBeGreaterThan(1000);
     expect(classified / items.length).toBeGreaterThan(0.6);
   });
 });
 ```
 
-- [ ] **Step 3: Run the test to verify it fails**
+- [ ] **Step 2: Run the test to verify it fails**
 
-Run: `npx vitest run lib/hijabTypes.test.ts`
-Expected: FAIL — `Cannot find module './hijabTypes'` (the file doesn't exist yet).
+Run: `npx vitest run lib/hijabTypeFilter.test.ts`
+Expected: FAIL — `Cannot find module './hijabTypeFilter'` (the file doesn't exist yet).
 
-- [ ] **Step 4: Create `lib/hijabTypes.ts`**
+- [ ] **Step 3: Create `lib/hijabTypeFilter.ts`**
 
 ```ts
-import type { Product, HijabSubtype } from '@/lib/types';
+import type { Product } from '@/lib/types';
 import { isJilbab, isKhimarAbaya, isUndercap } from '@/lib/specialty';
 
-export type { HijabSubtype };
-
 /**
- * The Hijabs & Scarves lane's "Type" filter — 15 fabric/style groups built
+ * The Hijabs & Scarves lane's in-page "Type" filter (Brand/Sort's own
+ * FilterDropdown, components/IndexPanel.tsx) — 15 fabric/style groups built
  * from the real modest-hijabs lane (5,146 products, measured 2026-08-15),
  * not guessed. Full taxonomy table, group-by-group counts, and the priority-
  * order rationale live in
  * docs/superpowers/specs/2026-08-15-hijab-type-filter-design.md.
+ *
+ * Deliberately NOT named HijabSubtype/hijabSubtype()/HIJAB_SUBTYPE_LABELS —
+ * lib/specialty.ts and lib/types.ts already export those, for a DIFFERENT,
+ * independent concept: which structural sub-category a product is (plain
+ * hijab / khimar-jilbab / undercap), added by a concurrent session the same
+ * evening (commit 034a985) and reachable from the header nav flyout, not
+ * this in-page dropdown. A jersey khimar has a real value in BOTH — see
+ * lib/compactCatalogue.ts's hijabTypeFilters column, added alongside the
+ * pre-existing hijabSubtypes one, not replacing it.
  *
  * `isHijabLaneItem` mirrors the modest-hijabs lane's own `match` in
  * lib/lanes.ts, MINUS its `&& !isLayering(p)` guard: that guard only matters
@@ -221,17 +192,30 @@ export type { HijabSubtype };
  * that a caller already knows is on the lane. In production this function is
  * only ever called on rows a page already fetched via
  * productsForLane('modest-hijabs') — which already applied that guard — so
- * omitting it here cannot misclassify anything actually rendered. It does
- * mean this function, called directly and out of context (as some tests
- * above do), can return non-null for a title that would in practice be
- * routed to Layering Basics instead — a deliberate, documented
- * simplification, not a bug.
+ * omitting it here cannot misclassify anything actually rendered.
  */
 function isHijabLaneItem(p: Product): boolean {
   return p.garment === 'hijab' || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p);
 }
 
-export const HIJAB_SUBTYPE_LABELS: Record<HijabSubtype, string> = {
+export type HijabTypeFilter =
+  | 'caps-underscarves'
+  | 'khimar'
+  | 'jilbab'
+  | 'instant'
+  | 'sport'
+  | 'shawl'
+  | 'printed'
+  | 'set'
+  | 'crinkle'
+  | 'jersey'
+  | 'modal'
+  | 'chiffon'
+  | 'cotton'
+  | 'satin'
+  | 'silk-viscose';
+
+export const HIJAB_TYPE_FILTER_LABELS: Record<HijabTypeFilter, string> = {
   'caps-underscarves': 'Caps & Underscarves',
   khimar: 'Khimars',
   jilbab: 'Jilbabs',
@@ -252,8 +236,8 @@ export const HIJAB_SUBTYPE_LABELS: Record<HijabSubtype, string> = {
 // Priority order — most specific/functional groups first, generic fabric
 // last, so a title matching more than one (e.g. "Liquid Jersey Instant
 // Hijab") resolves to the narrower, more useful group. Same order as
-// HIJAB_SUBTYPE_LABELS above, which is also the flyout's display order.
-const GROUPS: [HijabSubtype, RegExp][] = [
+// HIJAB_TYPE_FILTER_LABELS above, which is also the dropdown's display order.
+const GROUPS: [HijabTypeFilter, RegExp][] = [
   ['caps-underscarves', /\bunderscarf|under.?cap|under.?scarf\b|\bbonnets?\b|\btube\b|\bninja\b|\bcaps?\b|\bturbans?\b|\bheadbands?\b/i],
   ['khimar', /\bkhimaa?rs?\b/i],
   ['jilbab', /\bjilbabs?\b/i],
@@ -262,7 +246,7 @@ const GROUPS: [HijabSubtype, RegExp][] = [
   ['shawl', /\bshawls?\b|\bpashmina\b/i],
   // \bprint(?:s|ed)?\b covers print/prints/printed — a first draft used
   // \bprints?\b alone and silently missed 134 real "Printed ..." titles,
-  // caught and fixed while writing this plan (see the design doc's
+  // caught and fixed before implementation (see the design doc's
   // Correction note).
   ['printed', /\bprint(?:s|ed)?\b|\bfloral\b|\bpolka\b|\banimal print\b|\bstripe[sd]?\b|\bplaid\b|\bcheck(?:ered)?\b/i],
   ['set', /\bsets?\b/i],
@@ -278,8 +262,9 @@ const GROUPS: [HijabSubtype, RegExp][] = [
 /** Returns null for anything not on the Hijabs & Scarves lane, and for the
  *  ~16.5% of real lane items with no fabric/style word in the title at all
  *  (plain color-named titles like "Riverwalk Blue Hijab") — both are
- *  expected, not errors; see the design doc's "Other bucket" decision. */
-export function hijabSubtype(p: Product): HijabSubtype | null {
+ *  expected, not errors; they're simply shown under the dropdown's default
+ *  "All types" state, same as Brand's default. */
+export function hijabTypeFilter(p: Product): HijabTypeFilter | null {
   if (!isHijabLaneItem(p)) return null;
   for (const [type, re] of GROUPS) {
     if (re.test(p.title)) return type;
@@ -288,29 +273,38 @@ export function hijabSubtype(p: Product): HijabSubtype | null {
 }
 ```
 
-- [ ] **Step 5: Run the test to verify it passes**
+- [ ] **Step 4: Run the test to verify it passes**
 
-Run: `npx vitest run lib/hijabTypes.test.ts`
+Run: `npx vitest run lib/hijabTypeFilter.test.ts`
 Expected: PASS, all assertions green.
 
-- [ ] **Step 6: Typecheck**
+- [ ] **Step 5: Typecheck**
 
 Run: `rm -f tsconfig.tsbuildinfo && npx tsc --noEmit`
 Expected: no errors.
 
+- [ ] **Step 6: Confirm the working tree has only this task's files before staging**
+
+```bash
+git status --short
+```
+Confirm only `lib/hijabTypeFilter.ts` and `lib/hijabTypeFilter.test.ts` show as new/modified
+by you (untracked `??`). If any other file you didn't touch this task shows as modified,
+STOP and do not add it — it belongs to the concurrent session.
+
 - [ ] **Step 7: Commit**
 
 ```bash
-git status --short lib/types.ts lib/hijabTypes.ts lib/hijabTypes.test.ts
-git add lib/types.ts lib/hijabTypes.ts lib/hijabTypes.test.ts
+git add lib/hijabTypeFilter.ts lib/hijabTypeFilter.test.ts
+git status --short lib/hijabTypeFilter.ts lib/hijabTypeFilter.test.ts
 git commit -m "$(cat <<'EOF'
-feat(hijabs): add HijabSubtype classifier (15 fabric/style groups)
+feat(hijabs): add HijabTypeFilter classifier (15 fabric/style groups)
 
-hijabSubtype() classifies a hijab-lane product into one of 15
-fabric/style groups (Jersey, Chiffon, Instant, Khimars, etc.) built
-from the real modest-hijabs lane (5,146 products). Same mechanism as
-layeringSubtype()/outerwearSubtype() in lib/specialty.ts. Not wired
-into the UI yet — that's the following tasks.
+hijabTypeFilter() classifies a hijab-lane product into one of 15
+fabric/style groups (Jersey, Chiffon, Instant, Khimars, etc.) for the
+in-page Type filter dropdown — independent of the sub-category
+concept (hijab/khimar-jilbab/undercap) commit 034a985 already added
+to lib/specialty.ts. Not wired into the UI yet.
 
 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
 EOF
@@ -322,47 +316,69 @@ EOF
 ### Task 2: Compact-catalogue encoding
 
 **Files:**
-- Modify: `lib/compactCatalogue.ts:2` (imports), `:50-95` (interface), `:105-146` (encode setup), `:225-243` (per-row loop + return)
+- Modify: `lib/compactCatalogue.ts:1-6` (imports), `:54-104` (interface), `:114-160` (encode
+  setup), `:239-259` (per-row loop + return)
 - Test: `lib/compactCatalogue.test.ts`
 
 **Interfaces:**
-- Consumes: `hijabSubtype`, `HIJAB_SUBTYPE_LABELS`, `type HijabSubtype` from `lib/hijabTypes.ts` (Task 1).
-- Produces: `CompactCatalogue.hijabSubtypes: HijabSubtype[]` and `CompactCatalogue.rows.hijabSubtypeIdx: number[]` — Task 3 (`FilterableGrid.tsx`) reads both.
+- Consumes: `hijabTypeFilter`, `HIJAB_TYPE_FILTER_LABELS`, `type HijabTypeFilter` from
+  `lib/hijabTypeFilter.ts` (Task 1).
+- Produces: `CompactCatalogue.hijabTypeFilters: HijabTypeFilter[]` and
+  `CompactCatalogue.rows.hijabTypeFilterIdx: number[]` — Task 3 reads both.
 
 - [ ] **Step 1: Write the failing tests in `lib/compactCatalogue.test.ts`**
 
-Add this new `describe` block right after the existing `describe('outerwear subtype encoding', ...)` block (which currently ends at line 186):
+Add this new `describe` block right after the existing `describe('hijab subtype encoding',
+...)` block (which currently ends at line 219, just before `describe('firstSeenDay
+encoding', ...)`):
 
 ```ts
-describe('hijab subtype encoding', () => {
-  const UNDERSCARF: Product = { ...PRODUCT, id: 'aab:5', title: 'Syrian Full-Neck Underscarf', garment: 'hijab' };
-  const JERSEY_HIJAB: Product = { ...PRODUCT, id: 'aab:6', title: 'Airy Jersey Scarf Mocha Brown', garment: 'hijab' };
+describe('hijab type-filter encoding', () => {
+  // Distinct ids from the "hijab subtype encoding" block above's fixtures —
+  // this is a SEPARATE, independent column, not a replacement for it.
+  const JERSEY_HIJAB: Product = { ...PRODUCT, id: 'aab:10', title: 'Airy Jersey Scarf Mocha Brown', garment: 'hijab' };
+  const CHIFFON_HIJAB: Product = { ...PRODUCT, id: 'aab:11', title: 'Small Premium Chiffon Hijab', garment: 'hijab' };
+  const JERSEY_KHIMAR: Product = { ...PRODUCT, id: 'aab:12', title: 'Jersey Khimar Medina', garment: 'hijab' };
 
   it('gives a non-hijab product the -1 sentinel and an empty dictionary', () => {
     const cat = encodeCatalogue([PRODUCT], [BRAND]);
-    expect(cat.hijabSubtypes).toEqual([]);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(-1);
+    expect(cat.hijabTypeFilters).toEqual([]);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(-1);
   });
 
-  it('assigns a real index for a hijab product, and only lists subtypes actually present', () => {
-    const cat = encodeCatalogue([UNDERSCARF], [BRAND]);
-    expect(cat.hijabSubtypes).toEqual(['caps-underscarves']);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(0);
+  it('assigns a real index for a hijab product, and only lists types actually present', () => {
+    const cat = encodeCatalogue([JERSEY_HIJAB], [BRAND]);
+    expect(cat.hijabTypeFilters).toEqual(['jersey']);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(0);
   });
 
-  it('orders present subtypes canonically, not by first appearance in the input', () => {
-    // JERSEY_HIJAB ('jersey') is listed BEFORE UNDERSCARF ('caps-underscarves')
-    // in the input array, but caps-underscarves sorts first in HIJAB_SUBTYPE_LABELS.
-    const cat = encodeCatalogue([JERSEY_HIJAB, UNDERSCARF], [BRAND]);
-    expect(cat.hijabSubtypes).toEqual(['caps-underscarves', 'jersey']);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(cat.hijabSubtypes.indexOf('jersey'));
-    expect(cat.rows.hijabSubtypeIdx[1]).toBe(cat.hijabSubtypes.indexOf('caps-underscarves'));
+  it('orders present types canonically, not by first appearance in the input', () => {
+    // CHIFFON_HIJAB ('chiffon') is listed BEFORE JERSEY_HIJAB ('jersey') in
+    // the input array, but jersey sorts first in HIJAB_TYPE_FILTER_LABELS.
+    const cat = encodeCatalogue([CHIFFON_HIJAB, JERSEY_HIJAB], [BRAND]);
+    expect(cat.hijabTypeFilters).toEqual(['jersey', 'chiffon']);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(cat.hijabTypeFilters.indexOf('chiffon'));
+    expect(cat.rows.hijabTypeFilterIdx[1]).toBe(cat.hijabTypeFilters.indexOf('jersey'));
   });
 
   it('a mixed catalogue keeps the -1 sentinel for non-hijab rows alongside real indices', () => {
-    const cat = encodeCatalogue([PRODUCT, UNDERSCARF], [BRAND]);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(-1);
-    expect(cat.rows.hijabSubtypeIdx[1]).toBe(0);
+    const cat = encodeCatalogue([PRODUCT, JERSEY_HIJAB], [BRAND]);
+    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(-1);
+    expect(cat.rows.hijabTypeFilterIdx[1]).toBe(0);
+  });
+
+  it('a row can carry a real index in BOTH hijabSubtypeIdx and hijabTypeFilterIdx at once — the two columns are independent', () => {
+    // JERSEY_KHIMAR is both a structural khimar (034a985's hijabSubtype:
+    // 'khimar-jilbab', via isKhimarAbaya/isJilbab — wait, plain garment:
+    // 'hijab' khimar wording alone does NOT satisfy isKhimarAbaya (abaya-
+    // garment only) or isJilbab, so hijabSubtype() resolves this one to
+    // plain 'hijab' — and separately, via THIS design's own classifier, a
+    // fine-grained 'khimar' type. Both non-null, on the same row, is the
+    // point: this proves the two columns don't clobber each other.
+    const cat = encodeCatalogue([JERSEY_KHIMAR], [BRAND]);
+    expect(cat.rows.hijabSubtypeIdx[0]).not.toBe(-1);
+    expect(cat.rows.hijabTypeFilterIdx[0]).not.toBe(-1);
+    expect(cat.hijabTypeFilters[cat.rows.hijabTypeFilterIdx[0]]).toBe('khimar');
   });
 });
 ```
@@ -370,76 +386,98 @@ describe('hijab subtype encoding', () => {
 - [ ] **Step 2: Run the tests to verify they fail**
 
 Run: `npx vitest run lib/compactCatalogue.test.ts`
-Expected: FAIL — `cat.hijabSubtypes` is `undefined`.
+Expected: FAIL — `cat.hijabTypeFilters` is `undefined`.
 
 - [ ] **Step 3: Modify `lib/compactCatalogue.ts`**
 
-Import line (currently line 2) — add a second import line right after it:
+Import block (currently lines 1-6) — add a new import line after the existing one:
 ```ts
-import { layeringSubtype, LAYERING_SUBTYPE_LABELS, type LayeringSubtype, outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype } from '@/lib/specialty';
-import { hijabSubtype, HIJAB_SUBTYPE_LABELS, type HijabSubtype } from '@/lib/hijabTypes';
+import type { Brand, Garment, Product } from '@/lib/types';
+import {
+  layeringSubtype, LAYERING_SUBTYPE_LABELS, type LayeringSubtype,
+  outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype,
+  hijabSubtype, HIJAB_SUBTYPE_LABELS, type HijabSubtype,
+} from '@/lib/specialty';
+import { hijabTypeFilter, HIJAB_TYPE_FILTER_LABELS, type HijabTypeFilter } from '@/lib/hijabTypeFilter';
 ```
 
-In the `CompactCatalogue` interface, right after `outerwearSubtypes: OuterwearSubtype[];` (currently line 62):
+In the `CompactCatalogue` interface, right after the `hijabSubtypes: HijabSubtype[];` field
+(currently line 69):
 ```ts
-  /** Same shape as layeringSubtypes/outerwearSubtypes, for the Hijabs &
-   *  Scarves lane's Type filter (fabric + style groups) — only ever
-   *  non-empty for /modest-hijabs. */
-  hijabSubtypes: HijabSubtype[];
+  /** A SEPARATE, independent classification from hijabSubtypes above — which
+   *  of 15 fabric/style groups (Jersey, Chiffon, Instant, ...) a product is,
+   *  for the in-page Type filter dropdown (components/FilterableGrid.tsx),
+   *  not the header nav flyout. A row can have a real index in both this and
+   *  hijabSubtypeIdx at once — see rows.hijabTypeFilterIdx. */
+  hijabTypeFilters: HijabTypeFilter[];
 ```
 
-In the `rows` sub-interface, right after `outerwearSubtypeIdx: number[];` (currently line 84):
+In the `rows` sub-interface, right after `hijabSubtypeIdx: number[];` (currently line 93):
 ```ts
-    /** Same shape as layeringSubtypeIdx/outerwearSubtypeIdx, for hijabSubtypes. */
-    hijabSubtypeIdx: number[];
+    /** Same shape as hijabSubtypeIdx, but for hijabTypeFilters — a
+     *  DIFFERENT, independent fact about the row (see the field comment
+     *  above). Not mutually exclusive with hijabSubtypeIdx: a jersey khimar
+     *  has a real value in both. */
+    hijabTypeFilterIdx: number[];
 ```
 
-In `encodeCatalogue`, right after the `outerwearSubtypeIndex` computation (currently lines 127-130):
+In `encodeCatalogue`, right after the `hijabSubtypeIndex` computation (currently lines
+140-143):
 ```ts
-  const hijabSubtypeOrder = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
-  const presentHijabSubtypes = new Set(products.map((p) => hijabSubtype(p)).filter((t): t is HijabSubtype => t !== null));
-  const hijabSubtypes = hijabSubtypeOrder.filter((t) => presentHijabSubtypes.has(t));
-  const hijabSubtypeIndex = new Map(hijabSubtypes.map((t, i) => [t, i]));
+  const hijabTypeFilterOrder = Object.keys(HIJAB_TYPE_FILTER_LABELS) as HijabTypeFilter[];
+  const presentHijabTypeFilters = new Set(products.map((p) => hijabTypeFilter(p)).filter((t): t is HijabTypeFilter => t !== null));
+  const hijabTypeFilters = hijabTypeFilterOrder.filter((t) => presentHijabTypeFilters.has(t));
+  const hijabTypeFilterIndex = new Map(hijabTypeFilters.map((t, i) => [t, i]));
 ```
 
-In the `rows` initializer object, right after `outerwearSubtypeIdx: [],` (currently line 143):
+In the `rows` initializer object, right after `hijabSubtypeIdx: [],` (currently line 157):
 ```ts
-    hijabSubtypeIdx: [],
+    hijabTypeFilterIdx: [],
 ```
 
-In the per-product loop, right after the `outerwearSub` push (currently lines 236-237):
+In the per-product loop, right after the `hijabSub` push (currently lines 252-253):
 ```ts
-    const hijabSub = hijabSubtype(p);
-    rows.hijabSubtypeIdx.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
+    const hijabType = hijabTypeFilter(p);
+    rows.hijabTypeFilterIdx.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
 ```
 
-The final `return` statement (currently line 242) — add `hijabSubtypes` to it:
+The final `return` statement (currently line 258) — add `hijabTypeFilters` to it:
 ```ts
-  return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, hijabSubtypes, rows };
+  return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, rows };
 ```
 
 - [ ] **Step 4: Run the tests to verify they pass**
 
 Run: `npx vitest run lib/compactCatalogue.test.ts`
-Expected: PASS, all assertions green (including the pre-existing tests — this file's other
-`describe` blocks must stay unaffected).
+Expected: PASS, all assertions green — including every pre-existing test in this file
+(`encodeCatalogue / decodeCard`, `layering subtype encoding`, `outerwear subtype encoding`,
+`hijab subtype encoding`, `firstSeenDay encoding`), which must stay unaffected.
 
 - [ ] **Step 5: Full test suite + typecheck**
 
 Run: `npm test && rm -f tsconfig.tsbuildinfo && npx tsc --noEmit`
 Expected: all green, no type errors.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 6: Confirm the working tree has only this task's file before staging**
 
 ```bash
-git status --short lib/compactCatalogue.ts lib/compactCatalogue.test.ts
+git status --short
+```
+Confirm only `lib/compactCatalogue.ts` and `lib/compactCatalogue.test.ts` are modified by
+you. STOP if anything else appears.
+
+- [ ] **Step 7: Commit**
+
+```bash
 git add lib/compactCatalogue.ts lib/compactCatalogue.test.ts
+git status --short lib/compactCatalogue.ts lib/compactCatalogue.test.ts
 git commit -m "$(cat <<'EOF'
-feat(hijabs): encode hijabSubtype into the compact catalogue
+feat(hijabs): encode hijabTypeFilter into the compact catalogue
 
-Adds hijabSubtypes/rows.hijabSubtypeIdx, mirroring the existing
-layering/outerwear subtype columns exactly. Still not reachable from
-the UI — FilterableGrid and the nav flyouts are the next tasks.
+Adds hijabTypeFilters/rows.hijabTypeFilterIdx as a new, independent
+column alongside the existing hijabSubtypes one from 034a985 — a row
+can have a real value in both (e.g. a jersey khimar). Still not
+reachable from the UI — FilterableGrid is the next task.
 
 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
 EOF
@@ -448,94 +486,88 @@ EOF
 
 ---
 
-### Task 3: FilterableGrid three-way type dispatch
+### Task 3: In-page Type filter dropdown
 
 **Files:**
-- Modify: `components/FilterableGrid.tsx:24-30` (state init), `:45-53` (resync effect),
-  `:83-108` (dispatch + filter loop)
+- Modify: `components/FilterableGrid.tsx:24` (state), `:62-65` (after `brands` memo),
+  `:107-129` (filter loop), `:163` (IndexPanel render)
 
 **Interfaces:**
-- Consumes: `cat.hijabSubtypes: HijabSubtype[]`, `cat.rows.hijabSubtypeIdx: number[]` (Task 2).
-- Produces: nothing new for later tasks — this is where the `?type=` URL param from a
-  Task 4/5 flyout link actually takes effect.
+- Consumes: `cat.hijabTypeFilters: HijabTypeFilter[]`, `cat.rows.hijabTypeFilterIdx:
+  number[]` (Task 2); `HIJAB_TYPE_FILTER_LABELS` (Task 1, for building dropdown options).
+- Produces: nothing later tasks depend on — this is where the feature becomes visible.
 
-No unit test exists for this file (no component-test framework in this repo — Vitest runs
-in `node` env, not `jsdom`; verified by `grep -rn "environment" vitest.config.ts` returning
-nothing beyond the default, and no `*.test.tsx` file existing anywhere in `components/`).
-Verification for this task is `tsc`/`lint` plus the manual Playwright pass in Task 6.
+No unit test exists for this file (no component-test framework in this repo). Verification
+is `tsc`/`lint` plus the manual Playwright pass in Task 4.
 
-- [ ] **Step 1: Modify the `type` state initializer** (currently lines 24-30)
+- [ ] **Step 1: Add the `fabricType` state** (currently line 24, right after `brand`)
 
 Before:
 ```tsx
-  const [type, setType] = useState(() => {
-    if (!initialType) return 'all';
-    if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
-    if ((cat.outerwearSubtypes as string[]).includes(initialType)) return initialType;
-    return 'all';
-  }); // layering OR outerwear subtype, or 'all'
+  const [brand, setBrand] = useState('all'); // brand slug, or 'all'
 ```
 
 After:
 ```tsx
-  const [type, setType] = useState(() => {
-    if (!initialType) return 'all';
-    if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
-    if ((cat.outerwearSubtypes as string[]).includes(initialType)) return initialType;
-    if ((cat.hijabSubtypes as string[]).includes(initialType)) return initialType;
-    return 'all';
-  }); // layering OR outerwear OR hijab subtype, or 'all'
+  const [brand, setBrand] = useState('all'); // brand slug, or 'all'
+  // Independent of `type` below (the sub-category flyout's URL-driven
+  // state, from 034a985) — this is a plain in-page filter, same shape as
+  // `brand`, not synced to the URL. Only meaningful on lanes where
+  // cat.hijabTypeFilters is non-empty (in practice: only modest-hijabs).
+  const [fabricType, setFabricType] = useState('all');
 ```
 
-- [ ] **Step 2: Modify the resync effect** (currently lines 45-53)
+- [ ] **Step 2: Build the dropdown's options list** (currently lines 62-65, right after the
+  `brands` memo)
 
 Before:
 ```tsx
-  useEffect(() => {
-    const resolved = !initialType
-      ? 'all'
-      : (cat.layeringSubtypes as string[]).includes(initialType) || (cat.outerwearSubtypes as string[]).includes(initialType)
-        ? initialType
-        : 'all';
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setType(resolved);
-  }, [initialType, cat]);
+  const brands = useMemo(
+    () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
+    [cat]
+  );
 ```
 
 After:
 ```tsx
-  useEffect(() => {
-    const resolved = !initialType
-      ? 'all'
-      : (cat.layeringSubtypes as string[]).includes(initialType)
-          || (cat.outerwearSubtypes as string[]).includes(initialType)
-          || (cat.hijabSubtypes as string[]).includes(initialType)
-        ? initialType
-        : 'all';
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setType(resolved);
-  }, [initialType, cat]);
+  const brands = useMemo(
+    () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
+    [cat]
+  );
+  // cat.hijabTypeFilters is already in HIJAB_TYPE_FILTER_LABELS's canonical
+  // order (lib/compactCatalogue.ts's pre-pass) and already contains only the
+  // types actually present on this lane — no further sort/filter needed,
+  // same as how `brands` above is the one place that DOES need a sort
+  // (brand names have no canonical order the way subtype keys do).
+  const fabricTypes = useMemo(
+    () => cat.hijabTypeFilters.map((t) => ({ value: t, label: HIJAB_TYPE_FILTER_LABELS[t] })),
+    [cat]
+  );
 ```
 
-- [ ] **Step 3: Modify the dispatch + filter loop** (currently lines 83-108)
+Add the import this needs, at the top of the file (currently line 7, right after the
+`sortRows` import):
+```tsx
+import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
+import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
+```
+
+- [ ] **Step 3: Add the filter guard** (currently lines 107-129, the `filteredRows` useMemo)
 
 Before:
 ```tsx
-  const usingOuterwearTypes = cat.layeringSubtypes.length === 0 && cat.outerwearSubtypes.length > 0;
-  const typeIdx =
-    type === 'all'
-      ? -1
-      : usingOuterwearTypes
-        ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
-        : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
-
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
     const n = cat.rows.title.length;
     for (let i = 0; i < n; i++) {
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
       if (typeIdx !== -1) {
-        const rowTypeIdx = usingOuterwearTypes ? cat.rows.outerwearSubtypeIdx[i] : cat.rows.layeringSubtypeIdx[i];
+        const rowTypeIdx =
+          typeDomain === 'outerwear'
+            ? cat.rows.outerwearSubtypeIdx[i]
+            : typeDomain === 'hijab'
+              ? cat.rows.hijabSubtypeIdx[i]
+              : cat.rows.layeringSubtypeIdx[i];
         if (rowTypeIdx !== typeIdx) continue;
       }
       if (query !== '') {
@@ -546,27 +578,12 @@ Before:
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, typeIdx, usingOuterwearTypes, query]);
+  }, [cat, brandIdx, typeIdx, typeDomain, query]);
 ```
 
 After:
 ```tsx
-  const usingOuterwearTypes = cat.layeringSubtypes.length === 0 && cat.outerwearSubtypes.length > 0;
-  // Hijabs is checked last: only reached once neither of the other two
-  // subtype systems is present on this lane's compact catalogue. All three
-  // are mutually exclusive by construction — layering/outerwear/hijab lane
-  // membership never overlaps (lib/specialty.ts, lib/lanes.ts) — so this
-  // stays a branch, not a merge, same as the pre-existing two-way one.
-  const usingHijabTypes =
-    cat.layeringSubtypes.length === 0 && cat.outerwearSubtypes.length === 0 && cat.hijabSubtypes.length > 0;
-  const typeIdx =
-    type === 'all'
-      ? -1
-      : usingOuterwearTypes
-        ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
-        : usingHijabTypes
-          ? cat.hijabSubtypes.indexOf(type as (typeof cat.hijabSubtypes)[number])
-          : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
+  const fabricTypeIdx = fabricType === 'all' ? -1 : cat.hijabTypeFilters.indexOf(fabricType as (typeof cat.hijabTypeFilters)[number]);
 
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
@@ -574,13 +591,19 @@ After:
     for (let i = 0; i < n; i++) {
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
       if (typeIdx !== -1) {
-        const rowTypeIdx = usingOuterwearTypes
-          ? cat.rows.outerwearSubtypeIdx[i]
-          : usingHijabTypes
-            ? cat.rows.hijabSubtypeIdx[i]
-            : cat.rows.layeringSubtypeIdx[i];
+        const rowTypeIdx =
+          typeDomain === 'outerwear'
+            ? cat.rows.outerwearSubtypeIdx[i]
+            : typeDomain === 'hijab'
+              ? cat.rows.hijabSubtypeIdx[i]
+              : cat.rows.layeringSubtypeIdx[i];
         if (rowTypeIdx !== typeIdx) continue;
       }
+      // Independent of the typeIdx/typeDomain check above — ANDed, not a
+      // replacement. A visitor can arrive via the Khimars & Jilbabs flyout
+      // link (narrows by sub-category) and also pick "Jersey" here (narrows
+      // further by fabric).
+      if (fabricTypeIdx !== -1 && cat.rows.hijabTypeFilterIdx[i] !== fabricTypeIdx) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -589,306 +612,48 @@ After:
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, typeIdx, usingOuterwearTypes, usingHijabTypes, query]);
+  }, [cat, brandIdx, typeIdx, typeDomain, fabricTypeIdx, query]);
 ```
 
-- [ ] **Step 4: Typecheck and lint**
-
-Run: `rm -f tsconfig.tsbuildinfo && npx tsc --noEmit && npm run lint`
-Expected: both clean.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git status --short components/FilterableGrid.tsx
-git add components/FilterableGrid.tsx
-git commit -m "$(cat <<'EOF'
-feat(hijabs): extend the Type filter dispatch to three subtype systems
-
-FilterableGrid's ?type= handling now also recognizes hijab subtypes,
-alongside the existing layering/outerwear ones. Still no way to reach
-it from the UI — the nav flyouts are next.
-
-Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
-EOF
-)"
-```
-
----
-
-### Task 4: Desktop nav flyout
-
-**Files:**
-- Modify: `components/Nav.tsx:1-43`
-
-**Interfaces:**
-- Consumes: `HIJAB_SUBTYPE_LABELS`, `type HijabSubtype` (`lib/hijabTypes.ts`, Task 1).
-- Produces: nothing later tasks depend on — this is a leaf.
-
-- [ ] **Step 1: Modify the import line** (currently line 4)
+- [ ] **Step 4: Reset "load more" on a fabric-type change too** (currently the `useEffect`
+  right after `sortedRows`)
 
 Before:
 ```tsx
-import { OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, type OuterwearSubtype, type LayeringSubtype } from '@/lib/specialty';
-```
-
-After:
-```tsx
-import { OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, type OuterwearSubtype, type LayeringSubtype } from '@/lib/specialty';
-import { HIJAB_SUBTYPE_LABELS, type HijabSubtype } from '@/lib/hijabTypes';
-```
-
-- [ ] **Step 2: Add the canonical-order constant** (currently lines 9-12)
-
-Before:
-```tsx
-const OUTERWEAR_SUBTYPES: OuterwearSubtype[] = ['blazer', 'vest', 'cardigan', 'coat'];
-// Insertion order of the LAYERING_SUBTYPE_LABELS object literal — same
-// source components/FilterableGrid.tsx and lib/compactCatalogue.ts read.
-const LAYERING_SUBTYPES = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
-```
-
-After:
-```tsx
-const OUTERWEAR_SUBTYPES: OuterwearSubtype[] = ['blazer', 'vest', 'cardigan', 'coat'];
-// Insertion order of the LAYERING_SUBTYPE_LABELS object literal — same
-// source components/FilterableGrid.tsx and lib/compactCatalogue.ts read.
-const LAYERING_SUBTYPES = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
-// Same pattern, for the Hijabs & Scarves flyout.
-const HIJAB_SUBTYPES = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
-```
-
-- [ ] **Step 3: Add the third `subItems` block** (currently lines 27-42, inside the
-  `categoryItems` map)
-
-Before:
-```tsx
-    ...(l.slug === 'outerwear'
-      ? {
-          subItems: OUTERWEAR_SUBTYPES.map((t) => ({
-            href: `/outerwear?type=${t}`,
-            label: OUTERWEAR_SUBTYPE_LABELS[t],
-          })),
-        }
-      : {}),
-    ...(l.slug === 'layering-basics'
-      ? {
-          subItems: LAYERING_SUBTYPES.map((t) => ({
-            href: `/layering-basics?type=${t}`,
-            label: LAYERING_SUBTYPE_LABELS[t],
-          })),
-        }
-      : {}),
-  }));
-```
-
-After:
-```tsx
-    ...(l.slug === 'outerwear'
-      ? {
-          subItems: OUTERWEAR_SUBTYPES.map((t) => ({
-            href: `/outerwear?type=${t}`,
-            label: OUTERWEAR_SUBTYPE_LABELS[t],
-          })),
-        }
-      : {}),
-    ...(l.slug === 'layering-basics'
-      ? {
-          subItems: LAYERING_SUBTYPES.map((t) => ({
-            href: `/layering-basics?type=${t}`,
-            label: LAYERING_SUBTYPE_LABELS[t],
-          })),
-        }
-      : {}),
-    // Hijabs & Scarves got the same flyout treatment 2026-08-15 — 15
-    // fabric/style groups, see lib/hijabTypes.ts. Same mechanism as the two
-    // above: a hover flyout is the only way to reach a filtered view, no
-    // in-page Type dropdown (matches Tina's explicit call to remove those
-    // for Outerwear/Layering Basics).
-    ...(l.slug === 'modest-hijabs'
-      ? {
-          subItems: HIJAB_SUBTYPES.map((t) => ({
-            href: `/modest-hijabs?type=${t}`,
-            label: HIJAB_SUBTYPE_LABELS[t],
-          })),
-        }
-      : {}),
-  }));
-```
-
-- [ ] **Step 4: Typecheck and lint**
-
-Run: `rm -f tsconfig.tsbuildinfo && npx tsc --noEmit && npm run lint`
-Expected: both clean.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git status --short components/Nav.tsx
-git add components/Nav.tsx
-git commit -m "$(cat <<'EOF'
-feat(hijabs): add Hijabs & Scarves to the desktop nav flyout
-
-Hovering "Hijabs & Scarves" in the header now shows all 15 type
-groups, same hover-flyout mechanism as Outerwear/Layering Basics.
-
-Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
-EOF
-)"
-```
-
----
-
-### Task 5: Mobile nav disclosure row
-
-**Files:**
-- Modify: `components/MobileNav.tsx:1-16` (imports/constants), `:52-80` (state/effects),
-  `:210-242` (row functions), `:349-351` (render)
-
-**Interfaces:**
-- Consumes: `HIJAB_SUBTYPE_LABELS`, `type HijabSubtype` (`lib/hijabTypes.ts`, Task 1).
-- Produces: nothing later tasks depend on — this is a leaf.
-
-- [ ] **Step 1: Modify the import line** (currently line 9)
-
-Before:
-```tsx
-import { OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, type OuterwearSubtype, type LayeringSubtype } from '@/lib/specialty';
-```
-
-After:
-```tsx
-import { OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, type OuterwearSubtype, type LayeringSubtype } from '@/lib/specialty';
-import { HIJAB_SUBTYPE_LABELS, type HijabSubtype } from '@/lib/hijabTypes';
-```
-
-- [ ] **Step 2: Add the canonical-order constant** (currently lines 15-16)
-
-Before:
-```tsx
-const OUTERWEAR_SUBTYPE_ORDER = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
-const LAYERING_SUBTYPE_ORDER = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
-```
-
-After:
-```tsx
-const OUTERWEAR_SUBTYPE_ORDER = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
-const LAYERING_SUBTYPE_ORDER = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
-const HIJAB_SUBTYPE_ORDER = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
-```
-
-- [ ] **Step 3: Add disclosure state + scroll-into-view effect** (currently lines 52-80,
-  right after the existing `layeringOpen`/`layeringRowRef` block and its `useEffect`)
-
-Before (end of the block):
-```tsx
-  const [layeringOpen, setLayeringOpen] = useState(false);
-  const layeringRowRef = useRef<HTMLDivElement>(null);
-
-  // Outerwear sits near the bottom of the Category list (9th of 10), so
-  // ... [existing comment unchanged] ...
   useEffect(() => {
-    if (outerwearOpen) outerwearRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [outerwearOpen]);
-  useEffect(() => {
-    if (layeringOpen) layeringRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [layeringOpen]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setVisible(STEP);
+  }, [brand, type, q]);
 ```
 
 After:
 ```tsx
-  const [layeringOpen, setLayeringOpen] = useState(false);
-  const layeringRowRef = useRef<HTMLDivElement>(null);
-  // Hijabs & Scarves got the same disclosure treatment 2026-08-15, same
-  // reasoning as layeringOpen/layeringRowRef above.
-  const [hijabOpen, setHijabOpen] = useState(false);
-  const hijabRowRef = useRef<HTMLDivElement>(null);
-
-  // Outerwear sits near the bottom of the Category list (9th of 10), so
-  // ... [existing comment unchanged] ...
   useEffect(() => {
-    if (outerwearOpen) outerwearRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [outerwearOpen]);
-  useEffect(() => {
-    if (layeringOpen) layeringRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [layeringOpen]);
-  useEffect(() => {
-    if (hijabOpen) hijabRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [hijabOpen]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setVisible(STEP);
+  }, [brand, type, fabricType, q]);
 ```
 
-(The existing multi-line comment between `layeringOpen` and the first `useEffect` stays
-exactly where it is — only the two new lines above and the new effect below are added.)
-
-- [ ] **Step 4: Add the `hijabRow()` function** (currently lines 210-242, right after the
-  existing `layeringRow` function, before the `return (`)
-
-Before (end of `layeringRow`):
-```tsx
-      {layeringOpen && subtypeLinks('layering-basics', LAYERING_SUBTYPE_ORDER, LAYERING_SUBTYPE_LABELS)}
-    </div>
-  );
-
-  return (
-```
-
-After:
-```tsx
-      {layeringOpen && subtypeLinks('layering-basics', LAYERING_SUBTYPE_ORDER, LAYERING_SUBTYPE_LABELS)}
-    </div>
-  );
-
-  /** Hijabs & Scarves's row — same shape as Outerwear's/Layering's. */
-  const hijabRow = () => (
-    <div key="/modest-hijabs" ref={hijabRowRef}>
-      <button
-        type="button"
-        onClick={() => setHijabOpen((v) => !v)}
-        aria-expanded={hijabOpen}
-        className="flex items-center justify-between gap-4 py-4 w-full text-left"
-        style={{
-          fontFamily: 'var(--font-ui-stack)',
-          fontSize: 17,
-          lineHeight: 1.35,
-          letterSpacing: '0.01em',
-          color: path === '/modest-hijabs' ? 'var(--aubergine)' : 'var(--ink)',
-          fontWeight: path === '/modest-hijabs' ? 500 : 400,
-        }}
-      >
-        Hijabs & Scarves
-        <CaretDown
-          size={15}
-          style={{
-            flexShrink: 0,
-            color: 'var(--muted)',
-            transition: 'transform 150ms ease-out',
-            transform: hijabOpen ? 'rotate(180deg)' : undefined,
-          }}
-        />
-      </button>
-      {hijabOpen && subtypeLinks('modest-hijabs', HIJAB_SUBTYPE_ORDER, HIJAB_SUBTYPE_LABELS)}
-    </div>
-  );
-
-  return (
-```
-
-- [ ] **Step 5: Wire it into the category list render** (currently line 350)
+- [ ] **Step 5: Render the dropdown** (currently line 163, right after the `Brand`
+  `FilterDropdown`, before `Sort`)
 
 Before:
 ```tsx
-              l.slug === 'outerwear' ? outerwearRow() : l.slug === 'layering-basics' ? layeringRow() : row(`/${l.slug}`, l.title),
+        <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {/* Unlike the two above, this dropdown's "nothing chosen" value is a
 ```
 
 After:
 ```tsx
-              l.slug === 'outerwear'
-                ? outerwearRow()
-                : l.slug === 'layering-basics'
-                  ? layeringRow()
-                  : l.slug === 'modest-hijabs'
-                    ? hijabRow()
-                    : row(`/${l.slug}`, l.title),
+        <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {/* Only rendered on a lane with fabric/style groups to offer — in
+            practice, only /modest-hijabs. Independent of the sub-category
+            flyout (Khimars & Jilbabs/Undercaps, 034a985) — see the comment
+            on fabricTypeIdx above. */}
+        {fabricTypes.length > 0 && (
+          <FilterDropdown label="Type" value={fabricType} options={fabricTypes} onSelect={setFabricType} />
+        )}
+        {/* Unlike the two above, this dropdown's "nothing chosen" value is a
 ```
 
 - [ ] **Step 6: Typecheck and lint**
@@ -896,17 +661,27 @@ After:
 Run: `rm -f tsconfig.tsbuildinfo && npx tsc --noEmit && npm run lint`
 Expected: both clean.
 
-- [ ] **Step 7: Commit**
+- [ ] **Step 7: Confirm the working tree has only this task's file before staging**
 
 ```bash
-git status --short components/MobileNav.tsx
-git add components/MobileNav.tsx
-git commit -m "$(cat <<'EOF'
-feat(hijabs): add Hijabs & Scarves disclosure row to mobile nav
+git status --short
+```
+Confirm only `components/FilterableGrid.tsx` is modified by you. STOP if anything else
+appears.
 
-Tapping "Hijabs & Scarves" in the phone menu now expands to all 15
-type groups in place, same disclosure mechanism as Outerwear/Layering
-Basics — matches the desktop flyout added in the previous commit.
+- [ ] **Step 8: Commit**
+
+```bash
+git add components/FilterableGrid.tsx
+git status --short components/FilterableGrid.tsx
+git commit -m "$(cat <<'EOF'
+feat(hijabs): add in-page Type filter dropdown to Hijabs & Scarves
+
+A new "Type" FilterDropdown, next to Brand/Sort, narrows by the 15
+fabric/style groups from lib/hijabTypeFilter.ts. Independent of and
+composable with the existing Khimars & Jilbabs/Undercaps header
+flyout (034a985) — the two filter on different, orthogonal facts
+about the same row.
 
 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
 EOF
@@ -915,10 +690,10 @@ EOF
 
 ---
 
-### Task 6: Full verification + docs log
+### Task 4: Full verification + docs log
 
 **Files:**
-- Create: `docs/log/2026-08-15-hijab-type-filter-shipped.md`
+- Create: `docs/log/2026-08-15-hijab-type-filter-dropdown-shipped.md`
 
 - [ ] **Step 1: Full automated verification**
 
@@ -929,98 +704,96 @@ npm run lint
 npm test
 ```
 Expected: all three clean/passing, including every new test from Tasks 1-2 and every
-pre-existing test in `lib/specialty.test.ts`, `lib/compactCatalogue.test.ts`, `lib/lanes.test.ts`.
+pre-existing test — especially `lib/specialty.test.ts` and the pre-existing blocks of
+`lib/compactCatalogue.test.ts`, none of which this plan should have touched.
 
 - [ ] **Step 2: Build and start a real server**
 
-Per §10.28's lesson (a port collision silently drives a different session's server), first
-confirm nothing already owns the port:
+Confirm nothing already owns the port before starting one (§10.28's lesson):
 ```bash
 lsof -i :3177 || echo "port free"
 ```
-If free:
-```bash
-npm run build
-npx next start -p 3177 &
-```
-If NOT free, pick an unused port instead (e.g. 3179) and use it for every step below.
+If free: `npm run build && npx next start -p 3177 &`. If not, pick a free port (e.g. 3179)
+and use it below.
 
-- [ ] **Step 3: Manual Playwright verification — desktop flyout**
+- [ ] **Step 3: Manual Playwright verification**
 
-Using Playwright (per this project's "verify UI with Playwright, not just curl" convention),
-against `http://localhost:3177` (or whatever port Step 2 used):
-1. Load `/`, hover "Products" in the header, then hover "Hijabs & Scarves".
-2. Confirm the flyout shows exactly 15 links, in this order: Caps & Underscarves, Khimars,
-   Jilbabs, Instant Hijabs, Sport Hijabs, Shawls & Pashminas, Printed, Hijab Sets, Crinkle,
-   Jersey, Modal, Chiffon, Cotton & Bamboo, Satin, Silk & Viscose.
-3. Click "Jersey". Confirm the URL is `/modest-hijabs?type=jersey` and the page's product
-   grid only shows cards whose title plausibly contains "jersey" (spot-check 3 visible
-   cards).
-4. Click "Khimars" from the still-open flyout (without navigating away first). Confirm the
-   grid actually changes to khimar items — this is the exact regression the comment on
-   `initialType`'s resync effect in `components/FilterableGrid.tsx` describes (a same-route
-   `?type=` change not re-triggering the lazy state initializer).
+Against `http://localhost:3177` (or whatever port Step 2 used):
+1. Load `/modest-hijabs`. Confirm a "Type" chip now sits next to "Brand" and "Sort" in the
+   index panel.
+2. Open it. Confirm 15 rows, in this order: Caps & Underscarves, Khimars, Jilbabs, Instant
+   Hijabs, Sport Hijabs, Shawls & Pashminas, Printed, Hijab Sets, Crinkle, Jersey, Modal,
+   Chiffon, Cotton & Bamboo, Satin, Silk & Viscose.
+3. Pick "Jersey". Confirm the grid narrows to cards whose title plausibly contains "jersey"
+   (spot-check 3 visible cards) — and confirm the URL does NOT change (this filter is
+   deliberately not URL-synced, matching Brand).
+4. With "Jersey" still selected, hover "Hijabs & Scarves" in the header and click "Khimars &
+   Jilbabs" from that flyout. Confirm the page navigates to
+   `/modest-hijabs?type=khimar-jilbab` and the grid now shows the INTERSECTION — khimar/
+   jilbab items that are ALSO jersey (a small set; if it's empty, confirm the "No pieces
+   match" state renders instead of a crash) — proving the two filters compose rather than
+   one clobbering the other.
+5. Reset "Type" back to "All types" with "Khimars & Jilbabs" still selected. Confirm the
+   grid returns to the full khimar/jilbab set (132 items, per the design doc's count).
 
-- [ ] **Step 4: Manual Playwright verification — mobile disclosure**
-
-At a phone viewport (e.g. 390x844):
-1. Open the hamburger menu, scroll to "Hijabs & Scarves" under Category.
-2. Tap it. Confirm the panel does NOT navigate — it expands in place to the 15 links,
-   auto-scrolled into view (matches the existing Outerwear/Layering behavior).
-3. Tap "Chiffon". Confirm it navigates to `/modest-hijabs?type=chiffon` and closes the panel.
-
-- [ ] **Step 5: Stop the server**
+- [ ] **Step 4: Stop the server**
 
 ```bash
 kill %1 2>/dev/null || true
 ```
-(Only if Step 2 started one in this shell job — skip if using an already-running server on a
-different port.)
 
-- [ ] **Step 6: Write the docs/log entry**
+- [ ] **Step 5: Write the docs/log entry**
 
-Create `docs/log/2026-08-15-hijab-type-filter-shipped.md`:
+Create `docs/log/2026-08-15-hijab-type-filter-dropdown-shipped.md`:
 
 ```markdown
-# Hijab Type filter — shipped
+# Hijab Type filter dropdown — shipped
 **Date:** 2026-08-15 · **Status:** done
 
 ## Goal
-Add a "Type" filter to Hijabs & Scarves (Jersey, Chiffon, Instant, Khimars, etc.), matching
-the existing Outerwear/Layering Basics hover-flyout mechanism. Full background:
-`docs/superpowers/specs/2026-08-15-hijab-type-filter-design.md`.
+Add an in-page "Type" filter dropdown to /modest-hijabs (Jersey, Chiffon, Instant, Printed,
+etc.), independent of and composable with the concurrent session's Khimars & Jilbabs/
+Undercaps header flyout (034a985). Full background, including why this plan went through
+two revisions: `docs/superpowers/specs/2026-08-15-hijab-type-filter-design.md`.
 
 ## What changed
-- `lib/types.ts` — new `HijabSubtype` union type (15 groups).
-- `lib/hijabTypes.ts` (new) — `hijabSubtype()` classifier + `HIJAB_SUBTYPE_LABELS`.
-- `lib/hijabTypes.test.ts` (new) — classification tests against real catalogue titles.
-- `lib/compactCatalogue.ts` — `hijabSubtypes`/`rows.hijabSubtypeIdx` column, mirroring the
-  existing layering/outerwear ones.
-- `lib/compactCatalogue.test.ts` — encoding tests for the new column.
-- `components/FilterableGrid.tsx` — three-way subtype dispatch (was two-way).
-- `components/Nav.tsx` — desktop hover flyout, 15 links.
-- `components/MobileNav.tsx` — mobile disclosure row, 15 links.
+- `lib/hijabTypeFilter.ts` (new) — `hijabTypeFilter()` classifier + `HIJAB_TYPE_FILTER_LABELS`.
+- `lib/hijabTypeFilter.test.ts` (new) — classification tests against real catalogue titles.
+- `lib/compactCatalogue.ts` — `hijabTypeFilters`/`rows.hijabTypeFilterIdx` column, independent
+  of the pre-existing `hijabSubtypes`/`rows.hijabSubtypeIdx`.
+- `lib/compactCatalogue.test.ts` — encoding tests, including one proving a row can carry a
+  real index in both hijab columns at once.
+- `components/FilterableGrid.tsx` — new "Type" `FilterDropdown`, ANDed into the existing
+  filter loop alongside brand/sub-category-type/search.
 
 ## Verification
-[paste the real tsc/lint/test output from Task 6 Step 1, and a summary of the manual
-Playwright pass from Steps 3-4 — what was clicked/tapped and what was observed]
+[paste the real tsc/lint/test output from Task 4 Step 1, and a summary of the manual
+Playwright pass from Step 3 — what was picked/clicked and what was observed, especially the
+compose-with-the-flyout check]
 
 ## Notes / follow-ups
-- No staff manual override for a misclassified item yet — explicit out-of-scope call, same
-  as the design doc says. Add later the same way Outerwear/Layering got theirs.
-- English vocabulary only — non-English hijab titles (e.g. Manzaram's Dutch feed) aren't
-  covered by these regexes.
-- ~16.5% of the lane (plain color-named titles) has no Type link — reachable only via
-  unfiltered browsing/search, per Tina's explicit call.
+- No staff manual override, no non-English vocabulary coverage, no URL sync for this
+  filter — same explicit out-of-scope calls as the design doc.
+- This plan went through two revisions after discovering a concurrent session had
+  independently built a related-but-different feature in the same evening — see the design
+  doc's "Revision history" and `docs/log/2026-08-15-hijab-type-filter-design-and-concurrent-edit.md`
+  for the full account, including a git mistake (another session's staged work briefly got
+  swept into one of this session's commits, caught and corrected before pushing anywhere).
+```
+
+- [ ] **Step 6: Confirm the working tree has only this task's file before staging**
+
+```bash
+git status --short
 ```
 
 - [ ] **Step 7: Commit**
 
 ```bash
-git status --short docs/log/2026-08-15-hijab-type-filter-shipped.md
-git add docs/log/2026-08-15-hijab-type-filter-shipped.md
+git add docs/log/2026-08-15-hijab-type-filter-dropdown-shipped.md
+git status --short docs/log/2026-08-15-hijab-type-filter-dropdown-shipped.md
 git commit -m "$(cat <<'EOF'
-docs(hijabs): log the shipped Type filter with verification evidence
+docs(hijabs): log the shipped Type filter dropdown with verification evidence
 
 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
 EOF
@@ -1031,15 +804,17 @@ EOF
 
 ## Self-Review Notes
 
-- **Spec coverage:** every file in the design doc's "Design" section has a task
-  (`lib/types.ts`/`lib/hijabTypes.ts` → Task 1, `lib/compactCatalogue.ts` → Task 2,
-  `components/FilterableGrid.tsx` → Task 3, `components/Nav.tsx` → Task 4). One addition
-  beyond the design doc's literal file list: `components/MobileNav.tsx` (Task 5) — required
-  for the design's own stated goal of matching Outerwear/Layering's existing behavior, which
-  includes their mobile disclosure rows, not just the desktop flyout. Called out explicitly
-  in the File Structure table above rather than silently added.
+- **Spec coverage:** every file in the revised design doc's "Design" section has a task
+  (`lib/hijabTypeFilter.ts` → Task 1, `lib/compactCatalogue.ts` → Task 2,
+  `components/FilterableGrid.tsx` → Task 3). The design doc's explicit "not touched" list
+  (`lib/types.ts`, `lib/specialty.ts`, `components/Nav.tsx`, `components/MobileNav.tsx`,
+  `app/[lane]/page.tsx`) has no task, correctly.
 - **Placeholder scan:** no TBD/TODO markers; every code block is complete, copy-pasteable
-  code, not a description of code.
-- **Type consistency:** `HijabSubtype`, `hijabSubtype()`, `HIJAB_SUBTYPE_LABELS` are spelled
-  identically everywhere they're used across Tasks 1-5 (checked by re-reading each task's
-  import lines against Task 1's actual export names).
+  code.
+- **Type consistency:** `HijabTypeFilter`, `hijabTypeFilter()`, `HIJAB_TYPE_FILTER_LABELS`
+  are spelled identically everywhere across Tasks 1-3, and deliberately distinct from
+  `034a985`'s `HijabSubtype`/`hijabSubtype()`/`HIJAB_SUBTYPE_LABELS` at every call site.
+- **Concurrent-session risk:** every task ends with an explicit `git status` check before
+  staging, called out in Global Constraints and repeated per-task — this plan's own
+  authoring hit the collision it's now guarding against, twice, so the guard is not
+  theoretical.
