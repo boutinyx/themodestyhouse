@@ -31861,16 +31861,6 @@
     "evidence": "Magnets"
   },
   {
-    "id": "vela:7638070689948",
-    "brandSlug": "vela",
-    "title": "Matte Magnets olive/chocolate",
-    "url": "https://velascarves.com/products/matte-magnets-olive-truffle",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hardware",
-    "tier": "B",
-    "evidence": "Magnets"
-  },
-  {
     "id": "vela:8198539706524",
     "brandSlug": "vela",
     "title": "Matte Magnets Nude/Nude",
@@ -32175,16 +32165,6 @@
     "evidence": "Bag"
   },
   {
-    "id": "mariams:7924731773144",
-    "brandSlug": "mariams",
-    "title": "MR014 Ramadan Sticker, 90 Pcs Stickers Eid Mubarak Decoration",
-    "url": "https://mariam-col.com/products/eid-self-adhesive-sticker-letter",
-    "garmentWas": "set",
-    "reason": "non-apparel:home",
-    "tier": "B",
-    "evidence": "Decoration"
-  },
-  {
     "id": "mariams:8154928677080",
     "brandSlug": "mariams",
     "title": "MR052 Portable Foldable Travel Prayer Mat",
@@ -32209,6 +32189,16 @@
     "brandSlug": "arakai",
     "title": "Tiara Panel-Seamed Voile Crush Yellow",
     "url": "https://www.arakaistudio.com/products/tiara-panel-seamed-voile-crush-yellow",
+    "garmentWas": "skirt",
+    "reason": "non-apparel:jewellery",
+    "tier": "A",
+    "evidence": "Tiara"
+  },
+  {
+    "id": "arakai:10893545865562",
+    "brandSlug": "arakai",
+    "title": "Tiara Panel-Seamed Voile Crush Cream",
+    "url": "https://www.arakaistudio.com/products/tiara-panel-seamed-voile-crush-butter",
     "garmentWas": "skirt",
     "reason": "non-apparel:jewellery",
     "tier": "A",
@@ -40175,14 +40165,6 @@
     "reason": "id-pin"
   },
   {
-    "id": "hidayah:7406689353899",
-    "brandSlug": "hidayah",
-    "title": "Hijab-magneter 2sæt “Stærke” (Sort)",
-    "url": "https://hidayah.dk/products/staerk-hijab-magnet-2stk-black",
-    "garmentWas": "hijab",
-    "reason": "id-pin"
-  },
-  {
     "id": "hidayah:9154191524187",
     "brandSlug": "hidayah",
     "title": "Tilfældig Farve - Satin Velvet Scrunchie (Medium)",
@@ -42534,5 +42516,15 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "mariams:9408991232216",
+    "brandSlug": "mariams",
+    "title": "Magnetic Scarf Pin & Hijab Clip（MAC457）",
+    "url": "https://mariam-col.com/products/magnetic-scarf-pin-hijab-clip-mac457",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Scarf Pin"
   }
 ]
