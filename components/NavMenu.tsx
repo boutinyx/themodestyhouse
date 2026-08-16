@@ -185,21 +185,22 @@ export function NavMenu({
           closeTimer = null;
         }
       } else if (!closeTimer) {
-        // Widened 150ms -> 400ms 2026-08-16, after Tina: "when i hover over
-        // and want to click onn one of the sub catagories it dissapears".
-        // Reproduced once under Playwright with a fast, precise synthetic
-        // mouse path, but NOT reliably across a dozen further attempts
-        // (including a deliberate 180ms pause in the gap between the row
-        // and the flyout) — a genuinely narrow race, not a structural bug in
-        // the elementFromPoint-based check itself. 150ms is tight for a real
-        // trackpad, which moves in coarser, less continuous steps than a
-        // mouse and than Playwright's synthetic interpolation, so a brief,
-        // ordinary aim-then-click pause can plausibly exceed it. 400ms is
-        // still short enough that moving on to something else entirely (the
-        // original motivating bug this whole mechanism exists for) closes
-        // promptly, just no longer razor-thin against normal human
-        // micro-pauses.
-        closeTimer = setTimeout(closeAll, 400);
+        // 150ms -> 400ms 2026-08-16 (band-aid for the disappearing-flyout
+        // bug) -> back to 150ms same day, once the REAL cause of that bug
+        // was found and fixed: column-1 flyouts (Hijabs & Scarves)
+        // physically occluding column-2 rows (see `wideFlyoutOffset` on
+        // NavItem). The 400ms widening was compensating for a geometry bug
+        // by giving misreads more time to self-correct — it worked, but at
+        // the cost Tina reported next: "when you hove on one and the other
+        // was open it freezes for about 2 seconds and then disspears, that
+        // too late". Measured live: with 400/400ms, an ordinary flyout-to-
+        // flyout switch took ~700ms wall-clock before the stale one
+        // cleared — clearly perceptible as a stall, not a snappy hover.
+        // Now that occlusion is fixed at the geometry level, this timer
+        // only needs to cover genuine pointer-transit imprecision (a real
+        // trackpad's coarser steps vs. a mouse), which is what 150ms was
+        // originally sized for and is still enough for.
+        closeTimer = setTimeout(closeAll, 150);
       }
     };
     window.addEventListener('pointermove', onPointerMove);
@@ -303,20 +304,23 @@ export function NavMenu({
                         // place, only this explicit, pointer-type-gated one.
                         openOnHover
                         delay={0}
-                        // Widened 120ms -> 400ms 2026-08-16, same day/reason
-                        // as the OUTER navValue closeTimer just below in this
-                        // file (Tina: "when i hover over and want to click
-                        // onn one of the sub catagories it dissapears", still
-                        // happening after that first fix). This is a
-                        // SEPARATE timer — Base UI's own built-in hover-close
-                        // for THIS inner Menu.Root's popup, independent of
-                        // the outer navValue mechanism, and the first fix
-                        // never touched it. This is very likely the actual
-                        // culprit: the outer panel and the row can both stay
-                        // open/visible while this inner flyout closes on its
-                        // own 120ms clock the moment the pointer crosses the
-                        // small gap between the row and the popup.
-                        closeDelay={400}
+                        // 120ms -> 400ms 2026-08-16 -> back to 150ms same
+                        // day. Same story as the OUTER navValue closeTimer
+                        // above in this file: 400ms was a band-aid for the
+                        // column-occlusion bug (now fixed via
+                        // `wideFlyoutOffset`), and left at 400ms it made
+                        // every flyout-to-flyout switch visibly stall
+                        // (Tina: "it freezes for about 2 seconds and then
+                        // disspears, that too late" — measured ~700ms
+                        // wall-clock, not literally 2s, but clearly a stall
+                        // rather than a hover response). This is Base UI's
+                        // own built-in hover-close for THIS inner
+                        // Menu.Root's popup, independent of the outer
+                        // navValue mechanism above — both were widened
+                        // together and are being brought back down
+                        // together, now that neither needs to cover for a
+                        // geometry bug.
+                        closeDelay={150}
                         onPointerDown={(e) => {
                           lastPointerType.current = e.pointerType;
                           if (e.pointerType === 'mouse') {
