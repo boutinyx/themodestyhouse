@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import { getProducts } from '@/lib/products';
 import { formatPrice } from '@/lib/price';
 import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
+import { SITE_URL } from '@/lib/schema';
 import type { Product } from '@/lib/types';
 import EditorsRail from '@/components/EditorsRail';
 
@@ -45,15 +46,41 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const title = `${p.title} by ${p.brandName}`;
   const description = `${p.title} from ${p.brandName} — curated on The Modesty House.`;
   const image = shopifyImage(p.image, 900);
+  const url = `${SITE_URL}/product/${p.brandSlug}/${shopifyId}`;
   return {
     title,
     description,
     // The whole point of this page: reachable and shareable, but never
-    // indexed or crawled — see the file-level comment above for why.
-    robots: { index: false, follow: false },
+    // indexed by a SEARCH engine — see the file-level comment above for why.
+    // Bot-scoped, not the generic `<meta name="robots">` (which `{ index:
+    // false, follow: false }` at the top level would emit): found 2026-08-17
+    // when Tina reported Pinterest wasn't picking up the preview when she
+    // pasted a "Copy share link" URL. Social/link-preview crawlers
+    // (Pinterestbot, facebookexternalhit, Twitterbot, etc.) have no reserved
+    // directive name of their own, so the ONLY meta-robots tag they ever
+    // read is the generic "robots" one — the same tag meant for search
+    // engines. A blanket noindex there is exactly the kind of signal their
+    // own docs describe as blocking a page from being crawled at all,
+    // whether or not it was ever meant for them. `googleBot` + the `other`
+    // bingbot tag below are bot-specific meta names (`googlebot`,
+    // `bingbot`) that ONLY Google/Bing recognise as addressed to them —
+    // every other crawler, Pinterest included, ignores a directive that
+    // isn't under its own name and falls through to reading the OG/Twitter
+    // tags normally. Preserves the original goal (keep this out of search
+    // indexes, avoiding a repeat of the 2026-08-05 thin-content mistake)
+    // without collaterally blocking the page's only intended use: being
+    // shared.
+    robots: {
+      googleBot: { index: false, follow: false },
+    },
+    other: {
+      bingbot: 'noindex, nofollow',
+    },
     openGraph: {
       title,
       description,
+      url,
+      siteName: 'The Modesty House',
       type: 'website',
       ...(image ? { images: [{ url: image }] } : {}),
     },
