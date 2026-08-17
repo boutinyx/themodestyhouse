@@ -1,20 +1,20 @@
 {
-  "date": "2026-08-16",
+  "date": "2026-08-17",
   "totals": {
-    "added": 24,
-    "updated": 29612,
-    "delisted": 24,
+    "added": 16,
+    "updated": 29621,
+    "delisted": 16,
     "filtered": 65,
-    "returned": 14,
+    "returned": 1,
     "incomplete": 3
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
       "complete": true,
-      "fetched": 190,
+      "fetched": 189,
       "added": [],
-      "updated": 190,
+      "updated": 189,
       "delisted": 1,
       "filtered": [],
       "returned": 0
@@ -38,22 +38,19 @@
       "brandSlug": "veiled",
       "complete": true,
       "fetched": 1060,
-      "added": [
-        "Knit Maxi Cardigan - Black Sparkle",
-        "Longline Hooded Zip Sweatshirt - Lavender"
-      ],
-      "updated": 1058,
+      "added": [],
+      "updated": 1060,
       "delisted": 0,
       "filtered": [],
-      "returned": 9
+      "returned": 0
     },
     {
       "brandSlug": "niswa",
       "complete": true,
-      "fetched": 480,
+      "fetched": 478,
       "added": [],
-      "updated": 480,
-      "delisted": 1,
+      "updated": 478,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -156,15 +153,9 @@
       "brandSlug": "urban-modesty",
       "complete": true,
       "fetched": 222,
-      "added": [
-        "Red Polka Dots Maxi Dress",
-        "Olive Green Floral Maxi Dress",
-        "White Polka Dots Maxi Dress",
-        "Beige Floral Maxi Dress",
-        "Cherry Blossom Maxi Dress"
-      ],
-      "updated": 217,
-      "delisted": 2,
+      "added": [],
+      "updated": 222,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -192,11 +183,9 @@
       "brandSlug": "mariams",
       "complete": true,
       "fetched": 1188,
-      "added": [
-        "Magnetic Scarf Pin & Hijab Clip（MAC457）"
-      ],
-      "updated": 1187,
-      "delisted": 3,
+      "added": [],
+      "updated": 1188,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Islamic Hollow Pattern Acrylic Tabletop Decor (MAC404)",
@@ -285,10 +274,8 @@
       "brandSlug": "glow-modesty",
       "complete": true,
       "fetched": 166,
-      "added": [
-        "Chevron Maxi Dress"
-      ],
-      "updated": 165,
+      "added": [],
+      "updated": 166,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -296,8 +283,11 @@
     {
       "brandSlug": "jawda",
       "complete": true,
-      "fetched": 139,
-      "added": [],
+      "fetched": 141,
+      "added": [
+        "Navy Powder Touch Crepe Umbrella Sleeve Top",
+        "Mocha Brown Side Wrap Two-Piece Abaya"
+      ],
       "updated": 139,
       "delisted": 0,
       "filtered": [],
@@ -437,13 +427,11 @@
       "brandSlug": "les-atelier",
       "complete": true,
       "fetched": 125,
-      "added": [
-        "The Soleil Dress Green Beige"
-      ],
-      "updated": 124,
+      "added": [],
+      "updated": 125,
       "delisted": 0,
       "filtered": [],
-      "returned": 3
+      "returned": 0
     },
     {
       "brandSlug": "maison-hijab",
@@ -468,10 +456,13 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 78,
-      "added": [],
+      "fetched": 80,
+      "added": [
+        "Mouwloze Blazer",
+        "Tweedelige set met blouse"
+      ],
       "updated": 78,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -501,7 +492,7 @@
       "fetched": 47,
       "added": [],
       "updated": 47,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -518,10 +509,10 @@
     {
       "brandSlug": "lafemme",
       "complete": true,
-      "fetched": 37,
+      "fetched": 36,
       "added": [],
-      "updated": 37,
-      "delisted": 0,
+      "updated": 36,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -539,11 +530,8 @@
       "brandSlug": "kamin",
       "complete": true,
       "fetched": 342,
-      "added": [
-        "The Mahra | White",
-        "The Mahra | Purple"
-      ],
-      "updated": 340,
+      "added": [],
+      "updated": 342,
       "delisted": 0,
       "filtered": [
         {
@@ -707,8 +695,10 @@
     {
       "brandSlug": "noureen",
       "complete": true,
-      "fetched": 225,
-      "added": [],
+      "fetched": 226,
+      "added": [
+        "Classy Breathable S26 – Deep Brown"
+      ],
       "updated": 225,
       "delisted": 0,
       "filtered": [
@@ -901,10 +891,8 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 306,
-      "added": [
-        "Gri Minimalist Uzun Elbise"
-      ],
+      "fetched": 305,
+      "added": [],
       "updated": 305,
       "delisted": 1,
       "filtered": [
@@ -925,7 +913,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 2
+      "returned": 0
     },
     {
       "brandSlug": "abaya-lounge",
@@ -1031,13 +1019,8 @@
       "brandSlug": "modesty-in-style",
       "complete": true,
       "fetched": 371,
-      "added": [
-        "Jade Slit Top",
-        "Bailey Tall Pants",
-        "Mona Striped Shirt",
-        "Jasmine Formal Dress"
-      ],
-      "updated": 367,
+      "added": [],
+      "updated": 371,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1088,7 +1071,7 @@
       "fetched": 442,
       "added": [],
       "updated": 442,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1114,12 +1097,12 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 325,
+      "fetched": 326,
       "added": [],
-      "updated": 325,
+      "updated": 326,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "store-wf",
@@ -1214,13 +1197,8 @@
       "brandSlug": "rutba-abaya",
       "complete": true,
       "fetched": 253,
-      "added": [
-        "R 332 Black Beaded Abaya",
-        "R 331 Black 3D Floral Lace Abaya",
-        "R 330 Black Embroidered Abaya",
-        "R329 Black Lace Abaya with Faceted Diamond Beads"
-      ],
-      "updated": 249,
+      "added": [],
+      "updated": 253,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1228,10 +1206,10 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1054,
+      "fetched": 1049,
       "added": [],
-      "updated": 1054,
-      "delisted": 0,
+      "updated": 1049,
+      "delisted": 5,
       "filtered": [
         {
           "title": "Soft Çiçek Desenli Toprak Şal 0058",
@@ -1295,10 +1273,10 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 706,
+      "fetched": 705,
       "added": [],
-      "updated": 706,
-      "delisted": 4,
+      "updated": 705,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1315,10 +1293,20 @@
     {
       "brandSlug": "abayas-boutique",
       "complete": true,
-      "fetched": 391,
-      "added": [],
+      "fetched": 400,
+      "added": [
+        "Flounce Set in Teal",
+        "Qudsia in Coral",
+        "Baraim",
+        "Priya in Pink",
+        "Priya in Tiffany Grey",
+        "Serevina in Bubblegum Pink",
+        "Serevina in Olive",
+        "Buthaina in Brown Truffle",
+        "Buthaina"
+      ],
       "updated": 391,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1335,10 +1323,10 @@
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 176,
+      "fetched": 174,
       "added": [],
-      "updated": 176,
-      "delisted": 6,
+      "updated": 174,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -1346,10 +1334,8 @@
       "brandSlug": "hijabipop",
       "complete": true,
       "fetched": 41,
-      "added": [
-        "Modest Burkini Set"
-      ],
-      "updated": 40,
+      "added": [],
+      "updated": 41,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1380,7 +1366,7 @@
       "fetched": 148,
       "added": [],
       "updated": 148,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1410,20 +1396,20 @@
       "fetched": 16,
       "added": [],
       "updated": 16,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "parladusa",
       "complete": true,
-      "fetched": 136,
+      "fetched": 135,
       "added": [
-        "Amara Kleid",
-        "Denim Oberteil"
+        "Plissee Bluse",
+        "Rana Zweiteiler"
       ],
-      "updated": 134,
-      "delisted": 0,
+      "updated": 133,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     }

@@ -24960,16 +24960,6 @@
     "evidence": "890 USD (~$890)"
   },
   {
-    "id": "veiled:7684925423721",
-    "brandSlug": "veiled",
-    "title": "Hijab Ring Circle (5 Pack)",
-    "url": "https://veiled.com/products/hijab-ring-hammered-circle-5-pack",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hardware",
-    "tier": "A",
-    "evidence": "Hijab Ring"
-  },
-  {
     "id": "veiled:7684925554793",
     "brandSlug": "veiled",
     "title": "Hijab Ring Braided (2 Pack)",
@@ -25855,7 +25845,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 GBP (~$781)"
+    "evidence": "579 GBP (~$782)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -25864,7 +25854,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 GBP (~$781)"
+    "evidence": "579 GBP (~$782)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -25873,7 +25863,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 GBP (~$781)"
+    "evidence": "579 GBP (~$782)"
   },
   {
     "id": "avyaana:8267050844298",
@@ -31911,16 +31901,6 @@
     "evidence": "Magnet"
   },
   {
-    "id": "veiled:7144473854057",
-    "brandSlug": "veiled",
-    "title": "Signature Magnet Pins - Black",
-    "url": "https://veiled.com/products/signature-magnet-pins-black",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hardware",
-    "tier": "B",
-    "evidence": "Magnet"
-  },
-  {
     "id": "veiled:7144473788521",
     "brandSlug": "veiled",
     "title": "Signature Magnet Pins - Sage",
@@ -32301,7 +32281,7 @@
     "url": "https://avyaana.com/products/elenora-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "457 GBP (~$617)"
   },
   {
     "id": "avyaana:15633334862198",
@@ -32328,7 +32308,7 @@
     "url": "https://avyaana.com/products/sereen-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "457 GBP (~$617)"
   },
   {
     "id": "avyaana:15633334042998",
@@ -32337,7 +32317,7 @@
     "url": "https://avyaana.com/products/haneefa-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "457 GBP (~$617)"
   },
   {
     "id": "avyaana:15633333715318",
@@ -32346,7 +32326,7 @@
     "url": "https://avyaana.com/products/rania-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "457 GBP (~$617)"
   },
   {
     "id": "avyaana:15633332535670",
@@ -32355,7 +32335,7 @@
     "url": "https://avyaana.com/products/dariya-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "457 GBP (~$617)"
   },
   {
     "id": "avyaana:15449996034422",
