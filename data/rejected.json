@@ -25774,14 +25774,6 @@
     "evidence": "Bag"
   },
   {
-    "id": "merrachi:15675922415999",
-    "brandSlug": "merrachi",
-    "title": "Zebra Scarf Gift Box | Multi Color",
-    "url": "https://bymerrachi.com/products/zebra-scarf-gift-box-multi-color",
-    "garmentWas": "hijab",
-    "reason": "title-pattern"
-  },
-  {
     "id": "merrachi:15639066116479",
     "brandSlug": "merrachi",
     "title": "Scarf Keychain | Pink Bouquet",
@@ -25845,7 +25837,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 GBP (~$782)"
+    "evidence": "578 GBP (~$781)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -25854,7 +25846,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 GBP (~$782)"
+    "evidence": "578 GBP (~$781)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -25863,7 +25855,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 GBP (~$782)"
+    "evidence": "578 GBP (~$781)"
   },
   {
     "id": "avyaana:8267050844298",
@@ -32281,7 +32273,7 @@
     "url": "https://avyaana.com/products/elenora-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "457 GBP (~$617)"
+    "evidence": "456 GBP (~$616)"
   },
   {
     "id": "avyaana:15633334862198",
@@ -32308,7 +32300,7 @@
     "url": "https://avyaana.com/products/sereen-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "457 GBP (~$617)"
+    "evidence": "456 GBP (~$616)"
   },
   {
     "id": "avyaana:15633334042998",
@@ -32317,7 +32309,7 @@
     "url": "https://avyaana.com/products/haneefa-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "457 GBP (~$617)"
+    "evidence": "456 GBP (~$616)"
   },
   {
     "id": "avyaana:15633333715318",
@@ -32326,7 +32318,7 @@
     "url": "https://avyaana.com/products/rania-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "457 GBP (~$617)"
+    "evidence": "456 GBP (~$616)"
   },
   {
     "id": "avyaana:15633332535670",
@@ -32335,7 +32327,7 @@
     "url": "https://avyaana.com/products/dariya-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "457 GBP (~$617)"
+    "evidence": "456 GBP (~$616)"
   },
   {
     "id": "avyaana:15449996034422",
@@ -32772,7 +32764,7 @@
     "id": "mariams:9394899583192",
     "brandSlug": "mariams",
     "title": "Premium Muslimah Essentials Gift Set | Abaya, Prayer Mat, Tasbih & Tote Bag (MR090)",
-    "url": "https://mariam-col.com/products/premium-muslim-prayer-set-for-womenmr090",
+    "url": "https://mariam-col.com/products/premium-muslim-prayer-set-for-women-mr090",
     "garmentWas": "abaya",
     "reason": "title-pattern"
   },
@@ -33216,14 +33208,6 @@
     "reason": "title-pattern"
   },
   {
-    "id": "nihan:14919311851883",
-    "brandSlug": "nihan",
-    "title": "Lyocell Pantolon Etek - Zümrüt",
-    "url": "https://nihan.com.tr/products/lyocell-pantolon-etek-zumrut",
-    "garmentWas": "trousers",
-    "reason": "title-pattern"
-  },
-  {
     "id": "nihan:14919290978667",
     "brandSlug": "nihan",
     "title": "Beli Lastikli Kanvas Bol Paça Basic Pamuk Pantolon - Zümrüt",
@@ -33345,15 +33329,6 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "27500 TRY (~$576)"
-  },
-  {
-    "id": "baqa:9234857459963",
-    "brandSlug": "baqa",
-    "title": "Kolda İşleme Detaylı Abaya",
-    "url": "https://baqaofficial.com/products/kolda-islemeli-abaya",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "34500 TRY (~$723)"
   },
   {
     "id": "baqa:9234857328891",
@@ -39157,14 +39132,6 @@
     "reason": "title-pattern"
   },
   {
-    "id": "ria-miranda:9069003964674",
-    "brandSlug": "ria-miranda",
-    "title": "Gift Set Box",
-    "url": "https://riamiranda.com/products/gift-set-box",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "ria-miranda:8772309319938",
     "brandSlug": "ria-miranda",
     "title": "Zalene Bag",
@@ -40554,6 +40521,15 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "29500 TRY (~$618)"
+  },
+  {
+    "id": "baqa:9232070574331",
+    "brandSlug": "baqa",
+    "title": "Omuz Drapeli İki Renk İpek Elbise",
+    "url": "https://baqaofficial.com/products/omuz-drapeli-iki-renkli-ipek-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
   },
   {
     "id": "baqa:9232048554235",
@@ -42506,5 +42482,67 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Scarf Pin"
+  },
+  {
+    "id": "mariams:9407277039832",
+    "brandSlug": "mariams",
+    "title": "Handcrafted A4 Islamic Calligraphy Wall Art | Copper Relief Wood Frame（MAC452）",
+    "url": "https://mariam-col.com/products/a4-islamic-calligraphy-wall-art-21-29-7-cm",
+    "garmentWas": "set",
+    "reason": "non-apparel:home",
+    "tier": "0",
+    "evidence": "Wall Art"
+  },
+  {
+    "id": "nihan:15210884366699",
+    "brandSlug": "nihan",
+    "title": "Bilek Boy Bol Paça Pantolon - Ekru",
+    "url": "https://nihan.com.tr/products/bilek-boy-bol-paca-pantolon-ekru-1",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15210883711339",
+    "brandSlug": "nihan",
+    "title": "Bilek Boy Bol Paça Pantolon - Siyah",
+    "url": "https://nihan.com.tr/products/bilek-boy-bol-paca-pantolon-siyah-1",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "baqa:9392177873147",
+    "brandSlug": "baqa",
+    "title": "Cep Detaylı Kemerli Ceket",
+    "url": "https://baqaofficial.com/products/cep-detayli-kemerli-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "47500 TRY (~$995)"
+  },
+  {
+    "id": "baqa:9317897863419",
+    "brandSlug": "baqa",
+    "title": "Takma Kol Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/takma-kol-detayli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "44500 TRY (~$933)"
+  },
+  {
+    "id": "baqa:9392177807611",
+    "brandSlug": "baqa",
+    "title": "Yakma Detaylı Kadife Ceket",
+    "url": "https://baqaofficial.com/products/yakma-detayli-kadife-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "44500 TRY (~$933)"
+  },
+  {
+    "id": "baqa:9121251950843",
+    "brandSlug": "baqa",
+    "title": "Üç Renkli Pelerin Elbise",
+    "url": "https://baqaofficial.com/products/uc-renkli-pelerin-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "28500 TRY (~$597)"
   }
 ]
