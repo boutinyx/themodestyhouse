@@ -37,7 +37,15 @@ export function Footer() {
   return (
     <footer style={{ background: 'var(--ink)', color: '#b9ad9c', marginTop: 80 }}>
       <div className="max-w-[1220px] mx-auto px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
+        {/* 5 columns at md+: brand, Products, More, Editorial, The House — one
+            explicit track per direct grid child. Was 4 tracks
+            (1.4fr_1fr_1fr_1fr) for what used to be 4 children; the "More"
+            column (6237f64, 2026-08-19) made it 5 without updating this
+            template, so with no 5th track and no `grid-auto-flow: dense`,
+            "The House" silently wrapped to row 2 col 1 — a huge gap under
+            Products (11 items, the tallest column) instead of sitting beside
+            Editorial. Reported by Tina as "the footer is still fucked". */}
+        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-10">
           <div className="col-span-2 md:col-span-1">
             <div className="wordmark text-lg" style={{ color: 'var(--parchment)' }}>The Modesty House</div>
             <p className="mt-3 text-sm max-w-xs" style={{ color: 'var(--muted-on-dark)' }}>
