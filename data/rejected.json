@@ -25837,7 +25837,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 GBP (~$781)"
+    "evidence": "579 GBP (~$782)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -25846,7 +25846,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 GBP (~$781)"
+    "evidence": "579 GBP (~$782)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -25855,7 +25855,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 GBP (~$781)"
+    "evidence": "579 GBP (~$782)"
   },
   {
     "id": "avyaana:8267050844298",
@@ -39132,6 +39132,14 @@
     "reason": "title-pattern"
   },
   {
+    "id": "ria-miranda:9069003964674",
+    "brandSlug": "ria-miranda",
+    "title": "Gift Set Box",
+    "url": "https://riamiranda.com/products/gift-set-box",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
     "id": "ria-miranda:8772309319938",
     "brandSlug": "ria-miranda",
     "title": "Zalene Bag",
@@ -40554,15 +40562,6 @@
     "brandSlug": "baqa",
     "title": "Drapeli Dik Yaka İpek Elbise",
     "url": "https://baqaofficial.com/products/drapeli-dik-yaka-ipek-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "32500 TRY (~$681)"
-  },
-  {
-    "id": "baqa:9331311051003",
-    "brandSlug": "baqa",
-    "title": "Dantel ve Baskı Detaylı Şifon Elbise",
-    "url": "https://baqaofficial.com/products/dantel-baski-detayli-sifon-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$681)"
@@ -42544,5 +42543,149 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "28500 TRY (~$597)"
+  },
+  {
+    "id": "baqa:9392178856187",
+    "brandSlug": "baqa",
+    "title": "İşleme ve Tüy Detaylı Saten Bluz",
+    "url": "https://baqaofficial.com/products/i̇sleme-ve-tuy-detayli-saten-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "33500 TRY (~$702)"
+  },
+  {
+    "id": "baqa:9392176627963",
+    "brandSlug": "baqa",
+    "title": "Şal Yaka Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/sal-yaka-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$828)"
+  },
+  {
+    "id": "baqa:9392179151099",
+    "brandSlug": "baqa",
+    "title": "Fildişi Rengi Fırfırlı Hacimli Bluz",
+    "url": "https://baqaofficial.com/products/fildisi-rengi-firfirli-hacimli-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "34500 TRY (~$723)"
+  },
+  {
+    "id": "baqa:9392177971451",
+    "brandSlug": "baqa",
+    "title": "Deri Cep Detaylı Ceket",
+    "url": "https://baqaofficial.com/products/deri-cep-detayli-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$828)"
+  },
+  {
+    "id": "baqa:9392179380475",
+    "brandSlug": "baqa",
+    "title": "Çiçek Detaylı Drapeli Saten Elbise",
+    "url": "https://baqaofficial.com/products/cicek-detayli-drapeli-saten-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$786)"
+  },
+  {
+    "id": "baqa:9392178790651",
+    "brandSlug": "baqa",
+    "title": "Asimetrik Pileli Midi Etek",
+    "url": "https://baqaofficial.com/products/asimetrik-pileli-midi-etek",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9392178725115",
+    "brandSlug": "baqa",
+    "title": "Pileli Kahverengi Midi Etek",
+    "url": "https://baqaofficial.com/products/pileli-kahverengi-midi-etek",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$576)"
+  },
+  {
+    "id": "baqa:9392177021179",
+    "brandSlug": "baqa",
+    "title": "Sıfır Yaka Kısa Süet Ceket",
+    "url": "https://baqaofficial.com/products/sifir-yaka-kisa-suet-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "34500 TRY (~$723)"
+  },
+  {
+    "id": "baqa:9392179118331",
+    "brandSlug": "baqa",
+    "title": "Pelerin Kollu Drapeli Siyah Bluz",
+    "url": "https://baqaofficial.com/products/pelerin-kollu-drapeli-siyah-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "35500 TRY (~$744)"
+  },
+  {
+    "id": "baqa:9392178692347",
+    "brandSlug": "baqa",
+    "title": "Piliseli Tül Etek",
+    "url": "https://baqaofficial.com/products/piliseli-tul-etek",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "26500 TRY (~$555)"
+  },
+  {
+    "id": "baqa:9392178004219",
+    "brandSlug": "baqa",
+    "title": "Katmanlı Omuz Detaylı Siyah Ceket",
+    "url": "https://baqaofficial.com/products/katmanli-omuz-detayli-siyah-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$828)"
+  },
+  {
+    "id": "baqa:9392177709307",
+    "brandSlug": "baqa",
+    "title": "Çift Yönlü Hacimli Kadife Pelerin",
+    "url": "https://baqaofficial.com/products/cift-yonlu-hacimli-kadife-pelerin",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "49500 TRY (~$1037)"
+  },
+  {
+    "id": "baqa:9392177676539",
+    "brandSlug": "baqa",
+    "title": "Katmanlı Omuzlu Ekose Ceket",
+    "url": "https://baqaofficial.com/products/katmanli-omuzlu-ekose-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$828)"
+  },
+  {
+    "id": "baqa:9392177086715",
+    "brandSlug": "baqa",
+    "title": "Açık Yaka Deri Ceket",
+    "url": "https://baqaofficial.com/products/acik-yaka-deri-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "36500 TRY (~$765)"
+  },
+  {
+    "id": "baqa:9392178888955",
+    "brandSlug": "baqa",
+    "title": "Çiçek Detaylı Dantel Ekru Bluz",
+    "url": "https://baqaofficial.com/products/cicek-detayli-dantel-ekru-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "baqa:9392177905915",
+    "brandSlug": "baqa",
+    "title": "İnce Çizgili Uzun Ceket",
+    "url": "https://baqaofficial.com/products/i̇nce-cizgili-uzun-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "49500 TRY (~$1037)"
   }
 ]
