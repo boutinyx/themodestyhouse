@@ -110,3 +110,26 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
     related: ['modest-tops', 'modest-dresses'],
   },
 };
+
+/**
+ * The same block for /directory, which is not a lane and so has no LANE_ANSWERS
+ * entry. Measured 2026-08-19: /directory was 359 words of which exactly ONE
+ * sentence was its own ("Browse modest pieces from every verified house."), and
+ * it was the only page besides /designers with no <h2> at all — on the site's
+ * highest-intent URL.
+ *
+ * Every fact below is already stated elsewhere on the site and is consolidated
+ * here, not invented: the per-brand sizing/shipping/returns split and the
+ * approximate-conversion behaviour are both FAQ answers (app/faq/page.tsx), the
+ * "craft and design" standard is /about's own definition of the seal, and the
+ * hijab/swim/activewear segregation is the editorial rule in CLAUDE.md §7 that
+ * browseProducts() enforces. Deliberately informational rather than persuasive
+ * — §10.18 means an agent describes the mechanism, it does not write the pitch.
+ * Tina should overwrite this in her own voice whenever she wants to.
+ */
+export const DIRECTORY_ANSWER: LaneAnswer = {
+  h2: 'How shopping across many houses works',
+  body:
+    'A directory works differently from a single shop. Every piece here links out to the house that made it, so the checkout, the size chart and the returns policy are always theirs rather than ours — worth reading on the brand\u2019s own page before you buy, because a size 12 is not the same measurement in every country and these houses ship from a number of different regions. Prices default to an approximate conversion, marked with \u2248, so a Turkish label and a British one can be compared without doing the arithmetic; what you actually pay is whatever the house charges, in its own currency, at its own checkout. A house appears here only after a review for craft and design, which is what the seal stands for. Hijabs, swimwear and activewear are kept on their own pages instead of being mixed into the everyday grids, so this one stays clothing.',
+  related: ['modest-dresses', 'modest-abayas'],
+};

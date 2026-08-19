@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { PinterestLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr';
 import { CATEGORY_LANES, LANES } from '@/lib/lanes';
+import { getPosts } from '@/lib/posts';
 import { NewsletterSignup } from './NewsletterSignup';
 import { FooterCurrency } from './FooterCurrency';
 
@@ -96,10 +97,32 @@ export function Footer() {
             ))}
           </Col>
 
+          {/* Was "The Edit" / "Guides" / "Interviews", all three pointing at
+              /editorial. "Guides" and "Interviews" are not sections that exist:
+              content/editorial holds 2 posts, one tagged Guide, one Styling,
+              and zero interviews — so two of the three labels promised a page
+              the site has never had.
+
+              Replaced with the posts themselves, by name. The SEO argument for
+              merely deleting them was nil (the header links /editorial far
+              earlier in the document, so under first-link priority all three
+              footer anchors were already discounted). Naming the posts is the
+              real gain: it takes each from 2 inbound internal links to ~27, on
+              the only original long-form writing the site has.
+
+              Deliberately NOT building /editorial/guides and
+              /editorial/interviews — with 2 posts that yields a one-post page
+              and an empty one, and each would need a hand-edit to
+              app/sitemap.ts (the silent-omission landmine in CLAUDE.md §8).
+
+              getPosts() is a node:fs module — safe here only because Footer is
+              a server component. If this file ever gains 'use client', this
+              import must go (Invariant 10). */}
           <Col head="Editorial">
             <FLink href="/editorial">The Edit</FLink>
-            <FLink href="/editorial">Guides</FLink>
-            <FLink href="/editorial">Interviews</FLink>
+            {getPosts().slice(0, 3).map((p) => (
+              <FLink key={p.slug} href={`/editorial/${p.slug}`}>{p.title}</FLink>
+            ))}
           </Col>
 
           {/* col-span-2 on a phone. This column carries the sign-up pill, and in

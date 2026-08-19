@@ -6,6 +6,9 @@ import { BRANDS } from '@/data/brands';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seoCopy';
+import { DIRECTORY_ANSWER } from '@/lib/laneAnswers';
+import { LANES } from '@/lib/lanes';
+import Link from 'next/link';
 
 // The visible on-page copy — unchanged, still hers. SEO_COPY (title/meta
 // description) is deliberately more keyword-dense and lives separately.
@@ -64,6 +67,27 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
         {DESCRIPTION}
       </p>
       <DirectoryBrowser catalogue={catalogue} initialQuery={q ?? ''} />
+      {/* Informational block AFTER the grid, mirroring every lane page
+          (app/[lane]/page.tsx). /directory had exactly one sentence of its own
+          prose and no <h2> at all, on the site's highest-intent URL. Server
+          -rendered, so it is real crawlable text, not client-injected. */}
+      <section className="max-w-2xl mt-20 pt-12" style={{ borderTop: '1px solid var(--hairline)' }}>
+        <h2 className="serif" style={{ fontSize: 'clamp(22px,2.6vw,30px)', color: 'var(--ink)', lineHeight: 1.15 }}>
+          {DIRECTORY_ANSWER.h2}
+        </h2>
+        <p className="mt-4" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>{DIRECTORY_ANSWER.body}</p>
+        <div className="mt-6 flex items-center gap-4">
+          <span className="eyebrow" style={{ color: 'var(--muted)' }}>Also browse</span>
+          {DIRECTORY_ANSWER.related.map((slug) => {
+            const l = LANES.find((x) => x.slug === slug);
+            return l ? (
+              <Link key={slug} href={`/${slug}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
+                {l.title}
+              </Link>
+            ) : null;
+          })}
+        </div>
+      </section>
     </main>
   );
 }

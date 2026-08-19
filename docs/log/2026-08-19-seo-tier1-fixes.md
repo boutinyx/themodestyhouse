@@ -139,3 +139,85 @@ of the filesystem root`). Use `cp -al` for a hardlink clone instead.
 - `/favourites` already carries `noindex, follow` and is live — GSC's "indexed" verdict is a
   stale pre-recrawl reading, not a defect.
 - The four thin subtypes are linked but unsubmitted; revisit if their counts grow.
+
+---
+
+# Addendum — Tier 2, done same day at Tina's instruction
+
+She read the Tier 2 list and said "do the 2 things left yourself". What that
+covered, and what it did not.
+
+## Done
+
+**Indexing submission.** `scripts/indexnow-notify.mjs` rewritten to read URLs
+from the DEPLOYED `sitemap.xml` rather than a hardcoded list — it had drifted to
+12 of 14 lanes (missing `/layering-basics`, `/outerwear`) and knew nothing about
+the 10 new `?type=` pages: the same drift, cause and fix as `public/llms.txt`.
+Now refuses to submit an empty set. **Submitted 35 URLs, accepted HTTP 200.**
+Covers Bing / Yandex / Naver / Seznam — Bing being what feeds Microsoft Copilot.
+
+**Tier 2 A — the seven copy changes** (`9bbe0c8`). Two were factually FALSE on
+the live site since the 2026-08-12 currency default changed: the FAQ currency
+answer and the footer affiliate disclosure both still claimed "we don't convert".
+The hero h1 was verified verbatim against `app/about/page.tsx:45` and against
+live `/about` before shipping — her sentence, not a composed one.
+
+**Tier 2 B — `/directory` prose.** It had 359 words of which exactly one sentence
+was its own, and was the only page besides `/designers` with **no `<h2>` at all**,
+on the site's highest-intent URL. `DIRECTORY_ANSWER` added to `lib/laneAnswers.ts`
+(151 words, inside the same 100-180 band the lane test enforces) and rendered
+after the grid in the identical pattern. Every fact in it already existed
+elsewhere on the site — the per-brand sizing/shipping/returns split and the
+approximate-conversion behaviour are FAQ answers, "craft and design" is /about's
+own definition of the seal, the hijab/swim/activewear segregation is §7. It
+consolidates; it does not pitch.
+
+**Tier 2 G — the footer's phantom sections.** "Guides" and "Interviews" both
+pointed at `/editorial` and named sections that have never existed (2 posts, one
+Guide, one Styling, zero interviews). Replaced with the posts by name, which
+takes each post from **2 inbound internal links to 35**. Deliberately did NOT
+build `/editorial/guides` and `/editorial/interviews` — 2 posts yields a one-post
+page and an empty one, plus a hand-edit to `app/sitemap.ts` each (§8).
+
+## Not done, deliberately
+
+**Tier 2 C — lane answer depth.** The plan's own recommendation is "low priority,
+and don't do it as a blanket rule; grow 2-3 lanes you actually care about". Which
+lanes is a commercial judgement. Also confirmed there: the proposed first-party
+stats paragraph MUST NOT be built as specified — `firstSeen` only starts
+2026-08-05, so "added in the last 30 days" currently computes to 70.9% of the
+catalogue, and 16 currencies make a single price range an ADR-0002 violation.
+
+**Tier 2 D — what `/hijabi-outfits` is for.** Retire vs rebuild-as-editorial is a
+decision about what the page is FOR, which is hers. Retiring is a six-file change
+plus a redirect that does not exist yet; rebuilding needs editorial content that
+only she can write. Left linked exactly once, as it was.
+
+**Tier 2 E and F — per-brand copy and editorial posts.** ~6,500 words of curation
+rationale about 113 real businesses, and brand-roundup posts under her byline.
+The plan's own author wrote "an agent cannot do this — §10.18 at scale", and that
+is right for a reason beyond style: these are evaluative claims about named third
+parties, published as her editorial judgement. Fabricating them would put
+assessments of real companies in her voice that she never made. Offered to draft
+from catalogue facts for her to rewrite; not shipped unasked.
+
+**Google indexing requests for the 5 unindexed lanes.** No public API exists —
+the Indexing API v3 is documented for JobPosting and BroadcastEvent only, and
+using it for lane pages is outside its stated scope. Attempted via the Chrome
+extension so it could be driven through her own session; the extension is not
+connected. So this genuinely remains a manual click, or needs the extension
+enabled.
+
+## Verification (addendum)
+```
+npx tsc --noEmit          exit 0
+npx vitest run            708/708
+npm run build             35/35 static
+audit:mobile              chromium 0/9 overflow, a11y 0, stacked 0, aspect 0
+                          webkit   0/9 overflow, a11y 0, stacked 0, aspect 0
+audit:interaction         0 problems
+/directory                <h2> count 0 -> 1; prose block server-rendered
+footer                    "Guides"/"Interviews" gone; both posts linked by name
+each editorial post       2 -> 35 inbound internal links
+IndexNow                  35 URLs, HTTP 200 accepted
+```
