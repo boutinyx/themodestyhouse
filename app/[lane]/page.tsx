@@ -102,7 +102,7 @@ export default async function LanePage({
   }
   const listedItems = listedRows.map((i) => {
     const c = decodeCard(catalogue, i);
-    return { title: c.title, url: c.url, image: c.image, brandName: c.brandName };
+    return { title: c.title, url: c.url, image: c.image };
   });
   const answer = LANE_ANSWERS[lane.slug];
   // Landing via the nav flyout's ?type=blazer should read "Blazers" up top,

@@ -54,11 +54,11 @@ export function breadcrumbSchema(crumbs: Crumb[]) {
 
 export interface ListedItem {
   title: string;
-  /** Outbound brand URL — the only URL a card currently has (ProductCard has
-   *  no internal href; see CLAUDE.md §8 "Zero products are hyperlinked"). */
+  /** Outbound brand URL. /product/[brandSlug]/[shopifyId] does exist, but is
+   *  deliberately noindex for Google/Bing (see that file's header), so it is
+   *  not a legitimate ItemList target either. */
   url: string;
   image: string;
-  brandName: string;
 }
 
 /**
@@ -67,6 +67,26 @@ export interface ListedItem {
  * reveal (STEP = 24 in DirectoryBrowser/FilterableGrid) — rather than the
  * full lane, which can run into the thousands and would bloat the page for
  * no indexing benefit (a crawler gets the same signal from 24 as 2,400).
+ *
+ * Each entry is a BARE ListItem — name/url/image and nothing else. It used to
+ * nest an `item` typed `'@type': 'Product'`, which Tina caught with a live GSC
+ * inspection on 2026-08-19: "24 ongeldige items gedetecteerd — 'offers',
+ * 'review' of 'aggregateRating' moet zijn gespecificeerd", on every lane and
+ * on /directory. Google's Product spec requires one of those three, and the
+ * file-level comment above records exactly why we will not ship prices.
+ *
+ * Adding `offers` was therefore not the fix, and neither was pointing the url
+ * at our own /product page. Google's summary-page spec
+ * (developers.google.com/search/docs/appearance/structured-data/carousel)
+ * asks a ListItem for only `position` + `url`, and requires that "All URLs in
+ * the list must be unique, but live on the same domain": ours are the brand's
+ * own storefront, so this page was never eligible for a carousel rich result
+ * under ANY typing, and the Product claim bought nothing while asserting
+ * something false about 24 items per page. Same reasoning the brandListSchema
+ * below already applies to Brand nodes.
+ *
+ * The list still earns its place: it is the machine-readable statement of what
+ * this page contains, which is what an AI crawler reads (CLAUDE.md GEO work).
  */
 export function collectionPageSchema(opts: { name: string; description: string; path: string; items: ListedItem[]; limit?: number }) {
   const items = opts.items.slice(0, opts.limit ?? 24);
@@ -80,13 +100,9 @@ export function collectionPageSchema(opts: { name: string; description: string; 
       itemListElement: items.map((it, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        item: {
-          '@type': 'Product',
-          name: it.title,
-          brand: { '@type': 'Brand', name: it.brandName },
-          url: it.url,
-          image: it.image,
-        },
+        name: it.title,
+        url: it.url,
+        image: it.image,
       })),
     },
   };
@@ -103,9 +119,12 @@ export interface ListedBrand {
 /**
  * CollectionPage + ItemList of Brand nodes for /designers.
  *
- * collectionPageSchema cannot be reused here: it hardcodes '@type': 'Product'
- * per item, and a brand is not a Product — emitting one would assert that
- * "Aab" is a purchasable item with no offers, price or availability.
+ * collectionPageSchema is not reused here because a designer entry carries a
+ * real Brand node, which a bare ListItem cannot express. (Until 2026-08-19
+ * the stronger reason was that collectionPageSchema hardcoded
+ * '@type': 'Product' per item, and a brand is not a Product — emitting one
+ * would assert that "Aab" is a purchasable item with no offers, price or
+ * availability. That objection turned out to apply to the products too.)
  *
  * Scope this to the tiles actually rendered on the requested page, not the
  * full 113-brand index, so the structured data and the visible page agree.

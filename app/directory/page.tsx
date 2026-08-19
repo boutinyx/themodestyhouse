@@ -33,7 +33,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   const catalogue = encodeCatalogue(browseProducts(), BRANDS);
   const listedItems = catalogue.rows.title.slice(0, 24).map((_, i) => {
     const c = decodeCard(catalogue, i);
-    return { title: c.title, url: c.url, image: c.image, brandName: c.brandName };
+    return { title: c.title, url: c.url, image: c.image };
   });
   // Same header shape as app/[lane]/page.tsx — left-aligned h1 with a short line
   // under it — so the directory reads as one of the category pages rather than a

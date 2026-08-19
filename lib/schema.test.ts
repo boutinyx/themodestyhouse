@@ -29,7 +29,6 @@ describe('collectionPageSchema', () => {
     title: `Item ${i}`,
     url: `https://brand.example/products/item-${i}`,
     image: `https://brand.example/item-${i}.jpg`,
-    brandName: 'Brand',
   }));
 
   it('caps the ItemList at the default limit rather than shipping the whole lane', () => {
@@ -40,14 +39,29 @@ describe('collectionPageSchema', () => {
   it('never puts a price or availability on a listed item', () => {
     const page = collectionPageSchema({ name: 'Abayas', description: 'desc', path: '/modest-abayas', items });
     for (const el of page.mainEntity.itemListElement) {
-      expect(el.item).not.toHaveProperty('offers');
-      expect(el.item).not.toHaveProperty('price');
+      expect(el).not.toHaveProperty('offers');
+      expect(el).not.toHaveProperty('price');
     }
   });
 
-  it('uses the outbound brand URL, since no internal product page exists', () => {
+  it('uses the outbound brand URL, since no INDEXABLE internal product page exists', () => {
     const page = collectionPageSchema({ name: 'Abayas', description: 'desc', path: '/modest-abayas', items: items.slice(0, 1) });
-    expect(page.mainEntity.itemListElement[0].item.url).toBe('https://brand.example/products/item-0');
+    expect(page.mainEntity.itemListElement[0].url).toBe('https://brand.example/products/item-0');
+  });
+
+  // Regression: Tina ran a live GSC inspection of /modest-skirts on 2026-08-19
+  // and got "24 ongeldige items gedetecteerd — 'offers', 'review' of
+  // 'aggregateRating' moet zijn gespecificeerd". Every card was emitted as a
+  // schema.org Product with no offers, which is invalid by Google's Product
+  // spec. We cannot fix it by ADDING offers (the docs require a summary
+  // page's ListItem urls to be same-domain, and ours point at the brand's
+  // own storefront), so the fix is to stop claiming Product at all.
+  it('never types a listed item as a Product', () => {
+    const page = collectionPageSchema({ name: 'Abayas', description: 'desc', path: '/modest-abayas', items });
+    for (const el of page.mainEntity.itemListElement) {
+      expect(el['@type']).toBe('ListItem');
+      expect(JSON.stringify(el)).not.toContain('Product');
+    }
   });
 });
 
