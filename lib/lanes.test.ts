@@ -11,15 +11,16 @@ const base: Product = {
 describe('LANES', () => {
   it('includes the core lanes', () => {
     const slugs = LANES.map((l) => l.slug);
-    for (const s of ['modest-dresses', 'hijabi-outfits', 'modest-swimwear', 'modest-abayas', 'modest-wedding-guest']) {
+    for (const s of ['modest-dresses', 'modest-swimwear', 'modest-abayas', 'modest-wedding-guest']) {
       expect(slugs).toContain(s);
     }
   });
-  it('hijabi lane matches a hijabi-brand product', () => {
-    const hijabi = LANES.find((l) => l.slug === 'hijabi-outfits')!;
-    expect(hijabi.match({ ...base, community: 'hijabi', garment: 'hijab' })).toBe(true);
-    expect(hijabi.match(base)).toBe(false);
-  });
+  // The 'hijabi-outfits' lane was retired 2026-08-19 and its test with it. It
+  // matched `community === 'hijabi'`, which was a meaningful filter when the site
+  // had a handful of brands and became meaningless at 113: 112 of them carry that
+  // tag, so the lane resolved to the whole directory minus HUM Clothing. The
+  // premise dissolved rather than the code breaking. A redirect to /directory
+  // lives in next.config.ts.
   it('abaya lane matches an abaya', () => {
     const abaya = LANES.find((l) => l.slug === 'modest-abayas')!;
     expect(abaya.match({ ...base, garment: 'abaya' })).toBe(true);

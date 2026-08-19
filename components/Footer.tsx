@@ -60,13 +60,13 @@ export function Footer() {
               tell a crawler the page matters, and the footer is the only link
               position that appears on every page. Measured 2026-08-08.
 
-              The three non-category lanes (/hijabi-outfits, /modest-wedding-guest,
-              /modest-summer-outfits) are still excluded by the CATEGORY_LANES
-              filter and stay that way for now: /hijabi-outfits alone matches
-              10,919 of 11,203 products, so linking it prominently would point
-              search engines at a near-duplicate of /directory. That is the
-              "fix or retire it" item in CLAUDE.md §8 and should be decided
-              before it gets more links, not after. */}
+              The non-category lanes (/modest-wedding-guest,
+              /modest-summer-outfits) are excluded by the CATEGORY_LANES filter
+              and are picked up by the "More" column below instead.
+              /hijabi-outfits used to be the third, held back deliberately
+              because it near-duplicated /directory; it was retired on
+              2026-08-19 once the reason became clear (112 of 113 brands carry
+              community: 'hijabi', so the lane had no selectivity left). */}
           <Col head="Products">
             {CATEGORY_LANES.map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
@@ -82,17 +82,15 @@ export function Footer() {
               made it invisible: a sitemap entry gets a URL crawled, internal
               links are what pass ranking signal.
 
-              /hijabi-outfits is deliberately STILL excluded — see the note
-              above. It matches 98.8% of the catalogue and is a near-duplicate of
-              /directory, so it wants a decision about what the page is FOR
-              before it gets more links, not after. Filtering it by slug here
-              rather than adding it and hoping keeps that exclusion explicit.
+              The slug exclusion that used to sit here for /hijabi-outfits is
+              gone with the lane itself (retired 2026-08-19), so this now renders
+              every non-category lane without a special case.
 
               "More" is deliberately the plainest functional label I could pick,
               NOT a piece of brand voice — the column needs a heading to exist
               and naming it is Tina's call (CLAUDE.md §10.18). Rename freely. */}
           <Col head="More">
-            {LANES.filter((l) => l.kind !== 'category' && l.slug !== 'hijabi-outfits').map((l) => (
+            {LANES.filter((l) => l.kind !== 'category').map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
             ))}
           </Col>

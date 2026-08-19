@@ -122,7 +122,7 @@ for (const u of urls) {
 console.log();
 
 console.log('weighing…');
-const WEIGH = ['/', '/directory', '/hijabi-outfits', '/modest-abayas', '/modest-dresses', '/modest-hijabs', '/designers'];
+const WEIGH = ['/', '/directory', '/modest-abayas', '/modest-dresses', '/modest-hijabs', '/designers'];
 const weight = {};
 for (const p of WEIGH) weight[p] = await weigh(ORIGIN + p);
 

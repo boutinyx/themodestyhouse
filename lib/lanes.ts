@@ -136,14 +136,6 @@ export const LANES: Lane[] = [
 
   // — other discovery lanes —
   {
-    slug: 'hijabi-outfits',
-    title: 'Hijabi Outfits',
-    nav: 'Hijabi',
-    intro: 'Hijabs, abayas and modest pieces from hijabi-owned brands.',
-    kind: 'community',
-    match: (p) => p.community === 'hijabi',
-  },
-  {
     slug: 'modest-wedding-guest',
     title: 'Modest Wedding Guest',
     nav: 'Wedding',

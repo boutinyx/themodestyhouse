@@ -40,7 +40,11 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
   'modest-hijabs': {
     h2: 'What fabric should I choose for a hijab?',
     body: "Fabric changes how a hijab wears more than colour or print does. Chiffon is lightweight and slightly sheer, drapes well for occasion wear, but usually needs an underscarf to stop it slipping. Jersey is stretchy and grips on its own, which makes it the easiest fabric for everyday wear and sport. Satin and silk have a formal sheen and a smooth hand, but the same smoothness makes them prone to sliding, so they're pinned rather than tucked. Crinkle or crepe fabrics hold texture and shape without ironing, which is why they've become a popular middle ground between jersey's grip and chiffon's drape. Shape matters too: a square hijab folds into a triangle for a classic wrap, while a long rectangular shayla wraps and pins with less folding, which is why most everyday hijabs are cut rectangular rather than square.",
-    related: ['modest-abayas', 'hijabi-outfits'],
+    // Was ['modest-abayas', 'hijabi-outfits']. /hijabi-outfits was retired
+    // 2026-08-19 — its premise ('hijabi-owned brands') had dissolved, since
+    // 112 of 113 brands carry community: 'hijabi'. Repointed at layering-basics,
+    // which is the genuine companion to a hijab (undercaps, base layers).
+    related: ['modest-abayas', 'layering-basics'],
   },
   'modest-skirts': {
     h2: 'What counts as a modest skirt?',
@@ -88,11 +92,6 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
     // Layering pieces and outerwear are the two halves of the same cold-weather
     // decision, and outerwear had no inbound contextual link at all.
     related: ['modest-tops', 'outerwear'],
-  },
-  'hijabi-outfits': {
-    h2: "What does a 'hijabi outfit' mean?",
-    body: 'A hijabi outfit is simply an outfit built around wearing a hijab as part of it — the hijab treated as a styling element to coordinate, not an afterthought added to a finished look. That usually means matching or deliberately contrasting the hijab\'s colour and fabric with the rest of the outfit, and choosing pieces — a longer top, a modest dress — that work with the hijab rather than needing extra layers to cover what it doesn\'t. Brands run by hijab-wearing women often design with this coordination in mind from the start, which is the distinction this page draws on: pieces from hijabi-owned houses, not just any modest item that happens to fit. Volumising underscarves or caps are a common finishing touch, giving the wrap more shape at the crown before the outer hijab goes on.',
-    related: ['modest-hijabs', 'modest-dresses'],
   },
   'modest-wedding-guest': {
     h2: 'What should I wear as a modest wedding guest?',

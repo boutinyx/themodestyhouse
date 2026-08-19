@@ -39,7 +39,7 @@ const ALL_ROUTES = [
   '/editorial/back-to-class-no-fuss', '/editorial/still-boiling-feeling-fall',
   '/modest-dresses', '/modest-abayas', '/modest-hijabs', '/modest-skirts',
   '/modest-tops', '/modest-trousers', '/modest-sets', '/modest-swimwear',
-  '/modest-activewear', '/hijabi-outfits', '/modest-wedding-guest',
+  '/modest-activewear', '/modest-wedding-guest',
   '/modest-summer-outfits',
   // /style/elegant, /style/streetwear and /style/maximalist were here until
   // 2026-08-09, when the aesthetic pages were retired (commit 4882496). Their

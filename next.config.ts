@@ -175,6 +175,30 @@ export default function nextConfig(phase: string): NextConfig {
       '/**': ['data/decisions.json', 'data/rejected.json', 'data/review.json'],
     },
 
+    /**
+     * Permanent redirects for retired routes.
+     *
+     * /hijabi-outfits was retired 2026-08-19. It was one of the original four
+     * lanes and its idea was sound — "shop hijabi-owned brands" — but the
+     * premise dissolved as the catalogue grew: 112 of 113 brands carry
+     * `community: 'hijabi'`, so the lane resolved to the whole directory minus
+     * one house (HUM Clothing), at 3.2 MB. It was Google-indexed and carried a
+     * handful of impressions, so it gets a 308 to the page it had become a copy
+     * of, rather than a 404 that throws that signal away.
+     *
+     * 308 (permanent: true) rather than 307: this is not coming back, and a
+     * permanent redirect is what tells Google to transfer signal and drop the
+     * old URL from the index.
+     *
+     * NOTE the /style/* pages deleted on 2026-08-09 deliberately get NO redirect
+     * and still 404 — correct, because no page replaced them. A redirect is only
+     * right when a genuine destination exists, which is the case here.
+     */
+    async redirects() {
+      return [
+        { source: '/hijabi-outfits', destination: '/directory', permanent: true },
+      ];
+    },
     async headers() {
       return [
         { source: '/(.*)', headers: securityHeaders },

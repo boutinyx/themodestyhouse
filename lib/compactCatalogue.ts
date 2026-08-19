@@ -285,7 +285,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
   // These four are per-lane facts: layeringSubtypeIdx is -1 for everything
   // that isn't a layering piece, and so on. On a mixed page there is nothing
   // to say — measured on /directory, each of the four was 39,767 bytes of
-  // 13,256 entries that were ALL -1, and on /hijabi-outfits the first three
+  // 13,256 entries that were ALL -1, and on the since-retired /hijabi-outfits the first three
   // were 53,498 + 53,498 + 48,887 B, likewise all -1. That is ~160 KB of RSC
   // payload per page spent transmitting "no" 53,000 times.
   //
