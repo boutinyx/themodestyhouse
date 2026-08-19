@@ -2,13 +2,9 @@ import type { Metadata } from 'next';
 import HowBlocks from '@/components/HowBlocks';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, faqPageSchema, jsonLdGraph } from '@/lib/schema';
-import { SEO_COPY } from '@/lib/seoCopy';
+import { pageMetadata } from '@/lib/seoCopy';
 
-export const metadata: Metadata = {
-  title: SEO_COPY['/faq'].title,
-  description: SEO_COPY['/faq'].description,
-  alternates: { canonical: '/faq' },
-};
+export const metadata: Metadata = pageMetadata('/faq');
 
 /**
  * Every answer here is either a plain factual definition (what modest

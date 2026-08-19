@@ -6,12 +6,18 @@ import { SealCheck, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { aboutSrcSet } from '@/lib/staticImage';
 import HowBlocks from '@/components/HowBlocks';
+import { buildMetadata } from '@/lib/seoCopy';
 
-export const metadata: Metadata = {
+// buildMetadata fills in openGraph/twitter too — this page isn't in
+// SEO_COPY (lib/seoCopy.test.ts's STATIC_PATHS deliberately excludes it),
+// but it had the same bug as every page that is: no openGraph of its own, so
+// a share of /about rendered app/layout.tsx's generic card.
+export const metadata: Metadata = buildMetadata({
   title: 'About',
   description:
     'What The Modesty House does, the problem it solves, how it solves it, and who is behind it.',
-};
+  canonical: '/about',
+});
 
 /**
  * COPY SLOT — filled 2026-08-09 with Tina's own words. This is the slot the

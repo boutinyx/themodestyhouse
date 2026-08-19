@@ -5,7 +5,7 @@ import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { BRANDS } from '@/data/brands';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
-import { SEO_COPY } from '@/lib/seoCopy';
+import { pageMetadata } from '@/lib/seoCopy';
 
 // The visible on-page copy — unchanged, still hers. SEO_COPY (title/meta
 // description) is deliberately more keyword-dense and lives separately.
@@ -20,9 +20,7 @@ const DESCRIPTION = 'Browse modest pieces from every verified house.';
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ q?: string }> }): Promise<Metadata> {
   const { q } = await searchParams;
   return {
-    title: SEO_COPY['/directory'].title,
-    description: SEO_COPY['/directory'].description,
-    alternates: { canonical: '/directory' },
+    ...pageMetadata('/directory'),
     ...(q ? { robots: { index: false, follow: true } } : {}),
   };
 }

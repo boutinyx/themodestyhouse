@@ -12,15 +12,13 @@ import { getPosts } from '@/lib/posts';
 import { isSpecialty } from '@/lib/specialty';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
-import { SEO_COPY } from '@/lib/seoCopy';
+import { pageMetadata } from '@/lib/seoCopy';
 
 // title/description are the keyword-forward SERP-facing copy (lib/seoCopy.ts)
 // — deliberately separate from the hero's own h1, which stays untouched.
-export const metadata: Metadata = {
-  title: SEO_COPY['/'].title,
-  description: SEO_COPY['/'].description,
-  alternates: { canonical: '/' },
-};
+// pageMetadata also fills in openGraph/twitter, so a share of "/" gets its
+// own card instead of falling through to app/layout.tsx's generic one.
+export const metadata: Metadata = pageMetadata('/');
 
 export default function Home() {
   const rail = newlyVerified();

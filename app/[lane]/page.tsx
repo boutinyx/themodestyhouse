@@ -9,7 +9,7 @@ import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS, HIJAB_SUBTYPE_LABELS
 import { BRANDS } from '@/data/brands';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
-import { SEO_COPY } from '@/lib/seoCopy';
+import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
 
 export function generateStaticParams() {
@@ -29,11 +29,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lane: str
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) return {};
   const seo = SEO_COPY[`/${lane.slug}`];
-  return {
+  return buildMetadata({
     title: seo?.title ?? lane.title,
     description: seo?.description ?? lane.intro,
-    alternates: { canonical: `/${lane.slug}` },
-  };
+    canonical: `/${lane.slug}`,
+  });
 }
 
 export default async function LanePage({

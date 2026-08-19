@@ -16,9 +16,61 @@
  * path has an entry, and that lengths stay within normal SERP-snippet
  * bounds (title <= 60 chars, description 50-160).
  */
+import type { Metadata } from 'next';
+
 export interface SeoCopy {
   title: string;
   description: string;
+}
+
+// Same image app/layout.tsx falls back to for the root OG/Twitter card — kept
+// as a literal here (not imported) since app/ and lib/ don't share a runtime
+// boundary for this. Reused deliberately rather than commissioning new art;
+// see the DEFAULT_OG_IMAGE comment in app/layout.tsx.
+const OG_IMAGE = '/hero-poster.jpg';
+
+/**
+ * Builds a full per-page Metadata object, including openGraph/twitter.
+ *
+ * Every route below used to set only title/description/alternates, so a
+ * child page's og:title, og:description and og:image fell through to the
+ * generic ones in app/layout.tsx — every Pinterest/IG/WhatsApp share of any
+ * page rendered the same card. openGraph is not deep-merged with the parent
+ * layout's by Next, so every page that sets it at all must set it in full.
+ */
+export function buildMetadata({
+  title,
+  description,
+  canonical,
+}: {
+  title: string;
+  description: string;
+  canonical: string;
+}): Metadata {
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: canonical,
+      images: [{ url: OG_IMAGE }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [OG_IMAGE],
+    },
+  };
+}
+
+/** Same as buildMetadata, but reads title/description from SEO_COPY by path. */
+export function pageMetadata(path: keyof typeof SEO_COPY, canonical: string = path): Metadata {
+  const copy = SEO_COPY[path];
+  return buildMetadata({ title: copy.title, description: copy.description, canonical });
 }
 
 export const SEO_COPY: Record<string, SeoCopy> = {

@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
 import { TOPICS } from '@/lib/contactTopics';
+import { buildMetadata } from '@/lib/seoCopy';
 
-export const metadata: Metadata = {
+// Same OG/twitter fix as every other page — see the comment in
+// app/about/page.tsx. Not in SEO_COPY, same reasoning as /about.
+export const metadata: Metadata = buildMetadata({
   title: 'Contact',
   description: 'Get in touch with The Modesty House — enquiries, brand submissions, press and corrections.',
-  alternates: { canonical: '/contact' },
-};
+  canonical: '/contact',
+});
 
 // ?topic=seal deep-links the "Apply for the seal" call to action straight to a
 // pre-selected subject, so that CTA no longer has to be a mailto: link.
