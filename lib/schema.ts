@@ -154,6 +154,58 @@ export function brandListSchema(opts: { name: string; description: string; path:
   };
 }
 
+/**
+ * A single house's page: the Brand as the page's subject, plus an ItemList of
+ * what it makes.
+ *
+ * Entries are BARE ListItems (position/name/url/image). They are deliberately
+ * NOT typed 'Product' — 05563fe removed exactly that across 14 pages after a
+ * live GSC inspection returned "24 invalid items: offers, review or
+ * aggregateRating must be specified". A Product node without offers is invalid,
+ * adding offers reverses the no-prices-in-structured-data decision, and the
+ * urls point at the brand's own storefront rather than this domain, so these
+ * lists were never eligible for a carousel under any typing. Same reasoning
+ * applies here; do not reintroduce Product.
+ */
+export function brandPageSchema(opts: {
+  name: string;
+  description: string;
+  path: string;
+  homepage: string;
+  logo?: string;
+  items: ListedItem[];
+  limit?: number;
+}) {
+  const items = opts.items.slice(0, opts.limit ?? 24);
+  return {
+    '@type': 'CollectionPage',
+    name: opts.name,
+    description: opts.description,
+    url: `${SITE_URL}${opts.path}`,
+    // The page is ABOUT the brand; the list is what the brand makes. `about`
+    // carries the entity, mainEntity carries the listing, which keeps the two
+    // claims separate rather than asserting the page *is* a list.
+    about: {
+      '@type': 'Brand',
+      name: opts.name,
+      description: opts.description,
+      url: opts.homepage,
+      ...(opts.logo ? { logo: opts.logo } : {}),
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: items.length,
+      itemListElement: items.map((it, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: it.title,
+        url: it.url,
+        image: it.image,
+      })),
+    },
+  };
+}
+
 export function articleSchema(opts: {
   title: string;
   description: string;

@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { LANES } from '@/lib/lanes';
 import { getPosts } from '@/lib/posts';
 import { sitemapSubtypesForLane } from '@/lib/laneSubtypes';
+import { BRANDS } from '@/data/brands';
 
 const BASE = 'https://themodestyhouse.com';
 
@@ -79,6 +80,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
+  // Brand pages, added 2026-08-19. Gated on the SAME predicate the route uses
+  // (a house must carry `description`), so the two cannot disagree: adding a
+  // description publishes a page AND lists it, removing one does both in
+  // reverse. This is the §8 landmine — a route family that exists but is absent
+  // here is silently orphaned, which is how /editorial/[slug] went unlisted for
+  // months while looking self-maintaining.
+  const brands: MetadataRoute.Sitemap = BRANDS.filter((b) => b.description?.trim()).map((b) => ({
+    url: `${BASE}/designers/${b.slug}`,
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }));
+
   const posts: MetadataRoute.Sitemap = getPosts().map((p) => ({
     url: `${BASE}/editorial/${p.slug}`,
     lastModified: p.date, // ISO yyyy-mm-dd, from content/editorial/*.md frontmatter
@@ -86,5 +99,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...pages, ...subtypes, ...posts];
+  return [...pages, ...subtypes, ...brands, ...posts];
 }

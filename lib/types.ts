@@ -52,6 +52,17 @@ export interface Brand {
   vibe: Vibe; // aesthetic: elegant | streetwear | maximalist
   badge?: Badge; // curation seal (owner-assigned)
   platform?: 'shopify' | 'woo'; // feed type; default 'shopify'. 'woo' = WooCommerce Store API.
+  /**
+   * Editorial description of the house, shown on /designers/[slug].
+   *
+   * OPTIONAL AND LOAD-BEARING: a brand page is only generated for a house that
+   * has one (see app/designers/[slug]/generateStaticParams). That is deliberate
+   * on two counts — it is the thin-content guard, since a page of pure data over
+   * a 3-product house is exactly the pattern the product pages were noindexed to
+   * avoid; and it means no page about a real company can ship without a human
+   * having written words about it (CLAUDE.md §10.18).
+   */
+  description?: string;
 }
 
 export interface Product {

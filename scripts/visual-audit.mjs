@@ -40,6 +40,9 @@ const ALL_ROUTES = [
   '/modest-dresses', '/modest-abayas', '/modest-hijabs', '/modest-skirts',
   '/modest-tops', '/modest-trousers', '/modest-sets', '/modest-swimwear',
   '/modest-activewear', '/modest-wedding-guest',
+  // One brand page — the family added 2026-08-19. Veiled is the largest (782
+  // pieces), so it is the worst case for grid weight and layout.
+  '/designers/veiled',
   '/modest-summer-outfits',
   // /style/elegant, /style/streetwear and /style/maximalist were here until
   // 2026-08-09, when the aesthetic pages were retired (commit 4882496). Their

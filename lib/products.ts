@@ -60,6 +60,22 @@ export function productsForLane(slug: string): Product[] {
   return lane.specialty ? base : base.filter((p) => !isSpecialty(p));
 }
 
+/**
+ * Every published product from one house, in catalogue order.
+ *
+ * Uses getProducts(), NOT browseProducts(), and that is the correct reading of
+ * Invariant 5 rather than an exception to it. That invariant governs MIXED
+ * grids: hijabs and swim/activewear are held out of "everything" views because
+ * they have their own lanes. A house page is not a mixed grid — it is one
+ * house's own range, and hiding part of it would misrepresent the house.
+ * Concretely: Veiled has 274 hijabs of 782 pieces and Haute Hijab is a hijab
+ * house outright, so browseProducts() would render a Veiled page missing a
+ * third of its catalogue and a Haute Hijab page that was nearly empty.
+ */
+export function productsForBrand(slug: string): Product[] {
+  return getProducts().filter((p) => p.brandSlug === slug);
+}
+
 export function productsForVibe(vibe: Vibe): Product[] {
   return browseProducts().filter((p) => brandVibe[p.brandSlug] === vibe);
 }

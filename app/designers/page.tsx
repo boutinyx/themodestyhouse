@@ -47,12 +47,26 @@ const PER_ROW = 5;
 const ROWS_PER_PAGE = 6;
 const PER_PAGE = PER_ROW * ROWS_PER_PAGE;
 
+/**
+ * A house with a `description` has a page of ours; one without still goes
+ * straight to its own storefront.
+ *
+ * That split is the point. Until 2026-08-19 every tile here was an outbound
+ * link, so this page passed all of its ranking signal off-site and the
+ * editorial could name a brand without being able to link it. Where an internal
+ * page exists, the tile now points at it, and the outbound link with
+ * rel="sponsored" lives on that page instead — one clear destination each,
+ * rather than a tile that tries to be both.
+ */
 function Tile({ b, eager, seal }: { b: House; eager: boolean; seal: boolean }) {
+  const internal = b.description?.trim() ? `/designers/${b.slug}` : null;
+  const Wrapper = internal ? Link : 'a';
+  const linkProps = internal
+    ? { href: internal }
+    : { href: b.homepage, target: '_blank' as const, rel: 'noopener noreferrer sponsored' };
   return (
-    <a
-      href={b.homepage}
-      target="_blank"
-      rel="noopener noreferrer sponsored"
+    <Wrapper
+      {...linkProps}
       data-brand={b.slug}
       data-surface="designers"
       className="group block"
@@ -116,7 +130,7 @@ function Tile({ b, eager, seal }: { b: House; eager: boolean; seal: boolean }) {
           </span>
         )}
       </span>
-    </a>
+    </Wrapper>
   );
 }
 
