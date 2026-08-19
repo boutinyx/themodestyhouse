@@ -8,10 +8,26 @@ function inline(text: string): React.ReactNode[] {
   // `code` is in this list because content/legal/privacy.md uses it — for the
   // favourites localStorage key and the Shopify CDN host — and without a rule
   // for it the backticks rendered as literal backticks on the live page.
-  const parts = text.split(/(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  // The bold-link alternative must come before the plain `**...**` one — otherwise
+  // `**[text](url)**` is consumed whole by the generic bold rule ([^*]+ happily
+  // matches the brackets/parens inside), leaving the link markup un-rendered as
+  // literal text. Found shipping content/editorial/best-abaya-brands-price-tiers.md.
+  const parts = text.split(/(\*\*\[[^\]]+\]\([^)]+\)\*\*|\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*)/g);
   return parts.map((p, i) => {
     if (!p) return null;
     let m: RegExpMatchArray | null;
+    if ((m = p.match(/^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*$/))) {
+      const label = m[1];
+      const url = m[2];
+      const style = { color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: '2px' };
+      return (
+        <strong key={i}>
+          {url.startsWith('/')
+            ? <Link href={url} style={style}>{label}</Link>
+            : <a href={url} target="_blank" rel="noopener noreferrer sponsored" style={style}>{label}</a>}
+        </strong>
+      );
+    }
     if ((m = p.match(/^`([^`]+)`$/))) {
       return (
         <code
@@ -40,7 +56,7 @@ function inline(text: string): React.ReactNode[] {
       const style = { color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: '2px' };
       return url.startsWith('/')
         ? <Link key={i} href={url} style={style}>{label}</Link>
-        : <a key={i} href={url} target="_blank" rel="noopener noreferrer" style={style}>{label}</a>;
+        : <a key={i} href={url} target="_blank" rel="noopener noreferrer sponsored" style={style}>{label}</a>;
     }
     if ((m = p.match(/^\*\*([^*]+)\*\*$/))) return <strong key={i}>{m[1]}</strong>;
     if ((m = p.match(/^\*([^*]+)\*$/))) return <em key={i} style={{ fontStyle: 'italic' }}>{m[1]}</em>;
