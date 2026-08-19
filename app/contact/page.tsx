@@ -31,7 +31,18 @@ export default async function ContactPage({
         <h1 className="section-heading text-3xl md:text-4xl mt-3">Get in touch</h1>
         <p className="mt-4 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
           Brand submissions, press, corrections, or anything else — write to us here and
-          we&rsquo;ll reply to the address you give.
+          we&rsquo;ll reply to the address you give, usually within 2 business days.
+        </p>
+        {/* Same address already disclosed in /privacy and /terms (content/legal/*.md)
+            — reused, not invented. The "2 business days" figure is Tina's own
+            (given 2026-08-13); it's an operational commitment only she can make,
+            so it wasn't invented ahead of that — see CLAUDE.md §10.18. */}
+        <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
+          Or email{' '}
+          <a href="mailto:hello@themodestyhouse.com" style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2 }}>
+            hello@themodestyhouse.com
+          </a>{' '}
+          directly.
         </p>
       </div>
       <ContactForm siteKey={siteKey} defaultTopic={valid} />

@@ -76,10 +76,19 @@ export default function Home() {
             style={{ background: 'radial-gradient(ellipse 55% 42% at 50% 54%, rgba(0,0,0,0.30), rgba(0,0,0,0) 72%)' }}
           />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
+            {/* Was "The archive for everything modest." — aggregation framing,
+                the exact thing docs/marketing-strategy-vs-mdst.md says not to
+                compete on (MDST's own 450K-styles headline is their weak
+                point). Swapped for Tina's own sentence from /about's MISSION
+                block ("So this is a curator, not a catalogue."), verbatim —
+                only line-broken for the hero, per §10.18: her words, not
+                rewritten. Italic on "catalogue" follows this page's own
+                pattern of italicising the rejected/contrasted word (see
+                "Reading, not just shopping." below). */}
             <h1 className="serif text-4xl md:text-6xl mt-4" style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)', lineHeight: 1.02 }}>
-              The archive for
+              So this is a curator,
               <br />
-              <span className="italic">everything</span> modest.
+              not a <span className="italic">catalogue</span>.
             </h1>
             <div className="mt-12 w-full max-w-2xl px-2">
               <HeroSearch />
@@ -163,7 +172,11 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* FOR DESIGNERS */}
+      {/* FOR DESIGNERS. Step 2 used to read "We review craft, sizing and
+          ethics" — a different standard than /about's own definition of the
+          seal ("A seal is a judgement about craft and design"), and "ethics"
+          was never defined or evidenced anywhere. Unified to /about's wording,
+          the one place the standard is actually spelled out. */}
       <section className="aubergine-band my-10 md:my-20">
         <div className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-2xl">
@@ -174,7 +187,7 @@ export default function Home() {
               <ol className="mt-6 space-y-3">
                 {[
                   'Submit your house & lookbook',
-                  'We review craft, sizing and ethics',
+                  'We review craft and design',
                   'Go live with the verified seal',
                 ].map((step, i) => (
                   <li key={i} className="flex gap-3" style={{ color: '#e7d8e4' }}>

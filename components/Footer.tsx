@@ -145,8 +145,9 @@ export function Footer() {
         <div style={{ maxWidth: 720 }}>
           The Modesty House is a discovery and affiliate site — we don&rsquo;t sell anything
           ourselves. Some links may be affiliate links, and if you buy through one we may earn a
-          commission at no extra cost to you. Prices are shown in each brand&rsquo;s own
-          currency and can change; always check the brand&rsquo;s site before buying.{' '}
+          commission at no extra cost to you. Prices default to an approximate conversion
+          (marked with &asymp;) and can change; the amount you actually pay is set by the
+          brand, in its own currency, on its own site.{' '}
           {/* inline-flex + min-height, the same correction as <FLink> above: at
               12px inside a 1.6 line-height this link's hit area was 72x18, under
               the 24px floor in WCAG 2.2 SC 2.5.8. It was reported on every one

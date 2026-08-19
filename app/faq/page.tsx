@@ -43,8 +43,16 @@ const FAQ = [
     a: "Shipping, returns and sizing are set by each individual brand, not by us — check the brand's own site before buying.",
   },
   {
+    // Was: "Prices are shown in each brand's own currency... we don't convert
+    // or mark them up." That stopped being true 2026-08-12, when the currency
+    // switcher defaulted to an approximate USD conversion (CLAUDE.md §8,
+    // ADR-0002 supersession) — this contradicted the live site's own "≈ $X"
+    // prices and header currency picker. Rewritten to match lib/fx.ts's own
+    // description of the behaviour (an opt-in comparison aid, always marked
+    // with "≈", never presented as the real price), not invented from
+    // scratch.
     q: 'Why do prices show in different currencies?',
-    a: "Prices are shown in each brand's own currency, since that's what you'd actually pay on their site — we don't convert or mark them up.",
+    a: "Prices default to an approximate conversion, marked with ≈, so you can compare across houses without doing the maths — switch currency any time in the picker. Either way, the number you actually pay is whatever the house charges, in its own currency, on its own site. We never mark anything up.",
   },
   {
     q: 'Do you have hijabs, swimwear or activewear?',

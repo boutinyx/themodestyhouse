@@ -31,8 +31,12 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
         {/* LEFT: text */}
         <div className="tmh-vtext">
           <h2 className="tmh-title">Houses that just<br />earned the <em>seal</em>.</h2>
+          {/* Was "craft, sizing and ethics" — a third wording of the seal
+              standard, different from /about's ("craft and design", the one
+              place it's actually defined) and the homepage's own apply block.
+              "Ethics" was never defined or evidenced anywhere on the site. */}
           <p className="tmh-copy">
-            Every label here has passed our review for craft, sizing and ethics, freshly
+            Every label here has passed our review for craft and design, freshly
             stamped and added to the house.
           </p>
           {/* Phosphor, not &rarr; (CLAUDE.md §6). The underline is on the link

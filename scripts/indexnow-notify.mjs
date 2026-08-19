@@ -14,32 +14,47 @@
  * publicly at KEY_LOCATION specifically so the endpoint can verify domain
  * ownership. Hardcoding it here matches hardcoding it in public/<key>.txt.
  */
-import { readdirSync } from 'node:fs';
-
 const HOST = 'themodestyhouse.com';
 const KEY = 'cee9f84f266c58db70309c208ab4496a';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
-// Mirrors app/sitemap.ts's staticPaths + LANES — duplicated rather than
-// imported so this script has zero dependency on the app's TS module graph
-// (Invariant 7: .ts imports need tsx; this stays a plain, portable .mjs).
-const STATIC_PATHS = ['', '/directory', '/editorial', '/about', '/designers', '/faq', '/contact', '/privacy', '/terms'];
-const LANE_SLUGS = [
-  'modest-dresses', 'modest-abayas', 'modest-hijabs', 'modest-skirts', 'modest-tops',
-  'modest-trousers', 'modest-sets', 'modest-swimwear', 'modest-activewear',
-  'hijabi-outfits', 'modest-wedding-guest', 'modest-summer-outfits',
-];
-const postSlugs = readdirSync(new URL('../content/editorial', import.meta.url))
-  .filter((f) => f.endsWith('.md'))
-  .map((f) => f.replace(/\.md$/, ''));
+/**
+ * URLs come from the DEPLOYED sitemap.xml, not a hardcoded list.
+ *
+ * They used to be hardcoded here, "duplicated rather than imported so this
+ * script has zero dependency on the app's TS module graph". The dependency
+ * argument was right; the duplication was not. By 2026-08-19 the list had
+ * drifted to 12 of 14 lanes — missing /layering-basics and /outerwear, both
+ * of which had been in sitemap.xml for days — and knew nothing about the 10
+ * new ?type= subtype pages. Exactly the failure public/llms.txt had, for
+ * exactly the same reason.
+ *
+ * Reading the live sitemap keeps the zero-TS-dependency property (it is one
+ * fetch and a regex) while making drift structurally impossible: app/sitemap.ts
+ * is already generated from LANES + lib/laneSubtypes + getPosts(). It also means
+ * this submits what is ACTUALLY deployed rather than what the local checkout
+ * believes, which is the right thing to tell a crawler about.
+ *
+ * Note IndexNow is Bing/Yandex/Naver/Seznam — NOT Google, which does not
+ * participate. Google's only equivalent is the Request Indexing button in the
+ * Search Console UI, which has no public API.
+ */
+const SITEMAP = `https://${HOST}/sitemap.xml`;
 
-const urlList = [
-  ...STATIC_PATHS.map((p) => `https://${HOST}${p}`),
-  ...LANE_SLUGS.map((s) => `https://${HOST}/${s}`),
-  ...postSlugs.map((s) => `https://${HOST}/editorial/${s}`),
-];
+const xml = await fetch(SITEMAP, { headers: { 'user-agent': 'themodestyhouse-indexnow/1.0' } })
+  .then((r) => {
+    if (!r.ok) throw new Error(`sitemap fetch failed: HTTP ${r.status}`);
+    return r.text();
+  });
 
-console.log(`Submitting ${urlList.length} URLs to IndexNow...`);
+const urlList = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
+
+if (urlList.length === 0) {
+  console.error('IndexNow: sitemap returned no <loc> entries — refusing to submit an empty set.');
+  process.exit(1);
+}
+
+console.log(`Submitting ${urlList.length} URLs to IndexNow (from ${SITEMAP})...`);
 
 const res = await fetch('https://api.indexnow.org/indexnow', {
   method: 'POST',

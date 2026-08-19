@@ -53,8 +53,12 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
           )}
         />
       )}
+      {/* Was the bare word "Products" — zero-keyword, and mismatched against
+          this page's own <title> ("Shop Modest Clothing Online"). Matches the
+          Title Case noun-phrase pattern every lane h1 already uses
+          (lib/lanes.ts — "Modest Dresses", "Abayas", etc). */}
       <h1 className="section-heading text-3xl md:text-4xl">
-        {q ? <>Results for “{q}”</> : 'Products'}
+        {q ? <>Results for “{q}”</> : 'Modest Clothing'}
       </h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
         {DESCRIPTION}
