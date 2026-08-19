@@ -294,27 +294,49 @@ for (const engineName of engineNames) {
                 .find((x) => [...x.querySelectorAll('a[href]')].some((a) => a.getAttribute('href')?.includes('/outerwear?type=')));
               return !!m && m.getBoundingClientRect().width > 0;
             });
-            // Polled, not a single read: mobile-emulated Chromium throttles CPU,
-            // and a client-side Link navigation hydrates the new page async — a
-            // single check soon after the click can run before FilterableGrid's
-            // useState initializer has painted the chip. Direct navigation to
-            // the same URL confirmed the pre-filter itself works at this width;
-            // this loop is about giving hydration time, not about the feature.
-            let typeChip = null;
-            for (let i = 0; i < 6 && !typeChip; i++) {
-              typeChip = await page.evaluate(() => {
-                const chip = [...document.querySelectorAll('button')].find((b) => /^Blazers/.test(b.textContent?.trim() || ''));
-                return chip ? chip.textContent.trim() : null;
+            // WHAT THIS ASSERTS, and why it changed on 2026-08-19.
+            //
+            // It used to look for a <button> whose text began "Blazers", i.e. a
+            // filter-dropdown trigger showing the pre-selected subtype. No such
+            // control has ever existed: FilterableGrid renders exactly three
+            // dropdowns — Brand, a hijab-fabric "Type" (only where
+            // cat.hijabTypeFilters is non-empty, in practice only
+            // /modest-hijabs), and Sort. So this check reported
+            // "TYPE FILTER DID NOT PRE-SELECT BLAZERS ON LANDING" on every run
+            // since it was written, on a feature that works. Confirmed by
+            // building origin/main in a clean worktree and probing it: zero
+            // buttons matching /^Blazers/, while the h1 read "Blazers" and the
+            // grid held blazers. §10.28 rule 3 — a check that never passes is a
+            // check you do not have.
+            //
+            // What actually evidences "landed pre-filtered" is the page itself:
+            // the h1 shows the subtype label, and the grid holds that subtype.
+            // Both are server-rendered and both existed before the fix that
+            // prompted this rewrite, so neither selects on anything the fix
+            // introduced (§10.32 rule 2 — do not assert via your own new class).
+            // The subtype <a class="chip" aria-current="page"> added the same
+            // day is deliberately NOT what is measured here.
+            let preFiltered = null;
+            for (let i = 0; i < 6 && !preFiltered; i++) {
+              preFiltered = await page.evaluate(() => {
+                const h1 = document.querySelector('h1')?.textContent?.trim() || '';
+                if (!/^Blazers$/i.test(h1)) return null;
+                const titles = [...document.querySelectorAll('.card-title')].slice(0, 6).map((e) => e.textContent.trim());
+                if (!titles.length) return null;
+                // The lane unfiltered opens with "Maren Vest"; blazers must not.
+                const anyBlazerish = titles.some((t) => /blazer|jacket|coat|suit/i.test(t));
+                return anyBlazerish ? `h1="${h1}" first="${titles[0]}"` : null;
               });
-              if (!typeChip) await page.waitForTimeout(300);
+              if (!preFiltered) await page.waitForTimeout(300);
             }
+            const typeChip = preFiltered;
             note({
               engine: engineName, viewport: vpName, state: 'outerwear-flyout-navigate',
               landedUrl, landed, stillOpen, typeChip,
               ...(landed && !stillOpen && typeChip ? {} : {
                 PROBLEM: !landed ? `SUB-ITEM DID NOT NAVIGATE TO ?type=blazer — at ${landedUrl}`
                   : stillOpen ? 'FLYOUT STAYED OPEN AFTER NAVIGATING AWAY'
-                    : 'TYPE FILTER DID NOT PRE-SELECT BLAZERS ON LANDING',
+                    : 'DID NOT LAND PRE-FILTERED ON BLAZERS (h1 or grid contents wrong)',
               }),
             });
           }
