@@ -1,0 +1,846 @@
+{
+  "capturedAt": "2026-08-19",
+  "window": {
+    "start": "2025-08-19",
+    "end": "2026-08-19",
+    "days": 365
+  },
+  "sitemapUrlCount": 35,
+  "performance": {
+    "totals": {
+      "key": "ALL",
+      "clicks": 5,
+      "impressions": 219,
+      "ctr": 2.28,
+      "position": 37.5
+    },
+    "byPage": [
+      {
+        "key": "/",
+        "clicks": 4,
+        "impressions": 81,
+        "ctr": 4.94,
+        "position": 17.9
+      },
+      {
+        "key": "/editorial",
+        "clicks": 1,
+        "impressions": 8,
+        "ctr": 12.5,
+        "position": 28.3
+      },
+      {
+        "key": "/about",
+        "clicks": 0,
+        "impressions": 17,
+        "ctr": 0,
+        "position": 12.3
+      },
+      {
+        "key": "/contact",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 7
+      },
+      {
+        "key": "/designers",
+        "clicks": 0,
+        "impressions": 12,
+        "ctr": 0,
+        "position": 39.4
+      },
+      {
+        "key": "/designers?page=2",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 36.5
+      },
+      {
+        "key": "/designers?page=4",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "key": "/directory",
+        "clicks": 0,
+        "impressions": 12,
+        "ctr": 0,
+        "position": 13.1
+      },
+      {
+        "key": "/favourites",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "key": "/hijabi-outfits",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 73
+      },
+      {
+        "key": "/layering-basics",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 54.3
+      },
+      {
+        "key": "/modest-abayas",
+        "clicks": 0,
+        "impressions": 11,
+        "ctr": 0,
+        "position": 62.8
+      },
+      {
+        "key": "/modest-dresses",
+        "clicks": 0,
+        "impressions": 46,
+        "ctr": 0,
+        "position": 58.8
+      },
+      {
+        "key": "/modest-hijabs",
+        "clicks": 0,
+        "impressions": 16,
+        "ctr": 0,
+        "position": 42.1
+      },
+      {
+        "key": "/modest-summer-outfits",
+        "clicks": 0,
+        "impressions": 9,
+        "ctr": 0,
+        "position": 53.9
+      },
+      {
+        "key": "/modest-tops",
+        "clicks": 0,
+        "impressions": 10,
+        "ctr": 0,
+        "position": 57.3
+      },
+      {
+        "key": "/modest-trousers",
+        "clicks": 0,
+        "impressions": 7,
+        "ctr": 0,
+        "position": 33.7
+      },
+      {
+        "key": "/privacy",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "key": "/style/elegant",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 33
+      },
+      {
+        "key": "/style/maximalist",
+        "clicks": 0,
+        "impressions": 9,
+        "ctr": 0,
+        "position": 36.2
+      },
+      {
+        "key": "/style/streetwear",
+        "clicks": 0,
+        "impressions": 8,
+        "ctr": 0,
+        "position": 15.9
+      },
+      {
+        "key": "/terms",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 4
+      }
+    ],
+    "byQuery": [
+      {
+        "key": "modesty house",
+        "clicks": 1,
+        "impressions": 3,
+        "ctr": 33.33,
+        "position": 2.7
+      },
+      {
+        "key": "anabia modesty",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 74
+      },
+      {
+        "key": "chaste dress",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 90
+      },
+      {
+        "key": "cute and modest dresses",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 63
+      },
+      {
+        "key": "cute modest dresses",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 77
+      },
+      {
+        "key": "dresses for modest women",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 76
+      },
+      {
+        "key": "elegant modest dress",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 70
+      },
+      {
+        "key": "hijab buy",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 48
+      },
+      {
+        "key": "hijab house",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 44
+      },
+      {
+        "key": "hijab sale",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 58
+      },
+      {
+        "key": "key modesty harrow road",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 59
+      },
+      {
+        "key": "latest modest dresses",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 69.7
+      },
+      {
+        "key": "long modest dresses",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 46
+      },
+      {
+        "key": "luxury hijabs",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 72
+      },
+      {
+        "key": "maxi dress modest",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 53
+      },
+      {
+        "key": "modest blouse",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 74
+      },
+      {
+        "key": "modest blouses",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 74
+      },
+      {
+        "key": "modest boutique dresses",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 52
+      },
+      {
+        "key": "modest dress",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 66
+      },
+      {
+        "key": "modest dress clothes",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 72.3
+      },
+      {
+        "key": "modest dresses",
+        "clicks": 0,
+        "impressions": 7,
+        "ctr": 0,
+        "position": 62.9
+      },
+      {
+        "key": "modest fashion brand in usa",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 70
+      },
+      {
+        "key": "modest flowy tops",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 61.5
+      },
+      {
+        "key": "modest holiday dresses",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 61
+      },
+      {
+        "key": "modest house",
+        "clicks": 0,
+        "impressions": 23,
+        "ctr": 0,
+        "position": 10.7
+      },
+      {
+        "key": "modest house dress",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "key": "modest layering",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 83
+      },
+      {
+        "key": "modest streetwear",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 9.5
+      },
+      {
+        "key": "modest summer clothes",
+        "clicks": 0,
+        "impressions": 6,
+        "ctr": 0,
+        "position": 60.5
+      },
+      {
+        "key": "modest summer dress",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 64
+      },
+      {
+        "key": "modest summer dresses",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 60
+      },
+      {
+        "key": "modest tops",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 86
+      },
+      {
+        "key": "modest tops women",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 84
+      },
+      {
+        "key": "modest trousers",
+        "clicks": 0,
+        "impressions": 5,
+        "ctr": 0,
+        "position": 44.6
+      },
+      {
+        "key": "modestihouse",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 30
+      },
+      {
+        "key": "modesty",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 73.3
+      },
+      {
+        "key": "modesty abaya",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 78.8
+      },
+      {
+        "key": "modesty by nida khan",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 50
+      },
+      {
+        "key": "modesty by tayyaba",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 60
+      },
+      {
+        "key": "modesty coburg",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 48
+      },
+      {
+        "key": "modesty collection coburg",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 50
+      },
+      {
+        "key": "modesty design",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 64
+      },
+      {
+        "key": "modesty dress",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 55.5
+      },
+      {
+        "key": "modesty hijab",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 32
+      },
+      {
+        "key": "modesty hijabs",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 56.5
+      },
+      {
+        "key": "modesty home",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 64.5
+      },
+      {
+        "key": "modesty hut",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 40
+      },
+      {
+        "key": "modesty layer",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 54
+      },
+      {
+        "key": "modesty scarf",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 33.5
+      },
+      {
+        "key": "popular modest clothing brands",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 62
+      },
+      {
+        "key": "pretty modest dresses",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 65
+      },
+      {
+        "key": "quiet luxury hijab",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 86
+      },
+      {
+        "key": "summer clothes modest",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 57
+      },
+      {
+        "key": "summer dresses modest",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 60
+      },
+      {
+        "key": "the modesty",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 29.7
+      },
+      {
+        "key": "the modesty shop",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 49
+      },
+      {
+        "key": "the modist dubai",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 77
+      },
+      {
+        "key": "the odesty",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "key": "where can i buy modest dresses",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 66
+      },
+      {
+        "key": "women's modest dresses",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 66
+      }
+    ]
+  },
+  "coverage": {
+    "/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-10",
+      "googleCanonical": null
+    },
+    "/directory": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-18",
+      "googleCanonical": "/directory"
+    },
+    "/editorial": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-15",
+      "googleCanonical": "/editorial"
+    },
+    "/about": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-16",
+      "googleCanonical": "/about"
+    },
+    "/designers": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-16",
+      "googleCanonical": "/designers"
+    },
+    "/faq": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-12",
+      "googleCanonical": "/faq"
+    },
+    "/contact": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-08",
+      "googleCanonical": "/contact"
+    },
+    "/privacy": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-05",
+      "googleCanonical": "/privacy"
+    },
+    "/terms": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-06",
+      "googleCanonical": "/terms"
+    },
+    "/modest-dresses": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-15",
+      "googleCanonical": "/modest-dresses"
+    },
+    "/modest-abayas": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-07",
+      "googleCanonical": "/modest-abayas"
+    },
+    "/modest-hijabs": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-16",
+      "googleCanonical": "/modest-hijabs"
+    },
+    "/modest-skirts": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "lastCrawl": "2026-08-19",
+      "googleCanonical": null
+    },
+    "/modest-tops": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-16",
+      "googleCanonical": "/modest-tops"
+    },
+    "/modest-trousers": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-07",
+      "googleCanonical": "/modest-trousers"
+    },
+    "/modest-sets": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "lastCrawl": "2026-08-19",
+      "googleCanonical": null
+    },
+    "/modest-swimwear": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "lastCrawl": "2026-08-19",
+      "googleCanonical": null
+    },
+    "/modest-activewear": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "lastCrawl": "2026-08-19",
+      "googleCanonical": null
+    },
+    "/layering-basics": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-12",
+      "googleCanonical": "/layering-basics"
+    },
+    "/outerwear": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "lastCrawl": "2026-08-19",
+      "googleCanonical": null
+    },
+    "/hijabi-outfits": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-09",
+      "googleCanonical": "/hijabi-outfits"
+    },
+    "/modest-wedding-guest": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-08",
+      "googleCanonical": "/modest-wedding-guest"
+    },
+    "/modest-summer-outfits": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-09",
+      "googleCanonical": "/modest-summer-outfits"
+    },
+    "/modest-hijabs?type=hijab": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/modest-hijabs?type=khimar-jilbab": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/modest-hijabs?type=undercap": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/layering-basics?type=base-layer-top": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/layering-basics?type=under-dress": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/layering-basics?type=prayer-set": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/outerwear?type=blazer": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/outerwear?type=vest": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/outerwear?type=cardigan": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/outerwear?type=coat": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "lastCrawl": null,
+      "googleCanonical": null
+    },
+    "/editorial/back-to-class-no-fuss": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-10",
+      "googleCanonical": "/editorial/back-to-class-no-fuss"
+    },
+    "/editorial/still-boiling-feeling-fall": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "lastCrawl": "2026-08-10",
+      "googleCanonical": "/editorial/still-boiling-feeling-fall"
+    }
+  },
+  "weight": {
+    "/": {
+      "status": 200,
+      "bytes": 152307,
+      "words": 3998
+    },
+    "/directory": {
+      "status": 200,
+      "bytes": 2396588,
+      "words": 58915
+    },
+    "/hijabi-outfits": {
+      "status": 200,
+      "bytes": 3221821,
+      "words": 76451
+    },
+    "/modest-abayas": {
+      "status": 200,
+      "bytes": 989158,
+      "words": 22303
+    },
+    "/modest-dresses": {
+      "status": 200,
+      "bytes": 659757,
+      "words": 13415
+    },
+    "/modest-hijabs": {
+      "status": 200,
+      "bytes": 1010242,
+      "words": 21129
+    },
+    "/designers": {
+      "status": 200,
+      "bytes": 181961,
+      "words": 2205
+    }
+  },
+  "notes": "Prices/currencies not captured — see ADR-0002. Coverage reflects Google state at capture, which lags deploys by days."
+}
