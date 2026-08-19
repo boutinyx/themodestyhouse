@@ -5,6 +5,8 @@ category: "Guides"
 author: "The Modesty House"
 date: "2026-08-19"
 slug: "best-abaya-brands-price-tiers"
+image: "/editorial/mirror-selfie-abayas.jpg"
+imageAlt: "Four women in satin abayas and hijabs taking a mirror selfie in a boutique, holding green juices"
 ---
 
 Every "best abaya brands" list I've read treats abayas like one market with a few designer outliers. They're not. I went through every abaya listed across the [directory](/modest-abayas) — 5,213 pieces, 91 houses — and priced each house by its median. The spread runs from $7 to $517. That's not a range with a few expensive edge cases in it. It's two different shopping trips.
