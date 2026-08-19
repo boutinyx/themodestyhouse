@@ -10,6 +10,26 @@
 export const SITE_URL = 'https://themodestyhouse.com';
 const SITE_NAME = 'The Modesty House';
 
+/**
+ * The site as an entity.
+ *
+ * Every field here is reused from somewhere it was already stated, never
+ * invented: `description` is app/layout.tsx's own metadata string,
+ * `contactPoint` is the address published in content/legal/terms.md and on
+ * /contact, and `addressCountry` is what content/legal/privacy.md already
+ * declares ("The Modesty House, based in the Netherlands").
+ *
+ * DELIBERATELY ABSENT — `sameAs`. It is the field that actually drives entity
+ * resolution, and it cannot be filled honestly: components/Footer.tsx links to
+ * bare pinterest.com / instagram.com / tiktok.com because there are no
+ * profiles. Pointing sameAs at a platform's homepage claims an identity that
+ * does not exist, which is worse than omitting it. Add sameAs the day real
+ * accounts exist, and not before.
+ *
+ * ALSO ABSENT — `alternateName` and `founder`. The first would be invented
+ * brand copy (§10.18); the second has no public subject, and app/about/page.tsx
+ * documents that as a deliberate privacy choice rather than an oversight.
+ */
 export function organizationSchema() {
   return {
     '@type': 'Organization',
@@ -17,6 +37,17 @@ export function organizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
+    description: 'The archive for everything modest. A curated index of modest brands and pieces.',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'NL',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'hello@themodestyhouse.com',
+      availableLanguage: 'en',
+    },
   };
 }
 
