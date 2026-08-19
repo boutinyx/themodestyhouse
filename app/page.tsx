@@ -76,19 +76,21 @@ export default function Home() {
             style={{ background: 'radial-gradient(ellipse 55% 42% at 50% 54%, rgba(0,0,0,0.30), rgba(0,0,0,0) 72%)' }}
           />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-5">
-            {/* Was "The archive for everything modest." — aggregation framing,
-                the exact thing docs/marketing-strategy-vs-mdst.md says not to
-                compete on (MDST's own 450K-styles headline is their weak
-                point). Swapped for Tina's own sentence from /about's MISSION
-                block ("So this is a curator, not a catalogue."), verbatim —
-                only line-broken for the hero, per §10.18: her words, not
-                rewritten. Italic on "catalogue" follows this page's own
-                pattern of italicising the rejected/contrasted word (see
-                "Reading, not just shopping." below). */}
+            {/* Reverted 2026-08-19 at Tina's explicit instruction, back to
+                this exact original wording — she'd approved the swap to
+                "So this is a curator, not a catalogue." (commit 9bbe0c8,
+                shipped the same day) but wants "the archive for everything
+                modest" as the site's one consistent tagline instead, matching
+                app/layout.tsx's title/description default and public/llms.txt
+                (both never changed off it). /about's own MISSION copy
+                ("So this is a curator, not a catalogue...", her verbatim
+                words from 2026-08-09, §10.18) is untouched — that's a
+                separate mission statement, not this tagline, and was never
+                "archive" text to begin with. → docs/log/2026-08-19-revert-hero-to-archive-tagline.md */}
             <h1 className="serif text-4xl md:text-6xl mt-4" style={{ color: 'var(--parchment)', textShadow: '0 2px 30px rgba(0,0,0,0.55)', lineHeight: 1.02 }}>
-              So this is a curator,
+              The archive for
               <br />
-              not a <span className="italic">catalogue</span>.
+              <span className="italic">everything</span> modest.
             </h1>
             <div className="mt-12 w-full max-w-2xl px-2">
               <HeroSearch />
