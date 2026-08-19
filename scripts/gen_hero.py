@@ -28,10 +28,10 @@ def load_env():
             continue
         k, v = line.split("=", 1)
         env[k.strip()] = v.strip().strip('"').strip("'")
-    key = env.get("HIGGSFIELD_API_KEY")
-    secret = env.get("HIGGSFIELD_API_SECRET")
+    key = env.get("HIGGSFIELD_API_KEY2") or env.get("HIGGSFIELD_API_KEY")
+    secret = env.get("HIGGSFIELD_API_SECRET2") or env.get("HIGGSFIELD_API_SECRET")
     if not key or not secret:
-        sys.exit("Missing HIGGSFIELD_API_KEY / HIGGSFIELD_API_SECRET in .env")
+        sys.exit("Missing HIGGSFIELD_API_KEY2 / HIGGSFIELD_API_SECRET2 in .env")
     # the SDK reads these from the environment
     os.environ["HF_API_KEY"] = key
     os.environ["HF_API_SECRET"] = secret
