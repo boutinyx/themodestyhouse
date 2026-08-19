@@ -2,8 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { houses, type House } from '@/lib/houses';
+import { BRANDS } from '@/data/brands';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { pageMetadata } from '@/lib/seoCopy';
+import { designerPageCount, clampDesignerPage } from '@/lib/designerPaging';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbSchema, brandListSchema, jsonLdGraph } from '@/lib/schema';
 
 // Each page of the index self-canonicalises to its own URL (page 1 -> the
 // bare path), rather than all pages pointing at page 1 — Google's current
@@ -11,8 +15,14 @@ import { pageMetadata } from '@/lib/seoCopy';
 // series to be independently indexable. Page >1 also gets an explicit
 // canonical for the first time; previously it inherited none at all.
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
-  const raw = Number((await searchParams).page ?? '1');
-  const page = Number.isFinite(raw) && raw > 1 ? Math.trunc(raw) : 1;
+  // Clamped against the REAL page count, not just the lower bound. Previously
+  // ?page=99 (or 1e9) returned 200 with page 4's content and a self-canonical
+  // echoing 99, so anything linking an out-of-range page could mint an endless
+  // family of self-canonicalising duplicates. houses() is deliberately NOT
+  // called here — it routes through getProducts() and re-parses 10.9 MB
+  // uncached (CLAUDE.md §8) — and it maps 1:1 over BRANDS, so BRANDS.length is
+  // the same count the body derives.
+  const page = clampDesignerPage((await searchParams).page, designerPageCount(BRANDS.length, PER_PAGE));
   return pageMetadata('/designers', page === 1 ? '/designers' : `/designers?page=${page}`);
 }
 
@@ -131,13 +141,34 @@ export default async function DesignersPage({
   const vetted = all.filter((h) => h.badge).sort((a, b) => rank(a.slug) - rank(b.slug));
   const index = [...vetted, ...all.filter((h) => !h.badge)];
 
-  const pages = Math.max(1, Math.ceil(index.length / PER_PAGE));
-  const raw = Number((await searchParams).page ?? '1');
-  const page = Number.isFinite(raw) ? Math.min(Math.max(Math.trunc(raw), 1), pages) : 1;
+  const pages = designerPageCount(index.length, PER_PAGE);
+  const page = clampDesignerPage((await searchParams).page, pages);
   const shown = index.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+  const path = page === 1 ? '/designers' : `/designers?page=${page}`;
 
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-24">
+      {/* This was the least structured page on the site: it emitted only the
+          sitewide Organization + WebSite graph, while every lane page already
+          emits CollectionPage + ItemList + BreadcrumbList. It is also the one
+          page whose subject IS the brands, which is the site's most citable
+          asset. Scoped to `shown` — the tiles actually on this page — so the
+          structured data and the visible page cannot disagree. */}
+      <JsonLd
+        data={jsonLdGraph(
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Designers', path },
+          ]),
+          brandListSchema({
+            name: 'Designers',
+            description: 'A curated index of modest fashion, brand by brand — vetted for craft and taste.',
+            path,
+            brands: shown.map((b) => ({ name: b.name, url: b.homepage, image: b.image })),
+          }),
+        )}
+      />
       <h1 className="section-heading text-3xl md:text-4xl mt-2">Designers</h1>
       <p className="mt-3 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
         A curated index of modest fashion, brand by brand — vetted for craft and taste.

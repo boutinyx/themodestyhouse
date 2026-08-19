@@ -92,6 +92,49 @@ export function collectionPageSchema(opts: { name: string; description: string; 
   };
 }
 
+export interface ListedBrand {
+  name: string;
+  /** The brand's own storefront — brands have no page of ours to point at.
+   *  app/designers/[slug] does not exist (Tier 3 of the 2026-08-19 audit). */
+  url: string;
+  image?: string;
+}
+
+/**
+ * CollectionPage + ItemList of Brand nodes for /designers.
+ *
+ * collectionPageSchema cannot be reused here: it hardcodes '@type': 'Product'
+ * per item, and a brand is not a Product — emitting one would assert that
+ * "Aab" is a purchasable item with no offers, price or availability.
+ *
+ * Scope this to the tiles actually rendered on the requested page, not the
+ * full 113-brand index, so the structured data and the visible page agree.
+ * There is no rich result for Brand; the value is entity clarity for AI
+ * retrieval and consistency with the pattern every lane page already follows.
+ */
+export function brandListSchema(opts: { name: string; description: string; path: string; brands: ListedBrand[] }) {
+  return {
+    '@type': 'CollectionPage',
+    name: opts.name,
+    description: opts.description,
+    url: `${SITE_URL}${opts.path}`,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: opts.brands.length,
+      itemListElement: opts.brands.map((b, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'Brand',
+          name: b.name,
+          url: b.url,
+          ...(b.image ? { logo: b.image } : {}),
+        },
+      })),
+    },
+  };
+}
+
 export function articleSchema(opts: {
   title: string;
   description: string;

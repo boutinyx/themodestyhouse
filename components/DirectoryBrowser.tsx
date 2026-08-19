@@ -103,8 +103,9 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
       ) : (
         <>
           <div className="product-grid">
-            {shownCards.map((p) => (
-              <ProductCard key={p.id} p={p} />
+            {shownCards.map((p, i) => (
+              // The first row is the LCP candidate — see the priority note in ProductCard.
+              <ProductCard key={p.id} p={p} priority={i < 4} />
             ))}
           </div>
           {visible < sortedRows.length && (

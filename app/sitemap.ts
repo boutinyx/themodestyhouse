@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { LANES } from '@/lib/lanes';
 import { getPosts } from '@/lib/posts';
+import { sitemapSubtypesForLane } from '@/lib/laneSubtypes';
 
 const BASE = 'https://themodestyhouse.com';
 
@@ -57,6 +58,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: p === '' ? 1 : 0.7,
   }));
 
+  // ?type= subtype pages, added 2026-08-19. Each is a real server-rendered
+  // page over genuinely different inventory (/modest-hijabs and
+  // /modest-hijabs?type=undercap share ZERO outbound product URLs), and as of
+  // the same date each carries its own canonical, title and CollectionPage.
+  // Driven off lib/laneSubtypes so it cannot drift from what the lane renders
+  // — the same property the LANES map above relies on.
+  //
+  // sitemapSubtypesForLane, not subtypesForLane: the four thinnest subtypes
+  // (9-21 products) are linked on the page but deliberately NOT submitted.
+  // Five lanes are already sitting at "Discovered - currently not indexed"
+  // (docs/log/2026-08-19-gsc-api-access-and-index-coverage.md); adding
+  // nine-product pages to the submission queue would earn the same verdict and
+  // teach the crawler that this sitemap is not worth its time.
+  const subtypes: MetadataRoute.Sitemap = LANES.flatMap((l) =>
+    sitemapSubtypesForLane(l.slug).map((st) => ({
+      url: `${BASE}/${l.slug}?type=${st.type}`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    })),
+  );
+
   const posts: MetadataRoute.Sitemap = getPosts().map((p) => ({
     url: `${BASE}/editorial/${p.slug}`,
     lastModified: p.date, // ISO yyyy-mm-dd, from content/editorial/*.md frontmatter
@@ -64,5 +86,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...pages, ...posts];
+  return [...pages, ...subtypes, ...posts];
 }

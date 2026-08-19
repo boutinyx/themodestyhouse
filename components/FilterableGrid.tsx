@@ -127,19 +127,23 @@ export function FilterableGrid({
     for (let i = 0; i < n; i++) {
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
       if (typeIdx !== -1) {
+        // `?? -1` is load-bearing: encodeCatalogue omits a subtype column
+        // entirely when every row in it is -1 (see the SENTINEL_COLUMNS note
+        // in lib/compactCatalogue.ts), so an absent column means "no row has
+        // a subtype", which is exactly -1 for every i.
         const rowTypeIdx =
           typeDomain === 'outerwear'
-            ? cat.rows.outerwearSubtypeIdx[i]
+            ? (cat.rows.outerwearSubtypeIdx?.[i] ?? -1)
             : typeDomain === 'hijab'
-              ? cat.rows.hijabSubtypeIdx[i]
-              : cat.rows.layeringSubtypeIdx[i];
+              ? (cat.rows.hijabSubtypeIdx?.[i] ?? -1)
+              : (cat.rows.layeringSubtypeIdx?.[i] ?? -1);
         if (rowTypeIdx !== typeIdx) continue;
       }
       // Independent of the typeIdx/typeDomain check above — ANDed, not a
       // replacement. A visitor can arrive via the Khimars & Jilbabs flyout
       // link (narrows by sub-category) and also pick "Jersey" here (narrows
       // further by fabric).
-      if (fabricTypeIdx !== -1 && cat.rows.hijabTypeFilterIdx[i] !== fabricTypeIdx) continue;
+      if (fabricTypeIdx !== -1 && (cat.rows.hijabTypeFilterIdx?.[i] ?? -1) !== fabricTypeIdx) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -213,8 +217,9 @@ export function FilterableGrid({
       ) : (
         <>
           <div className="product-grid">
-            {shownCards.map((p) => (
-              <ProductCard key={p.id} p={p} />
+            {shownCards.map((p, i) => (
+              // The first row is the LCP candidate — see the priority note in ProductCard.
+              <ProductCard key={p.id} p={p} priority={i < 4} />
             ))}
           </div>
           {visible < sortedRows.length && (

@@ -93,25 +93,28 @@ export interface CompactCatalogue {
      *  overwhelming majority, on every lane except layering-basics). Not a
      *  bitmask like occasionMask — layeringSubtype() returns exactly one
      *  type or null, never several, by construction. */
-    layeringSubtypeIdx: number[];
+    layeringSubtypeIdx?: number[];
     /** Same shape as layeringSubtypeIdx, for outerwearSubtypes. */
-    outerwearSubtypeIdx: number[];
+    outerwearSubtypeIdx?: number[];
     /** Same shape as layeringSubtypeIdx, for hijabSubtypes. */
-    hijabSubtypeIdx: number[];
+    hijabSubtypeIdx?: number[];
     /** Same shape as hijabSubtypeIdx, but for hijabTypeFilters — a
      *  DIFFERENT, independent fact about the row (see the field comment
      *  above). Not mutually exclusive with hijabSubtypeIdx: a jersey khimar
      *  has a real value in both. */
-    hijabTypeFilterIdx: number[];
+    hijabTypeFilterIdx?: number[];
     /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
      *  decoded into CardProduct, same treatment as occasionMask. */
     firstSeenDay: number[];
     /** See Product.altUrl. Stored as a full URL, unlike urlTail — it's on a
      *  different domain than the row's own brand.homepage, so the
-     *  handle-derivation trick urlTail uses doesn't apply, and it's rare
-     *  enough (a few hundred rows out of ~21k) that compacting it further
-     *  isn't worth the complexity. '' means absent. */
-    altUrl: string[];
+     *  handle-derivation trick urlTail uses doesn't apply.
+     *
+     *  SPARSE as of 2026-08-19: a row index -> url map, not a parallel array.
+     *  It was a dense string[] carrying 79,222 bytes on /directory to express
+     *  209 real values out of 13,256 — 13,047 empty strings, each costing its
+     *  own `,""` in the RSC payload. An absent key means absent. */
+    altUrl: Record<number, string>;
   };
 }
 
@@ -173,7 +176,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     hijabSubtypeIdx: [],
     hijabTypeFilterIdx: [],
     firstSeenDay: [],
-    altUrl: [],
+    altUrl: {},
   };
 
   for (const p of products) {
@@ -262,16 +265,38 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     rows.price.push(p.price);
     rows.garmentIdx.push(gIdx);
     rows.occasionMask.push(mask);
+    // `!` on the four subtype columns: they are always present while building
+    // and are only deleted after this loop, once we know a column is entirely
+    // -1. See the SENTINEL_COLUMNS block below.
     const subtype = layeringSubtype(p);
-    rows.layeringSubtypeIdx.push(subtype === null ? -1 : layeringSubtypeIndex.get(subtype)!);
+    rows.layeringSubtypeIdx!.push(subtype === null ? -1 : layeringSubtypeIndex.get(subtype)!);
     const outerwearSub = outerwearSubtype(p);
-    rows.outerwearSubtypeIdx.push(outerwearSub === null ? -1 : outerwearSubtypeIndex.get(outerwearSub)!);
+    rows.outerwearSubtypeIdx!.push(outerwearSub === null ? -1 : outerwearSubtypeIndex.get(outerwearSub)!);
     const hijabSub = hijabSubtype(p);
-    rows.hijabSubtypeIdx.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
+    rows.hijabSubtypeIdx!.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
     const hijabType = hijabTypeFilter(p);
-    rows.hijabTypeFilterIdx.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
+    rows.hijabTypeFilterIdx!.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
     rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
-    rows.altUrl.push(p.altUrl ?? '');
+    if (p.altUrl) rows.altUrl[rows.title.length - 1] = p.altUrl;
+  }
+
+  // Drop any subtype column that carries no information on THIS page.
+  //
+  // These four are per-lane facts: layeringSubtypeIdx is -1 for everything
+  // that isn't a layering piece, and so on. On a mixed page there is nothing
+  // to say — measured on /directory, each of the four was 39,767 bytes of
+  // 13,256 entries that were ALL -1, and on /hijabi-outfits the first three
+  // were 53,498 + 53,498 + 48,887 B, likewise all -1. That is ~160 KB of RSC
+  // payload per page spent transmitting "no" 53,000 times.
+  //
+  // They are NOT deleted from the format — FilterableGrid genuinely reads all
+  // four on the lanes that have subtype filters, and there the columns are
+  // real. Absent simply means "every row is -1", which is what readers must
+  // treat a missing column as. See the ?? -1 fallbacks in FilterableGrid.
+  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx'] as const;
+  for (const col of SENTINEL_COLUMNS) {
+    const v = rows[col];
+    if (v && v.every((x) => x === -1)) delete rows[col];
   }
 
   return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, rows };

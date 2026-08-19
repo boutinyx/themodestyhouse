@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import type { CardProduct } from '@/lib/compactCatalogue';
-import { Heart, Eye } from '@phosphor-icons/react';
+import { Heart, Eye, ArrowUpRight } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
@@ -9,7 +9,23 @@ import { useIsStaff } from './StaffSessionProvider';
 import { StaffEditControl, type StaffEditResult, laneLabel, garmentMoveLabel, subtypeLabel } from './StaffEditControl';
 import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
 
-export function ProductCard({ p }: { p: CardProduct }) {
+/**
+ * `priority` marks a card as above the fold. Measured over CDP (iPhone 13,
+ * 4x CPU throttle, 1.6 Mbps / 150 ms RTT, 2026-08-19): the LCP element on
+ * every grid page IS a ProductCard image, and with a blanket loading="lazy"
+ * all 18 in-viewport images were queued at equal Low priority, so the one the
+ * user actually waits for competed with 17 it does not. A/B with the harness
+ * applied to BOTH arms so its distortion cancels, 3 runs each:
+ *   /modest-activewear 4616/4600/4644 ms -> 3524/3692/3488 ms
+ *   /directory         4612/4580/4456 ms -> 3144/3284/3076 ms
+ * Be honest about the size of the win: this moves these pages from "poor"
+ * (>4000 ms) to "needs improvement". It does NOT reach the 2500 ms "good"
+ * band — that needs fewer initial cards or a smaller first-card variant.
+ *
+ * Optional on purpose: ProductGrid and /favourites never pass it and are
+ * unaffected no-ops.
+ */
+export function ProductCard({ p, priority = false }: { p: CardProduct; priority?: boolean }) {
   const { open, isFav, toggleFav } = useQuickView();
   const { price } = useCurrency();
   const isStaff = useIsStaff();
@@ -71,7 +87,8 @@ export function ProductCard({ p }: { p: CardProduct }) {
           sizes="(max-width: 767px) 50vw, (max-width: 1284px) 31vw, 389px"
           alt={p.title}
           className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : undefined}
           decoding="async"
         />
         {/* Staff-only edit control (docs/log/2026-08-12-inline-staff-editing.md).
@@ -90,20 +107,23 @@ export function ProductCard({ p }: { p: CardProduct }) {
           type="button"
           onClick={() => open(p)}
           aria-label={`Quick view: ${p.title} by ${p.brandName}`}
-          className="absolute top-2 left-2 z-20 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition"
+          className="absolute top-2 left-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
           style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
         >
-          {/* Tailwind's w/h beats the SVG's own width/height attributes (a
-              presentation attribute, lowest priority in the cascade), so this
-              overrides `size` per breakpoint without two separate icons. Was a
-              flat 40px circle at every width — on a two-up phone card that ate
-              a quarter of the image; shrunk to 32px there, unchanged at md+. */}
-          <Eye size={20} weight="regular" className="w-4 h-4 md:w-5 md:h-5" />
+          {/* Was 32px on a phone (w-8 h-8), under the 24px WCAG 2.2 SC 2.5.8
+              floor by a comfortable margin on paper but flagged in the
+              2026-08-13 marketing audit as sitting in the tap path of the
+              card's own primary action (the full-card outbound anchor right
+              underneath it, z-10). Now a flat 40px at every width — inside
+              the audit's 40-44px recommendation, and Tailwind's w/h still
+              beats the SVG's own width/height attributes so this overrides
+              `size` without two separate icons. */}
+          <Eye size={20} weight="regular" className="w-5 h-5" />
         </button>
         <button
           type="button"
           onClick={() => toggleFav(p)}
-          className="absolute top-2 right-2 z-20 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition"
+          className="absolute top-2 right-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
           style={{
             background: 'rgba(255,255,255,0.85)',
             color: fav ? 'var(--aubergine)' : 'var(--muted)',
@@ -111,8 +131,22 @@ export function ProductCard({ p }: { p: CardProduct }) {
           }}
           aria-label={fav ? 'Remove from favourites' : 'Add to favourites'}
         >
-          <Heart size={22} weight={fav ? 'fill' : 'regular'} className="w-[18px] h-[18px] md:w-[22px] md:h-[22px]" />
+          <Heart size={22} weight={fav ? 'fill' : 'regular'} className="w-[22px] h-[22px]" />
         </button>
+        {/* Visible outbound-link cue — the card's aria-label already says
+            "opens {brand}'s site", but a sighted user had no visual signal the
+            click leaves the site (2026-08-13 marketing audit). Bottom-right,
+            since both top corners already carry the quick-view/favourite
+            buttons. Decorative only: aria-hidden + pointer-events-none, so it
+            never competes with the full-card anchor (z-10) underneath it for
+            the click. */}
+        <div
+          aria-hidden="true"
+          className="absolute bottom-2 right-2 z-20 w-6 h-6 rounded-full flex items-center justify-center pointer-events-none"
+          style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
+        >
+          <ArrowUpRight size={14} weight="bold" />
+        </div>
       </div>
       <div className="brand-label mt-3">{p.brandName}</div>
       <div className="card-title mt-1 px-2">{p.title}</div>

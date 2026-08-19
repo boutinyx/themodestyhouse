@@ -45,7 +45,12 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
   'modest-skirts': {
     h2: 'What counts as a modest skirt?',
     body: "A modest skirt sits at or below the ankle, or at minimum well past the knee, and is cut loose enough not to define the leg through movement. Maxi skirts in a straight or A-line cut are the most common shape, since a single uninterrupted line covers fully without extra layering. Pleated skirts add movement while still falling long, and are popular for occasions where a stiffer maxi would look too plain. Fabric weight matters here too — a thin, clingy fabric undermines a full-length cut, so modest skirts tend toward cotton, crepe or lined fabrics that hold their own shape. Most are styled with a tucked-in top or a longer tunic layered over the waistband, and an elasticated or wrap waistband is common since a fitted waistband can dig in under a longer top.",
-    related: ['modest-tops', 'modest-hijabs'],
+    // Was ['modest-tops', 'modest-hijabs']. Rebalanced 2026-08-19: hijabs was
+    // the target of 7 of these 28 slots while layering-basics, outerwear and
+    // modest-summer-outfits were the target of ZERO. A skirt is the canonical
+    // reason to reach for an underskirt or base layer, so this pair is more
+    // contextually honest than the one it replaces.
+    related: ['modest-tops', 'layering-basics'],
   },
   'modest-tops': {
     h2: 'How do modest tops differ from regular tops?',
@@ -70,12 +75,19 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
   'modest-activewear': {
     h2: 'What is modest activewear?',
     body: "Modest activewear applies the same coverage principles as everyday modest fashion — longer sleeves, higher necklines, full-length legs — to fabrics built for movement: moisture-wicking blends, four-way stretch, flat seams. Leggings and joggers are cut generously enough to avoid clinging under motion, and are usually paired with a longer sports top or tunic rather than a fitted crop, since the top needs to stay in place through a workout without riding up. A sports hijab — jersey or a technical wicking fabric, often with a closer, secured fit than an everyday hijab — is designed specifically to stay put through movement rather than for drape. Mesh panels at the underarm or back are common on more technical pieces, adding ventilation without opening up the coverage elsewhere.",
-    related: ['modest-swimwear', 'modest-hijabs'],
+    // Was ['modest-swimwear', 'modest-hijabs'] — see modest-skirts above.
+    // Warm-weather intent is the shared thread, and modest-summer-outfits was
+    // the site's only true orphan: zero contextual links AND excluded from the
+    // footer's CATEGORY_LANES filter.
+    related: ['modest-swimwear', 'modest-summer-outfits'],
   },
   'layering-basics': {
     h2: 'What is a modesty layering piece?',
     body: "A layering piece is designed to be worn under another garment rather than as an outfit on its own — its job is to add coverage a main piece leaves out, not to be seen in full. A neck cover, sometimes called a dickey, is cut to sit at the collar and shoulders only, closing the gap left by a scoop or V-neck top without the bulk of a full undershirt. A base-layer or 'body' top goes further, covering the arms and torso under a sheer blouse or a three-quarter-sleeve dress so nothing shows through. Sleeveless versions, often labelled a singlet or inner top, sit under short-sleeve pieces without adding warmth under the arms, while a long-sleeve base layer solves the opposite problem: extending coverage past a garment's own hemline or cuff. Because they're worn hidden, most are cut in a slim, second-skin fit from stretch jersey or modal that won't add bulk under whatever goes over it.",
-    related: ['modest-tops', 'modest-hijabs'],
+    // Was ['modest-tops', 'modest-hijabs'] — see modest-skirts above.
+    // Layering pieces and outerwear are the two halves of the same cold-weather
+    // decision, and outerwear had no inbound contextual link at all.
+    related: ['modest-tops', 'outerwear'],
   },
   'hijabi-outfits': {
     h2: "What does a 'hijabi outfit' mean?",

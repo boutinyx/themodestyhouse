@@ -128,13 +128,16 @@ describe('layering subtype encoding', () => {
   it('gives a non-layering product the -1 sentinel and an empty dictionary', () => {
     const cat = encodeCatalogue([PRODUCT], [BRAND]);
     expect(cat.layeringSubtypes).toEqual([]);
-    expect(cat.rows.layeringSubtypeIdx[0]).toBe(-1);
+    // Whole column is -1 here, so it is omitted rather than shipped as a
+    // run of sentinels (2026-08-19). Absent == -1 for every row.
+    expect(cat.rows.layeringSubtypeIdx).toBeUndefined();
+    expect(cat.rows.layeringSubtypeIdx?.[0] ?? -1).toBe(-1);
   });
 
   it('assigns a real index for a layering product, and only lists subtypes actually present', () => {
     const cat = encodeCatalogue([NECK_COVER], [BRAND]);
     expect(cat.layeringSubtypes).toEqual(['neck-cover']);
-    expect(cat.rows.layeringSubtypeIdx[0]).toBe(0);
+    expect(cat.rows.layeringSubtypeIdx![0]).toBe(0);
   });
 
   it('orders present subtypes canonically, not by first appearance in the input', () => {
@@ -142,14 +145,14 @@ describe('layering subtype encoding', () => {
     // in the input array, but neck-cover sorts first in LAYERING_SUBTYPE_LABELS.
     const cat = encodeCatalogue([UNDER_DRESS, NECK_COVER], [BRAND]);
     expect(cat.layeringSubtypes).toEqual(['neck-cover', 'under-dress']);
-    expect(cat.rows.layeringSubtypeIdx[0]).toBe(cat.layeringSubtypes.indexOf('under-dress'));
-    expect(cat.rows.layeringSubtypeIdx[1]).toBe(cat.layeringSubtypes.indexOf('neck-cover'));
+    expect(cat.rows.layeringSubtypeIdx![0]).toBe(cat.layeringSubtypes.indexOf('under-dress'));
+    expect(cat.rows.layeringSubtypeIdx![1]).toBe(cat.layeringSubtypes.indexOf('neck-cover'));
   });
 
   it('a mixed catalogue keeps the -1 sentinel for non-layering rows alongside real indices', () => {
     const cat = encodeCatalogue([PRODUCT, NECK_COVER], [BRAND]);
-    expect(cat.rows.layeringSubtypeIdx[0]).toBe(-1);
-    expect(cat.rows.layeringSubtypeIdx[1]).toBe(0);
+    expect(cat.rows.layeringSubtypeIdx![0]).toBe(-1);
+    expect(cat.rows.layeringSubtypeIdx![1]).toBe(0);
   });
 });
 
@@ -160,13 +163,16 @@ describe('outerwear subtype encoding', () => {
   it('gives a non-outerwear product the -1 sentinel and an empty dictionary', () => {
     const cat = encodeCatalogue([PRODUCT], [BRAND]);
     expect(cat.outerwearSubtypes).toEqual([]);
-    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(-1);
+    // Whole column is -1 here, so it is omitted rather than shipped as a
+    // run of sentinels (2026-08-19). Absent == -1 for every row.
+    expect(cat.rows.outerwearSubtypeIdx).toBeUndefined();
+    expect(cat.rows.outerwearSubtypeIdx?.[0] ?? -1).toBe(-1);
   });
 
   it('assigns a real index for an outerwear product, and only lists subtypes actually present', () => {
     const cat = encodeCatalogue([VEST], [BRAND]);
     expect(cat.outerwearSubtypes).toEqual(['vest']);
-    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(0);
+    expect(cat.rows.outerwearSubtypeIdx![0]).toBe(0);
   });
 
   it('orders present subtypes canonically, not by first appearance in the input', () => {
@@ -174,14 +180,14 @@ describe('outerwear subtype encoding', () => {
     // in OUTERWEAR_SUBTYPE_LABELS (blazer, vest, cardigan, coat).
     const cat = encodeCatalogue([COAT, VEST], [BRAND]);
     expect(cat.outerwearSubtypes).toEqual(['vest', 'coat']);
-    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(cat.outerwearSubtypes.indexOf('coat'));
-    expect(cat.rows.outerwearSubtypeIdx[1]).toBe(cat.outerwearSubtypes.indexOf('vest'));
+    expect(cat.rows.outerwearSubtypeIdx![0]).toBe(cat.outerwearSubtypes.indexOf('coat'));
+    expect(cat.rows.outerwearSubtypeIdx![1]).toBe(cat.outerwearSubtypes.indexOf('vest'));
   });
 
   it('a mixed catalogue keeps the -1 sentinel for non-outerwear rows alongside real indices', () => {
     const cat = encodeCatalogue([PRODUCT, VEST], [BRAND]);
-    expect(cat.rows.outerwearSubtypeIdx[0]).toBe(-1);
-    expect(cat.rows.outerwearSubtypeIdx[1]).toBe(0);
+    expect(cat.rows.outerwearSubtypeIdx![0]).toBe(-1);
+    expect(cat.rows.outerwearSubtypeIdx![1]).toBe(0);
   });
 });
 
@@ -193,13 +199,16 @@ describe('hijab subtype encoding', () => {
   it('gives a non-hijab product the -1 sentinel and an empty dictionary', () => {
     const cat = encodeCatalogue([PRODUCT], [BRAND]);
     expect(cat.hijabSubtypes).toEqual([]);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(-1);
+    // Whole column is -1 here, so it is omitted rather than shipped as a
+    // run of sentinels (2026-08-19). Absent == -1 for every row.
+    expect(cat.rows.hijabSubtypeIdx).toBeUndefined();
+    expect(cat.rows.hijabSubtypeIdx?.[0] ?? -1).toBe(-1);
   });
 
   it('assigns a real index for a plain hijab', () => {
     const cat = encodeCatalogue([HIJAB], [BRAND]);
     expect(cat.hijabSubtypes).toEqual(['hijab']);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(0);
+    expect(cat.rows.hijabSubtypeIdx![0]).toBe(0);
   });
 
   it('orders present subtypes canonically (hijab, khimar-jilbab, undercap), not by first appearance', () => {
@@ -207,14 +216,14 @@ describe('hijab subtype encoding', () => {
     // first in HIJAB_SUBTYPE_LABELS (hijab, khimar-jilbab, undercap).
     const cat = encodeCatalogue([UNDERCAP, JILBAB], [BRAND]);
     expect(cat.hijabSubtypes).toEqual(['khimar-jilbab', 'undercap']);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(cat.hijabSubtypes.indexOf('undercap'));
-    expect(cat.rows.hijabSubtypeIdx[1]).toBe(cat.hijabSubtypes.indexOf('khimar-jilbab'));
+    expect(cat.rows.hijabSubtypeIdx![0]).toBe(cat.hijabSubtypes.indexOf('undercap'));
+    expect(cat.rows.hijabSubtypeIdx![1]).toBe(cat.hijabSubtypes.indexOf('khimar-jilbab'));
   });
 
   it('a mixed catalogue keeps the -1 sentinel for non-hijab rows alongside real indices', () => {
     const cat = encodeCatalogue([PRODUCT, HIJAB], [BRAND]);
-    expect(cat.rows.hijabSubtypeIdx[0]).toBe(-1);
-    expect(cat.rows.hijabSubtypeIdx[1]).toBe(0);
+    expect(cat.rows.hijabSubtypeIdx![0]).toBe(-1);
+    expect(cat.rows.hijabSubtypeIdx![1]).toBe(0);
   });
 });
 
@@ -225,16 +234,20 @@ describe('hijab type-filter encoding', () => {
   const CHIFFON_HIJAB: Product = { ...PRODUCT, id: 'aab:11', title: 'Small Premium Chiffon Hijab', garment: 'hijab' };
   const JERSEY_KHIMAR: Product = { ...PRODUCT, id: 'aab:12', title: 'Jersey Khimar Medina', garment: 'hijab' };
 
-  it('gives a non-hijab product the -1 sentinel and an empty dictionary', () => {
+  it('gives a non-hijab product no type at all, and an empty dictionary', () => {
     const cat = encodeCatalogue([PRODUCT], [BRAND]);
     expect(cat.hijabTypeFilters).toEqual([]);
-    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(-1);
+    // Every row here would be -1, so the column is omitted entirely rather
+    // than shipped as a run of sentinels (2026-08-19). "Absent" and "-1 for
+    // every row" are the same statement; readers must treat them alike.
+    expect(cat.rows.hijabTypeFilterIdx).toBeUndefined();
+    expect(cat.rows.hijabTypeFilterIdx?.[0] ?? -1).toBe(-1);
   });
 
   it('assigns a real index for a hijab product, and only lists types actually present', () => {
     const cat = encodeCatalogue([JERSEY_HIJAB], [BRAND]);
     expect(cat.hijabTypeFilters).toEqual(['jersey']);
-    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(0);
+    expect(cat.rows.hijabTypeFilterIdx![0]).toBe(0);
   });
 
   it('orders present types canonically, not by first appearance in the input', () => {
@@ -242,14 +255,16 @@ describe('hijab type-filter encoding', () => {
     // the input array, but jersey sorts first in HIJAB_TYPE_FILTER_LABELS.
     const cat = encodeCatalogue([CHIFFON_HIJAB, JERSEY_HIJAB], [BRAND]);
     expect(cat.hijabTypeFilters).toEqual(['jersey', 'chiffon']);
-    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(cat.hijabTypeFilters.indexOf('chiffon'));
-    expect(cat.rows.hijabTypeFilterIdx[1]).toBe(cat.hijabTypeFilters.indexOf('jersey'));
+    expect(cat.rows.hijabTypeFilterIdx![0]).toBe(cat.hijabTypeFilters.indexOf('chiffon'));
+    expect(cat.rows.hijabTypeFilterIdx![1]).toBe(cat.hijabTypeFilters.indexOf('jersey'));
   });
 
   it('a mixed catalogue keeps the -1 sentinel for non-hijab rows alongside real indices', () => {
     const cat = encodeCatalogue([PRODUCT, JERSEY_HIJAB], [BRAND]);
-    expect(cat.rows.hijabTypeFilterIdx[0]).toBe(-1);
-    expect(cat.rows.hijabTypeFilterIdx[1]).toBe(0);
+    // A MIXED catalogue keeps the column — it carries real information now.
+    expect(cat.rows.hijabTypeFilterIdx).toBeDefined();
+    expect(cat.rows.hijabTypeFilterIdx![0]).toBe(-1);
+    expect(cat.rows.hijabTypeFilterIdx![1]).toBe(0);
   });
 
   it('a row can carry a real index in BOTH hijabSubtypeIdx and hijabTypeFilterIdx at once — the two columns are independent', () => {
@@ -261,9 +276,12 @@ describe('hijab type-filter encoding', () => {
     // fine-grained 'khimar' type. Both non-null, on the same row, is the
     // point: this proves the two columns don't clobber each other.
     const cat = encodeCatalogue([JERSEY_KHIMAR], [BRAND]);
-    expect(cat.rows.hijabSubtypeIdx[0]).not.toBe(-1);
-    expect(cat.rows.hijabTypeFilterIdx[0]).not.toBe(-1);
-    expect(cat.hijabTypeFilters[cat.rows.hijabTypeFilterIdx[0]]).toBe('khimar');
+    // Present here precisely because this row HAS both values — an all--1
+    // column is dropped by encodeCatalogue, so the assertion that these exist
+    // is itself part of what is being tested.
+    expect(cat.rows.hijabSubtypeIdx?.[0]).not.toBe(-1);
+    expect(cat.rows.hijabTypeFilterIdx?.[0]).not.toBe(-1);
+    expect(cat.hijabTypeFilters[cat.rows.hijabTypeFilterIdx![0]]).toBe('khimar');
   });
 });
 
@@ -291,5 +309,52 @@ describe('firstSeenDay encoding', () => {
     const card = decodeCard(cat, 0);
     expect('firstSeen' in card).toBe(false);
     expect('firstSeenDay' in card).toBe(false);
+  });
+});
+
+describe('payload: all-sentinel columns are omitted (2026-08-19)', () => {
+  // Measured on the live RSC payload before this change: on /directory each of
+  // layeringSubtypeIdx, outerwearSubtypeIdx, hijabSubtypeIdx and
+  // hijabTypeFilterIdx was 39,767 bytes of 13,256 entries that were ALL -1.
+  it('omits every subtype column for a plain non-layering, non-hijab product', () => {
+    const cat = encodeCatalogue([PRODUCT], [BRAND]);
+    expect(cat.rows.layeringSubtypeIdx).toBeUndefined();
+    expect(cat.rows.outerwearSubtypeIdx).toBeUndefined();
+    expect(cat.rows.hijabSubtypeIdx).toBeUndefined();
+    expect(cat.rows.hijabTypeFilterIdx).toBeUndefined();
+  });
+
+  it('keeps the columns that carry a real value, so lane filters still work', () => {
+    const cat = encodeCatalogue([{ ...PRODUCT, id: 'aab:90', title: 'Jersey Khimar Medina', garment: 'hijab' }], [BRAND]);
+    expect(cat.rows.hijabTypeFilterIdx).toBeDefined();
+    // The dead ones next to it still go.
+    expect(cat.rows.layeringSubtypeIdx).toBeUndefined();
+    expect(cat.rows.outerwearSubtypeIdx).toBeUndefined();
+  });
+
+  it('never omits a column merely because the FIRST row is -1', () => {
+    const cat = encodeCatalogue(
+      [PRODUCT, { ...PRODUCT, id: 'aab:91', title: 'Jersey Khimar Medina', garment: 'hijab' }],
+      [BRAND],
+    );
+    expect(cat.rows.hijabTypeFilterIdx).toBeDefined();
+    expect(cat.rows.hijabTypeFilterIdx![0]).toBe(-1);
+  });
+});
+
+describe('payload: altUrl is sparse (2026-08-19)', () => {
+  // Was a dense string[]: 79,222 bytes on /directory to express 209 real
+  // values out of 13,256 rows, i.e. 13,047 empty strings each costing `,""`.
+  it('stores nothing at all when no row has an altUrl', () => {
+    const cat = encodeCatalogue([PRODUCT], [BRAND]);
+    expect(cat.rows.altUrl).toEqual({});
+  });
+
+  it('keys a present altUrl by its row index, and decodes it back onto the card', () => {
+    const withAlt: Product = { ...PRODUCT, id: 'aab:92', altUrl: 'https://example.com/x' };
+    const cat = encodeCatalogue([PRODUCT, withAlt], [BRAND]);
+    expect(cat.rows.altUrl).toEqual({ 1: 'https://example.com/x' });
+    expect(decodeCard(cat, 1).altUrl).toBe('https://example.com/x');
+    expect(decodeCard(cat, 0).altUrl).toBeUndefined();
   });
 });

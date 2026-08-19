@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { PinterestLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr';
-import { CATEGORY_LANES } from '@/lib/lanes';
+import { CATEGORY_LANES, LANES } from '@/lib/lanes';
 import { NewsletterSignup } from './NewsletterSignup';
 import { FooterCurrency } from './FooterCurrency';
 
@@ -49,7 +49,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* All 9 CATEGORY_LANES, not a slice. This was `.slice(0, 6)`, which
+          {/* All 11 CATEGORY_LANES, not a slice. (Was "9" until 2026-08-19 —
+              layering-basics and outerwear were added after this note.) This was `.slice(0, 6)`, which
               silently dropped /modest-sets, /modest-swimwear and
               /modest-activewear — and since CATEGORY_LANES is itself
               LANES.filter(kind === 'category'), that left 6 of 12 lanes with no
@@ -67,6 +68,30 @@ export function Footer() {
               before it gets more links, not after. */}
           <Col head="Products">
             {CATEGORY_LANES.map((l) => (
+              <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
+            ))}
+          </Col>
+
+          {/* The non-category lanes, added 2026-08-19. Measured before this:
+              /modest-summer-outfits had ZERO internal links anywhere on the
+              site and /modest-wedding-guest had one, against 25-35 for every
+              category lane — because CATEGORY_LANES (lib/lanes.ts:164) filters
+              on kind === 'category' and these are 'season'/'occasion'/'community'.
+              They were routable and in sitemap.xml the whole time, which is what
+              made it invisible: a sitemap entry gets a URL crawled, internal
+              links are what pass ranking signal.
+
+              /hijabi-outfits is deliberately STILL excluded — see the note
+              above. It matches 98.8% of the catalogue and is a near-duplicate of
+              /directory, so it wants a decision about what the page is FOR
+              before it gets more links, not after. Filtering it by slug here
+              rather than adding it and hoping keeps that exclusion explicit.
+
+              "More" is deliberately the plainest functional label I could pick,
+              NOT a piece of brand voice — the column needs a heading to exist
+              and naming it is Tina's call (CLAUDE.md §10.18). Rename freely. */}
+          <Col head="More">
+            {LANES.filter((l) => l.kind !== 'category' && l.slug !== 'hijabi-outfits').map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
             ))}
           </Col>
