@@ -13,8 +13,23 @@ Find out what is emitting it and fix it.
 `collectionPageSchema()` in `lib/schema.ts` wrapped every one of the 24 listed cards in a
 nested `item` typed `'@type': 'Product'`, carrying only `name`, `brand`, `url` and `image`.
 Google's Product spec requires at least one of `offers` / `review` / `aggregateRating`; with
-none of them, every node is invalid. It affected all 13 lanes **and** `/directory` — 14
-pages × 24 = **336 invalid items sitewide**, not just the page Tina happened to inspect.
+none of them, every node is invalid.
+
+**Scope, measured rather than estimated.** Tina pushed back on a first figure of "336" — she
+was right, it was wrong: it counted 14 lanes and forgot the 14 `?type=` subtype pages, which
+run through the same route and the same function. Enumerating every route that calls
+`collectionPageSchema`, with each subtype page's real filter predicate copied verbatim from
+`app/[lane]/page.tsx`:
+
+| | |
+|---|---|
+| pages emitting an ItemList | **29** (14 lanes + 14 subtypes + `/directory`) |
+| invalid `Product` nodes | **659** (not 696 — some subtype pages hold fewer than 24) |
+| distinct products affected | **529** |
+| published catalogue | 13,256 |
+
+So it was never the whole catalogue: structured data only ever described the first 24 cards
+per page. But it was 529 real products across 29 pages, not one page's worth.
 
 The file's own header records why prices are absent (`docs/launch-readiness.md`: stale prices
 in structured data risk a manual action), and its `brandListSchema` comment had already
@@ -37,7 +52,7 @@ Google's summary-page spec was then read directly
 only `position` + `url`, and **"All URLs in the list must be unique, but live on the same
 domain (the same domain or sub/super domain as the current page)."** Ours are the brand's own
 storefront. So these pages were never eligible for a carousel rich result under *any* typing
-— the `Product` claim bought nothing and asserted something false about 336 items.
+— the `Product` claim bought nothing and asserted something false about 659 nodes.
 
 ## What changed
 - `lib/schema.ts` — `itemListElement` entries are now bare `ListItem`s (`position`, `name`,
@@ -71,8 +86,18 @@ $ rm -f tsconfig.tsbuildinfo && npx tsc --noEmit    → exit 0
 $ npx vitest run --root . --exclude '**/.claude/**'
  Test Files  43 passed (43)    Tests  709 passed (709)
 ```
-End-to-end, building the graph exactly as `app/[lane]/page.tsx` does, over the real
-catalogue:
+Every one of the 29 affected routes re-checked against the FIXED code, building the schema
+the same way the route does, over the real catalogue:
+```
+$ npx tsx sweep3.ts
+pages checked        : 29
+list nodes emitted   : 659
+"Product" claims     : 0
+nodes missing url    : 0
+nodes missing name   : 0
+```
+
+End-to-end on a single page, building the graph exactly as `app/[lane]/page.tsx` does:
 ```
 $ npx tsx proof.ts
 items emitted: 24
