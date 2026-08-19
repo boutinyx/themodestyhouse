@@ -5,7 +5,7 @@ category: "Guides"
 author: "The Modesty House"
 date: "2026-08-19"
 slug: "best-abaya-brands-price-tiers"
-image: "/editorial/mirror-selfie-abayas.jpg"
+image: "/editorial/mirror-selfie-abayas-2.jpg"
 imageAlt: "Four women in satin abayas and hijabs taking a mirror selfie in a boutique, holding green juices"
 ---
 
