@@ -102,3 +102,56 @@ fetched them, not because a fetch failed).
   Google's reporting threshold. Independent confirmation of the traffic picture.
 - ADC credentials live in `~/.config/gcloud/application_default_credentials.json`, outside the
   repo. Revoke with `gcloud auth application-default revoke`.
+
+---
+
+## Addendum — the 5 were submitted for indexing (2026-08-19, later)
+
+Done through the Chrome extension driving Tina's own Search Console session,
+once she connected it. Google exposes **no API** for this at any scope — the
+Indexing API v3 is documented for JobPosting/BroadcastEvent only, and
+`sitemaps.submit` returns `403 insufficient authentication scopes` under the
+`webmasters.readonly` grant this session holds.
+
+All five now return **"Indexering aangevraagd — URL is toegevoegd aan een
+prioriteitscrawlwachtrij"** (added to a priority crawl queue):
+
+| lane | state at submission |
+|---|---|
+| `/modest-skirts` | Discovered – currently not indexed |
+| `/modest-sets` | URL unknown to Google |
+| `/outerwear` | URL unknown to Google |
+| `/modest-swimwear` | Discovered – currently not indexed |
+| `/modest-activewear` | Discovered – currently not indexed |
+
+**Three of the five failed first with "Er is iets misgegaan / probeer het later
+opnieuw" and succeeded on an immediate retry.** That is a known-flaky GSC
+endpoint, not a site problem — worth knowing so nobody diagnoses it as one. The
+button also runs a live-URL test first, which takes 30-90 s before the request
+is actually queued; a screenshot taken too early shows the spinner, not a result.
+
+Two of the five (`/modest-sets`, `/outerwear`) reported "Geen verwijzende
+sitemaps gevonden" and "Geen gedetecteerde verwijzende pagina" at submission
+time — stale, from before today's deploy. Both are in `sitemap.xml` and both now
+carry footer links.
+
+### Also found: the full non-indexed picture is 11, not 5
+
+The Pages report (last updated 2026-08-14, so it lags) breaks the 11 down as:
+
+| reason | pages |
+|---|---|
+| Gevonden – momenteel niet geïndexeerd | 5 ← the ones above |
+| Niet gevonden (404) | 2 |
+| Gecrawld – momenteel niet geïndexeerd | 2 |
+| Pagina met omleiding | 1 |
+| Alternatieve pagina met correcte canonieke tag | 1 |
+
+**The two 404s are `/style/streetwear` and `/style/elegant`** — the deleted
+`/style/[vibe]` pages (removed 2026-08-09,
+`docs/log/2026-08-09-remove-style-vibe-feature.md`). **No action needed:** a 404
+is the correct response for a genuinely removed page with no equivalent
+destination, and Google drops such URLs on its own. Recording it so the next
+person who opens this report does not treat it as a defect. The redirect
+question only becomes real if `/hijabi-outfits` is ever retired, which is Tier 2
+item D.
