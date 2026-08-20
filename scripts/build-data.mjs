@@ -4,7 +4,7 @@
 // (`npm run build:data`), not bare `node`.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { isNonApparel } from '../lib/nonApparel.ts';
-import { isLifecycleLive, stripLifecycle, brandDropViolations } from '../lib/lifecycle.ts';
+import { isLifecycleLive, stripLifecycle, brandDropViolations, freezeCollapsedBrands } from '../lib/lifecycle.ts';
 import { demoteGarment } from '../lib/ordering.ts';
 import { isSpecialty } from '../lib/specialty.ts';
 import { normalizeTitle, stripRawSignals } from '../lib/normalize.ts';
@@ -296,34 +296,65 @@ const inMixedGrid = (p) => p.garment !== 'hijab' && !isSpecialty(p);
 const published = demoteGarment(interleaveByBrand(kept), 'abaya', inMixedGrid)
   .map((p) => ({ ...p, title: publishTitle(p) }));
 
-// Write the audit trail BEFORE the guard can throw — the error message tells
-// the operator to review these files, so they have to exist by then.
+// Write the audit trail BEFORE the guard can act on it — a frozen brand's
+// warning tells the operator to review these files, so they have to exist by
+// then either way.
 writeFileSync(U('rejected.json'), JSON.stringify(rejected, null, 2));
 writeFileSync(U('review.json'), JSON.stringify(review, null, 2));
-
-if (prevRows && !process.env.ALLOW_LARGE_DIFF) {
-  const drops = brandDropViolations(countByBrand(prevRows), countByBrand(published));
-  if (drops.length) {
-    throw new Error(
-      `products.json NOT written — ${drops.length} brand(s) collapsed:\n` +
-      drops.map((d) => `  ${d.brandSlug}: ${d.prev} -> ${d.next} (-${(d.pct * 100).toFixed(0)}%)`).join('\n') +
-      `\nA dead feed or a broken filter looks exactly like this. Review data/rejected.json ` +
-      `(${rejected.length} rows) and data/refresh-report.json, then re-run with ALLOW_LARGE_DIFF=1 if intended.`,
-    );
-  }
-}
 
 // Most lifecycle bookkeeping is raw-side only and stripped here — lastSeen on
 // ~23k rows would add real weight to this file AND to every RSC payload (§8's
 // real scaling ceiling). firstSeen is the one exception: it's now a published
 // field (stripLifecycle keeps it) so the Sort control's Newest/Oldest options
 // have real data — see lib/lifecycle.ts and lib/compactCatalogue.ts.
-writeFileSync(U('products.json'), JSON.stringify(published.map(stripLifecycle).map(stripRawSignals), null, 2));
+const finalRows = published.map(stripLifecycle).map(stripRawSignals);
+
+// GUARD 2 used to be a hard stop for the WHOLE catalogue: one brand collapsing
+// meant products.json was never written at all, for any brand. Changed
+// 2026-08-20 after Abadia's own price collapse (see
+// docs/log/2026-08-20-refresh-failure-abadia-price-collapse.md) silently
+// blocked ~120 OTHER brands' legitimate nightly updates, indefinitely, since
+// the collapse wasn't transient — every subsequent run would have failed the
+// same way forever. Now a collapsed brand is FROZEN at its previous published
+// rows (freezeCollapsedBrands) while every other brand still publishes
+// normally. ALLOW_LARGE_DIFF still bypasses this entirely and accepts the new
+// (collapsed) state, same as before — that remains the way to say "this
+// collapse is real, not a dead feed."
+let rowsToWrite = finalRows;
+let frozenBrands = [];
+if (prevRows && !process.env.ALLOW_LARGE_DIFF) {
+  const drops = brandDropViolations(countByBrand(prevRows), countByBrand(finalRows));
+  if (drops.length) {
+    frozenBrands = drops;
+    rowsToWrite = freezeCollapsedBrands(prevRows, finalRows, drops);
+    console.warn(
+      `\n⚠️  ${drops.length} brand(s) collapsed and were FROZEN at their previous published ` +
+      `state (every other brand still published normally):\n` +
+      drops.map((d) => `  ${d.brandSlug}: ${d.prev} -> ${d.next} (-${(d.pct * 100).toFixed(0)}%), frozen at ${d.prev}`).join('\n') +
+      `\nA dead feed or a broken filter looks exactly like this. Review data/rejected.json ` +
+      `(${rejected.length} rows) and data/refresh-report.json. Re-run with ALLOW_LARGE_DIFF=1 to ` +
+      `accept the new (collapsed) state instead of freezing.\n`,
+    );
+  }
+}
+
+// Surfaced in the GitHub Step Summary (lib/refreshSummary.ts) so a frozen
+// brand is visible in the Actions UI even though the job now SUCCEEDS instead
+// of failing — a silent freeze would be exactly the kind of "brand quietly
+// stops being maintained for weeks" gap CLAUDE.md already warns about for
+// incomplete fetches.
+if (existsSync(U('refresh-report.json'))) {
+  const report = JSON.parse(readFileSync(U('refresh-report.json'), 'utf8'));
+  writeFileSync(U('refresh-report.json'), JSON.stringify({ ...report, frozenBrands }, null, 2));
+}
+
+writeFileSync(U('products.json'), JSON.stringify(rowsToWrite, null, 2));
 
 const byReason = rejected.reduce((a, r) => ((a[r.reason] = (a[r.reason] || 0) + 1), a), {});
 console.table(byReason);
 console.log(
-  `Published ${published.length} products (mixed across ${new Set(published.map((p) => p.brandSlug)).size} brands) ` +
+  `Published ${rowsToWrite.length} products (mixed across ${new Set(rowsToWrite.map((p) => p.brandSlug)).size} brands` +
+  (frozenBrands.length ? `, ${frozenBrands.length} frozen` : '') + `) ` +
   `| rejected ${rejected.length} | review ${review.length} | delisted-by-brand ${delistedCount}`,
 );
 // Reported unconditionally, including the zeroes. The regression this replaced

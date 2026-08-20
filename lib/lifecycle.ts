@@ -218,3 +218,32 @@ export function brandDropViolations(
   }
   return out;
 }
+
+/**
+ * Isolates a collapse to the brand(s) that caused it, instead of blocking the
+ * WHOLE catalogue's publish. Added 2026-08-20 after a single brand's real
+ * price-driven collapse (Abadia, see
+ * docs/log/2026-08-20-refresh-failure-abadia-price-collapse.md) silently
+ * blocked all ~120 OTHER brands' legitimate nightly updates — and would have
+ * kept doing so every night, indefinitely, since the collapse wasn't
+ * transient. `brandDropViolations` used to be a hard stop for `products.json`
+ * entirely; now the caller uses it to decide WHICH brands to freeze here.
+ *
+ * Every dropped brand's rows are replaced with its PREVIOUS published rows
+ * (same shape as `nextRows` — both are post-publish, already-stripped
+ * `Product` rows, so this is a direct swap, not a re-derivation). Every other
+ * brand publishes its freshly computed state normally. `ALLOW_LARGE_DIFF`
+ * bypasses this entirely upstream (the caller never calls this when it's
+ * set) — that remains the escape hatch for accepting a collapse as real.
+ */
+export function freezeCollapsedBrands<T extends { brandSlug: string }>(
+  prevRows: T[],
+  nextRows: T[],
+  drops: BrandDrop[],
+): T[] {
+  if (!drops.length) return nextRows;
+  const frozenSlugs = new Set(drops.map((d) => d.brandSlug));
+  const kept = nextRows.filter((p) => !frozenSlugs.has(p.brandSlug));
+  const frozen = prevRows.filter((p) => frozenSlugs.has(p.brandSlug));
+  return [...kept, ...frozen];
+}

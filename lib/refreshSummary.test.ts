@@ -54,4 +54,31 @@ describe('formatSummary', () => {
   it('does not crash on an empty run', () => {
     expect(() => formatSummary({ date: '2026-08-05', totals: {}, brands: [] })).not.toThrow();
   });
+
+  it('says nothing about frozen brands when none were frozen', () => {
+    expect(formatSummary(report)).not.toMatch(/frozen/i);
+  });
+
+  it('prominently flags a frozen brand, since the run succeeds despite it', () => {
+    const out = formatSummary({
+      ...report,
+      frozenBrands: [{ brandSlug: 'abadia', prev: 15, next: 1, pct: 0.93 }],
+    });
+    expect(out).toMatch(/frozen/i);
+    expect(out).toContain('abadia');
+    expect(out).toContain('93%');
+    expect(out).toMatch(/ALLOW_LARGE_DIFF/);
+  });
+
+  it('lists multiple frozen brands', () => {
+    const out = formatSummary({
+      ...report,
+      frozenBrands: [
+        { brandSlug: 'abadia', prev: 15, next: 1, pct: 0.93 },
+        { brandSlug: 'somebrand', prev: 40, next: 0, pct: 1 },
+      ],
+    });
+    expect(out).toContain('abadia');
+    expect(out).toContain('somebrand');
+  });
 });

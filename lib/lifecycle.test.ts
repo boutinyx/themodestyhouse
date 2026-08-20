@@ -6,6 +6,7 @@ import {
   isLifecycleLive,
   stripLifecycle,
   brandDropViolations,
+  freezeCollapsedBrands,
 } from './lifecycle';
 import type { Product } from '@/lib/types';
 import type { LifecycleRow } from './lifecycle';
@@ -283,5 +284,40 @@ describe('brandDropViolations', () => {
   it('checks every brand independently, so gains cannot mask a collapse', () => {
     const v = brandDropViolations({ inayah: 400, aab: 300 }, { inayah: 0, aab: 700 });
     expect(v.map((x) => x.brandSlug)).toEqual(['inayah']);
+  });
+});
+
+describe('freezeCollapsedBrands', () => {
+  const row = (brandSlug: string, id: string) => ({ brandSlug, id });
+
+  it('is a no-op with no drops', () => {
+    const next = [row('inayah', 'a'), row('aab', 'b')];
+    expect(freezeCollapsedBrands([], next, [])).toBe(next);
+  });
+
+  it('replaces a collapsed brand\'s rows with its previous ones, leaving other brands untouched', () => {
+    const prev = [row('abadia', 'old-1'), row('abadia', 'old-2'), row('aab', 'x')];
+    const next = [row('abadia', 'new-1'), row('aab', 'x'), row('aab', 'y')];
+    const drops = [{ brandSlug: 'abadia', prev: 15, next: 1, pct: 0.93 }];
+    const out = freezeCollapsedBrands(prev, next, drops);
+    expect(out.filter((p) => p.brandSlug === 'abadia')).toEqual([row('abadia', 'old-1'), row('abadia', 'old-2')]);
+    expect(out.filter((p) => p.brandSlug === 'aab')).toEqual([row('aab', 'x'), row('aab', 'y')]);
+  });
+
+  it('freezes multiple brands independently', () => {
+    const prev = [row('a', 'a-old'), row('b', 'b-old')];
+    const next = [row('a', 'a-new'), row('b', 'b-new'), row('c', 'c-new')];
+    const drops = [
+      { brandSlug: 'a', prev: 10, next: 1, pct: 0.9 },
+      { brandSlug: 'b', prev: 10, next: 0, pct: 1 },
+    ];
+    const out = freezeCollapsedBrands(prev, next, drops);
+    expect(out).toEqual([row('c', 'c-new'), row('a', 'a-old'), row('b', 'b-old')]);
+  });
+
+  it('a brand entirely absent from prev (brand-new, never published before) freezes to nothing rather than crashing', () => {
+    const next = [row('brandnew', 'x')];
+    const drops = [{ brandSlug: 'brandnew', prev: 0, next: 0, pct: 0 }];
+    expect(freezeCollapsedBrands([], next, drops)).toEqual([]);
   });
 });

@@ -16,10 +16,24 @@ export interface BrandReportLike {
   error?: string;
 }
 
+export interface FrozenBrandLike {
+  brandSlug: string;
+  prev: number;
+  next: number;
+  pct: number;
+}
+
 export interface ReportLike {
   date?: string;
   totals?: Record<string, number>;
   brands?: BrandReportLike[];
+  /** Brands the collapse guard froze at their previous published state this
+   *  run, instead of blocking the whole publish — see
+   *  lib/lifecycle.ts::freezeCollapsedBrands and
+   *  docs/log/2026-08-20-refresh-failure-abadia-price-collapse.md. Written by
+   *  scripts/build-data.mjs, appended onto the same report scripts/refresh.mjs
+   *  already wrote. */
+  frozenBrands?: FrozenBrandLike[];
 }
 
 const n = (v: number | undefined) => (v ?? 0).toLocaleString('en-GB');
@@ -39,6 +53,25 @@ export function formatSummary(report: ReportLike): string {
   out.push(`| Returned to sale | ${n(t.returned)} |`);
   out.push(`| **Dropped by our own filters** | **${n(t.filtered)}** |`);
   out.push('');
+
+  // The loudest thing in this summary on purpose: a frozen brand is not being
+  // maintained at all this run, and — unlike an incomplete fetch — the run
+  // SUCCEEDS, so this is the only place that fact is visible.
+  const frozen = report.frozenBrands ?? [];
+  if (frozen.length) {
+    out.push(
+      `> ⚠️ **${frozen.length} brand(s) collapsed and were frozen at their previous published ` +
+      `state, not updated this run:**`,
+    );
+    for (const f of frozen) {
+      out.push(`> - \`${f.brandSlug}\`: ${n(f.prev)} → ${n(f.next)} (-${Math.round(f.pct * 100)}%), frozen at ${n(f.prev)}`);
+    }
+    out.push(
+      `> Review \`data/rejected.json\` and \`data/refresh-report.json\`. Re-run with ` +
+      `\`ALLOW_LARGE_DIFF=1\` to accept the new (collapsed) state instead of freezing.`,
+    );
+    out.push('');
+  }
 
   // The single most diagnostic number in the run: brand churn is expected, our
   // own filters dropping live products is not.
