@@ -57,13 +57,13 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
               ? `${OVERLAY}, url("${shopifyImage(h.image, 460)}")`
               : `${OVERLAY}, ${FALLBACK[i % FALLBACK.length]}`;
             return (
-              <a
+              // Not a link — Tina asked for the fanned-card animation to stay
+              // but the cards to stop being clickable (2026-08-20). The hover
+              // tilt/lift is plain CSS on .tmh-card and needs no <a>; "All
+              // designers" below is still the way to reach the brand list.
+              <div
                 key={h.slug}
-                href={h.homepage}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
                 data-brand={h.slug}
-                data-surface="spotlight"
                 className={`tmh-card ${POS[i] || 'p1'}`}
                 style={{ backgroundImage: bg }}
               >
@@ -80,7 +80,7 @@ export default function VerifiedSpotlight({ houses }: { houses: House[] }) {
                   <h3>{h.name}</h3>
                   <p>{h.category} &middot; {h.city}</p>
                 </div>
-              </a>
+              </div>
             );
           })}
         </div>
