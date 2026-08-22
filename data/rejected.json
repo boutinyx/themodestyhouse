@@ -26307,6 +26307,15 @@
     "evidence": "2205 AED (~$600)"
   },
   {
+    "id": "chi-ka:8519951057057",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Purple Print RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-purple-print-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
     "id": "chi-ka:8519950008481",
     "brandSlug": "chi-ka",
     "title": "Coat-Style Abaya in Grey Green Linen with Palm Leaf Pattern RTW",
@@ -26581,6 +26590,15 @@
     "brandSlug": "chi-ka",
     "title": "Butterfly Abaya in Black with Geometric Print",
     "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-geometric-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8514043478177",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Purple Print",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-purple-print",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2205 AED (~$600)"
@@ -40377,6 +40395,15 @@
     "reason": "title-pattern"
   },
   {
+    "id": "baqa:9292803277051",
+    "brandSlug": "baqa",
+    "title": "Dantel Detaylı Beyaz Keten Elbise",
+    "url": "https://baqaofficial.com/products/dantel-detayli-beyaz-keten-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "28500 TRY (~$597)"
+  },
+  {
     "id": "baqa:9232070574331",
     "brandSlug": "baqa",
     "title": "Omuz Drapeli İki Renk İpek Elbise",
@@ -40501,6 +40528,15 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "34500 TRY (~$723)"
+  },
+  {
+    "id": "baqa:9354470228219",
+    "brandSlug": "baqa",
+    "title": "Pileli Asimetrik Bluz",
+    "url": "https://baqaofficial.com/products/pileli-asimetrik-bluz-1",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$618)"
   },
   {
     "id": "baqa:9292284592379",
@@ -42507,5 +42543,15 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Pins"
+  },
+  {
+    "id": "mariams:9417214984408",
+    "brandSlug": "mariams",
+    "title": "Bridal Back Backdrop Body Chain（MAC472）",
+    "url": "https://mariam-col.com/products/bridal-back-backdrop-body-chain-mac472",
+    "garmentWas": "dress",
+    "reason": "non-apparel:jewellery",
+    "tier": "A",
+    "evidence": "Body Chain"
   }
 ]
