@@ -9,6 +9,7 @@ import { FilterableGrid } from '@/components/FilterableGrid';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, brandPageSchema, jsonLdGraph } from '@/lib/schema';
 import { formatPrice } from '@/lib/price';
+import { withUtm } from '@/lib/outbound';
 
 /**
  * /designers/[slug] — one page per house.
@@ -147,7 +148,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           grid below carry their own. */}
       <p className="mt-8">
         <a
-          href={brand.homepage}
+          href={withUtm(brand.homepage, 'brand-page')}
           target="_blank"
           rel="noopener noreferrer sponsored"
           data-surface="brand-page"

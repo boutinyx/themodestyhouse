@@ -8,6 +8,7 @@ import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { useIsStaff } from './StaffSessionProvider';
 import { StaffEditControl, type StaffEditResult, laneLabel, garmentMoveLabel, subtypeLabel } from './StaffEditControl';
 import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
+import { withUtm } from '@/lib/outbound';
 
 /**
  * `priority` marks a card as above the fold. Measured over CDP (iPhone 13,
@@ -52,7 +53,7 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
     // violation this file was already rewritten once to remove (see below).
     <div className="group relative block text-center" style={staffState?.type === 'delete' ? { opacity: 0.35 } : undefined}>
       <a
-        href={href}
+        href={withUtm(href, 'product-card')}
         target="_blank"
         rel="noopener noreferrer sponsored"
         aria-label={`${p.title} by ${p.brandName} — opens ${p.brandName}'s site`}

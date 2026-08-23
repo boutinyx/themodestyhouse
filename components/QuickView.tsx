@@ -6,6 +6,7 @@ import { useCurrency } from './CurrencyProvider';
 import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import { SITE_URL } from '@/lib/schema';
 import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
+import { withUtm } from '@/lib/outbound';
 
 type Ctx = {
   open: (p: CardProduct) => void;
@@ -212,7 +213,7 @@ function Modal({
           </div>
           <div className="mt-auto pt-8 flex flex-col gap-3">
             <a
-              href={shopHref}
+              href={withUtm(shopHref, 'quickview')}
               target="_blank"
               rel="noopener noreferrer sponsored"
               data-brand={product.brandSlug}
