@@ -1,12 +1,12 @@
 {
-  "date": "2026-08-22",
+  "date": "2026-08-23",
   "totals": {
-    "added": 169,
-    "updated": 29243,
-    "delisted": 57,
+    "added": 26,
+    "updated": 28961,
+    "delisted": 77,
     "filtered": 65,
-    "returned": 6,
-    "incomplete": 4
+    "returned": 10,
+    "incomplete": 5
   },
   "brands": [
     {
@@ -37,67 +37,22 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1082,
+      "fetched": 1058,
       "added": [
-        "Ruffle Sleeve Knit Cardigan - Blue",
-        "Cotton Linen Tank Top - Espresso",
-        "Signature Sleeveless Inner Maxi Dress - Peach",
-        "Basic Cotton Linen Long Sleeve Top - Pink",
-        "Basic Cotton Linen Long Sleeve Top - Butterfly",
-        "Signature Sleeveless Inner Maxi Dress - Custard",
-        "Cotton Linen Tank Top - Black",
-        "Basic Cotton Linen Long Sleeve Top - Strawberry",
-        "Signature Open Abaya - Peach",
-        "Cotton Linen Button-Up Cardigan Top - Sand",
-        "Cotton Linen Button-Up Cardigan Top - Espresso",
-        "Viscose Linen Skirt - Natural",
-        "Viscose Linen Pant - White",
-        "Viscose Linen Skirt - Chocolate",
-        "Cotton Linen Button-Up Cardigan Top - Black",
-        "Basic Cotton Linen Long Sleeve Top - Black",
-        "Tiered Skirt - Buttercream",
-        "Tiered Floral Skirt - Blue",
-        "Tiered Skirt - Denim",
-        "Tiered Floral Skirt - Green",
-        "Wrinkle Tie Front Top - Denim",
-        "Wrinkle Tie Front Top - White",
-        "Tiered Skirt - Heathered Oatmeal",
-        "Wrinkle Tie Front Top - Ultramarina",
-        "Cotton Linen Tank Top - Sand",
-        "Wrinkle Tie Front Top - Pink",
-        "Wrinkle Tie Front Top - Sage",
-        "Wrinkle Tie Front Top - Black",
-        "Tencel Ruffle Top - Light Sand",
-        "Printed Modal Hijab - Magenta Waves",
-        "Printed Modal Hijab - Botanical Blue",
-        "Printed Modal Hijab - Brown Floral",
-        "Printed Modal Hijab - Pink Sands",
-        "Printed Modal Hijab - Purple Floral",
-        "Printed Modal Hijab - Pink Floral",
-        "Printed Modal Hijab - Endless Sky",
-        "Printed Modal Hijab - Banana Rose",
-        "Printed Modal Hijab - Pastel Green Floral",
-        "Printed Modal Hijab - Olive Clouds",
-        "Printed Modal Hijab - Black Ditsy Floral",
-        "Printed Modal Hijab - Pink Picnic",
-        "Printed Modal Hijab - Red Floral Ditsy",
-        "Bamboo Jersey Tie Back Undercap - Black",
-        "Bamboo Jersey Tie Back Undercap - Pumice Stone",
-        "Bamboo Jersey Tie Back Undercap - Coffee Quartz",
-        "Bamboo Jersey Tie Back Undercap - Natural"
+        "Asymmetric Ruffle Top - Black"
       ],
-      "updated": 1036,
-      "delisted": 0,
+      "updated": 1057,
+      "delisted": 29,
       "filtered": [],
-      "returned": 0
+      "returned": 4
     },
     {
       "brandSlug": "niswa",
       "complete": true,
-      "fetched": 438,
+      "fetched": 437,
       "added": [],
-      "updated": 438,
-      "delisted": 0,
+      "updated": 437,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -105,47 +60,8 @@
       "brandSlug": "zahraa",
       "complete": true,
       "fetched": 484,
-      "added": [
-        "Bohemian Abaya Set - Sand",
-        "Dana Chiffon Ruffle Maxi Dress- Ivory",
-        "Dana Chiffon Ruffle Maxi Dress- Navy",
-        "Irva Long Sleeve Maxi Dress- Ivory",
-        "Irva Long Sleeve Maxi Dress- Moss",
-        "Isabella Matching Knit Satin Set",
-        "Qamar Long Sleeve Maxi Dress",
-        "Alya Everyday Tunic & Pant Set - Obsidian",
-        "Lulwa Embroidery Dress - Dubai",
-        "Alya Everyday Tunic - Sahara",
-        "Lauren Cape Tunic - Cream",
-        "Batoul Fringe Tunic - Black",
-        "Ascia Asymmetrical Tunic & Skirt Set",
-        "Fayruz Cape Maxi Dress - Noor Sand",
-        "Leana Maxi Dress - Forest Muse",
-        "Muna Cape Gown - Eucalyptus Veil",
-        "Muna Cape Gown - Ivory",
-        "Nideen Maxi Dress - Off White",
-        "Dalia Pleated Ruffle Maxi Dress- Rosemary",
-        "Dalia Pleated Ruffle Maxi Dress- Evergreen",
-        "Yusra Knit Tunic- Taupe",
-        "Zayna Knit Ruffle Maxi Dress- Sparkle Sea",
-        "Irva Long Sleeve Maxi Dress-Sandstone",
-        "Isadora Ruffle Knit Long Sleeve Maxi Dress- Blush",
-        "Isadora Ruffle Knit Long Sleeve Maxi Dress- Brown",
-        "Camille Pleated Maxi Dress - Off White",
-        "Camille Pleated Maxi Dress - Olive",
-        "Krina Top and Skirt - Rose",
-        "Krina Top and Skirt - Plum",
-        "Tatiana Synched Satin Maxi Bell Sleeve - Sage Garden",
-        "Vivienne Large Ruffle Sleeve Dress - Sea",
-        "Vivienne Large Ruffle Sleeve Dress - Terra Rose",
-        "Lavinia Pleats and Ruffles Dress - Sunset",
-        "Lavinia Pleats and Ruffles Dress - Vintage",
-        "Hanadi Mesh Maxi Dress - Cream",
-        "Hanadi Mesh Maxi Dress - Brown",
-        "Hanadi Mesh Maxi Dress - Olive",
-        "Maryam Tie Waist Linen Maxi Dress - Off White"
-      ],
-      "updated": 446,
+      "added": [],
+      "updated": 484,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -241,17 +157,17 @@
       "fetched": 252,
       "added": [],
       "updated": 252,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "hawaa",
       "complete": true,
-      "fetched": 103,
+      "fetched": 101,
       "added": [],
-      "updated": 103,
-      "delisted": 0,
+      "updated": 101,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -270,17 +186,10 @@
       "complete": true,
       "fetched": 1196,
       "added": [
-        "Impressionist Floral Print Lightweight Hijab Scarf(MH250)",
-        "Bridal Back Backdrop Body Chain（MAC472）",
-        "Crinkle Shimmer Hijab(MH228)",
-        "Batwing Sleeve Abaya(MA463)",
-        "Chinese Frog Button Tunic & Lined Maxi Skirt Two-Piece Set(MS514)",
-        "Rhinestone Waist & Cuff Flared Sleeve Maxi Dress(MS513)",
-        "Pink & Ivory Peplum Pleated Maxi Dress(MS512)",
-        "Floral Embroidered Shirt & Wide-Leg Trousers Two-Piece Co-ord Set(MS511)"
+        "Shimmer Bubble Crinkle Hijab Scarf with Matching Underscarf Cap Set(MH251)"
       ],
-      "updated": 1188,
-      "delisted": 0,
+      "updated": 1195,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Islamic Hollow Pattern Acrylic Tabletop Decor (MAC404)",
@@ -378,18 +287,12 @@
     {
       "brandSlug": "jawda",
       "complete": true,
-      "fetched": 142,
-      "added": [
-        "Beige Linen Cotton Wrap Top",
-        "Olive Linen Cotton Button Sleeve Abaya",
-        "Chocolate Linen Cotton Button Sleeve Abaya",
-        "Chocolate Linen Cotton Ruched Slit Dress",
-        "Navy Linen Cotton Wrap Top"
-      ],
-      "updated": 137,
-      "delisted": 4,
+      "fetched": 145,
+      "added": [],
+      "updated": 145,
+      "delisted": 1,
       "filtered": [],
-      "returned": 0
+      "returned": 4
     },
     {
       "brandSlug": "feradje",
@@ -524,10 +427,10 @@
     {
       "brandSlug": "les-atelier",
       "complete": true,
-      "fetched": 128,
+      "fetched": 120,
       "added": [],
-      "updated": 128,
-      "delisted": 0,
+      "updated": 120,
+      "delisted": 8,
       "filtered": [],
       "returned": 0
     },
@@ -554,18 +457,13 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 85,
+      "fetched": 88,
       "added": [
-        "Trenchcoat",
-        "Tweedelige gebreide set",
-        "Cropped trenchcoat",
-        "Maxi Rok",
-        "Vest met goudkleurige knopen",
-        "Tweedelige set met rok",
-        "Maxi jurk met flared zoom",
-        "Cropped Trenchcoat"
+        "Gebreide vest met knoopsluiting",
+        "Katoenen Trenchcoat",
+        "Tweedelige set met capuchon"
       ],
-      "updated": 77,
+      "updated": 85,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -613,10 +511,10 @@
     {
       "brandSlug": "lafemme",
       "complete": true,
-      "fetched": 38,
+      "fetched": 35,
       "added": [],
-      "updated": 38,
-      "delisted": 0,
+      "updated": 35,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -636,7 +534,7 @@
       "fetched": 372,
       "added": [],
       "updated": 372,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Atelier Trolley",
@@ -693,24 +591,8 @@
       "brandSlug": "whiteicy",
       "complete": true,
       "fetched": 54,
-      "added": [
-        "Ensemble Nayla",
-        "Ensemble Rosalie",
-        "Ensemble Isaline",
-        "Ensemble Julie",
-        "Ensemble jupe Gabrielle",
-        "Ensemble jupe Céleste",
-        "Ensemble Colette – Esprit couture",
-        "Ensemble Héloïse – Maille couture",
-        "Ensemble Romy – Maille essentielle",
-        "Ensemble Maëlys – Maille zippée",
-        "Gilet Lyra – Maille torsadée zippée",
-        "Ensemble Alizé – Maille torsadée zippée",
-        "Pull Élina – Maille essentielle",
-        "Ensemble Sélène – Maille Signature",
-        "Ensemble Samira – Maille plissée"
-      ],
-      "updated": 39,
+      "added": [],
+      "updated": 54,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -719,11 +601,9 @@
       "brandSlug": "losyana",
       "complete": true,
       "fetched": 780,
-      "added": [
-        "Dubai Linen set - Black"
-      ],
-      "updated": 779,
-      "delisted": 8,
+      "added": [],
+      "updated": 780,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -780,7 +660,7 @@
       "fetched": 244,
       "added": [],
       "updated": 244,
-      "delisted": 16,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -870,10 +750,10 @@
     {
       "brandSlug": "by-hasanat",
       "complete": true,
-      "fetched": 103,
+      "fetched": 88,
       "added": [],
-      "updated": 103,
-      "delisted": 0,
+      "updated": 88,
+      "delisted": 15,
       "filtered": [],
       "returned": 0
     },
@@ -1012,9 +892,11 @@
       "brandSlug": "baqa",
       "complete": true,
       "fetched": 296,
-      "added": [],
-      "updated": 296,
-      "delisted": 1,
+      "added": [
+        "Kahverengi Süet Kemerli Kap"
+      ],
+      "updated": 295,
+      "delisted": 2,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -1033,7 +915,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 3
+      "returned": 1
     },
     {
       "brandSlug": "abaya-lounge",
@@ -1061,7 +943,7 @@
       "fetched": 366,
       "added": [],
       "updated": 366,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1098,8 +980,16 @@
     {
       "brandSlug": "bait-hanayen",
       "complete": true,
-      "fetched": 140,
-      "added": [],
+      "fetched": 147,
+      "added": [
+        "Duha Abaya (Rolex with Light Shimmer Jacquard)",
+        "Ishraq Abaya (Rolex with Floral Crepe)",
+        "Thabat Abaya (Soalon)",
+        "Jadara Abaya (Jacquard)",
+        "Injaz Abaya (Rolex)",
+        "Himmah Abaya (Soalon)",
+        "Riyada Abaya (Rolex)"
+      ],
       "updated": 140,
       "delisted": 0,
       "filtered": [],
@@ -1137,21 +1027,11 @@
     },
     {
       "brandSlug": "modesty-in-style",
-      "complete": true,
-      "fetched": 384,
-      "added": [
-        "Maisie Jeans",
-        "Tina Top",
-        "Aleyna Ruched Shirt",
-        "Daisy Shirt",
-        "Kami High-Low Top",
-        "Lana Lace Top",
-        "Zoe 3pc Set",
-        "Emily Tie Top",
-        "Elsie Button Top"
-      ],
-      "updated": 375,
-      "delisted": 6,
+      "complete": false,
+      "fetched": 0,
+      "added": [],
+      "updated": 0,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1181,7 +1061,7 @@
       "fetched": 95,
       "added": [],
       "updated": 95,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1227,12 +1107,12 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 256,
+      "fetched": 257,
       "added": [],
-      "updated": 256,
+      "updated": 257,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "store-wf",
@@ -1308,23 +1188,8 @@
       "brandSlug": "ilovemodesty",
       "complete": true,
       "fetched": 639,
-      "added": [
-        "Blue Plaid Breeze Button Down Long Sleeve Tunic",
-        "Brown Polka Dot Button Down Long Sleeve Tunic",
-        "Cream Polka Dot Button Down Long Sleeve Tunic",
-        "Blush Pink Floral Flared Maxi Dress",
-        "Blue Flared Skirt",
-        "Crimson Pinstripe Kaftan Tunic",
-        "Autumn Floral Bell Sleeve Top",
-        "Nude Pink Printed Chiffon Hijab",
-        "White Ditsy Floral Scallop Midi-Length Matching Set",
-        "Mauve Chalk Printed Flared Skirt",
-        "Chalk Blue Band Collar Matching Set",
-        "Snake Print Chiffon Hijab",
-        "Blush Fil Coupe Printed Chiffon hijab",
-        "Ultimate Gray Printed Pleated Maxi Skirt"
-      ],
-      "updated": 625,
+      "added": [],
+      "updated": 639,
       "delisted": 0,
       "filtered": [
         {
@@ -1341,8 +1206,22 @@
     {
       "brandSlug": "rutba-abaya",
       "complete": true,
-      "fetched": 253,
-      "added": [],
+      "fetched": 266,
+      "added": [
+        "R 345 Black Kashmiri Embroidery Abaya",
+        "R 344 Black 3D Lace Abaya",
+        "R 343 Light Brown Premium Aari 3D Embroidery Abaya",
+        "R 342 Navy Blue Rainbow Beaded Abaya",
+        "R 341 Black Pink Two-Tone Abaya",
+        "R 340 Beige Abaya",
+        "R 339 Light Olive-Beige Floral Beaded Abaya",
+        "R 338 Black Abaya with White Beadwork",
+        "R 337 Black Dantel Abaya",
+        "R 336 Black Premium Tartiz (Embroidery) Abaya",
+        "R 335 Black Premium Embroidery Abaya",
+        "R 334 Black 3D LaserCut Floral Lace Abaya",
+        "R 333 Black 3D LaserCut Floral Dantel Abaya"
+      ],
       "updated": 253,
       "delisted": 0,
       "filtered": [],
@@ -1351,33 +1230,10 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1031,
-      "added": [
-        "Geniş Yakalı Kemerli Klasik Kahve Trençkot 14208",
-        "Geniş Yakalı Kemerli Klasik Bej Trençkot 14208",
-        "Geniş Yakalı Kemerli Klasik Siyah Trençkot 14208",
-        "Zühre Gizli Düğme Detaylı Indigo Tunik T-0767",
-        "Çift Sıra Düğmeli Oversize Vizon Trençkot 14238",
-        "Çift Sıra Düğmeli Oversize Kahve Trençkot 14238",
-        "Geniş Yakalı Kemerli Bitter Trençkot 13820",
-        "Geniş Yakalı Kemerli Vizon Trençkot 13820",
-        "Geniş Yakalı Kemerli Kahve Trençkot 13820",
-        "Geniş Yakalı Kemerli Lacivert Trençkot 13820",
-        "Geniş Yakalı Kemerli Siyah Trençkot 13820",
-        "Broşlu Kemerli Balıksırtı Desenli İçlikli Üçlü Kombin Kahve Takım 2059",
-        "Broşlu Kemerli Balıksırtı Desenli İçlikli Üçlü Kombin Siyah Takım 2059",
-        "Zincir Aksesuar Detaylı Kemerli Bitter Trençkot 13560",
-        "Zincir Aksesuar Detaylı Kemerli Mürdüm Trençkot 13560",
-        "Zincir Aksesuar Detaylı Kemerli Vizon Trençkot 13560",
-        "Zincir Aksesuar Detaylı Kemerli Lacivert Trençkot 13560",
-        "Zincir Aksesuar Detaylı Kemerli Siyah Trençkot 13560",
-        "Kruvaze Yaka Aksesuar Detaylı Oversize Uzun Bej Ceket 0002",
-        "Yüksek Belli Havuç Kesim Kahve Pantolon 0199",
-        "Zincir Aksesuar Detaylı Kemerli Kahve Trençkot 13560",
-        "Geniş Yakalı Kemerli Mürdüm Trençkot 13820"
-      ],
-      "updated": 1009,
-      "delisted": 9,
+      "fetched": 1019,
+      "added": [],
+      "updated": 1019,
+      "delisted": 12,
       "filtered": [
         {
           "title": "Soft Çiçek Desenli Toprak Şal 0058",
@@ -1396,7 +1252,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 3
+      "returned": 0
     },
     {
       "brandSlug": "ria-miranda",
@@ -1441,12 +1297,10 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 720,
-      "added": [
-        "The Sophisticated Khaki Wide-Leg Pants"
-      ],
-      "updated": 719,
-      "delisted": 0,
+      "fetched": 718,
+      "added": [],
+      "updated": 718,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -1463,10 +1317,10 @@
     {
       "brandSlug": "abayas-boutique",
       "complete": true,
-      "fetched": 414,
+      "fetched": 413,
       "added": [],
-      "updated": 414,
-      "delisted": 0,
+      "updated": 413,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1486,7 +1340,7 @@
       "fetched": 151,
       "added": [],
       "updated": 151,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1526,7 +1380,7 @@
       "fetched": 144,
       "added": [],
       "updated": 144,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1564,12 +1418,9 @@
       "brandSlug": "parladusa",
       "complete": true,
       "fetched": 139,
-      "added": [
-        "Jasmin Mantel",
-        "Jasmin Cardigan"
-      ],
-      "updated": 137,
-      "delisted": 1,
+      "added": [],
+      "updated": 139,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     }

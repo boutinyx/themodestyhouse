@@ -40440,6 +40440,15 @@
     "evidence": "32500 TRY (~$681)"
   },
   {
+    "id": "baqa:9331311051003",
+    "brandSlug": "baqa",
+    "title": "Dantel ve Baskı Detaylı Şifon Elbise",
+    "url": "https://baqaofficial.com/products/dantel-baski-detayli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
     "id": "baqa:9313787314427",
     "brandSlug": "baqa",
     "title": "Üç Renk Pelerin Detaylı Elbise",
@@ -42553,5 +42562,14 @@
     "reason": "non-apparel:jewellery",
     "tier": "A",
     "evidence": "Body Chain"
+  },
+  {
+    "id": "baqa:9114050035963",
+    "brandSlug": "baqa",
+    "title": "Kahverengi Süet Kemerli Kap",
+    "url": "https://baqaofficial.com/products/kahverengi-suet-kemerli-kap",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
   }
 ]
