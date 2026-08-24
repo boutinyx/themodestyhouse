@@ -7,10 +7,8 @@ import PopularShowcase from '@/components/PopularShowcase';
 import { POPULAR_ITEM_IDS } from '@/lib/popularItems';
 import { HeroCallouts } from '@/components/HeroCallouts';
 import VerifiedSpotlight from '@/components/VerifiedSpotlight';
-import EditorsRail from '@/components/EditorsRail';
 import { getProducts } from '@/lib/products';
 import { getPosts } from '@/lib/posts';
-import { isSpecialty } from '@/lib/specialty';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import type { Product } from '@/lib/types';
@@ -77,15 +75,6 @@ export default function Home() {
   const popularItems = POPULAR_ITEM_IDS
     .map((id) => productById.get(id))
     .filter((p): p is Product => Boolean(p));
-  const seenBrand = new Set<string>();
-  const editorsPicks = getProducts()
-    .filter((p) => p.inStock && p.image && !isSpecialty(p) && ['dress', 'abaya', 'skirt', 'top', 'set'].includes(p.garment))
-    .filter((p) => {
-      if (seenBrand.has(p.brandSlug)) return false;
-      seenBrand.add(p.brandSlug);
-      return true;
-    })
-    .slice(0, 12);
 
   return (
     // A <main> landmark. Every other page has one; the homepage did not, so the
@@ -442,30 +431,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EDITOR'S PICKS — scrollable rail */}
-      <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-        <div className="flex items-end justify-between mb-6 md:mb-8">
-          <div>
-            <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>
-              Chosen by <span className="italic" style={{ color: 'var(--plum)' }}>hand</span>.
-            </h2>
-          </div>
-          {/* Beside the heading from md up; on a phone it moves BELOW the rail
-              (Tina's call) — at 390px it was sharing a line with a 28px display
-              heading and the two collided. */}
-          {/* !hidden / !inline-flex, not the bare utilities: `.nav-link` sets
-              `display: inline-flex` in globals.css at the same specificity, and
-              wins on source order — so `hidden` did nothing and BOTH copies of
-              this link rendered at every width. */}
-          <Link href="/directory" className="nav-link !hidden md:!inline-flex items-center gap-1.5">
-            All products <ArrowRight size={13} weight="bold" />
-          </Link>
-        </div>
-        <EditorsRail picks={editorsPicks} />
-        <Link href="/directory" className="nav-link md:!hidden inline-flex items-center gap-1.5 mt-6">
-          All products <ArrowRight size={13} weight="bold" />
-        </Link>
-      </section>
+      {/* The "Chosen by hand" editor's-picks rail stood here until 2026-08-24,
+          when Tina cut it ("this block in homepage is going to go"). It was a
+          12-item, one-product-per-brand slice of the whole catalogue with an
+          "All products" link to /directory.
+          components/EditorsRail.tsx STAYS — app/product/[brandSlug]/[shopifyId]
+          renders it as the related-items rail (badgeLabel={null}).
+          Removing this also drops the homepage's SECOND uncached getProducts()
+          call; see CLAUDE.md §8 on getProducts re-parsing 5.6 MB per call. */}
 
       {/* NEWLY VERIFIED — spotlight */}
       <VerifiedSpotlight houses={rail.slice(0, 8)} />
