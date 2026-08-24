@@ -6,6 +6,7 @@ import { List as ListIcon, X as XIcon, CaretRight, CaretDown } from '@phosphor-i
 import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL } from '@/lib/fx';
+import { CurrencyFlag } from './CurrencyFlag';
 import {
   OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, HIJAB_SUBTYPE_LABELS,
   type OuterwearSubtype, type LayeringSubtype, type HijabSubtype,
@@ -102,6 +103,14 @@ export function MobileNav() {
   // Choosing a currency does NOT close the panel — it changes prices on the page
   // behind it, and the visitor may well want to try another one.
   const { preference, setPreference } = useCurrency();
+  // The currency picker is a disclosure at the TOP of the panel as of
+  // 2026-08-24 (Tina sent aabcollection.com's phone menu: a flag, the
+  // region, and a chevron sitting just under the close/logo bar, above the
+  // hairline that starts the navigation). It was a row of `.chip` buttons at
+  // the FOOT of the panel before that — nine chips wrapped over three lines
+  // that nobody scrolled to. Collapsed by default so it costs one row, not
+  // nine.
+  const [currencyOpen, setCurrencyOpen] = useState(false);
 
   // Closing on navigation is done in each link's onClick, NOT in an effect on
   // `path`. Client-side navigation does not unmount this component, so something
@@ -384,6 +393,84 @@ export function MobileNav() {
             className="scroll-fade-port h-full overflow-y-auto px-5 pb-10"
             style={{ WebkitOverflowScrolling: 'touch' }}
           >
+            {/* CURRENCY — the first thing in the panel, above the hairline
+                that starts the navigation, exactly where aabcollection.com
+                puts its region picker (Tina's reference, 2026-08-24). The
+                trigger shows the CURRENT choice — flag, label, chevron — so
+                at rest it reads as a statement of what prices are in rather
+                than as a control demanding attention; tapping it reveals all
+                nine.
+
+                Rendered as plain buttons rather than by reusing
+                <CurrencySwitcher>: that control is a Base UI Menu, and a
+                popup opened from inside a Dialog is both fiddly and a second
+                tap. The option labels and the approximate-prices note are the
+                existing strings, reused verbatim from the header control
+                (§10.18). */}
+            <div className="pt-4 pb-4" style={{ borderBottom: '1px solid var(--hairline)' }}>
+              <button
+                type="button"
+                onClick={() => setCurrencyOpen((v) => !v)}
+                aria-expanded={currencyOpen}
+                className="flex items-center gap-3 py-1"
+                style={{
+                  fontFamily: 'var(--font-ui-stack)',
+                  fontSize: 17,
+                  lineHeight: 1.35,
+                  letterSpacing: '0.01em',
+                  color: 'var(--ink)',
+                }}
+              >
+                <CurrencyFlag currency={preference ?? 'USD'} />
+                {CURRENCY_LABEL[preference ?? 'USD']}
+                <CaretDown
+                  size={15}
+                  style={{
+                    flexShrink: 0,
+                    color: 'var(--muted)',
+                    transition: 'transform 150ms ease-out',
+                    transform: currencyOpen ? 'rotate(180deg)' : undefined,
+                  }}
+                />
+              </button>
+              {currencyOpen && (
+                <div className="pt-1">
+                  {DISPLAY_CURRENCIES.map((o) => (
+                    <button
+                      key={o}
+                      type="button"
+                      onClick={() => setPreference(o)}
+                      aria-pressed={preference === o}
+                      className="flex items-center gap-3 py-3 w-full text-left"
+                      style={{
+                        fontFamily: 'var(--font-ui-stack)',
+                        fontSize: 15,
+                        lineHeight: 1.35,
+                        letterSpacing: '0.01em',
+                        color: preference === o ? 'var(--aubergine)' : 'var(--ink)',
+                        fontWeight: preference === o ? 500 : 400,
+                      }}
+                    >
+                      <CurrencyFlag currency={o} />
+                      {CURRENCY_LABEL[o]}
+                    </button>
+                  ))}
+                  <p
+                    className="pt-1"
+                    style={{
+                      fontFamily: 'var(--font-ui-stack)',
+                      fontSize: 12,
+                      lineHeight: 1.5,
+                      color: 'var(--muted)',
+                    }}
+                  >
+                    Converted prices are approximate. You pay the brand&rsquo;s own currency
+                    at checkout.
+                  </p>
+                </div>
+              )}
+            </div>
+
             {/* "Clothing", not "Products" — matches the desktop header's
                 trigger label (Nav.tsx, 2026-08-21). The Category list below
                 now EXCLUDES Hijabs & Scarves, Layering Basics, Modest
@@ -444,47 +531,6 @@ export function MobileNav() {
               {row('/about', 'About')}
               {row('/favourites', 'Favourites')}
             </div>
-
-            {/* CURRENCY — at the foot of the panel, where Victoria's Secret puts
-                its region picker. It used to be a dropdown in the header bar;
-                moving it here is what freed the space in the pill.
-
-                Rendered as plain rows rather than by reusing <CurrencySwitcher>:
-                that control is a Base UI Menu, and a popup opened from inside a
-                Dialog is both fiddly and a second tap. Here the whole choice is
-                already visible, so picking a currency is one tap.
-
-                "Currency" is the plainest possible label for the group; the
-                option labels and the approximate-prices note are the existing
-                strings, reused verbatim from the header control (§10.18). */}
-            <p className="eyebrow pt-6 pb-2">Currency</p>
-            <div className="flex flex-wrap gap-2">
-              {DISPLAY_CURRENCIES.map((o) => (
-                <button
-                  key={o}
-                  type="button"
-                  onClick={() => setPreference(o)}
-                  className="chip"
-                  data-active={preference === o}
-                  aria-pressed={preference === o}
-                  style={{ minHeight: 40, paddingLeft: 16, paddingRight: 16 }}
-                >
-                  {CURRENCY_LABEL[o]}
-                </button>
-              ))}
-            </div>
-            <p
-              className="mt-3"
-              style={{
-                fontFamily: 'var(--font-ui-stack)',
-                fontSize: 12,
-                lineHeight: 1.5,
-                color: 'var(--muted)',
-              }}
-            >
-              Converted prices are approximate. You pay the brand&rsquo;s own currency at
-              checkout.
-            </p>
           </nav>
           </div>
         </Dialog.Popup>

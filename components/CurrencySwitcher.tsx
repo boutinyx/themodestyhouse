@@ -122,8 +122,17 @@ export function CurrencySwitcher() {
             // its content that made the whole menu 421px wide to hold four
             // one-word options. 260 wraps the note to three short lines and puts
             // the panel back in proportion with the header it drops out of.
-            className="rounded-xl border p-2 min-w-[210px] max-w-[260px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
-            style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
+            //
+            // PARCHMENT AND SQUARE as of 2026-08-24 (Tina: "on desktop a look
+            // and feel like the menu"). It was a white, rounded-xl, heavily
+            // shadowed card — a popover from a different family than the
+            // header's own Clothing/Hijabs panels beside it, which are
+            // parchment, square-cornered and read as the header itself
+            // extending downward (components/NavMenu.tsx). Same ground, same
+            // corners and the same `.mega-row` rows below is what makes this
+            // read as one menu system rather than two.
+            className="border px-4 py-3 min-w-[210px] max-w-[260px] origin-[var(--transform-origin)] transition-[opacity,transform] duration-100 ease-out data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0 data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0"
+            style={{ background: 'var(--parchment)', borderColor: 'var(--hairline)', boxShadow: '0 10px 24px -14px rgba(43,38,34,0.28)' }}
           >
             <Menu.RadioGroup
               value={preference ?? 'USD'}
@@ -138,25 +147,31 @@ export function CurrencySwitcher() {
                   // times). A currency is picked once, so the menu lingering
                   // after the choice just reads as stuck.
                   closeOnClick
-                  // .menu-row, NOT `w-full … nav-link`. The old line was right
-                  // about WHY (the row is a flex container, so text-align has
-                  // nothing to act on) and wrong about the fix: a Tailwind
-                  // `justify-start` cannot beat .nav-link, because Tailwind v4
-                  // emits utilities inside @layer utilities and an unlayered
-                  // rule wins over any layered one. Measured on the shipped
-                  // build: these rows were still centred. .menu-row owns the
-                  // property outright. See globals.css.
-                  className="menu-row"
+                  // .mega-row, NOT `w-full … nav-link`, and no longer
+                  // .menu-row either. The old line was right about WHY a
+                  // dedicated class is needed (the row is a flex container, so
+                  // text-align has nothing to act on, and a Tailwind
+                  // `justify-start` cannot beat .nav-link — Tailwind v4 emits
+                  // utilities inside @layer utilities and an unlayered rule
+                  // wins over any layered one). .mega-row is the header menu's
+                  // own row class (14px Jost, uppercase, ink not muted, with
+                  // the sliding underline on its nested label span), swapped in
+                  // 2026-08-24 so this panel reads as the same menu as the
+                  // Clothing/Hijabs panels two triggers along. See globals.css.
+                  className="mega-row"
                   data-active={preference === o}
                   style={{ gap: 10 }}
                 >
                   <CurrencyFlag currency={o} />
-                  {LABEL[o]}
+                  <span className="mega-row-label">{LABEL[o]}</span>
                 </Menu.RadioItem>
               ))}
             </Menu.RadioGroup>
             <p
-              className="px-3 pt-2 pb-1"
+              // px-1, not px-3: .mega-row pads 4px horizontally where
+              // .menu-row padded 12px, so the note now lines up with the
+              // labels above it rather than sitting indented past them.
+              className="px-1 pt-3 pb-1"
               style={{
                 fontFamily: 'var(--font-ui-stack)',
                 fontSize: 11,

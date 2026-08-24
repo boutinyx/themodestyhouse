@@ -201,19 +201,26 @@ const JOBS = [
     // /edits/jersey-hijabs hero, desktop. 1672x941 — the same ceiling the lace
     // v1 had, so there is no 1920 variant to generate and a wider viewport is
     // served the native file. Worth an upscale if it ever bothers anyone.
+    // Quality 95 / effort 6, matching the lace hero after Tina asked for the
+    // highest quality upload. NOTE the real ceiling here is the SOURCE, not the
+    // compression: 1672px means no 1920+ variant exists to generate, and this
+    // script never upscales. A bigger original is the only thing that improves
+    // this further.
     file: 'edit-jersey-hero.jpg',
     widths: [640, 1024, 1440, 1672],
     suffixWidth: true,
-    opts: { quality: 90, effort: 5 },
+    opts: { quality: 95, effort: 6 },
   },
   {
     // Same hero, phone — a real 1792x2400 portrait rather than a crop of the
     // landscape, so nothing is thrown away. 1170 covers a 390px CSS phone at
     // 3x DPR; 1792 is the source's own width.
+    // Same bump. 1792 is the source's own width, so this set already tops out
+    // at native — there is nothing above it to add.
     file: 'edit-jersey-hero-mobile.jpg',
     widths: [390, 780, 1170, 1560, 1792],
     suffixWidth: true,
-    opts: { quality: 90, effort: 5 },
+    opts: { quality: 95, effort: 6 },
   },
   {
     // /edits/[slug] story photographs — the credited street shots that sit with
