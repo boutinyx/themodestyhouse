@@ -430,9 +430,19 @@ export default function Home() {
           heading here is left-aligned, so this is deliberately the
           exception, not a copy-paste of the pattern below. */}
       <section className="py-10 md:py-20">
+        {/* SIZE, 2026-08-24 — Tina, pointing at this one: "Popular items from
+            brands. the titles like these need to be smaller." All FOUR of the
+            homepage's section headings moved together, so they stay a set:
+            this, "By category.", "Apply for the seal." (on the aubergine band,
+            which keeps its +2px) and "Reading, not just shopping."
+              clamp(28px,4vw,44px) -> clamp(24px,3vw,34px)   [44px -> 34px desktop]
+              clamp(28px,4vw,46px) -> clamp(24px,3vw,36px)   [the band one]
+            NOT changed: VerifiedSpotlight's "Houses that just earned the seal."
+            and EditBanner's edit title, both clamp(40px,5.6vw,64px) in their own
+            <style> blocks. They're a deliberately larger tier, not this set. */}
         <h2
           className="serif text-center max-w-[1220px] mx-auto px-8"
-          style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}
+          style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}
         >
           Popular items <span className="italic" style={{ color: 'var(--plum)' }}>from brands.</span>
         </h2>
@@ -479,7 +489,7 @@ export default function Home() {
             below already links to its own lane, and /directory is reachable
             from the header nav, so this wasn't the only way to reach it. */}
         <div className="text-center mb-8">
-          <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>By category.</h2>
+          <h2 className="serif mt-2" style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}>By category.</h2>
         </div>
         <div className="tmh-showcase-grid">
           {CATEGORY_SHOWCASE.map((c, i) => {
@@ -519,7 +529,7 @@ export default function Home() {
         <div className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-2xl">
             <div>
-              <h2 className="serif mt-3" style={{ fontSize: 'clamp(28px,4vw,46px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
+              <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
                 Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
               </h2>
               <ol className="mt-6 space-y-3">
@@ -549,7 +559,7 @@ export default function Home() {
       <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="serif mt-2" style={{ fontSize: 'clamp(28px,4vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}>
+            <h2 className="serif mt-2" style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}>
               Reading, not just <span className="italic" style={{ color: 'var(--plum)' }}>shopping</span>.
             </h2>
           </div>
