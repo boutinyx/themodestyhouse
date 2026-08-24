@@ -1131,6 +1131,25 @@ html[data-input-modality="mouse"] summary:focus-visible {
    Nothing else needs switching off: `useScrollFade` measures real overflow, so
    once the five fit it reports 'none' and both the fade and the arrows hide
    themselves. */
+/* The story copy centres below 1024px — Tina: "can you [put] the text of the
+   everyday lace in the middel for iphone and mini tablet". Full desktop keeps
+   it left-aligned, where it reads as a column beside the pictures.
+
+   1023px rather than the `md` 767px on purpose: a mini tablet in portrait is
+   744-834px CSS, so a 768px cut would have left every iPad-sized device on the
+   desktop treatment — which is exactly the half she would have had to come back
+   about.
+
+   `margin-inline: auto` as well as `text-align`, because the blocks are
+   max-w-2xl / max-w-4xl: centring the TEXT inside a box that is still pinned
+   left only moves it halfway. */
+@media (max-width: 1023px) {
+  .edit-story-text {
+    text-align: center;
+    margin-inline: auto;
+  }
+}
+
 .edit-rail-item { width: clamp(200px, 46vw, 280px); }
 
 .edit-rail-bleed { margin-right: calc(50% - 50vw); }

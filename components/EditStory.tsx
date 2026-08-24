@@ -55,12 +55,12 @@ export function EditStory({ edit }: { edit: Edit }) {
     >
       <div className="py-12 md:py-16">
         <h2
-          className="serif max-w-2xl"
+          className="serif max-w-2xl edit-story-text"
           style={{ fontSize: 'clamp(24px,3vw,34px)', color: 'var(--ink)', lineHeight: 1.12 }}
         >
           {edit.styling.h2}
         </h2>
-        <div className="mt-6 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl">
+        <div className="mt-6 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl edit-story-text">
           {edit.styling.paragraphs.map((p) => (
             <p key={p.slice(0, 40)} style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
               {withLinks(p)}
@@ -108,7 +108,7 @@ export function EditStory({ edit }: { edit: Edit }) {
             measure as the ones above, so the block reads as one piece split by
             the pictures rather than as two different sections. */}
         {edit.styling.paragraphsBelow && edit.styling.paragraphsBelow.length > 0 && (
-          <div className="mt-10 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl">
+          <div className="mt-10 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl edit-story-text">
             {edit.styling.paragraphsBelow.map((p) => (
               <p key={p.slice(0, 40)} style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
                 {withLinks(p)}
