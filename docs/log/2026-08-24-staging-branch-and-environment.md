@@ -1,5 +1,5 @@
 # Staging branch + un-indexable staging environment
-**Date:** 2026-08-24 · **Status:** partial — code done and verified; the Railway service and DNS still need Tina's account access
+**Date:** 2026-08-24 · **Status:** done, except the DNS record for the vanity hostname
 
 ## Goal
 Tina set a new standing protocol: **implement → staging → verify on staging → merge to
@@ -123,13 +123,73 @@ diagnosing a non-existent Turbopack bug ("Turbopack drops `has`/`missing` on hea
 before checking `git show <sha>:next.config.ts`. §10.20 again, in a new costume. Caught by
 verifying the built artifact rather than trusting the commit.
 
+## The Railway environment
+
+Created via the public GraphQL API (`https://backboard.railway.com/graphql/v2`) with the
+account token in `.env`, in the existing project `distinguished-expression`
+(`a923e5d7-a5c4-4d59-a1e3-eece1f9b68ce`), environment `production`:
+
+| thing | value |
+|---|---|
+| service | `themodestyhouse-staging` · `ba96c159-baab-4991-a007-93c1e32d27e4` |
+| source | `boutinyx/themodestyhouse`, builder RAILPACK (mirrors production) |
+| deploy trigger | branch **`staging`** · `4a45d62f-6bf6-4824-ab3e-7a73519ecec5` |
+| Railway URL | `themodestyhouse-staging-production.up.railway.app` |
+| custom domain | `staging.themodestyhouse.com` · `d6c3e0df-67ea-413f-87b8-2d07b649ad63` |
+| CNAME required | `staging` → `lw9o2rme.up.railway.app` |
+
+Env vars copied from the production service: `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`,
+`CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`, `RESEND_API_KEY`. `NEXT_PUBLIC_SKIMLINKS_ID` is
+unset on production too, so staging cannot fire real affiliate links either.
+
+**Two API gotchas worth keeping.** Railway's API sits behind a WAF that 403s Python's default
+`urllib` User-Agent while accepting the identical request from `curl` — the first attempt
+looked like an auth failure and was not one. And the token originally in `.env` was a
+*project* token, which authenticates with a `Project-Access-Token` header and can read a
+project but returns `Bad Access` on `deploymentTriggerCreate`; Tina swapped it for an
+account-level token, which uses `Authorization: Bearer` and, being a team token, returns
+`Not Authorized` for `query { me }` while working fine for everything else. Do not read a
+failing `me` query as a bad token.
+
+## Verification, against the deployed service
+
+First deploy: BUILDING → DEPLOYING → SUCCESS in ~90s. Then, on the real Railway hostname —
+not localhost, so this is evidence about what the deployment actually serves (§10.21):
+
+```
+### HTTP status                200
+### /robots.txt
+User-Agent: *
+Disallow: /
+### X-Robots-Tag on /          x-robots-tag: noindex, nofollow, noarchive
+### X-Robots-Tag on a lane     x-robots-tag: noindex, nofollow, noarchive
+### production unaffected
+User-Agent: *
+Allow: /
+Disallow: /admin/
+(absent on production — correct)
+```
+
+That is the fail-closed case working with **zero configuration on the service**: nobody set a
+staging flag anywhere, and the Railway default domain is already un-indexable.
+
+Playwright, 1440x900, staging vs production homepage:
+
+```
+staging    {"h1":"Every modest brand. | One place.","sections":7,"anchors":98,"imgs":31,"broken":0,"height":6761}
+production {"h1":"The archive for | everything modest.","sections":7,"anchors":61,"imgs":25,"broken":0,"height":6062}
+```
+
+Different by design — staging carries the unmerged homepage rebuild. Zero broken images on
+either. The run also reported five `requestfailed` events for `?_rsc=` prefetches, which were
+**the harness, not the site**: curling the same URLs returns 200 on staging and on production
+alike. In-flight prefetches abort when the browser closes (§10.26).
+
 ## Notes / follow-ups
-- **Still to do, needs Tina's account access:** create the Railway service watching `staging`,
-  attach `staging.themodestyhouse.com`, add the CNAME at Cloudflare, and copy the env vars
-  across. The Cloudflare token in `.env` is expired (`code 9109 Invalid access token`) and
-  there is no Railway token or CLI on this machine.
-- Once staging is live, re-run the two curls above **against the real hostname**, not
-  localhost — a header that a local server sets is not evidence about what Cloudflare
-  forwards (§10.21, §10.23).
-- Consider a `staging.` entry in Search Console purely to watch that it never gains an
-  impression.
+- **Only remaining step:** the CNAME `staging → lw9o2rme.up.railway.app` at Cloudflare, DNS-only
+  (grey cloud) so Railway can issue the certificate and so no CDN cache sits between staging and
+  whoever is verifying it. `CLOUDFLARE_API_TOKEN` in `.env` is dead (`1000 Invalid API Token`),
+  so this needs a fresh token or a dashboard click. Until then staging is reachable at the
+  Railway URL, which is already fully un-indexable.
+- Once the hostname resolves, re-run the same curls against `staging.themodestyhouse.com`.
+- Consider adding `staging.` to Search Console purely to watch that it never gains an impression.
