@@ -166,6 +166,31 @@ const JOBS = [
     opts: { quality: 92, effort: 5 },
   },
   {
+    // /edits/everyday-lace hero, desktop. Tina supplied it 2026-08-24 at
+    // 1672x941 — already exactly 16:9, which is the ratio the page asks for, so
+    // no crop. NOTE the ceiling: 1672 is the source, so there is no 1920 variant
+    // to generate (this script never upscales) and a >1672px viewport is served
+    // the native file. Acceptable, and worth knowing before anyone wonders why
+    // the set stops there.
+    file: 'edit-lace-hero.jpg',
+    widths: [640, 1024, 1440, 1672],
+    suffixWidth: true,
+    opts: { quality: 88, effort: 5 },
+  },
+  {
+    // Same hero, phone. A SEPARATE 5:8 portrait crop rather than letting
+    // object-cover squeeze the landscape original into a tall box: the model
+    // stands right of frame, so a centre crop removes her from her own hero.
+    // Cropped around x=1130 (the figure spans ~930-1330 of 1672).
+    // Native width is only 588, so a 390px CSS phone at 2x DPR is a ~1.33x
+    // stretch and at 3x a ~2x stretch. Mild, but real — a larger original would
+    // fix it and nothing else will.
+    file: 'edit-lace-hero-mobile.jpg',
+    widths: [390, 588],
+    suffixWidth: true,
+    opts: { quality: 88, effort: 5 },
+  },
+  {
     // Full-bleed band on /about. Same job as the hero — it spans the viewport,
     // so the 900px editorial ceiling is visibly soft on a desktop display.
     dir: 'about',

@@ -174,6 +174,88 @@ def download(url, dest):
         dest.write_bytes(r.read())
 
 
+# Batch 12 (2026-08-24): the /edits/everyday-lace COVER, not a homepage hero. Different
+# brief from every batch above, so fresh prompts rather than the batch-11 colonnade
+# scaffold (per dont-reuse-y2k-prompt-scaffold). Tina: the hero "needs to be editorial, but
+# it needs to be willing to click on it because it grabs attention. It should show
+# immediately that we're talking about lace."
+#
+# THE HARD PART IS SCALE, NOT STYLING. Lace photographed at full-body distance is just
+# texture you cannot name — it reads as printed pattern. So every concept here is framed
+# CLOSE, and two of the three are lit so light passes THROUGH the holes in the lace. That
+# is the one lighting choice that makes lace legible as lace. It is also the mitigation for
+# the flat-fabric failure this model has on cloth at low resolution (see the OOTD note in
+# memory): if the lace fills the frame, 1080p is enough pixels to resolve the weave.
+#
+# MODESTY: lace is semi-sheer by nature, so every prompt states the lace sits over an
+# OPAQUE underlayer. Without that this model will happily render lace against bare skin.
+#
+# Concepts 2 and 3 are Tina's own styling rules from the edit's copy, made visual —
+# contrast (black lace on white reads instantly, black on black disappears) and denim
+# (soft against hard). Concept 1 is the pure texture shot.
+STYLE_12 = ("elegant editorial modest-fashion campaign photography, warm parchment and cream tones with deep "
+            "aubergine accents, soft directional daylight, shot on 85mm film, shallow depth of field, real "
+            "fabric texture, natural skin, clean uncluttered composition, aspirational and quiet, "
+            "no text, no writing, no signage, no logos, no watermark")
+
+CONCEPTS_12 = [
+    ("lace-backlit", "Close editorial crop, chest and shoulders only, of a hijabi woman in a cream lace blouse "
+                      "worn over an opaque cream underlayer, a wide scalloped lace border running across the "
+                      "collarbone. Backlit from behind so daylight passes through the open holes of the lace and "
+                      "throws a faint lace pattern onto the fabric beneath. The lace fills much of the frame and "
+                      "its individual threads and open weave are unmistakable. Plain warm parchment wall far out "
+                      "of focus behind her. Modest, fully covered, draped hijab, no visible hair, " + STYLE_12),
+    ("lace-contrast", "Editorial waist-up crop of a hijabi woman in a black lace top worn over an opaque black "
+                       "underlayer, standing against a plain bright cream-white backdrop, with crisp white "
+                       "wide-leg trousers below. Maximum contrast between the black lace and the white around it "
+                       "so the lace pattern reads instantly and graphically. Black draped hijab, fully covered, "
+                       "no visible hair. Graphic, minimal, high-impact, " + STYLE_12),
+    ("lace-denim", "Editorial three-quarter crop of a hijabi woman wearing a cream lace top over an opaque "
+                    "underlayer, layered under a rigid structured indigo denim jacket worn open, so the soft "
+                    "open lace sits directly against the hard square-shouldered denim. Warm neutral hijab, fully "
+                    "covered, no visible hair. Plain warm parchment background. The contrast of soft against "
+                    "hard is the subject, " + STYLE_12),
+]
+
+# Batch 13 (2026-08-24): batch 12 was rejected — "too editorial i do want a bit playful".
+# So this holds the two things that WORKED in 12 (lace legible at close range; the
+# contrast rule doing the visual work) and changes the register: movement, daylight,
+# real places, candid warmth instead of a still studio backdrop.
+#
+# TWO DEFECTS FROM BATCH 12 ARE FIXED HERE, not left to luck:
+#   1. Concept 63 rendered a bare upper back and neck. The prompt said "fully covered, no
+#      visible hair" and that was not enough — it never forbade bare skin, so a back-facing
+#      pose produced it. COVERAGE below states it explicitly. On a modest directory this is
+#      a correctness bug, not a taste one.
+#   2. All three of batch 12 filled the centre of the frame, so the "Everyday Lace" title
+#      would have landed on the model. Every concept here places the subject to one side
+#      and names the empty side, because the title is centred over the photograph.
+COVERAGE = ("modest and fully covered — long sleeves to the wrist, high neckline, draped hijab with no "
+            "visible hair, no bare back, no bare neck, no bare arms, no bare legs, lace always layered "
+            "over an opaque underlayer and never against skin")
+
+STYLE_13 = ("playful editorial modest-fashion photography, warm natural sunlight, candid and joyful, gentle "
+            "movement, real place rather than a studio, warm parchment cream and soft aubergine tones, shot "
+            "on 50mm film, real fabric texture, no text, no writing, no signage, no logos, no watermark")
+
+CONCEPTS_13 = [
+    ("lace-twirl", "A hijabi woman laughing mid-turn in a cream lace blouse with wide scalloped lace sleeves, "
+                    "the lace sleeve caught in motion and flaring out so sunlight passes through the open holes "
+                    "of the lace. She stands to the LEFT of the frame; the right half is a plain sunlit warm "
+                    "wall with nothing in it. Late afternoon golden light, soft motion, genuine smile. "
+                    + COVERAGE + ", " + STYLE_13),
+    ("lace-steps", "A hijabi woman sitting relaxed on warm stone steps in bright daylight, wearing a black lace "
+                    "top over an opaque black underlayer with crisp white wide-leg trousers, one hand resting "
+                    "on the step, mid-laugh looking off to the side. The black lace reads sharply against the "
+                    "pale stone and white trousers. She sits to the RIGHT of the frame; the left half is empty "
+                    "sunlit stone. " + COVERAGE + ", " + STYLE_13),
+    ("lace-duo", "Two hijabi friends walking together down a sunlit street, both mid-laugh, one in a cream lace "
+                  "blouse over an opaque underlayer with indigo denim, the other in a black lace top with cream "
+                  "trousers. Easy natural stride, hands gesturing as they talk. The pair sits to the LEFT of "
+                  "frame with open sunlit pavement and plain wall to the right. Warm, social, unposed. "
+                  + COVERAGE + ", " + STYLE_13),
+]
+
 # Each batch keeps its own CONCEPTS list + starting filename index (see the comment
 # above each batch for why). Add a new tuple here — (concepts_list, filename_start_index)
 # — for every new batch rather than overwriting an old one, so `--batch N` always
@@ -182,6 +264,8 @@ BATCHES = {
     9: (CONCEPTS, 38),
     10: (CONCEPTS_10, 43),
     11: (CONCEPTS_11, 53),
+    12: (CONCEPTS_12, 63),
+    13: (CONCEPTS_13, 66),
 }
 
 

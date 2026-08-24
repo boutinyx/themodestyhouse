@@ -101,26 +101,37 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
         className="edit-hero relative overflow-hidden"
         style={{ marginTop: 'calc(-1 * var(--header-height))', background: 'var(--aubergine)' }}
       >
-        {/* No srcset deliberately. lib/staticImage.ts's editorial variants are
-            400w and 900w — sized for the cards and the post covers they were
-            generated for, and both too small for a full-bleed hero, which would
-            render visibly soft on any desktop. The original (1696x960, 98 KB) is
-            served directly instead.
-            WHEN A REAL HERO LANDS: put it in public/, run
-            `node scripts/optimise-images.mjs` to generate variants, and wire a
-            srcset here. Give it a NEW filename — public/ is cached for 4h and
-            is not fingerprinted (§6, §10.21). */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={edit.image}
-          alt={edit.imageAlt}
-          className="absolute inset-0 w-full h-full object-cover"
-          // The hero is the LCP element on this page — eager, high priority, and
-          // never lazy. Lazy-loading an above-the-fold hero is a measurable LCP
-          // regression, not a saving.
-          loading="eager"
-          fetchPriority="high"
-        />
+        {/* <picture>, not one <img> with object-cover. The desktop hero is
+            16:9 and the phone hero is 5:8 — far enough apart that cover would
+            have to discard most of the frame to get from one to the other, and
+            on this photograph it would crop the model out entirely, because she
+            stands to the right. So the phone gets its own crop, built around
+            her. Same pattern as the homepage's hero-home-mobile.
+            Ceiling worth knowing: the desktop source is 1672px wide, so there
+            is no 1920 variant and a wider viewport gets the native file. */}
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcSet={`${edit.imageMobile.replace(/\.jpg$/, '-390.webp')} 390w, ${edit.imageMobile.replace(/\.jpg$/, '-588.webp')} 588w`}
+            sizes="100vw"
+          />
+          <source
+            srcSet={`${edit.image.replace(/\.jpg$/, '-640.webp')} 640w, ${edit.image.replace(/\.jpg$/, '-1024.webp')} 1024w, ${edit.image.replace(/\.jpg$/, '-1440.webp')} 1440w, ${edit.image.replace(/\.jpg$/, '-1672.webp')} 1672w`}
+            sizes="100vw"
+          />
+          {/* No eslint-disable needed here: @next/next/no-img-element does not
+              fire on an <img> inside a <picture>, and lint runs with
+              --max-warnings 0, so a redundant one fails the build. */}
+          <img
+            src={edit.image}
+            alt={edit.imageAlt}
+            className="absolute inset-0 w-full h-full object-cover"
+            // The LCP element on this page — eager and high priority. Lazy
+            // loading an above-the-fold hero is a measurable regression.
+            loading="eager"
+            fetchPriority="high"
+          />
+        </picture>
         <div
           aria-hidden
           className="absolute inset-0"

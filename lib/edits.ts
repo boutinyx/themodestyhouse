@@ -40,6 +40,11 @@ export type Edit = {
   /** Hero photograph, from public/. Give a NEW filename when replacing it —
    *  public/ is served with a 4h cache and is not fingerprinted (CLAUDE.md §6). */
   image: string;
+  /** Phone hero — a SEPARATE 5:8 portrait crop, not the desktop file squeezed.
+   *  The two ratios (16:9 / 5:8) are far enough apart that object-cover has to
+   *  throw away most of the frame to get from one to the other, and on this
+   *  image it would crop the model out entirely: she stands right of frame. */
+  imageMobile: string;
   imageAlt: string;
   /** <title> and meta description. Written to the query the page is FOR. */
   seoTitle: string;
@@ -110,11 +115,15 @@ export const EDITS: Edit[] = [
     title: 'Everyday Lace',
     eyebrow: 'The Edit · Autumn 2026',
     dek: 'Not saved for the occasion.',
-    // PLACEHOLDER — reusing an existing editorial photograph so the page is
-    // real and shippable today. It is not a lace shot. Replace with a proper
-    // hero under a NEW filename (never overwrite in public/ — §6, §10.21).
-    image: '/editorial/lookbook.jpg',
-    imageAlt: 'A woman in a lace-trimmed modest outfit',
+    // Tina's own shot, supplied 2026-08-24, replacing the borrowed placeholder.
+    // It is the lace belt from her own list of lace types — a black lace sash
+    // tied over a structured butter-yellow jacket and a brown satin column
+    // skirt — which makes it the edit's styling argument in one frame: lace
+    // against structure, and hard contrast so the lace reads.
+    image: '/edit-lace-hero.jpg',
+    imageMobile: '/edit-lace-hero-mobile.jpg',
+    imageAlt:
+      'A woman in a brown hijab and sunglasses leaning in a doorway, wearing a black lace sash tied over a butter-yellow jacket and a brown satin maxi skirt',
     seoTitle: 'Everyday Lace — Lace Hijabs, Abayas and Dresses',
     seoDescription:
       'Lace across the directory, from £5 lace-trim hijabs to lace abayas — from independent modest houses worldwide. Prices and links to each brand.',
