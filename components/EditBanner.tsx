@@ -71,13 +71,30 @@ export function EditBanner({ edit }: { edit: Edit }) {
           loading="lazy"
         />
       </picture>
-      {/* NO DARKENING OVERLAY. Tina, 2026-08-24: "dont out a dark overlay on it".
-          There were two here — left-weighted on desktop, bottom-weighted on
-          phone — and both are gone. The type now sits directly on the
-          photograph and carries its own text-shadow instead, which darkens the
-          few pixels behind each glyph rather than dimming the whole image.
-          If a future edit's photograph is pale where the copy lands, the fix is
-          to move the copy or pick a different frame — not to put the wash back. */}
+      {/* A LIGHT wash, matching the edit page's hero — same photograph, same
+          campaign, so they should not disagree about their own treatment.
+          Tina asked for the heavy overlay gone ("dont out a dark overlay on
+          it"), then for a little back ("not too dark just littke bit"): this
+          is 0.26 at its strongest against the 0.46-0.62 it replaced, and it
+          fades to near nothing across the frame. Weighted toward whichever
+          side the copy sits on at that width, so the model and the lace sash
+          keep their full contrast. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 md:hidden"
+        style={{
+          background:
+            'linear-gradient(to top, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 45%, rgba(12,6,12,0.02) 78%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 hidden md:block"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 48%, rgba(12,6,12,0.02) 100%)',
+        }}
+      />
       {/* absolute inset-0, not a min-height — the section's ratio owns the
           height now, and anything here declaring its own would fight it.
           justify-end on a phone puts the copy at the bottom, over the dark

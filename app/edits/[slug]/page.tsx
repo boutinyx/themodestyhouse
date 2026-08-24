@@ -139,8 +139,32 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
             fetchPriority="high"
           />
         </picture>
-        {/* No darkening overlay — same instruction as the homepage banner. The
-            title's own text-shadow does the legibility work. */}
+        {/* A LIGHT wash — Tina, 2026-08-24: "make the pictur of the everyday
+            lace a little darker overlay not too dark just littke bit".
+            Deliberately a fraction of what was here before she asked for the
+            overlay gone entirely: that one ran 0.46-0.62 and flattened the
+            upscale's depth in the door and the satin. This tops out at 0.26 and
+            falls away to almost nothing across the frame, so it settles the
+            type without dimming the photograph.
+            Weighted toward the side the copy is on rather than uniform, so the
+            model and the lace sash — the brightest, most detailed part of the
+            frame — stay untouched. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 md:hidden"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 45%, rgba(12,6,12,0.02) 78%)',
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 hidden md:block"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 48%, rgba(12,6,12,0.02) 100%)',
+          }}
+        />
         {/* absolute inset-0, not a min-height: the section's own aspect-ratio
             (.edit-hero) is what sets the height now, so anything here that also
             declared a height would fight it. padding-top clears the sticky
