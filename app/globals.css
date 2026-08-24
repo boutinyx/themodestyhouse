@@ -1055,6 +1055,30 @@ html[data-input-modality="mouse"] summary:focus-visible {
   }
 }
 
+/* The small paired arrows above an edit's photo rail (EditStoryRail.tsx).
+   Deliberately NOT `.rail-arrow` — that one is absolutely positioned over the
+   images, which works for PopularShowcase's product shots on plain backgrounds
+   and put a white disc on a model's face here. These sit above the row instead,
+   right-aligned, and stay quiet: the fade is what signals "there is more". */
+.edit-rail-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: var(--bone);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity .2s ease, background .2s ease, border-color .2s ease;
+}
+.edit-rail-btn:hover:not(:disabled) { background: var(--parchment); border-color: var(--muted); }
+/* Disabled rather than hidden: the pair keeps its position instead of the row
+   shifting sideways as you scroll. `disabled` also removes it from the tab
+   order for free, so there is never a focusable control that does nothing. */
+.edit-rail-btn:disabled { opacity: .3; cursor: default; }
+
 /* The styling block placed BETWEEN grid rows (components/EditStory.tsx, via
    FilterableGrid's `afterFirstRow`). Tina, 2026-08-24: "i want the text of the
    lace story to be after the first row".

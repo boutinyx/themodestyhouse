@@ -67,7 +67,39 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="relative mt-10">
+    <div className="mt-10">
+      {/* CONTROLS ABOVE THE RAIL, right-aligned — not floating on the
+          photographs. The first cut used `.rail-arrow`, which is absolutely
+          positioned over the images the way PopularShowcase's are; on this rail
+          that put a white disc squarely on top of a model (Tina sent the
+          screenshot). PopularShowcase gets away with it because its cards are
+          product shots on plain backgrounds; these are street photographs where
+          the subject is the middle of the frame.
+
+          Kept small and quiet: this is a hint that the row moves, not a primary
+          control. The rail is draggable and keyboard-scrollable regardless, and
+          the right-edge fade is doing the real "there is more" work. */}
+      <div className="flex justify-end gap-2 mb-3">
+        <button
+          type="button"
+          aria-label="Previous photographs"
+          onClick={() => scrollBy(-1)}
+          className="edit-rail-btn"
+          disabled={!canLeft}
+        >
+          <CaretLeft size={14} weight="bold" />
+        </button>
+        <button
+          type="button"
+          aria-label="More photographs"
+          onClick={() => scrollBy(1)}
+          className="edit-rail-btn"
+          disabled={!canRight}
+        >
+          <CaretRight size={14} weight="bold" />
+        </button>
+      </div>
+
       <div
         className="scroll-fade scroll-fade-x"
         // RIGHT EDGE ONLY, and never both — Tina: "not that much and only for
@@ -77,9 +109,6 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
         // hook's measurement is correct and shared with the buttons. Only the
         // PAINTING is opinionated.
         data-fade={canRight ? 'end' : 'none'}
-        // --fade-to is the surface this resolves INTO. Parchment, not the
-        // class's white default: the story block sits on the page background,
-        // and a white ramp would leave a visible pale sliver over it.
         // 90px -> 44px. The wide default was tuned for PopularShowcase's much
         // bigger cards; at this size it was washing out most of the last
         // photograph rather than hinting at it.
@@ -98,33 +127,6 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
           {children}
         </ul>
       </div>
-
-      {/* Buttons are hidden from assistive tech and from keyboards when there
-          is nothing to scroll to — a focusable control that does nothing is
-          worse than no control. The rail itself is keyboard-scrollable, so
-          nothing is lost. */}
-      <button
-        type="button"
-        aria-label="Previous photographs"
-        onClick={() => scrollBy(-1)}
-        className="rail-arrow rail-arrow-left"
-        style={{ top: '38%', left: 6, opacity: canLeft ? 1 : 0, pointerEvents: canLeft ? 'auto' : 'none' }}
-        tabIndex={canLeft ? 0 : -1}
-        aria-hidden={!canLeft}
-      >
-        <CaretLeft size={18} weight="bold" />
-      </button>
-      <button
-        type="button"
-        aria-label="More photographs"
-        onClick={() => scrollBy(1)}
-        className="rail-arrow"
-        style={{ top: '38%', right: 6, opacity: canRight ? 1 : 0, pointerEvents: canRight ? 'auto' : 'none' }}
-        tabIndex={canRight ? 0 : -1}
-        aria-hidden={!canRight}
-      >
-        <CaretRight size={18} weight="bold" />
-      </button>
     </div>
   );
 }
