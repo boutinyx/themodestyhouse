@@ -193,3 +193,70 @@ lace-up remaining: 0
 Two of the four categories she reaches for are effectively absent. Reported rather than
 written around — the same shape as the pashmina gap in the trend research (fastest-growing
 term in modest fashion, nineteen pieces).
+
+---
+
+## Homepage banner, v2 images, and the overlay removed (same day)
+
+### On the homepage
+`components/EditBanner.tsx` — full-bleed campaign block between Popular Items and the
+Verified Spotlight, where the "Chosen by hand" rail used to be. Server component; `Edit` is
+a type-only import so nothing pulls `node:fs` toward a client boundary (Invariant 10).
+Shares the edit's own hero and both crops, so banner and page are one campaign with no
+second image to keep in sync. Lazy-loaded here (below the fold everywhere), eager on the
+edit page (it is the LCP element there).
+
+Another session's uncommitted "Chosen by hand" removal was sitting in `app/page.tsx` and
+could not be separated from my addition. Landed as **its own commit**, saying plainly it is
+not mine and carrying its own log — rather than buried under a message describing something
+else (§10.30).
+
+### v2 photographs, and why the ratio became data
+Tina supplied a Magnific upscale (5504x3072) and a purpose-shot phone portrait
+(1920x2571), replacing the 1672x941 original.
+
+```
+desktop  5504x3072 = 1.7917    (was 16/9  = 1.7778)
+phone    1920x2571 = 0.7468    (was 5/8   = 0.6250 — 16% off)
+```
+
+Left at 5/8 the phone hero would have trimmed both sides of the new photograph — exactly
+what "no dont crop it" rules out. So `.edit-hero` no longer hard-codes a ratio: it reads
+`--edit-ratio` / `--edit-ratio-mobile`, set inline from `imageRatio` / `imageMobileRatio`
+on the Edit record, measured from real pixel dimensions. The box is the shape of the
+photograph in it, so `object-cover` has nothing to crop, and a future edit cannot silently
+inherit these numbers. Measured after: **0.03% and 0.04%** deviation, i.e. float rounding.
+
+### A bug that looked perfect on screen
+srcset widths moved onto the Edit record in the same pass, and that was not tidying.
+`EditBanner` had them hand-listed and was still asking for `-1672` and `-588` — widths that
+only ever existed for v1. **Every source in its srcset 404'd** and the browser silently fell
+back to the full-size JPEG. It rendered correctly, looked correct, and was caught only by
+asserting `naturalWidth` (0) rather than by looking at it. `optimise-images` never upscales,
+so a width the source cannot supply yields no file and a dead srcset entry.
+
+The eight v1 files were deleted from `public/` and from the index.
+
+### The overlay
+"dont out a dark overlay on it" — three gradients deleted: the left- and bottom-weighted
+washes on the banner, and the one on the edit hero. The upscale has real depth in the door
+and the satin, and a 45–62% black wash was flattening it.
+
+The overlay was doing one real job, and dropping it exposed that: on a 390px phone the
+centred title landed across the pale yellow jacket, white on near-white. Fixed by **moving
+the copy, not restoring a wash** — pushed to the lower frame on phones (`justify-end` +
+`pb-[16%]`, centred from `md` up), where it sits over the dark brown satin skirt, the
+darkest part of the photograph. Desktop needed nothing: the title sits on the mid-brown
+door and always read.
+
+**Still one dark gradient in the stack, and it is not this one.** `components/Header.tsx:249`
+paints `.header-wash` over any `[data-hero]` element so the nav stays legible on a
+photograph — Tina asked for that explicitly on 2026-08-22. It darkens the top ~117px of the
+edit hero. Verified by grep that it is the ONLY `rgba(12,6,12` left in the source. Flagged
+rather than removed: it is a different control, with its own reason, and removing it would
+affect the homepage hero too.
+
+### Verified
+`tsc` clean · `eslint` clean · `npm run build` compiled · `npm test` 734 passing.
+Deployed to staging and re-checked there: v2 variants served on both pages, no banner or
+hero overlay in the markup.
