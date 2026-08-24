@@ -70,6 +70,17 @@ export type Edit = {
   imageWidths: number[];
   imageMobileWidths: number[];
   imageAlt: string;
+  /** Which edit the homepage banner shows. Exactly one should carry it.
+   *
+   *  An explicit flag rather than `EDITS[0]`, which is what the banner used
+   *  while there was only one edit. An array position is not a decision — the
+   *  moment a second edit is added, whichever happens to be written first wins
+   *  the homepage, silently. This makes the choice something you can see and
+   *  change in one place.
+   *
+   *  If none is flagged the banner falls back to the first, so the homepage can
+   *  never end up with no banner because someone removed a flag. */
+  featured?: boolean;
   /** How dark the wash over the hero goes, as the gradient's MAX alpha.
    *
    *  Per-edit because it depends entirely on the photograph. Everyday Lace is a
@@ -288,6 +299,8 @@ export const EDITS: Edit[] = [
   {
     slug: 'jersey-hijabs',
     title: 'Jersey Hijabs',
+    // On the homepage as of 2026-08-25, replacing Everyday Lace.
+    featured: true,
     eyebrow: 'The Edit · Autumn 2026',
     dek: 'The one you actually wear.',
     // Tina's own shots, 2026-08-24. The phone one is a real 1792x2400 portrait
@@ -321,13 +334,21 @@ export const EDITS: Edit[] = [
       'Jersey hijabs from independent modest houses worldwide — premium, bamboo, liquid jersey and instant styles, from £5. Prices and links to each brand.',
     styling: {
       h2: 'What makes a good jersey hijab',
+      // SHORT ON PURPOSE. The first cut ran 411 words and Tina killed it —
+      // "nobody is reading that shit i want you to only write what people will
+      // care about". This is ~150. What survived the cut is what changes a
+      // buying decision: it grips, the four names mean different things, the
+      // length is the thing that disappoints people, and which one to wear
+      // when. What went: the 950% search stat, the fabric-composition
+      // citation, and every sentence that was interesting to write rather than
+      // useful to read.
       paragraphs: [
-        'Jersey is the one you reach for without thinking, and the reason is grip. The fabric has a slight stretch and a matte, faintly tacky surface, so it holds against itself and against an undercap — which is why most jersey hijabs need no pin at all. That is the whole appeal, and it is also the thing a bad one gets wrong: too smooth and it slides, too thin and it goes see-through the moment there is a light behind you.',
-        'The four words the shops use are not interchangeable. **Premium** usually means a heavier, denser knit, often modal-cotton with a little elastane — Culture Hijab publish theirs as 98% modal cotton, 2% spandex — and it is the most opaque and the most structured. **Bamboo** jersey is bamboo viscose: softer, cooler against the skin and more fluid, so it drapes closer to the head and creases less, at the cost of a little grip. **Liquid** jersey is the silkiest of them, with a faint sheen and the most fall — the one Britain has suddenly started searching for, up 950% this year. **Ribbed** is the outlier: a textured knit with the most grip and the most body, which holds a shape rather than following one.',
+        'Jersey grips. It holds against itself and against your undercap, so it stays put with no pin — that is the whole appeal. A bad one is either too smooth, and slides, or too thin, and goes see-through the moment there is a light behind you.',
+        'The four words are not interchangeable. **Premium** is the densest and most opaque. **Bamboo** is softer and cooler, drapes closer, grips a little less. **Liquid** is the silkiest, with the most fall. **Ribbed** has the most grip and holds its shape.',
       ],
       paragraphsBelow: [
-        'Check the length before you buy, because this is where most disappointment comes from and almost nobody lists it prominently. A **standard** jersey rectangle runs roughly 68 by 32 inches (about 175 x 80 cm) — enough to wrap twice and still have something to drape. A **mini** is around 62 by 20 inches (roughly 157 x 50 cm): narrower rather than much shorter, made for a single neat wrap under a coat or a blazer, and it will not give you a drape down the front. Some houses do neither and simply publish one rectangle at 65 by 26 or 65 by 27 inches, which sits between the two. If a listing does not say, assume it is closer to a mini and ask.',
-        'The mistake to avoid is buying the fabric for the look rather than for the day. Liquid and bamboo photograph beautifully and are the ones that slip if your undercap is satin or your hair is freshly washed; premium and ribbed will stay put through a school run and a long day, and look heavier in a photograph for exactly the same reason. Own one of each before you own three of one.',
+        'Check the length — almost nobody lists it, and it is where the disappointment comes from. **Standard** is about 68 x 32 inches: wraps twice with enough left to drape. **Mini** is about 62 x 20 — narrower rather than shorter, so no drape down the front. If a listing does not say, assume mini and ask.',
+        'Buy for the day, not the photograph. Liquid and bamboo look best and slip most. Premium and ribbed stay put.',
       ],
     },
     /**
