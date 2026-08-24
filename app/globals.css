@@ -1108,8 +1108,16 @@ html[data-input-modality="mouse"] summary:focus-visible {
 
    Right only above 768px: the left edge stays aligned with the heading and the
    paragraphs, so the block still reads as one column of text with a row of
-   pictures running out of it. On a phone both sides bleed, which is what the
-   product grid above it already does.
+   pictures running out of it.
+
+   RIGHT ONLY ON A PHONE TOO, since 2026-08-24. It used to bleed both sides
+   there, matching the product grid, which put the first photograph hard against
+   the left edge of the screen — Tina: "on phone the picture is stuck to the
+   edge of the screen on the left side". The grid gets away with that because
+   its cards are flush tiles by design (the H&M treatment); a rail of separate
+   photographs with rounded corners just looks cut off. So the left edge now
+   lines up with the heading and the paragraphs at every width, and only the
+   right runs off.
 
    `calc(50% - 50vw)` is negative whenever the viewport is wider than this box,
    which pulls the edge out to the screen. 100vw INCLUDES the scrollbar on
@@ -1117,9 +1125,6 @@ html[data-input-modality="mouse"] summary:focus-visible {
    horizontal overflow — measured at 390/768/1006/1440 in both engines before
    shipping, and again after. */
 .edit-rail-bleed { margin-right: calc(50% - 50vw); }
-@media (max-width: 767px) {
-  .edit-rail-bleed { margin-left: calc(50% - 50vw); }
-}
 
 /* Edge-to-edge on a phone (Tina's reference: H&M's mobile grid) — the two
    photos fill the viewport width with no page margin and almost no gap
