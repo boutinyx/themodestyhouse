@@ -110,3 +110,53 @@ overwrite the shared `.next` under it (CLAUDE.md §10.28 rule 4).
 - Checked at 1440 and 390 only. The md boundary (768px) is where the one-column /
   two-column switch happens and is the width most worth a look on the next full
   `audit:visual` pass.
+
+---
+
+## Follow-up, 2026-08-25 — sub-columns pulled together and centred
+Tina, on the result above: *"put them closr together center."*
+
+The two sub-columns sat **262px apart** with a hole between them, left-packed
+under the span. Now they are content-width, 40px apart, and the pair is centred
+in the span with the "Products" eyebrow centred over it.
+
+### What changed
+`listClassName` on the Products column:
+```
+- grid grid-cols-1 md:grid-flow-col md:grid-rows-7 gap-x-8 gap-y-2
++ grid grid-cols-1 md:grid-cols-none md:grid-flow-col md:grid-rows-7
++ md:auto-cols-max md:justify-center md:text-left gap-x-10 gap-y-2
+```
+plus `md:text-center` on the column so the eyebrow centres over its own list.
+`md:text-left` puts the row text back to left-aligned inside each sub-column —
+centring the individual links leaves both edges ragged.
+
+### The bit that did not work first time
+`md:auto-cols-max` alone changed **nothing** — re-measured at an unchanged 262px.
+`auto-cols-max` sets `grid-auto-columns`, which only sizes **implicit** tracks,
+and the base `grid-cols-1` (there for mobile) leaves an **explicit** `1fr` first
+column in force at every width. So sub-column one kept absorbing all the free
+space and shoved sub-column two to the right. `md:grid-cols-none` clears the
+template at md, making both tracks implicit so both take `max-content`. That
+class is load-bearing, not tidying.
+
+### Verification
+Same Playwright measurement as above, before → after at 1440:
+
+| | before | after |
+|---|---|---|
+| sub-column x positions | 429, 691 | **490, 630** |
+| gap between them | 262px | **140px** (col 1 width + the 40px gutter) |
+| list centre | 625 | 625 |
+| heading centre | 625 | 625 |
+
+`headingCentre === listCentre === 625` is the centring assertion — the eyebrow and
+the pair share a centre line. At 900px the same holds (both 341). At 390px
+`subColumnXs` is a single value (32), so mobile is still one left-aligned column.
+
+```
+$ npx tsc --noEmit   TSC=0
+$ npx eslint components/Footer.tsx   LINT=0
+$ npm test           741 passed (741)
+```
+Screenshotted at 1440, 900 and 390.

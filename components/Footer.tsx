@@ -98,14 +98,34 @@ export function Footer() {
             /* Two of the five tracks — the track the "More" column used to hold
                is exactly what this takes over, so the template below is
                unchanged and nothing else moves. */
-            className="md:col-span-2"
+            className="md:col-span-2 md:text-center"
             /* grid-flow-col + a fixed row count fills DOWN the first sub-column
                and then down the second (7 then 6), which is how a reader scans
                a list. Plain `grid-cols-2` would flow across — 1,2 / 3,4 — and
                interleave the two halves.
-               MOBILE STAYS ONE COLUMN: at 390px each half would be ~150px and
-               "Cardigans & Sweaters" wraps to three lines. */
-            listClassName="grid grid-cols-1 md:grid-flow-col md:grid-rows-7 gap-x-8 gap-y-2"
+
+               `auto-cols-max` + `justify-center`, 2026-08-25 (Tina: "put them
+               closr together center"). Implicit grid tracks default to `auto`,
+               which STRETCHES to fill free space exactly like 1fr — so across a
+               two-track span the pair sat 264px apart with a hole between them.
+
+               `md:grid-cols-none` is load-bearing and was the first fix that did
+               NOT work without it: `auto-cols-max` sets grid-auto-columns, which
+               only sizes IMPLICIT tracks. The base `grid-cols-1` (mobile) leaves
+               an EXPLICIT 1fr first column in force at every width, so sub-column
+               one kept absorbing all the free space and shoved sub-column two
+               right — measured unchanged at 262px apart. Clearing the template at
+               md makes both tracks implicit, so both take max-content.
+               `max-content` sizes each sub-column to its longest label, and
+               `justify-center` centres the resulting pair in the span; the
+               eyebrow above it is centred by `md:text-center` on the column so
+               the heading stays over its own list. `md:text-left` puts the row
+               text back to left-aligned inside each sub-column — centring the
+               individual links would leave both edges ragged.
+
+               MOBILE STAYS ONE COLUMN, left-aligned: at 390px each half would be
+               ~150px and "Cardigans & Sweaters" wraps to three lines. */
+            listClassName="grid grid-cols-1 md:grid-cols-none md:grid-flow-col md:grid-rows-7 md:auto-cols-max md:justify-center md:text-left gap-x-10 gap-y-2"
           >
             {CATEGORY_LANES.map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
