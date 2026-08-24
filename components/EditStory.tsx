@@ -1,5 +1,39 @@
+import Link from 'next/link';
 import type { Edit } from '@/lib/edits';
 import { EditStoryRail } from './EditStoryRail';
+
+/**
+ * Renders `[label](/path)` inside a styling paragraph as a real internal link.
+ *
+ * A deliberately tiny subset of markdown — links only, internal only. The copy
+ * lives in lib/edits.ts as plain strings and Tina writes it there; asking her
+ * to hand-write JSX to link a word would be the wrong trade. Nothing else is
+ * parsed, so a stray bracket renders as a bracket rather than as broken markup.
+ *
+ * Internal only is a rule, not an oversight: an outbound link from body copy
+ * would need rel="sponsored" (§6/FTC) and that decision belongs at the link,
+ * not hidden in a text parser.
+ */
+const LINK = /\[([^\]]+)\]\((\/[^)]*)\)/g;
+function withLinks(text: string) {
+  const out: React.ReactNode[] = [];
+  let last = 0;
+  for (const m of text.matchAll(LINK)) {
+    if (m.index! > last) out.push(text.slice(last, m.index));
+    out.push(
+      <Link
+        key={`${m[2]}-${m.index}`}
+        href={m[2]}
+        style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 3 }}
+      >
+        {m[1]}
+      </Link>,
+    );
+    last = m.index! + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
 
 /**
  * The styling text for an edit, plus the street photographs that go with it.
@@ -29,7 +63,7 @@ export function EditStory({ edit }: { edit: Edit }) {
         <div className="mt-6 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl">
           {edit.styling.paragraphs.map((p) => (
             <p key={p.slice(0, 40)} style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
-              {p}
+              {withLinks(p)}
             </p>
           ))}
         </div>
@@ -77,7 +111,7 @@ export function EditStory({ edit }: { edit: Edit }) {
           <div className="mt-10 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl">
             {edit.styling.paragraphsBelow.map((p) => (
               <p key={p.slice(0, 40)} style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
-                {p}
+                {withLinks(p)}
               </p>
             ))}
           </div>

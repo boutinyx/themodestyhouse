@@ -77,10 +77,25 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
         // hook's measurement is correct and shared with the buttons. Only the
         // PAINTING is opinionated.
         data-fade={canRight ? 'end' : 'none'}
-        // 90px -> 44px. The wide default was tuned for PopularShowcase's much
-        // bigger cards; at this size it was washing out most of the last
-        // photograph rather than hinting at it.
-        style={{ ['--fade-to' as string]: 'var(--parchment)', ['--fade-size-x' as string]: '44px' }}
+        // THE FADE REACHES THE ARROW. Tina, pointing at it: "you see where the
+        // arrow is? the transparnecy thing needs to be till there".
+        //
+        // They were 148px apart at 1440 and the reason is worth writing down:
+        // the fade lives on THIS element, which bleeds to the screen edge,
+        // while the arrows are absolutely positioned against the outer
+        // `div.relative` — which does NOT bleed, so `right: 6` means 6px from
+        // the CONTENT COLUMN, not from the screen. Two different right edges.
+        //
+        //   fade = (strip beyond the column) + 6px offset + 32px arrow
+        //   strip = (100vw - min(1220px, 100vw)) / 2 + 32px   (half gutter + px-8)
+        //
+        // which lands the fade's left edge exactly on the arrow's: 70px at
+        // 1006, 144px at 1368, 180px at 1440. A constant cannot do this — the
+        // strip is 0 below 1220 and grows with every pixel above it.
+        style={{
+          ['--fade-to' as string]: 'var(--parchment)',
+          ['--fade-size-x' as string]: 'calc((100vw - min(1220px, 100vw)) / 2 + 70px)',
+        }}
       >
         {/* overflow-y-hidden is load-bearing: per the CSS Overflow spec,
             setting overflow-x to a non-visible value while overflow-y is left

@@ -215,7 +215,7 @@ export const EDITS: Edit[] = [
       h2: 'Why lace works, and what to put it with',
       paragraphs: [
         'Lace adds detail without changing the outfit. That is the whole reason it earns a place in an everyday wardrobe — you are not rebuilding a look, you are giving one you already own the bit of flair it was missing. If something feels boring, you do not need a different outfit. You need one lace piece in it.',
-        'The rule is to wear it with something structured. Structured does not mean stiff, and it does not mean the opposite of flowy — a satin skirt is flowy and still structured, because it falls in one straight line. It moves, but it never goes soft. Soft is the thing to avoid: lace against soft reads as one blurry texture and you lose the lace completely.',
+        'The rule is to wear it with something structured. Structured does not mean stiff, and it does not mean the opposite of flowy — a satin [skirt](/modest-skirts) is flowy and still structured, because it falls in one straight line. It moves, but it never goes soft. Soft is the thing to avoid: lace against soft reads as one blurry texture and you lose the lace completely.',
       ],
       paragraphsBelow: [
         'Denim is the easiest version of this. It works because it is soft against hard, and those two are about as far apart as fabrics get, so each one makes the other more obvious. A lace top under a denim jacket. A lace-trim scarf with jeans. You do not have to think about it beyond that.',
