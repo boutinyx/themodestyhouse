@@ -198,12 +198,14 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
           >
             {edit.eyebrow}
           </p>
-          <p
-            className="mt-4"
-            style={{ color: 'rgba(251,250,246,0.9)', fontFamily: 'var(--font-ui)', fontSize: 16 }}
-          >
-            {edit.dek}
-          </p>
+          {edit.dek && (
+            <p
+              className="mt-4"
+              style={{ color: 'rgba(251,250,246,0.9)', fontFamily: 'var(--font-ui)', fontSize: 16 }}
+            >
+              {edit.dek}
+            </p>
+          )}
         </div>
       </section>
 

@@ -35,8 +35,13 @@ export type Edit = {
   title: string;
   /** Small caps line under it — the "HIGH SUMMER 2026" slot. */
   eyebrow: string;
-  /** One line of hero copy. Kept short: it sits over a photograph. */
-  dek: string;
+  /**
+   * One line of hero copy under the title. OPTIONAL — Tina removed Everyday
+   * Lace's ("Not saved for the occasion.") on 2026-08-24, so both surfaces that
+   * render it (EditBanner and the edit page hero) guard on it. An edit with no
+   * dek shows title + eyebrow only.
+   */
+  dek?: string;
   /** Hero photograph, from public/. Give a NEW filename when replacing it —
    *  public/ is served with a 4h cache and is not fingerprinted (CLAUDE.md §6). */
   image: string;
@@ -179,7 +184,6 @@ export const EDITS: Edit[] = [
     slug: 'everyday-lace',
     title: 'Everyday Lace',
     eyebrow: 'The Edit · Autumn 2026',
-    dek: 'Not saved for the occasion.',
     // Tina's own shot, supplied 2026-08-24, replacing the borrowed placeholder.
     // It is the lace belt from her own list of lace types — a black lace sash
     // tied over a structured butter-yellow jacket and a brown satin column

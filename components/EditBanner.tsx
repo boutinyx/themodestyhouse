@@ -116,19 +116,37 @@ export function EditBanner({ edit }: { edit: Edit }) {
         >
           {edit.title}
         </h2>
-        <p
-          className="mt-4"
-          style={{ color: 'rgba(251,250,246,0.9)', fontFamily: 'var(--font-ui)', fontSize: 17, maxWidth: 460 }}
-        >
-          {edit.dek}
-        </p>
+        {edit.dek && (
+          <p
+            className="mt-4"
+            style={{ color: 'rgba(251,250,246,0.9)', fontFamily: 'var(--font-ui)', fontSize: 17, maxWidth: 460 }}
+          >
+            {edit.dek}
+          </p>
+        )}
+        {/* An underlined link, not a pill. Tina, 2026-08-24: "i want this
+            underlined instead of a border". `.btn-pill` is a filled, uppercase
+            Marcellus button — the site's loudest control — and over a
+            full-bleed campaign photograph it read as a form element pasted
+            onto an image. The underline keeps the affordance without the box.
+
+            The underline is on the TEXT span, not the <a>: the anchor is an
+            inline-flex row with the arrow in it, so decorating the anchor would
+            leave the rule running under the gap and stopping short of the icon
+            (text-decoration does not draw across a replaced SVG child). */}
         <div className="mt-8">
           <Link
             href={`/edits/${edit.slug}`}
-            className="btn-pill inline-flex items-center gap-2"
-            style={{ background: 'var(--parchment)', color: 'var(--ink)' }}
+            className="inline-flex items-center gap-2"
+            style={{
+              color: 'var(--parchment)',
+              fontFamily: 'var(--font-label-stack)',
+              letterSpacing: 'var(--track-label)',
+              textTransform: 'uppercase',
+              fontSize: 13,
+            }}
           >
-            Shop the edit
+            <span style={{ textDecoration: 'underline', textUnderlineOffset: 6 }}>See our picks</span>
             <ArrowRight size={13} weight="bold" />
           </Link>
         </div>
