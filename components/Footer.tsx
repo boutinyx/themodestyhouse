@@ -123,9 +123,18 @@ export function Footer() {
                text back to left-aligned inside each sub-column — centring the
                individual links would leave both edges ragged.
 
+               GUTTER: gap-x-20 (80px). Went 32 -> 40 -> 80; Tina on the 40px
+               version: "not that close". 80 is the value that matches the ~73px
+               gutter between the footer's other columns (Products->Editorial,
+               Editorial->The House), so the whole row reads at one rhythm rather
+               than the Products pair having a tighter internal rhythm than
+               everything beside it. Rendered 40/64/80/96/112 side by side before
+               picking.
+
                MOBILE STAYS ONE COLUMN, left-aligned: at 390px each half would be
-               ~150px and "Cardigans & Sweaters" wraps to three lines. */
-            listClassName="grid grid-cols-1 md:grid-cols-none md:grid-flow-col md:grid-rows-7 md:auto-cols-max md:justify-center md:text-left gap-x-10 gap-y-2"
+               ~150px and "Cardigans & Sweaters" wraps to three lines. (gap-x is
+               inert there — one column has no column gap.) */
+            listClassName="grid grid-cols-1 md:grid-cols-none md:grid-flow-col md:grid-rows-7 md:auto-cols-max md:justify-center md:text-left gap-x-20 gap-y-2"
           >
             {CATEGORY_LANES.map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>

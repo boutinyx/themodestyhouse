@@ -160,3 +160,23 @@ $ npx eslint components/Footer.tsx   LINT=0
 $ npm test           741 passed (741)
 ```
 Screenshotted at 1440, 900 and 390.
+
+### Gutter widened again, same day — Tina: *"not that close"*
+40px was too tight. Rendered 40 / 64 / 80 / 96 / 112 side by side (overriding
+`column-gap` in the live page rather than five edit-and-rebuild cycles) and picked
+**80px** — `gap-x-10` → `gap-x-20`.
+
+80 is the value that matches the ~73px gutter between the footer's other columns
+(Products→Editorial, Editorial→The House), so the whole row reads at one rhythm
+instead of the Products pair having a tighter internal rhythm than everything
+beside it.
+
+Final measurement:
+
+| width | sub-column x | gap | column-gap | list centre | heading centre |
+|---|---|---|---|---|---|
+| 1440 | 470, 650 | 180px | 80px | 625 | 625 |
+| 900 | 185, 366 | 181px | 80px | 341 | 341 |
+| 390 | 32 | — (one column) | 80px, inert | 104 | 104 |
+
+`npx tsc --noEmit` 0 · `npx eslint components/Footer.tsx` 0 · `npm test` 741 passed.
