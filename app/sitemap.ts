@@ -4,6 +4,7 @@ import { getPosts } from '@/lib/posts';
 import { sitemapSubtypesForLane } from '@/lib/laneSubtypes';
 import { BRANDS } from '@/data/brands';
 import { hasBrandPage } from '@/lib/brandPages';
+import { EDITS } from '@/lib/edits';
 
 const BASE = 'https://themodestyhouse.com';
 
@@ -97,6 +98,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // /edits/[slug] — added 2026-08-24 with the route itself, in the same commit,
+  // which is the only reliable way to avoid the §8 trap this file's own header
+  // describes: a route family that exists but is absent here is silently
+  // orphaned, and nothing fails.
+  const edits: MetadataRoute.Sitemap = EDITS.map((e) => ({
+    url: `${BASE}/edits/${e.slug}`,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
   const posts: MetadataRoute.Sitemap = getPosts().map((p) => ({
     url: `${BASE}/editorial/${p.slug}`,
     lastModified: p.date, // ISO yyyy-mm-dd, from content/editorial/*.md frontmatter
@@ -104,5 +115,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...pages, ...subtypes, ...brands, ...posts];
+  return [...pages, ...subtypes, ...brands, ...edits, ...posts];
 }

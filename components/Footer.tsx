@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { PinterestLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr';
 import { CATEGORY_LANES, LANES } from '@/lib/lanes';
+import { EDITS } from '@/lib/edits';
 import { NewsletterSignup } from './NewsletterSignup';
 import { FooterCurrency } from './FooterCurrency';
 
@@ -114,6 +115,16 @@ export function Footer() {
               just the section link. */}
           <Col head="Editorial">
             <FLink href="/editorial">The Edit</FLink>
+            {/* Every live /edits/[slug], from lib/edits.ts — so a new edit is
+                linked the moment it exists. A page can be in the sitemap and
+                still be reachable from nowhere (§8), and internal links are what
+                pass ranking signal; the sitemap only gets it crawled. Note the
+                footer's lane columns render CATEGORY_LANES, which an edit is
+                deliberately not part of — see lib/edits.ts for why an edit is
+                not a lane. */}
+            {EDITS.map((e) => (
+              <FLink key={e.slug} href={`/edits/${e.slug}`}>{e.title}</FLink>
+            ))}
           </Col>
 
           {/* col-span-2 on a phone. This column carries the sign-up pill, and in

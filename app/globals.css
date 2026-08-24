@@ -672,6 +672,45 @@ button {
    into the photograph. brightness(0) crushes it to black and invert(1) lifts
    that to white — one filter, no second asset to keep in sync, and it cannot
    drift out of step with the wordmark beside it. */
+/* The /edits/[slug] campaign hero (app/edits/[slug]/page.tsx).
+   Aspect ratio lives here rather than inline because an inline style cannot
+   carry a media query, and the two ratios are genuinely different shapes, not
+   one shape at two sizes.
+
+   MEASURED off aabcollection.com with Playwright on 2026-08-24 rather than
+   guessed — Tina's read was "16:9 desktop, something around 3:2 phone", and the
+   desktop half was exactly right:
+     1440 viewport -> 1440x806  = 1.787
+     1920 viewport -> 1920x1075 = 1.786   i.e. 16/9 (1.778)
+   The phone is not 3:2 and not landscape at all:
+     390 viewport  -> 390x624   = 0.625   i.e. 5/8, PORTRAIT
+   0.625 is a little taller than 2:3 (0.667), so 5/8 is used as measured.
+
+   max-height is a guard, not part of the reference: at 767px the 5/8 ratio
+   alone would compute a 1227px-tall hero, which is nobody's intent. The image
+   is object-fit: cover, so the cap crops rather than distorts. */
+.edit-hero {
+  /* width:100% is load-bearing, not tidying. With `aspect-ratio` + `max-height`
+     and width:auto, once max-height clamps the height the browser resolves the
+     WIDTH back through the ratio — measured at a 1920 viewport: 1766x994
+     instead of 1920x1080, i.e. 154px of bare background beside a "full-bleed"
+     hero. Pinning the width means only the height is ever clamped, and
+     object-fit: cover on the photograph absorbs the crop. */
+  width: 100%;
+  aspect-ratio: 5 / 8;
+  max-height: 82svh;
+}
+@media (min-width: 768px) {
+  .edit-hero {
+    aspect-ratio: 16 / 9;
+    /* No cap here, deliberately. A 92svh cap was tried and removed the same
+       hour: at 1920x1080 it clamped the hero to 1920x994 (ratio 1.93) when the
+       reference is a true 1920x1075. 16:9 is never an absurd height the way the
+       5/8 mobile ratio can be on a wide phone, so it needs no guard. */
+    max-height: none;
+  }
+}
+
 /* The header's inline search field (components/HeaderSearch.tsx). Only the
    placeholder lives here: everything else on that input is an inline style,
    because it reads var(--header-fg) and has to follow the over-hero mode.

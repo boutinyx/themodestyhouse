@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import type { Product, Vibe } from '@/lib/types';
+import type { Edit } from '@/lib/edits';
 import { LANES } from '@/lib/lanes';
 import { brandVibe } from '@/lib/vibes';
 import { isSpecialty } from '@/lib/specialty';
@@ -74,6 +75,26 @@ export function productsForLane(slug: string): Product[] {
  */
 export function productsForBrand(slug: string): Product[] {
   return getProducts().filter((p) => p.brandSlug === slug);
+}
+
+/**
+ * Pieces in an edit (/edits/[slug] — see lib/edits.ts).
+ *
+ * Lives here rather than beside the edit definitions so that lib/edits.ts stays
+ * free of any runtime import from this module: Footer imports the edit list,
+ * and this file reaches `node:fs` (Invariant 10).
+ *
+ * Reads `getProducts()` — everything published — rather than `browseProducts()`.
+ * That is a deliberate, per-edit exception to Invariant 5, gated on the edit's
+ * own `includeHijabs` flag, which defaults to off; when it is off the hijab
+ * exclusion is re-applied here so the default matches the invariant. See the
+ * flag's own comment in lib/edits.ts for why an edit is the case that rule did
+ * not anticipate.
+ */
+export function productsForEdit(edit: Edit): Product[] {
+  return getProducts().filter(
+    (p) => p.inStock !== false && edit.match(p) && (edit.includeHijabs ? true : p.garment !== 'hijab'),
+  );
 }
 
 export function productsForVibe(vibe: Vibe): Product[] {

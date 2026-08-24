@@ -156,8 +156,12 @@ const MUST_SURVIVE = [
   "Vibrant Plaid Scarf Faux Wool Warm Shawl with Fringe (MAC334)",
   "Modest Shoulder-Cover Base Layer Versatile Sleeveless Inner Top with Attached Sleeves | One Size (MAC409)",
   "The Jane Kurung In Bask",
-  "Denim Blue Aghabani Bisht- Final Sale",
-  "Pearl Cream SE Belted Jacket - Final Sale",
+  // Both re-titled by Summer Evenings on the 2026-08-24 refresh — they simply
+  // dropped the "- Final Sale" suffix. Same two products, same brand, same rule
+  // (an obscure garment noun and a jacket must both survive the veto); only the
+  // string moved. Exactly the §10.19 failure mode this guard exists to surface.
+  "Denim Blue Aghabani Bisht",
+  "Pearl Cream SE Belted Jacket",
   "DALIA Silk-Linen Tied Outerwear",
   "The Heartline Jumper in Sugar Pink",
   "Magnetic Chiffon Instant Hijab | Easy-Wear Anti-Slip Square Scarf with Magnetic Closure (MH152)",
