@@ -374,12 +374,20 @@ export const EDITS: Edit[] = [
     // Darker than the lace hero's 0.26 — "i want a darker overlay on this one".
     // The copy sits on the photograph here rather than on empty background, and
     // the gold reflections behind it are bright enough to eat white type.
-    // ONE value, every screen. "overlay on mobile is more? but i siad evenly
-    // on both things" — `heroWashEven` had only been doing half the job: flat
-    // ACROSS the frame, but still 0.66 on small screens against 0.46 on
-    // desktop. Evenly means both. 0.66 is the number she last asked for when
-    // she asked for darker, so that is the one kept.
-    heroWash: 0.66,
+    // ONE value, every screen — "evenly on both things".
+    //
+    // 0.40, not the 0.66 this was first set to. Worth writing down WHY that was
+    // wrong, because the number looked right: 0.66 was the PEAK of a gradient
+    // that ran 0.66 -> 0.33 -> 0.04 down the frame, so its average was about
+    // 0.34. Carrying the same number over to a FLAT wash applied it everywhere
+    // and roughly doubled the actual darkening — "overlay is too dark now".
+    //
+    // A peak and an average are not the same measurement, and switching from a
+    // gradient to a flat fill silently swaps one for the other. 0.40 sits a
+    // little above the old mobile average, so it still reads darker than the
+    // hero did before she asked for darker, without the flat wash flattening
+    // the gold in the mirrors.
+    heroWash: 0.40,
     heroWashEven: true,
     // Written to the query this page is FOR. `jersey hijab` is the largest term
     // in this territory — 5x `lace abaya`, 2.2x `hijab styles`, 3x `instant
