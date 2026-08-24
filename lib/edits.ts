@@ -276,6 +276,59 @@ export const EDITS: Edit[] = [
     match: (p) => /\blace\b/i.test(p.title) && !LACE_UP.test(p.title) && !NOT_A_GARMENT.test(p.title),
     includeHijabs: true,
   },
+  {
+    slug: 'jersey-hijabs',
+    title: 'Jersey Hijabs',
+    eyebrow: 'The Edit · Autumn 2026',
+    dek: 'The one you actually wear.',
+    // PLACEHOLDER HERO — borrowed from public/editorial so the page is real and
+    // shippable today. It is NOT a jersey shot. Replace with a proper one under
+    // a NEW filename (public/ is cached 4h and unfingerprinted — §6, §10.21),
+    // run `node scripts/optimise-images.mjs`, then update image/imageMobile,
+    // both ratios and both width lists together.
+    image: '/editorial/silhouette.jpg',
+    imageMobile: '/editorial/silhouette.jpg',
+    imageRatio: 1696 / 960,
+    imageMobileRatio: 1696 / 960,
+    imageWidths: [400, 900],
+    imageMobileWidths: [400, 900],
+    imageAlt: 'A woman in a draped jersey hijab',
+    // Written to the query this page is FOR. `jersey hijab` is the largest term
+    // in this territory — 5x `lace abaya`, 2.2x `hijab styles`, 3x `instant
+    // hijab` on one shared Trends scale — and its SERP is entirely collection
+    // and product pages, which is the format this route already is.
+    // Deliberately NOT "guide to..." or "how to wear...": measured, `jersey
+    // hijab tutorial` and `jersey hijab styles` are both 0.00, and `hijab
+    // tutorial` (0.73) is video intent that YouTube owns. The how-to-wear
+    // section lives INSIDE the page instead.
+    // The three modifiers in the subtitle are the real rising ones: premium
+    // +130%, bamboo +160%, liquid jersey +950% in the UK.
+    seoTitle: 'Jersey Hijabs — Premium, Bamboo and Liquid Jersey',
+    seoDescription:
+      'Jersey hijabs from independent modest houses worldwide — premium, bamboo, liquid jersey and instant styles, from £5. Prices and links to each brand.',
+    styling: {
+      h2: 'What makes a good jersey hijab',
+      paragraphs: [
+        'YOUR BIT — the opening. What separates a jersey you keep from one you stop reaching for? Weight, grip, how it holds a fold? You said this was the single most useful thing you could write for anyone copying the look.',
+        'YOUR BIT — the fabrics. Premium, bamboo, liquid, ribbed. These are the four the search data says people are actually looking for, and they are four different things. What is the difference in the hand, and which one is for which day?',
+      ],
+      paragraphsBelow: [
+        'YOUR BIT — how to wear it. This is where the tie tutorial goes once you send me the video.',
+        'YOUR BIT — the close. The one thing to buy, or the mistake to avoid.',
+      ],
+    },
+    /**
+     * Jersey hijabs only, until Tina curates in /staff/curate.
+     *
+     * `\bjersey\b` on the title AND garment === 'hijab': the word alone also
+     * catches jersey skirts, dresses and abayas (195 of the 1,595 jersey pieces
+     * are not hijabs), and this edit is named for the hijab.
+     */
+    match: (p) => /\bjersey\b/i.test(p.title) && p.garment === 'hijab' && !NOT_A_GARMENT.test(p.title),
+    // Not optional here — the entire edit is hijabs, so the Invariant 5
+    // exception is the point rather than a compromise. See the flag's own note.
+    includeHijabs: true,
+  },
 ];
 
 export function editBySlug(slug: string): Edit | undefined {
