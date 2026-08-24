@@ -3,6 +3,7 @@ import Link from 'next/link';
 // ssr entrypoint: app/page.tsx is a server component (CLAUDE.md §6).
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { newlyVerified, categoryCards } from '@/lib/houses';
+import CategoryQuickLinks from '@/components/CategoryQuickLinks';
 import PopularShowcase from '@/components/PopularShowcase';
 import { EditBanner } from '@/components/EditBanner';
 import { EDITS } from '@/lib/edits';
@@ -407,12 +408,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The brand banner that stood here from 2026-08-23 moved ABOVE the
-          header the same day (Tina: "i want it above the header"), so it now
-          lives in app/layout.tsx and appears on every page rather than only
-          this one. Nothing replaced it here — the "All categories" section
-          further down already links every lane as a card, which is why
-          dropping CategoryQuickLinks cost nothing in the first place. */}
+      {/* CATEGORY QUICK LINKS — the Abayas/Dresses/Sets/Hijabs/Occasion icon
+          strip, restored here 2026-08-24 ("can i get this strip back but make
+          the icons and text purple"), in its original position as a sibling
+          <section> immediately after the hero — the same slot the 2026-08-22
+          revert put it back into before it was dropped again.
+          Its icons, labels and arrows are now `--aubergine` rather than
+          brass/ink; the parchment background is unchanged. See the component's
+          own header comment for why aubergine and not plum.
+
+          (The brand banner that briefly stood in this slot from 2026-08-23
+          moved ABOVE the header the same day — Tina: "i want it above the
+          header" — so it lives in app/layout.tsx now and is not affected.) */}
+      <CategoryQuickLinks />
 
       {/* POPULAR ITEMS — full-bleed showcase rail, replaced the StyleIt
           mix-and-match picker 2026-08-23 (Tina: "instead of our 'Every

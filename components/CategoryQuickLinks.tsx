@@ -29,6 +29,19 @@ import { LANES } from '@/lib/lanes';
  * closest honest stand-ins within the house icon set (CLAUDE.md §6: every
  * icon comes from Phosphor, never hand-drawn line art), not literal
  * abaya/hijab silhouettes the way the reference's own icons are.
+ *
+ * COLOUR, 2026-08-24 — Tina: "can i get this strip back but make the icons and
+ * text purple." Icon, label and arrow were `--brass` / `--ink` / `--brass`; all
+ * three are now `--aubergine` (#441943), the brand's dark purple. Aubergine and
+ * not `--plum` (#6e4a6b) because the label sits at 13px with 0.14em tracking on
+ * `--parchment` and plum would lighten it noticeably against the ink it
+ * replaces; aubergine keeps the strip's weight and only changes its hue.
+ * Contrast on parchment is ~9.9:1, well past AA.
+ *
+ * NOT the same request as 2026-08-22's purple round, which put aubergine/
+ * blackberry on the tile BACKGROUNDS with white text and was reverted whole
+ * (docs/log/2026-08-22-revert-hero-zoom-and-category-band.md). The background
+ * stays parchment here; only the foreground is purple.
  */
 function findLane(slug: string) {
   const lane = LANES.find((l) => l.slug === slug);
@@ -60,7 +73,7 @@ export default function CategoryQuickLinks() {
             className="group flex flex-shrink-0 lg:flex-1 flex-col items-center justify-center gap-3 py-8 px-6 text-center min-w-[150px] lg:min-w-0"
             style={{ borderRight: i < ITEMS.length - 1 ? '1px solid var(--hairline)' : undefined }}
           >
-            <Icon size={26} weight="thin" style={{ color: 'var(--brass)' }} aria-hidden="true" />
+            <Icon size={26} weight="thin" style={{ color: 'var(--aubergine)' }} aria-hidden="true" />
             <span
               className="inline-flex items-center gap-1.5 whitespace-nowrap"
               style={{
@@ -68,7 +81,7 @@ export default function CategoryQuickLinks() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.14em',
                 fontSize: 13,
-                color: 'var(--ink)',
+                color: 'var(--aubergine)',
               }}
             >
               {label}
@@ -76,7 +89,7 @@ export default function CategoryQuickLinks() {
                 size={12}
                 weight="bold"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
-                style={{ color: 'var(--brass)' }}
+                style={{ color: 'var(--aubergine)' }}
               />
             </span>
           </Link>
