@@ -172,10 +172,15 @@ const JOBS = [
     // NEW FILENAME rather than overwriting — public/ is served with a 4h cache
     // and is not fingerprinted, so new bytes at an old path are invisible to
     // anyone who already loaded the page (§6, §10.21).
+    // Quality 95 / effort 6, and widths up to 3840 — Tina asked for the highest
+    // quality upload. The source is 5504px so every width here is real
+    // downscaling, never an upscale. 3840 covers a 1920 CSS viewport at 2x DPR,
+    // which is the widest common case; going to the native 5504 would add
+    // megabytes for a difference no display can resolve.
     file: 'edit-lace-hero-v2.jpg',
-    widths: [640, 1024, 1440, 1920, 2400],
+    widths: [640, 1024, 1440, 1920, 2400, 3200, 3840],
     suffixWidth: true,
-    opts: { quality: 88, effort: 5 },
+    opts: { quality: 95, effort: 6 },
   },
   {
     // Same hero, phone. v2 is 1920x2571 — a genuinely different SHAPE from the
@@ -185,10 +190,12 @@ const JOBS = [
     // components/EditBanner.tsx and app/edits/[slug]/page.tsx.
     // 1170 covers a 390px CSS phone at 3x DPR, which the 588px v1 crop could
     // not — that was a ~2x stretch.
+    // Same quality bump. 1920 is the source's own width, so this set already
+    // tops out at native — there is nothing above it to add.
     file: 'edit-lace-hero-mobile-v2.jpg',
-    widths: [390, 780, 1170, 1920],
+    widths: [390, 780, 1170, 1560, 1920],
     suffixWidth: true,
-    opts: { quality: 88, effort: 5 },
+    opts: { quality: 95, effort: 6 },
   },
   {
     // Full-bleed band on /about. Same job as the hero — it spans the viewport,

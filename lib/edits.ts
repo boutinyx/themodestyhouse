@@ -146,8 +146,8 @@ export const EDITS: Edit[] = [
     imageMobile: '/edit-lace-hero-mobile-v2.jpg',
     imageRatio: 5504 / 3072,
     imageMobileRatio: 1920 / 2571,
-    imageWidths: [640, 1024, 1440, 1920, 2400],
-    imageMobileWidths: [390, 780, 1170, 1920],
+    imageWidths: [640, 1024, 1440, 1920, 2400, 3200, 3840],
+    imageMobileWidths: [390, 780, 1170, 1560, 1920],
     imageAlt:
       'A woman in a brown hijab and sunglasses leaning in a doorway, wearing a black lace sash tied over a butter-yellow jacket and a brown satin maxi skirt',
     seoTitle: 'Everyday Lace — Lace Hijabs, Abayas and Dresses',
