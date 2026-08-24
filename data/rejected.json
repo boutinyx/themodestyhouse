@@ -40530,15 +40530,6 @@
     "evidence": "26500 TRY (~$555)"
   },
   {
-    "id": "baqa:9354018390267",
-    "brandSlug": "baqa",
-    "title": "V Yaka Baskı Detaylı Elbise",
-    "url": "https://baqaofficial.com/products/v-yaka-baski-detayli-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "34500 TRY (~$723)"
-  },
-  {
     "id": "baqa:9354470228219",
     "brandSlug": "baqa",
     "title": "Pileli Asimetrik Bluz",
@@ -42571,5 +42562,15 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "fares:8514014347455",
+    "brandSlug": "fares",
+    "title": "Printed Wrap Belt Button Up - Mocha",
+    "url": "https://shopfares.com/products/printed-wrap-belt-button-up-mocha",
+    "garmentWas": "top",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
   }
 ]
