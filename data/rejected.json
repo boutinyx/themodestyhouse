@@ -25170,16 +25170,6 @@
     "evidence": "Hijab Magnet"
   },
   {
-    "id": "aab:9722158121274",
-    "brandSlug": "aab",
-    "title": "Monochrome Scrunchie",
-    "url": "https://us.aabcollection.com/products/monochrome-scrunchie",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hair",
-    "tier": "B",
-    "evidence": "Scrunchie"
-  },
-  {
     "id": "aab:9028425711930",
     "brandSlug": "aab",
     "title": "Matte Turquoise Hijab Magnet",
@@ -25810,7 +25800,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "553 GBP (~$747)"
+    "evidence": "557 GBP (~$752)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -25819,7 +25809,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "553 GBP (~$747)"
+    "evidence": "557 GBP (~$752)"
   },
   {
     "id": "avyaana:8267050516618",
@@ -25828,7 +25818,7 @@
     "url": "https://avyaana.com/products/manar-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "434 GBP (~$586)"
+    "evidence": "437 GBP (~$590)"
   },
   {
     "id": "avyaana:8267053432970",
@@ -25837,7 +25827,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 GBP (~$782)"
+    "evidence": "583 GBP (~$787)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -25846,7 +25836,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 GBP (~$782)"
+    "evidence": "583 GBP (~$787)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -25855,7 +25845,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 GBP (~$782)"
+    "evidence": "583 GBP (~$787)"
   },
   {
     "id": "avyaana:8267050844298",
@@ -25864,7 +25854,7 @@
     "url": "https://avyaana.com/products/nyla-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "434 GBP (~$586)"
+    "evidence": "437 GBP (~$590)"
   },
   {
     "id": "avyaana:8267050713226",
@@ -25873,7 +25863,7 @@
     "url": "https://avyaana.com/products/roha-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "434 GBP (~$586)"
+    "evidence": "437 GBP (~$590)"
   },
   {
     "id": "avyaana:8267050614922",
@@ -25882,7 +25872,7 @@
     "url": "https://avyaana.com/products/ghazal-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "434 GBP (~$586)"
+    "evidence": "437 GBP (~$590)"
   },
   {
     "id": "fares:7648008044735",
@@ -26317,6 +26307,15 @@
     "evidence": "2205 AED (~$600)"
   },
   {
+    "id": "chi-ka:8519951057057",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Purple Print RTW",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-purple-print-rtw",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
     "id": "chi-ka:8519950008481",
     "brandSlug": "chi-ka",
     "title": "Coat-Style Abaya in Grey Green Linen with Palm Leaf Pattern RTW",
@@ -26596,6 +26595,15 @@
     "evidence": "2205 AED (~$600)"
   },
   {
+    "id": "chi-ka:8514043478177",
+    "brandSlug": "chi-ka",
+    "title": "Butterfly Abaya in Black with Purple Print",
+    "url": "https://chikacollection.com/products/butterfly-abaya-in-black-with-purple-print",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
     "id": "chi-ka:8514029453473",
     "brandSlug": "chi-ka",
     "title": "Butterfly Abaya in Black with Copper Print",
@@ -26711,15 +26719,6 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2205 AED (~$600)"
-  },
-  {
-    "id": "chi-ka:8514004549793",
-    "brandSlug": "chi-ka",
-    "title": "Straight Cut Abaya in Rusty Brown Linen with Grey Blue Satin Detailing",
-    "url": "https://chikacollection.com/products/straight-cut-abaya-in-rusty-brown-linen-with-grey-blue-satin-detailing",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "2100 AED (~$572)"
   },
   {
     "id": "chi-ka:8514003075233",
@@ -31655,14 +31654,6 @@
     "evidence": "clips"
   },
   {
-    "id": "chic-modesty:10474532667730",
-    "brandSlug": "chic-modesty",
-    "title": "Epingles hijab mat noir",
-    "url": "https://chicandmodesty.com/products/epingles-hijab-mat-copie",
-    "garmentWas": "hijab",
-    "reason": "id-pin"
-  },
-  {
     "id": "chic-modesty:10474535223634",
     "brandSlug": "chic-modesty",
     "title": "Pinces anti trou basic noir",
@@ -32273,7 +32264,7 @@
     "url": "https://avyaana.com/products/elenora-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "460 GBP (~$621)"
   },
   {
     "id": "avyaana:15633334862198",
@@ -32282,7 +32273,7 @@
     "url": "https://avyaana.com/products/bahira-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "415 GBP (~$560)"
+    "evidence": "418 GBP (~$565)"
   },
   {
     "id": "avyaana:15633334665590",
@@ -32291,7 +32282,7 @@
     "url": "https://avyaana.com/products/khayal-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "415 GBP (~$560)"
+    "evidence": "418 GBP (~$565)"
   },
   {
     "id": "avyaana:15633334468982",
@@ -32300,7 +32291,7 @@
     "url": "https://avyaana.com/products/sereen-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "460 GBP (~$621)"
   },
   {
     "id": "avyaana:15633334042998",
@@ -32309,7 +32300,7 @@
     "url": "https://avyaana.com/products/haneefa-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "460 GBP (~$621)"
   },
   {
     "id": "avyaana:15633333715318",
@@ -32318,7 +32309,7 @@
     "url": "https://avyaana.com/products/rania-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "460 GBP (~$621)"
   },
   {
     "id": "avyaana:15633332535670",
@@ -32327,7 +32318,7 @@
     "url": "https://avyaana.com/products/dariya-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "456 GBP (~$616)"
+    "evidence": "460 GBP (~$621)"
   },
   {
     "id": "avyaana:15449996034422",
@@ -32336,7 +32327,7 @@
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "553 GBP (~$747)"
+    "evidence": "557 GBP (~$752)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -32345,7 +32336,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -32354,7 +32345,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -32363,7 +32354,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -32372,7 +32363,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "553 GBP (~$747)"
+    "evidence": "557 GBP (~$752)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -32381,7 +32372,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -32390,7 +32381,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -32399,7 +32390,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -32408,7 +32399,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -32417,7 +32408,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -32426,7 +32417,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 GBP (~$840)"
+    "evidence": "627 GBP (~$847)"
   },
   {
     "id": "kamin:9333254586585",
@@ -33208,6 +33199,14 @@
     "reason": "title-pattern"
   },
   {
+    "id": "nihan:14919311851883",
+    "brandSlug": "nihan",
+    "title": "Lyocell Pantolon Etek - Zümrüt",
+    "url": "https://nihan.com.tr/products/lyocell-pantolon-etek-zumrut",
+    "garmentWas": "trousers",
+    "reason": "title-pattern"
+  },
+  {
     "id": "nihan:14919290978667",
     "brandSlug": "nihan",
     "title": "Beli Lastikli Kanvas Bol Paça Basic Pamuk Pantolon - Zümrüt",
@@ -33256,7 +33255,7 @@
     "url": "https://baqaofficial.com/products/mansetli-oversize-abaya",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "31025 TRY (~$650)"
+    "evidence": "29500 TRY (~$618)"
   },
   {
     "id": "baqa:9292803309819",
@@ -33275,15 +33274,6 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "37500 TRY (~$786)"
-  },
-  {
-    "id": "baqa:9292079661307",
-    "brandSlug": "baqa",
-    "title": "Süs Dikişli Bolero Detaylı Ceket",
-    "url": "https://baqaofficial.com/products/sus-dikisli-bolero-ceket",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "29200 TRY (~$612)"
   },
   {
     "id": "baqa:9243306983675",
@@ -40405,13 +40395,13 @@
     "reason": "title-pattern"
   },
   {
-    "id": "baqa:9317898551547",
+    "id": "baqa:9292803277051",
     "brandSlug": "baqa",
-    "title": "Gömlek Yaka Tunik Elbise",
-    "url": "https://baqaofficial.com/products/gomlek-yaka-tunik-elbise",
+    "title": "Dantel Detaylı Beyaz Keten Elbise",
+    "url": "https://baqaofficial.com/products/dantel-detayli-beyaz-keten-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "29500 TRY (~$618)"
+    "evidence": "28500 TRY (~$597)"
   },
   {
     "id": "baqa:9232070574331",
@@ -40450,6 +40440,15 @@
     "evidence": "32500 TRY (~$681)"
   },
   {
+    "id": "baqa:9331311051003",
+    "brandSlug": "baqa",
+    "title": "Dantel ve Baskı Detaylı Şifon Elbise",
+    "url": "https://baqaofficial.com/products/dantel-baski-detayli-sifon-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
     "id": "baqa:9313787314427",
     "brandSlug": "baqa",
     "title": "Üç Renk Pelerin Detaylı Elbise",
@@ -40474,7 +40473,7 @@
     "url": "https://baqaofficial.com/products/nakis-firfir-detayli-sifon-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "37500 TRY (~$786)"
+    "evidence": "32500 TRY (~$681)"
   },
   {
     "id": "baqa:9331311018235",
@@ -40531,15 +40530,6 @@
     "evidence": "26500 TRY (~$555)"
   },
   {
-    "id": "baqa:9354018390267",
-    "brandSlug": "baqa",
-    "title": "V Yaka Baskı Detaylı Elbise",
-    "url": "https://baqaofficial.com/products/v-yaka-baski-detayli-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "34500 TRY (~$723)"
-  },
-  {
     "id": "baqa:9354470228219",
     "brandSlug": "baqa",
     "title": "Pileli Asimetrik Bluz",
@@ -40558,22 +40548,13 @@
     "evidence": "29500 TRY (~$618)"
   },
   {
-    "id": "baqa:9313784692987",
-    "brandSlug": "baqa",
-    "title": "Ön Yaka Detaylı Keten Ceket",
-    "url": "https://baqaofficial.com/products/on-yaka-detayli-keten-ceket",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "29500 TRY (~$618)"
-  },
-  {
     "id": "baqa:9331346309371",
     "brandSlug": "baqa",
     "title": "Yaka Aksesuar Detaylı Pelerinli Elbise",
     "url": "https://baqaofficial.com/products/yaka-aksesuarlu-pelerinli-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "31600 TRY (~$662)"
+    "evidence": "29500 TRY (~$618)"
   },
   {
     "id": "baqa:9292284690683",
@@ -40591,7 +40572,7 @@
     "url": "https://baqaofficial.com/products/halter-yaka-ipek-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "34000 TRY (~$713)"
+    "evidence": "29500 TRY (~$618)"
   },
   {
     "id": "baqa:9317898649851",
@@ -40600,7 +40581,7 @@
     "url": "https://baqaofficial.com/products/pelerin-detayli-baskili-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "39500 TRY (~$828)"
+    "evidence": "34500 TRY (~$723)"
   },
   {
     "id": "baqa:9312200917243",
@@ -40618,7 +40599,7 @@
     "url": "https://baqaofficial.com/products/genis-yaka-keten-ceket",
     "garmentWas": "top",
     "reason": "price-ceiling",
-    "evidence": "32500 TRY (~$681)"
+    "evidence": "29500 TRY (~$618)"
   },
   {
     "id": "baqa:9318059802875",
@@ -40628,33 +40609,6 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "49500 TRY (~$1037)"
-  },
-  {
-    "id": "baqa:9303112614139",
-    "brandSlug": "baqa",
-    "title": "Nakış Detaylı Sıfır Yaka Beyaz Elbise",
-    "url": "https://baqaofficial.com/products/nakis-detayli-beyaz-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "29200 TRY (~$612)"
-  },
-  {
-    "id": "baqa:9313782071547",
-    "brandSlug": "baqa",
-    "title": "Düğmeli Şal Yaka Keten Ceket",
-    "url": "https://baqaofficial.com/products/dugmeli-sal-yaka-keten-ceket",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "29500 TRY (~$618)"
-  },
-  {
-    "id": "baqa:9313781842171",
-    "brandSlug": "baqa",
-    "title": "Yan Bağlama Detaylı Keten Ceket",
-    "url": "https://baqaofficial.com/products/yan-baglamali-keten-ceket",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "29000 TRY (~$608)"
   },
   {
     "id": "baqa:9114047054075",
@@ -40690,7 +40644,7 @@
     "url": "https://baqaofficial.com/products/yaka-detayli-beyaz-keten-ceket",
     "garmentWas": "top",
     "reason": "price-ceiling",
-    "evidence": "32500 TRY (~$681)"
+    "evidence": "29500 TRY (~$618)"
   },
   {
     "id": "baqa:9292803244283",
@@ -40699,7 +40653,7 @@
     "url": "https://baqaofficial.com/products/nakis-detayli-sifon-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "30800 TRY (~$645)"
+    "evidence": "29500 TRY (~$618)"
   },
   {
     "id": "baqa:9267449364731",
@@ -42570,5 +42524,53 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "49500 TRY (~$1037)"
+  },
+  {
+    "id": "avyaana:15848127693174",
+    "brandSlug": "avyaana",
+    "title": "Wild Ember Print",
+    "url": "https://avyaana.com/products/petals-from-the-sky-print",
+    "garmentWas": "set",
+    "reason": "price-ceiling",
+    "evidence": "418 GBP (~$565)"
+  },
+  {
+    "id": "nour-al-houda:7116370706480",
+    "brandSlug": "nour-al-houda",
+    "title": "Small Headed Pins - Silver",
+    "url": "https://nouralhouda.com.au/products/small-headed-pins-silver",
+    "garmentWas": "top",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Pins"
+  },
+  {
+    "id": "mariams:9417214984408",
+    "brandSlug": "mariams",
+    "title": "Bridal Back Backdrop Body Chain（MAC472）",
+    "url": "https://mariam-col.com/products/bridal-back-backdrop-body-chain-mac472",
+    "garmentWas": "dress",
+    "reason": "non-apparel:jewellery",
+    "tier": "A",
+    "evidence": "Body Chain"
+  },
+  {
+    "id": "baqa:9114050035963",
+    "brandSlug": "baqa",
+    "title": "Kahverengi Süet Kemerli Kap",
+    "url": "https://baqaofficial.com/products/kahverengi-suet-kemerli-kap",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$681)"
+  },
+  {
+    "id": "fares:8514014347455",
+    "brandSlug": "fares",
+    "title": "Printed Wrap Belt Button Up - Mocha",
+    "url": "https://shopfares.com/products/printed-wrap-belt-button-up-mocha",
+    "garmentWas": "top",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
   }
 ]
