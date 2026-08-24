@@ -49,6 +49,33 @@ describe('edits', () => {
     }
   });
 
+  // The two rules Tina gave with her picks ("mix the hijabs up dont put them
+  // all next ot eachother", and no two pieces from one house side by side).
+  // Asserted rather than trusted to the comment beside the list: a re-order is
+  // a plausible future edit, and both properties are invisible until someone
+  // looks at the rendered row.
+  it.skipIf(!hasData || inCI)('hand-picked edits never repeat a house back to back', () => {
+    for (const e of EDITS) {
+      if (!e.productIds?.length) continue;
+      const items = productsForEdit(e);
+      const clashes = items
+        .map((p, i) => (i > 0 && p.brandSlug === items[i - 1].brandSlug ? `${i}: ${p.brandName}` : null))
+        .filter(Boolean);
+      expect(clashes, `${e.slug}: same house twice in a row`).toEqual([]);
+    }
+  });
+
+  it.skipIf(!hasData || inCI)('hand-picked edits never put two hijabs back to back', () => {
+    for (const e of EDITS) {
+      if (!e.productIds?.length) continue;
+      const items = productsForEdit(e);
+      const clashes = items
+        .map((p, i) => (i > 0 && p.garment === 'hijab' && items[i - 1].garment === 'hijab' ? `${i}: ${p.title}` : null))
+        .filter(Boolean);
+      expect(clashes, `${e.slug}: hijabs bunched together`).toEqual([]);
+    }
+  });
+
   it.skipIf(!hasData || inCI)('every edit resolves to at least one product', () => {
     for (const e of EDITS) {
       expect(productsForEdit(e).length, `${e.slug} has no products`).toBeGreaterThan(0);

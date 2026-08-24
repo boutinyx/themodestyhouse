@@ -222,6 +222,51 @@ export const EDITS: Edit[] = [
         'Then contrast, which lace loves. Black lace against white pulls every eye straight to the lace, because nothing else in the outfit is competing for the attention. Put that same black lace on black and it quietly disappears into everything around it.',
       ],
     },
+    /**
+     * Tina's own picks from /staff/curate, 2026-08-24, in her order with two
+     * rules she gave with them: "mix the hijabs up dont put them all next ot
+     * eachother and put the manzaram one towards the end".
+     *
+     * She sent them with all four hijabs bunched at the end and Manzaram first.
+     * Reordered to honour both asks, and while doing it, so no two pieces from
+     * the SAME HOUSE sit next to each other either — Bemu appears three times,
+     * Vela three, Abayas Boutique, Modesty in Style and Hawaa twice each, and
+     * side by side they read as one brand's shelf rather than a directory's
+     * edit.
+     *
+     * Resulting spread: hijabs at 3, 7, 12 and 17; Manzaram at 22 of 23; no
+     * repeated house adjacent. Verified by lib/edits.test.ts rather than by
+     * eye, so a future re-order cannot quietly undo it.
+     *
+     * All 23 resolved and were in stock when added. If one stops resolving the
+     * edit silently loses a piece — that is what the picked-ids test exists to
+     * catch.
+     */
+    productIds: [
+      'esme-ny:8193039827037', // Esme New York — Lace Butterfly Cape Top in Sky Blue
+      'bayt-el-hayat:15832657559926', // Bayt El Hayat — Lace Abaya and Hijab Set, Nude
+      'vela:9119980880028', // Vela Scarves — Jasmine White Lace
+      'zora:8777906946211', // Zora Designers — The Alba Lace Skirt
+      'abayabuth:16101218976122', // AbayaButh — Premium Elara Lace Open Abaya, Rose Taupe
+      'bemu:10121028469027', // Bemu — Lace Drape Top, Beige
+      'hawaa:15866723762549', // Hawaa Clothing — Espresso Lace Modal Hijab
+      'abayas-boutique:32410', // Abayas Boutique — Lace Abaya Set, Ruby
+      'modern-hijabi:9388333498582', // Modern Hijabi — Lace Skirt/Shirt Set, Floral
+      'modesty-in-style:10683424899382', // Modesty in Style — Liana Maxi Lace Top
+      'awrah-abayas:11600384557324', // Awrah Abayas — Mocha Lace Abaya
+      'vela:9119981011100', // Vela Scarves — Powder Blue Lace
+      'ilovemodesty:10303139283265', // iLoveModesty — White Self-Textured Lace Jacket Matching Set
+      'by-hasanat:15098402079093', // ByHasanat — Lace Flower Abaya in Sage
+      'bemu:10070437134627', // Bemu — Lace Maxi Skirt, Taupe
+      'merrachi:15638951723391', // MERRACHI — Lace Detailed Top, Khaki
+      'hawaa:15910989365621', // Hawaa Clothing — Black Polka Modal Lace Hijab
+      'urban-modesty:8057437651019', // Urban Modesty — Beige Lace Trim Open Abaya and Hijab Set
+      'modesty-in-style:10614938075446', // Modesty in Style — Lila Lace Set
+      'vela:8350999085212', // Vela Scarves — Black Lace Abaya
+      'bemu:10148012753187', // Bemu — Lace Abaya Set, Beige
+      'manzaram:15746672918853', // Manzaram — Satin top with lace detail
+      'abayas-boutique:24224', // Abayas Boutique — Lace Set
+    ],
     match: (p) => /\blace\b/i.test(p.title) && !LACE_UP.test(p.title) && !NOT_A_GARMENT.test(p.title),
     includeHijabs: true,
   },
