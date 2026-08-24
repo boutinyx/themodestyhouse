@@ -71,29 +71,13 @@ export function EditBanner({ edit }: { edit: Edit }) {
           loading="lazy"
         />
       </picture>
-      {/* Two washes, because the copy sits in a different place at each width.
-          Desktop: copy is on the LEFT beside the model, so the wash is weighted
-          left. Phone: there is no "beside" — the model fills the frame — so the
-          copy drops to the BOTTOM and the wash is weighted there instead.
-          The first cut used the left-weighted wash at every width, and on a
-          390px phone that put the title straight across the lace sash: unreadable,
-          and it covered the one thing the banner exists to show. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 md:hidden"
-        style={{
-          background:
-            'linear-gradient(to top, rgba(12,6,12,0.80) 0%, rgba(12,6,12,0.55) 38%, rgba(12,6,12,0.10) 70%)',
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 hidden md:block"
-        style={{
-          background:
-            'linear-gradient(to right, rgba(12,6,12,0.62) 0%, rgba(12,6,12,0.45) 45%, rgba(12,6,12,0.18) 100%)',
-        }}
-      />
+      {/* NO DARKENING OVERLAY. Tina, 2026-08-24: "dont out a dark overlay on it".
+          There were two here — left-weighted on desktop, bottom-weighted on
+          phone — and both are gone. The type now sits directly on the
+          photograph and carries its own text-shadow instead, which darkens the
+          few pixels behind each glyph rather than dimming the whole image.
+          If a future edit's photograph is pale where the copy lands, the fix is
+          to move the copy or pick a different frame — not to put the wash back. */}
       {/* absolute inset-0, not a min-height — the section's ratio owns the
           height now, and anything here declaring its own would fight it.
           justify-end on a phone puts the copy at the bottom, over the dark

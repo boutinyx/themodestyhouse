@@ -139,17 +139,22 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
             fetchPriority="high"
           />
         </picture>
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to bottom, rgba(12,6,12,0.46) 0%, rgba(12,6,12,0.28) 45%, rgba(12,6,12,0.52) 100%)' }}
-        />
+        {/* No darkening overlay — same instruction as the homepage banner. The
+            title's own text-shadow does the legibility work. */}
         {/* absolute inset-0, not a min-height: the section's own aspect-ratio
             (.edit-hero) is what sets the height now, so anything here that also
             declared a height would fight it. padding-top clears the sticky
             header the negative margin above just slid the photograph under. */}
+        {/* Centred from md up, pushed DOWN on a phone.
+            This is the readability fix that replaces the deleted overlay. With
+            the copy centred on a 390px screen the title landed across the pale
+            yellow jacket — white on near-white, and the overlay had been
+            covering for it. Lower on the frame it sits over the dark brown
+            satin skirt instead, which is the darkest area of the photograph, so
+            it reads at full strength with nothing dimming the image.
+            Using the picture's own tonality rather than a wash over it. */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center text-center px-8"
+          className="absolute inset-0 flex flex-col items-center justify-end md:justify-center text-center px-8 pb-[16%] md:pb-0"
           style={{ paddingTop: 'var(--header-height)' }}
         >
           <h1
