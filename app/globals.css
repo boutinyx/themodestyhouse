@@ -1073,6 +1073,21 @@ html[data-input-modality="mouse"] summary:focus-visible {
 @media (min-width: 768px) {
   .grid-story { order: 25; }
 }
+/* Put the page's horizontal padding BACK for this block on a phone.
+   `.product-grid` is deliberately pulled out to the screen edge below 768px
+   (the H&M-style flush grid, see the rule further down), and a child of it
+   inherits that full bleed. That is right for photographs and wrong for
+   prose: the heading and paragraphs were running hard into both screen
+   edges with no margin at all. 32px matches the `px-8` shell the rest of
+   the page sits in, so the text lines up with everything above and below
+   it. The image rail inside then cancels this again with its own -2rem, so
+   the photographs still reach the edge. */
+@media (max-width: 767px) {
+  .grid-story {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
 /* The rail breaks the page's px-8 shell so the photographs run to the edge on a
    phone, the same treatment the other full-bleed rails use. Restored to the
    column from md up, where the text beside it is measured. */

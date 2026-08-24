@@ -72,10 +72,17 @@ export type Edit = {
    * Street photographs that sit with the styling text.
    *
    * `credit` is the Instagram handle WITHOUT the @, or null where the owner is
-   * not known. Two of the five here are uncredited and one was labelled
-   * "@unknown" on Tina's own moodboard — that is recorded honestly rather than
-   * papered over, because a missing credit is a thing to go and find, not a
+   * not known. Three of the five here are uncredited — one was labelled
+   * "@unknown" on Tina's own moodboard — and that is recorded honestly rather
+   * than papered over: a missing credit is a thing to go and find, not a
    * cosmetic gap. Nothing renders a fake attribution.
+   *
+   * Note the FILENAMES describe the photograph, never the credit. The first cut
+   * named them after handles and the @basma_k credit turned out to be on the
+   * wrong photo (her moodboard placed labels BESIDE images, and I read one as
+   * belonging to the image below it). Correcting the credit then left a file
+   * called `-basma-k` that was not hers. A credit can move; what is in the
+   * picture cannot.
    *
    * These are other people's photographs. Flagged to Tina 2026-08-24: on a
    * commercial affiliate site that needs the owner's permission, and three of
@@ -171,11 +178,11 @@ export const EDITS: Edit[] = [
     storyImages: [
       { src: '/edits/lace-story-1-belt.jpg', credit: null,
         alt: 'A woman in a brown blazer and cream satin skirt with a white lace belt tied at the waist' },
-      { src: '/edits/lace-story-2-overskirt.jpg', credit: null,
+      { src: '/edits/lace-story-2-overskirt.jpg', credit: 'basma_k',
         alt: 'A woman in a plain black top and black wide-leg trousers with a white lace overskirt at the hip' },
-      { src: '/edits/lace-story-3-jenifersibali.jpg', credit: 'jenifersibali',
+      { src: '/edits/lace-story-3-black-coat.jpg', credit: 'jenifersibali',
         alt: 'A woman in an oversized black coat and black trousers with a white lace skirt showing beneath' },
-      { src: '/edits/lace-story-4-basma-k.jpg', credit: 'basma_k',
+      { src: '/edits/lace-story-4-taupe-suit.jpg', credit: null,
         alt: 'A woman in a taupe suit with a black lace hem showing under the jacket' },
       { src: '/edits/lace-story-5-abaya.jpg', credit: null,
         alt: 'A woman in a sage green open abaya with floral lace trim down the front, worn over jeans' },
