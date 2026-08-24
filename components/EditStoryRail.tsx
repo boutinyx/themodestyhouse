@@ -89,7 +89,7 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
             documents. */}
         <ul
           ref={setRef}
-          className="scroll-fade-port edit-story-rail no-scrollbar flex overflow-x-auto overflow-y-hidden"
+          className="scroll-fade-port edit-story-rail no-scrollbar flex gap-4 overflow-x-auto overflow-y-hidden pr-8 md:pr-0"
           role="list"
         >
           {children}
