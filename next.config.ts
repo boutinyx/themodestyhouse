@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 import { onManagedPlatform } from './lib/devOnly';
+import { PRODUCTION_HOSTS } from './lib/deployEnv';
 
 /* ------------------------------------------------------------------ *
  * LAYER 1 — build-time exclusion of the local-only curation tooling.
@@ -205,6 +206,37 @@ export default function nextConfig(phase: string): NextConfig {
         {
           source: '/(admin|api|staff)/:path*',
           headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+        },
+        /*
+         * NON-PRODUCTION HOSTS ARE NEVER INDEXABLE.
+         *
+         * staging.themodestyhouse.com runs the same code, the same catalogue
+         * and the same 30k-URL sitemap as the live site, from a public
+         * hostname. Left alone that is a duplicate-content competitor to the
+         * real domain, and it is specifically the copy that is allowed to be
+         * broken.
+         *
+         * The condition is `missing` rather than `has`, i.e. it matches every
+         * host that is NOT production, rather than naming staging. That is the
+         * load-bearing detail: a Railway default *.up.railway.app domain, a
+         * future preview environment, or a staging service someone forgets to
+         * configure are all covered the moment they exist. Naming staging
+         * explicitly would protect exactly the one host we already remembered.
+         *
+         * A `missing` array is AND-ed, and a request has exactly one Host, so
+         * this fires only when the host is neither entry in PRODUCTION_HOSTS.
+         *
+         * `noarchive` is in there because a cached copy of a staging page is
+         * still a public copy of an unreleased page.
+         *
+         * Verify with:
+         *   curl -sI https://staging.themodestyhouse.com/ | grep -i x-robots-tag
+         *   curl -sI https://themodestyhouse.com/       | grep -i x-robots-tag   # nothing
+         */
+        {
+          source: '/(.*)',
+          missing: PRODUCTION_HOSTS.map((value) => ({ type: 'host' as const, value })),
+          headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
         },
       ];
     },
