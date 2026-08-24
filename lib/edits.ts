@@ -114,6 +114,11 @@ export type Edit = {
   /** The same, for phone and tablet, where the crop is portrait and the copy
    *  sits over the picture rather than beside it. Falls back to `heroWash`.
    *
+   *  UNUSED by every edit as of 2026-08-25: Tina asked for one value on all
+   *  screens ("evenly on both things"). Kept because a future edit may want a
+   *  genuinely different small-screen crop, but do not reach for it to make a
+   *  hero "a bit darker on phones" — that is what she rejected.
+   *
    *  Split because the two crops are different photographs in effect: the
    *  jersey desktop shot has empty mirrored wall behind the type, the portrait
    *  crop has the model filling the frame. Tina asked for the small screens
@@ -356,24 +361,25 @@ export const EDITS: Edit[] = [
     // rather than a crop of the landscape, so nothing is thrown away.
     // Ceiling worth knowing: the desktop source is 1672px, so there is no 1920
     // variant and a wider viewport gets the native file.
-    // v2, 2026-08-25: a Magnific upscale at 2048x1152 (exactly 16:9) and an
-    // 864x1152 portrait (exactly 3:4).
-    // The phone file is SMALLER than the 1792px one it replaces, so a 390px
-    // phone at 3x is now a ~1.35x stretch rather than native. Tina chose this
-    // frame; the cost is recorded rather than hidden.
-    image: '/edit-jersey-hero-v2.jpg',
-    imageMobile: '/edit-jersey-hero-mobile-v2.jpg',
-    imageRatio: 2048 / 1152,
-    imageMobileRatio: 864 / 1152,
-    imageWidths: [640, 1024, 1440, 1920, 2048],
-    imageMobileWidths: [390, 640, 864],
+    // Back to the originals, 2026-08-25 ("revert back to the old pics") after
+    // a v2 pair was tried and rejected the same day.
+    image: '/edit-jersey-hero.jpg',
+    imageMobile: '/edit-jersey-hero-mobile.jpg',
+    imageRatio: 1672 / 941,
+    imageMobileRatio: 1792 / 2400,
+    imageWidths: [640, 1024, 1440, 1672],
+    imageMobileWidths: [390, 780, 1170, 1560, 1792],
     imageAlt:
       'A woman adjusting a brown jersey hijab in a gold mirrored lift, wearing a cream blazer',
     // Darker than the lace hero's 0.26 — "i want a darker overlay on this one".
     // The copy sits on the photograph here rather than on empty background, and
     // the gold reflections behind it are bright enough to eat white type.
-    heroWash: 0.46,
-    heroWashMobile: 0.66,
+    // ONE value, every screen. "overlay on mobile is more? but i siad evenly
+    // on both things" — `heroWashEven` had only been doing half the job: flat
+    // ACROSS the frame, but still 0.66 on small screens against 0.46 on
+    // desktop. Evenly means both. 0.66 is the number she last asked for when
+    // she asked for darker, so that is the one kept.
+    heroWash: 0.66,
     heroWashEven: true,
     // Written to the query this page is FOR. `jersey hijab` is the largest term
     // in this territory — 5x `lace abaya`, 2.2x `hijab styles`, 3x `instant

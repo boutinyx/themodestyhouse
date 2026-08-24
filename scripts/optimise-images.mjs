@@ -198,22 +198,19 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
-    // /edits/jersey-hijabs hero, desktop. v2, 2026-08-25: a Magnific upscale at
-    // 2048x1152 — exactly 16:9 — replacing the 1672px original. NEW filename
-    // rather than an overwrite (public/ is cached 4h and unfingerprinted).
-    file: 'edit-jersey-hero-v2.jpg',
-    widths: [640, 1024, 1440, 1920, 2048],
+    // /edits/jersey-hijabs hero, desktop. Back to the 1672x941 original,
+    // 2026-08-25 — a 2048px v2 was tried and rejected the same day. Quality 95
+    // as everywhere else; the SOURCE is the ceiling here, not the compression,
+    // so there is no variant above 1672.
+    file: 'edit-jersey-hero.jpg',
+    widths: [640, 1024, 1440, 1672],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
   },
   {
-    // Same hero, phone. 864x1152, exactly 3:4.
-    // NOTE THE TRADE: this is SMALLER than the 1792px portrait it replaces, so
-    // a 390px phone at 3x DPR (needs 1170) is now a ~1.35x stretch where it
-    // used to be native. Tina picked this frame deliberately; recording the
-    // cost rather than silently shipping a softer phone hero.
-    file: 'edit-jersey-hero-mobile-v2.jpg',
-    widths: [390, 640, 864],
+    // Same hero, phone — the 1792x2400 portrait, native at every phone width.
+    file: 'edit-jersey-hero-mobile.jpg',
+    widths: [390, 780, 1170, 1560, 1792],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
   },
