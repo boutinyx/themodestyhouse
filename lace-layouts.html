@@ -1,0 +1,151 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Everyday Lace — 3 phone layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Jost:wght@300;400;500&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aubergine:#441943; --plum:#6e4a6b; --parchment:#faf7f1; --brass:#a98a5b;
+    --ink:#241b24; --bone:#fbfaf6; --muted:#8a7d6b; --hairline:#e4ddcf;
+    --body:#4c4048;
+    --serif:'Bodoni Moda',serif; --label:'Marcellus',serif; --ui:'Jost',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e4da;font-family:var(--ui);color:var(--ink)}
+  .page{padding:28px 22px 60px}
+  h1.top{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 4px}
+  .sub{font-family:var(--ui);font-size:13px;color:#6b6157;margin:0 0 26px;max-width:760px;line-height:1.6}
+  .rowwrap{display:flex;gap:26px;align-items:flex-start;overflow-x:auto;padding-bottom:20px}
+  .col{flex:0 0 auto;width:390px}
+  .tag{font-family:var(--label);letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:#6b6157;margin:0 0 4px}
+  .tagline{font-size:12px;color:#7a7168;margin:0 0 10px;line-height:1.5;min-height:48px}
+  .frame{width:390px;background:var(--parchment);border:1px solid #cfc7b8;border-radius:14px;overflow:hidden}
+  .scroll{height:760px;overflow-y:auto}
+  /* shared type */
+  .h2{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.12;margin:0 0 14px;color:var(--ink)}
+  .p{font-size:15px;line-height:1.68;color:var(--body);margin:0 0 14px}
+  .cred{font-family:var(--label);letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:var(--muted);margin:8px 0 0}
+  .pad{padding:26px 24px}
+  .rule{height:1px;background:var(--hairline);margin:0}
+  img{display:block;width:100%;height:auto}
+  .ph{aspect-ratio:3/4;object-fit:cover;width:100%}
+
+  /* ---------- A: alternating, edge to edge ---------- */
+  .A .band{padding:0}
+  .A .txt{padding:0 24px}
+  .A figure{margin:22px 0 0}
+  .A figcaption{padding:0 24px}
+
+  /* ---------- B: lead photo, then text, then 2-up grid ---------- */
+  .B .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:22px}
+  .B .grid2 figcaption{padding:0 0 0 2px}
+
+  /* ---------- C: staggered mosaic, text card in the middle of the run ----------
+     CSS columns, not grid. A 2-col grid forces every cell to one row height, so
+     portrait photos letterbox inside their cell; columns let each photo keep its
+     own height, which is what produces the stagger. */
+  .C .mos{columns:2;column-gap:10px;padding:0 14px}
+  .C .mos figure{break-inside:avoid;margin:0 0 10px}
+  .C .mos img{width:100%;height:auto;border-radius:6px}
+  .C .card{background:var(--bone);border:1px solid var(--hairline);border-radius:10px;padding:20px 18px;margin:12px 14px}
+  .C .card .h2{font-size:22px}
+  .C .card .p{font-size:14px;margin-bottom:10px}
+</style>
+<div class="page">
+  <h1 class="top">Everyday Lace — three phone layouts for the story block</h1>
+  <p class="sub">All three use the real photographs, the real copy, and the site's own tokens (Bodoni Moda / Marcellus / Jost, parchment + ink + brass). Each frame is a 390&nbsp;px iPhone width and scrolls independently. Credits only appear where there is a real one — three of the five have no known owner.</p>
+
+  <div class="rowwrap">
+
+    <!-- ============ A ============ -->
+    <div class="col">
+      <p class="tag">Option A · Alternating</p>
+      <p class="tagline">One idea, then the picture that proves it. Photos run edge to edge, full width. Longest scroll, most editorial — reads like a magazine spread.</p>
+      <div class="frame A"><div class="scroll">
+        <div class="rule"></div>
+        <div class="pad">
+          <h2 class="h2">Why lace works, and what to put it with</h2>
+          <p class="p">Lace adds detail without changing the outfit. If something feels boring, you do not need a different outfit. You need one lace piece in it.</p>
+        </div>
+        <figure>
+          <img class="ph" src="public/edits/lace-story-1-belt.jpg" alt="">
+        </figure>
+        <div class="pad">
+          <p class="p">The rule is to wear it with something structured. Structured does not mean stiff — a satin skirt is flowy and still structured, because it falls in one straight line. Soft is the thing to avoid.</p>
+        </div>
+        <figure>
+          <img class="ph" src="public/edits/lace-story-2-overskirt.jpg" alt="">
+          <figcaption class="cred">@basma_k</figcaption>
+        </figure>
+        <div class="pad">
+          <p class="p">Denim is the easiest version of this. It works because it is soft against hard, and those two are about as far apart as fabrics get.</p>
+        </div>
+        <figure>
+          <img class="ph" src="public/edits/lace-story-5-abaya.jpg" alt="">
+        </figure>
+        <div class="pad">
+          <p class="p">Then contrast, which lace loves. Black lace against white pulls every eye straight to the lace. Put that same black lace on black and it quietly disappears.</p>
+        </div>
+        <figure>
+          <img class="ph" src="public/edits/lace-story-3-black-coat.jpg" alt="">
+          <figcaption class="cred">@jenifersibali</figcaption>
+        </figure>
+        <figure>
+          <img class="ph" src="public/edits/lace-story-4-taupe-suit.jpg" alt="">
+        </figure>
+        <div style="height:26px"></div>
+      </div></div>
+    </div>
+
+    <!-- ============ B ============ -->
+    <div class="col">
+      <p class="tag">Option B · Lead photo, then the grid</p>
+      <p class="tagline">One big picture sets the tone, all the words in one block, then the rest as a flush 2-up. Shortest scroll of the three; the text stays one continuous read.</p>
+      <div class="frame B"><div class="scroll">
+        <img class="ph" src="public/edits/lace-story-1-belt.jpg" alt="" style="aspect-ratio:4/5">
+        <div class="pad">
+          <h2 class="h2">Why lace works, and what to put it with</h2>
+          <p class="p">Lace adds detail without changing the outfit. That is the whole reason it earns a place in an everyday wardrobe — you are not rebuilding a look, you are giving one you already own the bit of flair it was missing.</p>
+          <p class="p">The rule is to wear it with something structured. Structured does not mean stiff, and it does not mean the opposite of flowy — a satin skirt is flowy and still structured, because it falls in one straight line. Soft is the thing to avoid.</p>
+          <p class="p">Denim is the easiest version: soft against hard. Then contrast, which lace loves — black lace against white pulls every eye straight to it.</p>
+        </div>
+        <div class="grid2">
+          <figure><img class="ph" src="public/edits/lace-story-2-overskirt.jpg" alt=""><figcaption class="cred">@basma_k</figcaption></figure>
+          <figure><img class="ph" src="public/edits/lace-story-3-black-coat.jpg" alt=""><figcaption class="cred">@jenifersibali</figcaption></figure>
+          <figure><img class="ph" src="public/edits/lace-story-4-taupe-suit.jpg" alt=""></figure>
+          <figure><img class="ph" src="public/edits/lace-story-5-abaya.jpg" alt=""></figure>
+        </div>
+        <div style="height:26px"></div>
+      </div></div>
+    </div>
+
+    <!-- ============ C ============ -->
+    <div class="col">
+      <p class="tag">Option C · Mosaic, text inside it</p>
+      <p class="tagline">Photos in a staggered two-column mosaic with the words as a card sitting inside the run. Most "feed"-like — closest to how this would look on Instagram.</p>
+      <div class="frame C"><div class="scroll">
+        <div style="height:22px"></div>
+        <div class="mos">
+          <figure><img src="public/edits/lace-story-1-belt.jpg" alt=""></figure>
+          <figure><img src="public/edits/lace-story-2-overskirt.jpg" alt=""><figcaption class="cred">@basma_k</figcaption></figure>
+        </div>
+
+        <div class="card">
+          <h2 class="h2">Why lace works, and what to put it with</h2>
+          <p class="p">Lace adds detail without changing the outfit. If a look feels boring, you do not need a different outfit — you need one lace piece in it.</p>
+          <p class="p">Wear it with something structured. A satin skirt is flowy and still structured, because it falls in one straight line. Soft is the thing to avoid.</p>
+          <p class="p" style="margin-bottom:0">Denim is soft against hard. And contrast: black lace on white pulls every eye to it; black on black disappears.</p>
+        </div>
+
+        <div class="mos">
+          <figure><img src="public/edits/lace-story-3-black-coat.jpg" alt=""><figcaption class="cred">@jenifersibali</figcaption></figure>
+          <figure><img src="public/edits/lace-story-4-taupe-suit.jpg" alt=""></figure>
+          <figure><img src="public/edits/lace-story-5-abaya.jpg" alt=""></figure>
+        </div>
+        <div style="height:26px"></div>
+      </div></div>
+    </div>
+
+  </div>
+</div>

@@ -92,9 +92,27 @@ export function productsForBrand(slug: string): Product[] {
  * not anticipate.
  */
 export function productsForEdit(edit: Edit): Product[] {
-  return getProducts().filter(
-    (p) => p.inStock !== false && edit.match(p) && (edit.includeHijabs ? true : p.garment !== 'hijab'),
-  );
+  const live = getProducts().filter((p) => p.inStock !== false);
+  if (edit.productIds?.length) {
+    // Hand-picked: return them in the ORDER given, which is the point of
+    // picking. A Map lookup rather than `find` per id — an edit can be a few
+    // hundred picks against a 20k-row catalogue.
+    //
+    // `includeHijabs` is deliberately NOT applied here. If someone explicitly
+    // chose a hijab for this edit, that is the choice; the flag exists to
+    // decide what an automatic `match` sweeps in, not to overrule a human.
+    const byId = new Map(live.map((p) => [p.id, p]));
+    return edit.productIds.map((id) => byId.get(id)).filter((p): p is Product => !!p);
+  }
+  return live.filter((p) => edit.match(p) && (edit.includeHijabs ? true : p.garment !== 'hijab'));
+}
+
+/** Picked ids that no longer resolve to a live product — for lib/edits.test.ts
+ *  and for anyone debugging an edit that has quietly lost pieces. */
+export function missingEditPicks(edit: Edit): string[] {
+  if (!edit.productIds?.length) return [];
+  const live = new Set(getProducts().filter((p) => p.inStock !== false).map((p) => p.id));
+  return edit.productIds.filter((id) => !live.has(id));
 }
 
 export function productsForVibe(vibe: Vibe): Product[] {

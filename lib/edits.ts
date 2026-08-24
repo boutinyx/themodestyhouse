@@ -90,7 +90,11 @@ export type Edit = {
    * next person knows it was a decision and not an oversight.
    */
   storyImages?: { src: string; alt: string; credit: string | null }[];
-  /** The styling block after the grid. Real content, server-rendered.
+  /** The styling block. `paragraphs` sit ABOVE the photographs, `paragraphsBelow`
+   *  under them — Tina, 2026-08-24, naming the denim and contrast paragraphs
+   *  specifically: "put this one under the pictures". The split is data, not a
+   *  slice index, so moving a paragraph across is an edit to this file rather
+   *  than a change to the component.
    *
    *  Tina's words, not generated — she wrote the lace one on 2026-08-24 and
    *  §10.18 is the reason that matters: the mechanism is mine, the voice is
@@ -102,14 +106,34 @@ export type Edit = {
    *  because I'm gonna use that a lot"*. A shared glossary of those terms would
    *  be linkable from every edit's styling block rather than re-explained in
    *  each one. Not built — noted here so it is not lost. */
-  styling: { h2: string; paragraphs: string[] };
+  styling: { h2: string; paragraphs: string[]; paragraphsBelow?: string[] };
   /**
-   * Which pieces belong. A predicate over the published catalogue rather than a
-   * hand-listed set of ids: a hand-listed edit goes stale silently the moment a
-   * brand delists something, and this catalogue turns over nightly
-   * (`.github/workflows/refresh.yml`).
+   * Which pieces belong, when nobody has hand-picked them. A predicate over the
+   * published catalogue rather than a fixed id list, because the catalogue
+   * turns over nightly (`.github/workflows/refresh.yml`) and a fixed list goes
+   * stale on its own.
+   *
+   * Still required even when `productIds` is set: it is what the edit falls
+   * back to, and what a new edit starts life as before anyone curates it.
    */
   match: (p: Product) => boolean;
+  /**
+   * Hand-picked pieces, in the order they should appear. Wins over `match`
+   * entirely when present — Tina, 2026-08-24: "i want to be able to pic the
+   * items ill do it with the curate page spend you the list".
+   *
+   * Ids are the catalogue's own `${brandSlug}:${shopifyId}` (Invariant 1).
+   *
+   * THE FAILURE MODE TO KNOW: a picked id that leaves the catalogue — brand
+   * delists it, or it goes out of stock — simply vanishes from the edit, and
+   * the page still renders fine with one fewer piece. That is silent, and this
+   * catalogue delists something most nights. `lib/edits.test.ts` asserts every
+   * picked id still resolves, so it turns up as a red test locally instead of
+   * as an edit that quietly shrinks over a month. It skips in CI for the reason
+   * §10.19 gives: a test over bot-mutated data is an authoring aid, not a build
+   * gate.
+   */
+  productIds?: string[];
   /**
    * Whether hijabs may appear.
    *
@@ -192,6 +216,8 @@ export const EDITS: Edit[] = [
       paragraphs: [
         'Lace adds detail without changing the outfit. That is the whole reason it earns a place in an everyday wardrobe — you are not rebuilding a look, you are giving one you already own the bit of flair it was missing. If something feels boring, you do not need a different outfit. You need one lace piece in it.',
         'The rule is to wear it with something structured. Structured does not mean stiff, and it does not mean the opposite of flowy — a satin skirt is flowy and still structured, because it falls in one straight line. It moves, but it never goes soft. Soft is the thing to avoid: lace against soft reads as one blurry texture and you lose the lace completely.',
+      ],
+      paragraphsBelow: [
         'Denim is the easiest version of this. It works because it is soft against hard, and those two are about as far apart as fabrics get, so each one makes the other more obvious. A lace top under a denim jacket. A lace-trim scarf with jeans. You do not have to think about it beyond that.',
         'Then contrast, which lace loves. Black lace against white pulls every eye straight to the lace, because nothing else in the outfit is competing for the attention. Put that same black lace on black and it quietly disappears into everything around it.',
       ],

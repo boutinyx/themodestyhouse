@@ -1,4 +1,5 @@
 import type { Edit } from '@/lib/edits';
+import { EditStoryRail } from './EditStoryRail';
 
 /**
  * The styling text for an edit, plus the street photographs that go with it.
@@ -34,48 +35,52 @@ export function EditStory({ edit }: { edit: Edit }) {
         </div>
 
         {edit.storyImages && edit.storyImages.length > 0 && (
-          <>
-            {/* A rail, not a grid: five portrait photographs at four different
-                source resolutions would make a grid row of uneven quality, and
-                on a phone a five-across grid is unreadable. `no-scrollbar` and
-                the negative margin are the same treatment the other full-bleed
-                rails on the site use. */}
-            <ul className="edit-story-rail no-scrollbar mt-10 flex gap-4 overflow-x-auto" role="list">
-              {edit.storyImages.map((img) => (
-                <li key={img.src} className="flex-shrink-0" style={{ width: 'clamp(200px, 46vw, 280px)' }}>
-                  <picture>
-                    <source
-                      srcSet={`${webp(img.src, 400)} 400w, ${webp(img.src, 800)} 800w, ${webp(img.src, 1200)} 1200w`}
-                      sizes="(max-width: 767px) 46vw, 280px"
-                      type="image/webp"
-                    />
-                    {/* No eslint-disable: the rule does not fire on an <img>
-                        inside a <picture>, and lint runs --max-warnings 0. */}
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      loading="lazy"
-                      className="w-full"
-                      style={{ aspectRatio: '3 / 4', objectFit: 'cover', borderRadius: 'var(--radius-card)' }}
-                    />
-                  </picture>
-                  {/* Credit only where there IS one. An empty line would look
-                      like a rendering fault; a made-up handle would be worse. */}
-                  {img.credit && (
-                    <a
-                      href={`https://instagram.com/${img.credit}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="eyebrow mt-3 inline-block"
-                      style={{ color: 'var(--muted)' }}
-                    >
-                      @{img.credit}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </>
+          <EditStoryRail>
+            {edit.storyImages.map((img) => (
+              <li key={img.src} className="flex-shrink-0" style={{ width: 'clamp(200px, 46vw, 280px)' }}>
+                <picture>
+                  <source
+                    srcSet={`${webp(img.src, 400)} 400w, ${webp(img.src, 800)} 800w, ${webp(img.src, 1200)} 1200w`}
+                    sizes="(max-width: 767px) 46vw, 280px"
+                    type="image/webp"
+                  />
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    className="w-full"
+                    style={{ aspectRatio: '3 / 4', objectFit: 'cover', borderRadius: 'var(--radius-card)' }}
+                  />
+                </picture>
+                {/* Credit only where there IS one. An empty line would look like
+                    a rendering fault; a made-up handle would be worse. */}
+                {img.credit && (
+                  <a
+                    href={`https://instagram.com/${img.credit}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="eyebrow mt-3 inline-block"
+                    style={{ color: 'var(--muted)' }}
+                  >
+                    @{img.credit}
+                  </a>
+                )}
+              </li>
+            ))}
+          </EditStoryRail>
+        )}
+
+        {/* The paragraphs Tina moved under the photographs. Same two-column
+            measure as the ones above, so the block reads as one piece split by
+            the pictures rather than as two different sections. */}
+        {edit.styling.paragraphsBelow && edit.styling.paragraphsBelow.length > 0 && (
+          <div className="mt-10 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl">
+            {edit.styling.paragraphsBelow.map((p) => (
+              <p key={p.slice(0, 40)} style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
+                {p}
+              </p>
+            ))}
+          </div>
         )}
       </div>
     </section>
