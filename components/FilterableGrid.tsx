@@ -14,6 +14,7 @@ export function FilterableGrid({
   catalogue: cat,
   initialType,
   afterFirstRow,
+  trailingTile,
   searchable = true,
   showTypeFilter = true,
 }: {
@@ -36,6 +37,11 @@ export function FilterableGrid({
    *  whichever breakpoint it was not tuned for, because a `grid-column: 1/-1`
    *  child cannot start mid-row. */
   afterFirstRow?: ReactNode;
+  /** Rendered as the LAST child of the grid, and only once every row is on
+   *  screen. Gated on that deliberately: a "want more?" tile sitting above a
+   *  Load more button tells someone they have reached the end when they have
+   *  not. */
+  trailingTile?: ReactNode;
   /** Whether the index console offers a search field — see IndexPanel's
    *  `showSearch`. False on /edits/[slug]: an edit is ~24 hand-picked pieces,
    *  so searching inside it is a control with nothing to do. */
@@ -254,6 +260,12 @@ export function FilterableGrid({
               </div>
             ))}
             {afterFirstRow && <div className="grid-story">{afterFirstRow}</div>}
+            {/* order beyond every card's `i * 10`, so it is last however many
+                are visible — the cards' own order values are what position
+                `afterFirstRow`, and this has to sit past all of them. */}
+            {trailingTile && visible >= sortedRows.length && (
+              <div style={{ order: shownCards.length * 10 + 5 }}>{trailingTile}</div>
+            )}
           </div>
           {visible < sortedRows.length && (
             <div className="text-center mt-12">

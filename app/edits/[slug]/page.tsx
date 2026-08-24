@@ -7,6 +7,7 @@ import { FilterableGrid } from '@/components/FilterableGrid';
 import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { JsonLd } from '@/components/JsonLd';
 import { EditStory } from '@/components/EditStory';
+import { EditMoreTile } from '@/components/EditMoreTile';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
 
 /**
@@ -65,6 +66,7 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
 
   const houses = new Set(products.map((p) => p.brandSlug)).size;
   const wash = edit.heroWash ?? 0.26;
+  const washSm = edit.heroWashMobile ?? wash;
 
   return (
     <main className="pb-12">
@@ -150,14 +152,14 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
             so the subject keeps its contrast. */}
         <div
           aria-hidden
-          className="absolute inset-0 md:hidden"
+          className="absolute inset-0 lg:hidden"
           style={{
-            background: `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 45%, rgba(12,6,12,0.02) 78%)`,
+            background: `linear-gradient(to top, rgba(12,6,12,${washSm}) 0%, rgba(12,6,12,${washSm * 0.5}) 45%, rgba(12,6,12,0.04) 80%)`,
           }}
         />
         <div
           aria-hidden
-          className="absolute inset-0 hidden md:block"
+          className="absolute inset-0 hidden lg:block"
           style={{
             background: `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
           }}
@@ -224,6 +226,7 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
             searchable={false}
             showTypeFilter={false}
             afterFirstRow={<EditStory edit={edit} />}
+            trailingTile={edit.more ? <EditMoreTile href={edit.more.href} label={edit.more.label} /> : undefined}
           />
         </div>
 

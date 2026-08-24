@@ -81,6 +81,16 @@ export type Edit = {
    *  If none is flagged the banner falls back to the first, so the homepage can
    *  never end up with no banner because someone removed a flag. */
   featured?: boolean;
+  /** The tile that fills the empty slot at the END of the grid — Tina:
+   *  "put in the space where normally the card sits but now its emprty ... to
+   *  send them to more hijabs so like: do you want more? and then link".
+   *
+   *  A curated edit almost never divides evenly by the column count, so the last
+   *  row has a hole in it. This puts the obvious next step there instead of
+   *  whitespace. It only renders once EVERY item is on screen — showing "want
+   *  more?" while a Load more button is still sitting there would be telling
+   *  someone they have finished when they have not. */
+  more?: { href: string; label: string };
   /** Where the copy sits in the HOMEPAGE banner: 'left' (default) or 'center'.
    *
    *  Per-edit because it depends on the photograph. Everyday Lace has the model
@@ -101,6 +111,18 @@ export type Edit = {
    *  either wash out the bright one or lose the type on the dark one.
    *  Defaults to 0.26 when unset. */
   heroWash?: number;
+  /** The same, for phone and tablet, where the crop is portrait and the copy
+   *  sits over the picture rather than beside it. Falls back to `heroWash`.
+   *
+   *  Split because the two crops are different photographs in effect: the
+   *  jersey desktop shot has empty mirrored wall behind the type, the portrait
+   *  crop has the model filling the frame. Tina asked for the small screens
+   *  darker specifically.
+   *
+   *  "Mobile and tablet" here means below 1024px — the same line the story copy
+   *  centres at, and the one that actually separates portrait devices from
+   *  desktop. The old md (768) split left every iPad on the desktop wash. */
+  heroWashMobile?: number;
   /** <title> and meta description. Written to the query the page is FOR. */
   seoTitle: string;
   seoDescription: string;
@@ -223,6 +245,7 @@ export const EDITS: Edit[] = [
     // v2, 2026-08-24: a Magnific upscale (5504x3072) plus a purpose-shot
     // portrait for the phone (1920x2571), replacing the 1672x941 original whose
     // ceiling capped desktop at 1672 and left the phone crop a ~2x stretch.
+    more: { href: '/modest-abayas', label: 'All abayas' },
     image: '/edit-lace-hero-v2.jpg',
     imageMobile: '/edit-lace-hero-mobile-v2.jpg',
     imageRatio: 5504 / 3072,
@@ -314,6 +337,9 @@ export const EDITS: Edit[] = [
     // decides which one comes FIRST.
     featured: true,
     bannerAlign: 'center',
+    // The lane, not the directory: someone at the end of a jersey edit wants
+    // more hijabs, not more of everything.
+    more: { href: '/modest-hijabs', label: 'All hijabs & scarves' },
     eyebrow: 'The Edit · Autumn 2026',
     dek: 'The one you actually wear.',
     // Tina's own shots, 2026-08-24. The phone one is a real 1792x2400 portrait
@@ -332,6 +358,7 @@ export const EDITS: Edit[] = [
     // The copy sits on the photograph here rather than on empty background, and
     // the gold reflections behind it are bright enough to eat white type.
     heroWash: 0.46,
+    heroWashMobile: 0.66,
     // Written to the query this page is FOR. `jersey hijab` is the largest term
     // in this territory — 5x `lace abaya`, 2.2x `hijab styles`, 3x `instant
     // hijab` on one shared Trends scale — and its SERP is entirely collection
@@ -416,6 +443,8 @@ export const EDITS: Edit[] = [
       'haute-hijab:10490069959', // Haute Hijab — Premium Jersey Hijab - Mocha
       'voile-chic:8129717469437', // Voile Chic — Bamboo Ribbed Jersey Hijab - Mocha Brown
       'fares:8272751132863', // Fares — Matching Jersey Hijab Set - Real Teal
+      // Added last from a product URL Tina sent, 2026-08-25.
+      'jennah-boutique:8046836121776', // Jennah Boutique — Cinnamon Rhinestone Baclava Jersey
     ],
     /**
      * Jersey hijabs only, until Tina curates in /staff/curate.

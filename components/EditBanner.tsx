@@ -37,6 +37,7 @@ export function EditBanner({ edit }: { edit: Edit }) {
   // measuring naturalWidth (0) rather than by looking.
   const webp = (src: string, w: number) => src.replace(/\.jpg$/, `-${w}.webp`);
   const wash = edit.heroWash ?? 0.26;
+  const washSm = edit.heroWashMobile ?? wash;
   const centred = edit.bannerAlign === 'center';
   return (
     <section
@@ -80,14 +81,14 @@ export function EditBanner({ edit }: { edit: Edit }) {
           wash under centred type darkens the wrong half of the picture. */}
       <div
         aria-hidden
-        className="absolute inset-0 md:hidden"
+        className="absolute inset-0 lg:hidden"
         style={{
-          background: `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 45%, rgba(12,6,12,0.02) 78%)`,
+          background: `linear-gradient(to top, rgba(12,6,12,${washSm}) 0%, rgba(12,6,12,${washSm * 0.5}) 45%, rgba(12,6,12,0.04) 80%)`,
         }}
       />
       <div
         aria-hidden
-        className="absolute inset-0 hidden md:block"
+        className="absolute inset-0 hidden lg:block"
         style={{
           background: centred
             ? `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.7}) 50%, rgba(12,6,12,${wash * 0.5}) 100%)`
