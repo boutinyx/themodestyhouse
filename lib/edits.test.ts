@@ -65,10 +65,15 @@ describe('edits', () => {
     }
   });
 
-  it.skipIf(!hasData || inCI)('hand-picked edits never put two hijabs back to back', () => {
+  it.skipIf(!hasData || inCI)('mixed hand-picked edits never put two hijabs back to back', () => {
     for (const e of EDITS) {
       if (!e.productIds?.length) continue;
       const items = productsForEdit(e);
+      // Only meaningful for a MIXED edit. /edits/jersey-hijabs is entirely
+      // hijabs by definition, so the rule is unsatisfiable there rather than
+      // broken — asserting it would have failed the moment that edit was
+      // curated, which is not the same thing as finding a defect.
+      if (items.every((p) => p.garment === 'hijab')) continue;
       const clashes = items
         .map((p, i) => (i > 0 && p.garment === 'hijab' && items[i - 1].garment === 'hijab' ? `${i}: ${p.title}` : null))
         .filter(Boolean);

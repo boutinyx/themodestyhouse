@@ -352,6 +352,59 @@ export const EDITS: Edit[] = [
       ],
     },
     /**
+     * Tina's picks from /staff/curate, 2026-08-25. 31 pieces, all hijabs, all
+     * in stock when added.
+     *
+     * Reordered so no house sits next to itself — Hawaa Clothing appears five
+     * times, Diversity Modest, Eynaa Paris and Yasmin Jay three each, and five
+     * more twice. Placed by the standard greedy interleave (always take the
+     * brand with the most remaining that is not the one just placed), which
+     * works because no house holds more than ceil(31/2). Result: zero adjacent
+     * pairs, asserted by lib/edits.test.ts.
+     *
+     * The hijab-adjacency rule does NOT apply here and the test now says so
+     * explicitly: every piece in this edit is a hijab, so "never two in a row"
+     * is unsatisfiable rather than violated.
+     *
+     * Her last line arrived truncated — "Misty Rose Jersey Scarf" with no house.
+     * Resolved to Yasmin Jay's: the only jersey scarf of that name in the
+     * catalogue (the other Misty Rose hits are a chiffon, a viscose and an
+     * abaya set).
+     */
+    productIds: [
+      'hawaa:15860139655541', // Hawaa Clothing — Mauve Bamboo Jersey Hijab
+      'diversity-modest:10104226939214', // Diversity Modest — Airy Jersey Scarf Mocha Brown
+      'hawaa:15860139098485', // Hawaa Clothing — Olive Bamboo Jersey Hijab
+      'eynaa-paris:10852396892503', // Eynaa Paris — Hijab Jersey Premium Soft [Beige]
+      'yasmin-jay:8080732553392', // Yasmin Jay — Liquid Jersey Rose Taupe
+      'hawaa:15024853746037', // Hawaa Clothing — Black Bamboo Jersey Hijab
+      'diversity-modest:15846428934478', // Diversity Modest — Airy Jersey Scarf Powder Blue
+      'eynaa-paris:10293749252439', // Eynaa Paris — Hijab Jersey Premium Soft [Cappuccino]
+      'jennah-boutique:7784159510704', // Jennah Boutique — Jersey Breath ruby
+      'nurmire:9967193620809', // Nurmirè — Premium Jersey Hijab - Mulberry
+      'yasmin-jay:8080445440176', // Yasmin Jay — Liquid Jersey Powder
+      'losyana:9778842599762', // Losyana — Premium Jersey - sky blue
+      'hidayah:10530799976795', // Hidayah — Hidayah Bloom Printed Jersey (Arya)
+      'hawaa:15707655733621', // Hawaa Clothing — Walnut Cloud Jersey Hijab
+      'voile-chic:8878418886909', // Voile Chic — Ribbed Jersey Hijab - Charcoal Grey
+      'diversity-modest:10500751393102', // Diversity Modest — Ice Silk Jersey Scarf Taupe
+      'eynaa-paris:9615662219607', // Eynaa Paris — Premium Soft Jersey Hijab [Gree]
+      'nour-al-houda:7781509070896', // Nour Al Houda (BNAH) — Bamboo Jersey Hijab Set - Cedar
+      'jennah-boutique:7764216709296', // Jennah Boutique — Jersey Breath navy
+      'nurmire:9798333202761', // Nurmirè — Satin Jersey Hijab - Beige
+      'chic-modesty:10323101811026', // Chic & Modesty — Almond green premium jersey hijab
+      'yasmin-jay:7910436208816', // Yasmin Jay — Misty Rose Jersey Scarf
+      'modesty-in-style:10797100106038', // Modesty in Style — Khaki Jersey Set
+      'urban-modesty:7500430508107', // Urban Modesty — Ombré Jersey Hijab
+      'losyana:10645916582226', // Losyana — Vela Jersey - light beige
+      'culture-hijab:10186618437930', // Culture Hijab Co — Premium Jersey Hijab
+      'hidayah:7603885670571', // Hidayah — Premium Plain Jersey (Peru)
+      'hawaa:15633575641461', // Hawaa Clothing — Pink Bamboo Jersey Hijab
+      'haute-hijab:10490069959', // Haute Hijab — Premium Jersey Hijab - Mocha
+      'voile-chic:8129717469437', // Voile Chic — Bamboo Ribbed Jersey Hijab - Mocha Brown
+      'fares:8272751132863', // Fares — Matching Jersey Hijab Set - Real Teal
+    ],
+    /**
      * Jersey hijabs only, until Tina curates in /staff/curate.
      *
      * `\bjersey\b` on the title AND garment === 'hijab': the word alone also
