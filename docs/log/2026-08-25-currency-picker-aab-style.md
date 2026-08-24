@@ -66,3 +66,32 @@ Staging verification: see below.
 - `CurrencyFlag` renders at a fixed 18x12. Next to 17px Jost on a phone it reads smaller than
   aab's, which uses a larger circular flag. Left as-is — it's the same flag every other
   switcher on the site uses.
+
+## Correction — which commit actually carried this
+This work was NOT committed under its own message. Between `git add` and `git commit`, a
+concurrent session in this same working tree ran its own commit, and all three files here were
+swept into **`9445c31` — "perf(edits): regenerate the jersey heroes at quality 95"**, which was
+then pushed to `origin/staging`. That commit's message describes only the WebP quality change;
+its diff also contains the whole currency-picker change described above. `staging` is never
+force-pushed (§1), so the message stands and this note is the correction. Written up as
+CLAUDE.md §10.39 — the mirror image of §10.30, and the rule it produces is: stage and commit in
+one command, because the index is shared between sessions and has no lock.
+
+## Follow-up, same day — the selected currency is not listed
+Tina: *"you dont have to show the curenccy you have already selected in the lst"*. The phone
+list is now `DISPLAY_CURRENCIES.filter((o) => o !== (preference ?? 'USD'))` — eight rows, not
+nine. The trigger directly above already names the current choice, so listing it again was a
+dead row that read like a choice. The rows' active/selected styling and `aria-pressed` went
+with it: every row in the list is now, by construction, a currency you are not in.
+
+Verified on the dev server, Chromium/iPhone 13, reading the rendered rows rather than assuming:
+```
+trigger: $ USD
+rows: ["$ USD"(trigger),"£ GBP","€ EUR","CA$ CAD","A$ AUD","kr DKK","₺ TRY","SR SAR","B$ BSD"]
+after GBP, trigger: £ GBP
+rows after: ["£ GBP"(trigger),"$ USD","€ EUR","CA$ CAD","A$ AUD","kr DKK","₺ TRY","SR SAR","B$ BSD"]
+```
+USD absent while USD is selected; GBP absent once GBP is. The DESKTOP menu still lists all
+nine — it is a `Menu.RadioGroup`, where the checked row is the thing that tells you which
+currency is active, and dropping it would mean giving up the radio semantics. Left alone
+pending Tina's word, since her note was about the phone list she was looking at.

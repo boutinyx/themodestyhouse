@@ -435,20 +435,25 @@ export function MobileNav() {
               </button>
               {currencyOpen && (
                 <div className="pt-1">
-                  {DISPLAY_CURRENCIES.map((o) => (
+                  {/* The CURRENT choice is filtered out — Tina, 2026-08-25:
+                      "you dont have to show the curenccy you have already
+                      selected in the lst". The trigger directly above already
+                      names it, so listing it again is one dead row that reads
+                      like a choice. Nothing else needs an active/selected
+                      state here as a result: every row in the list is, by
+                      construction, a currency you are not currently in. */}
+                  {DISPLAY_CURRENCIES.filter((o) => o !== (preference ?? 'USD')).map((o) => (
                     <button
                       key={o}
                       type="button"
                       onClick={() => setPreference(o)}
-                      aria-pressed={preference === o}
                       className="flex items-center gap-3 py-3 w-full text-left"
                       style={{
                         fontFamily: 'var(--font-ui-stack)',
                         fontSize: 15,
                         lineHeight: 1.35,
                         letterSpacing: '0.01em',
-                        color: preference === o ? 'var(--aubergine)' : 'var(--ink)',
-                        fontWeight: preference === o ? 500 : 400,
+                        color: 'var(--ink)',
                       }}
                     >
                       <CurrencyFlag currency={o} />
