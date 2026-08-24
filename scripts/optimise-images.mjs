@@ -198,6 +198,24 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
+    // /edits/jersey-hijabs hero, desktop. 1672x941 — the same ceiling the lace
+    // v1 had, so there is no 1920 variant to generate and a wider viewport is
+    // served the native file. Worth an upscale if it ever bothers anyone.
+    file: 'edit-jersey-hero.jpg',
+    widths: [640, 1024, 1440, 1672],
+    suffixWidth: true,
+    opts: { quality: 90, effort: 5 },
+  },
+  {
+    // Same hero, phone — a real 1792x2400 portrait rather than a crop of the
+    // landscape, so nothing is thrown away. 1170 covers a 390px CSS phone at
+    // 3x DPR; 1792 is the source's own width.
+    file: 'edit-jersey-hero-mobile.jpg',
+    widths: [390, 780, 1170, 1560, 1792],
+    suffixWidth: true,
+    opts: { quality: 90, effort: 5 },
+  },
+  {
     // /edits/[slug] story photographs — the credited street shots that sit with
     // the styling text. Rendered ~300-420px wide in a strip, so 400/800 covers
     // 1x and 2x; 1200 is there for the phone case where one card is nearly the

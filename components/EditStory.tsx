@@ -14,21 +14,30 @@ import { EditStoryRail } from './EditStoryRail';
  * would need rel="sponsored" (§6/FTC) and that decision belongs at the link,
  * not hidden in a text parser.
  */
-const LINK = /\[([^\]]+)\]\((\/[^)]*)\)/g;
+const TOKEN = /\[([^\]]+)\]\((\/[^)]*)\)|\*\*([^*]+)\*\*/g;
 function withLinks(text: string) {
   const out: React.ReactNode[] = [];
   let last = 0;
-  for (const m of text.matchAll(LINK)) {
+  for (const m of text.matchAll(TOKEN)) {
     if (m.index! > last) out.push(text.slice(last, m.index));
-    out.push(
-      <Link
-        key={`${m[2]}-${m.index}`}
-        href={m[2]}
-        style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 3 }}
-      >
-        {m[1]}
-      </Link>,
-    );
+    if (m[3] !== undefined) {
+      // **bold**. Added for the jersey edit, where the copy names four fabric
+      // types and four length names and they need to be findable by eye — a
+      // reader scanning for "mini" should not have to read the paragraph.
+      // <strong>, not a styled span: it is emphasis with meaning, so it should
+      // survive being read aloud.
+      out.push(<strong key={`b-${m.index}`} style={{ fontWeight: 600 }}>{m[3]}</strong>);
+    } else {
+      out.push(
+        <Link
+          key={`${m[2]}-${m.index}`}
+          href={m[2]}
+          style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 3 }}
+        >
+          {m[1]}
+        </Link>,
+      );
+    }
     last = m.index! + m[0].length;
   }
   if (last < text.length) out.push(text.slice(last));

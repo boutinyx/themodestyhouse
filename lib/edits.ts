@@ -70,6 +70,15 @@ export type Edit = {
   imageWidths: number[];
   imageMobileWidths: number[];
   imageAlt: string;
+  /** How dark the wash over the hero goes, as the gradient's MAX alpha.
+   *
+   *  Per-edit because it depends entirely on the photograph. Everyday Lace is a
+   *  bright daylight shot and needed 0.26 ("not too dark just littke bit");
+   *  Jersey Hijabs is a dark gold-mirrored interior where the copy lands on
+   *  the photograph itself, so it takes more. A single site-wide value would
+   *  either wash out the bright one or lose the type on the dark one.
+   *  Defaults to 0.26 when unset. */
+  heroWash?: number;
   /** <title> and meta description. Written to the query the page is FOR. */
   seoTitle: string;
   seoDescription: string;
@@ -281,18 +290,22 @@ export const EDITS: Edit[] = [
     title: 'Jersey Hijabs',
     eyebrow: 'The Edit · Autumn 2026',
     dek: 'The one you actually wear.',
-    // PLACEHOLDER HERO — borrowed from public/editorial so the page is real and
-    // shippable today. It is NOT a jersey shot. Replace with a proper one under
-    // a NEW filename (public/ is cached 4h and unfingerprinted — §6, §10.21),
-    // run `node scripts/optimise-images.mjs`, then update image/imageMobile,
-    // both ratios and both width lists together.
-    image: '/editorial/silhouette.jpg',
-    imageMobile: '/editorial/silhouette.jpg',
-    imageRatio: 1696 / 960,
-    imageMobileRatio: 1696 / 960,
-    imageWidths: [400, 900],
-    imageMobileWidths: [400, 900],
-    imageAlt: 'A woman in a draped jersey hijab',
+    // Tina's own shots, 2026-08-24. The phone one is a real 1792x2400 portrait
+    // rather than a crop of the landscape, so nothing is thrown away.
+    // Ceiling worth knowing: the desktop source is 1672px, so there is no 1920
+    // variant and a wider viewport gets the native file.
+    image: '/edit-jersey-hero.jpg',
+    imageMobile: '/edit-jersey-hero-mobile.jpg',
+    imageRatio: 1672 / 941,
+    imageMobileRatio: 1792 / 2400,
+    imageWidths: [640, 1024, 1440, 1672],
+    imageMobileWidths: [390, 780, 1170, 1560, 1792],
+    imageAlt:
+      'A woman adjusting a brown jersey hijab in a gold mirrored lift, wearing a cream blazer',
+    // Darker than the lace hero's 0.26 — "i want a darker overlay on this one".
+    // The copy sits on the photograph here rather than on empty background, and
+    // the gold reflections behind it are bright enough to eat white type.
+    heroWash: 0.46,
     // Written to the query this page is FOR. `jersey hijab` is the largest term
     // in this territory — 5x `lace abaya`, 2.2x `hijab styles`, 3x `instant
     // hijab` on one shared Trends scale — and its SERP is entirely collection
@@ -309,12 +322,12 @@ export const EDITS: Edit[] = [
     styling: {
       h2: 'What makes a good jersey hijab',
       paragraphs: [
-        'YOUR BIT — the opening. What separates a jersey you keep from one you stop reaching for? Weight, grip, how it holds a fold? You said this was the single most useful thing you could write for anyone copying the look.',
-        'YOUR BIT — the fabrics. Premium, bamboo, liquid, ribbed. These are the four the search data says people are actually looking for, and they are four different things. What is the difference in the hand, and which one is for which day?',
+        'Jersey is the one you reach for without thinking, and the reason is grip. The fabric has a slight stretch and a matte, faintly tacky surface, so it holds against itself and against an undercap — which is why most jersey hijabs need no pin at all. That is the whole appeal, and it is also the thing a bad one gets wrong: too smooth and it slides, too thin and it goes see-through the moment there is a light behind you.',
+        'The four words the shops use are not interchangeable. **Premium** usually means a heavier, denser knit, often modal-cotton with a little elastane — Culture Hijab publish theirs as 98% modal cotton, 2% spandex — and it is the most opaque and the most structured. **Bamboo** jersey is bamboo viscose: softer, cooler against the skin and more fluid, so it drapes closer to the head and creases less, at the cost of a little grip. **Liquid** jersey is the silkiest of them, with a faint sheen and the most fall — the one Britain has suddenly started searching for, up 950% this year. **Ribbed** is the outlier: a textured knit with the most grip and the most body, which holds a shape rather than following one.',
       ],
       paragraphsBelow: [
-        'YOUR BIT — how to wear it. This is where the tie tutorial goes once you send me the video.',
-        'YOUR BIT — the close. The one thing to buy, or the mistake to avoid.',
+        'Check the length before you buy, because this is where most disappointment comes from and almost nobody lists it prominently. A **standard** jersey rectangle runs roughly 68 by 32 inches (about 175 x 80 cm) — enough to wrap twice and still have something to drape. A **mini** is around 62 by 20 inches (roughly 157 x 50 cm): narrower rather than much shorter, made for a single neat wrap under a coat or a blazer, and it will not give you a drape down the front. Some houses do neither and simply publish one rectangle at 65 by 26 or 65 by 27 inches, which sits between the two. If a listing does not say, assume it is closer to a mini and ask.',
+        'The mistake to avoid is buying the fabric for the look rather than for the day. Liquid and bamboo photograph beautifully and are the ones that slip if your undercap is satin or your hair is freshly washed; premium and ribbed will stay put through a school run and a long day, and look heavier in a photograph for exactly the same reason. Own one of each before you own three of one.',
       ],
     },
     /**

@@ -64,6 +64,7 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
   });
 
   const houses = new Set(products.map((p) => p.brandSlug)).size;
+  const wash = edit.heroWash ?? 0.26;
 
   return (
     <main className="pb-12">
@@ -139,30 +140,26 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
             fetchPriority="high"
           />
         </picture>
-        {/* A LIGHT wash — Tina, 2026-08-24: "make the pictur of the everyday
-            lace a little darker overlay not too dark just littke bit".
-            Deliberately a fraction of what was here before she asked for the
-            overlay gone entirely: that one ran 0.46-0.62 and flattened the
-            upscale's depth in the door and the satin. This tops out at 0.26 and
-            falls away to almost nothing across the frame, so it settles the
-            type without dimming the photograph.
-            Weighted toward the side the copy is on rather than uniform, so the
-            model and the lace sash — the brightest, most detailed part of the
-            frame — stay untouched. */}
+        {/* The wash. Its strength is per-edit (`heroWash`, default 0.26) because
+            it depends on the photograph: Everyday Lace is bright daylight and
+            wanted barely anything, Jersey Hijabs is a dark mirrored interior
+            with the copy sitting on the image itself and wants roughly double.
+            A single site-wide value would wash out one or lose the type on the
+            other.
+            Weighted toward whichever side the copy is on rather than uniform,
+            so the subject keeps its contrast. */}
         <div
           aria-hidden
           className="absolute inset-0 md:hidden"
           style={{
-            background:
-              'linear-gradient(to top, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 45%, rgba(12,6,12,0.02) 78%)',
+            background: `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 45%, rgba(12,6,12,0.02) 78%)`,
           }}
         />
         <div
           aria-hidden
           className="absolute inset-0 hidden md:block"
           style={{
-            background:
-              'linear-gradient(to right, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 48%, rgba(12,6,12,0.02) 100%)',
+            background: `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
           }}
         />
         {/* absolute inset-0, not a min-height: the section's own aspect-ratio
