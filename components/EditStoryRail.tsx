@@ -108,23 +108,23 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
         type="button"
         aria-label="Previous photographs"
         onClick={() => scrollBy(-1)}
-        className="rail-arrow rail-arrow-left"
+        className="rail-arrow rail-arrow-sm rail-arrow-left"
         style={{ top: '38%', left: 6, opacity: canLeft ? 1 : 0, pointerEvents: canLeft ? 'auto' : 'none' }}
         tabIndex={canLeft ? 0 : -1}
         aria-hidden={!canLeft}
       >
-        <CaretLeft size={18} weight="bold" />
+        <CaretLeft size={13} weight="bold" />
       </button>
       <button
         type="button"
         aria-label="More photographs"
         onClick={() => scrollBy(1)}
-        className="rail-arrow"
+        className="rail-arrow rail-arrow-sm"
         style={{ top: '38%', right: 6, opacity: canRight ? 1 : 0, pointerEvents: canRight ? 'auto' : 'none' }}
         tabIndex={canRight ? 0 : -1}
         aria-hidden={!canRight}
       >
-        <CaretRight size={18} weight="bold" />
+        <CaretRight size={13} weight="bold" />
       </button>
     </div>
   );

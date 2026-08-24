@@ -30,6 +30,18 @@
   z-index: 10;
   transition: opacity 0.25s ease, background 0.2s ease, transform 0.2s ease;
 }
+/* A smaller `.rail-arrow`, for the edit story rail only.
+   Scoped as a modifier rather than by shrinking `.rail-arrow` itself: that
+   class is shared with EditorsRail and PopularShowcase, whose cards are much
+   larger and whose arrows are sized for them. Changing the base would resize
+   controls on three surfaces to fix one. */
+.rail-arrow.rail-arrow-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  box-shadow: 0 4px 14px -6px rgba(42, 18, 38, 0.3);
+}
+
 .rail-arrow:hover {
   background: var(--bone);
 }
