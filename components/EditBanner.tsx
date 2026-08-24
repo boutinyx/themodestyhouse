@@ -38,6 +38,7 @@ export function EditBanner({ edit }: { edit: Edit }) {
   const webp = (src: string, w: number) => src.replace(/\.jpg$/, `-${w}.webp`);
   const wash = edit.heroWash ?? 0.26;
   const washSm = edit.heroWashMobile ?? wash;
+  const evenWash = edit.heroWashEven === true;
   const centred = edit.bannerAlign === 'center';
   return (
     <section
@@ -83,7 +84,9 @@ export function EditBanner({ edit }: { edit: Edit }) {
         aria-hidden
         className="absolute inset-0 lg:hidden"
         style={{
-          background: `linear-gradient(to top, rgba(12,6,12,${washSm}) 0%, rgba(12,6,12,${washSm * 0.5}) 45%, rgba(12,6,12,0.04) 80%)`,
+          background: evenWash
+              ? `rgba(12,6,12,${washSm})`
+              : `linear-gradient(to top, rgba(12,6,12,${washSm}) 0%, rgba(12,6,12,${washSm * 0.5}) 45%, rgba(12,6,12,0.04) 80%)`,
         }}
       />
       <div
@@ -91,8 +94,10 @@ export function EditBanner({ edit }: { edit: Edit }) {
         className="absolute inset-0 hidden lg:block"
         style={{
           background: centred
-            ? `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.7}) 50%, rgba(12,6,12,${wash * 0.5}) 100%)`
-            : `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
+            ? (evenWash ? `rgba(12,6,12,${wash})` : `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.7}) 50%, rgba(12,6,12,${wash * 0.5}) 100%)`)
+            : evenWash
+              ? `rgba(12,6,12,${wash})`
+              : `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
         }}
       />
       {/* absolute inset-0, not a min-height — the section's ratio owns the

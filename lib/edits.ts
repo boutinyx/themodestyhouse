@@ -123,6 +123,16 @@ export type Edit = {
    *  centres at, and the one that actually separates portrait devices from
    *  desktop. The old md (768) split left every iPad on the desktop wash. */
   heroWashMobile?: number;
+  /** Flat wash instead of a gradient — Tina, on the jersey hero: "i want the
+   *  dark overlay to be like dark eveyrwhere so not like the hero darker on the
+   *  left side i want the whole thing evenenly darkered".
+   *
+   *  The default is weighted toward the copy so the subject keeps its contrast,
+   *  which is right when the type sits to one side of the frame. It is wrong
+   *  when the type is CENTRED, as it is here: a left-weighted ramp under
+   *  centred type darkens one half of a symmetrical mirrored shot and reads as
+   *  a mistake. */
+  heroWashEven?: boolean;
   /** <title> and meta description. Written to the query the page is FOR. */
   seoTitle: string;
   seoDescription: string;
@@ -346,12 +356,17 @@ export const EDITS: Edit[] = [
     // rather than a crop of the landscape, so nothing is thrown away.
     // Ceiling worth knowing: the desktop source is 1672px, so there is no 1920
     // variant and a wider viewport gets the native file.
-    image: '/edit-jersey-hero.jpg',
-    imageMobile: '/edit-jersey-hero-mobile.jpg',
-    imageRatio: 1672 / 941,
-    imageMobileRatio: 1792 / 2400,
-    imageWidths: [640, 1024, 1440, 1672],
-    imageMobileWidths: [390, 780, 1170, 1560, 1792],
+    // v2, 2026-08-25: a Magnific upscale at 2048x1152 (exactly 16:9) and an
+    // 864x1152 portrait (exactly 3:4).
+    // The phone file is SMALLER than the 1792px one it replaces, so a 390px
+    // phone at 3x is now a ~1.35x stretch rather than native. Tina chose this
+    // frame; the cost is recorded rather than hidden.
+    image: '/edit-jersey-hero-v2.jpg',
+    imageMobile: '/edit-jersey-hero-mobile-v2.jpg',
+    imageRatio: 2048 / 1152,
+    imageMobileRatio: 864 / 1152,
+    imageWidths: [640, 1024, 1440, 1920, 2048],
+    imageMobileWidths: [390, 640, 864],
     imageAlt:
       'A woman adjusting a brown jersey hijab in a gold mirrored lift, wearing a cream blazer',
     // Darker than the lace hero's 0.26 — "i want a darker overlay on this one".
@@ -359,6 +374,7 @@ export const EDITS: Edit[] = [
     // the gold reflections behind it are bright enough to eat white type.
     heroWash: 0.46,
     heroWashMobile: 0.66,
+    heroWashEven: true,
     // Written to the query this page is FOR. `jersey hijab` is the largest term
     // in this territory — 5x `lace abaya`, 2.2x `hijab styles`, 3x `instant
     // hijab` on one shared Trends scale — and its SERP is entirely collection

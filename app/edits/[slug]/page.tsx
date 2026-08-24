@@ -67,6 +67,7 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
   const houses = new Set(products.map((p) => p.brandSlug)).size;
   const wash = edit.heroWash ?? 0.26;
   const washSm = edit.heroWashMobile ?? wash;
+  const evenWash = edit.heroWashEven === true;
 
   return (
     <main className="pb-12">
@@ -154,14 +155,18 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
           aria-hidden
           className="absolute inset-0 lg:hidden"
           style={{
-            background: `linear-gradient(to top, rgba(12,6,12,${washSm}) 0%, rgba(12,6,12,${washSm * 0.5}) 45%, rgba(12,6,12,0.04) 80%)`,
+            background: evenWash
+              ? `rgba(12,6,12,${washSm})`
+              : `linear-gradient(to top, rgba(12,6,12,${washSm}) 0%, rgba(12,6,12,${washSm * 0.5}) 45%, rgba(12,6,12,0.04) 80%)`,
           }}
         />
         <div
           aria-hidden
           className="absolute inset-0 hidden lg:block"
           style={{
-            background: `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
+            background: evenWash
+              ? `rgba(12,6,12,${wash})`
+              : `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
           }}
         />
         {/* absolute inset-0, not a min-height: the section's own aspect-ratio

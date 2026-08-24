@@ -198,27 +198,22 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
-    // /edits/jersey-hijabs hero, desktop. 1672x941 — the same ceiling the lace
-    // v1 had, so there is no 1920 variant to generate and a wider viewport is
-    // served the native file. Worth an upscale if it ever bothers anyone.
-    // Quality 95 / effort 6, matching the lace hero after Tina asked for the
-    // highest quality upload. NOTE the real ceiling here is the SOURCE, not the
-    // compression: 1672px means no 1920+ variant exists to generate, and this
-    // script never upscales. A bigger original is the only thing that improves
-    // this further.
-    file: 'edit-jersey-hero.jpg',
-    widths: [640, 1024, 1440, 1672],
+    // /edits/jersey-hijabs hero, desktop. v2, 2026-08-25: a Magnific upscale at
+    // 2048x1152 — exactly 16:9 — replacing the 1672px original. NEW filename
+    // rather than an overwrite (public/ is cached 4h and unfingerprinted).
+    file: 'edit-jersey-hero-v2.jpg',
+    widths: [640, 1024, 1440, 1920, 2048],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
   },
   {
-    // Same hero, phone — a real 1792x2400 portrait rather than a crop of the
-    // landscape, so nothing is thrown away. 1170 covers a 390px CSS phone at
-    // 3x DPR; 1792 is the source's own width.
-    // Same bump. 1792 is the source's own width, so this set already tops out
-    // at native — there is nothing above it to add.
-    file: 'edit-jersey-hero-mobile.jpg',
-    widths: [390, 780, 1170, 1560, 1792],
+    // Same hero, phone. 864x1152, exactly 3:4.
+    // NOTE THE TRADE: this is SMALLER than the 1792px portrait it replaces, so
+    // a 390px phone at 3x DPR (needs 1170) is now a ~1.35x stretch where it
+    // used to be native. Tina picked this frame deliberately; recording the
+    // cost rather than silently shipping a softer phone hero.
+    file: 'edit-jersey-hero-mobile-v2.jpg',
+    widths: [390, 640, 864],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
   },
