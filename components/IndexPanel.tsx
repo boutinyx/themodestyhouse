@@ -161,11 +161,23 @@ export function IndexPanel({
   q,
   onQ,
   className,
+  showSearch = true,
   children,
 }: {
   q: string;
   onQ: (v: string) => void;
   className?: string;
+  /**
+   * Whether to render the search field. Defaults to true — /directory and every
+   * lane want it, because those pages are an index of hundreds or thousands of
+   * pieces and typing is the fastest way through them.
+   *
+   * An EDIT is the opposite kind of page: a hand-picked set of ~24 items chosen
+   * by Tina, where searching within the selection is a control with nothing to
+   * do. Turned off there at her request, 2026-08-24. The filter row stays —
+   * Brand and Sort are still meaningful across 17 houses.
+   */
+  showSearch?: boolean;
   /** The <FilterDropdown /> controls for this surface. */
   children: React.ReactNode;
 }) {
@@ -180,19 +192,21 @@ export function IndexPanel({
         padding: '22px 26px',
       }}
     >
-      <input
-        aria-label="Search houses and pieces"
-        value={q}
-        onChange={(e) => onQ(e.target.value)}
-        placeholder="Search houses, pieces…"
-        className="index-panel-search w-full"
-        style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
-      />
+      {showSearch && (
+        <input
+          aria-label="Search houses and pieces"
+          value={q}
+          onChange={(e) => onQ(e.target.value)}
+          placeholder="Search houses, pieces…"
+          className="index-panel-search w-full"
+          style={{ background: 'var(--parchment)', border: '1px solid var(--hairline)', borderRadius: 40, padding: '12px 20px', fontSize: 15 }}
+        />
+      )}
       {/* The currency control used to sit here, pushed right. It moved to the
           header (2026-08-07): currency is a site-wide preference, so having it
           only on the pages that happen to carry an index console meant it was
           missing everywhere else and duplicated on the two that had it. */}
-      <div className="flex flex-wrap items-center gap-2 mt-4">
+      <div className={`flex flex-wrap items-center gap-2${showSearch ? ' mt-4' : ''}`}>
         <span className="eyebrow mr-1">Filter</span>
         {children}
       </div>

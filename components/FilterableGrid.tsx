@@ -14,6 +14,7 @@ export function FilterableGrid({
   catalogue: cat,
   initialType,
   afterFirstRow,
+  searchable = true,
 }: {
   catalogue: CompactCatalogue;
   /** From the lane page's ?type= — e.g. the nav flyout's "Blazers" link
@@ -34,6 +35,10 @@ export function FilterableGrid({
    *  whichever breakpoint it was not tuned for, because a `grid-column: 1/-1`
    *  child cannot start mid-row. */
   afterFirstRow?: ReactNode;
+  /** Whether the index console offers a search field — see IndexPanel's
+   *  `showSearch`. False on /edits/[slug]: an edit is ~24 hand-picked pieces,
+   *  so searching inside it is a control with nothing to do. */
+  searchable?: boolean;
 }) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   // Independent of `type` below (the sub-category flyout's URL-driven
@@ -192,7 +197,7 @@ export function FilterableGrid({
           subtypes (Outerwear, Layering Basics, Hijabs & Scarves) filter by
           them via the header flyout only; see the note on `type`/`typeIdx`
           above. */}
-      <IndexPanel q={q} onQ={setQ} className="mb-8">
+      <IndexPanel q={q} onQ={setQ} showSearch={searchable} className="mb-8">
         {/* Occasion filter pulled from the UI 2026-08-12 at Tina's request —
             broken, pending a fix. The underlying data (cat.occasions,
             rows.occasionMask) is untouched in lib/compactCatalogue.ts;

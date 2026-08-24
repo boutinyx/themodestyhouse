@@ -214,7 +214,16 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
         </p>
 
         <div className="mt-6">
-          <FilterableGrid catalogue={catalogue} afterFirstRow={<EditStory edit={edit} />} />
+          {/* No search field: an edit is a hand-picked set of ~24 pieces, so a
+              "search houses, pieces…" box over it filters a selection small
+              enough to read. Tina, 2026-08-24: "search bar in the Everyday Lace
+              needs to go". The Brand/Sort chips stay — 17 houses is enough for
+              those to earn their place. */}
+          <FilterableGrid
+            catalogue={catalogue}
+            searchable={false}
+            afterFirstRow={<EditStory edit={edit} />}
+          />
         </div>
 
         {/* The styling block no longer lives here — it is passed into
