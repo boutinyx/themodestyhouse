@@ -95,3 +95,31 @@ USD absent while USD is selected; GBP absent once GBP is. The DESKTOP menu still
 nine — it is a `Menu.RadioGroup`, where the checked row is the thing that tells you which
 currency is active, and dropping it would mean giving up the radio semantics. Left alone
 pending Tina's word, since her note was about the phone list she was looking at.
+
+## Staging verification
+Against `https://themodestyhouse-staging-production.up.railway.app` (the custom domain
+`staging.themodestyhouse.com` still does not resolve — the Cloudflare CNAME noted as the only
+remaining step in `docs/log/2026-08-24-staging-branch-and-environment.md` is not in place yet,
+so this is the deployed staging artifact reached by its Railway hostname). Commit `b33bfcc`,
+confirmed an ancestor of `origin/staging`.
+
+```
+body bg (css loaded?): rgb(250, 247, 241)      <- §10.24 stylesheet assertion, not a bare number
+phone trigger: "$ USD"
+phone rows incl trigger: ["$ USD","£ GBP","€ EUR","CA$ CAD","A$ AUD","kr DKK","₺ TRY","SR SAR","B$ BSD"]
+  -> list length 8
+after EUR, trigger: "€ EUR"
+EUR still listed? false
+desktop popup: { bg: 'rgb(250, 247, 241)', radius: '0px' }
+desktop row: { ff: 'Jost', fs: '14px', tt: 'uppercase' }
+```
+Screenshot read back, not assumed: flag + `$ USD` + chevron directly under the logo bar, eight
+other currencies with their flags, the approximate-prices note, then the hairline and
+"Clothing". Matches the reference.
+
+**One harness note, in the §10.20 family.** The deploy-poll loop tested
+`grep -q "trigger: \$ USD"` — inside double quotes that `\$` collapses to a bare `$`, which
+grep reads as the end-of-line anchor, so the pattern could never match. It logged
+`poll N: not yet` three times against a staging build that had ALREADY deployed the change on
+poll 1. The output it printed each round was the evidence that it was done. Read what a poll
+prints, don't only trust its verdict.
