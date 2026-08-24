@@ -697,16 +697,22 @@ button {
      hero. Pinning the width means only the height is ever clamped, and
      object-fit: cover on the photograph absorbs the crop. */
   width: 100%;
-  aspect-ratio: 5 / 8;
-  max-height: 82svh;
+  /* The ratio comes from the EDIT, set inline as --edit-ratio / --edit-ratio-mobile
+     from the photograph's real pixel dimensions (lib/edits.ts). It is not a fixed
+     16/9 here any more: Tina asked for the hero not to be cropped, and the only
+     way a box never crops the image in it is for the box to be that image's own
+     shape. The fallbacks are the aab reference ratios, used only if an edit
+     somehow ships without measurements. */
+  aspect-ratio: var(--edit-ratio-mobile, 5 / 8);
+  max-height: 92svh;
 }
 @media (min-width: 768px) {
   .edit-hero {
-    aspect-ratio: 16 / 9;
-    /* No cap here, deliberately. A 92svh cap was tried and removed the same
-       hour: at 1920x1080 it clamped the hero to 1920x994 (ratio 1.93) when the
-       reference is a true 1920x1075. 16:9 is never an absurd height the way the
-       5/8 mobile ratio can be on a wide phone, so it needs no guard. */
+    aspect-ratio: var(--edit-ratio, 16 / 9);
+    /* No cap. A 92svh cap was tried and removed: at 1920x1080 it clamped the
+       hero to 1920x994 (ratio 1.93) when the reference is a true 16:9. A
+       landscape hero is never an absurd height; a tall portrait one on a wide
+       phone can be, which is why the mobile rule above keeps its cap. */
     max-height: none;
   }
 }

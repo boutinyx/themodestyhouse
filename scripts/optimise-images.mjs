@@ -166,27 +166,27 @@ const JOBS = [
     opts: { quality: 92, effort: 5 },
   },
   {
-    // /edits/everyday-lace hero, desktop. Tina supplied it 2026-08-24 at
-    // 1672x941 — already exactly 16:9, which is the ratio the page asks for, so
-    // no crop. NOTE the ceiling: 1672 is the source, so there is no 1920 variant
-    // to generate (this script never upscales) and a >1672px viewport is served
-    // the native file. Acceptable, and worth knowing before anyone wonders why
-    // the set stops there.
-    file: 'edit-lace-hero.jpg',
-    widths: [640, 1024, 1440, 1672],
+    // /edits/everyday-lace hero, desktop. v2, 2026-08-24: Tina supplied a
+    // Magnific upscale at 5504x3072, replacing the 1672x941 original whose
+    // ceiling meant no variant above 1672 and a visibly soft phone crop.
+    // NEW FILENAME rather than overwriting — public/ is served with a 4h cache
+    // and is not fingerprinted, so new bytes at an old path are invisible to
+    // anyone who already loaded the page (§6, §10.21).
+    file: 'edit-lace-hero-v2.jpg',
+    widths: [640, 1024, 1440, 1920, 2400],
     suffixWidth: true,
     opts: { quality: 88, effort: 5 },
   },
   {
-    // Same hero, phone. A SEPARATE 5:8 portrait crop rather than letting
-    // object-cover squeeze the landscape original into a tall box: the model
-    // stands right of frame, so a centre crop removes her from her own hero.
-    // Cropped around x=1130 (the figure spans ~930-1330 of 1672).
-    // Native width is only 588, so a 390px CSS phone at 2x DPR is a ~1.33x
-    // stretch and at 3x a ~2x stretch. Mild, but real — a larger original would
-    // fix it and nothing else will.
-    file: 'edit-lace-hero-mobile.jpg',
-    widths: [390, 588],
+    // Same hero, phone. v2 is 1920x2571 — a genuinely different SHAPE from the
+    // v1 crop, 0.7468 rather than 5/8 (0.625). The page's mobile ratio was
+    // changed to match it exactly rather than the image being cropped to fit
+    // the old one; see the --edit-hero-ratio custom properties in
+    // components/EditBanner.tsx and app/edits/[slug]/page.tsx.
+    // 1170 covers a 390px CSS phone at 3x DPR, which the 588px v1 crop could
+    // not — that was a ~2x stretch.
+    file: 'edit-lace-hero-mobile-v2.jpg',
+    widths: [390, 780, 1170, 1920],
     suffixWidth: true,
     opts: { quality: 88, effort: 5 },
   },

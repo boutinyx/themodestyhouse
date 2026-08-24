@@ -99,7 +99,14 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
         // moment this element scrolls past.
         data-hero
         className="edit-hero relative overflow-hidden"
-        style={{ marginTop: 'calc(-1 * var(--header-height))', background: 'var(--aubergine)' }}
+        style={{
+          marginTop: 'calc(-1 * var(--header-height))',
+          background: 'var(--aubergine)',
+          // Same as the homepage banner: the box is the photograph's own shape,
+          // so nothing is cropped at any width.
+          ['--edit-ratio' as string]: String(edit.imageRatio),
+          ['--edit-ratio-mobile' as string]: String(edit.imageMobileRatio),
+        }}
       >
         {/* <picture>, not one <img> with object-cover. The desktop hero is
             16:9 and the phone hero is 5:8 — far enough apart that cover would
@@ -112,11 +119,11 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
         <picture>
           <source
             media="(max-width: 767px)"
-            srcSet={`${edit.imageMobile.replace(/\.jpg$/, '-390.webp')} 390w, ${edit.imageMobile.replace(/\.jpg$/, '-588.webp')} 588w`}
+            srcSet={edit.imageMobileWidths.map((w) => `${edit.imageMobile.replace(/\.jpg$/, `-${w}.webp`)} ${w}w`).join(', ')}
             sizes="100vw"
           />
           <source
-            srcSet={`${edit.image.replace(/\.jpg$/, '-640.webp')} 640w, ${edit.image.replace(/\.jpg$/, '-1024.webp')} 1024w, ${edit.image.replace(/\.jpg$/, '-1440.webp')} 1440w, ${edit.image.replace(/\.jpg$/, '-1672.webp')} 1672w`}
+            srcSet={edit.imageWidths.map((w) => `${edit.image.replace(/\.jpg$/, `-${w}.webp`)} ${w}w`).join(', ')}
             sizes="100vw"
           />
           {/* No eslint-disable needed here: @next/next/no-img-element does not

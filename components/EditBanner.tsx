@@ -29,17 +29,33 @@ import type { Edit } from '@/lib/edits';
  * image, and it was the explicit instruction.
  */
 export function EditBanner({ edit }: { edit: Edit }) {
+  // Widths come from the EDIT, never hand-listed here. Hand-listing them is
+  // exactly what broke on the v2 image swap: this component still asked for
+  // -1672 and -588, widths that only existed for v1, so every source in the
+  // srcset 404'd and the browser silently fell back to the full-size JPEG.
+  // It looked completely fine on screen, which is why it was caught by
+  // measuring naturalWidth (0) rather than by looking.
   const webp = (src: string, w: number) => src.replace(/\.jpg$/, `-${w}.webp`);
   return (
-    <section className="edit-hero relative overflow-hidden" style={{ background: 'var(--aubergine)' }}>
+    <section
+      className="edit-hero relative overflow-hidden"
+      // The box takes the PHOTOGRAPH's shape, so object-cover has nothing to
+      // crop — which is the whole requirement ("no dont crop it"). Inline,
+      // because the value belongs to this edit, not to the stylesheet.
+      style={{
+        background: 'var(--aubergine)',
+        ['--edit-ratio' as string]: String(edit.imageRatio),
+        ['--edit-ratio-mobile' as string]: String(edit.imageMobileRatio),
+      }}
+    >
       <picture>
         <source
           media="(max-width: 767px)"
-          srcSet={`${webp(edit.imageMobile, 390)} 390w, ${webp(edit.imageMobile, 588)} 588w`}
+          srcSet={edit.imageMobileWidths.map((w) => `${webp(edit.imageMobile, w)} ${w}w`).join(', ')}
           sizes="100vw"
         />
         <source
-          srcSet={`${webp(edit.image, 640)} 640w, ${webp(edit.image, 1024)} 1024w, ${webp(edit.image, 1440)} 1440w, ${webp(edit.image, 1672)} 1672w`}
+          srcSet={edit.imageWidths.map((w) => `${webp(edit.image, w)} ${w}w`).join(', ')}
           sizes="100vw"
         />
         {/* Below the fold on every viewport, so this one IS lazy — the opposite

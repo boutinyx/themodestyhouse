@@ -45,6 +45,25 @@ export type Edit = {
    *  throw away most of the frame to get from one to the other, and on this
    *  image it would crop the model out entirely: she stands right of frame. */
   imageMobile: string;
+  /** The photographs' REAL pixel ratios, `w / h`.
+   *
+   *  Here rather than hard-coded in CSS because "do not crop it" is only
+   *  achievable if the box is the shape of the image inside it, and that shape
+   *  belongs to the image, not to the layout. The two heroes are genuinely
+   *  different shapes — 1.7917 and 0.7468 — and a future edit's will be
+   *  different again, so a shared `.edit-hero { aspect-ratio: 16/9 }` would
+   *  silently start cropping the moment someone swaps a photograph.
+   *
+   *  Measure them; do not round. 5/8 (0.625) was close enough to the old phone
+   *  crop and is 16% off this one, which would have trimmed both sides. */
+  imageRatio: number;
+  imageMobileRatio: number;
+  /** srcset widths actually generated for each, by scripts/optimise-images.mjs.
+   *  Listed rather than assumed: that script never upscales, so asking for a
+   *  width the source cannot supply silently yields no file and a 404 in the
+   *  srcset. */
+  imageWidths: number[];
+  imageMobileWidths: number[];
   imageAlt: string;
   /** <title> and meta description. Written to the query the page is FOR. */
   seoTitle: string;
@@ -120,8 +139,15 @@ export const EDITS: Edit[] = [
     // tied over a structured butter-yellow jacket and a brown satin column
     // skirt — which makes it the edit's styling argument in one frame: lace
     // against structure, and hard contrast so the lace reads.
-    image: '/edit-lace-hero.jpg',
-    imageMobile: '/edit-lace-hero-mobile.jpg',
+    // v2, 2026-08-24: a Magnific upscale (5504x3072) plus a purpose-shot
+    // portrait for the phone (1920x2571), replacing the 1672x941 original whose
+    // ceiling capped desktop at 1672 and left the phone crop a ~2x stretch.
+    image: '/edit-lace-hero-v2.jpg',
+    imageMobile: '/edit-lace-hero-mobile-v2.jpg',
+    imageRatio: 5504 / 3072,
+    imageMobileRatio: 1920 / 2571,
+    imageWidths: [640, 1024, 1440, 1920, 2400],
+    imageMobileWidths: [390, 780, 1170, 1920],
     imageAlt:
       'A woman in a brown hijab and sunglasses leaning in a doorway, wearing a black lace sash tied over a butter-yellow jacket and a brown satin maxi skirt',
     seoTitle: 'Everyday Lace — Lace Hijabs, Abayas and Dresses',
