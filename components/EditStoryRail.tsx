@@ -92,9 +92,22 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
         // which lands the fade's left edge exactly on the arrow's: 70px at
         // 1006, 144px at 1368, 180px at 1440. A constant cannot do this — the
         // strip is 0 below 1220 and grows with every pixel above it.
+        // --fade-stops overridden, not just --fade-to: "a little more
+        // transpatent". The shared default ramps to FULLY opaque parchment
+        // (0 -> .92 at 70% -> 1 at 100%), which erases the last photograph
+        // rather than veiling it. This tops out at .72 and pushes the ramp
+        // later, so the photo stays legible under the fade and still reads as
+        // continuing past the edge.
+        //
+        // Overridden HERE rather than in globals.css because --fade-stops is
+        // shared with the filter popup, the index panel and PopularShowcase,
+        // where a fully opaque edge is correct — those fades cover a hard
+        // scroll boundary, this one veils a picture.
         style={{
           ['--fade-to' as string]: 'var(--parchment)',
           ['--fade-size-x' as string]: 'calc((100vw - min(1220px, 100vw)) / 2 + 70px)',
+          ['--fade-stops' as string]:
+            'rgb(from var(--parchment) r g b / 0) 0%, rgb(from var(--parchment) r g b / .38) 55%, rgb(from var(--parchment) r g b / .72) 100%',
         }}
       >
         {/* overflow-y-hidden is load-bearing: per the CSS Overflow spec,
