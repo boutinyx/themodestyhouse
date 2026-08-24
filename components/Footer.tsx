@@ -1,15 +1,30 @@
 import Link from 'next/link';
 import { PinterestLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr';
-import { CATEGORY_LANES, LANES } from '@/lib/lanes';
+import { CATEGORY_LANES } from '@/lib/lanes';
 import { EDITS } from '@/lib/edits';
 import { NewsletterSignup } from './NewsletterSignup';
 import { FooterCurrency } from './FooterCurrency';
 
-function Col({ head, children }: { head: string; children: React.ReactNode }) {
+function Col({
+  head,
+  children,
+  className = '',
+  /** Defaults to the single-column stack every other footer column uses.
+   *  Products overrides it to flow into two sub-columns from md up — note a
+   *  grid <ul> cannot use `space-y-*` (that targets adjacent siblings and is
+   *  meaningless once the children are grid items), so an override supplies
+   *  its own `gap-y-*`. */
+  listClassName = 'space-y-2',
+}: {
+  head: string;
+  children: React.ReactNode;
+  className?: string;
+  listClassName?: string;
+}) {
   return (
-    <div>
+    <div className={className}>
       <div className="eyebrow" style={{ color: 'var(--brass)' }}>{head}</div>
-      <ul className="mt-4 space-y-2 text-sm">{children}</ul>
+      <ul className={`mt-4 text-sm ${listClassName}`}>{children}</ul>
     </div>
   );
 }
@@ -58,50 +73,62 @@ export function Footer() {
             </div>
           </div>
 
-          {/* All 11 CATEGORY_LANES, not a slice. (Was "9" until 2026-08-19 —
-              layering-basics and outerwear were added after this note.) This was `.slice(0, 6)`, which
-              silently dropped /modest-sets, /modest-swimwear and
-              /modest-activewear — and since CATEGORY_LANES is itself
-              LANES.filter(kind === 'category'), that left 6 of 12 lanes with no
-              internal link anywhere on the site. The sitemap gets an unlinked
-              page crawled, but internal links are what pass ranking signal and
-              tell a crawler the page matters, and the footer is the only link
-              position that appears on every page. Measured 2026-08-08.
+          {/* ALL of CATEGORY_LANES, not a slice — 13 as of 2026-08-24, counted
+              from lib/lanes.ts rather than copied. (This note said "9", then
+              "11"; the number goes stale every time a lane is added, which is
+              precisely why nothing here hard-codes it.) It was once
+              `.slice(0, 6)`, which silently dropped /modest-sets,
+              /modest-swimwear and /modest-activewear — and since CATEGORY_LANES
+              is itself LANES.filter(kind === 'category'), that left half the
+              lanes with no internal link anywhere on the site. The sitemap gets
+              an unlinked page crawled, but internal links are what pass ranking
+              signal and tell a crawler the page matters, and the footer is the
+              only link position that appears on every page. Measured 2026-08-08.
 
-              The non-category lanes (/modest-wedding-guest,
+              The two non-category lanes (/modest-wedding-guest,
               /modest-summer-outfits) are excluded by the CATEGORY_LANES filter
-              and are picked up by the "More" column below instead.
-              /hijabi-outfits used to be the third, held back deliberately
-              because it near-duplicated /directory; it was retired on
-              2026-08-19 once the reason became clear (112 of 113 brands carry
+              and, since 2026-08-24, are linked from nowhere — see the note
+              below where their column used to be.
+              /hijabi-outfits used to be a third, held back deliberately because
+              it near-duplicated /directory; it was retired on 2026-08-19 once
+              the reason became clear (112 of 113 brands carry
               community: 'hijabi', so the lane had no selectivity left). */}
-          <Col head="Products">
+          <Col
+            head="Products"
+            /* Two of the five tracks — the track the "More" column used to hold
+               is exactly what this takes over, so the template below is
+               unchanged and nothing else moves. */
+            className="md:col-span-2"
+            /* grid-flow-col + a fixed row count fills DOWN the first sub-column
+               and then down the second (7 then 6), which is how a reader scans
+               a list. Plain `grid-cols-2` would flow across — 1,2 / 3,4 — and
+               interleave the two halves.
+               MOBILE STAYS ONE COLUMN: at 390px each half would be ~150px and
+               "Cardigans & Sweaters" wraps to three lines. */
+            listClassName="grid grid-cols-1 md:grid-flow-col md:grid-rows-7 gap-x-8 gap-y-2"
+          >
             {CATEGORY_LANES.map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
             ))}
           </Col>
 
-          {/* The non-category lanes, added 2026-08-19. Measured before this:
-              /modest-summer-outfits had ZERO internal links anywhere on the
-              site and /modest-wedding-guest had one, against 25-35 for every
-              category lane — because CATEGORY_LANES (lib/lanes.ts:164) filters
-              on kind === 'category' and these are 'season'/'occasion'/'community'.
-              They were routable and in sitemap.xml the whole time, which is what
-              made it invisible: a sitemap entry gets a URL crawled, internal
-              links are what pass ranking signal.
+          {/* The "More" column stood here from 2026-08-19 until 2026-08-24, when
+              Tina cut it: "Modest Wedding Guest / Modest Summer Outfits get these
+              out of the footer". It rendered every non-category lane —
+              LANES.filter(kind !== 'category'), which is exactly those two
+              (kind 'occasion' and 'season').
 
-              The slug exclusion that used to sit here for /hijabi-outfits is
-              gone with the lane itself (retired 2026-08-19), so this now renders
-              every non-category lane without a special case.
+              KNOWN COST, raised with her rather than buried here: the column was
+              added because those two lanes had almost no internal links — measured
+              2026-08-19, /modest-summer-outfits had ZERO anywhere on the site and
+              /modest-wedding-guest had one, against 25-35 for every category lane.
+              Removing it puts them back in that state. Both are still routed and
+              still in sitemap.xml, but a sitemap entry only gets a URL crawled;
+              internal links are what pass ranking signal (§8). If they should keep
+              a link without their own column, the cheap fix is a single line each
+              in "The House", not a restored column.
 
-              "More" is deliberately the plainest functional label I could pick,
-              NOT a piece of brand voice — the column needs a heading to exist
-              and naming it is Tina's call (CLAUDE.md §10.18). Rename freely. */}
-          <Col head="More">
-            {LANES.filter((l) => l.kind !== 'category').map((l) => (
-              <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
-            ))}
-          </Col>
+              The slot this freed is what the Products column now spans. */}
 
           {/* Was "The Edit" / "Guides" / "Interviews", all three pointing at
               /editorial. "Guides" and "Interviews" are not sections that exist:
