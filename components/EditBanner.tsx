@@ -101,17 +101,34 @@ export function EditBanner({ edit }: { edit: Edit }) {
           satin skirt, instead of across the lace sash the banner exists to
           show; centred from md up, where it sits left of her over the door. */}
       <div className="absolute inset-0 max-w-[1220px] mx-auto px-8 flex flex-col justify-end md:justify-center pb-12 md:pb-0">
-        <p className="eyebrow" style={{ color: 'rgba(251,250,246,0.85)', letterSpacing: '0.22em' }}>
+        {/* All three text sizes were raised on 2026-08-24 — Tina: "all words in
+            the image can be bigger". The banner is a full-bleed, near-viewport-
+            height photograph, and `.eyebrow`'s 10px default was set for a label
+            sitting above a section of cards, not for type competing with an
+            image this size. Each is a clamp so the jump holds from a 390px
+            phone to a 1920px desktop rather than only at the width it was
+            eyeballed on. */}
+        <p
+          className="eyebrow"
+          style={{
+            color: 'rgba(251,250,246,0.85)',
+            letterSpacing: '0.22em',
+            fontSize: 'clamp(12px, 1.15vw, 15px)',
+          }}
+        >
           {edit.eyebrow}
         </p>
         <h2
           className="serif mt-4"
           style={{
             color: 'var(--parchment)',
-            fontSize: 'clamp(34px, 5.5vw, 64px)',
+            fontSize: 'clamp(44px, 7.2vw, 88px)',
             lineHeight: 1.03,
             textShadow: '0 2px 24px rgba(0,0,0,0.45)',
-            maxWidth: 620,
+            // Raised with the type. At 88px "Everyday Lace" is ~570px wide, so
+            // the old 620 cap left almost no margin and the next slightly
+            // longer title would have wrapped for no reason.
+            maxWidth: 760,
           }}
         >
           {edit.title}
@@ -143,11 +160,14 @@ export function EditBanner({ edit }: { edit: Edit }) {
               fontFamily: 'var(--font-label-stack)',
               letterSpacing: 'var(--track-label)',
               textTransform: 'uppercase',
-              fontSize: 13,
+              fontSize: 'clamp(14px, 1.15vw, 17px)',
             }}
           >
             <span style={{ textDecoration: 'underline', textUnderlineOffset: 6 }}>See our picks</span>
-            <ArrowRight size={13} weight="bold" />
+            {/* 15, not 13: the arrow is not a word, but leaving it at the old
+                size next to a label that grew to 17px reads as a shrunken icon
+                rather than a smaller one. */}
+            <ArrowRight size={15} weight="bold" />
           </Link>
         </div>
       </div>
