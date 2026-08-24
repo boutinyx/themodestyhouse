@@ -67,41 +67,9 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="mt-10">
-      {/* CONTROLS ABOVE THE RAIL, right-aligned — not floating on the
-          photographs. The first cut used `.rail-arrow`, which is absolutely
-          positioned over the images the way PopularShowcase's are; on this rail
-          that put a white disc squarely on top of a model (Tina sent the
-          screenshot). PopularShowcase gets away with it because its cards are
-          product shots on plain backgrounds; these are street photographs where
-          the subject is the middle of the frame.
-
-          Kept small and quiet: this is a hint that the row moves, not a primary
-          control. The rail is draggable and keyboard-scrollable regardless, and
-          the right-edge fade is doing the real "there is more" work. */}
-      <div className="flex justify-end gap-2 mb-3">
-        <button
-          type="button"
-          aria-label="Previous photographs"
-          onClick={() => scrollBy(-1)}
-          className="edit-rail-btn"
-          disabled={!canLeft}
-        >
-          <CaretLeft size={14} weight="bold" />
-        </button>
-        <button
-          type="button"
-          aria-label="More photographs"
-          onClick={() => scrollBy(1)}
-          className="edit-rail-btn"
-          disabled={!canRight}
-        >
-          <CaretRight size={14} weight="bold" />
-        </button>
-      </div>
-
+    <div className="relative mt-10">
       <div
-        className="scroll-fade scroll-fade-x"
+        className="scroll-fade scroll-fade-x edit-rail-bleed"
         // RIGHT EDGE ONLY, and never both — Tina: "not that much and only for
         // the right side". `useScrollFade` reports 'start' and 'both' as well,
         // which would paint a left-hand fade once you have scrolled; that is
@@ -121,12 +89,43 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
             documents. */}
         <ul
           ref={setRef}
-          className="scroll-fade-port edit-story-rail no-scrollbar flex gap-4 overflow-x-auto overflow-y-hidden"
+          className="scroll-fade-port edit-story-rail no-scrollbar flex gap-4 overflow-x-auto overflow-y-hidden pr-8 md:pr-0"
           role="list"
         >
           {children}
         </ul>
       </div>
+
+      {/* ON the photographs, centred — where they started. They were moved
+          above the row after Tina sent a screenshot of one sitting on a model,
+          then moved back at her request ("but them back where they were"). Her
+          call: this is the placement she wants, and it is the same one every
+          other rail on the site uses.
+          `.rail-arrow` is absolutely positioned against the wrapper above,
+          which now bleeds to the right screen edge — so `right: 6` puts the
+          next arrow at the edge of the screen rather than the content column. */}
+      <button
+        type="button"
+        aria-label="Previous photographs"
+        onClick={() => scrollBy(-1)}
+        className="rail-arrow rail-arrow-left"
+        style={{ top: '38%', left: 6, opacity: canLeft ? 1 : 0, pointerEvents: canLeft ? 'auto' : 'none' }}
+        tabIndex={canLeft ? 0 : -1}
+        aria-hidden={!canLeft}
+      >
+        <CaretLeft size={18} weight="bold" />
+      </button>
+      <button
+        type="button"
+        aria-label="More photographs"
+        onClick={() => scrollBy(1)}
+        className="rail-arrow"
+        style={{ top: '38%', right: 6, opacity: canRight ? 1 : 0, pointerEvents: canRight ? 'auto' : 'none' }}
+        tabIndex={canRight ? 0 : -1}
+        aria-hidden={!canRight}
+      >
+        <CaretRight size={18} weight="bold" />
+      </button>
     </div>
   );
 }

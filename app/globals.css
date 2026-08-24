@@ -1055,30 +1055,6 @@ html[data-input-modality="mouse"] summary:focus-visible {
   }
 }
 
-/* The small paired arrows above an edit's photo rail (EditStoryRail.tsx).
-   Deliberately NOT `.rail-arrow` — that one is absolutely positioned over the
-   images, which works for PopularShowcase's product shots on plain backgrounds
-   and put a white disc on a model's face here. These sit above the row instead,
-   right-aligned, and stay quiet: the fade is what signals "there is more". */
-.edit-rail-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid var(--hairline);
-  background: var(--bone);
-  color: var(--ink);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: opacity .2s ease, background .2s ease, border-color .2s ease;
-}
-.edit-rail-btn:hover:not(:disabled) { background: var(--parchment); border-color: var(--muted); }
-/* Disabled rather than hidden: the pair keeps its position instead of the row
-   shifting sideways as you scroll. `disabled` also removes it from the tab
-   order for free, so there is never a focusable control that does nothing. */
-.edit-rail-btn:disabled { opacity: .3; cursor: default; }
-
 /* The styling block placed BETWEEN grid rows (components/EditStory.tsx, via
    FilterableGrid's `afterFirstRow`). Tina, 2026-08-24: "i want the text of the
    lace story to be after the first row".
@@ -1112,16 +1088,25 @@ html[data-input-modality="mouse"] summary:focus-visible {
     padding-right: 32px;
   }
 }
-/* The rail breaks the page's px-8 shell so the photographs run to the edge on a
-   phone, the same treatment the other full-bleed rails use. Restored to the
-   column from md up, where the text beside it is measured. */
+/* The photo rail runs off the RIGHT screen edge at every width, so the row and
+   its fade hug the edge instead of stopping short inside the padded column —
+   Tina, 2026-08-24: the fade "sits too far off from the picture". At a 1006px
+   window the row was ending at the content edge with 32px of bare parchment
+   beyond it, which reads as the row stopping rather than continuing.
+
+   Right only above 768px: the left edge stays aligned with the heading and the
+   paragraphs, so the block still reads as one column of text with a row of
+   pictures running out of it. On a phone both sides bleed, which is what the
+   product grid above it already does.
+
+   `calc(50% - 50vw)` is negative whenever the viewport is wider than this box,
+   which pulls the edge out to the screen. 100vw INCLUDES the scrollbar on
+   desktop, so this is the exact shape that can add a scrollbar's worth of
+   horizontal overflow — measured at 390/768/1006/1440 in both engines before
+   shipping, and again after. */
+.edit-rail-bleed { margin-right: calc(50% - 50vw); }
 @media (max-width: 767px) {
-  .edit-story-rail {
-    margin-left: -2rem;
-    margin-right: -2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+  .edit-rail-bleed { margin-left: calc(50% - 50vw); }
 }
 
 /* Edge-to-edge on a phone (Tina's reference: H&M's mobile grid) — the two
