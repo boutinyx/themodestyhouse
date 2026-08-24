@@ -36,6 +36,7 @@ export function EditBanner({ edit }: { edit: Edit }) {
   // It looked completely fine on screen, which is why it was caught by
   // measuring naturalWidth (0) rather than by looking.
   const webp = (src: string, w: number) => src.replace(/\.jpg$/, `-${w}.webp`);
+  const wash = edit.heroWash ?? 0.26;
   return (
     <section
       className="edit-hero relative overflow-hidden"
@@ -71,28 +72,23 @@ export function EditBanner({ edit }: { edit: Edit }) {
           loading="lazy"
         />
       </picture>
-      {/* A LIGHT wash, matching the edit page's hero — same photograph, same
-          campaign, so they should not disagree about their own treatment.
-          Tina asked for the heavy overlay gone ("dont out a dark overlay on
-          it"), then for a little back ("not too dark just littke bit"): this
-          is 0.26 at its strongest against the 0.46-0.62 it replaced, and it
-          fades to near nothing across the frame. Weighted toward whichever
-          side the copy sits on at that width, so the model and the lace sash
-          keep their full contrast. */}
+      {/* Wash strength comes from the EDIT, exactly as it does on the edit page
+          — same photograph, same campaign, so the two must not disagree. This
+          was hardcoded at 0.26 and therefore ignored `heroWash` entirely: the
+          jersey hero rendered at 0.46 on its own page and 0.26 here, on the
+          same image. Weighted toward whichever side the copy sits on. */}
       <div
         aria-hidden
         className="absolute inset-0 md:hidden"
         style={{
-          background:
-            'linear-gradient(to top, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 45%, rgba(12,6,12,0.02) 78%)',
+          background: `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 45%, rgba(12,6,12,0.02) 78%)`,
         }}
       />
       <div
         aria-hidden
         className="absolute inset-0 hidden md:block"
         style={{
-          background:
-            'linear-gradient(to right, rgba(12,6,12,0.26) 0%, rgba(12,6,12,0.12) 48%, rgba(12,6,12,0.02) 100%)',
+          background: `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
         }}
       />
       {/* absolute inset-0, not a min-height — the section's ratio owns the

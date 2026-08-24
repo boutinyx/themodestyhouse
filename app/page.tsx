@@ -457,11 +457,17 @@ export default function Home() {
           so the homepage still has one editorial beat between the two product
           rails rather than running Popular Items straight into the Verified
           Spotlight.
-          Renders the FIRST edit rather than all of them: with one edit that is
-          the same thing, and when there are several this should become a
-          deliberate choice (newest? pinned?) rather than silently growing into
-          a stack of full-bleed banners down the homepage. */}
-      {EDITS.length > 0 && <EditBanner edit={EDITS[0]} />}
+          Renders ONE edit — the one flagged `featured` in lib/edits.ts — rather
+          than all of them, so this never grows into a stack of full-bleed
+          banners down the homepage. */}
+      {(() => {
+        // The FEATURED edit, not EDITS[0]. With one edit those were the same
+        // thing; with two, an array position quietly decides what the homepage
+        // shows. Falls back to the first so the banner can never vanish because
+        // a flag was removed.
+        const featured = EDITS.find((e) => e.featured) ?? EDITS[0];
+        return featured ? <EditBanner edit={featured} /> : null;
+      })()}
 
       {/* The "Chosen by hand" editor's-picks rail stood here until 2026-08-24,
           when Tina cut it ("this block in homepage is going to go"). It was a
