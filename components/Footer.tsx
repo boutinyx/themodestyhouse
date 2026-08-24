@@ -98,7 +98,24 @@ export function Footer() {
             /* Two of the five tracks — the track the "More" column used to hold
                is exactly what this takes over, so the template below is
                unchanged and nothing else moves. */
-            className="md:col-span-2 md:text-center"
+            /* NO md:text-center. It was added 2026-08-25 with `justify-center`
+               so the eyebrow would sit over the centred sub-column pair — but
+               that put "PRODUCTS" over the GUTTER between the two lists, 120px
+               right of "Modest Dresses", while EDITORIAL and THE HOUSE sit
+               flush above their own first link. Tina: "products name should
+               just be where it was". The heading is back at the column's left
+               edge, level with its first item and with every other heading in
+               the row; the LINKS stay centred in the span, which is the
+               separate thing she asked for earlier the same day.
+
+               `md:w-max md:mx-auto` is what makes those two compatible. Simply
+               dropping the centring left the heading at the SPAN's left edge
+               (429px) while `justify-center` on the list held the pair at
+               470px — measured, 41px apart, which is not "where it was"
+               either. Shrinking the whole column to max-content and centring
+               THAT moves heading and list together, so the heading sits exactly
+               on its first link the way EDITORIAL and THE HOUSE do. */
+            className="md:col-span-2 md:w-max md:mx-auto"
             /* grid-flow-col + a fixed row count fills DOWN the first sub-column
                and then down the second (7 then 6), which is how a reader scans
                a list. Plain `grid-cols-2` would flow across — 1,2 / 3,4 — and
@@ -118,10 +135,10 @@ export function Footer() {
                md makes both tracks implicit, so both take max-content.
                `max-content` sizes each sub-column to its longest label, and
                `justify-center` centres the resulting pair in the span; the
-               eyebrow above it is centred by `md:text-center` on the column so
-               the heading stays over its own list. `md:text-left` puts the row
-               text back to left-aligned inside each sub-column — centring the
-               individual links would leave both edges ragged.
+               eyebrow above it is NOT centred with it — see the note on the
+               column's own className above. (`md:text-left` on the list below is
+               inert now: it existed only to undo the `md:text-center` that has
+               gone. Left in place because left is what the rows want anyway.)
 
                GUTTER: gap-x-20 (80px). Went 32 -> 40 -> 80; Tina on the 40px
                version: "not that close". 80 is the value that matches the ~73px
