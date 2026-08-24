@@ -217,11 +217,13 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
           {/* No search field: an edit is a hand-picked set of ~24 pieces, so a
               "search houses, pieces…" box over it filters a selection small
               enough to read. Tina, 2026-08-24: "search bar in the Everyday Lace
-              needs to go". The Brand/Sort chips stay — 17 houses is enough for
-              those to earn their place. */}
+              needs to go", then "type can go out too". Type was the hijab
+              fabric/style filter, which answers a question an edit is not
+              asking. Brand and Sort stay — 17 houses earns those. */}
           <FilterableGrid
             catalogue={catalogue}
             searchable={false}
+            showTypeFilter={false}
             afterFirstRow={<EditStory edit={edit} />}
           />
         </div>

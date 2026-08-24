@@ -15,6 +15,7 @@ export function FilterableGrid({
   initialType,
   afterFirstRow,
   searchable = true,
+  showTypeFilter = true,
 }: {
   catalogue: CompactCatalogue;
   /** From the lane page's ?type= — e.g. the nav flyout's "Blazers" link
@@ -39,6 +40,12 @@ export function FilterableGrid({
    *  `showSearch`. False on /edits/[slug]: an edit is ~24 hand-picked pieces,
    *  so searching inside it is a control with nothing to do. */
   searchable?: boolean;
+  /** Whether to offer the hijab fabric/style "Type" chip when the catalogue
+   *  slice happens to carry one. False on /edits/[slug]: an edit cuts across
+   *  garment categories, so a hijab-fabric filter over it is a control that
+   *  answers a question the page is not asking. Tina, 2026-08-24: "type can go
+   *  out too". Defaults to true, so the lanes are untouched. */
+  showTypeFilter?: boolean;
 }) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   // Independent of `type` below (the sub-category flyout's URL-driven
@@ -209,7 +216,7 @@ export function FilterableGrid({
             practice, only /modest-hijabs. Independent of the sub-category
             flyout (Khimars & Jilbabs/Undercaps, 034a985) — see the comment
             on fabricTypeIdx above. */}
-        {fabricTypes.length > 0 && (
+        {showTypeFilter && fabricTypes.length > 0 && (
           <FilterDropdown label="Type" value={fabricType} options={fabricTypes} onSelect={setFabricType} />
         )}
         {/* Unlike the two above, this dropdown's "nothing chosen" value is a
