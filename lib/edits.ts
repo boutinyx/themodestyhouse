@@ -234,11 +234,12 @@ export const EDITS: Edit[] = [
      * side by side they read as one brand's shelf rather than a directory's
      * edit.
      *
-     * Resulting spread: hijabs at 3, 7, 12 and 17; Manzaram at 22 of 23; no
+     * Resulting spread: hijabs at 3, 7, 12 and 17; Manzaram at 22 of 24; no
      * repeated house adjacent. Verified by lib/edits.test.ts rather than by
      * eye, so a future re-order cannot quietly undo it.
      *
-     * All 23 resolved and were in stock when added. If one stops resolving the
+     * All 24 resolved and were in stock when added — the last, Ellem Atelier,
+     * added afterwards from a product URL Tina sent. If one stops resolving the
      * edit silently loses a piece — that is what the picked-ids test exists to
      * catch.
      */
@@ -266,6 +267,7 @@ export const EDITS: Edit[] = [
       'bemu:10148012753187', // Bemu — Lace Abaya Set, Beige
       'manzaram:15746672918853', // Manzaram — Satin top with lace detail
       'abayas-boutique:24224', // Abayas Boutique — Lace Set
+      'ellem-atelier:10493655384407', // Ellem Atelier — Warm beige lace abaya set
     ],
     match: (p) => /\blace\b/i.test(p.title) && !LACE_UP.test(p.title) && !NOT_A_GARMENT.test(p.title),
     includeHijabs: true,
