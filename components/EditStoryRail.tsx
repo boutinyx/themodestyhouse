@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { CaretRight, CaretLeft } from '@phosphor-icons/react';
 import { useScrollFade } from './useScrollFade';
 
@@ -35,6 +35,31 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
   const canLeft = fade === 'start' || fade === 'both';
   const canRight = fade === 'end' || fade === 'both';
 
+  // THE ROW MUST NEVER SWALLOW A VERTICAL GESTURE. Tina: "when i stand on it i
+  // cant scroll on the page anymore im stuck" — the identical bug
+  // components/PopularShowcase.tsx already documents in her own words, and I
+  // shipped this rail without carrying its fix across.
+  //
+  // Doing nothing is WORSE than this handler, not neutral: `overflow-x: auto`
+  // alone (even with overflow-y hidden) makes the element the wheel event's
+  // target with no valid axis to apply it to, and Chromium does not chain that
+  // unhandled event up to the page — the page freezes for as long as the
+  // pointer is over the row. So a vertical gesture is handed to the window
+  // unconditionally and `scrollLeft` is never touched here. A genuine
+  // HORIZONTAL gesture (shift+wheel, or a trackpad's sideways swipe) produces
+  // deltaX, which this never intercepts and native overflow-x handles alone.
+  useEffect(() => {
+    const el = node.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      window.scrollBy(0, e.deltaY);
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, []);
+
   const scrollBy = (dir: 1 | -1) => {
     const el = node.current;
     if (!el) return;
@@ -45,11 +70,20 @@ export function EditStoryRail({ children }: { children: React.ReactNode }) {
     <div className="relative mt-10">
       <div
         className="scroll-fade scroll-fade-x"
-        data-fade={fade}
+        // RIGHT EDGE ONLY, and never both — Tina: "not that much and only for
+        // the right side". `useScrollFade` reports 'start' and 'both' as well,
+        // which would paint a left-hand fade once you have scrolled; that is
+        // collapsed away here rather than by changing the hook, because the
+        // hook's measurement is correct and shared with the buttons. Only the
+        // PAINTING is opinionated.
+        data-fade={canRight ? 'end' : 'none'}
         // --fade-to is the surface this resolves INTO. Parchment, not the
         // class's white default: the story block sits on the page background,
         // and a white ramp would leave a visible pale sliver over it.
-        style={{ ['--fade-to' as string]: 'var(--parchment)', ['--fade-size-x' as string]: '90px' }}
+        // 90px -> 44px. The wide default was tuned for PopularShowcase's much
+        // bigger cards; at this size it was washing out most of the last
+        // photograph rather than hinting at it.
+        style={{ ['--fade-to' as string]: 'var(--parchment)', ['--fade-size-x' as string]: '44px' }}
       >
         {/* overflow-y-hidden is load-bearing: per the CSS Overflow spec,
             setting overflow-x to a non-visible value while overflow-y is left
