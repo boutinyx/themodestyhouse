@@ -37,6 +37,7 @@ export function EditBanner({ edit }: { edit: Edit }) {
   // measuring naturalWidth (0) rather than by looking.
   const webp = (src: string, w: number) => src.replace(/\.jpg$/, `-${w}.webp`);
   const wash = edit.heroWash ?? 0.26;
+  const centred = edit.bannerAlign === 'center';
   return (
     <section
       className="edit-hero relative overflow-hidden"
@@ -72,11 +73,11 @@ export function EditBanner({ edit }: { edit: Edit }) {
           loading="lazy"
         />
       </picture>
-      {/* Wash strength comes from the EDIT, exactly as it does on the edit page
-          — same photograph, same campaign, so the two must not disagree. This
-          was hardcoded at 0.26 and therefore ignored `heroWash` entirely: the
-          jersey hero rendered at 0.46 on its own page and 0.26 here, on the
-          same image. Weighted toward whichever side the copy sits on. */}
+      {/* Wash strength comes from the EDIT, exactly as on the edit page — same
+          photograph, same campaign, so the two must not disagree.
+          Its DIRECTION follows the copy: left-aligned copy gets a
+          left-weighted gradient, centred copy a vertical one. A left-weighted
+          wash under centred type darkens the wrong half of the picture. */}
       <div
         aria-hidden
         className="absolute inset-0 md:hidden"
@@ -88,7 +89,9 @@ export function EditBanner({ edit }: { edit: Edit }) {
         aria-hidden
         className="absolute inset-0 hidden md:block"
         style={{
-          background: `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
+          background: centred
+            ? `linear-gradient(to top, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.7}) 50%, rgba(12,6,12,${wash * 0.5}) 100%)`
+            : `linear-gradient(to right, rgba(12,6,12,${wash}) 0%, rgba(12,6,12,${wash * 0.46}) 48%, rgba(12,6,12,0.02) 100%)`,
         }}
       />
       {/* absolute inset-0, not a min-height — the section's ratio owns the
@@ -96,7 +99,11 @@ export function EditBanner({ edit }: { edit: Edit }) {
           justify-end on a phone puts the copy at the bottom, over the dark
           satin skirt, instead of across the lace sash the banner exists to
           show; centred from md up, where it sits left of her over the door. */}
-      <div className="absolute inset-0 max-w-[1220px] mx-auto px-8 flex flex-col justify-end md:justify-center pb-12 md:pb-0">
+      <div
+        className={`absolute inset-0 max-w-[1220px] mx-auto px-8 flex flex-col justify-end md:justify-center pb-12 md:pb-0${
+          centred ? ' md:items-center md:text-center' : ''
+        }`}
+      >
         {/* All three text sizes were raised on 2026-08-24 — Tina: "all words in
             the image can be bigger". The banner is a full-bleed, near-viewport-
             height photograph, and `.eyebrow`'s 10px default was set for a label

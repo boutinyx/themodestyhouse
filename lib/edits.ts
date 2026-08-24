@@ -81,6 +81,17 @@ export type Edit = {
    *  If none is flagged the banner falls back to the first, so the homepage can
    *  never end up with no banner because someone removed a flag. */
   featured?: boolean;
+  /** Where the copy sits in the HOMEPAGE banner: 'left' (default) or 'center'.
+   *
+   *  Per-edit because it depends on the photograph. Everyday Lace has the model
+   *  hard right against an empty door, so left is the only place the type can
+   *  go. Jersey Hijabs is a mirrored interior with the subject on both sides of
+   *  the frame and nothing to sit beside, so centred reads better.
+   *
+   *  The wash follows it: left-aligned copy gets a left-weighted gradient,
+   *  centred copy gets a vertical one, because a left-weighted wash under
+   *  centred type darkens the wrong half of the picture. */
+  bannerAlign?: 'left' | 'center';
   /** How dark the wash over the hero goes, as the gradient's MAX alpha.
    *
    *  Per-edit because it depends entirely on the photograph. Everyday Lace is a
@@ -299,8 +310,10 @@ export const EDITS: Edit[] = [
   {
     slug: 'jersey-hijabs',
     title: 'Jersey Hijabs',
-    // On the homepage as of 2026-08-25, replacing Everyday Lace.
+    // Both edits show on the homepage as of 2026-08-25; `featured` now only
+    // decides which one comes FIRST.
     featured: true,
+    bannerAlign: 'center',
     eyebrow: 'The Edit · Autumn 2026',
     dek: 'The one you actually wear.',
     // Tina's own shots, 2026-08-24. The phone one is a real 1792x2400 portrait

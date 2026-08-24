@@ -460,14 +460,16 @@ export default function Home() {
           Renders ONE edit — the one flagged `featured` in lib/edits.ts — rather
           than all of them, so this never grows into a stack of full-bleed
           banners down the homepage. */}
-      {(() => {
-        // The FEATURED edit, not EDITS[0]. With one edit those were the same
-        // thing; with two, an array position quietly decides what the homepage
-        // shows. Falls back to the first so the banner can never vanish because
-        // a flag was removed.
-        const featured = EDITS.find((e) => e.featured) ?? EDITS[0];
-        return featured ? <EditBanner edit={featured} /> : null;
-      })()}
+      {/* EVERY edit, featured one first. Tina, 2026-08-25: "i want both edits
+          to show in homepage". `featured` no longer decides WHICH banner shows,
+          only which comes first — kept rather than deleted because the order
+          still needs to be a visible decision rather than an array position.
+          Worth watching if a third edit ever lands: these are full-bleed and
+          16:9, so each one is most of a screen. At that point this wants to
+          become a cap or a different treatment, not three stacked banners. */}
+      {[...EDITS].sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false)).map((e) => (
+        <EditBanner key={e.slug} edit={e} />
+      ))}
 
       {/* The "Chosen by hand" editor's-picks rail stood here until 2026-08-24,
           when Tina cut it ("this block in homepage is going to go"). It was a
