@@ -123,3 +123,56 @@ grep reads as the end-of-line anchor, so the pattern could never match. It logge
 `poll N: not yet` three times against a staging build that had ALREADY deployed the change on
 poll 1. The output it printed each round was the evidence that it was done. Read what a poll
 prints, don't only trust its verdict.
+
+## Follow-up 2 — the same rule on desktop and in the footer
+Tina, after seeing the phone change: *"i dont want to see the currency ive selected in the
+currency list"* — i.e. the header and footer menus too, not just the phone list.
+
+Both were `Menu.RadioGroup` + `Menu.RadioItem`. Filtering the current value out of a radio
+group leaves a group with no checked member, which is not a radio group — its entire job is to
+say which item is selected. So both are now plain `Menu.Item` action rows
+(`options.filter((o) => o !== (preference ?? 'USD'))`), with the `onValueChange`/`value`
+plumbing replaced by a direct `onClick={() => setPreference(o)}`. `closeOnClick` is gone with
+them: a `Menu.Item` closes the menu on click by default, which is what these already wanted.
+`components/IndexPanel.tsx`'s filter dropdowns are untouched — those ARE genuine one-of-N
+selections and keep their radio semantics.
+
+**`scripts/interaction-audit.mjs` changed in the same commit, and this is the part that
+matters.** Its footer-currency check located rows by `[role="menuitemradio"]`. That role no
+longer exists, so the check would have found nothing and reported
+`FOOTER CURRENCY MENU DID NOT OPEN ON TAP` at every viewport in both engines, on a menu that
+opens perfectly well — §10.29 and §10.32 for the third and fourth time. Three fixes:
+- the selector is `[role="menuitem"]`;
+- the option count is now **asserted** (`items.length !== 8` is a PROBLEM), so a regression that
+  puts the selected currency back is a failure and not a number nobody reads;
+- the currency it picks is chosen against what the trigger already says (`GBP` unless the
+  trigger reads GBP, else `EUR`), and its absence is a PROBLEM. Previously it looked for GBP
+  unconditionally — with GBP no longer listed when GBP is selected, a run that arrived already
+  set to GBP would have found zero matches, left `applied` null, and passed while asserting
+  nothing (§10.28).
+
+### Verification
+Negative control first, on the UNFIXED code (§10.28 rule 1) — the filter temporarily removed
+from `FooterCurrency`, then restored:
+```
+--- NEGATIVE CONTROL (filter removed) ---
+{"currencyOptions":9,"PROBLEM":"FOOTER CURRENCY LIST HAS 9 OPTIONS, EXPECTED 8 (the selected one must not be listed)"}
+--- RESTORED ---
+{"currencyOptions":8}
+```
+Then both menus driven live (Chromium, 1440x900, stylesheet asserted first):
+```
+css loaded: rgb(250, 247, 241)
+header trigger: $ USD
+header rows: 8 ["£ GBP","€ EUR","CA$ CAD","A$ AUD","KR DKK","₺ TRY","SR SAR","B$ BSD"]
+header radios left: 0
+after EUR -> header trigger: € EUR
+header rows now: 8   EUR listed? false
+footer trigger: € EUR
+footer rows: 8 ["$ USD","£ GBP","CA$ CAD","A$ AUD","KR DKK","₺ TRY","SR SAR","B$ BSD"]
+footer options with no flag: []
+after GBP -> footer trigger: £ GBP
+```
+The footer picking up `€ EUR` from the header is the CurrencyProvider working across both
+controls, not a defect. `npx tsc --noEmit`, `npx eslint` (both components + the audit script)
+and `npm test` (46 files / 741 tests) all clean.

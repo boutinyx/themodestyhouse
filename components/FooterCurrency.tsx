@@ -90,26 +90,30 @@ export function FooterCurrency() {
               boxShadow: '0 8px 30px rgba(43,38,34,0.14)',
             }}
           >
-            <Menu.RadioGroup
-              value={preference ?? 'USD'}
-              onValueChange={(v) => setPreference(v as CurrencyPreference)}
-            >
-              {options.map((o) => (
-                <Menu.RadioItem
+            {/* The CURRENT currency is filtered out, and these are
+                `Menu.Item` actions rather than a `Menu.RadioGroup` — changed
+                2026-08-25 with the header menu and the phone menu, from the
+                same instruction (Tina: "i dont want to see the currency ive
+                selected in the currency list"). A radio group whose selected
+                member is never in the list is a broken radio group: its whole
+                job is to show which item is checked, and none ever would be.
+                The trigger above still names the current currency. All three
+                switchers offer the same choice and must not drift apart —
+                that is why CURRENCY_LABEL lives in lib/fx.ts, and it now
+                applies to this rule too. */}
+            <div>
+              {options.filter((o) => o !== (preference ?? 'USD')).map((o) => (
+                <Menu.Item
                   key={o}
-                  value={o}
-                  // A currency is picked once; leaving the menu open after the
-                  // choice (Base UI's default for a radio group) reads as stuck.
-                  closeOnClick
+                  onClick={() => setPreference(o as CurrencyPreference)}
                   className="menu-row"
-                  data-active={preference === o}
                   style={{ gap: 10 }}
                 >
                   <CurrencyFlag currency={o} />
                   {LABEL[o]}
-                </Menu.RadioItem>
+                </Menu.Item>
               ))}
-            </Menu.RadioGroup>
+            </div>
             <p
               className="px-3 pt-2 pb-1"
               style={{

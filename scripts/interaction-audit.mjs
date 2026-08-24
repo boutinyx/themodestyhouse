@@ -437,15 +437,32 @@ for (const engineName of engineNames) {
       if (vp.touch) await trg.tap(); else await trg.click();
       await page.waitForTimeout(600);
       const menu = await page.evaluate(() => {
-        const items = [...document.querySelectorAll('[role="menuitemradio"]')];
+        // `[role="menuitem"]`, NOT `menuitemradio`. The rows were Base UI
+        // RadioItems until 2026-08-25, when the CURRENT currency stopped being
+        // listed at all (Tina: "i dont want to see the currency ive selected in
+        // the currency list") and a radio group stopped being the honest
+        // primitive — they are plain Menu.Items now, so the role changed with
+        // them. Left unfixed, this selector would have matched nothing and
+        // reported FOOTER CURRENCY MENU DID NOT OPEN ON TAP on a menu that
+        // opens perfectly well, at every viewport in both engines: §10.29 and
+        // §10.32, twice each, for exactly this reason. A role in a script is a
+        // reference no compiler can see.
+        const items = [...document.querySelectorAll('[role="menuitem"]')];
         if (!items.length) return { PROBLEM: 'FOOTER CURRENCY MENU DID NOT OPEN ON TAP' };
         const pop = items[0].closest('[data-base-ui-popup]') || items[0].parentElement;
         const r = pop.getBoundingClientRect();
         const inView = r.top >= -1 && r.bottom <= window.innerHeight + 1
           && r.left >= -1 && r.right <= document.documentElement.clientWidth + 1;
         const flagless = items.filter((i) => !i.querySelector('svg')).map((i) => i.textContent.trim());
+        // 8, not 9: the currency you are already in is deliberately absent
+        // (see the role note above). Asserted rather than merely reported, so
+        // that a regression which puts it back is a PROBLEM and not a number
+        // nobody reads — §10.28, a check that cannot fail is not a check.
         return {
           currencyOptions: items.length,
+          ...(items.length !== 8
+            ? { PROBLEM: `FOOTER CURRENCY LIST HAS ${items.length} OPTIONS, EXPECTED 8 (the selected one must not be listed)` }
+            : {}),
           ...(!inView
             ? { PROBLEM: `FOOTER CURRENCY MENU OUTSIDE THE VIEWPORT (${Math.round(r.top)}..${Math.round(r.bottom)} / ${window.innerHeight})` }
             : flagless.length
@@ -457,18 +474,29 @@ for (const engineName of engineNames) {
       // Opening it is half the check. Pick GBP and confirm the preference
       // actually took — a menu that opens and changes nothing is the §10.28
       // shape, where a check passes because it never asserted the outcome.
+      // GBP unless the trigger ALREADY reads GBP — since 2026-08-25 the
+      // current currency is not in the list, so a run that arrives already set
+      // to GBP would find zero matches, leave `applied` null, and pass without
+      // asserting anything (§10.28: a check whose "did not run" looks like its
+      // "passed"). `pick` is therefore chosen against what the trigger says,
+      // and its absence is a PROBLEM rather than a silent skip.
       let applied = null;
-      const gbp = page.locator('[role="menuitemradio"]', { hasText: 'GBP' }).first();
-      if (await gbp.count()) {
-        if (vp.touch) await gbp.tap(); else await gbp.click();
+      const before = (await trg.innerText()).trim();
+      const pick = /GBP/.test(before) ? 'EUR' : 'GBP';
+      const opt = page.locator('[role="menuitem"]', { hasText: pick }).first();
+      const pickable = await opt.count();
+      if (pickable) {
+        if (vp.touch) await opt.tap(); else await opt.click();
         await page.waitForTimeout(600);
         applied = (await trg.innerText()).trim();
       }
       note({
-        engine: engineName, viewport: vpName, state: 'footer-currency', applied, ...menu,
-        ...(!menu.PROBLEM && applied !== null && !/GBP/.test(applied)
-          ? { PROBLEM: `CHOOSING A CURRENCY DID NOT APPLY — trigger still reads "${applied}"` }
-          : {}),
+        engine: engineName, viewport: vpName, state: 'footer-currency', applied, picked: pick, ...menu,
+        ...(menu.PROBLEM ? {}
+          : !pickable ? { PROBLEM: `${pick} WAS NOT IN THE FOOTER CURRENCY LIST (trigger read "${before}")` }
+          : !new RegExp(pick).test(applied ?? '')
+            ? { PROBLEM: `CHOOSING A CURRENCY DID NOT APPLY — trigger still reads "${applied}"` }
+            : {}),
       });
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'footer-currency', error: e.message.split('\n')[0] }); }
 
