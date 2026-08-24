@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { newlyVerified, categoryCards } from '@/lib/houses';
 import PopularShowcase from '@/components/PopularShowcase';
+import { EditBanner } from '@/components/EditBanner';
+import { EDITS } from '@/lib/edits';
 import { POPULAR_ITEM_IDS } from '@/lib/popularItems';
 import { HeroCallouts } from '@/components/HeroCallouts';
 import VerifiedSpotlight from '@/components/VerifiedSpotlight';
@@ -430,6 +432,18 @@ export default function Home() {
           <PopularShowcase items={popularItems} />
         </div>
       </section>
+
+      {/* THE EDIT — full-bleed campaign banner into /edits/[slug].
+          Added 2026-08-24 ("put it on the hompage"). Placed here, directly
+          after Popular Items and where the "Chosen by hand" rail used to sit,
+          so the homepage still has one editorial beat between the two product
+          rails rather than running Popular Items straight into the Verified
+          Spotlight.
+          Renders the FIRST edit rather than all of them: with one edit that is
+          the same thing, and when there are several this should become a
+          deliberate choice (newest? pinned?) rather than silently growing into
+          a stack of full-bleed banners down the homepage. */}
+      {EDITS.length > 0 && <EditBanner edit={EDITS[0]} />}
 
       {/* The "Chosen by hand" editor's-picks rail stood here until 2026-08-24,
           when Tina cut it ("this block in homepage is going to go"). It was a
