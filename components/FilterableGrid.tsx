@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, type ReactNode } from 'react';
 import type { CompactCatalogue } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import { ProductCard } from './ProductCard';
@@ -13,6 +13,7 @@ const STEP = 24;
 export function FilterableGrid({
   catalogue: cat,
   initialType,
+  afterFirstRow,
 }: {
   catalogue: CompactCatalogue;
   /** From the lane page's ?type= — e.g. the nav flyout's "Blazers" link
@@ -21,6 +22,18 @@ export function FilterableGrid({
    *  against the catalogue's real subtype columns rather than trusted
    *  outright — an arbitrary query string is user input. */
   initialType?: string;
+  /** Rendered as a full-width block AFTER the first row of cards.
+   *
+   *  Placed inside the grid rather than after it because "after the first row"
+   *  is a position in the GRID, and the grid has a different column count at
+   *  each breakpoint — 2 on a phone, 3 from 768px — so there is no single card
+   *  index that means "end of row one". It is done with `order` instead: every
+   *  card gets `order: i * 10`, and `.grid-story` takes an order that falls
+   *  between them, set per breakpoint in globals.css. The alternative — putting
+   *  it after a fixed number of cards in the DOM — leaves a hole in row one at
+   *  whichever breakpoint it was not tuned for, because a `grid-column: 1/-1`
+   *  child cannot start mid-row. */
+  afterFirstRow?: ReactNode;
 }) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   // Independent of `type` below (the sub-category flyout's URL-driven
@@ -219,8 +232,16 @@ export function FilterableGrid({
           <div className="product-grid">
             {shownCards.map((p, i) => (
               // The first row is the LCP candidate — see the priority note in ProductCard.
-              <ProductCard key={p.id} p={p} priority={i < 4} />
+              // `order` is what lets `afterFirstRow` sit between rows; see its prop doc.
+              // A real wrapper, NOT display:contents — `contents` removes the
+              // element's box, so it stops being a grid item and `order` on it
+              // does nothing at all. The wrapper is the grid item; the card
+              // fills it.
+              <div key={p.id} style={{ order: i * 10 }}>
+                <ProductCard p={p} priority={i < 4} />
+              </div>
             ))}
+            {afterFirstRow && <div className="grid-story">{afterFirstRow}</div>}
           </div>
           {visible < sortedRows.length && (
             <div className="text-center mt-12">

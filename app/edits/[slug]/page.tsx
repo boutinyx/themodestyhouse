@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { EDITS, editBySlug } from '@/lib/edits';
 import { productsForEdit } from '@/lib/products';
 import { BRANDS } from '@/data/brands';
 import { FilterableGrid } from '@/components/FilterableGrid';
 import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { JsonLd } from '@/components/JsonLd';
+import { EditStory } from '@/components/EditStory';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
 
 /**
@@ -190,32 +190,12 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
         </p>
 
         <div className="mt-6">
-          <FilterableGrid catalogue={catalogue} />
+          <FilterableGrid catalogue={catalogue} afterFirstRow={<EditStory edit={edit} />} />
         </div>
 
-        {/* The styling block, AFTER the grid. Tina asked for "mostly items", and
-            lib/laneAnswers.ts already established the ordering rule: pieces
-            first, words after. Server-rendered so it is real, crawlable content
-            rather than something only a reader with JS ever sees. */}
-        <section className="max-w-2xl mt-20 pt-12" style={{ borderTop: '1px solid var(--hairline)' }}>
-          <h2 className="serif" style={{ fontSize: 'clamp(22px,2.6vw,30px)', color: 'var(--ink)', lineHeight: 1.15 }}>
-            {edit.styling.h2}
-          </h2>
-          {edit.styling.paragraphs.map((p) => (
-            <p key={p.slice(0, 40)} className="mt-4" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>
-              {p}
-            </p>
-          ))}
-          <div className="mt-8">
-            <Link
-              href="/directory"
-              className="nav-link inline-flex items-center gap-1.5"
-              style={{ color: 'var(--aubergine)' }}
-            >
-              Browse the whole directory
-            </Link>
-          </div>
-        </section>
+        {/* The styling block no longer lives here — it is passed into
+            FilterableGrid as `afterFirstRow` and renders between the first and
+            second rows of the grid instead. */}
       </div>
     </main>
   );

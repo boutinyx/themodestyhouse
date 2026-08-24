@@ -198,6 +198,18 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
+    // /edits/[slug] story photographs — the credited street shots that sit with
+    // the styling text. Rendered ~300-420px wide in a strip, so 400/800 covers
+    // 1x and 2x; 1200 is there for the phone case where one card is nearly the
+    // full viewport. Sources are 736-1200px, and this script never upscales, so
+    // the 1200 variant only materialises for the two that can supply it.
+    dir: 'edits',
+    match: /\.jpe?g$/i,
+    widths: [400, 800, 1200],
+    suffixWidth: true,
+    opts: { quality: 86, effort: 5 },
+  },
+  {
     // Full-bleed band on /about. Same job as the hero — it spans the viewport,
     // so the 900px editorial ceiling is visibly soft on a desktop display.
     dir: 'about',

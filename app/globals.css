@@ -1055,6 +1055,36 @@ html[data-input-modality="mouse"] summary:focus-visible {
   }
 }
 
+/* The styling block placed BETWEEN grid rows (components/EditStory.tsx, via
+   FilterableGrid's `afterFirstRow`). Tina, 2026-08-24: "i want the text of the
+   lace story to be after the first row".
+
+   `order` rather than DOM position, because "the first row" is a different
+   number of cards at each breakpoint — 2 on a phone, 3 from 768px. Cards get
+   `order: i * 10` (0, 10, 20, …) and this takes a value that falls between the
+   right pair: 15 sits after cards 0 and 10 (two cards), 25 after 0, 10 and 20
+   (three). Putting it at a fixed DOM index instead leaves a hole in row one at
+   whichever breakpoint it was not tuned for, since a `grid-column: 1/-1` child
+   cannot begin mid-row. */
+.grid-story {
+  grid-column: 1 / -1;
+  order: 15;
+}
+@media (min-width: 768px) {
+  .grid-story { order: 25; }
+}
+/* The rail breaks the page's px-8 shell so the photographs run to the edge on a
+   phone, the same treatment the other full-bleed rails use. Restored to the
+   column from md up, where the text beside it is measured. */
+@media (max-width: 767px) {
+  .edit-story-rail {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 /* Edge-to-edge on a phone (Tina's reference: H&M's mobile grid) — the two
    photos fill the viewport width with no page margin and almost no gap
    between them, instead of sitting in the same 32px-padded column as the

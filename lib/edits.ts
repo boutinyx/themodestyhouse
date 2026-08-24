@@ -68,6 +68,21 @@ export type Edit = {
   /** <title> and meta description. Written to the query the page is FOR. */
   seoTitle: string;
   seoDescription: string;
+  /**
+   * Street photographs that sit with the styling text.
+   *
+   * `credit` is the Instagram handle WITHOUT the @, or null where the owner is
+   * not known. Two of the five here are uncredited and one was labelled
+   * "@unknown" on Tina's own moodboard — that is recorded honestly rather than
+   * papered over, because a missing credit is a thing to go and find, not a
+   * cosmetic gap. Nothing renders a fake attribution.
+   *
+   * These are other people's photographs. Flagged to Tina 2026-08-24: on a
+   * commercial affiliate site that needs the owner's permission, and three of
+   * these five have no identified owner to ask. Her call; recorded here so the
+   * next person knows it was a decision and not an oversight.
+   */
+  storyImages?: { src: string; alt: string; credit: string | null }[];
   /** The styling block after the grid. Real content, server-rendered.
    *
    *  Tina's words, not generated — she wrote the lace one on 2026-08-24 and
@@ -153,6 +168,18 @@ export const EDITS: Edit[] = [
     seoTitle: 'Everyday Lace — Lace Hijabs, Abayas and Dresses',
     seoDescription:
       'Lace across the directory, from £5 lace-trim hijabs to lace abayas — from independent modest houses worldwide. Prices and links to each brand.',
+    storyImages: [
+      { src: '/edits/lace-story-1-belt.jpg', credit: null,
+        alt: 'A woman in a brown blazer and cream satin skirt with a white lace belt tied at the waist' },
+      { src: '/edits/lace-story-2-overskirt.jpg', credit: null,
+        alt: 'A woman in a plain black top and black wide-leg trousers with a white lace overskirt at the hip' },
+      { src: '/edits/lace-story-3-jenifersibali.jpg', credit: 'jenifersibali',
+        alt: 'A woman in an oversized black coat and black trousers with a white lace skirt showing beneath' },
+      { src: '/edits/lace-story-4-basma-k.jpg', credit: 'basma_k',
+        alt: 'A woman in a taupe suit with a black lace hem showing under the jacket' },
+      { src: '/edits/lace-story-5-abaya.jpg', credit: null,
+        alt: 'A woman in a sage green open abaya with floral lace trim down the front, worn over jeans' },
+    ],
     styling: {
       h2: 'Why lace works, and what to put it with',
       paragraphs: [
