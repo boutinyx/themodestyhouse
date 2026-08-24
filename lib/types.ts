@@ -24,7 +24,7 @@ export type LayeringSubtype =
  *  same reason as LayeringSubtype: avoids a circular import, since a
  *  future forced-subtype field on Product would need this type and
  *  lib/specialty.ts imports Product from here. */
-export type OuterwearSubtype = 'blazer' | 'vest' | 'cardigan' | 'coat';
+export type OuterwearSubtype = 'blazer' | 'vest' | 'cardigan' | 'sweater' | 'coat';
 
 /** The three sub-categories of the Hijabs & Scarves lane (lib/lanes.ts),
  *  added 2026-08-15 evening — Tina wants the same hover-flyout/Type-filter

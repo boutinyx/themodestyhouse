@@ -8,6 +8,7 @@ import { pageMetadata } from '@/lib/seoCopy';
 import { designerPageCount, clampDesignerPage } from '@/lib/designerPaging';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, brandListSchema, jsonLdGraph } from '@/lib/schema';
+import { withUtm } from '@/lib/outbound';
 
 // Each page of the index self-canonicalises to its own URL (page 1 -> the
 // bare path), rather than all pages pointing at page 1 — Google's current
@@ -63,7 +64,7 @@ function Tile({ b, eager, seal }: { b: House; eager: boolean; seal: boolean }) {
   const Wrapper = internal ? Link : 'a';
   const linkProps = internal
     ? { href: internal }
-    : { href: b.homepage, target: '_blank' as const, rel: 'noopener noreferrer sponsored' };
+    : { href: withUtm(b.homepage, 'designers'), target: '_blank' as const, rel: 'noopener noreferrer sponsored' };
   return (
     <Wrapper
       {...linkProps}

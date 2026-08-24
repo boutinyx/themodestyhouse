@@ -4,6 +4,13 @@ import {
   layeringSubtype, outerwearSubtype, LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS,
 } from '@/lib/specialty';
 
+// The three nav-facing lane slugs the single isOuterwear() family now splits
+// across — see lib/specialty.ts's isOuterwear doc comment for why the
+// classifier itself still models ONE family of five subtypes rather than
+// three separate ones. Named here once so currentCategoryLabel below and any
+// future consumer don't re-type the list.
+const OUTERWEAR_FAMILY_SLUGS = ['blazers-vests', 'cardigans-sweaters', 'jackets-coats'] as const;
+
 export type LaneKind = 'category' | 'community' | 'occasion' | 'season';
 
 export interface Lane {
@@ -76,9 +83,10 @@ export const LANES: Lane[] = [
     nav: 'Tops',
     intro: 'Tunics, blouses, shirts and layering tops.',
     kind: 'category',
-    // isOuterwear() items (blazers/vests/cardigans/coats) moved to their own
-    // lane 2026-08-13 — see the 'outerwear' entry below. Same exclusion
-    // shape isActivewear() already uses against isSwim()/isLayering().
+    // isOuterwear() items (blazers/vests/cardigans/sweaters/coats) moved out
+    // to their own lanes 2026-08-13, split three ways 2026-08-21 — see the
+    // OUTERWEAR_FAMILY_SLUGS lanes below. Same exclusion shape isActivewear()
+    // already uses against isSwim()/isLayering().
     match: (p) => p.garment === 'top' && !isOuterwear(p),
   },
   {
@@ -124,13 +132,42 @@ export const LANES: Lane[] = [
     match: (p) => isLayering(p),
     specialty: true,
   },
+  // The single 'outerwear' lane was replaced with these three 2026-08-21 —
+  // Tina, comparing H&M's category names: "i want outerwear gone and i want
+  // you to add those new ones," confirmed via clarifying question as H&M's
+  // literal split (Blazers & Vests / Cardigans & Sweaters / Jackets & Coats)
+  // rather than a simpler 2-way grouping. All three match off the SAME
+  // isOuterwear()/outerwearSubtype() classifier (lib/specialty.ts) — only
+  // which subtypes route to which lane changed, not the underlying
+  // classification. "Sweaters" here means garment:'top' items whose title
+  // says "sweater" — see that file's isOuterwear comment for the same
+  // false-positive guard "Sweater Dress"/"Sweater Skirt" needed as
+  // "Vest"/"Coat" already had.
   {
-    slug: 'outerwear',
-    title: 'Outerwear',
-    nav: 'Outerwear',
-    intro: 'Blazers, vests, cardigans and coats to layer over everything else.',
+    slug: 'blazers-vests',
+    title: 'Blazers & Vests',
+    nav: 'Blazers & Vests',
+    intro: 'Tailored blazers and vests to layer over everything else.',
     kind: 'category',
-    match: (p) => isOuterwear(p),
+    match: (p) => isOuterwear(p) && (outerwearSubtype(p) === 'blazer' || outerwearSubtype(p) === 'vest'),
+    specialty: true,
+  },
+  {
+    slug: 'cardigans-sweaters',
+    title: 'Cardigans & Sweaters',
+    nav: 'Cardigans & Sweaters',
+    intro: 'Cardigans and sweaters for easy, everyday layering.',
+    kind: 'category',
+    match: (p) => isOuterwear(p) && (outerwearSubtype(p) === 'cardigan' || outerwearSubtype(p) === 'sweater'),
+    specialty: true,
+  },
+  {
+    slug: 'jackets-coats',
+    title: 'Jackets & Coats',
+    nav: 'Jackets & Coats',
+    intro: 'Coats and jackets for cooler days.',
+    kind: 'category',
+    match: (p) => isOuterwear(p) && outerwearSubtype(p) === 'coat',
     specialty: true,
   },
 
@@ -178,7 +215,7 @@ export const CATEGORY_LANES = LANES.filter((l) => l.kind === 'category');
 export function currentCategoryLabel(p: Product): string {
   const lane = CATEGORY_LANES.find((l) => l.match(p) && (l.specialty || !isSpecialty(p)));
   if (!lane) return 'Uncategorized';
-  if (lane.slug === 'outerwear') {
+  if ((OUTERWEAR_FAMILY_SLUGS as readonly string[]).includes(lane.slug)) {
     const sub = outerwearSubtype(p);
     return sub ? `${lane.title} — ${OUTERWEAR_SUBTYPE_LABELS[sub]}` : lane.title;
   }

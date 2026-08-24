@@ -145,6 +145,125 @@
   }
 }
 
+/* Curated "By category" showcase (app/page.tsx CATEGORY_SHOWCASE), 2026-08-23
+   — Tina's own reference: a plain photo grid, no dark scrim, a WHITE label
+   card sitting on the photo rather than the existing .tmh-cat-cap's dark
+   gradient + light text. A distinct set of classes rather than reusing
+   .tmh-cat-*, since that grid's asymmetric "one big feature card" layout and
+   dark-scrim treatment are a different design, still used nowhere else on
+   this page structurally but conceptually a separate thing. */
+.tmh-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Corrected after two reference screenshots of aab's actual "Shop by
+     Category" grid — the photos in each row sit nearly flush, with only a
+     TINY gap between columns (not literally touching, as the first pass at
+     this had it — Tina: "no look they have a tiny bit of space between the
+     cards"), and a generous gap BETWEEN ROWS. `gap` shorthand is row-gap
+     column-gap. The "tiny bit of space between the screen and card" half of
+     that same note is the section's own `px-8` (app/page.tsx) — already
+     there, not part of this rule. */
+  gap: 24px 6px;
+}
+/* 2026-08-23 — Tina: "i want the cards to look like aab's" (her reference:
+   aabcollection.com's own homepage grid). Two changes from the previous
+   white-label-card version: the category name moves from an overlaid white
+   box to (1) bold white "SHOP X" text sitting directly on the photo, mid-low
+   like the reference, and (2) a plain caption BELOW the photo, off the image
+   entirely — not a card style borrowed from a different, unrelated site
+   (yesterday's reference) any more. */
+.tmh-showcase-card {
+  display: block;
+}
+.tmh-showcase-photo {
+  position: relative;
+  overflow: hidden;
+  /* Sharp corners, no border-radius — with zero gap between columns (the
+     grid rule above), a rounded corner would leave a small notch where two
+     photos meet. Matches aab's own mosaic, which is sharp-edged too. */
+  /* 3/4 -> 3/4.4 — Tina: "make the card also a litterle longer." */
+  aspect-ratio: 3 / 4.4;
+}
+.tmh-showcase-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  /* --card-zoom is set inline per-card (app/page.tsx's CATEGORY_SHOWCASE
+     `zoom` field, e.g. Dresses at 1.24 — Tina: "zoom in the pic a lil bit of
+     the dresses") and defaults to 1 for every other card. Composed with the
+     hover scale below via calc() rather than the hover rule overwriting it,
+     so a zoomed card still gets the same hover treatment on top. */
+  transform: scale(var(--card-zoom, 1));
+  /* --card-origin (app/page.tsx's `origin` field, e.g. Tops at "57% 38%" —
+     Tina: "center the pic and zoom bit in") re-anchors WHERE `scale()`
+     zooms from. Default 50% 50% zooms into the box's own centre, which is
+     wrong whenever the subject isn't centred in the source photo — Tops'
+     model sits left-of-centre, so a centre-anchored zoom would have pulled
+     MORE empty background into frame, not less. */
+  transform-origin: var(--card-origin, 50% 50%);
+}
+.tmh-showcase-card:hover .tmh-showcase-photo img {
+  transform: scale(calc(var(--card-zoom, 1) * 1.05));
+}
+.tmh-showcase-shop {
+  /* Tina: "not that word i meant the text in the pic" — the previous round
+     of "my lettertype"/"centering the text" feedback was about THIS text,
+     not the caption below the photo. Font switched from --font-ui (Jost) to
+     --font-label (Marcellus) with the same uppercase + 0.14em tracking as
+     the hero's own "Shop the Archive" button (app/page.tsx) — this site's
+     established CTA typography, not a generic bold sans. True centering:
+     inset-0 + flex instead of pinned at 32% from the bottom. */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-label), serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+.tmh-showcase-caption {
+  /* Font-size/tracking reverted back to the original 14px/0.14em — Tina:
+     "revert the text under the pictures to original size. like aabs." The
+     19px/0.06em version (previous log entry) was a wrong-direction guess;
+     margin-top stays at 20px (the "spacing like aab's" gap fix), only the
+     text's own size/tracking goes back. */
+  margin-top: 20px;
+  text-align: center;
+  font-family: var(--font-label), serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 14px;
+  color: var(--ink);
+}
+.tmh-showcase-count {
+  margin-top: 4px;
+  text-align: center;
+  font-family: var(--font-ui), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+  color: var(--muted);
+}
+@media (max-width: 820px) {
+  .tmh-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .tmh-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 :root {
   /* core identity */
   --aubergine: #441943;   /* primary */
@@ -191,6 +310,48 @@
      has to go LIGHTER, not darker: #8a7d6b was 4.16:1 there and darkening it to
      #796e5e made it 3.34:1. Mirrors --brass / --brass-on-dark. */
   --muted-on-dark: #a89b8a;  /* on ink          — 6.14:1 */
+
+  /* CSS-only fallback for .hero-vh below, so there's no layout jump before
+     Header's ResizeObserver corrects this to the exact rendered height on
+     mount. 2026-08-23: Tina, after the header first got bigger — "as thick as
+     the one when you open the hamburger": the open nav panel's own top bar
+     (MobileNav.tsx) is a fixed 88px, so the closed header is now the same
+     fixed 88px on mobile/tablet (was padding-derived, ~62px) rather than
+     re-guessing a new padding value. */
+  --header-height: 88px;
+
+  /* The brand band that sits ABOVE the header (components/HeroBrandStrip.tsx,
+     rendered from app/layout.tsx) — 2026-08-23, Tina: "i want the banner a
+     dark purple almost black and i want it above the header".
+
+     --aubergine-deep is aubergine taken most of the way to black rather than a
+     new hue: #441943 at ~45% luminance. It is its own token because it is a
+     surface colour used inline in TSX (CLAUDE.md §6 — colour is never a
+     Tailwind class here), and because "almost black" needs to be one value
+     everyone reaches for rather than a hand-typed hex per component.
+
+     --band-height is a FIXED height, not padding-derived, for the same reason
+     --header-height exists: .hero-vh subtracts it (see below) so the hero
+     photograph still ends exactly at the fold. A padding-derived height would
+     drift with the font and silently push the hero's bottom edge below the
+     fold — which is the precise complaint that produced --header-height in the
+     first place ("i still see a big piece of the pciture"). */
+  --aubergine-deep: #1e0a1d;
+  --band-height: 40px;
+}
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 89px;
+    /* Phone and tablet only — Tina, 2026-08-23: "do it only for tablet and
+       phone desktop leave it out". The band itself is `lg:hidden`; zeroing the
+       token here is the other half, so .hero-vh stops subtracting 40px of
+       height for a band that is not on screen. Keeping the two in one place
+       is deliberate: if only the class changed, the desktop hero would end
+       40px short of the fold and nothing would say why. 1024px, matching the
+       `lg` breakpoint where Header swaps to its desktop row — so the band is
+       present exactly where the phone/tablet header is. */
+    --band-height: 0px;
+  }
 }
 
 @theme inline {
@@ -215,9 +376,57 @@
    this is why it cannot live in a React `style={{}}` object, where one property
    can only be written once. */
 .hero-vh {
-  height: 100vh;
-  height: 100svh;
+  /* Minus --band-height: the brand band above the header (2026-08-23) is real
+     flow above this, so a flat 100svh would push the photograph's bottom edge
+     exactly that far past the fold. */
+  height: calc(100vh - var(--band-height));
+  height: calc(100svh - var(--band-height));
   min-height: 560px;
+  /* 2026-08-22, Tina: "make sure the hero image spans behind the header." The
+     header is still `sticky`, so it still takes its own height out of the flow
+     at the top of the page — pulling the hero up by exactly that height is what
+     puts the photograph underneath it rather than below it. Header.tsx keeps
+     --header-height matched to the real rendered height; the block above has
+     the breakpoint-matched fallback for the instant before its first
+     measurement. The height is a full 100svh again for the same reason: the
+     header no longer occupies space the photo has to make room for. */
+  margin-top: calc(-1 * var(--header-height));
+}
+
+/* Hero headline, mobile + tablet vs desktop — Tina's own reference (a
+   competitor's mobile hero: big bold text centred in the screen): "i want
+   you to do it lik this for mobile and tablet so text bigger and in the
+   middle." Inline styles (this codebase's usual colour/size convention, §6)
+   can't carry a responsive override themselves, so the size lives here
+   instead: bigger by default (mobile/tablet), then the ORIGINAL clamp
+   restored at the same 1024px breakpoint the overlay split
+   (app/page.tsx) already uses. Centring itself is plain Tailwind classes on
+   the container (`items-center text-center lg:items-start lg:text-left`),
+   not this rule. */
+.hero-h1 {
+  /* Tina, after the "bigger" pass wrapped "Every modest brand." onto two
+     lines at phone widths: "i want Every modest brand. to be on one line."
+     and "less spacing between the words" (tighter tracking). Both measured
+     directly against the actual rendered font rather than guessed:
+     -0.02em + this clamp keeps "Every modest brand." on one line down to a
+     360px-wide phone (307.98px rendered vs ~312px available) and comfortably
+     through the whole tablet range (clamp maxes out at 64px well before the
+     640px+ available width there runs out). That caps how big mobile can go
+     without wrapping — bigger AND guaranteed-one-line are in real tension at
+     360-390px; this is the largest floor that holds both. */
+  font-size: clamp(34px, 9vw, 64px);
+  letter-spacing: -0.02em;
+}
+@media (min-width: 1024px) {
+  .hero-h1 {
+    font-size: clamp(30px, 4.8vw, 64px);
+    /* letterSpacing used to be inline on the element itself; moved here
+       since the mobile/tablet -0.02em rule above needed the inline version
+       removed (an inline style always wins over a class, so it would have
+       silently overridden every mobile/tablet change to this rule). Desktop
+       value unchanged. */
+    letter-spacing: -0.01em;
+  }
 }
 
 /* iOS Safari ZOOMS the whole page when a form field smaller than 16px takes
@@ -315,6 +524,190 @@ button {
 .nav-link:hover,
 .nav-link[data-active="true"] { color: var(--aubergine); }
 
+/* Bigger nav text in the header only — Tina: "but as big letters as they
+   have" (aabcollection.com). Measured their actual nav link, not eyeballed:
+   14px, not the 12px .nav-link sets as its own base size everywhere else.
+   Scoped to `.site-header` (components/Header.tsx) rather than raising
+   .nav-link's own base size, because that class is also used by BrandCard,
+   StyleIt, the editorial/designers/about/favourites pages and the homepage
+   "All products" link — none of which were part of this ask, and bumping
+   the shared base would have changed all of them along with the header. */
+.site-header .nav-link {
+  font-size: 14px;
+  color: var(--header-muted);
+  /* 260ms to match REVEAL_MS in Header.tsx — .nav-link's own base rule
+     transitions colour at 0.2s, which is right for a hover but a beat quicker
+     than the header's transparent/solid change, so the text arrived before the
+     fill it sits on. */
+  transition: color 260ms ease-out;
+}
+.site-header .nav-link:hover,
+.site-header .nav-link[data-active="true"] { color: var(--header-fg); }
+
+/* Header colour, in one place, as three custom properties the header's own
+   markup and every .nav-link inside it read. Added 2026-08-22 with the
+   over-the-hero mode (Tina: "make sure the hero image spans behind the header &
+   it gets transparent but make the header have a darker overlay so the buttons
+   are visible"). The header used to be unconditionally parchment-with-dark-text
+   — note the standing "Always solid" decision in Header.tsx, which this
+   supersedes for the top of the homepage only.
+
+   Custom properties rather than a pile of `[data-over-hero]` colour overrides
+   because several of these colours are set INLINE in Header.tsx (§6's own
+   convention), and an inline declaration beats any stylesheet rule that is not
+   !important — so the only way to flip them from CSS is to have the inline
+   value be a var() that CSS can redefine. */
+/* Registered, so the three properties can be ANIMATED rather than swapped.
+   An unregistered custom property is an opaque token stream: changing it
+   recomputes everything downstream instantly, and a `transition: color` on the
+   consumer does not fire, because the consumer's own specified value
+   (`var(--header-fg)`) never changed. Measured mid-flight before this was
+   added: the header fill was 47% through its fade and the nav text had already
+   snapped to its final colour. `<color>` + `inherits: true` is what lets the
+   browser interpolate them, and every element reading them — including the ones
+   that set the colour INLINE in Header.tsx, which no stylesheet transition can
+   reach — comes along for free. `initial-value` has to be a literal, not
+   `var(--aubergine)`; a registered property's initial value must be
+   computationally independent. */
+@property --header-fg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #441943;
+}
+@property --header-muted {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8a7d6b;
+}
+@property --header-rule {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e4ddcf;
+}
+
+.site-header {
+  /* The default, everywhere except over a hero. This is here rather than inline
+     in Header.tsx because an inline background would outrank the transparent
+     rule below and the header would never go clear. */
+  background-color: var(--parchment);
+  border-bottom: 1px solid var(--hairline);
+  --header-fg: var(--aubergine);
+  --header-muted: var(--muted);
+  --header-rule: var(--hairline);
+  /* One duration and one curve for every property that differs between the
+     transparent and solid states — mismatched timings are what make a
+     multi-property change read as several separate events. Header.tsx's
+     REVEAL_MS is the same number and carries the same note. It lives HERE, not
+     in the inline style, because an inline `transition` would win over this
+     rule and the custom-property entries would never apply. */
+  transition:
+    background-color 260ms ease-out,
+    border-color 260ms ease-out,
+    --header-fg 260ms ease-out,
+    --header-muted 260ms ease-out,
+    --header-rule 260ms ease-out;
+}
+/* Over the hero: no fill, no rule, light type.
+   2026-08-22, Tina: "i want the shit in the header the words & stuff in pure
+   white" — was rgba(251,250,246,...), i.e. parchment-tinted, not literal
+   white. Switched to rgba(255,255,255,...) at the same opacities. */
+.site-header[data-over-hero="true"] {
+  background-color: transparent;
+  border-bottom-color: transparent;
+  --header-fg: rgba(255, 255, 255, 0.95);
+  --header-muted: rgba(255, 255, 255, 0.8);
+  --header-rule: rgba(255, 255, 255, 0.28);
+}
+
+/* ...but come back the moment it is wanted. Tina: "i want when you hver over
+   header it becomes visile again."
+
+   This is CSS `:hover`, not a React `onMouseEnter`, and that is deliberate: the
+   JS version worked in Chromium and could not be VERIFIED in WebKit at all,
+   because Playwright's headless WebKit delivers no mouse events to the page —
+   a raw `mousemove` listener on the header saw nothing while `elementFromPoint`
+   resolved correctly, so the harness, not the site, was the thing that could
+   not hover (§10.26: ask what the harness would have to be doing wrong). Real
+   `:hover` needs no verification of the mechanism and no JS at all.
+
+   Guarded by `(hover: hover)` because Safari keeps `:hover` stuck on the last
+   thing tapped until you tap elsewhere, which would leave the header solid over
+   the photo on a phone — §10.25's lesson, that a pointer affordance has to be
+   gated on the pointer existing.
+
+   The second selector cannot be merged into the first: a nav panel opening must
+   reveal the header on TOUCH too, so it has to live outside the media query.
+   Base UI portals those popups to <body>, so moving the pointer off a trigger
+   and into its own panel is a mouseleave on the header — without this the
+   header would drop back to transparent underneath its own open dropdown. */
+@media (hover: hover) {
+  .site-header[data-over-hero="true"]:hover {
+    background-color: var(--parchment);
+    border-bottom-color: var(--hairline);
+    --header-fg: var(--aubergine);
+    --header-muted: var(--muted);
+    --header-rule: var(--hairline);
+  }
+  .site-header[data-over-hero="true"]:hover .header-wash { opacity: 0; }
+}
+.site-header[data-over-hero="true"][data-menu-open="true"] {
+  background-color: var(--parchment);
+  border-bottom-color: var(--hairline);
+  --header-fg: var(--aubergine);
+  --header-muted: var(--muted);
+  --header-rule: var(--hairline);
+}
+.site-header[data-over-hero="true"][data-menu-open="true"] .header-wash { opacity: 0; }
+
+/* Rendered whenever there is a hero and FADED, rather than mounted and
+   unmounted with the state. A conditional render cannot be transitioned — it
+   was the one part of the reveal that snapped while everything around it eased,
+   which is what made the whole thing read as janky (Tina: "can you make it
+   smoother"). */
+.header-wash {
+  opacity: 1;
+  transition: opacity 260ms ease-out;
+}
+/* The crest is a single dark aubergine mark on transparency, so it disappears
+   into the photograph. brightness(0) crushes it to black and invert(1) lifts
+   that to white — one filter, no second asset to keep in sync, and it cannot
+   drift out of step with the wordmark beside it. */
+/* The header's inline search field (components/HeaderSearch.tsx). Only the
+   placeholder lives here: everything else on that input is an inline style,
+   because it reads var(--header-fg) and has to follow the over-hero mode.
+   ::placeholder cannot be set from an inline style at all, which is the whole
+   reason this rule exists. currentColor picks up the same --header-fg the
+   input's own colour resolves to, so it dims correctly in both modes. */
+.site-header .header-search-input::placeholder {
+  color: currentColor;
+  opacity: 0.5;
+}
+
+/* Right-to-left reveal on open (Tina, 2026-08-22). A plain `animation`, not a
+   `transition`: the field is conditionally rendered (mounted only while
+   `searchOpen`), and a `transition` never plays on an element's own initial
+   mount — only `animation` fires automatically when new DOM appears. This
+   only needs to cover open, not close, since closing swaps straight back to
+   <Nav> — same reasoning as the wide nav panels' own comment on this, a few
+   rules down. */
+@keyframes header-search-slide-in {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.header-search-field {
+  animation: header-search-slide-in 220ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-search-field { animation: none; }
+}
+
+.site-header .site-crest { transition: filter 260ms ease-out; }
+.site-header[data-over-hero="true"] .site-crest { filter: brightness(0) invert(1); }
+.site-header[data-over-hero="true"][data-menu-open="true"] .site-crest { filter: none; }
+@media (hover: hover) {
+  .site-header[data-over-hero="true"]:hover .site-crest { filter: none; }
+}
+
 /* A row inside a dropdown panel. Same voice as .nav-link, but a BLOCK-level
    flex row rather than an inline-flex one — and that difference is the whole
    reason this class exists.
@@ -356,6 +749,78 @@ button {
 .menu-row:hover,
 .menu-row[data-highlighted],
 .menu-row[data-active="true"] { color: var(--aubergine); }
+
+/* Mega-menu link row — the Clothing/Hijabs header dropdown's own style,
+   added 2026-08-21 to match aabcollection.com's "CLOTHING" panel (Tina: "i
+   want my header to open like that and look like the when opened"). NOT
+   .menu-row: that class is shared with the currency switcher and every
+   filter dropdown, which are staying their current compact size — this is
+   deliberately a bigger, sans-serif surface just for the header's own
+   category panels (components/NavMenu.tsx). */
+.mega-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  white-space: nowrap;
+  font-family: var(--font-ui-stack);
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--ink);
+  min-height: 24px;
+  padding: 11px 4px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: color 0.2s ease-out;
+}
+.mega-row:hover,
+.mega-row[data-highlighted],
+.mega-row[data-active="true"] { color: var(--aubergine); }
+
+/* The sliding underline under a mega-row's own LABEL text on hover — Tina:
+   "you see the stripes hat appear under the subcatagories when i hover
+   over them i want that too", pointing at aab's own hover state. Measured
+   live via Playwright: a 1px `background-image` (a solid-colour
+   `linear-gradient`, the classic "fake border that can animate" trick,
+   since a real `border-bottom`/`text-decoration` can't transition its own
+   length) growing from `background-size: 0% 1px` to `100% 1px` over 0.2s,
+   anchored bottom-left so it grows left-to-right. Deliberately a nested
+   `.mega-row-label` SPAN, not the `.mega-row` row itself: the row is
+   `width:100%` so its own background would stretch the stripe across the
+   whole column regardless of how short the word is (measured on aab: the
+   stripe hugs just the word, e.g. "Abayas", not the full row). The hover
+   trigger is still the PARENT row (`.mega-row:hover .mega-row-label`), not
+   the span's own `:hover` — a row wider than its text (Outerwear's chevron
+   row, or a short word in a wide single-column panel) should light up
+   across its whole tappable area, matching the colour-change rule above it,
+   not just when the pointer is exactly over the letters. */
+.mega-row-label {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.2s;
+}
+.mega-row:hover .mega-row-label,
+.mega-row[data-highlighted] .mega-row-label,
+.mega-row[data-active="true"] .mega-row-label {
+  background-size: 100% 1px;
+}
+
+/* The header's wide mega-menu panels (components/NavMenu.tsx) cross-fade via
+   an inline `transition: opacity 150ms linear` set in the component itself
+   — matches aab's own measured open transition (Playwright, 2026-08-21).
+   Every wide group's panel stays permanently mounted and toggles opacity
+   rather than mounting/unmounting, specifically so both open AND close have
+   an actual "previous style" to transition from/to — see NavMenu.tsx's own
+   comment on why a plain CSS animation (which only plays once on mount)
+   couldn't cover the close direction. */
+@media (prefers-reduced-motion: reduce) {
+  [data-nav-wide-panel-group] { transition: none !important; }
+}
 
 /* The currency trigger in the footer. Colour lives HERE, not inline on the
    element, because an inline style beats any selector — with `color` set inline
@@ -743,6 +1208,33 @@ html[data-input-modality="mouse"] summary:focus-visible {
    correctly — this keeps it identical while new surfaces get both. */
 .scroll-fade[data-edges='end']::before { opacity: 0; }
 
+/* Horizontal variant — the axis the comment above this block called out as
+   not yet needed ("the horizontal rails are photographs, not buttons, and
+   are not in scope yet"). First real use: components/PopularShowcase.tsx's
+   full-bleed rail, where showing a partial next card cropped hard by the
+   viewport edge (Tina, 2026-08-23: "make that half a little transparent for
+   the spacing") is exactly the affordance this class already exists to
+   give, just sideways. Opt-in via a SECOND class (`scroll-fade-x`) rather
+   than a variant prop, so it can sit right alongside `.scroll-fade` on the
+   same element — the base rule still supplies `position:relative` and
+   `--fade-stops`; this only overrides the pseudo-elements' geometry from
+   full-width horizontal bars to full-height vertical ones. `--fade-size-x`
+   is a SEPARATE variable from `--fade-size`, not a reuse, because a photo
+   rail's fade is proportional to a much bigger card than a 40px menu row —
+   sharing one variable would mean every future vertical caller inherits
+   whatever the widest horizontal caller needs, or vice versa. */
+.scroll-fade-x::before,
+.scroll-fade-x::after {
+  top: 0;
+  bottom: 0;
+  left: auto;
+  right: auto;
+  height: auto;
+  width: var(--fade-size-x, 64px);
+}
+.scroll-fade-x::before { left: 0;  background: linear-gradient(to left,  var(--fade-stops)); }
+.scroll-fade-x::after  { right: 0; background: linear-gradient(to right, var(--fade-stops)); }
+
 /* Vertical marquee — used by the designers wall (components/BrandMarquee).
    Two keyframe sets and one class rather than the tw-animate-css dependency the
    upstream component wanted: this is ~15 lines and it keeps colour and motion in
@@ -758,9 +1250,30 @@ html[data-input-modality="mouse"] summary:focus-visible {
 .marquee-col[data-reverse='true'] { animation-direction: reverse; }
 .marquee:hover .marquee-col { animation-play-state: paused; }
 
+/* Horizontal marquee — the brand-name strip on the homepage hero
+   (components/HeroBrandStrip). NOT the same shape as marquee-vertical
+   above, on purpose: the vertical version has TWO separate copies stacked
+   as siblings (because stacking along the animation axis is what makes a
+   VERTICAL loop seamless — as copy 1 scrolls up out of frame, copy 2,
+   sitting right below it, scrolls into its place). A horizontal loop is
+   the opposite shape: ONE row holds both copies of the content placed
+   SIDE BY SIDE (not two independently-animated rows — that produced two
+   stacked lines instead of one continuous scroll, caught live before this
+   shipped), and that single row translates by exactly -50% of its own
+   total width — since the content is doubled, 50% of the total is one
+   full copy's width, so the translation ends exactly where it started. */
+@keyframes marquee-horizontal {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-row {
+  animation: marquee-horizontal var(--duration, 40s) linear infinite;
+}
+
 /* An endlessly moving wall is exactly what this setting exists to switch off.
    The content stays — it simply stops travelling. */
 @media (prefers-reduced-motion: reduce) {
   .marquee-col { animation: none; }
   .marquee { overflow-y: auto; }
+  .marquee-row { animation: none; }
 }

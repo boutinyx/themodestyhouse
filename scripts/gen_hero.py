@@ -37,32 +37,134 @@ def load_env():
     os.environ["HF_API_SECRET"] = secret
     os.environ["HF_KEY"] = f"{key}:{secret}"
 
-# Batch 5: variations of the winning street-style shot (aubergine coat, hijab +
-# sunglasses, daylight). Vary pose/setting; keep it on-brand aubergine and keep a
-# tonal (not blown-out white) background so the light-on-dark overlay still reads.
-STYLE = ("candid street-style modest fashion editorial, a stylish hijabi woman in elegant sunglasses and a "
-         "gracefully draped silk hijab, rich on-brand aubergine and plum tones, soft natural daylight, shot on "
-         "film, chic and aspirational, a soft blurred city background (not blown-out, some mid tone for text), "
-         "calm space to one side, no text, no writing, no signage, no logos, no watermark")
+# Batch 9 (2026-08-20): new homepage hero direction. Tina's brief, verbatim intent —
+# the existing hero (single moody crop, batch 5-8) reads as "too editorial" and doesn't
+# "lure the viewer in" or show what the site does at a glance. Reference she supplied is
+# a group of 3 women in a white-column boutique, phones raised over their faces
+# (mirror-selfie pose), iced drinks + designer bags, warm neutral silk abayas with gold
+# lace trim — an immediately legible "shopping/lifestyle" scene, not a solo portrait.
+# Adapted for the brand: 2-3 women (not always 3 — a duo reads cleaner at hero width),
+# same phone-covering-face pose (also sidesteps needing one consistent AI face across
+# every generation), on-brand aubergine/plum/brass palette instead of the reference's
+# mauve-pink-cream, same white marble boutique-interior energy. Per
+# dont-reuse-y2k-prompt-scaffold: fresh prompts for this new ask, not inherited
+# jewel-crop constraints from batch 5-8.
+STYLE = ("elegant editorial modest-fashion campaign photography, rich on-brand aubergine, plum and warm gold "
+         "tones, an airy white-marble boutique interior with fluted columns and soft directional daylight, "
+         "shot on film, aspirational and chic, no text, no writing, no signage, no logos, no watermark")
 
-# 5 more close-crop takes like #25/#28 — aubergine coat, draped hijab, sunglasses,
-# with visible gold jewelry. Vary the hand pose and backdrop a little.
 CONCEPTS = [
-    ("jewel-a", "Waist-up editorial crop of a stylish hijabi woman wearing a deep aubergine coat and a draped "
-                "silk hijab with elegant sunglasses, one hand resting near the collar showing delicate gold rings, "
-                "a fine gold bracelet and small gold earrings, softly blurred elegant Haussmann facade behind, " + STYLE),
-    ("jewel-b", "Waist-up editorial crop of a stylish hijabi woman in a plum aubergine coat and draped hijab with "
-                "sunglasses, one hand raised near her chin revealing several stacked gold rings and a slim gold "
-                "watch, tasteful gold statement earrings, softly blurred chic city street, " + STYLE),
-    ("jewel-c", "Waist-up editorial crop of a stylish hijabi woman in an aubergine coat, gently adjusting her draped "
-                "silk hijab with one hand showing delicate gold rings and a thin gold bangle, small gold earrings, "
-                "sunglasses, softly blurred cobblestone street, " + STYLE),
-    ("jewel-d", "Waist-up editorial crop of a stylish hijabi woman in a rich aubergine wool coat and draped hijab, "
-                "one hand lightly touching her sunglasses showing gold rings and a gold bracelet, elegant gold "
-                "earrings, softly blurred warm café backdrop, " + STYLE),
-    ("jewel-e", "Waist-up editorial crop of a stylish hijabi woman in a deep aubergine coat and draped hijab with "
-                "sunglasses, hand at her collar holding a leather bag strap, gold rings, a fine bracelet and gold "
-                "earrings, softly blurred tree-lined boulevard, " + STYLE),
+    ("duo-select", "Two stylish hijabi women in flowing silk abayas — one deep aubergine, one dusty plum — with "
+                    "gold-embroidered hijab trim, standing close together in a sunlit white-column boutique, "
+                    "each holding her phone raised to capture a mirror selfie so her face is gently hidden "
+                    "behind it, one carrying a small structured aubergine leather handbag with gold hardware, "
+                    "soft gold jewelry at the wrist, " + STYLE),
+    ("trio-hall", "Three hijabi women shoulder to shoulder in coordinated silk abayas in aubergine, plum and "
+                   "champagne gold, gold-trimmed draped hijabs, each with her phone held up over her face as if "
+                   "mid mirror-selfie, one holding an iced coffee, standing in a grand white-marble boutique hall "
+                   "with tall columns, " + STYLE),
+    ("duo-atelier", "Two hijabi women in aubergine and gold-trimmed silk abayas, phones raised to take a mirror "
+                     "selfie together, faces softly obscured by the phones, standing in a modest-fashion atelier "
+                     "with a softly blurred rack of jewel-toned garments behind them, warm cinematic light, " + STYLE),
+    ("trio-walk", "Three hijabi women mid-stride through a sunlit white-marble boutique corridor, wearing "
+                   "coordinated aubergine, dusty plum and champagne-gold abayas with draped hijabs, one lifting "
+                   "her phone to film as she walks, soft motion blur at the frame edges, gold jewelry catching "
+                   "the light, " + STYLE),
+    ("duo-crop", "Close editorial waist-up crop of two hijabi women in aubergine and gold-trimmed silk abayas, "
+                  "phones raised over their faces in a mirror-selfie pose, one holding a small aubergine leather "
+                  "bag with visible gold hardware, soft romantic daylight, tonal aubergine-and-plum backdrop, " + STYLE),
+]
+
+# Batch 10 (2026-08-20, same day, second round): Tina's follow-up on batch 9 — she wants
+# sunglasses back (the identity/style device from the OLD batch 5-8 hero, which she liked
+# on its own terms — her complaint there was that a SOLO moody portrait doesn't "lure the
+# viewer in", not that sunglasses were wrong), the pose does not have to be the
+# phone-selfie any more ("it doesnt only have to be using their phones it could also be
+# something editorial else"), and explicitly "dont make it too busy" — batch 9's
+# multi-prop trio shots (phone + bag + coffee + jewelry all at once) were read as
+# cluttered. So: sunglasses on every concept, solo OR duo (no trios this round), one
+# simple pose/gesture each, plain uncluttered backdrops, at most one small prop (never
+# stacked). Fresh prompts per dont-reuse-y2k-prompt-scaffold — not the batch-9 phone/bag
+# scaffold carried forward.
+STYLE_10 = ("elegant editorial modest-fashion campaign photography, chic sunglasses, rich on-brand aubergine, "
+            "plum and warm gold tones, soft directional daylight, shot on film, aspirational, clean and "
+            "uncluttered composition, minimal props, no text, no writing, no signage, no logos, no watermark")
+
+CONCEPTS_10 = [
+    ("solo-walk", "A stylish hijabi woman in a deep aubergine silk abaya and gold-trimmed draped hijab, elegant "
+                   "sunglasses, walking with quiet confidence through a sunlit white-marble colonnade, one hand "
+                   "loosely at her side, plain uncluttered corridor behind her, " + STYLE_10),
+    ("duo-laugh", "Two hijabi women in aubergine and dusty plum silk abayas with gold-trimmed hijabs, both in "
+                   "elegant sunglasses, caught mid-laugh walking side by side, plain sunlit marble backdrop, no "
+                   "other props, " + STYLE_10),
+    ("solo-profile", "Editorial profile portrait of a hijabi woman in a plum silk abaya, gold-trimmed draped "
+                      "hijab, elegant sunglasses, one hand lightly resting at the edge of her hijab, plain soft "
+                      "aubergine-toned backdrop, no props, " + STYLE_10),
+    ("duo-armin", "Two hijabi women in aubergine and champagne-gold silk abayas, gold-trimmed hijabs, elegant "
+                   "sunglasses, walking arm in arm with calm soft smiles, plain white-column hallway behind "
+                   "them, no bags or props, " + STYLE_10),
+    ("solo-lean", "A hijabi woman in a deep aubergine silk abaya and draped gold-trimmed hijab, elegant "
+                   "sunglasses, leaning gently against a fluted white column with a soft smile, plain "
+                   "uncluttered background, " + STYLE_10),
+    ("duo-glance", "Two hijabi women in plum and aubergine silk abayas with gold-trimmed hijabs, elegant "
+                    "sunglasses, walking away from camera down a sunlit marble corridor and glancing back over "
+                    "one shoulder, plain background, no props, " + STYLE_10),
+    ("solo-seated", "A hijabi woman in a champagne-gold silk abaya and gold-trimmed draped hijab, elegant "
+                     "sunglasses, seated gracefully on a plain marble bench, hands relaxed in her lap, soft "
+                     "uncluttered white-column background, " + STYLE_10),
+    ("duo-doorway", "Two hijabi women in aubergine and plum silk abayas with gold-trimmed hijabs, elegant "
+                     "sunglasses, stepping together through a plain arched white doorway into soft daylight, no "
+                     "props, " + STYLE_10),
+    ("solo-crop", "Close editorial bust-up crop of a hijabi woman in a deep aubergine silk abaya, gold-trimmed "
+                   "hijab, elegant sunglasses, chin gently lifted, plain solid aubergine backdrop, no props, "
+                   "graphic and minimal, " + STYLE_10),
+    ("duo-crop2", "Close editorial shoulder-to-shoulder crop of two hijabi women in aubergine and plum silk "
+                   "abayas, gold-trimmed hijabs, both in elegant sunglasses, calm expressions, plain solid plum "
+                   "backdrop, no props, graphic and minimal, " + STYLE_10),
+]
+
+# Batch 11 (2026-08-20, same day, third round): "lets not do the glasses" — batch 10 minus
+# sunglasses, otherwise held constant. Deliberately NOT a fresh concept set: the poses,
+# framing, and "not too busy" brief in batch 10 tested well, so this isolates the one
+# variable she called out (sunglasses) instead of re-rolling everything, which would make
+# it impossible to tell whether a difference in the results comes from the pose or from
+# the accessory. Faces are open/visible instead — same soft daylight, same on-brand
+# aubergine/plum/gold, same one-gesture-plain-backdrop rule.
+STYLE_11 = ("elegant editorial modest-fashion campaign photography, rich on-brand aubergine, plum and warm "
+            "gold tones, soft directional daylight, shot on film, aspirational, clean and uncluttered "
+            "composition, minimal props, no sunglasses, no text, no writing, no signage, no logos, no watermark")
+
+CONCEPTS_11 = [
+    ("solo-walk", "A stylish hijabi woman in a deep aubergine silk abaya and gold-trimmed draped hijab, calm "
+                   "open expression, walking with quiet confidence through a sunlit white-marble colonnade, one "
+                   "hand loosely at her side, plain uncluttered corridor behind her, " + STYLE_11),
+    ("duo-laugh", "Two hijabi women in aubergine and dusty plum silk abayas with gold-trimmed hijabs, faces "
+                   "open, caught mid-laugh walking side by side, plain sunlit marble backdrop, no other props, "
+                   + STYLE_11),
+    ("solo-profile", "Editorial profile portrait of a hijabi woman in a plum silk abaya, gold-trimmed draped "
+                      "hijab, calm open expression, one hand lightly resting at the edge of her hijab, plain "
+                      "soft aubergine-toned backdrop, no props, " + STYLE_11),
+    ("duo-armin", "Two hijabi women in aubergine and champagne-gold silk abayas, gold-trimmed hijabs, faces "
+                   "open, walking arm in arm with calm soft smiles, plain white-column hallway behind them, no "
+                   "bags or props, " + STYLE_11),
+    ("solo-lean", "A hijabi woman in a deep aubergine silk abaya and draped gold-trimmed hijab, faces open, "
+                   "leaning gently against a fluted white column with a soft smile, plain uncluttered "
+                   "background, " + STYLE_11),
+    ("duo-glance", "Two hijabi women in plum and aubergine silk abayas with gold-trimmed hijabs, faces open, "
+                    "walking away from camera down a sunlit marble corridor and glancing back over one shoulder, "
+                    "plain background, no props, " + STYLE_11),
+    ("solo-seated", "A hijabi woman in a champagne-gold silk abaya and gold-trimmed draped hijab, calm open "
+                     "expression, seated gracefully on a plain marble bench, hands relaxed in her lap, soft "
+                     "uncluttered white-column background, " + STYLE_11),
+    ("duo-doorway", "Two hijabi women in aubergine and plum silk abayas with gold-trimmed hijabs, faces open, "
+                     "stepping together through a plain arched white doorway into soft daylight, no props, "
+                     + STYLE_11),
+    ("solo-crop", "Close editorial bust-up crop of a hijabi woman in a deep aubergine silk abaya, gold-trimmed "
+                   "hijab, calm open expression, chin gently lifted, plain solid aubergine backdrop, no props, "
+                   "graphic and minimal, " + STYLE_11),
+    ("duo-crop2", "Close editorial shoulder-to-shoulder crop of two hijabi women in aubergine and plum silk "
+                   "abayas, gold-trimmed hijabs, faces open, calm expressions, plain solid plum backdrop, no "
+                   "props, graphic and minimal, " + STYLE_11),
 ]
 
 
@@ -72,10 +174,22 @@ def download(url, dest):
         dest.write_bytes(r.read())
 
 
+# Each batch keeps its own CONCEPTS list + starting filename index (see the comment
+# above each batch for why). Add a new tuple here — (concepts_list, filename_start_index)
+# — for every new batch rather than overwriting an old one, so `--batch N` always
+# reproduces exactly what shipped that day.
+BATCHES = {
+    9: (CONCEPTS, 38),
+    10: (CONCEPTS_10, 43),
+    11: (CONCEPTS_11, 53),
+}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ratio", default="16:9")
     ap.add_argument("--res", default="720p")
+    ap.add_argument("--batch", type=int, default=max(BATCHES), help="which CONCEPTS batch to run")
     ap.add_argument("--only", default="", help="comma-separated 1-based concept numbers")
     args = ap.parse_args()
 
@@ -83,14 +197,15 @@ def main():
     import higgsfield_client
 
     OUT.mkdir(parents=True, exist_ok=True)
+    concepts, start = BATCHES[args.batch]
     pick = {int(x) for x in args.only.split(",") if x.strip()} if args.only else None
     tag = args.ratio.replace(":", "x")
     results = []
 
-    for i, (name, prompt) in enumerate(CONCEPTS, start=33):
+    for i, (name, prompt) in enumerate(concepts, start=start):
         if pick and i not in pick:
             continue
-        print(f"[{i}/{len(CONCEPTS)}] {name} ({args.ratio}, {args.res}) — generating…", flush=True)
+        print(f"[{i}/{len(concepts)}] {name} ({args.ratio}, {args.res}) — generating…", flush=True)
         try:
             res = higgsfield_client.subscribe(
                 "higgsfield-ai/soul/standard",
@@ -116,7 +231,7 @@ def main():
             print(f"    ! download failed: {e} ({url})", flush=True)
             results.append({"concept": name, "url": url, "error": str(e)})
 
-    (OUT / f"results-{tag}-{args.res}-b8.json").write_text(json.dumps(results, indent=2))
+    (OUT / f"results-{tag}-{args.res}-b{args.batch}.json").write_text(json.dumps(results, indent=2))
     ok = sum(1 for r in results if r.get("file"))
     print(f"\nDone. {ok}/{len(results)} saved to {OUT.relative_to(APP)}/", flush=True)
 

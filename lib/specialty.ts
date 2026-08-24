@@ -310,22 +310,41 @@ export function hijabSubtype(p: Product): HijabSubtype | null {
   return null;
 }
 
-// Outerwear = blazers, vests, cardigans, coats. Tina's call 2026-08-13: one
-// combined lane pulled out of Tops, with a Type filter breaking it into the
-// four sub-categories, same mechanism as Layering Basics.
+// Outerwear = blazers, vests, cardigans, sweaters, coats. Tina's call
+// 2026-08-13: one combined family pulled out of Tops, with a Type filter
+// breaking it into sub-categories, same mechanism as Layering Basics.
+// Split into three separate NAV-FACING lanes 2026-08-21 (Tina, after
+// comparing H&M's category names: "i want outerwear gone and i want you to
+// add those new ones" — Blazers & Vests / Cardigans & Sweaters / Jackets &
+// Coats, confirmed via clarifying question as the literal H&M split rather
+// than inventing a Jackets subtype H&M's own copy doesn't actually need —
+// see the isOuterwear name note below and lib/lanes.ts). The underlying
+// classifier here is UNCHANGED in shape on purpose: `isOuterwear`/
+// `outerwearSubtype` still model one family with five subtypes; only
+// lib/lanes.ts's match predicates changed, grouping those five subtypes
+// into three lanes instead of showing all five flat under one. Renaming
+// this function to match would have widened an already-large refactor's
+// blast radius (isSpecialty, compactCatalogue, FilterableGrid, staff
+// tooling, the `outerwear` ForcedLane value) for no behavioural gain — it
+// is still, internally, one family of specialty tops.
 //
 // GATED ON garment === 'top'. Measured against the real catalogue before
-// shipping this: 946 published titles match one of the four words, but only
-// 756 are garment:'top'. The other 190 are dresses, abayas, sets, skirts and
-// trousers that merely MENTION "blazer"/"vest"/"coat" as a styling
-// descriptor — "Capo Blazer Dress" (zayda, a dress), "The Oversized Blazer
-// Abaya In Sage Green" (madiha, an abaya), "Vest And Skirt Set" (touche-prive,
-// a skirt), "Ahd Abaya (Trench Coat)" (bait-hanayen, an abaya styled like a
-// trench coat). Matching on title alone, the §10.10 mistake this project has
-// already made once with unanchored substrings, would have pulled all 190 out
-// of their correct lanes into Outerwear. `\b`-anchoring alone does not fix
-// this — every one of those 190 titles contains the exact whole word.
-const OUTERWEAR_RE = /\b(blazers?|vests?|cardigans?|coats?)\b/i;
+// shipping this: 946 published titles match one of the four (now five)
+// words, but only 756 are garment:'top'. The other 190 are dresses, abayas,
+// sets, skirts and trousers that merely MENTION "blazer"/"vest"/"coat" as a
+// styling descriptor — "Capo Blazer Dress" (zayda, a dress), "The Oversized
+// Blazer Abaya In Sage Green" (madiha, an abaya), "Vest And Skirt Set"
+// (touche-prive, a skirt), "Ahd Abaya (Trench Coat)" (bait-hanayen, an abaya
+// styled like a trench coat). Matching on title alone, the §10.10 mistake
+// this project has already made once with unanchored substrings, would have
+// pulled all 190 out of their correct lanes into Outerwear. `\b`-anchoring
+// alone does not fix this — every one of those 190 titles contains the
+// exact whole word. "Sweater" carries the identical risk on the same
+// garment-field gate — measured 2026-08-21: 139 catalogue titles contain
+// "sweater", but only 80 are garment:'top' ("Sweater Dress" (29), "Sweater
+// Skirt"/skirt bigrams (12) etc. are real dresses/skirts using it as a
+// fabric/style word, not sweaters to pull out) — same shape, same fix.
+const OUTERWEAR_RE = /\b(blazers?|vests?|cardigans?|sweaters?|coats?)\b/i;
 
 export function isOuterwear(p: Product): boolean {
   if (p.forcedLane) return p.forcedLane === 'outerwear';
@@ -337,16 +356,19 @@ export const OUTERWEAR_SUBTYPE_LABELS: Record<OuterwearSubtype, string> = {
   blazer: 'Blazers',
   vest: 'Vests',
   cardigan: 'Cardigans',
+  sweater: 'Sweaters',
   coat: 'Coats',
 };
 
 // Order matters here only as the fallback iteration order when two matches
 // land at the exact same index (impossible in practice — no word is a
-// substring of another among these four — kept in the order Tina named them).
+// substring of another among these five — kept in the order Tina named the
+// original four, sweater added where it groups with cardigan in lib/lanes.ts).
 const OUTERWEAR_SUBTYPE_RES: [OuterwearSubtype, RegExp][] = [
   ['blazer', /\bblazers?\b/i],
   ['vest', /\bvests?\b/i],
   ['cardigan', /\bcardigans?\b/i],
+  ['sweater', /\bsweaters?\b/i],
   ['coat', /\bcoats?\b/i],
 ];
 

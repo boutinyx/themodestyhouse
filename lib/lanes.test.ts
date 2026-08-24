@@ -76,7 +76,7 @@ describe('currentCategoryLabel', () => {
 
   it('labels an outerwear item with its subtype', () => {
     const blazer = { ...base, garment: 'top' as const, title: 'Tailored Blazer' };
-    expect(currentCategoryLabel(blazer)).toBe('Outerwear — Blazers');
+    expect(currentCategoryLabel(blazer)).toBe('Blazers & Vests — Blazers');
   });
 
   it('labels a layering item with its subtype', () => {
@@ -86,6 +86,6 @@ describe('currentCategoryLabel', () => {
 
   it('reflects a forcedLane override rather than the raw garment', () => {
     const forced = { ...base, garment: 'top' as const, forcedLane: 'outerwear' as const, forcedOuterwearSubtype: 'vest' as const };
-    expect(currentCategoryLabel(forced)).toBe('Outerwear — Vests');
+    expect(currentCategoryLabel(forced)).toBe('Blazers & Vests — Vests');
   });
 });

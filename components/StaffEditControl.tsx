@@ -10,7 +10,16 @@ import type { Garment, ForcedLane, LayeringSubtype, OuterwearSubtype } from '@/l
 const MOVABLE = GARMENT_VALUES.filter((g) => g !== 'other') as Garment[];
 const LAYERING_SUBTYPES = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
 const OUTERWEAR_SUBTYPES = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
-export const laneLabel = (lane: ForcedLane) => CATEGORY_LANES.find((l) => l.slug === lane)?.title ?? lane;
+// ForcedLane still carries the single internal value 'outerwear' (see
+// lib/specialty.ts's isOuterwear comment) even though it now displays across
+// three nav-facing lanes (blazers-vests/cardigans-sweaters/jackets-coats,
+// lib/lanes.ts) — none of which is a slug named 'outerwear' any more, so the
+// CATEGORY_LANES lookup below would silently fall back to the raw string.
+// Named explicitly here instead, since staff picking this destination are
+// choosing the FAMILY, then a subtype (below) that determines which of the
+// three the item actually lands on.
+export const laneLabel = (lane: ForcedLane) =>
+  lane === 'outerwear' ? 'Outerwear' : (CATEGORY_LANES.find((l) => l.slug === lane)?.title ?? lane);
 
 // Each lane's subtype lives in its own label map — a layering subtype and an
 // outerwear subtype are never valid for the other lane (see the move-lane

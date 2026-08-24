@@ -47,9 +47,23 @@ const TOO_THIN_FOR_SITEMAP = new Set(['neck-cover', 'sleeve-extender', 'shirt-ex
 const toList = (labels: Record<string, string>): LaneSubtype[] =>
   Object.entries(labels).map(([type, label]) => ({ type, label }));
 
+// blazers-vests and cardigans-sweaters each read the SAME 'outerwear' domain
+// (lib/compactCatalogue.ts encodes it per-lane already, only from whichever
+// products that lane's own match() predicate included — see lib/lanes.ts —
+// so /blazers-vests never sees a 'coat' index at runtime regardless of this
+// list) but each is filtered here to just its own two subtypes, because THIS
+// list feeds generateMetadata/sitemap, which have no encoded catalogue to
+// read and would otherwise validate e.g. /blazers-vests?type=coat as if it
+// were a real page. jackets-coats has only one subtype (coat) — no entry
+// here at all, same as Co-ord Sets: a single-subtype lane gets no chip row.
+const OUTERWEAR_TYPES = toList(OUTERWEAR_SUBTYPE_LABELS);
+const blazerVestTypes = OUTERWEAR_TYPES.filter((s) => s.type === 'blazer' || s.type === 'vest');
+const cardiganSweaterTypes = OUTERWEAR_TYPES.filter((s) => s.type === 'cardigan' || s.type === 'sweater');
+
 export const LANE_SUBTYPES: Record<string, { domain: SubtypeDomain; subtypes: LaneSubtype[] }> = {
   'layering-basics': { domain: 'layering', subtypes: toList(LAYERING_SUBTYPE_LABELS) },
-  outerwear: { domain: 'outerwear', subtypes: toList(OUTERWEAR_SUBTYPE_LABELS) },
+  'blazers-vests': { domain: 'outerwear', subtypes: blazerVestTypes },
+  'cardigans-sweaters': { domain: 'outerwear', subtypes: cardiganSweaterTypes },
   'modest-hijabs': { domain: 'hijab', subtypes: toList(HIJAB_SUBTYPE_LABELS) },
 };
 

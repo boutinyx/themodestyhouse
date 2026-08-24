@@ -90,8 +90,11 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
     body: "A layering piece is designed to be worn under another garment rather than as an outfit on its own — its job is to add coverage a main piece leaves out, not to be seen in full. A neck cover, sometimes called a dickey, is cut to sit at the collar and shoulders only, closing the gap left by a scoop or V-neck top without the bulk of a full undershirt. A base-layer or 'body' top goes further, covering the arms and torso under a sheer blouse or a three-quarter-sleeve dress so nothing shows through. Sleeveless versions, often labelled a singlet or inner top, sit under short-sleeve pieces without adding warmth under the arms, while a long-sleeve base layer solves the opposite problem: extending coverage past a garment's own hemline or cuff. Because they're worn hidden, most are cut in a slim, second-skin fit from stretch jersey or modal that won't add bulk under whatever goes over it.",
     // Was ['modest-tops', 'modest-hijabs'] — see modest-skirts above.
     // Layering pieces and outerwear are the two halves of the same cold-weather
-    // decision, and outerwear had no inbound contextual link at all.
-    related: ['modest-tops', 'outerwear'],
+    // decision, and outerwear had no inbound contextual link at all. Points at
+    // jackets-coats specifically (of the three lanes the single 'outerwear'
+    // entry below split into 2026-08-21) — the outermost, warmest layer is the
+    // more direct cold-weather counterpart to a base layer than a blazer is.
+    related: ['modest-tops', 'jackets-coats'],
   },
   'modest-wedding-guest': {
     h2: 'What should I wear as a modest wedding guest?',
@@ -103,10 +106,28 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
     body: "Staying cool in full coverage comes down to fabric and cut more than how much skin is covered. Natural, breathable fibres — linen, cotton, viscose — let air move in a way synthetic blends don't, so a linen maxi dress in full sleeves can be cooler than a short synthetic one. Looser, flowier cuts help air circulate against the body rather than trapping heat the way a fitted silhouette does. Lighter colours reflect rather than absorb heat, which is why summer modest pieces skew pale. For hijabs specifically, a lightweight cotton voile or chiffon breathes far better through summer than a heavier jersey, even though jersey is easier to style. The trade-off is upkeep — linen and voile crease more readily than jersey, so summer pieces often need more ironing or steaming to stay crisp.",
     related: ['modest-dresses', 'modest-hijabs'],
   },
-  'outerwear': {
-    h2: "What's the difference between a blazer, vest, cardigan and coat?",
-    body: "Blazers, vests, cardigans and coats all serve the same basic job — adding a layer of structure or warmth over a dress, top or abaya — but differ in cut and how much coverage they add. A blazer is tailored and structured, with a collar and lapels borrowed from menswear, and works best over a fitted dress or trouser co-ord for a sharper, more formal line. A vest is sleeveless, so it adds warmth and shape without bulking the arms, which is why it's often layered under a coat rather than as the outermost piece. Cardigans are soft-knit and unstructured, closer to a cosy layering piece than a tailored one, and suit an everyday base-layer role over a plain top. Coats are the longest and warmest of the four, cut to go over a full outfit as the outermost layer for outdoor wear, with wool and heavier blends replacing the lighter knits and twills used for cardigans and blazers.",
-    related: ['modest-tops', 'modest-dresses'],
+  // The single 'outerwear' entry above split into these three lanes
+  // 2026-08-21 (Tina, comparing H&M's category names: "i want outerwear gone
+  // and i want you to add those new ones" — confirmed as H&M's literal
+  // split via clarifying question). Content below is the same factual,
+  // non-branded garment education the rest of this file already uses
+  // (CLAUDE.md §10.18 — no invented marketing copy), just divided along the
+  // same lines as the lanes themselves rather than one block covering all
+  // three garments' differences from each other.
+  'blazers-vests': {
+    h2: 'What is the difference between a blazer and a vest?',
+    body: "A blazer and a vest are both tailored, structured layers, but they differ in sleeve and the job they do. A blazer is a full-sleeve, collared jacket borrowed from menswear tailoring, with lapels and (often) a single row of buttons; it works best over a fitted dress or a trouser co-ord for a sharper, more formal line, and is usually the outermost piece in an outfit. A vest is the sleeveless version of the same idea — structured through the shoulders and body but with no arm coverage — which is why it's frequently layered under a coat rather than worn as the final layer, adding warmth and shape without the bulk a full sleeve would bring. Both are cut close enough through the body to read as tailoring rather than as a cosy layering piece, which is the main thing that separates either from a cardigan: a blazer or vest is structured, a cardigan is soft-knit. Double-breasted cuts, wide lapels and belted waists are common on both, and both are usually worn open rather than fastened all the way, so the dress or top underneath still shows.",
+    related: ['cardigans-sweaters', 'modest-dresses'],
+  },
+  'cardigans-sweaters': {
+    h2: 'What is the difference between a cardigan and a sweater?',
+    body: "The difference is the opening: a cardigan fastens down the front, usually with buttons or a zip, while a sweater is a closed, pull-over piece with no front opening at all. That single difference changes how each is worn. A cardigan can be put on and taken off over other clothing without disturbing a hijab or an already-set outfit, and can be worn open as a loose layer or fastened as a closer one, which is why it's the more common everyday layering choice over a plain top or dress. A sweater has to go on over the head, so it's worn as a single fixed layer rather than adjusted through the day, but it sits closer to the body and holds its shape better since there's no front seam to pull against. Both are soft-knit and unstructured — closer to a cosy layering piece than the tailored cut of a blazer or vest — and both run from lightweight cotton knits for milder weather through to heavier wool blends for winter. Chunky and ribbed knits are common on both, and an oversized fit is typical of sweaters specifically, since there's no front closure to fit around.",
+    related: ['blazers-vests', 'modest-tops'],
+  },
+  'jackets-coats': {
+    h2: 'What is the difference between a jacket and a coat?',
+    body: "Length and weight are the main differences. A jacket is typically hip-length or shorter and cut from a lighter material, so it works as a mid-layer for cooler-but-not-cold weather — a denim or trench-style jacket over a dress is a common everyday combination. A coat is longer, usually falling to the knee or further, and cut from a heavier material — wool, heavier blends, sometimes fur or faux-fur trims — built as the outermost layer for genuinely cold or wet weather rather than a light layer over an outfit. Both go over a full outfit rather than under it, which separates either from a cardigan or blazer, worn as part of an outfit rather than as protection from the weather. A trench coat sits in between the two in weight but is grouped with coats here for its length: floor- or knee-length, double-breasted, belted at the waist, cut to be worn over anything from a dress to a full abaya. Wool, cashmere blends and heavier cottons dominate the coat end of this range; lighter cottons, denim and quilted synthetics are more common on jacket-length pieces.",
+    related: ['blazers-vests', 'modest-abayas'],
   },
 };
 

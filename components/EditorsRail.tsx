@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
+import { withUtm, type OutboundSurface } from '@/lib/outbound';
 
 type Pick = {
   id: string;
@@ -30,7 +31,7 @@ export default function EditorsRail({
   /** data-surface on each card's outbound anchor, for click tracking — lets
    *  a second placement (e.g. the product page's "similar items" rail) be
    *  told apart from the homepage's own. */
-  surface?: string;
+  surface?: OutboundSurface;
   /** The homepage's rail is genuinely hand-curated, hence the Sparkle badge.
    *  A rail of algorithmically-similar items (same garment, different
    *  product) is not that claim — pass null to omit the badge rather than
@@ -77,7 +78,7 @@ export default function EditorsRail({
         {picks.map((p) => (
           <a
             key={p.id}
-            href={p.url}
+            href={withUtm(p.url, surface)}
             target="_blank"
             rel="noopener noreferrer sponsored"
             data-brand={p.brandSlug}

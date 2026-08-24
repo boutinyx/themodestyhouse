@@ -13,9 +13,13 @@ import {
 import { useCurrency } from './CurrencyProvider';
 import { useScrollFade } from './useScrollFade';
 
-// Insertion order of the object literals in lib/specialty.ts, same source the
-// desktop flyout (components/Nav.tsx) and the compact catalogue both read.
-const OUTERWEAR_SUBTYPE_ORDER = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
+// Split into two pairs 2026-08-21 alongside the 'outerwear' lane itself
+// splitting into blazers-vests/cardigans-sweaters/jackets-coats (lib/lanes.ts)
+// — same split components/Nav.tsx makes for the desktop flyout. jackets-coats
+// has only one subtype (coat), so it falls through to a plain row() below,
+// same as any other single-subtype lane.
+const BLAZER_VEST_ORDER: OuterwearSubtype[] = ['blazer', 'vest'];
+const CARDIGAN_SWEATER_ORDER: OuterwearSubtype[] = ['cardigan', 'sweater'];
 const LAYERING_SUBTYPE_ORDER = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
 const HIJAB_SUBTYPE_ORDER = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
 
@@ -45,28 +49,35 @@ const HIJAB_SUBTYPE_ORDER = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
 export function MobileNav() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
-  // Outerwear alone expands inline to its four subtypes — mirrors the desktop
-  // header's hover flyout (components/Nav.tsx), the touch equivalent of
-  // "hover". Fixed 2026-08-13: this row used to be a plain `row(...)` link
-  // like every other category, so tapping it navigated straight to
-  // /outerwear with no way to reach Blazers/Vests/Cardigans/Coats — Tina:
-  // "clicking on outerwear on mobile the subcategories dont open it takes
-  // you direcly to outerwear". A tap toggles disclosure instead of navigating;
-  // only the four sub-rows are real links.
-  const [outerwearOpen, setOuterwearOpen] = useState(false);
-  const outerwearRowRef = useRef<HTMLDivElement>(null);
-  // Layering Basics got the same disclosure treatment 2026-08-15 (Tina: "i
-  // want the sub catagories of layering basics to be like outerwear sub
-  // catagories... i want to be able to click them") — same reasoning as
-  // outerwearOpen/outerwearRowRef below, own state so opening one doesn't
-  // affect the other.
-  const [layeringOpen, setLayeringOpen] = useState(false);
-  const layeringRowRef = useRef<HTMLDivElement>(null);
-  // Hijabs & Scarves got the same disclosure treatment 2026-08-15 evening
-  // (Tina: "i want a dropdown that give khimars and jilbabs undercap et
-  // etc") — same reasoning as outerwearOpen/layeringOpen above.
-  const [hijabsOpen, setHijabsOpen] = useState(false);
-  const hijabsRowRef = useRef<HTMLDivElement>(null);
+  // Blazers & Vests / Cardigans & Sweaters each expand inline to their own
+  // subtypes — mirrors the desktop header's hover flyout (components/
+  // Nav.tsx), the touch equivalent of "hover". Fixed 2026-08-13 (as one
+  // combined "Outerwear" row, split into these two 2026-08-21 alongside the
+  // lane split itself): this row used to be a plain `row(...)` link like
+  // every other category, so tapping it navigated straight to the lane with
+  // no way to reach its subtypes — Tina: "clicking on outerwear on mobile
+  // the subcategories dont open it takes you direcly to outerwear". A tap
+  // toggles disclosure instead of navigating; only the sub-rows are real
+  // links.
+  const [blazersVestsOpen, setBlazersVestsOpen] = useState(false);
+  const blazersVestsRowRef = useRef<HTMLDivElement>(null);
+  const [cardigansSweatersOpen, setCardigansSweatersOpen] = useState(false);
+  const cardigansSweatersRowRef = useRef<HTMLDivElement>(null);
+  // Layering Basics and Hijabs & Scarves USED to get this same disclosure
+  // treatment — Layering Basics 2026-08-15 (Tina: "i want the sub catagories
+  // of layering basics to be like outerwear sub catagories... i want to be
+  // able to click them"), Hijabs & Scarves 2026-08-15 evening (Tina: "i want
+  // a dropdown that give khimars and jilbabs undercap et etc"). SUPERSEDED
+  // 2026-08-24: both are now their own top-level eyebrow sections below
+  // (alongside a new "Active" section), matching the desktop header's own
+  // Clothing/Hijabs/Basics/Active split (Tina: "i want you to catagorize the
+  // hamburger menu like our new and imporved header") — a disclosure toggle
+  // stops making sense once the group has its own heading and isn't buried
+  // inside the flat Category list any more, so both are now always-expanded
+  // plain rows instead. Blazers & Vests / Cardigans & Sweaters keep their
+  // disclosure — the desktop header still nests THOSE inside Clothing's own
+  // panel, unlike Hijabs/Basics/Active, which are separate top-level groups
+  // there.
 
   // Outerwear sits near the bottom of the Category list (9th of 10), so
   // opening it in place pushes its four sub-rows almost entirely below the
@@ -82,14 +93,11 @@ export function MobileNav() {
   // directly, the same lesson as CLAUDE.md §10.26 — trust the harness's
   // method, not just its pass/fail.
   useEffect(() => {
-    if (outerwearOpen) outerwearRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [outerwearOpen]);
+    if (blazersVestsOpen) blazersVestsRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [blazersVestsOpen]);
   useEffect(() => {
-    if (layeringOpen) layeringRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [layeringOpen]);
-  useEffect(() => {
-    if (hijabsOpen) hijabsRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [hijabsOpen]);
+    if (cardigansSweatersOpen) cardigansSweatersRowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [cardigansSweatersOpen]);
 
   // Choosing a currency does NOT close the panel — it changes prices on the page
   // behind it, and the visitor may well want to try another one.
@@ -207,104 +215,68 @@ export function MobileNav() {
     </div>
   );
 
-  /** Outerwear's row: a disclosure toggle, not a link — see the note on
-   *  `outerwearOpen` above. */
-  const outerwearRow = () => (
-    <div key="/outerwear" ref={outerwearRowRef}>
+  /** Blazers & Vests' row: a disclosure toggle, not a link — see the note on
+   *  `blazersVestsOpen` above. */
+  const blazersVestsRow = () => (
+    <div key="/blazers-vests" ref={blazersVestsRowRef}>
       <button
         type="button"
-        onClick={() => setOuterwearOpen((v) => !v)}
-        aria-expanded={outerwearOpen}
+        onClick={() => setBlazersVestsOpen((v) => !v)}
+        aria-expanded={blazersVestsOpen}
         className="flex items-center justify-between gap-4 py-4 w-full text-left"
         style={{
           fontFamily: 'var(--font-ui-stack)',
           fontSize: 17,
           lineHeight: 1.35,
           letterSpacing: '0.01em',
-          color: path === '/outerwear' ? 'var(--aubergine)' : 'var(--ink)',
-          fontWeight: path === '/outerwear' ? 500 : 400,
+          color: path === '/blazers-vests' ? 'var(--aubergine)' : 'var(--ink)',
+          fontWeight: path === '/blazers-vests' ? 500 : 400,
         }}
       >
-        Outerwear
+        Blazers & Vests
         <CaretDown
           size={15}
           style={{
             flexShrink: 0,
             color: 'var(--muted)',
             transition: 'transform 150ms ease-out',
-            transform: outerwearOpen ? 'rotate(180deg)' : undefined,
+            transform: blazersVestsOpen ? 'rotate(180deg)' : undefined,
           }}
         />
       </button>
-      {outerwearOpen && subtypeLinks('outerwear', 'All Outerwear', OUTERWEAR_SUBTYPE_ORDER, OUTERWEAR_SUBTYPE_LABELS)}
+      {blazersVestsOpen && subtypeLinks('blazers-vests', 'All Blazers & Vests', BLAZER_VEST_ORDER, OUTERWEAR_SUBTYPE_LABELS)}
     </div>
   );
 
-  /** Layering Basics's row — same shape as Outerwear's, added 2026-08-15
-   *  (Tina: "i want the sub catagories of layering basics to be like
-   *  outerwear sub catagories... i want to be able to click them"). */
-  const layeringRow = () => (
-    <div key="/layering-basics" ref={layeringRowRef}>
+  /** Cardigans & Sweaters' row — same shape as Blazers & Vests' above. */
+  const cardigansSweatersRow = () => (
+    <div key="/cardigans-sweaters" ref={cardigansSweatersRowRef}>
       <button
         type="button"
-        onClick={() => setLayeringOpen((v) => !v)}
-        aria-expanded={layeringOpen}
+        onClick={() => setCardigansSweatersOpen((v) => !v)}
+        aria-expanded={cardigansSweatersOpen}
         className="flex items-center justify-between gap-4 py-4 w-full text-left"
         style={{
           fontFamily: 'var(--font-ui-stack)',
           fontSize: 17,
           lineHeight: 1.35,
           letterSpacing: '0.01em',
-          color: path === '/layering-basics' ? 'var(--aubergine)' : 'var(--ink)',
-          fontWeight: path === '/layering-basics' ? 500 : 400,
+          color: path === '/cardigans-sweaters' ? 'var(--aubergine)' : 'var(--ink)',
+          fontWeight: path === '/cardigans-sweaters' ? 500 : 400,
         }}
       >
-        Layering Basics
+        Cardigans & Sweaters
         <CaretDown
           size={15}
           style={{
             flexShrink: 0,
             color: 'var(--muted)',
             transition: 'transform 150ms ease-out',
-            transform: layeringOpen ? 'rotate(180deg)' : undefined,
+            transform: cardigansSweatersOpen ? 'rotate(180deg)' : undefined,
           }}
         />
       </button>
-      {layeringOpen && subtypeLinks('layering-basics', 'All Layering Basics', LAYERING_SUBTYPE_ORDER, LAYERING_SUBTYPE_LABELS)}
-    </div>
-  );
-
-  /** Hijabs & Scarves's row — same shape as Outerwear's/Layering Basics's,
-   *  added 2026-08-15 evening (Tina: "i want a dropdown that give khimars
-   *  and jilbabs undercap et etc"). */
-  const hijabsRow = () => (
-    <div key="/modest-hijabs" ref={hijabsRowRef}>
-      <button
-        type="button"
-        onClick={() => setHijabsOpen((v) => !v)}
-        aria-expanded={hijabsOpen}
-        className="flex items-center justify-between gap-4 py-4 w-full text-left"
-        style={{
-          fontFamily: 'var(--font-ui-stack)',
-          fontSize: 17,
-          lineHeight: 1.35,
-          letterSpacing: '0.01em',
-          color: path === '/modest-hijabs' ? 'var(--aubergine)' : 'var(--ink)',
-          fontWeight: path === '/modest-hijabs' ? 500 : 400,
-        }}
-      >
-        Hijabs & Scarves
-        <CaretDown
-          size={15}
-          style={{
-            flexShrink: 0,
-            color: 'var(--muted)',
-            transition: 'transform 150ms ease-out',
-            transform: hijabsOpen ? 'rotate(180deg)' : undefined,
-          }}
-        />
-      </button>
-      {hijabsOpen && subtypeLinks('modest-hijabs', 'All Hijabs & Scarves', HIJAB_SUBTYPE_ORDER, HIJAB_SUBTYPE_LABELS)}
+      {cardigansSweatersOpen && subtypeLinks('cardigans-sweaters', 'All Cardigans & Sweaters', CARDIGAN_SWEATER_ORDER, OUTERWEAR_SUBTYPE_LABELS)}
     </div>
   );
 
@@ -315,19 +287,30 @@ export function MobileNav() {
         className="nav-link inline-flex items-center justify-center leading-none"
         style={{ fontSize: 13, letterSpacing: 0 }}
       >
-        <ListIcon size={20} style={{ display: 'block' }} />
+        <ListIcon size={24} style={{ display: 'block' }} />
       </Dialog.Trigger>
 
       <Dialog.Portal>
         <Dialog.Popup
-          className="fixed inset-0 z-[70] flex flex-col transition-[opacity,transform] duration-200 ease-out data-[starting-style]:opacity-0 data-[starting-style]:translate-y-1 data-[ending-style]:opacity-0"
+          className="fixed inset-y-0 left-0 z-[70] flex flex-col transition-[opacity,transform] duration-200 ease-out data-[starting-style]:opacity-0 data-[starting-style]:translate-x-1 data-[ending-style]:opacity-0"
           style={{
             // Parchment, not white: the header pill it opens from is #fff, and a
             // white panel emerging from behind a white pill read as one blob.
             background: 'var(--parchment)',
             // dvh, not vh — vh on iOS Safari is the URL-bar-collapsed height, so
             // the last row sits under the browser chrome.
+            // 2026-08-23, Tina: "i dont want it to completely open and fill the
+            // screen on phone and tablet but show a little space of the hero" —
+            // first tried leaving a gap at the BOTTOM, corrected immediately:
+            // "not on the buttom i mean the side the right side." Was a full
+            // `inset-0` takeover; now stops 56px short of the RIGHT edge
+            // instead, so a strip of whatever's behind (the hero, on the
+            // homepage) stays visible there. Full height again — only the
+            // width is reduced. Square corners — Tina: "dont round out the
+            // cornres." The shadow alone reads it as a sheet over the page.
             height: '100dvh',
+            width: 'calc(100% - 56px)',
+            boxShadow: '20px 0 40px -12px rgba(0,0,0,0.35)',
           }}
         >
           <Dialog.Title className="sr-only">Navigation</Dialog.Title>
@@ -401,7 +384,19 @@ export function MobileNav() {
             className="scroll-fade-port h-full overflow-y-auto px-5 pb-10"
             style={{ WebkitOverflowScrolling: 'touch' }}
           >
-            <div className="pt-3">{row('/directory', 'Products')}</div>
+            {/* "Clothing", not "Products" — matches the desktop header's
+                trigger label (Nav.tsx, 2026-08-21). The Category list below
+                now EXCLUDES Hijabs & Scarves, Layering Basics, Modest
+                Swimwear and Modest Activewear — each of those is its own
+                top-level eyebrow section further down, mirroring the
+                desktop header's Clothing/Hijabs/Basics/Active split exactly
+                (Tina, 2026-08-24: "i want you to catagorize the hamburger
+                menu like our new and imporved header"). This reverses the
+                2026-08-21 note that used to sit here, which deliberately
+                kept Hijabs inline because that day's ask was scoped to the
+                desktop header only — today's ask is explicitly about this
+                panel too. */}
+            <div className="pt-3">{row('/directory', 'Clothing')}</div>
 
             {/* "Category" is the label already used on the /directory filter
                 bar — reused rather than invented, so the menu and the filters
@@ -413,15 +408,35 @@ export function MobileNav() {
                 the /style/[vibe] pages were removed — see
                 docs/log/2026-08-09-remove-style-vibe-feature.md.) */}
             <p className="eyebrow pt-5 pb-1">Category</p>
-            {CATEGORY_LANES.map((l) =>
-              l.slug === 'outerwear'
-                ? outerwearRow()
-                : l.slug === 'layering-basics'
-                  ? layeringRow()
-                  : l.slug === 'modest-hijabs'
-                    ? hijabsRow()
-                    : row(`/${l.slug}`, l.title),
+            {CATEGORY_LANES.filter((l) =>
+              l.slug !== 'modest-hijabs' && l.slug !== 'layering-basics' &&
+              l.slug !== 'modest-swimwear' && l.slug !== 'modest-activewear',
+            ).map((l) =>
+              l.slug === 'blazers-vests'
+                ? blazersVestsRow()
+                : l.slug === 'cardigans-sweaters'
+                  ? cardigansSweatersRow()
+                  : row(`/${l.slug}`, l.title),
             )}
+
+            {/* Hijabs, Basics and Active — each its own eyebrow section, no
+                disclosure toggle needed any more: the group already has its
+                own heading, so "tap to reveal" was solving a problem
+                (telling this apart from the flat Category list) that no
+                longer exists once it has a heading of its own. Active has no
+                subtypes on the desktop header either, so it's just the two
+                lane links, same as the desktop panel. */}
+            <p className="eyebrow pt-5 pb-1">Hijabs</p>
+            {row('/modest-hijabs', 'All Hijabs & Scarves')}
+            {HIJAB_SUBTYPE_ORDER.map((t) => row(`/modest-hijabs?type=${t}`, HIJAB_SUBTYPE_LABELS[t]))}
+
+            <p className="eyebrow pt-5 pb-1">Basics</p>
+            {row('/layering-basics', 'All Layering Basics')}
+            {LAYERING_SUBTYPE_ORDER.map((t) => row(`/layering-basics?type=${t}`, LAYERING_SUBTYPE_LABELS[t]))}
+
+            <p className="eyebrow pt-5 pb-1">Active</p>
+            {row('/modest-swimwear', 'Modest Swimwear')}
+            {row('/modest-activewear', 'Modest Activewear')}
 
             <div className="mt-5 pt-2" style={{ borderTop: '1px solid var(--hairline)' }}>
               {row('/designers', 'Designers')}

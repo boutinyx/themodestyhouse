@@ -1,5 +1,6 @@
 import type { House } from '@/lib/houses';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
+import { withUtm } from '@/lib/outbound';
 
 /**
  * The 3D wall of houses on /designers — the brands that are not among the six
@@ -51,7 +52,7 @@ export function BrandMarquee({ houses, columns = 4 }: { houses: House[]; columns
                 {col.map((h) => (
                   <a
                     key={h.slug}
-                    href={h.homepage}
+                    href={withUtm(h.homepage, 'marquee')}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
                     data-brand={h.slug}

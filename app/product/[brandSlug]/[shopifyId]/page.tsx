@@ -8,6 +8,7 @@ import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import { SITE_URL } from '@/lib/schema';
 import type { Product } from '@/lib/types';
 import EditorsRail from '@/components/EditorsRail';
+import { withUtm } from '@/lib/outbound';
 
 /**
  * A page of OURS for a single product, so there is something on
@@ -140,7 +141,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <h1 className="card-title card-title-xl mt-2">{p.title}</h1>
           <div className="price price-lg mt-3">{formatPrice(p.price, p.currency)}</div>
           <a
-            href={p.url}
+            href={withUtm(p.url, 'product-page')}
             target="_blank"
             rel="noopener noreferrer sponsored"
             data-brand={p.brandSlug}

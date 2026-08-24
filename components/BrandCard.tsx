@@ -1,9 +1,10 @@
 import type { Brand } from '@/lib/types';
+import { withUtm } from '@/lib/outbound';
 
 export function BrandCard({ b }: { b: Brand }) {
   return (
     <a
-      href={b.homepage}
+      href={withUtm(b.homepage, 'designers')}
       target="_blank"
       rel="noopener noreferrer sponsored"
       data-brand={b.slug}

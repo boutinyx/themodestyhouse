@@ -1,6 +1,7 @@
 'use client';
 
 import { Menu } from '@base-ui-components/react/menu';
+import { CaretDown } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { CurrencyFlag } from './CurrencyFlag';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL as LABEL, type CurrencyPreference } from '@/lib/fx';
@@ -83,24 +84,31 @@ export function CurrencySwitcher() {
           }
         }}
         aria-label={`Prices in ${preference ?? 'USD'}. Change currency`}
-        className="nav-link inline-flex items-center justify-center leading-none"
+        className="nav-link group inline-flex items-center justify-center leading-none"
         data-active={true}
-        /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space AFTER
-           the last glyph and pushes an icon left of true centre.
-           gap is the space between the flag and its currency code. */
-        style={{ fontSize: 13, letterSpacing: 0, gap: 8 }}
+        /* letterSpacing 0: .nav-link sets 0.18em, which adds trailing space
+           AFTER the last glyph and pushes the text off centre. fontSize 14,
+           not the historic 13: matches the header's other nav text, bumped
+           to 14 site-wide via `.site-header .nav-link` 2026-08-20 (Tina:
+           "as big letters as they have," aabcollection.com) — this trigger
+           carries its own inline override so it needs the same number
+           explicitly, an inline style always beats an external class. */
+        style={{ fontSize: 14, letterSpacing: 0 }}
       >
-        {/* CurrencyFlag (already used by the footer's equivalent control)
-            shows the flag of the actually-selected currency — was a fixed
-            CurrencyDollar glyph regardless of selection, misleading once
-            GBP/EUR was picked. Same icon, same label source (LABEL) as the
-            footer, so the two controls read as one preference.
-            `preference ?? 'USD'`: CurrencyPreference's type still permits
-            `null` (lib/fx.ts keeps it as a defensive fallback), but no
-            switcher offers it any more, so this never actually reads as the
-            fallback at runtime — it exists to satisfy the type. */}
-        <CurrencyFlag currency={preference} />
+        {/* No flag on the trigger itself — Tina's call 2026-08-20: the flag
+            stays on each row INSIDE the dropdown below (still `CurrencyFlag`,
+            unchanged there) so a visitor can still see it to pick a currency,
+            it's just not sitting in the header at rest. `preference ?? 'USD'`:
+            CurrencyPreference's type still permits `null` (lib/fx.ts keeps it
+            as a defensive fallback), but no switcher offers it any more, so
+            this never actually reads as the fallback at runtime — it exists
+            to satisfy the type. */}
         {LABEL[preference ?? 'USD']}
+        {/* Chevron, matching the "USD ⌄" reference Tina sent 2026-08-20 —
+            same Chevron pattern as the Products trigger (NavMenu.tsx),
+            rotating open via Base UI's own `data-popup-open` attribute
+            rather than tracked state. */}
+        <CaretDown size={9} weight="bold" aria-hidden="true" className="ms-1 transition-transform duration-200 group-data-[popup-open]:rotate-180" />
       </Menu.Trigger>
 
       <Menu.Portal>

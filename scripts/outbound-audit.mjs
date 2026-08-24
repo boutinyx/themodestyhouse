@@ -86,8 +86,18 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
         await page.waitForSelector('a[rel~="sponsored"][data-surface="quickview"]', { timeout: 15000 });
       }
 
-      const link = page.locator('a[rel~="sponsored"][data-brand]').first();
-      const n = await page.locator('a[rel~="sponsored"][data-brand]').count();
+      // With the quick-view modal open, `.first()` over every annotated anchor
+      // picks a PRODUCT CARD's anchor — which is behind the modal overlay, so
+      // the click is intercepted and times out 15s later. That has failed on
+      // both engines since ProductCard's root became an <a> (2026-08-11); the
+      // check has been reporting a harness fault as a product defect ever
+      // since. Confirmed against pristine origin/main before fixing (§10.38
+      // rule 1). When we opened the modal, the modal's link is the subject.
+      const sel = c.openCard
+        ? 'a[rel~="sponsored"][data-surface="quickview"]'
+        : 'a[rel~="sponsored"][data-brand]';
+      const link = page.locator(sel).first();
+      const n = await page.locator(sel).count();
       if (n === 0) { report(`annotated-links${c.path}`, engineName, `PROBLEM ${c.path}: no annotated outbound link found`); continue; }
 
       // Capture BOTH delivery paths. lib/pulse.ts calls window.pulse.track()
@@ -105,6 +115,18 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
       // Identify the exact anchor first, so a miss is diagnosable rather than
       // just "nothing happened".
       const chosen = await link.evaluate((a) => ({ brand: a.getAttribute('data-brand'), surface: a.getAttribute('data-surface'), href: a.getAttribute('href') }));
+
+      // Every outbound link must carry the campaign tag. `rel="noreferrer"` on
+      // these anchors strips the Referer header, so the UTM is the ONLY thing
+      // that tells a brand's analytics the visit came from us (lib/outbound.ts).
+      // The locator above is structural — rel~="sponsored" plus data-brand or
+      // data-surface, all of which predate this check — so it cannot pass by
+      // selecting on the very thing it is meant to prove (§10.32 rule 2). Reports and continues: an
+      // untagged link is a real finding, but it must not mask the tracking
+      // assertions below.
+      if (!/[?&]utm_source=themodestyhouse\.com(?:&|$)/.test(chosen.href || '')) {
+        report(`utm${c.path}`, engineName, `PROBLEM ${c.path}: outbound href carries no campaign tag — ${chosen.href}`);
+      }
       await link.scrollIntoViewIfNeeded().catch(() => {});
       await link.click({ timeout: 15000, noWaitAfter: true });
       await page.waitForTimeout(300);

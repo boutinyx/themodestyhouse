@@ -184,23 +184,52 @@ for (const engineName of engineNames) {
     // run is a check you do not have — and this is the one that should have
     // caught the panel's rows rendering centred.
     //
-    // "Products" is a LINK, not a button (the group carries an href to
+    // "Clothing" is a LINK, not a button (the group carries an href to
     // /directory), which is why it is matched by text; and it opens on hover
     // with a mouse, on tap without one.
+    //
+    // It was "Products" until 2026-08-22 — the trigger was RENAMED to
+    // "Clothing" on 2026-08-21 and this check went straight back to reporting
+    // `skipped (desktop nav hidden at this width)` at desktop-1440, where the
+    // nav is plainly visible. That is the third time this exact check has
+    // died to a rename (§10.29, §10.32) and the second time the skip message
+    // has asserted something false about the page. Measured before repairing:
+    // `header Products text count 0`, actual labels
+    // ['Clothing','Hijabs','Basics','Designers','Editorial','About'].
     try {
       await go('/directory');
-      const products = page.locator('header').getByText('Products', { exact: true }).first();
+      const products = page.locator('header').getByText('Clothing', { exact: true }).first();
       if (await products.isVisible().catch(() => false)) {
         if (vp.touch) await products.tap(); else await products.hover();
         await page.waitForTimeout(600);
         const panel = await page.evaluate(() => {
-          // Found STRUCTURALLY — the portalled <nav> outside the header that
-          // holds the links — not by the row's class. A check keyed to the
-          // class of the fix reports "panel did not open" the moment the class
-          // changes, i.e. it fails for a reason that has nothing to do with
-          // what it is testing (§10.29, where a rename broke this very file).
-          const popup = [...document.querySelectorAll('nav')]
-            .find((n) => !n.closest('header') && n.querySelectorAll('a[href]').length >= 4);
+          // Found STRUCTURALLY — an absolutely-positioned, currently-VISIBLE
+          // block holding four or more links — not by any class the fix
+          // introduced. A check keyed to the class of its own fix reports
+          // "panel did not open" the moment that class changes, i.e. it fails
+          // for a reason that has nothing to do with what it tests (§10.29,
+          // §10.32 rule 2 — both learned in this very file).
+          //
+          // It used to look for a `<nav>` PORTALLED OUTSIDE the header, which
+          // was right until 2026-08-21: the wide panel stopped being Base UI's
+          // floating Popup that day and became a plain absolutely-positioned
+          // sibling INSIDE the header row (Tina: "its a extention of the WHOLE
+          // header"). Combined with the "Products" -> "Clothing" rename, that
+          // is two independent reasons this check could not have run since.
+          // The visibility clauses matter: all three wide panels exist in the
+          // DOM at once and only the open one has height. Verified as a
+          // negative control 2026-08-22 — closed nav finds 0 panels, Clothing
+          // open finds exactly 1 with 12 links, Hijabs open finds 1 with 4.
+          const popup = [...document.querySelectorAll('header div, body > div')].find((d) => {
+            const cs = getComputedStyle(d);
+            return (
+              cs.position === 'absolute' &&
+              cs.visibility !== 'hidden' &&
+              cs.opacity !== '0' &&
+              d.getBoundingClientRect().height > 0 &&
+              d.querySelectorAll('a[href]').length >= 4
+            );
+          });
           const rows = popup ? [...popup.querySelectorAll('a[href]')] : [];
           if (!rows.length) return { PROBLEM: 'NAV PANEL DID NOT OPEN' };
           // A column is a set of rows sharing a box left edge. Within one, every
@@ -228,125 +257,6 @@ for (const engineName of engineNames) {
         note({ engine: engineName, viewport: vpName, state: 'nav-dropdown-open', skipped: 'desktop nav hidden at this width' });
       }
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'nav-dropdown-open', error: e.message.split('\n')[0] }); }
-
-    // ---- 2b. outerwear nav flyout (new 2026-08-13) ------------------------
-    //
-    // Hovering "Outerwear" inside the Products panel should pop open a
-    // submenu of Blazers/Vests/Cardigans/Coats (Tina's request), each
-    // pre-filtering /outerwear via ?type=. The row itself is not a link (see
-    // NavMenu.tsx for why — an earlier cut that made it one navigated on a
-    // bare touch tap instead of opening), so this also checks for the ghost
-    // of that bug: does clicking a sub-item leave a stray flyout open over
-    // the destination page, the same shape as the currency menu pinning open
-    // after a click (§10.25's note in CurrencySwitcher.tsx).
-    try {
-      await go('/directory');
-      const products = page.locator('header').getByText('Products', { exact: true }).first();
-      if (await products.isVisible().catch(() => false)) {
-        if (vp.touch) await products.tap(); else await products.hover();
-        await page.waitForTimeout(500);
-        // Found by COORDINATES, not page.getByText — NavigationMenu.Viewport
-        // measures its content in an extra, invisible copy before showing it,
-        // so a text locator's `.first()` can resolve to that clone rather
-        // than the one actually on screen, and a synthetic hover on an
-        // invisible element opens nothing. Same family as §10.32 (locate
-        // structurally, not by something that can be duplicated).
-        const rowBox = await page.evaluate(() => {
-          const popup = [...document.querySelectorAll('nav')].find((n) => !n.closest('header') && n.querySelectorAll('a[href]').length >= 4);
-          // The row itself carries no href (it only opens the flyout — see
-          // NavMenu.tsx), so it's the one row in the panel WITHOUT one.
-          const row = popup && [...popup.querySelectorAll('div,button')]
-            .find((el) => el.offsetParent !== null && el.textContent?.trim().startsWith('Outerwear') && !el.querySelector('a'));
-          if (!row) return null;
-          const r = row.getBoundingClientRect();
-          return { x: Math.round(r.left + r.width / 2), y: Math.round(r.top + r.height / 2) };
-        });
-        if (rowBox) {
-          if (vp.touch) await page.touchscreen.tap(rowBox.x, rowBox.y); else await page.mouse.move(rowBox.x, rowBox.y);
-          await page.waitForTimeout(500);
-          const flyout = await page.evaluate(() => {
-            const menus = [...document.querySelectorAll('[role="menu"]')];
-            const sub = menus.find((m) => [...m.querySelectorAll('a[href]')].some((a) => a.getAttribute('href')?.includes('/outerwear?type=')));
-            if (!sub) return { PROBLEM: 'OUTERWEAR FLYOUT DID NOT OPEN' };
-            const labels = [...sub.querySelectorAll('a[href]')].map((a) => a.textContent.trim());
-            const expected = ['Blazers', 'Vests', 'Cardigans', 'Coats'];
-            const mismatch = expected.length !== labels.length || expected.some((l, i) => labels[i] !== l);
-            return { labels, ...(mismatch ? { PROBLEM: `OUTERWEAR FLYOUT ITEMS WRONG: ${JSON.stringify(labels)}` } : {}) };
-          });
-          await shot('outerwear-flyout-open');
-          note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', ...flyout, ...(await page.evaluate(PROBE)) });
-
-          if (!flyout.PROBLEM) {
-            const blazersBox = await page.evaluate(() => {
-              const menus = [...document.querySelectorAll('[role="menu"]')];
-              const sub = menus.find((m) => [...m.querySelectorAll('a[href]')].some((a) => a.getAttribute('href')?.includes('/outerwear?type=')));
-              const a = sub && [...sub.querySelectorAll('a[href]')].find((x) => x.getAttribute('href')?.endsWith('type=blazer'));
-              if (!a) return null;
-              const r = a.getBoundingClientRect();
-              return { x: Math.round(r.left + r.width / 2), y: Math.round(r.top + r.height / 2) };
-            });
-            if (vp.touch) await page.touchscreen.tap(blazersBox.x, blazersBox.y); else await page.mouse.click(blazersBox.x, blazersBox.y);
-            await page.waitForTimeout(700);
-            const landedUrl = page.url();
-            const landed = landedUrl.includes('/outerwear?type=blazer') || landedUrl.endsWith('type=blazer');
-            const stillOpen = await page.evaluate(() => {
-              const m = [...document.querySelectorAll('[role="menu"]')]
-                .find((x) => [...x.querySelectorAll('a[href]')].some((a) => a.getAttribute('href')?.includes('/outerwear?type=')));
-              return !!m && m.getBoundingClientRect().width > 0;
-            });
-            // WHAT THIS ASSERTS, and why it changed on 2026-08-19.
-            //
-            // It used to look for a <button> whose text began "Blazers", i.e. a
-            // filter-dropdown trigger showing the pre-selected subtype. No such
-            // control has ever existed: FilterableGrid renders exactly three
-            // dropdowns — Brand, a hijab-fabric "Type" (only where
-            // cat.hijabTypeFilters is non-empty, in practice only
-            // /modest-hijabs), and Sort. So this check reported
-            // "TYPE FILTER DID NOT PRE-SELECT BLAZERS ON LANDING" on every run
-            // since it was written, on a feature that works. Confirmed by
-            // building origin/main in a clean worktree and probing it: zero
-            // buttons matching /^Blazers/, while the h1 read "Blazers" and the
-            // grid held blazers. §10.28 rule 3 — a check that never passes is a
-            // check you do not have.
-            //
-            // What actually evidences "landed pre-filtered" is the page itself:
-            // the h1 shows the subtype label, and the grid holds that subtype.
-            // Both are server-rendered and both existed before the fix that
-            // prompted this rewrite, so neither selects on anything the fix
-            // introduced (§10.32 rule 2 — do not assert via your own new class).
-            // The subtype <a class="chip" aria-current="page"> added the same
-            // day is deliberately NOT what is measured here.
-            let preFiltered = null;
-            for (let i = 0; i < 6 && !preFiltered; i++) {
-              preFiltered = await page.evaluate(() => {
-                const h1 = document.querySelector('h1')?.textContent?.trim() || '';
-                if (!/^Blazers$/i.test(h1)) return null;
-                const titles = [...document.querySelectorAll('.card-title')].slice(0, 6).map((e) => e.textContent.trim());
-                if (!titles.length) return null;
-                // The lane unfiltered opens with "Maren Vest"; blazers must not.
-                const anyBlazerish = titles.some((t) => /blazer|jacket|coat|suit/i.test(t));
-                return anyBlazerish ? `h1="${h1}" first="${titles[0]}"` : null;
-              });
-              if (!preFiltered) await page.waitForTimeout(300);
-            }
-            const typeChip = preFiltered;
-            note({
-              engine: engineName, viewport: vpName, state: 'outerwear-flyout-navigate',
-              landedUrl, landed, stillOpen, typeChip,
-              ...(landed && !stillOpen && typeChip ? {} : {
-                PROBLEM: !landed ? `SUB-ITEM DID NOT NAVIGATE TO ?type=blazer — at ${landedUrl}`
-                  : stillOpen ? 'FLYOUT STAYED OPEN AFTER NAVIGATING AWAY'
-                    : 'DID NOT LAND PRE-FILTERED ON BLAZERS (h1 or grid contents wrong)',
-              }),
-            });
-          }
-        } else {
-          note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', skipped: 'Outerwear row not visible after opening Products' });
-        }
-      } else {
-        note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', skipped: 'desktop nav hidden at this width' });
-      }
-    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'outerwear-flyout', error: e.message.split('\n')[0] }); }
 
     // ---- 3. filter dropdown on /directory --------------------------------
     // THE question this exists to answer: the panel is revealed by

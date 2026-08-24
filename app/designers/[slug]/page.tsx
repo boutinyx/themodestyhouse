@@ -4,41 +4,58 @@ import Link from 'next/link';
 import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import { BRANDS } from '@/data/brands';
 import { productsForBrand } from '@/lib/products';
+import { brandPageSlugs, hasBrandPage } from '@/lib/brandPages';
 import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { FilterableGrid } from '@/components/FilterableGrid';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, brandPageSchema, jsonLdGraph } from '@/lib/schema';
 import { formatPrice } from '@/lib/price';
+import { withUtm } from '@/lib/outbound';
 
 /**
  * /designers/[slug] — one page per house.
  *
- * ONLY generated for a house carrying `description` in data/brands.ts. That
- * single condition does two jobs:
- *   1. Thin content. 5 brands have under 10 published products and 21 have
- *      under 25 — thinner than a single grid. A page of pure derived data over
- *      3 products is the exact pattern /product/[...] was noindexed to avoid.
- *   2. Nothing about a real company ships without a human having written words
- *      about it (CLAUDE.md §10.18).
- * Adding a description is therefore how a brand page comes into existence, and
- * removing one is how it goes away — including from the sitemap, which reads
- * the same predicate.
+ * WHAT CHANGED 2026-08-24, and why. This page used to exist ONLY for a house
+ * carrying `description` in data/brands.ts. Five houses had one, so
+ * **108 of 113 brand pages returned 404** — including MERRACHI, whose name is
+ * searched roughly twice as often as the phrase "modest fashion" itself, and
+ * which is the #1 related query for "hoofddoek" in the Netherlands. The
+ * directory was serving nothing for the queries it is best placed to win.
+ *
+ * The old gate's two reasons were both sound, and neither of them is actually
+ * "a human wrote a paragraph":
+ *
+ *   1. THIN CONTENT is a real risk — a page of derived data over 3 products is
+ *      the pattern /product/[...] was noindexed to avoid. But the honest test
+ *      for that is HOW MUCH THE HOUSE HAS, not whether someone got round to
+ *      writing about it. MIN_PRODUCTS below is that test, set at one full grid.
+ *   2. NOT SHIPPING INVENTED COPY (CLAUDE.md §10.18) still holds completely,
+ *      and is honoured by rendering the description only when it exists and
+ *      falling back to MEASURED facts — piece count, city, price range — never
+ *      to generated prose about a real company.
+ *
+ * So a description is now an enhancement, not the price of admission.
+ * Effect: 5 pages -> 89.
  */
 
-const described = () => BRANDS.filter((b) => b.description?.trim());
-
 export function generateStaticParams() {
-  return described().map((b) => ({ slug: b.slug }));
+  return [...brandPageSlugs()].map((slug) => ({ slug }));
 }
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const b = BRANDS.find((x) => x.slug === slug && x.description?.trim());
-  if (!b) return { title: 'Not found', robots: { index: false, follow: false } };
+  const b = BRANDS.find((x) => x.slug === slug);
+  if (!b || !hasBrandPage(slug)) return { title: 'Not found', robots: { index: false, follow: false } };
   const title = `${b.name} — Modest Fashion Brand`;
-  const description = b.description!.slice(0, 158);
+  // Falls back to MEASURED facts, never to invented prose about a real company
+  // (§10.18). `productsForBrand` is fine here: generateMetadata runs once per
+  // page, unlike the 113-brand loop that eligibleSlugs() exists to avoid.
+  const n = productsForBrand(b.slug).length;
+  const description =
+    b.description?.trim().slice(0, 158) ??
+    `${b.name}${b.city ? ` (${b.city})` : ''} — ${n.toLocaleString('en-GB')} pieces listed in The Modesty House directory, with prices and links to the house's own store.`;
   const canonical = `/designers/${b.slug}`;
   return {
     title,
@@ -57,8 +74,8 @@ const GARMENT_LABEL: Record<string, string> = {
 
 export default async function BrandPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const brand = BRANDS.find((b) => b.slug === slug && b.description?.trim());
-  if (!brand) notFound();
+  const brand = BRANDS.find((b) => b.slug === slug);
+  if (!brand || !hasBrandPage(slug)) notFound();
 
   const products = productsForBrand(brand.slug);
   if (products.length === 0) notFound();
@@ -95,7 +112,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           ]),
           brandPageSchema({
             name: brand.name,
-            description: brand.description!,
+            description: brand.description?.trim() || `${brand.name} — ${products.length.toLocaleString('en-GB')} pieces listed in The Modesty House directory.`,
             path: `/designers/${brand.slug}`,
             homepage: brand.homepage,
             items: listed,
@@ -108,9 +125,13 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       </nav>
       <h1 className="section-heading text-3xl md:text-4xl mt-3">{brand.name}</h1>
 
-      <p className="mt-4 max-w-2xl" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>
-        {brand.description}
-      </p>
+      {/* Only when a human has actually written one (§10.18). The measured
+          facts below stand on their own for the other 84 houses. */}
+      {brand.description?.trim() && (
+        <p className="mt-4 max-w-2xl" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>
+          {brand.description}
+        </p>
+      )}
 
       {/* Measured facts, not claims. */}
       <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 text-sm" style={{ color: 'var(--muted)' }}>
@@ -147,7 +168,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           grid below carry their own. */}
       <p className="mt-8">
         <a
-          href={brand.homepage}
+          href={withUtm(brand.homepage, 'brand-page')}
           target="_blank"
           rel="noopener noreferrer sponsored"
           data-surface="brand-page"

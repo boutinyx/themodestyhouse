@@ -3,6 +3,7 @@ import { LANES } from '@/lib/lanes';
 import { getPosts } from '@/lib/posts';
 import { sitemapSubtypesForLane } from '@/lib/laneSubtypes';
 import { BRANDS } from '@/data/brands';
+import { hasBrandPage } from '@/lib/brandPages';
 
 const BASE = 'https://themodestyhouse.com';
 
@@ -86,7 +87,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // reverse. This is the §8 landmine — a route family that exists but is absent
   // here is silently orphaned, which is how /editorial/[slug] went unlisted for
   // months while looking self-maintaining.
-  const brands: MetadataRoute.Sitemap = BRANDS.filter((b) => b.description?.trim()).map((b) => ({
+  // Same predicate as the route itself, imported rather than restated — see
+  // lib/brandPages.ts for why these two files are the pair that must not drift.
+  // 2026-08-24: this was `b.description?.trim()`, which listed 5 of 113 houses
+  // while the route 404'd the other 108. Now 89.
+  const brands: MetadataRoute.Sitemap = BRANDS.filter((b) => hasBrandPage(b.slug)).map((b) => ({
     url: `${BASE}/designers/${b.slug}`,
     changeFrequency: 'weekly' as const,
     priority: 0.6,

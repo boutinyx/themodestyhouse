@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Bodoni_Moda, Marcellus, Jost } from 'next/font/google';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
+import { HeroBrandStrip } from '@/components/HeroBrandStrip';
 import { Footer } from '@/components/Footer';
 import { QuickViewProvider } from '@/components/QuickView';
 import { CurrencyProvider } from '@/components/CurrencyProvider';
@@ -78,6 +79,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <StaffSessionProvider isStaff={isStaff}>
         <CurrencyProvider>
         <QuickViewProvider>
+          {/* ABOVE the header, on every page — Tina, 2026-08-23: "i want the
+              banner a dark purple almost black and i want it above the
+              header". It sat under the homepage hero for a few hours before
+              this; "above the header" can only be honoured from the layout,
+              since the header itself lives here, and that necessarily makes it
+              site-wide rather than homepage-only.
+
+              Deliberately NOT sticky. The header is what has to stay reachable
+              while scrolling; a second pinned bar would eat 40px of every
+              viewport for a decorative ticker, and `--header-height` (which
+              .hero-vh subtracts) measures the header alone. It scrolls away and
+              the header takes the top edge, which is how an announcement bar
+              behaves everywhere else.
+
+              This is also the black announcement bar Header.tsx's own comment
+              says was left out of the reference layout for want of anything
+              real to put in it. There is now something real: the house names. */}
+          <HeroBrandStrip tone="band" />
           <Header />
           {children}
           <Footer />

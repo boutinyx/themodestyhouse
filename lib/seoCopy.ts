@@ -130,9 +130,19 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     title: 'Modest Summer Outfits Online — Lightweight & Breathable',
     description: 'Shop modest summer outfits online: lightweight, breathable pieces for warm days, from independent modest fashion brands.',
   },
-  '/outerwear': {
-    title: 'Modest Outerwear Online — Blazers, Vests & Coats',
-    description: 'Shop modest outerwear online: blazers, vests, cardigans and coats to layer over dresses, tops and abayas.',
+  // The single '/outerwear' entry above split into these three paths
+  // 2026-08-21, matching the lib/lanes.ts split of the same day.
+  '/blazers-vests': {
+    title: 'Modest Blazers & Vests Online',
+    description: 'Shop modest blazers and vests online: tailored layers to wear over dresses, tops and abayas, from independent modest fashion brands.',
+  },
+  '/cardigans-sweaters': {
+    title: 'Modest Cardigans & Sweaters Online',
+    description: 'Shop modest cardigans and sweaters online: soft-knit layers for everyday wear over dresses, tops and abayas, from independent modest fashion brands.',
+  },
+  '/jackets-coats': {
+    title: 'Modest Jackets & Coats Online',
+    description: 'Shop modest jackets and coats online: outerwear layers for cooler weather, from independent modest fashion brands.',
   },
   '/designers': {
     title: 'Modest Fashion Brands & Designers — Curated Directory',
