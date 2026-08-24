@@ -1124,6 +1124,24 @@ html[data-input-modality="mouse"] summary:focus-visible {
    desktop, so this is the exact shape that can add a scrollbar's worth of
    horizontal overflow — measured at 390/768/1006/1440 in both engines before
    shipping, and again after. */
+/* Photo width. Below 1024px the rail scrolls, so the items are sized for a
+   comfortable swipe. From 1024px ALL FIVE fit across the column at once —
+   Tina: "on dektop just show all 5 items in a row" — so the width is derived
+   from the column rather than fixed: five items and four 16px gaps.
+
+   Nothing else needs switching off. `useScrollFade` measures real overflow, so
+   once the five fit it reports 'none' and both the fade and the arrows hide
+   themselves; there is no second rule saying "and also hide the controls" that
+   could fall out of step with the layout. */
+.edit-rail-item { width: clamp(200px, 46vw, 280px); }
+@media (min-width: 1024px) {
+  .edit-rail-item { width: calc((100% - 4 * 16px) / 5); }
+  /* No bleed either: with everything visible there is nothing to run off the
+     edge toward, and a box wider than its content would leave the fade
+     hovering over bare parchment. */
+  .edit-rail-bleed { margin-right: 0; }
+}
+
 .edit-rail-bleed { margin-right: calc(50% - 50vw); }
 
 /* Edge-to-edge on a phone (Tina's reference: H&M's mobile grid) — the two
