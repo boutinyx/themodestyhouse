@@ -1104,6 +1104,31 @@ html[data-input-modality="mouse"] summary:focus-visible {
    desktop, so this is the exact shape that can add a scrollbar's worth of
    horizontal overflow — measured at 390/768/1006/1440 in both engines before
    shipping, and again after. */
+/* Rail photographs sized and spaced to match the PRODUCT CARDS above them, so
+   the first three line up column-for-column with the grid instead of being an
+   arbitrary width beside it — Tina: "do allign with the normal cards on the
+   page so dont make it too long on dektop".
+
+   The numbers are the grid's own, restated: `main` is max-w-[1220px] with
+   px-8, so the content column is min(1220px, 100vw) - 64px; `.product-grid` is
+   3 columns with a 26px gap from 768px, and 2 columns with a 2px column-gap
+   below it (where it also bleeds to the screen edge, hence 100vw rather than
+   the padded column).
+
+   Deriving it rather than hard-coding 368px matters because the card width is
+   NOT a constant — it is 368 at 1440 and above (the max-width caps it), 297 at
+   1006, 194 at 390. A fixed number would align at exactly one viewport.
+
+   It also answers the "too long" half: the photographs cannot grow past a
+   product card, because they are a product card's width, and the grid's own
+   max-width is what stops that at 368px however wide the screen gets. */
+.edit-rail-item { width: calc((100vw - 2px) / 2); }
+.edit-story-rail { gap: 2px; }
+@media (min-width: 768px) {
+  .edit-rail-item { width: calc((min(1220px, 100vw) - 64px - 52px) / 3); }
+  .edit-story-rail { gap: 26px; }
+}
+
 .edit-rail-bleed { margin-right: calc(50% - 50vw); }
 @media (max-width: 767px) {
   .edit-rail-bleed { margin-left: calc(50% - 50vw); }

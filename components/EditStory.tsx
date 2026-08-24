@@ -37,7 +37,7 @@ export function EditStory({ edit }: { edit: Edit }) {
         {edit.storyImages && edit.storyImages.length > 0 && (
           <EditStoryRail>
             {edit.storyImages.map((img) => (
-              <li key={img.src} className="flex-shrink-0" style={{ width: 'clamp(200px, 46vw, 280px)' }}>
+              <li key={img.src} className="edit-rail-item flex-shrink-0">
                 <picture>
                   <source
                     srcSet={`${webp(img.src, 400)} 400w, ${webp(img.src, 800)} 800w, ${webp(img.src, 1200)} 1200w`}
