@@ -158,3 +158,35 @@ guessed at.
 last surface that did (the note above `DesignerDiscovery` said so, and has been
 corrected). `/about` still explains it and the footer still links "Apply for the
 seal", so the standard is not unreachable — but the homepage no longer carries it.
+
+---
+
+## Correction: the old title stays
+
+*"i did wnated you to keep the old title"*. **"Are you a modest fashion house?
+Apply for the seal." is restored as the `<h2>`**, at its original
+`clamp(24px,3vw,36px)/1.05` — it is one of the four homepage headings that move
+as a set (`2026-08-24`, the "titles like these need to be smaller" pass), so its
+size is not free to drift.
+
+Her paragraph is now a `<p>` **under** it, at the band's own body colour and size
+(`#e7d8e4`, `clamp(15px,1.15vw,17px)/1.6`), so it reads as prose beneath a display
+heading rather than as a second heading.
+
+**The error was reading the title and her copy as alternatives.** The copy she
+sent had no heading line in it, so the paragraph looked like a replacement for
+the one that was there. It was a lead paragraph. Nothing in the message said
+"replace the heading" — that was inferred, and it was wrong.
+
+The two comments elsewhere in `app/page.tsx` were corrected again with it. The
+band now **names** the seal in its heading while its body and button are a
+marketing pitch; `/about` is where the standard is actually explained.
+
+Final, on the deployed page — heading / lead / steps / numerals, worst case:
+`1440 525px 6.18 / 5.00 / 5.34 / 7.10` · `820 493px 6.10 / 4.84 / 5.36 / 7.52` ·
+`390 436px 6.10 / 4.78 / 5.45 / 7.86`. All above 4.5, zero elements overflowing
+the band at any width.
+
+**The lead paragraph is the tightest thing on the band at 4.78:1.** It is
+`#e7d8e4`, the same colour as the step text, but it sits higher where the picture
+is brighter. There is no headroom left for a lighter overlay without it failing.
