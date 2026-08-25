@@ -190,3 +190,54 @@ the band at any width.
 **The lead paragraph is the tightest thing on the band at 4.78:1.** It is
 `#e7d8e4`, the same colour as the step text, but it sits higher where the picture
 is brighter. There is no headroom left for a lighter overlay without it failing.
+
+---
+
+## Final: "apply for the seal ccan go"
+
+Tina, seeing the restored title rendered. **Only the italic second sentence
+went** — she named that phrase, not the title — so the heading is
+"Are you a modest fashion house?" at an unchanged `clamp(24px,3vw,36px)`. That
+also settles the contradiction the band carried while both existed: a heading
+saying *Apply for the seal* over a body and a button selling marketing.
+
+**The CTA's deep link followed it.** `topic=seal` was still pre-selecting "Apply
+for the seal" on the contact form for what is now a marketing enquiry, so
+`lib/contactTopics.ts` gains `{ value: 'marketing', label: 'Marketing' }` and the
+button points at `/contact?topic=marketing`. The seal topic itself **stays** —
+the footer still links it and `/about` still explains the standard. The new
+label is the plainest functional string that makes the dropdown and the email
+subject work, not chosen copy, and the file says so; only `value` is referenced
+anywhere, so renaming it is free.
+
+The band now mentions the seal **nowhere** — not in its heading, body or button —
+so the note above `DesignerDiscovery` was corrected a third time to say that
+plainly. `/about` and the footer are the only surfaces left that name it.
+
+### Verified on the deployed page
+| width | band | overflow | "seal" in the band | heading / lead / steps / numerals |
+|---|---|---|---|---|
+| 1440 | 487px | 0 | **0** | 6.18 / 4.96 / 5.28 / 6.95 |
+| 820 | 467px | 0 | **0** | 6.10 / 4.82 / 5.26 / 7.61 |
+| 390 | 436px | 0 | **0** | 6.10 / 4.78 / 5.45 / 7.86 |
+
+`/contact?topic=marketing` was opened in a real browser and the form's select
+reads `marketing / label=Marketing` — the new topic is not just declared, it is
+accepted by the validator (`TOPICS.some(...)` in `app/contact/page.tsx`) and
+pre-selected. tsc clean, eslint clean, 781 tests pass.
+
+### The whole evening, in one line each
+1. Plum satin macro + left-weighted aubergine scrim.
+2. Scrim opened up so the picture read.
+3. Scrim removed entirely; contrast knowingly sacrificed.
+4. Band grown to zoom out — desktop only, because the phone's constraint inverts.
+5. New drape photograph, copy centred, every colour flipped to dark.
+6. Thinner band + overlay; the aubergine one tinted, so black at 0.60.
+7. Tina's marketing copy; column widened 46ch → 62ch to hold the band's height.
+8. Title restored above it as the lead's heading.
+9. "Apply for the seal" dropped from the heading and the deep link.
+
+**The recurring lesson**: every colour on this band is a function of what is
+behind it, and the background changed four times. Each change silently
+invalidated a contrast decision made against the previous one, and not one of
+those invalidations was visible in a screenshot.
