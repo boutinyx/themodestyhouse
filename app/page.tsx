@@ -501,7 +501,9 @@ export default function Home() {
             brands. the titles like these need to be smaller." All FOUR of the
             homepage's section headings moved together, so they stay a set:
             this, "By category.", the band's (now "Are you a modest fashion
-            house?", which keeps its +2px) and "Reading, not just shopping." The
+            house?", which keeps its +2px) and the Edit section's, which was
+            "Reading, not just shopping." until Tina had it removed on 2026-08-26
+            ("get rid of this text") — so that set is three headings now. The
             band's lost its "Apply for the seal." sentence on 2026-08-25 when the
             band became a marketing pitch; the SIZE is what this note is about and
             that is unchanged.
@@ -882,15 +884,19 @@ export default function Home() {
 
       {/* THE EDIT */}
       <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <h2 className="serif mt-2" style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}>
-              Reading, not just <span className="italic" style={{ color: 'var(--plum)' }}>shopping</span>.
-            </h2>
-          </div>
-          {/* Under the content on a phone, like its two siblings. Measured at
-              390px: "All stories" wrapped onto two lines and printed into the
-              descender of the italic "shopping." beside it. */}
+        {/* The "Reading, not just shopping." h2 was removed 2026-08-26 — Tina:
+            "get rid of this text". `justify-end` replaces `justify-between`,
+            which with only one child left would have pushed "All stories" to the
+            LEFT edge rather than leaving it where it was.
+            The section now has no heading of its own. That is deliberate and
+            hers; the cards carry their own titles.
+            `hidden md:flex`, not plain `flex`: this row's only remaining child
+            is the desktop-only "All stories" link, so below md it was an empty
+            box still contributing its `mb-8` — measured 32px of dead space above
+            the feature card on a phone once the heading came out. */}
+        <div className="hidden md:flex items-end justify-end mb-8">
+          {/* Under the content on a phone, like its two siblings — see the
+              `md:!hidden` twin at the foot of this section. */}
           <Link href="/editorial" className="nav-link !hidden md:!inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
         </div>
         {/* KNOWN AND ACCEPTED, so please do not "fix" it again.
