@@ -700,13 +700,14 @@ export default function Home() {
           Applied HERE, not on `.aubergine-band` — /about/page.tsx uses that same
           class and must not inherit a homepage photograph.
 
-          The scrim is load-bearing, not decoration. The three text colours on
-          this band were each chosen against FLAT `--aubergine`, and the comment
-          on the numerals below states a measured 6.08:1 that stops being true
-          the moment a photograph is behind them. The satin is coincidentally
+          There is no scrim over it any more — see the note below the <img>.
+          Worth keeping in mind either way: the three text colours on this band
+          were each chosen against FLAT `--aubergine`, and the comment on the
+          numerals below states a measured 6.08:1 that stopped being true the
+          moment a photograph went behind them. The satin is coincidentally
           almost exactly as dark as the aubergine on AVERAGE (mean luminance 34.4
-          vs 37.2), but it has bright folds, so the scrim exists to hold the
-          worst LOCAL case, not the average. */}
+          vs 37.2); it is the bright folds that are the problem, so any future
+          measurement has to hold the worst LOCAL case, not the average. */}
       <section className="aubergine-band my-10 md:my-20 relative overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -719,47 +720,22 @@ export default function Home() {
           loading="lazy"
           decoding="async"
         />
-        {/* Left-weighted, not flat — the copy is all on the left and the fold
-            worth seeing is on the right, so a ramp protects the type without
-            flattening the picture. Same idea as EditBanner's wash.
-            TUNED BY MEASUREMENT, not by eye: rendered the band with the content
-            hidden, sampled the BRIGHTEST pixel behind each text element's own
-            rect, and computed WCAG contrast against the three colours actually
-            used here. Worst case per candidate —
-              flat 0.62      heading 5.32 · steps 4.06 · numerals 5.26   FAIL
-              flat 0.80      heading 8.33 · steps 6.42 · numerals 5.66   pass
-              .88/.62/.40    heading 5.17 · steps 4.15 · numerals 5.66   FAIL
-              .92/.70/.45    heading 6.34 · steps 5.13 · numerals 5.76   pass
-              .95/.78/.50    heading 7.74 · steps 6.24 · numerals 5.87   pass
-            Flat 0.62 fails AA on the step text (4.06 against a 4.5 threshold),
-            which is exactly the kind of thing that looks fine in a screenshot.
-            For scale, flat `--aubergine` with no photograph gives
-            13.40 / 10.46 / 6.34.
+        {/* NO SCRIM — deliberate, and please do not add one back without asking.
+            There was a left-weighted aubergine wash over this photograph all of
+            2026-08-25; Tina asked for it gone: "completely get rid of the thing
+            we had there before and only leave the image". Two earlier versions
+            and their measured contrast are in the git history of this file
+            (49c753c, 0c6fac9) if it ever needs restoring.
 
-            OPENED UP 2026-08-25, second pass — Tina: "can we get the background
-            picture more visible so the purple satin". Re-measured against the
-            LIVE staging render with the same method, at 390/820/1440, worst
-            case across the three:
-              .95/.78/.50 @55%   heading 7.74 · steps 6.24 · numerals 5.87  (was)
-              .90/.70/.30 @55%   heading 6.24 · steps 5.13 · numerals 5.73
-              .95/.80/.05 @62%   heading 5.43 · steps 6.82 · numerals 5.91
-              .88/.76/.05 @62%   heading 5.38 · steps 6.11 · numerals 5.73  <-
-              .85/.72/.05 @62%   heading 5.31 · steps 5.52 · numerals 5.66
-            Moving the mid stop 55% -> 62% is what buys the picture back: the
-            copy column ends at 56.5% of the viewport at 1440, so everything
-            right of it can go almost clear (0.05) without touching a single
-            text pixel. The left came down 0.95 -> 0.88 so the weave reads
-            behind the type too. The BINDING case is the heading at 390, where
-            the copy is full-width and runs into the light tail — that, not the
-            desktop view, is what stops this going lighter still.
-            The harness was validated before it was trusted (§10.28 rule 1): it
-            reproduces the row above to the second decimal, and flat 0.62 still
-            comes back 4.03 FAIL. */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to right, rgba(68,25,67,0.88) 0%, rgba(68,25,67,0.76) 62%, rgba(68,25,67,0.05) 100%)' }}
-        />
+            WHAT THAT COSTS, measured on the live staging render at 390/820/1440
+            by sampling the brightest pixel inside each text element's own rect —
+            worst case across the three widths:
+              heading 1.45 · steps 2.01 · numerals 3.84   (AA threshold 4.5)
+            i.e. the copy no longer meets AA anywhere the bright fold runs behind
+            it. The last washed version was 5.38 / 6.14 / 5.73. This is a stated,
+            accepted trade, not an oversight. If it needs fixing without bringing
+            the wash back, the cheap moves are a text-shadow on the copy or a
+            small wash behind the copy column only. */}
         <div className="relative max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-2xl">
             <div>
