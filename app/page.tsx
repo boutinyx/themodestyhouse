@@ -850,14 +850,27 @@ export default function Home() {
                   was bright and a brass pill measured 1.28:1 against the photograph;
                   with the 0.75 overlay the band is dark, so `.btn-pill`'s own
                   aubergine is the one with no edge and brass is right again. */}
-              {/* topic=marketing, not topic=seal. The band stopped being a seal pitch
-                  when Tina's copy landed, and the deep link was still pre-selecting
-                  "Apply for the seal" on the contact form. The topic itself is NOT
-                  gone — it is still in lib/contactTopics.ts and the footer still links
-                  it, because /about and the footer are where the seal still lives.
-                  The new topic's label is the plainest functional string that makes
-                  the dropdown work, not chosen copy — rename it freely. */}
-              <Link href="/contact?topic=marketing" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
+              {/* PURPLE PILL, WHITE LETTERS, 2026-08-25 — Tina: "instead of the gold
+                  pill i want a purple with white letters". That is `.btn-pill`'s OWN
+                  default (aubergine background, parchment text), so the fix is to
+                  delete the inline override rather than write a new colour. The
+                  override existed because this band used to be flat aubergine, where
+                  an aubergine pill would have been invisible.
+
+                  MEASURED, so the trade is on the record: white on aubergine is
+                  13.40:1, the best text contrast this pill has ever had here (brass
+                  with ink letters was 3.03). What it costs is the pill's EDGE — the
+                  band immediately around it sits at luminance 0.052-0.079, so the
+                  aubergine body is only 1.75:1 against it, under the 3:1 that WCAG
+                  1.4.11 asks of a control's boundary. Brass was 2.52 and also short.
+                  --plum is worse on both counts (1.11 edge, 6.88 text), so aubergine
+                  is the right purple of the two. The control is still identifiable by
+                  its label; a hairline border is the fix if the edge needs to read.
+
+                  topic=marketing, not topic=seal: the band stopped being a seal pitch
+                  when Tina's copy landed. The seal topic itself is still in
+                  lib/contactTopics.ts and the footer still links it. */}
+              <Link href="/contact?topic=marketing" className="btn-pill inline-block mt-8">
                 Market with The Modesty House
               </Link>
             </div>
