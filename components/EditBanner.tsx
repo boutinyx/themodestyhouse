@@ -39,6 +39,7 @@ export function EditBanner({ edit }: { edit: Edit }) {
   const wash = edit.heroWash ?? 0.26;
   const washSm = edit.heroWashMobile ?? wash;
   const evenWash = edit.heroWashEven === true;
+  const zoomSm = edit.heroZoomMobile ?? 1;
   const centred = edit.bannerAlign === 'center';
   return (
     <section
@@ -50,6 +51,7 @@ export function EditBanner({ edit }: { edit: Edit }) {
         background: 'var(--aubergine)',
         ['--edit-ratio' as string]: String(edit.imageRatio),
         ['--edit-ratio-mobile' as string]: String(edit.imageMobileRatio),
+        ['--edit-zoom-sm' as string]: String(zoomSm),
       }}
     >
       <picture>

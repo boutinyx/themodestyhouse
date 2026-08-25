@@ -701,6 +701,26 @@ button {
    max-height is a guard, not part of the reference: at 767px the 5/8 ratio
    alone would compute a 1227px-tall hero, which is nobody's intent. The image
    is object-fit: cover, so the cap crops rather than distorts. */
+/* Phone-only zoom on an edit hero (--edit-zoom-sm, set inline from the Edit's
+   `heroZoomMobile`). A transform rather than a different crop, because the hero
+   box already takes the photograph's own ratio so `object-cover` has nothing to
+   trim — scaling inside the overflow-hidden box is what produces the crop, and
+   it crops evenly from all four edges rather than favouring one.
+
+   768px, NOT the 1024 the wash uses, and the difference matters: the <picture>
+   swaps to the DESKTOP file at 768 and `.edit-hero` swaps to the desktop ratio
+   at the same point. A 1024 cut therefore zoomed the landscape photograph on
+   every tablet — measured at 820, which was serving edit-jersey-hero-1672.webp
+   scaled 1.12. The zoom has to end exactly where the portrait crop it was
+   framed against ends. */
+.edit-hero img {
+  transform: scale(var(--edit-zoom-sm, 1));
+  transform-origin: center;
+}
+@media (min-width: 768px) {
+  .edit-hero img { transform: none; }
+}
+
 .edit-hero {
   /* width:100% is load-bearing, not tidying. With `aspect-ratio` + `max-height`
      and width:auto, once max-height clamps the height the browser resolves the

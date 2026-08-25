@@ -128,6 +128,19 @@ export type Edit = {
    *  centres at, and the one that actually separates portrait devices from
    *  desktop. The old md (768) split left every iPad on the desktop wash. */
   heroWashMobile?: number;
+  /** Zoom the PHONE hero in, as a scale factor. 1 (default) shows the whole
+   *  photograph, since the box already takes the image's own ratio and so
+   *  `object-cover` has nothing to crop.
+   *
+   *  Phone only: the portrait crop is the one where the subject reads small,
+   *  and the desktop shot is already framed the way Tina wants it. Applied as
+   *  a transform on the image inside an `overflow: hidden` box, so it crops
+   *  evenly from all four edges rather than favouring one — the same reason the
+   *  wash is flat here.
+   *
+   *  Keep it modest: this is upscaling pixels that are already close to native
+   *  at 3x DPR, so past ~1.2 it starts to show. */
+  heroZoomMobile?: number;
   /** Flat wash instead of a gradient — Tina, on the jersey hero: "i want the
    *  dark overlay to be like dark eveyrwhere so not like the hero darker on the
    *  left side i want the whole thing evenenly darkered".
@@ -387,7 +400,14 @@ export const EDITS: Edit[] = [
     // little above the old mobile average, so it still reads darker than the
     // hero did before she asked for darker, without the flat wash flattening
     // the gold in the mirrors.
-    heroWash: 0.40,
+    // 0.40 -> 0.32, "overlay a tiny bit less". Still one flat value on every
+    // screen. For scale: the gradient this replaced averaged ~0.34, so this now
+    // sits just under what the hero carried before she asked for it darker.
+    heroWash: 0.32,
+    // "zoom mobile a lil more in" — 12%, which crops ~6% off each edge of the
+    // portrait frame and brings the model up without cutting her hands or the
+    // hijab's drape. Measured rather than guessed; see the commit.
+    heroZoomMobile: 1.12,
     heroWashEven: true,
     // Written to the query this page is FOR. `jersey hijab` is the largest term
     // in this territory — 5x `lace abaya`, 2.2x `hijab styles`, 3x `instant

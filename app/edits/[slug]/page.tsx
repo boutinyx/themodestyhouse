@@ -68,6 +68,7 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
   const wash = edit.heroWash ?? 0.26;
   const washSm = edit.heroWashMobile ?? wash;
   const evenWash = edit.heroWashEven === true;
+  const zoomSm = edit.heroZoomMobile ?? 1;
 
   return (
     <main className="pb-12">
@@ -110,6 +111,7 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
           // so nothing is cropped at any width.
           ['--edit-ratio' as string]: String(edit.imageRatio),
           ['--edit-ratio-mobile' as string]: String(edit.imageMobileRatio),
+          ['--edit-zoom-sm' as string]: String(zoomSm),
         }}
       >
         {/* <picture>, not one <img> with object-cover. The desktop hero is
