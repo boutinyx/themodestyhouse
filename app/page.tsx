@@ -687,8 +687,61 @@ export default function Home() {
           seal ("A seal is a judgement about craft and design"), and "ethics"
           was never defined or evidenced anywhere. Unified to /about's wording,
           the one place the standard is actually spelled out. */}
-      <section className="aubergine-band my-10 md:my-20">
-        <div className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
+      {/* SATIN BACKGROUND, 2026-08-25 — Tina supplied a plum satin photograph
+          for this band ("i want this satin as background but you have to flip
+          the picture"). Her file is 3927x5891 PORTRAIT and this band is wide and
+          short, so it is rotated 90 degrees to 5891x3927 — confirmed with her
+          before building, since "flip" could equally have meant a mirror, and a
+          mirror on an abstract texture would have been invisible.
+          The .webp variants were generated in ONE step from her original file,
+          not via an intermediate JPEG — see the fall hero's entry in
+          scripts/optimise-images.mjs for why that matters.
+
+          Applied HERE, not on `.aubergine-band` — /about/page.tsx uses that same
+          class and must not inherit a homepage photograph.
+
+          The scrim is load-bearing, not decoration. The three text colours on
+          this band were each chosen against FLAT `--aubergine`, and the comment
+          on the numerals below states a measured 6.08:1 that stops being true
+          the moment a photograph is behind them. The satin is coincidentally
+          almost exactly as dark as the aubergine on AVERAGE (mean luminance 34.4
+          vs 37.2), but it has bright folds, so the scrim exists to hold the
+          worst LOCAL case, not the average. */}
+      <section className="aubergine-band my-10 md:my-20 relative overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/seal-band-satin-1440.webp"
+          srcSet="/seal-band-satin-640.webp 640w, /seal-band-satin-1024.webp 1024w, /seal-band-satin-1440.webp 1440w, /seal-band-satin-1920.webp 1920w, /seal-band-satin-2400.webp 2400w"
+          sizes="100vw"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        {/* Left-weighted, not flat — the copy is all on the left and the fold
+            worth seeing is on the right, so a ramp protects the type without
+            flattening the picture. Same idea as EditBanner's wash.
+            TUNED BY MEASUREMENT, not by eye: rendered the band with the content
+            hidden, sampled the BRIGHTEST pixel behind each text element's own
+            rect, and computed WCAG contrast against the three colours actually
+            used here. Worst case per candidate —
+              flat 0.62      heading 5.32 · steps 4.06 · numerals 5.26   FAIL
+              flat 0.80      heading 8.33 · steps 6.42 · numerals 5.66   pass
+              .88/.62/.40    heading 5.17 · steps 4.15 · numerals 5.66   FAIL
+              .92/.70/.45    heading 6.34 · steps 5.13 · numerals 5.76   pass
+              .95/.78/.50    heading 7.74 · steps 6.24 · numerals 5.87   pass  <-
+            Flat 0.62 fails AA on the step text (4.06 against a 4.5 threshold),
+            which is exactly the kind of thing that looks fine in a screenshot.
+            Picked the gradient over flat 0.80 because it passes by a similar
+            margin while leaving the right-hand fold visible. For scale, flat
+            `--aubergine` with no photograph gives 13.40 / 10.46 / 6.34. */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgba(68,25,67,0.95) 0%, rgba(68,25,67,0.78) 55%, rgba(68,25,67,0.50) 100%)' }}
+        />
+        <div className="relative max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-2xl">
             <div>
               <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>

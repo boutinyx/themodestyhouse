@@ -255,9 +255,14 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
-    // /edits/fall-essentials hero, desktop — CURRENT. Tina: "did you upload the
+    // /edits/fall-essentials hero, desktop. Tina: "did you upload the
     // pictures with max quality", then "or dont revert the brightness", so this
     // is the SAME `linear(1.2, 12)` lift as -2, rebuilt properly.
+    //
+    // SUPERSEDED by edit-fall-hero-4.jpg below, 2026-08-25 — Tina reversed the
+    // brightness decision: "we made the picture of the fall essentials lighter
+    // i dont want that anymore ... its the desptop version". Left registered
+    // rather than deleted, same convention as -1 and -2 above.
     //
     // What was wrong with -2, measured rather than asserted. Its chain was
     // PNG -> jpg q92 -> brighten -> jpg q95 -> webp q95: three lossy
@@ -284,6 +289,42 @@ const JOBS = [
     opts: { quality: 100, effort: 6 },
   },
   {
+    // /edits/fall-essentials hero, desktop — CURRENT. Tina, 2026-08-25: "we
+    // made the picture of the fall essentials lighter i dont want that anymore
+    // can u fix that its the desptop version".
+    //
+    // So this is -3 with the `linear(1.2, 12)` lift REMOVED — her own PNG, in
+    // one lossy step, ungraded. It is not a revert to -1: that file kept the
+    // pointless q92 JPEG middleman this line of files exists to have removed.
+    // The grade goes back, the quality win stays.
+    //
+    // Measured mean greyscale luminance, 0-255, against the source PNG at each
+    // width actually served, so "the brightening is gone" is a number and not
+    // a claim:
+    //   width  PNG    this (-4)      previous (-3)
+    //    640   24.42  25.08 (+0.66)  41.69 (+17.27)
+    //   1024   24.42  24.61 (+0.19)  41.11 (+16.69)
+    //   1440   24.42  24.64 (+0.22)  41.14 (+16.72)
+    //   1920   24.42  24.65 (+0.23)  41.14 (+16.72)
+    //   2400   24.42  24.65 (+0.23)  41.14 (+16.72)
+    //   2674   24.42  24.66 (+0.24)  41.16 (+16.74)
+    // The residual quarter-point is resampling and WebP rounding. 640 drifts a
+    // little further because an 4.2x downscale averages the frame differently;
+    // it is not a grade.
+    //
+    // Built ONE step from ~/Downloads/magnific_uitbreiden_DomU6wcpcl.png at
+    // webp quality 100, .jpg fallback at mozjpeg q95. The same regeneration
+    // caveat as -3 applies: re-running THIS script rebuilds the variants from
+    // the .jpg, not from the PNG. Rebuild from the PNG if that matters.
+    //
+    // The PHONE crop is untouched and stays edit-fall-hero-mobile-2.jpg — it
+    // was never brightened, so there is nothing on it to undo.
+    file: 'edit-fall-hero-4.jpg',
+    widths: [640, 1024, 1440, 1920, 2400, 2674],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
+  },
+  {
     // Same hero, phone — 3584x4800 portrait, 0.74667. Effectively the same
     // shape as the lace phone hero (0.7468), so it needs no new ratio handling
     // in EditBanner. Stops at 1920: that is a 640px CSS viewport at 3x DPR,
@@ -304,6 +345,18 @@ const JOBS = [
     widths: [390, 780, 1170, 1560, 1920],
     suffixWidth: true,
     opts: { quality: 100, effort: 6 },
+  },
+  {
+    // The homepage "Apply for the seal" band's satin background, 2026-08-25.
+    // Tina's file, ROTATED 90 degrees: hers is 3927x5891 portrait and the band
+    // is wide and short, so upright it would have shown a narrow vertical slice
+    // rather than the folds. The committed .webp variants were generated in one
+    // step from her original ~/Downloads/pexels-karola-g-4863034.jpg; the same
+    // regeneration caveat as the fall hero above applies.
+    file: 'seal-band-satin.jpg',
+    widths: [640, 1024, 1440, 1920, 2400],
+    suffixWidth: true,
+    opts: { quality: 95, effort: 6 },
   },
   {
     // /edits/[slug] story photographs — the credited street shots that sit with
