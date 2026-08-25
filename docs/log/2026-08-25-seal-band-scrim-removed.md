@@ -54,3 +54,38 @@ copy, or a wash behind the copy column only rather than the full band.
 - `npm run audit:mobile` / `audit:visual` will not catch this: neither has a
   contrast check, and axe cannot evaluate text over a background image. So the
   numbers above are the only record — which is why they are in the file itself.
+
+---
+
+## Follow-up the same session: "yeah but zoom out"
+
+With the scrim gone the band read as an extreme close-up, so Tina asked to zoom
+out. **The image is `object-cover` on a full-bleed section, so it was already
+showing 100% of the photograph's width** — nothing was cropped horizontally at
+any desktop size. Only the height is cropped, which means the one lever that
+shows more picture is a taller band.
+
+Measured at 1440 (band 1440x429, photo 1.5:1 so the band crops to 3.36:1):
+
+| band min-height | fraction of the photo visible |
+|---|---|
+| 429 (was) | 44.7% |
+| **560 (shipped)** | **58.3%** |
+| 700 | 72.9% |
+| 860 | 89.6% |
+| 960 | 100% — the whole frame, but a 960px-tall band |
+
+**Desktop only, and that is deliberate.** On a phone the constraint flips: at 390
+the band is 324px tall and already shows 100% of the height and 80.3% of the
+width, so a *taller* band crops the width instead — measured, 420px drops width
+coverage to 61.9%. The phone is already as zoomed out as this aspect allows, so
+`min-h` is behind `md:`.
+
+`md:flex md:items-center` centres the copy vertically; without it the content
+stays top-aligned and leaves ~130px of dead photograph under the CTA. The inner
+container gained `w-full` so it still fills the flex row.
+
+## Verification (follow-up)
+- `npx tsc --noEmit` exit 0 · `npx eslint app/page.tsx` exit 0.
+- Both candidate heights and the centring were rendered on the live staging page
+  before choosing, at 1440 and 390, with the stylesheet-loaded assertion.

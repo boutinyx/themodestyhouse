@@ -708,7 +708,7 @@ export default function Home() {
           almost exactly as dark as the aubergine on AVERAGE (mean luminance 34.4
           vs 37.2); it is the bright folds that are the problem, so any future
           measurement has to hold the worst LOCAL case, not the average. */}
-      <section className="aubergine-band my-10 md:my-20 relative overflow-hidden">
+      <section className="aubergine-band my-10 md:my-20 relative overflow-hidden md:min-h-[560px] md:flex md:items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/seal-band-satin-1440.webp"
@@ -720,6 +720,22 @@ export default function Home() {
           loading="lazy"
           decoding="async"
         />
+        {/* ZOOMED OUT 2026-08-25 — Tina: "yeah but zoom out". The image is
+            `object-cover` on a full-bleed band, so it is already showing 100% of
+            the photograph's WIDTH at every desktop size; the only thing cropped
+            is height, and therefore the only lever that shows more picture is a
+            taller band. At 1440 the band was 429px and showed 44.7% of the
+            frame; `md:min-h-[560px]` takes that to 58.3%. (Showing the whole
+            frame at 1440 would need a 960px-tall band — the full photo is 1.5:1
+            and the band is 3.36:1.)
+            DESKTOP ONLY, deliberately. On a phone the constraint flips: at 390
+            the band is 324px and already shows 100% of the height and 80% of the
+            width, so making it TALLER crops the width instead — measured, a
+            420px band drops width coverage to 62%. The phone is already as
+            zoomed out as this aspect allows.
+            The content is vertically centred (`md:flex md:items-center`) rather
+            than left sitting at the top, which at 560px would have left ~130px
+            of dead photograph under the CTA. */}
         {/* NO SCRIM — deliberate, and please do not add one back without asking.
             There was a left-weighted aubergine wash over this photograph all of
             2026-08-25; Tina asked for it gone: "completely get rid of the thing
@@ -736,7 +752,7 @@ export default function Home() {
             accepted trade, not an oversight. If it needs fixing without bringing
             the wash back, the cheap moves are a text-shadow on the copy or a
             small wash behind the copy column only. */}
-        <div className="relative max-w-[1220px] mx-auto px-8 py-10 md:py-20">
+        <div className="relative w-full max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-2xl">
             <div>
               <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
