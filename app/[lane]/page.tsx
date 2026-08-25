@@ -10,7 +10,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
 import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
-import { LANE_SUBTYPES, resolveSubtype, subtypesForLane, subtypeSeo } from '@/lib/laneSubtypes';
+import { LANE_SUBTYPES, resolveSubtype, subtypeSeo } from '@/lib/laneSubtypes';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -69,7 +69,6 @@ export default async function LanePage({
   const { type } = await searchParams;
   const catalogue = encodeCatalogue(productsForLane(lane.slug), BRANDS);
   const sub = resolveSubtype(lane.slug, type);
-  const laneSubtypes = subtypesForLane(lane.slug);
 
   // The rows this page actually shows. Previously listedItems was always the
   // FIRST 24 rows of the unfiltered lane, so /outerwear?type=blazer emitted a
@@ -137,35 +136,24 @@ export default async function LanePage({
       />
       <h1 className="section-heading text-3xl md:text-4xl">{pageTitle}</h1>
       <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>
-      {/* Server-rendered <a>s, so the subtype pages are reachable by a crawler
-          at all. The nav flyout that used to be their only entry point is a
-          client-side portalled Base UI menu, so before 2026-08-19 NO page on
-          the site emitted a single href containing `type=` — 14 built,
-          rendering, differentiated pages that nothing could find. Plain links,
-          not the filter control: FilterableGrid still owns the interactive
-          filtering, this just makes the URLs discoverable. */}
-      {laneSubtypes.length > 0 && (
-        <nav className="flex flex-wrap gap-2 mb-8" aria-label={`${lane.title} sub-categories`}>
-          {laneSubtypes.map((st) => {
-            const active = sub?.type === st.type;
-            return (
-              <Link
-                key={st.type}
-                href={active ? `/${lane.slug}` : `/${lane.slug}?type=${st.type}`}
-                aria-current={active ? 'page' : undefined}
-                className="chip"
-                style={
-                  active
-                    ? { background: 'var(--aubergine)', color: 'var(--parchment)', borderColor: 'var(--aubergine)' }
-                    : undefined
-                }
-              >
-                {st.label}
-              </Link>
-            );
-          })}
-        </nav>
-      )}
+      {/* NO SUB-CATEGORY CHIP ROW, 2026-08-26 — Tina, with a screenshot of it:
+          "i said get rid of this shit". It was a wrapping <nav> of `.chip` links,
+          one per subtype, with the current one filled aubergine.
+
+          WHAT IT WAS FOR, because this has a cost and the cost should not be
+          rediscovered by accident: it was the ONLY place on the site that emitted
+          an href containing `type=`. The header's sub-category flyout is a
+          client-side, portalled Base UI menu, so a crawler cannot follow it —
+          before this row was added on 2026-08-19, the 10 `?type=` pages were in
+          sitemap.xml and linked from nowhere. They are back in that state now:
+          built, rendering, differentiated, and reachable only by a crawler that
+          reads the sitemap. Raised with Tina at the moment of removal.
+
+          Nothing else changed. `resolveSubtype` still runs, so a `?type=` URL
+          still resolves — the h1, <title>, canonical, JSON-LD and the grid's
+          `initialType` are all untouched, and the flyout still works for a human.
+          Only the visible row of links is gone. `sitemapSubtypesForLane` in
+          app/sitemap.ts is likewise untouched, so the URLs stay in the sitemap. */}
       {/* NO SEARCH FIELD, 2026-08-26 — Tina, with a screenshot of it: "the search
           bar for every catagory done just keep the filters". The Brand and Sort
           dropdowns stay; only the "Search houses, pieces…" input is gone.
