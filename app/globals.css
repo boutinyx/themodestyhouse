@@ -349,7 +349,27 @@
      fold — which is the precise complaint that produced --header-height in the
      first place ("i still see a big piece of the pciture"). */
   --aubergine-deep: #1e0a1d;
-  --band-height: 40px;
+  /* 40px -> 28px, 2026-08-25. Tina, from a real iPhone screenshot: "the banner
+     on the top with the brands ... its pretty big on iphone".
+
+     WHY IT LOOKED BIGGER THAN IT IS. The band is 28px of page. What she was
+     seeing is that plus roughly 59px of iOS status bar, which Safari tints with
+     whatever colour sits at the top of the document — here the band's own
+     --aubergine-deep. So the strip visually annexes the clock and the battery
+     and reads as ~87px of near-black. Shortening the band is the half of that
+     we control; the tint is iOS behaviour and cannot be reproduced in a
+     headless browser (device emulation sets the viewport, not the OS chrome —
+     CLAUDE.md §10.24), so it was confirmed on her handset, not here.
+
+     One value for phone AND tablet, deliberately — see the note in the 1024px
+     query below. Her report was about a phone; the tablet band slims with it
+     rather than earning a third breakpoint for a decorative ticker.
+
+     Still FIXED rather than padding-derived, for the reason the paragraph above
+     gives: .hero-vh subtracts this token, so the hero photograph keeps ending
+     exactly at the fold. Changing it here is the whole change — nothing else
+     needs to know. */
+  --band-height: 28px;
 }
 @media (min-width: 1024px) {
   :root {
