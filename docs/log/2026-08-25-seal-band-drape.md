@@ -309,3 +309,44 @@ comparison and it is not a site defect. Same family as hiding the overlay along
 with the content earlier in this file: **the "hide the copy, then sample" step is
 the whole method, and skipping it fails loudly rather than silently, which is the
 only good thing about it.**
+
+---
+
+## Follow-up: gold pill, white letters
+
+Tina: *"yk what revert back to the gold but do white letters"*. Both halves are
+inline overrides now — `.btn-pill` is aubergine-on-parchment by default, so the
+background goes back to `--brass` **and** the colour is pinned to `--parchment`
+rather than inheriting `--ink`, which is what the gold pill carried all evening.
+
+Verified on the deployed page at 1440 and 390: computed `rgb(169, 138, 91)` with
+`rgb(250, 247, 241)` letters, and **3.03:1 measured off the rendered pixels**.
+
+**This is a known, accepted AA failure and the file says so**, so that nobody
+"fixes" it silently later. 3.03 is under the 4.5 the 12px uppercase label needs.
+Every pairing this pill has worn tonight, for scale:
+
+| pill | letters | label contrast | edge vs the band |
+|---|---|---|---|
+| `--brass` | `--ink` | 5.15 | 2.52 |
+| `--aubergine` | `--parchment` | 13.40 | 1.75 |
+| **`--brass`** | **`--parchment`** | **3.03** | **2.52 ← shipped** |
+
+What white buys is the pill's **edge**: gold is 2.52:1 against the band where
+aubergine was 1.75, so the control reads as a control — and its label is what
+does not. That is the shape of the trade, and it is hers to make.
+
+**`#87693e` is 4.77:1 with white letters and still reads as brass** if the label
+ever needs to pass without giving up the white. Offered.
+
+## Two more harness slips, same evening
+- The deploy-wait loop grepped for `background:"var(--brass)"` — with quotes.
+  Next.js renders the inline style as `style="background:var(--brass);color:..."`,
+  so the pattern could never match and the loop ran the full ten minutes on a
+  build that had deployed in the first ninety seconds. **A wait loop that never
+  matches is indistinguishable from a deploy that never lands.**
+- An earlier variant of the same loop matched something else on the page and
+  fired after 20s, so a Playwright run read the *previous* build and reported the
+  purple pill. Straight §10.20: output read from a run that was never confirmed to
+  be the right one. The fix both times is to assert on the RENDERED string, taken
+  from `curl` output rather than from what the JSX looks like.
