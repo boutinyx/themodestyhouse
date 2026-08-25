@@ -938,7 +938,12 @@ export default function Home() {
                   override; the desktop values stay inline. */}
               <div className="edit-feature-caption absolute inset-x-0 bottom-0 p-7">
                 <div className="eyebrow" style={{ color: '#e7d3b6' }}>{feature.category}</div>
-                <div className="edit-feature-title serif mt-2" style={{ fontSize: 30, color: 'var(--parchment)', lineHeight: 1.08 }}>{feature.title}</div>
+                {/* fontSize lives in .edit-feature-title (globals.css), NOT
+                    inline. It was inline at 30px, and an inline style beats a
+                    class outright — so the phone override in the media query was
+                    silently doing nothing and the title stayed 30px on a 183px
+                    card. Colour and line-height stay here per §6. */}
+                <div className="edit-feature-title serif mt-2" style={{ color: 'var(--parchment)', lineHeight: 1.08 }}>{feature.title}</div>
               </div>
             </Link>
             {moreStories.length > 0 && (

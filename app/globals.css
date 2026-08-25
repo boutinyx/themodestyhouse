@@ -462,6 +462,13 @@
 .edit-feature-card {
   min-height: 460px;
 }
+/* The card title's size lives here rather than inline, so the phone override
+   below can actually take effect — an inline style beats a class, and while
+   this was `style={{ fontSize: 30 }}` in the TSX the media query was silently
+   doing nothing. Colour and line-height are still inline (§6). */
+.edit-feature-title {
+  font-size: 30px;
+}
 @media (max-width: 767px) {
   .edit-feature-card {
     min-height: 0;
@@ -497,7 +504,16 @@
      overrun by an editor writing a long one. The full headline is on the post
      page one tap away, so nothing is lost. */
   .edit-feature-title {
-    font-size: 17px;
+    /* 30px -> 15px on a phone. Tina, 2026-08-26: "can we make the title
+       smaller".
+       This override did nothing until the inline `fontSize: 30` came off the
+       element on the same day — an inline style beats a class. The card had
+       been shipping a 30px title in a 183px box, clamped to two lines; the
+       209px -> 185px caption drop credited to a font change the day before was
+       in fact entirely the padding going 28px -> 16px. Measured, not assumed:
+       computed font-size read 30px on a 390px viewport with the media query
+       in place. */
+    font-size: 15px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;

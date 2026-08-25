@@ -35,15 +35,26 @@ which looks exactly like the rule not applying.
 measured **209px** — taller than the card. The card is `overflow-hidden`, so 26px
 off the top of the headline was simply cut away.
 
-Dropping the title to 19px got it to 185px. Still 2px over — and that number is
-the point: it was being tuned to *one particular headline*. "The Best Abaya
-Brands, Sorted by What They Actually Cost" is long, and the next post could be
-longer.
+A font-size change and a padding change took it to 185px. Still 2px over — and
+that number is the point: it was being tuned to *one particular headline*. "The
+Best Abaya Brands, Sorted by What They Actually Cost" is long, and the next post
+could be longer.
 
-So the title is **clamped to two lines** (`-webkit-line-clamp: 2`) at 17px, with
-14px padding. Caption is now **116px in a 183px card**. Two lines is a property
-that holds for any title; a font size is a guess about one. The full headline is
-one tap away on the post page.
+So the title is **clamped to two lines** (`-webkit-line-clamp: 2`), with 14px
+padding. Caption came to **116px in a 183px card**. Two lines is a property that
+holds for any title; a font size is a guess about one. The full headline is one
+tap away on the post page.
+
+> **CORRECTION, 2026-08-26.** The font-size half of that never took effect, and
+> this entry originally credited it. The title carried `style={{ fontSize: 30 }}`
+> inline, and an inline style beats a class — so every `font-size` written into
+> the phone media query was silently ignored. The 209px → 185px drop was
+> **entirely the padding** going 28px → 16px, and the card shipped a 30px title
+> in a 183px box (clamped to two lines, which is why it still fitted).
+> Caught the next day by reading `getComputedStyle(...).fontSize` off the phone
+> render — it said `30px` — rather than trusting that the rule applied. Fixed by
+> moving the size out of the inline style into `.edit-feature-title`. See
+> `docs/log/2026-08-26-feature-card-title-size.md`.
 
 **2. The scrim stopped reaching the caption.** The gradient is
 `...rgba(36,27,36,0) 55%`, tuned to the 460px desktop card. On a 183px card that
