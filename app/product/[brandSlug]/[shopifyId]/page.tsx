@@ -133,8 +133,10 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           srcSet={shopifySrcSet(p.image, DETAIL_WIDTHS)}
           sizes="(max-width: 768px) 100vw, 50vw"
           alt={p.title}
-          className="w-full aspect-[3/4] object-cover"
-          style={{ borderRadius: 6 }}
+          /* 3/4 -> 2/3 and the radius dropped, 2026-08-25: one card shape
+             across the site, matching ProductCard and the homepage rails. */
+          className="w-full aspect-[2/3] object-cover"
+          style={{ background: '#fff' }}
         />
         <div>
           <div className="brand-label">{p.brandName}</div>

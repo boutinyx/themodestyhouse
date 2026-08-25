@@ -62,9 +62,22 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
         data-surface="product-card"
         className="absolute inset-0 z-10"
       />
+      {/* SITE-WIDE CARD SHAPE, 2026-08-25 — Tina: "you see the ratio of the
+          products on the homepage ... i want that across the whole website and
+          also the size of the icon like the heart etc and the background i want
+          the same across the whole page".
+          The homepage rails (components/PopularShowcase.tsx) were taken to
+          2:3 / 32px buttons / no border on 2026-08-25 and everything else was
+          left behind. Measured live before changing anything: rail 0.667 ratio,
+          32x32 button, 20px heart, no border, 0 radius; this card 0.750, 40x40,
+          22px heart, 1px hairline, 2px radius. Backgrounds were ALREADY
+          identical (#fff) — the border and the rounded corner are what read as
+          a different background.
+          The border and radius are dropped rather than added to the rails,
+          because the rails are the surface she approved. */}
       <div
-        className="product-photo relative overflow-hidden border"
-        style={{ borderColor: 'var(--hairline)', borderRadius: 'var(--radius-image)', background: '#fff' }}
+        className="product-photo relative overflow-hidden"
+        style={{ background: '#fff' }}
       >
         {/* srcset/sizes, so the CDN sends a card-sized photograph instead of the
             1500–2600px original the brand uploaded.
@@ -87,7 +100,7 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
           srcSet={shopifySrcSet(p.image)}
           sizes="(max-width: 767px) 50vw, (max-width: 1284px) 31vw, 389px"
           alt={p.title}
-          className="w-full aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : undefined}
           decoding="async"
@@ -108,23 +121,27 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
           type="button"
           onClick={() => open(p)}
           aria-label={`Quick view: ${p.title} by ${p.brandName}`}
-          className="absolute top-2 left-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
+          className="absolute top-2 left-2 z-20 w-8 h-8 rounded-full flex items-center justify-center transition"
           style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
         >
-          {/* Was 32px on a phone (w-8 h-8), under the 24px WCAG 2.2 SC 2.5.8
-              floor by a comfortable margin on paper but flagged in the
-              2026-08-13 marketing audit as sitting in the tap path of the
-              card's own primary action (the full-card outbound anchor right
-              underneath it, z-10). Now a flat 40px at every width — inside
-              the audit's 40-44px recommendation, and Tailwind's w/h still
-              beats the SVG's own width/height attributes so this overrides
-              `size` without two separate icons. */}
+          {/* 40px -> 32px, 2026-08-25, to match the homepage rails per Tina's
+              "the size of the icon like the heart etc ... the same across the
+              whole page".
+              READ THIS BEFORE CHANGING IT BACK. 40px was not arbitrary: the
+              2026-08-13 marketing audit flagged 32px here as sitting in the
+              tap path of the card's own primary action (the full-card outbound
+              anchor underneath, z-10) and recommended 40-44px. 32px still
+              clears the 24px floor in WCAG 2.2 SC 2.5.8 with room to spare, so
+              this trades a RECOMMENDATION for site-wide consistency, which was
+              Tina's explicit call — it does not breach the standard.
+              Tailwind's w/h still beats the SVG's own width/height attributes,
+              so the class overrides `size` without two separate icons. */}
           <Eye size={20} weight="regular" className="w-5 h-5" />
         </button>
         <button
           type="button"
           onClick={() => toggleFav(p)}
-          className="absolute top-2 right-2 z-20 w-10 h-10 rounded-full flex items-center justify-center transition"
+          className="absolute top-2 right-2 z-20 w-8 h-8 rounded-full flex items-center justify-center transition"
           style={{
             background: 'rgba(255,255,255,0.85)',
             color: fav ? 'var(--aubergine)' : 'var(--muted)',
@@ -132,7 +149,7 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
           }}
           aria-label={fav ? 'Remove from favourites' : 'Add to favourites'}
         >
-          <Heart size={22} weight={fav ? 'fill' : 'regular'} className="w-[22px] h-[22px]" />
+          <Heart size={20} weight={fav ? 'fill' : 'regular'} className="w-5 h-5" />
         </button>
         {/* Visible outbound-link cue — the card's aria-label already says
             "opens {brand}'s site", but a sighted user had no visual signal the

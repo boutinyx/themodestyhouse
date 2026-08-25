@@ -17,10 +17,12 @@ export function EditMoreTile({ href, label }: { href: string; label: string }) {
     <Link
       href={href}
       className="group flex flex-col items-center justify-center text-center"
-      // aspect-[3/4] matches ProductCard's photo, so the tile lines up with the
-      // cards beside it rather than collapsing to its own text height.
+      // Matches ProductCard's photo box so the tile lines up with the cards
+      // beside it rather than collapsing to its own text height. 3/4 -> 2/3 on
+      // 2026-08-25 when ProductCard took the homepage rails' shape — this
+      // number exists only to track that one, so it moves with it.
       style={{
-        aspectRatio: '3 / 4',
+        aspectRatio: '2 / 3',
         border: '1px solid var(--hairline)',
         borderRadius: 'var(--radius-card)',
         background: 'var(--bone)',

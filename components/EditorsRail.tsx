@@ -87,7 +87,11 @@ export default function EditorsRail({
             className="group shrink-0"
             style={{ width: 230, scrollSnapAlign: 'start' }}
           >
-            <div className="relative overflow-hidden" style={{ borderRadius: 6, border: '1px solid var(--hairline)', background: 'var(--bone)' }}>
+            {/* Shape and chrome follow ProductCard, 2026-08-25 — Tina asked for
+                one card treatment "across the whole website". Border and radius
+                dropped, background to #fff, and the fixed height below went
+                300 -> 345 so a 230px card is 2:3 like every other card. */}
+            <div className="relative overflow-hidden" style={{ background: '#fff' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={shopifyImage(p.image, 460)}
@@ -97,7 +101,8 @@ export default function EditorsRail({
                 sizes="230px"
                 alt={p.title}
                 className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                style={{ height: 300 }}
+                /* 230 wide / 345 tall = 2:3, matching ProductCard. */
+                style={{ height: 345 }}
                 loading="lazy"
                 decoding="async"
               />
