@@ -241,3 +241,16 @@ pre-selected. tsc clean, eslint clean, 781 tests pass.
 behind it, and the background changed four times. Each change silently
 invalidated a contrast decision made against the previous one, and not one of
 those invalidations was visible in a screenshot.
+
+---
+
+## Follow-up: tighter step spacing
+
+Tina, pointing at the three steps: *"letss spaing between these"*.
+`space-y-3` → `space-y-1.5`, i.e. **12px → 6px** between list items.
+
+`mt-6` above the `<ol>` is deliberately **not** reduced with it — the ask was the
+spacing *between the steps*, and closing the gap to the lead paragraph as well
+would merge the list into the prose. Measured on the deployed page: step gaps
+`[6, 6]px`, gap from the paragraph unchanged at `24px`, band 475px at 1440 and
+424px at 390, zero elements overflowing at either width.
