@@ -633,8 +633,13 @@ export default function Home() {
           pl stays at 4px because she asked for exactly the opposite in August
           ("they need to be also less space ont he edges of the screen"), which
           is why this was px-1 in the first place; widening both would have
-          walked that back without being asked. md: is unchanged at px-8. */}
-      <section className="max-w-[1220px] mx-auto pl-1 pr-4 md:px-8 py-10 md:py-20">
+          walked that back without being asked. md: is unchanged at px-8.
+
+          pr-4 (16px) -> pr-2 (8px), same day: "now its too much". So the
+          range she is steering between is bounded — 4px read as none, 16px as
+          too much, and 8px is the midpoint. Do not treat this as a value to
+          round off or tidy; it was landed by eye, twice. */}
+      <section className="max-w-[1220px] mx-auto pl-1 pr-2 md:px-8 py-10 md:py-20">
         {/* Centered, no "All categories" link — Tina: "By category. needs to
             be in the middle All categories gone." Every card in the grid
             below already links to its own lane, and /directory is reachable

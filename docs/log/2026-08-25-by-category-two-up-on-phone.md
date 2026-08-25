@@ -104,3 +104,12 @@ untouched: in the right-hand column "SHOP CO-ORD SETS" has only **6.3px** of
 clearance inside its card while "SHOP DRESSES" opposite it has **31.3px**, so
 that side reads jammed regardless of the page margin. She was offered a fix for
 the labels and chose the screen edge instead.
+
+### And 16px was too much
+
+*"now its too much."* `pr-4` -> `pr-2`, i.e. 16px -> 8px.
+
+The useful thing to record is the bracket, not the number: **4px read as none,
+16px as too much, 8px is the midpoint.** It was landed by eye, in two passes —
+so it is not a value to round off or tidy later, and the comment in
+`app/page.tsx` says so.
