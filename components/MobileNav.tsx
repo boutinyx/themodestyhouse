@@ -415,7 +415,18 @@ export function MobileNav() {
                 className="flex items-center gap-3 py-1"
                 style={{
                   fontFamily: 'var(--font-ui-stack)',
-                  fontSize: 17,
+                  // 15, not the 17 every nav row uses — Tina, 2026-08-25: "in the
+                  // hamburger the currency you selected it size should be the
+                  // same as all the other owrds in the hamburger". It ALREADY
+                  // was 17, measured: trigger 17px/Jost/400, "Clothing" 17px/
+                  // Jost/400, identical. The mismatch is optical, not numeric:
+                  // a currency label is ALL CAPS ("$ USD", "CA$ CAD") while
+                  // every nav row is sentence case, and at one font-size a
+                  // capital-only word reads a size larger because every glyph
+                  // sits at cap height instead of x-height. 15 is what makes it
+                  // sit level with the words around it, and it matches the
+                  // option rows below so the whole block is one size.
+                  fontSize: 15,
                   lineHeight: 1.35,
                   letterSpacing: '0.01em',
                   color: 'var(--ink)',

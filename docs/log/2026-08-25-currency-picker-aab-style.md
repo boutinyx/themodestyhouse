@@ -176,3 +176,22 @@ after GBP -> footer trigger: £ GBP
 The footer picking up `€ EUR` from the header is the CurrencyProvider working across both
 controls, not a defect. `npx tsc --noEmit`, `npx eslint` (both components + the audit script)
 and `npm test` (46 files / 741 tests) all clean.
+
+## Follow-up 3 — the trigger's optical size
+Tina: *"in the hamburger the currency you selected it size should be the same as all the other
+owrds in the hamburger"*.
+
+Measured first, and it was ALREADY numerically the same: trigger `17px / Jost / 400`, "Clothing"
+`17px / Jost / 400`, identical. The mismatch is optical. A currency label is all caps
+(`$ USD`, `CA$ CAD`) while every nav row is sentence case, so at one font-size the currency word
+reads a size larger — every glyph sits at cap height instead of x-height, and only the leading
+letter of "Clothing" does. Confirmed by cropping a 4x render of the two lines rather than by
+comparing the numbers, which agreed and were beside the point.
+
+Trigger is now **15px**, which sits level with the words around it and matches the option rows
+below, so the whole currency block is one size. Verified the same way — a 4x crop of trigger,
+"Clothing" and "Modest Dresses" together.
+
+**Worth keeping:** "same size" from a person means *reads the same*, and two runs of text at an
+identical `font-size` do not read the same when one is all caps. Computed styles agreeing is not
+evidence the complaint is wrong.
