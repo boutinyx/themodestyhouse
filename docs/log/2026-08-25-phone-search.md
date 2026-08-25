@@ -1,5 +1,5 @@
 # Phone search — a magnifier in the header, opening a full-width bar beneath it
-**Date:** 2026-08-25 · **Status:** partial (verified locally in Chromium; staging verification pending)
+**Date:** 2026-08-25 · **Status:** done
 
 ## Goal
 Tina: *"were missing a search on phone and i want it to open like this"*, with a
@@ -76,14 +76,41 @@ finger hits.
 
 Screenshot at 390x844 matches the reference's arrangement.
 
+### On staging — BOTH engines
+`https://themodestyhouse-staging-production.up.railway.app/`, commit `264cbea`
+(asserted an ancestor of `origin/staging` with `git merge-base --is-ancestor`, not just
+a clean push exit code — §10.17 rule 2). 390x844, `hasTouch`, real `.tap()`:
+
+```
+chromium css: true  triggers: 1
+{"formPresent":true,"headerBottom":129,"formTop":128,"formW":390,"formH":64,
+ "focused":true,"headerHeightVar":"89px","headerBg":"rgb(250, 247, 241)",
+ "formBg":"rgb(250, 247, 241)","inputFontSize":"16px",
+ "atInput":"INPUT.header-search-input","atClose":"Close search"}
+chromium submitted -> .../directory?q=linen%20dress | bar gone: true
+
+webkit   css: true  triggers: 1
+{"formPresent":true,"headerBottom":129,"formTop":128,"formW":390,"formH":64,
+ "focused":true,"headerHeightVar":"89px","headerBg":"rgb(250, 247, 241)",
+ "formBg":"rgb(250, 247, 241)","inputFontSize":"16px",
+ "atInput":"INPUT.header-search-input","atClose":"Close search"}
+webkit   submitted -> .../directory?q=linen%20dress | bar gone: true
+```
+
+WebKit matters here specifically, not as box-ticking: every iPhone browser is WebKit
+(§10.24), and §10.25's hover-only dropdown is the standing example of a header control
+that worked everywhere except the device it was for. `headerBottom: 129` /
+`formTop: 128` is the bar sitting flush under the header with the 1px border between
+them; `headerHeightVar` unchanged at `89px` in both engines is the hero-shift concern
+measured, not assumed.
+
+WebKit could NOT be verified locally — against `next dev` it loops on `element was
+detached from the DOM, retrying` (HMR reloading under it, the documented §10.24 trap),
+and a local production build was off the table because two other sessions are live on
+this working tree and `.next` is shared (§10.28 rule 4). Staging is what settled it,
+which is the protocol working as intended rather than a workaround.
+
 ## Notes / follow-ups
-- **WebKit is NOT yet verified**, and that gap is stated rather than papered over.
-  Against `next dev` WebKit loops on `element was detached from the DOM, retrying` —
-  HMR reloading under it, the documented §10.24 trap — and a production build could not
-  be run locally because two other sessions are live on this working tree and `.next`
-  is shared (§10.28 rule 4). The real verification is the staging one below.
-- **Verify on staging** per §1: push, then run the same probe (both engines) against
-  `https://themodestyhouse-staging-production.up.railway.app`.
 - `scripts/interaction-audit.mjs` has no check for this yet. It should get one —
   "tap the phone magnifier, assert the bar exists below the header and the input is
   focused" — with a negative control run first (§10.28 rule 1).
