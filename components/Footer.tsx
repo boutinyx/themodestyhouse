@@ -326,7 +326,16 @@ export function Footer() {
             block leaves one clean rule rather than an empty one. */}
 
         <div className="mt-6 pt-5 md:mt-8 md:pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>
-          <div className="eyebrow" style={{ color: 'var(--muted-on-dark)' }}>© 2026 The Modesty House · themodestyhouse.com</div>
+          {/* text-center below md. The row is `flex-col items-center` on a
+              phone, which centres each CHILD as a box — but this one is a full-
+              width block whose text still defaults to `start`, so its two
+              wrapped lines hugged the left edge while the narrower Privacy/Terms
+              row sat centred beneath them. Measured at 390px: this block 326px
+              wide with its text at x=32, that row 244px wide at x=73 — a 41px
+              mismatch, and the reason Tina's screenshot reads as broken.
+              `items-center` centres boxes; it does not centre text inside a box
+              that is already as wide as its parent. */}
+          <div className="eyebrow text-center md:text-left" style={{ color: 'var(--muted-on-dark)' }}>© 2026 The Modesty House · themodestyhouse.com</div>
           {/* 10px eyebrow type gave these a 15px-tall hit area. inline-flex with
               a min-height grows the target without changing the type or the
               baseline the row sits on. */}
