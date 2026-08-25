@@ -281,3 +281,31 @@ regression against a passing state. `--plum` is worse on both counts (1.11 edge,
 A 1px hairline in `--brass` or `--parchment` at low opacity would take the
 boundary over 3:1 without touching the fill. Flagged, not added — she asked for a
 purple pill with white letters and that is what is there.
+
+---
+
+## Follow-up: the lead loses a clause
+
+Tina: *"From launch features to curated campaigns, remove this sentence"*.
+Removed **exactly the clause she quoted**, not the whole sentence around it, so
+the lead now reads:
+
+> The Modesty House is the next stop for modest brands ready to be seen. We'll
+> help you reach the women already looking for what you create.
+
+The only other change is capitalising `we'll` to close the seam.
+
+The paragraph drops to two lines at 1440/820 and three at 390, taking the band to
+448 / 440 / 400px. Re-measured on the deployed page with the copy hidden:
+`heading 6.20 · lead 5.00 · steps 5.26 · numerals 6.95` at 1440, and
+`6.10 / 4.84 / 5.20 / 7.41` and `6.10 / 4.82 / 5.36 / 7.98` at 820 and 390. All
+pass; the lead is still the tightest element on the band.
+
+**A harness slip worth recording, because it is the third of the evening.** The
+first run of this measurement reported `lead contrast 1.00` at every width — I
+sampled the paragraph's rect *without hiding the copy*, so the darkest pixel it
+found was the paragraph's own glyphs. 1.00 is the signature of a text-vs-itself
+comparison and it is not a site defect. Same family as hiding the overlay along
+with the content earlier in this file: **the "hide the copy, then sample" step is
+the whole method, and skipping it fails loudly rather than silently, which is the
+only good thing about it.**
