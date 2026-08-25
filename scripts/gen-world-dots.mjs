@@ -25,8 +25,8 @@ const SRC = 'https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json';
 const args = Object.fromEntries(
   process.argv.slice(2).reduce((a, v, i, arr) => (v.startsWith('--') ? [...a, [v.slice(2), arr[i + 1]]] : a), [])
 );
-const STEP = Number(args.step ?? 3.2);          // degrees between dots
-const OUT = args.out ?? 'public/world-dots-v1.svg';
+const STEP = Number(args.step ?? 2.7);          // degrees between dots
+const OUT = args.out ?? 'public/world-dots-v2.svg';
 
 // Clipped to the inhabited band. Antarctica is a third of the height of a full
 // -90..90 map and carries no brands, so including it shrinks every other
@@ -89,11 +89,16 @@ for (let lat = LAT_TOP; lat > LAT_BOTTOM; lat -= STEP) {
 // currentColor so one asset works on parchment and on aubergine. An <img> does
 // NOT inherit it — the fill is written literally below for that reason, and the
 // colour is the band's own dot colour.
-const FILL = '#cfc4ae';
+// v2, 2026-08-25 (Tina: "can you make the map also more visible and longer").
+// v1 was #cfc4ae at 3.2deg / r2.2, which read as a faint texture rather than a
+// map. This is a step darker and a step denser. --hairline is #e4ddcf and
+// --muted is #8a7d6b; this sits between them, so the map is legible without
+// competing with the aubergine pins drawn over it.
+const FILL = '#bcab8d';
 const svg =
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="World map">` +
   `<g fill="${FILL}">` +
-  dots.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.2"/>`).join('') +
+  dots.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.4"/>`).join('') +
   `</g></svg>`;
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });

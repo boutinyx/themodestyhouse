@@ -19,7 +19,8 @@ export type DiscoveryBrand = {
 export type DiscoveryRegion = { name: string; count: number; brands: DiscoveryBrand[] };
 export type DiscoveryPin = { x: number; y: number; n: number; region: string; city: string };
 
-const pad = (n: number) => String(n).padStart(2, '0');
+/** How many houses a region shows before "see all". Tina's number. */
+const PREVIEW = 5;
 
 export default function DesignerDiscovery({
   regions,
@@ -39,6 +40,11 @@ export default function DesignerDiscovery({
   /** Which region's houses are showing. Null = none; only one at a time, so the
    *  band never grows by more than one panel and the page below it moves once. */
   const [open, setOpen] = useState<string | null>(null);
+  /** Europe is 56 houses; dropping all of them into the page at once pushed
+   *  everything below it off the screen (Tina: "lets just show 5 when you open
+   *  it up and a button with see more. because else its too long"). Resets to
+   *  false whenever a different region opens, so "see all" never carries over. */
+  const [showAll, setShowAll] = useState(false);
   /** Hover pre-lights the map without committing to opening a panel. Separate
    *  from `open` on purpose: a touch device never sets this, and the map still
    *  highlights correctly from the tap that opens the row. */
@@ -49,21 +55,34 @@ export default function DesignerDiscovery({
 
   return (
     <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-      <div className="grid gap-10 lg:gap-14 lg:grid-cols-[0.82fr_1.25fr]">
+      {/* The map track is deliberately much the larger of the two — Tina:
+          "can you make the map also more visible and longer". Was
+          0.82fr/1.25fr. The dots themselves also went a step darker and a
+          step denser in world-dots-v2.svg. */}
+      <div className="grid gap-10 lg:gap-16 lg:grid-cols-[0.62fr_1.62fr] items-center">
         {/* ---- copy ---- */}
-        <div className="flex flex-col justify-center">
-          <div className="eyebrow" style={{ color: 'var(--brass)' }}>Designer discovery</div>
+        {/* Centred on a phone, left-aligned from lg — Tina: "this needs to go in
+            the middle the text in the middle on phone". `items-center` is what
+            actually centres the CTA, since a flex child ignores text-align;
+            `mx-auto` does the same for the capped paragraph measure.
+            The "Designer discovery" eyebrow that stood above the heading was cut
+            the same day ("'Designer discovery' can go") — the heading says what
+            the band is. */}
+        <div className="flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
           <h2
-            className="serif mt-3"
+            className="serif"
             style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}
           >
             Independent labels.<br />
             <span className="italic" style={{ color: 'var(--plum)' }}>Global perspectives.</span>
           </h2>
-          <p className="mt-4 text-sm" style={{ color: 'var(--muted)', lineHeight: 1.65, maxWidth: '34ch' }}>
+          <p
+            className="mt-4 text-sm mx-auto lg:mx-0"
+            style={{ color: 'var(--muted)', lineHeight: 1.65, maxWidth: '34ch' }}
+          >
             {totalBrands} houses across {totalPlaces} places. Open a region to see who is in it.
           </p>
-          <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-7 self-start">
+          <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-7">
             Explore all designers <ArrowRight size={13} weight="bold" />
           </Link>
         </div>
@@ -78,7 +97,7 @@ export default function DesignerDiscovery({
         <div className="relative self-center w-full" style={{ aspectRatio: `${mapW} / ${mapH}` }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/world-dots-v1.svg"
+            src="/world-dots-v2.svg"
             alt=""
             aria-hidden="true"
             loading="lazy"
@@ -113,34 +132,32 @@ export default function DesignerDiscovery({
           the map — Tina: "i want the ... boxes to be bigger in length". A row is
           the full 1220px measure and 60px tall, so the count sits at the far
           right of the page rather than 200px in. */}
-      <ul className="mt-10 md:mt-14" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-        {regions.map((r, i) => {
+      {/* Tina: "put some space between the cards and the map." */}
+      {/* marginBottom, NOT `margin: 0`. An inline style beats a class, so
+          `margin: 0` here silently cancelled the `mt-24` beside it and the rows
+          sat flush against the map — which is the gap Tina asked for in the
+          first place. Tailwind's preflight already zeroes a ul, so the reset is
+          only kept for the bottom edge. */}
+      <ul className="mt-16 md:mt-24" style={{ listStyle: 'none', marginBottom: 0, padding: 0 }}>
+        {regions.map((r) => {
           const isOpen = open === r.name;
           return (
             <li key={r.name} style={{ borderTop: '1px solid var(--hairline)' }}>
               <button
                 type="button"
-                onClick={() => setOpen(isOpen ? null : r.name)}
+                onClick={() => { setOpen(isOpen ? null : r.name); setShowAll(false); }}
                 onMouseEnter={() => setHover(r.name)}
                 onMouseLeave={() => setHover(null)}
                 onFocus={() => setHover(r.name)}
                 onBlur={() => setHover(null)}
                 aria-expanded={isOpen}
                 className="w-full flex items-center gap-4 md:gap-6 text-left transition-colors"
-                style={{ padding: '18px 4px', minHeight: 60, background: 'transparent' }}
+                /* Taller than the 60px it shipped at yesterday — Tina: "can you
+                   make it longer". The 01/02/03 index that sat to the left of
+                   the name is gone the same day ("you can put the 01 02 03 04 05
+                   out ust keep the place"). */
+                style={{ padding: '26px 4px', minHeight: 84, background: 'transparent' }}
               >
-                <span
-                  style={{
-                    fontFamily: 'var(--font-label), serif',
-                    fontSize: 11,
-                    letterSpacing: '0.1em',
-                    color: 'var(--brass)',
-                    width: 26,
-                    flexShrink: 0,
-                  }}
-                >
-                  {pad(i + 1)}
-                </span>
                 <span
                   className="flex-1"
                   style={{
@@ -185,7 +202,7 @@ export default function DesignerDiscovery({
                       gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))',
                     }}
                   >
-                    {openRegion.brands.map((b) => (
+                    {(showAll ? openRegion.brands : openRegion.brands.slice(0, PREVIEW)).map((b) => (
                       <li key={b.href + b.name}>
                         {b.external ? (
                           <a
@@ -212,6 +229,31 @@ export default function DesignerDiscovery({
                       </li>
                     ))}
                   </ul>
+
+                  {/* Only when there is genuinely more. The label carries the
+                      real remaining count rather than a bare "See more", so the
+                      row does not hide an unknown quantity. */}
+                  {openRegion.brands.length > PREVIEW && (
+                    <button
+                      type="button"
+                      onClick={() => setShowAll((v) => !v)}
+                      className="nav-link inline-flex items-center gap-1.5 mt-5"
+                      style={{ minHeight: 32 }}
+                    >
+                      {showAll
+                        ? 'Show fewer'
+                        : `See all ${openRegion.count} in ${openRegion.name}`}
+                      <CaretDown
+                        size={12}
+                        weight="bold"
+                        aria-hidden="true"
+                        style={{
+                          transform: showAll ? 'rotate(180deg)' : 'none',
+                          transition: 'transform 180ms ease',
+                        }}
+                      />
+                    </button>
+                  )}
                 </div>
               )}
             </li>
