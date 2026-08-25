@@ -730,16 +730,35 @@ export default function Home() {
               flat 0.80      heading 8.33 · steps 6.42 · numerals 5.66   pass
               .88/.62/.40    heading 5.17 · steps 4.15 · numerals 5.66   FAIL
               .92/.70/.45    heading 6.34 · steps 5.13 · numerals 5.76   pass
-              .95/.78/.50    heading 7.74 · steps 6.24 · numerals 5.87   pass  <-
+              .95/.78/.50    heading 7.74 · steps 6.24 · numerals 5.87   pass
             Flat 0.62 fails AA on the step text (4.06 against a 4.5 threshold),
             which is exactly the kind of thing that looks fine in a screenshot.
-            Picked the gradient over flat 0.80 because it passes by a similar
-            margin while leaving the right-hand fold visible. For scale, flat
-            `--aubergine` with no photograph gives 13.40 / 10.46 / 6.34. */}
+            For scale, flat `--aubergine` with no photograph gives
+            13.40 / 10.46 / 6.34.
+
+            OPENED UP 2026-08-25, second pass — Tina: "can we get the background
+            picture more visible so the purple satin". Re-measured against the
+            LIVE staging render with the same method, at 390/820/1440, worst
+            case across the three:
+              .95/.78/.50 @55%   heading 7.74 · steps 6.24 · numerals 5.87  (was)
+              .90/.70/.30 @55%   heading 6.24 · steps 5.13 · numerals 5.73
+              .95/.80/.05 @62%   heading 5.43 · steps 6.82 · numerals 5.91
+              .88/.76/.05 @62%   heading 5.38 · steps 6.11 · numerals 5.73  <-
+              .85/.72/.05 @62%   heading 5.31 · steps 5.52 · numerals 5.66
+            Moving the mid stop 55% -> 62% is what buys the picture back: the
+            copy column ends at 56.5% of the viewport at 1440, so everything
+            right of it can go almost clear (0.05) without touching a single
+            text pixel. The left came down 0.95 -> 0.88 so the weave reads
+            behind the type too. The BINDING case is the heading at 390, where
+            the copy is full-width and runs into the light tail — that, not the
+            desktop view, is what stops this going lighter still.
+            The harness was validated before it was trusted (§10.28 rule 1): it
+            reproduces the row above to the second decimal, and flat 0.62 still
+            comes back 4.03 FAIL. */}
         <div
           aria-hidden
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to right, rgba(68,25,67,0.95) 0%, rgba(68,25,67,0.78) 55%, rgba(68,25,67,0.50) 100%)' }}
+          style={{ background: 'linear-gradient(to right, rgba(68,25,67,0.88) 0%, rgba(68,25,67,0.76) 62%, rgba(68,25,67,0.05) 100%)' }}
         />
         <div className="relative max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-2xl">
