@@ -49,6 +49,7 @@ export type OutboundSurface =
   | 'designers'
   | 'marquee'
   | 'popular-showcase'
+  | 'abaya-picks'
   | 'editors-rail'
   | 'designer-discovery';
 

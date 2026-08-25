@@ -9,6 +9,7 @@ import PopularShowcase from '@/components/PopularShowcase';
 import { EditBanner } from '@/components/EditBanner';
 import { EDITS } from '@/lib/edits';
 import { POPULAR_ITEM_IDS } from '@/lib/popularItems';
+import { ABAYA_PICK_IDS } from '@/lib/abayaPicks';
 import { HeroCallouts } from '@/components/HeroCallouts';
 import { getProducts } from '@/lib/products';
 import { BRANDS } from '@/data/brands';
@@ -18,6 +19,7 @@ import { getPosts } from '@/lib/posts';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import type { Product } from '@/lib/types';
+import type { CardProduct } from '@/lib/compactCatalogue';
 
 // title/description are the keyword-forward SERP-facing copy (lib/seoCopy.ts)
 // — deliberately separate from the hero's own h1, which stays untouched.
@@ -77,9 +79,30 @@ export default function Home() {
   // that's been cut or delisted since the list was written, rather than
   // rendering a dead card for it.
   const productById = new Map(getProducts().map((p) => [p.id, p]));
-  const popularItems = POPULAR_ITEM_IDS
-    .map((id) => productById.get(id))
-    .filter((p): p is Product => Boolean(p));
+  // Narrowed to CardProduct's 9 fields rather than handed the whole Product —
+  // CLAUDE.md §8: every field on whatever a client component receives is
+  // serialised into this page's RSC payload, and `Product` carries occasion/
+  // season/activity arrays, lifecycle and lane-override fields that no card
+  // ever reads. Two rails share this, so it lives here once.
+  const railCards = (ids: readonly string[]): CardProduct[] =>
+    ids
+      .map((id) => productById.get(id))
+      .filter((p): p is Product => Boolean(p))
+      .map((p) => ({
+        id: p.id,
+        brandSlug: p.brandSlug,
+        garment: p.garment,
+        title: p.title,
+        brandName: p.brandName,
+        price: p.price,
+        currency: p.currency,
+        image: p.image,
+        url: p.url,
+        ...(p.altUrl ? { altUrl: p.altUrl } : {}),
+      }));
+  const popularItems = railCards(POPULAR_ITEM_IDS);
+  // "Our picks on abayas" — the second rail, under the Everyday Lace banner.
+  const abayaPicks = railCards(ABAYA_PICK_IDS);
 
   // DESIGNER DISCOVERY. Flattened HERE, on the server, rather than handing
   // <DesignerDiscovery> the Brand records: it is a client component, so every
@@ -502,6 +525,36 @@ export default function Home() {
       {[...EDITS].sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false)).map((e) => (
         <EditBanner key={e.slug} edit={e} />
       ))}
+
+      {/* OUR PICKS ON ABAYAS — a second PopularShowcase rail, placed here
+          2026-08-25 on Tina's instruction ("i want it under everyday lace"),
+          i.e. after the edit banners, which is where Everyday Lace sits
+          (Jersey Hijabs carries `featured`, so it renders first). Heading copy
+          is hers verbatim, "our picks on abayas" — the plum italic on the last
+          word is the treatment the sibling rail's heading already uses, not
+          added words.
+
+          Same component, same 17 hand-picked ids in her order (lib/abayaPicks
+          .ts). Reused rather than forked: everything that rail already solved
+          — the full-bleed breakout, the edge fade, the wheel/drag traps
+          documented at length in PopularShowcase.tsx — applies identically
+          here, and a second copy would drift from it.
+
+          Note these are ALL garment: 'abaya', so every card takes that
+          component's object-contain branch ("zoom the picture on the abayas a
+          little out"). That is correct, but it means this whole row is
+          letterboxed white where the Popular Items row is mostly filled. */}
+      <section className="py-10 md:py-20">
+        <h2
+          className="serif text-center max-w-[1220px] mx-auto px-8"
+          style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}
+        >
+          Our picks on <span className="italic" style={{ color: 'var(--plum)' }}>abayas.</span>
+        </h2>
+        <div className="mt-8 md:mt-10">
+          <PopularShowcase items={abayaPicks} surface="abaya-picks" />
+        </div>
+      </section>
 
       {/* The "Chosen by hand" editor's-picks rail stood here until 2026-08-24,
           when Tina cut it ("this block in homepage is going to go"). It was a

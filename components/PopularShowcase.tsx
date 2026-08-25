@@ -8,7 +8,7 @@ import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { useScrollFade } from './useScrollFade';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
-import { withUtm } from '@/lib/outbound';
+import { withUtm, type OutboundSurface } from '@/lib/outbound';
 
 /**
  * Homepage "Popular items" rail — replaces the StyleIt mix-and-match picker
@@ -56,7 +56,17 @@ import { withUtm } from '@/lib/outbound';
  * state (`canLeft`/`canRight` below) comes from the SAME measurement as the
  * fade, so the two can never disagree about whether there's more to scroll.
  */
-export default function PopularShowcase({ items }: { items: CardProduct[] }) {
+export default function PopularShowcase({
+  items,
+  surface = 'popular-showcase',
+}: {
+  items: CardProduct[];
+  /** Which rail this is, for the outbound UTM and the `data-surface` Pulse
+   *  reads. Defaults to the original homepage rail so the existing call site
+   *  is unchanged; the "Our picks on abayas" rail below it passes
+   *  'abaya-picks' so the two do not report as one surface. */
+  surface?: OutboundSurface;
+}) {
   const { price } = useCurrency();
   const { open, isFav, toggleFav } = useQuickView();
 
@@ -169,13 +179,13 @@ export default function PopularShowcase({ items }: { items: CardProduct[] }) {
           return (
             <div key={p.id} className="group relative shrink-0 w-[42%] md:w-[28%] lg:w-[20%]" style={{ scrollSnapAlign: 'start' }}>
               <a
-                href={withUtm(p.url, 'popular-showcase')}
+                href={withUtm(p.url, surface)}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
                 aria-label={`${p.title} by ${p.brandName} — opens ${p.brandName}'s site`}
                 data-brand={p.brandSlug}
                 data-garment={p.garment}
-                data-surface="popular-showcase"
+                data-surface={surface}
                 draggable={false}
                 className="absolute inset-0 z-10"
               />
