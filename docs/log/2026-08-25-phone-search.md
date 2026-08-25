@@ -110,6 +110,42 @@ and a local production build was off the table because two other sessions are li
 this working tree and `.next` is shared (§10.28 rule 4). Staging is what settled it,
 which is the protocol working as intended rather than a workaround.
 
+## Follow-up, same day — icon size and left-cluster spacing (`6f7f08d`)
+Tina: *"make the icon a bit smaller like the heart and put it a bit more to the left
+giving some space to the hamburger"*.
+
+The size half is unambiguous: 24 -> **20**, the literal number `favourites(20)` uses on
+this row, so the two utility glyphs at either end of the phone header now match.
+
+The spacing half is not — "more to the left" and "space to the hamburger" pull opposite
+ways, since the hamburger is what sits to the left of the magnifier. Rather than guess
+(§10.29: when a request admits two readings, name them and ask), she was shown three
+concrete arrangements and picked **hamburger nearer the edge AND a wider gap**:
+`-ml-1.5` on the cluster plus `gap-1` -> `gap-4`. The negative margin is on the CLUSTER,
+not the row's `px-4`, so the favourites heart at the other end keeps its 16px gutter.
+
+The search bar's close cross moved with it (`marginLeft` -10 -> -16). Those two numbers
+are one decision written in two files; the comment in each now says so.
+
+Measured on staging, 390px, **both engines, identical**:
+
+```
+chromium css: true {"hamburger":{"x":10,"w":24},"search":{"x":52,"w":20}}
+chromium open: {"closeX":10,"hamburgerX":10,"formTop":128,"formH":64,"focused":true}
+webkit   css: true {"hamburger":{"x":10,"w":24},"search":{"x":52,"w":20}}
+webkit   open: {"closeX":10,"hamburgerX":10,"formTop":128,"formH":64,"focused":true}
+```
+
+Hamburger glyph 16px -> 10px from the edge, magnifier 44px -> 52px, and the close cross
+lands on the hamburger's exact x — the two rows share one left edge.
+
+**Harness note (§10.26):** the same probe reported the favourites heart at a zero-width
+rect, which read like the heart had vanished. It had not. `document.querySelector` takes
+the FIRST match, and the desktop `favourites(17)` instance precedes the mobile one in
+DOM order — it is `display: none` below `lg`, hence the zero rect. The heart is plainly
+present in the screenshot. Nothing about it was measured by this run, and nothing about
+it changed.
+
 ## Notes / follow-ups
 - `scripts/interaction-audit.mjs` has no check for this yet. It should get one —
   "tap the phone magnifier, assert the bar exists below the header and the input is
