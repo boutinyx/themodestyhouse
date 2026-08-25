@@ -88,6 +88,31 @@ viewport as a negative control and reproduce there identically
 (`div.eyebrow`/`ul.mt-4.space-y-2.text-sm`/`li`×5, w=300). Pre-existing and
 unrelated to this work; not fixed here.
 
+## Second follow-up — object-contain dropped, every card is object-cover
+
+Tina: *"i see that some still not fit can you zoom those in."* The remaining
+misfits were the minority whose ratio isn't 2:3 — under `object-contain` they
+kept a bar. The abaya `object-contain` branch only ever existed to compensate
+for a box that was the wrong shape (3:4), so with the box now correct it was
+removed outright: `components/PopularShowcase.tsx` renders every card
+`object-cover`, like `ProductCard` and `EditorsRail` already do.
+
+Measured what cover costs at the 2:3 box rather than assuming — all 16, via
+rendered natural dimensions:
+
+| crop | cards |
+|---|---|
+| 0% | 10 (the 0.667 photos) |
+| 8.1% off the sides | 1 |
+| 14.1% off the sides | 1 |
+| 15.6% off top and bottom | 1 (Avyaana "Peach Floral", 0.563) |
+| 16.7% off the sides | 3 (the 0.800 photos) |
+
+Worst case 16.7%. Laid all 16 out in a grid in one render and looked at every
+card: no bars anywhere, and nothing is cropped through a head or a hem. At the
+old 3:4 box the same change would have cost 25%+, which is why it was wrong then
+and right now.
+
 ## Notes / follow-ups
 - The footer overflow at tablet-819 above is real and unfixed. It is on
   production too, so it is not a regression, but somebody should take it.

@@ -226,17 +226,28 @@ export default function PopularShowcase({
                   // against 2/3 those ten fit edge to edge with no bars and
                   // no crop. Applied to BOTH rails, per her second message,
                   // so the two rows stay one set.
-                  // object-contain, not object-cover, for the two abayas
-                  // (HUM's "Butterfly Kaftan Top" is classified garment:
-                  // 'abaya' despite the title, same as Losyana's) — Tina:
-                  // "zoom the picture on the abayas a little out". A
-                  // full-length abaya photo is shot taller/narrower than
-                  // this card's 3:4 box, so object-cover was cropping the
-                  // top and bottom to fill the width — exactly what reads
-                  // as "too zoomed in". object-contain shows the whole
-                  // photo instead, letterboxed into the same white (already
-                  // the wrapper's background) rather than cropped.
-                  className={`w-full aspect-[2/3] transition-transform duration-500 group-hover:scale-[1.03] ${p.garment === 'abaya' ? 'object-contain' : 'object-cover'}`}
+                  // object-cover for EVERY card, 2026-08-25. Abayas used to
+                  // be the exception (object-contain) because Tina asked to
+                  // "zoom the picture on the abayas a little out": against
+                  // the old 3:4 box a full-length abaya photo is much
+                  // taller/narrower, so cover was cutting the top and bottom
+                  // off to fill the width, which is what read as "too zoomed
+                  // in". That exception existed only to compensate for a box
+                  // that was the wrong shape, and the box is the right shape
+                  // now (2:3 = the measured median of the real photographs),
+                  // so contain no longer buys anything: it just leaves bars
+                  // on the minority whose ratio isn't exactly 2:3 — "i see
+                  // that some still not fit can you zoom those in".
+                  // Measured what cover actually costs at THIS box, rather
+                  // than assuming: the whole abaya spread is 0.564-0.800
+                  // against 0.667, so the worst crop in the row is 16.6% off
+                  // the sides (the three 0.776-0.800 photos) and 15.4% off
+                  // top and bottom (Avyaana's 0.564 "Peach Floral"). Checked
+                  // that one by eye — the model is centred with headroom, so
+                  // nothing is decapitated. At the old 3:4 box the same
+                  // change would have cost 25%+, which is why it was wrong
+                  // then and right now.
+                  className="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                   decoding="async"
                 />
