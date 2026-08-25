@@ -350,3 +350,27 @@ ever needs to pass without giving up the white. Offered.
   purple pill. Straight §10.20: output read from a run that was never confirmed to
   be the right one. The fix both times is to assert on the RENDERED string, taken
   from `curl` output rather than from what the JSX looks like.
+
+---
+
+## Follow-up: the lead is one sentence
+
+Tina, quoting it in full this time: *"We'll help you reach the women already
+looking for what you create. remove this sentence"*. The whole sentence goes,
+where the previous cut took only the clause she had quoted then. The lead is now:
+
+> The Modesty House is the next stop for modest brands ready to be seen.
+
+Her copy arrived as three sentences and she cut it twice, each time naming the
+exact span. **One sentence is the finished state, not a paragraph short of its
+padding** — the file says so, so nobody fills it back in.
+
+Verified on the deployed page: the lead is **one line** at 1440 and 820, two at
+390, and the band settles at 440 / 440 / 376px. Contrast, copy hidden before
+sampling: `heading 6.21 · lead 5.00 · steps 5.22 · numerals 6.84` at 1440, and
+`6.10 / 4.90 / 5.12 / 7.41` and `6.10 / 4.84 / 5.34 / 7.86` at 820 and 390. Zero
+elements overflowing at any width.
+
+The desktop band is now 440px — the height it was given when Tina asked for it
+thinner, before her copy arrived and pushed it to 555. It has come back to that
+on its own.
