@@ -270,11 +270,20 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 480px) {
-  .tmh-showcase-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* NO single-column rule below 480px any more, 2026-08-25. It used to drop to
+   `1fr` here, which is what Tina was reporting: "in my iphone the catagories are
+   in one big line" — six photo cards stacked vertically, each one nearly a full
+   screen tall, so the section read as an endless column rather than a grid. She
+   proposed the fix herself: "to put 2 2 2 next to eachother".
+
+   Two columns now hold all the way down. Measured rather than assumed at 390px:
+   each card is 193px wide, and at the existing 3/4.4 ratio that is 283px tall —
+   comfortably tappable and well under the 44px minimum on every axis, so the
+   ratio did NOT need changing to make two fit (her other suggestion). Left at
+   3/4.4 so phone and desktop stay one design.
+
+   The 820px rule above still does the 3 -> 2 step; this just stops the 2 -> 1
+   one. */
 
 :root {
   /* core identity */
