@@ -487,3 +487,32 @@ nothing matched again. The `identical at every level → VOID` check caught it;
 without that it would have read as a clean, flat result. Same family as §10.28.
 The fixed probe tags the scrims once, up front, and now hard-throws on a void
 run instead of printing numbers.
+
+## Ninth follow-up — the even wash reverted
+
+Tina, one word: *"revert"*, immediately after being shown that the flat 0.60 wash
+darkened the whole photograph. Taken as reverting the even wash — the change she
+had just seen and the only one described to her as having a cost. Back to
+`heroWash: 0.58` with the left-weighted gradient; the `-8` image and everything
+else stands.
+
+**This knowingly re-opens a contrast failure, and that is recorded rather than
+buried.** Real-page worst-case against white:
+
+| surface | now (reverted) |
+|---|---|
+| homepage desktop | 9.76 pass |
+| homepage phone | 4.09 FAIL |
+| edit page desktop | **1.60 FAIL** |
+| edit page phone | 4.11 FAIL |
+
+The cause is `/edits/[slug]` centring its `h1` over a crop where the model sits
+centre-right. Four options were put to her — even wash, deeper title shadow only,
+reframe so she clears the type, leave it — and she picked the even wash, saw it,
+and reverted. So the picture won over the metric, deliberately. The edit-page h1
+carries `textShadow: 0 2px 30px rgba(0,0,0,0.5)`, so what a reader sees is better
+than the worst-pixel figure, but it is not compliant and should not be presented
+as though it were.
+
+`lib/edits.ts` now carries a KNOWN AND ACCEPTED note at that line so nobody
+"fixes" it back without asking her first.

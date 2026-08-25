@@ -720,31 +720,23 @@ export const EDITS: Edit[] = [
     // ("Shop the Archive") that is not in this banner, because the selector had
     // scoped to the wrong section. A contrast figure that does not move when
     // you move the scrim is not a measurement (§10.28).
-    // EVEN wash at 0.60, chosen by Tina, 2026-08-25, after the finding below.
+    // REVERTED to the left-weighted gradient at 0.58, 2026-08-25, on Tina's
+    // one-word "revert" immediately after being shown that the even wash
+    // darkened the whole photograph. Confirmed with her which revert was meant.
     //
-    // The left-weighted default is wrong for THIS edit because /edits/[slug]
-    // CENTRES its h1: the tail of "Fall Essentials" crosses the model's cream
-    // sleeve and pale hijab, exactly where a to-the-right gradient has already
-    // faded to 0.02. That is the case `heroWashEven`'s own doc comment warns
-    // about, and this crop is the first one to hit it.
+    // KNOWN AND ACCEPTED, so please do not "fix" this back without asking her:
+    // /edits/[slug] centres its h1, so the tail of "Fall Essentials" crosses the
+    // model's cream sleeve where this gradient has faded to 0.02. Measured on
+    // the real page, that is 1.60:1 against white — below the 4.5 bar. The
+    // alternatives were put to her (even wash / deeper title shadow / reframe /
+    // leave it); she took the even wash, saw it, and reverted. The picture won.
     //
-    // Real-page contrast (no scrim override — an earlier probe overrode the
-    // gradient with a flat fill and so measured a configuration that was never
-    // shipped; every heroWash figure logged before 2026-08-25 evening is that
-    // measurement, not this one):
-    //             gradient 0.58        flat 0.60
-    //   home desktop     9.76 pass      -
-    //   home phone       4.09 FAIL      -
-    //   edit desktop     1.60 FAIL      -
-    //   edit phone       4.11 FAIL      -
-    // Flat sweep, min across all four surfaces:
-    //   0.40 -> 2.93 FAIL · 0.50 -> 4.02 FAIL · 0.60 -> 5.62 PASS · 0.70 -> 8.24
-    //
-    // The cost is real and was put to her rather than decided here: a flat wash
-    // darkens the WHOLE photograph, including the outfit, which walks back some
-    // of the brightness she spent several rounds tuning. She picked it anyway.
-    heroWash: 0.60,
-    heroWashEven: true,
+    // Real-page contrast at this setting (no scrim override):
+    //   homepage desktop 9.76 pass · homepage phone 4.09 · edit desktop 1.60 ·
+    //   edit phone 4.11.
+    // The edit-page h1 does carry textShadow 0 2px 30px rgba(0,0,0,0.5), so what
+    // you see is better than the worst-pixel number, but it is not compliant.
+    heroWash: 0.58,
     // -7 / -mobile-6: same crop, brightened. Tina, after seeing it: "can we
     // make it more brighter. liek both" — so BOTH surfaces get the identical
     // linear(1.3, 20) lift, cut from the one wide original as before.
