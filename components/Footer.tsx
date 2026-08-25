@@ -232,39 +232,30 @@ export function Footer() {
           </div>
         </div>
 
-        {/* FTC / EU affiliate disclosure. Must stay site-wide and visible without
-            interaction — it is the disclosure a regulator looks for first. */}
-        {/* The rule spans the full column; only the TEXT is capped at 720.
-            It used to be one element carrying both, so the hairline stopped
-            where the paragraph did — 720px — while the identical hairline above
-            the copyright row ran the full width. Measured: 720 vs 960 at
-            1024px, 720 vs 1156 at 1440. Two stacked rules in the same footer
-            ending at different points made the upper one read as a stub. */}
-        <div
-          className="mt-10 pt-5 md:mt-12 md:pt-6"
-          style={{ borderTop: '1px solid rgba(243,238,228,0.12)', color: 'var(--muted-on-dark)', fontSize: 12, lineHeight: 1.6 }}
-        >
-        <div style={{ maxWidth: 720 }}>
-          The Modesty House is a discovery and affiliate site — we don&rsquo;t sell anything
-          ourselves. Some links may be affiliate links, and if you buy through one we may earn a
-          commission at no extra cost to you. Prices default to an approximate conversion
-          (marked with &asymp;) and can change; the amount you actually pay is set by the
-          brand, in its own currency, on its own site.{' '}
-          {/* inline-flex + min-height, the same correction as <FLink> above: at
-              12px inside a 1.6 line-height this link's hit area was 72x18, under
-              the 24px floor in WCAG 2.2 SC 2.5.8. It was reported on every one
-              of the 312 pages the audit rendered — the single most common
-              finding, because it is in the site-wide footer. */}
-          <Link
-            href="/terms"
-            className="inline-flex items-center"
-            style={{ color: '#c8bda9', textDecoration: 'underline', textUnderlineOffset: 2, minHeight: 24 }}
-          >
-            Full disclosure
-          </Link>
-          .
-        </div>
-        </div>
+        {/* The site-wide FTC / EU affiliate disclosure paragraph stood here
+            until 2026-08-25. Tina: "its still too long just get rid of this
+            text", quoting it in full — it was four lines of small print above
+            the copyright row and it was making the footer long.
+
+            RAISED WITH HER RATHER THAN REMOVED QUIETLY, because this is the
+            one piece of footer copy with a legal job: the comment it replaces
+            read "Must stay site-wide and visible without interaction — it is
+            the disclosure a regulator looks for first", and CLAUDE.md §11
+            P0-D tracks affiliate disclosure as a launch item. What still
+            carries it: /privacy, /terms (the page the removed "Full
+            disclosure" link pointed at) and FAQ Q10. What is gone is the
+            site-wide, no-interaction-required one, which is the form the FTC's
+            "clear and conspicuous" guidance actually asks for.
+
+            Materially this is defensible only while Skimlinks stays OFF
+            (`NEXT_PUBLIC_SKIMLINKS_ID` unset — CLAUDE.md §11 P0-E: the
+            monetisation is still a stub, so no link on the site currently
+            earns anything). The moment it is switched on, a one-line version
+            needs to come back here. That is the same condition the cookie-
+            consent gap is already parked behind in P0-D.
+
+            The copyright row below keeps its own borderTop, so removing this
+            block leaves one clean rule rather than an empty one. */}
 
         <div className="mt-6 pt-5 md:mt-8 md:pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>
           <div className="eyebrow" style={{ color: 'var(--muted-on-dark)' }}>© 2026 The Modesty House · themodestyhouse.com</div>
