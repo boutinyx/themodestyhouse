@@ -68,18 +68,46 @@ const ITEMS = [
 export default function CategoryQuickLinks() {
   return (
     <section style={{ background: 'var(--parchment)', borderBottom: '1px solid var(--hairline)' }}>
-      {/* Single row at every width — mobile scrolls it (same pattern as
-          EditorsRail's rail below), desktop stretches each tile to an equal
-          fifth. Staying one row (never wrapping) is what keeps the
-          "border-right on every item but the last" divider logic correct
-          without extra per-breakpoint cases. */}
-      <div className="flex overflow-x-auto no-scrollbar lg:overflow-visible">
-        {ITEMS.map(({ lane, label, Icon }, i) => (
+      {/* 2x2 GRID on a phone, single row from lg up.
+          Tina, 2026-08-25: "in my iphone the catagories are in one big line can
+          we fix that". Measured before changing anything, at 390px in BOTH
+          engines (an iPhone is WebKit, §10.24): the row was
+          `scrollWidth 600 > clientWidth 390`, with the four `min-w-[150px]`
+          tiles at x = 0 / 150 / 300 / 450 — so Hijabs sat entirely off-screen
+          and Sets was half cut. It was a horizontal scroller, which reads as
+          "one big line" and hides half the categories behind a gesture nobody
+          knows to make.
+
+          The previous version's comment argued that staying one row at every
+          width was what kept the "border-right on all but the last" divider
+          logic simple. True, and it is the reason the borders below are now
+          computed per-breakpoint rather than as one inline style — the cost of
+          wrapping is paid here, in three booleans, rather than in a scroller
+          the user cannot see the end of.
+
+          Borders are Tailwind side/width utilities with the COLOUR supplied
+          inline from `--hairline`, because an inline style cannot be responsive
+          and §6 says colour is never a Tailwind class here. */}
+      <div className="grid grid-cols-2 lg:flex lg:overflow-visible">
+        {ITEMS.map(({ lane, label, Icon }, i) => {
+          // Phone (2 columns): a right divider on the left-hand column only, a
+          // bottom divider on every row but the last.
+          const phoneRight = i % 2 === 0;
+          const phoneBottom = i < ITEMS.length - 2;
+          // Desktop (one row): a right divider on all but the last tile.
+          const wideRight = i < ITEMS.length - 1;
+          const border = [
+            phoneRight ? 'border-r' : '',
+            phoneBottom ? 'border-b lg:border-b-0' : '',
+            wideRight && !phoneRight ? 'lg:border-r' : '',
+            !wideRight && phoneRight ? 'lg:border-r-0' : '',
+          ].filter(Boolean).join(' ');
+          return (
           <Link
             key={lane.slug}
             href={`/${lane.slug}`}
-            className="group flex flex-shrink-0 lg:flex-1 flex-col items-center justify-center gap-3 py-8 px-6 text-center min-w-[150px] lg:min-w-0"
-            style={{ borderRight: i < ITEMS.length - 1 ? '1px solid var(--hairline)' : undefined }}
+            className={`group flex lg:flex-shrink-0 lg:flex-1 flex-col items-center justify-center gap-3 py-8 px-6 text-center lg:min-w-0 ${border}`}
+            style={{ borderColor: 'var(--hairline)' }}
           >
             <Icon size={26} weight="thin" style={{ color: 'var(--aubergine)' }} aria-hidden="true" />
             <span
@@ -101,7 +129,8 @@ export default function CategoryQuickLinks() {
               />
             </span>
           </Link>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
