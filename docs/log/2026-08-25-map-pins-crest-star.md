@@ -246,3 +246,31 @@ it was not written for, and it brings its own box rules with it.
 
 `npx tsc --noEmit` → 0 · `npm run lint` → 0 · build clean · 0 console errors ·
 gaps re-measured in the browser at 16px / 20px · link box 199x24 (≥24 OK).
+
+---
+
+## Update, same day — the map-to-rows gap
+
+Tina: *"remove a lil exsess stacing between the map and places"*.
+
+`mt-16 md:mt-24` → `mt-12 md:mt-16` on the region `<ul>`.
+
+| | was | now |
+|---|---|---|
+| desktop | 96px | **64px** |
+| phone | 64px | **48px** |
+
+**Checked the picture before reaching for the margin.** A dotted world map could
+easily carry its own empty band at the bottom, in which case trimming the margin
+would only fix part of what is visible. It does not: `world-dots-v2.svg`'s
+artwork runs to `cy` 375 of a 386-unit viewBox, so **2.8%** is empty — about 8px
+at the rendered height. The gap really was all margin.
+
+Not closed to zero: the space itself was an earlier ask (*"put some space
+between the cards and the map"*), so this trims it rather than removing it.
+
+Measured after: desktop map 305px tall, gap 64px; phone map 126px, gap 48px.
+
+A `next start` was probed before it had finished binding and the run timed out —
+the server was in fact fine (`✓ Ready` in its log, PID on the port). §10.28 rule
+1 again: check that the thing ran before diagnosing what it returned.

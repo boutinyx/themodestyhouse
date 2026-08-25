@@ -170,7 +170,14 @@ export default function DesignerDiscovery({
           sat flush against the map — which is the gap Tina asked for in the
           first place. Tailwind's preflight already zeroes a ul, so the reset is
           only kept for the bottom edge. */}
-      <ul className="mt-16 md:mt-24" style={{ listStyle: 'none', marginBottom: 0, padding: 0 }}>
+      {/* 64/96px -> 48/64px, 2026-08-25 — Tina: "remove a lil exsess stacing
+          between the map and places". Still a deliberate gap, not zero: the
+          space itself was an earlier ask ("put some space between the cards and
+          the map"), so this trims it rather than closing it.
+          Checked before reaching for the margin: world-dots-v2.svg's artwork
+          fills its own viewBox to within 11 of 386 units (2.8%), so almost none
+          of the gap was baked into the picture — it really was all margin. */}
+      <ul className="mt-12 md:mt-16" style={{ listStyle: 'none', marginBottom: 0, padding: 0 }}>
         {regions.map((r) => {
           const isOpen = open === r.name;
           return (
