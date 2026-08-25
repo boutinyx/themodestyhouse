@@ -13,8 +13,22 @@
  * script fails the suite instead of 404-ing in a browser.
  */
 
-/** Widths written by scripts/optimise-images.mjs for the `editorial` job. */
-export const EDITORIAL_WIDTHS = [400, 900] as const;
+/** Widths written by scripts/optimise-images.mjs for the `editorial` job.
+ *
+ *  1440 added 2026-08-25. Tina, on the abaya post's cover: "the best abaya
+ *  brands picture is so blurry but i rememeber it being like pretty strong".
+ *
+ *  It was not the photograph — the source was 3344x1880. It was THIS CEILING.
+ *  Measured on the live page: the cover renders 656 CSS px wide, so a 2x
+ *  desktop display needs 1312 physical pixels and the largest variant that
+ *  existed was 900. The browser was upscaling 1.46x, which is exactly what
+ *  "blurry" looks like. A phone at 3x wanted 978 and got the same 900.
+ *
+ *  Safe for every original: the smallest editorial photograph is 1696px wide,
+ *  and optimise-images never upscales, so a width above a source would silently
+ *  write no file and leave a 404 inside the srcset. lib/staticImage.test.ts
+ *  asserts every original has every width, which is what would catch that. */
+export const EDITORIAL_WIDTHS = [400, 900, 1440] as const;
 
 /**
  * Widths for the `about` job. Larger than editorial because band 2 of /about is

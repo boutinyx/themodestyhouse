@@ -44,13 +44,22 @@ const JOBS = [
     opts: { quality: 90, alphaQuality: 95, effort: 6 },
   },
   {
-    // Editorial photography. 1696px originals, and one of them renders into an
-    // 84px thumbnail on the homepage. Two widths: the card and the thumb.
+    // Editorial photography. 1696px originals or larger, and one of them
+    // renders into an 84px thumbnail on the homepage.
+    //
+    // THREE widths since 2026-08-25, was [400, 900]. The 900 ceiling is what
+    // made the abaya post's cover look soft: it renders 656 CSS px wide, so a
+    // 2x display needs 1312 physical pixels and was being handed 900 to
+    // upscale. 1440 covers a 2x desktop with headroom and is under the 1696px
+    // floor of every original here, so nothing upscales.
+    //
+    // Quality 80 -> 88 the same day, for the same report. 80 is right for a
+    // 400px thumbnail and mean for a full-width cover photograph.
     dir: 'editorial',
     match: /\.jpe?g$/i,
-    widths: [400, 900],
+    widths: [400, 900, 1440],
     suffixWidth: true,
-    opts: { quality: 80, effort: 5 },
+    opts: { quality: 88, effort: 5 },
   },
   {
     // Full-bleed hero. Needs a real responsive set: it is the LCP element on a

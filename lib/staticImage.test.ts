@@ -27,8 +27,18 @@ describe('editorialVariant', () => {
 
 describe('editorialSrcSet', () => {
   it('emits one candidate per width', () => {
+    // DERIVED from EDITORIAL_WIDTHS, not hard-coded. This assertion listed
+    // 400 and 900 literally and broke the moment 1440 was added on 2026-08-25 —
+    // a green-to-red on a widths change that was deliberate and correct. The
+    // property worth asserting is "one candidate per width, in order, each
+    // pointing at its own variant", which is true whatever the list contains.
     expect(editorialSrcSet('/editorial/lookbook.jpg')).toBe(
-      '/editorial/lookbook-400.webp 400w, /editorial/lookbook-900.webp 900w'
+      EDITORIAL_WIDTHS.map((w) => `/editorial/lookbook-${w}.webp ${w}w`).join(', ')
+    );
+    // ...and that it really is per-width, so the line above cannot pass by
+    // comparing two identically-wrong strings.
+    expect(editorialSrcSet('/editorial/lookbook.jpg')!.split(', ')).toHaveLength(
+      EDITORIAL_WIDTHS.length
     );
   });
 
