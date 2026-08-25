@@ -4,6 +4,7 @@ import type { Brand } from '@/lib/types';
 import {
   unmappedCities, regionOf, regionsWithCounts, brandsInRegion,
   pins, approxBrandCount, lonToX, latToY, MAP,
+  regionSlug, regionFromSlug,
 } from './brandRegions';
 
 const fake = (city: string, slug = city): Brand => ({
@@ -82,5 +83,27 @@ describe('brandRegions', () => {
     expect(nyc).toBeLessThan(MAP.W / 2);      // western hemisphere
     expect(dxb).toBeGreaterThan(MAP.W / 2);   // eastern
     expect(latToY(51.5)).toBeLessThan(latToY(-33.9));  // London above Sydney
+  });
+});
+
+describe('region slugs', () => {
+  it('round-trips every region that has houses', () => {
+    for (const r of regionsWithCounts()) {
+      expect(regionFromSlug(regionSlug(r.name))).toBe(r.name);
+    }
+  });
+
+  it('is the exact slug the homepage band links to', () => {
+    // A URL contract — the Designer Discovery band builds /designers?region=<this>.
+    expect(regionSlug('Europe')).toBe('europe');
+    expect(regionSlug('North America')).toBe('north-america');
+    expect(regionSlug('Middle East')).toBe('middle-east');
+  });
+
+  it('accepts any casing but rejects anything unknown', () => {
+    expect(regionFromSlug('EUROPE')).toBe('Europe');
+    expect(regionFromSlug('banana')).toBeNull();
+    expect(regionFromSlug(undefined)).toBeNull();
+    expect(regionFromSlug('')).toBeNull();
   });
 });

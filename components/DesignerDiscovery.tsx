@@ -16,7 +16,15 @@ export type DiscoveryBrand = {
   /** true = the brand's own storefront, so it needs target/rel/sponsored. */
   external: boolean;
 };
-export type DiscoveryRegion = { name: string; count: number; brands: DiscoveryBrand[] };
+export type DiscoveryRegion = {
+  name: string;
+  count: number;
+  /** `/designers?region=<slug>`, built on the server from regionSlug() so the
+   *  slug logic lives in one place and this component never string-munges a
+   *  region name into a URL. */
+  href: string;
+  brands: DiscoveryBrand[];
+};
 export type DiscoveryPin = { x: number; y: number; n: number; region: string; city: string };
 
 /** How many houses a region shows before "see all". Tina's number. */
@@ -40,11 +48,7 @@ export default function DesignerDiscovery({
   /** Which region's houses are showing. Null = none; only one at a time, so the
    *  band never grows by more than one panel and the page below it moves once. */
   const [open, setOpen] = useState<string | null>(null);
-  /** Europe is 56 houses; dropping all of them into the page at once pushed
-   *  everything below it off the screen (Tina: "lets just show 5 when you open
-   *  it up and a button with see more. because else its too long"). Resets to
-   *  false whenever a different region opens, so "see all" never carries over. */
-  const [showAll, setShowAll] = useState(false);
+
   /** Hover pre-lights the map without committing to opening a panel. Separate
    *  from `open` on purpose: a touch device never sets this, and the map still
    *  highlights correctly from the tap that opens the row. */
@@ -71,14 +75,19 @@ export default function DesignerDiscovery({
         <div className="flex flex-col justify-center items-center text-center lg:items-start lg:text-left">
           <h2
             className="serif"
-            style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}
+            /* Bigger than the homepage's other section headings on purpose
+               (Tina: "can this text be bigger"). Those sit at
+               clamp(24px,3vw,34px); this band's heading is now the larger
+               display tier, because the copy column is the only text in a row
+               otherwise filled by a map. */
+            style={{ fontSize: 'clamp(30px,3.6vw,44px)', lineHeight: 1.05, color: 'var(--ink)' }}
           >
             Independent labels.<br />
             <span className="italic" style={{ color: 'var(--plum)' }}>Global perspectives.</span>
           </h2>
           <p
-            className="mt-4 text-sm mx-auto lg:mx-0"
-            style={{ color: 'var(--muted)', lineHeight: 1.65, maxWidth: '34ch' }}
+            className="mt-5 mx-auto lg:mx-0"
+            style={{ fontSize: 'clamp(15px,1.15vw,17px)', color: 'var(--muted)', lineHeight: 1.6, maxWidth: '32ch' }}
           >
             {totalBrands} houses across {totalPlaces} places. Open a region to see who is in it.
           </p>
@@ -145,7 +154,7 @@ export default function DesignerDiscovery({
             <li key={r.name} style={{ borderTop: '1px solid var(--hairline)' }}>
               <button
                 type="button"
-                onClick={() => { setOpen(isOpen ? null : r.name); setShowAll(false); }}
+                onClick={() => setOpen(isOpen ? null : r.name)}
                 onMouseEnter={() => setHover(r.name)}
                 onMouseLeave={() => setHover(null)}
                 onFocus={() => setHover(r.name)}
@@ -202,7 +211,7 @@ export default function DesignerDiscovery({
                       gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))',
                     }}
                   >
-                    {(showAll ? openRegion.brands : openRegion.brands.slice(0, PREVIEW)).map((b) => (
+                    {openRegion.brands.slice(0, PREVIEW).map((b) => (
                       <li key={b.href + b.name}>
                         {b.external ? (
                           <a
@@ -230,29 +239,24 @@ export default function DesignerDiscovery({
                     ))}
                   </ul>
 
-                  {/* Only when there is genuinely more. The label carries the
-                      real remaining count rather than a bare "See more", so the
-                      row does not hide an unknown quantity. */}
+                  {/* A LINK to the designers index filtered to this region, not
+                      an in-place expander — Tina: "See all 56 in Europe what i
+                      meant by this was referring them to the designers page".
+                      It was a toggle for one commit; that made the band grow to
+                      56 rows in place and never sent anyone anywhere.
+                      The label carries the real count, and /designers?region=
+                      genuinely filters, so the promise the label makes is one
+                      the destination keeps. The slug comes from regionSlug() on
+                      the server — see the note on DiscoveryRegion.href. */}
                   {openRegion.brands.length > PREVIEW && (
-                    <button
-                      type="button"
-                      onClick={() => setShowAll((v) => !v)}
+                    <Link
+                      href={openRegion.href}
                       className="nav-link inline-flex items-center gap-1.5 mt-5"
                       style={{ minHeight: 32 }}
                     >
-                      {showAll
-                        ? 'Show fewer'
-                        : `See all ${openRegion.count} in ${openRegion.name}`}
-                      <CaretDown
-                        size={12}
-                        weight="bold"
-                        aria-hidden="true"
-                        style={{
-                          transform: showAll ? 'rotate(180deg)' : 'none',
-                          transition: 'transform 180ms ease',
-                        }}
-                      />
-                    </button>
+                      See all {openRegion.count} in {openRegion.name}
+                      <ArrowRight size={12} weight="bold" aria-hidden="true" />
+                    </Link>
                   )}
                 </div>
               )}

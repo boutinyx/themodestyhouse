@@ -9,13 +9,14 @@ import { designerPageCount, clampDesignerPage } from '@/lib/designerPaging';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, brandListSchema, jsonLdGraph } from '@/lib/schema';
 import { withUtm } from '@/lib/outbound';
+import { regionFromSlug, regionOf, regionSlug } from '@/lib/brandRegions';
 
 // Each page of the index self-canonicalises to its own URL (page 1 -> the
 // bare path), rather than all pages pointing at page 1 — Google's current
 // guidance treats rel=prev/next as retired signal and expects paginated
 // series to be independently indexable. Page >1 also gets an explicit
 // canonical for the first time; previously it inherited none at all.
-export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string; region?: string }> }): Promise<Metadata> {
   // Clamped against the REAL page count, not just the lower bound. Previously
   // ?page=99 (or 1e9) returned 200 with page 4's content and a self-canonical
   // echoing 99, so anything linking an out-of-range page could mint an endless
@@ -23,7 +24,18 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   // called here — it routes through getProducts() and re-parses 10.9 MB
   // uncached (CLAUDE.md §8) — and it maps 1:1 over BRANDS, so BRANDS.length is
   // the same count the body derives.
-  const page = clampDesignerPage((await searchParams).page, designerPageCount(BRANDS.length, PER_PAGE));
+  const sp = await searchParams;
+  const region = regionFromSlug(sp.region);
+  // A ?region= view CANONICALISES TO THE BARE INDEX. It is a filter over a list
+  // the unfiltered page already contains in full, so left self-canonicalising it
+  // would mint five near-duplicates of /designers — the same duplicate-minting
+  // this function was already hardened against for ?page=. Making these
+  // independently indexable ("modest fashion brands in Europe") is arguably
+  // worth doing, but that is an SEO/editorial call for Tina, not a side effect
+  // of adding a filter. → docs/log/2026-08-25-designers-region-filter.md
+  if (region) return pageMetadata('/designers', '/designers');
+  const total = BRANDS.length;
+  const page = clampDesignerPage(sp.page, designerPageCount(total, PER_PAGE));
   return pageMetadata('/designers', page === 1 ? '/designers' : `/designers?page=${page}`);
 }
 
@@ -146,21 +158,36 @@ const grid = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-
 export default async function DesignersPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; region?: string }>;
 }) {
+  const sp = await searchParams;
+  // null for anything unrecognised, which then reads as "no filter" rather than
+  // "no results" — a hand-typed ?region=banana shows the whole index instead of
+  // an empty page.
+  const region = regionFromSlug(sp.region);
+
   const all = houses(1); // variant 1: a different photo per house than the homepage rail
 
   // The vetted houses lead, and there are exactly five, so they fill the first
   // row on their own. Everyone else follows in catalogue order. No house is
   // listed twice: the pick and the vetted set are now the same five.
   const vetted = all.filter((h) => h.badge).sort((a, b) => rank(a.slug) - rank(b.slug));
-  const index = [...vetted, ...all.filter((h) => !h.badge)];
+  const ordered = [...vetted, ...all.filter((h) => !h.badge)];
+  // Filtered AFTER the vetted-first ordering, so a region page keeps the same
+  // reading order as the index rather than reverting to catalogue order.
+  const index = region ? ordered.filter((h) => regionOf(h.city) === region) : ordered;
 
   const pages = designerPageCount(index.length, PER_PAGE);
-  const page = clampDesignerPage((await searchParams).page, pages);
+  const page = clampDesignerPage(sp.page, pages);
   const shown = index.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
-  const path = page === 1 ? '/designers' : `/designers?page=${page}`;
+  // Pagination has to carry the filter or page 2 of Europe silently becomes
+  // page 2 of everything.
+  const qs = (p: number) => {
+    const parts = [region ? `region=${regionSlug(region)}` : '', p > 1 ? `page=${p}` : ''].filter(Boolean);
+    return parts.length ? `/designers?${parts.join('&')}` : '/designers';
+  };
+  const path = qs(page);
 
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-24">
@@ -174,20 +201,33 @@ export default async function DesignersPage({
         data={jsonLdGraph(
           breadcrumbSchema([
             { name: 'Home', path: '/' },
-            { name: 'Designers', path },
+            { name: 'Designers', path: '/designers' },
+            ...(region ? [{ name: region, path }] : []),
           ]),
           brandListSchema({
-            name: 'Designers',
+            name: region ? `Designers in ${region}` : 'Designers',
             description: 'A curated index of modest fashion, brand by brand — vetted for craft and taste.',
             path,
             brands: shown.map((b) => ({ name: b.name, url: b.homepage, image: b.image })),
           }),
         )}
       />
-      <h1 className="section-heading text-3xl md:text-4xl mt-2">Designers</h1>
+      <h1 className="section-heading text-3xl md:text-4xl mt-2">
+        {region ? `Designers in ${region}` : 'Designers'}
+      </h1>
       <p className="mt-3 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
-        A curated index of modest fashion, brand by brand — vetted for craft and taste.
+        {region
+          ? `${index.length} ${index.length === 1 ? 'house' : 'houses'} based in ${region}, from the same index — vetted for craft and taste.`
+          : 'A curated index of modest fashion, brand by brand — vetted for craft and taste.'}
       </p>
+      {/* Without this a filtered view is a dead end: nothing else on the page
+          clears the region, and the visitor arrived from the homepage band
+          rather than from a control they can see. */}
+      {region && (
+        <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-5">
+          <CaretLeft size={12} weight="bold" /> All designers
+        </Link>
+      )}
 
       <div className={`${grid} mt-14`}>
         {shown.map((b, i) => (
@@ -196,7 +236,10 @@ export default async function DesignersPage({
             b={b}
             eager={i < PER_ROW}
             // Only the first row of page one is the vetted row.
-            seal={page === 1 && i < PER_ROW}
+            // Only the first row of page one of the UNFILTERED index is the
+            // vetted row; inside a region the first five are just the first
+            // five, and badging them would claim a seal they may not hold.
+            seal={!region && page === 1 && i < PER_ROW}
           />
         ))}
       </div>
@@ -207,7 +250,7 @@ export default async function DesignersPage({
         // reachable today because grids reveal more client-side (§8).
         <nav className="flex items-center justify-center gap-8 mt-16" aria-label="Index pages">
           {page > 1 ? (
-            <Link className="nav-link inline-flex items-center gap-1.5" href={page === 2 ? '/designers' : `/designers?page=${page - 1}`}>
+            <Link className="nav-link inline-flex items-center gap-1.5" href={qs(page - 1)}>
               <CaretLeft size={12} weight="bold" /> Previous
             </Link>
           ) : (
@@ -219,7 +262,7 @@ export default async function DesignersPage({
             {page} / {pages}
           </span>
           {page < pages ? (
-            <Link className="nav-link inline-flex items-center gap-1.5" href={`/designers?page=${page + 1}`}>
+            <Link className="nav-link inline-flex items-center gap-1.5" href={qs(page + 1)}>
               Next <CaretRight size={12} weight="bold" />
             </Link>
           ) : (

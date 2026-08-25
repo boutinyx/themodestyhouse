@@ -84,6 +84,33 @@ export function regionOf(city: string): RegionName | null {
   return PLACE[city]?.[2] ?? null;
 }
 
+/* ---------- region slugs, for /designers?region= ---------- */
+
+/** The band's "See all 56 in Europe" links here, so these strings are a URL
+ *  contract: renaming one breaks a link that is live on the homepage. Written
+ *  out rather than derived from the name with a slugify(), so the mapping is
+ *  greppable in both directions and a rename has to be deliberate. */
+const REGION_SLUG: Record<RegionName, string> = {
+  Europe: 'europe',
+  'North America': 'north-america',
+  'Middle East': 'middle-east',
+  Asia: 'asia',
+  Oceania: 'oceania',
+  Africa: 'africa',
+};
+
+export const regionSlug = (r: RegionName) => REGION_SLUG[r];
+
+/** null for anything that is not a known region. The caller treats null as "no
+ *  filter" rather than "empty result", so a hand-typed ?region=banana shows the
+ *  full index instead of minting an empty page that a crawler could index. */
+export function regionFromSlug(slug: string | undefined): RegionName | null {
+  if (!slug) return null;
+  const hit = (Object.entries(REGION_SLUG) as [RegionName, string][])
+    .find(([, s]) => s === slug.toLowerCase());
+  return hit ? hit[0] : null;
+}
+
 export type RegionSummary = { name: RegionName; count: number };
 
 /** Regions that actually have houses, most first. */

@@ -12,7 +12,7 @@ import { POPULAR_ITEM_IDS } from '@/lib/popularItems';
 import { HeroCallouts } from '@/components/HeroCallouts';
 import { getProducts } from '@/lib/products';
 import { BRANDS } from '@/data/brands';
-import { regionsWithCounts, brandsInRegion, pins as regionPins, MAP } from '@/lib/brandRegions';
+import { regionsWithCounts, brandsInRegion, pins as regionPins, regionSlug, MAP } from '@/lib/brandRegions';
 import { withUtm } from '@/lib/outbound';
 import { getPosts } from '@/lib/posts';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
@@ -92,6 +92,9 @@ export default function Home() {
   const discoveryRegions = regionsWithCounts().map((r) => ({
     name: r.name,
     count: r.count,
+    // Built here so the slug logic stays in lib/brandRegions.ts and the client
+    // component never turns a region NAME into a URL by string-munging.
+    href: `/designers?region=${regionSlug(r.name)}`,
     brands: brandsInRegion(r.name).map((b) => {
       const internal = b.description?.trim() ? `/designers/${b.slug}` : null;
       return {
