@@ -146,6 +146,37 @@ DOM order — it is `display: none` below `lg`, hence the zero rect. The heart i
 present in the screenshot. Nothing about it was measured by this run, and nothing about
 it changed.
 
+## Second follow-up, same day — the hamburger back on the row's gutter
+Tina, on the commit above: *"the burger is a bit to close to the left edge can you fix
+that look at the heart on the right"*. The `-ml-1.5` came off; `gap-4` stayed.
+
+The instruction names the heart as the reference, and the two are **different Phosphor
+glyphs**, so box symmetry is not ink symmetry and matching the boxes would have been the
+wrong measurement. Measured from the viewBoxes rather than guessed:
+
+- `Heart` draws x=24..232 of a 256 viewBox — ~1.9px of inset at 20px. Its SVG box ends
+  18px from the right edge, so its INK stops **19.88px** in.
+- `List` draws its bars x=40..216 of 256 — ~3.75px of inset at 24px. On the row's plain
+  `px-4` gutter its box starts at 16px, so its ink starts **19.75px** in.
+
+0.13px apart. That is why the answer is "remove the negative margin", not "nudge it a
+bit": the untouched gutter already matches the heart optically, and any hand-tuned
+offset would have moved it AWAY from her reference.
+
+Verified on staging, **both engines, identical**:
+
+```
+chromium {"burgerBoxX":16,"heartBoxInsetRight":18,"burgerInkLeft":19.75,
+          "heartInkRight":19.88,"magnifierX":58,"gapBetweenGlyphs":18}
+chromium open: {"closeX":16,"hamburgerX":16,"formTop":128,"formH":64,"focused":true}
+webkit   {"burgerBoxX":16,"heartBoxInsetRight":18,"burgerInkLeft":19.75,
+          "heartInkRight":19.88,"magnifierX":58,"gapBetweenGlyphs":18}
+webkit   open: {"closeX":16,"hamburgerX":16,"formTop":128,"formH":64,"focused":true}
+```
+
+The close cross followed the hamburger back (`marginLeft` -16 -> -10) and lands on
+x=16, the same left edge.
+
 ## Notes / follow-ups
 - `scripts/interaction-audit.mjs` has no check for this yet. It should get one —
   "tap the phone magnifier, assert the bar exists below the header and the input is
