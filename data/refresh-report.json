@@ -1,12 +1,12 @@
 {
-  "date": "2026-08-24",
+  "date": "2026-08-25",
   "totals": {
-    "added": 54,
-    "updated": 29317,
-    "delisted": 56,
+    "added": 82,
+    "updated": 29249,
+    "delisted": 34,
     "filtered": 65,
-    "returned": 2,
-    "incomplete": 4
+    "returned": 5,
+    "incomplete": 5
   },
   "brands": [
     {
@@ -40,7 +40,7 @@
       "fetched": 1057,
       "added": [],
       "updated": 1057,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -112,8 +112,45 @@
     {
       "brandSlug": "aab",
       "complete": true,
-      "fetched": 742,
-      "added": [],
+      "fetched": 778,
+      "added": [
+        "Moss Maxi",
+        "Straight Leg Trousers Cocoa",
+        "Butter Cream Maxi",
+        "Palermo Maxi",
+        "Tonal Lila Kaftan",
+        "Pink Vintage Blooms Maxi",
+        "Nymphaea Kimono",
+        "Fitted Floral Maxi",
+        "Moss Kimono",
+        "Basil Maxi",
+        "Ring Print Maxi",
+        "Belted Chambray Trench",
+        "Mini Geo Print Maxi",
+        "Hoja Maxi Dress",
+        "Ivy Maxi",
+        "Olive Co-Ord Set",
+        "Fall Maxi",
+        "Rabat Kaftan",
+        "Textured Skirt & Top Black",
+        "Shirt & Trouser Co-Ord Set Natural",
+        "Vintage Blooms Maxi",
+        "Self Print Kaftan Cut",
+        "Full Slip Rose Mauve",
+        "Classic Black Trench",
+        "Loose Fit Abaya Natural",
+        "Bell Sleeve Abaya Rust",
+        "Grey Drape Maxi",
+        "Talia Kaftan Teal",
+        "Cape Kaftan Teal",
+        "Fall Toile Maxi",
+        "Plain Abaya Blue",
+        "Safari Abaya",
+        "Houndstooth Maxi",
+        "Blue Floral Maxi",
+        "Alma Maxi Coffee",
+        "Loose Fit Abaya Blue"
+      ],
       "updated": 742,
       "delisted": 0,
       "filtered": [
@@ -152,35 +189,22 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 262,
+      "fetched": 264,
       "added": [
-        "Gray Floral Tiered Maxi Skirt",
-        "Cheetah Tiered Maxi Skirt",
-        "Brown Daisy Tiered Maxi Skirt",
-        "Crewneck Top",
-        "Black Asymmetrical Shirt",
-        "Sweater Open Abaya",
-        "Knit Sweater",
-        "3 Piece Vest & Skirt Set",
-        "Black Dress",
-        "Beige Dress",
-        "Olive Dress"
+        "Pink Striped Button Down Tunic",
+        "Beige Striped Button Down Maxi Shirt Dress"
       ],
-      "updated": 251,
-      "delisted": 2,
+      "updated": 262,
+      "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "hawaa",
       "complete": true,
       "fetched": 104,
-      "added": [
-        "Fudge Modal Hijab",
-        "Linen Open Abaya",
-        "Ruby Jacquard Luxé Wrap Abaya"
-      ],
-      "updated": 101,
+      "added": [],
+      "updated": 104,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -198,12 +222,16 @@
     {
       "brandSlug": "mariams",
       "complete": true,
-      "fetched": 1195,
+      "fetched": 1200,
       "added": [
-        "Sparkling Constellation Ear Crawler（MAC478）"
+        "Galaxy Rhinestone V-Neck Flared Sleeve Maxi Dress(MS518)",
+        "Wrap V-Neck Balloon Sleeve Tie-Waist Top & Wide-Leg Trousers Two-Piece Co-ord Set(MS517)",
+        "Radiant Burst Crystal Stud Earrings（MAC479）",
+        "Watercolour Floral Print Flared Sleeve Maxi Dress(MS516)",
+        "3D Rose Waist Fitted Maxi Dress(MS515)"
       ],
-      "updated": 1194,
-      "delisted": 2,
+      "updated": 1195,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Islamic Hollow Pattern Acrylic Tabletop Decor (MAC404)",
@@ -324,7 +352,7 @@
       "fetched": 132,
       "added": [],
       "updated": 132,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -360,10 +388,10 @@
     },
     {
       "brandSlug": "diversity-modest",
-      "complete": true,
-      "fetched": 93,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 93,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -371,8 +399,10 @@
     {
       "brandSlug": "esme-ny",
       "complete": true,
-      "fetched": 63,
-      "added": [],
+      "fetched": 64,
+      "added": [
+        "ISLA Mother-of-Pearl Tied Outerwear | last batch"
+      ],
       "updated": 63,
       "delisted": 0,
       "filtered": [],
@@ -431,8 +461,12 @@
     {
       "brandSlug": "summer-evenings",
       "complete": true,
-      "fetched": 170,
-      "added": [],
+      "fetched": 173,
+      "added": [
+        "Plum Bow Tie Kaftan- Final Sale",
+        "Black Kaftan Tunic",
+        "Orchid Draped Rose Tunic- Final Sale"
+      ],
       "updated": 170,
       "delisted": 0,
       "filtered": [],
@@ -441,12 +475,12 @@
     {
       "brandSlug": "les-atelier",
       "complete": true,
-      "fetched": 120,
+      "fetched": 121,
       "added": [],
-      "updated": 120,
+      "updated": 121,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "maison-hijab",
@@ -471,14 +505,12 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 91,
+      "fetched": 90,
       "added": [
-        "Knit vest",
-        "Lange Parka met Capuchon",
-        "Gebreide vest"
+        "Cropped trenchcoat"
       ],
-      "updated": 88,
-      "delisted": 0,
+      "updated": 89,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -486,14 +518,8 @@
       "brandSlug": "avyaana",
       "complete": true,
       "fetched": 133,
-      "added": [
-        "Black Print Tulip",
-        "Bambi In Copper",
-        "Carmine",
-        "Hessa",
-        "Wild Ember Print"
-      ],
-      "updated": 128,
+      "added": [],
+      "updated": 133,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -502,24 +528,8 @@
       "brandSlug": "fares",
       "complete": true,
       "fetched": 270,
-      "added": [
-        "Scalloped Detail Linen Blend Top - Shell",
-        "Scalloped Detail Linen Blend Top - Fudge",
-        "Waist Wrap Chiffon Dress - Sunbloom",
-        "Relaxed Fit Pants - Navy",
-        "Knot Detail Cardigan - Navy",
-        "Relaxed Fit Pants - Evergreen",
-        "Knot Detail Cardigan - Evergreen",
-        "Relaxed Fit Pants - Bare",
-        "Knot Detail Cardigan - Bare",
-        "Printed Wrap Belt Button Up - Mocha",
-        "Braid Detail Slanted Tunic - Honeydew",
-        "Belt Detail Scalloped Dress - Buttercup",
-        "Side Draped Tunic - Vanilla Cream",
-        "Skirt Overlay Trousers - Oats",
-        "Flower Accent Gathered Dress - Ballet Pink"
-      ],
-      "updated": 255,
+      "added": [],
+      "updated": 270,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -570,7 +580,7 @@
       "fetched": 371,
       "added": [],
       "updated": 371,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Atelier Trolley",
@@ -636,10 +646,10 @@
     {
       "brandSlug": "losyana",
       "complete": true,
-      "fetched": 780,
+      "fetched": 777,
       "added": [],
-      "updated": 780,
-      "delisted": 0,
+      "updated": 777,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -726,7 +736,7 @@
       "fetched": 98,
       "added": [],
       "updated": 98,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -866,8 +876,20 @@
     {
       "brandSlug": "almotahajiba",
       "complete": true,
-      "fetched": 212,
-      "added": [],
+      "fetched": 223,
+      "added": [
+        "Black Resolve",
+        "Formed Strength",
+        "Symmetry Trace",
+        "Vertical Line",
+        "Bloom Trace",
+        "Inked Narrative",
+        "Woven Resolve",
+        "Fluid Grace",
+        "Poised Bloom",
+        "Quiet Reserve",
+        "Framed Ease"
+      ],
       "updated": 212,
       "delisted": 0,
       "filtered": [],
@@ -927,12 +949,13 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 297,
+      "fetched": 298,
       "added": [
-        "Kontrast Dantelli Beyaz Bluz"
+        "Yaka Detaylı Beyaz Tunik",
+        "Piliseli Petrol Renk Elbise"
       ],
       "updated": 296,
-      "delisted": 1,
+      "delisted": 5,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -951,7 +974,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 1
+      "returned": 4
     },
     {
       "brandSlug": "abaya-lounge",
@@ -976,10 +999,10 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 366,
+      "fetched": 364,
       "added": [],
-      "updated": 366,
-      "delisted": 0,
+      "updated": 364,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -1059,7 +1082,7 @@
       "fetched": 383,
       "added": [],
       "updated": 383,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1126,11 +1149,8 @@
       "brandSlug": "meriam-abdulaziz",
       "complete": true,
       "fetched": 30,
-      "added": [
-        "Draped coat abaya",
-        "Collared cape abaya"
-      ],
-      "updated": 28,
+      "added": [],
+      "updated": 30,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1138,35 +1158,30 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 230,
-      "added": [
-        "9457 Kaban Degaje",
-        "Eliz Ferace",
-        "Buca Ferace",
-        "Tayyibe Ferace"
-      ],
-      "updated": 226,
-      "delisted": 31,
+      "fetched": 228,
+      "added": [],
+      "updated": 228,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "store-wf",
       "complete": true,
-      "fetched": 259,
+      "fetched": 256,
       "added": [],
-      "updated": 259,
-      "delisted": 0,
+      "updated": 256,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 961,
+      "fetched": 956,
       "added": [],
-      "updated": 961,
-      "delisted": 0,
+      "updated": 956,
+      "delisted": 5,
       "filtered": [],
       "returned": 0
     },
@@ -1243,16 +1258,8 @@
       "brandSlug": "rutba-abaya",
       "complete": true,
       "fetched": 273,
-      "added": [
-        "R 352 Black Premium Embroidery Abaya",
-        "R 351 Black Premium Dantel Abaya",
-        "R 350 Black Embroidery Abaya",
-        "R 349 Black Embroidered Lace Abaya",
-        "R 348 Black Embroidery Abaya",
-        "R 347 Black Dantel Abaya",
-        "R 346 Black Aari Embroidery Organza Abaya"
-      ],
-      "updated": 266,
+      "added": [],
+      "updated": 273,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1260,10 +1267,12 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1010,
-      "added": [],
-      "updated": 1010,
-      "delisted": 9,
+      "fetched": 1003,
+      "added": [
+        "Kürk Yaka Deri Siyah Trençkot 13822"
+      ],
+      "updated": 1002,
+      "delisted": 8,
       "filtered": [
         {
           "title": "Soft Çiçek Desenli Toprak Şal 0058",
@@ -1287,8 +1296,24 @@
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 345,
-      "added": [],
+      "fetched": 360,
+      "added": [
+        "Hana Scarf",
+        "Yuki Scarf",
+        "Hikari Scarf",
+        "Mireko Dress",
+        "Furijia Jacket",
+        "Natsuka Jacket",
+        "Yomme Dress",
+        "Sakura Dress",
+        "Sasaki Dress",
+        "Mizu Tunic",
+        "Seina Tunic",
+        "Yumi Knit Top",
+        "Nami Shirt",
+        "Hinata Shirt",
+        "Zaneta Shirt"
+      ],
       "updated": 345,
       "delisted": 0,
       "filtered": [],
@@ -1327,10 +1352,15 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 717,
-      "added": [],
+      "fetched": 721,
+      "added": [
+        "Ziva Pants",
+        "Aero Pants",
+        "Rally Pants",
+        "Rush Pants"
+      ],
       "updated": 717,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1338,11 +1368,8 @@
       "brandSlug": "nour-al-houda",
       "complete": true,
       "fetched": 813,
-      "added": [
-        "April Asymmetric Top - White",
-        "Dinara Wrap Dress - Mint Cream"
-      ],
-      "updated": 811,
+      "added": [],
+      "updated": 813,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1360,8 +1387,10 @@
     {
       "brandSlug": "golden-dune",
       "complete": true,
-      "fetched": 163,
-      "added": [],
+      "fetched": 164,
+      "added": [
+        "Essential Zweiteiler"
+      ],
       "updated": 163,
       "delisted": 0,
       "filtered": [],
@@ -1393,7 +1422,7 @@
       "fetched": 130,
       "added": [],
       "updated": 130,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1410,10 +1439,10 @@
     {
       "brandSlug": "glamberry",
       "complete": true,
-      "fetched": 143,
+      "fetched": 140,
       "added": [],
-      "updated": 143,
-      "delisted": 1,
+      "updated": 140,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -1450,10 +1479,10 @@
     {
       "brandSlug": "parladusa",
       "complete": true,
-      "fetched": 139,
+      "fetched": 138,
       "added": [],
-      "updated": 139,
-      "delisted": 0,
+      "updated": 138,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     }
