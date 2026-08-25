@@ -469,6 +469,11 @@
 .edit-feature-title {
   font-size: 30px;
 }
+/* The two smaller stories beside the feature card. Same reason the size is here
+   and not inline: it has to change at the phone breakpoint. */
+.edit-more-title {
+  font-size: 18px;
+}
 @media (max-width: 767px) {
   .edit-feature-card {
     min-height: 0;
@@ -503,6 +508,21 @@
      Two lines is a property that holds for ANY title, so the card can never be
      overrun by an editor writing a long one. The full headline is on the post
      page one tap away, so nothing is lost. */
+  /* Tina, 2026-08-26: "make the other ones also smaller the back to class and
+     still boiling". At 18px both titles wrapped to THREE lines inside a 110px
+     card on a 390px phone; the same titles take two lines on desktop. */
+  .edit-more-title {
+    font-size: 15px;
+    /* Clamped for the same reason as the feature title above: size alone is a
+       guess about one headline. At 15px "Back to Class, No Fuss" fell to two
+       lines but "Still Boiling, Feeling Fall" stayed at three, so the two cards
+       sat unevenly — and dropping to 14px to fix that would just be tuning to
+       the longer of today's two titles. Two lines holds for any of them. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
   .edit-feature-title {
     /* 30px -> 15px on a phone. Tina, 2026-08-26: "can we make the title
        smaller".

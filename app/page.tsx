@@ -967,7 +967,12 @@ export default function Home() {
                     </div>
                     <div>
                       <div className="eyebrow">{s.category}</div>
-                      <div className="serif mt-1" style={{ fontSize: 18, color: 'var(--ink)', lineHeight: 1.2 }}>{s.title}</div>
+                      {/* Size in .edit-more-title (globals.css), not inline —
+                          an inline style beats a class, which is exactly how the
+                          feature card above ended up ignoring its own phone
+                          font-size for a day. Colour and line-height stay
+                          inline per §6. */}
+                      <div className="edit-more-title serif mt-1" style={{ color: 'var(--ink)', lineHeight: 1.2 }}>{s.title}</div>
                     </div>
                   </Link>
                 ))}

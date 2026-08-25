@@ -66,3 +66,40 @@ Desktop is untouched: 30px, not truncated, caption 144px in the 460px card.
 `npx tsc --noEmit` → 0 · `npm run lint` → 0 · build clean · measured in WebKit at
 390 and 1440, with `getComputedStyle` read directly rather than inferred from
 layout — which is the specific habit that caught the bug above.
+
+---
+
+## The two smaller story cards, same day
+
+Tina: *"make the other ones also smaller the back to class and still boiling"* —
+the `moreStories` cards beside the feature one.
+
+Measured at 390px before changing anything: both titles were **18px wrapping to
+three lines** (65px) inside a 110px card. The same titles take two lines on
+desktop, so the phone was the outlier.
+
+`fontSize: 18` was **also inline**, exactly like the feature title — so the same
+move: out of the TSX, into `.edit-more-title`, 18px base and 15px on phone.
+Colour and line-height stay inline per §6.
+
+### 15px alone was not enough, and the reason is the useful part
+
+```
+15px, no clamp:  "Back to Class, No Fuss…"        2 lines (36px)
+                 "Still Boiling, Feeling Fall…"   3 lines (54px)
+```
+
+The two cards sat unevenly because the titles are different lengths. Dropping to
+14px would have fixed today's pair and been the same mistake as tuning the
+feature card's font to one headline — so they are **clamped to two lines**, like
+the feature title above.
+
+```
+after:   both 36px, even.  "Still Boiling" truncates (it is the longer one),
+         "Back to Class" does not.
+desktop: unchanged — 18px, 43px, neither truncated.
+```
+
+`npm run audit:mobile`: `overflowing 0/9 | stacked text 0 | broken aspect 0` in
+both engines. The single `a11y 1` is the seal band's brass pill, unchanged and
+not from this work — see the 2026-08-25 entry.
