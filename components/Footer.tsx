@@ -14,7 +14,7 @@ function Col({
    *  grid <ul> cannot use `space-y-*` (that targets adjacent siblings and is
    *  meaningless once the children are grid items), so an override supplies
    *  its own `gap-y-*`. */
-  listClassName = 'space-y-2',
+  listClassName = 'space-y-1 md:space-y-2',
 }: {
   head: string;
   children: React.ReactNode;
@@ -24,7 +24,7 @@ function Col({
   return (
     <div className={className}>
       <div className="eyebrow" style={{ color: 'var(--brass)' }}>{head}</div>
-      <ul className={`mt-4 text-sm ${listClassName}`}>{children}</ul>
+      <ul className={`mt-3 text-sm ${listClassName}`}>{children}</ul>
     </div>
   );
 }
@@ -51,7 +51,7 @@ function FLink({ href, children }: { href: string; children: React.ReactNode }) 
 export function Footer() {
   return (
     <footer style={{ background: 'var(--ink)', color: '#b9ad9c', marginTop: 80 }}>
-      <div className="max-w-[1220px] mx-auto px-8 py-16">
+      <div className="max-w-[1220px] mx-auto px-8 py-10 md:py-12">
         {/* 5 columns at md+: brand, Products, More, Editorial, The House — one
             explicit track per direct grid child. Was 4 tracks
             (1.4fr_1fr_1fr_1fr) for what used to be 4 children; the "More"
@@ -60,7 +60,7 @@ export function Footer() {
             "The House" silently wrapped to row 2 col 1 — a huge gap under
             Products (11 items, the tallest column) instead of sitting beside
             Editorial. Reported by Tina as "the footer is still fucked". */}
-        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-x-6 gap-y-8 md:gap-8">
           <div className="col-span-2 md:col-span-1">
             <div className="wordmark text-lg" style={{ color: 'var(--parchment)' }}>The Modesty House</div>
             <p className="mt-3 text-sm max-w-xs" style={{ color: 'var(--muted-on-dark)' }}>
@@ -115,7 +115,7 @@ export function Footer() {
                either. Shrinking the whole column to max-content and centring
                THAT moves heading and list together, so the heading sits exactly
                on its first link the way EDITORIAL and THE HOUSE do. */
-            className="md:col-span-2 md:w-max md:mx-auto"
+            className="col-span-2 md:col-span-2 md:w-max md:mx-auto"
             /* grid-flow-col + a fixed row count fills DOWN the first sub-column
                and then down the second (7 then 6), which is how a reader scans
                a list. Plain `grid-cols-2` would flow across — 1,2 / 3,4 — and
@@ -151,7 +151,7 @@ export function Footer() {
                MOBILE STAYS ONE COLUMN, left-aligned: at 390px each half would be
                ~150px and "Cardigans & Sweaters" wraps to three lines. (gap-x is
                inert there — one column has no column gap.) */
-            listClassName="grid grid-cols-1 md:grid-cols-none md:grid-flow-col md:grid-rows-7 md:auto-cols-max md:justify-center md:text-left gap-x-20 gap-y-2"
+            listClassName="grid grid-cols-2 md:grid-cols-none md:grid-flow-col md:grid-rows-7 md:auto-cols-max md:justify-center md:text-left gap-x-4 gap-y-1 md:gap-x-20 md:gap-y-2"
           >
             {CATEGORY_LANES.map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
@@ -186,7 +186,11 @@ export function Footer() {
               Tina asked for that to be removed 2026-08-20 — full article
               titles reading as a list in the footer was not wanted. Back to
               just the section link. */}
-          <Col head="Editorial">
+          <Col
+            head="Editorial"
+            className="col-span-2 md:col-span-1"
+            listClassName="grid grid-cols-2 gap-y-1 md:block md:space-y-2"
+          >
             <FLink href="/editorial">The Edit</FLink>
             {/* Every live /edits/[slug], from lib/edits.ts — so a new edit is
                 linked the moment it exists. A page can be in the sitemap and
@@ -207,7 +211,7 @@ export function Footer() {
               pill reads as a pill again. */}
           <div className="col-span-2 md:col-span-1">
             <div className="eyebrow" style={{ color: 'var(--brass)' }}>The House</div>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-3 text-sm grid grid-cols-2 gap-y-1 md:block md:space-y-2">
               <FLink href="/designers">Designers</FLink>
               <FLink href="/about">About</FLink>
               <FLink href="/faq">FAQ</FLink>
@@ -221,7 +225,7 @@ export function Footer() {
                 the copy says "we'll add you", not "an issue is on its way".
                 NOTE: the old version rendered <FLink> — an <li> — inside a <p>,
                 which is invalid HTML and produced a stray bullet in the footer. */}
-            <div className="mt-7">
+            <div className="mt-6 md:mt-7">
               <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
               <NewsletterSignup />
             </div>
@@ -237,7 +241,7 @@ export function Footer() {
             1024px, 720 vs 1156 at 1440. Two stacked rules in the same footer
             ending at different points made the upper one read as a stub. */}
         <div
-          className="mt-14 pt-6"
+          className="mt-10 pt-5 md:mt-12 md:pt-6"
           style={{ borderTop: '1px solid rgba(243,238,228,0.12)', color: 'var(--muted-on-dark)', fontSize: 12, lineHeight: 1.6 }}
         >
         <div style={{ maxWidth: 720 }}>
@@ -262,7 +266,7 @@ export function Footer() {
         </div>
         </div>
 
-        <div className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>
+        <div className="mt-6 pt-5 md:mt-8 md:pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderTop: '1px solid rgba(243,238,228,0.12)' }}>
           <div className="eyebrow" style={{ color: 'var(--muted-on-dark)' }}>© 2026 The Modesty House · themodestyhouse.com</div>
           {/* 10px eyebrow type gave these a 15px-tall hit area. inline-flex with
               a min-height grows the target without changing the type or the
