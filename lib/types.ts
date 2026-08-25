@@ -16,8 +16,11 @@ export type LayeringSubtype =
   | 'shirt-extender'
   | 'cropped-body-shirt'
   | 'under-dress'
-  | 'base-layer-top'
-  | 'prayer-set';
+  | 'base-layer-top';
+  // 'prayer-set' was removed 2026-08-26 when prayer wear moved to Hijabs &
+  // Scarves; it is a HijabSubtype now. data/lane-overrides.json still carries
+  // 22 rows with that value — see isPrayer() in lib/specialty.ts for why they
+  // are read as a raw string rather than migrated yet.
 
 /** The four sub-categories of the Outerwear lane (lib/lanes.ts) — see
  *  lib/specialty.ts for the classification logic. Declared here for the
@@ -31,7 +34,7 @@ export type OuterwearSubtype = 'blazer' | 'vest' | 'cardigan' | 'sweater' | 'coa
  *  treatment Outerwear and Layering Basics already have. See
  *  lib/specialty.ts's hijabSubtype() for the classification logic. Declared
  *  here for the same circular-import reason as the other two. */
-export type HijabSubtype = 'hijab' | 'khimar-jilbab' | 'undercap';
+export type HijabSubtype = 'hijab' | 'khimar-jilbab' | 'undercap' | 'prayer-set';
 
 /** The specialty lanes (lib/lanes.ts) whose membership is NOT derived
  *  from `garment` alone — Modest Swimwear is (garment === 'swim' already

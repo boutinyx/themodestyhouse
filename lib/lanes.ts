@@ -2,6 +2,7 @@ import type { Product } from '@/lib/types';
 import {
   isSwim, isActivewear, isLayering, isJilbab, isOuterwear, isKhimarAbaya, isUndercap, isSpecialty,
   layeringSubtype, outerwearSubtype, LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS,
+  isPrayer,
 } from '@/lib/specialty';
 
 // The three nav-facing lane slugs the single isOuterwear() family now splits
@@ -66,7 +67,14 @@ export const LANES: Lane[] = [
     // dresses are commonly listed as both), so without this guard they'd
     // show on both lanes at once. isOuterwear() already excludes isLayering()
     // the same way, for the same reason.
-    match: (p) => (p.garment === 'hijab' || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p)) && !isLayering(p),
+    // isPrayer added 2026-08-26 — Tina: "put prayer sets under hijabs",
+    // confirmed as moving the products, not just the menu link. It is a
+    // separate route-in because most prayer wear is NOT a jilbab/khimar/
+    // undercap by title: of the 184 published prayer rows, 113 are abayas and
+    // 25 skirts. `&& !isLayering(p)` stays and is now a no-op for prayer
+    // (isLayering returns false for prayer titles), but still does its
+    // original job for everything else.
+    match: (p) => (p.garment === 'hijab' || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p) || isPrayer(p)) && !isLayering(p),
     specialty: true,
   },
   {

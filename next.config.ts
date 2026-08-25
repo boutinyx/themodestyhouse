@@ -198,6 +198,26 @@ export default function nextConfig(phase: string): NextConfig {
     async redirects() {
       return [
         { source: '/hijabi-outfits', destination: '/directory', permanent: true },
+        /*
+         * Prayer wear moved from Layering Basics to Hijabs & Scarves on
+         * 2026-08-26 (Tina: "put prayer sets under hijabs"), so
+         * /layering-basics?type=prayer-set no longer describes anything.
+         *
+         * Without this it does not 404 — resolveSubtype() returns null for an
+         * unknown type and the page falls back to the plain Basics lane — which
+         * is WORSE than a 404 for a URL that was in sitemap.xml: Google would
+         * keep an indexed address that now shows unrelated products. The 308
+         * sends it to the same filter on its new lane.
+         *
+         * `has` is required because Next matches redirects on pathname only;
+         * without it every /layering-basics visit would be redirected.
+         */
+        {
+          source: '/layering-basics',
+          has: [{ type: 'query', key: 'type', value: 'prayer-set' }],
+          destination: '/modest-hijabs?type=prayer-set',
+          permanent: true,
+        },
       ];
     },
     async headers() {

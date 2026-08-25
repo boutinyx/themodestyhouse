@@ -121,10 +121,15 @@ describe('isLayering', () => {
     expect(isLayering(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(false); // noureen
     expect(isLayering(p('Khimar Medina silk', 'hijab'))).toBe(false); // jennah-boutique — a standalone headcover, was already false
   });
-  it('matches prayer-titled products across every garment', () => {
-    expect(isLayering(p('Prayer Dress Jersey - Navy', 'dress'))).toBe(true); // losyana
-    expect(isLayering(p('Two-Piece Jilbab / Prayer Set Dress With Elasticated Sleeves - Slate Grey', 'abaya'))).toBe(true); // abaya-lounge
-    expect(isLayering(p('Bizra Prayer Set', 'set'))).toBe(true); // ria-miranda
+  // REVERSED 2026-08-26 — prayer wear moved to Hijabs & Scarves ("put prayer
+  // sets under hijabs"). These used to assert `true`. Kept, flipped, rather
+  // than deleted: prayer titles also match LAYERING_RE and UNDER_DRESS_RE, so
+  // without the early `return false` they would silently fall through and land
+  // back on this lane — that fall-through is exactly what this now guards.
+  it('does NOT match prayer-titled products — they are Hijabs & Scarves now', () => {
+    expect(isLayering(p('Prayer Dress Jersey - Navy', 'dress'))).toBe(false); // losyana
+    expect(isLayering(p('Two-Piece Jilbab / Prayer Set Dress With Elasticated Sleeves - Slate Grey', 'abaya'))).toBe(false); // abaya-lounge
+    expect(isLayering(p('Bizra Prayer Set', 'set'))).toBe(false); // ria-miranda
   });
 
   it('does not pull a real, standalone top out of its own lane just for mentioning a neckline', () => {
@@ -219,8 +224,8 @@ describe('layeringSubtype', () => {
     expect(layeringSubtype(p('Jaida Modest Shirt Extender Slip — Cotton Layering Skirt', 'skirt', { brandSlug: 'jaida' }))).toBe('shirt-extender');
   });
 
-  it('sorts prayer-titled products into their own group, and returns null for undercap/khimar (not layering anymore)', () => {
-    expect(layeringSubtype(p('Prayer Dress Jersey - Navy', 'dress'))).toBe('prayer-set');
+  it('returns null for prayer, undercap and khimar titles — none of them are layering', () => {
+    expect(layeringSubtype(p('Prayer Dress Jersey - Navy', 'dress'))).toBe(null); // moved to Hijabs 2026-08-26
     expect(layeringSubtype(p('Full Coverage Undercap - Walnut', 'hijab'))).toBe(null);
     expect(layeringSubtype(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(null);
   });
@@ -275,9 +280,15 @@ describe('hijabSubtype', () => {
     expect(hijabSubtype(p('Elowen Wrap Dress', 'dress'))).toBe(null);
     expect(hijabSubtype(p('Black Open Abaya', 'abaya'))).toBe(null); // plain abaya, not a khimar/jilbab
   });
-  it('defers to Layering Basics for a jilbab or khimar title that is ALSO prayer-titled', () => {
-    expect(hijabSubtype(p('2-Piece Prayer Set (Jilbab)', 'abaya'))).toBe(null);
-    expect(hijabSubtype(p('Prayer Khimaar Set - Grey', 'abaya'))).toBe(null);
+  // Prayer beats khimar-jilbab where a title is both, which is common
+  // ("Two-Piece Jilbab / Prayer Set Dress"). Tina asked for Prayer Sets as
+  // their own group under Hijabs, so the more specific intent wins.
+  it('sorts a jilbab or khimar title that is ALSO prayer-titled as prayer-set', () => {
+    expect(hijabSubtype(p('2-Piece Prayer Set (Jilbab)', 'abaya'))).toBe('prayer-set');
+    expect(hijabSubtype(p('Prayer Khimaar Set - Grey', 'abaya'))).toBe('prayer-set');
+  });
+  it('sorts prayer wear with no hijab word in the title as prayer-set', () => {
+    expect(hijabSubtype(p('Prayer Dress Jersey - Navy', 'dress'))).toBe('prayer-set');
   });
   it('every currently-published Hijabs & Scarves item gets a real subtype, never a silent null', () => {
     const raw = readFileSync(path.join(process.cwd(), 'data', 'products.json'), 'utf8');

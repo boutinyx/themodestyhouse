@@ -161,6 +161,45 @@ export function isUndercap(p: Product): boolean {
   return UNDERCAP_RE.test(p.title);
 }
 
+/**
+ * Prayer wear — mukenas, telekungs, prayer sets and prayer dresses.
+ *
+ * MOVED FROM LAYERING BASICS TO HIJABS & SCARVES, 2026-08-26. Tina: "put
+ * prayer sets under hijabs", confirmed via a clarifying question as moving the
+ * PRODUCTS, not just the menu link. Before this, `isLayering()` opened with
+ * `if (PRAYER_RE.test(title)) return true` — an explicit exception added
+ * 2026-08-15 — and the modest-hijabs lane carried `&& !isLayering(p)` partly to
+ * keep prayer-titled jilbabs/khimars off it. Both of those now point the other
+ * way.
+ *
+ * Same broad, garment-agnostic rule as before ("every prayer-titled product,
+ * all garments" — her 2026-08-15 call), so the SET of products is unchanged;
+ * only the lane they land on is. Measured: 184 published rows carry `prayer` in
+ * the title — 113 abayas, 25 skirts, 21 dresses, 19 sets, 4 trousers, 2 hijabs.
+ */
+export function isPrayer(p: Product): boolean {
+  // LEGACY OVERRIDE MARKER. 22 rows in data/lane-overrides.json were pinned by
+  // hand to `{lane: 'layering-basics', subtype: 'prayer-set'}` — genuine prayer
+  // sets whose titles say nothing about prayer ("Salma", "Shara Mukena Set",
+  // "Golden Nujum set", "Black Nujum set"), so PRAYER_RE cannot find them.
+  //
+  // That pairing is baked into data/products.json at PUBLISH time, so those
+  // rows carry it today and would otherwise stay stranded on Layering Basics
+  // after this move, splitting prayer wear across two lanes. Reading the
+  // subtype rather than the lane is what moves them without a republish: the
+  // staff decision recorded there was "this is a prayer set", and that is still
+  // true — only the lane prayer sets live on has changed.
+  //
+  // The tidy-up this defers: ForcedLane (lib/types.ts) has no 'modest-hijabs'
+  // member, so those entries cannot yet be rewritten to point at the new lane.
+  // Doing that properly needs ForcedLane extended, build-data.mjs updated, the
+  // 22 entries rewritten, and a republish. Until then this line is what keeps
+  // the catalogue consistent, and it is why 'prayer-set' is compared as a raw
+  // string — it is no longer a member of LayeringSubtype.
+  if ((p.forcedLayeringSubtype as string | undefined) === 'prayer-set') return true;
+  return PRAYER_RE.test(p.title);
+}
+
 // A staff `forcedLane` (lib/types.ts, set via the inline edit controls —
 // see docs/log/2026-08-12-lane-overrides.md) is authoritative and
 // EXCLUSIVE: it short-circuits every classifier below rather than adding to
@@ -174,13 +213,20 @@ export function isSwim(p: Product): boolean {
 }
 
 export function isLayering(p: Product): boolean {
-  if (p.forcedLane) return p.forcedLane === 'layering-basics';
+  // `&& !isPrayer(p)`: a staff override marked prayer-set no longer belongs to
+  // this lane (2026-08-26). Without it the forcedLane short-circuit would win
+  // and pin those 22 rows here, against the move.
+  if (p.forcedLane) return p.forcedLane === 'layering-basics' && !isPrayer(p);
   // Checked ahead of the hijab/underscarf/bonnet exclusion below — an
   // exception to that older rule, not subject to it. Undercaps and
   // abaya-length khimaars used to be here too (2026-08-15 morning) but moved
   // to Hijabs & Scarves that same evening — see isKhimarAbaya()/isUndercap()
   // above and the modest-hijabs lane match in lib/lanes.ts.
-  if (PRAYER_RE.test(p.title)) return true;
+  // Prayer wear left this lane on 2026-08-26 (see isPrayer above). This line
+  // used to `return true`; it returns FALSE now, and stays first for the same
+  // reason it was first before — it has to beat every rule below it, several of
+  // which (LAYERING_RE, UNDER_DRESS_RE) match prayer-set titles.
+  if (PRAYER_RE.test(p.title)) return false;
   if (LAYERING_HIJAB_RE.test(p.title)) return false;
   if (RUCHED_BODY_TOP_RE.test(p.title)) return false;
   if (FIXED_INNER_RE.test(p.title)) return false;
@@ -221,7 +267,7 @@ export const LAYERING_SUBTYPE_LABELS: Record<LayeringSubtype, string> = {
   'base-layer-top': 'Base-Layer Tops',
   'cropped-body-shirt': 'Cropped Body Shirts',
   'under-dress': 'Under-Dresses',
-  'prayer-set': 'Prayer Sets',
+  // 'prayer-set' moved to HIJAB_SUBTYPE_LABELS, 2026-08-26.
 };
 
 const NECK_COVER_RE = /\bneck cover\b|\bdicke?y\b|\bmodesty panel\b|\bcollar (?:cover|insert)\b/i;
@@ -237,7 +283,8 @@ export function layeringSubtype(p: Product): LayeringSubtype | null {
   // Narrowest/most-specific groups first — same reasoning as the checks in
   // isLayering() above. Undercap/khimar removed 2026-08-15 evening — those
   // titles no longer reach here at all, isLayering() returns false for them.
-  if (PRAYER_RE.test(p.title)) return 'prayer-set';
+  // The prayer branch that stood here until 2026-08-26 is gone — isLayering()
+  // now returns false for prayer titles, so they never reach this function.
   if (NECK_COVER_RE.test(p.title)) return 'neck-cover';
   if (SHIRT_EXTENDER_RE.test(p.title)) return 'shirt-extender';
   if (SLEEVE_EXTENDER_RE.test(p.title)) return 'sleeve-extender';
@@ -282,7 +329,13 @@ export function isJilbab(p: Product): boolean {
 // `garment === 'abaya'` match and show on both lanes at once — caught while
 // adding the Hijabs & Scarves Type filter, 2026-08-15 evening.
 export function isSpecialty(p: Product): boolean {
-  return isSwim(p) || isActivewear(p) || isLayering(p) || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p) || isOuterwear(p);
+  // isPrayer added 2026-08-26 with the move to Hijabs & Scarves. It is
+  // load-bearing, not tidy-up: productsForLane strips isSpecialty items from
+  // every non-specialty lane, and it is what keeps prayer wear out of the
+  // everyday dress/skirt/abaya grids now that isLayering() no longer claims it.
+  // Without this line the move would have quietly published 184 prayer pieces
+  // into /modest-abayas and /modest-skirts.
+  return isSwim(p) || isActivewear(p) || isLayering(p) || isPrayer(p) || isJilbab(p) || isKhimarAbaya(p) || isUndercap(p) || isOuterwear(p);
 }
 
 // Sub-categories WITHIN Hijabs & Scarves, for the header flyout / Type
@@ -294,6 +347,8 @@ export const HIJAB_SUBTYPE_LABELS: Record<HijabSubtype, string> = {
   'hijab': 'Hijabs',
   'khimar-jilbab': 'Khimars & Jilbabs',
   'undercap': 'Undercaps',
+  // Moved here from LAYERING_SUBTYPE_LABELS, 2026-08-26.
+  'prayer-set': 'Prayer Sets',
 };
 
 /** Returns null for anything that isn't on the Hijabs & Scarves lane at all
@@ -303,7 +358,13 @@ export const HIJAB_SUBTYPE_LABELS: Record<HijabSubtype, string> = {
  *  isUndercap) && !isLayering`. Narrowest/most-specific first, same
  *  reasoning as layeringSubtype(). */
 export function hijabSubtype(p: Product): HijabSubtype | null {
-  if (isLayering(p)) return null; // e.g. a khimar/jilbab title that's ALSO prayer-titled — stays on Layering Basics
+  if (isLayering(p)) return null;
+  // Prayer FIRST, ahead of undercap/khimar-jilbab. Prayer-set titles very
+  // commonly also say jilbab or khimar ("Two-Piece Jilbab / Prayer Set Dress"),
+  // and Tina asked for Prayer Sets as their own group under Hijabs — so where a
+  // title is both, prayer wins. Measured the cost of that ordering before
+  // shipping it; see the log entry.
+  if (isPrayer(p)) return 'prayer-set';
   if (isUndercap(p)) return 'undercap';
   if (isKhimarAbaya(p) || isJilbab(p)) return 'khimar-jilbab';
   if (p.garment === 'hijab') return 'hijab';

@@ -36,15 +36,18 @@ describe('LANES', () => {
     expect(hijabs.match({ ...base, garment: 'abaya', title: 'Black Corduroy Jilbab' })).toBe(true);
     expect(hijabs.match({ ...base, garment: 'abaya', title: 'Black Open Abaya' })).toBe(false);
   });
-  // 2026-08-15: a jilbab-titled product that is ALSO prayer wear now belongs
-  // to Layering Basics instead — see lib/specialty.ts's isLayering() and the
-  // `&& !isLayering(p)` guard this lane's match gained the same day.
-  it('hijabs lane defers to Layering Basics for jilbab-titled prayer sets', () => {
+  // REVERSED 2026-08-26 — Tina: "put prayer sets under hijabs", confirmed as
+  // moving the products. From 2026-08-15 until then, a jilbab-titled product
+  // that was ALSO prayer wear belonged to Layering Basics; now prayer wear
+  // routes to Hijabs & Scarves and leaves Basics entirely. Kept as an assertion
+  // of the NEW rule rather than deleted: the thing worth guarding is that a
+  // title matching both concepts lands on exactly one lane, whichever that is.
+  it('hijabs lane claims jilbab-titled prayer sets, and Basics does not', () => {
     const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
     const layering = LANES.find((l) => l.slug === 'layering-basics')!;
     const prayerSet = { ...base, garment: 'abaya' as const, title: '2-Piece Prayer Set (Jilbab)' };
-    expect(hijabs.match(prayerSet)).toBe(false);
-    expect(layering.match(prayerSet)).toBe(true);
+    expect(hijabs.match(prayerSet)).toBe(true);
+    expect(layering.match(prayerSet)).toBe(false);
   });
   // 2026-08-15 evening: undercaps and abaya-length khimaars moved to Hijabs
   // & Scarves (from Layering Basics, where they'd briefly landed that same
@@ -59,12 +62,25 @@ describe('LANES', () => {
     expect(hijabs.match(khimarAbaya)).toBe(true);
     expect(layering.match(khimarAbaya)).toBe(false);
   });
-  it('a khimar or undercap that is ALSO prayer-titled still defers to Layering Basics', () => {
+  it('a khimar or undercap that is ALSO prayer-titled goes to Hijabs, not Basics', () => {
     const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
     const layering = LANES.find((l) => l.slug === 'layering-basics')!;
     const prayerKhimar = { ...base, garment: 'abaya' as const, title: 'Prayer Khimaar Set - Grey' };
-    expect(hijabs.match(prayerKhimar)).toBe(false);
-    expect(layering.match(prayerKhimar)).toBe(true);
+    expect(hijabs.match(prayerKhimar)).toBe(true);
+    expect(layering.match(prayerKhimar)).toBe(false);
+  });
+  // Prayer wear is garment-agnostic, and most of it is NOT jilbab/khimar
+  // titled — 113 of the 188 published rows are abayas, 25 skirts. This guards
+  // the isPrayer() route-in specifically, which is the only thing carrying
+  // those onto the lane.
+  it('hijabs lane claims prayer wear whose title says nothing about hijab', () => {
+    const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
+    const layering = LANES.find((l) => l.slug === 'layering-basics')!;
+    for (const t of ['prayer dress jersey - navy', 'Lilac Wrap One Piece Salah Prayer Outfit']) {
+      const p = { ...base, garment: 'dress' as const, title: t };
+      expect(hijabs.match(p)).toBe(true);
+      expect(layering.match(p)).toBe(false);
+    }
   });
 });
 
