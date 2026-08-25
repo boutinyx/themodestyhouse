@@ -71,6 +71,35 @@ export function Footer() {
               <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center hover:opacity-70 transition" style={{ width: 44, height: 44 }}><InstagramLogo size={20} /></a>
               <a href="https://tiktok.com" aria-label="TikTok" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center hover:opacity-70 transition" style={{ width: 44, height: 44 }}><TiktokLogo size={20} /></a>
             </div>
+
+            {/* Sign-up posts to /api/subscribe, which emails the address to us.
+                There is still no subscriber database (see lib/subscribe.ts), so
+                the copy says "we'll add you", not "an issue is on its way".
+                NOTE: an older version rendered <FLink> — an <li> — inside a <p>,
+                which is invalid HTML and produced a stray bullet in the footer.
+
+                Moved here from "The House" on 2026-08-25 — Tina: "can you pit
+                the email pill under the social media icons".
+
+                `max-w-xs` matches the strapline above it, so the pill, the
+                paragraph and the social row all end on the same right edge
+                instead of the pill running to whatever the column happens to
+                be. It also protects the pill from the thing that put it in "The
+                House" in the first place: the field is `flex-1` behind a
+                fixed-width brass button, so at ~163px it collapsed to 66px and
+                read "Your er". This column is 1.4fr of a 5.4fr row — the widest
+                of the five — so it has more room than the one it left, but the
+                cap is what makes that true at every width rather than just at
+                1440.
+
+                mt-6, not the mt-5 the social row uses: the icons carry 44px tap
+                targets around 20px glyphs, so their box already extends ~12px
+                below the last visible pixel of the logos. Matching the numbers
+                would look tighter than matching the numbers. */}
+            <div className="mt-6 max-w-xs">
+              <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
+              <NewsletterSignup />
+            </div>
           </div>
 
           {/* ALL of CATEGORY_LANES, not a slice — 13 as of 2026-08-24, counted
@@ -204,11 +233,11 @@ export function Footer() {
             ))}
           </Col>
 
-          {/* col-span-2 on a phone. This column carries the sign-up pill, and in
-              a half-width footer column the pill had 163px to work with: the
-              button took 95 of them and the email field was left 66px wide,
-              showing "Your er". Given the full row the field is ~230px and the
-              pill reads as a pill again. */}
+          {/* col-span-2 on a phone. It no longer HAS to be — the reason was
+              the sign-up pill, which moved to the brand column on 2026-08-25 —
+              but it stays: at 390px a half-width column puts "Apply for the
+              seal" on three lines, and the two-column list inside it is what
+              gives the phone footer its rhythm. */}
           <div className="col-span-2 md:col-span-1">
             <div className="eyebrow" style={{ color: 'var(--brass)' }}>The House</div>
             <ul className="mt-3 text-sm grid grid-cols-2 gap-y-1 md:block md:space-y-2">
@@ -220,15 +249,9 @@ export function Footer() {
               <FLink href="/contact">Contact</FLink>
             </ul>
 
-            {/* Sign-up posts to /api/subscribe, which emails the address to us.
-                There is still no subscriber database (see lib/subscribe.ts), so
-                the copy says "we'll add you", not "an issue is on its way".
-                NOTE: the old version rendered <FLink> — an <li> — inside a <p>,
-                which is invalid HTML and produced a stray bullet in the footer. */}
-            <div className="mt-6 md:mt-7">
-              <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
-              <NewsletterSignup />
-            </div>
+            {/* The sign-up pill lived here until 2026-08-25 — Tina: "can you
+                pit the email pill under the social media icons". It is now in
+                the brand column at the far left, under the social row. */}
           </div>
         </div>
 
