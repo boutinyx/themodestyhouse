@@ -209,6 +209,23 @@ export default function PopularShowcase({
                   // is easiest to trigger, since the photo runs edge-to-edge
                   // with no card padding around it to click on instead.
                   draggable={false}
+                  // BOX SHAPE, 2026-08-25: aspect-[2/3], was aspect-[3/4].
+                  // Tina, on the abaya rail: "some of the pictures dont fit
+                  // really good into our frame... i think we should better
+                  // keep everything like how they have done it", then "can
+                  // you do all the rows so also the Popular items from
+                  // brands. the same ratios as the photos from the abayas."
+                  // With object-contain the ONLY way a photo fills its box
+                  // uncropped is for the box to already BE the photo's shape
+                  // — the same reasoning lib/edits.ts's `imageRatio` field
+                  // spells out. Measured, not guessed: of the 16 abaya
+                  // photographs the brands actually serve, 10 are exactly
+                  // 0.667 (2:3), the median is 0.667, and the spread is
+                  // 0.564-0.800. Against the old 3/4 (0.750) box that left
+                  // white bars down both sides of the majority of the row;
+                  // against 2/3 those ten fit edge to edge with no bars and
+                  // no crop. Applied to BOTH rails, per her second message,
+                  // so the two rows stay one set.
                   // object-contain, not object-cover, for the two abayas
                   // (HUM's "Butterfly Kaftan Top" is classified garment:
                   // 'abaya' despite the title, same as Losyana's) — Tina:
@@ -219,7 +236,7 @@ export default function PopularShowcase({
                   // as "too zoomed in". object-contain shows the whole
                   // photo instead, letterboxed into the same white (already
                   // the wrapper's background) rather than cropped.
-                  className={`w-full aspect-[3/4] transition-transform duration-500 group-hover:scale-[1.03] ${p.garment === 'abaya' ? 'object-contain' : 'object-cover'}`}
+                  className={`w-full aspect-[2/3] transition-transform duration-500 group-hover:scale-[1.03] ${p.garment === 'abaya' ? 'object-contain' : 'object-cover'}`}
                   loading="lazy"
                   decoding="async"
                 />

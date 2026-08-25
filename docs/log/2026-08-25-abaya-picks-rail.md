@@ -56,11 +56,41 @@ That merge matters: re-checking the ids AFTER it found one had changed state.
   are `loading="lazy"` and horizontally out of view — expected, not a broken
   image.
 
+## Follow-up the same day — card box 3/4 → 2/3
+
+Tina, looking at the rail: *"some of the pictures dont fit really good into our
+frame can you fix that... i think we should better keep everything like how they
+have done it"*, then *"can you do all the rows so also the Popular items from
+brands. the same ratios as the photos from the abayas."*
+
+Read as: don't crop the brands' photographs to fit our box — make our box the
+shape their photographs already are. Measured rather than guessed, via the
+rendered `naturalWidth/naturalHeight` of all 16 abaya images: **10 are exactly
+0.667 (2:3), the median is 0.667, and the whole spread is 0.564–0.800.** The card
+box was `aspect-[3/4]` (0.750), so under `object-contain` the majority of the row
+carried white bars down both sides.
+
+`components/PopularShowcase.tsx` is now `aspect-[2/3]`, applied to BOTH rails per
+her second message. After: of the 16 abayas, 10 fill their box exactly (no bars,
+no crop, up from 0), worst case 83.3%; on Popular Items, 6 of 7. The four abaya
+photos wider than 2:3 gain a small top/bottom bar — the trade she chose, since
+the alternative is `object-cover` cropping the majority.
+
+Re-verified: tsc clean, lint clean, build clean, and `BASE=…:3211 ROUTES=/
+npm run audit:visual` in BOTH engines reported `aspect 0 · img 0 · a11y 0 ·
+errors 0 · no-css 0`. (My own quick WebKit probe reported "CSS did not load" —
+that was the probe, not the site: it skipped the HSTS/upgrade-insecure-requests
+header strip the audit does for local runs. §10.26 #3, again.)
+
+The audit's tablet-819 findings — a footer column overflowing, `TAP`/`TINY` on
+footer links and a `✦` span — were checked against **production** at the same
+viewport as a negative control and reproduce there identically
+(`div.eyebrow`/`ul.mt-4.space-y-2.text-sm`/`li`×5, w=300). Pre-existing and
+unrelated to this work; not fixed here.
+
 ## Notes / follow-ups
-- Every pick is `garment: 'abaya'`, so all 16 take `PopularShowcase`'s
-  `object-contain` branch. Correct per Tina's earlier "zoom the picture on the
-  abayas a little out", but it means this row is letterboxed white where Popular
-  Items is mostly filled. Worth a look on staging.
+- The footer overflow at tablet-819 above is real and unfixed. It is on
+  production too, so it is not a regression, but somebody should take it.
 - Five brands appear twice in the row (Avyaana, Jawda, Bayt El Hayat, Modesty in
   Style, Nour Al Houda) and in two cases adjacently, because the order is hers
   verbatim (cheapest first) and was deliberately not re-sorted.
