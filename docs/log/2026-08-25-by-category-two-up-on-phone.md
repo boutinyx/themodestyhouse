@@ -152,3 +152,21 @@ we have been adjusting, and they are the most visually prominent whitespace in
 the section. If "too much whitespace" means those, the lever is `.tmh-showcase-grid`'s
 `row-gap: 24px` and the caption block, not the section padding. Raised with her
 rather than changed unasked.
+
+### One card ratio across the site
+
+Tina: *"isnt it smart if we make the catagories same ratio as the pictures of the
+items like Popular items from brands."*
+
+Yes, and it is worth doing — `.tmh-showcase-photo` was `3 / 4.4` while the
+product rails use `aspect-[2/3]`, two magic numbers for the same idea. Now both
+are `2 / 3`, so the house card shape lives in one place.
+
+**Measured before doing it so nobody expects more than it delivers:** the two
+were already within **2.3%** (0.68182 vs 0.66667). At 187px wide on a phone the
+photo goes 274px -> 281px, i.e. **6px taller**. It is a consistency change, not a
+layout one, and it does not reduce whitespace — it adds a little height. It does
+carry her earlier *"make the card also a litterle longer"* in the same direction.
+
+The 65px bands between rows are still the largest whitespace on that screen and
+are still untouched.

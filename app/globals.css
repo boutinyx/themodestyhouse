@@ -193,8 +193,19 @@
   /* Sharp corners, no border-radius — with zero gap between columns (the
      grid rule above), a rounded corner would leave a small notch where two
      photos meet. Matches aab's own mosaic, which is sharp-edged too. */
-  /* 3/4 -> 3/4.4 — Tina: "make the card also a litterle longer." */
-  aspect-ratio: 3 / 4.4;
+  /* 3/4 -> 3/4.4 — Tina: "make the card also a litterle longer."
+     3/4.4 -> 2/3, 2026-08-25 — Tina: "isnt it smart if we make the catagories
+     same ratio as the pictures of the items like Popular items from brands."
+     Yes: it collapses two magic numbers into one shape shared with the product
+     rails (components/PopularShowcase.tsx's `aspect-[2/3]`), so a future change
+     to the house card shape happens in one place instead of drifting.
+     Measured before doing it, so nobody expects more than it delivers: the two
+     ratios were already within 2.3% (0.68182 vs 0.66667). At 187px wide on a
+     phone that is 274px tall -> 281px, i.e. 6px TALLER. It is a consistency
+     change, not a layout one, and it does not reduce whitespace — it adds a
+     little height. It does keep her earlier "make the card a little longer"
+     going in the same direction. */
+  aspect-ratio: 2 / 3;
 }
 .tmh-showcase-photo img {
   position: absolute;
