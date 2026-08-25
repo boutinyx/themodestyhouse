@@ -500,10 +500,11 @@ export default function Home() {
         {/* SIZE, 2026-08-24 — Tina, pointing at this one: "Popular items from
             brands. the titles like these need to be smaller." All FOUR of the
             homepage's section headings moved together, so they stay a set:
-            this, "By category.", "Apply for the seal." (on the band, which keeps
-            its +2px) and "Reading, not just shopping." The band one was briefly
-            replaced by Tina's marketing copy on 2026-08-25 and restored the same
-            evening — her paragraph is the lead UNDER it, not a substitute for it.
+            this, "By category.", the band's (now "Are you a modest fashion
+            house?", which keeps its +2px) and "Reading, not just shopping." The
+            band's lost its "Apply for the seal." sentence on 2026-08-25 when the
+            band became a marketing pitch; the SIZE is what this note is about and
+            that is unchanged.
               clamp(28px,4vw,44px) -> clamp(24px,3vw,34px)   [44px -> 34px desktop]
               clamp(28px,4vw,46px) -> clamp(24px,3vw,36px)   [the band one]
             NOT changed: EditBanner's edit title, clamp(40px,5.6vw,64px) in its
@@ -612,11 +613,10 @@ export default function Home() {
           removal: it was the only surface naming the seal on the homepage above
           the fold-ish, and it carried an "All designers" link to /designers.
           That link is not lost — <DesignerDiscovery> below has its own
-          "Explore all designers" — and the band further down still carries
-          "Apply for the seal." as its heading. Note its BODY is now a marketing
-          pitch and its button reads "Market with The Modesty House", so the band
-          names the seal without explaining the standard; /about is where the
-          standard is actually spelled out. */}
+          "Explore all designers". Note the band further down is now a MARKETING
+          pitch end to end — as of 2026-08-25 it no longer mentions the seal at
+          all, in its heading, its body or its button. /about and the footer are
+          the only places the seal is named and explained. */}
 
       {/* BROWSE BY CATEGORY */}
       {/* px-4 md:px-8, not the site's usual px-8 everywhere — Tina, on the
@@ -801,16 +801,18 @@ export default function Home() {
               thinner still. */}
           <div className="max-w-[62ch] mx-auto text-center">
             <div>
-              {/* The old title is BACK, 2026-08-25 — Tina: "i did wnated you to keep
-                  the old title". It was removed when her marketing copy arrived,
-                  because the copy she sent had no heading line in it and the two
-                  read as alternatives. They are not: the title is the heading and
-                  her paragraph is the lead under it. Restored at its original
-                  clamp(24px,3vw,36px)/1.05 — this is one of the four homepage
-                  headings that move as a set (see the note at the top of this file),
-                  so the size is not free to drift. */}
+              {/* "Are you a modest fashion house?" and NOTHING after it, 2026-08-25.
+                  The title was restored an hour earlier ("i did wnated you to keep the
+                  old title") and then Tina, seeing it rendered: "apply for the seal
+                  ccan go". Only the italic second sentence went — she named that
+                  phrase, not the title — which also settles the contradiction the
+                  band had while both existed: a heading saying "Apply for the seal"
+                  over a body and a button selling marketing.
+                  Size unchanged at clamp(24px,3vw,36px)/1.05: this is one of the four
+                  homepage headings that move as a set (see the note at the top of this
+                  file), so it is not free to drift. */}
               <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
-                Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
+                Are you a modest fashion house?
               </h2>
               {/* Tina's copy, 2026-08-25, verbatim — do not rewrite it (§10.18: the
                   words on this site are hers). It is the lead paragraph under the
@@ -843,12 +845,14 @@ export default function Home() {
                   was bright and a brass pill measured 1.28:1 against the photograph;
                   with the 0.75 overlay the band is dark, so `.btn-pill`'s own
                   aubergine is the one with no edge and brass is right again. */}
-              {/* `topic=seal` is UNCHANGED and is now arguably wrong: it deep-links
-                  the contact form to its "Apply for the seal" option, and this band
-                  is a marketing pitch. lib/contactTopics.ts has no marketing entry
-                  and adding one is Tina's call, not a silent side effect of a copy
-                  change — flagged to her rather than guessed at. */}
-              <Link href="/contact?topic=seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
+              {/* topic=marketing, not topic=seal. The band stopped being a seal pitch
+                  when Tina's copy landed, and the deep link was still pre-selecting
+                  "Apply for the seal" on the contact form. The topic itself is NOT
+                  gone — it is still in lib/contactTopics.ts and the footer still links
+                  it, because /about and the footer are where the seal still lives.
+                  The new topic's label is the plainest functional string that makes
+                  the dropdown work, not chosen copy — rename it freely. */}
+              <Link href="/contact?topic=marketing" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
                 Market with The Modesty House
               </Link>
             </div>
