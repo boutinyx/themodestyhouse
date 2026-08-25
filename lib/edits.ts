@@ -241,8 +241,50 @@ export type Edit = {
  *  Same class of false positive as CLAUDE.md §10.10 — a keyword is evidence,
  *  never proof. Checked against real titles: "Velvet Cap Grip" (an AUD11
  *  undercap grip) and "Leather Cap with Embroidery Detail" both matched their
- *  fabric word and are plainly not feature pieces. */
-const NOT_A_GARMENT = /\bpin\b|magnet|\bsock\b|glove|\bbag\b|clutch|jewel|earring|necklace|\bgrip\b|gift card|\bcard\b/i;
+ *  fabric word and are plainly not feature pieces.
+ *
+ *  The cap/undercap/underscarf terms were added 2026-08-25 for Fall
+ *  Essentials, whose hijab rule is a COLOUR rule — so "Velvet Cap Grip - Rust"
+ *  and "Full Coverage Hijab Cap - Mulberry" reach it on their colour alone and
+ *  nothing about the fabric or the garment stops them.
+ *
+ *  NOTE the shape of the cap terms. A bare /\bcap\b/ was tried and rejected:
+ *  it kills every "Cap Sleeve" garment in the catalogue, which is a real and
+ *  common cut. Each term is therefore spelled out. */
+const NOT_A_GARMENT =
+  /\bpin\b|magnet|\bsock\b|glove|\bbag\b|clutch|jewel|earring|necklace|\bgrip\b|gift card|\bcard\b|\bundercap\b|under[-\s]?cap|under[-\s]?scarf|\bbonnet\b|hijab cap|cap grip/i;
+
+/**
+ * A cape SLEEVE is not a cape.
+ *
+ * Checked 2026-08-25 while sizing the Fall Essentials grid: /\bcape\b/ matches
+ * 227 in-stock products and almost every one is a cape-sleeve dress or abaya —
+ * "Crystal Beaded Waist Cape Sleeve Maxi Dress(MS499)", "Cape Swim Dress -
+ * Earth", "Lace Butterfly Cape Top in Sky Blue". The outerwear cape Tina's
+ * moodboard shows is a handful of pieces hiding inside that.
+ *
+ * Exactly §10.10 again: a keyword match is evidence FOR a category, never
+ * proof. Without this the edit's biggest bucket would have been dresses.
+ */
+const CAPE_SLEEVE = /cape[-\s]?sleeve|sleeve[-\s]?cape|cape\s+(dress|abaya|top|maxi|swim)|butterfly\s+cape/i;
+
+/**
+ * The thickness ceiling. Tina, 2026-08-25: *"Denim skirts, capes, and
+ * outerwear, but not too thick, so you can think about trench coats"*.
+ *
+ * This is a TRANSITIONAL edit — trench weight, not winter weight — so the
+ * padded and pile-lined pieces are out even though the catalogue has them.
+ *
+ * `quilted` is deliberately NOT here. It was, on the first pass, and it
+ * removed the quilted wool gilet that is panel 3 of her own moodboard. A
+ * quilted gilet is the piece; a quilted parka is not.
+ */
+const TOO_THICK = /\bteddy\b|\bsherpa\b|\bborg\b|\bpuffer\b|\bpadded\b|\bparka\b|down[-\s]?filled/i;
+
+/** A t-shirt is not a blouse. Needed as its own guard rather than folded into
+ *  the shirt rule, because "Long-sleeved T-shirt in Aube polo material"
+ *  qualifies via the long-sleeve branch before the shirt branch is consulted. */
+const TSHIRT = /\bt[-\s]?shirts?\b/i;
 
 /**
  * "lace-up" is a FASTENING, not the fabric.

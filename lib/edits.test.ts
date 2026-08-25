@@ -3,6 +3,23 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { EDITS } from './edits';
 import { productsForEdit, missingEditPicks } from './products';
+import type { Product } from '@/lib/types';
+
+// Same factory shape lib/specialty.test.ts already uses, so a reader moving
+// between the two files does not have to learn a second convention.
+const base: Product = {
+  id: 'x:1', brandSlug: 'x', brandName: 'X', title: 't', price: 1, currency: 'USD',
+  image: 'i', url: 'u', inStock: true, garment: 'dress', community: 'general',
+  occasion: [], season: [], activity: [],
+};
+const p = (title: string, garment: Product['garment'] = 'top'): Product =>
+  ({ ...base, title, garment });
+
+const fall = () => {
+  const e = EDITS.find((x) => x.slug === 'fall-essentials');
+  if (!e) throw new Error('fall-essentials edit is missing from EDITS');
+  return e;
+};
 
 describe('edits', () => {
   it('every edit has a unique slug', () => {
@@ -85,5 +102,50 @@ describe('edits', () => {
     for (const e of EDITS) {
       expect(productsForEdit(e).length, `${e.slug} has no products`).toBeGreaterThan(0);
     }
+  });
+  // Titles marked REAL are literal catalogue titles, verified against
+  // data/products.json on 2026-08-25 — these are the cases that would have
+  // shipped broken (see the spec's "false positives found" section).
+  //
+  // A few are CONSTRUCTED boundary probes, marked as such, for cases the
+  // catalogue does not currently contain. That distinction is worth keeping
+  // honest: §10.19 is about a test whose fixtures were asserted to be real
+  // catalogue titles, and a constructed probe passed off as a real one makes
+  // the whole file's provenance untrustworthy.
+  describe('fall-essentials guards', () => {
+    it('excludes cape-SLEEVE garments, which are not capes', () => {
+      // 227 in-stock titles match /\bcape\b/ and almost all are these.
+      expect(fall().match(p('Crystal Beaded Waist Cape Sleeve Maxi Dress(MS499)', 'dress'))).toBe(false);
+      expect(fall().match(p('Lace Butterfly Cape Top in Sky Blue'))).toBe(false);
+      expect(fall().match(p('Cape Swim Dress - Earth', 'swim'))).toBe(false);
+    });
+
+    it('excludes caps, undercaps and grips, which are not hijabs', () => {
+      expect(fall().match(p('Velvet Cap Grip - Rust', 'hijab'))).toBe(false);
+      expect(fall().match(p('Full Coverage Hijab Cap - Mulberry', 'hijab'))).toBe(false);
+      expect(fall().match(p('Clay - Adjustable Tie Underscarf', 'hijab'))).toBe(false);
+    });
+
+    it('does NOT exclude a cap-SLEEVE garment by way of the cap rule', () => {
+      // The negative control for the rule above: /\bcap\b/ would have killed
+      // every cap-sleeve piece in the catalogue.
+      expect(fall().match(p('Cap Sleeve Striped Blouse'))).toBe(true); // CONSTRUCTED
+    });
+
+    it('excludes outerwear that is too thick — Tina: "outerwear, but not too thick"', () => {
+      expect(fall().match(p('Teddy Borg Oversized Coat'))).toBe(false);   // CONSTRUCTED
+      expect(fall().match(p('Padded Puffer Gilet'))).toBe(false);         // CONSTRUCTED
+    });
+
+    it('keeps quilted gilets, which are the moodboard piece', () => {
+      // Negative control for the rule above: `quilted` was in TOO_THICK on the
+      // first pass and removed — moodboard panel 3 is a quilted wool gilet.
+      expect(fall().match(p('Quilted Sleeveless Vest 9518'))).toBe(true);
+    });
+
+    it('excludes t-shirts even when the title says long-sleeved', () => {
+      expect(fall().match(p('Long-sleeved T-shirt in Aube polo material'))).toBe(false);
+      expect(fall().match(p('Striped t-shirt'))).toBe(false);
+    });
   });
 });
