@@ -107,3 +107,62 @@ highlight clipping.
 
 Re-verified: tsc clean, lint clean, 773 tests, build clean, banner screenshotted
 at 1440 with the stylesheet assertion.
+
+## Fourth follow-up — rebuilt at max quality (and the answer was no)
+
+Tina: *"did you upload the pictures with max quality and can you revert back the
+brightness"*, then *"or dont revert the brightness"*. So: brightness KEPT,
+quality redone.
+
+**The honest answer to the question was no**, and the defect was mine. What was
+being served went through three lossy generations:
+
+    her PNG → jpg q92 → brighten → jpg q95 → webp q95
+
+The `q92` step was pure waste. It existed only because the first conversion
+picked a number rather than thinking about it: nothing needed a JPEG at that
+point, since the WebP variants could have come straight off the PNG.
+
+Measured, greyscale RMSE against a WebP made in ONE step from the PNG, at the
+widths actually served:
+
+| variant | RMSE at 1440 | RMSE at 2400 |
+|---|---|---|
+| what was live | 1.162 | 1.409 |
+| via a q100 4:4:4 JPEG master | 0.944 | 1.116 |
+| one step from the PNG | 0 | 0 |
+
+Small — under half a level out of 255 — but paid for nothing.
+
+**Rebuilt.** `edit-fall-hero-3.jpg` and `edit-fall-hero-mobile-2.jpg`, new
+filenames per §10.21, each one step from Tina's original PNG. The committed
+`.webp` variants were likewise generated in one step from those PNGs, at **webp
+quality 100** (was 95). Desktop keeps the `linear(1.2, 12)` lift; the phone crop
+stays the original grade, as before.
+
+Cost: the eleven variants total 5.36 MB, against 2.35 MB for the pair they
+replace. Worth naming plainly — quality 100 roughly doubles the bytes for a
+difference of about 0.1 RMSE on its own, so **the win here is the removed JPEG
+middleman, not the quality number.** Say the word and 95 comes back at half the
+weight.
+
+**Masters are deliberately not in the repo.** Lossless would be 4.3 MB (desktop)
+and 14.4 MB (phone); near-lossless 3.1 / 10.4 MB. Not proportionate for two
+banner photographs. The consequence is written into
+`scripts/optimise-images.mjs` rather than left implicit: re-running that script
+regenerates the variants from the committed `.jpg`, which costs ~1.1 RMSE against
+what is committed now. Invisible, but not identical — rebuild from the original
+PNGs if byte-identical output ever matters. The script already fails loudly on a
+missing input, so neither path can degrade silently.
+
+Verified: tsc clean, lint clean, **773 tests pass**, build clean, all ten new
+asset URLs return 200, and the banner renders `edit-fall-hero-3-2400.webp` on
+desktop / `edit-fall-hero-mobile-2-780.webp` on phone.
+
+Two things that went wrong while verifying, both harness rather than site:
+- One test run showed `1 failed` — `compactCatalogue` "round-trips every
+  published product" timing out at 5000ms while a `sharp` job and a build were
+  running alongside it. Re-run on an idle machine: 33/33, then 773/773. Not a
+  regression, and worth knowing that test is load-sensitive.
+- `next start` returned `000` on every asset because another session's build had
+  emptied `.next` underneath it — §10.28 rule 4, exactly as written.

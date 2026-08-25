@@ -662,8 +662,14 @@ export const EDITS: Edit[] = [
     // multiply. DESKTOP ONLY: imageMobile is still the original grade, because
     // she asked for the desktop picture. If the two should match, the phone
     // crop needs the same treatment and its own new filename.
-    image: '/edit-fall-hero-2.jpg',
-    imageMobile: '/edit-fall-hero-mobile.jpg',
+    // -3 / -mobile-2, 2026-08-25: same photographs, same brightness lift on the
+    // desktop one, rebuilt in a SINGLE lossy step from Tina's original PNGs at
+    // webp quality 100. The previous pair went through an unnecessary q92 JPEG
+    // first — see scripts/optimise-images.mjs for the measured cost of that and
+    // for the regeneration caveat. Phone stays the original grade; the lift was
+    // asked for on the desktop picture.
+    image: '/edit-fall-hero-3.jpg',
+    imageMobile: '/edit-fall-hero-mobile-2.jpg',
     imageRatio: 2674 / 1504,
     imageMobileRatio: 3584 / 4800,
     imageWidths: [640, 1024, 1440, 1920, 2400, 2674],

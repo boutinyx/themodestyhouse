@@ -244,20 +244,66 @@ const JOBS = [
     // starts to read hazy in the shadows.
     //
     // DESKTOP ONLY, as asked — edit-fall-hero-mobile.jpg is untouched.
+    //
+    // SUPERSEDED by edit-fall-hero-3.jpg below, 2026-08-25. -2 was built from
+    // the -1 JPEG rather than from Tina's PNG, so the served pixels had been
+    // through THREE lossy generations. Left registered rather than deleted,
+    // same convention as hero-home-2.jpg above.
     file: 'edit-fall-hero-2.jpg',
     widths: [640, 1024, 1440, 1920, 2400, 2674],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
   },
   {
+    // /edits/fall-essentials hero, desktop — CURRENT. Tina: "did you upload the
+    // pictures with max quality", then "or dont revert the brightness", so this
+    // is the SAME `linear(1.2, 12)` lift as -2, rebuilt properly.
+    //
+    // What was wrong with -2, measured rather than asserted. Its chain was
+    // PNG -> jpg q92 -> brighten -> jpg q95 -> webp q95: three lossy
+    // generations, and the q92 step was pure waste — it existed only because
+    // the first conversion picked a number instead of thinking. Greyscale RMSE
+    // against a webp made in one step from the PNG, at the widths actually
+    // served: 1.409 at 2400px, 1.162 at 1440px. Small, but paid for nothing.
+    //
+    // The committed .webp variants beside this file were generated in ONE step
+    // straight from Tina's original
+    // (~/Downloads/magnific_uitbreiden_DomU6wcpcl.png) at webp quality 100,
+    // and the .jpg here is likewise one step from that PNG. Masters are not in
+    // the repo — lossless would be 4.3MB desktop and 14.4MB phone, which is not
+    // proportionate for two banner photographs.
+    //
+    // CONSEQUENCE, so nobody is surprised: re-running THIS script regenerates
+    // the variants from the .jpg, not from the PNG, which costs about 1.1 RMSE
+    // against the committed ones — invisible, but not identical. If you need
+    // them byte-perfect, rebuild from the original PNG. The script errors loudly
+    // on a missing input, so nothing here can fail silently either way.
+    file: 'edit-fall-hero-3.jpg',
+    widths: [640, 1024, 1440, 1920, 2400, 2674],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
+  },
+  {
     // Same hero, phone — 3584x4800 portrait, 0.74667. Effectively the same
     // shape as the lace phone hero (0.7468), so it needs no new ratio handling
     // in EditBanner. Stops at 1920: that is a 640px CSS viewport at 3x DPR,
     // well past any phone, and the source has plenty of headroom above it.
+    // SUPERSEDED by edit-fall-hero-mobile-2.jpg below, 2026-08-25 — same
+    // q92-JPEG-middleman problem as the desktop one. Left registered.
     file: 'edit-fall-hero-mobile.jpg',
     widths: [390, 780, 1170, 1560, 1920],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
+  },
+  {
+    // Same hero, phone — CURRENT. Original grade, NOT brightened: the lift was
+    // asked for on the desktop picture specifically. Rebuilt from
+    // ~/Downloads/magnific_upscaler_bxlcMFP5Y2.png in one step; see the desktop
+    // entry above for the full reasoning and the regeneration caveat.
+    file: 'edit-fall-hero-mobile-2.jpg',
+    widths: [390, 780, 1170, 1560, 1920],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
   },
   {
     // /edits/[slug] story photographs — the credited street shots that sit with
