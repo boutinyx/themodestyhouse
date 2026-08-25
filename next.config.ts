@@ -218,6 +218,61 @@ export default function nextConfig(phase: string): NextConfig {
           destination: '/modest-hijabs?type=prayer-set',
           permanent: true,
         },
+        /*
+         * /outerwear was split into blazers-vests, cardigans-sweaters and
+         * jackets-coats on 2026-08-21 (Tina, comparing H&M's category names:
+         * "i want outerwear gone"). Nobody added a redirect, so for five days
+         * it simply 404ed — and it was NOT a dead URL. Checked in Search
+         * Console on 2026-08-26: `/outerwear` is `Submitted and indexed`, and
+         * so are `?type=blazer`, `?type=vest`, `?type=cardigan` and
+         * `?type=coat`. `/outerwear` also holds **position 22.0** over the last
+         * 28 days, the best position of any lane on the site. A 404 throws all
+         * of that away.
+         *
+         * SUBTYPE-BY-SUBTYPE, not one blanket redirect to a lane. Each of the
+         * four indexed `?type=` URLs has an exact successor, and sending them
+         * all to one lane would hand Google four addresses that resolve to
+         * content they did not describe — the same fault the prayer-set entry
+         * above exists to avoid.
+         *
+         * The `(?<t>…)` named capture is load-bearing. Next passes source query
+         * params through to the destination UNLESS the destination consumes
+         * them, so matching on a literal value and writing `?type=blazer` by
+         * hand yields `?type=blazer&type=blazer`. Capturing and re-using `:t`
+         * marks the param as used, and one value comes back.
+         *
+         * `?type=sweater` is the one variant Google has never seen, and it is
+         * covered anyway — it costs nothing and the URL is real.
+         *
+         * `coat` goes to bare `/jackets-coats` with NO query on purpose: that
+         * lane is entirely coats, so it has no entry in LANE_SUBTYPES, and
+         * `?type=coat` there would resolve to null and fall back to the plain
+         * lane. Same destination, but via an address Google would then keep.
+         *
+         * Bare `/outerwear` goes to `/jackets-coats` as the closest single
+         * match to what an "outerwear" query means. It must come LAST: Next
+         * takes the first matching rule, and a source with no `has` matches
+         * every /outerwear request including the four above.
+         */
+        {
+          source: '/outerwear',
+          has: [{ type: 'query', key: 'type', value: '(?<t>blazer|vest)' }],
+          destination: '/blazers-vests?type=:t',
+          permanent: true,
+        },
+        {
+          source: '/outerwear',
+          has: [{ type: 'query', key: 'type', value: '(?<t>cardigan|sweater)' }],
+          destination: '/cardigans-sweaters?type=:t',
+          permanent: true,
+        },
+        {
+          source: '/outerwear',
+          has: [{ type: 'query', key: 'type', value: 'coat' }],
+          destination: '/jackets-coats',
+          permanent: true,
+        },
+        { source: '/outerwear', destination: '/jackets-coats', permanent: true },
       ];
     },
     async headers() {
