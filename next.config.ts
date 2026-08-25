@@ -244,10 +244,14 @@ export default function nextConfig(phase: string): NextConfig {
          * `?type=sweater` is the one variant Google has never seen, and it is
          * covered anyway — it costs nothing and the URL is real.
          *
-         * `coat` goes to bare `/jackets-coats` with NO query on purpose: that
-         * lane is entirely coats, so it has no entry in LANE_SUBTYPES, and
-         * `?type=coat` there would resolve to null and fall back to the plain
-         * lane. Same destination, but via an address Google would then keep.
+         * `coat` names `/jackets-coats` with no query, and Next appends
+         * `?type=coat` anyway — MEASURED on staging, not assumed: the pass-through
+         * described above applies to a literal `has` value too, not only to a
+         * capture. It is harmless and was left alone rather than fought: that lane
+         * is entirely coats and has no LANE_SUBTYPES entry, so `?type=coat`
+         * resolves to null and renders the plain lane (h1 "Jackets & Coats"), and
+         * the page's canonical is the clean `https://themodestyhouse.com/jackets-coats`,
+         * so Google consolidates the two addresses itself. Verified live.
          *
          * Bare `/outerwear` goes to `/jackets-coats` as the closest single
          * match to what an "outerwear" query means. It must come LAST: Next
