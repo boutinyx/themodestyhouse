@@ -621,7 +621,20 @@ export default function Home() {
           captures with a noticeably tighter edge margin than this section's
           usual side padding. Heading/link row above the grid shares the same
           section padding, so nothing about them goes out of alignment. */}
-      <section className="max-w-[1220px] mx-auto px-1 md:px-8 py-10 md:py-20">
+      {/* EDGE PADDING, 2026-08-25 — deliberately ASYMMETRIC on a phone, at
+          Tina's instruction: "im missing some whitespace on the right side",
+          then, asked which whitespace she meant, "on the right side of the
+          screen edge".
+          Measured her own screenshot first rather than trusting an emulator:
+          at 1179 device px (iPhone 14/15 Pro, 393pt at 3x) the card block ran
+          x 12..1169, i.e. 12 device px left and 9-12 right — 4pt each side,
+          already symmetric. So this is not a bug being corrected, it is more
+          room on the right because she asked for it.
+          pl stays at 4px because she asked for exactly the opposite in August
+          ("they need to be also less space ont he edges of the screen"), which
+          is why this was px-1 in the first place; widening both would have
+          walked that back without being asked. md: is unchanged at px-8. */}
+      <section className="max-w-[1220px] mx-auto pl-1 pr-4 md:px-8 py-10 md:py-20">
         {/* Centered, no "All categories" link — Tina: "By category. needs to
             be in the middle All categories gone." Every card in the grid
             below already links to its own lane, and /directory is reachable

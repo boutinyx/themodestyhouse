@@ -66,3 +66,41 @@ Chromium and WebKit identical at every width. `npx tsc --noEmit` clean,
   (the grid's own `scrollWidth` equals its `clientWidth`). Confirmed pre-existing
   by running the same audit against **production** earlier today, which
   reproduces it identically.
+
+## Follow-up — whitespace at the right screen edge
+
+Tina, with a screenshot of the working 2x2 grid: *"its working now but im missing
+some whitespace on the right side"*, and, asked which whitespace she meant, *"on
+the right side of the screen edge"*.
+
+**Measured her own screenshot rather than an emulator**, because "the right side
+looks tighter" is exactly the kind of claim an emulated viewport can get wrong.
+Sampling the JPEG (1179x2556 — iPhone 14/15 Pro, 393pt at 3x) for the first and
+last non-background pixel across two rows:
+
+    row y=1000: card block x 12..1169 -> left 12px, right 9px   (device px)
+    row y=1900: card block x 12..1166 -> left 12px, right 12px
+
+i.e. **4pt each side, already symmetric** — the 9 vs 12 is the yacht photo's own
+bright content reaching nearer its edge, not a layout difference. Confirmed
+independently against staging in WebKit at 393pt: section padding `4px / 4px`,
+grid gaps 4 and 4, and every `SHOP …` label centred to within 0.1px in its card.
+
+So this is not a bug being corrected. It is more room on the right because she
+asked for it, and the result is deliberately asymmetric on phones:
+
+    px-1 md:px-8   ->   pl-1 pr-4 md:px-8
+
+The left stays at 4px on purpose. She asked for the opposite in August — *"they
+need to be also less space ont he edges of the screen"* — which is why this was
+`px-1` at all, so widening both would have walked that back without being asked.
+`md:` and up is untouched.
+
+After, both engines: phone `left 4 / right 16`, cards 184px, no document
+overflow; desktop `142 / 142`, cards 381px — unchanged.
+
+**Likely what she was actually reacting to**, worth recording since it is
+untouched: in the right-hand column "SHOP CO-ORD SETS" has only **6.3px** of
+clearance inside its card while "SHOP DRESSES" opposite it has **31.3px**, so
+that side reads jammed regardless of the page margin. She was offered a fix for
+the labels and chose the screen edge instead.
