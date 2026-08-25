@@ -720,20 +720,31 @@ export const EDITS: Edit[] = [
     // ("Shop the Archive") that is not in this banner, because the selector had
     // scoped to the wrong section. A contrast figure that does not move when
     // you move the scrim is not a measurement (§10.28).
-    // 0.40 -> 0.58 with the brightened -7 crop. Re-measured rather than
-    // carried over: a brighter photograph costs text contrast, and 0.40 (which
-    // passed on the darker -6) drops to 2.76:1 on the edit page desktop here.
-    // Worst case across all four surfaces (homepage + edit page, desktop +
-    // phone), sampling the brightest pixel behind each text element:
-    //   0.40 -> 2.76  FAIL
-    //   0.50 -> 3.81  FAIL
-    //   0.58 -> 5.03  pass   <- shipped
-    //   0.66 -> 6.69  pass
-    // Worth understanding WHY this does not undo the brightening she asked
-    // for: the banner's wash is left-weighted (see EditBanner) and the copy is
-    // left-aligned, so the heavier scrim lands on the empty backdrop the type
-    // sits on, not on the outfit at the right of the frame.
-    heroWash: 0.58,
+    // EVEN wash at 0.60, chosen by Tina, 2026-08-25, after the finding below.
+    //
+    // The left-weighted default is wrong for THIS edit because /edits/[slug]
+    // CENTRES its h1: the tail of "Fall Essentials" crosses the model's cream
+    // sleeve and pale hijab, exactly where a to-the-right gradient has already
+    // faded to 0.02. That is the case `heroWashEven`'s own doc comment warns
+    // about, and this crop is the first one to hit it.
+    //
+    // Real-page contrast (no scrim override — an earlier probe overrode the
+    // gradient with a flat fill and so measured a configuration that was never
+    // shipped; every heroWash figure logged before 2026-08-25 evening is that
+    // measurement, not this one):
+    //             gradient 0.58        flat 0.60
+    //   home desktop     9.76 pass      -
+    //   home phone       4.09 FAIL      -
+    //   edit desktop     1.60 FAIL      -
+    //   edit phone       4.11 FAIL      -
+    // Flat sweep, min across all four surfaces:
+    //   0.40 -> 2.93 FAIL · 0.50 -> 4.02 FAIL · 0.60 -> 5.62 PASS · 0.70 -> 8.24
+    //
+    // The cost is real and was put to her rather than decided here: a flat wash
+    // darkens the WHOLE photograph, including the outfit, which walks back some
+    // of the brightness she spent several rounds tuning. She picked it anyway.
+    heroWash: 0.60,
+    heroWashEven: true,
     // -7 / -mobile-6: same crop, brightened. Tina, after seeing it: "can we
     // make it more brighter. liek both" — so BOTH surfaces get the identical
     // linear(1.3, 20) lift, cut from the one wide original as before.

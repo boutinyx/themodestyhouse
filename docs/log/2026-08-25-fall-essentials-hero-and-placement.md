@@ -454,11 +454,29 @@ mutation, so the selector cannot stop matching):
 | **0.60** | **5.62 PASS** |
 | 0.70 | 8.24 PASS |
 
-Not applied yet: a flat 0.60 darkens the whole photograph, which works against
-the brightness Tina has spent several rounds tuning. Raised with her as a choice
-rather than decided here. The edit-page `h1` does already carry
-`textShadow: 0 2px 30px rgba(0,0,0,0.5)`, so real-world legibility is better than
-the raw worst-pixel figure suggests.
+**Tina chose the even wash**, from four options put to her (even wash / deepen the
+title's drop shadow only / reframe so she sits further right / leave it). So
+`heroWash: 0.60` + `heroWashEven: true`. The cost was stated before she chose it:
+a flat wash darkens the WHOLE photograph, including the outfit, walking back some
+of the brightness she had spent several rounds tuning.
+
+Verified on the real page afterwards, with no scrim override — the probe now
+prints the computed scrim so the reading cannot be confused with an overridden
+one again. It reads `rgba(12, 6, 12, 0.6)` with no gradient, i.e. what actually
+ships:
+
+| surface | contrast |
+|---|---|
+| homepage desktop | 14.88 pass |
+| homepage phone | 6.49 pass |
+| edit page desktop | 5.62 pass |
+| edit page phone | 6.49 pass |
+
+Two harness faults hit while getting there, both caught rather than believed:
+`next start` served a build with **no CSS** (another session had rebuilt into the
+shared `.next` — §10.28 rule 4), caught by the stylesheet assertion; and one
+`npm run lint` reported "too many warnings" and then exited 0 on an immediate
+re-run, almost certainly a file mid-write from the same session.
 
 ### Second probe bug, caught by its own guard
 
