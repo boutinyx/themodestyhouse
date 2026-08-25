@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { CaretDown, ArrowRight } from '@phosphor-icons/react';
+import { fourPointStar } from '@/lib/starPath';
 
 /** One house, flattened to what the band actually renders. Deliberately NOT a
  *  `Brand` — a Brand carries `description`, which for the sealed houses runs to
@@ -120,12 +121,25 @@ export default function DesignerDiscovery({
           >
             {pins.map((p) => {
               const lit = active === null || active === p.region;
+              /* Half-width in viewBox units. The circle this replaced used
+                 `r = 3.2 + sqrt(n) * 2.4`; the star keeps that scale but is
+                 drawn 1.55x larger, because a four-pointed star inscribed in a
+                 box reads far lighter than a disc filling the same box — most
+                 of the box is empty. Matched by eye against the old pins so the
+                 map's visual weight did not drop when the shape changed. */
+              const r = (3.2 + Math.sqrt(p.n) * 2.4) * 1.55;
               return (
-                <circle
+                /* The crest's own four-pointed star, not a Phosphor icon —
+                   see lib/starPath.ts for why that is not a §6 violation, and
+                   for the two Phosphor candidates that were built and rejected
+                   against this map first.
+
+                   Tina, 2026-08-25: "use the star in my logo on the map instead
+                   of the circles ... like the seal star", then picked this over
+                   Phosphor's StarFour after seeing all three on the real map. */
+                <path
                   key={p.city}
-                  cx={p.x}
-                  cy={p.y}
-                  r={3.2 + Math.sqrt(p.n) * 2.4}
+                  d={fourPointStar(p.x, p.y, r)}
                   fill={active === p.region ? 'var(--plum)' : 'var(--aubergine)'}
                   opacity={lit ? 0.92 : 0.16}
                   style={{ transition: 'opacity 180ms ease, fill 180ms ease' }}
