@@ -853,27 +853,23 @@ export default function Home() {
                   was bright and a brass pill measured 1.28:1 against the photograph;
                   with the 0.75 overlay the band is dark, so `.btn-pill`'s own
                   aubergine is the one with no edge and brass is right again. */}
-              {/* PURPLE PILL, WHITE LETTERS, 2026-08-25 — Tina: "instead of the gold
-                  pill i want a purple with white letters". That is `.btn-pill`'s OWN
-                  default (aubergine background, parchment text), so the fix is to
-                  delete the inline override rather than write a new colour. The
-                  override existed because this band used to be flat aubergine, where
-                  an aubergine pill would have been invisible.
+              {/* GOLD PILL, WHITE LETTERS, 2026-08-25 — Tina: "yk what revert back to
+                  the gold but do white letters". Both halves are overrides: `.btn-pill`
+                  is aubergine-on-parchment by default, so the background goes back to
+                  --brass and the colour is pinned to --parchment rather than left to
+                  inherit --ink, which is what the gold pill carried all evening.
 
-                  MEASURED, so the trade is on the record: white on aubergine is
-                  13.40:1, the best text contrast this pill has ever had here (brass
-                  with ink letters was 3.03). What it costs is the pill's EDGE — the
-                  band immediately around it sits at luminance 0.052-0.079, so the
-                  aubergine body is only 1.75:1 against it, under the 3:1 that WCAG
-                  1.4.11 asks of a control's boundary. Brass was 2.52 and also short.
-                  --plum is worse on both counts (1.11 edge, 6.88 text), so aubergine
-                  is the right purple of the two. The control is still identifiable by
-                  its label; a hairline border is the fix if the edge needs to read.
-
-                  topic=marketing, not topic=seal: the band stopped being a seal pitch
-                  when Tina's copy landed. The seal topic itself is still in
-                  lib/contactTopics.ts and the footer still links it. */}
-              <Link href="/contact?topic=marketing" className="btn-pill inline-block mt-8">
+                  KNOWN AND ACCEPTED, so please do not silently "fix" it: white on
+                  --brass measures 3.03:1, under the 4.5 AA threshold for 12px text.
+                  The pill's other pairings, for scale — gold with --ink letters 5.15
+                  (what this was), purple with white letters 13.40 (what it was for
+                  about ten minutes). What white buys is the pill's EDGE: gold is
+                  2.52:1 against the band behind it where aubergine was 1.75, so the
+                  control reads as a control and its label does not.
+                  If the letters need to pass while staying white, the fix is a deeper
+                  gold: #87693e is 4.77:1 and still reads as brass. Offered to Tina;
+                  this is her call and she has made it. */}
+              <Link href="/contact?topic=marketing" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--parchment)' }}>
                 Market with The Modesty House
               </Link>
             </div>
