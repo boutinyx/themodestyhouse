@@ -461,6 +461,22 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
+    // REPLACED seal-band-satin above on 2026-08-25, same day. Tina swapped the
+    // plum satin macro for her own generated image, drapery framing a bright
+    // cream centre, and asked for the copy in that centre — which inverted every
+    // text colour on the band. Her original is
+    // ~/Downloads/Satijngolven in aubergine, bessen en lila.png, 1672x941; the
+    // committed .webp variants were generated in one step from THAT, not from
+    // the .jpg beside them, so re-running this script rebuilds them from the
+    // JPEG and will not be bit-identical. Same caveat as the fall hero.
+    // 1672 is the source's own width — this script never upscales, so there is
+    // no point asking for more.
+    file: 'seal-band-drape.jpg',
+    widths: [640, 1024, 1440, 1672],
+    suffixWidth: true,
+    opts: { quality: 95, effort: 6 },
+  },
+  {
     // /edits/[slug] story photographs — the credited street shots that sit with
     // the styling text. Rendered ~300-420px wide in a strip, so 400/800 covers
     // 1x and 2x; 1200 is there for the phone case where one card is nearly the

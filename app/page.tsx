@@ -687,32 +687,29 @@ export default function Home() {
           seal ("A seal is a judgement about craft and design"), and "ethics"
           was never defined or evidenced anywhere. Unified to /about's wording,
           the one place the standard is actually spelled out. */}
-      {/* SATIN BACKGROUND, 2026-08-25 — Tina supplied a plum satin photograph
-          for this band ("i want this satin as background but you have to flip
-          the picture"). Her file is 3927x5891 PORTRAIT and this band is wide and
-          short, so it is rotated 90 degrees to 5891x3927 — confirmed with her
-          before building, since "flip" could equally have meant a mirror, and a
-          mirror on an abstract texture would have been invisible.
-          The .webp variants were generated in ONE step from her original file,
-          not via an intermediate JPEG — see the fall hero's entry in
-          scripts/optimise-images.mjs for why that matters.
+      {/* DRAPE BACKGROUND, 2026-08-25 — third photograph on this band today.
+          Tina replaced the plum satin macro with her own generated image
+          ("Satijngolven in aubergine, bessen en lila.png", 1672x941) and asked
+          for the copy centred: "use this one and put the text in middle".
+          The .webp variants were generated in ONE step from her PNG, not via the
+          committed .jpg — see the fall hero's entry in optimise-images.mjs.
+
+          THIS PICTURE INVERTS THE BAND. The previous two were dark all over, so
+          the copy was reversed out in parchment. This one is drapery framing a
+          BRIGHT CREAM CENTRE, which is exactly where she wants the words — so
+          parchment-on-cream would have been invisible and every colour on the
+          band had to flip to dark. Measured, not guessed; see the note below.
 
           Applied HERE, not on `.aubergine-band` — /about/page.tsx uses that same
-          class and must not inherit a homepage photograph.
-
-          There is no scrim over it any more — see the note below the <img>.
-          Worth keeping in mind either way: the three text colours on this band
-          were each chosen against FLAT `--aubergine`, and the comment on the
-          numerals below states a measured 6.08:1 that stopped being true the
-          moment a photograph went behind them. The satin is coincidentally
-          almost exactly as dark as the aubergine on AVERAGE (mean luminance 34.4
-          vs 37.2); it is the bright folds that are the problem, so any future
-          measurement has to hold the worst LOCAL case, not the average. */}
+          class and must not inherit a homepage photograph. The class's flat
+          aubergine survives as the fallback if the image ever fails to load,
+          which is also why the copy keeps explicit inline colours rather than
+          inheriting. */}
       <section className="aubergine-band my-10 md:my-20 relative overflow-hidden md:min-h-[560px] md:flex md:items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/seal-band-satin-1440.webp"
-          srcSet="/seal-band-satin-640.webp 640w, /seal-band-satin-1024.webp 1024w, /seal-band-satin-1440.webp 1440w, /seal-band-satin-1920.webp 1920w, /seal-band-satin-2400.webp 2400w"
+          src="/seal-band-drape-1440.webp"
+          srcSet="/seal-band-drape-640.webp 640w, /seal-band-drape-1024.webp 1024w, /seal-band-drape-1440.webp 1440w, /seal-band-drape-1672.webp 1672w"
           sizes="100vw"
           alt=""
           aria-hidden
@@ -720,42 +717,31 @@ export default function Home() {
           loading="lazy"
           decoding="async"
         />
-        {/* ZOOMED OUT 2026-08-25 — Tina: "yeah but zoom out". The image is
-            `object-cover` on a full-bleed band, so it is already showing 100% of
-            the photograph's WIDTH at every desktop size; the only thing cropped
-            is height, and therefore the only lever that shows more picture is a
-            taller band. At 1440 the band was 429px and showed 44.7% of the
-            frame; `md:min-h-[560px]` takes that to 58.3%. (Showing the whole
-            frame at 1440 would need a 960px-tall band — the full photo is 1.5:1
-            and the band is 3.36:1.)
-            DESKTOP ONLY, deliberately. On a phone the constraint flips: at 390
-            the band is 324px and already shows 100% of the height and 80% of the
-            width, so making it TALLER crops the width instead — measured, a
-            420px band drops width coverage to 62%. The phone is already as
-            zoomed out as this aspect allows.
-            The content is vertically centred (`md:flex md:items-center`) rather
-            than left sitting at the top, which at 560px would have left ~130px
-            of dead photograph under the CTA. */}
-        {/* NO SCRIM — deliberate, and please do not add one back without asking.
-            There was a left-weighted aubergine wash over this photograph all of
-            2026-08-25; Tina asked for it gone: "completely get rid of the thing
-            we had there before and only leave the image". Two earlier versions
-            and their measured contrast are in the git history of this file
-            (49c753c, 0c6fac9) if it ever needs restoring.
+        {/* NO SCRIM, and the copy sits in the picture's own empty middle.
+            The drape occupies roughly the left 28% and the right 22% of the
+            frame; everything between is the cream wall she left clear, so the
+            text needs no wash — it needs the RIGHT COLOURS. Measured on the live
+            render by sampling the DARKEST pixel inside each text element's rect
+            (the inverse of the previous two passes, since the type is now dark
+            on light) and computing WCAG contrast. Numbers are in
+            docs/log/2026-08-25-seal-band-drape.md.
 
-            WHAT THAT COSTS, measured on the live staging render at 390/820/1440
-            by sampling the brightest pixel inside each text element's own rect —
-            worst case across the three widths:
-              heading 1.45 · steps 2.01 · numerals 3.84   (AA threshold 4.5)
-            i.e. the copy no longer meets AA anywhere the bright fold runs behind
-            it. The last washed version was 5.38 / 6.14 / 5.73. This is a stated,
-            accepted trade, not an oversight. If it needs fixing without bringing
-            the wash back, the cheap moves are a text-shadow on the copy or a
-            small wash behind the copy column only. */}
+            Colours, and why each changed:
+              heading   --parchment  -> --ink          (was reversed out)
+              steps     #e7d8e4      -> --ink at 0.82  (a plum-tinted white)
+              numerals  --brass-on-dark -> --brass     (the two tokens exist for
+                        exactly this: --brass-on-dark is the light-on-dark one)
+            The button is unchanged: it is a solid brass pill with --ink text, so
+            its contrast is internal to the pill and does not depend on what is
+            behind it.
+
+            `max-w-[46ch]` on the copy, not `max-w-2xl` — the clear cream area is
+            about 42% of the frame's width, and a 672px column at 1440 spills
+            over the right-hand drape. */}
         <div className="relative w-full max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-          <div className="max-w-2xl">
+          <div className="max-w-[46ch] mx-auto text-center">
             <div>
-              <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
+              <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--ink)' }}>
                 Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
               </h2>
               <ol className="mt-6 space-y-3">
@@ -764,11 +750,12 @@ export default function Home() {
                   'We review craft and design',
                   'Go live with the verified seal',
                 ].map((step, i) => (
-                  <li key={i} className="flex gap-3" style={{ color: '#e7d8e4' }}>
-                    {/* --brass-on-dark, not --brass: this sits on the aubergine band, where
-                        plain brass is 4.42:1 and the on-dark variant is 6.08:1. That is
-                        exactly the distinction the two tokens exist to make. */}
-                    <span className="serif italic" style={{ color: 'var(--brass-on-dark)' }}>{['i', 'ii', 'iii'][i]}.</span>
+                  <li key={i} className="flex gap-3 justify-center" style={{ color: 'rgba(36,27,36,0.82)' }}>
+                    {/* --brass, not --brass-on-dark: the type sits on the picture's
+                        cream centre now, which is the light-background case the plain
+                        token is for. That is exactly the distinction the two exist
+                        to make, read the other way round from before. */}
+                    <span className="serif italic" style={{ color: 'var(--brass)' }}>{['i', 'ii', 'iii'][i]}.</span>
                     <span>{step}</span>
                   </li>
                 ))}
