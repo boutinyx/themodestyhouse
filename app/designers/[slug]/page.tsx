@@ -180,7 +180,13 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       </p>
 
       <div className="mt-14">
-        <FilterableGrid catalogue={catalogue} />
+        {/* NO INDEX CONSOLE, 2026-08-26 — Tina: "i want the search bar inside each
+            of those things to be gone like the whole block the search the filters".
+            The console is not just unhelpful on a brand page, it is meaningless: the
+            catalogue here is ONE brand, so its Brand dropdown offers a choice between
+            "All" and the house whose page you are already on. Filtering and sorting
+            still work underneath — only the controls are gone. */}
+        <FilterableGrid catalogue={catalogue} showConsole={false} />
       </div>
     </main>
   );

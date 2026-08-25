@@ -17,6 +17,7 @@ export function FilterableGrid({
   trailingTile,
   searchable = true,
   showTypeFilter = true,
+  showConsole = true,
 }: {
   catalogue: CompactCatalogue;
   /** From the lane page's ?type= — e.g. the nav flyout's "Blazers" link
@@ -52,6 +53,23 @@ export function FilterableGrid({
    *  answers a question the page is not asking. Tina, 2026-08-24: "type can go
    *  out too". Defaults to true, so the lanes are untouched. */
   showTypeFilter?: boolean;
+  /** Whether to render the index console AT ALL — the search field and the whole
+   *  filter row, not just one control inside it.
+   *
+   *  False on /designers/[slug], at Tina's request 2026-08-26: "i want the search
+   *  bar inside each of those things to be gone like the whole block the search
+   *  the filters". It is the right call on that page for a reason the other two
+   *  flags do not cover — the console is not merely unhelpful there, it is
+   *  MEANINGLESS. A brand page's catalogue is one brand, so `brands` has exactly
+   *  one entry and the Brand dropdown offers a choice between "All" and the house
+   *  whose page you are already on. `searchable`/`showTypeFilter` would each have
+   *  removed one control and left that one behind.
+   *
+   *  Nothing about the FILTERING is removed, here or anywhere: `q`, `brand`,
+   *  `fabricType` and `sort` still exist and still apply. Only the controls that
+   *  change them are gone, exactly as with the Outerwear/Layering type dropdowns
+   *  above. `initialType` therefore still narrows the grid on arrival. */
+  showConsole?: boolean;
 }) {
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   // Independent of `type` below (the sub-category flyout's URL-driven
@@ -210,6 +228,7 @@ export function FilterableGrid({
           subtypes (Outerwear, Layering Basics, Hijabs & Scarves) filter by
           them via the header flyout only; see the note on `type`/`typeIdx`
           above. */}
+      {showConsole && (
       <IndexPanel q={q} onQ={setQ} showSearch={searchable} className="mb-8">
         {/* Occasion filter pulled from the UI 2026-08-12 at Tina's request —
             broken, pending a fix. The underlying data (cat.occasions,
@@ -238,6 +257,7 @@ export function FilterableGrid({
           onSelect={(v) => setSort(v as SortKey)}
         />
       </IndexPanel>
+      )}
 
       <div className="brand-label mb-4">
         Showing {shownCards.length} of {sortedRows.length}
