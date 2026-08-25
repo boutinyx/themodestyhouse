@@ -635,6 +635,79 @@ export const EDITS: Edit[] = [
     // exception is the point rather than a compromise. See the flag's own note.
     includeHijabs: true,
   },
+  {
+    slug: 'fall-essentials',
+    title: 'Fall Essentials',
+    eyebrow: 'The Edit \u00b7 Autumn 2026',
+    // NOT featured — `featured` only decides which banner comes FIRST on the
+    // homepage, and Jersey Hijabs holds it. All three render.
+    more: { href: '/directory', label: 'The whole directory' },
+
+    // ---------------------------------------------------------------------
+    // PLACEHOLDER HERO — Tina's choice, 2026-08-25: build the page with a
+    // temporary hero so the layout and the grid can be reviewed, then swap her
+    // own shot in before it goes live.
+    //
+    // This is the LACE hero, reused. That means the homepage shows the same
+    // photograph on two banners, which looks wrong — deliberately. A
+    // placeholder that could be mistaken for a finished choice is the more
+    // expensive mistake.
+    //
+    // TO REPLACE: swap the five image fields below for her pair, MEASURE the
+    // real pixel ratios (do not round — see the imageRatio doc comment), run
+    // `node scripts/optimise-images.mjs` and list only the widths it actually
+    // generated. Give the files NEW names; public/ is served with a 4h cache
+    // and is not fingerprinted (CLAUDE.md \u00a76, \u00a710.21).
+    // ---------------------------------------------------------------------
+    image: '/edit-lace-hero-v2.jpg',
+    imageMobile: '/edit-lace-hero-mobile-v2.jpg',
+    imageRatio: 5504 / 3072,
+    imageMobileRatio: 1920 / 2571,
+    imageWidths: [640, 1024, 1440, 1920, 2400, 3200, 3840],
+    imageMobileWidths: [390, 780, 1170, 1560, 1920],
+    imageAlt: 'Placeholder \u2014 awaiting the Fall Essentials hero photograph',
+
+    seoTitle: 'Fall Essentials \u2014 Gilets, Knits, Blouses and Fall Skirts',
+    seoDescription:
+      'The fall layers from independent modest houses worldwide \u2014 gilets, knits, trench coats, striped blouses and satin skirts, in burgundy, chocolate, olive, camel, cream and rust.',
+
+    styling: {
+      // FILLED IN BY TASK 5. Left as a single marked placeholder rather than
+      // invented copy: CLAUDE.md \u00a710.18 — brand voice is Tina's product.
+      h2: 'PLACEHOLDER \u2014 awaiting copy',
+      paragraphs: ['PLACEHOLDER \u2014 awaiting copy'],
+    },
+
+    /**
+     * Fall Essentials, from Tina's 12-panel moodboard (`flyingworm1376`) and her
+     * fall palette card, both supplied 2026-08-25.
+     *
+     * TWO GATES, NOT ONE, and that is the whole design. Asked whether hijabs
+     * belong, she said: *"im gonna send you a photo of the color pallate i want
+     * you to take that and take hijabs with that vibe"*. So:
+     *   - CLOTHING is gated by the moodboard's garment vocabulary (FE_LAYER /
+     *     FE_TOP / FE_BOTTOM).
+     *   - HIJABS are gated by the PALETTE — colour, not garment.
+     *
+     * `includeHijabs` is therefore set for a different reason than the other two
+     * edits: not because the theme happens to include scarves, but because the
+     * theme IS a colour story and the scarves are where a colour story lives.
+     *
+     * Measured 2026-08-25 over in-stock rows: 3,429 pieces, 83 brands —
+     * 1,450 tops \u00b7 884 hijabs \u00b7 526 trousers \u00b7 255 skirts \u00b7 157 dresses \u00b7
+     * 107 abayas \u00b7 50 sets.
+     *
+     * This is the FALLBACK. Tina picks in /staff/curate and those ids replace it
+     * entirely, exactly as they do for the other two edits.
+     */
+    match: (p) =>
+      p.garment !== 'swim' &&
+      !NOT_A_GARMENT.test(p.title) &&
+      !TOO_THICK.test(p.title) &&
+      (p.garment === 'hijab' ? IN_FALL_PALETTE(p.title) : FE_LAYER(p) || FE_TOP(p) || FE_BOTTOM(p)),
+
+    includeHijabs: true,
+  },
 ];
 
 export function editBySlug(slug: string): Edit | undefined {
