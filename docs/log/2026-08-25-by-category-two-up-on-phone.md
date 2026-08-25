@@ -109,7 +109,13 @@ the labels and chose the screen edge instead.
 
 *"now its too much."* `pr-4` -> `pr-2`, i.e. 16px -> 8px.
 
+Then *"1px more"* — `pr-2` -> `pr-[9px]`.
+
 The useful thing to record is the bracket, not the number: **4px read as none,
-16px as too much, 8px is the midpoint.** It was landed by eye, in two passes —
-so it is not a value to round off or tidy later, and the comment in
-`app/page.tsx` says so.
+16px as too much, 8px close, 9px right.** Landed by eye across three passes, so
+it is not a value to round off or tidy later, and the comment in `app/page.tsx`
+says so.
+
+`pr-[9px]` is an **arbitrary value on purpose** — Tailwind's scale steps 8px to
+12px, and she asked for one pixel. Snapping it back onto the scale would undo the
+last round.
