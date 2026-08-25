@@ -211,3 +211,38 @@ The gap between the map and the first row is `mt-16 md:mt-24` (96px on desktop),
 set earlier from *"put some space between the cards and the map."* With the rows
 now tightened it reads proportionally larger than it did. Left alone because it
 was an explicit ask and this one was about the rows; easy to close up if wanted.
+
+---
+
+## Update, same day — the copy column's spacing
+
+Tina: *"Explore all designers can i get above this and under this sentence
+little less spacing"*.
+
+Measured before touching anything, because "less spacing" needs a number:
+
+| gap | was | now |
+|---|---|---|
+| heading → paragraph (`mt-5` → `mt-4`) | 20px | **16px** |
+| paragraph → "Explore all designers" (`mt-7` → `mt-5`) | 28px | **20px** |
+
+### The part that is not in the margin
+
+The visible gap above the words is larger than either number, and it is worth
+writing down so the next person does not chase it in the wrong place.
+`.nav-link` sets `min-height: 24px` on 12px type, so the link's box is twice its
+text height and contributes **~6px above and below the text** on its own.
+
+That min-height is **WCAG 2.5.8 target size**, not decoration — `globals.css`
+says so at the declaration. Any further tightening here comes off the margin,
+never off that. The link measured 199x24 after the change, so the target is
+intact.
+
+This is the same class of thing as the `.nav-link { justify-content: center }`
+leak in CLAUDE.md §8: that class is a header component being reused in a layout
+it was not written for, and it brings its own box rules with it.
+
+### Verification
+
+`npx tsc --noEmit` → 0 · `npm run lint` → 0 · build clean · 0 console errors ·
+gaps re-measured in the browser at 16px / 20px · link box 199x24 (≥24 OK).

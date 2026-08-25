@@ -87,12 +87,21 @@ export default function DesignerDiscovery({
             <span className="italic" style={{ color: 'var(--plum)' }}>Global perspectives.</span>
           </h2>
           <p
-            className="mt-5 mx-auto lg:mx-0"
+            /* 20px -> 16px, 2026-08-25, with the link's gap below — Tina:
+               "Explore all designers can i get above this and under this
+               sentence little less spacing". */
+            className="mt-4 mx-auto lg:mx-0"
             style={{ fontSize: 'clamp(15px,1.15vw,17px)', color: 'var(--muted)', lineHeight: 1.6, maxWidth: '32ch' }}
           >
             {totalBrands} houses across {totalPlaces} places. Open a region to see who is in it.
           </p>
-          <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-7">
+          {/* mt-7 -> mt-5 (28px -> 20px), same ask. Note the VISIBLE gap above
+              the words is larger than this number: .nav-link carries
+              min-height:24px on 12px type, so the box adds ~6px above and below
+              the text. That min-height is a WCAG 2.5.8 target size, not
+              decoration — tightening the gap further should come off the margin,
+              never off that. */}
+          <Link href="/designers" className="nav-link inline-flex items-center gap-1.5 mt-5">
             Explore all designers <ArrowRight size={13} weight="bold" />
           </Link>
         </div>
