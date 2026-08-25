@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 // ssr entrypoint: app/page.tsx is a server component (CLAUDE.md §6).
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
-import { newlyVerified, categoryCards } from '@/lib/houses';
+import { categoryCards } from '@/lib/houses';
 import CategoryQuickLinks from '@/components/CategoryQuickLinks';
 import DesignerDiscovery from '@/components/DesignerDiscovery';
 import PopularShowcase from '@/components/PopularShowcase';
@@ -10,7 +10,6 @@ import { EditBanner } from '@/components/EditBanner';
 import { EDITS } from '@/lib/edits';
 import { POPULAR_ITEM_IDS } from '@/lib/popularItems';
 import { HeroCallouts } from '@/components/HeroCallouts';
-import VerifiedSpotlight from '@/components/VerifiedSpotlight';
 import { getProducts } from '@/lib/products';
 import { BRANDS } from '@/data/brands';
 import { regionsWithCounts, brandsInRegion, pins as regionPins, MAP } from '@/lib/brandRegions';
@@ -68,7 +67,6 @@ const CATEGORY_SHOWCASE: { slug: string; label: string; image: string; zoom?: nu
 ];
 
 export default function Home() {
-  const rail = newlyVerified();
   const cats = categoryCards();
   const catCountBySlug = new Map(cats.map((c) => [c.slug, c.count]));
   const posts = getPosts();
@@ -466,9 +464,10 @@ export default function Home() {
             which keeps its +2px) and "Reading, not just shopping."
               clamp(28px,4vw,44px) -> clamp(24px,3vw,34px)   [44px -> 34px desktop]
               clamp(28px,4vw,46px) -> clamp(24px,3vw,36px)   [the band one]
-            NOT changed: VerifiedSpotlight's "Houses that just earned the seal."
-            and EditBanner's edit title, both clamp(40px,5.6vw,64px) in their own
-            <style> blocks. They're a deliberately larger tier, not this set. */}
+            NOT changed: EditBanner's edit title, clamp(40px,5.6vw,64px) in its
+            own <style> block — a deliberately larger tier, not this set.
+            (VerifiedSpotlight's "Houses that just earned the seal." was the other
+            one at that size; it was unmounted 2026-08-25, see below.) */}
         <h2
           className="serif text-center max-w-[1220px] mx-auto px-8"
           style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}
@@ -484,8 +483,9 @@ export default function Home() {
           Added 2026-08-24 ("put it on the hompage"). Placed here, directly
           after Popular Items and where the "Chosen by hand" rail used to sit,
           so the homepage still has one editorial beat between the two product
-          rails rather than running Popular Items straight into the Verified
-          Spotlight.
+          rails rather than running Popular Items straight into the next section.
+          (That next section was the Verified Spotlight until 2026-08-25; it is
+          "By category" now.)
           Renders ONE edit — the one flagged `featured` in lib/edits.ts — rather
           than all of them, so this never grows into a stack of full-bleed
           banners down the homepage. */}
@@ -509,8 +509,23 @@ export default function Home() {
           Removing this also drops the homepage's SECOND uncached getProducts()
           call; see CLAUDE.md §8 on getProducts re-parsing 5.6 MB per call. */}
 
-      {/* NEWLY VERIFIED — spotlight */}
-      <VerifiedSpotlight houses={rail.slice(0, 8)} />
+      {/* The "Houses that just earned the seal." spotlight — four fanned cards
+          with the seal copy beside them — stood here until 2026-08-25, when Tina
+          replaced it with the Designer Discovery band below ("change this one
+          into the one we had that says Houses that just earned the seal"),
+          confirmed against the three readings of that sentence before acting.
+
+          components/VerifiedSpotlight.tsx is KEPT, not deleted: it is a whole
+          layout with its own <style> block and nothing else on the site renders
+          anything like it, so remounting it is a one-line change. It now has
+          zero imports — the same state components/EditMagazine.tsx is in (§8).
+
+          What went with it, worth knowing before anyone calls this a pure
+          removal: it was the only surface naming the seal on the homepage above
+          the fold-ish, and it carried an "All designers" link to /designers.
+          That link is not lost — <DesignerDiscovery> below has its own
+          "Explore all designers" — and the aubergine "Apply for the seal" band
+          further down still explains the standard. */}
 
       {/* BROWSE BY CATEGORY */}
       {/* px-4 md:px-8, not the site's usual px-8 everywhere — Tina, on the

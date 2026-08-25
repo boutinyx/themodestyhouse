@@ -148,6 +148,10 @@ const SPOTLIGHT_FRONT = 'aab';
 
 // "Newly verified" rail — verified/editor's-pick houses first, then the rest,
 // with the chosen house moved into the spotlight's front slot (4th).
+/** NO CALLERS as of 2026-08-25. Its only consumer was the homepage's
+ *  VerifiedSpotlight, unmounted that day when Tina replaced that section with
+ *  the Designer Discovery band. Kept, like the component itself, because
+ *  remounting it is a one-line change; delete both together or neither. */
 export function newlyVerified(): House[] {
   const sorted = houses().sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0));
   const front = sorted.findIndex((h) => h.slug === SPOTLIGHT_FRONT);

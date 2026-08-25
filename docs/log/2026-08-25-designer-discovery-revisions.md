@@ -95,3 +95,62 @@ perspectives. / 113 houses across 39 places…"* to be centred on phone — i.e.
 copy stays. §10.29 is exactly this trap: an ambiguity about a previous state feels
 like something you can look up, and the repo holds every past state equally.
 Asked rather than picked.
+
+---
+
+## Item 8, resolved — the Verified Spotlight section is replaced
+**Status of this file is now: done.**
+
+Asked Tina which of the three readings she meant. She chose **(b): remove the
+`VerifiedSpotlight` section and let the Designer Discovery band stand in its
+place.** Worth recording that the ambiguity was real — the reading I would have
+guessed (c, just relabel the CTA) was not the one she meant, and (a) would have
+deleted copy she had asked me to centre four sentences earlier.
+
+### What changed
+- `app/page.tsx` — `<VerifiedSpotlight houses={rail.slice(0, 8)} />` unmounted,
+  along with its import and the now-dead `const rail = newlyVerified()`.
+- `lib/houses.ts` — `newlyVerified()` has **no callers at all** now. Left in place
+  with a docstring saying so, rather than deleted, so remounting is one line.
+- `components/VerifiedSpotlight.tsx` — **kept, not deleted.** It is a whole layout
+  with its own `<style>` block and nothing else on the site resembles it. Zero
+  imports now, the same state `components/EditMagazine.tsx` is in (§8).
+- Two comments in `app/page.tsx` that asserted things about the spotlight were
+  corrected rather than left to rot — one in the heading-size note, one in the
+  Edit-banner placement note.
+
+### Resulting homepage order, read out of the DOM
+```
+Every modest brand. One place.              (hero)
+Popular items from brands.
+Jersey Hijabs                               (edit banner)
+Everyday Lace                               (edit banner)
+By category.
+Independent labels. Global perspectives.    <- Designer Discovery
+Are you a modest fashion house? Apply for the seal.
+Reading, not just shopping.
+```
+This matches the preview she selected exactly. Note the band sits **after** "By
+category", which is where it already was — removing the spotlight is what moved it
+up the page. If she wants it in the spotlight's literal old slot (before "By
+category"), that is a one-line move.
+
+### What went with the spotlight
+It was the only place on the homepage carrying the seal copy, and it held an
+"All designers" link. Neither is lost outright: `<DesignerDiscovery>` has its own
+`Explore all designers` → `/designers` (verified: exactly one such link in `main`),
+and the aubergine "Apply for the seal" band still explains the standard. But the
+homepage no longer *shows* which houses are newly sealed — that is a genuine
+editorial change, not just a layout one, and is Tina's call.
+
+### Verification
+```
+$ npx tsc --noEmit                          TSC=0
+$ npx eslint app/page.tsx lib/houses.ts     LINT=0
+$ npm test              Test Files 47 passed · Tests 753 passed
+```
+From a real Chromium render: `.tmh-verified-sec` is absent, the string "Houses that
+just earned the seal" no longer appears anywhere in `document.body.innerText`, the
+heading order is as above, and there are **no console errors**. Screenshotted the
+junction where the section used to be — the Edit banner runs straight into "By
+category" with no gap or orphaned rule.
