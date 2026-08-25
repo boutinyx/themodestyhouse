@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { newlyVerified, categoryCards } from '@/lib/houses';
 import CategoryQuickLinks from '@/components/CategoryQuickLinks';
+import DesignerDiscovery from '@/components/DesignerDiscovery';
 import PopularShowcase from '@/components/PopularShowcase';
 import { EditBanner } from '@/components/EditBanner';
 import { EDITS } from '@/lib/edits';
@@ -11,6 +12,9 @@ import { POPULAR_ITEM_IDS } from '@/lib/popularItems';
 import { HeroCallouts } from '@/components/HeroCallouts';
 import VerifiedSpotlight from '@/components/VerifiedSpotlight';
 import { getProducts } from '@/lib/products';
+import { BRANDS } from '@/data/brands';
+import { regionsWithCounts, brandsInRegion, pins as regionPins, MAP } from '@/lib/brandRegions';
+import { withUtm } from '@/lib/outbound';
 import { getPosts } from '@/lib/posts';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 import { pageMetadata } from '@/lib/seoCopy';
@@ -78,6 +82,31 @@ export default function Home() {
   const popularItems = POPULAR_ITEM_IDS
     .map((id) => productById.get(id))
     .filter((p): p is Product => Boolean(p));
+
+  // DESIGNER DISCOVERY. Flattened HERE, on the server, rather than handing
+  // <DesignerDiscovery> the Brand records: it is a client component, so every
+  // field on whatever it receives is serialised into the page — and `Brand`
+  // carries `description`, several hundred words each for the sealed houses.
+  // Same rule as CardProduct vs Product (CLAUDE.md §8).
+  // The internal/external split matches app/designers/page.tsx exactly: a house
+  // with a description has a page of ours; one without goes to its storefront,
+  // which then needs rel="sponsored" and a withUtm'd href (§6).
+  const discoveryRegions = regionsWithCounts().map((r) => ({
+    name: r.name,
+    count: r.count,
+    brands: brandsInRegion(r.name).map((b) => {
+      const internal = b.description?.trim() ? `/designers/${b.slug}` : null;
+      return {
+        name: b.name,
+        city: b.city,
+        href: internal ?? withUtm(b.homepage, 'designer-discovery'),
+        external: !internal,
+      };
+    }),
+  }));
+  const discoveryPins = regionPins().map((p) => ({
+    x: p.x, y: p.y, n: p.n, region: p.region, city: p.city,
+  }));
 
   return (
     // A <main> landmark. Every other page has one; the homepage did not, so the
@@ -527,6 +556,22 @@ export default function Home() {
           })}
         </div>
       </section>
+
+      {/* DESIGNER DISCOVERY — dotted world map + expandable region rows.
+          Sits between "By category" and the seal band so the homepage reads
+          browse the clothes -> see who makes them -> are you a house? apply.
+          Built 2026-08-25 from Tina's reference screenshot; the numbers are
+          computed from data/brands.ts by lib/brandRegions.ts, never placed.
+          NOTE Africa is genuinely 0 and is therefore not rendered as a row —
+          see the module docstring. */}
+      <DesignerDiscovery
+        regions={discoveryRegions}
+        pins={discoveryPins}
+        totalBrands={BRANDS.length}
+        totalPlaces={new Set(BRANDS.map((b) => b.city)).size}
+        mapW={MAP.W}
+        mapH={MAP.H}
+      />
 
       {/* FOR DESIGNERS. Step 2 used to read "We review craft, sizing and
           ethics" — a different standard than /about's own definition of the
