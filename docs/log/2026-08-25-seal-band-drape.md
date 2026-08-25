@@ -254,3 +254,30 @@ spacing *between the steps*, and closing the gap to the lead paragraph as well
 would merge the list into the prose. Measured on the deployed page: step gaps
 `[6, 6]px`, gap from the paragraph unchanged at `24px`, band 475px at 1440 and
 424px at 390, zero elements overflowing at either width.
+
+---
+
+## Follow-up: purple pill, white letters
+
+Tina: *"instead of the gold pill i want a purple with white letters"*.
+
+**That is `.btn-pill`'s own default** — `background: var(--aubergine)`,
+`color: var(--parchment)` — so the change is deleting the inline override, not
+writing a new colour. The override existed only because this band used to be flat
+aubergine, where an aubergine pill would have been invisible.
+
+Verified on the deployed page at 1440 and 390: computed `rgb(68, 25, 67)` on
+`rgb(250, 247, 241)`, `letters-vs-pill measured 13.40:1` by sampling the rendered
+pixels inside the pill (not by trusting the token values).
+
+**The trade, on the record.** 13.40 is the best text contrast this button has had
+on this band — brass with ink letters measured 3.03. What it costs is the pill's
+**edge**: the band immediately around it sits at luminance 0.052–0.079, so the
+aubergine body is only **1.75:1** against it, under the 3:1 WCAG 1.4.11 asks of a
+control's boundary. Brass was 2.52 and also short of it, so this is not a
+regression against a passing state. `--plum` is worse on both counts (1.11 edge,
+6.88 text), which is why aubergine is the right purple of the two.
+
+A 1px hairline in `--brass` or `--parchment` at low opacity would take the
+boundary over 3:1 without touching the fill. Flagged, not added — she asked for a
+purple pill with white letters and that is what is there.
