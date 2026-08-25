@@ -446,6 +446,65 @@
   margin-top: calc(-1 * var(--header-height));
 }
 
+/* The homepage's feature editorial card. 460px tall from md up — its original
+   inline `minHeight` — and a true 16:9 picture below that.
+   Tina, 2026-08-25: "i wanted the editorials on the end of the homepage to be
+   that [16:9] or at least the most recent one".
+
+   `min-height: 0` is not decoration: an aspect-ratio cannot shrink a box below
+   its own min-height, so leaving the 460 in place at phone width would keep the
+   card 460px tall and the ratio would silently do nothing — which looks exactly
+   like the rule not applying.
+
+   768px matches the `md:` breakpoint on this card's own grid parent, so the
+   shape changes precisely where the card stops sharing a row with the
+   more-stories column. */
+.edit-feature-card {
+  min-height: 460px;
+}
+@media (max-width: 767px) {
+  .edit-feature-card {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+  /* The caption has to come down with the card. At 390px the 30px title and
+     28px padding measured 209px of caption inside a 183px card, and the card is
+     `overflow-hidden`, so the top of the headline was simply cut off — 26px of
+     it. Not a taste change: 16:9 on a phone is 183px, and the old values do not
+     fit in it. */
+  /* The scrim has to reach as high as the caption does. On this card the
+     caption is 116px of 183, i.e. the top 63%, and the desktop gradient is
+     fully transparent above 55% — so the eyebrow sat on bright photograph.
+     `!important` because the gradient is an inline style on the element and an
+     inline style otherwise wins outright; the desktop value stays in the TSX so
+     the two are read together. */
+  .edit-feature-scrim {
+    background: linear-gradient(
+      to top,
+      rgba(36, 27, 36, 0.86),
+      rgba(36, 27, 36, 0.45) 55%,
+      rgba(36, 27, 36, 0) 100%
+    ) !important;
+  }
+  .edit-feature-caption {
+    padding: 14px;
+  }
+  /* CLAMPED, not just shrunk. Tuning the font size alone means tuning it to one
+     particular headline: at 19px this post's title ("The Best Abaya Brands,
+     Sorted by What They Actually Cost") still measured 185px of caption in a
+     183px card. The next post could be longer again.
+     Two lines is a property that holds for ANY title, so the card can never be
+     overrun by an editor writing a long one. The full headline is on the post
+     page one tap away, so nothing is lost. */
+  .edit-feature-title {
+    font-size: 17px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
 /* Hero headline, mobile + tablet vs desktop — Tina's own reference (a
    competitor's mobile hero: big bold text centred in the screen): "i want
    you to do it lik this for mobile and tablet so text bigger and in the

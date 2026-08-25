@@ -904,7 +904,15 @@ export default function Home() {
             post, not a breakpoint. */}
         {feature && (
           <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8">
-            <Link href={`/editorial/${feature.slug}`} className="relative block overflow-hidden" style={{ borderRadius: 8, minHeight: 460, background: 'var(--aubergine)' }}>
+            {/* `edit-feature-card` carries the height: 460px from md up, a true
+                16:9 below it. Tina, 2026-08-25: "i wanted the editorials on the
+                end of the homepage to be that [16:9] or at least the most recent
+                one". A class rather than the inline `minHeight` it replaces,
+                because an inline style cannot be responsive.
+                768px is where this grid already collapses to one column
+                (`md:grid-cols-[1.5fr_1fr]` on the parent), so the card changes
+                shape exactly where it stops sharing a row. */}
+            <Link href={`/editorial/${feature.slug}`} className="edit-feature-card relative block overflow-hidden" style={{ borderRadius: 8, background: 'var(--aubergine)' }}>
               {feature.image && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -916,10 +924,21 @@ export default function Home() {
                   decoding="async"
                 />
               )}
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.78), rgba(36,27,36,0) 55%)' }} />
-              <div className="absolute inset-x-0 bottom-0 p-7">
+              {/* The scrim fades out at 55% of the card, which is tuned to the
+                  460px desktop card. On the 183px 16:9 phone card that covers
+                  ~82px while the caption is 116px, so the eyebrow sat on bright
+                  photograph and was barely readable. `.edit-feature-scrim` is
+                  the hook for the phone override in globals.css. */}
+              <div className="edit-feature-scrim absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.78), rgba(36,27,36,0) 55%)' }} />
+              {/* The caption is sized down on a phone by `.edit-feature-card`'s
+                  own media query (globals.css). Measured at 390px with the 460px
+                  card's values still in place: the caption came to 209px inside
+                  a 183px card, so `overflow-hidden` clipped the top of the
+                  title — 26px of it. The classes below are the hooks for that
+                  override; the desktop values stay inline. */}
+              <div className="edit-feature-caption absolute inset-x-0 bottom-0 p-7">
                 <div className="eyebrow" style={{ color: '#e7d3b6' }}>{feature.category}</div>
-                <div className="serif mt-2" style={{ fontSize: 30, color: 'var(--parchment)', lineHeight: 1.08 }}>{feature.title}</div>
+                <div className="edit-feature-title serif mt-2" style={{ fontSize: 30, color: 'var(--parchment)', lineHeight: 1.08 }}>{feature.title}</div>
               </div>
             </Link>
             {moreStories.length > 0 && (
