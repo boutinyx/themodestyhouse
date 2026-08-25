@@ -1,5 +1,13 @@
 # Filter chips, the lane search field, and the card's arrow badge
-**Date:** 2026-08-26 · **Status:** done
+**Date:** 2026-08-26 · **Status:** done — **item 3 reverted the same day**
+
+> **Item 3 (the filter chips) is no longer live.** Tina, an hour after it
+> shipped: *"nvm only keep the filter bar"*. `components/ActiveFilters.tsx` is
+> deleted and the chip row is out of `FilterableGrid`; the component and its
+> measurements are in git at `6301e96`, and a pointer comment sits where the row
+> was. **Items 1 and 2 stand** — the lane search field is still off and the card's
+> arrow badge is still gone. The section below is kept as written because the
+> reasoning is what would need re-deriving, not the code.
 
 Three requests in one message from Tina, two of them screenshots.
 
@@ -85,3 +93,38 @@ check that matters for removal #1.
   into `blazers-vests`, `cardigans-sweaters` and `jackets-coats`. Worth knowing
   because `scripts/interaction-audit.mjs` still has an `outerwear-flyout-navigate`
   check (§10.38), which must now be pointing at a dead route.
+
+
+---
+
+## Reverted: item 3 only
+
+*"nvm only keep the filter bar"*. The chip row is out and
+`components/ActiveFilters.tsx` is **deleted** rather than left in the tree as an
+unused file — dead components are how a codebase acquires two ways to do
+everything. The comment left in its place names the commit (`6301e96`) and the
+two things worth not re-deriving if it ever returns: that **sort is not a
+filter**, and that the remove button has to be **24px** to pass the mobile audit.
+
+### Verified on the deployed page, all five surfaces
+| route | chips | filter bar | controls | search | arrow badge |
+|---|---|---|---|---|---|
+| `/modest-dresses` | **0** | 1 | Brand, Sort | 0 | 0 |
+| `/layering-basics?type=under-dress` | **0** | 1 | Brand, Type, Sort | 0 | 0 |
+| `/directory` | **0** | 1 | Category, Brand, Sort | **1** | 0 |
+| `/designers/veiled` | 0 | **0** | — | 0 | 0 |
+| `/edits/everyday-lace` | **0** | 1 | Brand, Sort | 0 | 0 |
+
+Which is the whole state of the filtering UI in one table: the bar everywhere it
+belongs, no search except on `/directory`, no console at all on a brand page, and
+no chips anywhere. `tsc` clean, `eslint` clean, 789 tests pass.
+
+### A wait-loop slip, and it is §10.6 exactly
+The first deploy check was
+`curl -s $B/layering-basics?type=under-dress | grep -c 'Remove the'` — **unquoted**,
+so zsh tried to glob the `?`, the command failed, and the loop read the failure as
+"0 matches" and reported `DEPLOYED after 20s`. The Playwright run that followed
+therefore measured the OLD build and reported `chipRow: 1` on a route where the
+chips had just been removed. Quoting the URL fixed it; the real deploy took 160s.
+CLAUDE.md §10.6 is this same shell fault in a `grep --include` glob, and §10.20 is
+the same "read output from a run that never happened" consequence.
