@@ -638,7 +638,7 @@ export const EDITS: Edit[] = [
   {
     slug: 'fall-essentials',
     title: 'Fall Essentials',
-    eyebrow: 'The Edit \u00b7 Autumn 2026',
+    eyebrow: 'The Edit · Autumn 2026',
     // NOT featured — `featured` only decides which banner comes FIRST on the
     // homepage, and Jersey Hijabs holds it. All three render.
     more: { href: '/directory', label: 'The whole directory' },
@@ -657,7 +657,7 @@ export const EDITS: Edit[] = [
     // real pixel ratios (do not round — see the imageRatio doc comment), run
     // `node scripts/optimise-images.mjs` and list only the widths it actually
     // generated. Give the files NEW names; public/ is served with a 4h cache
-    // and is not fingerprinted (CLAUDE.md \u00a76, \u00a710.21).
+    // and is not fingerprinted (CLAUDE.md §6, §10.21).
     // ---------------------------------------------------------------------
     image: '/edit-lace-hero-v2.jpg',
     imageMobile: '/edit-lace-hero-mobile-v2.jpg',
@@ -665,17 +665,31 @@ export const EDITS: Edit[] = [
     imageMobileRatio: 1920 / 2571,
     imageWidths: [640, 1024, 1440, 1920, 2400, 3200, 3840],
     imageMobileWidths: [390, 780, 1170, 1560, 1920],
-    imageAlt: 'Placeholder \u2014 awaiting the Fall Essentials hero photograph',
+    imageAlt: 'Placeholder — awaiting the Fall Essentials hero photograph',
 
-    seoTitle: 'Fall Essentials \u2014 Gilets, Knits, Blouses and Fall Skirts',
+    seoTitle: 'Fall Essentials — Gilets, Knits, Blouses and Fall Skirts',
     seoDescription:
-      'The fall layers from independent modest houses worldwide \u2014 gilets, knits, trench coats, striped blouses and satin skirts, in burgundy, chocolate, olive, camel, cream and rust.',
+      'The fall layers from independent modest houses worldwide — gilets, knits, trench coats, striped blouses and satin skirts, in burgundy, chocolate, olive, camel, cream and rust.',
 
     styling: {
-      // FILLED IN BY TASK 5. Left as a single marked placeholder rather than
-      // invented copy: CLAUDE.md \u00a710.18 — brand voice is Tina's product.
-      h2: 'PLACEHOLDER \u2014 awaiting copy',
-      paragraphs: ['PLACEHOLDER \u2014 awaiting copy'],
+      h2: 'How to build a fall outfit',
+      // DRAFT, 2026-08-25 — every claim traces to something Tina said the same
+      // day: "the striped ones are really, really popular"; "sets that are a
+      // little bit thicker in texture"; "outerwear, but not too thick";
+      // "pop-of-color blouses"; "denim skirts ... balloon skirts, and A-line
+      // skirts"; and the six colours are hers verbatim.
+      //
+      // Nothing here is invented brand voice — §10.18 is why that distinction
+      // is worth a comment rather than a shrug. Until she has cut it, this is a
+      // draft that happens to be deployed to staging, not copy.
+      paragraphs: [
+        'Fall dressing is three pieces, not one: a layer, a blouse, and a bottom. Get the layer right and the rest is easy — a [gilet](/blazers-vests) over a white shirt is a whole outfit, and it is the same shirt you already wear in summer.',
+        'Keep the outerwear light. A trench or a corduroy coat does everything a padded one does until it is genuinely cold, and it keeps the shape of what is underneath instead of hiding it. Texture is what makes it read as autumn — [corduroy](/jackets-coats), wool, a thicker knit — not weight.',
+      ],
+      paragraphsBelow: [
+        'Stripes are the easiest top to own this season, and a striped long sleeve goes under a gilet, over jeans, and with a satin [skirt](/modest-skirts) without you thinking about it. If you want one thing that is not neutral, make it the blouse.',
+        'The six shades to buy in: burgundy, chocolate, olive, camel, cream and rust. They all work with each other, which is the point — any two of them are already an outfit.',
+      ],
     },
 
     /**
@@ -694,8 +708,8 @@ export const EDITS: Edit[] = [
      * theme IS a colour story and the scarves are where a colour story lives.
      *
      * Measured 2026-08-25 over in-stock rows: 3,429 pieces, 83 brands —
-     * 1,450 tops \u00b7 884 hijabs \u00b7 526 trousers \u00b7 255 skirts \u00b7 157 dresses \u00b7
-     * 107 abayas \u00b7 50 sets.
+     * 1,450 tops · 884 hijabs · 526 trousers · 255 skirts · 157 dresses ·
+     * 107 abayas · 50 sets.
      *
      * This is the FALLBACK. Tina picks in /staff/curate and those ids replace it
      * entirely, exactly as they do for the other two edits.
