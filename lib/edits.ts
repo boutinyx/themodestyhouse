@@ -662,13 +662,23 @@ export const EDITS: Edit[] = [
     // multiply. DESKTOP ONLY: imageMobile is still the original grade, because
     // she asked for the desktop picture. If the two should match, the phone
     // crop needs the same treatment and its own new filename.
-    // -3 / -mobile-2, 2026-08-25: same photographs, same brightness lift on the
-    // desktop one, rebuilt in a SINGLE lossy step from Tina's original PNGs at
-    // webp quality 100. The previous pair went through an unnecessary q92 JPEG
-    // first — see scripts/optimise-images.mjs for the measured cost of that and
-    // for the regeneration caveat. Phone stays the original grade; the lift was
-    // asked for on the desktop picture.
-    image: '/edit-fall-hero-3.jpg',
+    // -4, 2026-08-25: the brightness lift is GONE. Tina reversed the decision —
+    // "we made the picture of the fall essentials lighter i dont want that
+    // anymore can u fix that its the desptop version".
+    //
+    // NOT a revert to edit-fall-hero.jpg. That file carries the pointless q92
+    // JPEG middleman that -3 existed to remove, so reverting the filename would
+    // have quietly given back the quality win along with the grade. -4 is her
+    // PNG in one lossy step, ungraded: the grade goes back, the quality stays.
+    //
+    // Measured rather than eyeballed — mean greyscale luminance against the
+    // source PNG at the widths actually served is +0.19 to +0.66 for -4 and
+    // +16.7 for -3. The table is in scripts/optimise-images.mjs.
+    //
+    // The PHONE crop is unchanged and stays -mobile-2: it was never brightened,
+    // so there was nothing on it to undo. Desktop and phone now carry the same
+    // grade again, which they did not between -2 and -3.
+    image: '/edit-fall-hero-4.jpg',
     imageMobile: '/edit-fall-hero-mobile-2.jpg',
     imageRatio: 2674 / 1504,
     imageMobileRatio: 3584 / 4800,

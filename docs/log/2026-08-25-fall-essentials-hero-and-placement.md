@@ -166,3 +166,83 @@ Two things that went wrong while verifying, both harness rather than site:
   regression, and worth knowing that test is load-sensitive.
 - `next start` returned `000` on every asset because another session's build had
   emptied `.next` underneath it — §10.28 rule 4, exactly as written.
+
+---
+
+## Update, same day — the brightness lift is REMOVED (`-4`)
+
+Tina reversed the decision: *"we made the picture of the fall essentials lighter
+i dont want that anymore can u fix that its the desptop version"*.
+
+### Why this is not a revert to `edit-fall-hero.jpg`
+
+That would have been the obvious move and it is wrong. `-1` carries the
+pointless q92 JPEG middleman that `-3` exists to have removed, so reverting the
+filename would have quietly handed back the quality win along with the grade —
+two decisions undone when only one was asked for.
+
+`edit-fall-hero-4.jpg` is instead **`-3` minus the lift**: Tina's own
+`~/Downloads/magnific_uitbreiden_DomU6wcpcl.png`, one lossy step, ungraded, webp
+quality 100 with a mozjpeg q95 `.jpg` fallback. The grade goes back, the quality
+stays.
+
+### Measured, so "the brightening is gone" is a number
+
+Mean greyscale luminance, 0–255, against the source PNG at each width actually
+served:
+
+| width | source PNG | `-4` (new) | `-3` (previous) |
+|---|---|---|---|
+| 640 | 24.42 | 25.08 (+0.66) | 41.69 (+17.27) |
+| 1024 | 24.42 | 24.61 (+0.19) | 41.11 (+16.69) |
+| 1440 | 24.42 | 24.64 (+0.22) | 41.14 (+16.72) |
+| 1920 | 24.42 | 24.65 (+0.23) | 41.14 (+16.72) |
+| 2400 | 24.42 | 24.65 (+0.23) | 41.14 (+16.72) |
+| 2674 | 24.42 | 24.66 (+0.24) | 41.16 (+16.74) |
+
+Full-size `.jpg`: PNG 24.42 → `-4` 24.39, a drift of **0.028**, which is JPEG
+rounding rather than a grade. `-3` was **+16.40**.
+
+640 drifts a little further than the rest because a 4.2x downscale averages the
+frame differently. It is resampling, not a grade.
+
+### The phone crop is untouched
+
+`edit-fall-hero-mobile-2.jpg` stays. It was never brightened — the lift was
+asked for on the desktop picture — so there was nothing on it to undo. A side
+effect worth naming: desktop and phone now carry the **same** grade again, which
+they did not between `-2` and `-3`.
+
+### Files
+
+- `public/edit-fall-hero-4.jpg` + six `.webp` variants (640…2674), each built in
+  ONE step from the PNG. New filenames per §6/§10.21 — `public/` is served with a
+  4h cache and is not fingerprinted, so new bytes at an old path are invisible to
+  anyone who already loaded the page.
+- `scripts/optimise-images.mjs` — `-4` registered as CURRENT, `-3` marked
+  superseded and left registered (same convention as `-1` and `-2`).
+- `lib/edits.ts` — `image` now `/edit-fall-hero-4.jpg`.
+
+Superseded files are deliberately **not deleted** from `public/`: anyone holding
+a cached page still references them for up to 4h.
+
+### Verification
+
+`npx tsc --noEmit` → 0 · `npm run lint` → 0 · `npm test` → **48 files, 781 tests
+passing**. `lib/staticImage.test.ts` is the load-bearing one here: it fails if an
+original has no variants on disk, so a mis-named variant could not pass silently.
+
+Rendered against a local production build at 1440x900 @2x and looked at:
+
+```
+css: rgb(250, 247, 241)          <- --parchment, so the CSS really loaded
+currentSrc: /edit-fall-hero-4-2674.webp
+broken: false   console errors: 0   failed requests: 0
+```
+
+One misread while verifying, recorded because the first reading looked like a
+defect: the probe reported `naturalWidth 1440` on a file named `-2674`. The files
+on disk are correct (`sips` confirms 2674x1504); `naturalWidth` was sampled while
+the browser was still swapping candidates. Checking the actual files settled it
+in one command — §10.26, ask what the harness would have to be doing wrong before
+believing a finding.
