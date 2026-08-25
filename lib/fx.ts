@@ -27,8 +27,22 @@ export const FX_RATES: Record<string, number> = rates.rates;
  *  Australia -> AUD, Saudi Arabia -> SAR, Bahamas -> BSD, Türkiye -> TRY.
  *  This is a curated list of what our audience actually uses, not every
  *  currency we hold a rate for (see FX_RATES, which also covers every brand's
- *  own native currency for a different reason). */
-export const DISPLAY_CURRENCIES = ['USD', 'GBP', 'EUR', 'CAD', 'AUD', 'DKK', 'TRY', 'SAR', 'BSD'] as const;
+ *  own native currency for a different reason).
+ *
+ *  EXTENDED 2026-08-25 from four days of Pulse (20/21/22/24 Aug, 43 visitors),
+ *  same rule as before — every country that appeared gets its currency, one-hit
+ *  countries included: Egypt -> EGP (2), Algeria -> DZD (2), Morocco -> MAD,
+ *  Tunisia -> TND, Switzerland -> CHF, Kuwait -> KWD, South Africa -> ZAR.
+ *  North Africa was the reason to look: Egypt/Algeria/Morocco/Tunisia together
+ *  were 5 of those 43 and none of them could see a price in their own money.
+ *  Two countries in that window deliberately got NOTHING new, because their
+ *  currency is pegged 1:1 to one already offered and the offered one is what
+ *  circulates there: Gibraltar (GIP -> GBP) and Panama (PAB -> USD, where the
+ *  US dollar is legal tender alongside the balboa). */
+export const DISPLAY_CURRENCIES = [
+  'USD', 'GBP', 'EUR', 'CAD', 'AUD', 'DKK', 'TRY', 'SAR', 'BSD',
+  'EGP', 'DZD', 'MAD', 'TND', 'CHF', 'KWD', 'ZAR',
+] as const;
 export type DisplayCurrency = (typeof DISPLAY_CURRENCIES)[number];
 
 /** `null` means "show each brand's own currency" — the only mode in which a
@@ -56,6 +70,23 @@ export const CURRENCY_LABEL: Record<string, string> = {
   TRY: '₺ TRY',
   SAR: 'SR SAR',
   BSD: 'B$ BSD',
+  // Added 2026-08-25. Same rule as the block above and verified the same way:
+  // en-US ICU renders EVERY one of these seven as its bare ISO code
+  // (`EGP 44.95`, `CHF 44.95`, `KWD 44.950`, …), so a label built from ICU's
+  // own symbol would read "EGP EGP". These are the commonly written Latin
+  // shorthands instead — Egyptian pound, Algerian dinar (دج / DA), Moroccan
+  // dirham, Tunisian dinar, Swiss franc, Kuwaiti dinar, South African rand.
+  EGP: 'E£ EGP',
+  DZD: 'DA DZD',
+  MAD: 'DH MAD',
+  TND: 'DT TND',
+  // CHF alone, not "Fr CHF" like its neighbours. Both desktop menus uppercase
+  // their rows (.mega-row / .menu-row), which turned the Swiss franc's "Fr"
+  // into "FR CHF" — and FR is France's country code, on a list of country
+  // flags. CHF is how the Swiss franc is universally written anyway.
+  CHF: 'CHF',
+  KWD: 'KD KWD',
+  ZAR: 'R ZAR',
 };
 /** What `preference === null` is called in the UI. */
 export const NATIVE_LABEL = 'As listed';

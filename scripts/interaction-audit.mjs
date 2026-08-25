@@ -454,14 +454,17 @@ for (const engineName of engineNames) {
         const inView = r.top >= -1 && r.bottom <= window.innerHeight + 1
           && r.left >= -1 && r.right <= document.documentElement.clientWidth + 1;
         const flagless = items.filter((i) => !i.querySelector('svg')).map((i) => i.textContent.trim());
-        // 8, not 9: the currency you are already in is deliberately absent
-        // (see the role note above). Asserted rather than merely reported, so
-        // that a regression which puts it back is a PROBLEM and not a number
-        // nobody reads — §10.28, a check that cannot fail is not a check.
+        // One SHORT of DISPLAY_CURRENCIES: the currency you are already in is
+        // deliberately absent (see the role note above). 15 of 16 as of
+        // 2026-08-25, when seven were added from Pulse — this number tracks
+        // lib/fx.ts and has to move with it. Asserted rather than merely
+        // reported, so that a regression which puts the selected one back is a
+        // PROBLEM and not a number nobody reads — §10.28, a check that cannot
+        // fail is not a check.
         return {
           currencyOptions: items.length,
-          ...(items.length !== 8
-            ? { PROBLEM: `FOOTER CURRENCY LIST HAS ${items.length} OPTIONS, EXPECTED 8 (the selected one must not be listed)` }
+          ...(items.length !== 15
+            ? { PROBLEM: `FOOTER CURRENCY LIST HAS ${items.length} OPTIONS, EXPECTED 15 (DISPLAY_CURRENCIES minus the selected one)` }
             : {}),
           ...(!inView
             ? { PROBLEM: `FOOTER CURRENCY MENU OUTSIDE THE VIEWPORT (${Math.round(r.top)}..${Math.round(r.bottom)} / ${window.innerHeight})` }

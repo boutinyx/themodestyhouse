@@ -193,6 +193,131 @@ function FlagBS() {
   );
 }
 
+/** Added 2026-08-25 for EGP/DZD/MAD/TND/CHF/KWD/ZAR — the second Pulse-driven
+ *  expansion (see lib/fx.ts's DISPLAY_CURRENCIES for the visitor numbers).
+ *
+ *  Two techniques do most of the work here and are worth naming, because four
+ *  of the seven need them:
+ *
+ *  - A CRESCENT is drawn as ONE path with `fillRule="evenodd"` — a big circle
+ *    and a smaller offset circle in the same `d`, so the overlap is punched
+ *    out. The alternative (a second circle painted in the background colour,
+ *    which is how FlagTR does it) only works when the crescent sits entirely on
+ *    one flat colour. Algeria's straddles the green/white boundary, so a
+ *    background-coloured cut circle would paint white over the green half.
+ *  - The ARABIC AND HERALDIC DETAIL is reduced, not reproduced. Egypt's Eagle
+ *    of Saladin is a heraldic bird with a shield; at 18x12 it is roughly three
+ *    pixels tall, so it becomes a plain gold emblem, the same treatment
+ *    FlagSA already uses for the Shahada. South Africa's fimbriated pall keeps
+ *    its white outline (that outline is what makes the shape readable) but
+ *    loses the gold border on the black triangle at the smallest sizes. */
+function FlagEG() {
+  return (
+    <Frame label="Egypt">
+      <rect width="18" height="4" fill="#ce1126" />
+      <rect y="4" width="18" height="4" fill="#fff" />
+      <rect y="8" width="18" height="4" fill="#000" />
+      {/* Eagle of Saladin, reduced to its gold silhouette — see the note above. */}
+      <circle cx="9" cy="6" r="1.05" fill="#c09300" />
+    </Frame>
+  );
+}
+
+function FlagDZ() {
+  return (
+    <Frame label="Algeria">
+      <rect width="9" height="12" fill="#006233" />
+      <rect x="9" width="9" height="12" fill="#fff" />
+      {/* evenodd crescent — it straddles the colour boundary, so it cannot be
+          cut with a background-coloured circle. */}
+      <path
+        fillRule="evenodd"
+        d="M8.4 6 m-2.9 0 a2.9 2.9 0 1 0 5.8 0 a2.9 2.9 0 1 0 -5.8 0
+           M9.5 6 m-2.3 0 a2.3 2.3 0 1 0 4.6 0 a2.3 2.3 0 1 0 -4.6 0"
+        fill="#d21034"
+      />
+      <path d="M12.1 4.7 12.62 6.3 11.26 5.31H12.94L11.58 6.3Z" fill="#d21034" />
+    </Frame>
+  );
+}
+
+function FlagMA() {
+  return (
+    <Frame label="Morocco">
+      <rect width="18" height="12" fill="#c1272d" />
+      {/* The interlaced pentangle, drawn as the classic 5-point star polygon —
+          stroked, not filled, which is what makes it read as Morocco's rather
+          than as any solid star. */}
+      <path
+        d="M9 3.4 10.53 8.1 6.53 5.2H11.47L7.47 8.1Z"
+        fill="none"
+        stroke="#006233"
+        strokeWidth="0.55"
+        strokeLinejoin="round"
+      />
+    </Frame>
+  );
+}
+
+function FlagTN() {
+  return (
+    <Frame label="Tunisia">
+      <rect width="18" height="12" fill="#e70013" />
+      <circle cx="9" cy="6" r="3.6" fill="#fff" />
+      <path
+        fillRule="evenodd"
+        d="M8.4 6 m-2.3 0 a2.3 2.3 0 1 0 4.6 0 a2.3 2.3 0 1 0 -4.6 0
+           M9.35 6 m-1.8 0 a1.8 1.8 0 1 0 3.6 0 a1.8 1.8 0 1 0 -3.6 0"
+        fill="#e70013"
+      />
+      <path d="M10.5 5.1 10.92 6.38 9.83 5.59H11.17L10.08 6.38Z" fill="#e70013" />
+    </Frame>
+  );
+}
+
+function FlagCH() {
+  return (
+    <Frame label="Switzerland">
+      {/* The Swiss flag is SQUARE; like the Union Flag's 2:1 above, it is
+          squeezed into this set's shared 3:2 frame rather than given its own,
+          which is what every flag-icon set does at this size. */}
+      <rect width="18" height="12" fill="#d52b1e" />
+      <rect x="7.6" y="2.2" width="2.8" height="7.6" fill="#fff" />
+      <rect x="5.2" y="4.6" width="7.6" height="2.8" fill="#fff" />
+    </Frame>
+  );
+}
+
+function FlagKW() {
+  return (
+    <Frame label="Kuwait">
+      <rect width="18" height="4" fill="#007a3d" />
+      <rect y="4" width="18" height="4" fill="#fff" />
+      <rect y="8" width="18" height="4" fill="#ce1126" />
+      <path d="M0 0 5.2 4 5.2 8 0 12Z" fill="#000" />
+    </Frame>
+  );
+}
+
+function FlagZA() {
+  return (
+    <Frame label="South Africa">
+      <rect width="18" height="6" fill="#de3831" />
+      <rect y="6" width="18" height="6" fill="#002395" />
+      {/* The pall, twice: the white fimbriation first, the green band over it.
+          Drawn as strokes rather than filled polygons — at this size the
+          fimbriation is under a pixel wide as a shape, and a stroke pair is
+          both shorter and sharper. */}
+      <path d="M-1 -1.4 8.1 6 -1 13.4" fill="none" stroke="#fff" strokeWidth="4.4" />
+      <path d="M8.1 6H18" fill="none" stroke="#fff" strokeWidth="4.4" />
+      <path d="M-1 -1.4 8.1 6 -1 13.4" fill="none" stroke="#007a4d" strokeWidth="2.6" />
+      <path d="M8.1 6H18" fill="none" stroke="#007a4d" strokeWidth="2.6" />
+      <path d="M0 0 6.5 6 0 12Z" fill="#ffb612" />
+      <path d="M0 1.1 5.2 6 0 10.9Z" fill="#000" />
+    </Frame>
+  );
+}
+
 /** `null` — "As listed" — is every brand's own currency, so it gets a globe
  *  rather than any one country's flag. */
 export function CurrencyFlag({ currency }: { currency: CurrencyPreference }) {
@@ -205,5 +330,12 @@ export function CurrencyFlag({ currency }: { currency: CurrencyPreference }) {
   if (currency === 'TRY') return <FlagTR />;
   if (currency === 'SAR') return <FlagSA />;
   if (currency === 'BSD') return <FlagBS />;
+  if (currency === 'EGP') return <FlagEG />;
+  if (currency === 'DZD') return <FlagDZ />;
+  if (currency === 'MAD') return <FlagMA />;
+  if (currency === 'TND') return <FlagTN />;
+  if (currency === 'CHF') return <FlagCH />;
+  if (currency === 'KWD') return <FlagKW />;
+  if (currency === 'ZAR') return <FlagZA />;
   return <Globe size={14} weight="regular" aria-hidden="true" style={{ display: 'block', flex: 'none' }} />;
 }
