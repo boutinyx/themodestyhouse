@@ -68,6 +68,20 @@ const CATEGORY_SHOWCASE: { slug: string; label: string; image: string; zoom?: nu
   { slug: 'modest-activewear', label: 'Activewear', image: '/category/activewear-2' },
 ];
 
+/**
+ * The one edit whose banner does NOT sit with the others up the page — it
+ * renders below "By category" instead. Tina, 2026-08-25, on Fall Essentials:
+ * "and i want it on homepage under by catogory".
+ *
+ * A slug rather than an array position or a second `featured`-style flag on the
+ * Edit type: the placement is a fact about this PAGE's layout, not a property of
+ * the edit, and `lib/edits.ts` is also read by /edits/[slug] and the sitemap,
+ * which have no opinion about where a homepage banner goes. If a second edit
+ * ever needs the lower slot this becomes a Set — do not let it become an
+ * implicit "everything after index N".
+ */
+const EDIT_BELOW_CATEGORIES = 'fall-essentials';
+
 export default function Home() {
   const cats = categoryCards();
   const catCountBySlug = new Map(cats.map((c) => [c.slug, c.count]));
@@ -522,9 +536,12 @@ export default function Home() {
           Worth watching if a third edit ever lands: these are full-bleed and
           16:9, so each one is most of a screen. At that point this wants to
           become a cap or a different treatment, not three stacked banners. */}
-      {[...EDITS].sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false)).map((e) => (
-        <EditBanner key={e.slug} edit={e} />
-      ))}
+      {[...EDITS]
+        .filter((e) => e.slug !== EDIT_BELOW_CATEGORIES)
+        .sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false))
+        .map((e) => (
+          <EditBanner key={e.slug} edit={e} />
+        ))}
 
       {/* OUR PICKS ON ABAYAS — a second PopularShowcase rail, placed here
           2026-08-25 on Tina's instruction ("i want it under everyday lace"),
@@ -627,6 +644,14 @@ export default function Home() {
           })}
         </div>
       </section>
+
+      {/* FALL ESSENTIALS — the third edit banner, deliberately NOT with the
+          other two up the page. Tina, 2026-08-25: "and i want it on homepage
+          under by catogory". See EDIT_BELOW_CATEGORIES above for why the slug
+          lives in this file rather than as a flag on the Edit type. */}
+      {EDITS.filter((e) => e.slug === EDIT_BELOW_CATEGORIES).map((e) => (
+        <EditBanner key={e.slug} edit={e} />
+      ))}
 
       {/* DESIGNER DISCOVERY — dotted world map + expandable region rows.
           Sits between "By category" and the seal band so the homepage reads

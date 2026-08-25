@@ -643,29 +643,26 @@ export const EDITS: Edit[] = [
     // homepage, and Jersey Hijabs holds it. All three render.
     more: { href: '/directory', label: 'The whole directory' },
 
-    // ---------------------------------------------------------------------
-    // PLACEHOLDER HERO — Tina's choice, 2026-08-25: build the page with a
-    // temporary hero so the layout and the grid can be reviewed, then swap her
-    // own shot in before it goes live.
+    // HERO — Tina's own pair, supplied 2026-08-25, replacing the placeholder
+    // that reused the lace hero. Done exactly as the placeholder's own
+    // instructions required: new filenames (§6/§10.21 — public/ is served with
+    // a 4h cache and is not fingerprinted), ratios MEASURED from the files
+    // rather than rounded, and the width lists below are only what
+    // `node scripts/optimise-images.mjs` actually wrote.
     //
-    // This is the LACE hero, reused. That means the homepage shows the same
-    // photograph on two banners, which looks wrong — deliberately. A
-    // placeholder that could be mistaken for a finished choice is the more
-    // expensive mistake.
-    //
-    // TO REPLACE: swap the five image fields below for her pair, MEASURE the
-    // real pixel ratios (do not round — see the imageRatio doc comment), run
-    // `node scripts/optimise-images.mjs` and list only the widths it actually
-    // generated. Give the files NEW names; public/ is served with a 4h cache
-    // and is not fingerprinted (CLAUDE.md §6, §10.21).
-    // ---------------------------------------------------------------------
-    image: '/edit-lace-hero-v2.jpg',
-    imageMobile: '/edit-lace-hero-mobile-v2.jpg',
-    imageRatio: 5504 / 3072,
-    imageMobileRatio: 1920 / 2571,
-    imageWidths: [640, 1024, 1440, 1920, 2400, 3200, 3840],
+    // Desktop is 2674x1504, so 2674 is the ceiling — the optimiser never
+    // upscales, and the lace hero's 3200/3840 entries would have silently
+    // produced nothing and left 404s in the srcset. Phone is 3584x4800
+    // (0.74667), effectively the same shape as the lace phone hero (0.7468),
+    // so EditBanner's --edit-hero-ratio handling needs no change.
+    image: '/edit-fall-hero.jpg',
+    imageMobile: '/edit-fall-hero-mobile.jpg',
+    imageRatio: 2674 / 1504,
+    imageMobileRatio: 3584 / 4800,
+    imageWidths: [640, 1024, 1440, 1920, 2400, 2674],
     imageMobileWidths: [390, 780, 1170, 1560, 1920],
-    imageAlt: 'Placeholder — awaiting the Fall Essentials hero photograph',
+    imageAlt:
+      'A woman in a beige hijab and a plum wool cape over a cream shirt and trousers, a gold chain belt at the waist and a navy top-handle bag in her hand, reaching towards dark red and pink flowers on a carved wooden table against a painted woodland backdrop',
 
     seoTitle: 'Fall Essentials — Gilets, Knits, Blouses and Fall Skirts',
     seoDescription:

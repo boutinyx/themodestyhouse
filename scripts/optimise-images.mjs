@@ -215,6 +215,28 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
+    // /edits/fall-essentials hero, desktop — Tina's own shot, 2026-08-25,
+    // replacing the placeholder that reused the lace hero. Source is
+    // 2674x1504 (1.77793), so 2674 is the ceiling and this script never
+    // upscales: asking for 3200/3840 like the lace hero does would silently
+    // write nothing and leave a 404 in the srcset. Quality 95, as every other
+    // hero.
+    file: 'edit-fall-hero.jpg',
+    widths: [640, 1024, 1440, 1920, 2400, 2674],
+    suffixWidth: true,
+    opts: { quality: 95, effort: 6 },
+  },
+  {
+    // Same hero, phone — 3584x4800 portrait, 0.74667. Effectively the same
+    // shape as the lace phone hero (0.7468), so it needs no new ratio handling
+    // in EditBanner. Stops at 1920: that is a 640px CSS viewport at 3x DPR,
+    // well past any phone, and the source has plenty of headroom above it.
+    file: 'edit-fall-hero-mobile.jpg',
+    widths: [390, 780, 1170, 1560, 1920],
+    suffixWidth: true,
+    opts: { quality: 95, effort: 6 },
+  },
+  {
     // /edits/[slug] story photographs — the credited street shots that sit with
     // the styling text. Rendered ~300-420px wide in a strip, so 400/800 covers
     // 1x and 2x; 1200 is there for the phone case where one card is nearly the
