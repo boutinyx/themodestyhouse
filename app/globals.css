@@ -446,6 +446,50 @@
   margin-top: calc(-1 * var(--header-height));
 }
 
+/* PHONE + TABLET: the hero is a 16:9 PICTURE, and the copy sits below it.
+   Tina, 2026-08-25: "on phone i want the picture on the hompage just to be
+   16:9", then, shown that 219px cannot hold the headline, subcopy and button:
+   "16:9 picture, text below it".
+
+   `height: auto` AND `min-height: 0` are both required. The block above sets a
+   560px floor, and an aspect-ratio cannot shrink a box below its own
+   min-height — leave the floor in place and the box stays 560px tall and the
+   ratio is silently ignored, which looks exactly like the rule not applying.
+
+   1024px, not this file's usual 820: it is the same line `--band-height`, the
+   flat mobile hero tint and the copy block's own `lg:` alignment already split
+   on, so the picture and the copy change together rather than a tablet getting
+   a 16:9 photo with the text still floating on it. */
+@media (max-width: 1023px) {
+  .hero-vh {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Hero copy foreground. White over the photograph; ink once the copy sits on
+   parchment below it. A CSS var rather than a Tailwind colour class (§6) and
+   rather than an inline style (which cannot be responsive). */
+.hero-copy {
+  --hero-fg: var(--parchment);
+  --hero-fg-dim: rgba(251, 250, 246, 0.78);
+}
+@media (max-width: 1023px) {
+  .hero-copy {
+    --hero-fg: var(--ink);
+    /* NOT --muted. That token is #8a7d6b, which measures 3.76:1 against
+       --parchment — under the 4.5:1 WCAG AA needs for body text. Its own note
+       in this file says "labels, not body", and a paragraph on parchment is
+       exactly the case it warns about.
+       Honest about the evidence: axe did NOT flag it, because this subcopy is
+       large enough to fall under the 3.0:1 large-text threshold. It was changed
+       on the measurement, not on a failing check. --ink at 72% is 6.37:1 and
+       still reads softer than the headline, which is the whole job. */
+    --hero-fg-dim: rgba(36, 27, 36, 0.72);
+  }
+}
+
 /* Hero headline, mobile + tablet vs desktop — Tina's own reference (a
    competitor's mobile hero: big bold text centred in the screen): "i want
    you to do it lik this for mobile and tablet so text bigger and in the

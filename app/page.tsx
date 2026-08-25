@@ -166,6 +166,17 @@ export default function Home() {
             past the bottom of the header. An attribute rather than an id or a
             class so it cannot be mistaken for a styling hook and quietly
             renamed — CLAUDE.md §10.29's rename trap. */}
+        {/* POSITIONING WRAPPER, 2026-08-25 — Tina: "on phone i want the picture
+            on the hompage just to be 16:9".
+            The copy used to live INSIDE the hero as an overlay. At 16:9 a 390px
+            phone gives the hero 219px, and the headline alone overlapped the
+            header by ~19,700px2 while the CTA landed on the subcopy — measured,
+            not guessed. So the copy is now a SIBLING of the picture: absolutely
+            positioned over it from lg up (desktop unchanged), and static below
+            it on phone and tablet.
+            NOT duplicated markup with `lg:hidden` twins — that would put two
+            <h1>s in the DOM. One copy block, two positioning modes. */}
+        <div className="relative">
         <div data-hero className="relative overflow-hidden hero-vh" style={{ background: 'var(--aubergine)' }}>
           {/* The LCP element on a phone. It was one 1920px JPEG (227KB) served
               to every width; a 390px viewport now takes the 640 variant at 19KB.
@@ -340,7 +351,14 @@ export default function Home() {
               above. The headline's own bigger mobile/tablet size lives in
               `.hero-h1` (globals.css), since inline styles can't carry a
               responsive override the way a CSS class + media query can. */}
-          <div className="relative h-full flex flex-col items-center justify-center text-center lg:items-start lg:text-left px-6 md:px-16 lg:px-24">
+          </div>
+          {/* `hero-copy` carries the foreground colours as CSS vars so they can
+              flip at the breakpoint — white over the photograph on desktop, ink
+              on parchment when the copy sits below the picture. An inline style
+              cannot be responsive and §6 says colour is never a Tailwind class,
+              so a var swapped in a media query is the only route that keeps
+              both rules. */}
+          <div className="hero-copy relative flex flex-col items-center justify-center text-center px-6 py-9 md:px-16 lg:absolute lg:inset-0 lg:py-0 lg:items-start lg:text-left lg:px-24">
             {/* 2026-08-21: forced 4-line one-phrase-per-line breaks
                 (EVERYTHING / MODEST. / FINALLY IN / ONE PLACE.) landed,
                 then immediately: "it reads so fucked up now its like a
@@ -380,7 +398,7 @@ export default function Home() {
             <h1
               className="serif hero-h1"
               style={{
-                color: 'var(--parchment)',
+                color: 'var(--hero-fg)',
                 textShadow: '0 2px 30px rgba(0,0,0,0.55)',
                 lineHeight: 1.05,
                 maxWidth: 620,
@@ -413,7 +431,7 @@ export default function Home() {
               style={{
                 fontFamily: 'var(--font-ui)',
                 fontSize: 'clamp(15px, 1.6vw, 19px)',
-                color: 'rgba(251,250,246,0.78)',
+                color: 'var(--hero-fg-dim)',
                 textShadow: '0 2px 20px rgba(0,0,0,0.5)',
                 maxWidth: 620,
               }}
@@ -455,7 +473,14 @@ export default function Home() {
               Shop the Archive
             </Link>
           </div>
-          <div className="absolute inset-x-0 bottom-16 flex justify-center lg:hidden">
+          {/* Static, under the copy — it was `absolute bottom-16` when the copy
+              floated on the photograph. Colours inverted with it: a parchment
+              pill is invisible once it stops sitting on a darkened picture.
+              This block is `lg:hidden`, so these values are phone/tablet only.
+              The desktop CTA above keeps ink-on-parchment and its style block is
+              byte-identical to this one — which is why this replacement is
+              anchored on the wrapper and not on the style alone. */}
+          <div className="flex justify-center pb-2 lg:hidden">
             <Link
               href="/directory"
               className="uppercase inline-block"
@@ -463,8 +488,8 @@ export default function Home() {
                 fontFamily: 'var(--font-label), serif',
                 letterSpacing: '0.14em',
                 fontSize: 14,
-                color: 'var(--ink)',
-                background: 'var(--parchment)',
+                color: 'var(--parchment)',
+                background: 'var(--aubergine)',
                 padding: '14px 28px',
                 borderRadius: 'var(--radius-card)',
               }}
