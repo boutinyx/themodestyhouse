@@ -103,3 +103,32 @@ desktop: unchanged — 18px, 43px, neither truncated.
 `npm run audit:mobile`: `overflowing 0/9 | stacked text 0 | broken aspect 0` in
 both engines. The single `a11y 1` is the seal band's brass pill, unchanged and
 not from this work — see the 2026-08-25 entry.
+
+---
+
+## And back up again — 19px
+
+Tina: *"i want the title in the recent one a bit bigger"*. 15px → **19px** on the
+feature card only; the two story cards stay at 15px, which is what gives the
+section its hierarchy.
+
+**Swept rather than guessed.** Every size was applied to the real card at 390px
+and measured against the two-line clamp:
+
+```
+size   titleH  truncated  caption
+15px   32      false      83
+16px   35      false      86
+17px   37      false      88
+18px   39      false      90
+19px   41      false      92     <- shipped
+20px   43      false      94
+21px   45      TRUE       96
+22px   48      TRUE       99
+```
+
+20px is the ceiling for *this* headline. 19 keeps one size of margin under the
+cliff — worth having, because the feature post changes and the next title will be
+a different length; the clamp is all that stands between that and an ellipsis.
+
+Caption 92px inside the 183px card. Desktop unchanged at 30px.
