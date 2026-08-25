@@ -475,7 +475,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CATEGORY QUICK LINKS — the Abayas/Dresses/Sets/Hijabs/Occasion icon
+      {/* CATEGORY QUICK LINKS — the Abayas/Dresses/Sets/Hijabs icon
           strip, restored here 2026-08-24 ("can i get this strip back but make
           the icons and text purple"), in its original position as a sibling
           <section> immediately after the hero — the same slot the 2026-08-22
@@ -705,7 +705,7 @@ export default function Home() {
           aubergine survives as the fallback if the image ever fails to load,
           which is also why the copy keeps explicit inline colours rather than
           inheriting. */}
-      <section className="aubergine-band my-10 md:my-20 relative overflow-hidden min-h-[440px] md:min-h-[560px] flex items-center">
+      <section className="aubergine-band my-10 md:my-20 relative overflow-hidden min-h-[340px] md:min-h-[440px] flex items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/seal-band-drape-1440.webp"
@@ -717,39 +717,45 @@ export default function Home() {
           loading="lazy"
           decoding="async"
         />
-        {/* NO SCRIM, and the copy sits in the picture's own empty middle.
-            The drape occupies roughly the left 28% and the right 22% of the
-            frame; everything between is the cream wall she left clear, so the
-            text needs no wash — it needs the RIGHT COLOURS. Measured on the live
-            render by sampling the DARKEST pixel inside each text element's rect
-            (the inverse of the previous two passes, since the type is now dark
-            on light) and computing WCAG contrast. Numbers are in
-            docs/log/2026-08-25-seal-band-drape.md.
+        {/* DARKER OVERLAY, 2026-08-25 — Tina: "make the banner a bit tinner and
+            put a darker overlay on it". Flat, not a ramp: the copy is centred
+            now, so there is no side to weight it towards, and she asked for an
+            overlay rather than a wash.
 
-            Colours, and why each changed. Worst case across 390/820/1440:
-              heading   --parchment     -> --ink            7.23
-              steps     #e7d8e4         -> --ink at 0.82    6.74
-              numerals  --brass-on-dark -> --aubergine      6.26
-              button    brass override  -> `.btn-pill` default (aubergine)
-            The rejected numeral candidates, same measurement: --brass 1.60,
-            --plum 3.62. Both fail; brass is very nearly invisible on cream.
+            0.75 IS NOT A GUESS, and the number is high for a reason. Measured on
+            the live render at 390/820/1440 by sampling the WORST pixel inside
+            each text element's own rect. The picture's middle is a bright cream
+            wall, so a light overlay leaves the band in the mid-tones, which is
+            the one place where neither dark nor light type works:
+              alpha   light copy            dark copy
+              0.00    1.15 / 1.01 / 1.18    8.37 / 7.83 / 7.15
+              0.40    2.62 / 2.27 / 1.36    4.08 / 3.86 / 3.48   <- both fail
+              0.60    4.37 / 3.70 / 2.19    2.69 / 2.61 / 2.32
+              0.75    6.64 / 5.50 / —       1.87 / 1.83 / 1.62   <- shipped
+            So "darker" had to mean dark enough to go back to light type, and the
+            copy is reversed out again: --parchment, #e7d8e4, and the brass pill.
 
-            BAND HEIGHT IS NOW SET AT BOTH ENDS, and the phone one is load-bearing.
-            `object-cover` on a short band crops the WIDTH, so at the original
-            324px the phone showed only the middle 68% of the frame and the
-            top-left drape ran straight through the heading — measured 1.03:1,
-            i.e. dark ink on dark satin. A TALLER phone band shows LESS width and
-            therefore more of the clear centre: 324 -> 1.03, 400 -> 7.23,
-            460 -> 7.32. Shipped 440. This is the opposite of the rule that held
-            for the previous photograph, where taller meant more picture.
+            THE ONE CASUALTY IS THE GOLD NUMERALS. `--brass-on-dark` is 6.08:1 on
+            FLAT aubergine, but here the residual cream keeps the background too
+            light and it never reaches AA at any overlay this side of erasing the
+            photograph: 2.19 at 0.60, 3.23 at 0.75, 3.69 at 0.80. A radial that
+            darkens the centre harder (.92/.70/.40) only gets it to 4.29, and
+            costs the phone. So the numerals are --parchment, an existing token,
+            rather than a new lighter brass invented for one band. Tina was told;
+            #e8d3ac measures 5.20 and is the fix if she wants the gold back.
 
-            `max-w-[46ch]` on the copy, not `max-w-2xl` — the clear cream area is
-            about 42% of the frame's width, and a 672px column at 1440 spills
-            over the right-hand drape. */}
+            The button goes back to its brass override for the same reason it had
+            one before: on a dark band `.btn-pill`'s own aubergine has no edge
+            against the background. */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: 'rgba(68,25,67,0.75)' }}
+        />
         <div className="relative w-full max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-[46ch] mx-auto text-center">
             <div>
-              <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--ink)' }}>
+              <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
                 Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
               </h2>
               <ol className="mt-6 space-y-3">
@@ -758,27 +764,22 @@ export default function Home() {
                   'We review craft and design',
                   'Go live with the verified seal',
                 ].map((step, i) => (
-                  <li key={i} className="flex gap-3 justify-center" style={{ color: 'rgba(36,27,36,0.82)' }}>
-                    {/* --aubergine, and NOT either brass token. Measured on the live
-                        render against the cream the numerals actually sit on:
-                        --brass 1.60:1, --plum 3.62:1, --aubergine 7.05:1. Brass is
-                        the accent this band used when it was dark, and on cream it
-                        simply disappears — the ratio is barely above white-on-white.
-                        globals.css also reserves brass for "badges/graphic, never
-                        buttons", which is the same instinct stated as a rule. */}
-                    <span className="serif italic" style={{ color: 'var(--aubergine)' }}>{['i', 'ii', 'iii'][i]}.</span>
+                  <li key={i} className="flex gap-3 justify-center" style={{ color: '#e7d8e4' }}>
+                    {/* --parchment, and NOT either brass token — the one thing this
+                        band lost when it went dark over a cream-centred photograph.
+                        Measured against the overlaid picture: --brass-on-dark 3.23,
+                        --brass 1.60, --aubergine 1.62, --parchment 6.64. The italic
+                        serif is what still separates the numeral from the step text. */}
+                    <span className="serif italic" style={{ color: 'var(--parchment)' }}>{['i', 'ii', 'iii'][i]}.</span>
                     <span>{step}</span>
                   </li>
                 ))}
               </ol>
-              {/* No inline colours — this is `.btn-pill`'s own aubergine-on-parchment,
-                  which is what every other button on the site is. The brass override
-                  that used to be here existed only because the band was dark; on the
-                  cream centre a brass pill measures 1.28:1 against the photograph
-                  behind it, so its edge does not separate from the background at all
-                  (WCAG 1.4.11 wants 3:1 for a control's boundary). Removing the
-                  override is the fix, not a new colour. */}
-              <Link href="/contact?topic=seal" className="btn-pill inline-block mt-8">
+              {/* Brass again. The override went away for a few hours when this band
+                  was bright and a brass pill measured 1.28:1 against the photograph;
+                  with the 0.75 overlay the band is dark, so `.btn-pill`'s own
+                  aubergine is the one with no edge and brass is right again. */}
+              <Link href="/contact?topic=seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
                 Apply for the seal
               </Link>
             </div>
