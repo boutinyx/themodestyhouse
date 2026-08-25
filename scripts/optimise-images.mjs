@@ -363,10 +363,39 @@ const JOBS = [
     // deliberately. Past that is bytes spent on invented pixels. Quality 95 not
     // 100 for the same reason: an upscale has no fine detail left for the extra
     // bits to preserve.
+    // SUPERSEDED by edit-fall-hero-6.jpg below — the mouth-only crop was too
+    // tight. Tina: "no i meant nose and lips i also wanted to see the body
+    // just not the eyes." Left registered, same convention as -1/-2/-3.
     file: 'edit-fall-hero-5.jpg',
     widths: [640, 1024, 1440, 1920],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
+  },
+  {
+    // /edits/fall-essentials hero, desktop — CURRENT. Crops the top of the
+    // frame just below the eyes and keeps everything down to the hem: nose,
+    // lips, cape, chain belt, bag, trousers.
+    //
+    // Cut from the WIDE original this time (magnific_uitbreiden_DomU6wcpcl.png),
+    // NOT the portrait one -5 used. Two reasons, and the second is the
+    // important one: the wide file is the only one that holds the whole figure
+    // inside a 16:9 region, AND the two originals are not the same grade —
+    // measured mean luminance 18.7 (wide) against 35.0 (portrait). Mixing them
+    // across breakpoints is exactly how the desktop and phone heroes drifted
+    // apart earlier today. The phone crop below comes from this same wide file
+    // for that reason, so the two match by construction.
+    //
+    // Using the wide file also keeps the grade Tina settled on: it is the
+    // ungraded source behind -4, the revert of the brightness lift. Reaching
+    // for the portrait file would have quietly handed back a lighter picture.
+    //
+    // Region is 1883x1059, so the 1920 master is a 1.02x resize — effectively
+    // native, unlike -5's 320x180 region. That is why quality goes back to 100:
+    // here there is real detail for the extra bits to preserve.
+    file: 'edit-fall-hero-6.jpg',
+    widths: [640, 1024, 1440, 1920],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
   },
   {
     // Same crop, phone — 300x402 from the SAME original, so the two surfaces
@@ -374,10 +403,20 @@ const JOBS = [
     // this, desktop and phone came from two different Magnific outputs, which
     // is how they drifted apart in the first place.) Stops at 1170: a 390px CSS
     // phone at 3x DPR.
+    // SUPERSEDED by edit-fall-hero-mobile-5.jpg below. Left registered.
     file: 'edit-fall-hero-mobile-4.jpg',
     widths: [390, 780, 1170],
     suffixWidth: true,
     opts: { quality: 95, effort: 6 },
+  },
+  {
+    // Same crop, phone — CURRENT. 790x1059 out of the SAME wide original as the
+    // desktop one, so the grade matches by construction rather than by luck.
+    // 1.48x to the 1170 master; 1170 is a 390px CSS phone at 3x DPR.
+    file: 'edit-fall-hero-mobile-5.jpg',
+    widths: [390, 780, 1170],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
   },
   {
     // The homepage "Apply for the seal" band's satin background, 2026-08-25.

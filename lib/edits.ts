@@ -678,10 +678,17 @@ export const EDITS: Edit[] = [
     // The PHONE crop is unchanged and stays -mobile-2: it was never brightened,
     // so there was nothing on it to undo. Desktop and phone now carry the same
     // grade again, which they did not between -2 and -3.
-    // -5 / -mobile-4, 2026-08-25: the same shot CROPPED to the mouth. Tina:
-    // "can we zoom in on the picture i ony want to see her lips and bit of
-    // nose". Asked which surfaces, since one file feeds both the homepage
-    // banner and this page's hero — she said both.
+    // -6 / -mobile-5, 2026-08-25. -5 was a mouth-only crop and it was too
+    // tight: "no i meant nose and lips i also wanted to see the body just not
+    // the eyes." So the frame now starts just under the eyes and runs to the
+    // hem — nose, lips, cape, chain belt, bag, trousers.
+    //
+    // Cut from the WIDE original, not the portrait one -5 used. The wide file
+    // is the only one holding the whole figure inside a 16:9 region, and the
+    // two originals are NOT the same grade (mean luminance 18.7 vs 35.0), so
+    // taking both crops from one file is what keeps desktop and phone matched.
+    // It is also the ungraded source behind -4, the revert of the brightness
+    // lift, so this does not quietly hand back a lighter picture.
     //
     // UNGRADED, deliberately. -4 directly above is the revert of the brightness
     // lift; recropping is not a reason to hand it back, so these carry no
@@ -714,14 +721,14 @@ export const EDITS: Edit[] = [
     // scoped to the wrong section. A contrast figure that does not move when
     // you move the scrim is not a measurement (§10.28).
     heroWash: 0.40,
-    image: '/edit-fall-hero-5.jpg',
-    imageMobile: '/edit-fall-hero-mobile-4.jpg',
+    image: '/edit-fall-hero-6.jpg',
+    imageMobile: '/edit-fall-hero-mobile-5.jpg',
     imageRatio: 1920 / 1080,
     imageMobileRatio: 1170 / 1568,
     imageWidths: [640, 1024, 1440, 1920],
     imageMobileWidths: [390, 780, 1170],
     imageAlt:
-      'Close-up of a woman\u2019s mouth and the lower part of her nose, softly lit against a dark backdrop, with a gold drop earring at the edge of the frame',
+      'A woman cropped just below the eyes, in a plum wool cape over a cream shirt and trousers, a gold chain belt at the waist and a navy top-handle bag in her hand, against a dark painted woodland backdrop',
 
     seoTitle: 'Fall Essentials — Gilets, Knits, Blouses and Fall Skirts',
     seoDescription:

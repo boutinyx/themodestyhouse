@@ -315,3 +315,51 @@ homepage and `querySelector` takes the first.
 Verified: tsc clean, lint clean, build clean; homepage serves
 `edit-fall-hero-5-1920.webp` desktop / `edit-fall-hero-mobile-4-780.webp` phone,
 edit page serves `edit-fall-hero-5-1920.webp`.
+
+## Sixth follow-up — the crop was too tight; nose and lips WITH the body
+
+Tina: *"no i meant nose and lips i also wanted to see the body just not the
+eyes."* So the frame starts just under the eyes and runs to the hem — nose,
+lips, cape, chain belt, bag, trousers.
+
+`edit-fall-hero-6.jpg` / `edit-fall-hero-mobile-5.jpg`.
+
+**Cut from the WIDE original this time, not the portrait one -5 used.** Two
+reasons, and the second matters more: the wide file is the only one that holds
+the whole figure inside a 16:9 region, and **the two originals are not the same
+grade** — measured mean luminance 18.7 (wide) vs 35.0 (portrait). Mixing them
+across breakpoints is exactly how the desktop and phone heroes drifted apart
+earlier today, so both crops now come from the same file. It is also the ungraded
+source behind -4, the revert of the brightness lift, so this does not quietly
+hand back a lighter picture through the back door.
+
+Resolution is much better than -5: the desktop region is 1883x1059, a **1.02x**
+resize to the 1920 master — effectively native, against -5's 320x180 region and
+6x upscale. That is why quality goes back to 100; here there is real detail for
+the extra bits to preserve.
+
+### The first composition failed contrast, and the fix was framing, not scrim
+
+Centring the figure put the copy on top of her, not beside her. Measured
+worst-case white-text contrast:
+
+| | home desktop | home phone | edit desktop | edit phone |
+|---|---|---|---|---|
+| centred figure, wash 0.40 | 4.70 | **4.14 FAIL** | **3.59 FAIL** | 5.66 |
+| figure right-of-centre, 0.40 | **14.93** | **5.64** | **4.65** | **5.64** |
+
+Shifting the crop window left so the model lands right-of-centre took the
+homepage desktop from 4.70 to **14.93** — because the left-weighted wash and the
+left-aligned copy now have empty dark foliage to sit on, which is what that wash
+was designed for. `lib/edits.ts` already documents this for Everyday Lace ("the
+model hard right against an empty door, so left is the only place the type can
+go"); this crop had to earn the same property.
+
+`heroWash` stays at **0.40**. All four surfaces pass; the thinnest is the edit
+page desktop at 4.65 against a 4.5 threshold, which is worth knowing. Did not
+raise it further: darkening the picture beyond what legibility needs would work
+against the outfit she asked to be able to see.
+
+Verified: tsc clean, lint clean, tests pass, build clean; homepage serves
+`edit-fall-hero-6-1920.webp` desktop / `edit-fall-hero-mobile-5-780.webp` phone,
+edit page `edit-fall-hero-6-1920.webp`. Screenshotted all three.
