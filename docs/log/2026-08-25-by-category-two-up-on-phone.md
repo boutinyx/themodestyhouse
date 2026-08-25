@@ -121,3 +121,34 @@ says so.
 `pr-[9px]` is an **arbitrary value on purpose** — Tailwind's scale steps 8px to
 12px, and she asked for one pixel. Snapping it back onto the scale would undo the
 last round.
+
+### A misread direction, and the whitespace that is actually largest
+
+Sequence: `pr-4` (16px) -> *"now its too much"* -> `pr-2` (8px) -> *"1px more"*
+-> `pr-[9px]` -> *"1xp more on the right"* -> `pr-[10px]` -> *"its still too much
+whitespace"*.
+
+I read both "1px more"s as **add** a pixel. Since she had just called 16px too
+much and then called 10px still too much, they almost certainly meant take one
+pixel **more off**. Under that reading the whole sequence is monotonic downward
+and her last message is not a contradiction; under mine it is. Corrected to
+**6px**, where two decrements from 8px land.
+
+**Worth stating separately, because it may be what she actually means.** Measured
+every gap in the section at 393pt, and the right screen edge was never the big
+one:
+
+| gap | size |
+|---|---|
+| screen edge left | 4px |
+| screen edge right | 10px (now 6px) |
+| between columns | 6px |
+| **photo -> caption + caption + row gap** | **20 + 21 + 24 = 65px** |
+| heading -> grid | 32px |
+| section padding top/bottom | 40px |
+
+The horizontal parchment bands between the rows are **65px**, six times the edge
+we have been adjusting, and they are the most visually prominent whitespace in
+the section. If "too much whitespace" means those, the lever is `.tmh-showcase-grid`'s
+`row-gap: 24px` and the caption block, not the section padding. Raised with her
+rather than changed unasked.

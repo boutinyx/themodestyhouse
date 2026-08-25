@@ -635,15 +635,19 @@ export default function Home() {
           is why this was px-1 in the first place; widening both would have
           walked that back without being asked. md: is unchanged at px-8.
 
-          pr-4 (16px) -> pr-2 (8px), same day: "now its too much" — then
-          pr-2 -> pr-[9px], "1px more", then pr-[10px], "1xp more on the
-          right". So the range she steered through is 4px (read as none) ->
-          16px (too much) -> 8px -> 9px -> 10px, landed by eye across four
-          passes.
+          The sequence, and the misreading in the middle of it: pr-4 (16px)
+          -> "now its too much" -> pr-2 (8px) -> "1px more" -> pr-[9px] ->
+          "1xp more on the right" -> pr-[10px] -> "its still too much
+          whitespace".
+          Those two "1px more"s were read as ADD a pixel. Given she had just
+          said 16px was too much and then said 10px was still too much, they
+          almost certainly meant take one pixel MORE OFF. Re-read that way the
+          whole sequence is monotonic downward, which is the only reading under
+          which her last message is not a contradiction. So: 6px, i.e. where two
+          decrements from 8px land.
           An ARBITRARY value rather than a scale step, deliberately: Tailwind's
-          scale jumps 8px -> 12px here, and she asked for one pixel. Do not
-          "tidy" this back onto the scale. */}
-      <section className="max-w-[1220px] mx-auto pl-1 pr-[10px] md:px-8 py-10 md:py-20">
+          scale jumps 4px -> 8px here. Do not "tidy" it onto the scale. */}
+      <section className="max-w-[1220px] mx-auto pl-1 pr-[6px] md:px-8 py-10 md:py-20">
         {/* Centered, no "All categories" link — Tina: "By category. needs to
             be in the middle All categories gone." Every card in the grid
             below already links to its own lane, and /directory is reachable
