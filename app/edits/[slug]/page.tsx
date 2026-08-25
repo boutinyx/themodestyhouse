@@ -69,6 +69,16 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
   const washSm = edit.heroWashMobile ?? wash;
   const evenWash = edit.heroWashEven === true;
   const zoomSm = edit.heroZoomMobile ?? 1;
+  // Vertically centred on EVERY width, phone included, when the edit asks for
+  // centred copy. Otherwise the phone keeps the copy low in the frame.
+  //
+  // That low placement is not a default anyone picked for its own sake — it was
+  // the fix for the lace hero, whose centred title landed on the pale yellow
+  // jacket and vanished. So it stays tied to the edit rather than being removed
+  // globally: `bannerAlign: 'center'` is a statement that the photograph has
+  // somewhere in the middle for type to sit, which is true of the jersey shot
+  // and false of the lace one.
+  const centredCopy = edit.bannerAlign === 'center';
 
   return (
     <main className="pb-12">
@@ -184,8 +194,22 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
             it reads at full strength with nothing dimming the image.
             Using the picture's own tonality rather than a wash over it. */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-end md:justify-center text-center px-8 pb-[16%] md:pb-0"
-          style={{ paddingTop: 'var(--header-height)' }}
+          className={`absolute inset-0 flex flex-col items-center text-center px-8 ${
+            centredCopy ? 'justify-center' : 'justify-end md:justify-center pb-[16%] md:pb-0'
+          }`}
+          // No header padding when the copy is centred: that padding shifts the
+          // flex centre down by half the header's height (measured: a 49px
+          // offset, block 247px from the top and 198px from the bottom), so
+          // "centred" came out visibly low. Dropping it centres on the
+          // PHOTOGRAPH, which is what was asked for.
+          // Safe because the hero is ratio-locked, so its height scales with
+          // width: at 320px — narrower than any phone in use — it is 428px
+          // tall and the block's top still lands ~124px down, clear of the
+          // 88px header. Verified at 320/390/430.
+          // The uncentred case keeps it: its copy sits at the BOTTOM on a
+          // phone, where the padding is what stops the top of the block
+          // colliding with the header on a short frame.
+          style={centredCopy ? undefined : { paddingTop: 'var(--header-height)' }}
         >
           <h1
             className="serif"

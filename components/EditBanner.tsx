@@ -104,12 +104,18 @@ export function EditBanner({ edit }: { edit: Edit }) {
       />
       {/* absolute inset-0, not a min-height — the section's ratio owns the
           height now, and anything here declaring its own would fight it.
-          justify-end on a phone puts the copy at the bottom, over the dark
-          satin skirt, instead of across the lace sash the banner exists to
-          show; centred from md up, where it sits left of her over the door. */}
+          A CENTRED edit is centred at every width now, phone included — the
+          block reads as one thing in the middle of the picture rather than
+          drifting to the bottom on small screens.
+          A left-aligned one keeps the phone copy low, which is not an arbitrary
+          default: it is the fix for the lace hero, whose centred title landed
+          on the pale yellow jacket and disappeared. Tied to the edit rather
+          than removed globally. */}
       <div
-        className={`absolute inset-0 max-w-[1220px] mx-auto px-8 flex flex-col justify-end md:justify-center pb-12 md:pb-0${
-          centred ? ' md:items-center md:text-center' : ''
+        className={`absolute inset-0 max-w-[1220px] mx-auto px-8 flex flex-col ${
+          centred
+            ? 'justify-center items-center text-center'
+            : 'justify-end md:justify-center pb-12 md:pb-0'
         }`}
       >
         {/* All three text sizes were raised on 2026-08-24 — Tina: "all words in
