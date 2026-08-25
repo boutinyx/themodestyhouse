@@ -718,39 +718,43 @@ export default function Home() {
           decoding="async"
         />
         {/* DARKER OVERLAY, 2026-08-25 — Tina: "make the banner a bit tinner and
-            put a darker overlay on it". Flat, not a ramp: the copy is centred
-            now, so there is no side to weight it towards, and she asked for an
-            overlay rather than a wash.
+            put a darker overlay on it", then, when the first attempt used the
+            aubergine token: "i said darker not purple overlay".
+            So it is BLACK, `rgba(0,0,0,0.60)`. That distinction is the whole
+            point of this note: an aubergine wash at 0.75 does darken the band,
+            but it also drags the drapery's own plum towards one flat hue and
+            turns the cream wall lilac — it tints, it does not dim. Black takes
+            the luminance down and leaves the photograph's colour alone; the
+            satin stays purple because the satin IS purple.
+            Flat, not a ramp: the copy is centred now, so there is no side to
+            weight it towards.
 
-            0.75 IS NOT A GUESS, and the number is high for a reason. Measured on
-            the live render at 390/820/1440 by sampling the WORST pixel inside
-            each text element's own rect. The picture's middle is a bright cream
-            wall, so a light overlay leaves the band in the mid-tones, which is
-            the one place where neither dark nor light type works:
-              alpha   light copy            dark copy
-              0.00    1.15 / 1.01 / 1.18    8.37 / 7.83 / 7.15
-              0.40    2.62 / 2.27 / 1.36    4.08 / 3.86 / 3.48   <- both fail
-              0.60    4.37 / 3.70 / 2.19    2.69 / 2.61 / 2.32
-              0.75    6.64 / 5.50 / —       1.87 / 1.83 / 1.62   <- shipped
-            So "darker" had to mean dark enough to go back to light type, and the
-            copy is reversed out again: --parchment, #e7d8e4, and the brass pill.
+            0.60 IS NOT A GUESS. Measured on the live render at 390/820/1440 by
+            sampling the WORST pixel inside each text element's own rect. The
+            picture's middle is a bright cream wall, so a light overlay parks the
+            band in the mid-tones — the one place where neither dark nor light
+            type works. Black, with the copy reversed out (heading / steps):
+              0.35   2.70 / 2.25    0.55   5.09 / 4.20   <- steps still short
+              0.45   3.68 / 3.06    0.60   6.10 / 5.00   <- shipped
+              0.50   4.32 / 3.58    0.65   7.35 / 6.00
+            0.55 is the trap: the heading passes at 5.09 and it looks finished,
+            while the step text is at 4.20 against a 4.5 threshold.
 
             THE ONE CASUALTY IS THE GOLD NUMERALS. `--brass-on-dark` is 6.08:1 on
             FLAT aubergine, but here the residual cream keeps the background too
             light and it never reaches AA at any overlay this side of erasing the
-            photograph: 2.19 at 0.60, 3.23 at 0.75, 3.69 at 0.80. A radial that
-            darkens the centre harder (.92/.70/.40) only gets it to 4.29, and
-            costs the phone. So the numerals are --parchment, an existing token,
-            rather than a new lighter brass invented for one band. Tina was told;
-            #e8d3ac measures 5.20 and is the fix if she wants the gold back.
+            photograph: 3.12 at black 0.60, 3.71 at 0.65. So the numerals are
+            --parchment, an existing token, rather than a new lighter brass
+            invented for one band. Tina was told; #e8d3ac measures 5.02 at this
+            overlay and is the fix if she wants the gold back.
 
-            The button goes back to its brass override for the same reason it had
-            one before: on a dark band `.btn-pill`'s own aubergine has no edge
+            The button keeps its brass override for the same reason it had one
+            before: on a dark band `.btn-pill`'s own aubergine has no edge
             against the background. */}
         <div
           aria-hidden
           className="absolute inset-0"
-          style={{ background: 'rgba(68,25,67,0.75)' }}
+          style={{ background: 'rgba(0,0,0,0.60)' }}
         />
         <div className="relative w-full max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-[46ch] mx-auto text-center">
@@ -767,8 +771,8 @@ export default function Home() {
                   <li key={i} className="flex gap-3 justify-center" style={{ color: '#e7d8e4' }}>
                     {/* --parchment, and NOT either brass token — the one thing this
                         band lost when it went dark over a cream-centred photograph.
-                        Measured against the overlaid picture: --brass-on-dark 3.23,
-                        --brass 1.60, --aubergine 1.62, --parchment 6.64. The italic
+                        Measured against the overlaid picture: --brass-on-dark 3.12,
+                        --brass 1.53, --aubergine 1.55, --parchment 6.87. The italic
                         serif is what still separates the numeral from the step text. */}
                     <span className="serif italic" style={{ color: 'var(--parchment)' }}>{['i', 'ii', 'iii'][i]}.</span>
                     <span>{step}</span>
