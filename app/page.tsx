@@ -824,7 +824,12 @@ export default function Home() {
               <p className="mt-4" style={{ fontSize: 'clamp(15px,1.15vw,17px)', lineHeight: 1.6, color: '#e7d8e4' }}>
                 The Modesty House is the next stop for modest brands ready to be seen. From launch features to curated campaigns, we&rsquo;ll help you reach the women already looking for what you create.
               </p>
-              <ol className="mt-6 space-y-3">
+              {/* space-y-1.5 (6px), halved from space-y-3 (12px) — Tina: "letss
+                  spaing between these", pointing at the three steps. mt-6 above it
+                  is the gap from the lead paragraph and is deliberately NOT reduced
+                  with it: the ask was the spacing between the steps, and closing the
+                  gap to the paragraph as well would merge the list into the prose. */}
+              <ol className="mt-6 space-y-1.5">
                 {[
                   'Tell us about your brand and goals',
                   'Choose how you want to be seen',
