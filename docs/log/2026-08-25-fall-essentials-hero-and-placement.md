@@ -410,3 +410,62 @@ type sits on, not on the outfit at the right of the frame. Confirmed by eye at
 Verified: tsc clean, lint clean, tests pass, build clean; homepage serves
 `edit-fall-hero-7-1920.webp` desktop and `edit-fall-hero-mobile-6-780.webp`
 phone.
+
+## Eighth follow-up — "a tiny bit darker", and a real finding on the edit page
+
+Tina: *"a tiny bit darker."* `edit-fall-hero-8.jpg` / `edit-fall-hero-mobile-7.jpg`,
+`linear(1.24, 14)` instead of `(1.3, 20)` — mean luminance 47.6 → 40.3, still
+nearly double the ungraded 21.7. Candidates: 1.27/17 → 44.0 (barely
+distinguishable), 1.24/14 → 40.3 (shipped), 1.20/12 → 37.6 (a bigger step than
+"a tiny bit").
+
+### My earlier wash numbers were measured against the wrong thing
+
+Checking contrast on the darker image produced an impossible result — the edit
+page came back **worse** (1.60:1) on a *darker* picture than it had on a brighter
+one. A darker background cannot reduce contrast against white text, so the
+measurement had to be wrong, not the site.
+
+It was. The sweep probe overrode each scrim with a **flat** `rgba(12,6,12,W)`,
+but the page actually renders a left-weighted **gradient** — so every "heroWash"
+figure in the two previous entries describes an even-wash configuration that was
+never shipped. The real page, unoverridden, is:
+
+| surface | real contrast at heroWash 0.58 |
+|---|---|
+| homepage desktop | 9.76 pass |
+| homepage phone | 4.09 FAIL |
+| **edit page desktop** | **1.60 FAIL** |
+| edit page phone | 4.11 FAIL |
+
+**Root cause is layout, not the scrim.** The edit page centres its `h1`, so the
+tail of "Fall Essentials" crosses the model's cream sleeve and pale hijab, where
+the left-weighted gradient has already faded to 0.02. `lib/edits.ts` documents
+this exact hazard on `heroWashEven` — "wrong when the type is CENTRED" — and this
+crop is the case it warns about.
+
+A flat wash fixes it, measured properly this time (scrims tagged once, before
+mutation, so the selector cannot stop matching):
+
+| flat wash | min across all four surfaces |
+|---|---|
+| 0.40 | 2.93 FAIL |
+| 0.50 | 4.02 FAIL |
+| **0.60** | **5.62 PASS** |
+| 0.70 | 8.24 PASS |
+
+Not applied yet: a flat 0.60 darkens the whole photograph, which works against
+the brightness Tina has spent several rounds tuning. Raised with her as a choice
+rather than decided here. The edit-page `h1` does already carry
+`textShadow: 0 2px 30px rgba(0,0,0,0.5)`, so real-world legibility is better than
+the raw worst-pixel figure suggests.
+
+### Second probe bug, caught by its own guard
+
+The first flat-wash sweep reported an identical figure at every level. It
+re-selected scrims each round by their background containing `rgba(12, 6, 12` —
+so once round one wrote a flat colour, `backgroundImage` became `none` and
+nothing matched again. The `identical at every level → VOID` check caught it;
+without that it would have read as a clean, flat result. Same family as §10.28.
+The fixed probe tags the scrims once, up front, and now hard-throws on a void
+run instead of printing numbers.

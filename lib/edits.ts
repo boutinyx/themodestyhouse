@@ -740,8 +740,11 @@ export const EDITS: Edit[] = [
     // Yes, she reversed a lift on the FULL-FRAME hero hours earlier (-3 -> -4).
     // Different picture, asked for explicitly after seeing this crop; do not
     // "correct" it back.
-    image: '/edit-fall-hero-7.jpg',
-    imageMobile: '/edit-fall-hero-mobile-6.jpg',
+    // -8 / -mobile-7: "a tiny bit darker" than -7. linear(1.24, 14) rather
+    // than (1.3, 20) — mean luminance 47.6 -> 40.3, still nearly double the
+    // ungraded 21.7. Both surfaces together, as always.
+    image: '/edit-fall-hero-8.jpg',
+    imageMobile: '/edit-fall-hero-mobile-7.jpg',
     imageRatio: 1920 / 1080,
     imageMobileRatio: 1170 / 1568,
     imageWidths: [640, 1024, 1440, 1920],

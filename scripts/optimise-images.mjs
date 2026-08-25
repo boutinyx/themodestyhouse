@@ -413,7 +413,21 @@ const JOBS = [
     // explicitly and after seeing the crop. An offset rather than a brightness
     // multiply, for the reason spelled out on -3: the range that needs lifting
     // is the dark painted backdrop, not her already-lit face.
+    // SUPERSEDED by edit-fall-hero-8.jpg below — Tina: "a tiny bit darker".
     file: 'edit-fall-hero-7.jpg',
+    widths: [640, 1024, 1440, 1920],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
+  },
+  {
+    // /edits/fall-essentials hero, desktop — CURRENT. `linear(1.24, 14)`:
+    // mean luminance 40.3, a small step down from -7's 47.6 while still nearly
+    // double the ungraded 21.7. Candidates measured before choosing —
+    //   1.30, 20   47.6   (-7, "a tiny bit" too bright)
+    //   1.27, 17   44.0   barely distinguishable from -7
+    //   1.24, 14   40.3   <- shipped
+    //   1.20, 12   37.6   reads as a bigger step than "a tiny bit"
+    file: 'edit-fall-hero-8.jpg',
     widths: [640, 1024, 1440, 1920],
     suffixWidth: true,
     opts: { quality: 100, effort: 6 },
@@ -443,7 +457,16 @@ const JOBS = [
   {
     // Same crop and the SAME lift as the desktop one — "liek both". Both still
     // cut from the one wide original, so the two stay matched by construction.
+    // SUPERSEDED by edit-fall-hero-mobile-7.jpg below. Left registered.
     file: 'edit-fall-hero-mobile-6.jpg',
+    widths: [390, 780, 1170],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
+  },
+  {
+    // Same crop, same lift as the desktop one — the two are always changed
+    // together and always cut from the one wide original.
+    file: 'edit-fall-hero-mobile-7.jpg',
     widths: [390, 780, 1170],
     suffixWidth: true,
     opts: { quality: 100, effort: 6 },
