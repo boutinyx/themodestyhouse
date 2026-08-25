@@ -141,3 +141,73 @@ touched.
 texture, not marks, and 2,078 stars would be both visually loud and a much
 larger file. If the dot field is ever regenerated, `scripts/gen-world-dots.mjs`
 writes a NEW versioned filename; never overwrite in place.
+
+---
+
+## Update, same day — the region rows are tighter
+
+Tina: *"you know the map can we get these more close to one another"*, about the
+five region rows under the map (Europe 56 / North America 27 / Middle East 20 /
+Asia 5 / Oceania 5).
+
+**85px → 53px per row; the list is 266px, was 426px.** `padding: '26px 4px'` and
+`minHeight: 84` became `'13px 4px'` and `52`.
+
+This reverses a change from earlier the same day — the rows had gone 60px → 84px
+on *"can you make it longer"*. Both are recorded in the component comment so the
+next person does not "restore" the taller value thinking it was lost.
+
+### 52 is a floor, not a taste number
+
+The row **is** the tap target that opens a region. Anything under 44px is an
+undersized target and `npm run audit:mobile` reports it. 52 leaves a little
+margin; do not tighten past it without re-running that audit.
+
+### Verification
+
+`npx tsc --noEmit` → 0 · `npm run lint` → 0 · build clean.
+
+Measured in a real browser at both widths, and the row still opens on tap —
+a shorter button that no longer responds would be the actual risk here:
+
+```
+desktop 1440:  rowHeights [53,53,53,53,53]  listTotal 266  minTap 52
+phone 390:     rowHeights [53,53,53,53,53]  listTotal 266  minTap 52
+TAP TARGETS OK (>=44px)
+after tap, aria-expanded = true
+```
+
+`npm run audit:mobile` against the local production build, both engines:
+
+```
+chromium  overflowing 0/9 | a11y 0 | stacked text 0 | broken aspect 0
+webkit    overflowing 0/9 | a11y 0 | stacked text 0 | broken aspect 0
+```
+
+### An honest note on that audit's tap-target lines
+
+The run also printed some undersized tap targets. **None are the region rows** —
+they do not appear in the report at all — and none are in the file this change
+touched (`grep` for them in `DesignerDiscovery.tsx` returns 0). They are inline
+text links:
+
+- `150x21 <a> See our picks`, three of them — `components/EditBanner.tsx`, i.e.
+  one per edit banner on the homepage. These arrived with the edits feature, not
+  with this change.
+- `93x21 <a> Modest Dresses`, `42x21 <a> Abayas`, `141x21 <a> Modest Wedding
+  Guest` — lane links inside prose.
+- `170x20 <a> hello@themodestyhouse.co` — the contact email link.
+
+**CLAUDE.md §4 currently says `audit:mobile` is "CLEAN as of 2026-08-07: 0
+overflow, 0 violations, 0 small targets".** The first two still hold; the third
+does not. Flagged rather than quietly fixed or quietly ignored — the "See our
+picks" links in particular are a real if minor finding that the edits work
+introduced, and someone should decide whether an inline text link under a banner
+should be a larger target.
+
+### Still open, not changed
+
+The gap between the map and the first row is `mt-16 md:mt-24` (96px on desktop),
+set earlier from *"put some space between the cards and the map."* With the rows
+now tightened it reads proportionally larger than it did. Left alone because it
+was an explicit ask and this one was about the rows; easy to close up if wanted.

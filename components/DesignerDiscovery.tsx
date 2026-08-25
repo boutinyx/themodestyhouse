@@ -175,11 +175,19 @@ export default function DesignerDiscovery({
                 onBlur={() => setHover(null)}
                 aria-expanded={isOpen}
                 className="w-full flex items-center gap-4 md:gap-6 text-left transition-colors"
-                /* Taller than the 60px it shipped at yesterday — Tina: "can you
-                   make it longer". The 01/02/03 index that sat to the left of
-                   the name is gone the same day ("you can put the 01 02 03 04 05
-                   out ust keep the place"). */
-                style={{ padding: '26px 4px', minHeight: 84, background: 'transparent' }}
+                /* Went 60px -> 84px on 2026-08-25 ("can you make it longer"),
+                   then back down to 52px the same day: "you know the map can we
+                   get these more close to one another". Five rows are 265px
+                   now, were 426px.
+                   The 01/02/03 index that sat to the left of the name is gone
+                   too ("you can put the 01 02 03 04 05 out ust keep the place").
+
+                   52 IS A FLOOR WORTH KNOWING ABOUT, not a taste number. The
+                   row is the tap target for opening a region, and anything
+                   under 44px is an undersized target that `npm run audit:mobile`
+                   reports as a failure. 52 leaves a little margin over that; do
+                   not tighten past it without re-running that audit. */
+                style={{ padding: '13px 4px', minHeight: 52, background: 'transparent' }}
               >
                 <span
                   className="flex-1"
