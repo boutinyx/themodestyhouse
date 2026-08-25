@@ -121,7 +121,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   const related = relatedPicks(p);
 
   return (
-    <main className="max-w-3xl mx-auto px-8 pt-32 md:pt-40 pb-16">
+    <main className="max-w-3xl mx-auto px-8 pt-12 md:pt-16 pb-16">
       <Link href="/directory" className="nav-link inline-flex items-center gap-1 mb-8" style={{ color: 'var(--muted)' }}>
         <ArrowLeft size={16} />
         Back to the directory

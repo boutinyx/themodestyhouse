@@ -112,7 +112,7 @@ export default async function LanePage({
   // and the sitemap cannot disagree about what this page is.
   const pageTitle = sub?.label ?? lane.title;
   return (
-    <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-12">
+    <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-12">
       {/* Breadcrumb gains a third crumb on a subtype page, and the
           CollectionPage now describes the FILTERED page rather than its
           parent — see the listedRows note above for what it used to claim. */}

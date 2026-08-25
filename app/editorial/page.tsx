@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata('/editorial');
 export default function EditorialPage() {
   const posts = getPosts();
   return (
-    <main className="max-w-[900px] mx-auto px-8 pt-32 md:pt-40 pb-24">
+    <main className="max-w-[900px] mx-auto px-8 pt-12 md:pt-16 pb-24">
       <div className="text-center mb-14">
         <h1 className="serif mt-3" style={{ fontSize: 'clamp(36px,5.5vw,60px)', lineHeight: 1.02, color: 'var(--ink)' }}>The Edit</h1>
         <p className="mt-3 text-sm" style={{ color: 'var(--muted)' }}>Stories, edits and styling from The Modesty House.</p>

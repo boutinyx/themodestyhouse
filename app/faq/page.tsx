@@ -66,7 +66,7 @@ const FAQ = [
 
 export default function FaqPage() {
   return (
-    <main className="max-w-[760px] mx-auto px-8 pt-32 md:pt-40 pb-24">
+    <main className="max-w-[760px] mx-auto px-8 pt-12 md:pt-16 pb-24">
       <JsonLd
         data={jsonLdGraph(
           breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq' }]),

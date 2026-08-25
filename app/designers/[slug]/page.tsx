@@ -102,7 +102,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   const hi = prices[prices.length - 1];
 
   return (
-    <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-12">
+    <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-12">
       <JsonLd
         data={jsonLdGraph(
           breadcrumbSchema([

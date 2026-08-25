@@ -40,14 +40,24 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   // different template. The intro is this page's own metadata description,
   // reused rather than newly written.
   //
-  // SHELL: max-w-[1220px] + px-8 + pt-32 md:pt-40. Those three values are now
-  // the same on every page and on the footer. They were max-w-6xl + px-5, which
-  // put this page's content edge 22px inside the footer's at 1440 and 12px
-  // inside it on a phone — two boxes stacked directly on top of one another and
-  // not lining up. The top padding clears the fixed header, whose bottom edge is
-  // at 88px at every width.
+  // SHELL: max-w-[1220px] + px-8 + pt-12 md:pt-16. Those three values are the
+  // same on every page and on the footer. They were max-w-6xl + px-5, which put
+  // this page's content edge 22px inside the footer's at 1440 and 12px inside it
+  // on a phone — two boxes stacked directly on top of one another and not
+  // lining up.
+  //
+  // TOP PADDING WAS pt-32 md:pt-40 (128/160px) until 2026-08-25 — Tina: "there
+  // is excess whitespace above the search and filter bar. you need to remove
+  // that". It is now 48/64px on all eleven pages that share this shell.
+  //
+  // The old comment here said that padding "clears the fixed header". That was
+  // wrong on both counts and is why the number went unquestioned for so long:
+  // the header is `position: sticky`, not fixed, so it occupies flow space and
+  // `main` already begins exactly at its bottom edge — measured, header bottom
+  // 89 and main top 89 on /modest-abayas at 1440. The padding was never
+  // clearing anything; all 160px of it was decorative.
   return (
-    <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-16">
+    <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-16">
       {!q && (
         <JsonLd
           data={jsonLdGraph(

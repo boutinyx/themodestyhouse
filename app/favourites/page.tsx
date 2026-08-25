@@ -56,7 +56,7 @@ export default function FavouritesPage() {
   }, [undoable, toggleFav, isFav]);
 
   return (
-    <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-16">
+    <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-16">
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
         <h1 className="section-heading text-3xl md:text-4xl mt-2">
           Favourites{items.length > 0 ? <span style={{ color: 'var(--muted)' }}> ({items.length})</span> : null}

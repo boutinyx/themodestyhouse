@@ -190,7 +190,7 @@ export default async function DesignersPage({
   const path = qs(page);
 
   return (
-    <main className="max-w-[1220px] mx-auto px-8 pt-32 md:pt-40 pb-24">
+    <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-24">
       {/* This was the least structured page on the site: it emitted only the
           sitewide Organization + WebSite graph, while every lane page already
           emits CollectionPage + ItemList + BreadcrumbList. It is also the one
