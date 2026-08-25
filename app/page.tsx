@@ -500,10 +500,13 @@ export default function Home() {
         {/* SIZE, 2026-08-24 — Tina, pointing at this one: "Popular items from
             brands. the titles like these need to be smaller." All FOUR of the
             homepage's section headings moved together, so they stay a set:
-            this, "By category.", "Apply for the seal." (on the aubergine band,
-            which keeps its +2px) and "Reading, not just shopping."
+            this, "By category.", the band heading (then "Apply for the seal.",
+            replaced by Tina's marketing copy on 2026-08-25 and no longer part of
+            this set — it is 35 words, so it sits at clamp(18,1.9vw,24) and is
+            body-sized rather than display-sized) and "Reading, not just shopping."
               clamp(28px,4vw,44px) -> clamp(24px,3vw,34px)   [44px -> 34px desktop]
-              clamp(28px,4vw,46px) -> clamp(24px,3vw,36px)   [the band one]
+              clamp(28px,4vw,46px) -> clamp(24px,3vw,36px)   [the band one, since
+                                                              superseded as above]
             NOT changed: EditBanner's edit title, clamp(40px,5.6vw,64px) in its
             own <style> block — a deliberately larger tier, not this set.
             (VerifiedSpotlight's "Houses that just earned the seal." was the other
@@ -610,8 +613,10 @@ export default function Home() {
           removal: it was the only surface naming the seal on the homepage above
           the fold-ish, and it carried an "All designers" link to /designers.
           That link is not lost — <DesignerDiscovery> below has its own
-          "Explore all designers" — and the aubergine "Apply for the seal" band
-          further down still explains the standard. */}
+          "Explore all designers". NOTE the band further down no longer explains
+          the seal: as of 2026-08-25 it is Tina's marketing pitch, so nothing on
+          the homepage states the standard any more. /about still does, and the
+          footer still links "Apply for the seal". Raised with her. */}
 
       {/* BROWSE BY CATEGORY */}
       {/* px-4 md:px-8, not the site's usual px-8 everywhere — Tina, on the
@@ -785,14 +790,24 @@ export default function Home() {
         <div className="relative w-full max-w-[1220px] mx-auto px-8 py-10 md:py-20">
           <div className="max-w-[46ch] mx-auto text-center">
             <div>
-              <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
-                Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
+              {/* Tina's copy, 2026-08-25, verbatim — do not rewrite it (§10.18: the
+                  words on this site are hers). It replaced "Are you a modest fashion
+                  house? Apply for the seal." and repositions the band from a seal
+                  application to a marketing offer.
+                  THE TYPE IS SMALLER THAN THE SLOT IT INHERITED: the old heading was
+                  seven words at clamp(24,3vw,36); this is 35, which at that size is
+                  six lines and 250px on its own — more than half the band she had
+                  just asked to make thinner. clamp(18,1.9vw,24) with line-height 1.4
+                  keeps it to three lines at 1440. Still an <h2>, so the page outline
+                  is unchanged. */}
+              <h2 className="serif mt-3" style={{ fontSize: 'clamp(18px,1.9vw,24px)', lineHeight: 1.4, color: 'var(--parchment)' }}>
+                The Modesty House is the next stop for modest brands ready to be seen. From launch features to curated campaigns, we&rsquo;ll help you reach the women already looking for what you create.
               </h2>
               <ol className="mt-6 space-y-3">
                 {[
-                  'Submit your house & lookbook',
-                  'We review craft and design',
-                  'Go live with the verified seal',
+                  'Tell us about your brand and goals',
+                  'Choose how you want to be seen',
+                  'Get discovered by the right audience',
                 ].map((step, i) => (
                   <li key={i} className="flex gap-3 justify-center" style={{ color: '#e7d8e4' }}>
                     {/* --parchment, and NOT either brass token — the one thing this
@@ -809,8 +824,13 @@ export default function Home() {
                   was bright and a brass pill measured 1.28:1 against the photograph;
                   with the 0.75 overlay the band is dark, so `.btn-pill`'s own
                   aubergine is the one with no edge and brass is right again. */}
+              {/* `topic=seal` is UNCHANGED and is now arguably wrong: it deep-links
+                  the contact form to its "Apply for the seal" option, and this band
+                  is a marketing pitch. lib/contactTopics.ts has no marketing entry
+                  and adding one is Tina's call, not a silent side effect of a copy
+                  change — flagged to her rather than guessed at. */}
               <Link href="/contact?topic=seal" className="btn-pill inline-block mt-8" style={{ background: 'var(--brass)', color: 'var(--ink)' }}>
-                Apply for the seal
+                Market with The Modesty House
               </Link>
             </div>
           </div>
