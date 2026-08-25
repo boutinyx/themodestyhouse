@@ -112,3 +112,49 @@ behind it, and it changed four times.**
 - The previous `seal-band-satin*` assets are still committed and now unused.
   Left in place deliberately — three of today's four versions are one commit
   revert away, and the images are the expensive part.
+
+---
+
+## Follow-up: Tina's marketing copy replaced the seal pitch
+
+She supplied the band's words verbatim — a two-sentence lead, three steps, and
+`Market with The Modesty House` as the CTA — repositioning it from a seal
+application to a marketing offer. Set exactly as given; nothing rewritten.
+
+**The type is smaller than the slot it inherited.** The old heading was seven
+words at `clamp(24px,3vw,36px)`; the new lead is 35, which at that size renders
+as six lines and ~250px on its own — more than half the band she had just asked
+to make thinner. It is now `clamp(18px,1.9vw,24px)` at line-height 1.4, still an
+`<h2>` so the page outline is unchanged.
+
+**The column widened 46ch → 62ch.** 46ch was chosen when the band was *bright*
+and the copy had to stay inside the picture's clear cream centre. With a uniform
+black overlay the whole band is dark, so the column no longer has to dodge the
+drapes. Measured at 1440:
+
+| column | h2 lines | band height | contrast |
+|---|---|---|---|
+| 46ch | 6 | 555px | 6.10 / 5.45 / 7.10 |
+| **62ch** | **4** | **488px** | **6.18 / 5.28 / 6.95** |
+| 70ch | 3 | 442px | 6.20 / 5.22 / 6.84 |
+
+Contrast is flat across all three because the extra width reaches into the
+**drapes, which are darker than the centre**, not brighter — the opposite of what
+widening a text column into a photograph usually costs. 70ch is on the table if
+the band needs to be thinner still.
+
+Final, verified on the deployed page: 1440 `488px, 4 lines, 6.18/5.28/6.95` ·
+820 `440px, 3 lines, 6.10/5.12/7.41` · 390 `399px, 5 lines, 6.10/5.34/7.86`, zero
+elements overflowing the band at any width.
+
+## Open, and deliberately not decided here
+**The CTA still points at `/contact?topic=seal`**, which deep-links the contact
+form to its "Apply for the seal" option — wrong for a marketing enquiry.
+`lib/contactTopics.ts` has no marketing entry and adding one is an editorial
+decision, not a side effect of a copy change, so it is flagged rather than
+guessed at.
+
+**Nothing on the homepage states the seal standard any more.** This band was the
+last surface that did (the note above `DesignerDiscovery` said so, and has been
+corrected). `/about` still explains it and the footer still links "Apply for the
+seal", so the standard is not unreachable — but the homepage no longer carries it.
