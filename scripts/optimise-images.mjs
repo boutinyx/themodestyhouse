@@ -227,6 +227,29 @@ const JOBS = [
     opts: { quality: 95, effort: 6 },
   },
   {
+    // Same shot, brightened — Tina, 2026-08-25: "can you make the desktop
+    // picture lighter". Deliberately a NEW FILE rather than an edit in place
+    // (§6/§10.21), and deliberately not a change to `heroWash`: the overlay was
+    // measured first and is not what makes this banner dark. The photograph's
+    // own mean luminance is 18.7/255, and dropping the wash from 0.26 to zero
+    // moves the composited banner from 17.0 to 18.6 — invisible. So the lift
+    // has to be in the pixels.
+    //
+    // `linear(1.2, 12)`: a slope AND an offset, not `modulate({brightness})`.
+    // A pure multiply scales the model's already-bright face by the same factor
+    // as the shadows; the offset lifts the dark painted backdrop where the
+    // range actually is. Measured across four candidates — this lands mean
+    // luminance at 34.0 (from 18.7) with 0.010% of pixels at 250+, i.e. no
+    // meaningful highlight clipping. The next step up (1.3/18) reaches 41.9 but
+    // starts to read hazy in the shadows.
+    //
+    // DESKTOP ONLY, as asked — edit-fall-hero-mobile.jpg is untouched.
+    file: 'edit-fall-hero-2.jpg',
+    widths: [640, 1024, 1440, 1920, 2400, 2674],
+    suffixWidth: true,
+    opts: { quality: 95, effort: 6 },
+  },
+  {
     // Same hero, phone — 3584x4800 portrait, 0.74667. Effectively the same
     // shape as the lace phone hero (0.7468), so it needs no new ratio handling
     // in EditBanner. Stops at 1920: that is a 640px CSS viewport at 3x DPR,

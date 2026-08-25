@@ -655,7 +655,14 @@ export const EDITS: Edit[] = [
     // produced nothing and left 404s in the srcset. Phone is 3584x4800
     // (0.74667), effectively the same shape as the lace phone hero (0.7468),
     // so EditBanner's --edit-hero-ratio handling needs no change.
-    image: '/edit-fall-hero.jpg',
+    // -2 is the same photograph brightened, 2026-08-25 ("can you make the
+    // desktop picture lighter"). The overlay was ruled out by measurement
+    // first, not by taste — see the job in scripts/optimise-images.mjs for the
+    // numbers and why the lift is `linear(1.2, 12)` rather than a brightness
+    // multiply. DESKTOP ONLY: imageMobile is still the original grade, because
+    // she asked for the desktop picture. If the two should match, the phone
+    // crop needs the same treatment and its own new filename.
+    image: '/edit-fall-hero-2.jpg',
     imageMobile: '/edit-fall-hero-mobile.jpg',
     imageRatio: 2674 / 1504,
     imageMobileRatio: 3584 / 4800,

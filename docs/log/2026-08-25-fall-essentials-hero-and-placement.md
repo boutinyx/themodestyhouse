@@ -63,3 +63,47 @@ have no opinion about it.
   way the lace hero can. If a sharper 4K crop is ever wanted, it needs a bigger
   original, not a bigger width in the widths array.
 - The two source PNGs are still in `~/Downloads` — untouched, not moved.
+
+## Third follow-up — the desktop hero brightened
+
+Tina: *"can you make the desktop picture lighter."*
+
+**Measured before touching anything, and the obvious lever was the wrong one.**
+The instinct is `heroWash` (the overlay), but the numbers say it barely matters
+here: the photograph's own mean luminance is **18.7/255**, and the left-weighted
+gradient at 0.26 averages ~0.133 alpha across the frame, so the composited banner
+sits at 17.0. Taking the wash to **zero** would only reach 18.6 — a change nobody
+could see. The darkness is in the pixels, so the fix had to be too.
+
+Four candidate curves, all measured on the real file:
+
+| transform | mean luminance | pixels ≥250 |
+|---|---|---|
+| original | 18.7 | 0.000% |
+| `modulate({brightness: 1.4})` | 25.3 | 0.249% |
+| **`linear(1.2, 12)`** | **34.0** | **0.010%** |
+| `linear(1.3, 18)` | 41.9 | 0.167% |
+
+`linear` beats `modulate` because a pure multiply scales the model's already-lit
+face by the same factor as the shadows, while the offset lifts the dark painted
+backdrop where the tonal range actually is. Compared 1.2/12 against 1.3/18 side
+by side as images: the stronger one reaches further but starts to read hazy in
+the shadows, so 1.2/12 it is. Nearly double the brightness, no meaningful
+highlight clipping.
+
+- `public/edit-fall-hero-2.jpg` — new filename, not an edit in place (§10.21).
+  Registered in `scripts/optimise-images.mjs`; six variants written, all fetched
+  and 200 from a `next start` build.
+- `lib/edits.ts` → `image: '/edit-fall-hero-2.jpg'`. `heroWash` untouched at the
+  0.26 default — with a lighter photograph the white type needs it more, not
+  less.
+- **Desktop only, as asked.** `imageMobile` is still the original grade. If the
+  two should match, the phone crop needs the same treatment and its own new
+  filename; say the word.
+- `edit-fall-hero.jpg` and its six variants stay on disk, unreferenced —
+  the same convention `hero-home-2.jpg` already documents in that script
+  (cheap, reversible, and anyone holding the old URL from the last four hours
+  still gets a file).
+
+Re-verified: tsc clean, lint clean, 773 tests, build clean, banner screenshotted
+at 1440 with the stylesheet assertion.
