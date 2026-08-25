@@ -500,13 +500,12 @@ export default function Home() {
         {/* SIZE, 2026-08-24 — Tina, pointing at this one: "Popular items from
             brands. the titles like these need to be smaller." All FOUR of the
             homepage's section headings moved together, so they stay a set:
-            this, "By category.", the band heading (then "Apply for the seal.",
-            replaced by Tina's marketing copy on 2026-08-25 and no longer part of
-            this set — it is 35 words, so it sits at clamp(18,1.9vw,24) and is
-            body-sized rather than display-sized) and "Reading, not just shopping."
+            this, "By category.", "Apply for the seal." (on the band, which keeps
+            its +2px) and "Reading, not just shopping." The band one was briefly
+            replaced by Tina's marketing copy on 2026-08-25 and restored the same
+            evening — her paragraph is the lead UNDER it, not a substitute for it.
               clamp(28px,4vw,44px) -> clamp(24px,3vw,34px)   [44px -> 34px desktop]
-              clamp(28px,4vw,46px) -> clamp(24px,3vw,36px)   [the band one, since
-                                                              superseded as above]
+              clamp(28px,4vw,46px) -> clamp(24px,3vw,36px)   [the band one]
             NOT changed: EditBanner's edit title, clamp(40px,5.6vw,64px) in its
             own <style> block — a deliberately larger tier, not this set.
             (VerifiedSpotlight's "Houses that just earned the seal." was the other
@@ -613,10 +612,11 @@ export default function Home() {
           removal: it was the only surface naming the seal on the homepage above
           the fold-ish, and it carried an "All designers" link to /designers.
           That link is not lost — <DesignerDiscovery> below has its own
-          "Explore all designers". NOTE the band further down no longer explains
-          the seal: as of 2026-08-25 it is Tina's marketing pitch, so nothing on
-          the homepage states the standard any more. /about still does, and the
-          footer still links "Apply for the seal". Raised with her. */}
+          "Explore all designers" — and the band further down still carries
+          "Apply for the seal." as its heading. Note its BODY is now a marketing
+          pitch and its button reads "Market with The Modesty House", so the band
+          names the seal without explaining the standard; /about is where the
+          standard is actually spelled out. */}
 
       {/* BROWSE BY CATEGORY */}
       {/* px-4 md:px-8, not the site's usual px-8 everywhere — Tina, on the
@@ -801,19 +801,27 @@ export default function Home() {
               thinner still. */}
           <div className="max-w-[62ch] mx-auto text-center">
             <div>
-              {/* Tina's copy, 2026-08-25, verbatim — do not rewrite it (§10.18: the
-                  words on this site are hers). It replaced "Are you a modest fashion
-                  house? Apply for the seal." and repositions the band from a seal
-                  application to a marketing offer.
-                  THE TYPE IS SMALLER THAN THE SLOT IT INHERITED: the old heading was
-                  seven words at clamp(24,3vw,36); this is 35, which at that size is
-                  six lines and 250px on its own — more than half the band she had
-                  just asked to make thinner. clamp(18,1.9vw,24) with line-height 1.4,
-                  in the 62ch column, is four lines at 1440 and five at 390. Still an
-                  <h2>, so the page outline is unchanged. */}
-              <h2 className="serif mt-3" style={{ fontSize: 'clamp(18px,1.9vw,24px)', lineHeight: 1.4, color: 'var(--parchment)' }}>
-                The Modesty House is the next stop for modest brands ready to be seen. From launch features to curated campaigns, we&rsquo;ll help you reach the women already looking for what you create.
+              {/* The old title is BACK, 2026-08-25 — Tina: "i did wnated you to keep
+                  the old title". It was removed when her marketing copy arrived,
+                  because the copy she sent had no heading line in it and the two
+                  read as alternatives. They are not: the title is the heading and
+                  her paragraph is the lead under it. Restored at its original
+                  clamp(24px,3vw,36px)/1.05 — this is one of the four homepage
+                  headings that move as a set (see the note at the top of this file),
+                  so the size is not free to drift. */}
+              <h2 className="serif mt-3" style={{ fontSize: 'clamp(24px,3vw,36px)', lineHeight: 1.05, color: 'var(--parchment)' }}>
+                Are you a modest fashion house? <span className="italic">Apply for the seal.</span>
               </h2>
+              {/* Tina's copy, 2026-08-25, verbatim — do not rewrite it (§10.18: the
+                  words on this site are hers). It is the lead paragraph under the
+                  title, not a replacement for it.
+                  #e7d8e4 and 17-19px: the band's own body colour and roughly its body
+                  size, so it reads as prose under a display heading rather than as a
+                  second heading. Measured on the live render, so it is the same
+                  colour the three steps below already use and are measured at. */}
+              <p className="mt-4" style={{ fontSize: 'clamp(15px,1.15vw,17px)', lineHeight: 1.6, color: '#e7d8e4' }}>
+                The Modesty House is the next stop for modest brands ready to be seen. From launch features to curated campaigns, we&rsquo;ll help you reach the women already looking for what you create.
+              </p>
               <ol className="mt-6 space-y-3">
                 {[
                   'Tell us about your brand and goals',
