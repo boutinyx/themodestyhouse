@@ -270,8 +270,22 @@ export function Header() {
             turns into `data-menu-open`, which is what forces the over-hero
             header solid while the bar below it is open. gap-1, not the row's
             gap-6: these are two icons in one group, not two separate
-            clusters. */}
-        <div className="lg:hidden flex items-center gap-1">
+            clusters.
+
+            `-ml-1.5` and `gap-4` are one instruction, not two tweaks — Tina,
+            2026-08-25: "put it a bit more to the left giving some space to the
+            hamburger". Those pull opposite ways on their own, so she picked
+            the combination: the hamburger moves 6px NEARER the left edge (a
+            10px gutter rather than the row's 16px) while the gap between the
+            two glyphs opens from 4px to 16px. Net effect measured: hamburger
+            glyph 16px -> 10px, magnifier glyph 44px -> 50px. The negative
+            margin is on the CLUSTER, not the row's px-4, so the favourites
+            heart at the other end keeps its 16px gutter.
+
+            The close cross in the search bar below carries a matching
+            `marginLeft` so the two rows keep one left edge — if this number
+            moves, that one has to move with it. */}
+        <div className="lg:hidden -ml-1.5 flex items-center gap-4">
           <MobileNav />
           <MobileSearchTrigger
             open={mobileSearchOpen}

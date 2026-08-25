@@ -205,10 +205,14 @@ export function MobileSearchRow({ onClose }: { onClose: () => void }) {
         aria-label="Close search"
         className="inline-flex items-center justify-center shrink-0"
         // 44px box on a 24px glyph: the tap target, not the icon, is what
-        // audit:mobile measures and what a thumb actually hits. -ml-2.5
-        // pulls the extra box back off the gutter so the GLYPH still lines
-        // up with the hamburger rather than the box's edge.
-        style={{ width: 44, height: 44, marginLeft: -10, color: 'var(--aubergine)' }}
+        // audit:mobile measures and what a thumb actually hits. The negative
+        // margin pulls the extra box back off the gutter so the GLYPH lines
+        // up with the hamburger rather than the box's edge — -16 because the
+        // hamburger's own cluster now sits at a 10px gutter (`-ml-1.5` in
+        // Header.tsx), not the row's 16px: 16 (padding) - 16 (margin) + 10
+        // (the glyph's inset in its 44px box) = 10. Those two numbers are one
+        // decision written in two files and have to move together.
+        style={{ width: 44, height: 44, marginLeft: -16, color: 'var(--aubergine)' }}
       >
         <X size={24} style={{ display: 'block' }} />
       </button>
@@ -253,7 +257,14 @@ export function MobileSearchRow({ onClose }: { onClose: () => void }) {
 
 /** The magnifier that opens it, sitting beside the hamburger. Its own
  *  component only so that the `aria-expanded` (which Header's MutationObserver
- *  reads to force the header solid) cannot be forgotten at the call site. */
+ *  reads to force the header solid) cannot be forgotten at the call site.
+ *
+ *  20px, not the hamburger's 24 — Tina, 2026-08-25: "make the icon a bit
+ *  smaller like the heart". That is the literal number the favourites heart
+ *  uses on this row (`favourites(20)` in Header.tsx), so the two utility
+ *  glyphs at either end of the phone header are now the same size and the
+ *  hamburger is the only one that reads as larger, which is right — it is the
+ *  row's primary control. */
 export function MobileSearchTrigger({ open, onToggle }: { open: boolean; onToggle: () => void }) {
   return (
     <button
@@ -264,7 +275,7 @@ export function MobileSearchTrigger({ open, onToggle }: { open: boolean; onToggl
       className="nav-link inline-flex items-center justify-center leading-none"
       style={{ fontSize: 13, letterSpacing: 0 }}
     >
-      <MagnifyingGlass size={24} style={{ display: 'block' }} />
+      <MagnifyingGlass size={20} style={{ display: 'block' }} />
     </button>
   );
 }
