@@ -1,5 +1,5 @@
 # The phone brand band, 40px -> 28px
-**Date:** 2026-08-25 · **Status:** done (staging)
+**Date:** 2026-08-25 · **Status:** REVERTED (same day, never reached production)
 
 ## Goal
 
@@ -75,3 +75,22 @@ failure the declaration's comment warns about, and the original complaint ("i
 still see a big piece of the pciture") that produced `--header-height`.
 
 Desktop stays at the full 844 with no band, so nothing regressed above 1024px.
+
+
+---
+
+## Reverted
+
+Tina, after seeing it on staging: *"yeah nevermind revert back"*. `--band-height`
+is 40px again. It never reached `main`, so production was never on 28px.
+
+**The code comment at the declaration was kept, not deleted**, and rewritten to
+record that 28px was tried and turned down. Two reasons:
+
+1. The finding underneath it is still true — the band reads far bigger than its
+   40px because iOS tints ~59px of status bar with the colour at the top of the
+   document. Anyone who measures 40px in a browser and wonders why it was called
+   "pretty big on iphone" is looking at the wrong 40 pixels.
+2. Without the note, the next person to see that screenshot re-derives the same
+   change and re-proposes it. A rejected option is a decision, and decisions are
+   what these comments are for.
