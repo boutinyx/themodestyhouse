@@ -246,3 +246,72 @@ on disk are correct (`sips` confirms 2674x1504); `naturalWidth` was sampled whil
 the browser was still swapping candidates. Checking the actual files settled it
 in one command — §10.26, ask what the harness would have to be doing wrong before
 believing a finding.
+
+## Fifth follow-up — cropped to the mouth (and a clobber to own up to)
+
+Tina: *"can we zoom in on the picture i ony want to see her lips and bit of
+nose."* Asked which surfaces, since one file feeds both the homepage banner and
+the edit page — she said both.
+
+### The mistake, first
+
+Picking the next unused filename, I wrote `public/edit-fall-hero-4.jpg`. **It was
+not unused.** A concurrent session had created and committed that exact file
+minutes earlier (`37e5460`), because Tina had told *that* session she no longer
+wanted the brightness lift. `sharp().toFile()` overwrote their un-graded hero and
+its four variants with my brightened crop, silently.
+
+It surfaced only because a later scripted edit to `lib/edits.ts` failed an
+`assert` — the text I expected had been replaced by comments I had never written.
+Without that assert I would have committed the clobber.
+
+Two errors, not one: I chose a filename from a stale read of the directory, and I
+had not noticed Tina reversing the brightness decision in another thread — so my
+crop still carried the `linear(1.2, 12)` lift she had just asked to remove.
+
+`git checkout --` restored all five of their files from `37e5460`; their commit
+was never touched. Logged as §10.40 in CLAUDE.md.
+
+### The crop
+
+Rebuilt as `edit-fall-hero-5.jpg` / `edit-fall-hero-mobile-4.jpg`, **ungraded** —
+recropping is not a reason to hand back a decision she has undone.
+
+Both crops come from the SAME original now (the 3584x4800 portrait, which has by
+far the most pixels for a crop this tight), so desktop and phone are the same
+grade by construction rather than by coincidence — the drift between them in the
+-2/-3 era is exactly what that fixes. Real detail: 320x180 desktop, 300x402
+phone. Everything served is an upscale of that, so the width lists stop at 1920
+and 1170 and the WebP quality is 95, not 100 — past those, bytes buy invented
+pixels.
+
+### The wash had to move, and measuring caught it
+
+The default `heroWash` of 0.26 was tuned for the full-frame shot, where the copy
+sat over a dark painted backdrop. The crop puts it over **lit skin**. Worst-case
+WCAG contrast for the white copy, sampling the brightest pixel behind each text
+element with the text hidden:
+
+| heroWash | homepage desktop | edit page desktop |
+|---|---|---|
+| 0.26 (default) | **3.66 FAIL** | **4.39 FAIL** |
+| **0.40** | **5.16 pass** | **6.01 pass** ← shipped |
+| 0.50 | 6.63 pass | 7.63 pass |
+| 0.60 | 8.62 pass | 9.64 pass |
+
+Phones pass at every level. Took the LOWEST value clearing 4.5 with real margin
+rather than the safest one, because Tina has just reversed a brightness lift on
+this photograph and darkening it further than legibility requires would be
+walking back her decision by another route.
+
+**The first run of that measurement was void and looked completely fine** — it
+reported an identical number at every wash level and named text ("Shop the
+Archive") that is not in this banner, because the selector had scoped to the
+wrong section. A contrast figure that does not move when you move the scrim is
+not a measurement (§10.28). Re-scoped by walking up from the image itself rather
+than from a link, since there are two `/edits/fall-essentials` anchors on the
+homepage and `querySelector` takes the first.
+
+Verified: tsc clean, lint clean, build clean; homepage serves
+`edit-fall-hero-5-1920.webp` desktop / `edit-fall-hero-mobile-4-780.webp` phone,
+edit page serves `edit-fall-hero-5-1920.webp`.

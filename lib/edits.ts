@@ -678,14 +678,50 @@ export const EDITS: Edit[] = [
     // The PHONE crop is unchanged and stays -mobile-2: it was never brightened,
     // so there was nothing on it to undo. Desktop and phone now carry the same
     // grade again, which they did not between -2 and -3.
-    image: '/edit-fall-hero-4.jpg',
-    imageMobile: '/edit-fall-hero-mobile-2.jpg',
-    imageRatio: 2674 / 1504,
-    imageMobileRatio: 3584 / 4800,
-    imageWidths: [640, 1024, 1440, 1920, 2400, 2674],
-    imageMobileWidths: [390, 780, 1170, 1560, 1920],
+    // -5 / -mobile-4, 2026-08-25: the same shot CROPPED to the mouth. Tina:
+    // "can we zoom in on the picture i ony want to see her lips and bit of
+    // nose". Asked which surfaces, since one file feeds both the homepage
+    // banner and this page's hero — she said both.
+    //
+    // UNGRADED, deliberately. -4 directly above is the revert of the brightness
+    // lift; recropping is not a reason to hand it back, so these carry no
+    // linear() at all. Both crops come from the SAME original now (the 3584x4800
+    // portrait), so desktop and phone are the same grade by construction — the
+    // -2/-3 era had them drifting because they came from two different files.
+    //
+    // Real detail available: 320x180 desktop, 300x402 phone. Everything served
+    // is an upscale of that, which is why the width lists stop lower than the
+    // full-frame version's did. See scripts/optimise-images.mjs.
+    // heroWash 0.40, added with the crop. The default 0.26 was tuned for the
+    // full-frame shot, which put the copy over a dark painted backdrop; the crop
+    // puts it over LIT SKIN, and the same wash no longer holds the type.
+    // Measured, not guessed — worst-case WCAG contrast for the white copy,
+    // sampling the brightest pixel behind each text element with the text
+    // hidden:
+    //           homepage desktop   edit-page desktop   (phones both pass)
+    //   0.26          3.66  FAIL         4.39  FAIL
+    //   0.40          5.16  pass         6.01  pass   <- shipped
+    //   0.50          6.63  pass         7.63  pass
+    //   0.60          8.62  pass         9.64  pass
+    // Deliberately the LOWEST value that clears 4.5 with real margin rather
+    // than the safest one: Tina has just reversed a brightness lift on this
+    // photograph, so darkening it more than legibility requires would be
+    // walking back her decision by another route.
+    //
+    // NOTE the first attempt at this measurement was void and looked fine —
+    // it reported an identical number at every wash level and named text
+    // ("Shop the Archive") that is not in this banner, because the selector had
+    // scoped to the wrong section. A contrast figure that does not move when
+    // you move the scrim is not a measurement (§10.28).
+    heroWash: 0.40,
+    image: '/edit-fall-hero-5.jpg',
+    imageMobile: '/edit-fall-hero-mobile-4.jpg',
+    imageRatio: 1920 / 1080,
+    imageMobileRatio: 1170 / 1568,
+    imageWidths: [640, 1024, 1440, 1920],
+    imageMobileWidths: [390, 780, 1170],
     imageAlt:
-      'A woman in a beige hijab and a plum wool cape over a cream shirt and trousers, a gold chain belt at the waist and a navy top-handle bag in her hand, reaching towards dark red and pink flowers on a carved wooden table against a painted woodland backdrop',
+      'Close-up of a woman\u2019s mouth and the lower part of her nose, softly lit against a dark backdrop, with a gold drop earring at the edge of the frame',
 
     seoTitle: 'Fall Essentials — Gilets, Knits, Blouses and Fall Skirts',
     seoDescription:

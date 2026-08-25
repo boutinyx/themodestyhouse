@@ -347,6 +347,39 @@ const JOBS = [
     opts: { quality: 100, effort: 6 },
   },
   {
+    // /edits/fall-essentials hero, desktop — the CROP. Tina: "can we zoom in on
+    // the picture i ony want to see her lips and bit of nose", and, asked
+    // because one file feeds two surfaces, both of them.
+    //
+    // NOT graded. -4 above exists precisely because she reversed the brightness
+    // lift the same day, so this crop is ungraded too — a crop is not a licence
+    // to reintroduce a decision she has already undone.
+    //
+    // Cropped from the PORTRAIT original (magnific_upscaler_bxlcMFP5Y2.png,
+    // 3584x4800) rather than the wide one: at this tightness the only thing
+    // that matters is how many real pixels the region has, and the portrait
+    // has far more. The region is 320x180 — that is ALL the real detail there
+    // is, so every width below is an upscale and the list stops at 1920
+    // deliberately. Past that is bytes spent on invented pixels. Quality 95 not
+    // 100 for the same reason: an upscale has no fine detail left for the extra
+    // bits to preserve.
+    file: 'edit-fall-hero-5.jpg',
+    widths: [640, 1024, 1440, 1920],
+    suffixWidth: true,
+    opts: { quality: 95, effort: 6 },
+  },
+  {
+    // Same crop, phone — 300x402 from the SAME original, so the two surfaces
+    // are the same grade by construction rather than by coincidence. (Before
+    // this, desktop and phone came from two different Magnific outputs, which
+    // is how they drifted apart in the first place.) Stops at 1170: a 390px CSS
+    // phone at 3x DPR.
+    file: 'edit-fall-hero-mobile-4.jpg',
+    widths: [390, 780, 1170],
+    suffixWidth: true,
+    opts: { quality: 95, effort: 6 },
+  },
+  {
     // The homepage "Apply for the seal" band's satin background, 2026-08-25.
     // Tina's file, ROTATED 90 degrees: hers is 3927x5891 portrait and the band
     // is wide and short, so upright it would have shown a narrow vertical slice
