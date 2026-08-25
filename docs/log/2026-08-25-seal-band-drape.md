@@ -23,38 +23,53 @@ left — the clear cream area is about 42% of the frame and a 672px column at 14
 spills onto the right-hand drape. Band is `min-h-[340px] md:min-h-[440px]`, down
 from 440/560.
 
-**The overlay is flat `rgba(68,25,67,0.75)`.** Flat rather than a ramp because
-the copy is centred now, so there is no side to weight it towards.
+**The overlay is flat `rgba(0,0,0,0.60)`.** Flat rather than a ramp because the
+copy is centred now, so there is no side to weight it towards.
 
-## Why 0.75, which is high
+It was aubergine at 0.75 first, and that was wrong — Tina: *"i said darker not
+purple overlay"*. **An aubergine wash darkens the band but also tints it**: it
+drags the drapery's own plum towards one flat hue and turns the cream wall lilac.
+Black takes the luminance down and leaves the photograph's colour alone. The
+satin still reads purple because the satin *is* purple. Worth keeping as a rule —
+"darker" and "more of our brand colour" are different requests and the aubergine
+token quietly answers the second one.
+
+## Why 0.60
 
 The picture's middle is a bright cream wall, so a light overlay parks the band in
 the **mid-tones — the one place where neither dark nor light type works.**
 Measured on the live render at 390/820/1440, worst pixel inside each text
 element's own rect, heading / steps:
 
-| overlay | light copy | dark copy | |
+| black overlay | light copy | dark copy | |
 |---|---|---|---|
 | 0.00 | 1.15 / 1.01 | 8.37 / 7.83 | dark only |
-| 0.40 | 2.62 / 2.27 | 4.08 / 3.86 | **both fail** |
-| 0.60 | 4.37 / 3.70 | 2.69 / 2.61 | neither |
-| **0.75** | **6.64 / 5.50** | 1.87 / 1.83 | **light ← shipped** |
+| 0.35 | 2.70 / 2.25 | — | |
+| 0.45 | 3.68 / 3.06 | — | |
+| 0.50 | 4.32 / 3.58 | — | |
+| 0.55 | 5.09 / **4.20** | — | **the trap** |
+| **0.60** | **6.10 / 5.00** | 1.87 / 1.83 | **shipped** |
+| 0.65 | 7.35 / 6.00 | — | |
 
-So "darker" had to mean dark enough to reverse the copy back out. Shipped:
-`heading 6.64 · steps 5.33 · numerals 7.11` worst case across the three widths,
-all above the 4.5 AA threshold.
+**0.55 is the trap**: the heading passes at 5.09 and the band looks finished,
+while the step text sits at 4.20 against a 4.5 threshold. Only one of the three
+measurements would have told you.
+
+Shipped, verified on the deployed page: `heading 6.10 · steps 5.00 ·
+numerals 6.87` worst case across the three widths.
 
 ## The casualty: the gold numerals
 
 `--brass-on-dark` is 6.08:1 on **flat** aubergine, which is what the band used to
 be. Over this photograph the residual cream keeps the background too light and it
-**never reaches AA at any overlay this side of erasing the picture** — 2.19 at
-0.60, 3.23 at 0.75, 3.69 at 0.80. A centre-heavy radial (`.92/.70/.40`) only gets
-it to 4.29 and costs the phone (heading 4.95).
+**never reaches AA at any overlay this side of erasing the picture** — under the
+shipped black overlay it is 3.12 at 0.60 and still only 3.71 at 0.65; under the
+rejected aubergine one, 2.19 at 0.60 and 3.23 at 0.75. A centre-heavy radial
+(`.92/.70/.40`) only gets it to 4.29 and costs the phone (heading 4.95).
 
 They are `--parchment` now: an existing token, rather than a new lighter brass
-invented for one band. **`#e8d3ac` measures 5.20 and is the fix if the gold is
-wanted back** — that is Tina's call, and she was told rather than left to notice.
+invented for one band. **`#e8d3ac` measures 5.02 under the shipped overlay and is the fix
+if the gold is wanted back** — that is Tina's call, and she was told rather than left to notice.
 The italic serif is what still separates a numeral from its step text.
 
 ## The intermediate bright version, and its three defects
@@ -82,7 +97,9 @@ behind it, and it changed four times.**
 ## Verification
 - `npx tsc --noEmit` exit 0 · `npx eslint app/page.tsx` exit 0 · 781 tests pass.
 - Contrast re-measured on the deployed staging page after each push, with the
-  stylesheet-loaded assertion, at 390 / 820 / 1440. Final: **6.64 / 5.33 / 7.11**.
+  stylesheet-loaded assertion, at 390 / 820 / 1440. Final: **6.10 / 5.00 / 6.87**,
+  read off the live page with `rgba(0, 0, 0, 0.6)` confirmed as the computed
+  overlay in the same call.
 - Screenshotted at 1440 and 390.
 
 ## Notes / follow-ups
