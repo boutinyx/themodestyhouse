@@ -721,7 +721,11 @@ export default function Home() {
           Both blocks moved WHOLE, comments included, so their own history
           travels with them; nothing inside either was edited. */}
       {/* THE EDIT */}
-      <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
+      {/* pt halved from the `py` pair, 2026-08-26 — the other half of the
+          map/guides seam Tina asked to tighten. See the matching note in
+          components/DesignerDiscovery.tsx; the two have to move together or the
+          gap only half closes. Bottom padding untouched. */}
+      <section className="max-w-[1220px] mx-auto px-8 pt-5 md:pt-10 pb-10 md:pb-20">
         {/* The "Reading, not just shopping." h2 was removed 2026-08-26 — Tina:
             "get rid of this text". `justify-end` replaces `justify-between`,
             which with only one child left would have pushed "All stories" to the

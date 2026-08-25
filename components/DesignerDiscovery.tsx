@@ -58,8 +58,16 @@ export default function DesignerDiscovery({
 
   const openRegion = regions.find((r) => r.name === open) ?? null;
 
+  // pb halved out of the old `py-10 md:py-20` pair, 2026-08-26 — Tina: "make
+  // space between map & guide smaller". The seam is this section's BOTTOM
+  // padding plus the editorial section's TOP padding, so both sides were cut and
+  // neither block ends up lopsided; see the matching note in app/page.tsx.
+  // The top padding is untouched — the gap above the map was not the complaint.
+  //
+  // A JS comment, not a JSX one: `return (` takes a single element, so a
+  // `{/* */}` here is a second child and the file will not parse.
   return (
-    <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
+    <section className="max-w-[1220px] mx-auto px-8 pt-10 md:pt-20 pb-5 md:pb-10">
       {/* The map track is deliberately much the larger of the two — Tina:
           "can you make the map also more visible and longer". Was
           0.82fr/1.25fr. The dots themselves also went a step darker and a
