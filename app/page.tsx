@@ -788,7 +788,18 @@ export default function Home() {
           style={{ background: 'rgba(0,0,0,0.60)' }}
         />
         <div className="relative w-full max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-          <div className="max-w-[46ch] mx-auto text-center">
+          {/* 62ch, widened from 46ch when Tina's marketing copy landed. 46ch was
+              set when the band was BRIGHT and the copy had to stay inside the
+              picture's clear cream centre (about 42% of the frame's width); with a
+              uniform black overlay the whole band is dark, so the column no longer
+              has to dodge the drapes. Measured at 1440: 46ch wrapped the new
+              paragraph to SIX lines and pushed the band to 555px, undoing the "a bit
+              thinner" it had just been given. 62ch is four lines and 488px, and
+              contrast is unchanged (6.18 / 5.28 / 6.95) because the extra width
+              reaches into the drapes, which are DARKER than the centre, not
+              brighter. 70ch would be three lines and 442px if it ever needs to be
+              thinner still. */}
+          <div className="max-w-[62ch] mx-auto text-center">
             <div>
               {/* Tina's copy, 2026-08-25, verbatim — do not rewrite it (§10.18: the
                   words on this site are hers). It replaced "Are you a modest fashion
@@ -797,9 +808,9 @@ export default function Home() {
                   THE TYPE IS SMALLER THAN THE SLOT IT INHERITED: the old heading was
                   seven words at clamp(24,3vw,36); this is 35, which at that size is
                   six lines and 250px on its own — more than half the band she had
-                  just asked to make thinner. clamp(18,1.9vw,24) with line-height 1.4
-                  keeps it to three lines at 1440. Still an <h2>, so the page outline
-                  is unchanged. */}
+                  just asked to make thinner. clamp(18,1.9vw,24) with line-height 1.4,
+                  in the 62ch column, is four lines at 1440 and five at 390. Still an
+                  <h2>, so the page outline is unchanged. */}
               <h2 className="serif mt-3" style={{ fontSize: 'clamp(18px,1.9vw,24px)', lineHeight: 1.4, color: 'var(--parchment)' }}>
                 The Modesty House is the next stop for modest brands ready to be seen. From launch features to curated campaigns, we&rsquo;ll help you reach the women already looking for what you create.
               </h2>
