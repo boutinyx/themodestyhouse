@@ -816,16 +816,19 @@ export default function Home() {
               </h2>
               {/* Tina's copy, 2026-08-25, verbatim — do not rewrite it (§10.18: the
                   words on this site are hers). It is the lead paragraph under the
-                  title, not a replacement for it. She cut the clause "From launch
-                  features to curated campaigns," on 2026-08-25 — the CLAUSE she
-                  quoted, not the whole sentence around it, so the second sentence
-                  survives and only its "we'll" is capitalised to close the seam.
+                  title, not a replacement for it. It arrived as three sentences and
+                  she cut it twice, each time quoting the exact span she wanted gone:
+                  first the clause "From launch features to curated campaigns," and
+                  then the whole second sentence, "We'll help you reach the women
+                  already looking for what you create." One sentence is what is left,
+                  and it is deliberately one sentence — not a paragraph short of its
+                  padding.
                   #e7d8e4 and 17-19px: the band's own body colour and roughly its body
                   size, so it reads as prose under a display heading rather than as a
                   second heading. Measured on the live render, so it is the same
                   colour the three steps below already use and are measured at. */}
               <p className="mt-4" style={{ fontSize: 'clamp(15px,1.15vw,17px)', lineHeight: 1.6, color: '#e7d8e4' }}>
-                The Modesty House is the next stop for modest brands ready to be seen. We&rsquo;ll help you reach the women already looking for what you create.
+                The Modesty House is the next stop for modest brands ready to be seen.
               </p>
               {/* space-y-1.5 (6px), halved from space-y-3 (12px) — Tina: "letss
                   spaing between these", pointing at the three steps. mt-6 above it
