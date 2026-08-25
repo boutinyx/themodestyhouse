@@ -560,8 +560,21 @@ export default function Home() {
           Note these are ALL garment: 'abaya', so every card takes that
           component's object-contain branch ("zoom the picture on the abayas a
           little out"). That is correct, but it means this whole row is
-          letterboxed white where the Popular Items row is mostly filled. */}
-      <section className="py-10 md:py-20">
+          letterboxed white where the Popular Items row is mostly filled.
+
+          NO BOTTOM PADDING — Tina, 2026-08-25: "there is a lot of space between
+          our picks on abayas and by catogory fix that". Measured before
+          changing anything: the two sections do not have a gap of their own
+          (they are flush, 0px between their boxes), so the whitespace was
+          purely this section's `pb-20` (80px) stacked on "By category"'s own
+          `pt-20` (80px), 168px in total from the last price to that heading.
+          Only ONE of the two needs to own that space, and it should be the
+          section that is not being edited — so the padding comes off here, not
+          off "By category", which also borders other sections. Note the row's
+          captions are ragged (a two-line title pushes the section box taller
+          than the single-line cards next to it), so under most cards the gap
+          READ as ~28px more than it measured. */}
+      <section className="pt-10 md:pt-20">
         <h2
           className="serif text-center max-w-[1220px] mx-auto px-8"
           style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}

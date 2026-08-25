@@ -113,6 +113,28 @@ card: no bars anywhere, and nothing is cropped through a head or a hem. At the
 old 3:4 box the same change would have cost 25%+, which is why it was wrong then
 and right now.
 
+## Third follow-up — the gap under the rail
+
+Tina: *"there is a lot of space between our picks on abayas and by catogory fix
+that."*
+
+Measured first: the two sections are **flush** — 0px between their boxes — so
+there was no gap of its own to remove. The whitespace was this section's own
+`pb-20` (80px) stacked on "By category"'s `pt-20` (80px): **168px** from the last
+price to that heading on desktop, 88px on a phone. Only one of the two needs to
+own that space, and it should be the section that is not being edited, so the
+padding came off the abaya rail (`py-10 md:py-20` → `pt-10 md:pt-20`) rather than
+off "By category", which also borders other sections.
+
+After: **88px** desktop, **48px** phone. Screenshotted at 1440 with the
+stylesheet assertion.
+
+Worth knowing for the next person: the row's captions are ragged, because a
+two-line product title pushes the section's box taller than the single-line cards
+beside it. So under most cards the gap READ about 28px larger than it measured.
+Equalising caption heights would tighten it further; not done here, since it was
+not what was asked.
+
 ## Notes / follow-ups
 - The footer overflow at tablet-819 above is real and unfixed. It is on
   production too, so it is not a regression, but somebody should take it.
