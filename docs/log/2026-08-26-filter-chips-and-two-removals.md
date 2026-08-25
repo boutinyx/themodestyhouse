@@ -128,3 +128,43 @@ therefore measured the OLD build and reported `chipRow: 1` on a route where the
 chips had just been removed. Quoting the URL fixed it; the real deploy took 160s.
 CLAUDE.md §10.6 is this same shell fault in a `grep --include` glob, and §10.20 is
 the same "read output from a run that never happened" consequence.
+
+---
+
+## The sub-category chip row — also gone
+
+Tina, with a screenshot of it: *"i said get rid of this shit"*. And she had:
+**"nvm only keep the filter bar" was about this row too**, not only the
+`ActiveFilters` chips I had added minutes earlier. I removed mine and left this
+one standing, which is the reading error — "the filter bar" meant the console and
+*nothing else above the grid*, and there were two chip rows on the page.
+
+Removed from `app/[lane]/page.tsx`: a wrapping `<nav aria-label="… sub-categories">`
+of `.chip` links, one per subtype, the current one filled aubergine.
+
+### What it cost, said now rather than rediscovered later
+**That `<nav>` was the only place on the site emitting an href containing
+`type=`.** The header's sub-category flyout is a client-side portalled Base UI
+menu, so a crawler cannot follow it. Before the row was added on 2026-08-19 the
+10 `?type=` pages were in `sitemap.xml` and linked from nowhere internally, and
+**they are back in exactly that state**: built, rendering, differentiated, and
+reachable only by a crawler that reads the sitemap. Measured on the deployed
+page — `main a[href*="type="]` is now **0** on `/layering-basics`.
+
+That is a real SEO regression and it is Tina's call to accept; it is written here
+so the next person to wonder why those pages have no internal links finds the
+answer instead of re-deriving it. If it should be recovered without the chip row
+coming back, the links have to live somewhere else — the footer, or the
+`lib/laneAnswers.ts` block below the grid — which is a placement decision, not a
+code one.
+
+### What did not change
+`resolveSubtype` still runs, so a `?type=` URL still resolves. Verified on the
+deployed page: `/layering-basics?type=under-dress` → **200**, h1 "Under-Dresses",
+42 items; `/modest-hijabs?type=undercap` → **200**, h1 "Undercaps";
+`/blazers-vests?type=blazer` → **200**, h1 "Blazers". `sitemap.xml` still carries
+**10** `type=` URLs. The flyout still works for a human. `tsc` clean, `eslint`
+clean, 789 tests pass.
+
+The lane page above the grid is now exactly: h1, intro line, the filter bar, the
+count. Nothing else.
