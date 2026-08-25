@@ -714,6 +714,316 @@ export const EDITS: Edit[] = [
      * This is the FALLBACK. Tina picks in /staff/curate and those ids replace it
      * entirely, exactly as they do for the other two edits.
      */
+    /**
+     * Tina's own picks, 2026-08-25 — her favourites list, sent as *"these are
+     * the items i want"*. 277 entries pasted, 276 distinct products, and
+     * **every single one resolved** against the live catalogue. One entry,
+     * Nasiba's "Solace Wide Leg Pants - Charcoal", appeared twice in the list
+     * and is kept once.
+     *
+     * This is far larger than the other two edits (24 and 32) and that is her
+     * call, not a defect. It is still 276 chosen pieces rather than the 3,429
+     * the fallback below sweeps in.
+     *
+     * ORDERED BY MINIMAL REPAIR, not by the greedy interleave the jersey edit
+     * used, and the difference matters. Her paste already carried an order; a
+     * greedy re-sort would have thrown all of it away to fix 17 adjacent pairs.
+     * Instead each piece keeps its place unless it would sit beside its own
+     * house or beside another hijab, in which case the nearest later piece that
+     * does not is pulled forward.
+     *
+     * Measured: 3 same-house and 14 hijab-on-hijab pairs as pasted, 0 and 0
+     * after. Mean position drift 0.23, max 4, and 232 of 276 pieces did not
+     * move at all. Both properties are asserted by lib/edits.test.ts rather
+     * than trusted to this comment.
+     *
+     * Deepest houses: White Icy 17, Arakai 15, Nour Al Houda 12, Eynaa Paris
+     * and Summer Evenings 10 each. 64 houses, 62 hijabs.
+     *
+     * THE FAILURE MODE, same as the other two edits: a picked id that leaves the
+     * catalogue simply vanishes and the page still renders fine with one fewer
+     * piece. The picked-ids test is what turns that into a red test locally
+     * instead of an edit that quietly shrinks.
+     */
+    productIds: [
+      'diversity-modest:10104226939214', // Diversity Modest — Airy Jersey Scarf Mocha Brown
+      'hijab-boutique:10699265966419', // Hijab Boutique — Ruffle Blouse - Taupe
+      'vela:9119980716188', // Vela Scarves — Deep Berry Fringe
+      'nasiba:10538582835509', // Nasiba — Solace Versatile Shirt - Charcoal
+      'oomah:7656653455439', // Oomah — Fold Up Jeans
+      'chic-modesty:10323185467730', // Chic & Modesty — Hijab ready to tie burgundy Medina silk
+      'zahraa:7658948067415', // Zahraa The Label — Tasneem Denim Top and Pant Set - Batroun Blue
+      'oomah:7624224440399', // Oomah — Essential Wool Trousers
+      'nasiba:10538582376757', // Nasiba — Solace Wide Leg Pants - Charcoal
+      'hawaa:15922214306165', // Hawaa Clothing — Espresso Satin Skirt
+      'jennah-boutique:8046836121776', // Jennah Boutique — Cinnamon Rhinestone Baclava Jersey
+      'lafemme:32124', // La Femme Collectie — Breeze Blouse
+      'eynaa-paris:10293749252439', // Eynaa Paris — Hijab Jersey Premium Soft [Cappuccino]
+      'we-are-elegance:16003783688574', // We Are Elegance — Oversized Pinstripe Shirt Blue
+      'mondo-the-label:8112147890238', // Mondo The Label — Yasmine Shirt
+      'glamberry:15633978130697', // Glamberry Shop — Shirt blouse with waist belt made of cotton-viscose blend
+      'vela:9119979864220', // Vela Scarves — Light Olive Fringe
+      'zora:9156774461603', // Zora Designers — The Heartline Jumper in Sugar Pink
+      'headed-somewear:8421668552862', // Headed Somewear — Chocolate Brown - Modal Plain Hijab
+      'kimodesty:15116', // KIMODESTY — Cotton Balloon Skirt – Taupe
+      'whiteicy:15666941788500', // White Icy — Safiya flared denim skirt
+      'nasiba:10538582311221', // Nasiba — Solace Wide Leg Pants - Midnight
+      'ellem-atelier:10941297787223', // Ellem Atelier — The Classic trousers in Denim blue
+      'whiteicy:15666941722964', // White Icy — Mei denim dress with mandarin collar
+      'headed-somewear:8421666947230', // Headed Somewear — Pale Olive - Modal Plain Hijab
+      'kimodesty:15112', // KIMODESTY — Cotton Balloon Skirt – Creme
+      'eynaa-paris:10852401086807', // Eynaa Paris — Bamboo Jersey Hijab [Olive]
+      'mondo-the-label:7935860572222', // Mondo The Label — Anya Crochet Knit Pant
+      'aurora-abaya:15930866139466', // Aurora Abaya — Matcha viscose rami hijab
+      'emlavish:10703959753043', // EM Lavish — Pleated Crinkle Blouse - Black
+      'vela:9119979438236', // Vela Scarves — Ivory Cascading Ruffle
+      'lafemme:31064', // La Femme Collectie — Basic Striped Shirt
+      'la-petite-parisienne:15488480706900', // La Petite Parisienne — White GAZE blouse
+      'merrachi:15639009329535', // MERRACHI — Breathable Jersey Scarf | White Honey
+      'la-petite-parisienne:12482835284308', // La Petite Parisienne — NORA yellow shirt (H13035)
+      'lameera-moda:9064622850216', // LaMeera Moda — Premium Modal Scarf- Sage
+      'mondo-the-label:7935813419070', // Mondo The Label — Mona Crochet Knit Cardigan
+      'arakai:10944839647578', // Arakai Studio — Farha Belted Poplin Blouse White
+      'madiha:14817368047999', // Madiha — The Trench Abaya In Camel
+      'merrachi:15639038361983', // MERRACHI — Liquid Jersey Scarf | Peach Cream
+      'whiteicy:15666941493588', // White Icy — Louise denim trench jacket
+      'modista:9641747054882', // Modista — Knit Wear Coord Set - Top & Skirt
+      'eynaa-paris:10879061098839', // Eynaa Paris — COTTON SHIRT DRESS [White]
+      'bait-hanayen:15425182498927', // Bait Hanayen — Roaya Abaya (Trench Coat)
+      'mondo-the-label:7708888006718', // Mondo The Label — Dana Knit Skirt
+      'inayah:9974655680792', // Inayah — Ummie Cross Knit Sweater Dress
+      'arakai:10944834732378', // Arakai Studio — Farha Belted Poplin Blouse Dark Brown
+      'hijab-boutique:10644046938451', // Hijab Boutique — Oversized Cotton Blouse - Soft Blue
+      'nurmire:9967193620809', // Nurmirè — Premium Jersey Hijab - Mulberry
+      'inayah:9974653747480', // Inayah — Giselle Sweater Set
+      'modesty-in-style:10797100106038', // Modesty in Style — Khaki Jersey Set
+      'lafemme:30415', // La Femme Collectie — Balloon Sleeve Blouse
+      'hijab-boutique:10644044906835', // Hijab Boutique — Oversized cotton blouse - Butteryellow
+      'eynaa-paris:10852254384471', // Eynaa Paris — OVER SHIRT [Mediterranean blue]
+      'jennah-boutique:8046769176752', // Jennah Boutique — Lemon striped shirt
+      'eynaa-paris:10769232036183', // Eynaa Paris — ROUNDED A-LINE SKIRT [Navy]
+      'whiteicy:15666877858132', // White Icy — Celia Denim Skirt
+      'lafemme:30093', // La Femme Collectie — Basic Oversized Shirt
+      'merrachi:15643657109887', // MERRACHI — Striped Volume Shirt | Cherry Stripe
+      'veiled:7631431401577', // Veiled — Asymmetric Knit Top & Pants Set - Black
+      'modista:9641314222370', // Modista — Long Buttoned Shirt
+      'ilovemodesty:10284417909057', // iLoveModesty — Cyra Lilac A-line Cardigan
+      'veiled:7631423701097', // Veiled — Asymmetric Ruffle Hem Knit Top - Ivory
+      'emlavish:10639388541267', // EM Lavish — Silk Wide Leg Trouser
+      'eynaa-paris:10769231905111', // Eynaa Paris — ROUNDED A-LINE SKIRT [Black]
+      'lafemme:29940', // La Femme Collectie — Balloon Skirt
+      'aeon-abaya:8904668577844', // Aeon Abaya — Laurel Vest
+      'whiteicy:15666877792596', // White Icy — Marina denim set
+      'by-hasanat:15634266882421', // ByHasanat — Soft Moss Modal Hijab
+      'eynaa-paris:10769231413591', // Eynaa Paris — ROUNDED A-LINE SKIRT [Butter cream]
+      'yasmin-jay:8080451862704', // Yasmin Jay — Liquid Jersey Burgundy
+      'baqa:9051601535227', // BAQA — Wide Leg Linen Trousers
+      'merrachi:15643657175423', // MERRACHI — Striped Volume Shirt | Biscotti Stripe
+      'modesty-in-style:10797097484598', // Modesty in Style — Milk Jersey Set
+      'touche-prive:10083939942728', // Touché Privé — Side-Tie Wrap Poplin Shirt
+      'kimodesty:15023', // KIMODESTY — Cotton Denim Skirt
+      'emlavish:10700341707091', // EM Lavish — Asymmetric Linen Blouse - Beige
+      'nihan:15086344241515', // Nihan — Pleated Linen Trousers with Iron Traces - Beige
+      'niswa:10028359188778', // Niswa Fashion — Solid Modal - Cream
+      'malikaat:15696801923445', // Malikaat — Malikaat Abaya Trench
+      'arakai:10942537204058', // Arakai Studio — Navy Waist-Tie Poplin Shirt
+      'mondo-the-label:7708892266558', // Mondo The Label — Mariya Knit Cardigan Abaya
+      'chic-modesty:10323092668754', // Chic & Modesty — Chocolate flared satin skirt
+      'zahraa:7485978443863', // Zahraa The Label — Deniz Knit Matching Set - Almond
+      'arakai:10942536089946', // Arakai Studio — Camel Waist-Tie Poplin Shirt
+      'by-hasanat:15634266128757', // ByHasanat — Mulberry Modal Hijab
+      'nasiba:10469151736117', // Nasiba — Solace Versatile Shirt - Mocha
+      'yasmin-jay:8080449044656', // Yasmin Jay — Liquid Jersey Chestnut
+      'whiteicy:15668178059604', // White Icy — Yamina - Oversized poplin shirt
+      'modesty-in-style:10788103684406', // Modesty in Style — Sylvia Knit Set
+      'nihan:15086334476651', // Nihan — Asymmetric Closure Wide Leg Modal Trousers - Black
+      'modest-timeless:8466216157402', // Modest & Timeless — Blue Satin Skirt
+      'lafemme:28890', // La Femme Collectie — Soft Breeze Gilet
+      'maison-hijab:14899627327813', // Maison Hijab — Chestnut Brown Jersey Hijab
+      'summer-evenings:9254147490042', // Summer Evenings — Navy Balloon Top & Maxi Skirt Set
+      'fares:7858204999871', // Fares — Bow Detail Cardigan - Icy Blue
+      'losyana:10677822456146', // Losyana — Instant Hijab - coffee
+      'ilovemodesty:10284398248257', // iLoveModesty — Sage Green Bell Sleeve Cardigan Set
+      'hum:9031247003860', // HUM Clothing — Grey Square Neck Top & A-line Maxi Skirt Co-ord Set
+      'kimodesty:14961', // KIMODESTY — Stripe Cotton Top 3/4 – Green
+      'whiteicy:15668177994068', // White Icy — Irene classic poplin shirt
+      'nihan:15086334411115', // Nihan — Asymmetric Closure Wide Leg Modal Trousers - Indigo
+      'nour-al-houda:7865218465840', // Nour Al Houda (BNAH) — Instant Bamboo Jersey Wrap Set - Forest
+      'summer-evenings:8793881870586', // Summer Evenings — Orchid Pink Balloon Top & Maxi Skirt Set
+      'losyana:10677821964626', // Losyana — Instant Hijab - olive
+      'mukistore:15627414601993', // Mukistore — Elegant Waistcoat with Waist Cord
+      'hum:9031246807252', // HUM Clothing — Pink Square Neck Top & A-line Maxi Skirt Co-ord Set
+      'emlavish:10609114251603', // EM Lavish — Linen Blend A-Line Maxi Skirt
+      'nihan:15086332641643', // Nihan — Asymmetric Closure Wide Leg Modal Trousers - Camel
+      'niswa:10028360204586', // Niswa Fashion — Solid Modal - Oatmeal
+      'jennah-boutique:8044400574640', // Jennah Boutique — Pantalon barrel coton marron
+      'summer-evenings:8793880723706', // Summer Evenings — Ivory Balloon Top & Maxi Skirt Set
+      'emlavish:10603446239571', // EM Lavish — Cotton Relaxed Collared Blouse
+      'losyana:10677822685522', // Losyana — Instant Hijab - army green
+      'whiteicy:15668177830228', // White Icy — Maeva shirt – Flared Vichy poplin
+      'kimodesty:14831', // KIMODESTY — Longsleeve Cotton Top – Marine
+      'baqa:9354018423035', // BAQA — Blouse with Scarf Detail on the Collar
+      'klay:8538823000216', // KlayTheLabel — Amber Premium Modal
+      'manzaram:15728264446277', // Manzaram — Striped blouse
+      'diversity-modest:10500751130958', // Diversity Modest — Ice Silk Jersey Scarf Cream White
+      'whiteicy:15668177797460', // White Icy — Amaya shirt – Pleated poplin
+      'by-hasanat:15634265211253', // ByHasanat — Chicory Coffee Modal Hijab
+      'modesty-in-style:10765790052662', // Modesty in Style — Isra Knit Tunic
+      'eynaa-paris:10643285279063', // Eynaa Paris — Bamboo Jersey Hijab [Cherry]
+      'arakai:10939043283290', // Arakai Studio — Sorayah Linen Blouse with Slit Detail - Anthracite
+      'lameera-moda:9423934455976', // LaMeera Moda — Premium Modal Scarf- Cinnamon
+      'manzaram:15722034135365', // Manzaram — Blouse with collar and button closure
+      'hawaa:15870274863477', // Hawaa Clothing — Deep Mulberry Modal Lace Hijab
+      'whiteicy:15630250639700', // White Icy — Élina shirt – Asymmetrical poplin
+      'arakai:10942403445082', // Arakai Studio — Ecru Dress with Detachable Scarf Accessory
+      'noureen:56690', // NOUREEN Modest Fashion — Sweater Dress S26 Powder Rose
+      'klay:8538797670552', // KlayTheLabel — Golden Moss Premium Modal
+      'eynaa-paris:10628487774551', // Eynaa Paris — BARREL TROUSERS [Black]
+      'lameera-moda:9423933636776', // LaMeera Moda — Premium Modal Scarf- Tan
+      'ilovemodesty:10284340183361', // iLoveModesty — Warm Beige Embroidered Scallop A-Line Cardigan Set
+      'nasiba:10469157011765', // Nasiba — Solace Wide Leg Pants - Blanco
+      'noureen:56683', // NOUREEN Modest Fashion — Sweater Dress S26 Lila
+      'nour-al-houda:7721719758896', // Nour Al Houda (BNAH) — Bamboo Jersey Hijab Set - Espresso
+      'modesty-in-style:10724653564214', // Modesty in Style — Siyah Sweater
+      'diversity-modest:10887562330446', // Diversity Modest — The Everyday Poncho Chocolate Brown
+      'kimodesty:14553', // KIMODESTY — Striped Longsleeve Top – Taupe
+      'losyana:10677824454994', // Losyana — Instant Hijab - bordeaux
+      'zahraa:7433242280023', // Zahraa The Label — Lauren Cape Tunic - Taupe
+      'lafemme:30420', // La Femme Collectie — Oversized Gilet
+      'jennah-boutique:7764200423600', // Jennah Boutique — Chocolate satin flared skirt
+      'niswa:10028356501802', // Niswa Fashion — Solid Modal - Burnt Clay
+      'modesty-in-style:10758026953014', // Modesty in Style — Keiko Sweater
+      'esme-ny:7997865328733', // Esme New York — ESMÉ Cinched Waist Shirt
+      'lameera-moda:9423926591656', // LaMeera Moda — Premium Modal Scarf- Army Green
+      'whiteicy:15474463572308', // White Icy — MAEVA long trench coat
+      'baqa:9177934004475', // BAQA — Pleated Detailed Beltless Trousers
+      'nour-al-houda:7954932006960', // Nour Al Houda (BNAH) — Textured Knit Maxi Dress - Pale Oak
+      'lameera-moda:9423923577000', // LaMeera Moda — Premium Modal Scarf- Sienna
+      'summer-evenings:8635819950330', // Summer Evenings — Black & Cream Cape Tunic Set
+      'hum:9028286611668', // HUM Clothing — Beige Square Neck Top & A-line Maxi Skirt Co-ord Set
+      'chador:200021', // Chador — Tailored Gilet
+      'hawaa:15860139557237', // Hawaa Clothing — Sage Bamboo Jersey Hijab
+      'nour-al-houda:7954928205872', // Nour Al Houda (BNAH) — Textured Knit Maxi Dress - Frost Blue
+      'kimodesty:13967', // KIMODESTY — Staple Scarf – Soft Olive
+      'nour-al-houda:7950536179760', // Nour Al Houda (BNAH) — Mock Neck Knit Abaya - Oat
+      'niswa:10028032622890', // Niswa Fashion — Solid Modal - Plum Veil
+      'whiteicy:15673292849492', // White Icy — Elisabeth trench coat
+      'hawaa:15860139098485', // Hawaa Clothing — Olive Bamboo Jersey Hijab
+      'hum:9027999138004', // HUM Clothing — Denim A-line Maxi Skirt
+      'haute-hijab:6583963484256', // Haute Hijab — Premium Jersey Hijab - Khaki
+      'baqa:9313789411579', // BAQA — Wide Leg Trousers
+      'merrachi:15287592223103', // MERRACHI — Premium Jersey Scarf | Light Plum
+      'whiteicy:15673292816724', // White Icy — Naëlys trench coat
+      'losyana:10645916713298', // Losyana — Vela Jersey - bordeaux
+      'nour-al-houda:7700823867440', // Nour Al Houda (BNAH) — Amelie Pleated Pants - Black
+      'chic-modesty:10830652801362', // Chic & Modesty — Almond Linen & Cotton Long Shirt
+      'chador:197160', // Chador — Volume Sleeve Shirt
+      'summer-evenings:9149105602810', // Summer Evenings — Plum Floor Length Vest
+      'elaa-the-label:7219446218885', // ELAA The Label — Lileian Knit Dress Set (Espresso)
+      'summer-evenings:8803198533882', // Summer Evenings — Brown Signature SE Wide Leg Pants
+      'arakai:10911194317146', // Arakai Studio — Aliza Belted Linen Blouse - Moss Beige
+      'whiteicy:15673292783956', // White Icy — Héloïse trench coat
+      'kimodesty:13715', // KIMODESTY — Printed Vest – Brown
+      'hawaa:15860138377589', // Hawaa Clothing — Espresso Bamboo Jersey Hijab
+      'summer-evenings:9149103079674', // Summer Evenings — Cream Floor Length Vest
+      'arakai:10902651928922', // Arakai Studio — Sorayah Linen Blouse with Slit Detail - Olive
+      'whiteicy:15673292718420', // White Icy — Sélène hooded trench coat
+      'aeon-abaya:8897513095220', // Aeon Abaya — Tessa Vest
+      'summer-evenings:8711044399354', // Summer Evenings — Black Signature SE Wide Leg Pants
+      'whiteicy:15673292685652', // White Icy — Éloane Short Trench Coat
+      'emlavish:10764368085331', // EM Lavish — Crinkle Belted Blouse
+      'fatima-diallo:8094593548524', // Fatima Diallo — Wide Sleeve Maxi Knit Dress - Ivory
+      'arakai:10896406151514', // Arakai Studio — Sorayah Linen Blouse with Slit Detail - Red
+      'summer-evenings:9149100720378', // Summer Evenings — Sage Blue Tailored SE Pants
+      'emlavish:10236653994323', // EM Lavish — Cape Jacket With Belt
+      'chador:197170', // Chador — Tailored Gilet Set
+      'losyana:10645916254546', // Losyana — Vela Jersey - pistachio
+      'glamberry:15518548656393', // Glamberry Shop — Two-piece set with structured floral skirt & fitted vest
+      'eynaa-paris:9615659336023', // Eynaa Paris — Hijab Jersey Premium Soft [Brownie]
+      'nour-al-houda:7937231388720', // Nour Al Houda (BNAH) — Crossover Cotton Shirt - Graphite
+      'arakai:10896388882778', // Arakai Studio — Retaj Linen Shirt Anthracite
+      'merrachi:8759464395061', // MERRACHI — Premium Jersey Scarf | Soft Bordeaux
+      'touche-prive:9919281234248', // Touché Privé — Ruffled Satin Skirt
+      'losyana:10645916189010', // Losyana — Vela Jersey - espresso
+      'jennah-boutique:8049113432240', // Jennah Boutique — Lemon oversized shirt
+      'kimodesty:12259', // KIMODESTY — Staple Scarf – Matcha
+      'modesty-in-style:10758670057782', // Modesty in Style — Anna Knit Set
+      'parladusa:15535403893062', // Parladusa — Mirella short cardigan
+      'summer-evenings:9149096263930', // Summer Evenings — Plum Tailored SE Pants
+      'nour-al-houda:7937231749168', // Nour Al Houda (BNAH) — Crossover Cotton Shirt - Black
+      'hawaa:14943970492789', // Hawaa Clothing — Moss Jersey Hijab
+      'chador:190018', // Chador — Popeline Blouse
+      'chic-modesty:10828270109010', // Chic & Modesty — Burgundy bamboo balaclava hijab
+      'amariah:7430856573153', // Amariah — Arabella Wide Leg Trousers - Black
+      'jennah-boutique:8046769897648', // Jennah Boutique — Pink striped shirt
+      'touche-prive:9358369849672', // Touché Privé — Ribbon Detailed Oversize Shirt
+      'arakai:10896382755162', // Arakai Studio — Retaj Linen Shirt Terracotta
+      'diversity-modest:10434283241806', // Diversity Modest — The Comfy Shirt Beige
+      'nour-al-houda:7901544251440', // Nour Al Houda (BNAH) — Nes Cinched Blouse - White
+      'touche-prive:9895675625800', // Touché Privé — Gathered Shoulder Cupra Gilet
+      'nour-al-houda:7935612321840', // Nour Al Houda (BNAH) — Canvas Trench Coat - Evergreen Fog
+      'la-petite-parisienne:12488256848212', // La Petite Parisienne — Brown VICTORY shirt (KC842)
+      'jennah-boutique:7957418377392', // Jennah Boutique — JNA khaki barrel pants
+      'bayt-el-hayat:15475417776502', // Bayt El Hayat — Corduroy Two Piece Set – Dark Grey
+      'vela:7027379830940', // Vela Scarves — Truffle Mushroom
+      'whiteicy:15692490998100', // White Icy — Gilet Lyra – Maille torsadée zippée
+      'zahraa:7389671391319', // Zahraa The Label — Yusra Knit Pant- Taupe
+      'touche-prive:10100262175048', // Touché Privé — Asymmetrical Poplin Shirt
+      'aurora-abaya:10008032117066', // Aurora Abaya — Cardigan tailored
+      'bayt-el-hayat:15476291010934', // Bayt El Hayat — Knitted ribbed dress - Black
+      'nour-al-houda:7898773553200', // Nour Al Houda (BNAH) — Amani Two Tone Trench Coat - Beige
+      'manzaram:15385256558917', // Manzaram — Knitted oversized cardigan with structure
+      'aeon-abaya:8892088909876', // Aeon Abaya — Chocolate Vest
+      'chador:189932', // Chador — Essential Shirt
+      'mukistore:15460879794441', // Mukistore — Super Stretch Wide Leg Jeans – H896-5
+      'arakai:10893539869018', // Arakai Studio — Bella Belted Linen Shirt Sage Green
+      'aeon-abaya:8892022489140', // Aeon Abaya — Blake Vest
+      'bait-hanayen:7877489819759', // Bait Hanayen — Brown Trench Coat Abaya
+      'mukistore:15460878090505', // Mukistore — Super Stretch Full Wide Leg Jeans – H986-1
+      'touche-prive:8687763751240', // Touché Privé — Asymmetric Button Detail Shirt
+      'urban-modesty:7509246148683', // Urban Modesty — Cider Sweater and Pants Set
+      'bemu:10095871525155', // Bemu — Maxi Satin Skirt- Beige
+      'aeon-abaya:8889973964852', // Aeon Abaya — Pistachio Vest
+      'chador:192671', // Chador — Essential Gilet Set
+      'modesty-in-style:10742800679222', // Modesty in Style — Naya Knit Sweater
+      'chador:192661', // Chador — Cropped Gilet Top
+      'zora:8922177896611', // Zora Designers — The Lauren Pleated Pants in Snow
+      'aurora-abaya:15231606227274', // Aurora Abaya — Denim blouse
+      'arakai:10893529121114', // Arakai Studio — Monroe Draped Blouse Yellow
+      'aurora-abaya:15231647547722', // Aurora Abaya — Suede blouse beige
+      'parladusa:15151701426502', // Parladusa — Cassy trench coat
+      'arakai:10893526991194', // Arakai Studio — Monroe Draped Blouse Blue
+      'jawda:16038517014908', // Jawda — Olive Linen Cotton Wide Leg Trousers
+      'fares:8272707682495', // Fares — Straight Leg Knit Pants - Olive
+      'hijab-boutique:10116734320979', // Hijab Boutique — Sweater - Soft green
+      'parladusa:15151699951942', // Parladusa — Leila trench coat
+      'aurora-abaya:15647494504778', // Aurora Abaya — Polka dot cotton blouse
+      'chic-modesty:10594625093970', // Chic & Modesty — Hijab easy chocolate
+      'jawda:16038516687228', // Jawda — Chocolate Linen Cotton Wide Leg Trousers
+      'les-atelier:15725952008565', // LES Atelier — Nora Modal Longsleeve Cacao Brown
+      'fares:8272699916479', // Fares — Straight Leg Knit Pants - Brownie
+      'mukistore:15453031399689', // Mukistore — Super Stretch Wide Leg Jeans – H876-8
+      'aurora-abaya:15647456690506', // Aurora Abaya — Chiffon blouse
+      'nour-al-houda:7930209599536', // Nour Al Houda (BNAH) — Chiffon Button Up Blouse - Fudge
+      'parladusa:15129858113862', // Parladusa — Corduroy two-piece suit
+      'chic-modesty:10594614870354', // Chic & Modesty — Hijab easy brownie
+      'modesty-in-style:10742796190006', // Modesty in Style — Lyla Leather Maxi Trench
+      'touche-prive:9660172796232', // Touché Privé — Knit Sweater Winit Zipper
+      'aurora-abaya:10008040079690', // Aurora Abaya — Asymmetrical vest
+      'fares:8272730390719', // Fares — Tailored Elastic Waist Pants - Stone
+      'bayt-el-hayat:15083591860598', // Bayt El Hayat — Waterproof Trench Coat - Black
+      'arakai:10860879806810', // Arakai Studio — Aliza Belted Linen Blouse - Red
+      'bemu:9811749241123', // Bemu — Maxi Satin Skirt- Black
+      'touche-prive:9704639922504', // Touché Privé — Oversized Sweater With Knitting Details
+      'mukistore:15435519328521', // Mukistore — Midi Double-Breasted Trench Coat with Waist Belt
+      'la-petite-parisienne:15051544330580', // La Petite Parisienne — Brown 2-pocket blouse (L2096)
+      'mukistore:15395301589257', // Mukistore — Knitted Wide-Leg Set with Long Top & Wide Sleeves 23535
+      'veiled:7779260629097', // Veiled — Ombre Modal Hijab - Chocolate
+      'losyana:10287466348882', // Losyana — the legacy shirt - olive
+      'chador:189194', // Chador — Satin Skirt
+      'bayt-el-hayat:7174444908605', // Bayt El Hayat — Navy Leather Trench Coat
+    ],
+
     match: (p) =>
       p.garment !== 'swim' &&
       !NOT_A_GARMENT.test(p.title) &&

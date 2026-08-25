@@ -1,5 +1,5 @@
 # Fall Essentials — the third edit
-**Date:** 2026-08-25 · **Status:** partial (live on staging; hero and picks still open)
+**Date:** 2026-08-25 · **Status:** partial (live on staging; hero still open, picks landed)
 
 ## Goal
 
@@ -139,10 +139,29 @@ generated; that script never upscales, so an unavailable width is a 404 inside
 the srcset. Give the files NEW names — `public/` is served with a 4h cache and is
 not fingerprinted (§6, §10.21).
 
-**2. `productIds` is not set** — the grid is the automatic fallback. Tina picks in
-`/staff/curate`. On receipt: verify every id resolves and is in stock, reorder so
-no house sits adjacent and hijabs are spread rather than bunched, and let
-`lib/edits.test.ts` assert both rather than checking by eye.
+**2. ~~`productIds` is not set~~ — DONE, same day.** Tina sent her favourites list
+(*"these are the items i want"*): **277 entries pasted, 276 distinct products,
+every single one resolved** against the live catalogue. One entry — Nasiba's
+"Solace Wide Leg Pants - Charcoal" — appeared twice in the list and is kept once.
+
+Resolves to **276 pieces across 64 houses**: 121 tops · 62 hijabs · 40 trousers ·
+27 skirts · 10 sets · 8 abayas · 8 dresses. `missingEditPicks()` returns `[]`.
+
+**Ordered by MINIMAL REPAIR, not the greedy interleave the jersey edit used**, and
+the difference is the point. Her paste already carried an order; a greedy re-sort
+would have discarded all of it to fix 17 adjacent pairs. Instead each piece keeps
+its place unless it would sit beside its own house or beside another hijab, in
+which case the nearest later piece that does not is pulled forward.
+
+Measured before → after: **3 same-house and 14 hijab-on-hijab pairs → 0 and 0.**
+Mean position drift **0.23**, max 4, and **232 of 276 pieces did not move at
+all.** Both properties are asserted by `lib/edits.test.ts`, not trusted to a
+comment.
+
+Worth stating plainly: at 276 this edit is roughly 10x the other two (24 and 32).
+That is Tina's call, and it is still 276 chosen pieces rather than the 3,429 the
+fallback sweeps in. The fallback `match` remains as the safety net and is what
+`lib/edits.test.ts` exercises when no picks exist.
 
 **3. The styling copy is a DRAFT.** Assembled strictly from things Tina said on
 2026-08-25 and marked as a draft in the file. §10.18: the mechanism is mine, the
