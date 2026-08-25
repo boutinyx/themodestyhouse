@@ -109,10 +109,12 @@ the labels and chose the screen edge instead.
 
 *"now its too much."* `pr-4` -> `pr-2`, i.e. 16px -> 8px.
 
-Then *"1px more"* — `pr-2` -> `pr-[9px]`.
+Then *"1px more"* — `pr-2` -> `pr-[9px]` — then *"1xp more on the right"* —
+`pr-[10px]`.
 
 The useful thing to record is the bracket, not the number: **4px read as none,
-16px as too much, 8px close, 9px right.** Landed by eye across three passes, so
+16px as too much, 8px close, 9px closer, 10px right.** Landed by eye across four
+passes, so
 it is not a value to round off or tidy later, and the comment in `app/page.tsx`
 says so.
 

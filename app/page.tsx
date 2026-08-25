@@ -636,13 +636,14 @@ export default function Home() {
           walked that back without being asked. md: is unchanged at px-8.
 
           pr-4 (16px) -> pr-2 (8px), same day: "now its too much" — then
-          pr-2 -> pr-[9px], "1px more". So the range she steered through is
-          4px (read as none) -> 16px (too much) -> 8px -> 9px, landed by eye
-          across three passes.
+          pr-2 -> pr-[9px], "1px more", then pr-[10px], "1xp more on the
+          right". So the range she steered through is 4px (read as none) ->
+          16px (too much) -> 8px -> 9px -> 10px, landed by eye across four
+          passes.
           An ARBITRARY value rather than a scale step, deliberately: Tailwind's
           scale jumps 8px -> 12px here, and she asked for one pixel. Do not
           "tidy" this back onto the scale. */}
-      <section className="max-w-[1220px] mx-auto pl-1 pr-[9px] md:px-8 py-10 md:py-20">
+      <section className="max-w-[1220px] mx-auto pl-1 pr-[10px] md:px-8 py-10 md:py-20">
         {/* Centered, no "All categories" link — Tina: "By category. needs to
             be in the middle All categories gone." Every card in the grid
             below already links to its own lane, and /directory is reachable
