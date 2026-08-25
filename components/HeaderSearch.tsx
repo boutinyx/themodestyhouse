@@ -137,3 +137,134 @@ export function HeaderSearchField({ onClose }: { onClose: () => void }) {
     </form>
   );
 }
+
+/**
+ * The phone search row — 2026-08-25, Tina: "were missing a search on phone and
+ * i want it to open like this", with aabcollection.com's phone header as the
+ * reference (a magnifier beside the hamburger; tapping it drops a full-width
+ * bar directly under the header: close cross on the left, one wide field
+ * across the rest, hairline underneath).
+ *
+ * NOT the desktop `HeaderSearchField` at a smaller size. That one takes the
+ * NAV's slot inside the header row, which works because the desktop row has a
+ * nav to give up. The phone row has a hamburger, a centred crest and a heart —
+ * nothing there is spare, and a field squeezed between them would be ~120px
+ * wide. So this is a second row instead, matching the reference.
+ *
+ * Absolutely positioned at `top-full` rather than added to the header's flow,
+ * and that is load-bearing rather than cosmetic: the header's rendered height
+ * is measured into `--header-height` by a ResizeObserver (Header.tsx), and
+ * `.hero-vh` pulls the homepage photograph up by exactly that number. A row
+ * that grew the header would therefore YANK the hero up ~64px the moment
+ * anyone tapped search, and drop it back on close. Overlaying instead leaves
+ * the measured height untouched.
+ *
+ * It still reads as part of the header because the trigger carries
+ * `aria-expanded`, and Header's MutationObserver turns that into
+ * `data-menu-open`, which forces the over-hero header back to solid parchment —
+ * so the bar and the header above it are one continuous parchment block rather
+ * than a cream slab hanging off a transparent bar.
+ */
+export function MobileSearchRow({ onClose }: { onClose: () => void }) {
+  const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  function submit(e: React.FormEvent) {
+    e.preventDefault();
+    const query = (inputRef.current?.value ?? '').trim();
+    onClose();
+    router.push(query ? `/directory?q=${encodeURIComponent(query)}` : '/directory');
+  }
+
+  return (
+    <form
+      onSubmit={submit}
+      role="search"
+      className="mobile-search-row lg:hidden absolute top-full inset-x-0 z-10 flex items-center gap-3 px-4"
+      style={{
+        height: 64,
+        background: 'var(--parchment)',
+        borderBottom: '1px solid var(--hairline)',
+      }}
+    >
+      {/* The close sits exactly where the hamburger does in the row above —
+          same px-4 gutter, same 24px glyph — so the two rows share one left
+          edge, as they do in the reference. */}
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close search"
+        className="inline-flex items-center justify-center shrink-0"
+        // 44px box on a 24px glyph: the tap target, not the icon, is what
+        // audit:mobile measures and what a thumb actually hits. -ml-2.5
+        // pulls the extra box back off the gutter so the GLYPH still lines
+        // up with the hamburger rather than the box's edge.
+        style={{ width: 44, height: 44, marginLeft: -10, color: 'var(--aubergine)' }}
+      >
+        <X size={24} style={{ display: 'block' }} />
+      </button>
+      <input
+        ref={inputRef}
+        className="header-search-input"
+        name="q"
+        type="search"
+        // The plainest possible functional label (§10.18) — the reference's
+        // own bar says the same word. Not the desktop field's longer
+        // "Search dresses, abayas, hijabs, brands…", which truncates
+        // mid-word at phone width.
+        placeholder="Search…"
+        aria-label="Search modest pieces, brands and categories"
+        // enterKeyHint puts a "Search" key on the iOS keyboard instead of
+        // "return"; type="search" is what gives it the clear affordance.
+        enterKeyHint="search"
+        style={{
+          flex: 1,
+          minWidth: 0,
+          border: 'none',
+          background: 'transparent',
+          outline: 'none',
+          // Inline declarations cannot be overridden from the stylesheet, so
+          // the var() is how this follows the header's own mode — same
+          // reasoning as HeaderSearchField above.
+          color: 'var(--header-fg)',
+          fontFamily: 'var(--font-ui)',
+          // Uppercase + tracked, matching the reference bar. 16px, NOT the
+          // desktop field's 14: iOS Safari zooms the whole page in when a
+          // focused input's font-size is under 16px, and there is no way back
+          // out of that zoom except pinching.
+          fontSize: 16,
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          WebkitAppearance: 'none',
+        }}
+      />
+    </form>
+  );
+}
+
+/** The magnifier that opens it, sitting beside the hamburger. Its own
+ *  component only so that the `aria-expanded` (which Header's MutationObserver
+ *  reads to force the header solid) cannot be forgotten at the call site. */
+export function MobileSearchTrigger({ open, onToggle }: { open: boolean; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={open}
+      aria-label={open ? 'Close search' : 'Search'}
+      className="nav-link inline-flex items-center justify-center leading-none"
+      style={{ fontSize: 13, letterSpacing: 0 }}
+    >
+      <MagnifyingGlass size={24} style={{ display: 'block' }} />
+    </button>
+  );
+}

@@ -1,0 +1,89 @@
+# Phone search — a magnifier in the header, opening a full-width bar beneath it
+**Date:** 2026-08-25 · **Status:** partial (verified locally in Chromium; staging verification pending)
+
+## Goal
+Tina: *"were missing a search on phone and i want it to open like this"*, with a
+screenshot of aabcollection.com's phone header — hamburger and magnifier on the left,
+and, once the magnifier is tapped, a full-width cream bar directly under the header
+carrying a close cross on the left and one wide `SEARCH…` field across the rest.
+
+There was genuinely no search on a phone at all: `HeaderSearchTrigger` /
+`HeaderSearchField` are both `hidden lg:flex`, and `MobileNav`'s panel carries currency
+and navigation but no field. The only phone-reachable search was `HeroSearch`, on the
+homepage, below the fold.
+
+## What changed
+**`components/HeaderSearch.tsx`** — two new exports:
+- `MobileSearchTrigger` — the 24px magnifier, sized to match the hamburger beside it.
+  Carries `aria-expanded`, which is the whole reason it is a component rather than
+  inline JSX: `Header`'s MutationObserver reads that attribute to set
+  `data-menu-open`, and that is what forces the over-hero header back to solid
+  parchment so the bar below reads as one continuous block rather than a cream slab
+  hanging off a transparent bar.
+- `MobileSearchRow` — the bar. `absolute top-full inset-x-0`, **not** a second row in
+  the header's flow. That is load-bearing: `--header-height` is measured off the
+  header's real rendered height by a ResizeObserver, and `.hero-vh` pulls the homepage
+  photograph up by exactly that number — a row in the flow would yank the hero up 64px
+  on every tap of search and drop it back on close. Measured with it open:
+  `--header-height` is unchanged at `89px`.
+
+  Submits to `/directory?q=` — the same destination as the desktop field and
+  `HeroSearch`, so all three land on identical results. `type="search"` +
+  `enterKeyHint="search"`; `fontSize: 16` rather than the desktop field's 14, because
+  iOS Safari zooms the page when a focused input is under 16px and there is no way back
+  out of that zoom except pinching.
+
+**`components/Header.tsx`** — `mobileSearchOpen` as its OWN state, not the existing
+`searchOpen` at a different breakpoint. A shared flag would mount both fields at once
+(the desktop one is only `hidden lg:flex`, i.e. present in the DOM below `lg`) and both
+focus on mount, so opening search on a phone would hand the caret to an invisible
+field. Both states reset on the existing route-change adjustment.
+
+**`app/globals.css`** — `@keyframes mobile-search-drop`, a `clip-path` reveal rather
+than a `translateY`, so the bar appears to slide out from behind the header instead of
+flying up through it (the header row is not painted above it). `animation`, not
+`transition`, for the same reason the desktop field's is — a conditionally-rendered
+element never transitions on its own initial mount. Reduced-motion opt-out.
+
+Copy is one functional word, `Search…`, matching the reference's own bar (§10.18 — no
+invented voice). The desktop field's longer `Search dresses, abayas, hijabs, brands…`
+truncates mid-word at 390px.
+
+## Verification
+`npx tsc --noEmit` — clean. `npm run lint` — clean (exit 0). `npm test` — 48 files,
+781 tests passed.
+
+Playwright, Chromium, iPhone 13 (390x844, `hasTouch`), real `.tap()` on the trigger,
+against the running dev server. Stylesheet-loaded assertion first (§10.24/§10.26):
+`.site-header` computes `position: sticky` — CSS is up.
+
+```
+css loaded: true
+formPresent  true
+headerRect   [0, 40, 390, 89]
+formRect     [0, 128, 390, 64]      <- flush under the header, full width
+headerVar    "89px"                 <- UNCHANGED with the bar open
+focused      true                   <- caret lands in the field
+menuOpen     "true"   overHero "true"
+headerBg     rgb(250,247,241)  formBg rgb(250,247,241)   <- one parchment block
+elementFromPoint(200, bar centre)   header-search-input|INPUT
+elementFromPoint(28,  bar centre)   button[aria-label="Close search"]
+```
+
+`elementFromPoint` rather than a Playwright visibility check, per `MobileNav`'s own
+note: Playwright auto-scrolls before tapping, which hides exactly the failure a real
+finger hits.
+
+Screenshot at 390x844 matches the reference's arrangement.
+
+## Notes / follow-ups
+- **WebKit is NOT yet verified**, and that gap is stated rather than papered over.
+  Against `next dev` WebKit loops on `element was detached from the DOM, retrying` —
+  HMR reloading under it, the documented §10.24 trap — and a production build could not
+  be run locally because two other sessions are live on this working tree and `.next`
+  is shared (§10.28 rule 4). The real verification is the staging one below.
+- **Verify on staging** per §1: push, then run the same probe (both engines) against
+  `https://themodestyhouse-staging-production.up.railway.app`.
+- `scripts/interaction-audit.mjs` has no check for this yet. It should get one —
+  "tap the phone magnifier, assert the bar exists below the header and the input is
+  focused" — with a negative control run first (§10.28 rule 1).

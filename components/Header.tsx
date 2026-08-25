@@ -6,7 +6,7 @@ import { Heart } from '@phosphor-icons/react';
 import { Nav } from './Nav';
 import { useQuickView } from './QuickView';
 import { CurrencySwitcher } from './CurrencySwitcher';
-import { HeaderSearchField, HeaderSearchTrigger } from './HeaderSearch';
+import { HeaderSearchField, HeaderSearchTrigger, MobileSearchRow, MobileSearchTrigger } from './HeaderSearch';
 import { MobileNav } from './MobileNav';
 
 // ONE desktop row — crest+wordmark, nav, utility — matching the reference
@@ -77,6 +77,14 @@ export function Header() {
   // popup left to own its own state.
   const [searchOpen, setSearchOpen] = useState(false);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
+  // The phone search is SEPARATE state, not the same boolean rendered at a
+  // different breakpoint. One shared flag would mount both fields at once —
+  // the desktop one is only `hidden lg:flex`, i.e. present in the DOM below
+  // lg — and both call `inputRef.current?.focus()` on mount, so opening
+  // search on a phone would hand the caret to an invisible field. Two states,
+  // two mutually-exclusive rows.
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const closeMobileSearch = useCallback(() => setMobileSearchOpen(false), []);
 
   // A route change closes it. Submitting the field navigates, and leaving the
   // field open across that navigation would land on /directory with the
@@ -90,6 +98,7 @@ export function Header() {
   if (searchPath !== pathname) {
     setSearchPath(pathname);
     setSearchOpen(false);
+    setMobileSearchOpen(false);
   }
 
   // The two state attributes below are all this component contributes to how
@@ -255,8 +264,19 @@ export function Header() {
           rather than added as bare padding. Mobile stays py-3; the
           reference itself is a desktop screenshot. */}
       <div className="relative z-10 flex items-center justify-between gap-6 px-4 lg:px-10 h-[88px] lg:h-auto lg:py-5">
-        <div className="lg:hidden">
+        {/* Phone left cluster: hamburger, then the search magnifier — the
+            order aabcollection.com uses in the reference Tina sent. The
+            trigger's own `aria-expanded` is what the MutationObserver above
+            turns into `data-menu-open`, which is what forces the over-hero
+            header solid while the bar below it is open. gap-1, not the row's
+            gap-6: these are two icons in one group, not two separate
+            clusters. */}
+        <div className="lg:hidden flex items-center gap-1">
           <MobileNav />
+          <MobileSearchTrigger
+            open={mobileSearchOpen}
+            onToggle={() => setMobileSearchOpen((v) => !v)}
+          />
         </div>
 
         {/* Desktop: crest + two-line wordmark. Crest is h-12 (bumped from h-9
@@ -328,10 +348,20 @@ export function Header() {
           <CurrencySwitcher />
         </div>
 
-        {/* Mobile only needs favourites — search and currency live inside
-            MobileNav's own panel. */}
+        {/* Mobile keeps favourites on the right; currency still lives inside
+            MobileNav's own panel. Search is no longer "missing on phone" — it
+            is the magnifier in the left cluster, opening the bar below. */}
         <div className="lg:hidden">{favourites(20)}</div>
       </div>
+
+      {/* The phone search bar: a SIBLING of the content row, not a child of
+          it, and absolutely positioned at the header's own bottom edge — so
+          it hangs below the header without being part of the height the
+          ResizeObserver measures into `--header-height`. See the long note in
+          HeaderSearch.tsx for why that matters (the hero is pulled up by
+          exactly that number). z-10 to match the content row: it must sit
+          above the wash, not under it. */}
+      {mobileSearchOpen && <MobileSearchRow onClose={closeMobileSearch} />}
     </header>
   );
 }

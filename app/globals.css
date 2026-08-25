@@ -778,6 +778,29 @@ button {
   .header-search-field { animation: none; }
 }
 
+/* The phone search bar dropping out from under the header (2026-08-25). Same
+   reasoning as the desktop field's animation above — the row is conditionally
+   rendered, and a `transition` never plays on an element's own initial mount,
+   so this has to be an `animation`. Downward rather than the desktop's
+   right-to-left, because this one arrives from the header's bottom edge and
+   the motion should say where it came from. Only open needs covering: closing
+   unmounts it.
+
+   `clip-path` rather than `transform: translateY`, so it appears to slide out
+   from BEHIND the header rather than flying up through it — a translated row
+   would be visible on top of the header row for the first half of the
+   animation, since the header row is not painted above it. */
+@keyframes mobile-search-drop {
+  from { opacity: 0; clip-path: inset(100% 0 0 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+.mobile-search-row {
+  animation: mobile-search-drop 200ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-search-row { animation: none; }
+}
+
 .site-header .site-crest { transition: filter 260ms ease-out; }
 .site-header[data-over-hero="true"] .site-crest { filter: brightness(0) invert(1); }
 .site-header[data-over-hero="true"][data-menu-open="true"] .site-crest { filter: none; }
