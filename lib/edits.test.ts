@@ -148,4 +148,40 @@ describe('edits', () => {
       expect(fall().match(p('Striped t-shirt'))).toBe(false);
     });
   });
+  describe('fall-essentials palette', () => {
+    // One literal in-stock catalogue title per family, checked 2026-08-25.
+    it('accepts a hijab from each of the six families', () => {
+      expect(fall().match(p('Deep Mulberry Modal Lace Hijab', 'hijab'))).toBe(true);   // burgundy
+      expect(fall().match(p('Espresso Bamboo Jersey Hijab', 'hijab'))).toBe(true);     // chocolate
+      expect(fall().match(p('The Khaki Jersey Hijab', 'hijab'))).toBe(true);           // olive
+      expect(fall().match(p('Taupe Latte Jersey Hijab', 'hijab'))).toBe(true);         // camel
+      expect(fall().match(p('Bone White Jersey Hijab', 'hijab'))).toBe(true);          // cream
+      expect(fall().match(p('Solid Modal - Burnt Clay', 'hijab'))).toBe(true);         // rust
+    });
+
+    it('rejects a hijab outside the palette', () => {
+      expect(fall().match(p('Powder Blue Lace', 'hijab'))).toBe(false);
+      expect(fall().match(p('Jasmine White Lace', 'hijab'))).toBe(false);
+      expect(fall().match(p('Premium Soft Jersey Hijab [Gree]', 'hijab'))).toBe(false);
+    });
+
+    it('does not read "almond green" as camel', () => {
+      // Literal title. `almond` was in the camel family on the first pass and
+      // was removed for exactly this: the piece is green.
+      expect(fall().match(p('Almond green premium jersey hijab', 'hijab'))).toBe(false);
+    });
+
+    it('does not read "butter yellow" as cream', () => {
+      // Butter yellow is the spring colour, not one of Tina's six.
+      expect(fall().match(p('Satin Scarf Dress SS26 Butter Yellow', 'hijab'))).toBe(false);
+    });
+
+    it('does not find a colour inside a longer word', () => {
+      // \b regression guards. Each of these contains a palette term as a
+      // substring and must not match on it.
+      expect(fall().match(p('Herringbone Wrap Hijab', 'hijab'))).toBe(false);   // CONSTRUCTED, ...bone
+      expect(fall().match(p('Tartan Check Hijab', 'hijab'))).toBe(false);       // CONSTRUCTED, ...tan
+      expect(fall().match(p('Honeycomb Weave Hijab', 'hijab'))).toBe(false);    // CONSTRUCTED, honey...
+    });
+  });
 });

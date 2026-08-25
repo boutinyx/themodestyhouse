@@ -287,6 +287,42 @@ const TOO_THICK = /\bteddy\b|\bsherpa\b|\bborg\b|\bpuffer\b|\bpadded\b|\bparka\b
 const TSHIRT = /\bt[-\s]?shirts?\b/i;
 
 /**
+ * Tina's fall palette, 2026-08-25 — *"the shades that make any outfit look
+ * expensive this season"*: Burgundy · Chocolate · Olive · Camel · Cream · Rust.
+ *
+ * WHY EACH COLOUR IS A FAMILY. Brands do not write the six words on her card.
+ * They write mulberry, espresso, khaki, latte, ecru, terracotta. Every term
+ * below was read off a real in-stock catalogue title rather than taken from a
+ * colour list, which is why the families are lopsided — `rust` has eleven terms
+ * and only 86 hijabs, `olive` has nine and has 281.
+ *
+ * Measured 2026-08-25 over in-stock rows: burgundy 141 hijabs / chocolate 241 /
+ * olive 281 / camel 141 / cream 184 / rust 86. Union 1,060 of 5,031.
+ *
+ * TWO TERMS WERE REMOVED after checking what they matched, which is the §10.10
+ * discipline and the only reason this comment is worth reading:
+ *   - `almond` (camel) matched "Almond green premium jersey hijab" — green.
+ *   - `butter` (cream) matched "Butter Yellow" — the spring colour.
+ *
+ * On \b: every term here is ASCII, so §10.31's Turkish trap does not apply to
+ * the terms themselves. It WOULD apply to any non-English colour word added
+ * later — \b is defined against [A-Za-z0-9_], so it finds a boundary in the
+ * middle of a word containing i s g u o c with diacritics. Use the word()
+ * helper in lib/tag.ts if a non-ASCII colour is ever added here.
+ */
+const FALL_PALETTE: Record<'burgundy' | 'chocolate' | 'olive' | 'camel' | 'cream' | 'rust', RegExp> = {
+  burgundy: /\b(burgundy|bordeaux|merlot|maroon|wine|cherry|plum|damson|aubergine|fig|mulberry|berry)\b/i,
+  chocolate: /\b(chocolate|cocoa|choco|espresso|coffee|mocha|walnut|chestnut|truffle|hazelnut|brownie)\b/i,
+  olive: /\b(olive|khaki|sage|moss|forest|pistachio|army|fern|matcha)\b/i,
+  camel: /\b(camel|caramel|toffee|tan|honey|biscuit|latte|butterscotch|cappuccino)\b/i,
+  cream: /\b(cream|ecru|ivory|oatmeal|bone|milk|vanilla|eggshell|off[-\s]?white)\b/i,
+  rust: /\b(rust|terracotta|terra[-\s]?cotta|brick|copper|cinnamon|burnt[-\s]orange|amber|clay|ochre|paprika|pumpkin|ginger|sienna|auburn)\b/i,
+};
+
+const IN_FALL_PALETTE = (title: string): boolean =>
+  Object.values(FALL_PALETTE).some((re) => re.test(title));
+
+/**
  * "lace-up" is a FASTENING, not the fabric.
  *
  * Caught 2026-08-24 while checking whether the catalogue really holds the item
