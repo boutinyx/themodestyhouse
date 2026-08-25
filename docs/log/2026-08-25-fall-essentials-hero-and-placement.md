@@ -363,3 +363,50 @@ against the outfit she asked to be able to see.
 Verified: tsc clean, lint clean, tests pass, build clean; homepage serves
 `edit-fall-hero-6-1920.webp` desktop / `edit-fall-hero-mobile-5-780.webp` phone,
 edit page `edit-fall-hero-6-1920.webp`. Screenshotted all three.
+
+## Seventh follow-up — brighter, both surfaces
+
+Tina, after seeing the body crop: *"can we make it more brighter. liek both."*
+
+`edit-fall-hero-7.jpg` / `edit-fall-hero-mobile-6.jpg` — same crop, same wide
+original, identical `linear(1.3, 20)` lift on both so they cannot drift.
+
+| candidate | mean luminance | pixels ≥250 | |
+|---|---|---|---|
+| -6, as it was | 21.7 | 0.000% | |
+| `linear(1.2, 12)` | 37.6 | 0.018% | |
+| **`linear(1.3, 20)`** | **47.6** | **0.358%** | shipped |
+| `linear(1.45, 28)` | 58.6 | 0.952% | hazy in the shadows |
+
+She reversed a lift of this kind on the FULL-FRAME hero earlier the same day
+(-3 → -4). That is not a contradiction to correct later: different picture, and
+she asked for this one explicitly, after seeing the crop. Noted in
+`lib/edits.ts` so nobody "fixes" it back.
+
+### The wash had to move again — and this is now a pattern
+
+A brighter photograph costs text contrast, so `heroWash` was re-measured rather
+than carried over. Worst case across all four surfaces (homepage + edit page ×
+desktop + phone):
+
+| heroWash | worst of the four | |
+|---|---|---|
+| 0.40 (what -6 shipped with) | **2.76 FAIL** | on the edit page desktop |
+| 0.50 | **3.81 FAIL** | |
+| **0.58** | **5.03 pass** | shipped |
+| 0.66 | 6.69 pass | |
+
+**0.40 would have carried over silently and failed on two surfaces.** Third time
+today that a photograph change invalidated a contrast figure measured against the
+previous one — the satin band, the mouth crop, and now this. The pattern is worth
+stating plainly: *any* change to a background photograph invalidates every
+contrast number measured against the old one, including ones this file records.
+
+Why this does not undo the brightening: the banner's wash is left-weighted and
+the copy is left-aligned, so the heavier scrim lands on the empty backdrop the
+type sits on, not on the outfit at the right of the frame. Confirmed by eye at
+1440 — foliage, cape and trousers all read markedly lighter than -6.
+
+Verified: tsc clean, lint clean, tests pass, build clean; homepage serves
+`edit-fall-hero-7-1920.webp` desktop and `edit-fall-hero-mobile-6-780.webp`
+phone.

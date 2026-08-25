@@ -392,7 +392,28 @@ const JOBS = [
     // Region is 1883x1059, so the 1920 master is a 1.02x resize — effectively
     // native, unlike -5's 320x180 region. That is why quality goes back to 100:
     // here there is real detail for the extra bits to preserve.
+    // SUPERSEDED by edit-fall-hero-7.jpg below — Tina: "can we make it more
+    // brighter. liek both". Left registered, same convention as -1..-5.
     file: 'edit-fall-hero-6.jpg',
+    widths: [640, 1024, 1440, 1920],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
+  },
+  {
+    // /edits/fall-essentials hero, desktop — CURRENT. Same crop as -6, lifted
+    // with `linear(1.3, 20)`: mean luminance 21.7 -> 47.7, with 0.36% of pixels
+    // at 250+ (no meaningful clipping). Measured against three candidates —
+    //   linear(1.2, 12)   37.6   0.018% clipped
+    //   linear(1.3, 20)   47.6   0.358%   <- shipped
+    //   linear(1.45, 28)  58.6   0.952%   reads hazy in the shadows
+    //
+    // NOTE this is the same kind of lift she reversed on the FULL-FRAME hero
+    // earlier the same day (-3 -> -4). Not a contradiction and not a mistake to
+    // correct later: that was a different picture, and she asked for this one
+    // explicitly and after seeing the crop. An offset rather than a brightness
+    // multiply, for the reason spelled out on -3: the range that needs lifting
+    // is the dark painted backdrop, not her already-lit face.
+    file: 'edit-fall-hero-7.jpg',
     widths: [640, 1024, 1440, 1920],
     suffixWidth: true,
     opts: { quality: 100, effort: 6 },
@@ -413,7 +434,16 @@ const JOBS = [
     // Same crop, phone — CURRENT. 790x1059 out of the SAME wide original as the
     // desktop one, so the grade matches by construction rather than by luck.
     // 1.48x to the 1170 master; 1170 is a 390px CSS phone at 3x DPR.
+    // SUPERSEDED by edit-fall-hero-mobile-6.jpg below. Left registered.
     file: 'edit-fall-hero-mobile-5.jpg',
+    widths: [390, 780, 1170],
+    suffixWidth: true,
+    opts: { quality: 100, effort: 6 },
+  },
+  {
+    // Same crop and the SAME lift as the desktop one — "liek both". Both still
+    // cut from the one wide original, so the two stay matched by construction.
+    file: 'edit-fall-hero-mobile-6.jpg',
     widths: [390, 780, 1170],
     suffixWidth: true,
     opts: { quality: 100, effort: 6 },
