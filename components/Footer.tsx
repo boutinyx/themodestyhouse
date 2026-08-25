@@ -60,7 +60,50 @@ export function Footer() {
             "The House" silently wrapped to row 2 col 1 — a huge gap under
             Products (11 items, the tallest column) instead of sitting beside
             Editorial. Reported by Tina as "the footer is still fucked". */}
-        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-x-6 gap-y-8 md:gap-8">
+        {/* Three layouts, and the lg one is a FLEX row rather than a grid.
+            Tina, 2026-08-25, after the pill move: "use playwright to center
+            everything good" — she picked "even out the footer columns" from
+            three readings. Measured on staging BEFORE changing anything, at
+            1440: the gaps between column CONTENTS were 83 / 83 / 32px. The
+            grid itself was centred correctly (142px margin either side); what
+            was uneven was that Products spanned two 1fr tracks and was centred
+            inside them, so it floated with ~50px of slack on each side while
+            Editorial and The House sat on the bare 32px grid gap.
+
+            No fr template fixes that, because the slack comes from content
+            being narrower than its track. `lg:flex lg:justify-between` gives
+            the browser the job instead: every column sizes to its content and
+            the leftover is divided equally between them, which is the
+            definition of one rhythm. `lg:gap-x-12` is a FLOOR, not the gap —
+            free space is distributed on top of it.
+
+            Nothing here may use `mx-auto` at lg: an auto margin on a flex item
+            absorbs free space and takes precedence over justify-content, so a
+            single stray `mx-auto` would silently eat the whole distribution.
+            That is why Products lost its own below.
+
+            md is a 2x2 — brand + Products, then Editorial + The House — and
+            that is the fix for a real OVERFLOW, not a spacing preference.
+            Measured on staging at a 768 viewport before the change:
+            `documentElement.scrollWidth` came back 824 in Chromium and 872 in
+            WebKit against a 768 clientWidth, i.e. the page scrolled sideways.
+            Cause: four columns across meant Products' two max-content
+            sub-columns plus their 80px gutter needed ~311px inside a ~213px
+            span, and `fr` tracks floor at min-content, so the row could not
+            shrink — it pushed The House past the container's right edge (box
+            765..824 against a grid ending at 736). An iPad in portrait is 820
+            wide and was seeing 52px of it.
+
+            Four-across at md was tried first and does fit (0 overflow) if
+            Products stacks into one column — but 13 links in one column made
+            it three times the height of everything beside it and left the
+            right half of the tablet footer empty. Half a 768 row is 336px,
+            which fits the sub-column pair at a 32px gutter with room to spare,
+            so the 2x2 keeps the pair AND the height sane. The template is just
+            the base `grid-cols-2` carried up: every column is already
+            `col-span-2 md:col-span-1`, so nothing here needs an md template of
+            its own. */}
+        <div className="grid grid-cols-2 lg:grid-cols-none lg:flex lg:justify-between lg:items-start gap-x-6 gap-y-8 md:gap-x-8 md:gap-y-10 lg:gap-x-12">
           <div className="col-span-2 md:col-span-1">
             <div className="wordmark text-lg" style={{ color: 'var(--parchment)' }}>The Modesty House</div>
             <p className="mt-3 text-sm max-w-xs" style={{ color: 'var(--muted-on-dark)' }}>
@@ -124,27 +167,24 @@ export function Footer() {
               community: 'hijabi', so the lane had no selectivity left). */}
           <Col
             head="Products"
-            /* Two of the five tracks — the track the "More" column used to hold
-               is exactly what this takes over, so the template below is
-               unchanged and nothing else moves. */
-            /* NO md:text-center. It was added 2026-08-25 with `justify-center`
-               so the eyebrow would sit over the centred sub-column pair — but
-               that put "PRODUCTS" over the GUTTER between the two lists, 120px
-               right of "Modest Dresses", while EDITORIAL and THE HOUSE sit
-               flush above their own first link. Tina: "products name should
-               just be where it was". The heading is back at the column's left
-               edge, level with its first item and with every other heading in
-               the row; the LINKS stay centred in the span, which is the
-               separate thing she asked for earlier the same day.
+            /* NO text-center anywhere. It was added 2026-08-25 with
+               `justify-center` so the eyebrow would sit over the centred
+               sub-column pair — but that put "PRODUCTS" over the GUTTER
+               between the two lists, 120px right of "Modest Dresses", while
+               EDITORIAL and THE HOUSE sat flush above their own first link.
+               Tina: "products name should just be where it was".
 
-               `md:w-max md:mx-auto` is what makes those two compatible. Simply
-               dropping the centring left the heading at the SPAN's left edge
-               (429px) while `justify-center` on the list held the pair at
-               470px — measured, 41px apart, which is not "where it was"
-               either. Shrinking the whole column to max-content and centring
-               THAT moves heading and list together, so the heading sits exactly
-               on its first link the way EDITORIAL and THE HOUSE do. */
-            className="col-span-2 md:col-span-2 md:w-max md:mx-auto"
+               `md:w-max md:mx-auto` used to be what reconciled that with the
+               pair being centred in a two-track span. Both are gone as of the
+               flex row above, and nothing was lost: a flex item sizes to its
+               content, so the heading and the first link share a left edge by
+               construction rather than by a width trick — and `mx-auto` would
+               have broken `justify-between` outright (an auto margin on a flex
+               item eats free space before justify-content sees it).
+
+               col-span-2 at md is gone with the fifth track; the span classes
+               that remain only matter on the phone grid. */
+            className="col-span-2 md:col-span-1"
             /* grid-flow-col + a fixed row count fills DOWN the first sub-column
                and then down the second (7 then 6), which is how a reader scans
                a list. Plain `grid-cols-2` would flow across — 1,2 / 3,4 — and
@@ -155,32 +195,37 @@ export function Footer() {
                which STRETCHES to fill free space exactly like 1fr — so across a
                two-track span the pair sat 264px apart with a hole between them.
 
-               `md:grid-cols-none` is load-bearing and was the first fix that did
+               `lg:grid-cols-none` is load-bearing and was the first fix that did
                NOT work without it: `auto-cols-max` sets grid-auto-columns, which
-               only sizes IMPLICIT tracks. The base `grid-cols-1` (mobile) leaves
-               an EXPLICIT 1fr first column in force at every width, so sub-column
-               one kept absorbing all the free space and shoved sub-column two
-               right — measured unchanged at 262px apart. Clearing the template at
-               md makes both tracks implicit, so both take max-content.
-               `max-content` sizes each sub-column to its longest label, and
-               `justify-center` centres the resulting pair in the span; the
-               eyebrow above it is NOT centred with it — see the note on the
-               column's own className above. (`md:text-left` on the list below is
-               inert now: it existed only to undo the `md:text-center` that has
-               gone. Left in place because left is what the rows want anyway.)
+               only sizes IMPLICIT tracks. The base `grid-cols-2` (mobile) leaves
+               an EXPLICIT track in force at every width, so sub-column one kept
+               absorbing all the free space and shoved sub-column two right —
+               measured unchanged at 262px apart. Clearing the template makes
+               both tracks implicit, so both take max-content, sized to their
+               longest label.
 
-               GUTTER: gap-x-20 (80px). Went 32 -> 40 -> 80; Tina on the 40px
-               version: "not that close". 80 is the value that matches the ~73px
-               gutter between the footer's other columns (Products->Editorial,
-               Editorial->The House), so the whole row reads at one rhythm rather
-               than the Products pair having a tighter internal rhythm than
-               everything beside it. Rendered 40/64/80/96/112 side by side before
-               picking.
+               `justify-start`, not the old `justify-center`: at lg the whole
+               column is a flex item sized to its own content, so there is no
+               span left to centre the pair inside — centring would only have
+               shifted it away from its own heading. The eyebrow and the first
+               link now share a left edge by construction.
+
+               GUTTER: gap-x-20 (80px) at lg. Went 32 -> 40 -> 80; Tina on the
+               40px version: "not that close". 80 matches the gutter between the
+               footer's other columns, so the whole row reads at one rhythm
+               rather than the Products pair having a tighter internal rhythm
+               than everything beside it. Rendered 40/64/80/96/112 side by side
+               before picking.
+
+               md gets 32px instead, and that number is not taste either: half a
+               768 row is 336px and the pair's two max-content columns are
+               ~115 + ~145, so 32 is what fits with margin. 80 there is what
+               overflowed the page sideways before the 2x2 (see the container's
+               own note).
 
                MOBILE STAYS ONE COLUMN, left-aligned: at 390px each half would be
-               ~150px and "Cardigans & Sweaters" wraps to three lines. (gap-x is
-               inert there — one column has no column gap.) */
-            listClassName="grid grid-cols-2 md:grid-cols-none md:grid-flow-col md:grid-rows-7 md:auto-cols-max md:justify-center md:text-left gap-x-4 gap-y-1 md:gap-x-20 md:gap-y-2"
+               ~150px and "Cardigans & Sweaters" wraps to three lines. */
+            listClassName="grid grid-cols-2 gap-x-4 gap-y-1 md:grid-cols-none md:grid-flow-col md:grid-rows-7 md:auto-cols-max md:justify-start md:gap-x-8 md:gap-y-2 lg:gap-x-20"
           >
             {CATEGORY_LANES.map((l) => (
               <FLink key={l.slug} href={`/${l.slug}`}>{l.title}</FLink>
