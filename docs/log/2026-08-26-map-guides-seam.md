@@ -1,5 +1,5 @@
 # The gap between the map and the guides
-**Date:** 2026-08-26 · **Status:** done (staging)
+**Date:** 2026-08-26 · **Status:** done (staging) — desktop only, see the update
 
 ## Goal
 
@@ -80,3 +80,26 @@ its own port, or the result is a coin toss.
 `npx tsc --noEmit` → 0 · `npm run lint` → 0 · build clean · gaps re-measured in
 WebKit at 390 and 1440 · `audit:mobile` clean in both engines on an isolated
 build.
+
+
+---
+
+## Update, same day — phone spacing restored
+
+Tina, after seeing it: *"can i get the spacing back on mobile tho"*. So the cut
+is **desktop only**.
+
+The `md:` variants were dropped rather than re-added, which is the part worth
+reading: what was wanted is *one* value at every width on the facing edges (40px)
+while the OUTER edges keep doubling at `md`. `pb-5 md:pb-10` says "20 then 40";
+plain `pb-10` says "40 everywhere". The second is the honest expression of the
+requirement, and it is shorter.
+
+```
+            map pt   map pb   guides pt   guides pb   gap
+phone       40       40       40          40          81px   (original)
+desktop     80       40       40          80          137px  (tightened)
+```
+
+Both outer edges — the map's top and the guides' bottom — still double at `md`
+and were never touched.
