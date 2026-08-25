@@ -206,13 +206,13 @@ export function MobileSearchRow({ onClose }: { onClose: () => void }) {
         className="inline-flex items-center justify-center shrink-0"
         // 44px box on a 24px glyph: the tap target, not the icon, is what
         // audit:mobile measures and what a thumb actually hits. The negative
-        // margin pulls the extra box back off the gutter so the GLYPH lines
-        // up with the hamburger rather than the box's edge — -16 because the
-        // hamburger's own cluster now sits at a 10px gutter (`-ml-1.5` in
-        // Header.tsx), not the row's 16px: 16 (padding) - 16 (margin) + 10
-        // (the glyph's inset in its 44px box) = 10. Those two numbers are one
-        // decision written in two files and have to move together.
-        style={{ width: 44, height: 44, marginLeft: -16, color: 'var(--aubergine)' }}
+        // margin pulls that extra box back off the gutter so the GLYPH lines
+        // up with the hamburger above rather than the box's edge doing so:
+        // 16 (the row's padding) - 10 (this margin) + 10 (the glyph's own
+        // inset inside its 44px box) = 16, the hamburger's x. If the header's
+        // left cluster ever moves off the plain px-4 gutter, this number has
+        // to move with it — one decision, two files.
+        style={{ width: 44, height: 44, marginLeft: -10, color: 'var(--aubergine)' }}
       >
         <X size={24} style={{ display: 'block' }} />
       </button>

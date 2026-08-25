@@ -272,20 +272,27 @@ export function Header() {
             gap-6: these are two icons in one group, not two separate
             clusters.
 
-            `-ml-1.5` and `gap-4` are one instruction, not two tweaks — Tina,
-            2026-08-25: "put it a bit more to the left giving some space to the
-            hamburger". Those pull opposite ways on their own, so she picked
-            the combination: the hamburger moves 6px NEARER the left edge (a
-            10px gutter rather than the row's 16px) while the gap between the
-            two glyphs opens from 4px to 16px. Net effect measured: hamburger
-            glyph 16px -> 10px, magnifier glyph 44px -> 50px. The negative
-            margin is on the CLUSTER, not the row's px-4, so the favourites
-            heart at the other end keeps its 16px gutter.
+            `gap-4` is Tina's 2026-08-25 spacing ask ("put it a bit more to
+            the left giving some space to the hamburger"): the gap between the
+            two glyphs opened from 4px to 16px.
 
-            The close cross in the search bar below carries a matching
-            `marginLeft` so the two rows keep one left edge — if this number
-            moves, that one has to move with it. */}
-        <div className="lg:hidden -ml-1.5 flex items-center gap-4">
+            There is NO negative margin here, and its absence is the second
+            half of that story. `-ml-1.5` was tried the same day — it pulled
+            the hamburger to a 10px gutter — and Tina's answer was "the burger
+            is a bit to close to the left edge can you fix that look at the
+            heart on the right". So the cluster sits on the row's own px-4
+            again, which is what makes it symmetrical with the heart.
+
+            Measured rather than eyeballed, because the two icons are
+            different Phosphor glyphs and box symmetry is not ink symmetry.
+            At 390px the heart's SVG box ends 18px from the right edge, but
+            its path only spans x=24..232 of a 256 viewBox — ~1.9px of inset
+            at 20px — so its INK stops 19.9px in. Phosphor's List draws its
+            bars from x=40..216 of 256, i.e. ~3.75px of inset at 24px, so a
+            box at the plain 16px gutter puts its ink 19.75px in. Within a
+            quarter of a pixel of the heart, which is why 16 is right and
+            "nudge it a bit" was not needed. */}
+        <div className="lg:hidden flex items-center gap-4">
           <MobileNav />
           <MobileSearchTrigger
             open={mobileSearchOpen}
