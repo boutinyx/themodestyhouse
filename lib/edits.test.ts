@@ -184,4 +184,42 @@ describe('edits', () => {
       expect(fall().match(p('Honeycomb Weave Hijab', 'hijab'))).toBe(false);    // CONSTRUCTED, honey...
     });
   });
+  describe('fall-essentials buckets', () => {
+    it('takes the layer: gilets, vests, knits, trench, corduroy, real capes', () => {
+      expect(fall().match(p('Oversized Gilet'))).toBe(true);
+      expect(fall().match(p('Tailored Gilet Set', 'set'))).toBe(true);
+      expect(fall().match(p('Laurel Vest'))).toBe(true);
+      expect(fall().match(p('The Icon knitted dress in white', 'dress'))).toBe(true);
+      expect(fall().match(p('Corduroy Two Piece Set \u2013 Dark Grey', 'set'))).toBe(true);
+      expect(fall().match(p('Corduroy Abaya-CLEARANCE', 'abaya'))).toBe(true);
+    });
+
+    it('takes the top: blouses, stripes, long sleeves, shirts', () => {
+      expect(fall().match(p('Basic Striped Shirt'))).toBe(true);
+      expect(fall().match(p('Ruffle Blouse - Taupe'))).toBe(true);
+      expect(fall().match(p('Blouse With Bow'))).toBe(true);
+    });
+
+    it('takes the bottom: fall trousers and A-line/balloon/satin/denim skirts', () => {
+      expect(fall().match(p('Essential Wool Trousers', 'trousers'))).toBe(true);
+      expect(fall().match(p('Fold Up Jeans', 'trousers'))).toBe(true);
+      expect(fall().match(p('Pleated Satin Skirt', 'skirt'))).toBe(true);
+      expect(fall().match(p('Espresso Satin Skirt', 'skirt'))).toBe(true);
+    });
+
+    it('does not take every trouser in the catalogue', () => {
+      // The naive rule was 1,392 pieces — effectively all of them, summer
+      // linen included. A fall signal is required.
+      expect(fall().match(p('Basic Everyday Trousers', 'trousers'))).toBe(false);  // CONSTRUCTED
+      expect(fall().match(p('Linen Palazzo Trousers', 'trousers'))).toBe(false);   // CONSTRUCTED
+    });
+
+    it('does not take a summer skirt', () => {
+      expect(fall().match(p('Pleated Chiffon Maxi Skirt', 'skirt'))).toBe(false); // CONSTRUCTED
+    });
+
+    it('never takes swimwear', () => {
+      expect(fall().match(p('Ribbed Knit Burkini - Olive', 'swim'))).toBe(false); // CONSTRUCTED
+    });
+  });
 });

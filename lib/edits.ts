@@ -323,6 +323,55 @@ const IN_FALL_PALETTE = (title: string): boolean =>
   Object.values(FALL_PALETTE).some((re) => re.test(title));
 
 /**
+ * THE LAYER — the piece that goes over everything else.
+ *
+ * Gilet appears in 4 of Tina's 12 moodboard panels, more than any other item,
+ * and it is the one word this catalogue is thin on (15 titles) while being deep
+ * in its synonyms (`vest`, 230). Both are taken, restricted to tops and sets so
+ * "floor length vest" abayas do not arrive through the back door.
+ *
+ * The knit/trench/corduroy/cape branches are deliberately NOT garment-restricted:
+ * a knitted dress and a corduroy open abaya are both fall layers, and Tina named
+ * "coat cords" and "sets that are a little bit thicker in texture" explicitly.
+ */
+const FE_LAYER = (p: Product): boolean =>
+  ((p.garment === 'top' || p.garment === 'set') && /\bgilet\b|\bvest\b|\bwaistcoat\b/i.test(p.title)) ||
+  /\bcardigan\b|\bsweater\b|\bjumper\b|\bknit(ted|wear)?\b|\bturtle\s?neck\b|\broll\s?neck\b/i.test(p.title) ||
+  /\btrench\b|\bcorduroy\b|\bponcho\b/i.test(p.title) ||
+  (/\bcape\b/i.test(p.title) && !CAPE_SLEEVE.test(p.title));
+
+/**
+ * THE BLOUSE — Tina: *"pop-of-color blouses"*, and *"The striped ones are
+ * really, really popular"*. "Blouse pop of color" is on 5 of the 12 panels and
+ * a striped long sleeve on 2 more.
+ *
+ * Restricted to `garment === 'top'`, which is why a striped ABAYA does not
+ * qualify here. That is a choice, not an oversight: every striped piece on the
+ * moodboard is a long-sleeve top, and letting the print in on abayas would pull
+ * from a 5,218-row pool on a pattern rather than on the season. Tina can still
+ * hand-pick one.
+ */
+const FE_TOP = (p: Product): boolean =>
+  p.garment === 'top' &&
+  !TSHIRT.test(p.title) &&
+  /\bblouse\b|\bstripe[ds]?\b|\blong[-\s]?sleeve|\bshirt\b/i.test(p.title);
+
+/**
+ * THE BOTTOM — Tina: *"thick trousers"*, *"Denim skirts ... balloon skirts, and
+ * A-line skirts"*, plus the satin column skirt that appears twice on the board.
+ *
+ * The trouser half needs a FALL SIGNAL. Without one the bucket is 1,392 pieces
+ * — effectively every trouser in the catalogue, summer linen included — which
+ * would have made the edit's largest category the one thing about it that is
+ * not seasonal.
+ */
+const FALL_TROUSER = /\bwide[-\s]?leg\b|\bpleated\b|\btailored\b|\bcorduroy\b|\bwool\b|\bdenim\b|\bjeans?\b|\bthick\b|\bcargo\b|\bbarrel\b/i;
+
+const FE_BOTTOM = (p: Product): boolean =>
+  (p.garment === 'trousers' && FALL_TROUSER.test(p.title)) ||
+  (p.garment === 'skirt' && /\ba[-\s]?line\b|\bballoon\b|\bbubble\b|\bsatin\b|\bdenim\b|\bcorduroy\b/i.test(p.title));
+
+/**
  * "lace-up" is a FASTENING, not the fabric.
  *
  * Caught 2026-08-24 while checking whether the catalogue really holds the item
