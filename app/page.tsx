@@ -715,6 +715,123 @@ export default function Home() {
         mapH={MAP.H}
       />
 
+      {/* ORDER, 2026-08-26 — Tina: "i want the modest fashion market with the
+          modesty house block to swap places with the guides". The editorial
+          cards now come first and the designer/market band closes the page.
+          Both blocks moved WHOLE, comments included, so their own history
+          travels with them; nothing inside either was edited. */}
+      {/* THE EDIT */}
+      <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
+        {/* The "Reading, not just shopping." h2 was removed 2026-08-26 — Tina:
+            "get rid of this text". `justify-end` replaces `justify-between`,
+            which with only one child left would have pushed "All stories" to the
+            LEFT edge rather than leaving it where it was.
+            The section now has no heading of its own. That is deliberate and
+            hers; the cards carry their own titles.
+            `hidden md:flex`, not plain `flex`: this row's only remaining child
+            is the desktop-only "All stories" link, so below md it was an empty
+            box still contributing its `mb-8` — measured 32px of dead space above
+            the feature card on a phone once the heading came out. */}
+        <div className="hidden md:flex items-end justify-end mb-8">
+          {/* Under the content on a phone, like its two siblings — see the
+              `md:!hidden` twin at the foot of this section. */}
+          <Link href="/editorial" className="nav-link !hidden md:!inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
+        </div>
+        {/* KNOWN AND ACCEPTED, so please do not "fix" it again.
+            `moreStories` is posts.slice(1, 4) — this layout wants three stories
+            in the right column and content/editorial holds two posts, so it gets
+            one. At 1440 that is a 110px card beside a 460px feature and about
+            350px of empty parchment under it.
+            It was made to collapse to a single column below two side stories on
+            2026-08-09, and Tina reverted that the same day: it took the feature
+            from 674px to 1156px and turned the second story into a full-width
+            110px letterbox with its thumbnail marooned at one end, which trades a
+            vertical gap for a horizontal one. This is her composition and it
+            resolves itself the moment a third post is published — the answer is a
+            post, not a breakpoint. */}
+        {feature && (
+          <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8">
+            {/* `edit-feature-card` carries the height: 460px from md up, a true
+                16:9 below it. Tina, 2026-08-25: "i wanted the editorials on the
+                end of the homepage to be that [16:9] or at least the most recent
+                one". A class rather than the inline `minHeight` it replaces,
+                because an inline style cannot be responsive.
+                768px is where this grid already collapses to one column
+                (`md:grid-cols-[1.5fr_1fr]` on the parent), so the card changes
+                shape exactly where it stops sharing a row. */}
+            <Link href={`/editorial/${feature.slug}`} className="edit-feature-card relative block overflow-hidden" style={{ borderRadius: 8, background: 'var(--aubergine)' }}>
+              {feature.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={editorialVariant(feature.image, 900) ?? feature.image}
+                  srcSet={editorialSrcSet(feature.image)}
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  alt={feature.imageAlt || ''}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  decoding="async"
+                />
+              )}
+              {/* The scrim fades out at 55% of the card, which is tuned to the
+                  460px desktop card. On the 183px 16:9 phone card that covers
+                  ~82px while the caption is 116px, so the eyebrow sat on bright
+                  photograph and was barely readable. `.edit-feature-scrim` is
+                  the hook for the phone override in globals.css. */}
+              <div className="edit-feature-scrim absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.78), rgba(36,27,36,0) 55%)' }} />
+              {/* The caption is sized down on a phone by `.edit-feature-card`'s
+                  own media query (globals.css). Measured at 390px with the 460px
+                  card's values still in place: the caption came to 209px inside
+                  a 183px card, so `overflow-hidden` clipped the top of the
+                  title — 26px of it. The classes below are the hooks for that
+                  override; the desktop values stay inline. */}
+              <div className="edit-feature-caption absolute inset-x-0 bottom-0 p-7">
+                <div className="eyebrow" style={{ color: '#e7d3b6' }}>{feature.category}</div>
+                {/* fontSize lives in .edit-feature-title (globals.css), NOT
+                    inline. It was inline at 30px, and an inline style beats a
+                    class outright — so the phone override in the media query was
+                    silently doing nothing and the title stayed 30px on a 183px
+                    card. Colour and line-height stay here per §6. */}
+                <div className="edit-feature-title serif mt-2" style={{ color: 'var(--parchment)', lineHeight: 1.08 }}>{feature.title}</div>
+              </div>
+            </Link>
+            {moreStories.length > 0 && (
+              <div className="flex flex-col gap-4">
+                {moreStories.map((s) => (
+                  <Link key={s.slug} href={`/editorial/${s.slug}`} className="flex gap-4 p-3 items-center" style={{ border: '1px solid var(--hairline)', borderRadius: 8, background: 'var(--bone)' }}>
+                    <div className="shrink-0 overflow-hidden" style={{ width: 84, height: 84, borderRadius: 4, background: '#ece5d8' }}>
+                      {s.image && (
+                        // An 84px square that was being served the 1696px original.
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={editorialVariant(s.image, 400) ?? s.image}
+                          alt={s.imageAlt || ''}
+                          className="w-full h-full object-cover"
+                          width={84}
+                          height={84}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <div className="eyebrow">{s.category}</div>
+                      {/* Size in .edit-more-title (globals.css), not inline —
+                          an inline style beats a class, which is exactly how the
+                          feature card above ended up ignoring its own phone
+                          font-size for a day. Colour and line-height stay
+                          inline per §6. */}
+                      <div className="edit-more-title serif mt-1" style={{ color: 'var(--ink)', lineHeight: 1.2 }}>{s.title}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        <Link href="/editorial" className="nav-link md:!hidden inline-flex items-center gap-1.5 mt-6">
+          All stories <ArrowRight size={13} weight="bold" />
+        </Link>
+      </section>
+
       {/* FOR DESIGNERS. Step 2 used to read "We review craft, sizing and
           ethics" — a different standard than /about's own definition of the
           seal ("A seal is a judgement about craft and design"), and "ethics"
@@ -880,118 +997,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* THE EDIT */}
-      <section className="max-w-[1220px] mx-auto px-8 py-10 md:py-20">
-        {/* The "Reading, not just shopping." h2 was removed 2026-08-26 — Tina:
-            "get rid of this text". `justify-end` replaces `justify-between`,
-            which with only one child left would have pushed "All stories" to the
-            LEFT edge rather than leaving it where it was.
-            The section now has no heading of its own. That is deliberate and
-            hers; the cards carry their own titles.
-            `hidden md:flex`, not plain `flex`: this row's only remaining child
-            is the desktop-only "All stories" link, so below md it was an empty
-            box still contributing its `mb-8` — measured 32px of dead space above
-            the feature card on a phone once the heading came out. */}
-        <div className="hidden md:flex items-end justify-end mb-8">
-          {/* Under the content on a phone, like its two siblings — see the
-              `md:!hidden` twin at the foot of this section. */}
-          <Link href="/editorial" className="nav-link !hidden md:!inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
-        </div>
-        {/* KNOWN AND ACCEPTED, so please do not "fix" it again.
-            `moreStories` is posts.slice(1, 4) — this layout wants three stories
-            in the right column and content/editorial holds two posts, so it gets
-            one. At 1440 that is a 110px card beside a 460px feature and about
-            350px of empty parchment under it.
-            It was made to collapse to a single column below two side stories on
-            2026-08-09, and Tina reverted that the same day: it took the feature
-            from 674px to 1156px and turned the second story into a full-width
-            110px letterbox with its thumbnail marooned at one end, which trades a
-            vertical gap for a horizontal one. This is her composition and it
-            resolves itself the moment a third post is published — the answer is a
-            post, not a breakpoint. */}
-        {feature && (
-          <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8">
-            {/* `edit-feature-card` carries the height: 460px from md up, a true
-                16:9 below it. Tina, 2026-08-25: "i wanted the editorials on the
-                end of the homepage to be that [16:9] or at least the most recent
-                one". A class rather than the inline `minHeight` it replaces,
-                because an inline style cannot be responsive.
-                768px is where this grid already collapses to one column
-                (`md:grid-cols-[1.5fr_1fr]` on the parent), so the card changes
-                shape exactly where it stops sharing a row. */}
-            <Link href={`/editorial/${feature.slug}`} className="edit-feature-card relative block overflow-hidden" style={{ borderRadius: 8, background: 'var(--aubergine)' }}>
-              {feature.image && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={editorialVariant(feature.image, 900) ?? feature.image}
-                  srcSet={editorialSrcSet(feature.image)}
-                  sizes="(max-width: 768px) 100vw, 60vw"
-                  alt={feature.imageAlt || ''}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  decoding="async"
-                />
-              )}
-              {/* The scrim fades out at 55% of the card, which is tuned to the
-                  460px desktop card. On the 183px 16:9 phone card that covers
-                  ~82px while the caption is 116px, so the eyebrow sat on bright
-                  photograph and was barely readable. `.edit-feature-scrim` is
-                  the hook for the phone override in globals.css. */}
-              <div className="edit-feature-scrim absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(36,27,36,0.78), rgba(36,27,36,0) 55%)' }} />
-              {/* The caption is sized down on a phone by `.edit-feature-card`'s
-                  own media query (globals.css). Measured at 390px with the 460px
-                  card's values still in place: the caption came to 209px inside
-                  a 183px card, so `overflow-hidden` clipped the top of the
-                  title — 26px of it. The classes below are the hooks for that
-                  override; the desktop values stay inline. */}
-              <div className="edit-feature-caption absolute inset-x-0 bottom-0 p-7">
-                <div className="eyebrow" style={{ color: '#e7d3b6' }}>{feature.category}</div>
-                {/* fontSize lives in .edit-feature-title (globals.css), NOT
-                    inline. It was inline at 30px, and an inline style beats a
-                    class outright — so the phone override in the media query was
-                    silently doing nothing and the title stayed 30px on a 183px
-                    card. Colour and line-height stay here per §6. */}
-                <div className="edit-feature-title serif mt-2" style={{ color: 'var(--parchment)', lineHeight: 1.08 }}>{feature.title}</div>
-              </div>
-            </Link>
-            {moreStories.length > 0 && (
-              <div className="flex flex-col gap-4">
-                {moreStories.map((s) => (
-                  <Link key={s.slug} href={`/editorial/${s.slug}`} className="flex gap-4 p-3 items-center" style={{ border: '1px solid var(--hairline)', borderRadius: 8, background: 'var(--bone)' }}>
-                    <div className="shrink-0 overflow-hidden" style={{ width: 84, height: 84, borderRadius: 4, background: '#ece5d8' }}>
-                      {s.image && (
-                        // An 84px square that was being served the 1696px original.
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={editorialVariant(s.image, 400) ?? s.image}
-                          alt={s.imageAlt || ''}
-                          className="w-full h-full object-cover"
-                          width={84}
-                          height={84}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      )}
-                    </div>
-                    <div>
-                      <div className="eyebrow">{s.category}</div>
-                      {/* Size in .edit-more-title (globals.css), not inline —
-                          an inline style beats a class, which is exactly how the
-                          feature card above ended up ignoring its own phone
-                          font-size for a day. Colour and line-height stay
-                          inline per §6. */}
-                      <div className="edit-more-title serif mt-1" style={{ color: 'var(--ink)', lineHeight: 1.2 }}>{s.title}</div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-        <Link href="/editorial" className="nav-link md:!hidden inline-flex items-center gap-1.5 mt-6">
-          All stories <ArrowRight size={13} weight="bold" />
-        </Link>
       </section>
 
     </main>
