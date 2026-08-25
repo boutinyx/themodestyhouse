@@ -4,6 +4,7 @@ import type { CompactCatalogue } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
+import { ActiveFilters, type ActiveFilter } from './ActiveFilters';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
 import { useCurrency } from './CurrencyProvider';
@@ -220,6 +221,25 @@ export function FilterableGrid({
   const shownRows = sortedRows.slice(0, visible);
   const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
 
+  // Chip labels come from the SAME arrays the dropdowns are built from, so a
+  // chip can never disagree with the control that set it. The subtype has no
+  // dropdown any more, so its label is title-cased from the key — the keys are
+  // single lowercase words ('blazer', 'vest', 'undercap'), which is why that is
+  // safe here and would not be over arbitrary text.
+  const activeFilters: ActiveFilter[] = [];
+  if (brand !== 'all') {
+    const label = brands.find((b) => b.value === brand)?.label;
+    if (label) activeFilters.push({ id: 'brand', name: 'Brand', value: label });
+  }
+  if (fabricType !== 'all') {
+    const label = fabricTypes.find((t) => t.value === fabricType)?.label;
+    if (label) activeFilters.push({ id: 'fabricType', name: 'Type', value: label });
+  }
+  if (type !== 'all') {
+    activeFilters.push({ id: 'type', name: 'Category', value: type.charAt(0).toUpperCase() + type.slice(1) });
+  }
+  if (query) activeFilters.push({ id: 'q', name: 'Search', value: q.trim() });
+
   return (
     <div>
       {/* The same index console as /directory — one instrument across the site.
@@ -258,6 +278,33 @@ export function FilterableGrid({
         />
       </IndexPanel>
       )}
+
+      {/* The removable chips for whatever is currently narrowing the grid,
+          2026-08-26. Deliberately BELOW the console and ABOVE the count, so the
+          three read top to bottom as "what you can change / what you have
+          changed / what that left you with".
+          Sort is not among them on purpose — see the note in ActiveFilters.
+          The subtype chip is the one that earns its place twice over: `type`
+          comes from the URL (`?type=blazer`, set by the header flyout), and
+          since the in-page Type dropdown was retired in August there has been
+          NO control on the page that shows a subtype is applied, let alone one
+          that removes it. */}
+      <ActiveFilters
+        className="mb-4"
+        filters={activeFilters}
+        onRemove={(id) => {
+          if (id === 'brand') setBrand('all');
+          if (id === 'fabricType') setFabricType('all');
+          if (id === 'type') setType('all');
+          if (id === 'q') setQ('');
+        }}
+        onClear={() => {
+          setBrand('all');
+          setFabricType('all');
+          setType('all');
+          setQ('');
+        }}
+      />
 
       <div className="brand-label mb-4">
         Showing {shownCards.length} of {sortedRows.length}

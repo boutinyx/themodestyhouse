@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import type { CardProduct } from '@/lib/compactCatalogue';
-import { Heart, Eye, ArrowUpRight } from '@phosphor-icons/react';
+import { Heart, Eye } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { useQuickView } from './QuickView';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
@@ -151,20 +151,17 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
         >
           <Heart size={20} weight={fav ? 'fill' : 'regular'} className="w-5 h-5" />
         </button>
-        {/* Visible outbound-link cue — the card's aria-label already says
-            "opens {brand}'s site", but a sighted user had no visual signal the
-            click leaves the site (2026-08-13 marketing audit). Bottom-right,
-            since both top corners already carry the quick-view/favourite
-            buttons. Decorative only: aria-hidden + pointer-events-none, so it
-            never competes with the full-card anchor (z-10) underneath it for
-            the click. */}
-        <div
-          aria-hidden="true"
-          className="absolute bottom-2 right-2 z-20 w-6 h-6 rounded-full flex items-center justify-center pointer-events-none"
-          style={{ background: 'rgba(255,255,255,0.85)', color: 'var(--muted)', lineHeight: 1 }}
-        >
-          <ArrowUpRight size={14} weight="bold" />
-        </div>
+        {/* THE OUTBOUND ARROW BADGE WAS REMOVED 2026-08-26 — Tina, with a
+            screenshot of it: "this thing gone". It was a decorative white disc
+            with an ArrowUpRight in the image's bottom-right corner.
+            WHY IT EXISTED, so the reasoning is not lost with the pixels: the
+            2026-08-13 marketing audit noted that the card's aria-label says
+            "opens {brand}'s site" but a SIGHTED user had no visual signal the
+            click leaves the site. That gap is real and is now unaddressed
+            visually. Nothing about the link changed — the anchor still carries
+            target="_blank" rel="noopener noreferrer sponsored" and the
+            aria-label, so screen-reader users are unaffected and
+            `npm run audit:outbound` still passes. */}
       </div>
       <div className="brand-label mt-3">{p.brandName}</div>
       <div className="card-title mt-1 px-2">{p.title}</div>

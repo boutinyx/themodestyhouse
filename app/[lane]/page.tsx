@@ -166,7 +166,14 @@ export default async function LanePage({
           })}
         </nav>
       )}
-      <FilterableGrid catalogue={catalogue} initialType={type} />
+      {/* NO SEARCH FIELD, 2026-08-26 — Tina, with a screenshot of it: "the search
+          bar for every catagory done just keep the filters". The Brand and Sort
+          dropdowns stay; only the "Search houses, pieces…" input is gone.
+          /directory keeps its own search — it is the site's index, and that is the
+          page the header's Search link goes to. A lane is already a narrowed view,
+          which is the same argument `searchable={false}` was added for on
+          /edits/[slug]. */}
+      <FilterableGrid catalogue={catalogue} initialType={type} searchable={false} />
       {answer && (
         // Informational copy AFTER the grid, not before it — a shopper wants
         // the products first. Still real, crawlable content: server-rendered,
