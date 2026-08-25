@@ -2,7 +2,7 @@ import Link from 'next/link';
 // ssr entrypoint — this renders inside app/page.tsx, a server component
 // (CLAUDE.md §6), so it stays a server component too rather than forcing a
 // 'use client' boundary onto the homepage for a row of plain links.
-import { ArrowRight, Dress, CoatHanger, StackSimple, Waves, Sparkle } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, Dress, CoatHanger, StackSimple, Waves } from '@phosphor-icons/react/dist/ssr';
 import { LANES } from '@/lib/lanes';
 
 /**
@@ -10,18 +10,27 @@ import { LANES } from '@/lib/lanes';
  * screenshot (aabcollection.com's own hero-adjacent row), 2026-08-21:
  * "i want this on the hero."
  *
- * Five REAL lanes, not five invented ones. Slugs are looked up from
- * lib/lanes.ts by name (findLane throws if one goes missing) rather than
- * hand-copied as bare strings, so a future slug rename can't silently
- * produce a dead link here without breaking the build.
+ * REAL lanes, not invented ones. Slugs are looked up from lib/lanes.ts by
+ * name (findLane throws if one goes missing) rather than hand-copied as bare
+ * strings, so a future slug rename can't silently produce a dead link here
+ * without breaking the build.
  *
- * "Occasion" is the one label that doesn't match its lane's own `nav` text.
- * The site has no lane literally called "Occasion" — only
- * `modest-wedding-guest` (kind: 'occasion', nav: 'Wedding'), which IS the
- * one lane that's actually occasion-based dressing (weddings + formal wear,
- * per its own match() in lib/lanes.ts). This tile is labelled the way
- * Tina's reference showed it while still linking somewhere real, not
- * invented — flagged here rather than silently relabelling her ask.
+ * FOUR tiles as of 2026-08-25, not the original five. Tina sent a crop of the
+ * "OCCASION" tile: "this block needs to go". It was the odd one out from the
+ * day it was built and this comment already said so — it was the only label
+ * that did not match its lane's own `nav` text, because the site has no lane
+ * called "Occasion", only `modest-wedding-guest` (kind: 'occasion', nav:
+ * 'Wedding'). It carried the reference screenshot's label over a lane with a
+ * different name.
+ *
+ * KNOWN COST, stated rather than buried: this tile was `/modest-wedding-guest`'s
+ * most prominent internal link, and the footer column that used to hold it was
+ * cut on 2026-08-24 (see components/Footer.tsx). The lane is not orphaned — it
+ * is still routed, still in sitemap.xml, and still linked contextually from
+ * `/modest-dresses` via `related` in lib/laneAnswers.ts — but it is now down to
+ * that one link, against 25-35 for every category lane. If it should keep a
+ * more prominent one, the cheap fix Footer.tsx already names is a single line
+ * in "The House", not a restored tile.
  *
  * Icons: Phosphor has no literal abaya or hijab/headscarf icon — checked
  * the full set (`Dress`, `CoatHanger`, `StackSimple`, `Hoodie`, `Wind`,
@@ -54,7 +63,6 @@ const ITEMS = [
   { lane: findLane('modest-dresses'), label: 'Dresses', Icon: Dress },
   { lane: findLane('modest-sets'), label: 'Sets', Icon: StackSimple },
   { lane: findLane('modest-hijabs'), label: 'Hijabs', Icon: Waves },
-  { lane: findLane('modest-wedding-guest'), label: 'Occasion', Icon: Sparkle },
 ];
 
 export default function CategoryQuickLinks() {
