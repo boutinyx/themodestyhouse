@@ -69,6 +69,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en-GB" className={`${display.variable} ${label.variable} ${ui.variable}`}>
       <head>
+        {/* Every product photograph on this site is served from
+            cdn.shopify.com — verified in lib/catalogue.test.ts's
+            ALLOWED_IMAGE_HOSTS and in next.config.ts's img-src, and it is the
+            only third-party image host on the grid pages. Without a
+            preconnect, the FIRST product image on every page pays a fresh DNS
+            + TCP + TLS handshake before a single byte of photograph arrives.
+
+            NO crossOrigin attribute, deliberately: these are plain <img> loads,
+            not CORS requests, so an anonymous-CORS preconnect would open a
+            connection the image requests then cannot reuse — leaving the
+            handshake cost exactly where it was, plus a wasted socket.
+
+            dns-prefetch as the fallback for anything that ignores preconnect.
+            → docs/log/2026-08-26-performance-audit-what-to-fix-next.md */}
+        <link rel="preconnect" href="https://cdn.shopify.com" />
+        <link rel="dns-prefetch" href="https://cdn.shopify.com" />
         <script
           type="speculationrules"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(SPECULATION_RULES) }}

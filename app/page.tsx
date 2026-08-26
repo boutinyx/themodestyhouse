@@ -198,6 +198,45 @@ export default function Home() {
               CSS-only one, because no amount of objectPosition changes which
               PIXELS exist to crop from. 768px matches the Tailwind `md:`
               breakpoint already used elsewhere on this page. */}
+          {/* HEAD PRELOAD FOR THE LCP IMAGE. React 19 hoists a <link> rendered
+              here into <head>, so the browser starts the hero before it has
+              parsed this far into the body.
+
+              Measured on production 2026-08-26 (Lighthouse mobile, simulated
+              slow 4G), the hero's LCP phases were:
+                TTFB 536ms | Load Delay 1060ms | Load Time 3167ms | Render 1119ms
+              That 1060ms is dead time — the image is inside a <picture>, behind
+              three font preloads and a render-blocking stylesheet, and nothing
+              in <head> mentions it. `fetchPriority="high"` on the <img> (already
+              present, below) only ranks the request once it EXISTS; it does not
+              make it start sooner.
+
+              Worth knowing: Lighthouse PASSES both `prioritize-lcp-image` and
+              `lcp-lazy-loaded` here, so this is invisible if you read the audit
+              scores. It shows up only in the LCP phase table.
+
+              TWO links, with `media` mirroring the <picture> below EXACTLY —
+              `(max-width: 767px)` for the phone art, its complement for the
+              desktop art. If the media queries did not partition cleanly the
+              browser would preload BOTH heroes and this would cost bytes rather
+              than save time. Keep them in sync with the <source> below.
+              → docs/log/2026-08-26-performance-audit-what-to-fix-next.md */}
+          <link
+            rel="preload"
+            as="image"
+            media="(max-width: 767px)"
+            imageSrcSet="/hero-home-mobile-640.webp 640w, /hero-home-mobile-828.webp 828w, /hero-home-mobile-1080.webp 1080w, /hero-home-mobile-1290.webp 1290w"
+            imageSizes="100vw"
+            fetchPriority="high"
+          />
+          <link
+            rel="preload"
+            as="image"
+            media="(min-width: 768px)"
+            imageSrcSet="/hero-home-10-640.webp 640w, /hero-home-10-1024.webp 1024w, /hero-home-10-1440.webp 1440w, /hero-home-10-1920.webp 1920w, /hero-home-10-2400.webp 2400w"
+            imageSizes="100vw"
+            fetchPriority="high"
+          />
           <picture style={{ display: 'contents' }}>
             <source
               media="(max-width: 767px)"
