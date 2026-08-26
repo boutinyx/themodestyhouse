@@ -1183,5 +1183,205 @@
   "touche-prive:9650659164488": {
     "lane": "outerwear",
     "subtype": "coat"
+  },
+  "veiled:9358288552041": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "jaida:8516351492295": {
+    "lane": "layering-basics",
+    "subtype": "shirt-extender"
+  },
+  "golden-dune:10927938371927": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "golden-dune:10927911338327": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "veiled:7757000441961": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "by-hasanat:8328949694772": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "bemu:9974305063203": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abayas-boutique:32050": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "nour-al-houda:7845287919664": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "kamin:8098807775449": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "kamin:8098804433113": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "kamin:8098801320153": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "bemu:10325164622115": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "kamin:8098797813977": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "kamin:8098791260377": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "kamin:8098789982425": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "kamin:8098773008601": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "ria-miranda:9348495999234": {
+    "lane": "outerwear",
+    "subtype": "cardigan"
+  },
+  "mukistore:9491471270153": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "veiled:7640428576873": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "aab:10201504514362": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abaya-lounge:8258689925270": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "aab:10201504776506": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abaya-lounge:8258704212118": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abaya-lounge:8260494983318": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abaya-lounge:8260490854550": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abaya-lounge:8260485185686": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abaya-lounge:8260487708822": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "nasiba:8673073070389": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "nasiba:8673061962037": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "nasiba:8673055015221": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "nasiba:8673137295669": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "nasiba:8673039843637": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "aab:10277924143418": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "merrachi:15643698299263": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "merrachi:15643699282303": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "merrachi:15643698495871": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "merrachi:15643708686719": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "merrachi:15643708391807": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "chi-ka:8156689137825": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "chi-ka:8156688842913": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "chi-ka:8156681830561": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "aab:10038234906938": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "chi-ka:8075225497761": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "aab:10038234677562": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "chi-ka:8075224350881": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "abayabuth:15768859967866": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "aab:9028595417402": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "aab:10211780165946": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
+  },
+  "ria-miranda:9042061656322": {
+    "lane": "layering-basics",
+    "subtype": "under-dress"
   }
 }
