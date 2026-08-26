@@ -129,3 +129,34 @@ Suggested first move after merging: run it once via **workflow_dispatch with
 `dry_run: true`**, which exercises checkout, node, the deploy wait, the liveness gate and
 the key-file preflight against the real deployed key file, and submits nothing. Then let
 the push trigger do it for real.
+
+## Staging verification (added after deploy)
+The workflow itself cannot run from `staging`, but the two things that decide whether it
+works on `main` — is the key file served, and does the preflight read it — can be, and were.
+
+**The new key file is served correctly**, 120s after the push:
+
+```
+HTTP 200 | content-type: text/plain; charset=UTF-8
+body: e6157f9adb3540d189cd0b9a92a08aa9
+MATCHES the key exactly
+```
+
+**Preflight and host guard, end to end** against staging. Staging serves the key file but
+its `sitemap.xml` hardcodes `https://themodestyhouse.com` (`app/sitemap.ts:BASE`), so this
+is a real case where the preflight must pass and the host guard must then fire:
+
+```
+$ INDEXNOW_HOST=themodestyhouse-staging-production.up.railway.app npm run --silent seo:indexnow -- --dry
+IndexNow: key file verified at https://themodestyhouse-staging-production.up.railway.app/e6157f9adb3540d189cd0b9a92a08aa9.txt
+IndexNow: sitemap contains 132 URL(s) not on themodestyhouse-staging-production.up.railway.app,
+e.g. https://themodestyhouse.com — the endpoint 422s the whole batch.
+exit=1
+```
+
+So the preflight is proven to pass on a live key file as well as to fail on a missing one,
+and the host guard is proven to catch a whole-batch 422 before it reaches the endpoint.
+Both halves of each check have now been observed, rather than only the failing half.
+
+Still unproven until the merge, and only then: the `push` trigger firing, the deploy
+detector printing `DEPLOY DETECTED after Ns`, and a real submission returning HTTP 200.
