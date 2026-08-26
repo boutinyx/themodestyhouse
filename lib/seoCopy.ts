@@ -152,6 +152,15 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     title: 'The Edit — Modest Fashion Stories & Styling Guides',
     description: 'Stories, edits and styling guides on modest fashion from The Modesty House.',
   },
+  /* Added 2026-08-26 with the /edits index route. Both strings are FUNCTIONAL —
+     a page needs a title and a description to exist in a search result, and
+     these state what the page contains rather than selling it (§10.18: no
+     invented brand voice). "Edits" and the three edit names are Tina's own
+     words; the rest is a plain description of the list. */
+  '/edits': {
+    title: 'The Edits — Curated Modest Fashion Selections',
+    description: 'Every edit from The Modesty House: hand-picked selections of modest pieces from across the directory, chosen and grouped by theme.',
+  },
   '/faq': {
     title: 'FAQ — How The Modesty House Works',
     description: 'Common questions about The Modesty House: how brands are chosen, how buying works, prices and currency, and what modest fashion means.',
