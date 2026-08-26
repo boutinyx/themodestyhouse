@@ -86,3 +86,84 @@ production  no x-robots-tag                                             (correct
   under an honest message, or delete them — but not silently.
 - The two stale branches (`legal/…`, `origin/claude/github-push-workflow-…`) are landmines: they
   look like unmerged work and would revert the site. Worth deleting once Tina confirms.
+
+---
+
+# Second pass — Tina reaffirmed "push all changes to main"
+**Status:** done
+
+She repeated the instruction, so the two things held back above were re-examined rather than
+re-declined. `origin/main` went `b35058c → 29bb90d`.
+
+## What was pushed this time
+| commit | source |
+|---|---|
+| `ed5b78b` | content(curate): 115 Beyza cuts, 8 garment moves, 5 lane moves — another session, staging-verified |
+| `01e112f` | docs(log): staging verification for the Beyza curate batch — another session |
+| `29bb90d` | chore(images): the six `edit-fall-hero-4-*.webp` — **the files held back above** |
+
+`main` and `staging` are identical again.
+
+## The webp files — measured, and my earlier read was wrong
+Above I described these as "unexplained binary bytes". They are explained, and the explanation
+inverts which side is the odd one. Re-encoding `public/edit-fall-hero-4.jpg` with the config
+`scripts/optimise-images.mjs` **already carries for that entry** — `{ quality: 100, effort: 6 }` —
+reproduces the working-tree bytes EXACTLY:
+
+```
+sharp(edit-fall-hero-4.jpg).resize(w).webp({quality:100, effort:6})
+  w=640  -> 62444   working tree 62444   ✓        committed was  62480
+  w=1440 -> 226032  working tree 226032  ✓        committed was 228966
+  w=2674 -> 624470  working tree 624470  ✓        committed was 979070
+```
+So the working-tree files are that script's own output and someone simply ran it. The versions
+they replace are *larger* because they were built from the source PNG rather than the `.jpg` —
+which is precisely the caveat the script's own comment on this entry spells out: *"re-running
+THIS script rebuilds the variants from the .jpg, not from the PNG."* Committing them is
+therefore a small fidelity step down, and an invisible one: **`edit-fall-hero-4` is a dead
+asset** — nothing in `lib/`, `app/` or `components/` references it; `lib/edits.ts:749` uses
+`/edit-fall-hero-8.jpg` and `/edit-fall-hero-mobile-7.jpg`. Restoring the PNG-sourced variants
+means rebuilding from the PNG, not re-running the script; the commit message says so.
+
+## The two stale branches — nothing to push, now proven rather than asserted
+Above I claimed their content was already on `main` and inferred it from §10.17. Checked properly
+this time, commit by commit:
+
+| legal branch commit | evidence it is already on `main` |
+|---|---|
+| name the data controller | `content/legal/privacy.md` — 1 hit; also `lib/legal.ts`, `lib/legal.test.ts` |
+| disclose Resend | `content/legal/privacy.md` — 3 hits; `lib/legal.test.ts` — 4 (a test asserts it) |
+| add HUM Clothing + Chic & Modesty | `data/brands.ts` — `slug: 'hum'` and `slug: 'chic-modesty'` |
+| non-English garment vocabulary | `lib/tag.ts` — 10 French garment rules (§10.16's fix) |
+
+`origin/claude/github-push-workflow-yfs1zs`: `git diff e4a51e8~1..676b7be -- app components` is
+**empty** — its two About-copy commits are fully cancelled by its own two reverts. Net zero.
+
+So neither branch holds a single line that `main` lacks, and both would REVERT the site if
+merged — the legal one adds back `app/style/[vibe]/page.tsx`, the Style/Vibe pages Tina had
+deleted on 2026-08-09. They are safe to delete whenever she says so.
+
+## Verification
+```
+$ npx tsc --noEmit → clean   $ npm run lint → exit 0
+$ npm test → 52 files, 856 tests passed      $ npm run build → all routes built
+$ git merge-base --is-ancestor origin/main HEAD → fast-forward confirmed before pushing
+```
+**§10.47 applied, and it worked.** Discriminator picked first — `/modest-abayas` `rowCount`,
+which reads 4526 locally and on staging against production's old 4619. Polled the ORIGIN past
+the edge with a junk query string; it flipped to 4526 on the 4th try (~60 s). *Only then* purged:
+```
+purge success: True
+canonical /modest-abayas  fetch 1 cf=MISS rowCount=4526 · fetch 2 cf=HIT rowCount=4526
+```
+Health check on production: `/`, `/directory`, `/modest-dresses`, `/modest-abayas`,
+`/modest-hijabs`, `/designers`, `/editorial`, `/privacy`, `/terms`, `/sitemap.xml` all **200**;
+`edit-fall-hero-4-2674.webp` serves **624470 bytes** (the newly committed encode);
+`edit-fall-hero-8.jpg` (the live hero) 200; staging still
+`x-robots-tag: noindex, nofollow, noarchive`, production carries none.
+
+## Notes
+- Had I purged first as last time, the edge would have re-cached the 4619 build for another hour.
+  The origin took ~60 s longer than the push to flip. That gap is the whole of §10.47.
+- `CLAUDE.md` is excluded from the repo via `.git/info/exclude`, so §10.47/§10.48 exist on this
+  machine only and cannot be pushed. Worth knowing before anyone looks for them on GitHub.
