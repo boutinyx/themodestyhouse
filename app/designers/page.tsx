@@ -9,6 +9,7 @@ import { designerPageCount, clampDesignerPage } from '@/lib/designerPaging';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, brandListSchema, jsonLdGraph } from '@/lib/schema';
 import { withUtm } from '@/lib/outbound';
+import { hasBrandPage } from '@/lib/brandPages';
 import { regionFromSlug, regionOf, regionSlug } from '@/lib/brandRegions';
 
 // Each page of the index self-canonicalises to its own URL (page 1 -> the
@@ -61,18 +62,33 @@ const ROWS_PER_PAGE = 6;
 const PER_PAGE = PER_ROW * ROWS_PER_PAGE;
 
 /**
- * A house with a `description` has a page of ours; one without still goes
- * straight to its own storefront.
+ * A house that HAS a page of ours links to it; one that does not goes straight
+ * to its own storefront.
  *
  * That split is the point. Until 2026-08-19 every tile here was an outbound
  * link, so this page passed all of its ranking signal off-site and the
  * editorial could name a brand without being able to link it. Where an internal
- * page exists, the tile now points at it, and the outbound link with
+ * page exists, the tile points at it, and the outbound link with
  * rel="sponsored" lives on that page instead — one clear destination each,
  * rather than a tile that tries to be both.
+ *
+ * THE TEST IS `hasBrandPage`, NOT `b.description`, as of 2026-08-26. Those were
+ * the same thing when this was written: a brand page existed only for a house
+ * with an editorial description, and there were five. On 2026-08-24 the gate
+ * moved to `MIN_PRODUCTS >= 24 || description` and brand pages went 5 -> 91
+ * (`docs/log/2026-08-24-brand-pages-404-fix.md`) — but this line was not moved
+ * with it, so **86 real pages had zero internal links from anywhere on the
+ * site**. Measured 2026-08-26 by crawling the site's own HTML: 5 hrefs to
+ * /designers/*, and Search Console had exactly those 5 indexed with the other
+ * 86 "URL is unknown to Google" despite all 91 sitting in sitemap.xml. A
+ * sitemap entry gets a URL considered; internal links are what get it crawled.
+ *
+ * The generalisable trap: two places encoded the same rule, one moved, and
+ * nothing failed — no type error, no test, no broken page. `hasBrandPage` is
+ * now the single source of truth, so the next gate change carries both.
  */
 function Tile({ b, eager, seal }: { b: House; eager: boolean; seal: boolean }) {
-  const internal = b.description?.trim() ? `/designers/${b.slug}` : null;
+  const internal = hasBrandPage(b.slug) ? `/designers/${b.slug}` : null;
   const Wrapper = internal ? Link : 'a';
   const linkProps = internal
     ? { href: internal }
