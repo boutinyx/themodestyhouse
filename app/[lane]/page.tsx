@@ -10,7 +10,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
 import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
-import { LANE_SUBTYPES, resolveSubtype, subtypesForLane, subtypeSeo } from '@/lib/laneSubtypes';
+import { LANE_SUBTYPES, resolveSubtype, subtypeSeo } from '@/lib/laneSubtypes';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -103,7 +103,6 @@ export default async function LanePage({
     const c = decodeCard(catalogue, i);
     return { title: c.title, url: c.url, image: c.image };
   });
-  const laneSubtypes = subtypesForLane(lane.slug);
   const answer = LANE_ANSWERS[lane.slug];
   // Landing via the nav flyout's ?type=blazer should read "Blazers" up top,
   // not the generic lane title — Tina: "i do wnat to see blazer etc etc
@@ -141,14 +140,23 @@ export default async function LanePage({
           "i said get rid of this shit". It was a wrapping <nav> of `.chip` links,
           one per subtype, with the current one filled aubergine.
 
-          WHAT IT WAS FOR, because this has a cost and the cost should not be
-          rediscovered by accident: it was the ONLY place on the site that emitted
-          an href containing `type=`. The header's sub-category flyout is a
-          client-side, portalled Base UI menu, so a crawler cannot follow it —
-          before this row was added on 2026-08-19, the 10 `?type=` pages were in
-          sitemap.xml and linked from nowhere. They are back in that state now:
-          built, rendering, differentiated, and reachable only by a crawler that
-          reads the sitemap. Raised with Tina at the moment of removal.
+          WHAT IT WAS FOR — and the first version of this note got it WRONG, so
+          read the correction: it said this row was "the ONLY place on the site
+          emitting an href containing `type=`", and that removing it left those
+          pages linked from nowhere. **False.** `components/MobileNav.tsx` renders
+          every subtype as a real server-rendered `<a href="/lane?type=x">`, on
+          EVERY page of the site — measured on production with the chip row gone:
+          10 distinct `type=` hrefs on `/`, `/directory`, `/modest-hijabs`,
+          `/modest-dresses` and `/layering-basics` alike. The claim came from a
+          scratch crawler that stripped query strings before counting, so it could
+          never have found one. The desktop flyout (`Nav.tsx`) is indeed a
+          client-side portalled menu a crawler cannot follow; the phone nav is not,
+          and it is in the HTML for everyone.
+
+          So the honest position: removing this row cost some contextual,
+          above-the-fold relevance, not discoverability. The `?type=` pages are
+          linked and still mostly unindexed, which means link starvation was never
+          the reason and adding links back would not have fixed it.
 
           Nothing else changed. `resolveSubtype` still runs, so a `?type=` URL
           still resolves — the h1, <title>, canonical, JSON-LD and the grid's
@@ -172,45 +180,8 @@ export default async function LanePage({
             {answer.h2}
           </h2>
           <p className="mt-4" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>{answer.body}</p>
-          {/* SUBTYPE LINKS LIVE HERE NOW, 2026-08-26, folded into the row that
-              already existed rather than given a row and a label of their own.
-              This is NOT the chip row coming back — Tina removed that twice and
-              it is staying removed. That was a wrapping <nav> of filled chips
-              directly under the h1, above the grid; this is plain underlined
-              prose links at the very bottom of the informational block, in the
-              row that has always said "Also browse".
-
-              WHY THEY HAD TO GO SOMEWHERE. The chip row was the only place on the
-              site emitting an href containing `type=`, and the header flyout is a
-              client-side portalled menu a crawler cannot follow. Measured
-              2026-08-26 after the removal: **zero** `type=` hrefs anywhere, and
-              Search Console had 9 of the 10 `?type=` URLs as "URL is unknown to
-              Google" or "Discovered — currently not indexed", despite all 10
-              sitting in sitemap.xml with ~1,200 words and a unique h1 each.
-              Requesting them by hand is capped at ~10 URLs a day and Tina hit that
-              cap; links are the mechanism that does not need her.
-
-              Folded into "Also browse" deliberately, so no new label had to be
-              invented for her site (§10.18). The subtypes come first because they
-              are narrower than the two sibling lanes beside them, and the one you
-              are already viewing is skipped — a link to the page you are on is
-              not a destination. */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div className="mt-6 flex items-center gap-4">
             <span className="eyebrow" style={{ color: 'var(--muted)' }}>Also browse</span>
-            {laneSubtypes
-              .filter((st) => st.type !== sub?.type)
-              .map((st) => (
-                <Link key={st.type} href={`/${lane.slug}?type=${st.type}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
-                  {st.label}
-                </Link>
-              ))}
-            {/* On a subtype view, the parent lane is a real destination and is
-                otherwise unreachable from this row. */}
-            {sub && (
-              <Link href={`/${lane.slug}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
-                All {lane.title}
-              </Link>
-            )}
             {answer.related.map((slug) => {
               const l = LANES.find((x) => x.slug === slug);
               return l ? (

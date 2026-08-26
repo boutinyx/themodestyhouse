@@ -143,20 +143,30 @@ Removed from `app/[lane]/page.tsx`: a wrapping `<nav aria-label="… sub-categor
 of `.chip` links, one per subtype, the current one filled aubergine.
 
 ### What it cost, said now rather than rediscovered later
-**That `<nav>` was the only place on the site emitting an href containing
-`type=`.** The header's sub-category flyout is a client-side portalled Base UI
-menu, so a crawler cannot follow it. Before the row was added on 2026-08-19 the
-10 `?type=` pages were in `sitemap.xml` and linked from nowhere internally, and
-**they are back in exactly that state**: built, rendering, differentiated, and
-reachable only by a crawler that reads the sitemap. Measured on the deployed
-page — `main a[href*="type="]` is now **0** on `/layering-basics`.
+> **CORRECTED 2026-08-26, later the same day. What follows was wrong.**
 
-That is a real SEO regression and it is Tina's call to accept; it is written here
-so the next person to wonder why those pages have no internal links finds the
-answer instead of re-deriving it. If it should be recovered without the chip row
-coming back, the links have to live somewhere else — the footer, or the
-`lib/laneAnswers.ts` block below the grid — which is a placement decision, not a
-code one.
+I wrote that this `<nav>` was "the only place on the site emitting an href
+containing `type=`", and that removing it left the 10 `?type=` pages linked from
+nowhere. **That is false.** `components/MobileNav.tsx` renders every subtype as a
+real, server-rendered `<a href="/lane?type=x">`, on **every page of the site**.
+Measured on production with the chip row already gone: **10 distinct `type=`
+hrefs** on `/`, `/directory`, `/modest-hijabs`, `/modest-dresses` and
+`/layering-basics` alike.
+
+**How the wrong number was produced.** The scratch crawler that "measured" it
+keyed every link as `m.split('?')[0]` — it stripped the query string before
+counting, with a special case for `/designers?page=`. So `?type=` links were
+recorded as plain lane URLs and the check `[k for k in links if 'type=' in k]`
+could never return anything. It printed `[]`, I read `[]` as "none exist", and
+the harness had erased the evidence rather than found its absence. Same family as
+CLAUDE.md §10.28: **a check whose failure mode is indistinguishable from a clean
+result.** The `main a[href*="type="]` count of 0 on `/layering-basics` was real
+but scoped to `<main>`; the nav links are in the header markup, outside it.
+
+**The honest position:** removing the chip row cost contextual, above-the-fold
+relevance — not discoverability. Those pages are linked from every page of the
+site and are still mostly unindexed, so link starvation was never the reason, and
+putting the links back would not have fixed it.
 
 ### What did not change
 `resolveSubtype` still runs, so a `?type=` URL still resolves. Verified on the

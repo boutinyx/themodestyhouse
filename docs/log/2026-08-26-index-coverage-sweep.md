@@ -66,11 +66,15 @@ present for the houses that have no page of ours. `BASE=… npm run audit:outbou
 
 ## The other gaps, and what each actually needs
 
-- **`?type=` (10 URLs, 1 indexed).** Their only internal links were the
-  sub-category chip row, removed earlier today at Tina's request. The crawl now
-  finds **zero** `href`s containing `type=` anywhere on the site. This is the cost
-  already recorded in `2026-08-26-filter-chips-and-two-removals.md` — accepted, not
-  accidental. They stay in the sitemap; nothing else will find them.
+- **`?type=` (10 URLs, 1 indexed).** ~~Their only internal links were the
+  sub-category chip row… the crawl now finds zero `href`s containing `type=`.~~
+  **WRONG, corrected later the same day.** `components/MobileNav.tsx` emits every
+  subtype as a real server-rendered `<a>` on **every page** — 10 distinct `type=`
+  hrefs on `/`, `/directory` and every lane, measured on production. The crawler
+  that reported zero stripped query strings before counting. So these pages are
+  linked sitewide and still mostly unindexed: **link starvation is not the cause**,
+  and it follows that adding more links would not fix it. See the correction in
+  `2026-08-26-filter-chips-and-two-removals.md`.
 - **`/edits/*` (3, all unknown).** These *are* linked from the homepage. They were
   created 2026-08-24, so two days old — a discovery wait, not a defect. Worth
   noting the `/edits` **index route does not exist and 404s**; only `[slug]` does.
