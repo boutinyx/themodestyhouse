@@ -33,13 +33,21 @@
 // Usage:
 //   npx tsx scripts/touche-prive-dual-region.mjs
 //   npm run build:data
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { BRANDS } from '../data/brands.ts';
 import { paginateFeed, httpPageFetcher } from '../lib/ingest.ts';
 import { isCompleteFetch, applyBrandRefresh, nextDecisions } from '../lib/lifecycle.ts';
 import { normalizeProduct, normalizeProductDetailed } from '../lib/normalize.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
+
+// Houses whose new products default to 'cut' rather than 'keep' — see
+// data/default-cut-brands.json and lib/lifecycle.ts::nextDecisions. Read
+// defensively: an absent file means "no house does", which is the correct
+// reading of an absent list.
+const defaultCutBrands = existsSync(U('default-cut-brands.json'))
+  ? JSON.parse(readFileSync(U('default-cut-brands.json'), 'utf8')).brands ?? []
+  : [];
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const intBrand = BRANDS.find((b) => b.slug === 'touche-prive');
@@ -122,7 +130,7 @@ console.log(
 );
 
 const decisions = JSON.parse(readFileSync(U('decisions.json'), 'utf8'));
-writeFileSync(U('decisions.json'), JSON.stringify(nextDecisions(decisions, intNormalized.map((p) => p.id))));
+writeFileSync(U('decisions.json'), JSON.stringify(nextDecisions(decisions, intNormalized.map((p) => p.id), defaultCutBrands)));
 writeFileSync(U('raw-products.json'), JSON.stringify(raw, null, 2));
 
 console.log('\nWrote data/raw-products.json and data/decisions.json.');

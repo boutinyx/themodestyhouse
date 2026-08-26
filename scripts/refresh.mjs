@@ -6,13 +6,21 @@
 // This script is deliberately thin: it does network I/O, file I/O and reporting.
 // Every RULE lives in lib/lifecycle.ts where it is unit-tested. Nothing here
 // decides what gets hidden.
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { BRANDS } from '../data/brands.ts';
 import { fetchBrand } from '../lib/ingest.ts';
 import { applyBrandRefresh, nextDecisions } from '../lib/lifecycle.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
+
+// Houses whose new products default to 'cut' rather than 'keep' — see
+// data/default-cut-brands.json and lib/lifecycle.ts::nextDecisions. Read
+// defensively: an absent file means "no house does", which is the correct
+// reading of an absent list.
+const defaultCutBrands = existsSync(U('default-cut-brands.json'))
+  ? JSON.parse(readFileSync(U('default-cut-brands.json'), 'utf8')).brands ?? []
+  : [];
 const TODAY = new Date().toISOString().slice(0, 10);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -92,7 +100,7 @@ for (const brand of targets) {
   raw = rows;
 
   const decisions = JSON.parse(readFileSync(U('decisions.json'), 'utf8'));
-  writeFileSync(U('decisions.json'), JSON.stringify(nextDecisions(decisions, result.normalized.map((p) => p.id))));
+  writeFileSync(U('decisions.json'), JSON.stringify(nextDecisions(decisions, result.normalized.map((p) => p.id), defaultCutBrands)));
   // Checkpoint per brand (§10.7): a killed run keeps completed work.
   writeFileSync(U('raw-products.json'), JSON.stringify(raw, null, 2));
 

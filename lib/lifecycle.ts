@@ -152,13 +152,27 @@ export function applyBrandRefresh(
  * add-brands.mjs previously wrote `decisions[id] = 'keep'` unconditionally, so
  * every product Tina cut came back from the dead on the next ingest of its
  * brand. That is the failure Invariant 3 warns about.
+ *
+ * `defaultCutBrands` inverts the DEFAULT — never an existing decision — for a
+ * house Tina curates piece by piece rather than in bulk. Without it, emptying
+ * such a brand lasts exactly one night: cutting today's ids says nothing about
+ * ids that do not exist yet, and the 04:10 refresh defaults every new arrival
+ * to 'keep' and republishes it. Added 2026-08-27 for `urban-modesty`, which she
+ * asked to empty while keeping the house itself listed so she can hand-pick
+ * back into it. See data/default-cut-brands.json.
  */
 export function nextDecisions(
   decisions: Record<string, string>,
   ids: string[],
+  defaultCutBrands: Iterable<string> = [],
 ): Record<string, string> {
+  const cutByDefault = new Set(defaultCutBrands);
   const out = { ...decisions };
-  for (const id of ids) if (!(id in out)) out[id] = 'keep';
+  for (const id of ids) {
+    if (id in out) continue;
+    // Invariant 1: the id IS `${brandSlug}:${shopifyId}`.
+    out[id] = cutByDefault.has(id.split(':')[0]) ? 'cut' : 'keep';
+  }
   return out;
 }
 

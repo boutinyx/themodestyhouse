@@ -474,7 +474,6 @@ export const EDITS: Edit[] = [
       'bemu:10070437134627', // Bemu — Lace Maxi Skirt, Taupe
       'merrachi:15638951723391', // MERRACHI — Lace Detailed Top, Khaki
       'hawaa:15910989365621', // Hawaa Clothing — Black Polka Modal Lace Hijab
-      'urban-modesty:8057437651019', // Urban Modesty — Beige Lace Trim Open Abaya and Hijab Set
       'modesty-in-style:10614938075446', // Modesty in Style — Lila Lace Set
       'vela:8350999085212', // Vela Scarves — Black Lace Abaya
       'bemu:10148012753187', // Bemu — Lace Abaya Set, Beige
@@ -612,7 +611,6 @@ export const EDITS: Edit[] = [
       'chic-modesty:10323101811026', // Chic & Modesty — Almond green premium jersey hijab
       'yasmin-jay:7910436208816', // Yasmin Jay — Misty Rose Jersey Scarf
       'modesty-in-style:10797100106038', // Modesty in Style — Khaki Jersey Set
-      'urban-modesty:7500430508107', // Urban Modesty — Ombré Jersey Hijab
       'losyana:10645916582226', // Losyana — Vela Jersey - light beige
       'culture-hijab:10186618437930', // Culture Hijab Co — Premium Jersey Hijab
       'hidayah:7603885670571', // Hidayah — Premium Plain Jersey (Peru)
@@ -1068,7 +1066,6 @@ export const EDITS: Edit[] = [
       'bait-hanayen:7877489819759', // Bait Hanayen — Brown Trench Coat Abaya
       'mukistore:15460878090505', // Mukistore — Super Stretch Full Wide Leg Jeans – H986-1
       'touche-prive:8687763751240', // Touché Privé — Asymmetric Button Detail Shirt
-      'urban-modesty:7509246148683', // Urban Modesty — Cider Sweater and Pants Set
       'bemu:10095871525155', // Bemu — Maxi Satin Skirt- Beige
       'aeon-abaya:8889973964852', // Aeon Abaya — Pistachio Vest
       'chador:192671', // Chador — Essential Gilet Set

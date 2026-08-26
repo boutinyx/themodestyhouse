@@ -5,7 +5,7 @@
 // only ever adds and updates, so it cannot notice a product a brand deleted.
 //
 // Imports .ts — MUST run under tsx, never bare node.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { BRANDS } from '../data/brands.ts';
 import { fetchBrand } from '../lib/ingest.ts';
 import { applyBrandRefresh, nextDecisions } from '../lib/lifecycle.ts';
@@ -20,6 +20,14 @@ if (missing.length) throw new Error(`Unknown brand slug(s): ${missing.join(', ')
 
 const TODAY = new Date().toISOString().slice(0, 10);
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
+
+// Houses whose new products default to 'cut' rather than 'keep' — see
+// data/default-cut-brands.json and lib/lifecycle.ts::nextDecisions. Read
+// defensively: an absent file means "no house does", which is the correct
+// reading of an absent list.
+const defaultCutBrands = existsSync(U('default-cut-brands.json'))
+  ? JSON.parse(readFileSync(U('default-cut-brands.json'), 'utf8')).brands ?? []
+  : [];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 for (const brand of targets) {
@@ -51,7 +59,7 @@ for (const brand of targets) {
   // Only default an id that has no decision yet. Writing 'keep' unconditionally
   // (as this script used to) resurrected every product Tina had cut — Invariant 3.
   const decisions = JSON.parse(readFileSync(U('decisions.json'), 'utf8'));
-  writeFileSync(U('decisions.json'), JSON.stringify(nextDecisions(decisions, result.normalized.map((p) => p.id))));
+  writeFileSync(U('decisions.json'), JSON.stringify(nextDecisions(decisions, result.normalized.map((p) => p.id), defaultCutBrands)));
 
   console.log(`  upserted ${brand.slug}: ${report.updated} updated, ${report.added.length} new`);
   await sleep(6000); // space out brands to ease rate-limiting

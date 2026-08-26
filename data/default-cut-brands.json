@@ -1,0 +1,4 @@
+{
+  "_comment": "Houses whose NEW products default to 'cut' instead of 'keep' when scripts/refresh.mjs or scripts/add-brands.mjs first sees them (lib/lifecycle.ts::nextDecisions). This inverts the DEFAULT only — an existing decision, including a 'keep' Tina has made, is never touched. It is for a house she curates piece by piece: without it, emptying a brand lasts one night, because the nightly refresh defaults every new arrival to 'keep' and republishes it. Removing a slug here does NOT resurrect anything already cut; it only changes what happens to ids seen for the first time afterwards.",
+  "brands": ["urban-modesty"]
+}

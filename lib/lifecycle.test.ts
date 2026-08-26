@@ -9,6 +9,9 @@ import {
   freezeCollapsedBrands,
   brandPriceSignals,
 } from './lifecycle';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { BRANDS } from '@/data/brands';
 import type { Product } from '@/lib/types';
 import type { LifecycleRow } from './lifecycle';
 
@@ -196,6 +199,61 @@ describe('nextDecisions', () => {
     const before = { 'inayah:1': 'cut' };
     nextDecisions(before, ['inayah:2']);
     expect(before).toEqual({ 'inayah:1': 'cut' });
+  });
+
+  // A house Tina curates piece by piece. Emptying it has to survive the 04:10
+  // refresh, which sees ids that did not exist when she cut the rest.
+  it('defaults an unseen product to CUT for a default-cut brand', () => {
+    expect(nextDecisions({}, ['urban-modesty:1'], ['urban-modesty'])).toEqual({
+      'urban-modesty:1': 'cut',
+    });
+  });
+
+  it('still defaults OTHER brands to keep in the same pass', () => {
+    expect(nextDecisions({}, ['urban-modesty:1', 'inayah:1'], ['urban-modesty'])).toEqual({
+      'urban-modesty:1': 'cut',
+      'inayah:1': 'keep',
+    });
+  });
+
+  // The whole point is that it inverts a DEFAULT, not a decision. A piece she
+  // has deliberately kept must survive every subsequent refresh.
+  it('never overwrites a keep Tina made for a default-cut brand', () => {
+    expect(
+      nextDecisions({ 'urban-modesty:1': 'keep' }, ['urban-modesty:1'], ['urban-modesty']),
+    ).toEqual({ 'urban-modesty:1': 'keep' });
+  });
+
+  it('matches on the brand slug, not a prefix of it', () => {
+    expect(nextDecisions({}, ['urban-modesty-uk:1'], ['urban-modesty'])).toEqual({
+      'urban-modesty-uk:1': 'keep',
+    });
+  });
+});
+
+// The list is data, and it is only honoured if every script that defaults a
+// decision actually passes it in — a slug sitting in a file no caller reads
+// would look identical to a working guard (§10.33).
+describe('data/default-cut-brands.json', () => {
+  const raw = JSON.parse(
+    readFileSync(path.join(process.cwd(), 'data', 'default-cut-brands.json'), 'utf8'),
+  ) as { brands: string[] };
+
+  it('lists real brand slugs', () => {
+    const known = new Set(BRANDS.map((b) => b.slug));
+    expect(raw.brands.filter((s) => !known.has(s))).toEqual([]);
+  });
+
+  it('is passed to nextDecisions by every script that defaults a decision', () => {
+    const callers = ['refresh.mjs', 'add-brands.mjs', 'touche-prive-dual-region.mjs'];
+    const missing = callers.filter((f) => {
+      const src = readFileSync(path.join(process.cwd(), 'scripts', f), 'utf8');
+      // NOT `[^)]*` — the arg list itself contains `)`, in `.map((p) => p.id)`,
+      // so a negated-class scan stops before ever reaching the third argument
+      // and reports every caller as unwired (§10.26: suspect the harness).
+      return !/nextDecisions\([\s\S]*?,\s*defaultCutBrands\)/.test(src);
+    });
+    expect(missing).toEqual([]);
   });
 });
 
