@@ -83,6 +83,13 @@ Each was fixed by measuring rather than softening.
   `lastModified` from the frontmatter date (fixed 2026-08-09).
 - Piece two, per the research: the British modest houses (~25 of 113 brands;
   `modest clothing uk` rising +140%). Not started.
-- Not verified on staging yet — another session holds `next start` on :3211 and a
-  `next dev` on :3000 off the shared `.next`, so `npm run build` was deliberately not
-  run (§10.28 rule 4). Staging verification is the outstanding step before merge.
+- **Verified on staging** at
+  `https://themodestyhouse-staging-production.up.railway.app/editorial/where-to-buy-hijabs-online`
+  (commit `3609f9b`): HTTP 200, 8 `<h2>`, 23 `/designers/` links, 24 sponsored outbound
+  links, no leaked markdown, canonical correctly points at the production host, and the
+  response carries `x-robots-tag: noindex, nofollow, noarchive`. Present in staging's
+  `sitemap.xml`, and leading the homepage feature slot. Screenshotted at 1440 and 390
+  and looked at. `npm run build` was NOT run locally — another session holds
+  `next start` on :3211 and `next dev` on :3000 off the shared `.next` (§10.28 rule 4);
+  the Railway build is the one that was reviewed, which is the point of the protocol.
+- Awaiting Tina's approval to merge `staging` → `main`.
