@@ -1383,5 +1383,25 @@
   "ria-miranda:9042061656322": {
     "lane": "layering-basics",
     "subtype": "under-dress"
+  },
+  "beyza:10136430248120": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "beyza:10394853081272": {
+    "lane": "outerwear",
+    "subtype": "blazer"
+  },
+  "beyza:10398715248824": {
+    "lane": "outerwear",
+    "subtype": "coat"
+  },
+  "beyza:10139376550072": {
+    "lane": "outerwear",
+    "subtype": "vest"
+  },
+  "beyza:10136433885368": {
+    "lane": "outerwear",
+    "subtype": "coat"
   }
 }
