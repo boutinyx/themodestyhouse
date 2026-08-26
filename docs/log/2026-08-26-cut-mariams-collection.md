@@ -121,3 +121,40 @@ the note below.
   republish re-interleaves the whole catalogue (§8), so row 40 now coincides. **That
   fixture needs to not depend on a specific row index**, or it will break on every publish
   and on every nightly refresh.
+
+## Live on themodestyhouse.com — 2026-08-26
+
+Tina approved the merge ("get rid of it on live too") and chose, when asked, to ship the
+whole of `staging` rather than cherry-pick this commit: `main` was 10 commits behind and a
+fast-forward carried another session's catalogue-payload split, the `/edits` index, the
+hero-preload revert, the hijab guide and four log entries along with it.
+
+`git push origin origin/staging:main` — `1966a14..5d208ab`, a clean fast-forward. `main`
+was never checked out in this working tree, because a concurrent session has uncommitted
+work in it (§10.30 / §10.39).
+
+Railway redeployed in ~2 minutes; polled with a cache-busting query string so the answer
+came from the origin rather than the edge (§10.21). Then **purged the Cloudflare cache**
+(`purge_everything`, zone `themodestyhouse.com`, `success: true`) — §12's open suggestion,
+since a deploy is otherwise invisible for up to an hour.
+
+Verified on **https://themodestyhouse.com** after the purge:
+
+| | |
+|---|---|
+| `/designers/mariams` | **404** |
+| `/product/mariams/9282768208088` | **404** |
+| `/designers` | 200, reads **112 houses** |
+| `/`, `/directory`, `/modest-hijabs`, both guides, `sitemap.xml` | 200, **zero** "mariam" in the HTML |
+| hijab guide | serves "Seventy-four", "4,845", "706 pieces", "Eleven houses" |
+| homepage picks rail | **6 cards**, checked in a real browser, not curl |
+| `x-robots-tag` | absent (correct — the noindex guard is host-keyed and only fires on staging) |
+
+**One observation, not a defect and not caused by this change:** every page now answers
+with `cache-control: private, no-cache, no-store, max-age=0, must-revalidate` and
+`cf-cache-status: DYNAMIC` on three consecutive fetches. All 32 routes build as `ƒ`
+(server-rendered on demand), so Cloudflare is honouring the origin and holding nothing —
+which means the HTML cache rule from `docs/log/2026-08-26-cloudflare-html-caching.md` is
+not currently doing anything for lane pages, and the purge above was belt-and-braces.
+Worth someone looking at deliberately; §10.23 says a header is not a behaviour, and three
+fetches is an observation, not a diagnosis.
