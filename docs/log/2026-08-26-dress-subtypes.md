@@ -136,3 +136,38 @@ this work, no published title changed, recorded here so the hunk is accounted fo
 - `isKhimarAbaya` is now a slightly wrong name (its matches are no longer all abayas). Left
   alone: it is referenced from `lib/lanes.ts`, `lib/hijabTypeFilter.ts` and two test files, and
   a comment says what a rename would.
+
+## Addendum — verified on staging
+`https://themodestyhouse-staging-production.up.railway.app/modest-dresses` (commit `ad50c56`),
+Playwright/Chromium at 1440×1100, driving the real control:
+
+```
+options in the Type menu: ["all type","everyday dresses","occasion dresses","slip dresses"]
+Slip Dresses:     chip="Slip Dresses"     cards=17   expected 17   PASS  ("SHOWING 17 OF 17")
+Occasion Dresses: chip="Occasion Dresses" cards=137  expected 137  PASS
+Everyday Dresses: chip="Everyday Dresses" cards=353  expected 353  PASS
+no "Type" chip on /modest-skirts                                    PASS
+"Luxury Jersey Khimaar" absent from /modest-dresses, present on /modest-hijabs  PASS
+```
+Every one of the 137 Occasion cards was then cross-checked against the rules by href:
+**49 curated + 88 Glow-Modesty-rule = 137, zero unexplained.**
+
+**Three probe faults on the way, all §10.26 — worth recording because each looked like a site bug:**
+1. **`grep 'Occasion Dresses'` on the deployed HTML returned 0 for ten minutes** and read as "the
+   deploy never landed". The deploy had landed on the first attempt — those option labels only
+   exist inside the portalled menu, never in SSR. `dressSubtypeIdx` in the payload was the marker
+   that actually worked. A check that cannot fire reads exactly like a failure (§10.28 rule 3).
+2. **A "Niswa Fashion dress in Occasion" was investigated twice as a misfile.** Both sightings were
+   the harness: first `[data-surface="product-card"]` is an overlay anchor whose own `innerText`
+   is empty, so card text was read off the wrong element; then the cross-check keyed products by
+   HANDLE alone, and `glowmodesty.com/products/alina-dress` collided with a Nurmire product of the
+   same handle. Keying on host+path resolved it to Glow Modesty and the count closed exactly.
+   A third run reported 264 Occasion cards — that one had silently failed to apply the filter at
+   all and measured the unfiltered lane. Every subsequent run now asserts the chip still reads the
+   chosen label *after* loading, and throws otherwise.
+3. **"All 17 Slip images are broken"** — 17 `<img>` elements with empty `currentSrc`. False.
+   Those rows sit beyond the 48 embedded cards, so their images are only requested after
+   `/api/catalogue/cards` resolves, which is *after* `networkidle` has already fired from the
+   initial navigation. Waited on the images themselves instead: all 17 `complete`,
+   `naturalWidth: 389`, real Shopify srcsets. `networkidle` is not a rendering guarantee on a page
+   that fetches its own content.
