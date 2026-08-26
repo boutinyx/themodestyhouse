@@ -15,10 +15,12 @@
  * app/page.tsx rather than duplicating title/price/image here, so the rail
  * can never show stale data: if a brand is cut or a product is delisted, its
  * id just silently drops out of the lookup instead of rendering a dead card.
+ *
+ * 2026-08-26: Mariam's Collection was cut from the directory, so its pick
+ * (Satin Lace Trim Top, MS433) was removed here too. The rail is now 6.
  */
 export const POPULAR_ITEM_IDS = [
   'bemu:10225604296995', // Polka Dot Maxi Skirt - Black — $42.30 USD
-  'mariams:9282768208088', // Satin Lace Trim Top (MS433) — $29.90 USD
   'eynaa-paris:10742646669655', // Essential Long Sleeved T-Shirt [Off-white] — €39.90
   'la-petite-parisienne:15041729331540', // Yellow Knotted JESSY Set — €47.19
   'glamberry:15530007855369', // Maxi Dress With Flounced Hem — €48

@@ -22,7 +22,6 @@ export const BRANDS: Brand[] = [
   { slug: 'klay', name: 'KlayTheLabel', homepage: 'https://klaythelabel.com', feedUrl: 'https://klaythelabel.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest', city: 'UK', vibe: 'streetwear' },
 
   // — abaya specialists —
-  { slug: 'mariams', name: "Mariam's Collection", homepage: 'https://mariam-col.com', feedUrl: 'https://mariam-col.com/products.json', community: 'hijabi', currency: 'USD', category: 'Abayas', city: 'USA', vibe: 'maximalist' },
   { slug: 'glow-modesty', name: 'Glow Modesty', homepage: 'https://glowmodesty.com', feedUrl: 'https://glowmodesty.com/products.json', community: 'hijabi', currency: 'USD', category: 'Abayas', city: 'USA', vibe: 'elegant', badge: 'verified', description: 'A dress specialist rather than a general wardrobe: 110 of its 161 pieces are dresses, with a small run of abayas alongside. Sits at the upper-middle of the index, most of the range between $78 and $172. Sealed for doing one thing properly — two thirds of the range is dresses, and the focus shows in the cut rather than in the breadth of the catalogue.' },
   { slug: 'jawda', name: 'Jawda', homepage: 'https://jawda.co.uk', feedUrl: 'https://jawda.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Abayas', city: 'London', vibe: 'elegant' },
   // Feradje: curated to their BEST SELLERS collection only (per curation choice), not full catalogue.

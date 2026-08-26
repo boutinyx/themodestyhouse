@@ -1,6 +1,6 @@
 ---
 title: "Where to Buy Hijabs Online, and What You'll Actually Pay"
-dek: "Seventy-five houses in the directory sell hijabs — 5,046 of them, with house medians from $2 to $96. The four bands the market really splits into, and why the fabric decides most of the price."
+dek: "Seventy-four houses in the directory sell hijabs — 4,845 of them, with house medians from $2 to $96. The four bands the market really splits into, and why the fabric decides most of the price."
 category: "Guides"
 author: "The Modesty House"
 date: "2026-08-26"
@@ -9,7 +9,7 @@ imageAlt: "A stack of folded plum satin scarves on a warm terracotta background,
 slug: "where-to-buy-hijabs-online"
 ---
 
-Search for somewhere to buy a hijab and every result is a shop telling you about its own hijabs. Nobody shows you the market at once. So I went through all 5,046 hijabs in the [directory](/modest-hijabs) — 75 houses — and priced each house by its median, converted to US dollars.
+Search for somewhere to buy a hijab and every result is a shop telling you about its own hijabs. Nobody shows you the market at once. So I went through all 4,845 hijabs in the [directory](/modest-hijabs) — 74 houses — and priced each house by its median, converted to US dollars.
 
 The spread runs from $2.32 to $95.66. That sounds like one market with expensive ends. It isn't. It's four bands, and the fabric decides most of where a house lands.
 
@@ -31,8 +31,6 @@ This band exists to be bought three at a time. Nothing here is trying to be an o
 
 This is the crowded middle, and it's crowded for a reason: it's where a hijab stops being disposable without becoming a purchase you think about.
 
-**[Mariam's Collection](/designers/mariams)** (USA) — 201 hijabs, median **$9.90**, and the widest single range in this band, from $2.50 to $69.90. The [Two-Tone Polka Dot Chiffon](https://mariam-col.com/products/two-tone-polka-dot-chiffon-hijab-scarf-mh247) is $6; the embroidered and sequinned end runs much higher.
-
 **[Nasiba](/designers/nasiba)** (Australia) — 395 hijabs, the largest hijab catalogue on the site, median **$10.73**. The [Premium Chiffon](https://nasiba.com/products/premium-chiffon-hijab-string) sits exactly on it.
 
 **[iLoveModesty](/designers/ilovemodesty)** (Mississauga, Ontario) — 291 hijabs, median **$11.00**, chiffon-led with satin behind it: the [Autumn Abstract Marble Print Modal](https://ilovemodesty.com/products/autumn-abstract-marble-print-modal-hijab) at $10.
@@ -51,7 +49,7 @@ Nothing structural separates this band from the one above it. What changes is th
 
 **[AbayaButh](/designers/abayabuth)** (UK) — 192 hijabs, median **$20.44**, and the broadest fabric range in this band by some distance: eleven different fabrics appear in its titles against five to seven for its neighbours, including organza and [georgette](https://abayabuth.com/products/luxury-georgette-hijab-with-dainty-detailing-rose-taupe).
 
-**[Losyana](/designers/losyana)** (Nijmegen, Netherlands) — 394 hijabs, median **$20.99**, the second-largest hijab catalogue on the site — behind Nasiba by a single piece — and one of the 18 houses that stock a proper [instant style](https://losyana.nl/products/instant-hijab-mink).
+**[Losyana](/designers/losyana)** (Nijmegen, Netherlands) — 394 hijabs, median **$20.99**, the second-largest hijab catalogue on the site — behind Nasiba by a single piece — and one of the 17 houses that stock a proper [instant style](https://losyana.nl/products/instant-hijab-mink).
 
 **[Vela Scarves](/designers/vela)** (USA) — 339 hijabs, median **$21.99**, third-largest here. The [Jersey Lite](https://velascarves.com/products/canyon-brown-jersey-lite) line is the volume seller.
 
@@ -73,31 +71,31 @@ The drop-off is sharp. Below $30 there are dozens of houses; above it there are 
 
 ## The fabric is most of the price
 
-Sort all 5,046 by what the title says they're made of, set the caps and inners aside, and the ladder is orderly. These are medians across the whole catalogue, not one house:
+Sort all 4,845 by what the title says they're made of, set the caps and inners aside, and the ladder is orderly. These are medians across the whole catalogue, not one house:
 
 - **Georgette** — 77 pieces, median **$10**. The cheapest, and barely sold: only five houses stock it.
-- **Chiffon** — 738 pieces across 28 houses, median **$11**. The cheapest fabric that is widely available.
-- **Modal** — 808 pieces across 31 houses, median **$16**.
-- **Satin** — 213 pieces across 18 houses, median **$20**.
-- **Jersey** — 1,307 pieces across 45 houses, median **$21**. The most-stocked fabric on the site by a wide margin, and not the cheapest despite it.
-- **Bamboo** — 278 pieces across 24 houses, median **$22**.
-- **Silk** — 102 pieces across 11 houses, median **$29**. The top of the ladder, and rarer than its reputation suggests.
+- **Chiffon** — 706 pieces across 27 houses, median **$11**. The cheapest fabric that is widely available.
+- **Modal** — 801 pieces across 30 houses, median **$16**.
+- **Satin** — 203 pieces across 17 houses, median **$20**.
+- **Jersey** — 1,301 pieces across 44 houses, median **$21**. The most-stocked fabric on the site by a wide margin, and not the cheapest despite it.
+- **Bamboo** — 276 pieces across 23 houses, median **$22**.
+- **Silk** — 93 pieces across 9 houses, median **$35**. The top of the ladder, and rarer than its reputation suggests.
 
-The list above compares houses as much as fabrics, so I checked it a second way: within a single house, stocking at least five of each. Twelve houses qualify, and jersey costs more than chiffon at eight of them — typically about 20% more, though Zahraa charges just over double ($16 against $7.50) and Modern Hijabi runs the other way ($15 against $20).
+The list above compares houses as much as fabrics, so I checked it a second way: within a single house, stocking at least five of each. Eleven houses qualify, and jersey costs more than chiffon at seven of them — typically about 13% more, though Zahraa charges just over double ($16 against $7.50) and Modern Hijabi runs the other way ($15 against $20).
 
 So the effect is real but modest, and smaller than the difference between two houses. If you are choosing on price, check you're comparing the same cloth first — then check the house, because that is where the bigger number is.
 
-One honest limit: this counts what a title says. Around 1,450 of the 5,046 hijabs don't name a fabric at all, so they aren't in the numbers above.
+One honest limit: this counts what a title says. Around 1,350 of the 4,845 hijabs don't name a fabric at all, so they aren't in the numbers above.
 
 ## Instant hijabs are a small market, priced like a normal one
 
-*Instant*, *slip-on* and *ready-to-wear* between them describe 142 pieces across 18 houses, at a median of **$19** — the same as an ordinary mid-band scarf. You aren't paying a premium for the convenience, which is not what I expected to find.
+*Instant*, *slip-on* and *ready-to-wear* between them describe 134 pieces across 17 houses, at a median of **$19** — the same as an ordinary mid-band scarf. You aren't paying a premium for the convenience, which is not what I expected to find.
 
 The two houses treating it as a line rather than a novelty are [Nour Al Houda](/designers/nour-al-houda), whose [Instant Bamboo Jersey Wrap](https://nouralhouda.com.au/products/instant-bamboo-jersey-wrap-espresso) comes as a set at $21, and [Nasiba](/designers/nasiba), whose [Slip On](https://nasiba.com/products/slip-on-hijab-shadow-gray-j) is $11.
 
 ## The cost nobody counts: caps
 
-613 of the pieces in the hijab category aren't scarves at all — they're undercaps, underscarves and bonnets, sold by 30 houses at a median of **$8**.
+586 of the pieces in the hijab category aren't scarves at all — they're undercaps, underscarves and bonnets, sold by 29 houses at a median of **$8**.
 
 That is most of a chiffon, and it's the line item that quietly turns a $10 hijab into an $18 one. [Zahraa](/designers/zahraa) sells the [Aya Undercap](https://zahraathelabel.com/products/aya-undercap-cocoa) at $7.50; the cheapest in the index are Nour Al Houda's open caps at $1.40. If you're buying a first set, price the cap in at the start rather than discovering it at checkout — and check whether the house sells the pair together, because several in the $10–$20 band do.
 
