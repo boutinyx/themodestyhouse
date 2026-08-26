@@ -1050,7 +1050,6 @@ export const EDITS: Edit[] = [
       'nour-al-houda:7901544251440', // Nour Al Houda (BNAH) — Nes Cinched Blouse - White
       'touche-prive:9895675625800', // Touché Privé — Gathered Shoulder Cupra Gilet
       'nour-al-houda:7935612321840', // Nour Al Houda (BNAH) — Canvas Trench Coat - Evergreen Fog
-      'la-petite-parisienne:12488256848212', // La Petite Parisienne — Brown VICTORY shirt (KC842)
       'jennah-boutique:7957418377392', // Jennah Boutique — JNA khaki barrel pants
       'bayt-el-hayat:15475417776502', // Bayt El Hayat — Corduroy Two Piece Set – Dark Grey
       'vela:7027379830940', // Vela Scarves — Truffle Mushroom
