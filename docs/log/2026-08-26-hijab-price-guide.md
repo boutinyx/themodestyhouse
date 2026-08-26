@@ -93,3 +93,59 @@ Each was fixed by measuring rather than softening.
   `next start` on :3211 and `next dev` on :3000 off the shared `.next` (§10.28 rule 4);
   the Railway build is the one that was reviewed, which is the point of the protocol.
 - Awaiting Tina's approval to merge `staging` → `main`.
+
+
+---
+
+# Rewrite on corrected data
+**Date:** 2026-08-26 · **Status:** done
+
+The first version was built on prices that were in the wrong currency for 31 brands
+(`docs/log/2026-08-26-currency-mislabelling.md`) and named a house that had since been
+cut. Rewritten after the fix and re-ingest.
+
+## What changed in the piece
+- **Every figure recomputed.** Catalogue is now **4,980 hijabs across 74 houses**
+  (was 5,046 / 75 — Mariam's Collection was cut from the directory in `d58b224`).
+  The range is **$6.34 to $80.49**, not $2.32 to $95.66.
+- **The whole "Under $10" band changed hands.** Nurmirè ($2.32 → $21.06) and Hidayah
+  ($3.12 → $18.72) were never budget houses; they are $19–21 houses and now appear in
+  the middle and upper bands. The real floor is Modest & Timeless $6.34, Store WF
+  $6.82, Zahraa $7.50.
+- **Mariam's Collection removed** — it led the $10–20 section and carried two product
+  links. Gone, along with its designer link.
+- Other movements: Nasiba $10.73 → $15.11, Jaida $16.62 → $23.27, MERRACHI $54.83 →
+  $33.83, Maison Hijab $95.66 → $80.49, Hawaa and Klay both to $19.77.
+- **Fabric ladder recomputed**: georgette $10, chiffon $15, modal $19, satin $20,
+  jersey $22, bamboo $26, silk $32. Crinkle and plain cotton sit outside it at $9.
+- Instant hijabs are now 123 pieces / 15 houses / $23 median (was 142 / 18 / $19);
+  caps 590 / 30 houses / $7.50 (was 613 / 30 / $8).
+- Added a dated-prices note at the end. Prices are read from live listings and shops
+  move them, so the piece now says which day it was measured.
+
+## Claims that did not survive re-checking
+Four, caught the same way as the first round — by measuring rather than rereading:
+1. *"MERRACHI's catalogue is bigger than the other four put together, three times
+   over"* — it is 378 against 238, i.e. 1.59x. Now "more hijabs than the other four
+   put together."
+2. *"The cheapest ready-to-wear is Nasiba's Slip On at $15"* — Veiled's Amira Bamboo
+   Jersey Instant is **$12**. Both are now named, in order.
+3. *"eleven fabrics against five to seven for its neighbours"* — Vela has eight.
+   Corrected to "five to eight".
+4. Nasiba's Slip On is no longer called "the cheapest", only "one of the cheapest".
+
+## Verification
+- Internal links: **26, 0 broken** (checked against `brandPageSlugs()` and `LANES`).
+- External links: **all 27 return HTTP 200**.
+- Rendered: HTTP 200, 8 `<h2>`, 26 `/designers/` links, 27 sponsored outbound links,
+  0 leaked markdown, no "Mariam" anywhere, `$2.32` gone, `$6.34` present.
+- Re-verified against the data: Veiled 106 of 283 chiffon · Nour Al Houda 110 sets,
+  the most of any house · AbayaButh 11 fabric words · Zahraa the tightest range of any
+  house over 100 pieces (3.2x) · Haute Hijab 62 pieces at $20 and 33 at $25 · Hidayah
+  the only DKK house in `data/brands.ts` · 15 houses stocking an instant style.
+
+## Notes / follow-ups
+- **The prices will shift again, legitimately.** These were read from an EU-served
+  refresh; tonight's US CI run fetches US-market prices for the same products, which
+  can differ by 15–25% on some houses. The currency label will be right either way,
+  but the figures in the piece are a snapshot — which is why it now says so.
