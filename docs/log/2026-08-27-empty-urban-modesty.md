@@ -147,3 +147,45 @@ photograph.
   she names can be restored by flipping one decision back to `keep`, with no re-scrape.
 - The house is still in `data/brands.ts` and still fetched by the nightly refresh, so
   new arrivals keep landing in raw. They just land as `cut`.
+
+## Staging verification (added after deploy)
+`https://themodestyhouse-staging-production.up.railway.app`, with **production
+(`main`, pre-change) as the negative control**. Searched by TITLE, not handle: the
+columnar payload carries `rows.title` for every row in a lane, but the `urlTail`
+handle is only in the HTML of the ~24 rendered cards.
+
+Pieces, on the two lanes Urban Modesty was heaviest in:
+
+| title | lane | production | staging |
+|---|---|---|---|
+| Navy Lace Trim Modal Hijab | /modest-hijabs | PRESENT | absent |
+| Brown Floral Trim Printed Chiffon Hijab | /modest-hijabs | PRESENT | absent |
+| Lilac Organza Open Abaya | /modest-abayas | PRESENT | absent |
+| Moon Kaftan Open Front Abaya | /modest-abayas | PRESENT | absent |
+
+The house also leaves each lane's brand filter: occurrences of the string
+"Urban Modesty" in `/modest-hijabs` went **11 -> 6**, the remaining six being the
+header marquee, which repeats for its scroll loop and is driven by `BRANDS`.
+
+| | production | staging |
+|---|---|---|
+| `/designers/urban-modesty` | **200** | **404** |
+| entries in `sitemap.xml` | 1 | 0 |
+| `/designers` | 200 | 200 |
+| tiles on `/designers` page 1 | 30 | 30 |
+| `[data-brand="urban-modesty"]` tiles | 1 | **0** |
+| `<img>` with no `src` across all tiles | 0 | **0** |
+
+Screenshotted at 1440px before and after: the blank arch between Nasiba and Hawaa is
+gone and the row closes up.
+
+**A counting trap worth recording.** `grep -c` counts matching LINES, and this site's
+HTML is effectively one line, so every "1" in an early pass meant "somewhere on the
+page", not "once". It made the brand look like it was still on `/modest-hijabs` in the
+same quantity as production. `grep -o … | wc -l` is what showed the 11 -> 6. Present /
+absent conclusions from `grep -c` are still sound; quantities from it are not.
+
+## Status
+On `staging` (`bded857`). **Not merged to `main`** — waiting on Tina's approval per §1.
+Remember the CDN purge after the merge, or production serves the old pages for up to
+an hour (§10.47: confirm the ORIGIN is new BEFORE purging).
