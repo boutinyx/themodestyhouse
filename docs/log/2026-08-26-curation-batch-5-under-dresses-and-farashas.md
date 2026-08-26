@@ -106,7 +106,40 @@ than a bad grep:
 
 `x-robots-tag: noindex, nofollow, noarchive` confirmed present on staging.
 
-**Not merged to `main`** — that needs Tina's explicit approval per §1.
+### On production
+
+Tina approved the merge. `main` fast-forwarded `03bb69f → da1e2c2`, which
+carried **five** commits, not two — batch 5 sat on top of another session's
+currency work (`fcbb37a`, `09253f0`) and a payload-split log (`03ecc07`).
+Those could not be separated: this batch's `products.json` is built from the
+currency-corrected raw, so cherry-picking the data commit alone would have
+dragged the currency changes across in a mangled form. Flagged to Tina
+before pushing; she chose to take all five.
+
+Railway's production deploy was confirmed **before** purging, by polling
+`themodestyhouse.com/modest-dresses?cb=N` — a unique query string misses the
+edge cache, so it reads the origin rather than Cloudflare (§10.21: a plain
+`curl` here would have proved nothing about what a visitor sees). Origin was
+serving batch-5 data ~120 s after the push.
+
+Then `POST /zones/{id}/purge_cache {"purge_everything":true}` →
+`{"success":true}`. Production HTML is edge-cached for 3600 s
+(`docs/log/2026-08-26-cloudflare-html-caching.md`), so without this the merge
+would not have been visible for up to an hour. Post-purge, on plain
+cacheable URLs:
+
+```
+/modest-dresses            'Lilac Satin Gown'            → 0  ✓
+/modest-dresses            'Mint Beaded Gown'            → 0  ✓
+/modest-abayas             'Butterfly Farasha … Navy'    → 1  ✓
+/layering-basics?type=under-dress  'Pleated Dress in Sienna' → 1  ✓
+```
+
+Incidental observation, not chased: `/modest-dresses` came back
+`cf-cache-status: DYNAMIC`, i.e. that page is not being edge-cached at all
+right now. Per §10.23 that is what the header reports, not what the rule
+intends — worth a look by whoever owns the cache rules, but it is not
+evidence of a fault here.
 
 ## Notes / follow-ups
 
