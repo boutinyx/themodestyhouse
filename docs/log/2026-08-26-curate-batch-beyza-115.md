@@ -101,3 +101,49 @@ override did nothing".
 
 ## Status
 On `staging` — **not merged to `main`**, waiting on Tina's approval per §1.
+
+## Staging verification (added after deploy)
+`https://themodestyhouse-staging-production.up.railway.app`, with **production
+(`main`, pre-change) as the negative control** — the check has to be able to fail,
+or "absent" proves nothing. Searched by TITLE, not handle: the columnar payload
+carries `rows.title` for every row in a lane, but the `urlTail` handle is only in
+the HTML for the ~24 rendered cards.
+
+Cuts, on `/modest-abayas`:
+
+| title | production | staging |
+|---|---|---|
+| 3717 Bafra Abaya | PRESENT | absent |
+| Tayyibe Abaya | PRESENT | absent |
+| 9599 Abaya | PRESENT | absent |
+| 9769 Abaya with Beaded Sleeves | PRESENT | absent |
+| 3466 Praise Abaya | PRESENT | absent |
+| 9549 Trench Abaya | PRESENT | absent |
+| *control:* Partial Look Abaya 9161 | PRESENT | PRESENT |
+| *control:* Sedra Abaya 3249 | PRESENT | PRESENT |
+| *control:* 9793 Abaya with Accessories | PRESENT | PRESENT |
+
+Garment moves, four-cell control:
+
+| title | abayas prod | abayas staging | dresses prod | dresses staging |
+|---|---|---|---|---|
+| 9559 Abaya Bat | YES | no | no | YES |
+| 9166 Abaya Wrap | YES | no | no | YES |
+| 9541 Linen Abaya with Epaulets | YES | no | no | YES |
+
+Lane moves:
+
+| title | abayas prod | abayas staging | outerwear lane prod | outerwear lane staging |
+|---|---|---|---|---|
+| Trench Abaya 9205 | YES | no | no (jackets-coats) | YES (jackets-coats) |
+| 9160-3829 Manto Exclusive | no | no | no (jackets-coats) | YES (jackets-coats) |
+| 9690 DOUBLE Suit Beaded | — | — | no (blazers-vests) | YES (blazers-vests) |
+| Zippered Leather and Suede Bitter Brown Abaya 9130 | — | — | no (blazers-vests) | YES (blazers-vests) |
+
+`/modest-abayas` shrank 587,780 -> 583,824 bytes between production and staging,
+consistent with the removed rows.
+
+**One control I got wrong and caught:** the first "kept" control I picked,
+`9629 Half Sleeve Abaya`, read `prod=1 staging=0` — because it is item 91 of the
+delete list. A control has to be a row the change does not touch; verified against
+`data/products.json` rather than picked from memory on the second attempt.
