@@ -2,14 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { houses, type House } from '@/lib/houses';
-import { BRANDS } from '@/data/brands';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import { designerPageCount, clampDesignerPage } from '@/lib/designerPaging';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, brandListSchema, jsonLdGraph } from '@/lib/schema';
 import { withUtm } from '@/lib/outbound';
-import { hasBrandPage } from '@/lib/brandPages';
+import { hasBrandPage, listedBrandSlugs } from '@/lib/brandPages';
 import { regionFromSlug, regionOf, regionSlug } from '@/lib/brandRegions';
 
 // Each page of the index self-canonicalises to its own URL (page 1 -> the
@@ -23,8 +22,12 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   // echoing 99, so anything linking an out-of-range page could mint an endless
   // family of self-canonicalising duplicates. houses() is deliberately NOT
   // called here — it routes through getProducts() and re-parses 10.9 MB
-  // uncached (CLAUDE.md §8) — and it maps 1:1 over BRANDS, so BRANDS.length is
-  // the same count the body derives.
+  // uncached (CLAUDE.md §8). `listedBrandSlugs()` is the same predicate the
+  // body filters on and is MEMOISED, so it costs one parse for the whole
+  // process rather than one per call. It used to be plain `BRANDS.length`, on
+  // the reasoning that houses() maps 1:1 over BRANDS — true until a house was
+  // deliberately emptied (2026-08-27) and the body started filtering. Two
+  // places encoding one rule is exactly the trap Tile's own comment records.
   const sp = await searchParams;
   const region = regionFromSlug(sp.region);
   // A ?region= view CANONICALISES TO THE BARE INDEX. It is a filter over a list
@@ -35,7 +38,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   // worth doing, but that is an SEO/editorial call for Tina, not a side effect
   // of adding a filter. → docs/log/2026-08-25-designers-region-filter.md
   if (region) return pageMetadata('/designers', '/designers');
-  const total = BRANDS.length;
+  const total = listedBrandSlugs().size;
   const page = clampDesignerPage(sp.page, designerPageCount(total, PER_PAGE));
   return pageMetadata('/designers', page === 1 ? '/designers' : `/designers?page=${page}`);
 }
@@ -182,7 +185,11 @@ export default async function DesignersPage({
   // an empty page.
   const region = regionFromSlug(sp.region);
 
-  const all = houses(1); // variant 1: a different photo per house than the homepage rail
+  // variant 1: a different photo per house than the homepage rail.
+  // Filtered to houses that publish something: an empty house has no
+  // photograph either, so its tile is a blank arch. See listedBrandSlugs().
+  const listed = listedBrandSlugs();
+  const all = houses(1).filter((h) => listed.has(h.slug));
 
   // The vetted houses lead, and there are exactly five, so they fill the first
   // row on their own. Everyone else follows in catalogue order. No house is

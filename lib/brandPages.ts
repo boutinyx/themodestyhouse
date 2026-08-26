@@ -38,17 +38,44 @@ export const MIN_PRODUCTS = 24;
  * every call (CLAUDE.md §8), so the obvious version parses it 113 times per
  * build. This parses once.
  */
-let cache: Set<string> | null = null;
-export function brandPageSlugs(): Set<string> {
+let cache: { pages: Set<string>; listed: Set<string> } | null = null;
+function computed() {
   if (cache) return cache;
   const counts = new Map<string, number>();
   for (const p of getProducts()) counts.set(p.brandSlug, (counts.get(p.brandSlug) ?? 0) + 1);
-  cache = new Set(
-    BRANDS.filter((b) => (counts.get(b.slug) ?? 0) >= MIN_PRODUCTS || b.description?.trim()).map((b) => b.slug),
-  );
+  cache = {
+    pages: new Set(
+      BRANDS.filter((b) => (counts.get(b.slug) ?? 0) >= MIN_PRODUCTS || b.description?.trim()).map((b) => b.slug),
+    ),
+    listed: new Set(BRANDS.filter((b) => (counts.get(b.slug) ?? 0) > 0).map((b) => b.slug)),
+  };
   return cache;
+}
+
+export function brandPageSlugs(): Set<string> {
+  return computed().pages;
 }
 
 export function hasBrandPage(slug: string): boolean {
   return brandPageSlugs().has(slug);
+}
+
+/**
+ * Houses with at least one published piece — who appears on /designers.
+ *
+ * A house can be listed in data/brands.ts and publish nothing: Tina empties one
+ * deliberately when she wants to re-curate it piece by piece (2026-08-27,
+ * Urban Modesty — see data/default-cut-brands.json). Its tile then renders as an
+ * EMPTY ARCH, because `houses()` picks the tile photograph from the house's own
+ * published products and there are none, so `image` is `undefined` and the
+ * <img> ships with no src. Among 112 photographs that reads as a broken image,
+ * not as an editorial state.
+ *
+ * Deliberately `> 0` and not MIN_PRODUCTS: this is "has anything to show at
+ * all", a different question from "has enough to fill a page of its own", and
+ * collapsing the two would silently delist 20-odd small houses from the index.
+ * It self-heals — one published piece and the house is back, with a photograph.
+ */
+export function listedBrandSlugs(): Set<string> {
+  return computed().listed;
 }

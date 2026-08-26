@@ -97,24 +97,52 @@ A `[\s\S]*?` lazy match is what the check actually needed.
 `npm test` — `Test Files 52 passed (52) · Tests 862 passed (862)`.
 `npx tsc --noEmit` clean (after `rm tsconfig.tsbuildinfo`). `npm run lint` exit 0.
 
-## Open decision for Tina — `/designers/urban-modesty`
-It is **live and indexed today** (`curl` -> `200`, and it appears once in
-production's `sitemap.xml`). `lib/brandPages.ts` gates a house page on
-`MIN_PRODUCTS = 24` published pieces or a hand-written `description`; Urban Modesty
-has neither now, so the page **404s** and leaves the sitemap the moment this deploys.
-Brand pages 90 -> 89.
+## The empty house, and what Tina chose
+Emptying a house leaves two visible holes, both found by looking at the deployed
+staging page rather than by reasoning about the code.
 
-Not decided here, because it is an editorial/SEO call:
-- **leave it 404ing** — correct if she expects to put 24+ pieces back, since the page
-  returns on its own;
-- **308 it to `/directory`** (the pattern `/hijabi-outfits` already uses in
-  `next.config.ts`) — better for a URL Google already knows, and the honest choice if
-  she plans to keep only a handful of pieces.
+**1. A blank arch on `/designers`.** `houses()` (`lib/houses.ts:131`) picks a tile
+photograph from the house's OWN published products, so with none the `image` is
+`undefined` and the `<img>` ships with no `src`. Screenshotted on staging at 1440px:
+an empty bone-coloured arch with "Urban Modesty / USA" under it, sitting between two
+photographs. The anchor is fine — it correctly falls back to an outbound
+`rel="noopener noreferrer sponsored"` link to urbanmodesty.com — it is only the
+picture that is missing.
 
-Same question is already open for `/designers/mariams`; whatever she picks should
-probably cover both.
+**2. `/designers/urban-modesty` 404s.** It was live and indexed (`curl` -> `200`, one
+entry in production's `sitemap.xml`). `lib/brandPages.ts` gates a house page on
+`MIN_PRODUCTS = 24` published pieces or a hand-written `description`, and it now has
+neither. Brand pages 90 -> 89.
+
+Put to Tina with the screenshot; she chose **hide it until it has pieces**, and let
+the page 404.
+
+**Implemented as `listedBrandSlugs()`** in `lib/brandPages.ts` — houses with at least
+one published piece — with `/designers` filtering its grid on it. Three things about
+the shape:
+
+- It reuses the existing memoised single pass. `brandPageSlugs()` already counted
+  every brand's rows once (`getProducts()` is uncached and re-parses 10.9 MB per
+  call, §8); both sets now come out of that one pass.
+- It is `> 0`, deliberately NOT `MIN_PRODUCTS`. "Has anything to show" and "has enough
+  to fill a page of its own" are different questions, and collapsing them would
+  silently delist every small house from the index. A test asserts the two stay
+  distinct.
+- `generateMetadata` used `BRANDS.length` for the page count, on the stated reasoning
+  that `houses()` maps 1:1 over `BRANDS`. That stopped being true the moment the body
+  filtered, so it now reads the same predicate. Two places encoding one rule is the
+  exact trap the `Tile` comment in that file already records having been bitten by.
+
+It self-heals: one published piece and the house is back on the index, with a
+photograph.
 
 ## Notes / follow-ups
+- **The house count is still 113.** `trust()` (`lib/houses.ts`) and the homepage band
+  both report `BRANDS.length`, and the header marquee still says the name. That is
+  consistent with "the house is kept, not cut", but it does mean the number is one
+  higher than the tiles you can count on `/designers` until she puts pieces back.
+  Left alone deliberately — flipping the headline number for a temporary state, and
+  back again, is worse than the one-off discrepancy.
 - `data/raw-products.json` is untouched — all 305 rows are still there, so any piece
   she names can be restored by flipping one decision back to `keep`, with no re-scrape.
 - The house is still in `data/brands.ts` and still fetched by the nightly refresh, so

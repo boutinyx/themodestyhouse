@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import { BRANDS } from '../data/brands';
+import { brandPageSlugs, listedBrandSlugs } from './brandPages';
+import { getProducts } from './products';
 
 /**
  * The brand-page family is gated on one predicate — a house carrying
@@ -43,6 +47,46 @@ describe('brand pages', () => {
   it('a described house has a homepage to send the reader to', () => {
     for (const b of described()) {
       expect(b.homepage, b.slug).toMatch(/^https?:\/\//);
+    }
+  });
+});
+
+/**
+ * Catalogue-dependent, so local-only (§10.19): the nightly refresh changes what
+ * a house publishes with no code change, and as a CI gate this would go red on
+ * a schedule.
+ */
+describe('listedBrandSlugs', () => {
+  const hasData = existsSync(path.join(process.cwd(), 'data', 'products.json'));
+  const inCI = !!process.env.CI;
+
+  it.skipIf(!hasData || inCI)('never lists a house that publishes nothing', () => {
+    // An empty house has no tile photograph either — houses() picks it from the
+    // house's own products — so listing it renders a blank arch on /designers.
+    const counts = new Map<string, number>();
+    for (const p of getProducts()) counts.set(p.brandSlug, (counts.get(p.brandSlug) ?? 0) + 1);
+    const listed = listedBrandSlugs();
+    const empty = BRANDS.filter((b) => !counts.get(b.slug)).map((b) => b.slug);
+    expect(empty.filter((s) => listed.has(s))).toEqual([]);
+  });
+
+  it.skipIf(!hasData || inCI)('lists every house that publishes at least one piece', () => {
+    const counts = new Map<string, number>();
+    for (const p of getProducts()) counts.set(p.brandSlug, (counts.get(p.brandSlug) ?? 0) + 1);
+    const listed = listedBrandSlugs();
+    const stocked = BRANDS.filter((b) => (counts.get(b.slug) ?? 0) > 0).map((b) => b.slug);
+    expect(stocked.filter((s) => !listed.has(s))).toEqual([]);
+    // The set is not vacuously empty, and it is not simply every brand either.
+    expect(listed.size).toBeGreaterThan(0);
+  });
+
+  // The threshold that separates this from hasBrandPage. Collapsing the two
+  // would silently delist every house below one full grid from the index.
+  it.skipIf(!hasData || inCI)('is a LOWER bar than a brand page', () => {
+    for (const slug of brandPageSlugs()) {
+      const b = BRANDS.find((x) => x.slug === slug)!;
+      // A page can exist on `description` alone, with no products.
+      if (!b.description?.trim()) expect(listedBrandSlugs().has(slug), slug).toBe(true);
     }
   });
 });
