@@ -400,10 +400,10 @@ for (const engineName of engineNames) {
 
     // ---- 7. header search, opened and typed -------------------------------
     //
-    // Was `hero-search-typed`, targeting `.glass-search input` —
-    // i.e. components/HeroSearch.tsx. That component has
-    // ZERO importers; the homepage's search became the header one at some
-    // point and nobody moved the check with it. So it reported
+    // Was `hero-search-typed`, targeting `.glass-search input` — i.e.
+    // components/HeroSearch.tsx, a component with ZERO importers that was
+    // DELETED on 2026-08-26. The homepage's search became the header one at
+    // some point and nobody moved the check with it. So it reported
     // `FAILED: locator.click: Timeout 30000ms exceeded` on EVERY run, at all
     // four viewports in BOTH engines, against a homepage that has no such
     // control — confirmed still failing identically on production, which is

@@ -8,7 +8,8 @@ import { MagnifyingGlass, X } from '@phosphor-icons/react';
 // beside it). Deliberately real, not decorative: the reference shows it as a
 // plain label with no visible input, but a "SEARCH" control that does nothing
 // on click would be worse than not having one at all. Submits to the same
-// place HeroSearch does (`/directory?q=`), so typing "linen dress" here and
+// place the old HeroSearch did (`/directory?q=`; that component was deleted
+// 2026-08-26), so typing "linen dress" here and
 // typing it into the homepage hero land on the identical results.
 //
 // CHANGED 2026-08-22: it is no longer a floating pill hanging under the

@@ -609,7 +609,11 @@ export default function Home() {
           components/VerifiedSpotlight.tsx is KEPT, not deleted: it is a whole
           layout with its own <style> block and nothing else on the site renders
           anything like it, so remounting it is a one-line change. It now has
-          zero imports — the same state components/EditMagazine.tsx is in (§8).
+          zero imports. It is KEPT deliberately, unlike components/EditMagazine.tsx
+          and components/HeroSearch.tsx, which were both deleted on 2026-08-26:
+          those two were dead weight (and EditMagazine was invented editorial
+          copy), whereas this is a real layout of Tina's that nothing else
+          replaces.
 
           What went with it, worth knowing before anyone calls this a pure
           removal: it was the only surface naming the seal on the homepage above
