@@ -144,3 +144,39 @@ pre-existing:
 
 Both are single-entry corrections to `data/title-translations.json` whenever Tina wants
 them; they are her product names, so they are not being rewritten unasked.
+
+## Staging verification (added after deploy)
+13 pages fetched from staging and from **production (`main`, still carrying the bug) as
+the negative control**, `/directory` plus every garment lane. 6,318,539 bytes vs
+6,318,544.
+
+| title | production | staging |
+|---|---|---|
+| Ine's great → **Ine's top** | PRESENT / absent | absent / **PRESENT** |
+| Pink hijab → **Rossa hijab** | PRESENT / absent | absent / **PRESENT** |
+| JUICE PEARL GRAY Blazer → **JUS PEARL GRAY Blazer** | PRESENT / absent | absent / **PRESENT** |
+| Jersey breath hoodie → **Jersey breath capuchin** | PRESENT / absent | absent / **PRESENT** |
+| Taupe sheer abaya → **Taupe pure abaya** | PRESENT / absent | absent / **PRESENT** |
+| Black satin strapless top → **bustier top** | PRESENT / absent | absent / **PRESENT** |
+| Gray baloon skirt → **Greige baloon skirt** | PRESENT / absent | absent / **PRESENT** |
+| Rimaya t shirt → **Rimaya t-shirt** | PRESENT / absent | absent / **PRESENT** |
+
+Folded improvements present on both, as intended: `Aliye Beaded Abaya`,
+`Pleated Abaya 9051`, `Gathered Waist Embroidery Skirt - Ecru`,
+`Wide Cuff Linen Tunic - Acid`. Regression guard — `- Asit`, `Brode Skirt`,
+`Boncuklu Abaya`, `Waist - Buz` absent on both, so no Turkish word came back.
+
+`Nour two-piece` / `Sara dress` read absent on both: neither is published
+(`parladusa:15552052068678` is `inStock: false`, `parladusa:15112765636934` was
+delisted 2026-08-25). Not a gap.
+
+**Two harness failures on the way, both §10.26.** First run accumulated 6 MB of HTML into
+a shell variable and it came back **empty** — every check printed `absent`, which reads
+identically to "the fix worked" for half the table. Second run had the URLs mangled by
+zsh (`curl: (3) URL rejected: Malformed input`) and reported `absent` for all 34 strings,
+including the controls. Only the four-cell layout — every string checked on BOTH hosts,
+with rows that must read PRESENT — made either failure visible. A one-sided "is it gone
+from staging" check would have passed both times.
+
+## Status
+On `staging` (`b8364e5`), verified. **Not merged to `main`** — waiting on Tina's approval.
