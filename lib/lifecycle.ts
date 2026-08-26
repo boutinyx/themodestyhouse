@@ -247,3 +247,74 @@ export function freezeCollapsedBrands<T extends { brandSlug: string }>(
   const frozen = prevRows.filter((p) => frozenSlugs.has(p.brandSlug));
   return [...kept, ...frozen];
 }
+
+export interface BrandPriceSignal {
+  brandSlug: string;
+  /** Set when the brand's published currency changed between publishes. */
+  currency?: { prev: string; next: string };
+  /** Median price in USD, before and after, with the ratio next/prev. */
+  medianUsd: { prev: number; next: number; ratio: number };
+}
+
+const medianOf = (xs: number[]): number => {
+  const s = [...xs].sort((a, b) => a - b);
+  return s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2;
+};
+
+/**
+ * Per-brand price movement between two publishes, in USD.
+ *
+ * WHY: on 2026-08-26 a third of the catalogue turned out to be carrying prices in
+ * the wrong currency — Hidayah showing $3.12 for a 120 DKK scarf — and nothing in
+ * the pipeline noticed, because every individual publish looked ordinary. The
+ * currency of a feed can change under us whenever a merchant reconfigures Shopify
+ * Markets or the CI runner's location moves, and the SIZE of the resulting jump is
+ * an exchange rate: obvious once measured, invisible otherwise.
+ * → docs/log/2026-08-26-currency-mislabelling.md
+ *
+ * Reports rather than blocks. A legitimate currency correction moves a median by
+ * exactly this much, so failing the publish would block the very republish that
+ * fixes it — the mistake `freezeCollapsedBrands` was added to undo. `rates` is
+ * `data/fx-rates.json`'s `rates` (units per USD); a row in an unknown currency is
+ * skipped rather than counted at 1:1.
+ */
+export function brandPriceSignals(
+  prevRows: { brandSlug: string; price: number; currency: string }[],
+  nextRows: { brandSlug: string; price: number; currency: string }[],
+  rates: Record<string, number>,
+  threshold = 0.15,
+): BrandPriceSignal[] {
+  const group = (rows: typeof prevRows) => {
+    const m = new Map<string, { usd: number[]; currencies: Set<string> }>();
+    for (const r of rows) {
+      if (!m.has(r.brandSlug)) m.set(r.brandSlug, { usd: [], currencies: new Set() });
+      const g = m.get(r.brandSlug)!;
+      g.currencies.add(r.currency);
+      const rate = r.currency === 'USD' ? 1 : rates[r.currency];
+      if (rate) g.usd.push(r.price / rate);
+    }
+    return m;
+  };
+  const a = group(prevRows);
+  const b = group(nextRows);
+  const out: BrandPriceSignal[] = [];
+  for (const [brandSlug, before] of a) {
+    const after = b.get(brandSlug);
+    if (!after || !before.usd.length || !after.usd.length) continue;
+    const prev = medianOf(before.usd);
+    const next = medianOf(after.usd);
+    if (prev <= 0) continue;
+    const ratio = next / prev;
+    // One currency each side and they differ — the leading indicator.
+    const pc = before.currencies.size === 1 ? [...before.currencies][0] : null;
+    const nc = after.currencies.size === 1 ? [...after.currencies][0] : null;
+    const changed = pc && nc && pc !== nc ? { prev: pc, next: nc } : undefined;
+    if (!changed && Math.abs(ratio - 1) <= threshold) continue;
+    out.push({
+      brandSlug,
+      ...(changed ? { currency: changed } : {}),
+      medianUsd: { prev: +prev.toFixed(2), next: +next.toFixed(2), ratio: +ratio.toFixed(2) },
+    });
+  }
+  return out.sort((x, y) => Math.abs(y.medianUsd.ratio - 1) - Math.abs(x.medianUsd.ratio - 1));
+}

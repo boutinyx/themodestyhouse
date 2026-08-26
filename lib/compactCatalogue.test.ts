@@ -6,8 +6,8 @@ import type { Product, Brand } from './types';
 import { BRANDS } from '@/data/brands';
 
 // A literal product/brand pair, not invented — the URL structure (handle
-// derivable from homepage) and currency-from-brand rule mirror real catalogue
-// rows (lib/normalize.ts:119).
+// derivable from homepage) mirrors real catalogue rows. NOTE: a row's currency
+// is the one its FEED served, which need not equal data/brands.ts (Invariant 15).
 const BRAND: Brand = {
   slug: 'aab',
   name: 'Aab',
@@ -171,9 +171,25 @@ describe('encodeCatalogue / decodeCard', () => {
     expect(() => encodeCatalogue([oos], [BRAND])).toThrow();
   });
 
-  it('throws when a product currency disagrees with its brand record', () => {
-    const wrongCurrency: Product = { ...PRODUCT, currency: 'EUR' };
-    expect(() => encodeCatalogue([wrongCurrency], [BRAND])).toThrow();
+  // CHANGED 2026-08-26. This used to assert the opposite — that a row must match
+  // `data/brands.ts`. That rule is what put a wrong price on 24% of the catalogue:
+  // Shopify Markets serves a per-requester currency, so the FEED is right and the
+  // config is only an expectation. → docs/log/2026-08-26-currency-mislabelling.md
+  it('takes the currency from the ROW, not from the brand record', () => {
+    const served: Product = { ...PRODUCT, currency: 'EUR' };
+    const cat = encodeCatalogue([served], [BRAND]);
+    expect(BRAND.currency).not.toBe('EUR'); // the config still says something else
+    expect(cat.brands[0].currency).toBe('EUR');
+    expect(decodeCard(cat, 0)!.currency).toBe('EUR');
+  });
+
+  // Decode reads one currency per brand, so rows that disagree cannot all be
+  // rendered correctly. The real cause is a partial refresh: unseen rows stay
+  // published at the old currency while refetched ones carry the new one.
+  it('throws when one brand has published rows in two currencies', () => {
+    const a: Product = { ...PRODUCT, id: `${PRODUCT.brandSlug}:1`, currency: 'EUR' };
+    const b: Product = { ...PRODUCT, id: `${PRODUCT.brandSlug}:2`, currency: 'GBP' };
+    expect(() => encodeCatalogue([a, b], [BRAND])).toThrow(/two currencies/);
   });
 
   it('throws when a product references a brand not in the dictionary', () => {

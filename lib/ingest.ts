@@ -9,6 +9,7 @@
 import type { Brand } from '@/lib/types';
 import { normalizeProductDetailed, type ShopifyProduct } from '@/lib/normalize';
 import { isCompleteFetch, type BrandFetchResult, type FetchOutcome } from '@/lib/lifecycle';
+import { extractPriceCurrency, resolveFeedCurrency } from '@/lib/presentmentCurrency';
 
 export const PAGE_CAP = 20;
 export const PAGE_SIZE = 250;
@@ -126,7 +127,7 @@ interface WooProduct {
   slug?: string;
   permalink?: string;
   is_in_stock?: boolean;
-  prices?: { price?: string; currency_minor_unit?: number };
+  prices?: { price?: string; currency_minor_unit?: number; currency_code?: string };
   categories?: { name?: string }[];
   images?: { src?: string }[];
 }
@@ -144,6 +145,9 @@ export function wooToShopify(w: WooProduct): ShopifyProduct {
     tags: cats,
     variants: [{ price, available: !!w.is_in_stock }],
     images: (w.images || []).map((im) => ({ src: im.src || '' })).filter((i) => i.src),
+    // WooCommerce states its currency inline, so Woo brands need none of the
+    // storefront sniffing lib/presentmentCurrency.ts does for Shopify.
+    currency: w.prices?.currency_code,
   };
 }
 
@@ -178,9 +182,84 @@ export function wooPageFetcher(brand: Brand, pause = sleep): PageFetcher {
   };
 }
 
-/** Fetches and classifies one brand's whole feed (Shopify or WooCommerce). */
-export async function fetchBrand(brand: Brand): Promise<BrandFetchResult & { outcome: FetchOutcome }> {
-  const fetcher = brand.platform === 'woo' ? wooPageFetcher(brand) : httpPageFetcher(brand);
+// --- presentment currency ---------------------------------------------------
+
+/** How many product pages to try before giving up on finding a currency. */
+export const CURRENCY_SAMPLE_SIZE = 3;
+
+export type TextFetcher = (url: string) => Promise<string | null>;
+
+const httpTextFetcher: TextFetcher = async (url) => {
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': UA } });
+    return res.ok ? await res.text() : null;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Reads the currency the storefront quoted, from up to three of the products we
+ * just fetched.
+ *
+ * More than one page is sampled because a single product can be sold out, be a
+ * gift card, or use a theme that emits no structured data — and one blank page
+ * is not evidence the shop has no currency. The fetcher is injected so this is
+ * testable without a network, exactly as `paginateFeed` takes a page fetcher.
+ */
+export async function detectFeedCurrency(
+  brand: Brand,
+  products: ShopifyProduct[],
+  fetchText: TextFetcher = httpTextFetcher,
+  pause = sleep,
+): Promise<string | null> {
+  const base = brand.homepage.replace(/\/$/, '');
+  for (const sp of products.slice(0, CURRENCY_SAMPLE_SIZE)) {
+    if (!sp.handle) continue;
+    const html = await fetchText(`${base}/products/${sp.handle}`);
+    // Anchor on the price THIS feed just quoted for THIS product: a real page
+    // names several currencies (shipping thresholds, alternate markets), and the
+    // one attached to our own number is the only one that is evidence.
+    const feedPrice = parseFloat(sp.variants?.[0]?.price ?? '') || undefined;
+    const found = html ? extractPriceCurrency(html, feedPrice) : null;
+    if (found) return found;
+    await pause(800);
+  }
+  return null;
+}
+
+/**
+ * Fetches and classifies one brand's whole feed (Shopify or WooCommerce).
+ *
+ * THROWS when a Shopify brand's currency cannot be determined. That is
+ * deliberate: `scripts/refresh.mjs` already catches a fetch throw, skips the
+ * brand and delists nothing, which is the correct outcome. The alternative —
+ * falling back to `data/brands.ts` — is the defect this replaces.
+ * → docs/log/2026-08-26-currency-mislabelling.md
+ */
+export async function fetchBrand(
+  brand: Brand,
+  deps: { fetchText?: TextFetcher; fetchPage?: PageFetcher } = {},
+): Promise<BrandFetchResult & { outcome: FetchOutcome; feedCurrency: string | null }> {
+  const fetcher =
+    deps.fetchPage ?? (brand.platform === 'woo' ? wooPageFetcher(brand) : httpPageFetcher(brand));
   const { products, outcome } = await paginateFeed(fetcher);
-  return { ...classifyFeed(products, brand, isCompleteFetch(outcome)), outcome };
+
+  let feedCurrency: string | null = null;
+  if (brand.platform === 'woo') {
+    feedCurrency = products.find((p) => p.currency)?.currency ?? null;
+  } else if (products.length) {
+    const detected = await detectFeedCurrency(brand, products, deps.fetchText);
+    const resolved = resolveFeedCurrency({
+      detected,
+      declared: brand.currency,
+      brandSlug: brand.slug,
+    });
+    if (!resolved.ok) throw new Error(resolved.message);
+    if (resolved.mismatch) console.warn(`   CURRENCY: ${resolved.message}`);
+    feedCurrency = resolved.currency;
+    for (const p of products) p.currency = feedCurrency!;
+  }
+
+  return { ...classifyFeed(products, brand, isCompleteFetch(outcome)), outcome, feedCurrency };
 }

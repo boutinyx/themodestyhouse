@@ -12,6 +12,16 @@ export interface ShopifyProduct {
   variants: { price: string; available: boolean }[];
   images: { src: string; width?: number; height?: number }[];
   url?: string; // full product URL when the source isn't Shopify (e.g. WooCommerce permalink)
+  /**
+   * The currency THIS response quoted its price in, stamped by the fetcher.
+   *
+   * Shopify's /products.json never states a currency and Shopify Markets varies
+   * it per requester, so it is detected from the storefront once per fetch
+   * (lib/presentmentCurrency.ts) and copied onto every row. WooCommerce supplies
+   * it directly as `prices.currency_code`.
+   * → docs/log/2026-08-26-currency-mislabelling.md
+   */
+  currency?: string;
 }
 
 // Drop men's & children's products — this is a women's directory.
@@ -116,7 +126,13 @@ export function normalizeProductDetailed(
       brandName: brand.name,
       title,
       price,
-      currency: brand.currency,
+      // The currency the FEED quoted, never the one data/brands.ts declares.
+      // `brand.currency` remains only for direct unit-test callers that build a
+      // ShopifyProduct by hand; `fetchBrand` always stamps `sp.currency` first
+      // and REFUSES to ingest a brand whose currency it could not determine, so
+      // this fallback is unreachable from the real pipeline. Reading it as a
+      // silent default is what put a wrong price on 24% of the catalogue.
+      currency: sp.currency ?? brand.currency,
       image,
       url: sp.url ?? `${brand.homepage}/products/${sp.handle}`,
       inStock: (sp.variants || []).some((v) => v.available),

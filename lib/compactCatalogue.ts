@@ -255,14 +255,6 @@ export function encodeCatalogue(
       // silently dropped rather than mislabelled. Fail loudly instead.
       throw new Error(`compactCatalogue: product ${p.id} is out of stock; the publish filter should have dropped it`);
     }
-    if (p.currency !== brand.currency) {
-      // decode reads currency from the brand dictionary (Invariant: currency
-      // comes from the brand record, never the feed — lib/normalize.ts:119).
-      throw new Error(
-        `compactCatalogue: product ${p.id} currency "${p.currency}" disagrees with brand "${brand.slug}" currency "${brand.currency}"`,
-      );
-    }
-
     const expectedPrefix = `${p.brandSlug}:`;
     if (!p.id.startsWith(expectedPrefix)) {
       throw new Error(`compactCatalogue: product id "${p.id}" does not start with brandSlug "${p.brandSlug}:"`);
@@ -276,7 +268,23 @@ export function encodeCatalogue(
     if (bIdx === undefined) {
       bIdx = compactBrands.length;
       brandIndex.set(p.brandSlug, bIdx);
-      compactBrands.push({ slug: brand.slug, name: brand.name, homepage: brand.homepage, currency: brand.currency });
+      // Currency comes from the ROWS, not from data/brands.ts. Every row of one
+      // fetch carries the currency that fetch was served (Invariant 15), and
+      // `brand.currency` is only the EXPECTED value — it was the source of truth
+      // here until 2026-08-26 and that is what put a wrong price on 24% of the
+      // catalogue. → docs/log/2026-08-26-currency-mislabelling.md
+      compactBrands.push({ slug: brand.slug, name: brand.name, homepage: brand.homepage, currency: p.currency });
+    } else if (compactBrands[bIdx].currency !== p.currency) {
+      // Decode derives each card's currency from this one dictionary entry, so a
+      // brand whose published rows disagree cannot be encoded without mislabelling
+      // some of them. In practice this means a PARTIAL refresh: an incomplete
+      // fetch leaves unseen rows published at the previous currency while the rows
+      // it did see carry the new one. Fail loudly; the repair is to re-run
+      // `npm run refresh -- <slug>` until that brand fetches completely.
+      throw new Error(
+        `compactCatalogue: brand "${brand.slug}" has published rows in two currencies ` +
+        `("${compactBrands[bIdx].currency}" and "${p.currency}", at ${p.id}) — re-run the refresh for this brand`,
+      );
     }
 
     const { prefix, file } = splitImage(p.image);

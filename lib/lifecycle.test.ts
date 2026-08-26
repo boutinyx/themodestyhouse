@@ -7,6 +7,7 @@ import {
   stripLifecycle,
   brandDropViolations,
   freezeCollapsedBrands,
+  brandPriceSignals,
 } from './lifecycle';
 import type { Product } from '@/lib/types';
 import type { LifecycleRow } from './lifecycle';
@@ -319,5 +320,47 @@ describe('freezeCollapsedBrands', () => {
     const next = [row('brandnew', 'x')];
     const drops = [{ brandSlug: 'brandnew', prev: 0, next: 0, pct: 0 }];
     expect(freezeCollapsedBrands([], next, drops)).toEqual([]);
+  });
+});
+
+describe('brandPriceSignals', () => {
+  const rates = { EUR: 0.857, DKK: 6.409, GBP: 0.733 };
+  const rows = (brandSlug: string, currency: string, ...prices: number[]) =>
+    prices.map((price) => ({ brandSlug, price, currency }));
+
+  it('says nothing when prices are steady', () => {
+    const r = rows('aab', 'USD', 10, 20, 30);
+    expect(brandPriceSignals(r, r, rates)).toEqual([]);
+  });
+
+  // The live 2026-08-26 case: the number never moved, only its label was corrected
+  // from DKK to USD. The median leaps 6.4x — an exchange rate, in plain sight.
+  it('catches a currency relabel even though the price numbers are identical', () => {
+    const before = rows('hidayah', 'DKK', 20, 55, 11);
+    const after = rows('hidayah', 'USD', 20, 55, 11);
+    const [sig] = brandPriceSignals(before, after, rates);
+    expect(sig.brandSlug).toBe('hidayah');
+    expect(sig.currency).toEqual({ prev: 'DKK', next: 'USD' });
+    expect(sig.medianUsd.ratio).toBeCloseTo(6.41, 1);
+  });
+
+  it('reports a big move even when the currency did not change', () => {
+    const [sig] = brandPriceSignals(rows('x', 'USD', 100), rows('x', 'USD', 40), rates);
+    expect(sig.medianUsd).toEqual({ prev: 100, next: 40, ratio: 0.4 });
+    expect(sig.currency).toBeUndefined();
+  });
+
+  it('ignores ordinary drift under the threshold', () => {
+    expect(brandPriceSignals(rows('x', 'USD', 100), rows('x', 'USD', 105), rates)).toEqual([]);
+  });
+
+  it('skips a currency it has no rate for rather than counting it 1:1', () => {
+    expect(brandPriceSignals(rows('x', 'XYZ', 100), rows('x', 'XYZ', 400), rates)).toEqual([]);
+  });
+
+  it('ranks the largest movement first', () => {
+    const before = [...rows('small', 'USD', 100), ...rows('big', 'USD', 100)];
+    const after = [...rows('small', 'USD', 130), ...rows('big', 'USD', 500)];
+    expect(brandPriceSignals(before, after, rates).map((s) => s.brandSlug)).toEqual(['big', 'small']);
   });
 });

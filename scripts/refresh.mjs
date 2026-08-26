@@ -63,6 +63,11 @@ if (legacy.length) {
 
 // --- refresh, brand by brand ------------------------------------------------
 const reports = [];
+// Brands whose feed quoted a currency other than the one data/brands.ts expects.
+// Normal, not an error — Shopify Markets serves a per-requester currency — but it
+// must be VISIBLE, because it being invisible is what put a wrong price on 24% of
+// the catalogue. → docs/log/2026-08-26-currency-mislabelling.md
+const currencyNotes = [];
 for (const brand of targets) {
   console.log(`\n${brand.name} (${brand.slug})...`);
   let result;
@@ -72,6 +77,10 @@ for (const brand of targets) {
     console.error(`  FETCH FAILED: ${e.message} — skipping (nothing delisted)`);
     reports.push({ brandSlug: brand.slug, error: e.message, complete: false });
     continue;
+  }
+
+  if (result.feedCurrency && result.feedCurrency !== brand.currency) {
+    currencyNotes.push(`${brand.slug}: served ${result.feedCurrency}, declared ${brand.currency}`);
   }
 
   if (!result.complete) {
@@ -114,6 +123,12 @@ console.table(reports.map((r) => ({
   delisted: r.delisted ?? 0, filtered: r.filtered?.length ?? 0, returned: r.returned ?? 0,
 })));
 console.log(totals);
+
+if (currencyNotes.length) {
+  console.log(`\nCURRENCY: ${currencyNotes.length} brand(s) served a currency other than the one declared in data/brands.ts.`);
+  console.log('The feed\'s currency wins — that is the fix for the 2026-08-26 mislabelling. Listed so a Markets change is never silent:');
+  for (const line of currencyNotes) console.log(`  ${line}`);
+}
 
 const allFiltered = reports.flatMap((r) => (r.filtered || []).map((f) => `${r.brandSlug}: ${f.title} (${f.reason})`));
 if (allFiltered.length) {

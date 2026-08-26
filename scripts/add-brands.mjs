@@ -24,8 +24,22 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 for (const brand of targets) {
   console.log(`Scraping ${brand.name} (${brand.slug})...`);
-  const result = await fetchBrand(brand);
-  console.log(`  ${result.normalized.length} products fetched${result.complete ? '' : ' (partial — rate-limited)'}`);
+  let result;
+  try {
+    result = await fetchBrand(brand);
+  } catch (e) {
+    // A brand whose currency could not be determined throws (lib/ingest.ts).
+    // Report it and carry on: one unreadable storefront must not abandon the
+    // other slugs on the command line, and skipping writes nothing, so its
+    // existing rows are untouched.
+    console.error(`  SKIPPED: ${e.message}`);
+    await sleep(6000);
+    continue;
+  }
+  console.log(`  ${result.normalized.length} products fetched in ${result.feedCurrency}${result.complete ? '' : ' (partial — rate-limited)'}`);
+  if (result.feedCurrency && result.feedCurrency !== brand.currency) {
+    console.warn(`  NOTE: feed served ${result.feedCurrency}, data/brands.ts declares ${brand.currency}. Using ${result.feedCurrency}.`);
+  }
   if (result.normalized.length === 0) { await sleep(6000); continue; }
 
   const raw = JSON.parse(readFileSync(U('raw-products.json'), 'utf8'));

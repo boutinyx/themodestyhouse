@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { paginateFeed, classifyFeed, wooToShopify } from './ingest';
+import {
+  paginateFeed, classifyFeed, wooToShopify,
+  detectFeedCurrency, fetchBrand, CURRENCY_SAMPLE_SIZE,
+} from './ingest';
 import { isCompleteFetch } from './lifecycle';
 import type { Brand } from '@/lib/types';
 import type { ShopifyProduct } from './normalize';
@@ -98,5 +101,73 @@ describe('wooToShopify (WooCommerce Store API → ShopifyProduct)', () => {
     const sh = wooToShopify({ id: 1, name: 'X', prices: { price: '1050' }, images: [{ src: '' }] });
     expect(sh.variants[0].price).toBe('10.5');
     expect(sh.images).toEqual([]);
+  });
+});
+
+// --- presentment currency ----------------------------------------------------
+// The 2026-08-26 defect: /products.json never states its currency, Shopify
+// Markets varies it per requester, and we stamped data/brands.ts's declared
+// value onto it. 31 brands / 4,625 products carried a wrong price.
+// → docs/log/2026-08-26-currency-mislabelling.md
+describe('detectFeedCurrency', () => {
+  const ld = (c: string) => `<script type="application/ld+json">{"offers":{"priceCurrency":"${c}"}}</script>`;
+  const noPause = async () => {};
+
+  it('reads the currency from the first product page that has one', async () => {
+    const seen: string[] = [];
+    const got = await detectFeedCurrency(brand, [sp(1), sp(2)], async (u) => { seen.push(u); return ld('USD'); }, noPause);
+    expect(got).toBe('USD');
+    expect(seen).toEqual(['https://inayah.co/products/d-1']);
+  });
+
+  // One blank page is not evidence the shop has no currency — a sold-out item or
+  // a theme without structured data would end the ingest for the whole brand.
+  it('tries further products when the first page yields nothing', async () => {
+    const pages: Record<string, string | null> = {
+      'https://inayah.co/products/d-1': '<html>no price</html>',
+      'https://inayah.co/products/d-2': null,
+      'https://inayah.co/products/d-3': ld('EUR'),
+    };
+    const got = await detectFeedCurrency(brand, [sp(1), sp(2), sp(3)], async (u) => pages[u], noPause);
+    expect(got).toBe('EUR');
+  });
+
+  it('stops after CURRENCY_SAMPLE_SIZE pages rather than crawling the catalogue', async () => {
+    let calls = 0;
+    const got = await detectFeedCurrency(
+      brand, [sp(1), sp(2), sp(3), sp(4), sp(5)], async () => { calls++; return '<html/>'; }, noPause,
+    );
+    expect(got).toBeNull();
+    expect(calls).toBe(CURRENCY_SAMPLE_SIZE);
+  });
+});
+
+describe('fetchBrand currency handling', () => {
+  const ld = (c: string) => `{"priceCurrency":"${c}"}`;
+  // Drives the real fetchBrand with both network edges injected.
+  const fetchBrandWithPages = (products: ShopifyProduct[], b: Brand, fetchText: (u: string) => Promise<string | null>) => {
+    const pages = [page(products), page([])];
+    return fetchBrand(b, { fetchPage: async (n) => pages[n - 1], fetchText });
+  };
+
+  it('stamps the DETECTED currency on every row, not the one data/brands.ts declares', async () => {
+    // Exactly the live case: a GBP-declared house whose feed served the US
+    // runner USD. Before the fix these rows read "60.00 GBP" and displayed $82.
+    const r = await fetchBrandWithPages([sp(1), sp(2)], brand, async () => ld('USD'));
+    expect(r.feedCurrency).toBe('USD');
+    expect(r.normalized.map((p) => p.currency)).toEqual(['USD', 'USD']);
+  });
+
+  it('throws instead of falling back when no currency can be found', async () => {
+    await expect(fetchBrandWithPages([sp(1)], brand, async () => '<html/>')).rejects.toThrow(/inayah/);
+  });
+
+  it('takes a WooCommerce brand currency from the feed itself, with no page fetch', async () => {
+    const sh = wooToShopify({
+      id: 7, name: 'Satin Dress', slug: 's', permalink: 'https://x/p/s', is_in_stock: true,
+      prices: { price: '5999', currency_minor_unit: 2, currency_code: 'EUR' },
+      images: [{ src: 'https://x/1.jpg' }],
+    });
+    expect(sh.currency).toBe('EUR');
   });
 });
