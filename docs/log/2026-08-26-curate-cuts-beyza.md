@@ -69,3 +69,41 @@ harmless case shifts, but some are corruptions: `Ine's top` -> `Ine's great`,
 this republish. Raised with Tina; not fixed here because it is a separate defect in the
 cache populator, and fixing it means both pruning the poisoned second-pass keys and
 stopping the script re-reading published titles.
+
+## Staging verification (added after deploy)
+`https://themodestyhouse-staging-production.up.railway.app/directory`, with
+**production (`main`, pre-change) as the negative control** — the check has to be able
+to fail, or "absent" proves nothing (§10.35).
+
+| title | production | staging |
+|---|---|---|
+| 5659 Dress Laleli | PRESENT | absent |
+| 5629 Dress With Chain | PRESENT | absent |
+| 3699 Emet Pleated Detailed Abaya with Accessories | PRESENT | absent |
+| Aydan Stone Striped Hijab Dress 5288 | PRESENT | absent |
+| 3765 Sinem Abaya | PRESENT | absent |
+| Zippered Abaya with Stone Accessories and Flounced Skirt 3887 | PRESENT | absent |
+| Stone Embroidered Flounce Sleeve Chiffon Abaya 3539 | PRESENT | absent |
+| Zippered Side Pleated Pocket Detailed Abaya 3919 | PRESENT | absent |
+| Beaded Collar Hijab Shirt 4083 | PRESENT | absent |
+| 5656 Hijab Dress with Bow and Flower Detail ... | PRESENT | absent |
+| *control:* 9183 Jacket and Trouser Set | PRESENT | PRESENT |
+| *control:* Aliye Beaded Abaya | PRESENT | PRESENT |
+
+The garment move, same four-cell control, by handle `ceket-ve-pantolon-takim-9183`:
+
+|  | /modest-trousers | /modest-sets |
+|---|---|---|
+| production | YES | no |
+| staging | no | YES |
+
+**Search by TITLE, not by handle.** The columnar payload
+(`lib/compactCatalogue.ts`) carries `rows.title` for every row in the lane, but the
+`urlTail` handle is only in the HTML for the ~24 rendered cards. A handle grep therefore
+reports "absent" for a product that is very much still published — it read as 8 of 10
+already cut on production before this change had gone anywhere near it. Caught only
+because the negative control was run.
+
+## Status
+On `staging` (`a9be3fd`), verified. **Not merged to `main`** — waiting on Tina's approval
+per §1.
