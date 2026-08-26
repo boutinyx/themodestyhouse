@@ -33768,6 +33768,32 @@
     "evidence": "Hijab Magnets"
   },
   {
+    "id": "merrachi:15562552934783",
+    "brandSlug": "merrachi",
+    "title": "Unity Scarf Gift Box | Multi Color",
+    "url": "https://bymerrachi.com/products/unity-scarf-gift-box-multi-color",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "merrachi:15580608725375",
+    "brandSlug": "merrachi",
+    "title": "Rose Scarf Gift Box | Multi Color",
+    "url": "https://bymerrachi.com/products/rose-scarf-gift-box-multi-color",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "merrachi:15648489767295",
+    "brandSlug": "merrachi",
+    "title": "Zebra Gathered Pouch | Brown Zebra",
+    "url": "https://bymerrachi.com/products/zebra-gathered-pouch-brown-zebra",
+    "garmentWas": "swim",
+    "reason": "non-apparel:bags",
+    "tier": "B",
+    "evidence": "Pouch"
+  },
+  {
     "id": "merrachi:15648029999487",
     "brandSlug": "merrachi",
     "title": "Maxi Summer Bag | Light Chai",
@@ -33786,6 +33812,34 @@
     "reason": "non-apparel:bags",
     "tier": "B",
     "evidence": "Bag"
+  },
+  {
+    "id": "merrachi:15675922415999",
+    "brandSlug": "merrachi",
+    "title": "Zebra Scarf Gift Box | Multi Color",
+    "url": "https://bymerrachi.com/products/zebra-scarf-gift-box-multi-color",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "merrachi:15639066050943",
+    "brandSlug": "merrachi",
+    "title": "Scarf Keychain | Khaki",
+    "url": "https://bymerrachi.com/products/scarf-keychain-khaki",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Keychain"
+  },
+  {
+    "id": "merrachi:15639065985407",
+    "brandSlug": "merrachi",
+    "title": "Scarf Keychain | Meringue",
+    "url": "https://bymerrachi.com/products/scarf-keychain-meringue",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Keychain"
   },
   {
     "id": "merrachi:15639066116479",
@@ -33824,7 +33878,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "557 GBP (~$759)"
+    "evidence": "476.95 EUR (~$556)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -33833,16 +33887,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "557 GBP (~$759)"
-  },
-  {
-    "id": "avyaana:8267050516618",
-    "brandSlug": "avyaana",
-    "title": "MANAR",
-    "url": "https://avyaana.com/products/manar-copy",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "437 GBP (~$596)"
+    "evidence": "476.95 EUR (~$556)"
   },
   {
     "id": "avyaana:8267053432970",
@@ -33851,7 +33896,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "583 GBP (~$795)"
+    "evidence": "498.95 EUR (~$582)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -33860,7 +33905,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "583 GBP (~$795)"
+    "evidence": "498.95 EUR (~$582)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -33869,34 +33914,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "583 GBP (~$795)"
-  },
-  {
-    "id": "avyaana:8267050844298",
-    "brandSlug": "avyaana",
-    "title": "Nyla",
-    "url": "https://avyaana.com/products/nyla-copy",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "437 GBP (~$596)"
-  },
-  {
-    "id": "avyaana:8267050713226",
-    "brandSlug": "avyaana",
-    "title": "ROHA",
-    "url": "https://avyaana.com/products/roha-copy",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "437 GBP (~$596)"
-  },
-  {
-    "id": "avyaana:8267050614922",
-    "brandSlug": "avyaana",
-    "title": "Ghazal",
-    "url": "https://avyaana.com/products/ghazal-copy",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "437 GBP (~$596)"
+    "evidence": "498.95 EUR (~$582)"
   },
   {
     "id": "fares:7648008044735",
@@ -40264,76 +40282,13 @@
     "evidence": "Bag"
   },
   {
-    "id": "avyaana:15633339056502",
-    "brandSlug": "avyaana",
-    "title": "Elenora",
-    "url": "https://avyaana.com/products/elenora-1",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "460 GBP (~$627)"
-  },
-  {
-    "id": "avyaana:15633334862198",
-    "brandSlug": "avyaana",
-    "title": "BAHIRA",
-    "url": "https://avyaana.com/products/bahira-1",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "418 GBP (~$570)"
-  },
-  {
-    "id": "avyaana:15633334665590",
-    "brandSlug": "avyaana",
-    "title": "KHAYAL",
-    "url": "https://avyaana.com/products/khayal-1",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "418 GBP (~$570)"
-  },
-  {
-    "id": "avyaana:15633334468982",
-    "brandSlug": "avyaana",
-    "title": "SEREEN",
-    "url": "https://avyaana.com/products/sereen-1",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "460 GBP (~$627)"
-  },
-  {
-    "id": "avyaana:15633334042998",
-    "brandSlug": "avyaana",
-    "title": "Haneefa",
-    "url": "https://avyaana.com/products/haneefa-1",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "460 GBP (~$627)"
-  },
-  {
-    "id": "avyaana:15633333715318",
-    "brandSlug": "avyaana",
-    "title": "RANIA",
-    "url": "https://avyaana.com/products/rania-1",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "460 GBP (~$627)"
-  },
-  {
-    "id": "avyaana:15633332535670",
-    "brandSlug": "avyaana",
-    "title": "DARIYA",
-    "url": "https://avyaana.com/products/dariya-1",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "460 GBP (~$627)"
-  },
-  {
     "id": "avyaana:15449996034422",
     "brandSlug": "avyaana",
     "title": "Golden Earth Ombre",
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "557 GBP (~$759)"
+    "evidence": "476.95 EUR (~$556)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -40342,7 +40297,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -40351,7 +40306,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -40360,7 +40315,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -40369,7 +40324,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "557 GBP (~$759)"
+    "evidence": "476.95 EUR (~$556)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -40378,7 +40333,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -40387,7 +40342,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -40396,7 +40351,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -40405,7 +40360,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -40414,7 +40369,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -40423,7 +40378,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "626 GBP (~$853)"
+    "evidence": "535.95 EUR (~$625)"
   },
   {
     "id": "kamin:9333254586585",
@@ -50666,15 +50621,6 @@
     "url": "https://mariam-col.com/products/summer-contrast-woven-top-handle-bag-mac467",
     "garmentWas": "top",
     "reason": "brand-blacklist"
-  },
-  {
-    "id": "avyaana:15848127693174",
-    "brandSlug": "avyaana",
-    "title": "Wild Ember Print",
-    "url": "https://avyaana.com/products/petals-from-the-sky-print",
-    "garmentWas": "set",
-    "reason": "price-ceiling",
-    "evidence": "418 GBP (~$570)"
   },
   {
     "id": "nour-al-houda:7116370706480",
