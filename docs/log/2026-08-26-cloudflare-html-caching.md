@@ -1,5 +1,5 @@
 # Cloudflare caches every image and zero pages — and why
-**Date:** 2026-08-26 · **Status:** partial — analysis done, cache rule NOT yet applied
+**Date:** 2026-08-26 · **Status:** done — rules applied and verified on production
 
 ## Goal
 Tina: *"we really need to do something about the caching because it takes a
@@ -179,3 +179,140 @@ for the cache to have filled.
   just to download the document. Edge caching hides the render cost but not the
   transfer. That one needs an editorial decision about how much of a 20k-row
   catalogue a single page should carry.
+
+
+---
+
+# APPLIED — 2026-08-26
+
+Tina supplied a working token. Two notes on the token itself, both worth
+keeping:
+
+- **`/user/tokens/verify` reported `Invalid API Token` for a token that works
+  fine.** That endpoint does not support the newer `cfat_`-prefixed token
+  format. The earlier `.env` token was declared dead on that basis and that
+  claim was probably wrong. **Never conclude a credential is bad from
+  `/user/tokens/verify` alone — call a real endpoint** (`/zones?name=…`).
+  Same shape as §10.26: the harness lied, not the thing being measured.
+- A permission failure and an empty-resource failure look different and the
+  difference is diagnostic: `request is not authorized` = missing permission,
+  `could not find entrypoint ruleset` = authorized, nothing there yet.
+
+Zone `480bf96b3a960f3933b8e69d13417b3d`. No cache rules existed beforehand, so
+nothing was overwritten.
+
+## The trap: cache-phase rules do NOT stop at the first match
+
+The first version applied was the one drafted above — a bypass rule followed by
+a "cache all GETs" rule. It **failed**, and failed silently in the dangerous
+direction:
+
+```
+POST /                        -> DYNAMIC   (bypass rule works)
+GET /faq?_rsc=probeX (RSC: 1) -> MISS then HIT
+$ curl -H 'RSC: 1' '…/faq?_rsc=probeX' | head -c 60
+1:"$Sreact.fragment"                      <- a React flight payload, CACHED
+GET / (Cookie: staff_session=…) -> HIT    <- staff request served from cache
+```
+
+Unlike firewall rules, **every matching rule in the
+`http_request_cache_settings` phase executes in order, and a later rule
+overrides an earlier one.** The "cache all GETs" rule matched the RSC request
+and the staff request too, and flipped `cache` back to `true` after the bypass
+had set it to `false`.
+
+The staff case is the one that mattered: `app/layout.tsx` bakes
+`isStaff={true}` into the HTML, so a page rendered while Tina was logged in
+could be stored and served to the public with the staff editing UI in it.
+
+**Fix:** rule 2 re-states every bypass condition as a negation rather than
+relying on rule 1 having run. Then `purge_everything` to clear whatever was
+stored during the broken window.
+
+## A second flaw caught before it shipped
+
+The drafted rule 2 matched `http.request.method eq "GET"` — i.e. **everything**,
+including `/_next/static/*` and every image. With `browser_ttl: 0` that would
+have destroyed browser caching of static assets and made the site
+*substantially slower*, while every cache-status check still read green.
+
+Rule 2 is scoped to `not http.request.uri.path contains "."` instead. Verified
+first that this is a real separator here: no lane, brand, edit or editorial slug
+contains a dot, and no `<loc>` path in `sitemap.xml` does either. Pages are
+extensionless; assets all carry an extension.
+
+## Rules as applied
+
+**Rule 1 — bypass**
+```
+(http.request.method ne "GET")
+or (starts_with(http.request.uri.path, "/api/"))
+or (starts_with(http.request.uri.path, "/staff"))
+or (starts_with(http.request.uri.path, "/admin"))
+or (any(http.request.headers["rsc"][*] eq "1"))
+or (http.cookie contains "staff_session=")
+```
+-> `set_cache_settings { cache: false }`
+
+**Rule 2 — cache pages**
+```
+(http.request.method eq "GET")
+and (not http.request.uri.path contains ".")
+and (not starts_with(http.request.uri.path, "/api/"))
+and (not starts_with(http.request.uri.path, "/staff"))
+and (not starts_with(http.request.uri.path, "/admin"))
+and (not any(http.request.headers["rsc"][*] eq "1"))
+and (not http.cookie contains "staff_session=")
+```
+-> `set_cache_settings { cache: true, edge_ttl: override_origin 3600,
+   browser_ttl: override_origin 0 }`
+
+## Verification (production, after the fix)
+
+```
+1. pages cache            /  MISS -> HIT     /modest-abayas  MISS -> HIT
+                          /directory MISS -> HIT   /faq  MISS -> HIT
+2. RSC never cached       DYNAMIC, DYNAMIC
+3. staff cookie never     DYNAMIC, DYNAMIC
+4. document is HTML       <!DOCTYPE html><html lang="en-GB" …
+5. assets untouched       cache-control: public, max-age=14400
+6. page from the edge     cf-cache-status: HIT, age: 5
+```
+
+TTFB, measured on production:
+
+| route | edge HIT | origin render (cache bypassed) |
+|---|---|---|
+| `/` | **0.074 s** | 0.760 s |
+| `/directory` | **0.065 s** | 0.738 s |
+| `/modest-abayas` | **0.066 s** | 0.491 s |
+| `/modest-dresses` | 0.078 s | — |
+| `/editorial` | 0.064 s | — |
+| `/faq` | 0.063 s | — |
+
+Roughly **10x**, ~600 ms saved on every page load and every navigation.
+
+Note `cache-control` sent to the BROWSER is still `no-store` — the
+`browser_ttl` override did not rewrite it. That is the wanted outcome, not a
+miss: the edge holds the page and can be purged, the browser holds nothing and
+cannot go stale (CLAUDE.md §10.21).
+
+## NEW OPERATIONAL RULE — a deploy is no longer visible for up to an hour
+
+Pages are held at the edge for 3600 s. **A Railway deploy will not be visible on
+production until the cache is purged or the hour elapses.** This is now the
+single most likely way for someone to spend an afternoon debugging a change that
+already shipped — precisely §10.21 and §10.23, one layer out.
+
+Purge after any merge to `main`:
+
+```bash
+set -a && . ./.env && set +a
+curl -s -X POST "https://api.cloudflare.com/client/v4/zones/480bf96b3a960f3933b8e69d13417b3d/purge_cache" \
+  -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" \
+  --data '{"purge_everything":true}'
+```
+
+**Follow-up worth doing:** automate this in the deploy path so it is not a step
+anyone has to remember. Until then, treat it as part of "merged to main", the
+same way `npm run build:data` is part of "ingested".
