@@ -36,6 +36,27 @@ export type OuterwearSubtype = 'blazer' | 'vest' | 'cardigan' | 'sweater' | 'coa
  *  here for the same circular-import reason as the other two. */
 export type HijabSubtype = 'hijab' | 'khimar-jilbab' | 'undercap' | 'prayer-set';
 
+/** The three sub-categories of the Modest Dresses lane, added 2026-08-26 at
+ *  Tina's request ("everyday dresses and occasion dresses... then 1 more
+ *  filter with slip dresses also a type").
+ *
+ *  UNLIKE the other three subtype families, this one is NOT derived from the
+ *  title by any rule, and there is no rule to write. Tina classified these by
+ *  looking at the photographs, and her own picks prove text cannot reproduce
+ *  the judgement: Urban Modesty's "Ruby Pearl Cape Long Sleeve Maxi Dress" is
+ *  a SLIP and its near-twin "Silver Pearl Cape Long Sleeve Gown" is an
+ *  OCCASION piece; Slip also holds "Elena Dress", "Fluid Contrast" and a
+ *  product titled simply "Dress". So the classification lives entirely in
+ *  data/dress-subtypes.json, stamped onto Product at publish time as
+ *  `curatedDressSubtype` — see lib/specialty.ts::dressSubtype().
+ *
+ *  It is therefore deliberately PARTIAL. Of the 2,521 products on
+ *  /modest-dresses, 508 carry a subtype (419 hand-picked + 89 from the Glow
+ *  Modesty brand rule); the other 2,013 return null and appear only under
+ *  "All". Tina chose that explicitly over defaulting the remainder to
+ *  Everyday, so a null here means "not yet classified", never "everyday". */
+export type DressSubtype = 'everyday' | 'occasion' | 'slip';
+
 /** The specialty lanes (lib/lanes.ts) whose membership is NOT derived
  *  from `garment` alone — Modest Swimwear is (garment === 'swim' already
  *  satisfies isSwim()), so it never needed this. A staff override here is
@@ -112,6 +133,13 @@ export interface Product {
    *  means "let layeringSubtype() guess from the title", same fallback a
    *  naturally-classified layering item already uses. */
   forcedLayeringSubtype?: LayeringSubtype;
+  /** The Modest Dresses lane's sub-category, hand-curated by Tina and baked in
+   *  at publish time from data/dress-subtypes.json. Named `curated…` rather
+   *  than `forced…` on purpose: the other two forced fields OVERRIDE a
+   *  title-based classifier, while this one IS the classifier — there is no
+   *  rule underneath it to override (see DressSubtype above). Absent on the
+   *  ~2,013 dresses not yet classified, and absent on every non-dress. */
+  curatedDressSubtype?: DressSubtype;
   /** Only meaningful alongside forcedLane === 'outerwear'. Same fallback
    *  reasoning as forcedLayeringSubtype, for outerwearSubtype(). Deliberately
    *  a separate field rather than reusing forcedLayeringSubtype — a shared

@@ -3,6 +3,7 @@ import {
   layeringSubtype, LAYERING_SUBTYPE_LABELS, type LayeringSubtype,
   outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype,
   hijabSubtype, HIJAB_SUBTYPE_LABELS, type HijabSubtype,
+  dressSubtype, DRESS_SUBTYPE_LABELS, type DressSubtype,
 } from '@/lib/specialty';
 import { hijabTypeFilter, HIJAB_TYPE_FILTER_LABELS, type HijabTypeFilter } from '@/lib/hijabTypeFilter';
 
@@ -73,6 +74,14 @@ export interface CompactCatalogue {
    *  not the header nav flyout. A row can have a real index in both this and
    *  hijabSubtypeIdx at once — see rows.hijabTypeFilterIdx. */
   hijabTypeFilters: HijabTypeFilter[];
+  /** Same shape as layeringSubtypes, for the Modest Dresses lane's Type filter
+   *  (added 2026-08-26 — see rows.dressSubtypeIdx).
+   *
+   *  Unlike the other three, this one is PARTIAL by design: most rows on
+   *  /modest-dresses have no subtype at all, so this array being non-empty
+   *  means "some dresses here are classified", not "every dress here is". See
+   *  lib/specialty.ts::dressSubtype for why. */
+  dressSubtypes: DressSubtype[];
   /** How many rows this catalogue describes.
    *
    *  `rows.title.length` equals it, but a CLIENT holding row indices needs a
@@ -105,6 +114,10 @@ export interface CompactCatalogue {
      *  above). Not mutually exclusive with hijabSubtypeIdx: a jersey khimar
      *  has a real value in both. */
     hijabTypeFilterIdx?: number[];
+    /** Same shape as layeringSubtypeIdx, for dressSubtypes. -1 is the MAJORITY
+     *  value here, not a rarity — 2,013 of the 2,521 rows on /modest-dresses
+     *  are unclassified and filter out of every chip except "All". */
+    dressSubtypeIdx?: number[];
     /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
      *  decoded into CardProduct, same treatment as occasionMask. */
     firstSeenDay: number[];
@@ -225,6 +238,10 @@ export function encodeCatalogue(
   const presentHijabSubtypes = new Set(products.map((p) => hijabSubtype(p)).filter((t): t is HijabSubtype => t !== null));
   const hijabSubtypes = hijabSubtypeOrder.filter((t) => presentHijabSubtypes.has(t));
   const hijabSubtypeIndex = new Map(hijabSubtypes.map((t, i) => [t, i]));
+  const dressSubtypeOrder = Object.keys(DRESS_SUBTYPE_LABELS) as DressSubtype[];
+  const presentDressSubtypes = new Set(products.map((p) => dressSubtype(p)).filter((t): t is DressSubtype => t !== null));
+  const dressSubtypes = dressSubtypeOrder.filter((t) => presentDressSubtypes.has(t));
+  const dressSubtypeIndex = new Map(dressSubtypes.map((t, i) => [t, i]));
   const hijabTypeFilterOrder = Object.keys(HIJAB_TYPE_FILTER_LABELS) as HijabTypeFilter[];
   const presentHijabTypeFilters = new Set(products.map((p) => hijabTypeFilter(p)).filter((t): t is HijabTypeFilter => t !== null));
   const hijabTypeFilters = hijabTypeFilterOrder.filter((t) => presentHijabTypeFilters.has(t));
@@ -239,6 +256,7 @@ export function encodeCatalogue(
     layeringSubtypeIdx: [],
     outerwearSubtypeIdx: [],
     hijabSubtypeIdx: [],
+    dressSubtypeIdx: [],
     hijabTypeFilterIdx: [],
     firstSeenDay: [],
   };
@@ -337,6 +355,8 @@ export function encodeCatalogue(
     rows.outerwearSubtypeIdx!.push(outerwearSub === null ? -1 : outerwearSubtypeIndex.get(outerwearSub)!);
     const hijabSub = hijabSubtype(p);
     rows.hijabSubtypeIdx!.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
+    const dressSub = dressSubtype(p);
+    rows.dressSubtypeIdx!.push(dressSub === null ? -1 : dressSubtypeIndex.get(dressSub)!);
     const hijabType = hijabTypeFilter(p);
     rows.hijabTypeFilterIdx!.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
     rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
@@ -359,7 +379,8 @@ export function encodeCatalogue(
 
   // Drop any subtype column that carries no information on THIS page.
   //
-  // These four are per-lane facts: layeringSubtypeIdx is -1 for everything
+  // These five (four until 2026-08-26, when dressSubtypeIdx joined them) are
+  // per-lane facts: layeringSubtypeIdx is -1 for everything
   // that isn't a layering piece, and so on. On a mixed page there is nothing
   // to say — measured on /directory, each of the four was 39,767 bytes of
   // 13,256 entries that were ALL -1, and on the since-retired /hijabi-outfits the first three
@@ -367,10 +388,10 @@ export function encodeCatalogue(
   // payload per page spent transmitting "no" 53,000 times.
   //
   // They are NOT deleted from the format — FilterableGrid genuinely reads all
-  // four on the lanes that have subtype filters, and there the columns are
+  // of them on the lanes that have subtype filters, and there the columns are
   // real. Absent simply means "every row is -1", which is what readers must
   // treat a missing column as. See the ?? -1 fallbacks in FilterableGrid.
-  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx'] as const;
+  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx'] as const;
   for (const col of SENTINEL_COLUMNS) {
     const v = rows[col];
     if (v && v.every((x) => x === -1)) delete rows[col];
@@ -378,7 +399,7 @@ export function encodeCatalogue(
 
   return {
     brands: compactBrands, garments, occasions,
-    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters,
+    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, dressSubtypes,
     rows, cards, rowCount: products.length,
   };
 }

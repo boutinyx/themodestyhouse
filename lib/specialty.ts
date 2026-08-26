@@ -1,10 +1,10 @@
 import type { Product } from '@/lib/types';
-import type { LayeringSubtype, OuterwearSubtype, HijabSubtype } from '@/lib/types';
+import type { LayeringSubtype, OuterwearSubtype, HijabSubtype, DressSubtype } from '@/lib/types';
 
 // Re-exported so existing call sites (lib/compactCatalogue.ts) don't need
 // to change their import — the type itself now lives in lib/types.ts to
 // avoid a circular import (Product carries a field of this type).
-export type { LayeringSubtype, OuterwearSubtype, HijabSubtype };
+export type { LayeringSubtype, OuterwearSubtype, HijabSubtype, DressSubtype };
 
 // "Specialty" = swimwear + activewear + layering. These should NOT intermix
 // with everyday clothing (dresses, trousers, tops…). They only surface on
@@ -149,7 +149,31 @@ const PRAYER_RE = /\bprayer\b/i;
 // prayer coverings worn as an outer layer for salah — those need this
 // explicit check since their garment field says 'abaya', not 'hijab'.
 export function isKhimarAbaya(p: Product): boolean {
-  return p.garment === 'abaya' && KHIMAR_ABAYA_RE.test(p.title);
+  // WIDENED 2026-08-26 from `garment === 'abaya'` to `garment !== 'hijab'`.
+  // Tina found six khimaars sitting in Modest Dresses and asked for them under
+  // Hijabs ("there are also some products in the modest dresses thing that need
+  // to go to kihmars"): noureen's "Luxury Jersey Khimaar" line and
+  // diversity-modest's "The Everyday Khimaar", all of which the tagger read as
+  // garment:'dress' off the word "jersey"/"everyday" rather than 'abaya'.
+  //
+  // Measured across the whole published catalogue before changing the gate —
+  // the §10.10 discipline, since widening a classifier moves products silently:
+  // 190 rows carry a khimar-shaped title, split 141 garment:'hijab', 40
+  // garment:'abaya', 9 garment:'dress'. There is no fourth garment, so
+  // `!== 'hijab'` adds EXACTLY those 9 dress rows and nothing else. Tina listed
+  // 6 of them; the other 3 (Off White, Beige, Lime) are the same noureen
+  // product line in other colourways and move with their siblings.
+  //
+  // 'hijab' stays excluded for the reason the original gate existed: ~141 rows
+  // like "Khimar Medina silk" are standalone cape-style headcovers already
+  // routed to Hijabs & Scarves by the plain garment === 'hijab' check, and
+  // letting them in here would make isKhimarAbaya() true for products that are
+  // simply hijabs, muddying hijabSubtype()'s khimar-jilbab group.
+  //
+  // The NAME is now slightly wrong — these are no longer all abayas. Kept
+  // anyway: it is referenced from lib/lanes.ts, lib/hijabTypeFilter.ts and two
+  // test files, and a rename buys nothing a comment does not.
+  return p.garment !== 'hijab' && KHIMAR_ABAYA_RE.test(p.title);
 }
 
 // 313 rows checked 2026-08-15, effectively all garment:'hijab' already — a
@@ -472,4 +496,63 @@ export function outerwearSubtype(p: Product): OuterwearSubtype | null {
     }
   }
   return best;
+}
+
+// ─── Modest Dresses sub-categories ───────────────────────────────────────────
+//
+// Tina, 2026-08-26: "we are gonna add a few filters to the modest dresses 1 and
+// 2 everyday dresses and occasion dresses... then 1 more filter with slip
+// dresses also a type."
+//
+// This family works differently from the other three in this file, and the
+// difference is the whole point: there is NO title rule, because no title rule
+// could work. See the DressSubtype doc comment in lib/types.ts for the evidence
+// (a slip and a gown from the same brand with near-identical titles, and a
+// product called "Dress"). Every assignment is a human decision, recorded in
+// data/dress-subtypes.json and stamped onto the row at publish time by
+// scripts/build-data.mjs.
+//
+// Order here is the canonical filter-dropdown order — the order Tina named
+// them. Labels are her words verbatim (§10.18: her copy, not mine).
+export const DRESS_SUBTYPE_LABELS: Record<DressSubtype, string> = {
+  everyday: 'Everyday Dresses',
+  occasion: 'Occasion Dresses',
+  slip: 'Slip Dresses',
+};
+
+// Tina's one brand-level rule, given in the same message: "everything from glow
+// modesty i want i[n] t[he] ocassion ones execpt for the few i wrote down in
+// everyday." Confirmed back to her before building. Applied only where the
+// curated map is SILENT, so the three Glow Modesty dresses she put in Everyday
+// (Marisol Pigment Knitted, Marisol Knitted Maxi, Modest Barbie Corset) win —
+// they are in data/dress-subtypes.json and checked first.
+//
+// Measured: Glow Modesty publishes 109 dresses. 20 are named explicitly (17
+// occasion, 3 everyday); this rule covers the remaining 89.
+const OCCASION_BRANDS = new Set(['glow-modesty']);
+
+/**
+ * Returns null for anything not classified — and unlike layeringSubtype() /
+ * hijabSubtype() / outerwearSubtype(), that is the COMMON case, not an edge.
+ *
+ * Tina's lists cover 419 of the 2,521 products on /modest-dresses. She was
+ * asked directly what should happen to the other ~2,100 and chose to leave them
+ * untyped rather than default them to Everyday: the filter is opt-in, so
+ * "Occasion" and "Slip" contain exactly what she picked and nothing inferred.
+ * An unclassified dress still appears on the lane under "All" — it is simply
+ * matched by no chip. Do NOT "fix" this by adding a keyword fallback; that is
+ * the decision, not an omission.
+ *
+ * The isSpecialty() guard is defensive rather than load-bearing today: nothing
+ * in data/dress-subtypes.json is currently specialty. It exists because
+ * productsForLane strips specialty rows off /modest-dresses, so a dress that
+ * later starts matching (a re-tagged khimaar, a "Prayer Dress") must not keep
+ * advertising a dress subtype for a lane it no longer appears on.
+ */
+export function dressSubtype(p: Product): DressSubtype | null {
+  if (p.garment !== 'dress') return null;
+  if (isSpecialty(p)) return null;
+  if (p.curatedDressSubtype) return p.curatedDressSubtype;
+  if (OCCASION_BRANDS.has(p.brandSlug)) return 'occasion';
+  return null;
 }

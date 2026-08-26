@@ -31,6 +31,15 @@ const garmentOverrides = existsSync(U('garment-overrides.json'))
 const laneOverrides = existsSync(U('lane-overrides.json'))
   ? JSON.parse(readFileSync(U('lane-overrides.json'), 'utf8'))
   : {};
+// Tina's hand-curated Modest Dresses sub-categories — Everyday / Occasion /
+// Slip, 2026-08-26. Same never-written-by-automation guarantee as
+// garmentOverrides and laneOverrides above, and for a stronger reason: there is
+// no classifier underneath this one to fall back on, so a lost entry is a lost
+// human judgement that cannot be re-derived. See lib/specialty.ts::dressSubtype
+// and the DressSubtype doc comment in lib/types.ts.
+const dressSubtypes = existsSync(U('dress-subtypes.json'))
+  ? JSON.parse(readFileSync(U('dress-subtypes.json'), 'utf8'))
+  : {};
 // Ids reviewed via the /admin/photo-review UI and confirmed fine — stops a
 // dismissed item from being pushed back into review on every publish.
 // Never written by any automated path. An item found to actually be broken
@@ -195,6 +204,13 @@ const kept = raw.filter((p) => {
       p.forcedOuterwearSubtype = laneOverride.subtype;
     }
   }
+  // Stamped rather than looked up at render time so the 419-entry map never
+  // enters a client-reachable module graph: lib/compactCatalogue.ts is imported
+  // by components/FilterableGrid.tsx ('use client'), so a JSON import there
+  // would ship the whole map to every browser on every grid page (Invariant 16).
+  // Same mechanism laneOverrides above already uses, for the same reason.
+  const dressSub = dressSubtypes[p.id];
+  if (dressSub) p.curatedDressSubtype = dressSub;
   // Informational only — does NOT hold the item back. A merchant flagging
   // their own listing ("retakephotos" etc.) is usually still a fine photo
   // (measured: 9/10 for one brand's tag), not proof it's broken. This is

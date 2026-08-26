@@ -6,6 +6,7 @@ import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
+import { DRESS_SUBTYPE_LABELS } from '@/lib/specialty';
 import { useCurrency } from './CurrencyProvider';
 
 const STEP = 24;
@@ -93,6 +94,9 @@ export function FilterableGrid({
     if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
     if ((cat.outerwearSubtypes as string[]).includes(initialType)) return initialType;
     if ((cat.hijabSubtypes as string[]).includes(initialType)) return initialType;
+    // cat.dressSubtypes is DELIBERATELY not accepted here — see the Type
+    // dropdown's comment below. Dress subtypes are in-page state only, never
+    // URL-driven, so /modest-dresses?type=occasion resolves to 'all'.
     return 'all';
   }); // layering, outerwear OR hijab subtype, or 'all'
   // Re-syncs `type` when `initialType` (or the catalogue it's validated
@@ -137,6 +141,14 @@ export function FilterableGrid({
   // types actually present on this lane — no further sort/filter needed,
   // same as how `brands` above is the one place that DOES need a sort
   // (brand names have no canonical order the way subtype keys do).
+  // The Modest Dresses "Type" options. `cat.dressSubtypes` is already in
+  // DRESS_SUBTYPE_LABELS's canonical order (encodeCatalogue filters that order
+  // rather than collecting as it goes), so no sort is needed — same as
+  // fabricTypes below.
+  const dressTypes = useMemo(
+    () => cat.dressSubtypes.map((t) => ({ value: t as string, label: DRESS_SUBTYPE_LABELS[t] })),
+    [cat.dressSubtypes],
+  );
   const fabricTypes = useMemo(
     () => cat.hijabTypeFilters.map((t) => ({ value: t, label: HIJAB_TYPE_FILTER_LABELS[t] })),
     [cat]
@@ -165,14 +177,16 @@ export function FilterableGrid({
   // lane is layering-basics, outerwear, or modest-hijabs, never a mix — so
   // this picks whichever subtype column actually applies here, same pattern
   // as the old binary `usingOuterwearTypes` just extended to a third case.
-  const typeDomain: 'layering' | 'outerwear' | 'hijab' | 'none' =
+  const typeDomain: 'layering' | 'outerwear' | 'hijab' | 'dress' | 'none' =
     cat.layeringSubtypes.length > 0
       ? 'layering'
       : cat.outerwearSubtypes.length > 0
         ? 'outerwear'
         : cat.hijabSubtypes.length > 0
           ? 'hijab'
-          : 'none';
+          : cat.dressSubtypes.length > 0
+            ? 'dress'
+            : 'none';
   const typeIdx =
     type === 'all'
       ? -1
@@ -180,7 +194,9 @@ export function FilterableGrid({
         ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
         : typeDomain === 'hijab'
           ? cat.hijabSubtypes.indexOf(type as (typeof cat.hijabSubtypes)[number])
-          : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
+          : typeDomain === 'dress'
+            ? cat.dressSubtypes.indexOf(type as (typeof cat.dressSubtypes)[number])
+            : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
   const fabricTypeIdx = fabricType === 'all' ? -1 : cat.hijabTypeFilters.indexOf(fabricType as (typeof cat.hijabTypeFilters)[number]);
 
@@ -199,7 +215,9 @@ export function FilterableGrid({
             ? (cat.rows.outerwearSubtypeIdx?.[i] ?? -1)
             : typeDomain === 'hijab'
               ? (cat.rows.hijabSubtypeIdx?.[i] ?? -1)
-              : (cat.rows.layeringSubtypeIdx?.[i] ?? -1);
+              : typeDomain === 'dress'
+                ? (cat.rows.dressSubtypeIdx?.[i] ?? -1)
+                : (cat.rows.layeringSubtypeIdx?.[i] ?? -1);
         if (rowTypeIdx !== typeIdx) continue;
       }
       // Independent of the typeIdx/typeDomain check above — ANDed, not a
@@ -276,10 +294,11 @@ export function FilterableGrid({
     <div>
       {/* The same index console as /directory — one instrument across the site.
           No Category dropdown: this page already IS one category. No Type
-          dropdown either, as of 2026-08-15 — all three lanes that have
-          subtypes (Outerwear, Layering Basics, Hijabs & Scarves) filter by
-          them via the header flyout only; see the note on `type`/`typeIdx`
-          above. */}
+          dropdown for the three FLYOUT lanes, as of 2026-08-15 — Outerwear,
+          Layering Basics and Hijabs & Scarves filter by subtype via the header
+          flyout only; see the note on `type`/`typeIdx` above. Modest Dresses,
+          added 2026-08-26, is the exception and does render one — it has no
+          flyout of its own to filter from. */}
       {showConsole && (
       <IndexPanel q={q} onQ={setQ} showSearch={searchable} className="mb-8">
         {/* Occasion filter pulled from the UI 2026-08-12 at Tina's request —
@@ -295,6 +314,41 @@ export function FilterableGrid({
             on fabricTypeIdx above. */}
         {showTypeFilter && fabricTypes.length > 0 && (
           <FilterDropdown label="Type" value={fabricType} options={fabricTypes} onSelect={setFabricType} />
+        )}
+        {/* Modest Dresses' Everyday / Occasion / Slip filter, 2026-08-26 —
+            Tina: "those 2 are going to ahve a filter in the modest dresses
+            catagory... then 1 more filter with slip dresses also a type."
+
+            This is the ONE lane whose subtypes get an in-page dropdown rather
+            than a header flyout, and that is deliberate, not an inconsistency:
+            the flyouts Hijabs and Basics use hang off their own top-level nav
+            triggers, Dresses is a plain row inside the Clothing panel, and the
+            nested flyouts that used to hang off such rows were removed on
+            2026-08-22 at Tina's request after the column-occlusion saga
+            (§10.34/§10.36). Adding one back for Dresses would re-open exactly
+            that. A dropdown is also what she literally asked for.
+
+            It shares the `type` state with those flyout lanes but is NOT
+            URL-driven, and that is load-bearing rather than laziness. If
+            `?type=occasion` were honoured here, app/[lane]/page.tsx would set
+            the h1, the <title>, the canonical and the JSON-LD ItemList from
+            it (via lib/laneSubtypes.ts) — and then picking a DIFFERENT option
+            in this dropdown would change the grid while the heading still read
+            "Occasion Dresses", i.e. the exact page-contradicts-itself defect
+            the 2026-08-19 subtype work was done to remove. The three flyout
+            lanes escape it only because they have no in-page control to
+            desync with. So `initialType` explicitly rejects dress subtypes,
+            /modest-dresses stays a single canonical URL, and lib/laneSubtypes
+            has no entry for it. The closest precedent is the hijab fabric
+            dropdown two lines up, which is likewise pure in-page state.
+
+            `showTypeFilter` gates it alongside the hijab
+            fabric filter: /edits/[slug] passes false, and an edit cutting
+            across categories has no business offering a dress-only chip. The
+            two can never both render — a catalogue has dress subtypes or hijab
+            fabric groups, never both. */}
+        {showTypeFilter && dressTypes.length > 0 && (
+          <FilterDropdown label="Type" value={type} options={dressTypes} onSelect={setType} />
         )}
         {/* Unlike the two above, this dropdown's "nothing chosen" value is a
             real key: 'featured' IS a sort order, not the absence of one. It is

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap, hijabSubtype } from './specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap, hijabSubtype, dressSubtype } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -259,6 +259,46 @@ describe('isKhimarAbaya', () => {
     expect(isKhimarAbaya(p('Mastour Khimaar Burnished Lilac', 'abaya'))).toBe(true); // noureen
     expect(isKhimarAbaya(p('Heup Khimaar Lexus EggWhite', 'abaya'))).toBe(true);
     expect(isKhimarAbaya(p('Khimar Medina silk', 'hijab'))).toBe(false); // jennah-boutique — standalone hijab style, handled by garment==='hijab' instead
+  });
+  // The 2026-08-26 widening from `garment === 'abaya'` to `garment !== 'hijab'`.
+  // Both titles are real published rows Tina found sitting in Modest Dresses.
+  it('matches a khimaar the tagger read as a DRESS', () => {
+    expect(isKhimarAbaya(p('Luxury Jersey Khimaar Pink', 'dress'))).toBe(true); // noureen
+    expect(isKhimarAbaya(p('The Everyday Khimaar Warm Taupe', 'dress'))).toBe(true); // diversity-modest
+    // …and those rows must therefore leave the dresses lane entirely.
+    expect(isSpecialty(p('Luxury Jersey Khimaar Pink', 'dress'))).toBe(true);
+    expect(hijabSubtype(p('Luxury Jersey Khimaar Pink', 'dress'))).toBe('khimar-jilbab');
+  });
+  it('still ignores a dress that merely rhymes with the word', () => {
+    // Negative control for the widened gate: `word()`-free \\b anchoring is what
+    // keeps this from matching, and the gate no longer helps.
+    expect(isKhimarAbaya(p('Khimarra Print Maxi Dress', 'dress'))).toBe(false);
+    expect(isKhimarAbaya(p('Cashmere Maxi Dress', 'dress'))).toBe(false);
+  });
+});
+
+describe('dressSubtype', () => {
+  // There is no title rule to test — the classification is data. What these
+  // assert is the RESOLUTION ORDER, which is the only logic in the function.
+  it('returns the curated value stamped at publish time', () => {
+    expect(dressSubtype(p('Anything At All', 'dress', { curatedDressSubtype: 'slip' }))).toBe('slip');
+    expect(dressSubtype(p('Aya Dress 79', 'dress', { curatedDressSubtype: 'occasion' }))).toBe('occasion');
+  });
+  it("applies Tina's Glow Modesty rule only where the curated map is silent", () => {
+    expect(dressSubtype(p('Valeraine Gown', 'dress', { brandSlug: 'glow-modesty' }))).toBe('occasion');
+    // Her three named exceptions must beat the brand rule, or the rule eats them.
+    expect(
+      dressSubtype(p('Marisol Knitted Maxi Dress', 'dress', { brandSlug: 'glow-modesty', curatedDressSubtype: 'everyday' })),
+    ).toBe('everyday');
+  });
+  it('returns null for an unclassified dress — the majority case, by design', () => {
+    expect(dressSubtype(p('Some Unreviewed Maxi Dress', 'dress'))).toBe(null);
+  });
+  it('returns null for a non-dress and for a specialty row', () => {
+    expect(dressSubtype(p('Tailored Blazer', 'top', { curatedDressSubtype: 'everyday' }))).toBe(null);
+    // A curated dress that later starts matching a specialty rule leaves the
+    // lane, so it must stop advertising a subtype for a grid it is not in.
+    expect(dressSubtype(p('Prayer Dress In Jersey', 'dress', { curatedDressSubtype: 'everyday' }))).toBe(null);
   });
 });
 
