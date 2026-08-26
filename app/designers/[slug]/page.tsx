@@ -80,11 +80,15 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   const products = productsForBrand(brand.slug);
   if (products.length === 0) notFound();
 
-  const catalogue = encodeCatalogue(products, BRANDS);
-  const listed = catalogue.rows.title.slice(0, 24).map((_, i) => {
-    const c = decodeCard(catalogue, i);
-    return { title: c.title, url: c.url, image: c.image, brandName: c.brandName };
-  });
+  // embedCards + source belong together: the grid can only fetch the rows this
+  // omits if it knows what they are indices INTO. See FilterableGrid's `source`
+  // prop. → docs/superpowers/plans/2026-08-26-split-catalogue-payload.md
+  const catalogue = encodeCatalogue(products, BRANDS, { embedCards: 48 });
+  // See the note in app/[lane]/page.tsx on why filter(Boolean) rather than `!`.
+  const listed = catalogue.rows.title.slice(0, 24)
+    .map((_, i) => decodeCard(catalogue, i))
+    .filter((c): c is NonNullable<typeof c> => c !== null)
+    .map((c) => ({ title: c.title, url: c.url, image: c.image, brandName: c.brandName }));
 
   // Derived facts — every one of these is measured, never asserted.
   const counts = products.reduce<Record<string, number>>((a, p) => {
@@ -186,7 +190,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
             catalogue here is ONE brand, so its Brand dropdown offers a choice between
             "All" and the house whose page you are already on. Filtering and sorting
             still work underneath — only the controls are gone. */}
-        <FilterableGrid catalogue={catalogue} showConsole={false} />
+        <FilterableGrid catalogue={catalogue} showConsole={false} source={{ brand: brand.slug }} />
       </div>
     </main>
   );

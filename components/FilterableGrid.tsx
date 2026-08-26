@@ -1,6 +1,6 @@
 'use client';
 import { useMemo, useState, useEffect, type ReactNode } from 'react';
-import type { CompactCatalogue } from '@/lib/compactCatalogue';
+import type { CompactCatalogue, CardSlice, CardSource } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
@@ -18,8 +18,19 @@ export function FilterableGrid({
   searchable = true,
   showTypeFilter = true,
   showConsole = true,
+  source,
 }: {
   catalogue: CompactCatalogue;
+  /** What this grid's row indices index into, so card data for rows beyond the
+   *  embedded window can be fetched (lib/compactCatalogue.ts's index/card
+   *  split).
+   *
+   *  OPTIONAL, and absent means "never fetch". A page whose catalogue is small
+   *  enough to embed whole passes nothing and behaves exactly as before —
+   *  /edits/[slug] is the case, at 275 picks for the largest edit. A page that
+   *  omits it AND uses embedCards would silently render a short grid, so the
+   *  two belong together at every call site. */
+  source?: CardSource;
   /** From the lane page's ?type= — e.g. the nav flyout's "Blazers" link
    *  lands on /outerwear?type=blazer. Only ever set from a controlled list of
    *  hrefs this codebase generates itself (Nav.tsx), but still validated
@@ -111,6 +122,9 @@ export function FilterableGrid({
   }, [initialType, cat]);
   const [q, setQ] = useState('');
   const [visible, setVisible] = useState(STEP);
+  // Card data fetched for rows the server did not embed — see the `source` prop.
+  const [extraCards, setExtraCards] = useState<CardSlice>({ rows: {} });
+  const [cardsError, setCardsError] = useState(false);
   const [sort, setSort] = useState<SortKey>('featured');
   const { preference } = useCurrency();
 
@@ -218,7 +232,45 @@ export function FilterableGrid({
   }, [brand, type, fabricType, q]);
 
   const shownRows = sortedRows.slice(0, visible);
-  const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
+
+  // See the identical block in components/DirectoryBrowser.tsx — same split,
+  // same reasoning. Kept as two copies rather than a shared hook because the
+  // two components already duplicate their whole filter/sort/visible shape and
+  // folding only this part out would leave the harder half still duplicated.
+  const missing = source ? shownRows.filter((i) => !cat.cards.rows[i] && !extraCards.rows[i]) : [];
+  const missingKey = missing.join(',');
+  // `source` is an object literal at the lane and designer call sites, so it is
+  // a fresh identity on every render. Key the effect on its VALUE.
+  const sourceKey = JSON.stringify(source ?? null);
+
+  useEffect(() => {
+    if (missingKey === '' || !source) return;
+    let cancelled = false;
+    fetch('/api/catalogue/cards', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source, rows: missingKey.split(',').map(Number), rowCount: cat.rowCount }),
+    })
+      .then((r) => {
+        // The catalogue was rebuilt under this tab — every row index is stale.
+        if (r.status === 409) { window.location.reload(); return null; }
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json() as Promise<CardSlice>;
+      })
+      .then((slice) => {
+        if (cancelled || !slice) return;
+        setExtraCards((prev) => ({ rows: { ...prev.rows, ...slice.rows } }));
+        setCardsError(false);
+      })
+      .catch(() => { if (!cancelled) setCardsError(true); });
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- sourceKey IS source, by value
+  }, [missingKey, cat.rowCount, sourceKey]);
+
+  const shownCards = useMemo(
+    () => shownRows.map((i) => decodeCard(cat, i, extraCards)).filter((c): c is NonNullable<typeof c> => c !== null),
+    [cat, shownRows, extraCards],
+  );
 
   return (
     <div>
@@ -293,6 +345,11 @@ export function FilterableGrid({
               <div style={{ order: shownCards.length * 10 + 5 }}>{trailingTile}</div>
             )}
           </div>
+          {cardsError && shownCards.length < shownRows.length && (
+            <p className="text-center mt-8" style={{ color: 'var(--muted)', fontFamily: 'var(--font-ui), sans-serif', fontSize: 14 }}>
+              Some pieces could not be loaded. Refresh to try again.
+            </p>
+          )}
           {visible < sortedRows.length && (
             <div className="text-center mt-12">
               <button

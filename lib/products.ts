@@ -1,4 +1,4 @@
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import path from 'node:path';
 import type { Product, Vibe } from '@/lib/types';
 import type { Edit } from '@/lib/edits';
@@ -17,7 +17,45 @@ import { getLiveLaneOverrides } from '@/lib/liveLaneOverrides';
 // data/decisions.json, data/garment-overrides.json and
 // data/lane-overrides.json (the git-tracked sources of truth) only get
 // updated later, by scripts/merge-live-edits.mjs.
+/**
+ * Cache of the last fully-derived catalogue, keyed on the mtimes of every file
+ * that can change it.
+ *
+ * getProducts() re-read and re-parsed 11.2 MB on EVERY call — 14 ms read +
+ * 19 ms parse on an M-series Mac, more on Railway's shared CPU — and the
+ * homepage calls it more than once per render. Since the index/card split,
+ * /api/catalogue/cards calls it per request too.
+ *
+ * Keyed on MTIMES rather than a simple "already loaded" flag, and this is the
+ * load-bearing detail: /staff/curate writes .live-cuts.json (and the two
+ * override stores) inside the RUNNING production container, and Tina's edits
+ * must still take effect immediately — that is the whole design of
+ * docs/log/2026-08-12-staff-curate.md. A boolean would silently freeze them.
+ *
+ * If a FOURTH live-override store is ever added, it must be added to
+ * cacheKey() in the same commit, or edits through it will appear to do nothing.
+ */
+let cache: { key: string; value: Product[] } | null = null;
+
+function cacheKey(): string {
+  const stamp = (p: string) => {
+    try { return String(statSync(p).mtimeMs); } catch { return '0'; }
+  };
+  const d = (name: string) => path.join(process.cwd(), 'data', name);
+  return [
+    stamp(d('products.json')),
+    // Verified against each module's own STORE_PATH, not assumed from the
+    // naming pattern: lib/liveCuts.ts:31, lib/liveGarmentOverrides.ts:27,
+    // lib/liveLaneOverrides.ts:26.
+    stamp(d('.live-cuts.json')),
+    stamp(d('.live-garment-overrides.json')),
+    stamp(d('.live-lane-overrides.json')),
+  ].join(':');
+}
+
 export function getProducts(): Product[] {
+  const key = cacheKey();
+  if (cache && cache.key === key) return cache.value;
   const f = path.join(process.cwd(), 'data', 'products.json');
   if (!existsSync(f)) return [];
   const all = JSON.parse(readFileSync(f, 'utf8')) as Product[];
@@ -27,8 +65,11 @@ export function getProducts(): Product[] {
   const hasGarmentOverrides = Object.keys(garmentOverrides).length > 0;
   const hasLaneOverrides = Object.keys(laneOverrides).length > 0;
   const kept = cutIds.size === 0 ? all : all.filter((p) => !cutIds.has(p.id));
-  if (!hasGarmentOverrides && !hasLaneOverrides) return kept;
-  return kept.map((p) => {
+  if (!hasGarmentOverrides && !hasLaneOverrides) {
+    cache = { key, value: kept };
+    return kept;
+  }
+  const overridden = kept.map((p) => {
     const g = garmentOverrides[p.id];
     const l = laneOverrides[p.id];
     if (!g && !l) return p;
@@ -42,6 +83,8 @@ export function getProducts(): Product[] {
       } : {}),
     };
   });
+  cache = { key, value: overridden };
+  return overridden;
 }
 
 // Products for the mixed "everything" browse (directory, home rails). Hijabs are

@@ -58,6 +58,74 @@ const WOO_PRODUCT: Product = {
 };
 
 describe('encodeCatalogue / decodeCard', () => {
+  // ---- the index/card tier split (2026-08-26) -------------------------------
+  // /directory shipped 2,564,326 bytes of document, 92% of it this payload, to
+  // render 24 cards. The columns only decodeCard reads — shopifyId,
+  // imagePrefixIdx, imageFile, urlTail, altUrl — were 69% of those bytes and are
+  // never touched by a filter or a sort, so they no longer travel for every row.
+  // → docs/superpowers/plans/2026-08-26-split-catalogue-payload.md
+  const manyProducts = (n: number): Product[] =>
+    Array.from({ length: n }, (_, i) => ({
+      ...PRODUCT,
+      id: `aab:${1000 + i}`,
+      title: `Elowen Wrap Dress ${i}`,
+      url: `https://us.aabcollection.com/products/elowen-wrap-dress-${i}`,
+    }));
+
+  it('describes every row in the index tier but only the embedded window in the card tier', () => {
+    const products = manyProducts(100);
+    const full = encodeCatalogue(products, [BRAND]);
+    const split = encodeCatalogue(products, [BRAND], { embedCards: 24 });
+
+    // The index tier must still cover every row — filtering and sorting depend on it.
+    expect(split.rows.title).toHaveLength(100);
+    expect(split.rows.price).toHaveLength(100);
+    expect(split.rows.brandIdx).toHaveLength(100);
+    expect(split.rowCount).toBe(100);
+
+    // The card tier carries only what the first screenful needs.
+    expect(Object.keys(split.cards.rows)).toHaveLength(24);
+    expect(split.cards.rows[0].imageFile).toBe(full.cards.rows[0].imageFile);
+    expect(split.cards.rows[23]).toBeDefined();
+    expect(split.cards.rows[24]).toBeUndefined();
+  });
+
+  it('is substantially smaller than the un-split encoding', () => {
+    const products = manyProducts(100);
+    const size = (o: unknown) => Buffer.byteLength(JSON.stringify(o));
+    const full = size(encodeCatalogue(products, [BRAND]));
+    const split = size(encodeCatalogue(products, [BRAND], { embedCards: 24 }));
+    expect(split).toBeLessThan(full * 0.6);
+  });
+
+  it('embeds every row when embedCards is not given, so existing callers are unchanged', () => {
+    const products = manyProducts(100);
+    const cat = encodeCatalogue(products, [BRAND]);
+    expect(Object.keys(cat.cards.rows)).toHaveLength(100);
+    expect(decodeCard(cat, 99)).not.toBeNull();
+  });
+
+  it('returns null for a row whose card data has not been fetched', () => {
+    const split = encodeCatalogue(manyProducts(100), [BRAND], { embedCards: 24 });
+    expect(decodeCard(split, 0)).not.toBeNull();
+    expect(decodeCard(split, 50)).toBeNull();
+  });
+
+  it('decodes a row once its card data is supplied out of band', () => {
+    const products = manyProducts(100);
+    const split = encodeCatalogue(products, [BRAND], { embedCards: 24 });
+    const full = encodeCatalogue(products, [BRAND]);
+    const extra = { rows: { 50: full.cards.rows[50] } };
+    const card = decodeCard(split, 50, extra);
+    expect(card).not.toBeNull();
+    expect(card!.title).toBe('Elowen Wrap Dress 50');
+    expect(card!.url).toBe('https://us.aabcollection.com/products/elowen-wrap-dress-50');
+    // Identical to what the un-split encoding produces for the same row —
+    // the split must not change a single decoded value (Invariant 1: the id is
+    // the join key, and the url is what a visitor is actually sent to).
+    expect(card).toEqual(decodeCard(full, 50));
+  });
+
   it('round-trips every field a card needs', () => {
     const cat = encodeCatalogue([PRODUCT], [BRAND]);
     const card = decodeCard(cat, 0);
@@ -76,7 +144,7 @@ describe('encodeCatalogue / decodeCard', () => {
 
   it('round-trips a product whose url is not homepage + /products/ + handle', () => {
     const cat = encodeCatalogue([WOO_PRODUCT], [WOO_BRAND]);
-    const card = decodeCard(cat, 0);
+    const card = decodeCard(cat, 0)!;
     expect(card.url).toBe(WOO_PRODUCT.url);
     expect(card.image).toBe(WOO_PRODUCT.image);
     expect(card.currency).toBe(WOO_PRODUCT.currency);
@@ -87,7 +155,7 @@ describe('encodeCatalogue / decodeCard', () => {
     const products = JSON.parse(readFileSync(f, 'utf8')) as Product[];
     const cat = encodeCatalogue(products, BRANDS);
     for (let i = 0; i < products.length; i++) {
-      const card = decodeCard(cat, i);
+      const card = decodeCard(cat, i)!;
       expect(card.id).toBe(products[i].id);
       expect(card.title).toBe(products[i].title);
       expect(card.brandName).toBe(products[i].brandName);
@@ -306,7 +374,7 @@ describe('firstSeenDay encoding', () => {
 
   it('does not add firstSeen to the decoded card', () => {
     const cat = encodeCatalogue([{ ...PRODUCT, firstSeen: '2026-08-05' }], [BRAND]);
-    const card = decodeCard(cat, 0);
+    const card = decodeCard(cat, 0)!;
     expect('firstSeen' in card).toBe(false);
     expect('firstSeenDay' in card).toBe(false);
   });
@@ -347,14 +415,15 @@ describe('payload: altUrl is sparse (2026-08-19)', () => {
   // values out of 13,256 rows, i.e. 13,047 empty strings each costing `,""`.
   it('stores nothing at all when no row has an altUrl', () => {
     const cat = encodeCatalogue([PRODUCT], [BRAND]);
-    expect(cat.rows.altUrl).toEqual({});
+    expect(Object.values(cat.cards.rows).every((c) => c.altUrl === undefined)).toBe(true);
   });
 
   it('keys a present altUrl by its row index, and decodes it back onto the card', () => {
     const withAlt: Product = { ...PRODUCT, id: 'aab:92', altUrl: 'https://example.com/x' };
     const cat = encodeCatalogue([PRODUCT, withAlt], [BRAND]);
-    expect(cat.rows.altUrl).toEqual({ 1: 'https://example.com/x' });
-    expect(decodeCard(cat, 1).altUrl).toBe('https://example.com/x');
-    expect(decodeCard(cat, 0).altUrl).toBeUndefined();
+    expect(cat.cards.rows[1].altUrl).toBe('https://example.com/x');
+    expect(cat.cards.rows[0].altUrl).toBeUndefined();
+    expect(decodeCard(cat, 1)!.altUrl).toBe('https://example.com/x');
+    expect(decodeCard(cat, 0)!.altUrl).toBeUndefined();
   });
 });

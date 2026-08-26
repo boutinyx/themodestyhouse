@@ -1,6 +1,6 @@
 'use client';
 import { useMemo, useState, useEffect } from 'react';
-import type { CompactCatalogue } from '@/lib/compactCatalogue';
+import type { CompactCatalogue, CardSlice } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import type { Garment } from '@/lib/types';
 import { ProductCard } from './ProductCard';
@@ -20,6 +20,12 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   const [visible, setVisible] = useState(STEP);
   const [sort, setSort] = useState<SortKey>('featured');
+  // Card data for rows beyond the window the server embedded. See the
+  // index/card split in lib/compactCatalogue.ts: the index columns for all
+  // ~13k rows travel with the page (so filtering stays instant and local),
+  // the columns only a CARD needs are fetched for what is actually on screen.
+  const [extraCards, setExtraCards] = useState<CardSlice>({ rows: {} });
+  const [cardsError, setCardsError] = useState(false);
   const { preference } = useCurrency();
 
   const garments = useMemo(() => {
@@ -69,7 +75,45 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   }, [garment, brand, q]);
 
   const shownRows = sortedRows.slice(0, visible);
-  const shownCards = useMemo(() => shownRows.map((i) => decodeCard(cat, i)), [cat, shownRows]);
+
+  // Which of the rows about to be painted have no card data yet. Joined into a
+  // string for the effect's dependency because `missing` is rebuilt on every
+  // render — keying on its identity would refetch forever.
+  const missing = shownRows.filter((i) => !cat.cards.rows[i] && !extraCards.rows[i]);
+  const missingKey = missing.join(',');
+
+  useEffect(() => {
+    if (missingKey === '') return;
+    let cancelled = false;
+    fetch('/api/catalogue/cards', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: 'browse', rows: missingKey.split(',').map(Number), rowCount: cat.rowCount }),
+    })
+      .then((r) => {
+        // 409 means the catalogue was rebuilt under this tab — a deploy, or the
+        // nightly refresh (CLAUDE.md §10.35). Every row index held here now
+        // points at a different product, so retrying would paint the WRONG
+        // products under the right titles. Reload instead.
+        if (r.status === 409) { window.location.reload(); return null; }
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json() as Promise<CardSlice>;
+      })
+      .then((slice) => {
+        if (cancelled || !slice) return;
+        setExtraCards((prev) => ({ rows: { ...prev.rows, ...slice.rows } }));
+        setCardsError(false);
+      })
+      .catch(() => { if (!cancelled) setCardsError(true); });
+    return () => { cancelled = true; };
+  }, [missingKey, cat.rowCount]);
+
+  // decodeCard returns null while a row's card data is still in flight. Render
+  // what has arrived rather than holding the whole grid back.
+  const shownCards = useMemo(
+    () => shownRows.map((i) => decodeCard(cat, i, extraCards)).filter((c): c is NonNullable<typeof c> => c !== null),
+    [cat, shownRows, extraCards],
+  );
 
   return (
     <div>
@@ -108,6 +152,11 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
               <ProductCard key={p.id} p={p} priority={i < 4} />
             ))}
           </div>
+          {cardsError && shownCards.length < shownRows.length && (
+            <p className="text-center mt-8" style={{ color: 'var(--muted)', fontFamily: 'var(--font-ui), sans-serif', fontSize: 14 }}>
+              Some pieces could not be loaded. Refresh to try again.
+            </p>
+          )}
           {visible < sortedRows.length && (
             <div className="text-center mt-12">
               <button onClick={() => setVisible((v) => v + STEP)} className="btn-pill" style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}>

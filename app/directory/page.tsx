@@ -30,11 +30,19 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 
 export default async function DirectoryPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q } = await searchParams;
-  const catalogue = encodeCatalogue(browseProducts(), BRANDS);
-  const listedItems = catalogue.rows.title.slice(0, 24).map((_, i) => {
-    const c = decodeCard(catalogue, i);
-    return { title: c.title, url: c.url, image: c.image };
-  });
+  // Only the first two screenfuls of CARD data travel in the RSC payload; the
+  // index columns still describe every row, so filtering and sorting stay
+  // instant and entirely client-side. Measured 2026-08-26: card columns were 69%
+  // of this page's payload and are never read by a filter or a sort.
+  // STEP*2 rather than STEP — the second screenful is the one a visitor reaches
+  // fastest, and it costs ~30KB to have it already there.
+  // → docs/superpowers/plans/2026-08-26-split-catalogue-payload.md
+  const catalogue = encodeCatalogue(browseProducts(), BRANDS, { embedCards: 48 });
+  // See the note in app/[lane]/page.tsx on why filter(Boolean) rather than `!`.
+  const listedItems = catalogue.rows.title.slice(0, 24)
+    .map((_, i) => decodeCard(catalogue, i))
+    .filter((c): c is NonNullable<typeof c> => c !== null)
+    .map((c) => ({ title: c.title, url: c.url, image: c.image }));
   // Same header shape as app/[lane]/page.tsx — left-aligned h1 with a short line
   // under it — so the directory reads as one of the category pages rather than a
   // different template. The intro is this page's own metadata description,

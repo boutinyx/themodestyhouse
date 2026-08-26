@@ -55,14 +55,19 @@ export default async function EditPage({ params }: { params: Promise<{ slug: str
   const products = productsForEdit(edit);
   if (products.length === 0) notFound();
 
+  // NO embedCards here, deliberately: the largest edit is 275 picks, small
+  // enough to ship whole, and an edit's product set is a hand-picked id list
+  // that lib/catalogueCards.ts cannot reconstruct from a slug — so there is
+  // nothing for FilterableGrid to fetch and it is given no `source`.
   const catalogue = encodeCatalogue(products, BRANDS);
   // Only the rows the grid actually renders go into the JSON-LD item list —
   // the same 24 FilterableGrid shows before "show more". Claiming 428 items in
   // schema for a page that paints 24 would be describing a different page.
-  const listedItems = catalogue.rows.title.slice(0, 24).map((_, i) => {
-    const c = decodeCard(catalogue, i);
-    return { title: c.title, url: c.url, image: c.image, brandName: c.brandName };
-  });
+  // See the note in app/[lane]/page.tsx on why filter(Boolean) rather than `!`.
+  const listedItems = catalogue.rows.title.slice(0, 24)
+    .map((_, i) => decodeCard(catalogue, i))
+    .filter((c): c is NonNullable<typeof c> => c !== null)
+    .map((c) => ({ title: c.title, url: c.url, image: c.image, brandName: c.brandName }));
 
   const houses = new Set(products.map((p) => p.brandSlug)).size;
   const wash = edit.heroWash ?? 0.26;

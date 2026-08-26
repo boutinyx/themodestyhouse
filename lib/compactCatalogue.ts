@@ -54,7 +54,6 @@ interface CompactBrand {
 
 export interface CompactCatalogue {
   brands: CompactBrand[];
-  imagePrefixes: string[];
   garments: Garment[];
   occasions: string[];
   /** Only ever non-empty for a catalogue containing layering pieces (in
@@ -74,17 +73,20 @@ export interface CompactCatalogue {
    *  not the header nav flyout. A row can have a real index in both this and
    *  hijabSubtypeIdx at once — see rows.hijabTypeFilterIdx. */
   hijabTypeFilters: HijabTypeFilter[];
+  /** How many rows this catalogue describes.
+   *
+   *  `rows.title.length` equals it, but a CLIENT holding row indices needs a
+   *  value it can hand back to the server to assert the catalogue has not been
+   *  rebuilt underneath it. The nightly refresh pushes a new catalogue to main
+   *  on its own schedule (CLAUDE.md §10.35), so "these row indices still mean
+   *  the same products" is not something an open tab may assume. */
+  rowCount: number;
+  /** Card data for the rows embedded in THIS payload — see EncodeOptions.
+   *  Rows outside it are fetched from /api/catalogue/cards on demand. */
+  cards: CardSlice;
   rows: {
     title: string[];
-    shopifyId: string[];
     brandIdx: number[];
-    imagePrefixIdx: number[];
-    imageFile: string[];
-    /** Either a bare product handle, or (if the url doesn't fit
-     *  `${homepage}/products/${handle}`) the full url, verbatim. Handles never
-     *  start with "http" — encodeCatalogue throws if one ever would — so that
-     *  prefix alone tells decodeCard which case it is. */
-    urlTail: string[];
     price: number[];
     garmentIdx: number[];
     /** Bit i set iff `occasions[i]` is in the product's occasion list. */
@@ -106,16 +108,80 @@ export interface CompactCatalogue {
     /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
      *  decoded into CardProduct, same treatment as occasionMask. */
     firstSeenDay: number[];
-    /** See Product.altUrl. Stored as a full URL, unlike urlTail — it's on a
-     *  different domain than the row's own brand.homepage, so the
-     *  handle-derivation trick urlTail uses doesn't apply.
-     *
-     *  SPARSE as of 2026-08-19: a row index -> url map, not a parallel array.
-     *  It was a dense string[] carrying 79,222 bytes on /directory to express
-     *  209 real values out of 13,256 — 13,047 empty strings, each costing its
-     *  own `,""` in the RSC payload. An absent key means absent. */
-    altUrl: Record<number, string>;
   };
+}
+
+/**
+ * The card tier — everything `decodeCard` needs and NOTHING a filter or a sort
+ * reads, keyed by ABSOLUTE row index so a slice is self-describing.
+ *
+ * WHY THIS IS SEPARATE. Measured on /directory, 2026-08-26: the document was
+ * 2,564,326 bytes decoded, 2,361,529 of them (92%) this payload, to render 24
+ * cards. Column by column, imageFile 690KB + urlTail 442KB + shopifyId 208KB +
+ * imagePrefixIdx 39KB + altUrl 15KB = 69% of it — and not one of those columns
+ * is touched by the search box, a filter dropdown, or any sort. So they no
+ * longer travel for every row; the index tier above still does, which is what
+ * keeps filtering instant and entirely client-side.
+ *
+ * A Record rather than parallel arrays: a slice is inherently sparse (the rows
+ * currently on screen after an arbitrary filter are scattered through the
+ * catalogue), and a sparse array would serialise its holes.
+ * → docs/superpowers/plans/2026-08-26-split-catalogue-payload.md
+ */
+export interface CardSlice {
+  rows: Record<number, CardEntry>;
+}
+
+export interface CardEntry {
+  shopifyId: string;
+  /** The image URL's leading portion, VERBATIM — deliberately not an index into
+   *  a dictionary.
+   *
+   *  It was an index until it was written. The bug that killed it: a slice
+   *  fetched from /api/catalogue/cards is encoded over the SUBSET of products
+   *  asked for, so its prefix dictionary is a different dictionary from the
+   *  one that travelled with the page. Index 0 in the slice and index 0 on the
+   *  client are unrelated strings, and the card renders another product's
+   *  photograph — visible to nobody, since the card still looks like a card
+   *  (CLAUDE.md §10.12). A fetched entry must be self-describing.
+   *
+   *  The dedup it gave up is worth nothing now: the card tier carries ~48 rows
+   *  inline, not 13,226, so these strings cost ~2KB while the dictionary they
+   *  replaced cost 10KB on every page. */
+  imagePrefix: string;
+  imageFile: string;
+  /** Either a bare product handle, or (if the url doesn't fit
+   *  `${homepage}/products/${handle}`) the full url, verbatim. Handles never
+   *  start with "http" — encodeCatalogue throws if one ever would — so that
+   *  prefix alone tells decodeCard which case it is. */
+  urlTail: string;
+  /** See Product.altUrl. Stored as a full URL, unlike urlTail — it's on a
+   *  different domain than the row's own brand.homepage, so the
+   *  handle-derivation trick urlTail uses doesn't apply. Absent means absent. */
+  altUrl?: string;
+}
+
+/**
+ * Which product set a row index is an index INTO. A row index means nothing
+ * without it — row 40 of /modest-dresses and row 40 of /directory are
+ * different products.
+ *
+ * Declared HERE rather than in lib/catalogueCards.ts, where it is used,
+ * because the client components need the type and lib/catalogueCards.ts
+ * imports lib/products.ts — a node:fs module that Invariant 10 forbids a
+ * 'use client' file from pulling in.
+ */
+export type CardSource = 'browse' | { lane: string } | { brand: string };
+
+export interface EncodeOptions {
+  /** How many LEADING rows get their card data embedded inline. Rows beyond it
+   *  are fetched on demand.
+   *
+   *  Omitted means every row, which reproduces the pre-split behaviour exactly
+   *  — that is what the pages which render everything they hold (an edit, a
+   *  designer page) pass, and it is why this is opt-in rather than opt-out: a
+   *  page that forgets the option is slow, not broken. */
+  embedCards?: number;
 }
 
 function splitImage(image: string): { prefix: string; file: string } {
@@ -126,13 +192,16 @@ function splitImage(image: string): { prefix: string; file: string } {
   return { prefix: image.slice(0, i + 1), file: image.slice(i + 1) };
 }
 
-export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCatalogue {
+export function encodeCatalogue(
+  products: Product[],
+  brands: Brand[],
+  opts: EncodeOptions = {},
+): CompactCatalogue {
+  const embedCards = opts.embedCards ?? Infinity;
   const brandBySlug = new Map(brands.map((b) => [b.slug, b]));
 
   const brandIndex = new Map<string, number>();
   const compactBrands: CompactBrand[] = [];
-  const prefixIndex = new Map<string, number>();
-  const imagePrefixes: string[] = [];
   const garmentIndex = new Map<Garment, number>();
   const garments: Garment[] = [];
   const occasionIndex = new Map<string, number>();
@@ -163,11 +232,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
 
   const rows: CompactCatalogue['rows'] = {
     title: [],
-    shopifyId: [],
     brandIdx: [],
-    imagePrefixIdx: [],
-    imageFile: [],
-    urlTail: [],
     price: [],
     garmentIdx: [],
     occasionMask: [],
@@ -176,8 +241,8 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     hijabSubtypeIdx: [],
     hijabTypeFilterIdx: [],
     firstSeenDay: [],
-    altUrl: {},
   };
+  const cards: CardSlice = { rows: {} };
 
   for (const p of products) {
     const brand = brandBySlug.get(p.brandSlug);
@@ -215,12 +280,6 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     }
 
     const { prefix, file } = splitImage(p.image);
-    let prefixIdx = prefixIndex.get(prefix);
-    if (prefixIdx === undefined) {
-      prefixIdx = imagePrefixes.length;
-      prefixIndex.set(prefix, prefixIdx);
-      imagePrefixes.push(prefix);
-    }
 
     const derivablePrefix = `${brand.homepage}/products/`;
     let urlTail: string;
@@ -257,11 +316,7 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     }
 
     rows.title.push(p.title);
-    rows.shopifyId.push(shopifyId);
     rows.brandIdx.push(bIdx);
-    rows.imagePrefixIdx.push(prefixIdx);
-    rows.imageFile.push(file);
-    rows.urlTail.push(urlTail);
     rows.price.push(p.price);
     rows.garmentIdx.push(gIdx);
     rows.occasionMask.push(mask);
@@ -277,7 +332,21 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     const hijabType = hijabTypeFilter(p);
     rows.hijabTypeFilterIdx!.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
     rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
-    if (p.altUrl) rows.altUrl[rows.title.length - 1] = p.altUrl;
+
+    // The card tier. Built inside the same loop so every derivation
+    // (shopifyId, the image split, the urlTail handle trick) stays in one
+    // place and cannot drift between the embedded rows and the ones
+    // lib/catalogueCards.ts serves later — they come from this same function.
+    const row = rows.title.length - 1;
+    if (row < embedCards) {
+      cards.rows[row] = {
+        shopifyId,
+        imagePrefix: prefix,
+        imageFile: file,
+        urlTail,
+        ...(p.altUrl ? { altUrl: p.altUrl } : {}),
+      };
+    }
   }
 
   // Drop any subtype column that carries no information on THIS page.
@@ -299,17 +368,32 @@ export function encodeCatalogue(products: Product[], brands: Brand[]): CompactCa
     if (v && v.every((x) => x === -1)) delete rows[col];
   }
 
-  return { brands: compactBrands, imagePrefixes, garments, occasions, layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, rows };
+  return {
+    brands: compactBrands, garments, occasions,
+    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters,
+    rows, cards, rowCount: products.length,
+  };
 }
 
-export function decodeCard(cat: CompactCatalogue, row: number): CardProduct {
+/**
+ * Decode one row into a renderable card, or NULL if its card data has not
+ * arrived yet.
+ *
+ * `null` rather than a throw: with the index/card split a missing card is a
+ * normal transient state — the row is in the filtered set and its card data is
+ * still in flight — not a defect. Callers render what they have and let the
+ * rest appear. `extra` is a slice fetched from /api/catalogue/cards; it is
+ * consulted BEFORE the embedded rows only because lookup order is free, the two
+ * can never disagree (both come from encodeCatalogue over the same products).
+ */
+export function decodeCard(cat: CompactCatalogue, row: number, extra?: CardSlice): CardProduct | null {
+  const card = extra?.rows[row] ?? cat.cards.rows[row];
+  if (!card) return null;
   const brand = cat.brands[cat.rows.brandIdx[row]];
-  const urlTail = cat.rows.urlTail[row];
-  const url = urlTail.startsWith('http') ? urlTail : `${brand.homepage}/products/${urlTail}`;
-  const image = cat.imagePrefixes[cat.rows.imagePrefixIdx[row]] + cat.rows.imageFile[row];
-  const altUrl = cat.rows.altUrl[row];
+  const url = card.urlTail.startsWith('http') ? card.urlTail : `${brand.homepage}/products/${card.urlTail}`;
+  const image = card.imagePrefix + card.imageFile;
   return {
-    id: `${brand.slug}:${cat.rows.shopifyId[row]}`,
+    id: `${brand.slug}:${card.shopifyId}`,
     brandSlug: brand.slug,
     garment: cat.garments[cat.rows.garmentIdx[row]],
     title: cat.rows.title[row],
@@ -318,7 +402,7 @@ export function decodeCard(cat: CompactCatalogue, row: number): CardProduct {
     currency: brand.currency,
     image,
     url,
-    ...(altUrl ? { altUrl } : {}),
+    ...(card.altUrl ? { altUrl: card.altUrl } : {}),
   };
 }
 

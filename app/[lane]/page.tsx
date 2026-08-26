@@ -67,7 +67,10 @@ export default async function LanePage({
   const lane = LANES.find((l) => l.slug === slug);
   if (!lane) notFound();
   const { type } = await searchParams;
-  const catalogue = encodeCatalogue(productsForLane(lane.slug), BRANDS);
+  // embedCards + source belong together: the grid can only fetch the rows this
+  // omits if it knows what they are indices INTO. See FilterableGrid's `source`
+  // prop. → docs/superpowers/plans/2026-08-26-split-catalogue-payload.md
+  const catalogue = encodeCatalogue(productsForLane(lane.slug), BRANDS, { embedCards: 48 });
   const sub = resolveSubtype(lane.slug, type);
 
   // The rows this page actually shows. Previously listedItems was always the
@@ -99,10 +102,17 @@ export default async function LanePage({
   for (let i = 0; i < catalogue.rows.title.length && listedRows.length < 24; i++) {
     if (matchIdx(i)) listedRows.push(i);
   }
-  const listedItems = listedRows.map((i) => {
-    const c = decodeCard(catalogue, i);
-    return { title: c.title, url: c.url, image: c.image };
-  });
+  // filter(Boolean) rather than `!`: decodeCard returns null for a row whose
+  // card data was not embedded in this payload (lib/compactCatalogue.ts). Every
+  // row here IS embedded — listedRows is capped at the same 24 the grid paints,
+  // inside embedCards — but asserting that with `!` would turn a future
+  // off-by-one into a crash on a server-rendered page. Dropping the row instead
+  // means the JSON-LD lists one item fewer, which is a description of the page
+  // that is merely less complete rather than false.
+  const listedItems = listedRows
+    .map((i) => decodeCard(catalogue, i))
+    .filter((c): c is NonNullable<typeof c> => c !== null)
+    .map((c) => ({ title: c.title, url: c.url, image: c.image }));
   const answer = LANE_ANSWERS[lane.slug];
   // Landing via the nav flyout's ?type=blazer should read "Blazers" up top,
   // not the generic lane title — Tina: "i do wnat to see blazer etc etc
@@ -170,7 +180,7 @@ export default async function LanePage({
           page the header's Search link goes to. A lane is already a narrowed view,
           which is the same argument `searchable={false}` was added for on
           /edits/[slug]. */}
-      <FilterableGrid catalogue={catalogue} initialType={type} searchable={false} />
+      <FilterableGrid catalogue={catalogue} initialType={type} searchable={false} source={{ lane: lane.slug }} />
       {answer && (
         // Informational copy AFTER the grid, not before it — a shopper wants
         // the products first. Still real, crawlable content: server-rendered,
