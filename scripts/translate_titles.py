@@ -3,25 +3,47 @@
 Translate non-English product titles to English (free, no paid API).
 
 RULE: every title on the site is English. Some brands publish non-English titles
-(e.g. Manzaram, Dutch). This runs AFTER `npm run build:data`, over data/products.json,
-detects non-English titles and translates them via the free Google endpoint, with:
+(e.g. Manzaram, Dutch). This script POPULATES data/title-translations.json; it is
+scripts/build-data.mjs (via lib/publishTitle.ts) that APPLIES it. This script does
+not write data/products.json at all.
+
+That split is the fix for the 2026-08-26 double-translation bug (CLAUDE.md §10.46).
+It used to read data/products.json — i.e. titles build-data had ALREADY translated —
+and use the published title as both the translation input and the cache key. For an
+already-translated row that meant sending ENGLISH to Google under the brand's source
+language ("Ine's top", source=de -> "Ine's great") and caching the corruption under
+the English key, which every later publish then reapplied. 52 chained entries, 40
+corrupted titles, invisible because each publish looked ordinary.
+
+So: the input and the cache key are now the RAW feed title from
+data/raw-products.json, which is exactly the key lib/publishTitle.ts looks up. A
+translation can no longer be fed back into itself. It reads:
   - retries (the free endpoint 500s intermittently),
   - strict validation (an error/garbage response NEVER overwrites a real title),
   - a persistent cache (data/title-translations.json) so re-runs are instant and
     survive re-scrapes (raw stays original; only the published titles are English).
 
+After caching new entries it re-runs the publish itself, so one command still
+gets a new title onto the site. It invokes node_modules/.bin/tsx DIRECTLY rather
+than `npm run build:data`, because that npm script has a postbuild:data hook that
+calls this script — going through npm would recurse.
+
 Usage:
   ./.venv-style/bin/python scripts/translate_titles.py --dry              # preview all
   ./.venv-style/bin/python scripts/translate_titles.py --only manzaram --dry
   ./.venv-style/bin/python scripts/translate_titles.py                    # apply
+  ./.venv-style/bin/python scripts/translate_titles.py --no-republish     # cache only
 """
 import argparse
 import json
 import re
+import subprocess
+import sys
 import time
 from pathlib import Path
 
 APP = Path(__file__).resolve().parent.parent
+RAW = APP / "data" / "raw-products.json"
 PRODUCTS = APP / "data" / "products.json"
 CACHE = APP / "data" / "title-translations.json"
 BRANDS_FILE = APP / "data" / "translate-brands.json"
@@ -50,6 +72,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry", action="store_true", help="preview, don't write")
     ap.add_argument("--only", default="", help="limit to a brandSlug (testing)")
+    ap.add_argument("--no-republish", action="store_true",
+                    help="populate the cache but don't re-run the publish")
     args = ap.parse_args()
 
     from deep_translator import GoogleTranslator
@@ -57,72 +81,103 @@ def main():
     conf = json.loads(BRANDS_FILE.read_text()) if BRANDS_FILE.exists() else DEFAULT_BRANDS
     brand_lang = conf if isinstance(conf, dict) else {s: "auto" for s in conf}  # tolerate a plain list
     only = {args.only} if args.only else set(brand_lang)
-    products = json.loads(PRODUCTS.read_text())
+    raw = json.loads(RAW.read_text())
+    raw_rows = raw if isinstance(raw, list) else raw.get("products", [])
+    raw_title_by_id = {r.get("id"): (r.get("title") or "") for r in raw_rows}
+    # products.json is read for its ID LIST ONLY — never for its titles, which
+    # are the already-translated ones that caused CLAUDE.md §10.46. Scoping to
+    # published rows is deliberate: raw carries every row ever scraped,
+    # including cut and delisted ones, and translating those is 4,091 extra
+    # calls to a free endpoint for titles no visitor will ever see.
+    published = json.loads(PRODUCTS.read_text())
+    published_rows = published if isinstance(published, list) else published.get("products", [])
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
 
     translators = {lang: GoogleTranslator(source=lang, target="en") for lang in set(brand_lang.values())}
-    changed = attempted = failed = 0
+    added = attempted = failed = skipped = 0
     samples = []
 
-    for p in products:
-        slug = p.get("brandSlug")
+    # Iterate the RAW rows, not the published ones. These titles are what the
+    # feed said; lib/publishTitle.ts looks the cache up under exactly this key
+    # (and under normalizeTitle() of it). Deduplicated, because a repeated title
+    # across colourways is one translation, not twenty.
+    seen = set()
+    for p in published_rows:
+        slug = p.get("brandSlug") or (p.get("id") or "").split(":")[0]
         if slug not in only:
             continue
-        t = p.get("title") or ""
-        if not t:
+        t = raw_title_by_id.get(p.get("id"), "")
+        if not t or t in seen:
             continue
-        if t in cache:                      # cache holds only clean results (identity or translated)
-            new = cache[t]
-        else:
-            attempted += 1
-            new = t
-            got_clean = False
-            translator = translators.get(brand_lang.get(slug, "auto"), translators.get("auto"))
-            for attempt in range(3):        # the free endpoint 500s intermittently
-                try:
-                    r = translator.translate(t)
-                    if r and not looks_bad(r, t):
-                        new = r.strip()
-                        got_clean = True
-                        break
-                except Exception:
-                    pass
-                time.sleep(0.6 * (attempt + 1))
-            if got_clean:
-                cache[t] = new              # cache ONLY clean results; failures retry next run
-            else:
-                failed += 1
-            time.sleep(0.25)                # be gentle on the free endpoint
-        if new != t:
-            changed += 1
-            if len(samples) < 12:
+        seen.add(t)
+        if t in cache:                      # already known — never re-send it
+            skipped += 1
+            continue
+        attempted += 1
+        new = t
+        got_clean = False
+        translator = translators.get(brand_lang.get(slug, "auto"), translators.get("auto"))
+        for attempt in range(3):            # the free endpoint 500s intermittently
+            try:
+                candidate = translator.translate(t)
+                if candidate and not looks_bad(candidate, t):
+                    new = candidate.strip()
+                    got_clean = True
+                    break
+            except Exception:
+                pass
+            time.sleep(0.6 * (attempt + 1))
+        if got_clean:
+            cache[t] = new                  # cache ONLY clean results; failures retry next run
+            added += 1
+            if new != t and len(samples) < 12:
                 samples.append((t, new))
-        p["title"] = new
+        else:
+            failed += 1
+        time.sleep(0.25)                    # be gentle on the free endpoint
 
     print(f"brands: {sorted(only)}")
-    print(f"attempted API translations: {attempted} | titles changed: {changed} | failed(kept original, retried next run): {failed}")
+    print(
+        f"raw titles behind published rows: {len(seen)} | already cached: {skipped} | "
+        f"attempted: {attempted} | newly cached: {added} | "
+        f"failed(retried next run): {failed}"
+    )
     for o, n in samples:
         print(f"  {o!r}\n   -> {n!r}")
 
     if args.dry:
         print("\n(dry run — nothing written)")
         return
-    # indent=2 MATCHES scripts/build-data.mjs:176, which writes this same file
-    # with JSON.stringify(..., null, 2) moments earlier. Without it this hook
-    # re-serialised the whole catalogue onto one line, so a publish that added
-    # six products produced a 189,462-line deletion and a 198-line insertion —
-    # a diff nobody can review, on the largest tracked file in the repo.
-    #
-    # Worse, it was INTERMITTENT: `npm run translate` is guarded on
-    # `[ -x .venv-style/bin/python ]`, so a machine with the venv minified the
-    # file and a machine without it left build-data's pretty output alone. The
-    # committed format therefore flipped depending on who published last, which
-    # is the same trap CLAUDE.md §8 records for decisions.json (add-brands
-    # writes it minified, app/api/curate pretty-printed) — undocumented for this
-    # file until 2026-08-10.
-    PRODUCTS.write_text(json.dumps(products, ensure_ascii=False, indent=2))
+
+    # indent=0 is this file's existing on-disk format and is left alone. The
+    # indent=2 note that used to live here was about data/products.json, which
+    # this script no longer writes — see CLAUDE.md §8 and the 2026-08-10 log for
+    # why that mattered. build-data.mjs is now the only writer of products.json,
+    # so the format can no longer flip depending on whether the publishing
+    # machine has .venv-style.
     CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=0))
-    print(f"\nwrote {PRODUCTS.relative_to(APP)} and cached {len(cache)} translations")
+    print(f"\nwrote {CACHE.relative_to(APP)} — {len(cache)} translations cached")
+
+    if added == 0:
+        print("No new translations, so products.json is already correct — not republishing.")
+        return
+    if args.no_republish:
+        print("--no-republish: run `npm run build:data` to publish the new titles.")
+        return
+
+    # Republish so the new cache entries reach the site in one command, the way
+    # they did when this script wrote products.json itself. tsx is invoked
+    # DIRECTLY: `npm run build:data` has a postbuild:data hook that runs this
+    # script, so going through npm would recurse.
+    tsx = APP / "node_modules" / ".bin" / "tsx"
+    if not tsx.exists():
+        print(f"No {tsx} — run `npm run build:data` yourself to publish the new titles.")
+        return
+    print(f"\nRepublishing with {added} new translations: {tsx} scripts/build-data.mjs")
+    result = subprocess.run([str(tsx), str(APP / "scripts" / "build-data.mjs")], cwd=APP)
+    if result.returncode != 0:
+        print("Republish FAILED — the cache is written but products.json is stale.")
+        sys.exit(result.returncode)
 
 
 if __name__ == "__main__":

@@ -7,7 +7,8 @@ import { isNonApparel } from '../lib/nonApparel.ts';
 import { isLifecycleLive, stripLifecycle, brandDropViolations, freezeCollapsedBrands } from '../lib/lifecycle.ts';
 import { demoteGarment } from '../lib/ordering.ts';
 import { isSpecialty } from '../lib/specialty.ts';
-import { normalizeTitle, stripRawSignals } from '../lib/normalize.ts';
+import { stripRawSignals } from '../lib/normalize.ts';
+import { publishTitle as resolvePublishTitle } from '../lib/publishTitle.ts';
 import { resolveGarment } from '../lib/garmentReview.ts';
 import { qualityFlagTag } from '../lib/qualityFlags.ts';
 import { convert } from '../lib/fx.ts';
@@ -88,27 +89,16 @@ const titleCache = existsSync(U('title-translations.json'))
   : {};
 const translationStats = { translated: 0, uncached: 0 };
 
-/** The published title: cleaned, and translated when the brand is non-English.
- *
- *  Looked up under BOTH the cleaned and the raw title. translate_titles.py reads
- *  products.json, i.e. titles that have already been through normalizeTitle, so
- *  its keys are cleaned ones — but rows scraped before a normalizeTitle change
- *  are keyed raw. Checking both is what keeps old cache entries usable instead
- *  of silently missing and re-translating.
+/** The published title. The rule itself lives in lib/publishTitle.ts so that
+ *  lib/titleTranslations.test.ts can assert against the REAL function rather
+ *  than a copy of it, and so there is exactly one place that decides what a
+ *  published title is. This wrapper only carries the counters.
  */
 function publishTitle(p) {
-  const cleaned = normalizeTitle(p.title);
-  if (!translateBrands[p.brandSlug]) return cleaned;
-  const hit = titleCache[cleaned] ?? titleCache[p.title];
-  if (hit) {
-    if (hit !== cleaned) translationStats.translated += 1;
-    return normalizeTitle(hit);
-  }
-  // Not a failure — just a title the cache has not seen. Counted and reported
-  // so the gap is visible rather than silent; run scripts/translate_titles.py
-  // locally to fill it.
-  translationStats.uncached += 1;
-  return cleaned;
+  const r = resolvePublishTitle(p.title, p.brandSlug, translateBrands, titleCache);
+  if (r.translated) translationStats.translated += 1;
+  if (r.uncached) translationStats.uncached += 1;
+  return r.title;
 }
 const titleRes = (excl.patterns || []).map((s) => new RegExp(s, 'i'));
 const urlRes = (excl.urlPatterns || []).map((s) => new RegExp(s, 'i'));
