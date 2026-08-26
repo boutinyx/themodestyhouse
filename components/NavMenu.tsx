@@ -189,6 +189,12 @@ export function NavMenu({
     // ordinary "pointer left the relevant area" close for the mouse case.
     let closeTimer: ReturnType<typeof setTimeout> | null = null;
     const onPointerMove = (e: PointerEvent) => {
+      // Hover-out is not a gesture a touch screen has. The mouse-compat
+      // pointermove that follows every touchend reports a STALE position, so
+      // without this the panel schedules its own close 150ms after any tap.
+      // Touch dismissal is the pointerdown-outside closer below, plus the
+      // scroll closer, plus tapping the trigger again.
+      if (window.matchMedia('(hover: none)').matches) return;
       const target = document.elementFromPoint(e.clientX, e.clientY);
       // `elementFromPoint` + `.contains()` — real geometry, not either
       // primitive's internal notion of "inside". The outer popup is portalled
@@ -415,6 +421,31 @@ export function NavMenu({
     <NavigationMenu.Root
       value={navValue}
       onValueChange={(value) => {
+        // NO-HOVER DEVICES DRIVE THIS MENU BY TAP ALONE.
+        //
+        // Base UI's hover machinery still fires here on a touch screen,
+        // because every `touchend` produces a full synthetic pointerleave /
+        // mouseleave cascade as the touch pointer is destroyed. Traced on
+        // production 2026-08-26 at 1366x1024 with touch: tapping a link inside
+        // the open panel produced `pointerdown@SPAN`, `pointerup@SPAN`,
+        // `touchend@SPAN` — all correctly on the link — and then
+        // `click@BODY`. The panel was being pulled out from under the tap
+        // between the finger lifting and the click landing, so the link's
+        // navigation never fired.
+        //
+        // Ruled out first, rather than assumed: the panel was still open at
+        // click time (it did not close until 222ms, the click was at 55ms);
+        // `document.body.style.pointerEvents` was never `none`, so this was
+        // NOT the Floating UI safe-polygon lock described further up; and an
+        // ordinary header link and an ordinary footer link BOTH navigate
+        // correctly on tap under the identical emulation, so it was not the
+        // harness (§10.26 — suspected, then tested, then cleared).
+        //
+        // The Trigger's own onClick sets `navValue` directly, so vetoing here
+        // costs a touch device nothing: tap-to-open, tap-to-close, tap-outside
+        // and close-on-scroll all still work, and they are now the ONLY things
+        // that move this state.
+        if (window.matchMedia('(hover: none)').matches) return;
         if (value === null && pointerRelevant.current) return;
         if (value !== null && suppressReopen.current) return;
         setNavValue(value);
@@ -495,13 +526,59 @@ export function NavMenu({
               // /directory via this same Link without ever touching that
               // code path, so the panel it was hovering open stayed open
               // on the destination page.
-              // `closeAllAndSuppressReopen`, not plain `closeAll` — the
-              // mouse is still sitting on this exact trigger after the
-              // click (it didn't move), so Base UI's hover tracking
-              // re-affirms "still hovering" and reopens it right back
-              // through `onValueChange` the instant `closeAll` runs. See
-              // that function's own comment for how this was confirmed.
-              onClick={closeAllAndSuppressReopen}
+              // TOUCH FIRST, then the mouse case.
+              //
+              // On a device with no hover this trigger was COMPLETELY DEAD.
+              // Measured on production 2026-08-26 at 1366x1024 with touch, in
+              // both engines: tapping "Clothing" opened no panel AND did not
+              // navigate — `panelsOpen: 0, navigated: false`. Every iPad-sized
+              // touch device gets the desktop header (the mobile nav is
+              // `lg:hidden`), so the entire Clothing / Hijabs / Basics menu was
+              // unreachable there. Exactly §10.25, and the comment above about
+              // `nativeButton` already said why: groups WITH an href render as
+              // a Link and are hover-only, "groups without an href stay
+              // buttons, which is what makes them openable by tap".
+              //
+              // Why it did not even navigate: this handler set
+              // `suppressReopen`, which then vetoed the open that Base UI's
+              // synthesised hover would otherwise have produced — so the tap
+              // was absorbed and nothing at all happened.
+              //
+              // `matchMedia` is read AT CLICK TIME rather than cached in state
+              // or a ref. §10.34 is the entry about this component and its
+              // lesson is exactly that: a veto or override in here must be
+              // driven by current live truth, never by a flag captured at some
+              // earlier moment. A hybrid laptop can gain or lose a mouse
+              // between renders; the only honest answer is the one at the
+              // instant of the gesture.
+              //
+              // First tap OPENS. The panel's own first row is "All Clothing" ->
+              // /directory, so the destination this Link points at is still one
+              // tap away and nothing is lost; a second tap on the trigger
+              // navigates, which is the behaviour a touch user expects from a
+              // menu whose label is also a link.
+              onClick={(event) => {
+                if (window.matchMedia('(hover: none)').matches) {
+                  if (navValue !== entry.label) {
+                    event.preventDefault();
+                    // Clear the veto FIRST — a previous tap may have set it,
+                    // and it would otherwise swallow the open we are about to
+                    // request through the very same `onValueChange` guard.
+                    suppressReopen.current = false;
+                    setNavValue(entry.label);
+                    return;
+                  }
+                  // Already open: this is the second tap. Fall through to the
+                  // Link's own navigation, closing on the way out.
+                }
+                // `closeAllAndSuppressReopen`, not plain `closeAll` — the
+                // mouse is still sitting on this exact trigger after the
+                // click (it didn't move), so Base UI's hover tracking
+                // re-affirms "still hovering" and reopens it right back
+                // through `onValueChange` the instant `closeAll` runs. See
+                // that function's own comment for how this was confirmed.
+                closeAllAndSuppressReopen();
+              }}
             >
               {entry.label}
               <Chevron />

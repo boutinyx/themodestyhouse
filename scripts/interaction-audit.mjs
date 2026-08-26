@@ -398,16 +398,59 @@ for (const engineName of engineNames) {
       }
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'currency-menu-open', error: e.message.split('\n')[0] }); }
 
-    // ---- 7. hero search, typed -------------------------------------------
+    // ---- 7. header search, opened and typed -------------------------------
+    //
+    // Was `hero-search-typed`, targeting `.glass-search input` —
+    // i.e. components/HeroSearch.tsx. That component has
+    // ZERO importers; the homepage's search became the header one at some
+    // point and nobody moved the check with it. So it reported
+    // `FAILED: locator.click: Timeout 30000ms exceeded` on EVERY run, at all
+    // four viewports in BOTH engines, against a homepage that has no such
+    // control — confirmed still failing identically on production, which is
+    // how it was established as a dead check rather than a broken feature.
+    // That is the fourth time a check in this file has died to a rename or a
+    // removal (§10.29, §10.32 twice, §10.38). A selector in a script is a
+    // reference no compiler can see.
+    //
+    // The real control is behind a TRIGGER — the field does not exist until
+    // it is opened — which is precisely the class of state this audit exists
+    // for (§10.25). Both the desktop and mobile triggers carry
+    // aria-label="Search" when closed, so one locator covers every viewport;
+    // the visible one is picked because both are in the DOM at once and the
+    // width decides which shows.
     try {
       await go('/');
-      const input = page.locator('.glass-search input').first();
-      await input.click();
-      await input.fill('abaya');
-      await page.waitForTimeout(600);
-      await shot('hero-search-typed');
-      note({ engine: engineName, viewport: vpName, state: 'hero-search-typed', ...(await page.evaluate(PROBE)) });
-    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'hero-search-typed', error: e.message.split('\n')[0] }); }
+      const triggers = page.locator('header button[aria-label="Search"]');
+      let opened = false;
+      for (let i = 0; i < await triggers.count(); i++) {
+        const t = triggers.nth(i);
+        if (!(await t.isVisible().catch(() => false))) continue;
+        if (vp.touch) await t.tap(); else await t.click();
+        opened = true;
+        break;
+      }
+      if (!opened) {
+        note({ engine: engineName, viewport: vpName, state: 'header-search-typed', PROBLEM: 'NO VISIBLE SEARCH TRIGGER' });
+      } else {
+        await page.waitForTimeout(700);
+        const input = page.locator('.header-search-input').first();
+        if (!(await input.isVisible().catch(() => false))) {
+          note({ engine: engineName, viewport: vpName, state: 'header-search-typed', PROBLEM: 'SEARCH FIELD DID NOT OPEN' });
+        } else {
+          await input.fill('abaya');
+          await page.waitForTimeout(400);
+          const typed = await input.inputValue();
+          await shot('header-search-typed');
+          note({
+            engine: engineName, viewport: vpName, state: 'header-search-typed',
+            ...(await page.evaluate(PROBE)),
+            // Asserting the VALUE, not merely that a field appeared: a field
+            // that opens but does not accept input would otherwise read as ok.
+            ...(typed === 'abaya' ? {} : { PROBLEM: `FIELD DID NOT ACCEPT INPUT (got "${typed}")` }),
+          });
+        }
+      }
+    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'header-search-typed', error: e.message.split('\n')[0] }); }
 
     // ---- 8. contact form, submitted empty --------------------------------
     try {
