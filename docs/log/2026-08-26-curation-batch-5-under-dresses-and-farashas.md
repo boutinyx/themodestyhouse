@@ -87,6 +87,27 @@ $ npx tsc --noEmit                            → exit 0, clean
 $ npx vitest run --exclude '**/.claude/**'    → 50 files, 844 tests, all pass
 ```
 
+### On staging (§1 — verified on the deployed artifact, not localhost)
+
+`https://themodestyhouse-staging-production.up.railway.app`, commit
+`9d070d3`, with **production (`themodestyhouse.com`, still on the pre-batch
+`main` data) used as the negative control** so a `0` proves absence rather
+than a bad grep:
+
+| check | prod (old data) | staging (this batch) |
+|---|---|---|
+| `Lilac Satin Gown` on `/modest-dresses` (deleted) | 1 | 0 |
+| `Mint Beaded Gown` on `/modest-dresses` (deleted) | 1 | 0 |
+| `Heirloom Dress` on `/modest-dresses` (deleted) | 1 | 0 |
+| `…Butterfly Farasha…Navy` on `/modest-dresses` | 1 | 0 |
+| `…Butterfly Farasha…Navy` on `/modest-abayas` (move) | 0 | 1 |
+| `Pleated Dress in Sienna` on `/modest-dresses` | 1 | 0 |
+| `Pleated Dress in Sienna` on `/layering-basics?type=under-dress` | 0 | 1 |
+
+`x-robots-tag: noindex, nofollow, noarchive` confirmed present on staging.
+
+**Not merged to `main`** — that needs Tina's explicit approval per §1.
+
 ## Notes / follow-ups
 
 - Only `data/` files were staged. The six modified
