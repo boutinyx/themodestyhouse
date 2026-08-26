@@ -68,3 +68,21 @@ title.
 
 ## Notes / follow-ups
 Nothing outstanding in the code. The two lists above are waiting on Tina's decision.
+
+## Staging verification (added after deploy)
+`/modest-hijabs`, `/modest-abayas`, `/directory` from staging and from production
+(`main`, uncorrected) as the negative control.
+
+| string | production | staging |
+|---|---|---|
+| `Elena hijab` (the doubly-translated value main still serves) | PRESENT | absent |
+| `Elenora Hijab` | absent | **PRESENT** |
+| `Eliz Ferace` | PRESENT | absent |
+| `Eliz Abaya` | absent | **PRESENT** |
+
+Note production reads `Elena hijab`, lower-case h — that is the second-pass value from
+the chain `Elenora Hijab -> Elena Hijab -> Elena hijab`, so this one row shows both
+bugs fixed at once.
+
+## Status
+On `staging` (`50c3dd7`), verified. Not merged to `main`.
