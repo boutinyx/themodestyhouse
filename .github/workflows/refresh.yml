@@ -42,6 +42,10 @@ jobs:
     runs-on: ubuntu-latest
     # A full run is ~6 min, but 429 backoff can add several more per brand.
     timeout-minutes: 45
+    outputs:
+      # Whether this run actually committed anything. A refresh that finds no
+      # catalogue changes must not announce a change to four search engines.
+      pushed: ${{ steps.push.outputs.pushed }}
 
     steps:
       - uses: actions/checkout@v5
@@ -72,6 +76,7 @@ jobs:
         run: npm run refresh:summary >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit and push
+        id: push
         if: success()
         run: |
           set -euo pipefail
@@ -81,6 +86,7 @@ jobs:
                   data/rejected.json data/review.json data/refresh-report.json
           if git diff --cached --quiet; then
             echo "No catalogue changes — nothing to push."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           SUMMARY=$(node -e "
@@ -92,6 +98,7 @@ jobs:
           # Rebase rather than force: a human push during the run must win.
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
 
       # Uploaded even on failure — when the collapse guard trips, this report is
       # the evidence needed to decide whether the collapse was real.
@@ -103,3 +110,17 @@ jobs:
           path: data/refresh-report.json
           if-no-files-found: warn
           retention-days: 90
+
+  # A push made with GITHUB_TOKEN does NOT trigger `on: push` workflows —
+  # GitHub's recursion guard. So indexnow.yml can never see the commit above,
+  # even though it is the one push per day that changes every lane page. Call it
+  # explicitly instead. Only when something was actually committed, and never
+  # in a way that can fail the refresh: the catalogue is already published and
+  # deployed by this point, and a search-engine ping is not worth a red run.
+  indexnow:
+    name: notify IndexNow
+    needs: refresh
+    if: needs.refresh.outputs.pushed == 'true'
+    uses: ./.github/workflows/indexnow.yml
+    permissions:
+      contents: read

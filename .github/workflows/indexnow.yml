@@ -1,0 +1,143 @@
+name: IndexNow
+
+# Tells Bing / Yandex / Naver / Seznam that the site changed, every time a push
+# reaches production. Google does NOT participate in IndexNow — its only
+# equivalent is the Request Indexing button in Search Console, which has no API.
+#
+# Three ways in, because one is not enough:
+#
+#  1. push to main       — the normal path. Every merge from staging.
+#  2. workflow_call      — used by refresh.yml. A push made with GITHUB_TOKEN
+#                          does NOT trigger `on: push` workflows (GitHub's
+#                          recursion guard), so the nightly catalogue commit
+#                          would otherwise never announce itself, and that is
+#                          the one push per day that reliably changes every
+#                          lane page.
+#  3. workflow_dispatch  — run it by hand, with a dry-run option.
+#
+# Nothing here is secret: the IndexNow key is public by design, served at
+# https://themodestyhouse.com/<key>.txt so the endpoint can verify ownership.
+# scripts/indexnow-notify.mjs checks that file is live before it submits.
+
+on:
+  push:
+    branches: [main]
+    # Only announce a change a visitor could see. Documentation, logs and the
+    # agent-facing notes change constantly and change nothing on the site;
+    # submitting unchanged URLs is what earns a 429.
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+      - '.github/**'
+      - '.gitignore'
+      - '.claude/**'
+  workflow_call:
+    inputs:
+      wait_seconds:
+        description: "Grace period for the Railway deploy before submitting"
+        type: number
+        required: false
+        default: 240
+  workflow_dispatch:
+    inputs:
+      wait_seconds:
+        description: "Grace period for the Railway deploy before submitting"
+        type: number
+        required: false
+        default: 240
+      dry_run:
+        description: "List the URLs without submitting them"
+        type: boolean
+        required: false
+        default: false
+
+# One submission at a time. cancel-in-progress is TRUE, unlike the refresh job:
+# a run that is still waiting out its grace period has done no work worth
+# keeping, and a newer push supersedes it — its sitemap read would be the fresher
+# one anyway.
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    name: submit sitemap URLs to IndexNow
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+      # No `npm ci` on purpose — scripts/indexnow-notify.mjs uses nothing but
+      # global fetch. Installing 1,000 packages to send one POST is waste.
+
+      # Railway builds on the same push that triggered this workflow, so
+      # production is still serving the PREVIOUS deploy when this starts.
+      # Nothing in the response identifies the build — no buildId, no commit
+      # header, and the /_next/static chunk names are content-hashed, so a
+      # data-only deploy leaves them unchanged. So instead of trusting a fixed
+      # sleep, fingerprint two pages BEFORE the deploy can land and poll until
+      # the bytes change.
+      #
+      # /directory carries the whole catalogue, so a nightly data push always
+      # moves it; / moves on any template or copy change. The timeout is a
+      # FALLBACK, not the mechanism: a push that changes neither page (say an
+      # /about-only edit) simply waits it out and submits anyway, which is what
+      # a blind sleep would have done in every case.
+      #
+      # Being early is survivable regardless — IndexNow asks a crawler to come,
+      # it does not hand it the page.
+      - name: Wait for the Railway deploy
+        env:
+          WAIT: ${{ inputs.wait_seconds || 240 }}
+        run: |
+          set -uo pipefail
+          fp() { curl -s --max-time 30 "https://themodestyhouse.com$1" | shasum -a 256 | cut -d' ' -f1; }
+          BEFORE_HOME=$(fp /)
+          BEFORE_DIR=$(fp /directory)
+          echo "before: / = ${BEFORE_HOME:0:12} · /directory = ${BEFORE_DIR:0:12}"
+          DEADLINE=$(( $(date +%s) + WAIT ))
+          while [ "$(date +%s)" -lt "$DEADLINE" ]; do
+            sleep 15
+            NOW_HOME=$(fp /)
+            NOW_DIR=$(fp /directory)
+            if [ "$NOW_HOME" != "$BEFORE_HOME" ] || [ "$NOW_DIR" != "$BEFORE_DIR" ]; then
+              echo "deploy landed: / = ${NOW_HOME:0:12} · /directory = ${NOW_DIR:0:12}"
+              echo "DEPLOY DETECTED after $(( WAIT - (DEADLINE - $(date +%s)) ))s"
+              exit 0
+            fi
+          done
+          echo "NOTE: neither page changed within ${WAIT}s. Submitting anyway —"
+          echo "this push may not alter / or /directory, or the deploy is slow."
+
+      # Cheap liveness gate. If production is down or erroring there is no point
+      # telling four search engines to come and look at it.
+      - name: Check production is serving
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://themodestyhouse.com/)
+            if [ "$code" = "200" ]; then
+              echo "production is up (HTTP 200 after $((i-1)) retries)"
+              exit 0
+            fi
+            echo "attempt $i: HTTP $code"
+            sleep 15
+          done
+          echo "production never returned 200 — not submitting."
+          exit 1
+
+      - name: Submit to IndexNow
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            npm run --silent seo:indexnow -- --dry | tee "$GITHUB_STEP_SUMMARY"
+          else
+            npm run --silent seo:indexnow | tee "$GITHUB_STEP_SUMMARY"
+          fi
