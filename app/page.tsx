@@ -679,12 +679,24 @@ export default function Home() {
                       <head>, so three below-fold tiles were fetched at HIGH
                       priority ahead of the LCP hero — which then took 3.0s of a
                       9Mbps pipe to arrive, for an LCP of 3.96s.
-                      → docs/log/2026-08-26-homepage-lcp-preload-contention.md */}
+                      → docs/log/2026-08-26-homepage-lcp-preload-contention.md
+
+                      `sizes` is 50vw below 820px, NOT the `(max-width: 480px)
+                      100vw` it used to carry. That clause described a
+                      single-column phone layout globals.css DELETED on
+                      2026-08-25 ("NO single-column rule below 480px any more" —
+                      the grid is repeat(2, 1fr) all the way down now); nobody
+                      updated `sizes` with it. So the browser was told each tile
+                      needed a full 390px of viewport when it actually renders at
+                      187px, and picked the -1000 variant where -700 (DPR 3) or
+                      -400 (DPR 2) is right. Measured, all six tiles: 1038KB at
+                      -1000, 606KB at -700, 226KB at -400. CLAUDE.md §8 — "a new
+                      `sizes` value must match the grid it describes". */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`${c.image}-700.webp`}
                     srcSet={`${c.image}-400.webp 400w, ${c.image}-700.webp 700w, ${c.image}-1000.webp 1000w`}
-                    sizes="(max-width: 480px) 100vw, (max-width: 820px) 50vw, 33vw"
+                    sizes="(max-width: 820px) 50vw, 33vw"
                     alt={c.label}
                     loading="lazy"
                     decoding="async"
