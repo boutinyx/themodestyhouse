@@ -663,18 +663,30 @@ export default function Home() {
           <h2 className="serif mt-2" style={{ fontSize: 'clamp(24px,3vw,34px)', lineHeight: 1.05, color: 'var(--ink)' }}>By category.</h2>
         </div>
         <div className="tmh-showcase-grid">
-          {CATEGORY_SHOWCASE.map((c, i) => {
+          {CATEGORY_SHOWCASE.map((c) => {
             const count = catCountBySlug.get(c.slug) ?? 0;
             return (
               <Link key={c.slug} href={`/${c.slug}`} className="tmh-showcase-card group">
                 <div className="tmh-showcase-photo">
+                  {/* ALL SIX ARE LAZY, including the first row. This was
+                      `loading={i < 3 ? undefined : 'lazy'}` — the habit of
+                      "never lazy-load the first row", which is correct when the
+                      row is at the top of the DOCUMENT and wrong here: measured
+                      on production 2026-08-26, these tiles sit at y=3012px on a
+                      390px phone whose fold is 844px, and y=4238px at 1440.
+                      An eager <img> in the SSR shell is additionally hoisted by
+                      React 19 into a <link rel="preload" as="image"> in the
+                      <head>, so three below-fold tiles were fetched at HIGH
+                      priority ahead of the LCP hero — which then took 3.0s of a
+                      9Mbps pipe to arrive, for an LCP of 3.96s.
+                      → docs/log/2026-08-26-homepage-lcp-preload-contention.md */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`${c.image}-700.webp`}
                     srcSet={`${c.image}-400.webp 400w, ${c.image}-700.webp 700w, ${c.image}-1000.webp 1000w`}
                     sizes="(max-width: 480px) 100vw, (max-width: 820px) 50vw, 33vw"
                     alt={c.label}
-                    loading={i < 3 ? undefined : 'lazy'}
+                    loading="lazy"
                     decoding="async"
                     style={{
                       ...(c.zoom ? { ['--card-zoom' as string]: c.zoom } : {}),
@@ -768,6 +780,10 @@ export default function Home() {
                 shape exactly where it stops sharing a row. */}
             <Link href={`/editorial/${feature.slug}`} className="edit-feature-card relative block overflow-hidden" style={{ borderRadius: 8, background: 'var(--aubergine)' }}>
               {feature.image && (
+                // Lazy for the same reason as the category tiles above: this
+                // card sits at y=5420px on a 390px phone. Left eager, React 19
+                // hoists it into a <head> preload and fetches 262KB at high
+                // priority against the hero.
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={editorialVariant(feature.image, 900) ?? feature.image}
@@ -775,6 +791,7 @@ export default function Home() {
                   sizes="(max-width: 768px) 100vw, 60vw"
                   alt={feature.imageAlt || ''}
                   className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
                   decoding="async"
                 />
               )}
