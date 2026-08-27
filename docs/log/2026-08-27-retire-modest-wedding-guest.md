@@ -96,9 +96,14 @@ than trusting the status code, because a redirect to a 404 also returns 308.
 **A stale number in my own question to Tina.** The options I offered said the sitemap
 would go "35 → 34". It went 131 → 130. 35 is what CLAUDE.md §8 recorded on 2026-08-19,
 before the 89 brand pages were added on 2026-08-24 — I quoted the file instead of
-measuring. Nothing turned on it, and the fact is now corrected in CLAUDE.md, but the
-habit is the one §10.38 warns about: quoting a documented figure where a measurement
-was one request away.
+measuring. Nothing turned on it, but the habit is the one §10.38 warns about: quoting a
+documented figure where a measurement was one request away.
+
+I went to correct CLAUDE.md and found a concurrent session had already moved it on
+(**132 as of 2026-08-27**), which is a third number again — theirs predates both this
+retirement and Urban Modesty's brand page dropping out. Left as they wrote it rather
+than edited underneath them; the measured values on both hosts are in the table above,
+and they are what this log stands on.
 
 ## Status
 On `staging` (`c0fbc8f`). **Not merged to `main`** — waiting on Tina's approval per §1.
