@@ -1411,5 +1411,13 @@
   "urban-modesty:7509239857227": {
     "lane": "outerwear",
     "subtype": "sweater"
+  },
+  "ellem-atelier:10941309649239": {
+    "lane": "outerwear",
+    "subtype": "cardigan"
+  },
+  "aeon-abaya:8905258500148": {
+    "lane": "outerwear",
+    "subtype": "blazer"
   }
 }
