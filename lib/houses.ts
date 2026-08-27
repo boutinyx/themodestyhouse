@@ -1,5 +1,6 @@
 import { BRANDS } from '@/data/brands';
 import { getProducts } from '@/lib/products';
+import { groupColourVariants } from '@/lib/colorVariants';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { isSpecialty } from '@/lib/specialty';
 import type { Brand } from '@/lib/types';
@@ -175,7 +176,13 @@ export function categoryCards() {
   return CATEGORY_LANES.map((l) => {
     // Non-specialty lanes hide swim/activewear (see productsForLane), so count/
     // image should reflect what's actually shown.
-    const items = prods.filter((p) => l.match(p) && (l.specialty || !isSpecialty(p)));
+    //
+    // groupColourVariants for the same reason, added 2026-08-27: the lane now
+    // collapses colour runs into one card, so an ungrouped count here would
+    // promise 5,099 hijabs on a tile and land the visitor on a grid of 2,913.
+    // This function's own comment already asked for the count that is shown;
+    // the grouping simply moved what that is.
+    const items = groupColourVariants(prods.filter((p) => l.match(p) && (l.specialty || !isSpecialty(p))));
     return {
       slug: l.slug,
       label: l.title,

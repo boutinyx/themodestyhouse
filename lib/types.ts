@@ -146,6 +146,16 @@ export interface Product {
    *  field would let a subtype from one lane leak onto the other if the lane
    *  were ever changed without clearing it. */
   forcedOuterwearSubtype?: OuterwearSubtype;
+  /** How many colourways this card stands for, INCLUDING itself - so 6 means
+   *  "this plus five more colours". Absent (not 1) on an ungrouped product, so
+   *  a truthy check is the same as "has siblings".
+   *
+   *  DERIVED AT READ TIME by lib/colorVariants.ts and never published: it is
+   *  attached by browseProducts/productsForLane/productsForBrand and is not a
+   *  field data/products.json carries. It must stay that way - the grouping
+   *  depends on which products a given surface is showing, so baking one number
+   *  in at publish would be wrong on every lane that filters differently. */
+  variantCount?: number;
   /** A second, equally-valid product URL on a DIFFERENT regional storefront of
    *  the same brand — e.g. Touché Privé runs a Shopify geo-redirect app that
    *  silently sends EU-geolocated visitors from `int.toucheprive.com` to

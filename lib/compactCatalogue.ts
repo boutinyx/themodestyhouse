@@ -44,6 +44,9 @@ export interface CardProduct {
   /** See Product.altUrl. Absent on every row except the small Touché Privé
    *  dual-region subset. */
   altUrl?: string;
+  /** How many colourways this card stands for, including itself. Only ever
+   *  present when > 1, so the card can treat it as "has siblings". */
+  variantCount?: number;
 }
 
 interface CompactBrand {
@@ -118,6 +121,12 @@ export interface CompactCatalogue {
      *  value here, not a rarity — 2,013 of the 2,521 rows on /modest-dresses
      *  are unclassified and filter out of every chip except "All". */
     dressSubtypeIdx?: number[];
+    /** How many colourways each row stands for, including itself. Present only
+     *  when at least one row on this surface has siblings; dropped as an
+     *  all-sentinel column otherwise (see SENTINEL_COLUMNS). The sentinel here
+     *  is 1, not -1, because "one colourway" is the honest default rather than
+     *  an absence. See lib/colorVariants.ts. */
+    variantCount?: number[];
     /** Days since FIRST_SEEN_EPOCH, or -1 if unknown. Sort-only — never
      *  decoded into CardProduct, same treatment as occasionMask. */
     firstSeenDay: number[];
@@ -257,6 +266,7 @@ export function encodeCatalogue(
     outerwearSubtypeIdx: [],
     hijabSubtypeIdx: [],
     dressSubtypeIdx: [],
+    variantCount: [],
     hijabTypeFilterIdx: [],
     firstSeenDay: [],
   };
@@ -357,6 +367,7 @@ export function encodeCatalogue(
     rows.hijabSubtypeIdx!.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
     const dressSub = dressSubtype(p);
     rows.dressSubtypeIdx!.push(dressSub === null ? -1 : dressSubtypeIndex.get(dressSub)!);
+    rows.variantCount!.push(p.variantCount ?? 1);
     const hijabType = hijabTypeFilter(p);
     rows.hijabTypeFilterIdx!.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
     rows.firstSeenDay.push(encodeFirstSeenDay(p.firstSeen));
@@ -396,6 +407,12 @@ export function encodeCatalogue(
     const v = rows[col];
     if (v && v.every((x) => x === -1)) delete rows[col];
   }
+  // variantCount is dropped on the same principle but against a DIFFERENT
+  // sentinel: 1, not -1. A surface where no product has colour siblings is the
+  // common case (every /edits/[slug], and any lane after heavy filtering), and
+  // there it is 23,000 copies of the number 1. Readers must treat an absent
+  // column as "every row is 1" — see decodeCard's `?? 1`.
+  if (rows.variantCount && rows.variantCount.every((x) => x === 1)) delete rows.variantCount;
 
   return {
     brands: compactBrands, garments, occasions,
@@ -432,6 +449,10 @@ export function decodeCard(cat: CompactCatalogue, row: number, extra?: CardSlice
     image,
     url,
     ...(card.altUrl ? { altUrl: card.altUrl } : {}),
+    // `?? 1` is load-bearing, exactly like the subtype columns' `?? -1`:
+    // encodeCatalogue deletes this column when every row is 1, so an absent
+    // column means "nothing here has colour siblings".
+    ...((cat.rows.variantCount?.[row] ?? 1) > 1 ? { variantCount: cat.rows.variantCount![row] } : {}),
   };
 }
 

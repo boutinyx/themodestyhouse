@@ -3,6 +3,7 @@ import path from 'node:path';
 import type { Product, Vibe } from '@/lib/types';
 import type { Edit } from '@/lib/edits';
 import { LANES } from '@/lib/lanes';
+import { groupColourVariants } from '@/lib/colorVariants';
 import { brandVibe } from '@/lib/vibes';
 import { isSpecialty } from '@/lib/specialty';
 import { getCutIds } from '@/lib/liveCuts';
@@ -92,7 +93,7 @@ export function getProducts(): Product[] {
 // Hijabs & Scarves lane. Swim/activewear are also held back here — they only show
 // on their own lanes (see isSpecialty).
 export function browseProducts(): Product[] {
-  return getProducts().filter((p) => p.garment !== 'hijab' && !isSpecialty(p));
+  return groupColourVariants(getProducts().filter((p) => p.garment !== 'hijab' && !isSpecialty(p)));
 }
 
 export function productsForLane(slug: string): Product[] {
@@ -101,7 +102,13 @@ export function productsForLane(slug: string): Product[] {
   const base = getProducts().filter(lane.match);
   // Everyday lanes (dresses, trousers, tops…) never show swim/activewear; only
   // the dedicated swim/activewear lanes do.
-  return lane.specialty ? base : base.filter((p) => !isSpecialty(p));
+  const visible = lane.specialty ? base : base.filter((p) => !isSpecialty(p));
+  // Colour runs collapse to one card LAST, after every other filter, so the
+  // count a card advertises only ever counts siblings this surface is actually
+  // showing. Grouping earlier would let a card say "+5 colours" when four of
+  // them had been filtered off the lane. Same reasoning in the two accessors
+  // either side of this one. See lib/colorVariants.ts.
+  return groupColourVariants(visible);
 }
 
 /**
@@ -117,7 +124,7 @@ export function productsForLane(slug: string): Product[] {
  * third of its catalogue and a Haute Hijab page that was nearly empty.
  */
 export function productsForBrand(slug: string): Product[] {
-  return getProducts().filter((p) => p.brandSlug === slug);
+  return groupColourVariants(getProducts().filter((p) => p.brandSlug === slug));
 }
 
 /**

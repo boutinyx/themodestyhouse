@@ -151,6 +151,40 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
         >
           <Heart size={20} weight={fav ? 'fill' : 'regular'} className="w-5 h-5" />
         </button>
+        {/* Colour-variant count, bottom-right — Tina, 2026-08-27: "we have a lot
+            of items that are the same just a different color. can we put only 1
+            in the catalogue and if there are additional colors just stating that
+            in the bottom right corner with mini colors?"
+
+            This is phase one: the COUNT. The coloured dots she asked for come
+            next, once the colour vocabulary and the photo-sampling batch are
+            done — measured first, because naive photo sampling scored only 68%
+            against a labelled set and would have put a skin tone on a card
+            labelled "White".
+
+            `pointer-events-none` is load-bearing. The card's whole surface is a
+            single outbound <a> at z-10 (the a11y rewrite that removed the
+            `nested-interactive` violation), so anything drawn above it that can
+            take a pointer would punch a dead hole in the card's primary action.
+            Quick-view and favourite are deliberate exceptions and are real
+            buttons; this is a label, so it must not be.
+
+            Plainest possible functional label, per the rule that brand copy is
+            Tina's (Sec 10.18) — a count and a noun, nothing composed. */}
+        {p.variantCount && p.variantCount > 1 && (
+          <div
+            className="absolute bottom-2 right-2 z-20 pointer-events-none rounded-full"
+            style={{
+              background: 'rgba(255,255,255,0.85)',
+              color: 'var(--muted)',
+              font: '500 11px/1 var(--font-ui)',
+              letterSpacing: '0.04em',
+              padding: '6px 9px',
+            }}
+          >
+            +{p.variantCount - 1} {p.variantCount === 2 ? 'colour' : 'colours'}
+          </div>
+        )}
         {/* THE OUTBOUND ARROW BADGE WAS REMOVED 2026-08-26 — Tina, with a
             screenshot of it: "this thing gone". It was a decorative white disc
             with an ArrowUpRight in the image's bottom-right corner.
