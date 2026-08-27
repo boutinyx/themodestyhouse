@@ -30,7 +30,15 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
   'modest-dresses': {
     h2: 'What makes a dress modest?',
     body: 'A modest dress covers more than a standard one: long sleeves rather than short, a higher neckline, and a hemline that falls below the knee or to the ankle. Fabric matters as much as cut — a dress can be full-length and still cling, so modest dresses tend to use structured or slightly heavier fabrics like crepe, cotton and ponte rather than thin jersey. Maxi silhouettes are the most common shape, since a single long line covers the leg without needing an underlayer. Many modest dresses are designed to be worn as-is for everyday, with a separate abaya or coat layered over the top for more formal or conservative settings. Belted waists are a common way to add shape to an otherwise loose cut, and long sleeves are usually left unlined so the dress still suits warmer weather. The practical question a photograph cannot answer is opacity. A dress can be full-length, long-sleeved and still sheer across the shoulders or the skirt, which is why lining matters as much as hemline and why a slip or a base layer is worth owning before it is needed. Weight is the readable signal: satin, knit, linen and cotton make up most of what is listed here, and the heavier the drape, the less an underlayer is required. Occasion changes the brief entirely — an everyday jersey dress and a wedding-guest piece share a silhouette and almost nothing else in fabric or finish. Sizing is the real friction in shopping across many houses rather than one: cuts are drafted to different regional standards, so a size that fits in one house may not in the next, and a measurement chart is more reliable than a label. Loose cuts are forgiving, which is also why so many of these dresses work through pregnancy and nursing without being sold for it. The difference between a well-made modest dress and a cheap one shows up in the parts you don\'t see in a photograph. Lining is the first: a dress cut in a light fabric and sold unlined is passing a cost to you, because you\'ll buy a slip to wear under it. Look at the seams next — French or bound seams inside mean the maker expects the dress to last, while raw overlocked edges are the fastest thing to fray. Sleeves are where cheap construction is hardest to hide: a properly set sleeve lets you lift your arm without dragging the whole bodice up with it. And weight beats price as a signal — a heavier crepe or ponte will hang and wash better than a thin jersey costing the same, which is why two dresses at one price can wear so differently.',
-    related: ['modest-abayas', 'modest-wedding-guest'],
+    // Was ['modest-abayas', 'modest-wedding-guest'] until that lane was retired
+    // on 2026-08-27. `related` is a fixed pair by design (see the interface), so
+    // this needed a second slug rather than a shorter list. layering-basics is
+    // what the body above already argues for in two separate sentences — "a slip
+    // or a base layer is worth owning before it is needed", and "the heavier the
+    // drape, the less an underlayer is required" — so it is the link the copy
+    // was already making, not a new editorial claim. Two other lanes pair with it
+    // for the same reason.
+    related: ['modest-abayas', 'layering-basics'],
   },
   'modest-abayas': {
     h2: 'What is an abaya?',
@@ -125,11 +133,6 @@ export const LANE_ANSWERS: Record<string, LaneAnswer> = {
     // entry below split into 2026-08-21) — the outermost, warmest layer is the
     // more direct cold-weather counterpart to a base layer than a blazer is.
     related: ['modest-tops', 'jackets-coats'],
-  },
-  'modest-wedding-guest': {
-    h2: 'What should I wear as a modest wedding guest?',
-    body: "The modest-fashion rules for a wedding guest are the same as any wedding guest's: avoid white or ivory, which reads as competing with the bride, and dress to the formality of the venue and time of day. Beyond that, a modest wedding guest look usually means a floor-length or midi dress or abaya in a richer fabric — satin, embellished chiffon, structured crepe — rather than the cotton or jersey suited to everyday wear. An open abaya layered over a coordinating inner dress is a common combination, since it reads as one deliberate outfit rather than two separate pieces. Jewel tones and metallics are frequent choices for evening weddings; softer pastels for daytime ones. A coordinating or contrasting hijab in a formal fabric like satin or chiffon finishes the look, rather than an everyday jersey one.",
-    related: ['modest-abayas', 'modest-dresses'],
   },
   'modest-summer-outfits': {
     h2: 'How do you dress modestly in the heat?',

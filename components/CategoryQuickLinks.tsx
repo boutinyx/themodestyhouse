@@ -23,11 +23,14 @@ import { LANES } from '@/lib/lanes';
  * 'Wedding'). It carried the reference screenshot's label over a lane with a
  * different name.
  *
- * KNOWN COST, stated rather than buried: this tile was `/modest-wedding-guest`'s
- * most prominent internal link, and the footer column that used to hold it was
- * cut on 2026-08-24 (see components/Footer.tsx). The lane is not orphaned — it
- * is still routed, still in sitemap.xml, and still linked contextually from
- * `/modest-dresses` via `related` in lib/laneAnswers.ts — but it is now down to
+ * WHAT THAT COST, followed through: this tile was `/modest-wedding-guest`'s most
+ * prominent internal link, and the footer column that used to hold it was cut on
+ * 2026-08-24 (see components/Footer.tsx). That left the lane on a single link,
+ * and on 2026-08-27 Tina retired it — 308 to /modest-dresses, next.config.ts. So
+ * the label no longer names anything at all. The paragraph below is the state
+ * that led there, kept because it is the reasoning, not because it is current:
+ * it was still routed, still in sitemap.xml, and still linked contextually from
+ * `/modest-dresses` via `related` in lib/laneAnswers.ts — but it was down to
  * that one link, against 25-35 for every category lane. If it should keep a
  * more prominent one, the cheap fix Footer.tsx already names is a single line
  * in "The House", not a restored tile.

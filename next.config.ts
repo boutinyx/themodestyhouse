@@ -199,6 +199,19 @@ export default function nextConfig(phase: string): NextConfig {
       return [
         { source: '/hijabi-outfits', destination: '/directory', permanent: true },
         /*
+         * /modest-wedding-guest was retired 2026-08-27 (see lib/lanes.ts). It
+         * is sent to /modest-dresses rather than /directory — Tina's choice
+         * between the two — because that is the closest thing the site still
+         * has to what the URL promised: the lane matched
+         * `occasion: 'wedding' | 'formal'`, and dresses is where most of those
+         * 775 products live.
+         *
+         * A redirect rather than a 404 because Google had the URL indexed: it
+         * was one of the 35 entries in sitemap.xml. A 404 discards whatever
+         * ranking it held instead of passing it on.
+         */
+        { source: '/modest-wedding-guest', destination: '/modest-dresses', permanent: true },
+        /*
          * Prayer wear moved from Layering Basics to Hijabs & Scarves on
          * 2026-08-26 (Tina: "put prayer sets under hijabs"), so
          * /layering-basics?type=prayer-set no longer describes anything.

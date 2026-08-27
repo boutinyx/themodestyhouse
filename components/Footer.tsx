@@ -157,10 +157,12 @@ export function Footer() {
               signal and tell a crawler the page matters, and the footer is the
               only link position that appears on every page. Measured 2026-08-08.
 
-              The two non-category lanes (/modest-wedding-guest,
-              /modest-summer-outfits) are excluded by the CATEGORY_LANES filter
-              and, since 2026-08-24, are linked from nowhere — see the note
-              below where their column used to be.
+              /modest-summer-outfits is excluded by the CATEGORY_LANES filter
+              and, since 2026-08-24, is linked from nowhere — see the note
+              below where its column used to be. It was one of two such lanes
+              until /modest-wedding-guest was retired on 2026-08-27 (308 to
+              /modest-dresses, next.config.ts), which is what losing every
+              internal link eventually leads to.
               /hijabi-outfits used to be a third, held back deliberately because
               it near-duplicated /directory; it was retired on 2026-08-19 once
               the reason became clear (112 of 113 brands carry
@@ -242,7 +244,9 @@ export function Footer() {
               added because those two lanes had almost no internal links — measured
               2026-08-19, /modest-summer-outfits had ZERO anywhere on the site and
               /modest-wedding-guest had one, against 25-35 for every category lane.
-              Removing it puts them back in that state. Both are still routed and
+              Removing it put them back in that state, and on 2026-08-27
+              /modest-wedding-guest was retired outright — a lane nothing links to
+              is a lane nobody misses. /modest-summer-outfits is still routed and
               still in sitemap.xml, but a sitemap entry only gets a URL crawled;
               internal links are what pass ranking signal (§8). If they should keep
               a link without their own column, the cheap fix is a single line each

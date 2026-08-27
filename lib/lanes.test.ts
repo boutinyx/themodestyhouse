@@ -11,7 +11,7 @@ const base: Product = {
 describe('LANES', () => {
   it('includes the core lanes', () => {
     const slugs = LANES.map((l) => l.slug);
-    for (const s of ['modest-dresses', 'modest-swimwear', 'modest-abayas', 'modest-wedding-guest']) {
+    for (const s of ['modest-dresses', 'modest-swimwear', 'modest-abayas', 'modest-sets']) {
       expect(slugs).toContain(s);
     }
   });
@@ -25,10 +25,13 @@ describe('LANES', () => {
     const abaya = LANES.find((l) => l.slug === 'modest-abayas')!;
     expect(abaya.match({ ...base, garment: 'abaya' })).toBe(true);
   });
-  it('wedding lane matches a wedding occasion', () => {
-    const wed = LANES.find((l) => l.slug === 'modest-wedding-guest')!;
-    expect(wed.match({ ...base, occasion: ['wedding'] })).toBe(true);
-  });
+  // The 'modest-wedding-guest' lane was retired 2026-08-27 and its test with
+  // it. It was the site's only kind:'occasion' lane and matched
+  // `occasion.includes('wedding'|'formal')` — 775 products, all of which still
+  // appear on their own garment lanes. What killed it was reach, not the match:
+  // the homepage Occasion tile went on 2026-08-25 and the footer column holding
+  // it on 2026-08-24, leaving it one internal link. A 308 to /modest-dresses
+  // lives in next.config.ts.
   it('hijabs lane also matches jilbab-titled products, whatever their garment field, and is specialty', () => {
     const hijabs = LANES.find((l) => l.slug === 'modest-hijabs')!;
     expect(hijabs.specialty).toBe(true);

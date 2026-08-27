@@ -122,10 +122,6 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     title: 'Layering Basics — Base Layers & Neck Covers',
     description: 'Shop layering basics online: base layers, dickeys and neck covers worn under abayas, blouses and dresses for extra coverage.',
   },
-  '/modest-wedding-guest': {
-    title: 'Modest Wedding Guest Dresses & Abayas — Occasion Wear',
-    description: 'Shop modest wedding guest outfits: covered, elegant dresses and abayas for weddings and formal occasions.',
-  },
   '/modest-summer-outfits': {
     title: 'Modest Summer Outfits Online — Lightweight & Breathable',
     description: 'Shop modest summer outfits online: lightweight, breathable pieces for warm days, from independent modest fashion brands.',

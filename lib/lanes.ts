@@ -180,14 +180,15 @@ export const LANES: Lane[] = [
   },
 
   // — other discovery lanes —
-  {
-    slug: 'modest-wedding-guest',
-    title: 'Modest Wedding Guest',
-    nav: 'Wedding',
-    intro: 'Covered, elegant looks for weddings and formal occasions.',
-    kind: 'occasion',
-    match: (p) => p.occasion.includes('wedding') || p.occasion.includes('formal'),
-  },
+  //
+  // 'modest-wedding-guest' (kind: 'occasion') was RETIRED 2026-08-27 — Tina:
+  // "the modesty weddiging guest thing still exsist". It was already down to a
+  // single internal link, the `related` row at the foot of /modest-dresses,
+  // after the homepage Occasion tile went on 2026-08-25 and the footer column
+  // holding it went on 2026-08-24. A 308 to /modest-dresses lives in
+  // next.config.ts, because Google had the URL indexed and a 404 throws that
+  // away — the same treatment /hijabi-outfits got.
+  // → docs/log/2026-08-27-retire-modest-wedding-guest.md
   {
     slug: 'modest-summer-outfits',
     title: 'Modest Summer Outfits',
