@@ -85,3 +85,60 @@ effect. Now mocked and asserted, and the file no longer appears after a run.
 - The flow is unchanged otherwise: pick in the pencil → it takes effect on the live site
   immediately → "Copy for Claude" → `node scripts/merge-live-edits.mjs` →
   `npm run build:data`.
+
+## Deployed verification
+
+**On staging, from outside:** the route exists and is guarded —
+`POST /api/staff/live-edit/dress-type` returns **401** with no session, where it
+returned **404** on six consecutive polls before the deploy landed. That is the
+discriminator this feature has from an unauthenticated position.
+
+**I could not click the pencil on staging.** It needs a staff session, and the
+`ADMIN_PASSWORD` in this working directory's `.env` is not the deployed one — checked
+against the endpoint that matters rather than concluding it from one host (§10.42):
+staging `401`, production `401`, both `{"error":"Wrong password."}`. Railway's env vars
+are set separately from the local file. Not pursued further: it is Tina's password and
+the login route rate-limits at 5/minute.
+
+**So the interaction was driven against a real production build, in an isolated
+worktree** — `git worktree add --detach`, `cp -al` for node_modules (a symlinked one
+makes Turbopack panic, §10.38), `next start -p 3199`, its own `.env.local`. A separate
+port and a separate `.next`, because `.next` is shared and two builds fight (§10.28
+rule 4). Signed in through the API rather than the form, since the form needs hydration
+before React sees a `fill()` and that is not what was under test.
+
+```
+login status: 200
+pencils on /modest-dresses: 24
+menu opened: true
+top-level items: ["MOVE TO","MOVE TO MODEST ACTIVEWEAR","LAYERING BASICS",
+                  "OUTERWEAR","DRESS TYPE","DELETE"]
+items after hover: [… ,"EVERYDAY DRESSES","OCCASION DRESSES","SLIP DRESSES"]
+```
+
+Clicked **Slip Dresses** on a real card, then followed it the whole way:
+
+| step | result |
+|---|---|
+| `GET /api/staff/live-edit/list` | `dressTypes: [{ id: "niswa:10217348399402", …, from: null, to: "slip" }]` |
+| the export's keys | `deletes,moves,laneMoves,dressTypes` |
+| `/staff/curate` tray | `Live catalogue edits — 1 pending` · `DRESS TYPES (1)` · `Aurelia Linen Convertible Dress - Blush — Slip Dresses` |
+| `/modest-dresses` → Type → Slip Dresses | the product is **visible** in the filtered grid, 15 cards |
+
+That last row is the one that matters: it proves the pick is not just stored but read
+back by `dressSubtype()` and honoured by the lane, live, with no rebuild — which is the
+whole point of the live-edit stores and the exact thing the `cacheKey()` omission would
+have broken.
+
+**A false negative from my own probe.** The first tray check reported "Dress types NOT
+in tray" — because `.eyebrow` uppercases the heading in CSS, so `innerText` returns
+`DRESS TYPES` and a case-sensitive `indexOf` missed it. Third time today a
+case/escaping-sensitive search over rendered HTML has produced a wrong reading (§10.38's
+`fetchpriority` trap, and two in the Beyza and Urban Modesty verifications). Searched
+case-insensitively, it was there all along.
+
+Torn down afterwards: server stopped, worktree removed, main working tree confirmed
+clean.
+
+## Status
+On `staging` (`fce7fbf`). **Not merged to `main`** — waiting on Tina's approval per §1.
