@@ -72,3 +72,34 @@ answer blocks with no lane: none
 The suite has a real guard here, and it is why the dangling `related` slug could not
 have shipped quietly: `lib/laneAnswers.test.ts` asserts *"every related slug points at
 a real, different lane"*.
+
+## Staging verification (added after deploy)
+`https://themodestyhouse-staging-production.up.railway.app`, with **production
+(`main`, pre-change) as the negative control**.
+
+| | production | staging |
+|---|---|---|
+| `GET /modest-wedding-guest` | **200** | **308 → /modest-dresses** |
+| following the redirect | — | 200, `/modest-dresses`, 475,220 bytes |
+| `<loc>` entries for it in `sitemap.xml` | 1 | **0** |
+| total `<loc>` in `sitemap.xml` | 131 | **130** |
+| `llms.txt` mentions | 1 | **0** |
+| `/modest-dresses` links to it | 1 | **0** |
+| `/modest-dresses` links to `/layering-basics` | 3 | **4** |
+
+The last row is the replacement `related` slug arriving, and it is the check that
+proves the pair was repaired rather than merely emptied.
+
+The redirect is a real 308 that lands on a real page — followed with `curl -L` rather
+than trusting the status code, because a redirect to a 404 also returns 308.
+
+**A stale number in my own question to Tina.** The options I offered said the sitemap
+would go "35 → 34". It went 131 → 130. 35 is what CLAUDE.md §8 recorded on 2026-08-19,
+before the 89 brand pages were added on 2026-08-24 — I quoted the file instead of
+measuring. Nothing turned on it, and the fact is now corrected in CLAUDE.md, but the
+habit is the one §10.38 warns about: quoting a documented figure where a measurement
+was one request away.
+
+## Status
+On `staging` (`c0fbc8f`). **Not merged to `main`** — waiting on Tina's approval per §1.
+Remember the CDN purge after the merge, origin-first (§10.47).
