@@ -120,3 +120,55 @@ after 11 hand-moves:  1479 trousers rows, 230 with a set word in the title
 
 Twelve manual corrections have moved the number by three, because the same rule keeps
 producing them. The remaining 230 are listed by brand above.
+
+## Staging verification (both exports)
+Four pages from staging and from **production (`main`, pre-change) as the negative
+control**: `/modest-trousers`, `/modest-sets`, `/modest-dresses`, `/directory`.
+
+**5 cuts** — all PRESENT on production, absent on staging. **2 controls** — uncut Nihan
+rows with near-identical titles (`...Trousers Tunic Set - Indigo`, `...Linen Trousers Tunic
+Set - Beige`) PRESENT on both.
+
+**12 moves** — every one moved lane, and moved to the right one:
+
+| product | production | staging |
+|---|---|---|
+| Mei denim dress with mandarin collar | modest-trousers | **modest-dresses** |
+| Sila Textured Chiffon Pants Set - Butter Yellow | modest-trousers | **modest-sets** |
+| Tasneem Denim Top and Pant Set - Batroun Blue | modest-trousers | **modest-sets** |
+| Cotton Gauze Top & Pant Set | modest-trousers | **modest-sets** |
+| Léa jean pants set | modest-trousers | **modest-sets** |
+| Sana Asymmetrical Top and Trouser Co-ord Set - Chocolate | modest-trousers | **modest-sets** |
+| Rima Top & Pant Set (Dusty Blue) | modest-trousers | **modest-sets** |
+| Ayla Tie Back Structured Shirt And Trouser Co Ord Set | modest-trousers | **modest-sets** |
+| Mandarin collar jeans set | modest-trousers | **modest-sets** |
+| La Marina | modest-trousers | modest-trousers **+ modest-sets** |
+| La Laguna | modest-trousers | modest-trousers **+ modest-sets** |
+
+### The last two rows are correct, and they surface something
+`La Marina` and `La Laguna` each appear on BOTH lanes on staging because **Losyana
+publishes several distinct products under the same title**, and only some were in the
+export:
+
+```
+losyana:10786785493330  set        La Marina    <- moved
+losyana:10786785558866  trousers   La Marina    <- NOT in the export
+losyana:10786788868434  set        La Laguna    <- moved
+losyana:10786788933970  set        La Laguna    <- moved
+losyana:10786789065042  trousers   La Laguna    <- NOT in the export
+```
+
+So a second `La Marina` and a third `La Laguna` are still filed as trousers. Flagged for
+Tina; not moved, because they were not in the export and a title is not an id.
+
+### The verification itself failed once, in a new way
+The first pass reported **five `!!` rows** — the second export's cut still present, and its
+four moves still on `/modest-trousers`. Every failing row was from the SECOND export, which
+is the tell: the deploy-wait probe was watching for `Khaki Lurex Palazzo Trousers`, a cut
+from the FIRST export, so it exited the moment the first deploy landed and measured a build
+that predated the second push by one commit.
+
+Re-polled on a marker unique to the second export (`...Lyocell Suit - Brown`), refetched,
+and all twelve rows plus both controls went green. Same family as §10.49: the probe was
+satisfied by something other than the thing being tested. **A deploy-wait marker has to
+come from the LAST change pushed, not any of them.**
