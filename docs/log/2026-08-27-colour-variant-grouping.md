@@ -91,3 +91,51 @@ I had told her photo sampling was "accurate by construction". It is not:
 So phase 2 = vocabulary first, photo only where the name does not resolve, name wins on
 disagreement, and no dot at all rather than a wrong one. The vocabulary also unlocks the
 leading-colour pattern above.
+
+---
+
+## Merged to `main` and verified on production
+**Status:** live · `origin/main` `f102cf2 -> 4871fba`
+
+Seven commits fast-forwarded: this one plus six catalogue-curation commits from other sessions
+(Urban Modesty's 20 hand-picks back in, then 14 cuts and 13 garment/lane moves across three
+batches). `main` and `staging` identical.
+
+Pre-push: `npx tsc --noEmit` clean · `npm run lint` exit 0 · `npm test` 54 files / 879 passed ·
+`npm run build` all routes.
+
+**§10.47 discipline applied.** Discriminator chosen first — `/modest-hijabs` `rowCount`, 2,916
+in this build against production's 5,099. Polled the ORIGIN past the edge with a junk query
+string; it flipped on the 6th try (~100 s after the push). Only then purged.
+
+```
+purge success: True
+                 fetch 1        fetch 2
+/modest-hijabs   MISS 2916      HIT 2916     (was 5099)
+/modest-abayas   MISS 3818      HIT 3818
+/modest-dresses  MISS 2103      HIT 2103
+/modest-trousers MISS  942      HIT  942
+/modest-sets     MISS  519      HIT  519
+```
+
+Then drove the real page on **https://themodestyhouse.com/modest-hijabs** with Playwright:
+badges render `["+8 colours","+3 colours","+13 colours","+34 colours","+1 colour"]` (singular
+form correct), 24 cards with zero duplicate links, the badge computes
+`pointer-events: none` and `elementFromPoint` at its centre still returns the card anchor, and
+clicking the card still opens the brand (voilechic.com).
+
+### Two shell faults while verifying, both already in the mistakes log
+Neither touched the site; both made a verification print confident nonsense.
+1. `set -- $p` **did not split** — zsh does not word-split unquoted parameters (§10.20). The
+   loop printed `want=` empty and every row as `MISMATCH`, against a deploy that was fine.
+2. Wrapping the check in a **shell function lost `PATH`** (the §10.48 `.env` clobber, still
+   resident), so `curl`/`head`/`tr`/`awk` were all `command not found` and every row again read
+   `MISMATCH` — with nothing having run. Falling back to system `python3` then failed too:
+   macOS ships it against **LibreSSL**, which cannot negotiate TLS to Cloudflare
+   (`TLSV1_ALERT_PROTOCOL_VERSION`).
+   Settled by calling `/usr/bin/curl`, `/usr/bin/grep` etc. by absolute path with no function
+   and no PATH dependency.
+
+The reason neither wasted more than a minute: the check prints `want=` beside `got=` and labels
+the row `OK`/`MISMATCH`, so "nothing ran" looked wrong rather than looking like a finding —
+which is the whole point of §10.28 rule 3.
