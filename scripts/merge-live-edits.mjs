@@ -9,7 +9,9 @@
 // lib/garmentReview.ts::resolveGarment at publish time), laneMoves ->
 // data/lane-overrides.json (read by scripts/build-data.mjs directly, for
 // the two specialty lanes — Modest Activewear, Layering Basics — that
-// garment overrides can't reach; see lib/specialty.ts).
+// garment overrides can't reach; see lib/specialty.ts), dressTypes ->
+// data/dress-subtypes.json (Everyday/Occasion/Slip, the one sub-category with
+// no classifier under it — added to the pencil 2026-08-27).
 //
 // Usage:
 //   node scripts/merge-live-edits.mjs path/to/pasted-export.json
@@ -19,6 +21,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 const DECISIONS = new URL('../data/decisions.json', import.meta.url);
 const GARMENT_OVERRIDES = new URL('../data/garment-overrides.json', import.meta.url);
 const LANE_OVERRIDES = new URL('../data/lane-overrides.json', import.meta.url);
+const DRESS_SUBTYPES = new URL('../data/dress-subtypes.json', import.meta.url);
 
 const inputPath = process.argv[2];
 if (!inputPath) {
@@ -37,6 +40,9 @@ const garmentOverrides = existsSync(GARMENT_OVERRIDES)
   : {};
 const laneOverrides = existsSync(LANE_OVERRIDES)
   ? JSON.parse(readFileSync(LANE_OVERRIDES, 'utf8'))
+  : {};
+const dressSubtypes = existsSync(DRESS_SUBTYPES)
+  ? JSON.parse(readFileSync(DRESS_SUBTYPES, 'utf8'))
   : {};
 
 let cutChanged = 0;
@@ -70,6 +76,16 @@ for (const m of input.laneMoves ?? []) {
   laneChanged++;
 }
 
+let dressChanged = 0;
+let dressUnchanged = 0;
+const dressApplied = [];
+for (const m of input.dressTypes ?? []) {
+  if (dressSubtypes[m.id] === m.to) { dressUnchanged++; continue; }
+  dressSubtypes[m.id] = m.to;
+  dressApplied.push({ id: m.id, to: m.to });
+  dressChanged++;
+}
+
 // decisions.json: MINIFIED, no `null, 2` — matches scripts/merge-live-cuts.mjs
 // and scripts/add-brands.mjs. CLAUDE.md §8 documents "decisions.json
 // formatting is contested": whichever writer runs last reflows the whole
@@ -80,6 +96,10 @@ writeFileSync(DECISIONS, JSON.stringify(decisions));
 // convention.
 writeFileSync(GARMENT_OVERRIDES, JSON.stringify(garmentOverrides, null, 2));
 writeFileSync(LANE_OVERRIDES, JSON.stringify(laneOverrides, null, 2));
+// dress-subtypes.json is pretty-printed WITH a trailing newline on disk —
+// matching it exactly, so a merge that changes one key does not also reflow
+// the file's last line into the diff.
+writeFileSync(DRESS_SUBTYPES, `${JSON.stringify(dressSubtypes, null, 2)}\n`);
 
 console.log(`Deletes: ${cutChanged} written to data/decisions.json, ${cutUnchanged} already matched`);
 if (cutApplied.length) {
@@ -95,5 +115,10 @@ console.log(`Lane moves: ${laneChanged} written to data/lane-overrides.json, ${l
 if (laneApplied.length) {
   console.log('  Changed:');
   for (const m of laneApplied) console.log(`    ${m.id} -> ${m.to}${m.subtype ? ` (${m.subtype})` : ''}`);
+}
+console.log(`Dress types: ${dressChanged} written to data/dress-subtypes.json, ${dressUnchanged} already matched`);
+if (dressApplied.length) {
+  console.log('  Changed:');
+  for (const m of dressApplied) console.log(`    ${m.id} -> ${m.to}`);
 }
 console.log('\nNext: npm run build:data — nothing is live until that republishes products.json.');

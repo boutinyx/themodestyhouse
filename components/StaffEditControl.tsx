@@ -3,13 +3,19 @@ import { useState } from 'react';
 import { Menu } from '@base-ui-components/react/menu';
 import { PencilSimple, CaretRight, Trash } from '@phosphor-icons/react';
 import { GARMENT_LABELS, GARMENT_VALUES } from '@/lib/tag';
-import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS } from '@/lib/specialty';
+import { LAYERING_SUBTYPE_LABELS, OUTERWEAR_SUBTYPE_LABELS, DRESS_SUBTYPE_LABELS } from '@/lib/specialty';
 import { CATEGORY_LANES } from '@/lib/lanes';
-import type { Garment, ForcedLane, LayeringSubtype, OuterwearSubtype } from '@/lib/types';
+import type { Garment, ForcedLane, LayeringSubtype, OuterwearSubtype, DressSubtype } from '@/lib/types';
 
 const MOVABLE = GARMENT_VALUES.filter((g) => g !== 'other') as Garment[];
 const LAYERING_SUBTYPES = Object.keys(LAYERING_SUBTYPE_LABELS) as LayeringSubtype[];
 const OUTERWEAR_SUBTYPES = Object.keys(OUTERWEAR_SUBTYPE_LABELS) as OuterwearSubtype[];
+// Everyday / Occasion / Slip. Unlike the three lists above, this one has no
+// classifier behind it — lib/specialty.ts's dressSubtype() reads the curated
+// value, falls back to one brand rule, and otherwise returns null. So this menu
+// is not correcting a machine's guess, it is the only way the value is ever set
+// (docs/log/2026-08-26-dress-subtypes.md: "there is no staff UI for this yet").
+const DRESS_SUBTYPES = Object.keys(DRESS_SUBTYPE_LABELS) as DressSubtype[];
 // ForcedLane still carries the single internal value 'outerwear' (see
 // lib/specialty.ts's isOuterwear comment) even though it now displays across
 // three nav-facing lanes (blazers-vests/cardigans-sweaters/jackets-coats,
@@ -47,9 +53,12 @@ export const garmentMoveLabel = (g: Garment): string => {
   return lane ? lane.title : GARMENT_LABELS[g];
 };
 
+export const dressTypeLabel = (s: DressSubtype) => DRESS_SUBTYPE_LABELS[s];
+
 export type StaffEditResult =
   | { type: 'move'; garment: Garment }
   | { type: 'moveLane'; lane: ForcedLane; subtype?: LayeringSubtype | OuterwearSubtype }
+  | { type: 'dressType'; subtype: DressSubtype }
   | { type: 'delete' };
 
 export function StaffEditControl({
@@ -93,6 +102,23 @@ export function StaffEditControl({
       onChanged({ type: 'moveLane', lane, subtype });
     } catch {
       setError('Move failed — try again.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function setDressType(subtype: DressSubtype) {
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/staff/live-edit/dress-type', {
+        method: 'POST',
+        body: JSON.stringify({ id, subtype }),
+      });
+      if (!res.ok) throw new Error(`${res.status}`);
+      onChanged({ type: 'dressType', subtype });
+    } catch {
+      setError('Save failed — try again.');
     } finally {
       setBusy(false);
     }
@@ -209,6 +235,39 @@ export function StaffEditControl({
                 </Menu.Positioner>
               </Menu.Portal>
             </Menu.SubmenuRoot>
+            {/* Only on a dress. dressSubtype() returns null for anything else
+                (lib/specialty.ts), so offering it on an abaya or a hijab would
+                write a value that can never be read back — a control that
+                silently does nothing is worse than an absent one. The card
+                passes its CURRENT garment, so this appears the moment a
+                "Move to → Modest Dresses" lands, without a reload. */}
+            {garment === 'dress' && (
+              <Menu.SubmenuRoot>
+                <Menu.SubmenuTrigger className="menu-row flex items-center justify-between">
+                  Dress type
+                  <CaretRight size={12} weight="bold" />
+                </Menu.SubmenuTrigger>
+                <Menu.Portal>
+                  <Menu.Positioner sideOffset={4} align="start" className="z-50">
+                    <Menu.Popup
+                      className="rounded-xl border min-w-[190px] p-2"
+                      style={{ background: '#fff', borderColor: 'var(--hairline)', boxShadow: '0 8px 30px rgba(43,38,34,0.14)' }}
+                    >
+                      {DRESS_SUBTYPES.map((sub) => (
+                        <Menu.Item
+                          key={sub}
+                          onClick={() => setDressType(sub)}
+                          closeOnClick
+                          className="menu-row"
+                        >
+                          {DRESS_SUBTYPE_LABELS[sub]}
+                        </Menu.Item>
+                      ))}
+                    </Menu.Popup>
+                  </Menu.Positioner>
+                </Menu.Portal>
+              </Menu.SubmenuRoot>
+            )}
             <Menu.Item
               onClick={del}
               closeOnClick

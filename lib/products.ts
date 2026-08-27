@@ -9,6 +9,7 @@ import { isSpecialty } from '@/lib/specialty';
 import { getCutIds } from '@/lib/liveCuts';
 import { getLiveGarmentOverrides } from '@/lib/liveGarmentOverrides';
 import { getLiveLaneOverrides } from '@/lib/liveLaneOverrides';
+import { getLiveDressTypes } from '@/lib/liveDressTypes';
 
 // Filtered/overridden here, once, so every consumer of getProducts() —
 // every lane, the directory, home rails, favourites — picks up a live
@@ -33,8 +34,11 @@ import { getLiveLaneOverrides } from '@/lib/liveLaneOverrides';
  * must still take effect immediately — that is the whole design of
  * docs/log/2026-08-12-staff-curate.md. A boolean would silently freeze them.
  *
- * If a FOURTH live-override store is ever added, it must be added to
+ * If a FIFTH live-override store is ever added, it must be added to
  * cacheKey() in the same commit, or edits through it will appear to do nothing.
+ * That warning has been collected on once: .live-dress-types.json (the pencil's
+ * Everyday/Occasion/Slip control, 2026-08-27) is the fourth, and it is keyed
+ * below with a test that fails if it stops being.
  */
 let cache: { key: string; value: Product[] } | null = null;
 
@@ -47,10 +51,11 @@ function cacheKey(): string {
     stamp(d('products.json')),
     // Verified against each module's own STORE_PATH, not assumed from the
     // naming pattern: lib/liveCuts.ts:31, lib/liveGarmentOverrides.ts:27,
-    // lib/liveLaneOverrides.ts:26.
+    // lib/liveLaneOverrides.ts:26, lib/liveDressTypes.ts:33.
     stamp(d('.live-cuts.json')),
     stamp(d('.live-garment-overrides.json')),
     stamp(d('.live-lane-overrides.json')),
+    stamp(d('.live-dress-types.json')),
   ].join(':');
 }
 
@@ -63,17 +68,20 @@ export function getProducts(): Product[] {
   const cutIds = getCutIds();
   const garmentOverrides = getLiveGarmentOverrides();
   const laneOverrides = getLiveLaneOverrides();
+  const dressTypes = getLiveDressTypes();
   const hasGarmentOverrides = Object.keys(garmentOverrides).length > 0;
   const hasLaneOverrides = Object.keys(laneOverrides).length > 0;
+  const hasDressTypes = Object.keys(dressTypes).length > 0;
   const kept = cutIds.size === 0 ? all : all.filter((p) => !cutIds.has(p.id));
-  if (!hasGarmentOverrides && !hasLaneOverrides) {
+  if (!hasGarmentOverrides && !hasLaneOverrides && !hasDressTypes) {
     cache = { key, value: kept };
     return kept;
   }
   const overridden = kept.map((p) => {
     const g = garmentOverrides[p.id];
     const l = laneOverrides[p.id];
-    if (!g && !l) return p;
+    const d = dressTypes[p.id];
+    if (!g && !l && !d) return p;
     return {
       ...p,
       ...(g ? { garment: g.garment } : {}),
@@ -82,6 +90,10 @@ export function getProducts(): Product[] {
         ...(l.lane === 'layering-basics' ? { forcedLayeringSubtype: l.subtype as Product['forcedLayeringSubtype'] } : {}),
         ...(l.lane === 'outerwear' ? { forcedOuterwearSubtype: l.subtype as Product['forcedOuterwearSubtype'] } : {}),
       } : {}),
+      // Same field scripts/build-data.mjs stamps from data/dress-subtypes.json,
+      // so a live pick reads identically to a merged one — lib/specialty.ts's
+      // dressSubtype() has one code path either way.
+      ...(d ? { curatedDressSubtype: d.subtype } : {}),
     };
   });
   cache = { key, value: overridden };

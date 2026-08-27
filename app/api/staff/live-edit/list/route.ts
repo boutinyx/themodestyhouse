@@ -3,6 +3,7 @@ import { requireStaffSession } from '@/lib/staffSession';
 import { getLiveCuts } from '@/lib/liveCuts';
 import { getLiveGarmentOverrides } from '@/lib/liveGarmentOverrides';
 import { getLiveLaneOverrides } from '@/lib/liveLaneOverrides';
+import { getLiveDressTypes } from '@/lib/liveDressTypes';
 import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import type { Product } from '@/lib/types';
@@ -50,5 +51,20 @@ export async function GET() {
     })
     .filter((m): m is NonNullable<typeof m> => Boolean(m));
 
-  return NextResponse.json({ deletes, moves, laneMoves });
+  // `from` is the type the site currently shows, which for a dress with no
+  // curated value at all is null — that is the normal case here, since this
+  // control exists precisely because 2,005 dresses have none.
+  const dressTypeStore = getLiveDressTypes();
+  const dressTypes = Object.entries(dressTypeStore)
+    .map(([id, entry]) => {
+      const p = byId.get(id);
+      if (!p) return null;
+      return {
+        id: p.id, title: p.title, url: p.url, image: p.image,
+        from: p.curatedDressSubtype ?? null, to: entry.subtype,
+      };
+    })
+    .filter((m): m is NonNullable<typeof m> => Boolean(m));
+
+  return NextResponse.json({ deletes, moves, laneMoves, dressTypes });
 }

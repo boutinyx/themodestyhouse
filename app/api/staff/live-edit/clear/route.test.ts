@@ -7,6 +7,10 @@ const { clearLiveGarmentOverrides } = vi.hoisted(() => ({ clearLiveGarmentOverri
 vi.mock('@/lib/liveGarmentOverrides', () => ({ clearLiveGarmentOverrides }));
 const { clearLiveLaneOverrides } = vi.hoisted(() => ({ clearLiveLaneOverrides: vi.fn() }));
 vi.mock('@/lib/liveLaneOverrides', () => ({ clearLiveLaneOverrides }));
+// Mocked, not merely tolerated: unmocked, the real clearLiveDressTypes() writes
+// data/.live-dress-types.json to disk every time the suite runs.
+const { clearLiveDressTypes } = vi.hoisted(() => ({ clearLiveDressTypes: vi.fn() }));
+vi.mock('@/lib/liveDressTypes', () => ({ clearLiveDressTypes }));
 
 import { NextResponse } from 'next/server';
 import { requireStaffSession } from '@/lib/staffSession';
@@ -26,9 +30,10 @@ describe('POST /api/staff/live-edit/clear', () => {
     expect(clearLiveCuts).not.toHaveBeenCalled();
     expect(clearLiveGarmentOverrides).not.toHaveBeenCalled();
     expect(clearLiveLaneOverrides).not.toHaveBeenCalled();
+    expect(clearLiveDressTypes).not.toHaveBeenCalled();
   });
 
-  it('clears all three live stores and returns ok when signed in', async () => {
+  it('clears all four live stores and returns ok when signed in', async () => {
     vi.mocked(requireStaffSession).mockResolvedValue(null);
     const res = await POST();
     expect(res.status).toBe(200);
@@ -36,5 +41,6 @@ describe('POST /api/staff/live-edit/clear', () => {
     expect(clearLiveCuts).toHaveBeenCalledTimes(1);
     expect(clearLiveGarmentOverrides).toHaveBeenCalledTimes(1);
     expect(clearLiveLaneOverrides).toHaveBeenCalledTimes(1);
+    expect(clearLiveDressTypes).toHaveBeenCalledTimes(1);
   });
 });

@@ -106,3 +106,8 @@ data/.live-garment-overrides.json
 # (lib/liveLaneOverrides.ts). scripts/merge-live-edits.mjs folds it into
 # data/lane-overrides.json on purpose, later.
 data/.live-lane-overrides.json
+
+# Runtime Everyday/Occasion/Slip assignments made from the live staff pencil
+# (lib/liveDressTypes.ts). scripts/merge-live-edits.mjs folds it into
+# data/dress-subtypes.json. Added 2026-08-27.
+data/.live-dress-types.json

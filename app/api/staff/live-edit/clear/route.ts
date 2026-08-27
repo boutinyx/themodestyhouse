@@ -3,6 +3,7 @@ import { requireStaffSession } from '@/lib/staffSession';
 import { clearLiveCuts } from '@/lib/liveCuts';
 import { clearLiveGarmentOverrides } from '@/lib/liveGarmentOverrides';
 import { clearLiveLaneOverrides } from '@/lib/liveLaneOverrides';
+import { clearLiveDressTypes } from '@/lib/liveDressTypes';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +14,7 @@ export const dynamic = 'force-dynamic';
 // side effect, but nothing let staff clear it on demand once its contents
 // had already been merged into the tracked files via
 // scripts/merge-live-edits.mjs. Intentionally no partial-clear option: the
-// three stores are always merged together, so there's no case where
+// four stores are always merged together, so there's no case where
 // clearing one without the others is correct.
 export async function POST() {
   const blocked = await requireStaffSession();
@@ -22,5 +23,6 @@ export async function POST() {
   clearLiveCuts();
   clearLiveGarmentOverrides();
   clearLiveLaneOverrides();
+  clearLiveDressTypes();
   return NextResponse.json({ ok: true });
 }

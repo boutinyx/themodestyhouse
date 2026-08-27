@@ -26,6 +26,9 @@ vi.mock('@/lib/liveGarmentOverrides', () => ({ getLiveGarmentOverrides: () => ge
 const getLiveLaneOverrides = vi.fn<() => Record<string, { lane: string; subtype?: string; decidedAt: string }>>(() => ({}));
 vi.mock('@/lib/liveLaneOverrides', () => ({ getLiveLaneOverrides: () => getLiveLaneOverrides() }));
 
+const getLiveDressTypes = vi.fn<() => Record<string, { subtype: string; decidedAt: string }>>(() => ({}));
+vi.mock('@/lib/liveDressTypes', () => ({ getLiveDressTypes: () => getLiveDressTypes() }));
+
 describe('getProducts', () => {
   beforeEach(() => {
     vi.resetModules();
@@ -34,6 +37,7 @@ describe('getProducts', () => {
     getCutIds.mockReturnValue(new Set());
     getLiveGarmentOverrides.mockReturnValue({});
     getLiveLaneOverrides.mockReturnValue({});
+    getLiveDressTypes.mockReturnValue({});
   });
 
   it('returns every row when nothing is live-cut', async () => {
@@ -112,6 +116,7 @@ describe('getProducts caching', () => {
     getCutIds.mockReturnValue(new Set());
     getLiveGarmentOverrides.mockReturnValue({});
     getLiveLaneOverrides.mockReturnValue({});
+    getLiveDressTypes.mockReturnValue({});
   });
 
   it('parses products.json once when nothing on disk has changed', async () => {
@@ -156,5 +161,18 @@ describe('getProducts caching', () => {
     getLiveLaneOverrides.mockReturnValue({ 'a:1': { lane: 'modest-tops', decidedAt: 'x' } });
     mtimes['.live-lane-overrides.json'] = 2;
     expect(getProducts()[0].forcedLane).toBe('modest-tops');
+  });
+
+  // The fourth store (2026-08-27, the pencil's dress-type control). This is the
+  // test the cacheKey() comment demands: without .live-dress-types.json in the
+  // key, a pick made from the pencil is written to disk correctly and then never
+  // read, so the control appears to do nothing at all — the failure mode is a
+  // silent no-op, not an error.
+  it('picks up a live dress type written after the first read', async () => {
+    const { getProducts } = await import('./products');
+    expect(getProducts()[0].curatedDressSubtype).toBeUndefined();
+    getLiveDressTypes.mockReturnValue({ 'a:1': { subtype: 'slip', decidedAt: 'x' } });
+    mtimes['.live-dress-types.json'] = 2;
+    expect(getProducts()[0].curatedDressSubtype).toBe('slip');
   });
 });

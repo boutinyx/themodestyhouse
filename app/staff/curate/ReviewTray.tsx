@@ -1,16 +1,17 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Copy, Check, Trash } from '@phosphor-icons/react';
-import { laneLabel, subtypeLabel } from '@/components/StaffEditControl';
-import type { ForcedLane, LayeringSubtype, OuterwearSubtype } from '@/lib/types';
+import { laneLabel, subtypeLabel, dressTypeLabel } from '@/components/StaffEditControl';
+import type { ForcedLane, LayeringSubtype, OuterwearSubtype, DressSubtype } from '@/lib/types';
 
 type ListResponse = {
   deletes: { id: string; title: string; url: string; image: string }[];
   moves: { id: string; title: string; url: string; image: string; from: string; to: string }[];
   laneMoves: { id: string; title: string; url: string; image: string; to: ForcedLane; subtype?: LayeringSubtype | OuterwearSubtype }[];
+  dressTypes: { id: string; title: string; url: string; image: string; from: DressSubtype | null; to: DressSubtype }[];
 };
 
-const EMPTY: ListResponse = { deletes: [], moves: [], laneMoves: [] };
+const EMPTY: ListResponse = { deletes: [], moves: [], laneMoves: [], dressTypes: [] };
 
 export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
   const [data, setData] = useState<ListResponse | null>(null);
@@ -46,7 +47,7 @@ export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
   // lose whatever hadn't been copied yet, with no way to recover it.
   async function clearList() {
     if (!data) return;
-    const n = data.deletes.length + data.moves.length + data.laneMoves.length;
+    const n = data.deletes.length + data.moves.length + data.laneMoves.length + (data.dressTypes ?? []).length;
     if (n === 0) return;
     if (!window.confirm(`Clear all ${n} pending edits? Only do this after they've been copied and merged into the tracked files — this can't be undone.`)) {
       return;
@@ -61,7 +62,11 @@ export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
   }
 
   if (!data) return <p className="text-sm" style={{ color: 'var(--muted)' }}>Loading…</p>;
-  const total = data.deletes.length + data.moves.length + data.laneMoves.length;
+  // `?? []` because this field is newer than the other three: during a rolling
+  // deploy a freshly-loaded bundle can briefly talk to a container still
+  // serving the old shape, and `.length` on undefined would blank the tray.
+  const dressTypes = data.dressTypes ?? [];
+  const total = data.deletes.length + data.moves.length + data.laneMoves.length + dressTypes.length;
   const text = JSON.stringify(data, null, 2);
 
   return (
@@ -121,6 +126,19 @@ export function ReviewTray({ refreshToken = 0 }: { refreshToken?: number }) {
               <li key={m.id} className="mb-1">
                 {m.title} — {laneLabel(m.to)}
                 {m.subtype && ` — ${subtypeLabel(m.to, m.subtype)}`}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {dressTypes.length > 0 && (
+        <>
+          <h3 className="eyebrow mb-2">Dress types ({dressTypes.length})</h3>
+          <ul className="mb-6 text-sm">
+            {dressTypes.map((m) => (
+              <li key={m.id} className="mb-1">
+                {m.title} — {m.from ? `${dressTypeLabel(m.from)} → ` : ''}
+                {dressTypeLabel(m.to)}
               </li>
             ))}
           </ul>
