@@ -258,6 +258,103 @@ for (const engineName of engineNames) {
       }
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'nav-dropdown-open', error: e.message.split('\n')[0] }); }
 
+    // ---- 2b. the same nav, on a tablet whose browser CLAIMS it can hover --
+    // THE question this exists to answer: does the header menu open for a
+    // FINGER on a device that answers `(hover: none)` with FALSE?
+    //
+    // Check 2 above cannot ask it. Playwright's `hasTouch` contexts report
+    // `hover: none`, so 2 only ever exercises the branch that already worked.
+    // A tablet with a paired trackpad or keyboard — and every touchscreen
+    // laptop — reports `hover: hover` while the gesture is still a finger,
+    // and until 2026-08-27 that combination got no touch branch at all:
+    // Clothing/Hijabs/Basics absorbed the tap and navigated away instead of
+    // opening, and Active (a button, with nowhere to navigate) did nothing
+    // whatsoever. Reproduced against production in both engines before the
+    // fix; the fix reads the gesture's own `pointerType` instead of the
+    // media query. CLAUDE.md §10.45 is the entry this extends — its rule 2
+    // named `(hover: none)` as the honest discriminator, which it is about
+    // the DEVICE and is not about the GESTURE.
+    //
+    // Its own context, because the stub must be in place before first paint
+    // and the other checks in this file depend on the real media query.
+    if (vp.touch) {
+      let ctx2;
+      try {
+        ctx2 = await browser.newContext({
+          viewport: { width: vp.width, height: vp.height },
+          deviceScaleFactor: 1,
+          hasTouch: true,
+          isMobile: engineName === 'chromium',
+          bypassCSP: LOCAL,
+        });
+        // Only `(hover: none)` is stubbed. Everything else — real touch
+        // hardware, real viewport — is left exactly as the device reports it.
+        await ctx2.addInitScript(`(() => {
+          const orig = window.matchMedia.bind(window);
+          window.matchMedia = (q) => /hover:\\s*none/.test(q)
+            ? { matches: false, media: q, onchange: null, addEventListener() {}, removeEventListener() {},
+                addListener() {}, removeListener() {}, dispatchEvent() { return false; } }
+            : orig(q);
+        })();`);
+        if (LOCAL && engineName === 'webkit') {
+          await ctx2.route('**/*', async (r) => {
+            const url = r.request().url().replace(/^https:\/\/localhost:/, 'http://localhost:');
+            try {
+              const res = await r.fetch({ url });
+              const headers = { ...res.headers() };
+              delete headers['strict-transport-security'];
+              if (headers['content-security-policy']) headers['content-security-policy'] = headers['content-security-policy'].replace('upgrade-insecure-requests', '');
+              await r.fulfill({ response: res, headers });
+            } catch { try { await r.abort(); } catch {} }
+          });
+        }
+        const page2 = await ctx2.newPage();
+        await page2.goto(`${BASE}/`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+        await page2.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+        if (!(await page2.evaluate(CSS_OK))) throw new Error('NO CSS — every measurement here would be meaningless');
+        const lied = await page2.evaluate(() => window.matchMedia('(hover: none)').matches === false);
+        if (!lied) throw new Error('the (hover: none) stub did not take — this check would prove nothing');
+        // Every group, including "Active", the one trigger with no href: it
+        // has no navigation to fall back on, so a broken tap there produces
+        // no visible effect at all.
+        const dead = [];
+        for (const label of ['Clothing', 'Hijabs', 'Basics', 'Active']) {
+          await page2.goto(`${BASE}/`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+          await page2.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+          const trigger = page2.locator('header').getByText(label, { exact: true }).first();
+          if (!(await trigger.isVisible().catch(() => false))) { dead.push(`${label}:absent`); continue; }
+          await trigger.tap();
+          await page2.waitForTimeout(600);
+          // Structural, and NOT the marker the fix introduced: an open panel
+          // is a visible absolutely-positioned block of links, the same shape
+          // check 2 above looks for.
+          const opened = await page2.evaluate(() => [...document.querySelectorAll('header div')].some((d) => {
+            const cs = getComputedStyle(d);
+            return cs.position === 'absolute' && cs.visibility !== 'hidden' && cs.opacity !== '0' &&
+              d.getBoundingClientRect().height > 0 && d.querySelectorAll('a[href]').length >= 2;
+          }));
+          const path = new URL(page2.url()).pathname;
+          if (!opened) dead.push(`${label}:${path === '/' ? 'nothing happened' : 'navigated to ' + path}`);
+        }
+        // Below 1024 the desktop header is not rendered at all (`hidden
+        // lg:flex`) and the phone drawer is the nav — so all four absent is
+        // the honest, expected state at mobile-390 and tablet-819, not a
+        // failure. SOME absent while others are present would be a real
+        // finding and still reports as one. Check 2 above skips the same two
+        // viewports for the same reason, so a run where this line goes quiet
+        // at ipad-1366 too is visible against that (§10.32 rule 3).
+        const allAbsent = dead.length === 4 && dead.every((d) => d.endsWith(':absent'));
+        note({
+          engine: engineName, viewport: vpName, state: 'nav-tap-on-hover-capable-tablet',
+          ...(allAbsent ? { skipped: 'desktop nav hidden at this width' }
+            : dead.length ? { PROBLEM: `TRIGGERS DID NOT OPEN ON TAP — ${dead.join(', ')}` }
+              : { groupsOpened: 4 }),
+        });
+      } catch (e) {
+        note({ engine: engineName, viewport: vpName, state: 'nav-tap-on-hover-capable-tablet', error: e.message.split('\n')[0] });
+      } finally { if (ctx2) await ctx2.close().catch(() => {}); }
+    }
+
     // ---- 3. filter dropdown on /directory --------------------------------
     // THE question this exists to answer: the panel is revealed by
     // `group-hover` / `group-focus-within`. Neither is a tap. Safari famously

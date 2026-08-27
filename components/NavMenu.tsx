@@ -137,6 +137,78 @@ export function NavMenu({
   // uses. LIVE, never a stored boolean — that was failure #3 above.
   const pointerRelevant = useRef(false);
 
+  // WHICH DEVICE IS DRIVING THIS MENU RIGHT NOW — read from the gesture
+  // itself, never inferred from a media query.
+  //
+  // Every touch branch in this component used to ask
+  // `matchMedia('(hover: none)')`. §10.45 chose that deliberately, over
+  // `pointer: coarse` and `maxTouchPoints`, because it is the honest
+  // discriminator on a hybrid: a laptop with a trackpad AND a touchscreen
+  // reports `hover: hover` and should keep the mouse behaviour.
+  //
+  // It is honest about the DEVICE and silent about the GESTURE, and that is
+  // the hole. A tablet whose browser reports `hover: hover` — a paired
+  // trackpad or keyboard case, and the whole class of touchscreen laptops —
+  // gets no touch branch at all, so Clothing/Hijabs/Basics fall through to
+  // `closeAllAndSuppressReopen()`: the tap is absorbed, the veto swallows the
+  // open Base UI's synthesised hover would have produced, and the trigger's
+  // own <Link> navigates away instead. Reproduced 2026-08-27 against
+  // production in BOTH engines at 1180x820 with touch, by stubbing
+  // `matchMedia('(hover: none)')` to false and changing nothing else:
+  //   hover:none    tap Clothing -> panels=1, url=/          (works)
+  //   hover:hover   tap Clothing -> panels=0, url=/directory (navigates away)
+  //   hover:hover   tap Active   -> panels=0, url=/          (nothing at all —
+  //                                Active is a button, so there is not even a
+  //                                navigation to show for the tap)
+  // That is the whole header menu dead on such a tablet in landscape, which
+  // is the only orientation that gets it (the phone drawer is `lg:hidden`).
+  //
+  // `pointerType` on the event answers the question the media query cannot:
+  // not "could this device hover?" but "is a finger doing this?". It keeps
+  // §10.45's hybrid property — a mouse click on the same machine still
+  // reports `mouse` and still gets hover behaviour — and it is live truth at
+  // the instant of the gesture, which is §10.34's standing rule for this file.
+  //
+  // Tracked on `pointerdown` ONLY. Compatibility mouse events synthesised
+  // after a `touchend` are mouse EVENTS, not pointer events, so they cannot
+  // forge a `pointerdown` and flip this back to `mouse` behind a tap. The one
+  // thing that does fire is a mouse-typed `pointermove` carrying a stale
+  // position (§10.45), which is why the promotion back to `mouse` below is
+  // gated on a second having passed since the last touch.
+  const lastPointerType = useRef('');
+  const lastTouchAt = useRef(0);
+  const isTouchGesture = () =>
+    lastPointerType.current === 'touch' ||
+    lastPointerType.current === 'pen' ||
+    // Only before any gesture has been seen — a keyboard user, or a hover
+    // that arrives before the first pointerdown. Gesture evidence always
+    // wins over the media query when we have it.
+    (lastPointerType.current === '' && window.matchMedia('(hover: none)').matches);
+
+  useEffect(() => {
+    const onPointerDown = (e: PointerEvent) => {
+      lastPointerType.current = e.pointerType || 'mouse';
+      if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+        lastTouchAt.current = Date.now();
+      }
+    };
+    // Hands control back to the mouse on a hybrid without waiting for a
+    // click: a genuine trackpad/mouse move re-enables hover. The 1s window
+    // is what tells a real move apart from the single stale compatibility
+    // move every `touchend` emits.
+    const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse' && Date.now() - lastTouchAt.current > 1000) {
+        lastPointerType.current = 'mouse';
+      }
+    };
+    window.addEventListener('pointerdown', onPointerDown, true);
+    window.addEventListener('pointermove', onPointerMove, true);
+    return () => {
+      window.removeEventListener('pointerdown', onPointerDown, true);
+      window.removeEventListener('pointermove', onPointerMove, true);
+    };
+  }, []);
+
   const closeAll = () => setNavValue(null);
   // Set right before `closeAll()` when closing happens WITHOUT the pointer
   // actually leaving the trigger (a click-to-navigate on the trigger
@@ -194,7 +266,7 @@ export function NavMenu({
       // without this the panel schedules its own close 150ms after any tap.
       // Touch dismissal is the pointerdown-outside closer below, plus the
       // scroll closer, plus tapping the trigger again.
-      if (window.matchMedia('(hover: none)').matches) return;
+      if (isTouchGesture()) return;
       const target = document.elementFromPoint(e.clientX, e.clientY);
       // `elementFromPoint` + `.contains()` — real geometry, not either
       // primitive's internal notion of "inside". The outer popup is portalled
@@ -445,7 +517,7 @@ export function NavMenu({
         // costs a touch device nothing: tap-to-open, tap-to-close, tap-outside
         // and close-on-scroll all still work, and they are now the ONLY things
         // that move this state.
-        if (window.matchMedia('(hover: none)').matches) return;
+        if (isTouchGesture()) return;
         if (value === null && pointerRelevant.current) return;
         if (value !== null && suppressReopen.current) return;
         setNavValue(value);
@@ -544,13 +616,16 @@ export function NavMenu({
               // synthesised hover would otherwise have produced — so the tap
               // was absorbed and nothing at all happened.
               //
-              // `matchMedia` is read AT CLICK TIME rather than cached in state
-              // or a ref. §10.34 is the entry about this component and its
-              // lesson is exactly that: a veto or override in here must be
-              // driven by current live truth, never by a flag captured at some
-              // earlier moment. A hybrid laptop can gain or lose a mouse
-              // between renders; the only honest answer is the one at the
-              // instant of the gesture.
+              // `isTouchGesture()` is evaluated AT CLICK TIME, and what it
+              // reads is the `pointerType` of the pointerdown that produced
+              // THIS click — not a flag captured at some earlier moment, and
+              // not (as it was until 2026-08-27) a media query about what the
+              // device could theoretically do. §10.34 is the entry about this
+              // component and its lesson is exactly that: a veto or override
+              // in here must be driven by current live truth. A hybrid can
+              // gain or lose a mouse between renders, and on the same machine
+              // one gesture can be a finger and the next a trackpad; the only
+              // honest answer is the one belonging to the gesture in hand.
               //
               // First tap OPENS. The panel's own first row is "All Clothing" ->
               // /directory, so the destination this Link points at is still one
@@ -558,7 +633,7 @@ export function NavMenu({
               // navigates, which is the behaviour a touch user expects from a
               // menu whose label is also a link.
               onClick={(event) => {
-                if (window.matchMedia('(hover: none)').matches) {
+                if (isTouchGesture()) {
                   if (navValue !== entry.label) {
                     event.preventDefault();
                     // Clear the veto FIRST — a previous tap may have set it,
