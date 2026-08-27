@@ -88,3 +88,35 @@ arrive with the next brand.
 ## Notes / follow-ups
 Waiting on Tina to choose between the classifier fix (correct, needs a refresh) and the
 override sweep (immediate, leaves the cause in place).
+
+---
+
+## Second export, same session (1 cut, 5 moves)
+Tina sent a further export while the first was being written up. Same process, same base
+(`git log HEAD..origin/staging` → 0 commits of drift).
+
+All six ids confirmed PRESENT beforehand:
+
+```
+PRESENT nihan:15086436647275           trousers  Embroidery Fabric Mix ... Lyocell Suit - Brown
+PRESENT elaa-the-label:7290079805573   trousers -> set  Rima Top & Pant Set (Dusty Blue)
+PRESENT qupid:9848374133065            trousers -> set  Ayla Tie Back Structured Shirt And Trouser Co Ord Set
+PRESENT whiteicy:15666941296980        trousers -> set  Mandarin collar jeans set
+PRESENT losyana:10786788868434         trousers -> set  La Laguna
+PRESENT losyana:10786788933970         trousers -> set  La Laguna
+```
+
+After: `rows now: 18893`, `deletes gone: 1/1`, `moves applied: 5/5`. 879 tests pass.
+
+**All five moves are the same `trousers -> set` misclassification**, and three of them
+(`Rima Top & Pant Set`, `Ayla ... Co Ord Set`, `Mandarin collar jeans set`) were named in
+the sample list above — Tina is hand-fixing rows off the very list this log identified.
+That is the argument for fixing the rule rather than the rows:
+
+```
+before this session:  1485 trousers rows, 233 with a set word in the title
+after 11 hand-moves:  1479 trousers rows, 230 with a set word in the title
+```
+
+Twelve manual corrections have moved the number by three, because the same rule keeps
+producing them. The remaining 230 are listed by brand above.
