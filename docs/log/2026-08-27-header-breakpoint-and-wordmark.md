@@ -161,3 +161,50 @@ viewport and engine — a harness artifact under five parallel contexts, §10.26
   wants the header lower than that, the only way down is to spend the difference on the
   typography: the tightest gap-only profile still needs 1086px, and reaching 1024 needed
   `.nav-link` letter-spacing at 0.06em against its designed 0.14em.
+
+## Shipped
+
+`ccdcbd9` → `staging` (verified: header harness ALL PASSED, `audit:interaction` 0 problems)
+→ fast-forwarded to `main`, one commit.
+
+**Deploy marker**, validated as a discriminator before being polled on: the new breakpoint
+compiles to `@media (min-width: 1152px)`, so `"1152px"` appears 5 times in the stylesheet
+and 0 times in the old one. localhost 5 (known-new) · production pre-deploy 0 (known-old) ·
+staging 5 · production 5 at 23:28.
+
+### The purge, and a wrong claim in the previous entry
+
+The earlier log for the nav fix says *"No CDN purge was needed or performed"* on the grounds
+that `cf-cache-status` read `DYNAMIC` on four pages. **That was wrong, and the reason is
+worth keeping: those were `curl -I` HEAD requests.** A real GET on the same canonical URL,
+minutes after this deploy landed on the origin:
+
+```
+GET https://themodestyhouse.com/         cache-control: private, no-cache, no-store
+                                         age: 1960
+                                         cf-cache-status: HIT
+                                         -> /_next/static/chunks/13b2z60n2z0vf.css   (OLD)
+
+GET https://themodestyhouse.com/?cb=…    cf-cache-status: MISS
+                                         -> /_next/static/chunks/1_74vkb0h6gos.css   (NEW)
+```
+
+The edge was holding the page and had been for 33 minutes. It was caught because the header
+harness — pointed at the canonical URL, as a browser would be — reported the **identical 24
+failures as the pre-fix production run**, while the cache-busted marker said NEW. Two
+measurements of "is it live" disagreeing is the signal; the one that navigates like a
+browser was right.
+
+This is §10.23's family with the roles reversed: there, a cache *directive* was reported as
+cache *behaviour*; here, a HEAD request's `DYNAMIC` was read as the canonical GET's
+behaviour. **A HEAD request is not the request the cache is serving.**
+
+Order followed after that, per §10.47: origin confirmed new via the cache-busted MISS →
+`purge_everything` (`{"success":true}`) → canonical URL fetched three times, `MISS` then
+`HIT` then `HIT`, all three on the new chunk.
+
+**Live on `themodestyhouse.com`, after the purge:**
+
+- header harness, 15 widths × 2 engines: **ALL HEADER CHECKS PASSED** (24 failures before)
+- `audit:interaction`, 5 viewports × 2 engines: **0 problems**, including the `ipad-1024`
+  viewport that now correctly reports the drawer and an opening search field
