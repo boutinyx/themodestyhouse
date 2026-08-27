@@ -136,3 +136,63 @@ sharp edge: `npm run refresh` re-derives every row it sees, so **a refresh could
 rows**. It is untouched by this change — every number above is before-vs-after of the same
 tagger — but it should be understood before the next refresh, and it is the reason I swept
 overrides rather than running one. Worth its own investigation.
+
+## Staging verification (added after deploy)
+Deploy waited on a marker from THIS commit (`Lyocell Trousers Tunic Set with Sleeve
+Detail - Plum`, a Nihan row that only moves under the Turkish half) — §10.49's lesson about
+a probe being satisfied by an earlier change. Five pages from staging and from
+**production (`main`, pre-change) as the control**.
+
+**English sets leaving `/modest-trousers`:**
+
+| product | production | staging |
+|---|---|---|
+| Sima Linen Trouser Co-ord - Black | modest-trousers | **modest-sets** |
+| Arwa Trouser Co-ord - Plum | modest-trousers | **modest-sets** |
+| Rory Wrap Blouse And Pants Set - Olive Green | modest-trousers | **modest-sets** |
+| Tasneem Linen Top and Pant Set - Raml Lubnan | modest-trousers | **modest-sets** |
+| Layla Asymmetric Top and Trouser Set | modest-trousers | **modest-sets** |
+
+**Turkish sets — the half the reorder alone did not reach:**
+
+| product | production | staging |
+|---|---|---|
+| Zipper Detailed Oversize Trousers Tunic Set - Indigo | modest-trousers | **modest-sets** |
+| Comfortable Fit Linen Trousers Tunic Set - Beige | modest-trousers | **modest-sets** |
+| Lyocell Trousers Tunic Set with Sleeve Detail - Plum | modest-trousers | **modest-sets** |
+| Jacquard Mixed Trouser Tunic Set - Black | modest-trousers | **modest-sets** |
+
+**Turkish skirt sets:** `Stopper Detailed Skirt Blouse Set - Black`,
+`Lyocell Bomber Jacket and Skirt Set - Claret Red`,
+`Lyocell Blended Skirt Blouse Knitted Set - Khaki` — all `modest-skirts` -> **`modest-sets`**.
+
+**Controls, all holding on BOTH sides:** plain legwear stays put
+(`Khaki Belted Culotte Trousers`, `Elastic Aller Tape Detailed Trousers`,
+`Black Satin Wide Legged Pants` — all modest-trousers/modest-trousers); plain skirts stay
+put (`Maxi Broche Skirt- Beige`, `Elsa Chiffon Crush Skirt Khaki`,
+`Tencel Smocked Skirt - Almond`); and **Invariant 5 holds** — `Gathered Bikini Set`,
+`Lace Detailed Bikini Set` and `Two Color Bikini Set` are on `modest-swimwear` on both
+sides, which is the assertion the whole `bikini`/`mayo` addition exists to protect.
+
+### Two control choices that were bad, and one open question
+`Ecru Front-Pleated Culotte Trousers` read absent on both sides. It is not a failure — the
+row is `inStock: false` (`arakai:10942541594970`) and therefore unpublished. I had taken it
+from the test fixtures rather than from the live catalogue; replaced with published rows.
+
+`Aiyla (Trousers) - Cloud` and `Aiyla (Leggings) - Cloud` also read absent on both. Those
+ARE published — and this one does not resolve:
+
+```
+Aiyla          staging/trousers=0  staging/directory=0  production/directory=0
+Hanaa          staging/trousers=0  staging/directory=0  production/directory=0
+"Sei Sorelle"  1 hit on each page — and it is the FOOTER brand marquee, not a card
+```
+
+**Sei Sorelle has 16 rows in `data/products.json` (8 of them trousers) and not one of
+their titles appears on `/directory` or `/modest-trousers`, on production OR staging.**
+Identical on both sides, so it cannot be caused by this change, and it predates it. Left
+alone and flagged — it wants its own investigation, and the colour-variant collapse
+(`56fe2ed`) is the obvious first place to look.
+
+## Status
+On `staging` (`282e305`), verified. **Not merged to `main`.**
