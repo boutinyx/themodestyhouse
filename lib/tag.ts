@@ -24,8 +24,35 @@ const word = (alternatives: string): RegExp =>
  */
 const TR_I = '[iıİI]\\u0307?';
 
+/**
+ * Turkish/Malay set vocabulary, used by BOTH rule blocks and defined once so
+ * they cannot drift apart (§8 records what duplicating filter logic between two
+ * places cost last time).
+ *
+ * It has to appear in GARMENT_RULES as well as FOREIGN_RULES because
+ * GARMENT_RULES already carries the Turkish `pantolon` in its trousers rule,
+ * and FOREIGN_RULES only runs when GARMENT_RULES matched NOTHING. So
+ * "Pantolon Tunik Takım" matched `pantolon`, returned trousers, and the Turkish
+ * `takım` rule was never reached — 154 Nihan rows and every Beyza "Ceket ve
+ * Pantolon Takım" filed as trousers. A foreign word in the primary block needs
+ * its counterparts there too, or the pairing is one-sided and the fallback is
+ * unreachable for exactly the titles that need it.
+ */
+const TR_SET = `tak${TR_I}m(?:${TR_I}|lar)?|alt ?-? ?üst|kurung`;
+
 const GARMENT_RULES: [Garment, RegExp][] = [
-  ['swim', /swim|burkini|bathing|swimsuit|board ?short|beachwear/i],
+  // `bikini` added 2026-08-27, and it is the SAME asymmetry that TR_SET fixes:
+  // the word lived only in FOREIGN_RULES (`b${TR_I}k${TR_I}n${TR_I}`), which runs
+  // as a fallback. Once `takım` entered the primary block, "Bikini Takımı"
+  // matched `set` here and four Baqa bikini sets left the swim lane — and swim
+  // never appears in a mixed grid (Invariant 5), so that is an editorial
+  // regression, not a relabelling. `swim` sits above `set`, so naming the word
+  // here restores it. Nothing else in the corpus contains "bikini".
+  // `mayo` (tr, swimsuit) is the same case as `bikini` and is ANCHORED because
+  // this rule is otherwise an unanchored substring match and `mayovera` is a
+  // real brand slug in exclusions.json — \b stops "Mayovera" matching, since a
+  // word character follows. Two Nihan "Tesettür Mayo Takımı" rows need it.
+  ['swim', /swim|burkini|bikini|bathing|swimsuit|board ?short|beachwear|\bmayo(?:lar)?\b/i],
   ['abaya', /abaya|jilbab|kaftan|kimono/i],
   // `(open|ninja|tube) cap` are underscarf caps, not headwear in general — a
   // bare /\bcap\b/ would drag in baseball caps and men's taqiyahs. 148 corpus
@@ -87,8 +114,23 @@ const GARMENT_RULES: [Garment, RegExp][] = [
   // word that really occurs in the corpus, enumerated from it rather than
   // guessed: the compounds (sweatpants, twinset, joggingset, setje, seti) are
   // listed because a plain `\bsets?\b` would silently stop matching them.
+  // `set` sits ABOVE `trousers` as of 2026-08-27. GARMENT_RULES is first-match,
+  // so with `trousers` first every "Top & Pant Set", "Trouser Co-ord" and
+  // "Tunic Set" matched `pants?`/`trousers?` and never reached `set` — 233
+  // published rows filed as trousers with the word "set" in their own title,
+  // 154 of them Nihan. Tina hand-moved 12 of them across two curate exports
+  // before the pattern was traced to this line pair.
+  //
+  // The flip is one-directional and cannot unclassify anything: a title naming
+  // BOTH a set and a legwear word now resolves to `set`, and a title naming only
+  // legwear still falls through to `trousers` on the next line. Nothing can
+  // become `other`, which is the destructive case §10.31 warns about.
+  //
+  // This is the order the rest of the block already assumes — the `coat`/`jacket`
+  // comment below it says "below `set`, so sets still win". `trousers` was the
+  // one rule sitting on the wrong side of that principle.
+  ['set', word(`(?:twin|jogging)?sets?|set${TR_I}|setjes?|co.?ords?|two.?pieces?|coordinate|ensemble|${TR_SET}`)],
   ['trousers', word(`trousers?|(?:sweat|track|cargo)?pants?|jeans?|leggings?|culottes?|pantalons?|pantolon(?:lu)?|wide.?legs?`)],
-  ['set', word(`(?:twin|jogging)?sets?|set${TR_I}|setjes?|co.?ords?|two.?pieces?|coordinate|ensemble`)],
   // `coat` and `jacket` are new here (below `set`, so sets still win): they
   // matched NO rule before, leaving ~94 real outerwear products unclassified.
   // overshirt/sweatshirt/tshirt/overcoat/waistcoat/trenchcoat (+ "trenhcoat",
@@ -194,7 +236,7 @@ const FOREIGN_RULES: [Garment, RegExp][] = [
   // `kurung` (ms) is a two-piece baju kurung. Mapped to `set` because that is
   // what those rows already classify as today — this rule keeps them alive
   // once `set` is anchored without also moving them to a different lane.
-  ['set',      word(`tak${TR_I}m(?:${TR_I}|lar)?|alt ?-? ?üst|kurung`)],
+  ['set',      word(TR_SET)],
   ['top',      word(`tun${TR_I}k|bluz(?:lar)?|gömlek|kazak|h${TR_I}rka|ceket|tren` +
                     `çkot|trenç|kaban|panço(?:su)?|panco|peler${TR_I}n|yelek|` +
                     `g${TR_I}y ?ç${TR_I}k|kap|pardesü|yağmurluk|süveter`)],

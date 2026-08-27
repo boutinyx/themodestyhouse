@@ -2,6 +2,80 @@ import { describe, it, expect } from 'vitest';
 import { tagDiscovery, classifyFromType, GARMENT_VALUES, GARMENT_LABELS } from './tag';
 
 describe('tagDiscovery', () => {
+  /* ------------------------------------------------------------------ *
+   * set vs trousers/skirt — the 2026-08-27 rule-order fix.
+   * ------------------------------------------------------------------ *
+   * GARMENT_RULES is first-match and `trousers` used to sit above `set`, so
+   * every "Top & Pant Set" matched `pants?` and never reached `set`. Separately
+   * the Turkish `takım` lived only in FOREIGN_RULES, which runs ONLY when
+   * GARMENT_RULES matched nothing — and `pantolon` is in GARMENT_RULES' trousers
+   * rule, so it always matched first. 416 published rows were affected.
+   *
+   * Every title below is a literal catalogue title. Both directions are tested:
+   * a title naming a set must be a set, and a title naming ONLY legwear must
+   * still be trousers — that negative is what stops the fix over-reaching.
+   */
+  const garmentOf = (title: string) =>
+    tagDiscovery({ title, productType: '', tags: [] }).garment;
+
+  it.each([
+    ['Cotton Gauze Top & Pant Set'],
+    ['Sima Linen Trouser Co-ord - Black'],
+    ['Rima Top & Pant Set (Dusty Blue)'],
+  ])('classifies the English set %s as a set, not trousers', (title) => {
+    expect(garmentOf(title)).toBe('set');
+  });
+
+  it.each([
+    ['Fermuar Detaylı Oversize Pantolon Tunik Takım - İndigo'],
+    ['9183 Ceket ve Pantolon Takım'],
+  ])('classifies the Turkish "Pantolon … Takım" %s as a set', (title) => {
+    // Regression guard for the asymmetry: `pantolon` is in GARMENT_RULES, so
+    // its counterpart `takım` has to be there too or FOREIGN_RULES is
+    // unreachable for exactly these titles.
+    expect(garmentOf(title)).toBe('set');
+  });
+
+  it('classifies a Turkish "Etek … Takım" as a set, not a skirt', () => {
+    expect(garmentOf('Lyocell Bomber Ceketli Etek Takım - Bordo')).toBe('set');
+  });
+
+  it.each([
+    ['Gabardine Skinny Leg Trousers - Black'],
+    ['Rahat Kalıp Beli Lastikli Lyocell Bol Pantolon - Buz'],
+    ['Wide Leg Jeans'],
+  ])('leaves %s as trousers — a title naming only legwear must not become a set', (title) => {
+    expect(garmentOf(title)).toBe('trousers');
+  });
+
+  it('leaves a plain Turkish skirt as a skirt', () => {
+    expect(garmentOf('Kloş Etek SİYAH')).toBe('skirt');
+  });
+
+  /* Invariant 5: swim never appears in a mixed grid, so a swim item that
+   * becomes a `set` is an editorial regression, not a relabelling. Adding
+   * `takım` to the primary block moved four Baqa bikini sets off the swim lane
+   * until `bikini` and `mayo` were named there too. */
+  it.each([
+    ['Büzgülü Bikini Takımı'],
+    ['Tesettür Mayo Takımı - Siyah'],
+  ])('keeps the swimwear set %s on swim, not set', (title) => {
+    expect(garmentOf(title)).toBe('swim');
+  });
+
+  it('does not let the anchored `mayo` rule match the brand name Mayovera', () => {
+    // The swim rule is an unanchored substring match, so `mayo` is written
+    // \bmayo\b specifically to stop this.
+    expect(garmentOf('Mayovera Abaya')).toBe('abaya');
+  });
+
+  /* §10.31's worked examples, kept because they were once quoted WRONG from the
+   * regex in isolation: both are decided by a rule ABOVE set/trousers. */
+  it('still resolves Sunset Kaftan and Closet Staple Dress by the earlier rule', () => {
+    expect(garmentOf('Sunset Kaftan')).toBe('abaya');
+    expect(garmentOf('Closet Staple Dress')).toBe('dress');
+  });
+
   it('detects a swim garment', () => {
     const r = tagDiscovery({ title: 'Long Sleeve Modest Swimsuit', productType: 'Swimwear', tags: [] });
     expect(r.garment).toBe('swim');
@@ -135,7 +209,11 @@ describe('garment rules are word-bounded', () => {
     expect(g('Ecru Front-Pleated Culotte Trousers')).toBe('trousers');   // arakai
     expect(g('Second Skin Leggings Ebony')).toBe('trousers');            // aab
     expect(g('Bol Paça Beyaz Pantolon')).toBe('trousers');               // baqa, tr
-    expect(g('Modal Pantolonlu Takım GRİ')).toBe('trousers');            // ipekstil, tr
+    // CHANGED 2026-08-27, deliberately: "Pantolonlu Takım" is "set WITH
+    // trousers". It asserted `trousers` because `trousers` sat above `set` in
+    // GARMENT_RULES — i.e. this line was encoding the bug, not guarding against
+    // it. The garment word that describes the WHOLE product wins now.
+    expect(g('Modal Pantolonlu Takım GRİ')).toBe('set');                 // ipekstil, tr
     expect(g('Pantalon Marie')).toBe('trousers');                        // whiteicy, fr
   });
 });
@@ -190,10 +268,27 @@ describe('Turkish garment vocabulary (fallback only)', () => {
     expect(g('Moeva Siyah Asimetrik Mayo')).toBe('swim');
   });
 
-  it('never lets a Turkish word beat an English classification', () => {
+  it('never lets a FALLBACK Turkish word beat an English classification', () => {
     // FOREIGN_RULES is fallback-only, so an English match always wins first.
-    expect(g('Tunik Pantolon Takım 9240')).toBe('trousers');
+    // `kimono` is matched by the English abaya rule and Turkish `bluz` (blouse)
+    // never gets a chance.
     expect(g('Desenli Şifon Kimono Bluz')).toBe('abaya');
+  });
+
+  it('promotes `takım` OUT of the fallback, on purpose', () => {
+    // The one documented exception to the rule above, added 2026-08-27.
+    // GARMENT_RULES carries the Turkish `pantolon` in its trousers rule, and
+    // FOREIGN_RULES only runs when GARMENT_RULES matched NOTHING — so
+    // "Pantolon … Takım" always resolved to trousers and the Turkish set rule
+    // was unreachable for exactly the titles that needed it. 154 Nihan rows and
+    // every Beyza "Ceket ve Pantolon Takım" were filed as trousers.
+    //
+    // TR_SET is therefore shared by both blocks. This assertion previously read
+    // `trousers` and was changed with the fix — it was describing the defect.
+    expect(g('Tunik Pantolon Takım 9240')).toBe('set');
+    expect(g('Ceket ve Pantolon Takım')).toBe('set');
+    // …and the promotion must not swallow a plain pair of trousers:
+    expect(g('Bol Paça Beyaz Pantolon')).toBe('trousers');
   });
 
   it('does not match a Turkish word inside a longer one', () => {
