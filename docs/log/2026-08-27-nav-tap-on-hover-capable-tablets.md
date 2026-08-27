@@ -132,3 +132,45 @@ in both engines at 1024, 1100 and 1180; clean from 1194 up. That is the standard
 contents, so closing it means either raising the `lg` breakpoint at which the desktop
 header appears (a decision about which devices get the drawer) or tightening the row's
 spacing between 1024 and 1200. Both are Tina's call, not a mechanical fix.
+
+## Shipped
+
+`f30fae2` → `staging` → verified → fast-forwarded to `main`. That ff brought five other
+sessions' already-staged commits with it (`cfab3b7`, `fce7fbf`, `6ef4f14`, `3e80d67`,
+`c0fbc8f`), which is the documented `--ff-only` protocol but is worth stating: the merge
+was not one commit.
+
+**Deploy marker, validated as a DISCRIMINATOR before being polled on** (§10.47 rule 3): the
+old NavMenu asks `matchMedia('(hover: none)')` at three sites, the new one keeps exactly
+one, and that string literal survives minification. Counted across the 13 chunks the
+homepage references:
+
+```
+http://localhost:3188                    occurrences=1  => NEW   (known-new control)
+https://themodestyhouse.com (pre-deploy) occurrences=3  => OLD   (known-old control)
+staging (after deploy)                   occurrences=1  => NEW
+production 21:49:56 (after deploy)       occurrences=1  => NEW
+```
+
+**No CDN purge was needed or performed.** `cf-cache-status` is `DYNAMIC` on `/`,
+`/directory`, `/modest-hijabs` and `/about`, with `cache-control: private, no-cache,
+no-store` from the origin — the edge is not holding HTML at all right now, so the new build
+was live the moment Railway finished. Noted because §12 of CLAUDE.md still describes
+production HTML as edge-cached for 3600 s; that is not what the headers report today, and
+reading the header that says what the cache DID rather than the rule that says what it
+should do is §10.23.
+
+**Live on `themodestyhouse.com`:** the full 48-assertion harness, ALL CHECKS PASSED.
+
+**Stability, because two production runs first disagreed with each other:** 10 consecutive
+taps per engine on the hover-capable-tablet path — `webkit 10/10`, `chromium 10/10` — and
+10 consecutive mouse clicks on the trigger, `10/10 navigated to /directory`.
+
+The disagreement was the harness, not the site, and is worth keeping: a tap that lands
+before hydration means React's `onClick` never runs and the plain `<a>` simply navigates —
+which is **byte-for-byte the signature of the bug being fixed** (`panels=0
+path=/directory`). Production is slower to hydrate than staging or localhost, so it flaked
+there and nowhere else. Every interaction in the harness is now gated on a real
+interactivity proof (§10.28 rule 2): synthesise a pointerdown and wait for
+`InputModality`'s `useEffect` to stamp `data-input-modality` on `<html>`, which cannot
+appear until React has mounted and is listening. Zero flakes in three full runs afterwards.
