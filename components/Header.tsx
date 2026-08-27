@@ -79,8 +79,8 @@ export function Header() {
   const closeSearch = useCallback(() => setSearchOpen(false), []);
   // The phone search is SEPARATE state, not the same boolean rendered at a
   // different breakpoint. One shared flag would mount both fields at once —
-  // the desktop one is only `hidden lg:flex`, i.e. present in the DOM below
-  // lg — and both call `inputRef.current?.focus()` on mount, so opening
+  // the desktop one is only `hidden hdr:flex`, i.e. present in the DOM below
+  // hdr — and both call `inputRef.current?.focus()` on mount, so opening
   // search on a phone would hand the caret to an invisible field. Two states,
   // two mutually-exclusive rows.
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
@@ -263,7 +263,7 @@ export function Header() {
           (Tina: "also in thickness"), scaled to the bigger crest below
           rather than added as bare padding. Mobile stays py-3; the
           reference itself is a desktop screenshot. */}
-      <div className="relative z-10 flex items-center justify-between gap-6 px-4 lg:px-10 h-[88px] lg:h-auto lg:py-5">
+      <div className="relative z-10 flex items-center justify-between gap-6 hdr:gap-2 xl:gap-6 px-4 hdr:px-5 xl:px-10 h-[88px] hdr:h-auto hdr:py-5">
         {/* Phone left cluster: hamburger, then the search magnifier — the
             order aabcollection.com uses in the reference Tina sent. The
             trigger's own `aria-expanded` is what the MutationObserver above
@@ -292,7 +292,7 @@ export function Header() {
             box at the plain 16px gutter puts its ink 19.75px in. Within a
             quarter of a pixel of the heart, which is why 16 is right and
             "nudge it a bit" was not needed. */}
-        <div className="lg:hidden flex items-center gap-4">
+        <div className="hdr:hidden flex items-center gap-4">
           <MobileNav />
           <MobileSearchTrigger
             open={mobileSearchOpen}
@@ -306,7 +306,7 @@ export function Header() {
             "make the letters as small as the others in the header") — it now
             matches `.site-header .nav-link`'s 14px exactly, rather than
             standing out larger than the rest of the row. */}
-        <Link href="/" className="hidden lg:flex items-center gap-3">
+        <Link href="/" className="hidden hdr:flex shrink-0 items-center gap-3">
           {crest}
           <span
             className="uppercase"
@@ -322,6 +322,18 @@ export function Header() {
               letterSpacing: '0.14em',
               fontSize: 14,
               lineHeight: 1.3,
+              // The two lines are the <br /> below and nothing else. Without
+              // this the flex row was free to compress the link (hence the
+              // `shrink-0` on it) until "The Modesty" wrapped a SECOND time,
+              // into "The" / "Modesty" / "House" — and a wrapped inline box
+              // still paints its glyphs at their natural width, 34px outside
+              // the link's own 92px box, straight over the word "Clothing".
+              // Measured in both engines at 1024, 1100 and 1180 on 2026-08-27:
+              // a 10px overlap that no overflow check can see, because nothing
+              // overflows — the text is simply drawn outside its parent.
+              // `shrink-0` alone is the real fix; this is the belt to its
+              // braces, and it costs nothing.
+              whiteSpace: 'nowrap',
             }}
           >
             The Modesty
@@ -332,7 +344,7 @@ export function Header() {
 
         {/* Mobile: crest centred, since the hamburger and heart already
             take the left/right edges. */}
-        <Link href="/" className="lg:hidden absolute left-1/2 -translate-x-1/2 flex items-center">
+        <Link href="/" className="hdr:hidden absolute left-1/2 -translate-x-1/2 flex items-center">
           {crest}
         </Link>
 
@@ -346,18 +358,18 @@ export function Header() {
             `min-w-0` only while open, so the closed nav keeps the natural
             width it has always had. */}
         {searchOpen ? (
-          <div className="hidden lg:flex flex-1 min-w-0 items-center justify-center">
+          <div className="hidden hdr:flex flex-1 min-w-0 items-center justify-center">
             <HeaderSearchField onClose={closeSearch} />
           </div>
         ) : (
-          <div className="hidden lg:flex items-center">
+          <div className="hidden hdr:flex items-center">
             <Nav />
           </div>
         )}
 
         {/* Desktop utility cluster: search, favourites, a divider, then
             currency — matching the reference's icon row. */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden hdr:flex items-center gap-3 xl:gap-6">
           {/* The trigger sets aria-expanded on a button INSIDE the header,
               which is what `menuOpen` watches — so over the hero the header
               has already gone solid by the time the field renders, and the
@@ -372,7 +384,7 @@ export function Header() {
         {/* Mobile keeps favourites on the right; currency still lives inside
             MobileNav's own panel. Search is no longer "missing on phone" — it
             is the magnifier in the left cluster, opening the bar below. */}
-        <div className="lg:hidden">{favourites(20)}</div>
+        <div className="hdr:hidden">{favourites(20)}</div>
       </div>
 
       {/* The phone search bar: a SIBLING of the content row, not a child of

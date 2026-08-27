@@ -49,9 +49,15 @@ import { BRANDS } from '@/data/brands';
  *     subtracts it so the homepage photograph still ends at the fold. See the
  *     token's own comment in globals.css.
  *
- *     PHONE AND TABLET ONLY — `lg:hidden` ("do it only for tablet and phone
- *     desktop leave it out", same day). globals.css zeroes --band-height at
- *     the same 1024px breakpoint, which is the half that is easy to forget:
+ *     PHONE AND TABLET ONLY — `hdr:hidden` ("do it only for tablet and phone
+ *     desktop leave it out", same day). It was `lg:hidden` until 2026-08-27,
+ *     when the header's own breakpoint moved off `lg` to `--breakpoint-hdr`
+ *     (1152px) because the desktop row does not physically fit below that —
+ *     see the note on that token in globals.css. This class follows it rather
+ *     than staying at 1024, because "tablet" here means "the width that gets
+ *     the phone/tablet header", and 1024-1151 now does. globals.css zeroes
+ *     --band-height at that same 1152px breakpoint, which is the half that is
+ *     easy to forget:
  *     hiding the band without zeroing the token leaves the desktop hero
  *     ending 40px short of the fold, for a band nobody can see.
  *
@@ -65,7 +71,7 @@ export function HeroBrandStrip({ tone = 'hero' }: { tone?: 'hero' | 'band' }) {
 
   return (
     <div
-      className={`relative z-10 overflow-hidden${band ? ' lg:hidden' : ''}`}
+      className={`relative z-10 overflow-hidden${band ? ' hdr:hidden' : ''}`}
       aria-label={`${names.length} houses in the directory`}
       style={{
         // Dark-to-clear wash behind JUST this strip — Tina explicitly asked

@@ -25,6 +25,15 @@ const VIEWPORTS = {
   // at all. That is precisely the blind spot behind CLAUDE.md §10.25, where
   // hover-only filter dropdowns were unreachable on every Apple device.
   // tablet-819 does not cover it: below 1024 the desktop header is not there.
+  // iPad 9.7"/10.2" LANDSCAPE. Added 2026-08-27 with the header's own
+  // breakpoint (`--breakpoint-hdr`, 1152px): this width used to get the
+  // desktop header and could not fit it — the row overflowed by 120px, taking
+  // search, favourites and the currency switcher off the right edge — and now
+  // gets the phone drawer instead. It is the only viewport here that exercises
+  // the drawer at a TABLET width, which is a different case from tablet-819:
+  // above `md`, so the drawer's own `md`-gated rules apply, on a real
+  // landscape aspect.
+  'ipad-1024': { width: 1024, height: 768, touch: true },
   'ipad-1366': { width: 1366, height: 1024, touch: true },
   'desktop-1440': { width: 1440, height: 900, touch: false },
 };

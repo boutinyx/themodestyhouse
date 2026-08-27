@@ -392,7 +392,16 @@
      touched. */
   --band-height: 40px;
 }
-@media (min-width: 1024px) {
+/* 1152px, NOT 1024: this is the width where components/Header.tsx swaps to its
+   desktop row, and that moved off `lg` on 2026-08-27 (see --breakpoint-hdr in
+   the @theme block below for the measurements that forced it). Both values
+   here describe the DESKTOP header, so leaving them at 1024 would have made
+   1024-1151 claim an 89px header while actually rendering the 88px phone row
+   plus a 40px brand band, and .hero-vh would have pulled the homepage
+   photograph up by the wrong amount across that whole band. The class on the
+   strip itself (components/HeroBrandStrip.tsx) moved in the same commit —
+   the comment below already said these two are one decision. */
+@media (min-width: 1152px) {
   :root {
     --header-height: 89px;
     /* Phone and tablet only — Tina, 2026-08-23: "do it only for tablet and
@@ -400,14 +409,47 @@
        token here is the other half, so .hero-vh stops subtracting 40px of
        height for a band that is not on screen. Keeping the two in one place
        is deliberate: if only the class changed, the desktop hero would end
-       40px short of the fold and nothing would say why. 1024px, matching the
-       `lg` breakpoint where Header swaps to its desktop row — so the band is
+       40px short of the fold and nothing would say why. 1152px, matching the
+       `hdr` breakpoint where Header swaps to its desktop row — so the band is
        present exactly where the phone/tablet header is. */
     --band-height: 0px;
   }
 }
 
 @theme inline {
+  /* The width at or above which the DESKTOP header is shown, in place of the
+     phone drawer. Its own breakpoint rather than Tailwind's `lg` (1024px)
+     because it is a different decision from every other `lg:` on the site:
+     this one is "does the header row physically fit", and the answer is
+     measurable rather than chosen.
+
+     Measured 2026-08-27, at the widths every group reports its NATURAL size
+     (nothing compressed), summing the three groups plus gaps plus padding:
+
+       shipped header, before this change ......... needs 1266px
+       with the tightened <xl gaps below .......... needs 1122px
+
+     The header had been shown from 1024px throughout, i.e. up to 242px below
+     what it needs. Nothing looked obviously broken above 1143px only because
+     the wordmark link was being COMPRESSED to absorb the difference — from
+     163px to 92px — at which point "The Modesty" wrapped to two lines and
+     painted 34px outside its own box, over the word "Clothing". Below 1143px
+     the row simply overflowed and scrolled sideways, taking search,
+     favourites and the currency switcher off the right edge.
+
+     1152 rather than 1122: 30px of slack, so a font that loads slightly wide
+     or a label that grows by a character cannot silently put it back into the
+     compressed state. Devices this moves to the drawer: iPad 9.7"/10.2"
+     landscape (1024) and iPad mini landscape (1133). Devices that keep the
+     header: iPad Air 11" (1180), iPad Pro 11" (1194), iPad 13" (1366), and
+     every desktop. The drawer is a complete nav, so nothing is unreachable
+     either way.
+
+     `components/MobileNav.tsx` reads this same number through matchMedia to
+     close its panel on the way up. The two are one decision written in two
+     places and have to move together — that coupling predates this change and
+     is documented there too. */
+  --breakpoint-hdr: 1152px;
   --color-aubergine: var(--aubergine);
   --color-plum: var(--plum);
   --color-parchment: var(--parchment);

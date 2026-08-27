@@ -533,7 +533,13 @@ export function NavMenu({
         // aria-orientation is not a permitted attribute on a list, so axe flags
         // it as `aria-allowed-attr` (critical) on every page of the site.
         aria-orientation={undefined}
-        className="flex items-center gap-5 md:gap-7 list-none m-0 p-0"
+        // gap-4 between `hdr` (1152px) and `xl` (1280px), gap-7 above it. The
+        // seven top-level items are the widest single thing in the header row
+        // — 741px at gap-7, 669px at gap-4 — and that 72px is most of what
+        // makes the row fit at 1152 without compressing the wordmark. Above
+        // 1280 there is room to spare, so the original spacing stands.
+        // See `--breakpoint-hdr` in app/globals.css for the measurements.
+        className="flex items-center gap-5 md:gap-4 xl:gap-7 list-none m-0 p-0"
       >
         {items.map((entry) =>
           entry.kind === 'link' ? (

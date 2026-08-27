@@ -60,6 +60,14 @@ const ALL_VIEWPORTS = {
   'tablet-768': { width: 768, height: 1024, isMobile: true, tier: 'tablet' },
   'tablet-819': { width: 819, height: 1180, isMobile: true, tier: 'tablet' },
   'tablet-1024': { width: 1024, height: 768, isMobile: true, tier: 'tablet' },
+  // The width where the DESKTOP header first appears (--breakpoint-hdr,
+  // 1152px) and is at its tightest: below it the phone drawer takes over,
+  // above it the row only gets roomier, and at exactly 1152 the header row has
+  // 30px of slack over the 1122px its contents need. Added 2026-08-27 with
+  // that breakpoint — no other viewport here sits between 1024 and 1280, so
+  // the whole band where the header runs on its tightened <xl spacing was
+  // unrendered by this audit.
+  'desktop-1152': { width: 1152, height: 800, tier: 'desktop' },
   'desktop-1280': { width: 1280, height: 800, tier: 'desktop' },
   'desktop-1440': { width: 1440, height: 900, tier: 'desktop' },
   'desktop-1920': { width: 1920, height: 1080, tier: 'desktop' },

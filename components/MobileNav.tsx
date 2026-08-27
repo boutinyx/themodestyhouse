@@ -125,14 +125,17 @@ export function MobileNav() {
   // at all. See lib/scrollFade.ts.
   const { ref: navRef, fade } = useScrollFade<HTMLElement>('y');
 
-  // The trigger lives in an `lg:hidden` wrapper, but the panel is portalled to
+  // The trigger lives in an `hdr:hidden` wrapper, but the panel is portalled to
   // the body — so growing past the desktop breakpoint while it is open would
   // leave a full-screen phone menu over the desktop layout.
-  // 1024 must match the `lg:hidden` on the trigger in components/Header.tsx. It
-  // was 768 while the trigger was `md:hidden`; the two are one decision written
-  // in two places, and they have to move together.
+  // 1152 must match the `hdr:hidden` on the trigger in components/Header.tsx,
+  // which is `--breakpoint-hdr` in app/globals.css — see the long note there
+  // for why the header's own breakpoint is a measured number and not `lg`. It
+  // was 768 while the trigger was `md:hidden`, then 1024 while it was
+  // `lg:hidden`; the two are one decision written in two places, and they have
+  // to move together. Third time it has moved, and each time both halves did.
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 1024px)');
+    const mq = window.matchMedia('(min-width: 1152px)');
     const onChange = () => mq.matches && setOpen(false);
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);

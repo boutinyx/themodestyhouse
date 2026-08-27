@@ -190,7 +190,16 @@ export function MobileSearchRow({ onClose }: { onClose: () => void }) {
     <form
       onSubmit={submit}
       role="search"
-      className="mobile-search-row lg:hidden absolute top-full inset-x-0 z-10 flex items-center gap-3 px-4"
+      // `hdr:hidden`, matching the MobileSearchTrigger that opens it
+      // (components/Header.tsx). It was `lg:hidden` while the trigger was, and
+      // when the header's breakpoint moved to --breakpoint-hdr (1152px) on
+      // 2026-08-27 this row was missed: from 1024 to 1151 the magnifier was
+      // shown and tapping it set the state, but the row it opens was still
+      // display:none, so the field never appeared. Caught by
+      // `audit:interaction`'s header-search-typed check at the ipad-1024
+      // viewport added in the same commit — "SEARCH FIELD DID NOT OPEN", both
+      // engines. The trigger and the row it opens are one decision.
+      className="mobile-search-row hdr:hidden absolute top-full inset-x-0 z-10 flex items-center gap-3 px-4"
       style={{
         height: 64,
         background: 'var(--parchment)',
