@@ -41,6 +41,18 @@ const laneOverrides = existsSync(U('lane-overrides.json'))
 const dressSubtypes = existsSync(U('dress-subtypes.json'))
   ? JSON.parse(readFileSync(U('dress-subtypes.json'), 'utf8'))
   : {};
+// Tina's hand-picked card photograph, for the cases pickImage() cannot reason
+// its way to. Same never-written-by-automation guarantee as the three maps
+// above. It exists because pickImage() runs at SCRAPE time and raw rows are
+// frozen (§8) — so a photograph chosen by hand and stored on the row would be
+// silently reverted by the next `npm run refresh`. Applied here, at publish
+// time, it survives every refresh. First case, 2026-08-27: Urban Modesty's
+// Knit Sweater, whose six images are all 1086x1448 PNGs, so every signal
+// pickImage has is a tie and it takes the first — which is the CROPPED version.
+// Tina asked for the long one. See lib/imageOverrides.test.ts for the guards.
+const imageOverrides = existsSync(U('image-overrides.json'))
+  ? JSON.parse(readFileSync(U('image-overrides.json'), 'utf8'))
+  : {};
 // Ids reviewed via the /admin/photo-review UI and confirmed fine — stops a
 // dismissed item from being pushed back into review on every publish.
 // Never written by any automated path. An item found to actually be broken
@@ -201,6 +213,8 @@ const kept = raw.filter((p) => {
   // Same mechanism laneOverrides above already uses, for the same reason.
   const dressSub = dressSubtypes[p.id];
   if (dressSub) p.curatedDressSubtype = dressSub;
+  const imageOverride = imageOverrides[p.id];
+  if (imageOverride) p.image = imageOverride;
   // Informational only — does NOT hold the item back. A merchant flagging
   // their own listing ("retakephotos" etc.) is usually still a fine photo
   // (measured: 9/10 for one brand's tag), not proof it's broken. This is

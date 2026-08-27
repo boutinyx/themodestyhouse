@@ -1403,5 +1403,13 @@
   "beyza:10136433885368": {
     "lane": "outerwear",
     "subtype": "coat"
+  },
+  "urban-modesty:7383901143115": {
+    "lane": "outerwear",
+    "subtype": "vest"
+  },
+  "urban-modesty:7509239857227": {
+    "lane": "outerwear",
+    "subtype": "sweater"
   }
 }
