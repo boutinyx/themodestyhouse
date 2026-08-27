@@ -119,3 +119,40 @@ in case a slug, not a photo, is what she went by.
 - `data/default-cut-brands.json` still lists the house, so any NEW Urban Modesty
   arrival keeps defaulting to `cut`. These 20 `keep`s are decisions and are never
   touched by it.
+
+## Staging verification (added after deploy)
+`https://themodestyhouse-staging-production.up.railway.app`, with **production
+(`main`, pre-change) as the negative control** — every one of these pieces is cut on
+production, so "present on staging AND absent on production" is a real discriminator.
+
+All **18** confirmed, each on the lane Tina named and no other:
+
+| lane | pieces | production | staging |
+|---|---|---|---|
+| `/modest-dresses` | 7 | absent | PRESENT |
+| `/modest-sets` | 2 | absent | PRESENT |
+| `/modest-abayas` | 3 | absent | PRESENT |
+| `/modest-skirts` | 1 | absent | PRESENT |
+| `/modest-tops` | 1 | absent | PRESENT |
+| `/modest-hijabs` | 3 | absent | PRESENT |
+| `/cardigans-sweaters` | 1 | absent | PRESENT |
+
+The sweater's photograph, in the rendered HTML: the long version
+(`B2D883A7-…`) is present 9 times (card + srcset), the cropped version
+(`2E21960A-…`) **0 times**. Screenshotted the card at 1280px to be sure the file name
+corresponds to what a reader sees — it is the long tunic length, "Urban Modesty / Knit
+Sweater / ≈ $70".
+
+**Three of my own checks read as failures and were all the probe** (§10.26 — suspect
+the harness first). Worth recording because each is a different way to mis-grep a page:
+- `Brown Longline Abaya & Pants Set` — the `&` is `&amp;` in the HTML, so the literal
+  title never matches. Search a fragment before the ampersand.
+- `Ombr` — 72 hits on production, 48 on staging. Far too short a needle; "Ombré"
+  appears in dozens of other brands' titles. It reported the piece as already present
+  on production, which is the opposite of the truth.
+- `Knit Sweater` — 20 hits on production. Other houses sell knit sweaters. Scoped to
+  `urbanmodesty.com/products/knit-sweater-1` instead: 0 production, 3 staging.
+
+## Status
+On `staging` (`c031662`). **Not merged to `main`** — waiting on Tina's approval per §1.
+Remember the CDN purge after the merge, origin-first (§10.47).
