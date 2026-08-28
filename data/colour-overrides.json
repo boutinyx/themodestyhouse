@@ -6,7 +6,7 @@
     "mink": null,
     "limited edition": null
   },
-  "//weakWords": "Keyed by a SINGLE lowercased word, and applies only to a match found in the BODY of a title, never in the suffix. It exists so a word like 'rose' can be switched off where it is usually a style name ('Mystic Rose Hijab') while still working as a colourway ('... - Dusty Rose'). null switches the word off in the body; a family name forces that family instead.",
+  "//weakWords": "Keyed by a SINGLE lowercased word, and applies only to a match found in the BODY of a title, never in the suffix. It exists so a word like 'rose' can be switched off where it is usually a style name ('Mystic Rose Hijab') while still working as a colourway ('... - Dusty Rose'). null switches the word off in the body; a family name forces that family instead. A null costs only that word: 'Rose Pink ...' is still pink, because lib/colour.ts steps over the switched-off 'Rose' and keeps reading the same colour's words in the rest of the title.",
   "weakWords": {
     "rose": null
   }

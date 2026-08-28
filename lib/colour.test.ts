@@ -1,4 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { classifyColour, colourFamily, COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from './colour';
 
 describe('colourFamily', () => {
@@ -272,6 +274,15 @@ describe('colourFamily', () => {
       expect(COLOUR_FAMILY_SWATCH[k as keyof typeof COLOUR_FAMILY_SWATCH]).toMatch(/^#[0-9a-f]{6}$/i);
     }
   });
+
+  // The other direction, which the loop above cannot see: a swatch for a family
+  // that has no label is a dead entry, and the two maps are the only definition
+  // of "the set of families" that anything outside this file can read — the
+  // override validator below derives its allowed values from the LABEL keys, so
+  // a drift between the two would quietly change what that validator accepts.
+  it('has exactly the same families in the label and swatch maps', () => {
+    expect(Object.keys(COLOUR_FAMILY_SWATCH).sort()).toEqual(Object.keys(COLOUR_FAMILY_LABELS).sort());
+  });
 });
 
 // -----------------------------------------------------------------------
@@ -343,6 +354,50 @@ describe('classifyColour', () => {
   it('lets weakWords switch a word off in the title body only', () => {
     expect(classifyColour('Mystic Rose Hijab').family).toBeNull();
     expect(classifyColour('Premium Chiffon Hijab - Dusty Rose').family).toBe('pink');
+  });
+});
+
+// -----------------------------------------------------------------------
+// A SUPPRESSED WEAK WORD COSTS ONLY ITSELF.
+//
+// `weakWords: {"rose": null}` means "the word *rose* must not trigger pink
+// from a title body". It does not mean "give up on pink". The first
+// implementation read the null as a `continue` over the FAMILY, so the first
+// match ended the family's chance — and 16 of the 18,917 published rows whose
+// titles read "Rose Pink …" returned no colour at all (measured 2026-08-29,
+// data/products.json). The loop now advances past the suppressed match and
+// re-runs the same family's rule over the remainder.
+//
+// Every title below except the termination one is a literal catalogue string:
+// each returns >=1 from `grep -c -F "<title>" data/products.json`.
+// -----------------------------------------------------------------------
+describe('classifyColour, a suppressed weak word costs only itself', () => {
+  it('keeps looking inside the same family after a suppressed word', () => {
+    const v = classifyColour('Rose Pink Etched Crepe Lace Abaya');
+    expect(v.family).toBe('pink');
+    expect(v.confidence).toBe('weak');
+    expect(v.matchedWord).toBe('Pink');
+  });
+
+  // The behaviour that must NOT regress — it is the whole reason weakWords
+  // exists. `rose` is the only pink word here, so the row stays unclassified.
+  it('still returns null when the suppressed word is the only one of its family', () => {
+    const v = classifyColour('Mystic Rose Hijab');
+    expect(v.family).toBeNull();
+    expect(v.confidence).toBe('none');
+  });
+
+  // SYNTHETIC, and labelled as such rather than passed off as a catalogue
+  // string: `grep`-equivalent scans on 2026-08-29 found ZERO titles containing
+  // `rose` twice — 0 of 18,917 in data/products.json and 0 of 44,321 in
+  // data/raw-products.json. The corpus cannot express this case, and the case
+  // is a TERMINATION property, not a classification one: a naive "retry the
+  // same family" loop that does not advance past the suppressed match spins
+  // forever here, and this assertion is what fails (by timing out) if it does.
+  it('terminates when the suppressed word appears twice and nothing else matches', () => {
+    const v = classifyColour('Rose Garden Rose Hijab');
+    expect(v.family).toBeNull();
+    expect(v.confidence).toBe('none');
   });
 });
 
@@ -419,5 +474,101 @@ describe('classifyColour, null term overrides', () => {
       vi.doUnmock('@/data/colour-overrides.json');
       vi.resetModules();
     }
+  });
+});
+
+// -----------------------------------------------------------------------
+// data/colour-overrides.json is the ONE file in this feature designed to be
+// hand-edited, and nothing enforced its shape. `lib/colour.ts` casts the
+// parsed JSON to `Record<string, ColourFamily | null>`; TypeScript infers a
+// JSON string value as `string`, and `string` goes through that assertion
+// unchallenged, so `npx tsc --noEmit` is exit 0 on a file full of nonsense.
+//
+// Two realistic hand-edits escaped silently, both producing an INVALID
+// `ColourFamily` that no chip, label or swatch knows:
+//   "burgandy" / "navy blue"  a misspelt or invented family;
+//   "null" (quoted)           truthy, so classifyColour treats the term as a
+//                             NON-null override and returns family "null" —
+//                             the exact opposite of the decision being recorded.
+//
+// §10.15: a constraint stated only in a comment is not enforced. This is the
+// test that fails when it stops being true. It is deliberately a test and not
+// a runtime throw — a bad hand-edit must stop CI, not the site.
+// -----------------------------------------------------------------------
+describe('data/colour-overrides.json', () => {
+  const FAMILIES = new Set<string>(Object.keys(COLOUR_FAMILY_LABELS));
+  const OVERRIDES_PATH = path.join(process.cwd(), 'data', 'colour-overrides.json');
+
+  /** Every problem found, as a readable line. An empty array means valid. */
+  function problems(parsed: unknown): string[] {
+    const found: string[] = [];
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+      return ['the file is not a JSON object'];
+    }
+    const root = parsed as Record<string, unknown>;
+
+    for (const section of ['terms', 'weakWords'] as const) {
+      const map = root[section];
+      if (typeof map !== 'object' || map === null || Array.isArray(map)) {
+        found.push(`${section}: missing, or not a JSON object`);
+        continue;
+      }
+      for (const [key, value] of Object.entries(map as Record<string, unknown>)) {
+        // Load-bearing, not tidiness: classifyColour looks a term up as
+        // `split.colour.toLowerCase()` and a weak word as
+        // `matchedWord.toLowerCase()`, so a capitalised key can never match
+        // anything and is a silent no-op.
+        if (key !== key.toLowerCase()) {
+          found.push(`${section}["${key}"]: the key is not lowercased, so it can never match`);
+        }
+        if (value === null) continue;   // a recorded "not a colour" — the point of the file
+        if (typeof value !== 'string') {
+          found.push(`${section}["${key}"]: ${JSON.stringify(value)} is neither a colour family nor null`);
+          continue;
+        }
+        if (!FAMILIES.has(value)) {
+          found.push(
+            `${section}["${key}"]: "${value}" is not a colour family. Use one of ` +
+            `${[...FAMILIES].join(' ')} — or a bare null, not the string "null".`,
+          );
+        }
+      }
+    }
+    return found;
+  }
+
+  it('gives every override a real colour family, or a bare null', () => {
+    const parsed: unknown = JSON.parse(readFileSync(OVERRIDES_PATH, 'utf8'));
+    expect(problems(parsed)).toEqual([]);
+  });
+
+  // The negative controls, kept rather than run once and deleted: a validator
+  // that has never been seen to fail is not a validator (§10.28 rule 1). These
+  // are the two hand-edits the block above names, plus the capitalised key.
+  it('rejects a misspelt family', () => {
+    expect(problems({ terms: { bordeaux: 'burgandy' }, weakWords: {} }))
+      .toEqual([expect.stringContaining('"burgandy" is not a colour family')]);
+    expect(problems({ terms: { 'navy blue suffix': 'navy blue' }, weakWords: {} }))
+      .toEqual([expect.stringContaining('"navy blue" is not a colour family')]);
+  });
+
+  it('rejects the string "null", which is truthy and reads as a family', () => {
+    expect(problems({ terms: {}, weakWords: { rose: 'null' } }))
+      .toEqual([expect.stringContaining('"null" is not a colour family')]);
+  });
+
+  it('rejects a key that is not lowercased, which can never match', () => {
+    expect(problems({ terms: { Bordeaux: 'red' }, weakWords: {} }))
+      .toEqual([expect.stringContaining('the key is not lowercased')]);
+  });
+
+  it('rejects a section that is not an object', () => {
+    expect(problems({ terms: {} })).toEqual(['weakWords: missing, or not a JSON object']);
+  });
+
+  // A null is not a defect — it is the recorded decision the whole file exists
+  // to carry, and the validator must not creep into rejecting it.
+  it('accepts the real shape: a family, and a bare null', () => {
+    expect(problems({ terms: { bordeaux: 'red', mink: null }, weakWords: { rose: null } })).toEqual([]);
   });
 });

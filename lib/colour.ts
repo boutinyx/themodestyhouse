@@ -347,16 +347,39 @@ export function classifyColour(title: string): ColourVerdict {
   //    (no rule matched its text, so no rule can match it inside the title).
   const body = nulledTerm && split ? split.base : title;
   for (const [family, re] of RULES) {
-    const m = re.exec(body);
-    if (!m) continue;
-    const matchedWord = m[0];
-    const key = matchedWord.toLowerCase();
-    if (key in WEAK_WORD_OVERRIDES) {
-      const forced = WEAK_WORD_OVERRIDES[key];
-      if (forced === null) continue;   // switched off here; keep looking
-      return { family: forced, confidence: 'override', term, candidates: [], matchedWord };
+    // A SUPPRESSED WEAK WORD COSTS ONLY ITSELF. `weakWords: {"rose": null}`
+    // says the word `rose` must not trigger pink from a title body; it does not
+    // say "give up on pink". `exec` returns only the FIRST match, so abandoning
+    // the family here would take "Rose Pink Etched Crepe Lace Abaya" — and 15
+    // more of the 18,917 published rows, measured 2026-08-29 — off the Pink chip
+    // on the strength of a word that was switched off. So the suppressed match
+    // is stepped over and the SAME family's rule is re-run on what is left.
+    //
+    // `rest` shrinks by at least the length of the match on every iteration
+    // (`m[0]` is never empty — every alternative in RULES has a literal), so the
+    // loop terminates on a title naming the suppressed word any number of times.
+    //
+    // Slicing rather than a `g` flag is deliberate: RULES is module-level and
+    // shared, so a `lastIndex` on it would be mutable state carried between
+    // calls. Slicing is safe against `word()`'s lookbehind because the match's
+    // own trailing `(?![\p{L}\p{M}\d])` guarantees `rest` never begins in the
+    // middle of a word.
+    let rest = body;
+    for (;;) {
+      const m = re.exec(rest);
+      if (!m) break;
+      const matchedWord = m[0];
+      const key = matchedWord.toLowerCase();
+      if (key in WEAK_WORD_OVERRIDES) {
+        const forced = WEAK_WORD_OVERRIDES[key];
+        if (forced === null) {
+          rest = rest.slice(m.index + matchedWord.length);   // switched off here; keep looking
+          continue;
+        }
+        return { family: forced, confidence: 'override', term, candidates: [], matchedWord };
+      }
+      return { family, confidence: 'weak', term, candidates: [family], matchedWord };
     }
-    return { family, confidence: 'weak', term, candidates: [family], matchedWord };
   }
 
   // Nothing anywhere. 'override' when Tina has already ruled on the term, so
