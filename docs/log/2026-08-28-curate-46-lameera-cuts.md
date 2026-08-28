@@ -94,3 +94,43 @@ batch.
 
 Pushed as `59df42e`; `git merge-base --is-ancestor HEAD origin/staging` confirms it landed
 on `origin/staging`. **Awaiting Tina's approval to merge to `main`** (§1).
+
+## Production (merged to `main` at Tina's request)
+`git push origin HEAD:main` fast-forwarded `9a9a800 -> 863a708`;
+`git merge-base --is-ancestor 863a708 origin/main` confirms it landed.
+
+Per §10.47, the **origin was confirmed serving the new build before the purge**, read past
+the edge with a cache-busting query string on `/modest-skirts` — purging early would only
+have re-cached the old page and pinned it for another hour:
+
+```
+cf-cache-status: MISS | bytes: 393518 | cut marker present: true    <- still old
+...
+cf-cache-status: MISS | bytes: 392870 | cut marker present: false   <- ORIGIN IS NEW
+                                        control present: true
+```
+
+The marker is a discriminator (§10.47 rule 3): `Luxe Satin Skirt- Ruby Red` is one of the
+46 cuts, paired with `Luxe Ribbed Maxi Skirt - Maroon`, a surviving Lameera skirt that must
+stay — so "absent" cannot be confused with "the page failed to render".
+
+Then Cloudflare `purge_everything` -> `success: True` (zone `themodestyhouse.com`).
+
+Verified on **https://themodestyhouse.com**, two real GETs per canonical URL (§10.47 rule 4
+— never `curl -I`):
+
+| path | pass 1 | pass 2 |
+|---|---|---|
+| `/directory` | MISS | HIT |
+| `/modest-dresses` | MISS | HIT |
+| `/modest-skirts` | MISS | HIT |
+| `/modest-abayas` | MISS | HIT |
+
+```
+cut titles absent on live: 46/46
+controls (must be PRESENT):
+  PRESENT  Clara Drop Waist Chiffon Dress - White
+  PRESENT  Luxe Ribbed Maxi Skirt - Maroon
+  PRESENT  Sena Pleat Abaya - Black
+  PRESENT  Sila Textured Chiffon Pants Set - Butter Yellow
+```
