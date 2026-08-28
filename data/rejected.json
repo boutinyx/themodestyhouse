@@ -24144,14 +24144,6 @@
     "evidence": "Enamel Pin"
   },
   {
-    "id": "haute-hijab:6989912965216",
-    "brandSlug": "haute-hijab",
-    "title": "Faves Gift Set",
-    "url": "https://www.hautehijab.com/products/faves-gift-set",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "haute-hijab:4528495722592",
     "brandSlug": "haute-hijab",
     "title": "No–Snag Hijab Magnets - Silver",
@@ -24190,14 +24182,6 @@
     "reason": "non-apparel:hardware",
     "tier": "0",
     "evidence": "No-Snag"
-  },
-  {
-    "id": "haute-hijab:6989920993376",
-    "brandSlug": "haute-hijab",
-    "title": "Faves Gift Set - Essentials",
-    "url": "https://www.hautehijab.com/products/faves-gift-set-essentials-1",
-    "garmentWas": "set",
-    "reason": "title-pattern"
   },
   {
     "id": "haute-hijab:4790874341472",
@@ -33768,14 +33752,6 @@
     "evidence": "Hijab Magnets"
   },
   {
-    "id": "merrachi:15562552934783",
-    "brandSlug": "merrachi",
-    "title": "Unity Scarf Gift Box | Multi Color",
-    "url": "https://bymerrachi.com/products/unity-scarf-gift-box-multi-color",
-    "garmentWas": "hijab",
-    "reason": "title-pattern"
-  },
-  {
     "id": "merrachi:15580608725375",
     "brandSlug": "merrachi",
     "title": "Rose Scarf Gift Box | Multi Color",
@@ -33878,7 +33854,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -33887,7 +33863,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:8267053432970",
@@ -33896,7 +33872,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "498.95 EUR (~$582)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -33905,7 +33881,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "498.95 EUR (~$582)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -33914,7 +33890,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "498.95 EUR (~$582)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "fares:7648008044735",
@@ -40288,7 +40264,7 @@
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -40297,7 +40273,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -40306,7 +40282,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -40315,7 +40291,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -40324,7 +40300,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -40333,7 +40309,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -40342,7 +40318,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -40351,7 +40327,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -40360,7 +40336,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -40369,7 +40345,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -40378,7 +40354,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "535.95 EUR (~$625)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "kamin:9333254586585",
@@ -41154,7 +41130,7 @@
     "brandSlug": "nihan",
     "title": "Parlak Taşlı Kanvas Pantolon Pamuk Takım - Zümrüt",
     "url": "https://nihan.com.tr/products/parlak-tasli-kanvas-pantolon-pamuk-takim-zumrut",
-    "garmentWas": "trousers",
+    "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
@@ -41286,15 +41262,6 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "27500 TRY (~$572)"
-  },
-  {
-    "id": "baqa:9234857459963",
-    "brandSlug": "baqa",
-    "title": "Kolda İşleme Detaylı Abaya",
-    "url": "https://baqaofficial.com/products/kolda-islemeli-abaya",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "34500 TRY (~$718)"
   },
   {
     "id": "baqa:9234857328891",
@@ -45680,6 +45647,15 @@
     "evidence": "Belt"
   },
   {
+    "id": "abadia:8819724419226",
+    "brandSlug": "abadia",
+    "title": "Panelled Dress in Blue",
+    "url": "https://shop.abadia.me/products/panelled-dress-blue",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3285 AED (~$894)"
+  },
+  {
     "id": "abadia:8959376359578",
     "brandSlug": "abadia",
     "title": "Double Pleat Wide Leg Pants in Black",
@@ -45876,6 +45852,15 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "3575 AED (~$973)"
+  },
+  {
+    "id": "abadia:8820370505882",
+    "brandSlug": "abadia",
+    "title": "Tailored Collared Blazer in Green",
+    "url": "https://shop.abadia.me/products/tailored-collared-blazer-in-green",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
   },
   {
     "id": "abadia:8819739951258",
@@ -48215,7 +48200,7 @@
     "brandSlug": "nihan",
     "title": "Modal Kumaş Etek Bluz Takım - Zümrüt",
     "url": "https://nihan.com.tr/products/modal-kumas-etek-bluz-takim-zumrut",
-    "garmentWas": "skirt",
+    "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
@@ -48223,7 +48208,7 @@
     "brandSlug": "nihan",
     "title": "Taş Detaylı Etek Ceket Takım - Zümrüt",
     "url": "https://nihan.com.tr/products/tas-detayli-etek-ceket-takim-zumrut",
-    "garmentWas": "skirt",
+    "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
@@ -48231,7 +48216,7 @@
     "brandSlug": "nihan",
     "title": "Organze Kollu Etek Ceket Takım - Zümrüt",
     "url": "https://nihan.com.tr/products/organze-kollu-etek-ceket-takim-zumrut",
-    "garmentWas": "skirt",
+    "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
@@ -48359,7 +48344,7 @@
     "brandSlug": "nihan",
     "title": "Dikiş Detaylı Kanvas Etek Gömlek Pamuk Takım - Zümrüt",
     "url": "https://nihan.com.tr/products/dikis-detayli-kanvas-etek-gomlek-takim-zumrut",
-    "garmentWas": "skirt",
+    "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
@@ -48378,6 +48363,15 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "28500 TRY (~$593)"
+  },
+  {
+    "id": "baqa:9232070574331",
+    "brandSlug": "baqa",
+    "title": "Omuz Drapeli İki Renk İpek Elbise",
+    "url": "https://baqaofficial.com/products/omuz-drapeli-iki-renkli-ipek-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$572)"
   },
   {
     "id": "baqa:9232048554235",
@@ -48402,15 +48396,6 @@
     "brandSlug": "baqa",
     "title": "Drapeli Dik Yaka İpek Elbise",
     "url": "https://baqaofficial.com/products/drapeli-dik-yaka-ipek-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "32500 TRY (~$676)"
-  },
-  {
-    "id": "baqa:9331311051003",
-    "brandSlug": "baqa",
-    "title": "Dantel ve Baskı Detaylı Şifon Elbise",
-    "url": "https://baqaofficial.com/products/dantel-baski-detayli-sifon-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$676)"
@@ -50230,6 +50215,16 @@
     "evidence": "Gift Card"
   },
   {
+    "id": "bayt-el-hayat:7388462809149",
+    "brandSlug": "bayt-el-hayat",
+    "title": "Matt Black Farasha with Inner Belt",
+    "url": "https://baytelhayat.co.uk/products/farasha-with-inner-belt-black-matt-1",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
     "id": "bayt-el-hayat:15192017600886",
     "brandSlug": "bayt-el-hayat",
     "title": "Brown Farasha with Inner Belt",
@@ -50554,9 +50549,9 @@
   {
     "id": "baqa:9392178692347",
     "brandSlug": "baqa",
-    "title": "Piliseli Tül Etek",
+    "title": "Kadife ve Dantel Detaylı Şifon Maxi Etek",
     "url": "https://baqaofficial.com/products/piliseli-tul-etek",
-    "garmentWas": "skirt",
+    "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "26500 TRY (~$551)"
   },

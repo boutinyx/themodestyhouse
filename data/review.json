@@ -148,10 +148,34 @@
     "why": "filtered:unclassified"
   },
   {
+    "id": "lafemme:27762",
+    "title": "Two-Piece Wrap Set",
+    "url": "https://lafemmecollectie.nl/product/two-piece-wrap-set/",
+    "why": "filtered:no-image"
+  },
+  {
+    "id": "lafemme:26393",
+    "title": "Black Leather Blazer",
+    "url": "https://lafemmecollectie.nl/product/black-leather/",
+    "why": "filtered:no-image"
+  },
+  {
+    "id": "lafemme:22012",
+    "title": "Emirati || Jersey Fall – Two Piece #01",
+    "url": "https://lafemmecollectie.nl/product/emirati-jersey-fall-two-piece/",
+    "why": "filtered:no-image"
+  },
+  {
     "id": "noureen:52832",
     "title": "Classy Dress F25 – Ivory",
     "url": "https://noureenmodestfashion.com/product/classy-dress-f25-ivory/",
     "why": "filtered:no-image"
+  },
+  {
+    "id": "noureen:49704",
+    "title": "Luxury Jersey Khimaar Beige",
+    "url": "https://noureenmodestfashion.com/product/luxury-jersey-khimaar-beige/",
+    "why": "filtered:unclassified"
   },
   {
     "id": "noureen:16657",
@@ -194,6 +218,12 @@
     "title": "Gold Reflective Evening Clutch with Diamond-Studded Circular Handle (MAC294)",
     "url": "https://mariam-col.com/products/gold-reflective-evening-clutch-with-diamond-studded-circular-handle-mac294",
     "why": "filtered:unclassified"
+  },
+  {
+    "id": "lafemme:27618",
+    "title": "Belted Trenchcoat",
+    "url": "https://lafemmecollectie.nl/product/belted-trenchcoat/",
+    "why": "filtered:no-image"
   },
   {
     "id": "kamin:9787284750553",
@@ -12626,14 +12656,6 @@
     "title": "Alya Everyday Tunic & Pant Set - Obsidian",
     "url": "https://zahraathelabel.com/products/alya-everyday-tunic-pant-set",
     "image": "https://cdn.shopify.com/s/files/1/0276/6313/8903/files/2025_1018_ZTL1502.jpg?v=1763567260",
-    "why": "brand-flagged-photo-issue",
-    "tag": "Draft-26"
-  },
-  {
-    "id": "zahraa:7242478714967",
-    "title": "Maryam Tie Waist Linen Maxi Dress - Off White",
-    "url": "https://zahraathelabel.com/products/maryam-tie-waist-linen-maxi-dress-off-white",
-    "image": "https://cdn.shopify.com/s/files/1/0276/6313/8903/files/2024_0726_ZTL0263-1_82b2d3c7-06cf-4597-9596-fdf53021aee0.jpg?v=1723105313",
     "why": "brand-flagged-photo-issue",
     "tag": "Draft-26"
   },
