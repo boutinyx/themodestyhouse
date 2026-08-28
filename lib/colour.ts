@@ -76,34 +76,153 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
  * and was removed after checking what it matched:
  *   linen, satin, silk, cotton, jersey, modal  — fabrics, not colours. "Linen
  *     Maxi Dress" is 1,100+ rows and none of them is beige by virtue of that.
- *   denim, jeans                               — fabrics on the same footing,
- *     and the ONE deliberate exception to that rule: they are KEPT, in `blue`,
- *     because denim reads as a colour to someone using a colour filter. 141
- *     rows match `blue` on the body word alone, and the cost is accepted and
- *     known — "The Barrel Denim [Black]" files as blue.
+ *   denim                                      — a fabric on the same footing,
+ *     and the ONE deliberate exception to that rule: it is KEPT, in `blue`,
+ *     together with the garment word `jeans`, because denim reads as a colour
+ *     to someone using a colour filter. 141 rows match `blue` on the body word
+ *     alone, and the cost is accepted and known — "The Barrel Denim [Black]"
+ *     files as blue.
  *   natural, smoked, mink                      — real suffixes in the data,
  *     but they name a finish or a material, and mink is a fur.
  *   nude                                       — kept, but only in `beige`,
  *     because it is a real and common colourway name in this catalogue.
  * Spaces are written `[ -]?` so "off white", "off-white" and "offwhite" all
  * match one entry.
+ *
+ * THE SECOND PASS, 2026-08-28. `scripts/colour-coverage.mjs` prints the colour
+ * suffixes that no rule matched, ordered by frequency; every word added below
+ * came off that list and only after `word()`-matching it against all 18,917
+ * published rows and reading what it hit. The vocabulary alone moved coverage
+ * 13,161 -> 13,753 (+592 rows); the HARDWARE guard below then withdrew 9,
+ * landing at 13,744, 72.7%. Each addition is carried by an assertion in
+ * lib/colour.test.ts using a literal catalogue title.
+ *
+ * The placements that are not self-evident, and the evidence for each:
+ *   mulberry -> purple  it sits beside `plum`, not beside `wine`. One row says
+ *                       "Mulberry Brown" and files as purple; 29 do not.
+ *   cedar, oak -> brown the catalogue settles it itself: "Cedar Brown",
+ *                       "Oak Brown", "Walnut Oak". Neither is a green here.
+ *   coal, carbon,
+ *   dove -> grey        `charcoal` and `silver` were already grey, and the
+ *                       corpus writes "Coal Grey" and "Dove Grey" outright.
+ *   buttercream -> cream  a pale off-white in these titles. The one row that
+ *                       says "Buttercream Yellow" reaches yellow anyway,
+ *                       because yellow sits above cream in tier 2.
+ *   çağla -> green      Turkish for the green of an unripe almond, and 17 rows
+ *                       of it are Nihan's. That brand's colourway suffixes are
+ *                       colour names without exception — black(544) brown(275)
+ *                       "navy blue"(198) ecru(117) thyme(17) — which is what
+ *                       rules out the other reading, Çağla as a woman's name.
+ *   polka dot -> multi  a pattern, and `multi` is last, so "Brown Polka Dot
+ *                       Wrap Maxi Dress" still files as brown. Only a dotted
+ *                       item naming no colour lands in the pattern bucket.
+ *
+ * REJECTED IN THAT PASS, with the row count each would have claimed. This list
+ * is worth more than the accepted one: every entry is a word that reads like a
+ * colour and is not one here, and the reason is always something only the real
+ * corpus could say (§10.11). Counts are `word()` matches over the same 18,917
+ * rows on 2026-08-28.
+ *   sahara (31)      — a COLLECTION name, not a shade: "Sahara Dress Sand",
+ *                      "Sahara Co-Ord Set Butter Yellow", "Sahara Linen Set".
+ *                      Filing those under beige would fight the suffix that
+ *                      already names the real colour.
+ *   iron (49)        — 46 of them are "Trousers with Iron Traces", a pressed
+ *                      finish. Not a grey.
+ *   pearl (92)       — a decoration far more often than a shade: "Luxury Pearl
+ *                      Bloom Embellished Cape", "Classic Open Abaya with Pearls".
+ *   ivy (14)         — a style name ("Ivy Embroidered Panels Abaya", "Ivy Maxi")
+ *                      as often as a green.
+ *   heather (25)     — one brand's style name ("Heather in Black", "Heather in
+ *                      Pink") and elsewhere a yarn treatment, "Heather Grey".
+ *   sienna (19)      — a style name: "Sienna (Chocolate)", "Sienna (Soft Sky)".
+ *   storm (18)       — a style name: "Black storm parka", "Taupe storm parka".
+ *                      Grey sits above black here, so it would take those rows
+ *                      off the Black chip.
+ *   steel (16)       — dominated by "Steel Blue" (9 rows); putting it in grey
+ *                      would beat the blue those titles actually name.
+ *   midnight (112)   — "Midnight Blue" is already navy. Bare `midnight` also
+ *                      appears in "Midnight Black", "Midnight Noir" and in
+ *                      style names ("Midnight Serenity Abaya").
+ *   snow (20)        — would take "Snow Leopard" and "Snow Cheetah" off multi
+ *                      and file two prints as white.
+ *   clay (56)        — a colour, but this file cannot say WHICH: the catalogue
+ *                      writes both "Brown Clay" and "Burnt Clay"/"Canyon Clay",
+ *                      i.e. brown and terracotta-orange. 56 rows is the largest
+ *                      single win still on the table and it is left for human
+ *                      review rather than guessed.
+ *   periwinkle (10), chartreuse (5), ochre (4), marigold (7), strawberry (10),
+ *   raspberry (11), auburn (5), marine (6), iris (10)
+ *                    — all genuinely colours, all sitting ON a family border
+ *                      (blue/purple, green/yellow, yellow/orange, red/pink,
+ *                      brown/red). Same call as `clay`: an unclassified row is
+ *                      cheap, a wrong chip is not.
+ *   champagne (30)   — a shade name, still absent, and asserted as such in the
+ *                      tests rather than only claimed here.
+ *   powder (89), ice (46), acid (11), tile (10), amazon (3)
+ *                    — Nihan's English renderings of Turkish colourways, where
+ *                      the bare English word does not carry the colour: "pudra"
+ *                      is pink but "powder" alone reads blue, "kiremit" is
+ *                      terracotta but "tile" is a bathroom.
  */
+/**
+ * A metal name immediately before a fastening or trim noun is describing the
+ * HARDWARE, not the garment. Found by the 40-row hand-check in Task 2 (§10.11
+ * again — the sample is the point): row 10 was "Luxury Viscose Two-Piece Set
+ * with Gold Brooch" filed under Yellow & Gold, on a set whose own colour the
+ * title never states.
+ *
+ * Measured on 2026-08-28 over all 18,917 published rows: 15 rows are misfiled
+ * this way and every one of them is a metal. 6 of the 15 then reach the family
+ * the title actually names ("Black Signature Knit Dress with Gold Button" ->
+ * black, "denim gold button shirt" -> blue, "Flow Kaftan in Ivory with Gold
+ * Button Detail" -> cream); the other 9 correctly become unclassified, because
+ * "Gold Buttoned Cupra Skirt" does not say what colour the skirt is.
+ *
+ * ONLY metals are guarded, deliberately. Buttons and zips are MADE of gold,
+ * silver, bronze and copper, so those words before a fastening are about the
+ * fastening. The same is not true of dyes: "Black Button abaya" and "White
+ * Button Down Long Sleeve Tunic" are a black abaya and a white tunic, and
+ * guarding them would lose rows that are right today.
+ *
+ * All 15 rows are `gold`. `silver`, `bronze` and `copper` carry the guard on
+ * the same reasoning and change 0 rows today — stated rather than implied, so
+ * that a later run finding otherwise knows this number is from 2026-08-28.
+ *
+ * KNOWN RESIDUE, left alone because it is 3 rows and the fix would cost more
+ * than it buys: "Butterfly Abaya in Pastel Green with White Piping" (x2) files
+ * as white, and "Black Linen Cotton Kimono Abaya with Off-White Trim and Belt"
+ * as cream. Both name the garment's real colour earlier in the title.
+ */
+const HARDWARE =
+  '(?!\\s+(?:brooch|button|buckle|zip|clasp|chain|stud|hardware|trim|piping))';
+
 const RULES: [ColourFamily, RegExp][] = ([
   ['navy',   'navy|midnight[ -]?blue'],
-  ['red',    'claret|burgundy|wine|maroon|crimson|cherry|brick|scarlet|ruby|reds?|rouges?|kırmızı'],
-  ['orange', 'orange|apricot|terracotta|copper|bronze|rust|tangerine|pumpkin'],
-  ['yellow', 'yellow|mustard|gold(?:en)?|lemon|butter|honey|amber|saffron|sarı'],
-  ['pink',   'pink|blush|rose|fuchsia|fuschia|magenta|coral|salmon|peach|pembe'],
-  ['purple', 'purple|lilac|lavender|plum|mauve|aubergine|violet|orchid|grape|mor'],
-  ['brown',  'brown|chocolate|coffee|mocha|cocoa|espresso|tan|camel|caramel|walnut|hazelnut|toffee|chestnut|cognac|tobacco|kahve(?:rengi)?|marron'],
-  ['beige',  'beige|sand|oat(?:meal)?|nude|taupe|stone|biscuit|latte|almond|wheat|greige|khaki|bej'],
-  ['cream',  'cream|ecru|vanilla|bone|eggshell|off[ -]?white'],
-  ['white',  'white|ivory|blanc|beyaz'],
-  ['grey',   'gr[ae]y|charcoal|slate|ash|graphite|silver|anthracite|gris|gri'],
-  ['green',  'green|olive|sage|emerald|mint|forest|pistachio|moss|army|vert|yeşil'],
-  ['blue',   'blue|denim|jeans?|indigo|cobalt|sky|teal|turquoise|aqua|azure|petrol|bleu|mavi'],
-  ['black',  'black|noire?s?|jet|onyx|ebony|siyah|zwart'],
-  ['multi',  'multi(?:[ -]?colou?r)?|prints?|printed|floral|strip(?:e|ed|es)|leopard|check(?:ed)?|plaid|tie[ -]?dye|patterned|animal|ombr[ée]|colou?r[ -]?block'],
+  ['red',    'claret|burgundy|wine|maroon|crimson|cherry|brick|scarlet|ruby|reds?|rouges?|kırmızı' +
+             '|bordeaux|pomegranate|sangria'],
+  ['orange', `orange|apricot|terracotta|copper${HARDWARE}|bronze${HARDWARE}|rust|tangerine|pumpkin`],
+  ['yellow', `yellow|mustard|gold(?:en)?${HARDWARE}|lemon|butter|honey|amber|saffron|sarı` +
+             '|banana|citron'],
+  ['pink',   'pink|blush|rose|fuchsia|fuschia|magenta|coral|salmon|peach|pembe' +
+             '|flamingo|rosewater'],
+  ['purple', 'purple|lilac|lavender|plum|mauve|aubergine|violet|orchid|grape|mor' +
+             '|mulberry|eggplant|amethyst|wisteria|purpur'],
+  ['brown',  'brown|chocolate|choco|coffee|mocha|mocca|cocoa|espresso|tan|camel|caramel|walnut|hazelnut|hazel' +
+             '|toffee|chestnut|cognac|tobacco|kahve(?:rengi)?|marron' +
+             '|mahogany|truffle|umber|cinnamon|pecan|fudge|nutmeg|cappuccino|macchiato|praline|sepia|cedar|oak'],
+  ['beige',  'beige|sand|oat(?:meal)?|nude|taupe|stone|biscuit|latte|almond|wheat|greige|khaki|bej' +
+             '|mushroom|fawn|bisque'],
+  ['cream',  'cream|cr[èe]me|buttercream|ecru|vanilla|bone|eggshell|off[ -]?white|roomwit'],
+  ['white',  'white|ivory|blanc|blanco|beyaz'],
+  ['grey',   `gr[ae]y|charcoal|slate|ash|graphite|silver${HARDWARE}|anthracite|gris|gri` +
+             '|dove|granite|coal|pewter|carbon|gunmetal|platinum|donkergrijs'],
+  ['green',  'green|olive|sage|emerald|mint|forest|pistachio|moss|army|vert|yeşil' +
+             '|thyme|basil|matcha|çağla|evergreen|jade|kiwi|eucalyptus|seafoam|zaytoon'],
+  ['blue',   'blue|denim|jeans?|indigo|cobalt|sky|teal|turquoise|aqua|azure|petrol|bleu|mavi' +
+             '|ocean|sapphire|peacock|cerulean'],
+  ['black',  'black|noire?s?|nero|jet|onyx|ebony|siyah|zwart'],
+  ['multi',  'multi(?:[ -]?colou?r)?|prints?|printed|floral|strip(?:e|ed|es)|leopard|check(?:ed)?|plaid|tie[ -]?dye|patterned|animal|ombr[ée]|colou?r[ -]?block' +
+             '|polka[ -]?dots?'],
 ] as [ColourFamily, string][]).map(([f, alt]) => [f, word(alt)]);
 
 /**
