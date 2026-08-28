@@ -137,7 +137,20 @@ const html = `<!doctype html><meta charset="utf-8"><title>Colour review — The 
  :root{--aubergine:#441943;--parchment:#faf7f1;--ink:#241b24;--hairline:#e4ddcf;--brass:#a98a5b}
  body{margin:0;padding:24px 24px 140px;background:var(--parchment);color:var(--ink);font:15px/1.5 -apple-system,system-ui,sans-serif}
  h1{font-weight:600;margin:0 0 4px}
- .lede{color:#6b6b6b;max-width:70ch;margin:0 0 24px}
+ .lede{color:#6b6b6b;max-width:70ch;margin:0 0 14px}
+ /* Three mutually exclusive versions of the persistence promise. The WARNING is
+    the one the markup shows by default, so a browser that never runs the probe —
+    or never runs any script at all — cannot end up displaying a promise nobody
+    checked. Only a passing probe adds .store-ok and swaps it. */
+ .note{max-width:70ch;margin:0 0 24px;color:#6b6b6b}
+ .note.bad{color:#6d1d16;background:#fff2ee;border:2px solid #c2402c;border-radius:10px;padding:12px 14px}
+ #persist-ok,#persist-lost,#restore-note{display:none}
+ .store-ok #persist-off{display:none}
+ .store-ok #persist-ok{display:block}
+ .store-lost #persist-off,.store-lost #persist-ok{display:none}
+ .store-lost #persist-lost{display:block}
+ .store-stale #restore-note{display:block}
+ .store-lost #bar{background:#c2402c}
  .term{background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:16px;margin:0 0 14px}
  .term[data-done]{opacity:.42}
  .term[data-done]:hover{opacity:1}
@@ -160,12 +173,49 @@ const html = `<!doctype html><meta charset="utf-8"><title>Colour review — The 
  #fallback{display:none;position:fixed;inset:5vh 5vw auto;height:70vh;z-index:9}
  #fallback textarea{width:100%;height:100%;font:12px/1.4 ui-monospace,monospace;border:2px solid var(--aubergine);border-radius:10px;padding:10px;box-sizing:border-box}
 </style>
+<script>
+ // STORAGE PROBE — runs before the lede is painted, so the page never shows a
+ // persistence promise it has not checked, not even for a frame.
+ //
+ // A bare "typeof localStorage !== 'undefined'" is NOT this test. The failure
+ // modes are a THROW at write time (Safari refuses storage outright on file://; a privacy
+ // setting or a full quota throws QuotaExceededError) and, on some browsers, a
+ // write that is accepted and then silently discarded. Write, read back, delete:
+ // "it threw", "it was absent" and "it came back different" are one negative
+ // answer, and everything downstream reads the single boolean this returns.
+ window.__tmhStore = (function () {
+   var key = 'tmh-colour-review';
+   var ok = false;
+   try {
+     localStorage.setItem(key + ':probe', 'ok');
+     ok = localStorage.getItem(key + ':probe') === 'ok';
+     localStorage.removeItem(key + ':probe');
+   } catch (e) {
+     ok = false;
+   }
+   document.documentElement.classList.toggle('store-ok', ok);
+   return { key: key, ok: ok };
+ })();
+</script>
 <h1>Colour review</h1>
 <p class="lede">Each block is one colourway <em>name</em>, not one product — your answer applies to every
 piece any house ever names that way, including ones not scraped yet. Look at the photographs, not the word.
 <strong>Skip anything you are not sure about</strong>; a skipped term simply stays unclassified, which is
-better than a wrong chip. Your answers are remembered in this browser, so you can close the page and come
-back. When you are done, press Copy and paste over <code>data/colour-overrides.json</code>.</p>
+better than a wrong chip.</p>
+<p class="note" id="persist-ok">Your answers are remembered in this browser, so you can close the page and
+come back. When you are done, press <strong>Copy colour-overrides.json</strong> at the bottom and paste it
+over <code>data/colour-overrides.json</code>.</p>
+<p class="note bad" id="persist-off"><strong>This browser is not saving your answers.</strong> If you close
+this tab or reload the page, everything you have answered will be gone. Answer as many as you like, then
+press <strong>Copy colour-overrides.json</strong> at the bottom <strong>before you close the tab</strong>,
+and paste it over <code>data/colour-overrides.json</code>. Opening the file by double-clicking it is the
+usual cause — ask Claude to serve the page for you instead.</p>
+<p class="note bad" id="persist-lost"><strong>Saving has stopped working.</strong> Nothing you have answered
+so far is lost, but it will be if you close this tab or reload. Press <strong>Copy
+colour-overrides.json</strong> at the bottom <strong>now</strong>, and paste it over
+<code>data/colour-overrides.json</code>.</p>
+<p class="note bad" id="restore-note">Answers saved in this browser earlier could not be read, so this page
+has started from scratch. Anything already in <code>data/colour-overrides.json</code> is still here.</p>
 ${items.map(card).join('')}
 ${
   weak.length
@@ -179,9 +229,26 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
 <div id="fallback"><textarea readonly></textarea></div>
 <script>
  const BASE = ${inline(overrides)};
- const STORE = 'tmh-colour-review';
+ // The probe above already decided this, and it is the only thing that decides
+ // it — nothing here re-tests storage or second-guesses the answer. The default
+ // if the probe block somehow did not run is "no storage", i.e. the promise is
+ // withheld rather than made.
+ const PROBE = window.__tmhStore || { key: 'tmh-colour-review', ok: false };
+ const STORE = PROBE.key;
  const decided = { terms: {}, weakWords: {} };
  let skipped = {};
+
+ /** Switch the page over to a warning, permanently, for the rest of the
+  *  session. Used when saving worked at load and then stopped. */
+ const storageLost = () => {
+   if (document.documentElement.classList.contains('store-lost')) return;
+   document.documentElement.classList.add('store-lost');
+   // The banner at the top is the full explanation, but she may be 400 terms
+   // down the page by now and it is the bottom bar that is always on screen —
+   // so that is what has to change colour and carry the instruction.
+   document.getElementById('said').textContent =
+     'Saving stopped working — press Copy now, before you close this tab.';
+ };
 
  // Remembered in this browser only. An hour of answers must survive a closed
  // tab; it is never written to any file, and the clipboard export is still the
@@ -193,16 +260,37 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
  // over a fresh hand-edit would silently undo it, which is the one way this
  // page could destroy a decision instead of collecting one. So a stored answer
  // is kept only for a term the file does not already carry.
- try {
-   const saved = JSON.parse(localStorage.getItem(STORE) || 'null');
-   if (saved && saved.terms) {
-     for (const [k, v] of Object.entries(saved.terms)) if (!(k in BASE.terms)) decided.terms[k] = v;
-     for (const [k, v] of Object.entries(saved.weakWords || {})) if (!(k in BASE.weakWords)) decided.weakWords[k] = v;
-     skipped = saved.skipped || {};
+ if (PROBE.ok) {
+   try {
+     const saved = JSON.parse(localStorage.getItem(STORE) || 'null');
+     if (saved && saved.terms) {
+       for (const [k, v] of Object.entries(saved.terms)) if (!(k in BASE.terms)) decided.terms[k] = v;
+       for (const [k, v] of Object.entries(saved.weakWords || {})) if (!(k in BASE.weakWords)) decided.weakWords[k] = v;
+       skipped = saved.skipped || {};
+     }
+   } catch (e) {
+     // A corrupt entry is not worth failing the page for — but it is worth
+     // SAYING, because from the outside "restored nothing" and "there was
+     // nothing to restore" look identical, and only one of them means an
+     // earlier sitting has just been lost.
+     document.documentElement.classList.add('store-stale');
    }
- } catch (e) { /* a corrupt entry is not worth failing the page for */ }
+ }
 
- const save = () => { try { localStorage.setItem(STORE, JSON.stringify({ ...decided, skipped })); } catch (e) {} };
+ // Storage is a convenience, never a requirement: the clipboard export is the
+ // real artefact and is built from the in-memory decision map. So a failed
+ // save costs nothing that is already on screen — it only means closing the tab would.
+ // That is exactly why it may not be swallowed.
+ const save = () => {
+   if (!PROBE.ok) return;                              // already said so in the lede
+   try {
+     localStorage.setItem(STORE, JSON.stringify({ ...decided, skipped }));
+   } catch (e) {
+     // The probe wrote two bytes and this writes the whole session, so a quota
+     // can be reached mid-sitting even though the probe passed.
+     storageLost();
+   }
+ };
  const countEl = document.getElementById('count');
  const total = document.querySelectorAll('.term').length;
  const recount = () => {
