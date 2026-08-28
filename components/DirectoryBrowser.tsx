@@ -7,6 +7,7 @@ import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { useCurrency } from './CurrencyProvider';
+import { LanguageNote } from './LanguageNote';
 
 const STEP = 24;
 const GARMENT_LABEL: Record<string, string> = {
@@ -166,6 +167,12 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
           )}
         </>
       )}
+      {/* The corner "i" explaining why a brand's own product page may not
+          be in English. Mounted here rather than per-route so it follows the
+          grid wherever one is rendered — lanes, /directory, /designers/<slug>
+          and /edits/<slug> — instead of needing four hand-written mounts that
+          can drift apart. */}
+      <LanguageNote />
     </div>
   );
 }

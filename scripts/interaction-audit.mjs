@@ -569,6 +569,52 @@ for (const engineName of engineNames) {
       }
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'contact-form', error: e.message.split('\n')[0] }); }
 
+    // ---- 8b. the language note in the grid corner (new 2026-08-28) --------
+    //
+    // Tina's "little i in the corner", answering why a brand's own product page
+    // may not be in English. It exists ONLY after a tap, so no static render can
+    // see it (§10.25), and its first version shipped a defect that geometry
+    // could not detect either: the panel was on-screen, correctly sized and
+    // fully populated, while ProductCard's whole-card anchor (`absolute inset-0
+    // z-10`) painted over every point of it. Visually the card's "+N colours"
+    // badge bled through; functionally a tap on the note navigated the reader
+    // out to a brand's site. That is §10.22 — an automated pass proves only what
+    // it measures — so the assertion here is elementFromPoint over the panel
+    // (§10.36's technique), not its rectangle.
+    try {
+      await go('/modest-dresses');
+      const trg = page.getByRole('button', { name: /another language/i }).first();
+      if (!(await trg.count())) {
+        note({ engine: engineName, viewport: vpName, state: 'language-note', PROBLEM: 'LANGUAGE NOTE TRIGGER ABSENT' });
+      } else {
+        if (vp.touch) await trg.tap(); else await trg.click();
+        await page.waitForTimeout(400);
+        await shot('language-note-open');
+        note({
+          engine: engineName, viewport: vpName, state: 'language-note',
+          ...(await page.evaluate(() => {
+            const cands = [...document.querySelectorAll('*')].filter((n) => n.textContent?.includes('Some brands only publish'));
+            const inner = cands[cands.length - 1];
+            if (!inner) return { PROBLEM: 'LANGUAGE NOTE DID NOT OPEN ON TAP' };
+            const panel = inner.closest('[class*=rounded]') || inner.parentElement;
+            const r = panel.getBoundingClientRect();
+            if (r.left < 0 || r.right > window.innerWidth + 1) {
+              return { PROBLEM: `LANGUAGE NOTE OFF-SCREEN (${Math.round(r.left)}..${Math.round(r.right)} / ${window.innerWidth})` };
+            }
+            for (let fx = 0.15; fx <= 0.85; fx += 0.35) {
+              for (let fy = 0.15; fy <= 0.85; fy += 0.35) {
+                const hit = document.elementFromPoint(r.left + r.width * fx, r.top + r.height * fy);
+                if (hit && !panel.contains(hit) && hit !== panel) {
+                  return { PROBLEM: `LANGUAGE NOTE OCCLUDED BY ${hit.tagName}.${(hit.className || '').toString().split(' ').slice(0, 2).join('.')}` };
+                }
+              }
+            }
+            return { noteBox: `${Math.round(r.width)}x${Math.round(r.height)} @${Math.round(r.left)}` };
+          })),
+        });
+      }
+    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'language-note', error: e.message.split('\n')[0] }); }
+
     // ---- 9. currency control in the footer (new 2026-08-10) ---------------
     //
     // Not covered by §6 above, which tests the HEADER control: that one lives
@@ -683,6 +729,7 @@ for (const r of report) {
   // reports success. That happened: the currency assertions below were added,
   // set `PROBLEM`, and the audit cheerfully passed on code that had the bug.
   // Any check may set PROBLEM and be seen. Prefer it to adding another key here.
+  if (r.noteBox) bits.push(`language note ${r.noteBox}`);
   if (r.PROBLEM) bits.push(r.PROBLEM);
   if (!bits.length) bits.push('ok');
   console.log(`${r.state.padEnd(26)} ${r.viewport.padEnd(13)} ${r.engine.padEnd(9)} ${bits.join('\n' + ' '.repeat(50))}`);
