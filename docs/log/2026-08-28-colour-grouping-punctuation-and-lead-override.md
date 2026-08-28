@@ -144,3 +144,44 @@ the link would have found nothing, or worse, the wrong sibling.
 - `data/colour-leads.json` is hand-edited today. If Tina wants to set the lead colour from
   `/staff/curate`, that is a pencil action writing to this file — the shape is already right
   for it.
+
+## Production verification (appended after the merge)
+
+`main` fast-forwarded `7dcc302..64e9a1c`, ancestry asserted. Origin confirmed serving the new
+build BEFORE purging (§10.47 — purging first would have re-filled the edge with the old page
+for another hour), then `purge_everything` → `success: true, errors: []`.
+
+Canonical URL, real GETs, twice (§10.47 rule 4):
+
+```
+pass 1: /modest-dresses 200 | cf-cache-status MISS | age -  | 470,139 bytes
+          chosen leads 5/5 | other colourways 0/5
+pass 2: /modest-dresses 200 | cf-cache-status HIT  | age 0  | 470,139 bytes
+          chosen leads 5/5 | other colourways 0/5
+```
+
+And the rendered cards on `https://themodestyhouse.com/designers/lameera-moda`, 110 cards
+loaded, each family asserted to appear **exactly once** with the expected badge:
+
+```
+OK   Tala premium Ribbed Knit Abaya- Espresso     +3 colours
+OK   Rana Stripe Abaya Set- Taupe                 +2 colours
+OK   Olivia Wrap Satin Dress- Blush Pink          +2 colours
+OK   Palm Linen Abaya Set- Dusty Mauve            +1 colour
+OK   Naya Textured Chiffon Dress- Desert Sage     +1 colour
+OK   Kaia Textured Maxi Dress- Dusty Blue         +1 colour
+OK   Laura Wrap Satin Dress- Blush Gold           +1 colour
+OK   Cara Folds Satin Dress- Dusty Rose Pink      +1 colour
+OK   Naomi Pleated Skirt- Sage Green              +1 colour
+problems: 0
+```
+
+**Why the lane page was the wrong place to look, and what it cost.** The first two attempts
+at this check ran against `/modest-abayas` and reported the cards ABSENT — one of them after
+157 "load more" clicks that left 48 cards on screen, which is not a number the site can
+produce. That was the harness, not the site (§10.26): the click loop had no wait for the DOM
+to grow and no check that the count moved, so it was clicking into a re-rendering grid and
+counting mid-update. Fixed by waiting on
+`document.querySelectorAll('[data-surface="product-card"]').length` to actually increase and
+bailing when it stops. `/designers/lameera-moda` is also simply the right surface — 110 cards
+rather than thousands, so the targets are reachable.
