@@ -1,5 +1,6 @@
 import { word } from '@/lib/tag';
 import { splitColourSuffix } from '@/lib/colorVariants';
+import OVERRIDES from '@/data/colour-overrides.json';
 
 /**
  * Which colour family a product belongs to, for the grid's Colour filter.
@@ -244,19 +245,95 @@ const RULES: [ColourFamily, RegExp][] = ([
 ] as [ColourFamily, string][]).map(([f, alt]) => [f, word(alt)]);
 
 /**
+ * How the family was arrived at, so the review page can sort by how much it
+ * should be trusted:
+ *   'override'  Tina said so, in data/colour-overrides.json. Nothing outranks
+ *               it, and it is the only confidence that can carry a `family` of
+ *               null as a POSITIVE statement ("this term is not a colour").
+ *   'suffix'    matched inside the colourway suffix — 25 characters the brand
+ *               set aside to name a colour, so a match there is near-certain.
+ *   'weak'      matched in the body of the title, where the same word is as
+ *               likely to be a style name ("Mystic Rose Hijab") as a colour.
+ *   'none'      no family. Distinct from a null override: 'none' means nobody
+ *               has decided, so the term is still worth putting in front of a
+ *               human.
+ */
+export type ColourConfidence = 'override' | 'suffix' | 'weak' | 'none';
+
+export interface ColourVerdict {
+  family: ColourFamily | null;
+  confidence: ColourConfidence;
+  /** The colourway suffix, lowercased — the key into colour-overrides.terms.
+   *  Null when the title has no parseable suffix. */
+  term: string | null;
+  /** Every family whose rule matched the suffix, in priority order. More than
+   *  one is the ambiguous case; `family` is the first of them. */
+  candidates: ColourFamily[];
+  /** The literal text that matched in the body of the title, for a 'weak'
+   *  verdict — the key (lowercased) into colour-overrides.weakWords. */
+  matchedWord: string | null;
+}
+
+const TERM_OVERRIDES = OVERRIDES.terms as Record<string, ColourFamily | null>;
+const WEAK_WORD_OVERRIDES = OVERRIDES.weakWords as Record<string, ColourFamily | null>;
+
+/**
+ * `"Amara Maxi Dress - Sage Green"` -> a verdict of `green`, from the suffix.
+ *
+ * The SUFFIX is tried first and on its own. That matters for precision: a match
+ * inside it is near-certain, whereas the same word in the body of a title can be
+ * a style name. Only if the suffix names no family does the whole title get
+ * tried, and a match there is reported as 'weak' rather than being silently
+ * equal to a suffix match.
+ *
+ * Tina's file is consulted BEFORE the vocabulary in both places, because an
+ * override exists precisely for the cases the vocabulary gets wrong.
+ */
+export function classifyColour(title: string): ColourVerdict {
+  const split = splitColourSuffix(title);
+  const term = split ? split.colour.toLowerCase() : null;
+
+  // 1. An explicit call by Tina always wins, including a null one. `in` rather
+  //    than a truthiness check, because null is a real recorded decision.
+  if (term !== null && term in TERM_OVERRIDES) {
+    return { family: TERM_OVERRIDES[term], confidence: 'override', term, candidates: [], matchedWord: null };
+  }
+
+  // 2. The suffix. Every family that matched is reported, not just the winner.
+  if (split) {
+    const candidates = RULES.filter(([, re]) => re.test(split.colour)).map(([f]) => f);
+    if (candidates.length > 0) {
+      return { family: candidates[0], confidence: 'suffix', term, candidates, matchedWord: null };
+    }
+  }
+
+  // 3. The body of the title. Weakest evidence — a colour word here is as
+  //    likely to be a style name ("Rose Dress") as a colour.
+  for (const [family, re] of RULES) {
+    const m = re.exec(title);
+    if (!m) continue;
+    const matchedWord = m[0];
+    const key = matchedWord.toLowerCase();
+    if (key in WEAK_WORD_OVERRIDES) {
+      const forced = WEAK_WORD_OVERRIDES[key];
+      if (forced === null) continue;   // switched off here; keep looking
+      return { family: forced, confidence: 'override', term, candidates: [], matchedWord };
+    }
+    return { family, confidence: 'weak', term, candidates: [family], matchedWord };
+  }
+
+  return { family: null, confidence: 'none', term, candidates: [], matchedWord: null };
+}
+
+/**
  * `"Amara Maxi Dress - Sage Green"` -> `'green'`, else null.
  *
- * The SUFFIX is tried first and on its own. That matters for precision: the
- * suffix is 25 characters the brand set aside to name a colourway, so a match
- * inside it is near-certain, whereas the same word in the body of a title can
- * be a style name ("Rose Dress"). Only if the suffix names no family does the
- * whole title get tried.
+ * The whole answer, with none of the reasoning. This is what the encoder in
+ * lib/compactCatalogue.ts wants; `classifyColour` above is what the review page
+ * wants. One matching implementation, deliberately — §8 records the exclusion
+ * logic duplicated between `build-data.mjs` and its own test, where changing
+ * one silently stopped the other from testing anything.
  */
 export function colourFamily(title: string): ColourFamily | null {
-  const split = splitColourSuffix(title);
-  if (split) {
-    for (const [family, re] of RULES) if (re.test(split.colour)) return family;
-  }
-  for (const [family, re] of RULES) if (re.test(title)) return family;
-  return null;
+  return classifyColour(title).family;
 }
