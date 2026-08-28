@@ -165,3 +165,83 @@ describe('normalizeTitle', () => {
     expect(normalizeTitle('LAURA JEANS <span>BLACK</span>')).toBe('Laura Jeans Black');
   });
 });
+
+/**
+ * Size capture, added 2026-08-28 for Tina's "only XL and up left -> drop it"
+ * rule (lib/sizeAvailability.ts). The sizes ride in the RAW-ONLY `raw` block,
+ * exactly like productType/tags: they are a publish-time signal, so keeping
+ * them out of products.json is Invariant 16, and keeping them in raw is what
+ * lets the threshold change later without a re-scrape.
+ */
+describe('normalizeProduct — variant sizes', () => {
+  const sized = {
+    ...sp,
+    options: [{ name: 'Size', values: ['S', 'M', 'L', 'XL'] }],
+    variants: [
+      { price: '135.00', available: false, option1: 'S' },
+      { price: '135.00', available: false, option1: 'M' },
+      { price: '135.00', available: false, option1: 'L' },
+      { price: '135.00', available: true, option1: 'XL' },
+    ],
+  };
+
+  it('records each variant size and whether it is in stock', () => {
+    const p = normalizeProduct(sized, brand)!;
+    expect(p.raw?.sizes).toEqual([
+      { label: 'S', available: false },
+      { label: 'M', available: false },
+      { label: 'L', available: false },
+      { label: 'XL', available: true },
+    ]);
+  });
+
+  it('reads the size from whichever option position holds it', () => {
+    // Real shape: Colour first, Size second — so the size is option2, and
+    // assuming option1 would record colour names as sizes.
+    const p = normalizeProduct({
+      ...sp,
+      options: [
+        { name: 'Color', values: ['Black', 'Sand'] },
+        { name: 'Size', values: ['M', 'XL'] },
+      ],
+      variants: [
+        { price: '1', available: true, option1: 'Black', option2: 'M' },
+        { price: '1', available: false, option1: 'Sand', option2: 'XL' },
+      ],
+    }, brand)!;
+    expect(p.raw?.sizes).toEqual([
+      { label: 'M', available: true },
+      { label: 'XL', available: false },
+    ]);
+  });
+
+  it('records no sizes when the product has no size option', () => {
+    // A one-size hijab, or any WooCommerce row (its Store API exposes no
+    // variants at all). Absent — never an empty-but-present list that a caller
+    // could mistake for "measured, and nothing is in stock".
+    const p = normalizeProduct({
+      ...sp,
+      options: [{ name: 'Color', values: ['Black'] }],
+      variants: [{ price: '1', available: true, option1: 'Black' }],
+    }, brand)!;
+    expect(p.raw?.sizes).toBeUndefined();
+  });
+
+  it('recognises a size option named in another language', () => {
+    // Turkish "Beden" and French "Taille" both appear in the real feeds.
+    const p = normalizeProduct({
+      ...sp,
+      options: [{ name: 'Beden', values: ['S', 'XL'] }],
+      variants: [
+        { price: '1', available: true, option1: 'S' },
+        { price: '1', available: true, option1: 'XL' },
+      ],
+    }, brand)!;
+    expect(p.raw?.sizes?.map((s) => s.label)).toEqual(['S', 'XL']);
+  });
+
+  it('never lets sizes reach the published Product (Invariant 16)', () => {
+    const p = normalizeProduct(sized, brand)!;
+    expect(stripRawSignals(p).raw).toBeUndefined();
+  });
+});

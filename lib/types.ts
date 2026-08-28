@@ -57,6 +57,17 @@ export type HijabSubtype = 'hijab' | 'khimar-jilbab' | 'undercap' | 'prayer-set'
  *  Everyday, so a null here means "not yet classified", never "everyday". */
 export type DressSubtype = 'everyday' | 'occasion' | 'slip';
 
+/** One variant's size as the feed spells it, plus whether it is in stock.
+ *  Lives here rather than in lib/sizeAvailability.ts so that Product can carry
+ *  it without types.ts importing a lib module — same circular-import care the
+ *  subtype aliases above are written for. Re-exported from
+ *  lib/sizeAvailability.ts, which owns the logic that reads it. */
+export interface VariantSize {
+  /** As the feed spells it — "XL", "X-Large", "One Size", "54". */
+  label: string;
+  available: boolean;
+}
+
 /** The specialty lanes (lib/lanes.ts) whose membership is NOT derived
  *  from `garment` alone — Modest Swimwear is (garment === 'swim' already
  *  satisfies isSwim()), so it never needed this. A staff override here is
@@ -120,6 +131,16 @@ export interface Product {
     productType: string;
     tags: string[];
     classifiedFrom: 'title' | 'meta' | 'foreign' | 'description';
+    /** Every variant's size and whether it is currently in stock, captured at
+     *  ingest for the "only XL and up left" publish filter
+     *  (lib/sizeAvailability.ts). Raw-only for the same reason as the fields
+     *  above: it is a publish-time signal, so it must not ride on the public
+     *  Product (Invariant 16), and holding it in raw lets the threshold change
+     *  without a re-scrape. ABSENT, never empty, when the feed exposes no size
+     *  option at all — a one-size hijab, or any WooCommerce brand, whose Store
+     *  API returns no variants. Absent on every row scraped before 2026-08-28.
+     *  "No sizes" must never be read as "only large sizes left". */
+    sizes?: VariantSize[];
   };
   /** Staff override forcing lane placement for the two specialty lanes
    *  title/garment-based classification can't reach directly. Baked into

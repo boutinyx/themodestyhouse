@@ -4,6 +4,7 @@
 // (`npm run build:data`), not bare `node`.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { isNonApparel } from '../lib/nonApparel.ts';
+import { onlyLargeSizesLeft } from '../lib/sizeAvailability.ts';
 import { isLifecycleLive, stripLifecycle, brandDropViolations, freezeCollapsedBrands } from '../lib/lifecycle.ts';
 import { demoteGarment } from '../lib/ordering.ts';
 import { isSpecialty } from '../lib/specialty.ts';
@@ -146,6 +147,17 @@ function verdict(p) {
   if (exceedsPriceCeiling(p)) {
     const usd = convert(p.price, p.currency, 'USD');
     return { reason: 'price-ceiling', evidence: `${p.price} ${p.currency} (~$${Math.round(usd)})` };
+  }
+  // Tina's rule, 2026-08-28: once the only sizes still in stock are XL or
+  // bigger, the product stops being published. Evaluated fresh on every publish
+  // rather than written into decisions.json, so a restocked S/M/L brings it
+  // straight back with no human action — sizes move daily and a permanent cut
+  // would be wrong within a week. Rows with no size data (WooCommerce brands,
+  // one-size hijabs, 52-60 abaya sizing, and every row ingested before this
+  // rule existed) are untouched by construction — see lib/sizeAvailability.ts.
+  if (onlyLargeSizesLeft(p.raw?.sizes)) {
+    const left = p.raw.sizes.filter((s) => s.available).map((s) => s.label).join(', ');
+    return { reason: 'only-large-sizes', evidence: `in stock: ${left}` };
   }
   if (allowIds.has(p.id)) return null;
   const v = isNonApparel({ title: p.title, url: p.url, ...(p.raw || {}) });

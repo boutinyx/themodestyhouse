@@ -1,4 +1,4 @@
-import type { Brand, Product } from '@/lib/types';
+import type { Brand, Product, VariantSize } from '@/lib/types';
 import { tagDiscovery } from '@/lib/tag';
 
 export interface ShopifyProduct {
@@ -9,7 +9,11 @@ export interface ShopifyProduct {
   /** Product description. Used only as a last-resort classification signal. */
   body_html?: string;
   tags: string[] | string;
-  variants: { price: string; available: boolean }[];
+  variants: { price: string; available: boolean; option1?: string | null; option2?: string | null; option3?: string | null }[];
+  /** Shopify's option axes, in the order the variants' option1/2/3 follow. Used
+   *  only to find WHICH axis is the size — see variantSizes(). Absent on
+   *  WooCommerce rows (lib/ingest.ts::wooToShopify), which carry no variants. */
+  options?: { name: string; values?: string[] }[];
   images: { src: string; width?: number; height?: number }[];
   url?: string; // full product URL when the source isn't Shopify (e.g. WooCommerce permalink)
   /**
@@ -101,6 +105,30 @@ export type RejectReason = 'no-image' | 'excluded-title' | 'unclassified';
  * classifier regression). Merged into one bucket, a broken regex in lib/tag.ts
  * would be indistinguishable from brands clearing stock.
  */
+/** Which option axis is the size, in the several languages the feeds use.
+ *  Turkish "Beden", French "Taille", Dutch "Maat", Spanish "Talla", German
+ *  "Größe" all appear in data/brands.ts's storefronts. */
+const SIZE_OPTION = /size|taille|beden|maat|talla|gr(ö|oe)sse|misura|tama(ñ|n)o/i;
+
+/**
+ * Every variant's size + stock state, or `undefined` when the product has no
+ * size axis at all (a one-size hijab, or any WooCommerce row).
+ *
+ * Undefined and empty are deliberately different: `undefined` means "this feed
+ * never told us about sizes", which lib/sizeAvailability.ts must not read as
+ * "nothing small is in stock". Returning [] there would make every unsized
+ * product look like a candidate for the XL-floor filter.
+ */
+export function variantSizes(sp: ShopifyProduct): VariantSize[] | undefined {
+  const axis = (sp.options ?? []).findIndex((o) => SIZE_OPTION.test(o?.name ?? ''));
+  if (axis < 0) return undefined;
+  const key = `option${axis + 1}` as 'option1' | 'option2' | 'option3';
+  const sizes = (sp.variants ?? [])
+    .map((v) => ({ label: String(v[key] ?? '').trim(), available: !!v.available }))
+    .filter((s) => s.label !== '');
+  return sizes.length ? sizes : undefined;
+}
+
 export function normalizeProductDetailed(
   sp: ShopifyProduct,
   brand: Brand,
@@ -141,7 +169,7 @@ export function normalizeProductDetailed(
       occasion: disc.occasion,
       season: disc.season,
       activity: disc.activity,
-      raw: { productType: sp.product_type || '', tags, classifiedFrom: disc.source },
+      raw: { productType: sp.product_type || '', tags, classifiedFrom: disc.source, sizes: variantSizes(sp) },
     },
   };
 }
