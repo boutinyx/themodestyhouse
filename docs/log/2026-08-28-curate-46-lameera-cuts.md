@@ -60,3 +60,37 @@ will not be resurrected.
 
 Still to do: verify on staging after the push, then Tina's approval before merging to `main`
 (§1).
+
+## Staging verification (added after deploy)
+Fetched `/directory`, `/modest-dresses`, `/modest-skirts` and `/modest-abayas` from
+`https://themodestyhouse-staging-production.up.railway.app` and from **production
+(`main`, pre-change) as the negative control**. Matching done in node against the fetched
+HTML, not in a shell (§10.49 rule 1): the columnar payload embeds each title as
+`\"Title\"` with `&` written `&`, so the needle is the escaped, quote-delimited form.
+
+```
+CONTROLS — must be PRESENT on BOTH
+  prod=PRESENT staging=PRESENT  Clara Drop Waist Chiffon Dress - White
+  prod=PRESENT staging=PRESENT  Luxe Ribbed Maxi Skirt - Maroon
+  prod=PRESENT staging=PRESENT  Sena Pleat Abaya - Black
+  prod=PRESENT staging=PRESENT  Sila Textured Chiffon Pants Set - Butter Yellow
+
+CUT TITLES — want prod=PRESENT, staging=absent
+  46/46 behaved as expected  | controls failing: 0/4
+```
+
+**The first verification pass was wrong and the controls are what caught it** (§10.49
+rule 3). It searched for a bare `"Title"` and reported all 46 cuts *and both controls*
+absent on production as well as staging — i.e. it denied the existence of live products.
+Two harness faults, no site fault: the payload escapes its quotes (`\"`), and the first
+control I picked, `Premium Modal Scarf- Ocean Blue`, is a scarf — `browseProducts()`
+excludes hijabs from `/directory` by editorial rule (Invariant 5), so it could never have
+appeared on any route being fetched. A one-sided "is it gone from staging" table would
+have passed both times.
+
+Also checked for the §10.49 prefix-collision case — a surviving product whose title starts
+with a cut title, which would read as a cut that had not taken. There are none in this
+batch.
+
+Pushed as `59df42e`; `git merge-base --is-ancestor HEAD origin/staging` confirms it landed
+on `origin/staging`. **Awaiting Tina's approval to merge to `main`** (§1).
