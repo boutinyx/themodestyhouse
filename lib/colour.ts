@@ -249,7 +249,10 @@ const RULES: [ColourFamily, RegExp][] = ([
  * should be trusted:
  *   'override'  Tina said so, in data/colour-overrides.json. Nothing outranks
  *               it, and it is the only confidence that can carry a `family` of
- *               null as a POSITIVE statement ("this term is not a colour").
+ *               null as a POSITIVE statement ("this term is not a colour", and
+ *               the rest of the title named nothing either — see
+ *               classifyColour, where a null override suppresses the suffix
+ *               but not the body pass).
  *   'suffix'    matched inside the colourway suffix — 25 characters the brand
  *               set aside to name a colour, so a match there is near-certain.
  *   'weak'      matched in the body of the title, where the same word is as
@@ -288,19 +291,49 @@ const WEAK_WORD_OVERRIDES = OVERRIDES.weakWords as Record<string, ColourFamily |
  *
  * Tina's file is consulted BEFORE the vocabulary in both places, because an
  * override exists precisely for the cases the vocabulary gets wrong.
+ *
+ * A NULL TERM OVERRIDE IS NOT A VERDICT ABOUT THE PRODUCT. It says "this SUFFIX
+ * is not a colour", and the two are different things — the first implementation
+ * conflated them by returning immediately on any override, and 64 of the 18,917
+ * published rows lost a colour their own title plainly states (measured
+ * 2026-08-29; "Luxury Black Cascade Four Piece Abaya Set - LIMITED EDITION" was
+ * black and became null). So a null override does exactly two things:
+ *   - it SUPPRESSES step 2, because Tina has said that text is not a colour and
+ *     it must therefore not be matched against RULES either. The body pass then
+ *     runs over `split.base` — the title with that suffix removed — so the
+ *     suppressed text cannot re-enter through the back door.
+ *   - it changes NOTHING else. If the rest of the title names a family, that is
+ *     an ordinary 'weak' body match and is reported as one.
+ *
+ * WHEN THE REST OF THE TITLE NAMES NOTHING, the verdict is `family: null` with
+ * confidence 'override' — NOT 'none'. This is load-bearing rather than
+ * cosmetic: the review page skips every row whose confidence is 'override', so
+ * that Tina is never re-asked about a term she has already answered. Reporting
+ * 'none' would put `limited edition` back on her review list on the very next
+ * run, which is the one thing the recorded null exists to prevent.
+ *
+ * A non-null term override is unchanged and still returns immediately: she has
+ * said that suffix means that colour, and nothing here may outrank it.
  */
 export function classifyColour(title: string): ColourVerdict {
   const split = splitColourSuffix(title);
   const term = split ? split.colour.toLowerCase() : null;
 
-  // 1. An explicit call by Tina always wins, including a null one. `in` rather
-  //    than a truthiness check, because null is a real recorded decision.
+  // 1. An explicit call by Tina. `in` rather than a truthiness check, because
+  //    null is a real recorded decision — but it is a decision about the TERM,
+  //    so only a non-null one answers the whole question.
+  let nulledTerm = false;
   if (term !== null && term in TERM_OVERRIDES) {
-    return { family: TERM_OVERRIDES[term], confidence: 'override', term, candidates: [], matchedWord: null };
+    const forced = TERM_OVERRIDES[term];
+    if (forced !== null) {
+      return { family: forced, confidence: 'override', term, candidates: [], matchedWord: null };
+    }
+    nulledTerm = true;
   }
 
   // 2. The suffix. Every family that matched is reported, not just the winner.
-  if (split) {
+  //    Skipped outright for a nulled term: she has said it is not a colour.
+  if (split && !nulledTerm) {
     const candidates = RULES.filter(([, re]) => re.test(split.colour)).map(([f]) => f);
     if (candidates.length > 0) {
       return { family: candidates[0], confidence: 'suffix', term, candidates, matchedWord: null };
@@ -308,9 +341,13 @@ export function classifyColour(title: string): ColourVerdict {
   }
 
   // 3. The body of the title. Weakest evidence — a colour word here is as
-  //    likely to be a style name ("Rose Dress") as a colour.
+  //    likely to be a style name ("Rose Dress") as a colour. A nulled term is
+  //    read out of the text first, so it cannot match here either; every other
+  //    path keeps the whole title, which is equivalent for an unmatched suffix
+  //    (no rule matched its text, so no rule can match it inside the title).
+  const body = nulledTerm && split ? split.base : title;
   for (const [family, re] of RULES) {
-    const m = re.exec(title);
+    const m = re.exec(body);
     if (!m) continue;
     const matchedWord = m[0];
     const key = matchedWord.toLowerCase();
@@ -322,7 +359,15 @@ export function classifyColour(title: string): ColourVerdict {
     return { family, confidence: 'weak', term, candidates: [family], matchedWord };
   }
 
-  return { family: null, confidence: 'none', term, candidates: [], matchedWord: null };
+  // Nothing anywhere. 'override' when Tina has already ruled on the term, so
+  // the review page does not ask her about it again; 'none' when nobody has.
+  return {
+    family: null,
+    confidence: nulledTerm ? 'override' : 'none',
+    term,
+    candidates: [],
+    matchedWord: null,
+  };
 }
 
 /**

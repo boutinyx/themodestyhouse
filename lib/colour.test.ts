@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { classifyColour, colourFamily, COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from './colour';
 
 describe('colourFamily', () => {
@@ -343,5 +343,81 @@ describe('classifyColour', () => {
   it('lets weakWords switch a word off in the title body only', () => {
     expect(classifyColour('Mystic Rose Hijab').family).toBeNull();
     expect(classifyColour('Premium Chiffon Hijab - Dusty Rose').family).toBe('pink');
+  });
+});
+
+// -----------------------------------------------------------------------
+// A NULL term override says "this SUFFIX is not a colour". It does not say
+// "this product has no colour", and the first implementation conflated the
+// two: it returned immediately on any override, so 64 of the 18,917 published
+// rows lost a colour their own title plainly states (measured 2026-08-29 —
+// "Luxury Black Cascade Four Piece Abaya Set - LIMITED EDITION" was black and
+// became null). The corrected rule is in classifyColour's docstring; these are
+// the assertions that hold it.
+//
+// Every title below is a literal catalogue string — each returns >=1 from
+// `grep -c -F "<title>" data/products.json`, checked before it was written.
+// -----------------------------------------------------------------------
+describe('classifyColour, null term overrides', () => {
+  // The 64-row case. `limited edition` is null in data/colour-overrides.json,
+  // so the suffix contributes nothing — and the rest of the title still says
+  // black. Reported 'weak' because a body match is exactly what it is.
+  it('still reads the rest of the title when the suffix is a null override', () => {
+    const v = classifyColour('Luxury Black Cascade Four Piece Abaya Set - LIMITED EDITION');
+    expect(v.family).toBe('black');
+    expect(v.confidence).toBe('weak');
+    expect(v.matchedWord).toBe('Black');
+    expect(v.term).toBe('limited edition');
+  });
+
+  // Three more of the 64, one per shape: a body word ('Cocoa'), a SECOND
+  // colourway suffix left inside the base once the null-overridden one is
+  // stripped ('- Dusty Mauve'), and the `mink` term rather than
+  // `limited edition`, so this is not an assertion about one key.
+  it('reads the rest of the title for every shape of the 64', () => {
+    expect(colourFamily('Premium Cocoa Muse Open Abaya - LIMITED EDITION')).toBe('brown');
+    expect(colourFamily('Luxury Moonlight Veil Three Piece Abaya Set – Dusty Mauve - LIMITED EDITION')).toBe('purple');
+    expect(colourFamily('Stripe Detailed Modal Jacket - Mink')).toBe('multi');
+  });
+
+  // The other half, and the load-bearing one: when the rest of the title names
+  // nothing either, the verdict is still 'override', NOT 'none'. Task 2B's
+  // review page skips every 'override' row, so reporting 'none' here would put
+  // `limited edition` back in front of Tina on the next run — the exact thing
+  // the recorded null exists to prevent.
+  it('reports override, not none, when the rest of the title names nothing', () => {
+    const v = classifyColour('Luxury Pearl Bloom Embellished Cape - Limited Edition');
+    expect(v.family).toBeNull();
+    expect(v.confidence).toBe('override');
+    expect(v.term).toBe('limited edition');
+  });
+
+  // The suffix half of the rule, which the fall-through alone does not prove:
+  // a null override must also stop the SUFFIX ITSELF being matched against
+  // RULES. No term in data/colour-overrides.json is currently a vocabulary
+  // word, so the case cannot be built from the real file — the override map is
+  // mocked for this one test rather than manufacturing an entry in the data.
+  //
+  // 'Gold Accent Half Zip Abaya - Pistachio' is a real catalogue title and
+  // discriminates three ways, which is why it was chosen: with `pistachio`
+  // nulled it must return YELLOW/'weak' (from `Gold` in the base). It returns
+  // null/'override' if the null override short-circuits, and green/'suffix' if
+  // the null override fails to suppress the suffix path.
+  it('stops a null-overridden suffix matching the vocabulary', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: { pistachio: null }, weakWords: {} },
+    }));
+    try {
+      const { classifyColour: classify } = await import('./colour');
+      const v = classify('Gold Accent Half Zip Abaya - Pistachio');
+      expect(v.family).toBe('yellow');
+      expect(v.confidence).toBe('weak');
+      expect(v.matchedWord).toBe('Gold');
+      expect(v.term).toBe('pistachio');
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
   });
 });
