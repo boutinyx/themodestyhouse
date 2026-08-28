@@ -53,3 +53,23 @@ Cumulative for the day: 46 + 37 + 4 = **87 Lameera Moda products cut**, 290 -> 2
 a brand cut — these are individual editorial judgements, so `lameera-moda` stays in
 `data/brands.ts` and out of `exclusions.json.brands`. Invariant 14 makes them durable against
 the nightly refresh.
+
+## Production verification (appended after the merge)
+
+Staging first: `cut titles 0/4, controls 2/2`. Then `main` fast-forwarded `31cc6a2..5fe3f15`,
+ancestry asserted. Origin confirmed serving the new build with a cache-busting query BEFORE
+the purge (§10.47), then `purge_everything` → `success: true, errors: []`.
+
+Canonical URL, real GETs, twice (§10.47 rule 4):
+
+```
+pass 1: /directory 200 | cf-cache-status MISS | age -  | 866,450 bytes
+          cut titles 0/4 | controls 2/2
+pass 2: /directory 200 | cf-cache-status HIT  | age 0  | 866,450 bytes
+          cut titles 0/4 | controls 2/2
+```
+
+The two controls (`Naomi Pleated Skirt- Sage Green`, `Tala premium Ribbed Knit Abaya-
+Espresso`) are both pinned colour leads, so they check two things at once: that the cut did
+not take anything with it, and that the colour-lead pins shipped earlier are still in force
+on production.
