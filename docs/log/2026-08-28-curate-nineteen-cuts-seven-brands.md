@@ -67,3 +67,43 @@ All **9 pinned colour leads still lead**, unchanged.
 ## Notes / follow-ups
 Seven brands, none anywhere near a brand-level cut, so all seven stay in `data/brands.ts` and
 out of `exclusions.json.brands`. Invariant 14 keeps the 19 durable against the nightly.
+
+## Production verification (appended after the merge)
+
+`main` fast-forwarded `48fd87a..71460e7`, ancestry asserted. Origin confirmed serving the new
+build with a cache-busting query BEFORE the purge (§10.47), then `purge_everything` →
+`success: true, errors: []`. Canonical URL, real GETs, twice (§10.47 rule 4):
+
+```
+pass 1: /directory 200 | cf-cache-status MISS | age -  | 865,675 bytes
+          cut titles present 1/19 | controls 4/4
+pass 2: /directory 200 | cf-cache-status HIT  | age 0  | 865,675 bytes
+          cut titles present 1/19 | controls 4/4
+```
+
+### Why the expected answer is 1/19 and not 0/19, and how that was established
+The first staging check read `1/18` and looked like a partial failure. Two separate things
+were going on, and neither was a defect:
+
+1. **A title is not a unique key** (§10.49 fault 1, in a new brand). **Two** golden-dune
+   products carry the byte-identical title `"Strickweste Mit Knebelverschluss"` —
+   `11107861496151`, which Tina cut, and `11107757883735` (handle `/sweater`), which she did
+   not and which is still correctly published. Any title-based check must therefore read 1,
+   forever, and a check that demanded 0 would have been "fixed" by cutting a live product.
+2. **Five of the nineteen were already invisible in the payload**, because this morning's
+   colour-grouping change removes non-lead colourways from every page's data —
+   `veiled:7174811910249` "Modal Hijab - Storm" among them. So even the pre-cut build could
+   only ever show 14.
+
+**Production was used as the control that proved the matcher works** (§10.53 rule 2 — a
+control from outside the change). Measured at the same moment, before the merge:
+
+```
+PRODUCTION (still pre-cut): 14/19 cut titles present
+STAGING    (post-cut):       1/19
+```
+
+14 → 1 is the discriminator. Had the matcher been broken, production would have read 0 too,
+and "staging is clean" would have been meaningless — which is exactly the shape of §10.49's
+false negative. The payload carries neither bare Shopify ids nor product handles (both probed
+and absent), so titles plus a same-title-sibling caveat is the honest instrument here.
