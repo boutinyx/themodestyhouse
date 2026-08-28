@@ -95,3 +95,72 @@ describe('groupColourVariants', () => {
     expect(groupColourVariants([shown[0]])[0].variantCount).toBeUndefined();
   });
 });
+
+describe('titles with no space before the dash (2026-08-28)', () => {
+  it('splits "Abaya- Espresso", which Lameera Moda writes throughout', () => {
+    expect(splitColourSuffix('Tala premium Ribbed Knit Abaya- Espresso')).toEqual({
+      base: 'Tala premium Ribbed Knit Abaya',
+      colour: 'Espresso',
+    });
+  });
+
+  it('still refuses to split a hyphenated word — the dash needs a space AFTER it', () => {
+    // The guard is the space after the dash, not the one before. Both of these
+    // would break in the wrong place if that were relaxed too.
+    expect(splitColourSuffix('Tie-Back Maxi Dress')).toBeNull();
+    expect(splitColourSuffix('Two-piece Prayer Set')).toBeNull();
+  });
+
+  it('groups a real four-colour run that was four separate cards until now', () => {
+    const p = (id: string, title: string) =>
+      ({ id, title, brandSlug: 'lameera-moda', garment: 'abaya' }) as unknown as Product;
+    const out = groupColourVariants([
+      p('lameera-moda:8652992282792', 'Tala premium Ribbed Knit Abaya- Forest green'),
+      p('lameera-moda:8655100739752', 'Tala premium Ribbed Knit Abaya- Espresso'),
+      p('lameera-moda:8652993462440', 'Tala premium Ribbed Knit Abaya- Blue Gray'),
+      p('lameera-moda:8652993101992', 'Tala premium Ribbed Knit Abaya- Black'),
+    ]);
+    expect(out).toHaveLength(1);
+    expect(out[0].variantCount).toBe(4);
+  });
+});
+
+describe('data/colour-leads.json — editorial choice of which colourway fronts the card', () => {
+  const p = (id: string, title: string) =>
+    ({ id, title, brandSlug: 'lameera-moda', garment: 'abaya' }) as unknown as Product;
+
+  it('puts the listed colourway on the card even though another came first', () => {
+    // Tina picked Espresso; Forest green is what catalogue order happens to
+    // put first. Without the override the grid shows Forest green.
+    const out = groupColourVariants([
+      p('lameera-moda:8652992282792', 'Tala premium Ribbed Knit Abaya- Forest green'),
+      p('lameera-moda:8655100739752', 'Tala premium Ribbed Knit Abaya- Espresso'),
+      p('lameera-moda:8652993101992', 'Tala premium Ribbed Knit Abaya- Black'),
+    ]);
+    expect(out).toHaveLength(1);
+    expect(out[0].id).toBe('lameera-moda:8655100739752');
+    expect(out[0].variantCount).toBe(3);
+  });
+
+  it('does not move the group within the grid, only which member leads it', () => {
+    const other = { id: 'x:1', title: 'Something Else', brandSlug: 'x', garment: 'abaya' } as unknown as Product;
+    const after = { id: 'x:2', title: 'Another Thing', brandSlug: 'x', garment: 'abaya' } as unknown as Product;
+    const out = groupColourVariants([
+      other,
+      p('lameera-moda:8652992282792', 'Tala premium Ribbed Knit Abaya- Forest green'),
+      after,
+      p('lameera-moda:8655100739752', 'Tala premium Ribbed Knit Abaya- Espresso'),
+    ]);
+    // The group keeps slot 1 — where its FIRST member landed — and only the
+    // card shown there changes.
+    expect(out.map((x) => x.id)).toEqual(['x:1', 'lameera-moda:8655100739752', 'x:2']);
+  });
+
+  it('leaves a group with no listed member led by input order', () => {
+    const out = groupColourVariants([
+      p('lameera-moda:1', 'Some Other Abaya- Sage'),
+      p('lameera-moda:2', 'Some Other Abaya- Black'),
+    ]);
+    expect(out[0].id).toBe('lameera-moda:1');
+  });
+});

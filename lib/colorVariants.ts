@@ -1,4 +1,5 @@
 import type { Product } from '@/lib/types';
+import COLOUR_LEADS from '@/data/colour-leads.json';
 
 /**
  * Collapsing "same garment, different colour" into ONE card.
@@ -50,9 +51,27 @@ const NON_COLOUR_SUFFIX =
  * " - ", 639 an en dash) and a trailing parenthetical (278). The suffix is
  * capped at 25 characters and must contain no further dash, so a title that is
  * itself hyphenated ("Tie-Back Maxi Dress") does not split in the wrong place.
+ *
+ * The space BEFORE the dash is optional (`\s*`), corrected 2026-08-28. It was
+ * `\s+`, which silently excluded every brand that writes `"Abaya- Espresso"` —
+ * Lameera Moda and Zahraa do this throughout. Tina found it from the other end:
+ * *"we have multiple colors of this one can you keep this one and as + more
+ * colors and cut the others"*, on a Tala abaya sitting in the grid four times.
+ *
+ * The space AFTER the dash stays required, and is what keeps a hyphenated word
+ * from splitting: in "Tie-Back Maxi Dress" the dash is followed by `B`, not a
+ * space, so there is still no match.
+ *
+ * Measured across the published catalogue before shipping (§10.11 — look at
+ * what a heuristic CHANGES, not just whether it fixes the case that motivated
+ * it): 318 further titles split, collapsing 220 more duplicate cards into 56
+ * groups. Every suffix it newly produces that is NOT a colour — "Final Sale"
+ * (35 rows), "maxi dress", "Modal Hijab" — lands in a group of ONE, so it
+ * merges nothing. The failure mode this module fears, two different garments
+ * behind one card, does not occur.
  */
 export function splitColourSuffix(title: string): { base: string; colour: string } | null {
-  let m = title.match(/^(.*?)\s+[-–—]\s+([^-–—]{2,25})$/);
+  let m = title.match(/^(.*?)\s*[-–—]\s+([^-–—]{2,25})$/);
   if (!m) m = title.match(/^(.*?)\s*\(([^)]{2,25})\)\s*$/);
   if (!m) return null;
   const base = m[1].trim();
@@ -70,13 +89,24 @@ function groupKey(p: Product, base: string): string {
   return `${p.brandSlug} ${p.garment} ${base.toLowerCase()}`;
 }
 
+/** Ids that must front their own colour group, from data/colour-leads.json.
+ *  Editorial override for the one thing the positional rule cannot know: which
+ *  colourway Tina actually wants on the card. It moves WHICH member leads, never
+ *  WHERE the group sits, so the grid's ranking is still decided by input order.
+ *  Two listed members of one group is a contradiction; the earlier one wins, so
+ *  the result stays deterministic rather than depending on iteration order. */
+const PREFERRED_LEADS: ReadonlySet<string> = new Set(Object.keys(COLOUR_LEADS.leads));
+
 /**
  * Collapse colour runs, preserving input order.
  *
- * The FIRST member encountered leads the group, so the caller's existing order
- * decides which colour fronts the card and nothing about the grid's ranking
- * changes. That is not a fallback for want of a better rule - it was measured:
- * across 40 sampled groups, **100% agreed on portrait-vs-not and 95% had
+ * The FIRST member encountered leads the group — unless another member is named
+ * in data/colour-leads.json, which takes the slot without changing it. So the
+ * caller's existing order decides which colour fronts the card and nothing about
+ * the grid's ranking changes.
+ *
+ * Leading on input order is not a fallback for want of a better rule - it was
+ * measured: across 40 sampled groups, **100% agreed on portrait-vs-not and 95% had
  * identical aspect ratios**, because brands shoot every colourway the same way.
  * A "prefer the best model photo" tiebreak had literally nothing to choose
  * between in any group, so it would have been ceremony, not selection.
@@ -99,6 +129,14 @@ export function groupColourVariants(products: Product[]): Product[] {
     }
     const key = groupKey(p, split.base);
     const at = leadIndexByKey.get(key);
+    if (at !== undefined && PREFERRED_LEADS.has(p.id) && !PREFERRED_LEADS.has(out[at].id)) {
+      // A preferred colourway showed up after the group had already been led by
+      // whatever came first. Swap the card, keep the slot: out[at] is this
+      // group's position in the grid and must not move.
+      out[at] = p;
+      counts[at]++;
+      continue;
+    }
     if (at === undefined) {
       leadIndexByKey.set(key, out.length);
       // The lead's title keeps its own colour suffix - "Amara Maxi Dress -

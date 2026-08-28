@@ -1,0 +1,8 @@
+{
+  "//": "Product ids that must FRONT their colour group in the grid. lib/colorVariants.ts collapses a colour run into one card; by default the group is led by whichever member the grid's own order puts first, which is arbitrary from an editorial point of view. An id listed here takes that slot instead, without moving the group's POSITION in the grid. Values are the product title, for humans reading this file — nothing reads them.",
+  "leads": {
+    "lameera-moda:8655100739752": "Tala premium Ribbed Knit Abaya- Espresso",
+    "lameera-moda:8791781867688": "Rana Stripe Abaya Set- Taupe",
+    "lameera-moda:8784843964584": "Palm Linen Abaya Set- Dusty Mauve (handle: palm-linen-abaya-set-stormy)"
+  }
+}
