@@ -90,12 +90,12 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
  * match one entry.
  *
  * THE SECOND PASS, 2026-08-28. `scripts/colour-coverage.mjs` prints the colour
- * suffixes that no rule matched, ordered by frequency; every word added below
- * came off that list and only after `word()`-matching it against all 18,917
- * published rows and reading what it hit. The vocabulary alone moved coverage
- * 13,161 -> 13,753 (+592 rows); the HARDWARE guard below then withdrew 9,
- * landing at 13,744, 72.7%. Each addition is carried by an assertion in
- * lib/colour.test.ts using a literal catalogue title.
+ * suffixes that no rule matched, ordered by frequency; every one of the 59 words
+ * added below came off that list and only after `word()`-matching it against all
+ * 18,917 published rows and reading what it hit. The vocabulary alone moved
+ * coverage 13,161 -> 13,753 (+592 rows); the HARDWARE_OR_TRIM guard below then
+ * withdrew 9, landing at 13,744, 72.7%. Each addition is carried by an assertion
+ * in lib/colour.test.ts using a literal catalogue title.
  *
  * The placements that are not self-evident, and the evidence for each:
  *   mulberry -> purple  it sits beside `plum`, not beside `wine`. One row says
@@ -166,16 +166,16 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
  */
 /**
  * A metal name immediately before a fastening or trim noun is describing the
- * HARDWARE, not the garment. Found by the 40-row hand-check in Task 2 (§10.11
- * again — the sample is the point): row 10 was "Luxury Viscose Two-Piece Set
- * with Gold Brooch" filed under Yellow & Gold, on a set whose own colour the
- * title never states.
+ * HARDWARE OR THE TRIM, not the garment. Found by the 40-row hand-check in Task
+ * 2 (§10.11 again — the sample is the point): row 10 was "Luxury Viscose
+ * Two-Piece Set with Gold Brooch" filed under Yellow & Gold, on a set whose own
+ * colour the title never states.
  *
  * Measured on 2026-08-28 over all 18,917 published rows: 15 rows are misfiled
  * this way and every one of them is a metal. 6 of the 15 then reach the family
  * the title actually names ("Black Signature Knit Dress with Gold Button" ->
  * black, "denim gold button shirt" -> blue, "Flow Kaftan in Ivory with Gold
- * Button Detail" -> cream); the other 9 correctly become unclassified, because
+ * Button Detail" -> white); the other 9 correctly become unclassified, because
  * "Gold Buttoned Cupra Skirt" does not say what colour the skirt is.
  *
  * ONLY metals are guarded, deliberately. Buttons and zips are MADE of gold,
@@ -188,20 +188,38 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
  * the same reasoning and change 0 rows today — stated rather than implied, so
  * that a later run finding otherwise knows this number is from 2026-08-28.
  *
+ * THE LIMIT, stated so it is documented rather than discovered: the lookahead
+ * inspects only the IMMEDIATELY following token, so any word between the metal
+ * and the fastening defeats it. "Gold Metal Button Abaya" and "Gold-Tone Button
+ * Dress" would still file as yellow, because what follows `gold` is
+ * `Metal`/`Tone`. Neither shape exists today — 0 rows match either
+ * (data/products.json, 18,917 rows, 2026-08-28) — and widening the lookahead to
+ * skip an intervening adjective is the fix if one ever appears. The only rows
+ * with anything between a metal and a fastening noun are the 5 "Golden beads
+ * chain - <colourway>" accessories, which are not a misfile: the item itself is
+ * gold, so yellow is the right family for them.
+ *
+ * ALSO DELIBERATELY UNGUARDED, on the same 2026-08-28 base: `platinum`,
+ * `gunmetal` and `carbon` are metals in `grey` and carry no guard. They are on
+ * exactly the footing the rationale above describes — a fastening can be made of
+ * them — and they are left bare only because 0 of the 18,917 published rows put
+ * any of the three before a fastening or trim noun. They should join the guard
+ * the moment a row does.
+ *
  * KNOWN RESIDUE, left alone because it is 3 rows and the fix would cost more
  * than it buys: "Butterfly Abaya in Pastel Green with White Piping" (x2) files
  * as white, and "Black Linen Cotton Kimono Abaya with Off-White Trim and Belt"
  * as cream. Both name the garment's real colour earlier in the title.
  */
-const HARDWARE =
+const HARDWARE_OR_TRIM =
   '(?!\\s+(?:brooch|button|buckle|zip|clasp|chain|stud|hardware|trim|piping))';
 
 const RULES: [ColourFamily, RegExp][] = ([
   ['navy',   'navy|midnight[ -]?blue'],
   ['red',    'claret|burgundy|wine|maroon|crimson|cherry|brick|scarlet|ruby|reds?|rouges?|kırmızı' +
              '|bordeaux|pomegranate|sangria'],
-  ['orange', `orange|apricot|terracotta|copper${HARDWARE}|bronze${HARDWARE}|rust|tangerine|pumpkin`],
-  ['yellow', `yellow|mustard|gold(?:en)?${HARDWARE}|lemon|butter|honey|amber|saffron|sarı` +
+  ['orange', `orange|apricot|terracotta|copper${HARDWARE_OR_TRIM}|bronze${HARDWARE_OR_TRIM}|rust|tangerine|pumpkin`],
+  ['yellow', `yellow|mustard|gold(?:en)?${HARDWARE_OR_TRIM}|lemon|butter|honey|amber|saffron|sarı` +
              '|banana|citron'],
   ['pink',   'pink|blush|rose|fuchsia|fuschia|magenta|coral|salmon|peach|pembe' +
              '|flamingo|rosewater'],
@@ -214,7 +232,7 @@ const RULES: [ColourFamily, RegExp][] = ([
              '|mushroom|fawn|bisque'],
   ['cream',  'cream|cr[èe]me|buttercream|ecru|vanilla|bone|eggshell|off[ -]?white|roomwit'],
   ['white',  'white|ivory|blanc|blanco|beyaz'],
-  ['grey',   `gr[ae]y|charcoal|slate|ash|graphite|silver${HARDWARE}|anthracite|gris|gri` +
+  ['grey',   `gr[ae]y|charcoal|slate|ash|graphite|silver${HARDWARE_OR_TRIM}|anthracite|gris|gri` +
              '|dove|granite|coal|pewter|carbon|gunmetal|platinum|donkergrijs'],
   ['green',  'green|olive|sage|emerald|mint|forest|pistachio|moss|army|vert|yeşil' +
              '|thyme|basil|matcha|çağla|evergreen|jade|kiwi|eucalyptus|seafoam|zaytoon'],

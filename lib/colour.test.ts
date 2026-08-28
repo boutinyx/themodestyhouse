@@ -79,6 +79,48 @@ describe('colourFamily', () => {
     expect(colourFamily('Greenwich Trench')).toBeNull();       // not `green`
   });
 
+  // The same guard for the words the second pass added. Every one of the nine
+  // words below is a substring of a LONGER word that is live in the catalogue
+  // today, so `word()` is the only thing keeping these rows off a chip. They all
+  // behave correctly right now — this block is the regression protection, which
+  // is what §10.31 exists for: a boundary helper got bypassed and nothing failed.
+  it('does not match a second-pass colour inside a longer word', () => {
+    expect(colourFamily('Lumière Slumber Gown')).toBeNull();            // not `umber` in "Slumber"
+    expect(colourFamily('Cotton Pants F25 – PlumBerry')).toBeNull();    // not `umber` in "PlumBerry"
+    expect(colourFamily('Everyday Chiffon Hijab - Cedarwood')).toBeNull(); // not `cedar` in "Cedarwood"
+    expect(colourFamily('Jaden Top')).toBeNull();                       // not `jade` in "Jaden"
+    expect(colourFamily('Neroli Abaya')).toBeNull();                    // not `nero` in "Neroli"
+    expect(colourFamily('Oceanside')).toBeNull();                       // not `ocean` in "Oceanside"
+    // `oak` has no embedded-substring row in data/products.json; this title is a
+    // real catalogue title from data/raw-products.json (present but unpublished).
+    expect(colourFamily('Cloak Kaftan')).toBeNull();                    // not `oak` in "Cloak"
+  });
+
+  // The two second-pass collisions where the answer is not `null`: the right
+  // word has to win, not merely some word. Both are written so the intended
+  // winner is visible — and note neither DISCRIMINATES on the return value
+  // alone, because in both cases the losing word's family is ordered such that
+  // the right answer survives either way. They pin the pairing, not the order.
+  it('lets the right word win a second-pass collision', () => {
+    // beige via `taupe` — NOT grey via `dove` hiding inside "Foldover".
+    expect(colourFamily('Taupe Foldover Pants')).toBe('beige');
+    // The discriminating sibling: `grey` is ordered ABOVE `black`, so if `dove`
+    // matched inside "Foldover" this row would return grey instead of black.
+    expect(colourFamily('Black Foldover Pants')).toBe('black');
+    // grey via `charcoal` — NOT via `coal` inside it. Both live in `grey`, so
+    // this asserts the pairing rather than the outcome.
+    expect(colourFamily('Solace Versatile Shirt - Charcoal')).toBe('grey');
+  });
+
+  // The accented branch of `cr[èe]me`, which nothing else exercises: the one
+  // accented row in data/products.json ("VANILLA CRÈME Georgette Chiffon Scarf")
+  // reaches cream via `vanilla` anyway. This title is real but unpublished — it
+  // is a literal title in data/raw-products.json (hijab-boutique), and `crème`
+  // is the only colour word in it.
+  it('reads the accented spelling of creme', () => {
+    expect(colourFamily('Cotton skirt - Crème')).toBe('cream');
+  });
+
   // ---------------------------------------------------------------------
   // The second pass, 2026-08-28. One assertion per word added from
   // `npx tsx scripts/colour-coverage.mjs`, each on a LITERAL title from
