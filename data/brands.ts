@@ -77,7 +77,19 @@ export const BRANDS: Brand[] = [
   // — 2026-08-06: Dutch & Belgian shops, from the NL/BE survey in
   //   data/nl-be-modest-shops.csv. Every feed verified live; median image width
   //   from the live feed noted. All EUR, so no new currency is introduced.
-  { slug: 'losyana', name: 'Losyana', homepage: 'https://losyana.nl', feedUrl: 'https://losyana.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest & hijabs', city: 'Nijmegen', vibe: 'elegant' },                  // 750+ SKUs (429 hijabs), 3082px — German product_type values
+  // MOVED from losyana.nl to losyana.shop, 2026-08-28, at Tina's instruction.
+  // They are two SEPARATE Shopify stores, not two domains for one shop —
+  // losyana.myshopify.com vs losyana-shop.myshopify.com, sharing zero Shopify
+  // ids. Measured that day: .nl 807 products, .shop 1001, 444 titles in common.
+  // Of the 622 we published from .nl, 398 exist on .shop as the same item, 175
+  // more as the same range in a different colourway, and 49 have no counterpart.
+  // The move is what makes the affiliate code work: Tina's GoAffPro ref is
+  // issued on .shop and sets NOTHING on .nl (lib/affiliates.ts).
+  // Because the ids all change, every old losyana decision is orphaned and the
+  // new ones default to 'keep' — which is deliberate here, since /staff/curate
+  // lists PUBLISHED products and she is reviewing the arrivals herself.
+  // → docs/log/2026-08-28-losyana-move-to-shop.md
+  { slug: 'losyana', name: 'Losyana', homepage: 'https://losyana.shop', feedUrl: 'https://losyana.shop/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest & hijabs', city: 'Nijmegen', vibe: 'elegant' },                  // 1001 SKUs. EUR confirmed from the storefront's own priceCurrency, 2026-08-28.
   { slug: 'mukistore', name: 'Mukistore', homepage: 'https://mukistore.com', feedUrl: 'https://mukistore.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Rotterdam', vibe: 'elegant' },               // 250+, 2075px
   { slug: 'hijab-boutique', name: 'Hijab Boutique', homepage: 'https://hijabboutique.nl', feedUrl: 'https://hijabboutique.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'Arnhem', vibe: 'elegant' }, // 250+, 1600px
   { slug: 'aniqq', name: 'ANIQQ Exclusive', homepage: 'https://aniqq.nl', feedUrl: 'https://aniqq.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Abayas', city: 'Arnhem', vibe: 'elegant' },                          // 26 SKUs, 3024px

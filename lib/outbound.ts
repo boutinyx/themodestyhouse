@@ -28,6 +28,8 @@
  * edit here and needs no re-scrape (CLAUDE.md §8 — raw rows are frozen).
  */
 
+import { affiliateParamsFor } from './affiliates';
+
 /** The tag itself, in one place, so an audit reads it rather than greps for it. */
 export const OUTBOUND_UTM = {
   utm_source: 'themodestyhouse.com',
@@ -61,7 +63,28 @@ export function withUtm(url: string, surface?: OutboundSurface): string {
     return url;
   }
   if (u.protocol !== 'https:' && u.protocol !== 'http:') return url;
-  if (u.searchParams.has('utm_source')) return url;
+
+  // AFFILIATE FIRST, and deliberately BEFORE the `utm_source` early return
+  // below. That return exists so we never overwrite a campaign tag someone
+  // else put on a URL — a rule about ATTRIBUTION, which is not the same
+  // question as whether we get paid. An affiliate code is ours, it is what
+  // earns, and a URL that already carries a third party's utm should still
+  // carry it. Existing keys are never overwritten, so a link that already
+  // names its own `ref` still wins.
+  const affiliate = affiliateParamsFor(u.hostname);
+  let tagged = false;
+  for (const [k, v] of Object.entries(affiliate)) {
+    if (!u.searchParams.has(k)) {
+      u.searchParams.set(k, v);
+      tagged = true;
+    }
+  }
+
+  // Unchanged contract: a URL already carrying someone's campaign tag is
+  // returned as-is. `u.toString()` rather than `url` only when we actually
+  // added something, so a URL we did not touch is returned byte-identical
+  // instead of round-tripped through the URL parser.
+  if (u.searchParams.has('utm_source')) return tagged ? u.toString() : url;
 
   for (const [k, v] of Object.entries(OUTBOUND_UTM)) u.searchParams.set(k, v);
   if (surface) u.searchParams.set('utm_content', surface);

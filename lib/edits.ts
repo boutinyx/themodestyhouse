@@ -599,7 +599,13 @@ export const EDITS: Edit[] = [
       'jennah-boutique:7784159510704', // Jennah Boutique — Jersey Breath ruby
       'nurmire:9967193620809', // Nurmirè — Premium Jersey Hijab - Mulberry
       'yasmin-jay:8080445440176', // Yasmin Jay — Liquid Jersey Powder
-      'losyana:9778842599762', // Losyana — Premium Jersey - sky blue
+      // RE-PICKED 2026-08-28, not chosen on merit — PLACEHOLDER, Tina to confirm.
+      // Losyana moved from losyana.nl to losyana.shop that day (a different
+      // Shopify store, so every product id changed) and the original pick,
+      // "Premium Jersey - sky blue", has no counterpart on the new store: it
+      // stocks nine plain Premium Jerseys and not one of them is a blue.
+      // Platinum is the nearest light neutral. Swap it in /staff/curate.
+      'losyana:9747573768517', // Losyana — Premium Jersey - Platinum
       'hidayah:10530799976795', // Hidayah — Hidayah Bloom Printed Jersey (Arya)
       'hawaa:15707655733621', // Hawaa Clothing — Walnut Cloud Jersey Hijab
       'voile-chic:8878418886909', // Voile Chic — Ribbed Jersey Hijab - Charcoal Grey
@@ -611,7 +617,10 @@ export const EDITS: Edit[] = [
       'chic-modesty:10323101811026', // Chic & Modesty — Almond green premium jersey hijab
       'yasmin-jay:7910436208816', // Yasmin Jay — Misty Rose Jersey Scarf
       'modesty-in-style:10797100106038', // Modesty in Style — Khaki Jersey Set
-      'losyana:10645916582226', // Losyana — Vela Jersey - light beige
+      // Same re-pick, same day, same reason — PLACEHOLDER, Tina to confirm.
+      // "Vela Jersey - light beige" is gone; taupe is the closest of the 19
+      // Vela Jerseys the new store carries.
+      'losyana:15005955686725', // Losyana — Vela Jersey - taupe
       'culture-hijab:10186618437930', // Culture Hijab Co — Premium Jersey Hijab
       'hidayah:7603885670571', // Hidayah — Premium Plain Jersey (Peru)
       'hawaa:15633575641461', // Hawaa Clothing — Pink Bamboo Jersey Hijab
@@ -633,6 +642,11 @@ export const EDITS: Edit[] = [
     // exception is the point rather than a compromise. See the flag's own note.
     includeHijabs: true,
   },
+  // Every Losyana pick below was RE-PICKED on 2026-08-28: the house moved
+  // from losyana.nl to losyana.shop, a different Shopify store, so all of its
+  // product ids changed at once. Six of the eight found the identical
+  // colourway on the new store; the two that did not are marked inline.
+  // → docs/log/2026-08-28-losyana-move-to-shop.md
   {
     slug: 'fall-essentials',
     title: 'Fall Essentials',
@@ -928,7 +942,9 @@ export const EDITS: Edit[] = [
       'maison-hijab:14899627327813', // Maison Hijab — Chestnut Brown Jersey Hijab
       'summer-evenings:9254147490042', // Summer Evenings — Navy Balloon Top & Maxi Skirt Set
       'fares:7858204999871', // Fares — Bow Detail Cardigan - Icy Blue
-      'losyana:10677822456146', // Losyana — Instant Hijab - coffee
+      // Nearest colour, not the same one — PLACEHOLDER, Tina to confirm:
+      // the new store carries no "coffee" in this range.
+      'losyana:15598073774405', // Losyana — Instant Hijab - cappuccino
       'ilovemodesty:10284398248257', // iLoveModesty — Sage Green Bell Sleeve Cardigan Set
       'hum:9031247003860', // HUM Clothing — Grey Square Neck Top & A-line Maxi Skirt Co-ord Set
       'kimodesty:14961', // KIMODESTY — Stripe Cotton Top 3/4 – Green
@@ -936,7 +952,7 @@ export const EDITS: Edit[] = [
       'nihan:15086334411115', // Nihan — Asymmetric Closure Wide Leg Modal Trousers - Indigo
       'nour-al-houda:7865218465840', // Nour Al Houda (BNAH) — Instant Bamboo Jersey Wrap Set - Forest
       'summer-evenings:8793881870586', // Summer Evenings — Orchid Pink Balloon Top & Maxi Skirt Set
-      'losyana:10677821964626', // Losyana — Instant Hijab - olive
+      'losyana:15404511985989', // Losyana — Instant Hijab - olive
       'mukistore:15627414601993', // Mukistore — Elegant Waistcoat with Waist Cord
       'hum:9031246807252', // HUM Clothing — Pink Square Neck Top & A-line Maxi Skirt Co-ord Set
       'emlavish:10609114251603', // EM Lavish — Linen Blend A-Line Maxi Skirt
@@ -945,7 +961,7 @@ export const EDITS: Edit[] = [
       'jennah-boutique:8044400574640', // Jennah Boutique — Pantalon barrel coton marron
       'summer-evenings:8793880723706', // Summer Evenings — Ivory Balloon Top & Maxi Skirt Set
       'emlavish:10603446239571', // EM Lavish — Cotton Relaxed Collared Blouse
-      'losyana:10677822685522', // Losyana — Instant Hijab - army green
+      'losyana:15404646564165', // Losyana — Instant Hijab - army green
       'whiteicy:15668177830228', // White Icy — Maeva shirt – Flared Vichy poplin
       'kimodesty:14831', // KIMODESTY — Longsleeve Cotton Top – Marine
       'baqa:9354018423035', // BAQA — Blouse with Scarf Detail on the Collar
@@ -973,7 +989,7 @@ export const EDITS: Edit[] = [
       'modesty-in-style:10724653564214', // Modesty in Style — Siyah Sweater
       'diversity-modest:10887562330446', // Diversity Modest — The Everyday Poncho Chocolate Brown
       'kimodesty:14553', // KIMODESTY — Striped Longsleeve Top – Taupe
-      'losyana:10677824454994', // Losyana — Instant Hijab - bordeaux
+      'losyana:15598055424325', // Losyana — Instant Hijab - bordeaux
       'zahraa:7433242280023', // Zahraa The Label — Lauren Cape Tunic - Taupe
       'lafemme:30420', // La Femme Collectie — Oversized Gilet
       'jennah-boutique:7764200423600', // Jennah Boutique — Chocolate satin flared skirt
@@ -1000,7 +1016,7 @@ export const EDITS: Edit[] = [
       'baqa:9313789411579', // BAQA — Wide Leg Trousers
       'merrachi:15287592223103', // MERRACHI — Premium Jersey Scarf | Light Plum
       'whiteicy:15673292816724', // White Icy — Naëlys trench coat
-      'losyana:10645916713298', // Losyana — Vela Jersey - bordeaux
+      'losyana:15593318908229', // Losyana — Vela Jersey - bordeaux
       'nour-al-houda:7700823867440', // Nour Al Houda (BNAH) — Amelie Pleated Pants - Black
       'chic-modesty:10830652801362', // Chic & Modesty — Almond Linen & Cotton Long Shirt
       'chador:197160', // Chador — Volume Sleeve Shirt
@@ -1023,14 +1039,16 @@ export const EDITS: Edit[] = [
       'summer-evenings:9149100720378', // Summer Evenings — Sage Blue Tailored SE Pants
       'emlavish:10236653994323', // EM Lavish — Cape Jacket With Belt
       'chador:197170', // Chador — Tailored Gilet Set
-      'losyana:10645916254546', // Losyana — Vela Jersey - pistachio
+      'losyana:15005992583493', // Losyana — Vela Jersey - pistachio
       'glamberry:15518548656393', // Glamberry Shop — Two-piece set with structured floral skirt & fitted vest
       'eynaa-paris:9615659336023', // Eynaa Paris — Hijab Jersey Premium Soft [Brownie]
       'nour-al-houda:7937231388720', // Nour Al Houda (BNAH) — Crossover Cotton Shirt - Graphite
       'arakai:10896388882778', // Arakai Studio — Retaj Linen Shirt Anthracite
       'merrachi:8759464395061', // MERRACHI — Premium Jersey Scarf | Soft Bordeaux
       'touche-prive:9919281234248', // Touché Privé — Ruffled Satin Skirt
-      'losyana:10645916189010', // Losyana — Vela Jersey - espresso
+      // Nearest colour, not the same one — PLACEHOLDER, Tina to confirm:
+      // the new store carries no "espresso" in this range.
+      'losyana:16065474724165', // Losyana — Vela Jersey - coffee
       'jennah-boutique:8049113432240', // Jennah Boutique — Lemon oversized shirt
       'kimodesty:12259', // KIMODESTY — Staple Scarf – Matcha
       'modesty-in-style:10758670057782', // Modesty in Style — Anna Knit Set
@@ -1052,7 +1070,12 @@ export const EDITS: Edit[] = [
       'bayt-el-hayat:15475417776502', // Bayt El Hayat — Corduroy Two Piece Set – Dark Grey
       'vela:7027379830940', // Vela Scarves — Truffle Mushroom
       'whiteicy:15692490998100', // White Icy — Gilet Lyra – Maille torsadée zippée
-      'zahraa:7389671391319', // Zahraa The Label — Yusra Knit Pant- Taupe
+      // PRE-EXISTING breakage, not from the Losyana move: this pick was already
+      // dead on origin/main (328 picks, 2 unresolvable) and lib/edits.test.ts was
+      // red there. Re-picked 2026-08-28 to get the gate green — PLACEHOLDER,
+      // Tina to confirm: was "Yusra Knit Pant - Taupe"; the Yusra line is gone entirely, Olivia is
+      // the only knit pant left and Brown is the nearest to taupe.
+      'zahraa:7301199069271', // Zahraa The Label — Olivia Ruffle Knit Pant - Brown
       'touche-prive:10100262175048', // Touché Privé — Asymmetrical Poplin Shirt
       'aurora-abaya:10008032117066', // Aurora Abaya — Cardigan tailored
       'bayt-el-hayat:15476291010934', // Bayt El Hayat — Knitted ribbed dress - Black
@@ -1084,7 +1107,12 @@ export const EDITS: Edit[] = [
       'aurora-abaya:15647494504778', // Aurora Abaya — Polka dot cotton blouse
       'chic-modesty:10594625093970', // Chic & Modesty — Hijab easy chocolate
       'jawda:16038516687228', // Jawda — Chocolate Linen Cotton Wide Leg Trousers
-      'les-atelier:15725952008565', // LES Atelier — Nora Modal Longsleeve Cacao Brown
+      // PRE-EXISTING breakage, not from the Losyana move: this pick was already
+      // dead on origin/main (328 picks, 2 unresolvable) and lib/edits.test.ts was
+      // red there. Re-picked 2026-08-28 to get the gate green — PLACEHOLDER,
+      // Tina to confirm: was "Nora Modal Longsleeve Cacao Brown"; the Nora line survives in seven
+      // colours, none of them cacao — Golden Sand is the closest warm neutral.
+      'les-atelier:15905434665333', // LES Atelier — Nora Modal Longsleeve Golden Sand
       'fares:8272699916479', // Fares — Straight Leg Knit Pants - Brownie
       'mukistore:15453031399689', // Mukistore — Super Stretch Wide Leg Jeans – H876-8
       'aurora-abaya:15647456690506', // Aurora Abaya — Chiffon blouse
@@ -1103,7 +1131,7 @@ export const EDITS: Edit[] = [
       'la-petite-parisienne:15051544330580', // La Petite Parisienne — Brown 2-pocket blouse (L2096)
       'mukistore:15395301589257', // Mukistore — Knitted Wide-Leg Set with Long Top & Wide Sleeves 23535
       'veiled:7779260629097', // Veiled — Ombre Modal Hijab - Chocolate
-      'losyana:10287466348882', // Losyana — the legacy shirt - olive
+      'losyana:15212532171077', // Losyana — the legacy shirt - olive
       'chador:189194', // Chador — Satin Skirt
       'bayt-el-hayat:7174444908605', // Bayt El Hayat — Navy Leather Trench Coat
     ],

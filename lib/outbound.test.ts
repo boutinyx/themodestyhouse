@@ -60,3 +60,43 @@ describe('withUtm', () => {
     expect(OUTBOUND_UTM.utm_source).toBe('themodestyhouse.com');
   });
 });
+
+describe('affiliate parameters', () => {
+  // The whole point of the feature: a Losyana product link must carry the
+  // GoAffPro ref, or the click earns nothing. Measured in a real browser on
+  // 2026-08-28 — `?ref=dsgnnfgp` on losyana.shop sets the tracking cookie.
+  it('adds the affiliate ref to a host we hold a code for', () => {
+    const out = new URL(withUtm('https://losyana.shop/products/linen-corset-kimono-black', 'product-card'));
+    expect(out.searchParams.get('ref')).toBe('dsgnnfgp');
+    expect(out.searchParams.get('utm_source')).toBe('themodestyhouse.com');
+  });
+
+  it('matches the host with or without www.', () => {
+    expect(new URL(withUtm('https://www.losyana.shop/products/x')).searchParams.get('ref')).toBe('dsgnnfgp');
+  });
+
+  // The negative control. losyana.nl is a DIFFERENT Shopify store with its own
+  // GoAffPro install, and the code is dead there — tagging it would look like
+  // it works and earn nothing (docs/log/2026-08-28-losyana-affiliate-wrong-store.md).
+  it('does NOT tag a host we hold no code for, including the other Losyana store', () => {
+    expect(new URL(withUtm('https://losyana.nl/products/x')).searchParams.has('ref')).toBe(false);
+    expect(new URL(withUtm('https://veiled.com/products/x')).searchParams.has('ref')).toBe(false);
+  });
+
+  it('never overwrites a ref the URL already carries', () => {
+    const out = new URL(withUtm('https://losyana.shop/products/x?ref=someoneelse'));
+    expect(out.searchParams.get('ref')).toBe('someoneelse');
+  });
+
+  // A URL carrying a third party's campaign tag keeps it AND still earns.
+  it('still adds the affiliate ref when the URL already has a utm_source', () => {
+    const out = new URL(withUtm('https://losyana.shop/products/x?utm_source=instagram'));
+    expect(out.searchParams.get('utm_source')).toBe('instagram');
+    expect(out.searchParams.get('ref')).toBe('dsgnnfgp');
+  });
+
+  it('returns a utm-tagged URL for an untagged host byte-identical', () => {
+    const url = 'https://veiled.com/products/x?utm_source=instagram';
+    expect(withUtm(url)).toBe(url);
+  });
+});

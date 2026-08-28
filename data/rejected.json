@@ -40733,46 +40733,6 @@
     "reason": "brand-blacklist"
   },
   {
-    "id": "losyana:9798386483538",
-    "brandSlug": "losyana",
-    "title": "Tote Bag - Black",
-    "url": "https://losyana.nl/products/tote-bag-black",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:bags",
-    "tier": "A",
-    "evidence": "Tote Bag"
-  },
-  {
-    "id": "losyana:8675775840594",
-    "brandSlug": "losyana",
-    "title": "Hijab clip - white",
-    "url": "https://losyana.nl/products/hijab-clip-white",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hardware",
-    "tier": "A",
-    "evidence": "Hijab clip"
-  },
-  {
-    "id": "losyana:8675776561490",
-    "brandSlug": "losyana",
-    "title": "Hijab clip - Gold",
-    "url": "https://losyana.nl/products/hijab-clip-gold",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hardware",
-    "tier": "A",
-    "evidence": "Hijab clip"
-  },
-  {
-    "id": "losyana:8675776168274",
-    "brandSlug": "losyana",
-    "title": "Hijab clip - silver",
-    "url": "https://losyana.nl/products/hijab-clip-silver",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hardware",
-    "tier": "A",
-    "evidence": "Hijab clip"
-  },
-  {
     "id": "mukistore:9491509641481",
     "brandSlug": "mukistore",
     "title": "Premium Gebedskleed Koepel Design Anti Slip",
@@ -52347,5 +52307,135 @@
     "garmentWas": "swim",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL/XXL"
+  },
+  {
+    "id": "losyana:16074454761797",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Lune black",
+    "url": "https://losyana.shop/products/hijab-clip-gold-kopie",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:16073705685317",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Gold",
+    "url": "https://losyana.shop/products/hijab-clip-gold-kopie-1",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8708447895877",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Gold diamond",
+    "url": "https://losyana.shop/products/hijab-clip-white-pearl",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8708447338821",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Oval taupe",
+    "url": "https://losyana.shop/products/hijab-clip-brown-butterfly",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8708445569349",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Tulip diamond",
+    "url": "https://losyana.shop/products/hijab-clip-black-heart",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8708444356933",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Black butterfly",
+    "url": "https://losyana.shop/products/hijab-clip-black-oval",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8708422730053",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Wood white",
+    "url": "https://losyana.shop/products/hijab-clip-black",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:8708420600133",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - Taupe",
+    "url": "https://losyana.shop/products/hijab-clip-white",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
+  },
+  {
+    "id": "losyana:15664784212293",
+    "brandSlug": "losyana",
+    "title": "prayer mat - black",
+    "url": "https://losyana.shop/products/prayer-mat-black",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:prayer-goods",
+    "tier": "0",
+    "evidence": "prayer mat"
+  },
+  {
+    "id": "losyana:15664781164869",
+    "brandSlug": "losyana",
+    "title": "prayer mat - beige",
+    "url": "https://losyana.shop/products/prayer-mat-beige",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:prayer-goods",
+    "tier": "0",
+    "evidence": "prayer mat"
+  },
+  {
+    "id": "losyana:15664779755845",
+    "brandSlug": "losyana",
+    "title": "prayer mat - blue",
+    "url": "https://losyana.shop/products/prayer-mat-blue",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:prayer-goods",
+    "tier": "0",
+    "evidence": "prayer mat"
+  },
+  {
+    "id": "losyana:15664777363781",
+    "brandSlug": "losyana",
+    "title": "prayer mat - black",
+    "url": "https://losyana.shop/products/prayer-mat-black-1",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:prayer-goods",
+    "tier": "0",
+    "evidence": "prayer mat"
+  },
+  {
+    "id": "losyana:8708423745861",
+    "brandSlug": "losyana",
+    "title": "Hijab clip - silver",
+    "url": "https://losyana.shop/products/hijab-clip-silver",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab clip"
   }
 ]
