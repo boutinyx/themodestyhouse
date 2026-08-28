@@ -6,6 +6,7 @@ import {
   dressSubtype, DRESS_SUBTYPE_LABELS, type DressSubtype,
 } from '@/lib/specialty';
 import { hijabTypeFilter, HIJAB_TYPE_FILTER_LABELS, type HijabTypeFilter } from '@/lib/hijabTypeFilter';
+import { colourFamily, COLOUR_FAMILY_LABELS, type ColourFamily } from '@/lib/colour';
 
 /** Reference point for the compact day-index — see rows.firstSeenDay below. */
 export const FIRST_SEEN_EPOCH = Date.parse('2026-01-01T00:00:00.000Z');
@@ -85,6 +86,13 @@ export interface CompactCatalogue {
    *  means "some dresses here are classified", not "every dress here is". See
    *  lib/specialty.ts::dressSubtype for why. */
   dressSubtypes: DressSubtype[];
+  /** Colour families actually present in this catalogue, in the canonical
+   *  order of COLOUR_FAMILY_LABELS — never first-appearance, so the Colour
+   *  dropdown does not reshuffle depending on which brand's rows interleave
+   *  first. Empty when nothing here is classified, which is what
+   *  FilterableGrid uses to decide whether to render the filter at all — the
+   *  same pattern as `occasions` and `hijabTypeFilters`. */
+  colours: ColourFamily[];
   /** How many rows this catalogue describes.
    *
    *  `rows.title.length` equals it, but a CLIENT holding row indices needs a
@@ -121,6 +129,12 @@ export interface CompactCatalogue {
      *  value here, not a rarity — 2,013 of the 2,521 rows on /modest-dresses
      *  are unclassified and filter out of every chip except "All". */
     dressSubtypeIdx?: number[];
+    /** Index into `colours`, or -1 for a row whose title names no colour
+     *  (about 28% of the catalogue: 13,628 of 18,917 published rows classify,
+     *  measured 2026-08-28). Not a bitmask like occasionMask: colourFamily()
+     *  returns exactly one family or null, by construction. Absent means every
+     *  row is -1 — see SENTINEL_COLUMNS. */
+    colourIdx?: number[];
     /** How many colourways each row stands for, including itself. Present only
      *  when at least one row on this surface has siblings; dropped as an
      *  all-sentinel column otherwise (see SENTINEL_COLUMNS). The sentinel here
@@ -255,6 +269,12 @@ export function encodeCatalogue(
   const presentHijabTypeFilters = new Set(products.map((p) => hijabTypeFilter(p)).filter((t): t is HijabTypeFilter => t !== null));
   const hijabTypeFilters = hijabTypeFilterOrder.filter((t) => presentHijabTypeFilters.has(t));
   const hijabTypeFilterIndex = new Map(hijabTypeFilters.map((t, i) => [t, i]));
+  // colourFamily reads the TITLE, not the product — it is derived text, never a
+  // field on Product (Invariant 16), which is why no re-scrape is involved.
+  const colourOrder = Object.keys(COLOUR_FAMILY_LABELS) as ColourFamily[];
+  const presentColours = new Set(products.map((p) => colourFamily(p.title)).filter((c): c is ColourFamily => c !== null));
+  const colours = colourOrder.filter((c) => presentColours.has(c));
+  const colourIndex = new Map(colours.map((c, i) => [c, i]));
 
   const rows: CompactCatalogue['rows'] = {
     title: [],
@@ -268,6 +288,7 @@ export function encodeCatalogue(
     dressSubtypeIdx: [],
     variantCount: [],
     hijabTypeFilterIdx: [],
+    colourIdx: [],
     firstSeenDay: [],
   };
   const cards: CardSlice = { rows: {} };
@@ -367,6 +388,8 @@ export function encodeCatalogue(
     rows.hijabSubtypeIdx!.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
     const dressSub = dressSubtype(p);
     rows.dressSubtypeIdx!.push(dressSub === null ? -1 : dressSubtypeIndex.get(dressSub)!);
+    const colour = colourFamily(p.title);
+    rows.colourIdx!.push(colour === null ? -1 : colourIndex.get(colour)!);
     rows.variantCount!.push(p.variantCount ?? 1);
     const hijabType = hijabTypeFilter(p);
     rows.hijabTypeFilterIdx!.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
@@ -390,7 +413,8 @@ export function encodeCatalogue(
 
   // Drop any subtype column that carries no information on THIS page.
   //
-  // These five (four until 2026-08-26, when dressSubtypeIdx joined them) are
+  // Five of these six (four until 2026-08-26, when dressSubtypeIdx joined them;
+  // colourIdx is the exception, see below) are
   // per-lane facts: layeringSubtypeIdx is -1 for everything
   // that isn't a layering piece, and so on. On a mixed page there is nothing
   // to say — measured on /directory, each of the four was 39,767 bytes of
@@ -402,7 +426,14 @@ export function encodeCatalogue(
   // of them on the lanes that have subtype filters, and there the columns are
   // real. Absent simply means "every row is -1", which is what readers must
   // treat a missing column as. See the ?? -1 fallbacks in FilterableGrid.
-  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx'] as const;
+  //
+  // colourIdx (2026-08-28) joins them on the same rule but is NOT a per-lane
+  // fact: 72.0% of published rows name a colour, so on any real surface this
+  // column is dense and survives. It is listed here for the surfaces that are
+  // not real-sized — a filtered slice, a small edit, a brand page whose titles
+  // happen to name nothing — where the same "18,000 copies of -1" argument
+  // applies in miniature and there is nothing for the Colour filter to offer.
+  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx', 'colourIdx'] as const;
   for (const col of SENTINEL_COLUMNS) {
     const v = rows[col];
     if (v && v.every((x) => x === -1)) delete rows[col];
@@ -416,7 +447,7 @@ export function encodeCatalogue(
 
   return {
     brands: compactBrands, garments, occasions,
-    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, dressSubtypes,
+    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, dressSubtypes, colours,
     rows, cards, rowCount: products.length,
   };
 }

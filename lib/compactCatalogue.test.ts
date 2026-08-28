@@ -443,3 +443,42 @@ describe('payload: altUrl is sparse (2026-08-19)', () => {
     expect(decodeCard(cat, 0)!.altUrl).toBeUndefined();
   });
 });
+
+describe('colour column', () => {
+  it('indexes each row into the colours dictionary', () => {
+    const cat = encodeCatalogue(
+      [
+        { ...PRODUCT, id: 'aab:1', title: 'Amara Maxi Dress - Sage Green' },
+        { ...PRODUCT, id: 'aab:2', title: 'Tala Ribbed Knit Abaya- Espresso' },
+      ],
+      [BRAND],
+    );
+    // Canonical order, not first-appearance: brown is 6th and green 9th in
+    // COLOUR_FAMILY_LABELS, so the espresso row — encoded second — indexes 0.
+    expect(cat.colours).toEqual(['brown', 'green']);
+    expect(cat.rows.colourIdx).toEqual([1, 0]);
+  });
+
+  it('uses -1 for a row with no colour', () => {
+    const cat = encodeCatalogue(
+      [
+        { ...PRODUCT, id: 'aab:1', title: 'Black Abaya' },
+        { ...PRODUCT, id: 'aab:2', title: 'The Culture Starter Set' },
+      ],
+      [BRAND],
+    );
+    expect(cat.rows.colourIdx).toEqual([0, -1]);
+  });
+
+  // Same principle as the four subtype columns: a surface where nothing is
+  // classified must not pay for 18,000 copies of -1.
+  it('drops the column when no row has a colour', () => {
+    const cat = encodeCatalogue(
+      [{ ...PRODUCT, id: 'aab:1', title: 'The Culture Starter Set' }],
+      [BRAND],
+    );
+    expect(cat.rows.colourIdx).toBeUndefined();
+    expect('colourIdx' in cat.rows).toBe(false);   // deleted, not merely empty
+    expect(cat.colours).toEqual([]);
+  });
+});
