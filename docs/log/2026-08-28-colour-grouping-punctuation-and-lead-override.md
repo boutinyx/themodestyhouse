@@ -103,22 +103,31 @@ led that group on input order, so this entry pins the existing outcome rather th
 it. Recorded because an override that happens to agree with the default looks identical to
 one that is working, and only one of them would survive a re-interleave:
 
-Five picks arrived in all. Measured with the leads file emptied and again with it in place,
+Eight picks arrived in all. Measured with the leads file emptied and again with it in place,
 through `browseProducts()`:
 
 ```
 with NO leads (input order)              with the file
-Tala …- Forest green   x4                Tala …- Espresso       x4   CHANGED
-Rana …- Koala Gray     x3                Rana …- Taupe          x3   CHANGED
-Naya …- Dusty Teal     x2                Naya …- Desert Sage    x2   CHANGED
-Palm …- Dusty Mauve    x2                Palm …- Dusty Mauve    x2   no-op, pins it
-Kaia …- Dusty Blue     x2                Kaia …- Dusty Blue     x2   no-op, pins it
+Tala …- Forest green   x4                Tala …- Espresso        x4   CHANGED
+Rana …- Koala Gray     x3                Rana …- Taupe           x3   CHANGED
+Naya …- Dusty Teal     x2                Naya …- Desert Sage     x2   CHANGED
+Olivia …- Mint Gray    x3                Olivia …- Blush Pink    x3   CHANGED
+Cara …- champagne      x2                Cara …- Dusty Rose Pink x2   CHANGED
+Palm …- Dusty Mauve    x2                Palm …- Dusty Mauve     x2   no-op, pins it
+Kaia …- Dusty Blue     x2                Kaia …- Dusty Blue      x2   no-op, pins it
+Laura …- Blush Gold    x2                Laura …- Blush Gold     x2   no-op, pins it
 ```
 
-**Three of the five entries change the card; two agree with what input order already gave.**
+**Five of the eight entries change the card; three agree with what input order already gave.**
 Recorded because an override that happens to match the default looks identical to one that is
 working, and only one of them would survive a re-interleave — `interleaveByBrand` rewrites
 row order on every publish (§8), so today's accidental agreement is not tomorrow's.
+
+**Two of the eight were resolved by URL handle, not by title, and had to be.** The handles
+Tina sent — `palm-linen-abaya-set-stormy` and `laura-wrap-satin-dress-rose-gold` — belong to
+products *titled* "Palm Linen Abaya Set- Dusty Mauve" and "Laura Wrap Satin Dress- Blush
+Gold". Lameera renamed those colourways and kept the old URLs. Matching on the colour word in
+the link would have found nothing, or worse, the wrong sibling.
 
 `npx tsc --noEmit` clean. `npx vitest run` — 933 tests, 932 pass.
 
