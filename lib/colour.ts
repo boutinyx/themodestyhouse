@@ -51,19 +51,36 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
 };
 
 /**
- * Ordered most-specific first. Order is load-bearing and is the same principle
- * as GARMENT_RULES in lib/tag.ts (Invariant 6): the first rule that matches
- * wins, so a compound name has to sit above the family whose word it contains.
- * "Navy Blue" (209 rows) must reach `navy` before `blue` sees it; "Light
- * Brown" (53) must reach `brown` before... nothing, but the pairing is stated
- * so the next person does not reorder it. `multi` is LAST, so a black floral
- * files as black and only a garment naming no colour at all falls through to
- * the pattern bucket.
+ * Order is load-bearing and is the same principle as GARMENT_RULES in
+ * lib/tag.ts (Invariant 6): the first rule that matches wins. It is NOT a
+ * specificity ranking — the order is, in three tiers:
+ *   1. COMPOUND-NAME FAMILIES FIRST, so a compound reaches its own family
+ *      before the family whose word it contains. "Navy Blue" (209 rows) must
+ *      reach `navy` before `blue` sees it, and `cream`'s "off-white" must
+ *      reach `cream` before `white`. ("Light Brown", 53 rows, reaches `brown`
+ *      whatever the order — no family claims "light" — so it is tested as
+ *      documentation of the pattern, not because it depends on position.)
+ *   2. AN ARBITRARY TIE-BREAK for everything else. Nothing derives the
+ *      remaining positions; they are fixed only because moving one
+ *      reclassifies rows. `black` sits 14th of 15 for no better reason.
+ *   3. `multi` LAST, so a black floral files as black and only a garment
+ *      naming no colour at all falls through to the pattern bucket.
+ * Known consequence of tier 2, so it is not a surprise later: of the 2,134
+ * titles naming black, 123 file under an earlier family — mostly defensible
+ * two-tone items ("Miraal - Black & White"), a few plainly wrong ("Black
+ * Cotton Maxi Dress with Beige Grosgrain Trim" -> beige). A new family goes at
+ * the end of tier 2 unless it is a compound, in which case it goes above the
+ * family it contains.
  *
  * WHAT IS DELIBERATELY ABSENT, and why — each of these was in the first draft
  * and was removed after checking what it matched:
  *   linen, satin, silk, cotton, jersey, modal  — fabrics, not colours. "Linen
  *     Maxi Dress" is 1,100+ rows and none of them is beige by virtue of that.
+ *   denim, jeans                               — fabrics on the same footing,
+ *     and the ONE deliberate exception to that rule: they are KEPT, in `blue`,
+ *     because denim reads as a colour to someone using a colour filter. 141
+ *     rows match `blue` on the body word alone, and the cost is accepted and
+ *     known — "The Barrel Denim [Black]" files as blue.
  *   natural, smoked, mink                      — real suffixes in the data,
  *     but they name a finish or a material, and mink is a fur.
  *   nude                                       — kept, but only in `beige`,

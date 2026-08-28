@@ -8,6 +8,15 @@ describe('colourFamily', () => {
     expect(colourFamily('Aminah Zipper Jersey Dress - Cocoa Bean')).toBe('brown');
   });
 
+  // The discriminating test for the suffix-first branch. Every other title in
+  // this file resolves the same way through the full-title fallback, so
+  // deleting the `if (split)` block leaves them all green. This one does not:
+  // a real catalogue title whose body names one family and whose colourway
+  // suffix names another. Without the branch it returns `yellow`, on `gold`.
+  it('lets the suffix beat a colour word in the body of the title', () => {
+    expect(colourFamily('Gold Accent Half Zip Abaya - Pistachio')).toBe('green');
+  });
+
   it('reads a colour from elsewhere in the title', () => {
     expect(colourFamily('Chocolate Linen Cotton Wrap Top')).toBe('brown');
     expect(colourFamily('Black Abaya')).toBe('black');
@@ -48,12 +57,15 @@ describe('colourFamily', () => {
     expect(colourFamily('The Riella label')).toBeNull();
   });
 
-  // Fabrics that are not colours. `linen` and `champagne` both LOOK like beige
-  // words and both would misfile hundreds of rows: "Linen Maxi Dress" is a
-  // fabric, not a colour, and there are 1,100+ linen titles in the catalogue.
+  // Words that LOOK like beige and are deliberately absent from the vocabulary.
+  // `linen` and `satin` are fabrics, not colours — "Linen Maxi Dress" is 1,100+
+  // rows in the catalogue and none of them is beige by virtue of that.
+  // `champagne` is a real shade name but is not in `beige`, so it is asserted
+  // here rather than only claimed in prose.
   it('does not treat a fabric as a colour', () => {
     expect(colourFamily('Reyana Linen Maxi Dress')).toBeNull();
     expect(colourFamily('Satin top with lace detail')).toBeNull();
+    expect(colourFamily('Chiffon Hijab - Champagne')).toBeNull();
   });
 
   // Substring safety, the §10.5/§10.10 family. Every one of these contains a
