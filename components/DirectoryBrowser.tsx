@@ -6,6 +6,7 @@ import type { Garment } from '@/lib/types';
 import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
+import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
 import { LanguageNote } from './LanguageNote';
 
@@ -19,6 +20,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   const [q, setQ] = useState(initialQuery);
   const [garment, setGarment] = useState('all'); // Garment value, or 'all'
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
+  const [colour, setColour] = useState('all'); // ColourFamily, or 'all'
   const [visible, setVisible] = useState(STEP);
   const [sort, setSort] = useState<SortKey>('featured');
   // Card data for rows beyond the window the server embedded. See the
@@ -37,12 +39,36 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     () => [...cat.brands].sort((a, b) => a.name.localeCompare(b.name)).map((b) => ({ value: b.slug, label: b.name })),
     [cat]
   );
+  // cat.colours is already in COLOUR_FAMILY_LABELS's canonical order — see the
+  // pre-pass in encodeCatalogue — so this maps without re-sorting.
+  //
+  // The leading 'all' row is supplied rather than left to FilterDropdown, which
+  // otherwise synthesises `All ${label.toLowerCase()}` — "All colour", which
+  // reads wrong where "All brand" does not. A listed default option makes it
+  // read "All colours"; the component borrows that label for its top row and
+  // drops the duplicate from the list, exactly as Sort's 'featured' does. That
+  // row carries no swatch, so its label sits flush left while the colours are
+  // indented past their dot — left as is, because it is the row that CLEARS the
+  // filter rather than a sixteenth colour, and a dot standing for "no colour"
+  // would have to be invented.
+  const colours = useMemo(
+    () => [
+      { value: 'all', label: 'All colours' },
+      ...cat.colours.map((c) => ({
+        value: c as string,
+        label: COLOUR_FAMILY_LABELS[c],
+        swatch: COLOUR_FAMILY_SWATCH[c],
+      })),
+    ],
+    [cat],
+  );
 
   // Filtering runs over the columnar row indices — see the same note in
   // FilterableGrid.tsx. Only the rows actually rendered get decoded below.
   const query = q.trim().toLowerCase();
   const garmentIdx = garment === 'all' ? -1 : cat.garments.indexOf(garment as Garment);
   const brandIdx = brand === 'all' ? -1 : cat.brands.findIndex((b) => b.slug === brand);
+  const colourIdx = colour === 'all' ? -1 : cat.colours.indexOf(colour as (typeof cat.colours)[number]);
 
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
@@ -50,6 +76,10 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     for (let i = 0; i < n; i++) {
       if (garmentIdx !== -1 && cat.rows.garmentIdx[i] !== garmentIdx) continue;
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
+      // `?? -1` because the column is dropped when every row is -1 — a surface
+      // where nothing is classified must still filter to empty rather than
+      // crash on an absent array. Same contract as the subtype columns.
+      if (colourIdx !== -1 && (cat.rows.colourIdx?.[i] ?? -1) !== colourIdx) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -58,7 +88,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
       rows.push(i);
     }
     return rows;
-  }, [cat, garmentIdx, brandIdx, query]);
+  }, [cat, garmentIdx, brandIdx, colourIdx, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -73,7 +103,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [garment, brand, q]);
+  }, [garment, brand, colour, q]);
 
   const shownRows = sortedRows.slice(0, visible);
 
@@ -128,6 +158,13 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
             here, not re-deriving anything. See
             docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {/* `cat.colours.length > 1`, not `colours.length > 1`: `colours` carries
+            the synthesised "All colours" row too, so it is never empty. And
+            `> 1` rather than `> 0` because a surface where every classified row
+            is one colour offers a filter that can only ever be a no-op. */}
+        {cat.colours.length > 1 && (
+          <FilterDropdown label="Colour" value={colour} options={colours} onSelect={setColour} />
+        )}
         {/* Unlike the three above, this dropdown's "nothing chosen" value is a
             real key: 'featured' IS a sort order, not the absence of one. It is
             also listed in SORT_OPTIONS, so FilterDropdown labels its default
