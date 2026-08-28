@@ -30,7 +30,7 @@ export function FilterDropdown({
    * The Sort control's default is a REAL key ('featured'), so it needs to say so.
    */
   defaultValue?: string;
-  options: { value: string; label: string }[];
+  options: { value: string; label: string; swatch?: string }[];
   onSelect: (v: string) => void;
 }) {
   // Deliberately not `options.find(...)`: when the default is a real, listed
@@ -146,6 +146,31 @@ export function FilterDropdown({
                   className="menu-row"
                   data-active={value === o.value}
                 >
+                  {o.swatch && (
+                    <span
+                      aria-hidden
+                      style={{
+                        display: 'inline-block',
+                        width: 10,
+                        height: 10,
+                        // The gap is an inline margin, not a Tailwind `gap-2`.
+                        // .menu-row is unlayered CSS and Tailwind utilities are
+                        // layered, so anything .menu-row declares wins — it does
+                        // not declare `gap`, so `gap-2` would in fact work, but
+                        // stating the spacing here keeps the swatch's geometry in
+                        // one place and out of that argument entirely.
+                        marginRight: 8,
+                        flexShrink: 0,
+                        borderRadius: 9999,
+                        background: o.swatch,
+                        // A border on EVERY swatch, not only the pale ones: white
+                        // and cream are invisible on a parchment menu without it,
+                        // and applying it selectively would make those two dots a
+                        // different physical size and shift their labels by a pixel.
+                        border: '1px solid var(--hairline)',
+                      }}
+                    />
+                  )}
                   {o.label}
                 </Menu.RadioItem>
               ))}
