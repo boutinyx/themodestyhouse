@@ -111,3 +111,7 @@ data/.live-lane-overrides.json
 # (lib/liveDressTypes.ts). scripts/merge-live-edits.mjs folds it into
 # data/dress-subtypes.json. Added 2026-08-27.
 data/.live-dress-types.json
+
+# Generated colour-review page — regenerate with scripts/colour-review.mjs.
+# The DECISIONS it produces live in data/colour-overrides.json, which IS tracked.
+/colour-review.html
