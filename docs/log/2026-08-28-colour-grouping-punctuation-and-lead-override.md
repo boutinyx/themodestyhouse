@@ -103,7 +103,7 @@ led that group on input order, so this entry pins the existing outcome rather th
 it. Recorded because an override that happens to agree with the default looks identical to
 one that is working, and only one of them would survive a re-interleave:
 
-Eight picks arrived in all. Measured with the leads file emptied and again with it in place,
+Nine picks arrived in all. Measured with the leads file emptied and again with it in place,
 through `browseProducts()`:
 
 ```
@@ -116,9 +116,10 @@ Cara …- champagne      x2                Cara …- Dusty Rose Pink x2   CHANGE
 Palm …- Dusty Mauve    x2                Palm …- Dusty Mauve     x2   no-op, pins it
 Kaia …- Dusty Blue     x2                Kaia …- Dusty Blue      x2   no-op, pins it
 Laura …- Blush Gold    x2                Laura …- Blush Gold     x2   no-op, pins it
+Naomi …- Sage Green    x2                Naomi …- Sage Green     x2   no-op, pins it
 ```
 
-**Five of the eight entries change the card; three agree with what input order already gave.**
+**Five of the nine entries change the card; four agree with what input order already gave.**
 Recorded because an override that happens to match the default looks identical to one that is
 working, and only one of them would survive a re-interleave — `interleaveByBrand` rewrites
 row order on every publish (§8), so today's accidental agreement is not tomorrow's.
