@@ -7,6 +7,7 @@ import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
 import { DRESS_SUBTYPE_LABELS } from '@/lib/specialty';
+import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
 import { LanguageNote } from './LanguageNote';
 
@@ -90,6 +91,8 @@ export function FilterableGrid({
   // `brand`, not synced to the URL. Only meaningful on lanes where
   // cat.hijabTypeFilters is non-empty (in practice: only modest-hijabs).
   const [fabricType, setFabricType] = useState('all');
+  // Same shape as `brand` and `fabricType`: plain in-page state, never URL-driven.
+  const [colour, setColour] = useState('all');
   const [type, setType] = useState(() => {
     if (!initialType) return 'all';
     if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
@@ -154,6 +157,29 @@ export function FilterableGrid({
     () => cat.hijabTypeFilters.map((t) => ({ value: t, label: HIJAB_TYPE_FILTER_LABELS[t] })),
     [cat]
   );
+  // cat.colours is already in COLOUR_FAMILY_LABELS's canonical order — see the
+  // pre-pass in encodeCatalogue — so this maps without re-sorting.
+  //
+  // The leading 'all' row is supplied rather than left to FilterDropdown, which
+  // otherwise synthesises `All ${label.toLowerCase()}` — "All colour", which
+  // reads wrong where "All brand" does not. A listed default option makes it
+  // read "All colours"; the component borrows that label for its top row and
+  // drops the duplicate from the list, exactly as Sort's 'featured' does. That
+  // row carries no swatch, so its label sits flush left while the fifteen
+  // colours are indented past their dot — left as is, because it is the row
+  // that CLEARS the filter rather than a sixteenth colour, and a dot standing
+  // for "no colour" would have to be invented.
+  const colours = useMemo(
+    () => [
+      { value: 'all', label: 'All colours' },
+      ...cat.colours.map((c) => ({
+        value: c as string,
+        label: COLOUR_FAMILY_LABELS[c],
+        swatch: COLOUR_FAMILY_SWATCH[c],
+      })),
+    ],
+    [cat],
+  );
   // Outerwear's in-page "Type" dropdown was removed 2026-08-13 at Tina's
   // explicit request ("i dont want this filter anymore i only want to be
   // able to filter using the products -> outerwear -> choose"): the header's
@@ -200,6 +226,7 @@ export function FilterableGrid({
             : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
   const fabricTypeIdx = fabricType === 'all' ? -1 : cat.hijabTypeFilters.indexOf(fabricType as (typeof cat.hijabTypeFilters)[number]);
+  const colourIdx = colour === 'all' ? -1 : cat.colours.indexOf(colour as (typeof cat.colours)[number]);
 
   const filteredRows = useMemo(() => {
     const rows: number[] = [];
@@ -226,6 +253,10 @@ export function FilterableGrid({
       // link (narrows by sub-category) and also pick "Jersey" here (narrows
       // further by fabric).
       if (fabricTypeIdx !== -1 && (cat.rows.hijabTypeFilterIdx?.[i] ?? -1) !== fabricTypeIdx) continue;
+      // `?? -1` because the column is dropped when every row is -1 — a lane
+      // where nothing is classified must still filter to empty rather than
+      // crash on an absent array. Same contract as the subtype columns.
+      if (colourIdx !== -1 && (cat.rows.colourIdx?.[i] ?? -1) !== colourIdx) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
@@ -234,7 +265,7 @@ export function FilterableGrid({
       rows.push(i);
     }
     return rows;
-  }, [cat, brandIdx, typeIdx, typeDomain, fabricTypeIdx, query]);
+  }, [cat, brandIdx, typeIdx, typeDomain, fabricTypeIdx, colourIdx, query]);
 
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
@@ -248,7 +279,7 @@ export function FilterableGrid({
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [brand, type, fabricType, q]);
+  }, [brand, type, fabricType, colour, q]);
 
   const shownRows = sortedRows.slice(0, visible);
 
@@ -309,6 +340,13 @@ export function FilterableGrid({
             here, not re-deriving anything. See
             docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {/* `cat.colours.length > 1`, not `colours.length > 1`: `colours` carries
+            the synthesised "All colours" row too, so it is never empty. And
+            `> 1` rather than `> 0` because a lane where every classified row is
+            one colour offers a filter that can only ever be a no-op. */}
+        {cat.colours.length > 1 && (
+          <FilterDropdown label="Colour" value={colour} options={colours} onSelect={setColour} />
+        )}
         {/* Only rendered on a lane with fabric/style groups to offer — in
             practice, only /modest-hijabs. Independent of the sub-category
             flyout (Khimars & Jilbabs/Undercaps, 034a985) — see the comment
