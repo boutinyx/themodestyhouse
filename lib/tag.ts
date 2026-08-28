@@ -12,7 +12,7 @@ import type { Garment } from '@/lib/types';
  * range, not sufficient — every rule below written for a non-English feed uses
  * this instead. Guarded by the last test in `Turkish garment vocabulary`.
  */
-const word = (alternatives: string): RegExp =>
+export const word = (alternatives: string): RegExp =>
   new RegExp(`(?<![\\p{L}\\p{M}\\d])(?:${alternatives})(?![\\p{L}\\p{M}\\d])`, 'iu');
 
 /**
