@@ -24,6 +24,14 @@ const SWIM_RE = /burkini|swim|bathing ?suit|beachwear/i;
 // 50 of the lane's 101 and pulls in 47 genuine items that were stranded on
 // other lanes, mostly Dignitii's sports dresses and BreathLite sports hijabs in
 // the colourways the tag happened not to carry.
+// TINA'S RULE, 2026-08-29: "if it says sport it stays." Asked whether the nine
+// "Sports Cotton Trench Coat" / "Ribbed Sports Abaya" / "Women's Sports Trench"
+// items from the Turkish houses belonged on the lane — they are outerwear, and
+// those brands use "sports" to mean sporty STYLING rather than athletic wear —
+// she chose to keep them. So `\bsports?\b` in the vocabulary below is doing
+// exactly what she wants, and this is not a false positive to be tightened away.
+// Do not "fix" it.
+//
 // `leggings`/`tights` added 2026-08-29, second pass. The lane's own intro in
 // lib/lanes.ts has always read "Sports dresses, LEGGINGS and covered athleisure
 // for training and everyday movement" — and the word had never been in this

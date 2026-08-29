@@ -104,6 +104,8 @@ which stopped being true here; both updated in place with a note rather than del
   and the new brands on `staging` so she can review them first.
 - The five houses' 111 products default to `keep` and are visible in `/staff/curate` →
   "Recently added", and by brand slug under "Review a brand".
-- Still open from the cleanup: nine "Sports Trench Coat"-type items from the Turkish houses
-  sit on the lane under "All Type". They match `\bsports?\b` honestly; whether a trench coat
-  belongs on an activewear lane is an editorial call.
+- ~~Still open: nine "Sports Trench Coat"-type items from the Turkish houses.~~ **DECIDED
+  the same day — Tina: *"if it says sport it stays."*** They keep their place on the lane
+  under "All Type". No code changed, because `\bsports?\b` already admits them; the rule is
+  written into `ACTIVE_RE`'s own comment so it is not tightened away later by someone reading
+  "Sports Cotton Trench Coat" as a misclassification.
