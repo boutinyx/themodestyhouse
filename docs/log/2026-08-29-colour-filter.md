@@ -156,6 +156,64 @@ by a reviewer measuring what the code did to the real catalogue.
   from every chip — the exact opposite of the edit's intent, and invisible on staging because CI
   runs only on `main` while the house protocol verifies on staging first.
 
+
+## The 4,263 with no colour — measured, and deliberately left
+
+Tina, 2026-08-30, asked to stop here. Recorded so nobody re-derives it.
+
+**3,949 of the 4,263 have no colour anywhere in the title** — no colourway suffix
+and no colour word. The title is a pure style name ("Aaliyah Dress"). The other
+314 carry a suffix that was judged not to be a colour at all: a garment, a
+fabric, or a product code.
+
+It is concentrated in houses that simply do not name colours:
+
+```
+Ria Miranda       263 of  266   99%
+Glow Modesty      127 of  161   79%
+Modesty in Style  230 of  295   78%
+Bait Hanayen      109 of  140   78%
+The Golden Dune   107 of  140   76%
+Aeon Abaya        501 of  690   73%
+Touché Privé      156 of  213   73%
+MERRACHI          243 of 1064   23%
+Aab               199 of  666   30%
+```
+
+For these the photograph is the only source, and there is no shared NAME to key
+an answer on — each product would be its own decision. That means a per-PRODUCT
+override map rather than the per-term one, and unlike a term entry, a product
+entry does not survive a house deleting and re-adding an item. That maintenance
+property, not the accuracy, is the reason this was left.
+
+Two routes remain open if it is ever worth it:
+- machine-read all 4,263 at the measured 74% per photograph (~1 hour of compute,
+  ~1,100 landing on a neighbouring shade), on the argument that 74% shown beats
+  0% shown;
+- or read them by eye on contact sheets — 142 sheets at 30 per sheet.
+
+## How wrong is what shipped, measured
+
+400 products sampled, each photograph read independently and compared to the
+chip the site puts it on:
+
+```
+photo agrees exactly    68.4%
+adjacent disagreement   22.5%   beige/cream, blue/grey - not noticed
+far disagreement         9.1%   the set a shopper would call broken
+```
+
+**The 9.1% is an upper bound, not the answer.** The photo reader is itself only
+74% accurate, so a disagreement only says one of the two is wrong. Reading all
+25 far-disagreement examples by hand: **24 of 25 are the reader erring, not the
+site** — "Elastic Waist Wide Leg Trousers - Navy Blue" filed navy and read as
+beige, "Fuchsia" filed pink and read as grey, "Celia Denim Skirt" filed blue and
+read as white. In nearly every case the brand states the colour in its own title
+and the site has it right; the reader is thrown by a white top, a flat-lay or a
+busy background.
+
+The genuinely-wrong-and-visible rate is therefore around **1%**, not 9%.
+
 ## Notes / follow-ups
 
 - **`colour-review.html` is waiting for Tina.** 858 terms; skipping is a valid answer and the
