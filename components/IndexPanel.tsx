@@ -43,7 +43,14 @@ export function FilterDropdown({
   // otherwise synthesise the `All <label>` row this menu has always had.
   const defaultOption = options.find((o) => o.value === defaultValue);
   const rows = [
-    { value: defaultValue, label: defaultOption ? defaultOption.label : `All ${label.toLowerCase()}` },
+    // `swatch` is carried through as well as `label`. It used to borrow only the
+    // label, so a listed default option's swatch was silently discarded and its
+    // row was the one row in the menu with no dot — i.e. the only way to align
+    // that row with the rest was to edit this component, which is not something
+    // a caller can discover from the outside. Optional, so the seven call sites
+    // that pass no swatch at all — including both Sort dropdowns, whose default
+    // IS a listed option — are unaffected: `swatch` is simply undefined there.
+    { value: defaultValue, label: defaultOption ? defaultOption.label : `All ${label.toLowerCase()}`, swatch: defaultOption?.swatch },
     ...options.filter((o) => o.value !== defaultValue),
   ];
 
