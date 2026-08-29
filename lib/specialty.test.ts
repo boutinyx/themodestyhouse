@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap, hijabSubtype, dressSubtype } from './specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap, hijabSubtype, dressSubtype, swimSubtype, activeSubtype } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -25,9 +25,18 @@ describe('isActivewear', () => {
     expect(isActivewear(p('Sports Hijab - Black', 'hijab'))).toBe(true);
     expect(isActivewear(p('Yoga Leggings', 'trousers'))).toBe(true);
   });
-  it('falls back to the noisy activity flag only on activewear-typical garments', () => {
+  // REWRITTEN 2026-08-29. This used to assert the opposite of its second line:
+  // that a gym-tagged 'trousers' qualified on the tag ALONE. That was the rule
+  // until Tina reported the lane ("the modest active wear swimwear is all
+  // messed up ... now it looks like shit"), and measuring found 66 of its 101
+  // products had arrived by exactly this path. The tag is now ignored entirely
+  // — see isActivewear's own comment. Kept as a test rather than deleted,
+  // because the behaviour it pins is the one that was wrong and could return.
+  it('ignores the feed activity flag completely — the title is the only evidence', () => {
     expect(isActivewear({ ...p('Plain Hijab', 'hijab'), activity: ['gym'] })).toBe(false);
-    expect(isActivewear({ ...p('Plain Leggings', 'trousers'), activity: ['gym'] })).toBe(true);
+    expect(isActivewear({ ...p('Plain Leggings', 'trousers'), activity: ['gym'] })).toBe(false);
+    // …and the same garment DOES qualify once its name says so.
+    expect(isActivewear({ ...p('Active Leggings - Sage', 'trousers') })).toBe(true);
   });
   it('never overlaps swim', () => {
     expect(isActivewear(p('Swim Leggings', 'trousers'))).toBe(false);
@@ -36,8 +45,13 @@ describe('isActivewear', () => {
     // ria-miranda's ri-flex base-layer line carries this noisy tag on the real feed.
     expect(isActivewear(p('Comfy Sleeveless Top', 'top', { brandSlug: 'ria-miranda', activity: ['gym'] }))).toBe(false);
   });
-  it('still trusts the gym tag for a real activewear top from the same brand', () => {
-    expect(isActivewear(p('Shera Inner Tee', 'top', { brandSlug: 'ria-miranda', activity: ['gym'] }))).toBe(true);
+  // Also rewritten 2026-08-29, same reason. "Shera Inner Tee" is a base layer;
+  // that it was ever ON the activewear lane is the defect, not the fix. Six
+  // more Ria Miranda pieces reached it the same way (Thera Tee, Rora/Nalura/
+  // Iona Jacket, Celes Vest, Comfy Pants) and all now sit on their own lanes.
+  it('no longer trusts the gym tag for an untitled activewear top', () => {
+    expect(isActivewear(p('Shera Inner Tee', 'top', { brandSlug: 'ria-miranda', activity: ['gym'] }))).toBe(false);
+    expect(isActivewear(p('Flexa Sport Hijab', 'hijab', { brandSlug: 'ria-miranda' }))).toBe(true);
   });
 });
 
@@ -465,5 +479,69 @@ describe('forcedLane override', () => {
   });
   it('a forced-layering item stops matching isOuterwear, even if its title would', () => {
     expect(isOuterwear(p('Belted Double Breasted Angora Coat', 'top', { forcedLane: 'layering-basics' }))).toBe(false);
+  });
+});
+
+describe('isActivewear — title evidence only (2026-08-29)', () => {
+  // The regression this exists to prevent. Before this date the feed's own
+  // `activity` tag qualified an item on its own, and 66 of the lane's 101
+  // products arrived that way with nothing in the name suggesting sport.
+  // Every title below is a real one that was on /modest-activewear.
+  it('does NOT put ordinary clothing on the lane just because the feed tagged it gym', () => {
+    const tagged = { activity: ['gym'] };
+    expect(isActivewear(p('Audrey Blazer - Caramel', 'top', tagged))).toBe(false);
+    expect(isActivewear(p('Dakota Belted Wrap Coat - Black', 'top', tagged))).toBe(false);
+    expect(isActivewear(p('Jordan Pants', 'trousers', tagged))).toBe(false);
+    expect(isActivewear(p('Rora Jacket', 'top', tagged))).toBe(false);
+    expect(isActivewear(p('Dune Splash Blouse Black', 'top', tagged))).toBe(false);
+    expect(isActivewear(p('Aiyla (Leggings) - Cloud', 'trousers', tagged))).toBe(false);
+  });
+
+  it('still matches genuine activewear, including the words the old rule missed', () => {
+    expect(isActivewear(p('Active Leggings - Sage', 'trousers'))).toBe(true);
+    expect(isActivewear(p('Polo Active Co-Ord Set Blue', 'set'))).toBe(true);
+    expect(isActivewear(p('Performance Top Black', 'top'))).toBe(true);
+    expect(isActivewear(p('Refined Cotton Track Pants - Ivory', 'trousers'))).toBe(true);
+    expect(isActivewear(p('On-The-Go Jacket- Charcoal', 'top'))).toBe(true);
+    expect(isActivewear(p('The Staple Modest Sports Dress- Plum', 'dress'))).toBe(true);
+  });
+});
+
+describe('swimSubtype', () => {
+  it('buckets the real catalogue titles', () => {
+    expect(swimSubtype(p('Long Burkini with Wide Pants', 'swim'))).toBe('burkini');
+    expect(swimSubtype(p('Capri Swim Tights - Bloom', 'swim'))).toBe('swim-legging');
+    expect(swimSubtype(p('Swim Pocket Tights - Sky', 'swim'))).toBe('swim-legging');
+    expect(swimSubtype(p('Cape Swim Dress - Earth', 'swim'))).toBe('swim-dress');
+    expect(swimSubtype(p('Short Instant Swim Hijab Taupe', 'swim'))).toBe('swim-hijab');
+    expect(swimSubtype(p('Swimming turban Berry', 'swim'))).toBe('swim-hijab');
+    expect(swimSubtype(p('Beach Cover-Up', 'swim'))).toBe('cover-up');
+    expect(swimSubtype(p('Serena Midi Swimsuit - Black', 'swim'))).toBe('swim-top');
+  });
+
+  it('burkini wins over the looser rules below it', () => {
+    expect(swimSubtype(p('Zip Burkini Set with Swim Hijab', 'swim'))).toBe('burkini');
+  });
+
+  it('returns null off the swim lane, and for an unclassifiable swim item', () => {
+    expect(swimSubtype(p('Ribbed Sports Abaya', 'abaya'))).toBeNull();
+    expect(swimSubtype(p('Rabtah Slip', 'swim'))).toBeNull();
+  });
+});
+
+describe('activeSubtype', () => {
+  it('takes the garment first, then the title', () => {
+    expect(activeSubtype(p('Aeroflex Sports Hijab Shawl- Grey', 'hijab'))).toBe('sports-hijab');
+    expect(activeSubtype(p('The Staple Modest Sports Dress Black', 'dress'))).toBe('sports-dress');
+    expect(activeSubtype(p('Polo Active Co-Ord Set Blue', 'set'))).toBe('active-set');
+    expect(activeSubtype(p('Active Leggings - Sage', 'trousers'))).toBe('active-legging');
+    expect(activeSubtype(p('Performance Tech Hooded Top - Black', 'top'))).toBe('active-top');
+  });
+
+  it('returns null for anything not on the lane, and for the sports-trench class', () => {
+    expect(activeSubtype(p('Cream Closed Abayah', 'abaya'))).toBeNull();
+    // Real titles from the Turkish houses: "sports" here means sporty styling,
+    // not athletic wear. They stay on the lane but under "All Type".
+    expect(activeSubtype(p('Oversize Sports Cotton Trench Coat with Epaulette Detail - Brown', 'abaya'))).toBeNull();
   });
 });

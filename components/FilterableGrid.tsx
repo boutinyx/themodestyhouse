@@ -6,7 +6,7 @@ import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
-import { DRESS_SUBTYPE_LABELS } from '@/lib/specialty';
+import { DRESS_SUBTYPE_LABELS, SWIM_SUBTYPE_LABELS, ACTIVE_SUBTYPE_LABELS } from '@/lib/specialty';
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
 import { LanguageNote } from './LanguageNote';
@@ -20,6 +20,7 @@ export function FilterableGrid({
   trailingTile,
   searchable = true,
   showTypeFilter = true,
+  laneDomain,
   showConsole = true,
   source,
 }: {
@@ -67,6 +68,12 @@ export function FilterableGrid({
    *  answers a question the page is not asking. Tina, 2026-08-24: "type can go
    *  out too". Defaults to true, so the lanes are untouched. */
   showTypeFilter?: boolean;
+  /** Which subtype domain THIS lane owns (lib/laneSubtypes.ts::domainForLane).
+   *  Ownership is declared, never inferred from which columns are non-empty:
+   *  a swim cap is `isSwim` AND appears on /modest-hijabs, so that lane's
+   *  encoded catalogue carries a populated swimSubtypes column it does not own.
+   *  Undefined on the brand and edit grids, which have no lane. */
+  laneDomain?: 'layering' | 'outerwear' | 'hijab' | 'swim' | 'active' | null;
   /** Whether to render the index console AT ALL — the search field and the whole
    *  filter row, not just one control inside it.
    *
@@ -153,6 +160,21 @@ export function FilterableGrid({
     () => cat.dressSubtypes.map((t) => ({ value: t as string, label: DRESS_SUBTYPE_LABELS[t] })),
     [cat.dressSubtypes],
   );
+  // The Modest Swimwear / Modest Activewear "Type" options, same shape and
+  // same already-canonical ordering as dressTypes above. Added 2026-08-29:
+  // before this, /modest-activewear's only Type control was `fabricTypes`
+  // below — the HIJAB FABRIC filter — because 15 of the lane's 56 items are
+  // sports hijabs. It offered "Caps & Underscarves", "Instant Hijabs" and
+  // "Sport Hijabs" as the only way to narrow a lane of leggings, sports
+  // dresses and co-ords. /modest-swimwear had no Type control at all.
+  const swimTypes = useMemo(
+    () => (laneDomain === 'swim' ? cat.swimSubtypes.map((t) => ({ value: t as string, label: SWIM_SUBTYPE_LABELS[t] })) : []),
+    [cat.swimSubtypes, laneDomain],
+  );
+  const activeTypes = useMemo(
+    () => (laneDomain === 'active' ? cat.activeSubtypes.map((t) => ({ value: t as string, label: ACTIVE_SUBTYPE_LABELS[t] })) : []),
+    [cat.activeSubtypes, laneDomain],
+  );
   const fabricTypes = useMemo(
     () => cat.hijabTypeFilters.map((t) => ({ value: t, label: HIJAB_TYPE_FILTER_LABELS[t] })),
     [cat]
@@ -204,26 +226,43 @@ export function FilterableGrid({
   // lane is layering-basics, outerwear, or modest-hijabs, never a mix — so
   // this picks whichever subtype column actually applies here, same pattern
   // as the old binary `usingOuterwearTypes` just extended to a third case.
-  const typeDomain: 'layering' | 'outerwear' | 'hijab' | 'dress' | 'none' =
-    cat.layeringSubtypes.length > 0
-      ? 'layering'
-      : cat.outerwearSubtypes.length > 0
-        ? 'outerwear'
-        : cat.hijabSubtypes.length > 0
-          ? 'hijab'
-          : cat.dressSubtypes.length > 0
-            ? 'dress'
-            : 'none';
+  //
+  // SWIM AND ACTIVE COME FIRST, and that ordering is the fix rather than a
+  // preference. The comment above used to say a lane has only one of these
+  // non-empty at a time; that stopped being true the moment a lane carried
+  // hijabs, which /modest-activewear does (15 of 56) and /modest-swimwear does
+  // (swim caps and turbans). Both would otherwise resolve to 'hijab' and
+  // filter by the wrong column. swimSubtype()/activeSubtype() each return null
+  // unless isSwim()/isActivewear() is true, so these two can only ever be
+  // non-empty on their own lane — putting them first is safe everywhere else.
+  const typeDomain: 'swim' | 'active' | 'layering' | 'outerwear' | 'hijab' | 'dress' | 'none' =
+    laneDomain === 'swim' && cat.swimSubtypes.length > 0
+      ? 'swim'
+      : laneDomain === 'active' && cat.activeSubtypes.length > 0
+        ? 'active'
+        : cat.layeringSubtypes.length > 0
+          ? 'layering'
+          : cat.outerwearSubtypes.length > 0
+            ? 'outerwear'
+            : cat.hijabSubtypes.length > 0
+              ? 'hijab'
+              : cat.dressSubtypes.length > 0
+                ? 'dress'
+                : 'none';
   const typeIdx =
     type === 'all'
       ? -1
-      : typeDomain === 'outerwear'
-        ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
-        : typeDomain === 'hijab'
-          ? cat.hijabSubtypes.indexOf(type as (typeof cat.hijabSubtypes)[number])
-          : typeDomain === 'dress'
-            ? cat.dressSubtypes.indexOf(type as (typeof cat.dressSubtypes)[number])
-            : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
+      : typeDomain === 'swim'
+        ? cat.swimSubtypes.indexOf(type as (typeof cat.swimSubtypes)[number])
+        : typeDomain === 'active'
+          ? cat.activeSubtypes.indexOf(type as (typeof cat.activeSubtypes)[number])
+          : typeDomain === 'outerwear'
+            ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
+            : typeDomain === 'hijab'
+              ? cat.hijabSubtypes.indexOf(type as (typeof cat.hijabSubtypes)[number])
+              : typeDomain === 'dress'
+                ? cat.dressSubtypes.indexOf(type as (typeof cat.dressSubtypes)[number])
+                : cat.layeringSubtypes.indexOf(type as (typeof cat.layeringSubtypes)[number]);
 
   const fabricTypeIdx = fabricType === 'all' ? -1 : cat.hijabTypeFilters.indexOf(fabricType as (typeof cat.hijabTypeFilters)[number]);
   const colourIdx = colour === 'all' ? -1 : cat.colours.indexOf(colour as (typeof cat.colours)[number]);
@@ -239,7 +278,11 @@ export function FilterableGrid({
         // in lib/compactCatalogue.ts), so an absent column means "no row has
         // a subtype", which is exactly -1 for every i.
         const rowTypeIdx =
-          typeDomain === 'outerwear'
+          typeDomain === 'swim'
+            ? (cat.rows.swimSubtypeIdx?.[i] ?? -1)
+            : typeDomain === 'active'
+              ? (cat.rows.activeSubtypeIdx?.[i] ?? -1)
+              : typeDomain === 'outerwear'
             ? (cat.rows.outerwearSubtypeIdx?.[i] ?? -1)
             : typeDomain === 'hijab'
               ? (cat.rows.hijabSubtypeIdx?.[i] ?? -1)
@@ -351,7 +394,12 @@ export function FilterableGrid({
             practice, only /modest-hijabs. Independent of the sub-category
             flyout (Khimars & Jilbabs/Undercaps, 034a985) — see the comment
             on fabricTypeIdx above. */}
-        {showTypeFilter && fabricTypes.length > 0 && (
+        {/* The hijab FABRIC filter. Suppressed where the lane has a Type
+            domain of its own, so /modest-activewear and /modest-swimwear can
+            never show two "Type" chips — one of which would be about
+            headwear. In practice that leaves it on /modest-hijabs only,
+            which is where it was always meant to be. */}
+        {showTypeFilter && fabricTypes.length > 0 && swimTypes.length === 0 && activeTypes.length === 0 && (
           <FilterDropdown label="Type" value={fabricType} options={fabricTypes} onSelect={setFabricType} />
         )}
         {/* Modest Dresses' Everyday / Occasion / Slip filter, 2026-08-26 —
@@ -386,6 +434,12 @@ export function FilterableGrid({
             across categories has no business offering a dress-only chip. The
             two can never both render — a catalogue has dress subtypes or hijab
             fabric groups, never both. */}
+        {showTypeFilter && swimTypes.length > 0 && (
+          <FilterDropdown label="Type" value={type} options={swimTypes} onSelect={setType} />
+        )}
+        {showTypeFilter && activeTypes.length > 0 && (
+          <FilterDropdown label="Type" value={type} options={activeTypes} onSelect={setType} />
+        )}
         {showTypeFilter && dressTypes.length > 0 && (
           <FilterDropdown label="Type" value={type} options={dressTypes} onSelect={setType} />
         )}

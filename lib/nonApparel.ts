@@ -109,6 +109,15 @@ export const TIER_0: Rule[] = [
 
   // 'kohl'/'kajal' need a cosmetic companion — "Kohl" is a live hijab colourway.
   ['care', /\b(deodorants?|shampoos?|miswaks?|siwaks?|body\s*butter|lip\s*balms?|hair\s*oils?|face\s*serums?)\b/i],
+  // Anchored to the BODY PART, never to the product word alone. Added
+  // 2026-08-29 after Chador's "Silk Smooth Hand Cream" published onto
+  // /modest-swimwear (its garment had been tagged `swim`, and nothing here
+  // vetoed it first). A bare /\bcream\b/ is the §10.10 trap in its purest
+  // form: measured against the live catalogue it matches 205 PUBLISHED
+  // products, because cream is a colour — "Cream Closed Abayah", "Butter
+  // Cream Jersey Hijab", "Isla (Cream)". The phrase-anchored version below
+  // matches exactly one row, which is the one that is actually a hand cream.
+  ['care', /\b(hand|body|face|foot|skin)\s*(creams?|lotions?|balms?|scrubs?|washes?|oils?)\b|\bbody\s*mists?\b|\bhand\s*sanitis?zers?\b/i],
   ['care', /\b(kohl|kajal)\s*(kajal|kohl|liners?|pencils?|sticks?|eyeliners?)\b/i],
 
   ['beauty', /\b(makeup|make[\s-]?up|cosmetics?)\s*(brush(es)?|sponges?|blenders?|kits?|bags?|cases?)\b/i],

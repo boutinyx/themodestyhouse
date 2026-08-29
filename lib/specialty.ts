@@ -15,8 +15,17 @@ export type { LayeringSubtype, OuterwearSubtype, HijabSubtype, DressSubtype };
 // garments and otherwise require the title to say so.
 
 const SWIM_RE = /burkini|swim|bathing ?suit|beachwear/i;
-const ACTIVE_RE = /\b(sports?|activewear|athleis\w*|athletic|gym|workout|yoga|running)\b/i;
-const ACTIVE_GARMENTS = new Set(['trousers', 'top', 'set']);
+// Widened 2026-08-29. The old vocabulary had `activewear` but not bare
+// `active`, and no `performance` / `track pants` / `on-the-go` — so genuinely
+// athletic pieces ("Active Leggings", "Polo Active Co-Ord Set", "Performance
+// Top", "Refined Cotton Track Pants") could only reach the lane through the
+// feed's `activity` tag, which is exactly the path that was letting everything
+// else in too. Measured before shipping: title-only with this vocabulary keeps
+// 50 of the lane's 101 and pulls in 47 genuine items that were stranded on
+// other lanes, mostly Dignitii's sports dresses and BreathLite sports hijabs in
+// the colourways the tag happened not to carry.
+const ACTIVE_RE =
+  /\b(sports?|activewear|active|athleis\w*|athletic|gym|workout|yoga|running|performance|rashguard|track ?(pants|suit)|joggers?|on-the-go)\b/i;
 
 // Coverage pieces worn UNDER another garment (base layers, dickeys, standalone
 // neck covers, sleeve extenders) rather than as an outfit on their own — Tina
@@ -321,9 +330,21 @@ export function isActivewear(p: Product): boolean {
   if (p.forcedLane) return p.forcedLane === 'modest-activewear';
   if (isSwim(p)) return false; // swimwear belongs to the swim lane, not activewear
   if (isLayering(p)) return false; // e.g. ria-miranda's ri-flex line carries a noisy activity:"gym" tag
-  if (ACTIVE_RE.test(p.title)) return true;
-  const a = p.activity || [];
-  return (a.includes('gym') || a.includes('swim')) && ACTIVE_GARMENTS.has(p.garment);
+  // TITLE ONLY. The feed's own `activity` tag used to qualify an item on its
+  // own, and that was the defect Tina reported on 2026-08-29 ("the modest
+  // active wear swimwear is all messed up ... now it looks like shit").
+  // Measured: 66 of the lane's 101 items got there by the tag ALONE, with
+  // nothing in the name suggesting sport — Niswa's Audrey Blazer and Dakota
+  // Wrap Coat, nine Aeon Abaya trousers ("Jordan Pants", "Ryder Pants"), six
+  // Ria Miranda jackets and tees, Yasmin Jay's Dune Splash Blouse. A merchant
+  // tagging a whole collection `gym` is not evidence about any one garment, and
+  // ACTIVE_GARMENTS ('trousers' | 'top' | 'set') is broad enough to cover most
+  // of a wardrobe, so the two together swept in ordinary clothing.
+  //
+  // Dropping the tag does NOT delete anything: an item that stops being
+  // activewear returns to the lane its garment already puts it on, which for
+  // every one of those 51 is where it belonged.
+  return ACTIVE_RE.test(p.title);
 }
 
 // "Jilbab" is inconsistent across this catalogue's brands: for eastessence
@@ -549,6 +570,96 @@ const OCCASION_BRANDS = new Set(['glow-modesty']);
  * later starts matching (a re-tagged khimaar, a "Prayer Dress") must not keep
  * advertising a dress subtype for a lane it no longer appears on.
  */
+/**
+ * Sub-categories WITHIN Modest Swimwear and Modest Activewear, for the "Type"
+ * filter on those two lanes.
+ *
+ * WHY THEY EXIST. Added 2026-08-29 after Tina: "the type filter is also not
+ * good and need to be fixed up". Measured on the live site that day, the Type
+ * dropdown on /modest-activewear offered exactly two options — "Caps &
+ * Underscarves" and "Sport Hijabs" — because 15 of that lane's 56 items are
+ * sports hijabs, so the encoded catalogue carried a non-empty `hijabSubtypes`
+ * column and the dropdown fell through to it. On a lane of leggings, sports
+ * dresses and co-ords, the only way to filter was by two kinds of headwear.
+ * /modest-swimwear had no Type control at all.
+ *
+ * ORDER IS THE FILTER ORDER, most-populated first, measured the same day:
+ * burkini 60, swim leggings 23, swim dress 20, swim hijab 20, swim top 10,
+ * cover-up 5; and for activewear sets 14, sports hijab 13, tops 10,
+ * leggings 4, sports dress 2.
+ *
+ * BOTH RETURN null FREELY. Like dressSubtype() and unlike the layering/hijab
+ * ones, an unclassified item is ordinary here — a "Paddle Suit" or one of the
+ * Turkish houses' "Sports Cotton Trench Coat"s belongs to no bucket and simply
+ * shows under "All Type".
+ */
+export type SwimSubtype = 'burkini' | 'swim-legging' | 'swim-dress' | 'swim-hijab' | 'swim-top' | 'cover-up';
+
+export const SWIM_SUBTYPE_LABELS: Record<SwimSubtype, string> = {
+  burkini: 'Burkinis',
+  'swim-legging': 'Swim Leggings & Pants',
+  'swim-dress': 'Swim Dresses',
+  'swim-hijab': 'Swim Hijabs & Caps',
+  'swim-top': 'Swim Tops & Suits',
+  'cover-up': 'Cover-Ups',
+};
+
+// ORDERED — first match wins, so the more specific phrase sits above the
+// general one: "Swim Hijab" must beat "swim top" for a hijab-and-top set, and
+// burkini beats everything because a burkini already names itself.
+// Every alternative carries \b (§10.5, §10.10). Note these titles are English
+// by the time they are read — `scripts/build-data.mjs` applies the translation
+// cache at publish time — but `zwem` is spelled out anyway because Noureen's
+// Dutch titles only started translating on 2026-08-29 and older raw rows keep
+// the original until a refresh touches them (§8).
+const SWIM_SUBTYPE_RULES: [SwimSubtype, RegExp][] = [
+  ['burkini', /\bburkinis?\b/i],
+  // `swim\w*` not `swim` — the translated Dutch titles read "Swimming turban",
+  // not "Swim turban", and that is 6 rows the strict form silently missed.
+  ['swim-hijab', /\bswim\w*\s*(hijabs?|turbans?|caps?|ninjas?|scarf|scarves)\b|\bzwem\s*(ninja|turban)/i],
+  // `\w+\s*` allows ONE intervening word, which is how these are really named:
+  // "Swim Pocket Tights", "Swim Slip Skirt", "Swim Wrap". Measured — it adds 9
+  // and misclassifies none, because the anchor word still has to be `swim`.
+  ['swim-dress', /\bswim\s*(\w+\s+)?(dress|skirt|tunic|wrap)\w*\b|\bswimdress\b/i],
+  ['swim-legging', /\bswim\s*(\w+\s+)?(leggings?|pants?|tights|trousers|shorts|joggers?|bottoms?)\b|\bcapri\s*(swim\s*)?tights\b/i],
+  ['swim-top', /\bswim\s*(top|suit)\b|\bswimsuits?\b|\brashguards?\b|\bbodysuits?\b|\bpaddle\s*suits?\b/i],
+  ['cover-up', /\bcover[\s-]?ups?\b|\bsarongs?\b|\bbeach\s*(dress|kaftan|kimono)\b/i],
+];
+
+export function swimSubtype(p: Product): SwimSubtype | null {
+  if (!isSwim(p)) return null;
+  return SWIM_SUBTYPE_RULES.find(([, re]) => re.test(p.title))?.[0] ?? null;
+}
+
+export type ActiveSubtype = 'sports-hijab' | 'active-set' | 'active-top' | 'active-legging' | 'sports-dress';
+
+export const ACTIVE_SUBTYPE_LABELS: Record<ActiveSubtype, string> = {
+  'sports-hijab': 'Sports Hijabs',
+  'active-set': 'Sets & Co-ords',
+  'active-top': 'Tops & Jackets',
+  'active-legging': 'Leggings & Bottoms',
+  'sports-dress': 'Sports Dresses',
+};
+
+// GARMENT FIRST, title second. `p.garment` is the tagger's considered answer
+// and beats re-reading the name; the title rules below only split what the
+// garment cannot — a 'set' that is really a hijab set, or the many pieces whose
+// garment is a generic 'top'.
+const ACTIVE_SUBTYPE_RULES: [ActiveSubtype, RegExp][] = [
+  ['sports-hijab', /\b(hijabs?|shawls?|turbans?|underscar(f|ves)|caps?)\b/i],
+  ['sports-dress', /\bdress(es)?\b/i],
+  ['active-legging', /\b(leggings?|tights|pants?|trousers?|joggers?|bottoms?)\b/i],
+  ['active-set', /\b(sets?|co-?ords?|two[\s-]?piece)\b/i],
+  ['active-top', /\b(tops?|jackets?|hoodies?|tees?|t-shirts?|shirts?|vests?|tunics?|sweatshirts?)\b/i],
+];
+
+export function activeSubtype(p: Product): ActiveSubtype | null {
+  if (!isActivewear(p)) return null;
+  if (p.garment === 'hijab') return 'sports-hijab';
+  if (p.garment === 'dress') return 'sports-dress';
+  return ACTIVE_SUBTYPE_RULES.find(([, re]) => re.test(p.title))?.[0] ?? null;
+}
+
 export function dressSubtype(p: Product): DressSubtype | null {
   if (p.garment !== 'dress') return null;
   if (isSpecialty(p)) return null;

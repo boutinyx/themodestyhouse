@@ -10,7 +10,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
 import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
-import { LANE_SUBTYPES, resolveSubtype, subtypeSeo } from '@/lib/laneSubtypes';
+import { LANE_SUBTYPES, resolveSubtype, subtypeSeo, domainForLane } from '@/lib/laneSubtypes';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -180,7 +180,7 @@ export default async function LanePage({
           page the header's Search link goes to. A lane is already a narrowed view,
           which is the same argument `searchable={false}` was added for on
           /edits/[slug]. */}
-      <FilterableGrid catalogue={catalogue} initialType={type} searchable={false} source={{ lane: lane.slug }} />
+      <FilterableGrid catalogue={catalogue} initialType={type} searchable={false} source={{ lane: lane.slug }} laneDomain={domainForLane(lane.slug)} />
       {answer && (
         // Informational copy AFTER the grid, not before it — a shopper wants
         // the products first. Still real, crawlable content: server-rendered,

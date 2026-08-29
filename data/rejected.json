@@ -23790,8 +23790,7 @@
     "title": "Bikini - Aqua",
     "url": "https://lanuuk.com/products/bikini-aqua",
     "garmentWas": "swim",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXXL"
+    "reason": "title-pattern"
   },
   {
     "id": "lanuuk:7164711927866",
@@ -23826,8 +23825,23 @@
     "title": "Bikini - Dusk",
     "url": "https://lanuuk.com/products/bikini-dusk",
     "garmentWas": "swim",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, XXXL"
+    "reason": "title-pattern"
+  },
+  {
+    "id": "lanuuk:6922586193978",
+    "brandSlug": "lanuuk",
+    "title": "Bikini - Olive",
+    "url": "https://lanuuk.com/products/bikini-olive",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "lanuuk:4645362892858",
+    "brandSlug": "lanuuk",
+    "title": "Bikini - Black",
+    "url": "https://lanuuk.com/products/bikini-black",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
   },
   {
     "id": "mayovera:10289065689400",
@@ -40839,6 +40853,16 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "chador:194302",
+    "brandSlug": "chador",
+    "title": "Silk Smooth Hand Cream",
+    "url": "https://chador.nl/product/silk-smooth-hand-cream/",
+    "garmentWas": "swim",
+    "reason": "non-apparel:care",
+    "tier": "0",
+    "evidence": "Hand Cream"
+  },
+  {
     "id": "abyya:12440250286420",
     "brandSlug": "abyya",
     "title": "Coffee Bean",
@@ -49769,6 +49793,14 @@
     "reason": "title-pattern"
   },
   {
+    "id": "baqa:9315159343355",
+    "brandSlug": "baqa",
+    "title": "Büzgülü Bikini Takımı",
+    "url": "https://baqaofficial.com/products/buzgulu-bikini-takimi",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
+  },
+  {
     "id": "baqa:9292803277051",
     "brandSlug": "baqa",
     "title": "Dantel Detaylı Beyaz Keten Elbise",
@@ -49814,6 +49846,22 @@
     "evidence": "32500 TRY (~$676)"
   },
   {
+    "id": "baqa:9315157475579",
+    "brandSlug": "baqa",
+    "title": "Bağcık Detaylı Bikini Takımı",
+    "url": "https://baqaofficial.com/products/bagcikli-bikini-takimi",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "baqa:9315158425851",
+    "brandSlug": "baqa",
+    "title": "Detaylı Bikini Takımı",
+    "url": "https://baqaofficial.com/products/ozel-detayli-bikini-takimi",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
+  },
+  {
     "id": "baqa:9313787314427",
     "brandSlug": "baqa",
     "title": "Üç Renk Pelerin Detaylı Elbise",
@@ -49841,6 +49889,14 @@
     "evidence": "32500 TRY (~$676)"
   },
   {
+    "id": "baqa:9315159310587",
+    "brandSlug": "baqa",
+    "title": "Bamo Bikini",
+    "url": "https://baqaofficial.com/products/bamo-bikini",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
+  },
+  {
     "id": "baqa:9331311018235",
     "brandSlug": "baqa",
     "title": "Baskı ve Saçak Detaylı Elbise",
@@ -49857,6 +49913,14 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "29500 TRY (~$614)"
+  },
+  {
+    "id": "baqa:9315156328699",
+    "brandSlug": "baqa",
+    "title": "Toka Detaylı Bikini",
+    "url": "https://baqaofficial.com/products/toka-aksesuarli-bikini",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
   },
   {
     "id": "baqa:9181679223035",
@@ -49983,6 +50047,14 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "30000 TRY (~$624)"
+  },
+  {
+    "id": "baqa:9315156394235",
+    "brandSlug": "baqa",
+    "title": "İki Renk Bikini Takımı",
+    "url": "https://baqaofficial.com/products/iki-renkli-bikini-takimi",
+    "garmentWas": "swim",
+    "reason": "title-pattern"
   },
   {
     "id": "baqa:9292284723451",

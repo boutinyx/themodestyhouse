@@ -243,3 +243,23 @@ describe('non-apparel veto', () => {
     }).rejected).toBe(false);
   });
 });
+
+describe('body-care phrases (2026-08-29)', () => {
+  it('vetoes a hand cream that reached /modest-swimwear', () => {
+    // Real row: Chador's "Silk Smooth Hand Cream" published onto the swim lane
+    // because its garment had been tagged `swim` and nothing vetoed it first.
+    expect(isNonApparel({ title: 'Silk Smooth Hand Cream' }).rejected).toBe(true);
+    expect(isNonApparel({ title: 'Body Lotion' }).rejected).toBe(true);
+    expect(isNonApparel({ title: 'Hand Sanitizer' }).rejected).toBe(true);
+  });
+
+  it('does NOT touch cream the COLOUR — the §10.10 trap in its purest form', () => {
+    // A bare /\bcream\b/ matches 205 PUBLISHED products, measured 2026-08-29.
+    expect(isNonApparel({ title: 'Cream Closed Abayah' }).rejected).toBe(false);
+    expect(isNonApparel({ title: 'Butter Cream Jersey Hijab' }).rejected).toBe(false);
+    expect(isNonApparel({ title: 'Isla (Cream)' }).rejected).toBe(false);
+    expect(isNonApparel({ title: 'Cotton Linen Button Blouse - Cream' }).rejected).toBe(false);
+    // and the body part alone is not enough either
+    expect(isNonApparel({ title: 'Hand Embroidered Abaya' }).rejected).toBe(false);
+  });
+});

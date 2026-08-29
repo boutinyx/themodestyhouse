@@ -2,6 +2,8 @@ import {
   LAYERING_SUBTYPE_LABELS,
   OUTERWEAR_SUBTYPE_LABELS,
   HIJAB_SUBTYPE_LABELS,
+  SWIM_SUBTYPE_LABELS,
+  ACTIVE_SUBTYPE_LABELS,
 } from '@/lib/specialty';
 
 /**
@@ -24,7 +26,7 @@ import {
  * CollectionPage{name:"Outerwear"} whose ItemList opened with a vest.
  */
 
-export type SubtypeDomain = 'layering' | 'outerwear' | 'hijab';
+export type SubtypeDomain = 'layering' | 'outerwear' | 'hijab' | 'swim' | 'active';
 
 export interface LaneSubtype {
   /** the `?type=` value */
@@ -65,7 +67,22 @@ export const LANE_SUBTYPES: Record<string, { domain: SubtypeDomain; subtypes: La
   'blazers-vests': { domain: 'outerwear', subtypes: blazerVestTypes },
   'cardigans-sweaters': { domain: 'outerwear', subtypes: cardiganSweaterTypes },
   'modest-hijabs': { domain: 'hijab', subtypes: toList(HIJAB_SUBTYPE_LABELS) },
+  // Added 2026-08-29. These two matter for a second reason the others do not:
+  // a swim cap is `isSwim`, and it also appears on /modest-hijabs — so the
+  // swim subtype COLUMN is non-empty on the hijabs lane too, and without an
+  // explicit statement of which lane OWNS a domain, /modest-hijabs rendered
+  // two "Type" chips, the second offering "Swim Hijabs & Caps". Ownership is
+  // declared here and read by the lane page; presence in the encoded
+  // catalogue is not evidence of ownership.
+  'modest-swimwear': { domain: 'swim', subtypes: toList(SWIM_SUBTYPE_LABELS) },
+  'modest-activewear': { domain: 'active', subtypes: toList(ACTIVE_SUBTYPE_LABELS) },
 };
+
+/** Which subtype domain a lane OWNS, or null. Distinct from "which subtype
+ *  columns happen to be non-empty in this lane's encoded catalogue". */
+export function domainForLane(laneSlug: string): SubtypeDomain | null {
+  return LANE_SUBTYPES[laneSlug]?.domain ?? null;
+}
 
 /** Every subtype for a lane, or [] for a lane that has none. */
 export function subtypesForLane(laneSlug: string): LaneSubtype[] {

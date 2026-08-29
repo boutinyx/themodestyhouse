@@ -4,6 +4,8 @@ import {
   outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype,
   hijabSubtype, HIJAB_SUBTYPE_LABELS, type HijabSubtype,
   dressSubtype, DRESS_SUBTYPE_LABELS, type DressSubtype,
+  swimSubtype, SWIM_SUBTYPE_LABELS, type SwimSubtype,
+  activeSubtype, ACTIVE_SUBTYPE_LABELS, type ActiveSubtype,
 } from '@/lib/specialty';
 import { hijabTypeFilter, HIJAB_TYPE_FILTER_LABELS, type HijabTypeFilter } from '@/lib/hijabTypeFilter';
 import { colourFamily, COLOUR_FAMILY_LABELS, type ColourFamily } from '@/lib/colour';
@@ -86,6 +88,14 @@ export interface CompactCatalogue {
    *  means "some dresses here are classified", not "every dress here is". See
    *  lib/specialty.ts::dressSubtype for why. */
   dressSubtypes: DressSubtype[];
+  /** Same shape again, for the Modest Swimwear and Modest Activewear lanes'
+   *  Type filters (added 2026-08-29 — see rows.swimSubtypeIdx /
+   *  rows.activeSubtypeIdx). Before this the Type dropdown on
+   *  /modest-activewear fell through to hijabSubtypes and offered "Caps &
+   *  Underscarves" and "Sport Hijabs" as the only ways to filter a lane of
+   *  leggings and sports dresses. */
+  swimSubtypes: SwimSubtype[];
+  activeSubtypes: ActiveSubtype[];
   /** Colour families actually present in this catalogue, in the canonical
    *  order of COLOUR_FAMILY_LABELS — never first-appearance, so the Colour
    *  dropdown does not reshuffle depending on which brand's rows interleave
@@ -129,6 +139,9 @@ export interface CompactCatalogue {
      *  value here, not a rarity — 2,013 of the 2,521 rows on /modest-dresses
      *  are unclassified and filter out of every chip except "All". */
     dressSubtypeIdx?: number[];
+    /** Same shape as dressSubtypeIdx, for swimSubtypes / activeSubtypes. */
+    swimSubtypeIdx?: number[];
+    activeSubtypeIdx?: number[];
     /** Index into `colours`, or -1 for a row whose title names no colour.
      *  -1 is 5,276 of the 18,908 published rows, 27.9% of them, measured
      *  2026-08-29 with `npm run colour:coverage` — stated directly rather than
@@ -268,6 +281,16 @@ export function encodeCatalogue(
   const presentDressSubtypes = new Set(products.map((p) => dressSubtype(p)).filter((t): t is DressSubtype => t !== null));
   const dressSubtypes = dressSubtypeOrder.filter((t) => presentDressSubtypes.has(t));
   const dressSubtypeIndex = new Map(dressSubtypes.map((t, i) => [t, i]));
+
+  const swimSubtypeOrder = Object.keys(SWIM_SUBTYPE_LABELS) as SwimSubtype[];
+  const presentSwimSubtypes = new Set(products.map((p) => swimSubtype(p)).filter((t): t is SwimSubtype => t !== null));
+  const swimSubtypes = swimSubtypeOrder.filter((t) => presentSwimSubtypes.has(t));
+  const swimSubtypeIndex = new Map(swimSubtypes.map((t, i) => [t, i]));
+
+  const activeSubtypeOrder = Object.keys(ACTIVE_SUBTYPE_LABELS) as ActiveSubtype[];
+  const presentActiveSubtypes = new Set(products.map((p) => activeSubtype(p)).filter((t): t is ActiveSubtype => t !== null));
+  const activeSubtypes = activeSubtypeOrder.filter((t) => presentActiveSubtypes.has(t));
+  const activeSubtypeIndex = new Map(activeSubtypes.map((t, i) => [t, i]));
   const hijabTypeFilterOrder = Object.keys(HIJAB_TYPE_FILTER_LABELS) as HijabTypeFilter[];
   const presentHijabTypeFilters = new Set(products.map((p) => hijabTypeFilter(p)).filter((t): t is HijabTypeFilter => t !== null));
   const hijabTypeFilters = hijabTypeFilterOrder.filter((t) => presentHijabTypeFilters.has(t));
@@ -289,6 +312,8 @@ export function encodeCatalogue(
     outerwearSubtypeIdx: [],
     hijabSubtypeIdx: [],
     dressSubtypeIdx: [],
+    swimSubtypeIdx: [],
+    activeSubtypeIdx: [],
     variantCount: [],
     hijabTypeFilterIdx: [],
     colourIdx: [],
@@ -391,6 +416,10 @@ export function encodeCatalogue(
     rows.hijabSubtypeIdx!.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
     const dressSub = dressSubtype(p);
     rows.dressSubtypeIdx!.push(dressSub === null ? -1 : dressSubtypeIndex.get(dressSub)!);
+    const swimSub = swimSubtype(p);
+    rows.swimSubtypeIdx!.push(swimSub === null ? -1 : swimSubtypeIndex.get(swimSub)!);
+    const activeSub = activeSubtype(p);
+    rows.activeSubtypeIdx!.push(activeSub === null ? -1 : activeSubtypeIndex.get(activeSub)!);
     // The `!` the five columns above use is not safe here, and this is the one
     // place in the function where the dictionary can be handed a value that is
     // not in it. `colours` is filtered from COLOUR_FAMILY_LABELS, so the
@@ -453,7 +482,7 @@ export function encodeCatalogue(
   // not real-sized — a filtered slice, a small edit, a brand page whose titles
   // happen to name nothing — where the same "18,000 copies of -1" argument
   // applies in miniature and there is nothing for the Colour filter to offer.
-  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx', 'colourIdx'] as const;
+  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx', 'swimSubtypeIdx', 'activeSubtypeIdx', 'colourIdx'] as const;
   for (const col of SENTINEL_COLUMNS) {
     const v = rows[col];
     if (v && v.every((x) => x === -1)) delete rows[col];
@@ -467,7 +496,7 @@ export function encodeCatalogue(
 
   return {
     brands: compactBrands, garments, occasions,
-    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, dressSubtypes, colours,
+    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, dressSubtypes, swimSubtypes, activeSubtypes, colours,
     rows, cards, rowCount: products.length,
   };
 }

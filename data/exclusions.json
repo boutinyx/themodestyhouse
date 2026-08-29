@@ -45,7 +45,8 @@
     "\\b(herre|herrer|mænd)\\b",
     "\\berkek\\b",
     "\\b(pria|laki-laki)\\b",
-    "\\bdutch angels\\b"
+    "\\bdutch angels\\b",
+    "\\bbikinis?\\b"
   ],
   "urlPatterns": [
     "[/=_-]mens?(?:[/=_-]|$)",
@@ -82,7 +83,6 @@
     "zora:9157154472099",
     "chi-ka:8236804014241",
     "lumos:10767306916150",
-
     "mukistore:9491509641481",
     "chic-modesty:10474532667730",
     "eynaa-paris:10422240117079",
@@ -119,7 +119,6 @@
     "kamin:9334915236057",
     "kamin:9334912221401",
     "kamin:9307974500569",
-
     "by-hasanat:15850222223733",
     "by-hasanat:15850223894901",
     "kamin:9774594195673",
@@ -133,19 +132,15 @@
     "chic-modesty:10474543939922",
     "chic-modesty:10322908512594",
     "chic-modesty:10323097092434",
-
     "mariams:9070477672664",
     "mariams:9250618081496",
     "mariams:9025093009624",
     "mariams:8530085019864",
     "mariams:8526370341080",
-
     "nasiba:8673046659381",
     "nasiba:8673040892213",
     "nasiba:8673089126709",
-
     "lameera-moda:5409160757416",
-
     "kamin:9333254586585",
     "mariams:8820044660952",
     "mariams:8820018184408",
@@ -158,7 +153,6 @@
     "mukistore:9491201491209",
     "golden-dune:10944930709847",
     "golden-dune:10943574540631",
-
     "whiteicy:15679869419860",
     "whiteicy:15679869387092",
     "whiteicy:15679869321556",
