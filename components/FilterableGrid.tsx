@@ -1,5 +1,6 @@
 'use client';
-import { useMemo, useState, useEffect, type ReactNode } from 'react';
+import { useMemo, useState, useEffect, useRef, type ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 import type { CompactCatalogue, CardSlice, CardSource } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import { ProductCard } from './ProductCard';
@@ -139,6 +140,14 @@ export function FilterableGrid({
   const [visible, setVisible] = useState(STEP);
   // Card data fetched for rows the server did not embed — see the `source` prop.
   const [extraCards, setExtraCards] = useState<CardSlice>({ rows: {} });
+  const router = useRouter();
+  /** The rowCount we already know is stale, because a 409 told us so and a
+   *  router.refresh() is in flight. While `cat.rowCount` still equals this, the
+   *  card fetch below is skipped entirely — otherwise clearing `extraCards`
+   *  immediately re-fires the effect against the SAME stale catalogue, the
+   *  server 409s a second time, and the fallback hard-reloads: which is the
+   *  first version of this fix, and it did not work. */
+  const staleRowCount = useRef<number | null>(null);
   const [cardsError, setCardsError] = useState(false);
   const [sort, setSort] = useState<SortKey>('featured');
   const { preference } = useCurrency();
@@ -342,6 +351,9 @@ export function FilterableGrid({
 
   useEffect(() => {
     if (missingKey === '' || !source) return;
+    // A 409 already told us this catalogue is stale and a refresh is in flight.
+    // Asking again with the same rowCount can only 409 again.
+    if (staleRowCount.current === cat.rowCount) return;
     let cancelled = false;
     fetch('/api/catalogue/cards', {
       method: 'POST',
@@ -349,8 +361,24 @@ export function FilterableGrid({
       body: JSON.stringify({ source, rows: missingKey.split(',').map(Number), rowCount: cat.rowCount }),
     })
       .then((r) => {
-        // The catalogue was rebuilt under this tab — every row index is stale.
-        if (r.status === 409) { window.location.reload(); return null; }
+        // 409 means every row index held here is stale. See the long note on
+        // the identical block in components/DirectoryBrowser.tsx: the cause is
+        // either a rebuild under this tab (deploy / nightly refresh) or a
+        // staff edit made from this very page, and a hard reload throws away
+        // `visible` and the scroll position — which is what Tina hit on
+        // 2026-08-29 ("it jumps up to the beginning" after every edit).
+        // Refresh the server payload in place instead, drop the now-misaddressed
+        // extraCards, and keep the hard reload only as a non-looping fallback.
+        if (r.status === 409) {
+          if (staleRowCount.current === cat.rowCount) {
+            window.location.reload();
+            return null;
+          }
+          staleRowCount.current = cat.rowCount;
+          setExtraCards({ rows: {} });
+          router.refresh();
+          return null;
+        }
         if (!r.ok) throw new Error(String(r.status));
         return r.json() as Promise<CardSlice>;
       })

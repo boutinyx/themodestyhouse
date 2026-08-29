@@ -1,5 +1,6 @@
 'use client';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import type { CompactCatalogue, CardSlice } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import type { Garment } from '@/lib/types';
@@ -28,6 +29,14 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   // ~13k rows travel with the page (so filtering stays instant and local),
   // the columns only a CARD needs are fetched for what is actually on screen.
   const [extraCards, setExtraCards] = useState<CardSlice>({ rows: {} });
+  const router = useRouter();
+  /** The rowCount we already know is stale, because a 409 told us so and a
+   *  router.refresh() is in flight. While `cat.rowCount` still equals this, the
+   *  card fetch below is skipped entirely — otherwise clearing `extraCards`
+   *  immediately re-fires the effect against the SAME stale catalogue, the
+   *  server 409s a second time, and the fallback hard-reloads: which is the
+   *  first version of this fix, and it did not work. */
+  const staleRowCount = useRef<number | null>(null);
   const [cardsError, setCardsError] = useState(false);
   const { preference } = useCurrency();
 
@@ -119,6 +128,9 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
 
   useEffect(() => {
     if (missingKey === '') return;
+    // A 409 already told us this catalogue is stale and a refresh is in flight.
+    // Asking again with the same rowCount can only 409 again.
+    if (staleRowCount.current === cat.rowCount) return;
     let cancelled = false;
     fetch('/api/catalogue/cards', {
       method: 'POST',
@@ -126,11 +138,43 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
       body: JSON.stringify({ source: 'browse', rows: missingKey.split(',').map(Number), rowCount: cat.rowCount }),
     })
       .then((r) => {
-        // 409 means the catalogue was rebuilt under this tab — a deploy, or the
-        // nightly refresh (CLAUDE.md §10.35). Every row index held here now
-        // points at a different product, so retrying would paint the WRONG
-        // products under the right titles. Reload instead.
-        if (r.status === 409) { window.location.reload(); return null; }
+        // 409 means the row indices held here no longer address the same
+        // products. Two very different causes, and until 2026-08-29 both were
+        // treated as a deploy: the catalogue was rebuilt under this tab (a
+        // deploy, or the nightly refresh — CLAUDE.md §10.35), OR a signed-in
+        // staff member just edited a product from this very page, which
+        // changes the published row count immediately.
+        //
+        // The old handling was `window.location.reload()`. Correct about the
+        // data — retrying would paint the WRONG products under the right
+        // titles — but for the staff case it is destructive: Tina reported
+        // "if i click the load more button after having edited a product
+        // instead of loading more down it jumps up to the beginning", and it
+        // does exactly that. A hard reload discards `visible` (back to the
+        // first 24) and the scroll position, after every single edit.
+        //
+        // router.refresh() re-renders the server component and streams a fresh
+        // catalogue — new row order, new rowCount — WITHOUT tearing down this
+        // component, so `visible` and the scroll position survive. The route is
+        // `ƒ` (dynamic), so the refresh really does return current data rather
+        // than a build-time payload.
+        //
+        // `extraCards` MUST be dropped at the same time: its keys are absolute
+        // row indices against the OLD catalogue, and keeping them would paint
+        // exactly the mismatch this guard exists to prevent.
+        //
+        // If a second 409 arrives for the same rowCount, the refresh did not
+        // help — fall back to the original hard reload rather than loop.
+        if (r.status === 409) {
+          if (staleRowCount.current === cat.rowCount) {
+            window.location.reload();
+            return null;
+          }
+          staleRowCount.current = cat.rowCount;
+          setExtraCards({ rows: {} });
+          router.refresh();
+          return null;
+        }
         if (!r.ok) throw new Error(String(r.status));
         return r.json() as Promise<CardSlice>;
       })
@@ -141,7 +185,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
       })
       .catch(() => { if (!cancelled) setCardsError(true); });
     return () => { cancelled = true; };
-  }, [missingKey, cat.rowCount]);
+  }, [missingKey, cat.rowCount, router]);
 
   // decodeCard returns null while a row's card data is still in flight. Render
   // what has arrived rather than holding the whole grid back.
