@@ -1,0 +1,13741 @@
+[
+ {
+  "term": "navy blue",
+  "kind": "ambiguous",
+  "rows": 209,
+  "read": 10,
+  "family": "navy",
+  "votes": 8,
+  "strong": true,
+  "tally": [
+   [
+    "navy",
+    8
+   ],
+   [
+    "multi",
+    1
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "smoked",
+  "kind": "unknown",
+  "rows": 35,
+  "read": 10,
+  "family": "grey",
+  "votes": 9,
+  "strong": true,
+  "tally": [
+   [
+    "grey",
+    9
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "off white",
+  "kind": "ambiguous",
+  "rows": 32,
+  "read": 10,
+  "family": "cream",
+  "votes": 7,
+  "strong": true,
+  "tally": [
+   [
+    "cream",
+    7
+   ],
+   [
+    "white",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "natural",
+  "kind": "unknown",
+  "rows": 28,
+  "read": 10,
+  "family": "beige",
+  "votes": 9,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    9
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "luxury chiffon hijab",
+  "kind": "unknown",
+  "rows": 18,
+  "read": 10,
+  "family": "multi",
+  "votes": 8,
+  "strong": true,
+  "tally": [
+   [
+    "multi",
+    8
+   ],
+   [
+    "purple",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ice",
+  "kind": "unknown",
+  "rows": 17,
+  "read": 10,
+  "family": "blue",
+  "votes": 10,
+  "strong": true,
+  "tally": [
+   [
+    "blue",
+    10
+   ]
+  ]
+ },
+ {
+  "term": "cloud",
+  "kind": "unknown",
+  "rows": 16,
+  "read": 10,
+  "family": "grey",
+  "votes": 5,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    5
+   ],
+   [
+    "purple",
+    2
+   ],
+   [
+    "blue",
+    1
+   ],
+   [
+    "cream",
+    1
+   ],
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "earth",
+  "kind": "unknown",
+  "rows": 15,
+  "read": 10,
+  "family": "brown",
+  "votes": 5,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    5
+   ],
+   [
+    "pink",
+    4
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "midnight",
+  "kind": "unknown",
+  "rows": 15,
+  "read": 10,
+  "family": "black",
+  "votes": 5,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    5
+   ],
+   [
+    "navy",
+    5
+   ]
+  ]
+ },
+ {
+  "term": "powder",
+  "kind": "unknown",
+  "rows": 15,
+  "read": 10,
+  "family": "pink",
+  "votes": 8,
+  "strong": true,
+  "tally": [
+   [
+    "pink",
+    8
+   ],
+   [
+    "beige",
+    1
+   ],
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "clay",
+  "kind": "unknown",
+  "rows": 12,
+  "read": 10,
+  "family": "orange",
+  "votes": 4,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    4
+   ],
+   [
+    "brown",
+    2
+   ],
+   [
+    "grey",
+    1
+   ],
+   [
+    "pink",
+    1
+   ],
+   [
+    "beige",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "final sale",
+  "kind": "unknown",
+  "rows": 12,
+  "read": 10,
+  "family": "multi",
+  "votes": 7,
+  "strong": true,
+  "tally": [
+   [
+    "multi",
+    7
+   ],
+   [
+    "cream",
+    1
+   ],
+   [
+    "grey",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sahara",
+  "kind": "unknown",
+  "rows": 11,
+  "read": 10,
+  "family": "beige",
+  "votes": 6,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    6
+   ],
+   [
+    "cream",
+    2
+   ],
+   [
+    "brown",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "pearl",
+  "kind": "unknown",
+  "rows": 11,
+  "read": 10,
+  "family": "beige",
+  "votes": 5,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    5
+   ],
+   [
+    "purple",
+    2
+   ],
+   [
+    "cream",
+    2
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "desert",
+  "kind": "unknown",
+  "rows": 10,
+  "read": 10,
+  "family": "beige",
+  "votes": 7,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    7
+   ],
+   [
+    "pink",
+    1
+   ],
+   [
+    "brown",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "champagne",
+  "kind": "unknown",
+  "rows": 10,
+  "read": 10,
+  "family": "beige",
+  "votes": 6,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    6
+   ],
+   [
+    "cream",
+    4
+   ]
+  ]
+ },
+ {
+  "term": "midnight blue",
+  "kind": "ambiguous",
+  "rows": 10,
+  "read": 10,
+  "family": "navy",
+  "votes": 9,
+  "strong": true,
+  "tally": [
+   [
+    "navy",
+    9
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosewood",
+  "kind": "unknown",
+  "rows": 9,
+  "read": 9,
+  "family": "pink",
+  "votes": 6,
+  "strong": true,
+  "tally": [
+   [
+    "pink",
+    6
+   ],
+   [
+    "brown",
+    2
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "khaki green",
+  "kind": "ambiguous",
+  "rows": 9,
+  "read": 9,
+  "family": "green",
+  "votes": 9,
+  "strong": true,
+  "tally": [
+   [
+    "green",
+    9
+   ]
+  ]
+ },
+ {
+  "term": "shadow",
+  "kind": "unknown",
+  "rows": 9,
+  "read": 9,
+  "family": "grey",
+  "votes": 7,
+  "strong": true,
+  "tally": [
+   [
+    "grey",
+    7
+   ],
+   [
+    "navy",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "acid",
+  "kind": "unknown",
+  "rows": 9,
+  "read": 9,
+  "family": "yellow",
+  "votes": 9,
+  "strong": true,
+  "tally": [
+   [
+    "yellow",
+    9
+   ]
+  ]
+ },
+ {
+  "term": "rose taupe",
+  "kind": "ambiguous",
+  "rows": 9,
+  "read": 8,
+  "family": "brown",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    3
+   ],
+   [
+    "beige",
+    3
+   ],
+   [
+    "purple",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fig",
+  "kind": "unknown",
+  "rows": 9,
+  "read": 9,
+  "family": "red",
+  "votes": 6,
+  "strong": true,
+  "tally": [
+   [
+    "red",
+    6
+   ],
+   [
+    "purple",
+    2
+   ],
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "chocolate plum",
+  "kind": "ambiguous",
+  "rows": 9,
+  "read": 9,
+  "family": "brown",
+  "votes": 5,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    5
+   ],
+   [
+    "multi",
+    2
+   ],
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "venge",
+  "kind": "unknown",
+  "rows": 9,
+  "read": 9,
+  "family": "beige",
+  "votes": 4,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    4
+   ],
+   [
+    "grey",
+    2
+   ],
+   [
+    "purple",
+    2
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dress",
+  "kind": "unknown",
+  "rows": 8,
+  "read": 8,
+  "family": "brown",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    3
+   ],
+   [
+    "black",
+    1
+   ],
+   [
+    "white",
+    1
+   ],
+   [
+    "cream",
+    1
+   ],
+   [
+    "blue",
+    1
+   ],
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "shell",
+  "kind": "unknown",
+  "rows": 8,
+  "read": 8,
+  "family": "beige",
+  "votes": 8,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    8
+   ]
+  ]
+ },
+ {
+  "term": "blue gray",
+  "kind": "ambiguous",
+  "rows": 8,
+  "read": 8,
+  "family": "grey",
+  "votes": 4,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    4
+   ],
+   [
+    "blue",
+    2
+   ],
+   [
+    "multi",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusk",
+  "kind": "unknown",
+  "rows": 8,
+  "read": 8,
+  "family": "purple",
+  "votes": 4,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    4
+   ],
+   [
+    "blue",
+    3
+   ],
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moonlight",
+  "kind": "unknown",
+  "rows": 8,
+  "read": 8,
+  "family": "cream",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "cream",
+    5
+   ],
+   [
+    "beige",
+    2
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "golden beige",
+  "kind": "ambiguous",
+  "rows": 8,
+  "read": 8,
+  "family": "beige",
+  "votes": 7,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    7
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "peppercorn",
+  "kind": "unknown",
+  "rows": 7,
+  "read": 6,
+  "family": "brown",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "brown",
+    4
+   ],
+   [
+    "multi",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "strawberry",
+  "kind": "unknown",
+  "rows": 7,
+  "read": 7,
+  "family": "red",
+  "votes": 7,
+  "strong": true,
+  "tally": [
+   [
+    "red",
+    7
+   ]
+  ]
+ },
+ {
+  "term": "lamantin",
+  "kind": "unknown",
+  "rows": 7,
+  "read": 7,
+  "family": "green",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "green",
+    5
+   ],
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "moonbeam",
+  "kind": "unknown",
+  "rows": 7,
+  "read": 6,
+  "family": "cream",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "cream",
+    4
+   ],
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "spice",
+  "kind": "unknown",
+  "rows": 7,
+  "read": 6,
+  "family": "brown",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    3
+   ],
+   [
+    "orange",
+    2
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cream white",
+  "kind": "ambiguous",
+  "rows": 7,
+  "read": 7,
+  "family": "cream",
+  "votes": 7,
+  "strong": true,
+  "tally": [
+   [
+    "cream",
+    7
+   ]
+  ]
+ },
+ {
+  "term": "bamboo",
+  "kind": "unknown",
+  "rows": 7,
+  "read": 7,
+  "family": "black",
+  "votes": 4,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    4
+   ],
+   [
+    "grey",
+    2
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fossil",
+  "kind": "unknown",
+  "rows": 7,
+  "read": 7,
+  "family": "beige",
+  "votes": 6,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    6
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "linen",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "beige",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    4
+   ],
+   [
+    "navy",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pebble",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "beige",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    4
+   ],
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "modal plain hijab",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ],
+   [
+    "purple",
+    1
+   ],
+   [
+    "blue",
+    1
+   ],
+   [
+    "cream",
+    1
+   ],
+   [
+    "grey",
+    1
+   ],
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "periwinkle",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "purple",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    3
+   ],
+   [
+    "beige",
+    1
+   ],
+   [
+    "grey",
+    1
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cove",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "brown",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    3
+   ],
+   [
+    "black",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "brownie",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 5,
+  "family": "brown",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "brown",
+    4
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rose beige",
+  "kind": "ambiguous",
+  "rows": 6,
+  "read": 6,
+  "family": "beige",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    4
+   ],
+   [
+    "purple",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pleated abaya",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "multi",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "multi",
+    4
+   ],
+   [
+    "brown",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "smoke",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "grey",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "grey",
+    5
+   ],
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sage grey",
+  "kind": "ambiguous",
+  "rows": 6,
+  "read": 6,
+  "family": "beige",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    3
+   ],
+   [
+    "grey",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "olive grey",
+  "kind": "ambiguous",
+  "rows": 6,
+  "read": 6,
+  "family": "beige",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    5
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "iron",
+  "kind": "unknown",
+  "rows": 6,
+  "read": 6,
+  "family": "grey",
+  "votes": 6,
+  "strong": true,
+  "tally": [
+   [
+    "grey",
+    6
+   ]
+  ]
+ },
+ {
+  "term": "modal cotton hijab",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "orange",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    2
+   ],
+   [
+    "grey",
+    1
+   ],
+   [
+    "cream",
+    1
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "warda",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "red",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "red",
+    3
+   ],
+   [
+    "multi",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "linseed",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "beige",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    5
+   ]
+  ]
+ },
+ {
+  "term": "sienna",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ],
+   [
+    "orange",
+    1
+   ],
+   [
+    "pink",
+    1
+   ],
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "wood",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "brown",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "brown",
+    5
+   ]
+  ]
+ },
+ {
+  "term": "burgundy rose",
+  "kind": "ambiguous",
+  "rows": 5,
+  "read": 5,
+  "family": "red",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "red",
+    5
+   ]
+  ]
+ },
+ {
+  "term": "cupcake",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "purple",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "purple",
+    5
+   ]
+  ]
+ },
+ {
+  "term": "future dusk",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "navy",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "navy",
+    4
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "storm",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "grey",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "grey",
+    4
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mint gray",
+  "kind": "ambiguous",
+  "rows": 5,
+  "read": 5,
+  "family": "grey",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "grey",
+    3
+   ],
+   [
+    "beige",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "honeydew",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ],
+   [
+    "yellow",
+    2
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tile",
+  "kind": "unknown",
+  "rows": 5,
+  "read": 5,
+  "family": "orange",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "orange",
+    5
+   ]
+  ]
+ },
+ {
+  "term": "purple dove",
+  "kind": "ambiguous",
+  "rows": 5,
+  "read": 5,
+  "family": "purple",
+  "votes": 5,
+  "strong": true,
+  "tally": [
+   [
+    "purple",
+    5
+   ]
+  ]
+ },
+ {
+  "term": "nude peach",
+  "kind": "ambiguous",
+  "rows": 5,
+  "read": 5,
+  "family": "pink",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "pink",
+    3
+   ],
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "ink",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ],
+   [
+    "black",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "dune",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    4
+   ]
+  ]
+ },
+ {
+  "term": "oyster",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "pink",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosily",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "pink",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "pink",
+    4
+   ]
+  ]
+ },
+ {
+  "term": "lace",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "white",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    2
+   ],
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "haze",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    3
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "purple sage",
+  "kind": "ambiguous",
+  "rows": 4,
+  "read": 4,
+  "family": "purple",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "purple",
+    4
+   ]
+  ]
+ },
+ {
+  "term": "string",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    4
+   ]
+  ]
+ },
+ {
+  "term": "shale",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "brown",
+  "votes": 4,
+  "strong": true,
+  "tally": [
+   [
+    "brown",
+    4
+   ]
+  ]
+ },
+ {
+  "term": "chai",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "brown",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "hibiscus",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ],
+   [
+    "red",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "deep sea",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "navy",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    2
+   ],
+   [
+    "green",
+    1
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "taupe gray",
+  "kind": "ambiguous",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    3
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "drizzle",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "olive brown",
+  "kind": "ambiguous",
+  "rows": 4,
+  "read": 4,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ],
+   [
+    "orange",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lava",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "grey",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "grey",
+    3
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "knit & flared skirt",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "green",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sunset",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "orange",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "orange",
+    3
+   ],
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "maxi dress",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ],
+   [
+    "pink",
+    1
+   ],
+   [
+    "green",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cape dress",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ],
+   [
+    "red",
+    1
+   ],
+   [
+    "blue",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush nude",
+  "kind": "ambiguous",
+  "rows": 4,
+  "read": 4,
+  "family": "pink",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "pink",
+    3
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "berry",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "red",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    2
+   ],
+   [
+    "purple",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "iris",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "brown",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "brown",
+    3
+   ],
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "clove",
+  "kind": "unknown",
+  "rows": 4,
+  "read": 4,
+  "family": "beige",
+  "votes": 3,
+  "strong": true,
+  "tally": [
+   [
+    "beige",
+    3
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "admiral",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "navy",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "bare",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "cream",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    2
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cayenne",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "purple",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "rose gold",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ivy",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "port royale",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ],
+   [
+    "yellow",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pine bark",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "butteryellow",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "yellow",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    2
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stone blue",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ],
+   [
+    "blue",
+    1
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bungee cord",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black & white",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "black",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    2
+   ],
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "heather",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pink taupe",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "pink",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "mist",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "purple",
+    1
+   ],
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "open abaya",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "red",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    2
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fresh scarfs",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ],
+   [
+    "brown",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "malt ball",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mint blue",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ],
+   [
+    "green",
+    1
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sesame",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "lilac grey",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "grey",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "viscose blend",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "yellow",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    2
+   ],
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bedrock",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "purple",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "seaweed",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ],
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cinder",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "butterfly dress",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ],
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "climbing ivy",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ],
+   [
+    "pink",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "marigold",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "yellow",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    2
+   ],
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "graystone",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "purple",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "nude pink",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "arabian spice",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "orange",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "rain drum",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "brown",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "kalamata",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fallen rock",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "soalon",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "black",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "antique",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "vetiver",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sable",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "brown",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "balsam",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "harbor mist",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 2,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "uluru",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "red",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "barbie",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "pink",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "nude brown",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "80 skin",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "cream",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "beige rose",
+  "kind": "ambiguous",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "greij",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "amazon",
+  "kind": "unknown",
+  "rows": 3,
+  "read": 3,
+  "family": "green",
+  "votes": 3,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    3
+   ]
+  ]
+ },
+ {
+  "term": "black x red",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "laurel",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "trench coat",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ],
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bloom",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "burgundy & gold",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "undercap",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rich auburn",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "fog",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "milo",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "athleisure",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "brownstone",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "breeze",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ],
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "grove",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "set",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rainforest",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "butterbloom",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "marine",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "navy",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "oldpink",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "burnt sugar",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "chartreuse",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "dark sea",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "rasberry",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lime",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "brunette",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "auburn",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light mink",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "purple floral",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "multi",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "black ditsy floral",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "multi",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "antler",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "essential knit",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "seashell",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "black plum",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "velvet",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ],
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "wave",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "crushed rock",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cuba",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ],
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "acorn",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "boulder",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "marina",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "taupe brown",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stone green",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "taupe grey",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pear",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "yellow",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "carribean",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cactus",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "turkish sea",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "snow",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "white",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "charlotte",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "terracotta rose",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blooming dahlia",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "petal",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "desert flower",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sandshell",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "ash brown",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "steel",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "coral almond",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "gown",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "willow",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "raspberry",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tosca",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "multi",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "misty mink",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "metallic viscose",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "plumberry",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "red",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "blushpink",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "custard",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "coconut milk",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "vintage roze",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "sea",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "lavender grey",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "opal",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ash rose",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "persian jewel",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "nude grey",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "eclipse",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "navy",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "soft slit",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sea fog",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "meringue",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "castlerock",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "deep pacific",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ],
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ochre",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "enchanted",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "quarry",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "mahogany rose",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "ginger snap",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "elderberry",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "flint",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "otter",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "moss gray",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "moonrock",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "seagrass",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cowhide",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "red",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "ginger",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "dark berry",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "gardenia",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ],
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tawny",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sirocco",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tourmaline",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "reseda",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "raindrops",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "spiced apple",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "red",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "viola",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "sphinx",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "turkish",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 0
+ },
+ {
+  "term": "muslin",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "desert palm",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lilas",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dill",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "burro",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mocha rose",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lead",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "cone flower",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "nougat",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "london fog",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ],
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "olive taupe",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "rain",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ],
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mediterranea",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blue stripe",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ],
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "magnolia",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ballerina",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "limeade",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "rumman",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "red",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "deep lagoon",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ],
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mocha mauve",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "golden olive",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "yale",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "teak",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "nectar",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "mellow",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "cream",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "kambaba",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "biscotti",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "blushing girl",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "black/gold",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "neutral",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "dark pearwood",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "burnt sienna",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "brown taupe",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "raven",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "spruce",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "golden brown",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "peach beige",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "pink",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "blue graphite",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ],
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "slate blue",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "fango",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black forest",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "cafe au lait",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "aquamarin",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "green",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    2
+   ]
+  ]
+ },
+ {
+  "term": "t\u00fcrkis",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ],
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bisht abaya",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "non-slip",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ivory blush",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "limited editon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "purple floral print",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sea mist",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "crema",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mintgroen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "top & bottom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "khuzama mist",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "modest workout abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "noir gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "buttermilk",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "premium coverage",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lavender rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nasmet el arz",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "beige/brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "watercolor oasis",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zahret el ward",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosily bloom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "roze",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "noor el layl",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "turquoise & gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bluebell",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "leaf",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lagoon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "top & skirt",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "workout leggings 2.0",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "luxury satin hijab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "off-white",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fushia",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zenith",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nude/black",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cherry brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "samaa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "hearts out",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sandalwood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "raml lubnan",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "morel",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ivony",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "modal hijab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "grey & blue",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cream/blue",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "salie",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "adjustable tie underscarf",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "babypink",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "oversized poplin shirt",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "slim fit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "celestial night",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "caspian",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "morning mist",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "skirt guard",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "peachy",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "summer snow \u2122",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "flared vichy poplin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "muted basel",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pleated poplin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusty",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "guava",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "asymmetrical poplin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "grapefruit tart",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "chiffon plain hijab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "customisable silhouette\u2122",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "riviera edition",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "\u0648\u0631\u0642 \u0646\u0627\u0639\u0645",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "aegean",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "silky maxi dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "modest swim bottom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "burnt clay",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "oud santal",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tube style",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusky mink",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mt019",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "white blue",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nude blush",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark spice",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lead (j)",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sugar",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light lime",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "oasis",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "skyflower",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cape abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "henna",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "qahwa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cream/brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pillowtalk",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moss beige",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lace dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "glimmer abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mystic wave",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lavender blush",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rose beige (j)",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "abaya set",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bronze mustard",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sport hijab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusty diva",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black/brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pink sand",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stone moss",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "online exclusive",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pink/brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bronze chestnut",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "luna rock",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "karaz",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "byzantium",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cotton layering skirt",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "magnet",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "kastana",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cotton modest layering",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "farasha",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "couture spirit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "couture knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "darkblue",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zipped knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mulberry brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "glossy gown",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zippered cable knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "peru",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zipped cable knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lumi\u00e8re",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "taupe pink",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lila",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "signature knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pleated knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "shimmering abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "p24743",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jacquard knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "velvet teddy",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "buttoned knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "belted knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "raffia",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cappucino",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "knitted zipped collar",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "wisteria black",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush nude abaya",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ribbed knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black coffee",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cotton blend",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nutmeg latte",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "slip dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cardinal",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "deep fig",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "greybeige blended",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ros\u00e9",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mustard bronze",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "citrine",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "white/ blue",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cedarwood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sandstone",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "amberlight",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "night \u2122",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "chocolate pistachio",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cascade dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "seal",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "golden blush",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "legergroen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "green charcoal",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "chartreuse shine",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "salt & pepper",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "satin cape dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "arz",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tortilla",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bear",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "carmine",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "corset dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tulip",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ash mocha",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusty rosa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lavender gray",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "orangeade",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "olivine",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "crocus",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stone leopard",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jilbab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pine",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "olympic",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "limpet shell",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "green floral",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cobalt violet",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nude gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "plum fudge",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "kashmir",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mosgroen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "maxi skirt",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "buff",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "golden green",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sunbloom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "gray blue",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosemary",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "curry",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "muse gown",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lime sherbet",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black x orchid",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "secret garden",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "buttercup",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "full set",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "petal gown",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "softblue",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "twilight",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "magenta purple",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusty rosewood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blonde",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cider",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "butterscotch",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lilac rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "paars",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "buttercream yellow",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cream pink",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "caviar",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "limon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "knitted maxi dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "knitted dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "crownblue",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "asymmetrical set",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "asymmetric set",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "phantom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosepatina",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "daisy dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "hyacinth",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nightfall",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sherbert",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "speakpure set",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zachtroze",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bell sleeves dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush lilac",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "canyon clay",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zaitoon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "capri",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pack of 4",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "redwood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "anchor",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zalmroze",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dress set",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ivory forest",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mulberry red",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cream & tan",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "grijs",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mocha taupe",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pistachio creme",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zilvergrijs",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "anise",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tiramisu",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "espresso plum",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "shimmer",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cardigan",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "long sleeves",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark henna",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "midnight meadow",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "framboos",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rumaan",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "damask",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "burnt ochre",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jersey light mink",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blue umber",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "minted meadow",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "warm",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sage espresso",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rustic root",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cream grey",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush stone",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "satin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cream beige",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "warm dune",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "celadon mist",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "neck cupro dress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "hijab bundle",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ivory creme",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "vintagegroen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "satin lined",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "white & tan",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black & orange",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "malak",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "faten",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "genevieve",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "beige & orange",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "niagara",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "white/blue",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "luxury jersey",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "luxury jersey (bundles)",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mulberry rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "white & green",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "autumn",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "merlot",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "new",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jacquard",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rolex",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rose nude",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "twilight mist",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "java",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "amal",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moon rock",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jenan",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "butterfly abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "abeer",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "muave",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ocean gray",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ghadir",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "coquette abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lama",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "aisha",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "chiffon abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fayrouz",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "maple",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ruqayah",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "darling",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "safa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "embrace",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "wrinkled satin abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rola",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "imagine",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lana",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stormy",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "loubna",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "diana",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "assiyah",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "haila",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "feathered satin butterfly",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "iqra",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "narjis",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bestie",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ehsan",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "najwa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "key lime",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rihana",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "medina",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mecca",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "layah",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "eva",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zaina",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cornsilk",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "hanin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dalia",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "farah",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zaynab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sabeen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nadeen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "malika",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "latifa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jamila",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "hiba",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fatimah",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ada \u00e7ay\u0131",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "amaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "misty mauve blush",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "kashmiri chai",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lilac ash",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "scarab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fairy lights",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "woodsmoke",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "4 medina silk",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cocoa rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "amber bronze",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sunset horizon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pastel mink",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moonlit pearl",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sun",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "golden noir",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "toasted coconut",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "olive gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cocoa plum",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stone gray",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "goldenrod",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cocoa blush",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stone grey",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "embossed dots",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush mauve",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "twilight waves",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black/print",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "au lait",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "earth marble",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush taupe",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "caramel creme",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "golden sand",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark lamantin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "almond sage",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sepia rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "night owl",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stone sage",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light carmine",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "midnight shore",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "deliciosi",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zaytoun",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lipstick",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 0
+ },
+ {
+  "term": "citrus",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cherry truffle",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nuthatch",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sea kelp",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "crepe",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mushroom brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black / gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sapphire navy",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mocha latte",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mahogany plum",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "obsidian",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "thulium",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "poppy seed",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light marcore",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "arona",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black olive",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dolphin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rhino",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sorbet",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fern",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "abyad",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ash beige",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "aztec",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "belize",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "wren",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "bright yale",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "watermelon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rose tan",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "aquifer",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "grey beige",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "picante",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "white/gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "whitecap",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "salsa rosa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "beige/gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pink/gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "spice clay",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "arctic ice",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark fig",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black/silver",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tree",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "poison",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "titanium",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "almond peach",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light rosewood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tiffany",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mystical",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark shadow",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "burlwood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "watercolor bloom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "fundango",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "chocolate rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cyaneus",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "driftwood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "costal fog",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cilantro",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dried pear",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moss grey",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cloudburst",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black leopard bloom",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dijon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blush sand",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "doeskin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "saks",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "red & white",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "browni",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "sinopia fresco",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mocha bisque",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark rosewood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "gray violet",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "white",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "white",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cypress",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosy mist",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "thistle",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "plum truffle",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "haze fringe",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "kalamata fringe",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moonstone",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosaline",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "freesize blazer",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "persian marble",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pearl dust",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mystic meadow",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "caramel taupe",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light neutral",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "midnight noor",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "riptide",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "floiage",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosy",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pomegranate noir",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lavendel",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "perfectly pale",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "orange beige",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mint cream",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "flower",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "butterfly",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "charcoal mauve",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ultramarina",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "saffron brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lyn",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jungle",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moondrop grapes",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "tamac",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "froth",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 0
+ },
+ {
+  "term": "creme grey",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "trooper",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "shark",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "terra cota",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black and white",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "26 java",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moonstruck",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "10 anise",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "99 rose taupe",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "eden",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "rosenrote",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "chocolate creme",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "seaform",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "deep olivewood",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "silver/blue",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "luxe edition",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "olive ash",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nude mauve",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "kohl",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blueberry",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "samba",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dove taupe",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "soft lime",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nida",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lilac taupe",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusty mink",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cacao",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "warm olive gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "royal berry",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "eclair",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "92 black cherry",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 0
+ },
+ {
+  "term": "vintage",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "emerald teal",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "59 sahara",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "75 choc chip",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "14 metal",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "seagreen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 0
+ },
+ {
+  "term": "ash noir",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pebblestone",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "shitake",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "stillwater",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light natural",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black and grey",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "loden frost",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "under hijab",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "skin",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "iris storm",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "lightweight linen",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blazer style abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark ros\u00e9",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "champagne glow",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "brown peach",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "premium linen abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "brown floral",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pink floral",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "grey brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "banana rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "yellow",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "pastel green floral",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "grey white",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "red floral ditsy",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "multi",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "multi",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "creme white",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "petrol green",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "criss cross",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "purple ash",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nude purple",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "plain",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "nude rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "iceberg",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "light desert",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 0
+ },
+ {
+  "term": "silk abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "premium crepe blend",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "winter twig",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "deep mocha and dove grey",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "jacquard silk abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "melon",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "deep roselle",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 0
+ },
+ {
+  "term": "sunkissed dune",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "twilight grey & navy",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "refined abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "luxurious bisht",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "navy & pearl grey",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mahogany rouge",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "premium jersey | meringue",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "desert peony",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "khaki noir",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moonstone mist",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mauve rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
+ }
+]
