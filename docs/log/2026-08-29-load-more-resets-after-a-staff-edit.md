@@ -122,3 +122,42 @@ data movement and untouched by this change.
   `<form>` ancestor today, so nothing happens — but that is one refactor away from being a
   real page-reloading bug in the same place. Left alone here to keep this change to its root
   cause; worth a one-line fix on the next pass.
+
+## Production verification (appended after the merge)
+
+`main` fast-forwarded `1b8521a..51cdd20`, ancestry asserted. Origin confirmed serving the new
+build BEFORE purging (§10.47), then `purge_everything` → `success: true, errors: []`.
+
+**The deploy discriminator here is a content-hashed chunk name**, not a title or a marker
+string: this fix changes only client behaviour, so nothing about it is visible in the HTML.
+The grid's chunk (`grep -l "Load more" .next/static/chunks/*.js`) is content-hashed, so when
+the deployed page references the same filename the local build produced, the exact code is
+live. That is a real discriminator — it read `no` on staging for several minutes and then
+`YES`, rather than being true from the start.
+
+Production, both engines, after the purge:
+
+```
+chromium: 200 | cf MISS | fix build served: true | cards 24 -> 144 | reloads during clicks 0 | unique 144/144 | js errors 0
+webkit:   200 | cf HIT  | fix build served: true | cards 24 -> 144 | reloads during clicks 0 | unique 144/144 | js errors 0
+```
+
+Staging first, same shape: `24 -> 144`, `0` reloads, `144/144` unique, both engines.
+
+**A harness fault caught on the way, worth recording** (§10.26): the first staging run
+reported `reloads 1` and read as a regression. It was the page's own `load` event — the probe
+navigated with `waitUntil: 'domcontentloaded'` and zeroed the counter before `load` fired, so
+the initial page load counted as a reload. Re-run with `waitUntil: 'load'` and a baseline
+taken afterwards: `RELOADS DURING CLICKS 0`. A reload counter is only meaningful relative to a
+baseline established after the page has finished loading once.
+
+## Still unverified, and it is the half that matters most
+**The staff path itself has NOT been verified on the live site.** Both production and staging
+reject the `ADMIN_PASSWORD` in `.env` with `401 Wrong password`, so no staff session could be
+established remotely. Everything above is either anonymous (which exercises the same 409 code
+path but cannot trigger it) or was measured against a LOCAL production build of this exact
+commit, where the full staff flow does pass in both engines.
+
+So what is proven on production is: the fix is deployed, and it did not regress ordinary
+browsing. What is not proven on production is the fix working for Tina. She has to confirm, or
+share the real staff password. Said plainly rather than allowed to read as fully verified.
