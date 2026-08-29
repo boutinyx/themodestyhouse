@@ -1,138 +1,16 @@
 [
  {
-  "term": "navy blue",
-  "kind": "ambiguous",
-  "rows": 209,
-  "read": 10,
-  "family": "navy",
-  "votes": 8,
-  "strong": true,
-  "tally": [
-   [
-    "navy",
-    8
-   ],
-   [
-    "multi",
-    1
-   ],
-   [
-    "blue",
-    1
-   ]
-  ]
- },
- {
-  "term": "smoked",
-  "kind": "unknown",
-  "rows": 35,
-  "read": 10,
-  "family": "grey",
-  "votes": 9,
-  "strong": true,
-  "tally": [
-   [
-    "grey",
-    9
-   ],
-   [
-    "purple",
-    1
-   ]
-  ]
- },
- {
-  "term": "off white",
-  "kind": "ambiguous",
-  "rows": 32,
-  "read": 10,
-  "family": "cream",
-  "votes": 7,
-  "strong": true,
-  "tally": [
-   [
-    "cream",
-    7
-   ],
-   [
-    "white",
-    3
-   ]
-  ]
- },
- {
-  "term": "natural",
-  "kind": "unknown",
-  "rows": 28,
-  "read": 10,
-  "family": "beige",
-  "votes": 9,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    9
-   ],
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
-  "term": "luxury chiffon hijab",
-  "kind": "unknown",
-  "rows": 18,
-  "read": 10,
-  "family": "multi",
-  "votes": 8,
-  "strong": true,
-  "tally": [
-   [
-    "multi",
-    8
-   ],
-   [
-    "purple",
-    1
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "ice",
-  "kind": "unknown",
-  "rows": 17,
-  "read": 10,
-  "family": "blue",
-  "votes": 10,
-  "strong": true,
-  "tally": [
-   [
-    "blue",
-    10
-   ]
-  ]
- },
- {
   "term": "cloud",
   "kind": "unknown",
   "rows": 16,
   "read": 10,
   "family": "grey",
-  "votes": 5,
-  "strong": false,
+  "votes": 7,
+  "strong": true,
   "tally": [
    [
     "grey",
-    5
-   ],
-   [
-    "purple",
-    2
+    7
    ],
    [
     "blue",
@@ -145,642 +23,6 @@
    [
     "white",
     1
-   ]
-  ]
- },
- {
-  "term": "earth",
-  "kind": "unknown",
-  "rows": 15,
-  "read": 10,
-  "family": "brown",
-  "votes": 5,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    5
-   ],
-   [
-    "pink",
-    4
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "midnight",
-  "kind": "unknown",
-  "rows": 15,
-  "read": 10,
-  "family": "black",
-  "votes": 5,
-  "strong": false,
-  "tally": [
-   [
-    "black",
-    5
-   ],
-   [
-    "navy",
-    5
-   ]
-  ]
- },
- {
-  "term": "powder",
-  "kind": "unknown",
-  "rows": 15,
-  "read": 10,
-  "family": "pink",
-  "votes": 8,
-  "strong": true,
-  "tally": [
-   [
-    "pink",
-    8
-   ],
-   [
-    "beige",
-    1
-   ],
-   [
-    "multi",
-    1
-   ]
-  ]
- },
- {
-  "term": "clay",
-  "kind": "unknown",
-  "rows": 12,
-  "read": 10,
-  "family": "orange",
-  "votes": 4,
-  "strong": false,
-  "tally": [
-   [
-    "orange",
-    4
-   ],
-   [
-    "brown",
-    2
-   ],
-   [
-    "grey",
-    1
-   ],
-   [
-    "pink",
-    1
-   ],
-   [
-    "beige",
-    1
-   ],
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
-  "term": "final sale",
-  "kind": "unknown",
-  "rows": 12,
-  "read": 10,
-  "family": "multi",
-  "votes": 7,
-  "strong": true,
-  "tally": [
-   [
-    "multi",
-    7
-   ],
-   [
-    "cream",
-    1
-   ],
-   [
-    "grey",
-    1
-   ],
-   [
-    "green",
-    1
-   ]
-  ]
- },
- {
-  "term": "sahara",
-  "kind": "unknown",
-  "rows": 11,
-  "read": 10,
-  "family": "beige",
-  "votes": 6,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    6
-   ],
-   [
-    "cream",
-    2
-   ],
-   [
-    "brown",
-    2
-   ]
-  ]
- },
- {
-  "term": "pearl",
-  "kind": "unknown",
-  "rows": 11,
-  "read": 10,
-  "family": "beige",
-  "votes": 5,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    5
-   ],
-   [
-    "purple",
-    2
-   ],
-   [
-    "cream",
-    2
-   ],
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "desert",
-  "kind": "unknown",
-  "rows": 10,
-  "read": 10,
-  "family": "beige",
-  "votes": 7,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    7
-   ],
-   [
-    "pink",
-    1
-   ],
-   [
-    "brown",
-    1
-   ],
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
-  "term": "champagne",
-  "kind": "unknown",
-  "rows": 10,
-  "read": 10,
-  "family": "beige",
-  "votes": 6,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    6
-   ],
-   [
-    "cream",
-    4
-   ]
-  ]
- },
- {
-  "term": "midnight blue",
-  "kind": "ambiguous",
-  "rows": 10,
-  "read": 10,
-  "family": "navy",
-  "votes": 9,
-  "strong": true,
-  "tally": [
-   [
-    "navy",
-    9
-   ],
-   [
-    "grey",
-    1
-   ]
-  ]
- },
- {
-  "term": "rosewood",
-  "kind": "unknown",
-  "rows": 9,
-  "read": 9,
-  "family": "pink",
-  "votes": 6,
-  "strong": true,
-  "tally": [
-   [
-    "pink",
-    6
-   ],
-   [
-    "brown",
-    2
-   ],
-   [
-    "purple",
-    1
-   ]
-  ]
- },
- {
-  "term": "khaki green",
-  "kind": "ambiguous",
-  "rows": 9,
-  "read": 9,
-  "family": "green",
-  "votes": 9,
-  "strong": true,
-  "tally": [
-   [
-    "green",
-    9
-   ]
-  ]
- },
- {
-  "term": "shadow",
-  "kind": "unknown",
-  "rows": 9,
-  "read": 9,
-  "family": "grey",
-  "votes": 7,
-  "strong": true,
-  "tally": [
-   [
-    "grey",
-    7
-   ],
-   [
-    "navy",
-    1
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "acid",
-  "kind": "unknown",
-  "rows": 9,
-  "read": 9,
-  "family": "yellow",
-  "votes": 9,
-  "strong": true,
-  "tally": [
-   [
-    "yellow",
-    9
-   ]
-  ]
- },
- {
-  "term": "rose taupe",
-  "kind": "ambiguous",
-  "rows": 9,
-  "read": 8,
-  "family": "brown",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    3
-   ],
-   [
-    "beige",
-    3
-   ],
-   [
-    "purple",
-    1
-   ],
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "fig",
-  "kind": "unknown",
-  "rows": 9,
-  "read": 9,
-  "family": "red",
-  "votes": 6,
-  "strong": true,
-  "tally": [
-   [
-    "red",
-    6
-   ],
-   [
-    "purple",
-    2
-   ],
-   [
-    "orange",
-    1
-   ]
-  ]
- },
- {
-  "term": "chocolate plum",
-  "kind": "ambiguous",
-  "rows": 9,
-  "read": 9,
-  "family": "brown",
-  "votes": 5,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    5
-   ],
-   [
-    "multi",
-    2
-   ],
-   [
-    "purple",
-    2
-   ]
-  ]
- },
- {
-  "term": "venge",
-  "kind": "unknown",
-  "rows": 9,
-  "read": 9,
-  "family": "beige",
-  "votes": 4,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    4
-   ],
-   [
-    "grey",
-    2
-   ],
-   [
-    "purple",
-    2
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "dress",
-  "kind": "unknown",
-  "rows": 8,
-  "read": 8,
-  "family": "brown",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    3
-   ],
-   [
-    "black",
-    1
-   ],
-   [
-    "white",
-    1
-   ],
-   [
-    "cream",
-    1
-   ],
-   [
-    "blue",
-    1
-   ],
-   [
-    "red",
-    1
-   ]
-  ]
- },
- {
-  "term": "shell",
-  "kind": "unknown",
-  "rows": 8,
-  "read": 8,
-  "family": "beige",
-  "votes": 8,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    8
-   ]
-  ]
- },
- {
-  "term": "blue gray",
-  "kind": "ambiguous",
-  "rows": 8,
-  "read": 8,
-  "family": "grey",
-  "votes": 4,
-  "strong": false,
-  "tally": [
-   [
-    "grey",
-    4
-   ],
-   [
-    "blue",
-    2
-   ],
-   [
-    "multi",
-    1
-   ],
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
-  "term": "dusk",
-  "kind": "unknown",
-  "rows": 8,
-  "read": 8,
-  "family": "purple",
-  "votes": 4,
-  "strong": false,
-  "tally": [
-   [
-    "purple",
-    4
-   ],
-   [
-    "blue",
-    3
-   ],
-   [
-    "navy",
-    1
-   ]
-  ]
- },
- {
-  "term": "moonlight",
-  "kind": "unknown",
-  "rows": 8,
-  "read": 8,
-  "family": "cream",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "cream",
-    5
-   ],
-   [
-    "beige",
-    2
-   ],
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "golden beige",
-  "kind": "ambiguous",
-  "rows": 8,
-  "read": 8,
-  "family": "beige",
-  "votes": 7,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    7
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "peppercorn",
-  "kind": "unknown",
-  "rows": 7,
-  "read": 6,
-  "family": "brown",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "brown",
-    4
-   ],
-   [
-    "multi",
-    1
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "strawberry",
-  "kind": "unknown",
-  "rows": 7,
-  "read": 7,
-  "family": "red",
-  "votes": 7,
-  "strong": true,
-  "tally": [
-   [
-    "red",
-    7
-   ]
-  ]
- },
- {
-  "term": "lamantin",
-  "kind": "unknown",
-  "rows": 7,
-  "read": 7,
-  "family": "green",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "green",
-    5
-   ],
-   [
-    "grey",
-    2
-   ]
-  ]
- },
- {
-  "term": "moonbeam",
-  "kind": "unknown",
-  "rows": 7,
-  "read": 6,
-  "family": "cream",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "cream",
-    4
-   ],
-   [
-    "beige",
-    2
    ]
   ]
  },
@@ -788,7 +30,7 @@
   "term": "spice",
   "kind": "unknown",
   "rows": 7,
-  "read": 6,
+  "read": 7,
   "family": "brown",
   "votes": 3,
   "strong": false,
@@ -802,88 +44,8 @@
     2
    ],
    [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "cream white",
-  "kind": "ambiguous",
-  "rows": 7,
-  "read": 7,
-  "family": "cream",
-  "votes": 7,
-  "strong": true,
-  "tally": [
-   [
-    "cream",
-    7
-   ]
-  ]
- },
- {
-  "term": "bamboo",
-  "kind": "unknown",
-  "rows": 7,
-  "read": 7,
-  "family": "black",
-  "votes": 4,
-  "strong": false,
-  "tally": [
-   [
-    "black",
-    4
-   ],
-   [
-    "grey",
+    "beige",
     2
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "fossil",
-  "kind": "unknown",
-  "rows": 7,
-  "read": 7,
-  "family": "beige",
-  "votes": 6,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    6
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "linen",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 6,
-  "family": "beige",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    4
-   ],
-   [
-    "navy",
-    1
-   ],
-   [
-    "grey",
-    1
    ]
   ]
  },
@@ -907,667 +69,24 @@
   ]
  },
  {
-  "term": "modal plain hijab",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 6,
-  "family": "pink",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "pink",
-    1
-   ],
-   [
-    "purple",
-    1
-   ],
-   [
-    "blue",
-    1
-   ],
-   [
-    "cream",
-    1
-   ],
-   [
-    "grey",
-    1
-   ],
-   [
-    "orange",
-    1
-   ]
-  ]
- },
- {
-  "term": "periwinkle",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 6,
-  "family": "purple",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "purple",
-    3
-   ],
-   [
-    "beige",
-    1
-   ],
-   [
-    "grey",
-    1
-   ],
-   [
-    "blue",
-    1
-   ]
-  ]
- },
- {
-  "term": "cove",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 6,
-  "family": "brown",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    3
-   ],
-   [
-    "black",
-    3
-   ]
-  ]
- },
- {
-  "term": "brownie",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 5,
-  "family": "brown",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "brown",
-    4
-   ],
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "rose beige",
-  "kind": "ambiguous",
-  "rows": 6,
-  "read": 6,
-  "family": "beige",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    4
-   ],
-   [
-    "purple",
-    1
-   ],
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
-  "term": "pleated abaya",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 6,
-  "family": "multi",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "multi",
-    4
-   ],
-   [
-    "brown",
-    1
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "smoke",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 6,
-  "family": "grey",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "grey",
-    5
-   ],
-   [
-    "white",
-    1
-   ]
-  ]
- },
- {
-  "term": "sage grey",
-  "kind": "ambiguous",
-  "rows": 6,
-  "read": 6,
-  "family": "beige",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    3
-   ],
-   [
-    "grey",
-    3
-   ]
-  ]
- },
- {
-  "term": "olive grey",
-  "kind": "ambiguous",
-  "rows": 6,
-  "read": 6,
-  "family": "beige",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    5
-   ],
-   [
-    "grey",
-    1
-   ]
-  ]
- },
- {
-  "term": "iron",
-  "kind": "unknown",
-  "rows": 6,
-  "read": 6,
-  "family": "grey",
-  "votes": 6,
-  "strong": true,
-  "tally": [
-   [
-    "grey",
-    6
-   ]
-  ]
- },
- {
-  "term": "modal cotton hijab",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "orange",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "orange",
-    2
-   ],
-   [
-    "grey",
-    1
-   ],
-   [
-    "cream",
-    1
-   ],
-   [
-    "blue",
-    1
-   ]
-  ]
- },
- {
-  "term": "warda",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "red",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "red",
-    3
-   ],
-   [
-    "multi",
-    1
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "linseed",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "beige",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    5
-   ]
-  ]
- },
- {
-  "term": "sienna",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "brown",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    2
-   ],
-   [
-    "orange",
-    1
-   ],
-   [
-    "pink",
-    1
-   ],
-   [
-    "black",
-    1
-   ]
-  ]
- },
- {
-  "term": "wood",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "brown",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "brown",
-    5
-   ]
-  ]
- },
- {
-  "term": "burgundy rose",
-  "kind": "ambiguous",
-  "rows": 5,
-  "read": 5,
-  "family": "red",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "red",
-    5
-   ]
-  ]
- },
- {
-  "term": "cupcake",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "purple",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "purple",
-    5
-   ]
-  ]
- },
- {
-  "term": "future dusk",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "navy",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "navy",
-    4
-   ],
-   [
-    "purple",
-    1
-   ]
-  ]
- },
- {
-  "term": "storm",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "grey",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "grey",
-    4
-   ],
-   [
-    "blue",
-    1
-   ]
-  ]
- },
- {
-  "term": "mint gray",
-  "kind": "ambiguous",
-  "rows": 5,
-  "read": 5,
-  "family": "grey",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "grey",
-    3
-   ],
-   [
-    "beige",
-    1
-   ],
-   [
-    "green",
-    1
-   ]
-  ]
- },
- {
-  "term": "honeydew",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "green",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "green",
-    2
-   ],
-   [
-    "yellow",
-    2
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "tile",
-  "kind": "unknown",
-  "rows": 5,
-  "read": 5,
-  "family": "orange",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "orange",
-    5
-   ]
-  ]
- },
- {
-  "term": "purple dove",
-  "kind": "ambiguous",
-  "rows": 5,
-  "read": 5,
-  "family": "purple",
-  "votes": 5,
-  "strong": true,
-  "tally": [
-   [
-    "purple",
-    5
-   ]
-  ]
- },
- {
-  "term": "nude peach",
-  "kind": "ambiguous",
-  "rows": 5,
-  "read": 5,
-  "family": "pink",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "pink",
-    3
-   ],
-   [
-    "beige",
-    2
-   ]
-  ]
- },
- {
-  "term": "ink",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "grey",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "grey",
-    2
-   ],
-   [
-    "black",
-    2
-   ]
-  ]
- },
- {
-  "term": "dune",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    4
-   ]
-  ]
- },
- {
-  "term": "oyster",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    2
-   ],
-   [
-    "pink",
-    1
-   ],
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
-  "term": "rosily",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "pink",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "pink",
-    4
-   ]
-  ]
- },
- {
-  "term": "lace",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "white",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "white",
-    2
-   ],
-   [
-    "purple",
-    2
-   ]
-  ]
- },
- {
-  "term": "haze",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    3
-   ],
-   [
-    "green",
-    1
-   ]
-  ]
- },
- {
-  "term": "purple sage",
-  "kind": "ambiguous",
-  "rows": 4,
-  "read": 4,
-  "family": "purple",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "purple",
-    4
-   ]
-  ]
- },
- {
-  "term": "string",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    4
-   ]
-  ]
- },
- {
-  "term": "shale",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "brown",
-  "votes": 4,
-  "strong": true,
-  "tally": [
-   [
-    "brown",
-    4
-   ]
-  ]
- },
- {
   "term": "chai",
   "kind": "unknown",
   "rows": 4,
   "read": 4,
-  "family": "beige",
+  "family": "brown",
   "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     2
    ],
    [
-    "brown",
+    "pink",
     1
    ],
    [
-    "pink",
+    "beige",
     1
    ]
   ]
@@ -1590,336 +109,8 @@
     1
    ],
    [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "deep sea",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "navy",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "navy",
-    2
-   ],
-   [
-    "green",
-    1
-   ],
-   [
-    "blue",
-    1
-   ]
-  ]
- },
- {
-  "term": "taupe gray",
-  "kind": "ambiguous",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    3
-   ],
-   [
-    "green",
-    1
-   ]
-  ]
- },
- {
-  "term": "drizzle",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    2
-   ],
-   [
-    "grey",
-    2
-   ]
-  ]
- },
- {
-  "term": "olive brown",
-  "kind": "ambiguous",
-  "rows": 4,
-  "read": 4,
-  "family": "brown",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    2
-   ],
-   [
-    "orange",
-    1
-   ],
-   [
-    "grey",
-    1
-   ]
-  ]
- },
- {
-  "term": "lava",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "grey",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "grey",
-    3
-   ],
-   [
-    "purple",
-    1
-   ]
-  ]
- },
- {
-  "term": "knit & flared skirt",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    2
-   ],
-   [
-    "green",
-    1
-   ],
-   [
     "brown",
     1
-   ]
-  ]
- },
- {
-  "term": "sunset",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "orange",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "orange",
-    3
-   ],
-   [
-    "red",
-    1
-   ]
-  ]
- },
- {
-  "term": "maxi dress",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "red",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "red",
-    1
-   ],
-   [
-    "pink",
-    1
-   ],
-   [
-    "green",
-    1
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "cape dress",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "purple",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "purple",
-    1
-   ],
-   [
-    "red",
-    1
-   ],
-   [
-    "blue",
-    1
-   ],
-   [
-    "green",
-    1
-   ]
-  ]
- },
- {
-  "term": "blush nude",
-  "kind": "ambiguous",
-  "rows": 4,
-  "read": 4,
-  "family": "pink",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "pink",
-    3
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "berry",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "red",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "red",
-    2
-   ],
-   [
-    "purple",
-    1
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "iris",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "brown",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "brown",
-    3
-   ],
-   [
-    "navy",
-    1
-   ]
-  ]
- },
- {
-  "term": "clove",
-  "kind": "unknown",
-  "rows": 4,
-  "read": 4,
-  "family": "beige",
-  "votes": 3,
-  "strong": true,
-  "tally": [
-   [
-    "beige",
-    3
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "admiral",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "navy",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "navy",
-    3
-   ]
-  ]
- },
- {
-  "term": "bare",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "cream",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "cream",
-    2
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "cayenne",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "purple",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "purple",
-    3
    ]
   ]
  },
@@ -1937,26 +128,7 @@
     2
    ],
    [
-    "purple",
-    1
-   ]
-  ]
- },
- {
-  "term": "ivy",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "green",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "green",
-    2
-   ],
-   [
-    "pink",
+    "brown",
     1
    ]
   ]
@@ -1967,16 +139,12 @@
   "rows": 3,
   "read": 3,
   "family": "red",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "red",
-    1
-   ],
-   [
-    "yellow",
-    1
+    2
    ],
    [
     "brown",
@@ -1989,35 +157,16 @@
   "kind": "unknown",
   "rows": 3,
   "read": 3,
-  "family": "beige",
+  "family": "brown",
   "votes": 2,
   "strong": false,
   "tally": [
-   [
-    "beige",
-    2
-   ],
    [
     "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "butteryellow",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "yellow",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "yellow",
     2
    ],
    [
-    "cream",
+    "beige",
     1
    ]
   ]
@@ -2027,58 +176,20 @@
   "kind": "ambiguous",
   "rows": 3,
   "read": 3,
-  "family": "navy",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "navy",
+    "black",
+    1
+   ],
+   [
+    "grey",
     1
    ],
    [
     "blue",
-    1
-   ],
-   [
-    "purple",
-    1
-   ]
-  ]
- },
- {
-  "term": "bungee cord",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "green",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "green",
-    2
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "black & white",
-  "kind": "ambiguous",
-  "rows": 3,
-  "read": 3,
-  "family": "black",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "black",
-    2
-   ],
-   [
-    "multi",
     1
    ]
   ]
@@ -2089,16 +200,12 @@
   "rows": 3,
   "read": 3,
   "family": "grey",
-  "votes": 2,
+  "votes": 3,
   "strong": false,
   "tally": [
    [
     "grey",
-    2
-   ],
-   [
-    "beige",
-    1
+    3
    ]
   ]
  },
@@ -2118,29 +225,6 @@
   ]
  },
  {
-  "term": "mist",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "green",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "green",
-    1
-   ],
-   [
-    "purple",
-    1
-   ],
-   [
-    "white",
-    1
-   ]
-  ]
- },
- {
   "term": "open abaya",
   "kind": "unknown",
   "rows": 3,
@@ -2154,72 +238,7 @@
     2
    ],
    [
-    "green",
-    1
-   ]
-  ]
- },
- {
-  "term": "fresh scarfs",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "multi",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "multi",
-    1
-   ],
-   [
-    "brown",
-    1
-   ],
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "malt ball",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    2
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "mint blue",
-  "kind": "ambiguous",
-  "rows": 3,
-  "read": 3,
-  "family": "cream",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "cream",
-    1
-   ],
-   [
-    "green",
-    1
-   ],
-   [
-    "blue",
+    "grey",
     1
    ]
   ]
@@ -2240,21 +259,6 @@
   ]
  },
  {
-  "term": "lilac grey",
-  "kind": "ambiguous",
-  "rows": 3,
-  "read": 3,
-  "family": "grey",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "grey",
-    3
-   ]
-  ]
- },
- {
   "term": "viscose blend",
   "kind": "unknown",
   "rows": 3,
@@ -2268,23 +272,8 @@
     2
    ],
    [
-    "navy",
+    "black",
     1
-   ]
-  ]
- },
- {
-  "term": "bedrock",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "purple",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "purple",
-    3
    ]
   ]
  },
@@ -2294,141 +283,20 @@
   "rows": 3,
   "read": 3,
   "family": "grey",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "grey",
-    2
-   ],
-   [
-    "multi",
-    1
-   ]
-  ]
- },
- {
-  "term": "cinder",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    3
-   ]
-  ]
- },
- {
-  "term": "butterfly dress",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "pink",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "pink",
-    2
-   ],
-   [
-    "red",
-    1
-   ]
-  ]
- },
- {
-  "term": "climbing ivy",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "black",
+    "grey",
     1
    ],
    [
-    "pink",
+    "multi",
     1
    ],
    [
     "green",
     1
-   ]
-  ]
- },
- {
-  "term": "marigold",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "yellow",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "yellow",
-    2
-   ],
-   [
-    "multi",
-    1
-   ]
-  ]
- },
- {
-  "term": "graystone",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "purple",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "purple",
-    3
-   ]
-  ]
- },
- {
-  "term": "nude pink",
-  "kind": "ambiguous",
-  "rows": 3,
-  "read": 3,
-  "family": "pink",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "pink",
-    2
-   ],
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "arabian spice",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "orange",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "orange",
-    3
    ]
   ]
  },
@@ -2448,40 +316,6 @@
   ]
  },
  {
-  "term": "kalamata",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "green",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "green",
-    2
-   ],
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "fallen rock",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    3
-   ]
-  ]
- },
- {
   "term": "soalon",
   "kind": "unknown",
   "rows": 3,
@@ -2492,21 +326,6 @@
   "tally": [
    [
     "black",
-    3
-   ]
-  ]
- },
- {
-  "term": "antique",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
     3
    ]
   ]
@@ -2535,31 +354,20 @@
   "kind": "unknown",
   "rows": 3,
   "read": 3,
-  "family": "brown",
-  "votes": 3,
+  "family": "orange",
+  "votes": 1,
   "strong": false,
   "tally": [
    [
-    "brown",
-    3
-   ]
-  ]
- },
- {
-  "term": "balsam",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "grey",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "grey",
-    2
+    "orange",
+    1
    ],
    [
-    "blue",
+    "brown",
+    1
+   ],
+   [
+    "red",
     1
    ]
   ]
@@ -2568,14 +376,14 @@
   "term": "harbor mist",
   "kind": "unknown",
   "rows": 3,
-  "read": 2,
+  "read": 3,
   "family": "green",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "green",
-    1
+    2
    ],
    [
     "grey",
@@ -2599,129 +407,8 @@
   ]
  },
  {
-  "term": "barbie",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "pink",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "pink",
-    3
-   ]
-  ]
- },
- {
-  "term": "nude brown",
-  "kind": "ambiguous",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    3
-   ]
-  ]
- },
- {
-  "term": "80 skin",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ],
-   [
-    "cream",
-    1
-   ],
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "beige rose",
-  "kind": "ambiguous",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    2
-   ],
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "greij",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "beige",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    2
-   ],
-   [
-    "grey",
-    1
-   ]
-  ]
- },
- {
-  "term": "amazon",
-  "kind": "unknown",
-  "rows": 3,
-  "read": 3,
-  "family": "green",
-  "votes": 3,
-  "strong": false,
-  "tally": [
-   [
-    "green",
-    3
-   ]
-  ]
- },
- {
   "term": "black x red",
   "kind": "ambiguous",
-  "rows": 2,
-  "read": 2,
-  "family": "black",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "black",
-    2
-   ]
-  ]
- },
- {
-  "term": "laurel",
-  "kind": "unknown",
   "rows": 2,
   "read": 2,
   "family": "grey",
@@ -2733,8 +420,23 @@
     1
    ],
    [
-    "beige",
+    "black",
     1
+   ]
+  ]
+ },
+ {
+  "term": "laurel",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    2
    ]
   ]
  },
@@ -2758,21 +460,6 @@
   ]
  },
  {
-  "term": "bloom",
-  "kind": "unknown",
-  "rows": 2,
-  "read": 2,
-  "family": "purple",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "purple",
-    2
-   ]
-  ]
- },
- {
   "term": "burgundy & gold",
   "kind": "ambiguous",
   "rows": 2,
@@ -2788,21 +475,32 @@
   ]
  },
  {
+  "term": "bloom",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "purple",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    2
+   ]
+  ]
+ },
+ {
   "term": "undercap",
   "kind": "unknown",
   "rows": 2,
   "read": 2,
   "family": "white",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "white",
-    1
-   ],
-   [
-    "cream",
-    1
+    2
    ]
   ]
  },
@@ -2826,17 +524,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "white",
-  "votes": 1,
+  "family": "grey",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "white",
-    1
-   ],
-   [
-    "cream",
-    1
+    "grey",
+    2
    ]
   ]
  },
@@ -2845,12 +539,12 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
+  "family": "brown",
   "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     2
    ]
   ]
@@ -2941,7 +635,7 @@
     1
    ],
    [
-    "cream",
+    "yellow",
     1
    ]
   ]
@@ -3000,17 +694,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "purple",
-  "votes": 1,
+  "family": "pink",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "purple",
-    1
-   ],
-   [
     "pink",
-    1
+    2
    ]
   ]
  },
@@ -3035,12 +725,16 @@
   "rows": 2,
   "read": 2,
   "family": "green",
-  "votes": 2,
+  "votes": 1,
   "strong": false,
   "tally": [
    [
     "green",
-    2
+    1
+   ],
+   [
+    "yellow",
+    1
    ]
   ]
  },
@@ -3064,17 +758,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "multi",
-  "votes": 1,
+  "family": "purple",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "multi",
-    1
-   ],
-   [
-    "brown",
-    1
+    "purple",
+    2
    ]
   ]
  },
@@ -3083,17 +773,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "yellow",
-  "votes": 1,
+  "family": "green",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "yellow",
-    1
-   ],
-   [
     "green",
-    1
+    2
    ]
   ]
  },
@@ -3102,17 +788,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "multi",
-  "votes": 1,
+  "family": "brown",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "multi",
-    1
-   ],
-   [
     "brown",
-    1
+    2
    ]
   ]
  },
@@ -3120,13 +802,17 @@
   "term": "auburn",
   "kind": "unknown",
   "rows": 2,
-  "read": 1,
+  "read": 2,
   "family": "orange",
   "votes": 1,
   "strong": false,
   "tally": [
    [
     "orange",
+    1
+   ],
+   [
+    "brown",
     1
    ]
   ]
@@ -3137,12 +823,16 @@
   "rows": 2,
   "read": 2,
   "family": "beige",
-  "votes": 2,
+  "votes": 1,
   "strong": false,
   "tally": [
    [
     "beige",
-    2
+    1
+   ],
+   [
+    "pink",
+    1
    ]
   ]
  },
@@ -3152,12 +842,16 @@
   "rows": 2,
   "read": 2,
   "family": "multi",
-  "votes": 2,
+  "votes": 1,
   "strong": false,
   "tally": [
    [
     "multi",
-    2
+    1
+   ],
+   [
+    "purple",
+    1
    ]
   ]
  },
@@ -3180,11 +874,15 @@
   "term": "antler",
   "kind": "unknown",
   "rows": 2,
-  "read": 1,
-  "family": "beige",
+  "read": 2,
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
+   [
+    "brown",
+    1
+   ],
    [
     "beige",
     1
@@ -3302,17 +1000,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "navy",
-  "votes": 1,
+  "family": "black",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "navy",
-    1
-   ],
-   [
     "black",
-    1
+    2
    ]
   ]
  },
@@ -3461,12 +1155,12 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
+  "family": "green",
   "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "green",
     2
    ]
   ]
@@ -3521,17 +1215,13 @@
   "kind": "ambiguous",
   "rows": 2,
   "read": 2,
-  "family": "beige",
-  "votes": 1,
+  "family": "brown",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ],
-   [
     "brown",
-    1
+    2
    ]
   ]
  },
@@ -3549,7 +1239,7 @@
     1
    ],
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -3594,11 +1284,30 @@
   "rows": 2,
   "read": 2,
   "family": "beige",
-  "votes": 2,
+  "votes": 1,
   "strong": false,
   "tally": [
    [
     "beige",
+    1
+   ],
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "steel",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "grey",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
     2
    ]
   ]
@@ -3619,21 +1328,6 @@
    [
     "beige",
     1
-   ]
-  ]
- },
- {
-  "term": "steel",
-  "kind": "unknown",
-  "rows": 2,
-  "read": 2,
-  "family": "grey",
-  "votes": 2,
-  "strong": false,
-  "tally": [
-   [
-    "grey",
-    2
    ]
   ]
  },
@@ -3666,7 +1360,7 @@
     1
    ],
    [
-    "grey",
+    "blue",
     1
    ]
   ]
@@ -3714,13 +1408,17 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "multi",
-  "votes": 2,
+  "family": "grey",
+  "votes": 1,
   "strong": false,
   "tally": [
    [
+    "grey",
+    1
+   ],
+   [
     "multi",
-    2
+    1
    ]
   ]
  },
@@ -3757,7 +1455,7 @@
     1
    ],
    [
-    "beige",
+    "yellow",
     1
    ]
   ]
@@ -3798,16 +1496,12 @@
   "rows": 2,
   "read": 2,
   "family": "cream",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "cream",
-    1
-   ],
-   [
-    "beige",
-    1
+    2
    ]
   ]
  },
@@ -3862,12 +1556,16 @@
   "rows": 2,
   "read": 2,
   "family": "purple",
-  "votes": 2,
+  "votes": 1,
   "strong": false,
   "tally": [
    [
     "purple",
-    2
+    1
+   ],
+   [
+    "grey",
+    1
    ]
   ]
  },
@@ -3876,16 +1574,16 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ],
    [
-    "cream",
+    "beige",
     1
    ]
   ]
@@ -3958,14 +1656,14 @@
   "term": "soft slit",
   "kind": "unknown",
   "rows": 2,
-  "read": 1,
+  "read": 2,
   "family": "brown",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "brown",
-    1
+    2
    ]
   ]
  },
@@ -3989,17 +1687,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "cream",
-  "votes": 1,
+  "family": "beige",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "cream",
-    1
-   ],
-   [
     "beige",
-    1
+    2
    ]
   ]
  },
@@ -4023,17 +1717,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "black",
-  "votes": 1,
+  "family": "grey",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "black",
-    1
-   ],
-   [
     "grey",
-    1
+    2
    ]
   ]
  },
@@ -4042,17 +1732,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
-  "votes": 1,
+  "family": "yellow",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ],
-   [
     "yellow",
-    1
+    2
    ]
   ]
  },
@@ -4092,12 +1778,16 @@
   "rows": 2,
   "read": 2,
   "family": "beige",
-  "votes": 2,
+  "votes": 1,
   "strong": false,
   "tally": [
    [
     "beige",
-    2
+    1
+   ],
+   [
+    "pink",
+    1
    ]
   ]
  },
@@ -4166,13 +1856,17 @@
   "kind": "ambiguous",
   "rows": 2,
   "read": 2,
-  "family": "beige",
-  "votes": 2,
+  "family": "green",
+  "votes": 1,
   "strong": false,
   "tally": [
    [
+    "green",
+    1
+   ],
+   [
     "beige",
-    2
+    1
    ]
   ]
  },
@@ -4196,17 +1890,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
-  "votes": 1,
+  "family": "green",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ],
-   [
     "green",
-    1
+    2
    ]
   ]
  },
@@ -4215,12 +1905,12 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "red",
+  "family": "orange",
   "votes": 2,
   "strong": false,
   "tally": [
    [
-    "red",
+    "orange",
     2
    ]
   ]
@@ -4283,17 +1973,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
-  "votes": 1,
+  "family": "brown",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ],
-   [
     "brown",
-    1
+    2
    ]
   ]
  },
@@ -4302,17 +1988,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "cream",
-  "votes": 1,
+  "family": "beige",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "cream",
-    1
-   ],
-   [
     "beige",
-    1
+    2
    ]
   ]
  },
@@ -4337,16 +2019,12 @@
   "rows": 2,
   "read": 2,
   "family": "green",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "green",
-    1
-   ],
-   [
-    "beige",
-    1
+    2
    ]
   ]
  },
@@ -4400,17 +2078,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
-  "votes": 1,
+  "family": "pink",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ],
-   [
     "pink",
-    1
+    2
    ]
   ]
  },
@@ -4418,7 +2092,16 @@
   "term": "turkish",
   "kind": "unknown",
   "rows": 2,
-  "read": 0
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
+    1
+   ]
+  ]
  },
  {
   "term": "muslin",
@@ -4440,17 +2123,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
-  "votes": 1,
+  "family": "brown",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ],
-   [
     "brown",
-    1
+    2
    ]
   ]
  },
@@ -4460,16 +2139,12 @@
   "rows": 2,
   "read": 2,
   "family": "pink",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "pink",
-    1
-   ],
-   [
-    "purple",
-    1
+    2
    ]
   ]
  },
@@ -4493,17 +2168,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "brown",
-  "votes": 1,
+  "family": "beige",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "brown",
-    1
-   ],
-   [
     "beige",
-    1
+    2
    ]
   ]
  },
@@ -4561,17 +2232,13 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "pink",
-  "votes": 1,
+  "family": "brown",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "pink",
-    1
-   ],
-   [
     "brown",
-    1
+    2
    ]
   ]
  },
@@ -4581,16 +2248,12 @@
   "rows": 2,
   "read": 2,
   "family": "grey",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "grey",
-    1
-   ],
-   [
-    "white",
-    1
+    2
    ]
   ]
  },
@@ -4599,12 +2262,12 @@
   "kind": "ambiguous",
   "rows": 2,
   "read": 2,
-  "family": "beige",
+  "family": "grey",
   "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "grey",
     2
    ]
   ]
@@ -4614,16 +2277,16 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "grey",
+  "family": "purple",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "grey",
+    "purple",
     1
    ],
    [
-    "purple",
+    "grey",
     1
    ]
   ]
@@ -4634,16 +2297,12 @@
   "rows": 2,
   "read": 2,
   "family": "blue",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "blue",
-    1
-   ],
-   [
-    "green",
-    1
+    2
    ]
   ]
  },
@@ -4769,17 +2428,13 @@
   "kind": "ambiguous",
   "rows": 2,
   "read": 2,
-  "family": "green",
-  "votes": 1,
+  "family": "yellow",
+  "votes": 2,
   "strong": false,
   "tally": [
    [
-    "green",
-    1
-   ],
-   [
     "yellow",
-    1
+    2
    ]
   ]
  },
@@ -4804,12 +2459,16 @@
   "rows": 2,
   "read": 2,
   "family": "beige",
-  "votes": 2,
+  "votes": 1,
   "strong": false,
   "tally": [
    [
     "beige",
-    2
+    1
+   ],
+   [
+    "yellow",
+    1
    ]
   ]
  },
@@ -4849,16 +2508,12 @@
   "rows": 2,
   "read": 2,
   "family": "green",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "green",
-    1
-   ],
-   [
-    "brown",
-    1
+    2
    ]
   ]
  },
@@ -4971,36 +2626,6 @@
   "term": "raven",
   "kind": "unknown",
   "rows": 2,
-  "read": 1,
-  "family": "brown",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
-  "term": "spruce",
-  "kind": "unknown",
-  "rows": 2,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "golden brown",
-  "kind": "ambiguous",
-  "rows": 2,
   "read": 2,
   "family": "brown",
   "votes": 1,
@@ -5011,8 +2636,42 @@
     1
    ],
    [
-    "orange",
+    "black",
     1
+   ]
+  ]
+ },
+ {
+  "term": "spruce",
+  "kind": "unknown",
+  "rows": 2,
+  "read": 2,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ],
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "golden brown",
+  "kind": "ambiguous",
+  "rows": 2,
+  "read": 2,
+  "family": "orange",
+  "votes": 2,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    2
    ]
   ]
  },
@@ -5071,16 +2730,12 @@
   "rows": 2,
   "read": 2,
   "family": "brown",
-  "votes": 1,
+  "votes": 2,
   "strong": false,
   "tally": [
    [
     "brown",
-    1
-   ],
-   [
-    "beige",
-    1
+    2
    ]
   ]
  },
@@ -5104,12 +2759,12 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
+  "family": "brown",
   "votes": 2,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     2
    ]
   ]
@@ -5143,7 +2798,7 @@
     1
    ],
    [
-    "beige",
+    "green",
     1
    ]
   ]
@@ -5153,12 +2808,12 @@
   "kind": "unknown",
   "rows": 2,
   "read": 2,
-  "family": "beige",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "black",
     1
    ],
    [
@@ -5307,12 +2962,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "navy",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "navy",
+    "black",
     1
    ]
   ]
@@ -5337,12 +2992,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ]
   ]
@@ -5378,6 +3033,21 @@
   ]
  },
  {
+  "term": "beige/brown",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
   "term": "nasmet el arz",
   "kind": "unknown",
   "rows": 1,
@@ -5388,21 +3058,6 @@
   "tally": [
    [
     "grey",
-    1
-   ]
-  ]
- },
- {
-  "term": "beige/brown",
-  "kind": "ambiguous",
-  "rows": 1,
-  "read": 1,
-  "family": "cream",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "cream",
     1
    ]
   ]
@@ -5468,21 +3123,6 @@
   ]
  },
  {
-  "term": "noor el layl",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "cream",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
   "term": "turquoise & gold",
   "kind": "ambiguous",
   "rows": 1,
@@ -5493,6 +3133,21 @@
   "tally": [
    [
     "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "noor el layl",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
     1
    ]
   ]
@@ -5637,12 +3292,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ]
   ]
@@ -5682,12 +3337,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "white",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "white",
     1
    ]
   ]
@@ -5697,33 +3352,33 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "raml lubnan",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
+    "brown",
     1
    ]
   ]
  },
  {
   "term": "morel",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "raml lubnan",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
@@ -5802,36 +3457,6 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "adjustable tie underscarf",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "pink",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
-  "term": "babypink",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
   "family": "cream",
   "votes": 1,
   "strong": false,
@@ -5843,16 +3468,31 @@
   ]
  },
  {
-  "term": "oversized poplin shirt",
+  "term": "adjustable tie underscarf",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "brown",
+  "family": "beige",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "brown",
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "babypink",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
     1
    ]
   ]
@@ -5888,6 +3528,21 @@
   ]
  },
  {
+  "term": "oversized poplin shirt",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
   "term": "caspian",
   "kind": "unknown",
   "rows": 1,
@@ -5907,12 +3562,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "blue",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "blue",
+    "grey",
     1
    ]
   ]
@@ -5937,12 +3592,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "yellow",
+  "family": "orange",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "yellow",
+    "orange",
     1
    ]
   ]
@@ -5982,12 +3637,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "green",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "green",
     1
    ]
   ]
@@ -5997,12 +3652,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "yellow",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "yellow",
+    "cream",
     1
    ]
   ]
@@ -6057,12 +3712,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "pink",
+  "family": "orange",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "pink",
+    "orange",
     1
    ]
   ]
@@ -6078,6 +3733,21 @@
   "tally": [
    [
     "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "\u0648\u0631\u0642 \u0646\u0627\u0639\u0645",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "red",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "red",
     1
    ]
   ]
@@ -6108,21 +3778,6 @@
   "tally": [
    [
     "grey",
-    1
-   ]
-  ]
- },
- {
-  "term": "\u0648\u0631\u0642 \u0646\u0627\u0639\u0645",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "red",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "red",
     1
    ]
   ]
@@ -6177,12 +3832,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "pink",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "pink",
+    "brown",
     1
    ]
   ]
@@ -6207,12 +3862,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "black",
+  "family": "navy",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "black",
+    "navy",
     1
    ]
   ]
@@ -6297,12 +3952,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "blue",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "blue",
     1
    ]
   ]
@@ -6312,12 +3967,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "white",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "white",
+    "cream",
     1
    ]
   ]
@@ -6342,12 +3997,27 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "white",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "white",
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cape abaya",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
     1
    ]
   ]
@@ -6368,31 +4038,16 @@
   ]
  },
  {
-  "term": "cape abaya",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "brown",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
   "term": "henna",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "green",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "green",
     1
    ]
   ]
@@ -6432,21 +4087,6 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "moss beige",
-  "kind": "ambiguous",
-  "rows": 1,
-  "read": 1,
   "family": "brown",
   "votes": 1,
   "strong": false,
@@ -6458,16 +4098,16 @@
   ]
  },
  {
-  "term": "lace dress",
-  "kind": "unknown",
+  "term": "moss beige",
+  "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "cream",
+  "family": "beige",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "cream",
+    "beige",
     1
    ]
   ]
@@ -6488,16 +4128,31 @@
   ]
  },
  {
-  "term": "mystic wave",
+  "term": "lace dress",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "mystic wave",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
     1
    ]
   ]
@@ -6537,12 +4192,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -6642,12 +4297,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "grey",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "grey",
+    "black",
     1
    ]
   ]
@@ -6657,12 +4312,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "purple",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "purple",
+    "brown",
     1
    ]
   ]
@@ -6672,12 +4327,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -6717,12 +4372,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "purple",
+  "family": "red",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "purple",
+    "red",
     1
    ]
   ]
@@ -6792,12 +4447,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "blue",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "blue",
+    "grey",
     1
    ]
   ]
@@ -6807,12 +4462,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "black",
     1
    ]
   ]
@@ -6923,31 +4578,16 @@
   ]
  },
  {
-  "term": "zipped cable knit",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "brown",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
   "term": "lumi\u00e8re",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "white",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "white",
+    "cream",
     1
    ]
   ]
@@ -6963,6 +4603,21 @@
   "tally": [
    [
     "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "zipped cable knit",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
     1
    ]
   ]
@@ -7047,12 +4702,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "brown",
     1
    ]
   ]
@@ -7122,12 +4777,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -7163,31 +4818,31 @@
   ]
  },
  {
-  "term": "wisteria black",
+  "term": "blush nude abaya",
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "red",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "red",
+    "pink",
     1
    ]
   ]
  },
  {
-  "term": "blush nude abaya",
+  "term": "wisteria black",
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "multi",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "multi",
     1
    ]
   ]
@@ -7257,12 +4912,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -7298,21 +4953,6 @@
   ]
  },
  {
-  "term": "deep fig",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "cream",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "cream",
-    1
-   ]
-  ]
- },
- {
   "term": "greybeige blended",
   "kind": "unknown",
   "rows": 1,
@@ -7323,6 +4963,21 @@
   "tally": [
    [
     "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "deep fig",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
     1
    ]
   ]
@@ -7403,22 +5058,22 @@
   ]
  },
  {
-  "term": "sandstone",
+  "term": "amberlight",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ]
   ]
  },
  {
-  "term": "amberlight",
+  "term": "sandstone",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
@@ -7452,12 +5107,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -7601,16 +5256,7 @@
   "term": "tortilla",
   "kind": "unknown",
   "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
+  "read": 0
  },
  {
   "term": "bear",
@@ -7688,21 +5334,6 @@
   ]
  },
  {
-  "term": "dusty rosa",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "pink",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
   "term": "lavender gray",
   "kind": "ambiguous",
   "rows": 1,
@@ -7713,6 +5344,21 @@
   "tally": [
    [
     "grey",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dusty rosa",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
     1
    ]
   ]
@@ -7853,6 +5499,21 @@
   ]
  },
  {
+  "term": "nude gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
   "term": "cobalt violet",
   "kind": "ambiguous",
   "rows": 1,
@@ -7868,31 +5529,16 @@
   ]
  },
  {
-  "term": "nude gold",
-  "kind": "ambiguous",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
   "term": "plum fudge",
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "purple",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "purple",
+    "brown",
     1
    ]
   ]
@@ -7932,12 +5578,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "yellow",
+  "family": "green",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "yellow",
+    "green",
     1
    ]
   ]
@@ -7947,12 +5593,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "white",
+  "family": "beige",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "white",
+    "beige",
     1
    ]
   ]
@@ -8033,21 +5679,6 @@
   ]
  },
  {
-  "term": "muse gown",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "green",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "green",
-    1
-   ]
-  ]
- },
- {
   "term": "lime sherbet",
   "kind": "unknown",
   "rows": 1,
@@ -8058,6 +5689,21 @@
   "tally": [
    [
     "yellow",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "muse gown",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "green",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "green",
     1
    ]
   ]
@@ -8127,12 +5773,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -8232,12 +5878,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "yellow",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "yellow",
     1
    ]
   ]
@@ -8367,12 +6013,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "navy",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "navy",
+    "grey",
     1
    ]
   ]
@@ -8412,21 +6058,6 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "navy",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "navy",
-    1
-   ]
-  ]
- },
- {
-  "term": "phantom",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
   "family": "black",
   "votes": 1,
   "strong": false,
@@ -8442,12 +6073,27 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "phantom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
     1
    ]
   ]
@@ -8727,12 +6373,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "cream",
     1
    ]
   ]
@@ -8772,12 +6418,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "green",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "green",
     1
    ]
   ]
@@ -8817,12 +6463,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -8918,21 +6564,6 @@
   ]
  },
  {
-  "term": "framboos",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "brown",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "brown",
-    1
-   ]
-  ]
- },
- {
   "term": "rumaan",
   "kind": "unknown",
   "rows": 1,
@@ -8943,6 +6574,21 @@
   "tally": [
    [
     "red",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "framboos",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
     1
    ]
   ]
@@ -8997,12 +6643,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "grey",
     1
    ]
   ]
@@ -9012,12 +6658,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "grey",
     1
    ]
   ]
@@ -9087,12 +6733,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "cream",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "cream",
+    "pink",
     1
    ]
   ]
@@ -9132,12 +6778,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ]
   ]
@@ -9173,21 +6819,6 @@
   ]
  },
  {
-  "term": "hijab bundle",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
   "term": "ivory creme",
   "kind": "ambiguous",
   "rows": 1,
@@ -9198,6 +6829,21 @@
   "tally": [
    [
     "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "hijab bundle",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
     1
    ]
   ]
@@ -9327,12 +6973,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "navy",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "navy",
+    "grey",
     1
    ]
   ]
@@ -9372,12 +7018,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -9593,21 +7239,6 @@
   ]
  },
  {
-  "term": "abeer",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "navy",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "navy",
-    1
-   ]
-  ]
- },
- {
   "term": "muave",
   "kind": "unknown",
   "rows": 1,
@@ -9623,22 +7254,22 @@
   ]
  },
  {
-  "term": "ocean gray",
-  "kind": "ambiguous",
+  "term": "abeer",
+  "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "grey",
+  "family": "navy",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "grey",
+    "navy",
     1
    ]
   ]
  },
  {
-  "term": "ghadir",
+  "term": "coquette abaya",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
@@ -9653,7 +7284,22 @@
   ]
  },
  {
-  "term": "coquette abaya",
+  "term": "ocean gray",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ghadir",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
@@ -9687,12 +7333,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -9792,12 +7438,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -9837,12 +7483,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "orange",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "orange",
     1
    ]
   ]
@@ -9852,12 +7498,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -9867,12 +7513,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "grey",
     1
    ]
   ]
@@ -9882,12 +7528,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "red",
+  "family": "orange",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "red",
+    "orange",
     1
    ]
   ]
@@ -9897,12 +7543,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "blue",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "blue",
     1
    ]
   ]
@@ -10092,12 +7738,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "brown",
+  "family": "orange",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "brown",
+    "orange",
     1
    ]
   ]
@@ -10152,12 +7798,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -10313,21 +7959,6 @@
   ]
  },
  {
-  "term": "ada \u00e7ay\u0131",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
   "term": "amaya",
   "kind": "unknown",
   "rows": 1,
@@ -10338,6 +7969,21 @@
   "tally": [
    [
     "green",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "ada \u00e7ay\u0131",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
     1
    ]
   ]
@@ -10362,12 +8008,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -10377,12 +8023,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -10407,12 +8053,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -10422,12 +8068,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -10448,21 +8094,6 @@
   ]
  },
  {
-  "term": "cocoa rose",
-  "kind": "ambiguous",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
   "term": "amber bronze",
   "kind": "ambiguous",
   "rows": 1,
@@ -10473,6 +8104,21 @@
   "tally": [
    [
     "orange",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "cocoa rose",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
     1
    ]
   ]
@@ -10497,12 +8143,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -10572,12 +8218,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "grey",
     1
    ]
   ]
@@ -10677,12 +8323,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "pink",
+  "family": "purple",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "pink",
+    "purple",
     1
    ]
   ]
@@ -10692,12 +8338,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "blue",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "blue",
     1
    ]
   ]
@@ -10707,12 +8353,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "navy",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "navy",
+    "black",
     1
    ]
   ]
@@ -10737,12 +8383,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "brown",
     1
    ]
   ]
@@ -10778,21 +8424,6 @@
   ]
  },
  {
-  "term": "golden sand",
-  "kind": "ambiguous",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
   "term": "dark lamantin",
   "kind": "unknown",
   "rows": 1,
@@ -10808,7 +8439,7 @@
   ]
  },
  {
-  "term": "almond sage",
+  "term": "golden sand",
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
@@ -10818,6 +8449,21 @@
   "tally": [
    [
     "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "almond sage",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
     1
    ]
   ]
@@ -10857,12 +8503,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ]
   ]
@@ -10902,12 +8548,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "green",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "green",
+    "brown",
     1
    ]
   ]
@@ -10931,7 +8577,16 @@
   "term": "lipstick",
   "kind": "unknown",
   "rows": 1,
-  "read": 0
+  "read": 1,
+  "family": "orange",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "orange",
+    1
+   ]
+  ]
  },
  {
   "term": "citrus",
@@ -10968,12 +8623,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "orange",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "orange",
+    "brown",
     1
    ]
   ]
@@ -10994,21 +8649,6 @@
   ]
  },
  {
-  "term": "crepe",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "pink",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "pink",
-    1
-   ]
-  ]
- },
- {
   "term": "mushroom brown",
   "kind": "ambiguous",
   "rows": 1,
@@ -11019,6 +8659,21 @@
   "tally": [
    [
     "beige",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "crepe",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
     1
    ]
   ]
@@ -11088,12 +8743,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "grey",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "grey",
+    "black",
     1
    ]
   ]
@@ -11144,31 +8799,31 @@
   ]
  },
  {
-  "term": "arona",
-  "kind": "unknown",
+  "term": "black olive",
+  "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
  },
  {
-  "term": "black olive",
-  "kind": "ambiguous",
+  "term": "arona",
+  "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "black",
+  "family": "green",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "black",
+    "green",
     1
    ]
   ]
@@ -11268,12 +8923,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -11283,12 +8938,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "green",
+  "family": "blue",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "green",
+    "blue",
     1
    ]
   ]
@@ -11298,12 +8953,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -11358,12 +9013,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "green",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "green",
     1
    ]
   ]
@@ -11373,12 +9028,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ]
   ]
@@ -11414,6 +9069,21 @@
   ]
  },
  {
+  "term": "beige/gold",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
+ },
+ {
   "term": "whitecap",
   "kind": "unknown",
   "rows": 1,
@@ -11444,31 +9114,16 @@
   ]
  },
  {
-  "term": "beige/gold",
-  "kind": "ambiguous",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
   "term": "pink/gold",
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -11489,7 +9144,22 @@
   ]
  },
  {
-  "term": "arctic ice",
+  "term": "black/silver",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "dark fig",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
@@ -11504,31 +9174,16 @@
   ]
  },
  {
-  "term": "dark fig",
+  "term": "arctic ice",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "purple",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
-    1
-   ]
-  ]
- },
- {
-  "term": "black/silver",
-  "kind": "ambiguous",
-  "rows": 1,
-  "read": 1,
-  "family": "black",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "black",
+    "purple",
     1
    ]
   ]
@@ -11583,12 +9238,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -11598,12 +9253,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -11654,6 +9309,21 @@
   ]
  },
  {
+  "term": "watercolor bloom",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
+ },
+ {
   "term": "burlwood",
   "kind": "unknown",
   "rows": 1,
@@ -11669,31 +9339,16 @@
   ]
  },
  {
-  "term": "watercolor bloom",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "multi",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "multi",
-    1
-   ]
-  ]
- },
- {
   "term": "fundango",
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "green",
+  "family": "purple",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "green",
+    "purple",
     1
    ]
   ]
@@ -11763,12 +9418,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "green",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "green",
     1
    ]
   ]
@@ -11898,12 +9553,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "red",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "red",
     1
    ]
   ]
@@ -11973,12 +9628,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "white",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "white",
+    "grey",
     1
    ]
   ]
@@ -12074,21 +9729,6 @@
   ]
  },
  {
-  "term": "moonstone",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "grey",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "grey",
-    1
-   ]
-  ]
- },
- {
   "term": "rosaline",
   "kind": "unknown",
   "rows": 1,
@@ -12099,6 +9739,21 @@
   "tally": [
    [
     "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moonstone",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
     1
    ]
   ]
@@ -12123,12 +9778,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "blue",
+  "family": "multi",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "blue",
+    "multi",
     1
    ]
   ]
@@ -12138,12 +9793,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "purple",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "purple",
+    "grey",
     1
    ]
   ]
@@ -12153,12 +9808,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "pink",
     1
    ]
   ]
@@ -12183,12 +9838,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -12467,7 +10122,16 @@
   "term": "froth",
   "kind": "unknown",
   "rows": 1,
-  "read": 0
+  "read": 1,
+  "family": "grey",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "grey",
+    1
+   ]
+  ]
  },
  {
   "term": "creme grey",
@@ -12504,12 +10168,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "purple",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "purple",
+    "grey",
     1
    ]
   ]
@@ -12560,21 +10224,6 @@
   ]
  },
  {
-  "term": "moonstruck",
-  "kind": "unknown",
-  "rows": 1,
-  "read": 1,
-  "family": "beige",
-  "votes": 1,
-  "strong": false,
-  "tally": [
-   [
-    "beige",
-    1
-   ]
-  ]
- },
- {
   "term": "10 anise",
   "kind": "unknown",
   "rows": 1,
@@ -12585,6 +10234,21 @@
   "tally": [
    [
     "brown",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "moonstruck",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
     1
    ]
   ]
@@ -12639,12 +10303,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -12729,12 +10393,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "purple",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "purple",
     1
    ]
   ]
@@ -12804,12 +10468,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "green",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "green",
+    "cream",
     1
    ]
   ]
@@ -12834,12 +10498,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "purple",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "purple",
     1
    ]
   ]
@@ -12879,12 +10543,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "green",
+  "family": "yellow",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "green",
+    "yellow",
     1
    ]
   ]
@@ -12923,7 +10587,16 @@
   "term": "92 black cherry",
   "kind": "ambiguous",
   "rows": 1,
-  "read": 0
+  "read": 1,
+  "family": "purple",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "purple",
+    1
+   ]
+  ]
  },
  {
   "term": "vintage",
@@ -12960,12 +10633,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -13004,7 +10677,16 @@
   "term": "seagreen",
   "kind": "unknown",
   "rows": 1,
-  "read": 0
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
  },
  {
   "term": "ash noir",
@@ -13026,12 +10708,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "grey",
     1
    ]
   ]
@@ -13041,12 +10723,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "yellow",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "yellow",
+    "brown",
     1
    ]
   ]
@@ -13071,12 +10753,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "pink",
     1
    ]
   ]
@@ -13206,19 +10888,19 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "cream",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "cream",
     1
    ]
   ]
  },
  {
-  "term": "brown peach",
-  "kind": "ambiguous",
+  "term": "premium linen abaya",
+  "kind": "unknown",
   "rows": 1,
   "read": 1,
   "family": "beige",
@@ -13232,8 +10914,8 @@
   ]
  },
  {
-  "term": "premium linen abaya",
-  "kind": "unknown",
+  "term": "brown peach",
+  "kind": "ambiguous",
   "rows": 1,
   "read": 1,
   "family": "beige",
@@ -13266,12 +10948,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "multi",
+  "family": "pink",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "multi",
+    "pink",
     1
    ]
   ]
@@ -13446,12 +11128,12 @@
   "kind": "ambiguous",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "brown",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "brown",
     1
    ]
   ]
@@ -13475,7 +11157,16 @@
   "term": "light desert",
   "kind": "unknown",
   "rows": 1,
-  "read": 0
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
+    1
+   ]
+  ]
  },
  {
   "term": "silk abaya",
@@ -13571,7 +11262,16 @@
   "term": "deep roselle",
   "kind": "unknown",
   "rows": 1,
-  "read": 0
+  "read": 1,
+  "family": "brown",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "brown",
+    1
+   ]
+  ]
  },
  {
   "term": "sunkissed dune",
@@ -13608,12 +11308,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "navy",
+  "family": "black",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "navy",
+    "black",
     1
    ]
   ]
@@ -13713,12 +11413,12 @@
   "kind": "unknown",
   "rows": 1,
   "read": 1,
-  "family": "beige",
+  "family": "grey",
   "votes": 1,
   "strong": false,
   "tally": [
    [
-    "beige",
+    "grey",
     1
    ]
   ]
@@ -13734,6 +11434,96 @@
   "tally": [
    [
     "purple",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "blushed mink",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "pink",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "pink",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "layl",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "blue",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "blue",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "panna cotta",
+  "kind": "unknown",
+  "rows": 1,
+  "read": 1,
+  "family": "cream",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "cream",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "royal blue & cream",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "navy",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "navy",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "black & nude",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "black",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "black",
+    1
+   ]
+  ]
+ },
+ {
+  "term": "creme caramel",
+  "kind": "ambiguous",
+  "rows": 1,
+  "read": 1,
+  "family": "beige",
+  "votes": 1,
+  "strong": false,
+  "tally": [
+   [
+    "beige",
     1
    ]
   ]

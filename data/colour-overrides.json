@@ -4,10 +4,211 @@
   "terms": {
     "bordeaux": "red",
     "mink": null,
-    "limited edition": null
+    "limited edition": null,
+    "navy blue": "navy",
+    "smoked": "grey",
+    "off white": "white",
+    "natural": [
+      "beige",
+      "cream"
+    ],
+    "luxury chiffon hijab": "multi",
+    "ice": "blue",
+    "earth": "pink",
+    "midnight": "black",
+    "powder": "pink",
+    "final sale": null,
+    "pearl": [
+      "purple",
+      "grey"
+    ],
+    "sahara": null,
+    "champagne": [
+      "beige",
+      "cream"
+    ],
+    "desert": "beige",
+    "midnight blue": "navy",
+    "acid": "yellow",
+    "chocolate plum": "brown",
+    "fig": "red",
+    "khaki green": "green",
+    "rose taupe": "pink",
+    "rosewood": "pink",
+    "shadow": "blue",
+    "venge": [
+      "grey",
+      "beige"
+    ],
+    "blue gray": "blue",
+    "dress": null,
+    "dusk": null,
+    "golden beige": "beige",
+    "moonlight": "cream",
+    "shell": "cream",
+    "bamboo": null,
+    "cream white": "cream",
+    "lamantin": "green",
+    "moonbeam": "cream",
+    "peppercorn": "brown",
+    "strawberry": "red",
+    "brownie": "brown",
+    "cove": "brown",
+    "iron": "grey",
+    "linen": null,
+    "modal plain hijab": null,
+    "periwinkle": "blue",
+    "pleated abaya": "multi",
+    "sage grey": [
+      "green",
+      "blue",
+      "grey"
+    ],
+    "smoke": "grey",
+    "burgundy rose": "red",
+    "cupcake": "pink",
+    "future dusk": "navy",
+    "linseed": "beige",
+    "mint gray": [
+      "grey",
+      "green",
+      "blue"
+    ],
+    "modal cotton hijab": null,
+    "purple dove": "purple",
+    "tile": "orange",
+    "storm": "navy",
+    "warda": null,
+    "wood": "brown",
+    "cape dress": null,
+    "clove": [
+      "beige",
+      "pink"
+    ],
+    "dune": "beige",
+    "haze": [
+      "beige",
+      "green"
+    ],
+    "iris": "brown",
+    "lava": null,
+    "purple sage": "purple",
+    "rosily": "pink",
+    "shale": "brown",
+    "string": "beige",
+    "sunset": "orange",
+    "taupe gray": "beige",
+    "clay": [
+      "red",
+      "pink",
+      "orange"
+    ],
+    "fossil": "beige",
+    "olive grey": [
+      "grey",
+      "beige"
+    ],
+    "rose beige": "beige",
+    "honeydew": "yellow",
+    "nude peach": [
+      "beige",
+      "pink"
+    ],
+    "sienna": [
+      "orange",
+      "brown"
+    ],
+    "berry": "purple",
+    "blush nude": [
+      "pink",
+      "cream"
+    ],
+    "deep sea": "blue",
+    "drizzle": [
+      "grey",
+      "beige"
+    ],
+    "ink": [
+      "black",
+      "grey"
+    ],
+    "knit & flared skirt": null,
+    "lace": null,
+    "maxi dress": null,
+    "olive brown": [
+      "green",
+      "brown"
+    ],
+    "oyster": "cream",
+    "80 skin": null,
+    "admiral": "navy",
+    "amazon": "green",
+    "antique": [
+      "yellow",
+      "beige"
+    ],
+    "arabian spice": [
+      "orange",
+      "red"
+    ],
+    "balsam": "blue",
+    "barbie": "pink",
+    "bare": [
+      "beige",
+      "cream"
+    ],
+    "bedrock": "purple",
+    "beige rose": "beige",
+    "black & white": null,
+    "bungee cord": "green",
+    "butterfly dress": null,
+    "butteryellow": "yellow",
+    "cayenne": "purple",
+    "cinder": "beige",
+    "climbing ivy": "black",
+    "fallen rock": "beige",
+    "fresh scarfs": null,
+    "graystone": "purple",
+    "greij": "cream",
+    "ivy": "green",
+    "kalamata": "green",
+    "lilac grey": "grey",
+    "malt ball": "brown",
+    "marigold": "yellow",
+    "mint blue": "blue",
+    "mist": "blue",
+    "nude brown": "brown",
+    "nude pink": [
+      "pink",
+      "beige"
+    ]
   },
   "//weakWords": "Keyed by a SINGLE lowercased word, and applies only to a match found in the BODY of a title, never in the suffix. It exists so a word like 'rose' can be switched off where it is usually a style name ('Mystic Rose Hijab') while still working as a colourway ('... - Dusty Rose'). null switches the word off in the body; a family name forces that family instead, and a LIST of families - [\"black\", \"red\"] - forces all of them, the same as in terms above. A null costs only that word: 'Rose Pink ...' is still pink, because lib/colour.ts steps over the switched-off 'Rose' and keeps reading the same colour's words in the rest of the title.",
   "weakWords": {
     "rose": null
+  },
+  "notes": {
+    "t:powder": "Premium Chiffon Hijab - Powder is grey tho",
+    "t:clay": "Premium Jersey – Clay this one is grey",
+    "t:pearl": "Everyday Chiffon Hijab - Pearl this one is beige only",
+    "t:desert": "Premium Chiffon Hijab - Desert only this one is pink",
+    "t:chocolate plum": "Pearl Cape Maxi Dress - Chocolate Plum only this one is purple",
+    "t:fig": "Everyday Chiffon Hijab - Fig is only purple",
+    "t:rosewood": "Alwan Versatile Dress - Rosewood only this one is burgendy",
+    "t:shadow": "Rayon crinkle - Shadow only this one is grey",
+    "t:dusk": "Textured Wide Leg Pants - Dusk & Luxe Crepe - Dusk these ones are blue",
+    "t:moonlight": "Premium Celestial Sheen Open Bisht this one is grey",
+    "t:fossil": "Premium Chiffon Hijab - Fossil this one is grey Essential Chiffon Hijab - Fossil this one is also grey",
+    "t:brownie": "Modal - Brownie only this one is pink",
+    "t:honeydew": "Vela Jersey - honeydew\n this one is pink tho",
+    "t:purple dove": "Premium Bamboo Modal Hijab - Purple Dove this one is pink tho",
+    "t:sienna": "Premium Modal Scarf- Sienna this one is pink",
+    "t:tile": "is peach",
+    "t:wood": "Premium Jersey Strass “L” - wood this one is grey and brown",
+    "t:berry": "th Smocked Waist Dress - Berry\n this one is brown",
+    "t:iris": "Premium Chiffon Hijab - Iris this one is grey tho",
+    "t:taupe gray": "Lightweight Modal Hijab - Taupe Gray\nWomen's XL Sleeved Jilbab - Taupe Gray\nWomen's XL Sleeved Jilbab - Taupe Gray\nWomen's Jilbab - Taupe Gray\nWomen's Jilbab - Taupe Gray these are beige tan this one,Aasiyah Abaya - Taupe Gray\nis gray",
+    "t:ivy": "Premium Plain Jersey (Ivy) this one is beige tho",
+    "t:marigold": "Hawa Chiffon Cardigan - Marigold this one is print"
   }
 }

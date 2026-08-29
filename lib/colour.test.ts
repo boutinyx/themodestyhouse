@@ -1,7 +1,104 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeAll } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { classifyColour, colourFamily, COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from './colour';
+import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from './colour';
+import type { ColourFamily } from './colour';
+
+// -----------------------------------------------------------------------
+// WHY EVERY BEHAVIOURAL TEST IN THIS FILE LOADS lib/colour.ts THROUGH A MOCK.
+//
+// data/colour-overrides.json is Tina's file. It exists to be hand-edited, the
+// review page writes it, and she works through it a session at a time — 117
+// terms answered as of 2026-08-29, with roughly 750 more terms still on the
+// list. It is therefore MUTABLE THIRD-PARTY DATA in exactly §10.19's sense:
+// *"a test that asserts things about MUTABLE third-party data is an authoring
+// aid, not a build gate"*.
+//
+// It had been read live by every test here, and on 2026-08-29 that cost six
+// red tests in one sitting, none of them a defect. Each was an answer of hers
+// arriving underneath an assertion about the VOCABULARY:
+//   `smoked` -> grey            broke "returns null for non-colour suffixes"
+//   `champagne` -> [beige,cream] broke "leaves champagne unclassified" and
+//                               "reports an unrecognised suffix …"
+//   `navy blue` -> navy         broke both `candidates` assertions, because an
+//                               override returns `candidates: []` while a
+//                               vocabulary hit on the same string returns
+//                               ['navy','blue']
+// Re-baselining those to today's values would have gone red again on her next
+// session, which is the actual defect — so the vocabulary is isolated from the
+// file instead.
+//
+// The split this file now keeps:
+//   - VOCABULARY tests run against an EMPTY override map. What RULES does,
+//     `word()` boundaries, substring safety, the hardware guard, suffix-beats-
+//     body. No answer of hers can reach them.
+//   - OVERRIDE tests run against SMALL INVENTED FIXTURES declared beside the
+//     assertion, so the branch under test is pinned by the test rather than by
+//     whatever happens to be in the file this week.
+//   - THE VALIDATOR, and only the validator, reads the real file. That is its
+//     entire job: it fails CI on a bad hand-edit, and it is what protects the
+//     build-time throw in lib/compactCatalogue.ts.
+//
+// TITLES ARE REAL; OVERRIDE VALUES ARE INVENTED. That is the whole of the
+// division, and it is what lets a fixture be honest — a made-up override value
+// is a statement about the CODE, whereas a made-up title would be a statement
+// about a catalogue that does not exist.
+//
+// Counted 2026-08-29 by parsing the 19,019 rows of data/products.json in node
+// and checking membership — not with a shell `grep -c`, which §10.49 records
+// getting three separate answers wrong on this very question. Of the 122
+// distinct titles asserted here: 104 are literal PUBLISHED titles, 2 are
+// literal titles in data/raw-products.json that are not currently published
+// ("Cloak Kaftan", "Cotton skirt - Crème" — each says so at its own line), and
+// 16 are hand-written. Fifteen of the sixteen are NEGATIVE controls in the
+// vocabulary blocks, of the "Greenwich Trench" / "Robe noire" shape — strings
+// chosen because the catalogue does NOT contain the collision being guarded
+// against, which is exactly why they cannot be sourced from it. The sixteenth
+// is the termination case, which labels itself SYNTHETIC and explains why the
+// corpus cannot express it. EVERY OTHER TITLE IN THE OVERRIDE BLOCKS IS
+// PUBLISHED, checked the same way.
+// -----------------------------------------------------------------------
+
+type OverrideValue = ColourFamily | ColourFamily[] | null;
+
+interface OverrideFixture {
+  terms?: Record<string, OverrideValue>;
+  weakWords?: Record<string, OverrideValue>;
+}
+
+/**
+ * lib/colour.ts loaded against a fixture override map — `{}` for the empty map
+ * the vocabulary tests want.
+ *
+ * `vi.resetModules()` first, because lib/colour.ts reads the JSON once at
+ * module scope (`OVERRIDES.terms`), so a cached instance would carry the
+ * previous call's map. The unmock is symmetric hygiene only: the namespace
+ * returned here is already resolved, and the next call resets the registry
+ * anyway.
+ */
+async function loadColour(overrides: OverrideFixture = {}): Promise<typeof import('./colour')> {
+  vi.resetModules();
+  vi.doMock('@/data/colour-overrides.json', () => ({
+    default: { terms: overrides.terms ?? {}, weakWords: overrides.weakWords ?? {} },
+  }));
+  try {
+    return await import('./colour');
+  } finally {
+    vi.doUnmock('@/data/colour-overrides.json');
+  }
+}
+
+// The vocabulary-only build of the module, shared by every describe below that
+// is asserting what RULES does. Bound in a `beforeAll` rather than at import
+// time because `loadColour` is async; bound to the same NAMES the assertions
+// already used, so what each test asserts is unchanged and only the module it
+// asserts against has moved.
+let colourFamily: typeof import('./colour').colourFamily;
+let classifyColour: typeof import('./colour').classifyColour;
+
+beforeAll(async () => {
+  ({ colourFamily, classifyColour } = await loadColour());
+});
 
 describe('colourFamily', () => {
   it('reads a colour from the title suffix', () => {
@@ -26,9 +123,13 @@ describe('colourFamily', () => {
 
   // The two-word families must beat their own second word. Without an explicit
   // priority order "navy blue" (209 rows) resolves to blue and the Navy chip
-  // is empty.
+  // is empty. NOTE this is a VOCABULARY property and is asserted here against
+  // an empty override map on purpose: `navy blue` is also a term in
+  // data/colour-overrides.json today, and reading the real file would let that
+  // entry answer the question instead of RULES — the ordering could break and
+  // this test would still pass.
   it('prefers the more specific family', () => {
-    expect(colourFamily('Hijab - Navy Blue')).toBe('navy');
+    expect(colourFamily('Premium Chiffon Hijab - Navy Blue')).toBe('navy');
     expect(colourFamily('Abaya - Light Brown')).toBe('brown');
     expect(colourFamily('Dress - Butter Yellow')).toBe('yellow');
     expect(colourFamily('Hijab - Dusty Rose')).toBe('pink');
@@ -50,6 +151,13 @@ describe('colourFamily', () => {
 
   // The negatives. Each of these is a real suffix string in the catalogue that
   // is NOT a colour, and each one would be a visible mistake in the grid.
+  //
+  // "NOT A COLOUR" HERE MEANS "NO RULE IN THIS FILE MATCHES IT" — it is a claim
+  // about the vocabulary, not about the garment, and Tina is free to disagree
+  // with any of them in data/colour-overrides.json without this going red. She
+  // has already done so for two: `smoked` is grey and `natural` is
+  // ["beige","cream"] in her file as of 2026-08-29. Both remain correct
+  // assertions about RULES, which is all this test is for.
   it('returns null for non-colour suffixes', () => {
     expect(colourFamily('Luxury Chiffon Hijab - Final Sale')).toBeNull();
     expect(colourFamily('Abaya - Limited Edition')).toBeNull();
@@ -68,7 +176,9 @@ describe('colourFamily', () => {
   });
 
   // `champagne` is a real shade name — 30 rows — and is deliberately still out
-  // of `beige`, so it is asserted rather than only claimed in prose.
+  // of `beige`, so it is asserted rather than only claimed in prose. Tina has
+  // since answered it ["beige","cream"] in her file; that is an override and
+  // does not make the vocabulary claim false.
   it('leaves champagne unclassified', () => {
     expect(colourFamily('Bamboo Jersey Hijab - Champagne')).toBeNull();
   });
@@ -260,7 +370,10 @@ describe('colourFamily', () => {
 
   // The words that were LOOKED AT in the same pass and left out. Each is a real
   // catalogue string, and each of these assertions fails the moment someone adds
-  // the word on the strength of its frequency alone.
+  // the word to RULES on the strength of its frequency alone. `sahara` and
+  // `clay` are both answered in Tina's file today — `sahara` null, `clay`
+  // ["red","pink","orange"] — which is the override layer doing its job and is
+  // why these run against an empty map.
   it('leaves the near-colours that the corpus disproved', () => {
     expect(colourFamily('Snow Leopard')).toBe('multi');                     // not white
     expect(colourFamily('Sahara Linen Set')).toBeNull();                    // a collection
@@ -302,8 +415,14 @@ describe('classifyColour', () => {
 
   // The whole point of the ambiguous bucket: the answer is still 'navy', but
   // the verdict says two families matched, so the review page can show it.
+  //
+  // This is THE assertion the empty override map exists for. `navy blue` is a
+  // term in data/colour-overrides.json today, and an override hit returns
+  // `candidates: []` — deliberately, since nothing was matched against RULES —
+  // so read against the real file this reports no candidates at all and the
+  // ambiguous-suffix reporting the review page depends on goes untested.
   it('reports every family that matched the suffix', () => {
-    const v = classifyColour('Hijab - Navy Blue');
+    const v = classifyColour('Premium Chiffon Hijab - Navy Blue');
     expect(v.family).toBe('navy');
     expect(v.candidates).toEqual(['navy', 'blue']);
   });
@@ -319,8 +438,8 @@ describe('classifyColour', () => {
   // The brief asked for 'Hijab - Thyme' here. `thyme` became a green word in
   // the second vocabulary pass (2026-08-28), so that title is now a confident
   // suffix match and cannot carry this assertion. `champagne` is the same
-  // shape and is still deliberately unmapped — the file already asserts that
-  // above, which is what makes it a safe substitute.
+  // shape and is unmapped in the VOCABULARY — which, with the override map
+  // empty, is the whole of what 'none' means.
   it('reports an unrecognised suffix with the term, so it can be reviewed', () => {
     const v = classifyColour('Bamboo Jersey Hijab - Champagne');
     expect(v.family).toBeNull();
@@ -328,12 +447,31 @@ describe('classifyColour', () => {
     expect(v.term).toBe('champagne');
   });
 
-  // The override layer. All three of these come from data/colour-overrides.json.
-  // Title substituted: the brief's 'Abaya - Bordeaux' returns 0 from
-  // `grep -c` over data/products.json; this one returns 1.
-  it('lets an override beat the vocabulary', () => {
-    const v = classifyColour('Basic abaya - Bordeaux');
+  // ---------------------------------------------------------------------
+  // The override layer. FIXTURE values from here down — the map is declared in
+  // the test, never read from data/colour-overrides.json, so these assert what
+  // the CODE does with an override rather than what Tina happens to have
+  // answered. `bordeaux: 'red'` and `mink: null` are both real entries of hers
+  // as it happens; they are restated here so the tests do not depend on that.
+  // ---------------------------------------------------------------------
+  it('lets an override beat the vocabulary', async () => {
+    // The vocabulary would say red anyway, via `bordeaux` in RULES — so the
+    // discriminator is the CONFIDENCE, not the family. 'override' is only
+    // reachable through the map.
+    const { classifyColour: classify } = await loadColour({ terms: { bordeaux: 'red' } });
+    const v = classify('Basic abaya - Bordeaux');
     expect(v.family).toBe('red');
+    expect(v.confidence).toBe('override');
+    expect(v.candidates).toEqual([]);   // an override matches no rule
+  });
+
+  // A stronger form of the same claim, and the one that shows an override
+  // really does OUTRANK the vocabulary rather than merely agreeing with it:
+  // `bordeaux` is a red word in RULES, and the fixture says purple.
+  it('lets an override contradict the vocabulary outright', async () => {
+    const { classifyColour: classify } = await loadColour({ terms: { bordeaux: 'purple' } });
+    const v = classify('Basic abaya - Bordeaux');
+    expect(v.family).toBe('purple');
     expect(v.confidence).toBe('override');
   });
 
@@ -341,8 +479,9 @@ describe('classifyColour', () => {
   // that says so: both return `family: null`, but an unrecognised term reports
   // 'none' (the champagne case above) and a recorded one reports 'override'.
   // That is what stops the review page asking about `mink` a second time.
-  it('lets an override say a term is not a colour', () => {
-    const v = classifyColour('Hijab - Mink');
+  it('lets an override say a term is not a colour', async () => {
+    const { classifyColour: classify } = await loadColour({ terms: { mink: null } });
+    const v = classify('Premium Chiffon Hijab - Mink');
     expect(v.family).toBeNull();
     expect(v.confidence).toBe('override');
   });
@@ -351,9 +490,10 @@ describe('classifyColour', () => {
   // still works. Titles substituted for the brief's invented pair, which
   // `grep -c` returns 0 for: 'Rose Wrap Dress' -> 'Mystic Rose Hijab' (1),
   // 'Wrap Dress - Dusty Rose' -> 'Premium Chiffon Hijab - Dusty Rose' (1).
-  it('lets weakWords switch a word off in the title body only', () => {
-    expect(classifyColour('Mystic Rose Hijab').family).toBeNull();
-    expect(classifyColour('Premium Chiffon Hijab - Dusty Rose').family).toBe('pink');
+  it('lets weakWords switch a word off in the title body only', async () => {
+    const { classifyColour: classify } = await loadColour({ weakWords: { rose: null } });
+    expect(classify('Mystic Rose Hijab').family).toBeNull();
+    expect(classify('Premium Chiffon Hijab - Dusty Rose').family).toBe('pink');
   });
 });
 
@@ -368,12 +508,20 @@ describe('classifyColour', () => {
 // data/products.json). The loop now advances past the suppressed match and
 // re-runs the same family's rule over the remainder.
 //
+// The `{rose: null}` map is a FIXTURE here, declared per test. It matches the
+// only entry in the real file's `weakWords` today, and is restated so that the
+// day Tina answers `rose` differently these keep testing the branch rather
+// than going red.
+//
 // Every title below except the termination one is a literal catalogue string:
 // each returns >=1 from `grep -c -F "<title>" data/products.json`.
 // -----------------------------------------------------------------------
 describe('classifyColour, a suppressed weak word costs only itself', () => {
-  it('keeps looking inside the same family after a suppressed word', () => {
-    const v = classifyColour('Rose Pink Etched Crepe Lace Abaya');
+  const SUPPRESS_ROSE: OverrideFixture = { weakWords: { rose: null } };
+
+  it('keeps looking inside the same family after a suppressed word', async () => {
+    const { classifyColour: classify } = await loadColour(SUPPRESS_ROSE);
+    const v = classify('Rose Pink Etched Crepe Lace Abaya');
     expect(v.family).toBe('pink');
     expect(v.confidence).toBe('weak');
     expect(v.matchedWord).toBe('Pink');
@@ -381,8 +529,9 @@ describe('classifyColour, a suppressed weak word costs only itself', () => {
 
   // The behaviour that must NOT regress — it is the whole reason weakWords
   // exists. `rose` is the only pink word here, so the row stays unclassified.
-  it('still returns null when the suppressed word is the only one of its family', () => {
-    const v = classifyColour('Mystic Rose Hijab');
+  it('still returns null when the suppressed word is the only one of its family', async () => {
+    const { classifyColour: classify } = await loadColour(SUPPRESS_ROSE);
+    const v = classify('Mystic Rose Hijab');
     expect(v.family).toBeNull();
     expect(v.confidence).toBe('none');
   });
@@ -402,8 +551,9 @@ describe('classifyColour, a suppressed weak word costs only itself', () => {
   // interrupt it: `testTimeout` elapses with the worker still spinning (the
   // Task 2A re-review measured a worker alive 35 s past a 3 s testTimeout). The
   // symptom is a suite that never finishes, not a red assertion.
-  it('terminates when the suppressed word appears twice and nothing else matches', () => {
-    const v = classifyColour('Rose Garden Rose Hijab');
+  it('terminates when the suppressed word appears twice and nothing else matches', async () => {
+    const { classifyColour: classify } = await loadColour(SUPPRESS_ROSE);
+    const v = classify('Rose Garden Rose Hijab');
     expect(v.family).toBeNull();
     expect(v.confidence).toBe('none');
   });
@@ -411,8 +561,9 @@ describe('classifyColour, a suppressed weak word costs only itself', () => {
   // The other half of weakWords, and until now the ONLY untested return path in
   // classifyColour: a NON-null entry, which does not switch the word off but
   // FORCES a different family for it. Every entry in the real file is currently
-  // null, so the case cannot be built from tracked data — the map is mocked,
-  // the same harness the null-suffix test below uses.
+  // null, so this case could never have been built from tracked data even
+  // before the isolation — which is exactly why the whole file now works this
+  // way.
   //
   // It matters more than its size: this is a branch Tina reaches by hand-editing
   // a file, which is the same seam as the compactCatalogue guard in
@@ -424,21 +575,12 @@ describe('classifyColour, a suppressed weak word costs only itself', () => {
   // pink/'weak' means the override was ignored, null/'none' means it was read as
   // a suppression, and red/'override' is the branch under test.
   it('lets a non-null weakWords entry force a different family', async () => {
-    vi.resetModules();
-    vi.doMock('@/data/colour-overrides.json', () => ({
-      default: { terms: {}, weakWords: { rose: 'red' } },
-    }));
-    try {
-      const { classifyColour: classify } = await import('./colour');
-      const v = classify('Mystic Rose Hijab');
-      expect(v.family).toBe('red');
-      expect(v.confidence).toBe('override');
-      expect(v.matchedWord).toBe('Rose');
-      expect(v.term).toBeNull();
-    } finally {
-      vi.doUnmock('@/data/colour-overrides.json');
-      vi.resetModules();
-    }
+    const { classifyColour: classify } = await loadColour({ weakWords: { rose: 'red' } });
+    const v = classify('Mystic Rose Hijab');
+    expect(v.family).toBe('red');
+    expect(v.confidence).toBe('override');
+    expect(v.matchedWord).toBe('Rose');
+    expect(v.term).toBeNull();
   });
 });
 
@@ -451,15 +593,23 @@ describe('classifyColour, a suppressed weak word costs only itself', () => {
 // became null). The corrected rule is in classifyColour's docstring; these are
 // the assertions that hold it.
 //
+// FIXTURE maps throughout: `{'limited edition': null}` and `{mink: null}` are
+// both real entries of Tina's as of 2026-08-29, restated here so that these
+// assert the null-suppression BRANCH rather than the current contents of her
+// file.
+//
 // Every title below is a literal catalogue string — each returns >=1 from
 // `grep -c -F "<title>" data/products.json`, checked before it was written.
 // -----------------------------------------------------------------------
 describe('classifyColour, null term overrides', () => {
-  // The 64-row case. `limited edition` is null in data/colour-overrides.json,
-  // so the suffix contributes nothing — and the rest of the title still says
-  // black. Reported 'weak' because a body match is exactly what it is.
-  it('still reads the rest of the title when the suffix is a null override', () => {
-    const v = classifyColour('Luxury Black Cascade Four Piece Abaya Set - LIMITED EDITION');
+  const NULL_LIMITED_EDITION: OverrideFixture = { terms: { 'limited edition': null } };
+
+  // The 64-row case. With `limited edition` nulled the suffix contributes
+  // nothing — and the rest of the title still says black. Reported 'weak'
+  // because a body match is exactly what it is.
+  it('still reads the rest of the title when the suffix is a null override', async () => {
+    const { classifyColour: classify } = await loadColour(NULL_LIMITED_EDITION);
+    const v = classify('Luxury Black Cascade Four Piece Abaya Set - LIMITED EDITION');
     expect(v.family).toBe('black');
     expect(v.confidence).toBe('weak');
     expect(v.matchedWord).toBe('Black');
@@ -470,10 +620,13 @@ describe('classifyColour, null term overrides', () => {
   // colourway suffix left inside the base once the null-overridden one is
   // stripped ('- Dusty Mauve'), and the `mink` term rather than
   // `limited edition`, so this is not an assertion about one key.
-  it('reads the rest of the title for every shape of the 64', () => {
-    expect(colourFamily('Premium Cocoa Muse Open Abaya - LIMITED EDITION')).toBe('brown');
-    expect(colourFamily('Luxury Moonlight Veil Three Piece Abaya Set – Dusty Mauve - LIMITED EDITION')).toBe('purple');
-    expect(colourFamily('Stripe Detailed Modal Jacket - Mink')).toBe('multi');
+  it('reads the rest of the title for every shape of the 64', async () => {
+    const { colourFamily: family } = await loadColour({
+      terms: { 'limited edition': null, mink: null },
+    });
+    expect(family('Premium Cocoa Muse Open Abaya - LIMITED EDITION')).toBe('brown');
+    expect(family('Luxury Moonlight Veil Three Piece Abaya Set – Dusty Mauve - LIMITED EDITION')).toBe('purple');
+    expect(family('Stripe Detailed Modal Jacket - Mink')).toBe('multi');
   });
 
   // The other half, and the load-bearing one: when the rest of the title names
@@ -481,8 +634,9 @@ describe('classifyColour, null term overrides', () => {
   // review page skips every 'override' row, so reporting 'none' here would put
   // `limited edition` back in front of Tina on the next run — the exact thing
   // the recorded null exists to prevent.
-  it('reports override, not none, when the rest of the title names nothing', () => {
-    const v = classifyColour('Luxury Pearl Bloom Embellished Cape - Limited Edition');
+  it('reports override, not none, when the rest of the title names nothing', async () => {
+    const { classifyColour: classify } = await loadColour(NULL_LIMITED_EDITION);
+    const v = classify('Luxury Pearl Bloom Embellished Cape - Limited Edition');
     expect(v.family).toBeNull();
     expect(v.confidence).toBe('override');
     expect(v.term).toBe('limited edition');
@@ -490,9 +644,7 @@ describe('classifyColour, null term overrides', () => {
 
   // The suffix half of the rule, which the fall-through alone does not prove:
   // a null override must also stop the SUFFIX ITSELF being matched against
-  // RULES. No term in data/colour-overrides.json is currently a vocabulary
-  // word, so the case cannot be built from the real file — the override map is
-  // mocked for this one test rather than manufacturing an entry in the data.
+  // RULES.
   //
   // 'Gold Accent Half Zip Abaya - Pistachio' is a real catalogue title and
   // discriminates three ways, which is why it was chosen: with `pistachio`
@@ -500,30 +652,22 @@ describe('classifyColour, null term overrides', () => {
   // null/'override' if the null override short-circuits, and green/'suffix' if
   // the null override fails to suppress the suffix path.
   it('stops a null-overridden suffix matching the vocabulary', async () => {
-    vi.resetModules();
-    vi.doMock('@/data/colour-overrides.json', () => ({
-      default: { terms: { pistachio: null }, weakWords: {} },
-    }));
-    try {
-      const { classifyColour: classify } = await import('./colour');
-      const v = classify('Gold Accent Half Zip Abaya - Pistachio');
-      expect(v.family).toBe('yellow');
-      expect(v.confidence).toBe('weak');
-      expect(v.matchedWord).toBe('Gold');
-      expect(v.term).toBe('pistachio');
-    } finally {
-      vi.doUnmock('@/data/colour-overrides.json');
-      vi.resetModules();
-    }
+    const { classifyColour: classify } = await loadColour({ terms: { pistachio: null } });
+    const v = classify('Gold Accent Half Zip Abaya - Pistachio');
+    expect(v.family).toBe('yellow');
+    expect(v.confidence).toBe('weak');
+    expect(v.matchedWord).toBe('Gold');
+    expect(v.term).toBe('pistachio');
   });
 });
 
 // -----------------------------------------------------------------------
 // data/colour-overrides.json is the ONE file in this feature designed to be
 // hand-edited, and nothing enforced its shape. `lib/colour.ts` casts the
-// parsed JSON to `Record<string, ColourFamily | null>`; TypeScript infers a
-// JSON string value as `string`, and `string` goes through that assertion
-// unchallenged, so `npx tsc --noEmit` is exit 0 on a file full of nonsense.
+// parsed JSON to `Record<string, ColourFamily | ColourFamily[] | null>`;
+// TypeScript infers a JSON string value as `string`, and `string` goes through
+// that assertion unchallenged, so `npx tsc --noEmit` is exit 0 on a file full
+// of nonsense.
 //
 // Two realistic hand-edits escaped silently, both producing an INVALID
 // `ColourFamily` that no chip, label or swatch knows:
@@ -535,6 +679,13 @@ describe('classifyColour, null term overrides', () => {
 // §10.15: a constraint stated only in a comment is not enforced. This is the
 // test that fails when it stops being true. It is deliberately a test and not
 // a runtime throw — a bad hand-edit must stop CI, not the site.
+//
+// THIS IS THE ONE BLOCK THAT READS THE REAL FILE, and it is the only one that
+// should. Everything above asserts behaviour and is mocked, precisely so that
+// an answer of Tina's can never turn a vocabulary claim red; this asserts the
+// SHAPE of her answers, which is the thing that genuinely must hold for the
+// build-time throw in lib/compactCatalogue.ts to be reachable at all. A red
+// here means a bad hand-edit, never a difference of opinion.
 // -----------------------------------------------------------------------
 describe('data/colour-overrides.json', () => {
   const FAMILIES = new Set<string>(Object.keys(COLOUR_FAMILY_LABELS));
@@ -669,6 +820,20 @@ describe('data/colour-overrides.json', () => {
     expect(problems({ terms: { 'black x red': [] }, weakWords: {} }))
       .toEqual([expect.stringContaining('an empty list decides nothing')]);
   });
+
+  // The sections the validator must IGNORE. The file carries three `//` prose
+  // keys and a `notes` object — Tina's own reminders, keyed `t:<term>` — and
+  // none of them is an override. A validator that walked the whole document
+  // would reject her file for containing the notes it was designed to hold.
+  it('ignores the prose keys and the notes section', () => {
+    expect(problems({
+      '//': 'how this file works',
+      '//terms': 'what a term is',
+      terms: { bordeaux: 'red' },
+      weakWords: {},
+      notes: { 't:powder': 'Premium Chiffon Hijab - Powder is grey tho' },
+    })).toEqual([]);
+  });
 });
 
 // -----------------------------------------------------------------------
@@ -682,7 +847,9 @@ describe('data/colour-overrides.json', () => {
 // wins, so "Navy Blue" is navy and nothing else — the assertion below is there
 // to hold that, because reporting every `candidate` in `families` is the
 // obvious wrong implementation and would silently put 209 navy rows on the Blue
-// chip. Two families come only from a list in data/colour-overrides.json.
+// chip. Two families come only from a list in data/colour-overrides.json, which
+// is why the multi tests carry fixture maps and the single-family ones run
+// against the empty one.
 // -----------------------------------------------------------------------
 describe('classifyColour, families', () => {
   it('reports one family for an ordinary suffix match', () => {
@@ -692,9 +859,11 @@ describe('classifyColour, families', () => {
   });
 
   // `candidates` still reports both — it is what the review page asks about —
-  // but `families` is the answer, and the answer is one.
+  // but `families` is the answer, and the answer is one. Empty override map,
+  // for the same reason as the `candidates` test above: `navy blue` is one of
+  // Tina's terms, and an override would answer this question instead of RULES.
   it('does not turn an ambiguous suffix into two families', () => {
-    const v = classifyColour('Hijab - Navy Blue');
+    const v = classifyColour('Premium Chiffon Hijab - Navy Blue');
     expect(v.candidates).toEqual(['navy', 'blue']);
     expect(v.families).toEqual(['navy']);
   });
@@ -702,58 +871,50 @@ describe('classifyColour, families', () => {
   it('reports one family for a body match, and none for an unclassified title', () => {
     expect(classifyColour('Chocolate Linen Cotton Wrap Top').families).toEqual(['brown']);
     expect(classifyColour('Bamboo Jersey Hijab - Champagne').families).toEqual([]);
-    expect(classifyColour('Hijab - Mink').families).toEqual([]);        // a recorded null
   });
 
-  it('keeps family as the first of families for a single-family override', () => {
-    const v = classifyColour('Basic abaya - Bordeaux');
+  // The recorded-null half of the line above, which needs the override map and
+  // so cannot live beside the two vocabulary assertions: `mink` is answered
+  // null, the verdict is 'override', and `families` is still empty.
+  it('reports no families for a term recorded as not a colour', async () => {
+    const { classifyColour: classify } = await loadColour({ terms: { mink: null } });
+    const v = classify('Premium Chiffon Hijab - Mink');
+    expect(v.families).toEqual([]);
+    expect(v.confidence).toBe('override');
+  });
+
+  it('keeps family as the first of families for a single-family override', async () => {
+    const { classifyColour: classify } = await loadColour({ terms: { bordeaux: 'red' } });
+    const v = classify('Basic abaya - Bordeaux');
     expect(v.families).toEqual(['red']);
     expect(v.family).toBe('red');
   });
 
-  // The real thing. The override map is mocked rather than a list being put in
-  // tracked data — the same harness the null-suffix test above uses.
-  //
-  // 'Classy Liquid F25 – Black x Red' is a literal catalogue title (`grep -c -F`
-  // over data/products.json returns 1) and is the case that motivated this: it
-  // files under `red` today, because red's rule sits above black's in RULES.
+  // The real thing. 'Classy Liquid F25 – Black x Red' is a literal catalogue
+  // title (`grep -c -F` over data/products.json returns 1) and is the case that
+  // motivated this: it files under `red` on the vocabulary alone, because red's
+  // rule sits above black's in RULES.
   it('lets a term override name several families', async () => {
-    vi.resetModules();
-    vi.doMock('@/data/colour-overrides.json', () => ({
-      default: { terms: { 'black x red': ['black', 'red'] }, weakWords: {} },
-    }));
-    try {
-      const { classifyColour: classify, colourFamilies } = await import('./colour');
-      const v = classify('Classy Liquid F25 – Black x Red');
-      expect(v.families).toEqual(['black', 'red']);
-      expect(v.family).toBe('black');            // the first of them
-      expect(v.confidence).toBe('override');
-      expect(v.term).toBe('black x red');
-      expect(colourFamilies('Classy Liquid F25 – Black x Red')).toEqual(['black', 'red']);
-    } finally {
-      vi.doUnmock('@/data/colour-overrides.json');
-      vi.resetModules();
-    }
+    const { classifyColour: classify, colourFamilies } = await loadColour({
+      terms: { 'black x red': ['black', 'red'] },
+    });
+    const v = classify('Classy Liquid F25 – Black x Red');
+    expect(v.families).toEqual(['black', 'red']);
+    expect(v.family).toBe('black');            // the first of them
+    expect(v.confidence).toBe('override');
+    expect(v.term).toBe('black x red');
+    expect(colourFamilies('Classy Liquid F25 – Black x Red')).toEqual(['black', 'red']);
   });
 
   // The same for the other half of the file. 'Mystic Rose Hijab' discriminates
   // exactly as it does in the single-family test above: `rose` is its only
   // colour word.
   it('lets a weakWords override name several families', async () => {
-    vi.resetModules();
-    vi.doMock('@/data/colour-overrides.json', () => ({
-      default: { terms: {}, weakWords: { rose: ['pink', 'red'] } },
-    }));
-    try {
-      const { classifyColour: classify } = await import('./colour');
-      const v = classify('Mystic Rose Hijab');
-      expect(v.families).toEqual(['pink', 'red']);
-      expect(v.family).toBe('pink');
-      expect(v.confidence).toBe('override');
-      expect(v.matchedWord).toBe('Rose');
-    } finally {
-      vi.doUnmock('@/data/colour-overrides.json');
-      vi.resetModules();
-    }
+    const { classifyColour: classify } = await loadColour({ weakWords: { rose: ['pink', 'red'] } });
+    const v = classify('Mystic Rose Hijab');
+    expect(v.families).toEqual(['pink', 'red']);
+    expect(v.family).toBe('pink');
+    expect(v.confidence).toBe('override');
+    expect(v.matchedWord).toBe('Rose');
   });
 });

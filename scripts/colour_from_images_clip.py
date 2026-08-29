@@ -40,7 +40,7 @@ carries an unambiguous colourway suffix, hides the title, and asks CLIP. The
 number it prints is the number; nothing here is proposed for Tina's file unless
 that number justifies it.
 """
-import argparse, io, json, sys, urllib.request
+import argparse, io, json, os, sys, urllib.request
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
@@ -95,11 +95,34 @@ DISTRACTORS = [
 ]
 
 
+# Which vision-language model reads the photographs.
+#
+# The first version used generic CLIP (ViT-B-32 / laion2b), which scored 64%
+# per photo and 78% per colour name. Marqo-FashionSigLIP is the same open_clip
+# interface but trained on e-commerce APPAREL — product photography with
+# product text — which is exactly this corpus. Swapping it is one string, and
+# `--validate` re-measures rather than assuming it is better.
+MODEL = os.environ.get("COLOUR_MODEL", "hf-hub:Marqo/marqo-fashionSigLIP")
+
+
 def load_model():
     import torch, open_clip
-    device = "mps" if torch.backends.mps.is_available() else "cpu"
-    model, _, preprocess = open_clip.create_model_and_transforms("ViT-B-32", pretrained="laion2b_s34b_b79k")
-    tok = open_clip.get_tokenizer("ViT-B-32")
+    # SigLIP crashes on Apple's Metal backend here — a hard MPSNDArray assertion
+    # ("buffer is not large enough"), not a Python exception, so it takes the
+    # process down with no traceback. CPU is slower and correct.
+    forced = os.environ.get("COLOUR_DEVICE")
+    if forced:
+        device = forced
+    elif "siglip" in MODEL.lower():
+        device = "cpu"
+    else:
+        device = "mps" if torch.backends.mps.is_available() else "cpu"
+    if MODEL.startswith("hf-hub:"):
+        model, _, preprocess = open_clip.create_model_and_transforms(MODEL)
+        tok = open_clip.get_tokenizer(MODEL)
+    else:
+        model, _, preprocess = open_clip.create_model_and_transforms(MODEL, pretrained="laion2b_s34b_b79k")
+        tok = open_clip.get_tokenizer(MODEL)
     model = model.to(device).eval()
 
     families, prompts, owner = [], [], []

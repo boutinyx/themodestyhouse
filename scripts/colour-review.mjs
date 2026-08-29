@@ -51,15 +51,25 @@ try {
   const raw = JSON.parse(readFileSync(root('data/colour-proposals.json'), 'utf8'));
   for (const r of raw) {
     if (!r.family) continue;
-    // `multi` is never auto-accepted, however strong the vote.
+    // THREE TIERS, because the evidence behind a reading varies enormously and
+    // pretending otherwise would be the dishonest part.
     //
-    // Measured on the real run: all three strong `multi` readings were terms
-    // that are not colours at all — "final sale", "luxury chiffon hijab",
-    // "pleated abaya". The reader is asked what colour a garment is, so shown
-    // a dozen assorted printed pieces it answers "patterned", which is true of
-    // the photographs and false of the question. Demoting `multi` to a hint
-    // removed exactly those three and nothing else.
-    PROPOSALS[r.term] = r.family === 'multi' ? { ...r, strong: false } : r;
+    //   strong — >=60% of >=4 photos agreed. Measured 91.3% against 60 colour
+    //            names whose answer was already known.
+    //   photo  — a reading from one to three photos. Measured 74.0% per photo
+    //            over 200 products whose title states the colour, and the
+    //            misses are overwhelmingly adjacent (brown/beige, blue/grey,
+    //            white/cream). Pre-filled anyway: correcting one in four beats
+    //            authoring all four, and these terms carry 1-3 products each.
+    //   hint   — shown, never pre-filled.
+    //
+    // `multi` is always a hint however strong the vote. On the first run all
+    // three strong multi readings were terms that are not colours at all —
+    // "final sale", "luxury chiffon hijab", "pleated abaya". Asked what colour
+    // a garment is, the model answers "patterned", which is true of the
+    // photographs and false of the question.
+    const tier = r.family === 'multi' ? 'hint' : r.strong ? 'strong' : 'photo';
+    PROPOSALS[r.term] = { ...r, tier };
   }
 } catch { /* not generated yet — the page is fully usable without it */ }
 
@@ -136,7 +146,7 @@ const WHY = {
 const card = (g) => `
   <section class="term" data-key="${esc(g.key)}" data-kind="${g.kind}"${
     PROPOSALS[g.key]
-      ? ` data-suggest="${esc(PROPOSALS[g.key].family)}" data-suggest-strong="${PROPOSALS[g.key].strong ? '1' : '0'}"`
+      ? ` data-suggest="${esc(PROPOSALS[g.key].family)}" data-suggest-tier="${PROPOSALS[g.key].tier}"`
       : ''
   }>
     <header>
@@ -148,11 +158,11 @@ const card = (g) => `
       }${g.kind === 'weak' ? ` · currently ${esc(g.proposed)}` : ''}</span>
       ${
         PROPOSALS[g.key]
-          ? `<span class="sugg-note ${PROPOSALS[g.key].strong ? 'strong' : 'faint'}">read from the photos: <b>${esc(
-              COLOUR_FAMILY_LABELS[PROPOSALS[g.key].family] || PROPOSALS[g.key].family,
-            )}</b> — ${PROPOSALS[g.key].votes} of ${PROPOSALS[g.key].read} agreed${
-              PROPOSALS[g.key].strong ? '' : ', so it is only a hint'
-            }</span>`
+          ? `<span class="sugg-note ${PROPOSALS[g.key].tier === 'strong' ? 'strong' : 'faint'}">read from the ${
+              PROPOSALS[g.key].read === 1 ? 'photo' : PROPOSALS[g.key].read + ' photos'
+            }: <b>${esc(COLOUR_FAMILY_LABELS[PROPOSALS[g.key].family] || PROPOSALS[g.key].family)}</b>${
+              PROPOSALS[g.key].read > 1 ? ` (${PROPOSALS[g.key].votes} of ${PROPOSALS[g.key].read} agreed)` : ''
+            }${PROPOSALS[g.key].tier === 'hint' ? ' — a hint only, prints are not a colour' : ''}</span>`
           : ''
       }
     </header>
@@ -225,6 +235,7 @@ const html = `<!doctype html><meta charset="utf-8"><title>Colour review — The 
  /* A machine answer must never look like one Tina made. Pressed-by-suggestion
     is outlined; pressed-by-her is solid. */
  .term[data-mine="0"] .pick[aria-pressed="true"]{background:#fff;color:var(--aubergine);border:1px dashed var(--aubergine)}
+ .term[data-mine="0"][data-suggest-tier="photo"] .pick[aria-pressed="true"]{border-style:dotted;color:#8a7d6b;border-color:#b9ab97}
  .type{position:relative;margin:0 0 10px}
  .tin{width:min(360px,100%);font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--hairline);border-radius:8px;background:#fff;color:var(--ink)}
  .tin:focus{outline:none;border-color:var(--aubergine);box-shadow:0 0 0 3px rgba(68,25,67,.10)}
@@ -406,7 +417,7 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
  }
 
  var sections = [].slice.call(document.querySelectorAll('.term'));
- var suggestedCount = 0;
+ var strongCount = 0, photoCount = 0;
 
  sections.forEach(function (sec, idx) {
    var key = sec.dataset.key, weak = sec.dataset.kind === 'weak';
@@ -482,7 +493,7 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
      sec.dataset.done = '1'; sec.dataset.mine = '1'; paint();
    }
    else if (skipped[(weak ? 'w:' : 't:') + key]) { excl = '__skip'; sec.dataset.mine = '1'; paint(); }
-   else if (sec.dataset.suggest && sec.dataset.suggestStrong === '1') {
+   else if (sec.dataset.suggest && sec.dataset.suggestTier !== 'hint') {
      // A strong photo reading arrives pre-answered and DOES count towards the
      // export — that is the point of it. It is ONE family, and it is marked
      // data-mine="0" so the button renders outlined rather than solid; adding a
@@ -591,15 +602,18 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
 
  // Say plainly what arrived pre-answered and how much to trust it. A number she
  // can act on beats a reassurance she cannot check.
- if (suggestedCount) {
+ if (strongCount + photoCount) {
    var b = document.createElement('p');
    b.className = 'note';
    b.style.borderLeft = '3px solid var(--aubergine)';
    b.style.paddingLeft = '10px';
-   b.innerHTML = '<b>' + suggestedCount + ' of these are already answered</b> — read off the product '
-     + 'photographs, and shown with a dashed outline so you can tell them from your own. Tested against '
-     + '60 colour names whose answer was already known, that reading was right <b>86%</b> of the time, so '
-     + 'roughly one in seven still needs you. Skim them, fix what is wrong, and press Copy.';
+   b.innerHTML = '<b>' + (strongCount + photoCount) + ' of these arrive already answered</b>, read off the '
+     + 'product photographs by a model trained on fashion catalogues. They are outlined rather than filled '
+     + 'in, so you can always tell them from your own.<br>'
+     + '<b>' + strongCount + '</b> came from four or more photos agreeing — those measured <b>91%</b> right. '
+     + 'The other <b>' + photoCount + '</b> came from one to three photos, which measured <b>74%</b>, so about '
+     + 'one in four needs you. Nearly every mistake is a neighbour: brown for beige, blue for grey, white for '
+     + 'cream. Skim, fix those, and press Copy.';
    var lede = document.querySelector('.lede');
    if (lede && lede.parentNode) lede.parentNode.insertBefore(b, lede.nextSibling);
  }
