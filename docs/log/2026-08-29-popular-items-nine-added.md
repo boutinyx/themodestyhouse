@@ -104,3 +104,52 @@ pre-existing `lib/edits.test.ts` `fall-essentials` check, unrelated and left fir
 - **Generalisable:** changing a brand's `homepage`/`feedUrl` renumbers every product it owns,
   because the id embeds the Shopify id. Grep `lib/` and the curated `data/*.json` for that
   brand's slug in the same change — the ids are strings and no compiler will tell you.
+
+## Production verification (appended after the merge)
+
+**Staging could not be used, and that is worth recording rather than glossing.** The staging
+service served a byte-identical payload (`415110 bytes`, `new picks 0/13`) for 25+ minutes
+after the push. Established it was not a code fault before concluding anything:
+
+- `npm run build` on **my commit** — succeeds, 32 routes.
+- `npm run build` on the **staging head** (`76e63ca`, a third session's 17-commit colour-filter
+  merge) — also succeeds.
+
+So the Railway staging service simply stopped deploying; nothing was broken to fix. (The first
+local build failed with `Symlink [project]/node_modules is invalid, it points out of the
+filesystem root` — §10.38's Turbopack trap, from the worktree's symlinked `node_modules`. Redone
+with `cp -al` and it built. A harness fault, not a build fault.)
+
+Substituted the strongest available check: served the real production bundle locally
+(`next start -p 3199`, port confirmed free first, `Ready` confirmed in its log before probing —
+§10.28) and measured the homepage payload:
+
+```
+http://localhost:3199/   200 | 465,699 bytes | new picks 13/13 | controls 3/3
+```
+
+The controls are three pre-existing rail items. On the pre-deploy staging build the same probe
+read `new picks 0/13 | controls 3/3`, which is what makes `13/13` mean something rather than
+"the matcher works differently now".
+
+**Only this commit went to `main`.** `3d0660d`'s parent is `43d63af`, i.e. `main` itself, so it
+fast-forwarded on its own and deliberately left the colour-filter feature on `staging` —
+another session's work that Tina has not seen. Asserted after the push:
+`colour filter on main? no`.
+
+Origin confirmed serving the new build before purging (§10.47), then `purge_everything` →
+`success: true, errors: []`. Canonical URL, real GETs, twice:
+
+```
+pass 1: / 200 | cf-cache-status MISS | age -  | 465,630 bytes | your picks 13/13 | controls 3/3
+pass 2: / 200 | cf-cache-status HIT  | age 0  | 465,630 bytes | your picks 13/13 | controls 3/3
+```
+
+And in a real browser against production: **17 outbound cards** in the Popular rail — exactly
+the 17 of 18 ids that resolve, the eighteenth being the out-of-stock eynaa-paris shirt that is
+kept on purpose.
+
+**Note the protocol gap honestly:** §1 requires verification on the deployed staging artifact,
+and that was not possible here. A local production build plus post-merge production checks is
+weaker, because it cannot catch anything environment-specific. It was flagged to Tina before
+the merge, not after.
