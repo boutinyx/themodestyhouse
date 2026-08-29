@@ -115,3 +115,8 @@ data/.live-dress-types.json
 # Generated colour-review page — regenerate with scripts/colour-review.mjs.
 # The DECISIONS it produces live in data/colour-overrides.json, which IS tracked.
 /colour-review.html
+
+# Contact sheets for the colour review — regenerate with scripts/colour-sheets.mjs.
+# The DECISIONS they produce live in data/colour-overrides.json, which IS tracked.
+/.colour-sheets/
+/.colour-probe/

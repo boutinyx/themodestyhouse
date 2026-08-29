@@ -183,317 +183,274 @@
       "beige"
     ]
   },
-  "//autoTerms": "MACHINE-SET, not Tina's. Read off the product photographs by an apparel-trained model (scripts/colour_from_images_clip.py, Marqo-FashionSigLIP), measured at 74.0% from a single photograph against 200 products whose title already states the colour; nearly every miss is an adjacent family (brown/beige, blue/grey, white/cream, blue/navy). lib/colour.ts consults this ONLY where `terms` above has no entry, so answering a term in the review page permanently overrules it. Applied 2026-08-29 at Tina's instruction, after she hand-answered 117 terms, because the alternative for these 962 products was not a better colour but NO colour. Delete any entry freely; the term simply returns to unclassified. Regenerate with: ./.venv-style/bin/python scripts/colour_from_images_clip.py --propose",
+  "//autoTerms": "MACHINE-SET, not Tina's \u2014 but LOOKED AT, not guessed. Every one of these 890 colourway names was read off a real product photograph on a contact sheet (scripts/colour-sheets.mjs builds them, 30 names per sheet). That replaced three automated attempts that were all measured and all worse: a pixel sampler at 45%, zero-shot CLIP at 74%, and a probe trained on a HuggingFace fashion dataset at 48.5%. Tina, 2026-08-29: \"i just dont get how you cant look at the pictures.\" She was right. A null here means the name is not a colour at all \u2014 a garment (\"jilbab\", \"trench coat\"), a fabric (\"viscose blend\", \"muslin\"), a size or a product code (\"w25218\") \u2014 which is the judgement no automated reader made correctly, because asked what colour a garment is it always answers with one. lib/colour.ts consults this ONLY where `terms` above has no entry, so answering a term in the review page permanently overrules it. Rebuild the sheets with: npx tsx scripts/colour-sheets.mjs",
   "autoTerms": {
-    "cloud": "grey",
-    "spice": "brown",
+    "jilbab": null,
+    "cloud": "white",
+    "khimar": null,
+    "opaque chiffon hijab": null,
+    "wf atelier": null,
+    "soft crush crepe": null,
+    "athleisure": null,
+    "spice": "orange",
+    "with lining": null,
     "pebble": "beige",
-    "chai": "brown",
-    "hibiscus": "pink",
-    "rose gold": [
-      "yellow",
-      "pink"
-    ],
+    "2 pcs": null,
+    "prayer outfit": null,
+    "luxe edition": null,
+    "chai": "beige",
+    "hibiscus": "red",
+    "w25262": null,
+    "rose gold": "beige",
     "port royale": "red",
     "pine bark": "brown",
-    "stone blue": [
-      "beige",
-      "blue"
-    ],
+    "stone blue": "blue",
+    "modal hijab": null,
     "heather": "grey",
-    "pink taupe": [
-      "pink",
-      "beige"
-    ],
+    "pink taupe": "pink",
+    "adjustable tie undersc": null,
+    "open abaya": null,
+    "chiffon plain hijab": null,
     "sesame": "beige",
+    "kj-06": null,
+    "viscose blend": null,
     "seaweed": "grey",
+    "spruce": "blue",
+    "3 pcs": null,
+    "metallic viscose": null,
     "rain drum": "brown",
+    "soalon": null,
     "vetiver": "beige",
-    "sable": "orange",
+    "sable": "red",
+    "desert palm": "brown",
     "harbor mist": "green",
+    "dark wash": "blue",
     "uluru": "red",
     "black x red": [
-      "red",
-      "black"
+      "black",
+      "red"
     ],
-    "laurel": "grey",
+    "top & bottom": null,
+    "laurel": "green",
+    "trench coat": null,
     "burgundy & gold": [
       "red",
       "yellow"
     ],
     "bloom": "purple",
+    "2549": null,
+    "undercap": null,
     "rich auburn": "brown",
     "fog": "grey",
     "milo": "brown",
     "brownstone": "beige",
-    "breeze": "purple",
-    "grove": "beige",
+    "breeze": "grey",
+    "grove": "green",
+    "set": null,
+    "slim fit": null,
     "rainforest": "brown",
     "butterbloom": "cream",
     "marine": "navy",
     "oldpink": "pink",
     "burnt sugar": "brown",
     "chartreuse": "green",
+    "ma55805-1": null,
     "dark sea": "green",
+    "qahwa": "brown",
     "rasberry": "purple",
     "lime": "green",
     "brunette": "brown",
     "auburn": "orange",
     "light mink": "beige",
-    "purple floral": [
-      "purple",
-      "multi"
-    ],
-    "black ditsy floral": [
-      "black",
-      "multi"
-    ],
+    "purple floral": "multi",
+    "black ditsy floral": "multi",
     "antler": "brown",
+    "essential knit": null,
+    "kc842": null,
     "seashell": "pink",
-    "black plum": [
-      "purple",
-      "black"
-    ],
-    "velvet": "purple",
+    "black plum": "purple",
+    "belted knit": null,
+    "velvet": null,
     "wave": "blue",
-    "crushed rock": "beige",
+    "crushed rock": "pink",
     "cuba": "black",
     "acorn": "beige",
+    "w26014": null,
     "boulder": "brown",
     "marina": "blue",
-    "taupe brown": [
-      "brown",
-      "beige"
-    ],
-    "stone green": [
-      "beige",
-      "green"
-    ],
-    "taupe grey": [
-      "beige",
-      "grey"
-    ],
+    "taupe brown": "brown",
+    "stone green": "green",
+    "taupe grey": "brown",
     "pear": "yellow",
-    "carribean": "brown",
+    "carribean": "blue",
     "cactus": "green",
     "turkish sea": "purple",
-    "snow": "white",
-    "charlotte": "beige",
-    "terracotta rose": [
-      "orange",
-      "pink"
-    ],
-    "blooming dahlia": "brown",
+    "snow": "cream",
+    "charlotte": "pink",
+    "terracotta rose": "pink",
+    "blooming dahlia": "purple",
     "petal": "pink",
     "desert flower": "pink",
     "sandshell": "beige",
     "steel": "grey",
-    "ash brown": [
-      "brown",
-      "grey"
-    ],
-    "coral almond": [
-      "pink",
-      "beige"
-    ],
-    "gown": "black",
+    "ash brown": "brown",
+    "coral almond": "cream",
+    "gown": null,
+    "dune spots": "multi",
     "willow": "green",
-    "raspberry": "red",
-    "tosca": "grey",
+    "raspberry": "pink",
+    "tosca": "multi",
     "misty mink": "beige",
-    "plumberry": "red",
+    "plumberry": "purple",
+    "limon": "yellow",
     "blushpink": "pink",
     "custard": "cream",
     "coconut milk": "cream",
     "vintage roze": "brown",
     "sea": "blue",
-    "lavender grey": [
-      "purple",
-      "grey"
-    ],
+    "lavender grey": "purple",
     "opal": "cream",
-    "ash rose": [
-      "pink",
-      "grey"
-    ],
+    "ash rose": "pink",
     "persian jewel": "blue",
-    "nude grey": [
-      "beige",
-      "grey"
-    ],
+    "nude grey": "grey",
     "eclipse": "navy",
-    "soft slit": "brown",
+    "soft slit": null,
     "sea fog": "purple",
-    "meringue": "beige",
+    "meringue": "cream",
     "castlerock": "grey",
-    "deep pacific": "grey",
+    "deep pacific": "black",
     "ochre": "yellow",
     "enchanted": "green",
     "quarry": "grey",
-    "mahogany rose": [
-      "pink",
-      "brown"
-    ],
+    "mahogany rose": "beige",
     "ginger snap": "beige",
     "elderberry": "purple",
-    "flint": "purple",
-    "otter": "beige",
-    "moss gray": [
-      "grey",
-      "green"
-    ],
+    "flint": "pink",
+    "otter": "yellow",
+    "moss gray": "green",
     "moonrock": "beige",
     "seagrass": "green",
-    "cowhide": "orange",
+    "cowhide": "red",
     "ginger": "beige",
-    "dark berry": "brown",
-    "gardenia": "cream",
+    "dark berry": "purple",
+    "gardenia": "white",
     "tawny": "brown",
-    "sirocco": "beige",
+    "sirocco": "cream",
     "tourmaline": "blue",
     "reseda": "green",
     "raindrops": "purple",
     "spiced apple": "red",
     "viola": "purple",
     "sphinx": "pink",
-    "turkish": "green",
-    "muslin": "pink",
-    "desert palm": "brown",
+    "turkish": "blue",
+    "muslin": null,
     "lilas": "pink",
     "dill": "green",
     "burro": "beige",
-    "mocha rose": [
-      "pink",
-      "brown"
-    ],
+    "mocha rose": "brown",
     "lead": "grey",
     "cone flower": "pink",
     "nougat": "brown",
     "london fog": "grey",
-    "olive taupe": [
-      "beige",
-      "green"
-    ],
-    "rain": "purple",
+    "olive taupe": "green",
+    "light wash": "blue",
+    "rain": "grey",
     "mediterranea": "blue",
-    "blue stripe": [
-      "blue",
-      "multi"
-    ],
+    "blue stripe": "blue",
     "magnolia": "cream",
     "ballerina": "pink",
     "limeade": "green",
-    "rumman": "red",
+    "summan": "red",
     "deep lagoon": "blue",
-    "mocha mauve": [
-      "purple",
-      "brown"
-    ],
-    "golden olive": [
-      "yellow",
-      "green"
-    ],
+    "mocha mauve": "pink",
+    "golden olive": "yellow",
     "yale": "blue",
     "teak": "beige",
     "nectar": "pink",
     "mellow": "cream",
+    "saks": "blue",
     "kambaba": "green",
     "biscotti": "beige",
     "blushing girl": "pink",
     "black/gold": [
-      "yellow",
-      "black"
+      "black",
+      "yellow"
     ],
     "neutral": "beige",
     "dark pearwood": "beige",
     "burnt sienna": "brown",
-    "brown taupe": [
-      "brown",
-      "beige"
-    ],
+    "watercolor bloom": "multi",
+    "brown taupe": "brown",
+    "rainforest mist": "multi",
     "raven": "brown",
-    "spruce": "navy",
-    "golden brown": [
-      "yellow",
-      "brown"
-    ],
-    "peach beige": [
-      "pink",
-      "beige"
-    ],
-    "blue graphite": [
-      "grey",
-      "blue"
-    ],
-    "slate blue": [
-      "grey",
-      "blue"
-    ],
-    "fango": "brown",
-    "black forest": [
-      "green",
-      "black"
-    ],
-    "cafe au lait": "brown",
-    "aquamarin": "green",
-    "türkis": "blue",
-    "non-slip": "black",
-    "ivory blush": [
-      "pink",
-      "white"
-    ],
-    "limited editon": "pink",
-    "purple floral print": [
-      "purple",
-      "multi"
-    ],
+    "cloudburst": "grey",
+    "golden brown": "brown",
+    "peach beige": "beige",
+    "blue graphite": "grey",
+    "slate blue": "blue",
+    "tango": "brown",
+    "black forest": "green",
+    "cafe au lait": "beige",
+    "aquamarin": "blue",
+    "t\u00fcrkis": "blue",
+    "bisht abaya": null,
+    "non-slip": null,
+    "ivory blush": "pink",
+    "limited editon": null,
+    "purple floral print": "multi",
     "sea mist": "grey",
+    "nursing friendly": null,
     "crema": "cream",
     "mintgroen": "green",
     "khuzama mist": "purple",
+    "modest workout abaya": null,
     "noir gold": [
-      "yellow",
-      "black"
+      "black",
+      "yellow"
     ],
     "buttermilk": "cream",
-    "lavender rose": [
-      "pink",
-      "purple"
-    ],
+    "premium coverage": null,
+    "lavender rose": "purple",
     "beige/brown": [
-      "brown",
-      "beige"
+      "beige",
+      "brown"
     ],
-    "nasmet el arz": "grey",
+    "hasmet el arz": "blue",
+    "watercolor oasis": "multi",
     "zahret el ward": "pink",
+    "rosily bloom": "pink",
     "roze": "pink",
+    "26cy634": null,
     "turquoise & gold": [
-      "yellow",
-      "blue"
+      "blue",
+      "yellow"
     ],
     "noor el layl": "cream",
     "bluebell": "blue",
     "leaf": "green",
+    "levant line": null,
+    "byblos thread": "blue",
     "lagoon": "blue",
-    "off-white": [
-      "cream",
-      "white"
-    ],
+    "top & skirt": null,
+    "b13035": null,
+    "beit zaytoun": "beige",
+    "workout leggings 2.0": null,
+    "luxury satin hijab": null,
+    "off-white": "cream",
     "fushia": "pink",
     "zenith": "blue",
     "nude/black": [
       "beige",
       "black"
     ],
-    "cherry brown": [
-      "red",
-      "brown"
-    ],
+    "cherry brown": "brown",
+    "2120": null,
     "samaa": "blue",
-    "hearts out": "white",
-    "sandalwood": "brown",
+    "custom made": null,
+    "hearts out": null,
+    "sandalwood": "pink",
     "morel": "grey",
-    "raml lubnan": "beige",
+    "saml lubnan": "cream",
     "ivony": "pink",
     "grey & blue": [
       "grey",
@@ -503,892 +460,720 @@
       "cream",
       "blue"
     ],
-    "salie": "cream",
+    "w25218": null,
+    "salie": "green",
+    "zainaara": "multi",
     "babypink": "pink",
-    "slim fit": "brown",
+    "fareeda": "multi",
     "celestial night": "green",
+    "oversized poplin shirt": null,
     "caspian": "blue",
-    "morning mist": "grey",
+    "samaya": "multi",
+    "morning mist": "blue",
+    "skirt guard": null,
+    "mara": "multi",
     "peachy": "orange",
-    "summer snow ™": "white",
+    "summer snow \u2122": "white",
+    "arya": "multi",
+    "flared vichy poplin": null,
+    "x5036": null,
     "muted basel": "green",
-    "dusty": "white",
+    "pleated poplin": null,
+    "yasira": "multi",
+    "dusty": "beige",
     "guava": "green",
-    "grapefruit tart": "orange",
-    "ورق ناعم": "red",
-    "customisable silhouette™": "black",
+    "asymmetrical poplin": null,
+    "grapefruit tart": "pink",
+    "\u0648\u0631\u0642 \u0646\u0627\u0639\u0645": null,
+    "customisable silhouett": null,
+    "riviera edition": null,
     "aegean": "blue",
+    "silky maxi dress": null,
+    "modest swim bottom": null,
     "burnt clay": "brown",
     "oud santal": "beige",
-    "tube style": "navy",
+    "tube style": null,
     "dusky mink": "purple",
-    "mt019": "blue",
-    "white blue": [
-      "white",
-      "blue"
-    ],
-    "nude blush": [
-      "pink",
-      "beige"
-    ],
+    "nt019": null,
+    "white blue": "white",
+    "nude blush": "pink",
     "dark spice": "red",
-    "lead (j)": "blue",
+    "head (j)": null,
     "sugar": "cream",
-    "light lime": "cream",
-    "oasis": "cream",
+    "light lime": "yellow",
+    "oasis": "white",
+    "cape abaya": null,
     "skyflower": "blue",
     "henna": "green",
-    "qahwa": "brown",
     "cream/brown": [
-      "brown",
-      "cream"
+      "cream",
+      "brown"
     ],
     "pillowtalk": "brown",
-    "moss beige": [
-      "beige",
-      "green"
-    ],
+    "moss beige": "beige",
+    "glimmer abaya": null,
+    "lace dress": null,
     "mystic wave": "green",
-    "lavender blush": [
-      "pink",
-      "purple"
-    ],
-    "rose beige (j)": [
-      "pink",
-      "beige"
-    ],
-    "bronze mustard": [
-      "orange",
-      "yellow"
-    ],
-    "dusty diva": "purple",
+    "lavender blush": "pink",
+    "rose beige (j)": "beige",
+    "abaya set": null,
+    "bronze mustard": "orange",
+    "sport hijab": null,
+    "dusty diva": "pink",
     "black/brown": [
-      "brown",
-      "black"
+      "black",
+      "brown"
     ],
-    "pink sand": [
-      "pink",
-      "beige"
-    ],
-    "stone moss": [
-      "beige",
-      "green"
-    ],
-    "online exclusive": "black",
+    "pink sand": "pink",
+    "stone moss": "green",
+    "online exclusive": null,
     "pink/brown": [
       "pink",
       "brown"
     ],
-    "bronze chestnut": [
-      "orange",
-      "brown"
-    ],
+    "bronze chestnut": "brown",
     "luna rock": "beige",
     "karaz": "red",
-    "byzantium": "red",
+    "byzantium": "purple",
+    "cotton layering skirt": null,
     "magnet": "grey",
     "kastana": "brown",
-    "farasha": "grey",
-    "couture spirit": "black",
+    "cotton modest layering": null,
+    "varasha": "blue",
+    "couture spirit": null,
+    "couture knit": null,
+    "obsidian ember": "multi",
     "darkblue": "navy",
-    "mulberry brown": [
-      "purple",
-      "brown"
-    ],
-    "glossy gown": "blue",
-    "peru": "pink",
-    "lumière": "cream",
-    "taupe pink": [
-      "pink",
-      "beige"
-    ],
+    "6813": null,
+    "lava glow": "multi",
+    "zipped knit": null,
+    "super stretch": null,
+    "mulberry brown": "brown",
+    "na6815": null,
+    "sunset marble": "multi",
+    "glossy gown": null,
+    "zippered cable knit": null,
+    "peru": "brown",
+    "lumi\u00e8re": "white",
+    "taupe pink": "pink",
+    "zipped cable knit": null,
     "lila": "purple",
-    "p24743": "beige",
-    "velvet teddy": "beige",
+    "faulty": null,
+    "na2835": null,
+    "signature knit": null,
+    "amber of eden": "multi",
+    "pleated knit": null,
+    "2798": null,
+    "midnight tide": "multi",
+    "shimmering abaya": null,
+    "celestial mist": "multi",
+    "p24743": null,
+    "jacquard knit": null,
+    "velvet teddy": "purple",
+    "tamr": "beige",
+    "zaitoona": "green",
+    "lunar ore": "multi",
+    "buttoned knit": null,
+    "ink & oxide": "multi",
+    "bahr": "blue",
     "raffia": "beige",
-    "cappucino": "brown",
-    "knitted zipped collar": "black",
-    "moon": "purple",
-    "blush nude abaya": [
-      "pink",
-      "beige"
-    ],
-    "wisteria black": [
-      "purple",
-      "black"
-    ],
-    "blush brown": [
-      "pink",
-      "brown"
-    ],
-    "black coffee": [
-      "brown",
-      "black"
-    ],
-    "nutmeg latte": [
-      "brown",
-      "beige"
-    ],
+    "ignis flair": "multi",
+    "y5211": null,
+    "heirloom garden": "multi",
+    "sama": "blue",
+    "cheetah": "multi",
+    "midnight laurel": "multi",
+    "blackberry mist": "grey",
+    "cappucino": "beige",
+    "sahra flow": "multi",
+    "knitted zipped collar": null,
+    "gilded garden": "multi",
+    "moon": "grey",
+    "vintage ros\u00e9": "pink",
+    "knit with gold buttons": null,
+    "delft bloom": "multi",
+    "blush nude abaya": null,
+    "2096": null,
+    "wisteria black": "multi",
+    "ribbed knit": null,
+    "2081": null,
+    "clouded marble": "multi",
+    "2122": null,
+    "sunset petal": "multi",
+    "desert dusk": "multi",
+    "blush brown": "brown",
+    "smoky dust": "multi",
+    "french roast": "brown",
+    "porcelain willow": "multi",
+    "starry moonlight": "multi",
+    "original mesh back": null,
+    "black coffee": "brown",
+    "hush garden": "multi",
+    "cotton blend": null,
+    "nutmeg latte": "brown",
+    "coco savanna": "multi",
+    "slip dress": null,
     "cardinal": "red",
+    "desert tigress": "multi",
     "greybeige blended": "grey",
-    "deep fig": "cream",
-    "rosé": "pink",
-    "mustard bronze": [
-      "orange",
-      "yellow"
-    ],
+    "deep fig": "purple",
+    "velour hide": "multi",
+    "ros\u00e9": "pink",
+    "mustard bronze": "yellow",
     "citrine": "yellow",
     "white/ blue": [
       "white",
       "blue"
     ],
-    "cedarwood": "beige",
-    "amberlight": "cream",
+    "cedarwood": "green",
+    "amberlight": "beige",
     "sandstone": "beige",
-    "chocolate pistachio": [
-      "brown",
-      "green"
-    ],
+    "night \u2122": null,
+    "dawn": "orange",
+    "sw601": null,
+    "skirt": null,
+    "chocolate pistachio": "brown",
+    "cascade dress": null,
     "seal": "grey",
-    "golden blush": [
-      "yellow",
-      "pink"
-    ],
-    "legergroen": "green",
-    "green charcoal": [
-      "grey",
-      "green"
-    ],
+    "golden blush": "yellow",
+    "zegergroen": "green",
+    "green charcoal": "green",
     "chartreuse shine": "yellow",
+    "dark earth": "brown",
+    "cy24217": null,
     "salt & pepper": "grey",
+    "sc171": null,
+    "satin cape dress": null,
     "arz": "green",
+    "tortilla": "multi",
     "bear": "brown",
     "carmine": "red",
+    "sw730": null,
+    "corset dress": null,
+    "dark lavendar": "multi",
+    "32581": null,
     "tulip": "purple",
-    "ash mocha": [
-      "brown",
-      "grey"
-    ],
-    "lavender gray": [
-      "purple",
-      "grey"
-    ],
+    "ash mocha": "beige",
+    "lavender gray": "grey",
+    "m828": null,
     "dusty rosa": "pink",
     "orangeade": "orange",
+    "w25259": null,
     "olivine": "green",
+    "safari": "multi",
     "crocus": "pink",
-    "stone leopard": [
-      "beige",
-      "multi"
-    ],
+    "stone leopard": "multi",
     "pine": "green",
     "olympic": "blue",
-    "limpet shell": "blue",
-    "green floral": [
-      "green",
-      "multi"
-    ],
-    "nude gold": [
-      "yellow",
-      "beige"
-    ],
-    "cobalt violet": [
-      "purple",
-      "blue"
-    ],
-    "plum fudge": [
-      "purple",
-      "brown"
-    ],
+    "w25267": null,
+    "royal tides": "multi",
+    "limpet shell": "green",
+    "green floral": "multi",
+    "dawn speckles": "multi",
+    "nude gold": "beige",
+    "cobalt violet": "purple",
+    "plum fudge": "pink",
     "kashmir": "green",
     "mosgroen": "green",
+    "maxi skirt": null,
     "buff": "beige",
-    "golden green": [
-      "yellow",
-      "green"
-    ],
-    "sunbloom": "cream",
-    "gray blue": [
-      "grey",
-      "blue"
-    ],
+    "golden green": "yellow",
+    "kc877": null,
+    "sunbloom": "multi",
+    "gray blue": "grey",
     "rosemary": "green",
     "curry": "yellow",
     "lime sherbet": "yellow",
-    "muse gown": "green",
+    "muse gown": null,
+    "u12369": null,
     "black x orchid": [
-      "purple",
-      "black"
-    ],
-    "buttercup": "cream",
-    "petal gown": "pink",
-    "softblue": "blue",
-    "twilight": "blue",
-    "magenta purple": [
-      "pink",
+      "black",
       "purple"
     ],
+    "v6260": null,
+    "t1175": null,
+    "secret garden": "multi",
+    "buttercup": "cream",
+    "w2321": null,
+    "full set": null,
+    "petal gown": null,
+    "softblue": "blue",
+    "26cy631": null,
+    "twilight": "blue",
+    "magenta purple": "purple",
+    "leafy elegance": "multi",
     "dusty rosewood": "red",
     "blonde": "beige",
     "cider": "yellow",
-    "butterscotch": "yellow",
-    "lilac rose": [
-      "pink",
-      "purple"
-    ],
+    "dessert mirage": "multi",
+    "y5222": null,
+    "donkerroze": "pink",
+    "butterscotch": "orange",
+    "mossy mirage": "beige",
+    "lilac rose": "purple",
+    "sc208": null,
+    "midnight blooms": "multi",
     "paars": "purple",
-    "buttercream yellow": [
-      "yellow",
-      "cream"
-    ],
-    "cream pink": [
-      "pink",
-      "cream"
-    ],
+    "buttercream yellow": "yellow",
+    "rosey pines": "pink",
+    "cream pink": "cream",
     "caviar": "grey",
-    "limon": "yellow",
-    "crownblue": "grey",
-    "blush gold": [
-      "yellow",
-      "pink"
-    ],
-    "rosepatina": "pink",
-    "phantom": "black",
+    "knitted maxi dress": null,
+    "knitted dress": null,
+    "crownblue": "navy",
+    "blush gold": "beige",
+    "asymmetrical set": null,
+    "asymmetric set": null,
+    "rosepatina": "purple",
+    "phantom": "grey",
+    "daisy dress": null,
     "hyacinth": "purple",
     "nightfall": "black",
     "sherbert": "yellow",
+    "speakpure set": null,
     "zachtroze": "pink",
-    "blush lilac": [
-      "pink",
-      "purple"
-    ],
+    "bell sleeves dress": null,
+    "blush lilac": "purple",
     "canyon clay": "orange",
     "zaitoon": "green",
-    "capri": "grey",
-    "pack of 4": "brown",
-    "redwood": "orange",
+    "capri": "navy",
+    "pack of 4": null,
+    "redwood": "red",
     "anchor": "grey",
-    "zalmroze": "beige",
-    "ivory forest": [
-      "white",
-      "green"
-    ],
-    "mulberry red": [
-      "red",
-      "purple"
-    ],
+    "kalmroze": "beige",
+    "dress set": null,
+    "ivory forest": "green",
+    "mulberry red": "red",
     "cream & tan": [
-      "brown",
-      "cream"
-    ],
-    "grijs": "grey",
-    "mocha taupe": [
-      "brown",
+      "cream",
       "beige"
     ],
-    "pistachio creme": [
-      "cream",
-      "green"
-    ],
+    "grijs": "grey",
+    "mocha taupe": "brown",
+    "pistachio creme": "green",
     "zilvergrijs": "grey",
     "anise": "green",
     "tiramisu": "brown",
-    "espresso plum": [
-      "purple",
-      "brown"
-    ],
-    "shimmer": "green",
+    "espresso plum": "brown",
+    "shimmer": null,
+    "cardigan": null,
+    "long sleeves": null,
     "dark henna": "brown",
     "midnight meadow": "blue",
     "rumaan": "red",
-    "framboos": "orange",
+    "bamboos": "brown",
     "damask": "pink",
+    "vintage rood": "red",
     "burnt ochre": "orange",
-    "blue umber": [
-      "brown",
-      "blue"
-    ],
-    "minted meadow": "grey",
+    "jersey light mink": "pink",
+    "blue umber": "multi",
+    "lichtroze": "pink",
+    "minted meadow": "cream",
     "warm": "brown",
-    "sage espresso": [
-      "brown",
-      "green"
-    ],
+    "rood": "red",
+    "sage espresso": "multi",
     "rustic root": "beige",
-    "cream grey": [
-      "cream",
-      "grey"
-    ],
-    "blush stone": [
-      "pink",
-      "beige"
-    ],
-    "cream beige": [
-      "beige",
-      "cream"
-    ],
+    "orkelgeel": "yellow",
+    "cream grey": "grey",
+    "blush stone": "cream",
+    "satin": null,
+    "cream beige": "beige",
     "warm dune": "cream",
     "celadon mist": "green",
-    "ivory creme": [
-      "cream",
-      "white"
-    ],
+    "neck cupro dress": null,
+    "ivory creme": "cream",
+    "hijab bundle": null,
     "vintagegroen": "green",
+    "satin lined": null,
     "white & tan": [
-      "brown",
-      "white"
+      "white",
+      "beige"
     ],
     "black & orange": [
-      "orange",
-      "black"
+      "black",
+      "orange"
     ],
     "malak": "pink",
-    "faten": "pink",
+    "taten": "orange",
+    "genevieve": "green",
     "beige & orange": [
-      "orange",
-      "beige"
+      "beige",
+      "orange"
     ],
     "niagara": "grey",
     "white/blue": [
       "white",
       "blue"
     ],
-    "mulberry rose": [
-      "pink",
-      "purple"
-    ],
+    "midnight garden": "green",
+    "luxury jersey": null,
+    "luxury jersey (bundles": null,
+    "mulberry rose": "red",
     "white & green": [
       "white",
       "green"
     ],
     "autumn": "brown",
     "merlot": "red",
-    "rolex": "black",
-    "rose nude": [
-      "pink",
-      "beige"
-    ],
+    "new": null,
+    "jacquard": null,
+    "plex": null,
+    "rose nude": "pink",
     "twilight mist": "blue",
+    "daisy bloom": "white",
+    "carnation": "multi",
     "java": "brown",
-    "amal": "purple",
+    "amal": "pink",
     "moon rock": "beige",
     "jenan": "red",
-    "muave": "brown",
+    "butterfly abaya": null,
+    "nuave": "pink",
     "abeer": "navy",
-    "ocean gray": [
-      "grey",
-      "blue"
-    ],
+    "coquette abaya": null,
+    "ocean gray": "grey",
     "ghadir": "blue",
     "lama": "grey",
     "aisha": "pink",
-    "fayrouz": "white",
+    "chiffon abaya": null,
+    "fayrouz": "cream",
     "maple": "beige",
     "ruqayah": "pink",
     "darling": "pink",
     "safa": "pink",
-    "embrace": "pink",
-    "rola": "red",
+    "embrace": "beige",
+    "wrinkled satin abaya": null,
+    "lola": "red",
     "imagine": "orange",
-    "lana": "pink",
+    "rana": "orange",
     "stormy": "grey",
-    "loubna": "orange",
-    "diana": "blue",
+    "loubna": "red",
+    "diana": "green",
     "assiyah": "blue",
-    "haila": "cream",
+    "laila": "cream",
+    "feathered satin butter": "purple",
     "iqra": "white",
     "narjis": "orange",
     "bestie": "pink",
-    "ehsan": "beige",
+    "ehsan": "cream",
     "najwa": "beige",
     "key lime": "green",
-    "rihana": "beige",
+    "jihana": "cream",
     "medina": "beige",
     "mecca": "pink",
-    "layah": "orange",
+    "ayah": "brown",
     "eva": "red",
     "zaina": "brown",
     "cornsilk": "beige",
     "hanin": "brown",
     "dalia": "grey",
-    "farah": "grey",
+    "sarah": "blue",
     "zaynab": "red",
-    "sabeen": "pink",
-    "nadeen": "pink",
+    "sabeen": "beige",
+    "nadeen": "beige",
     "malika": "blue",
-    "latifa": "purple",
+    "twilight ink": "multi",
+    "atifa": "purple",
+    "botanical mist": "multi",
     "jamila": "pink",
     "hiba": "beige",
+    "petal mist": "multi",
     "fatimah": "pink",
     "amaya": "green",
-    "ada çayı": "beige",
-    "misty mauve blush": [
-      "pink",
-      "purple"
-    ],
+    "ada \u00e7ay\u0131": "green",
+    "misty mauve blush": "purple",
     "kashmiri chai": "pink",
-    "lilac ash": [
-      "purple",
-      "grey"
-    ],
+    "lilac ash": "purple",
     "scarab": "green",
-    "fairy lights": "brown",
-    "woodsmoke": "brown",
-    "amber bronze": [
-      "orange",
-      "yellow"
-    ],
-    "cocoa rose": [
-      "pink",
-      "brown"
-    ],
-    "sunset horizon": "red",
-    "pastel mink": "pink",
-    "moonlit pearl": "beige",
+    "fairy lights": "multi",
+    "woodsmoke": "beige",
+    "4 medina silk": null,
+    "amber bronze": "orange",
+    "cocoa rose": "pink",
+    "sunset horizon": "multi",
+    "pastel mink": "beige",
+    "moonlit pearl": "cream",
     "sun": "yellow",
-    "golden noir": [
-      "yellow",
-      "black"
-    ],
-    "toasted coconut": "pink",
-    "olive gold": [
-      "yellow",
-      "green"
-    ],
-    "cocoa plum": [
-      "purple",
-      "brown"
-    ],
-    "stone gray": [
-      "beige",
-      "grey"
-    ],
+    "golden noir": "multi",
+    "mid wash": "blue",
+    "toasted coconut": "beige",
+    "olive gold": "grey",
+    "summer sunset": "orange",
+    "cocoa plum": "brown",
+    "stone gray": "grey",
     "goldenrod": "yellow",
-    "cocoa blush": [
-      "pink",
-      "brown"
-    ],
-    "stone grey": [
-      "beige",
-      "grey"
-    ],
-    "embossed dots": "cream",
-    "blush mauve": [
-      "pink",
-      "purple"
-    ],
-    "twilight waves": "blue",
-    "black/print": [
-      "black",
-      "multi"
-    ],
+    "cocoa blush": "pink",
+    "stone grey": "grey",
+    "embossed dots": null,
+    "blush mauve": "pink",
+    "twilight waves": "multi",
+    "black/print": "multi",
     "au lait": "white",
-    "earth marble": "brown",
-    "blush taupe": [
-      "pink",
-      "beige"
-    ],
-    "caramel creme": [
-      "brown",
-      "cream"
-    ],
+    "earth marble": "multi",
+    "blush taupe": "beige",
+    "caramel creme": "beige",
     "dark lamantin": "green",
-    "golden sand": [
-      "yellow",
-      "beige"
-    ],
-    "almond sage": [
-      "beige",
-      "green"
-    ],
-    "sepia rose": [
-      "pink",
-      "brown"
-    ],
+    "golden sand": "beige",
+    "almond sage": "cream",
+    "sepia rose": "pink",
     "night owl": "grey",
-    "stone sage": [
-      "beige",
-      "green"
-    ],
-    "light carmine": "orange",
+    "stone sage": "green",
+    "light carmine": "red",
     "midnight shore": "black",
     "deliciosi": "brown",
+    "midnight bouquet": "multi",
+    "paisley vortex": "multi",
     "zaytoun": "brown",
-    "lipstick": "orange",
+    "lipstick": "red",
     "citrus": "yellow",
-    "cherry truffle": [
-      "red",
-      "brown"
-    ],
-    "nuthatch": "brown",
+    "cherry truffle": "purple",
+    "the wildflower": "multi",
+    "nuthatch": "orange",
     "sea kelp": "green",
-    "mushroom brown": [
-      "brown",
-      "beige"
-    ],
+    "lisbon": "multi",
+    "mushroom brown": "brown",
+    "crepe": null,
     "black / gold": [
-      "yellow",
-      "black"
+      "black",
+      "yellow"
     ],
-    "sapphire navy": [
-      "navy",
-      "blue"
-    ],
-    "mocha latte": [
-      "brown",
-      "beige"
-    ],
-    "mahogany plum": [
-      "purple",
-      "brown"
-    ],
-    "obsidian": "black",
-    "thulium": "pink",
+    "sapphire navy": "navy",
+    "mocha latte": "beige",
+    "desert marble": "multi",
+    "vintage wash": "blue",
+    "mahogany plum": "purple",
+    "obsidian": "navy",
+    "thulium": "orange",
     "poppy seed": "grey",
     "light marcore": "orange",
-    "black olive": [
-      "green",
-      "black"
-    ],
+    "black olive": "black",
     "arona": "green",
     "dolphin": "grey",
-    "rhino": "beige",
+    "rhino": "green",
     "sorbet": "cream",
     "fern": "green",
     "abyad": "white",
-    "ash beige": [
-      "beige",
-      "grey"
-    ],
+    "ash beige": "beige",
     "aztec": "brown",
-    "belize": "blue",
+    "belize": "green",
+    "taro": "purple",
     "wren": "brown",
     "bright yale": "blue",
-    "watermelon": "orange",
-    "rose tan": [
-      "pink",
-      "brown"
-    ],
+    "watermelon": "red",
+    "rose tan": "pink",
     "aquifer": "green",
-    "grey beige": [
-      "beige",
-      "grey"
-    ],
+    "grey beige": "beige",
     "picante": "orange",
     "white/gold": [
-      "yellow",
-      "white"
+      "white",
+      "yellow"
     ],
     "beige/gold": [
-      "yellow",
-      "beige"
+      "beige",
+      "yellow"
     ],
-    "whitecap": "cream",
-    "salsa rosa": "beige",
+    "whitecap": "white",
+    "salsa rosa": "cream",
     "pink/gold": [
-      "yellow",
-      "pink"
+      "pink",
+      "yellow"
     ],
     "spice clay": "orange",
     "black/silver": [
-      "grey",
-      "black"
+      "black",
+      "grey"
     ],
     "dark fig": "purple",
-    "arctic ice": "purple",
+    "arctic ice": "grey",
     "tree": "green",
     "poison": "green",
     "titanium": "grey",
-    "almond peach": [
-      "pink",
-      "beige"
-    ],
+    "almond peach": "cream",
     "light rosewood": "brown",
     "tiffany": "green",
     "mystical": "purple",
     "dark shadow": "grey",
-    "watercolor bloom": "brown",
-    "burlwood": "purple",
-    "fundango": "purple",
-    "chocolate rose": [
-      "pink",
-      "brown"
-    ],
+    "burlwood": "pink",
+    "fundango": "pink",
+    "chocolate rose": "brown",
     "cyaneus": "blue",
-    "driftwood": "grey",
+    "driftwood": "beige",
     "costal fog": "brown",
     "cilantro": "green",
     "dried pear": "green",
-    "moss grey": [
-      "grey",
-      "green"
-    ],
-    "cloudburst": "grey",
-    "black leopard bloom": [
-      "black",
-      "multi"
-    ],
+    "moss grey": "brown",
+    "black leopard bloom": "multi",
     "dijon": "yellow",
-    "blush sand": [
-      "pink",
-      "beige"
-    ],
+    "blush sand": "pink",
     "doeskin": "beige",
-    "saks": "blue",
+    "sahara sunset": "multi",
     "red & white": [
       "red",
       "white"
     ],
     "browni": "brown",
     "sinopia fresco": "beige",
-    "mocha bisque": [
-      "brown",
-      "beige"
-    ],
+    "mocha bisque": "orange",
     "dark rosewood": "red",
-    "gray violet": [
-      "purple",
-      "grey"
-    ],
+    "gray violet": "grey",
     "cypress": "green",
-    "rosy mist": "brown",
+    "rosy mist": "multi",
     "thistle": "purple",
-    "plum truffle": [
-      "purple",
-      "brown"
-    ],
-    "haze fringe": "grey",
+    "plum truffle": "purple",
+    "haze fringe": "blue",
     "kalamata fringe": "green",
-    "rosaline": "purple",
-    "moonstone": "grey",
-    "pearl dust": "grey",
-    "mystic meadow": "pink",
-    "caramel taupe": [
-      "brown",
-      "beige"
-    ],
-    "light neutral": "brown",
+    "rosaline": "pink",
+    "moonstone": "multi",
+    "freesize blazer": null,
+    "persian marble": "multi",
+    "pearl dust": "beige",
+    "mystic meadow": "multi",
+    "caramel taupe": "beige",
+    "light neutral": "beige",
+    "midnight noor": "multi",
     "riptide": "blue",
-    "rosy": "pink",
-    "pomegranate noir": [
-      "red",
-      "black"
-    ],
+    "floiage": "multi",
+    "rosy": "beige",
+    "pomegranate noir": "red",
     "lavendel": "purple",
+    "frosted speckles": "multi",
+    "marble swirl": "multi",
+    "lightburst": "multi",
     "perfectly pale": "cream",
-    "orange beige": [
-      "orange",
-      "beige"
-    ],
-    "mint cream": [
-      "cream",
-      "green"
-    ],
+    "earthy neutrals": "brown",
+    "orange beige": "beige",
+    "mint cream": "green",
     "flower": "pink",
     "butterfly": "green",
-    "charcoal mauve": [
-      "purple",
-      "grey"
-    ],
+    "charcoal mauve": "grey",
     "ultramarina": "blue",
-    "saffron brown": [
-      "yellow",
-      "brown"
-    ],
+    "saffron brown": "brown",
     "lyn": "beige",
     "jungle": "green",
     "moondrop grapes": "brown",
     "tamac": "green",
-    "froth": "grey",
-    "creme grey": [
-      "cream",
-      "grey"
-    ],
-    "trooper": "grey",
+    "froth": "purple",
+    "creme grey": "grey",
+    "trooper": "blue",
     "shark": "grey",
-    "terra cota": "beige",
-    "black and white": [
-      "white",
-      "black"
-    ],
+    "amoria": "multi",
+    "terra cota": "pink",
+    "black and white": "multi",
     "26 java": "brown",
+    "freedom": "green",
     "10 anise": "brown",
     "moonstruck": "cream",
-    "99 rose taupe": [
-      "pink",
-      "beige"
-    ],
+    "09 rose taupe": "beige",
     "eden": "green",
     "rosenrote": "beige",
-    "chocolate creme": [
-      "brown",
-      "cream"
-    ],
+    "chocolate creme": "pink",
     "seaform": "green",
-    "deep olivewood": "brown",
+    "deep olivewood": "green",
     "silver/blue": [
       "grey",
       "blue"
     ],
-    "olive ash": [
-      "grey",
-      "green"
-    ],
-    "nude mauve": [
-      "purple",
-      "beige"
-    ],
-    "kohl": "grey",
+    "olive ash": "grey",
+    "nude mauve": "pink",
+    "kohl": "blue",
     "blueberry": "navy",
     "samba": "red",
-    "dove taupe": [
-      "beige",
-      "grey"
-    ],
-    "soft lime": "cream",
-    "lilac taupe": [
-      "purple",
-      "beige"
-    ],
+    "dove taupe": "grey",
+    "soft lime": "green",
+    "aida": "black",
+    "lilac taupe": "beige",
     "dusty mink": "pink",
     "cacao": "purple",
-    "warm olive gold": [
-      "yellow",
-      "green"
-    ],
-    "royal berry": "red",
+    "peridot": "green",
+    "warm olive gold": "yellow",
+    "royal berry": "purple",
     "eclair": "pink",
-    "92 black cherry": [
-      "red",
-      "black"
-    ],
-    "vintage": "beige",
-    "emerald teal": [
-      "green",
-      "blue"
-    ],
-    "59 sahara": "brown",
+    "92 black cherry": "purple",
+    "vintage": "cream",
+    "emerald teal": "blue",
+    "59 sahara": "beige",
     "75 choc chip": "brown",
-    "14 metal": "grey",
+    "14 metal": "beige",
     "seagreen": "blue",
-    "ash noir": [
-      "grey",
-      "black"
-    ],
+    "ash noir": "grey",
+    "sea depths": "blue",
+    "terrain": "grey",
+    "bracken": "brown",
     "pebblestone": "grey",
     "shitake": "brown",
     "stillwater": "blue",
     "light natural": "pink",
     "black and grey": [
-      "grey",
-      "black"
+      "black",
+      "grey"
     ],
-    "loden frost": "green",
+    "eden frost": "green",
+    "under hijab": null,
     "skin": "cream",
     "iris storm": "black",
-    "dark rosé": "pink",
+    "lightweight linen": null,
+    "blazer style abaya": null,
+    "dark ros\u00e9": "pink",
     "champagne glow": "cream",
-    "brown peach": [
-      "pink",
-      "brown"
-    ],
-    "brown floral": [
-      "brown",
-      "multi"
-    ],
-    "pink floral": [
-      "pink",
-      "multi"
-    ],
-    "grey brown": [
-      "brown",
-      "grey"
-    ],
-    "banana rose": [
-      "yellow",
-      "pink"
-    ],
-    "pastel green floral": [
-      "green",
-      "multi"
-    ],
-    "grey white": [
-      "white",
-      "grey"
-    ],
-    "red floral ditsy": [
-      "red",
-      "multi"
-    ],
-    "creme white": [
-      "cream",
-      "white"
-    ],
-    "petrol green": [
-      "green",
-      "blue"
-    ],
+    "premium linen abaya": null,
+    "brown peach": "beige",
+    "brown floral": "multi",
+    "pink floral": "multi",
+    "grey brown": "grey",
+    "banana rose": "multi",
+    "pastel green floral": "multi",
+    "grey white": "grey",
+    "red floral ditsy": "multi",
+    "creme white": "cream",
+    "petrol green": "green",
     "criss cross": "beige",
-    "purple ash": [
-      "purple",
-      "grey"
-    ],
-    "nude purple": [
-      "purple",
-      "beige"
-    ],
-    "plain": "beige",
-    "nude rose": [
-      "pink",
-      "beige"
-    ],
+    "purple ash": "purple",
+    "nude purple": "purple",
+    "plain": null,
+    "nude rose": "pink",
     "iceberg": "blue",
     "light desert": "beige",
+    "silk abaya": null,
+    "premium crepe blend": null,
     "winter twig": "beige",
-    "deep mocha and dove grey": [
+    "deep mocha and dove gr": [
       "brown",
       "grey"
     ],
+    "lightweight linen abay": null,
+    "jacquard silk abaya": null,
     "melon": "orange",
-    "deep roselle": "brown",
-    "sunkissed dune": "pink",
+    "deep roselle": "red",
+    "sunkissed dune": "multi",
     "twilight grey & navy": [
-      "navy",
-      "grey"
+      "grey",
+      "navy"
     ],
+    "refined abaya": null,
+    "luxurious bisht": null,
     "navy & pearl grey": [
       "navy",
       "grey"
     ],
-    "mahogany rouge": [
-      "red",
-      "brown"
-    ],
+    "mahogany rouge": "red",
+    "premium jersey l merin": null,
     "desert peony": "pink",
-    "khaki noir": [
-      "beige",
-      "black"
-    ],
-    "moonstone mist": "grey",
-    "mauve rose": [
-      "pink",
-      "purple"
-    ],
+    "khaki noir": "green",
+    "moonstone mist": "cream",
+    "mauve rose": "pink",
     "blushed mink": "pink",
     "layl": "blue",
     "panna cotta": "cream",
     "royal blue & cream": [
-      "cream",
-      "blue"
+      "navy",
+      "cream"
     ],
     "black & nude": [
-      "beige",
-      "black"
+      "black",
+      "beige"
     ],
-    "creme caramel": [
-      "brown",
-      "cream"
-    ]
+    "creme caramel": "beige",
+    "slim sleeve": null,
+    "wide sleeves": null
   },
   "//weakWords": "Keyed by a SINGLE lowercased word, and applies only to a match found in the BODY of a title, never in the suffix. It exists so a word like 'rose' can be switched off where it is usually a style name ('Mystic Rose Hijab') while still working as a colourway ('... - Dusty Rose'). null switches the word off in the body; a family name forces that family instead, and a LIST of families - [\"black\", \"red\"] - forces all of them, the same as in terms above. A null costs only that word: 'Rose Pink ...' is still pink, because lib/colour.ts steps over the switched-off 'Rose' and keeps reading the same colour's words in the rest of the title.",
   "weakWords": {
@@ -1396,7 +1181,7 @@
   },
   "notes": {
     "t:powder": "Premium Chiffon Hijab - Powder is grey tho",
-    "t:clay": "Premium Jersey – Clay this one is grey",
+    "t:clay": "Premium Jersey \u2013 Clay this one is grey",
     "t:pearl": "Everyday Chiffon Hijab - Pearl this one is beige only",
     "t:desert": "Premium Chiffon Hijab - Desert only this one is pink",
     "t:chocolate plum": "Pearl Cape Maxi Dress - Chocolate Plum only this one is purple",
@@ -1411,7 +1196,7 @@
     "t:purple dove": "Premium Bamboo Modal Hijab - Purple Dove this one is pink tho",
     "t:sienna": "Premium Modal Scarf- Sienna this one is pink",
     "t:tile": "is peach",
-    "t:wood": "Premium Jersey Strass “L” - wood this one is grey and brown",
+    "t:wood": "Premium Jersey Strass \u201cL\u201d - wood this one is grey and brown",
     "t:berry": "th Smocked Waist Dress - Berry\n this one is brown",
     "t:iris": "Premium Chiffon Hijab - Iris this one is grey tho",
     "t:taupe gray": "Lightweight Modal Hijab - Taupe Gray\nWomen's XL Sleeved Jilbab - Taupe Gray\nWomen's XL Sleeved Jilbab - Taupe Gray\nWomen's Jilbab - Taupe Gray\nWomen's Jilbab - Taupe Gray these are beige tan this one,Aasiyah Abaya - Taupe Gray\nis gray",
