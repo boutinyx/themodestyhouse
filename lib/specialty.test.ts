@@ -524,13 +524,20 @@ describe('isActivewear — title evidence only (2026-08-29)', () => {
 
 describe('ACTIVEWEAR_HOUSES', () => {
   it('claims every piece from a house that sells nothing but activewear', () => {
-    expect(isActivewear(p('Maya Skirt', 'skirt', { brandSlug: 'reclaim-active' }))).toBe(true);
     expect(isActivewear(p('Wide Leg Pant - Charcoal grey', 'trousers', { brandSlug: 'haya-active' }))).toBe(true);
     expect(isActivewear(p('HAWA Step Tee', 'top', { brandSlug: 'sukoon-active' }))).toBe(true);
   });
 
   it('does NOT claim the same title from an ordinary house', () => {
     expect(isActivewear(p('Maya Skirt', 'skirt', { brandSlug: 'veiled' }))).toBe(false);
+    // reclaim-active is named like an activewear label and is not one — its
+    // range is skirts, blouses and trousers (Tina, 2026-08-29). A brand NAME
+    // is not evidence about its range.
+    expect(isActivewear(p('Maya Skirt', 'skirt', { brandSlug: 'reclaim-active' }))).toBe(false);
+    expect(isActivewear(p('Aya Blouse', 'top', { brandSlug: 'reclaim-active' }))).toBe(false);
+    // …but its three genuinely athletic pieces still qualify, on their titles.
+    expect(isActivewear(p('Origin Training Pants', 'trousers', { brandSlug: 'reclaim-active' }))).toBe(true);
+    expect(isActivewear(p('Active Hijab™', 'hijab', { brandSlug: 'reclaim-active' }))).toBe(true);
     expect(isActivewear(p('Wide Leg Pant - Charcoal grey', 'trousers', { brandSlug: 'niswa' }))).toBe(false);
   });
 

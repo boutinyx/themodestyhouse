@@ -46,7 +46,12 @@ const SWIM_RE = /burkini|swim|bathing ?suit|beachwear/i;
 // bare word for the same reason — Fares' "CityLite Track Jacket" is a track
 // jacket by any reading.
 const ACTIVE_RE =
-  /\b(sports?|activewear|active|athleis\w*|athletic|gym|workout|yoga|running|performance|rashguard|leggings?|tights|track|joggers?|on-the-go)\b/i;
+  // `training` added 2026-08-29, third pass — found by a test, not by reading.
+  // Removing reclaim-active from ACTIVEWEAR_HOUSES stranded its "Origin
+  // Training Pants" on /modest-trousers, which is wrong: a training pant is
+  // activewear whoever makes it. Measured: 17 titles contain "training", 16
+  // already qualified some other way, and exactly 1 joins.
+  /\b(sports?|activewear|active|athleis\w*|athletic|gym|workout|yoga|running|training|performance|rashguard|leggings?|tights|track|joggers?|on-the-go)\b/i;
 
 // Coverage pieces worn UNDER another garment (base layers, dickeys, standalone
 // neck covers, sleeve extenders) rather than as an outfit on their own — Tina
@@ -371,8 +376,19 @@ export function layeringSubtype(p: Product): LayeringSubtype | null {
  * every one of that house's pieces off the everyday lanes, because activewear is
  * `specialty` (Invariant 5). Only add a shop that genuinely sells nothing else.
  */
+// `reclaim-active` was in this list for a few hours on 2026-08-29 and was
+// REMOVED the same day. Tina: "reclaim active is a clothing brand for like
+// normal clothing." She is right and the name misled me — its 14 published
+// pieces are Maya Skirt, Aya Blouse, Sofia Skirt, Alma Pants: ordinary modest
+// clothing, 4 skirts / 4 tops / 5 trousers / 1 hijab. Only three are
+// activewear (Active Hijab, Origin Training Pants, Origin Zip Top) and all
+// three match ACTIVE_RE by title, so they reach the lane without any help.
+//
+// The lesson worth keeping: a brand NAME is not evidence about its range.
+// Every other house here was checked against its actual product titles;
+// this one was admitted on the word "Active" in its domain.
 const ACTIVEWEAR_HOUSES = new Set([
-  'haya-active', 'fith', 'nemah', 'reclaim-active', 'sukoon-active', 'dignitii',
+  'haya-active', 'fith', 'nemah', 'sukoon-active', 'dignitii',
 ]);
 
 export function isActivewear(p: Product): boolean {
