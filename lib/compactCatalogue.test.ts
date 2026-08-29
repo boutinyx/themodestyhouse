@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { encodeCatalogue, decodeCard } from './compactCatalogue';
@@ -150,7 +150,16 @@ describe('encodeCatalogue / decodeCard', () => {
     expect(card.currency).toBe(WOO_PRODUCT.currency);
   });
 
-  it('round-trips every published product exactly', () => {
+  // Explicit timeout, not the 5,000 ms default: this encodes and decodes all
+  // ~18,900 published rows and has been measured close enough to the default
+  // that the catalogue growing overnight (§10.35) could turn it red on a commit
+  // that has nothing to do with it — which is the expensive kind of failure,
+  // because it gets misattributed before it gets diagnosed.
+  //
+  // Options go SECOND, before the body: `it(name, fn, {timeout})` was removed
+  // in Vitest 4 and throws at collection time, taking the whole FILE down
+  // rather than the one test.
+  it('round-trips every published product exactly', { timeout: 15000 }, () => {
     const f = path.join(process.cwd(), 'data', 'products.json');
     const products = JSON.parse(readFileSync(f, 'utf8')) as Product[];
     const cat = encodeCatalogue(products, BRANDS);
@@ -480,5 +489,41 @@ describe('colour column', () => {
     expect(cat.rows.colourIdx).toBeUndefined();
     expect('colourIdx' in cat.rows).toBe(false);   // deleted, not merely empty
     expect(cat.colours).toEqual([]);
+  });
+
+  // The one seam this feature was built around: data/colour-overrides.json is
+  // hand-edited by someone who is not a programmer, and a misspelt family
+  // ("burgandy" for "burgundy") type-checks, classifies, and then misses the
+  // `colours` dictionary. Before the throw, `colourIndex.get()` returned
+  // undefined, `push(undefined)` serialised to `null` in a column typed
+  // `number[]`, `null !== -1` carried it past the SENTINEL_COLUMNS check, and
+  // the client's `?? -1` dropped the product out of EVERY colour chip — the
+  // exact opposite of what the edit intended, with nothing naming the file.
+  //
+  // The validator in lib/colour.test.ts catches the same edit, but only in CI,
+  // and ci.yml runs on push/pull_request to `main` — after staging, which is
+  // where the house protocol says the change is verified (CLAUDE.md §1).
+  //
+  // The map is mocked rather than the real file being edited, so the test
+  // asserts the guard without putting a broken value in tracked data.
+  it('throws on an override naming a family that is not a colour family', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: { pistachio: 'burgandy' }, weakWords: {} },
+    }));
+    try {
+      const { encodeCatalogue: encode } = await import('./compactCatalogue');
+      expect(() =>
+        encode(
+          [{ ...PRODUCT, id: 'aab:1', title: 'Gold Accent Half Zip Abaya - Pistachio' }],
+          [BRAND],
+        ),
+      // `[\s\S]*` rather than `.*` with the `s` flag: tsconfig targets ES2017,
+      // where `s` is a TS1501 compile error.
+      ).toThrow(/unknown colour family "burgandy"[\s\S]*colour-overrides\.json/);
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
   });
 });

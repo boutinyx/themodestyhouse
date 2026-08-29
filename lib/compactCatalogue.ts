@@ -129,11 +129,14 @@ export interface CompactCatalogue {
      *  value here, not a rarity — 2,013 of the 2,521 rows on /modest-dresses
      *  are unclassified and filter out of every chip except "All". */
     dressSubtypeIdx?: number[];
-    /** Index into `colours`, or -1 for a row whose title names no colour
-     *  (about 28% of the catalogue: 13,628 of 18,917 published rows classify,
-     *  measured 2026-08-28). Not a bitmask like occasionMask: colourFamily()
-     *  returns exactly one family or null, by construction. Absent means every
-     *  row is -1 — see SENTINEL_COLUMNS. */
+    /** Index into `colours`, or -1 for a row whose title names no colour.
+     *  -1 is 5,276 of the 18,908 published rows, 27.9% of them, measured
+     *  2026-08-29 with `npm run colour:coverage` — stated directly rather than
+     *  as the complement of the classified count, which is the figure
+     *  lib/colour.ts's header owns and the one to re-read when this drifts.
+     *  Not a bitmask like occasionMask: colourFamily() returns exactly one
+     *  family or null, by construction. Absent means every row is -1 — see
+     *  SENTINEL_COLUMNS. */
     colourIdx?: number[];
     /** How many colourways each row stands for, including itself. Present only
      *  when at least one row on this surface has siblings; dropped as an
@@ -388,8 +391,24 @@ export function encodeCatalogue(
     rows.hijabSubtypeIdx!.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
     const dressSub = dressSubtype(p);
     rows.dressSubtypeIdx!.push(dressSub === null ? -1 : dressSubtypeIndex.get(dressSub)!);
+    // The `!` the five columns above use is not safe here, and this is the one
+    // place in the function where the dictionary can be handed a value that is
+    // not in it. `colours` is filtered from COLOUR_FAMILY_LABELS, so the
+    // classifier's own vocabulary always resolves — but data/colour-overrides.json
+    // is hand-edited, and a misspelt family ("burgandy") passes TypeScript, is
+    // returned by colourFamily(), and misses the Map. A `!` would push
+    // `undefined`, which serialises to `null` in a column typed `number[]`,
+    // survives the SENTINEL_COLUMNS check (`null !== -1`), and is swallowed by
+    // the client's `?? -1` — so the edit silently unclassifies exactly the rows
+    // it meant to fix. Throwing turns that into a build failure naming the file.
     const colour = colourFamily(p.title);
-    rows.colourIdx!.push(colour === null ? -1 : colourIndex.get(colour)!);
+    const colourIdx = colour === null ? -1 : colourIndex.get(colour);
+    if (colourIdx === undefined) {
+      throw new Error(
+        `compactCatalogue: product ${p.id} has unknown colour family "${colour}" — check data/colour-overrides.json`,
+      );
+    }
+    rows.colourIdx!.push(colourIdx);
     rows.variantCount!.push(p.variantCount ?? 1);
     const hijabType = hijabTypeFilter(p);
     rows.hijabTypeFilterIdx!.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
@@ -414,13 +433,13 @@ export function encodeCatalogue(
   // Drop any subtype column that carries no information on THIS page.
   //
   // Five of these six (four until 2026-08-26, when dressSubtypeIdx joined them;
-  // colourIdx is the exception, see below) are
-  // per-lane facts: layeringSubtypeIdx is -1 for everything
-  // that isn't a layering piece, and so on. On a mixed page there is nothing
-  // to say — measured on /directory, each of the four was 39,767 bytes of
-  // 13,256 entries that were ALL -1, and on the since-retired /hijabi-outfits the first three
-  // were 53,498 + 53,498 + 48,887 B, likewise all -1. That is ~160 KB of RSC
-  // payload per page spent transmitting "no" 53,000 times.
+  // colourIdx is the exception, see below) are per-lane facts:
+  // layeringSubtypeIdx is -1 for everything that isn't a layering piece, and so
+  // on. On a mixed page there is nothing to say — measured on /directory, each
+  // of the four was 39,767 bytes of 13,256 entries that were ALL -1, and on the
+  // since-retired /hijabi-outfits the first three were 53,498 + 53,498 +
+  // 48,887 B, likewise all -1. That is ~160 KB of RSC payload per page spent
+  // transmitting "no" 53,000 times.
   //
   // They are NOT deleted from the format — FilterableGrid genuinely reads all
   // of them on the lanes that have subtype filters, and there the columns are
@@ -428,8 +447,9 @@ export function encodeCatalogue(
   // treat a missing column as. See the ?? -1 fallbacks in FilterableGrid.
   //
   // colourIdx (2026-08-28) joins them on the same rule but is NOT a per-lane
-  // fact: 72.0% of published rows name a colour, so on any real surface this
-  // column is dense and survives. It is listed here for the surfaces that are
+  // fact: roughly seven published rows in ten name a colour (the exact,
+  // dated figure lives in lib/colour.ts's header — one place, deliberately),
+  // so on any real surface this column is dense and survives. It is listed here for the surfaces that are
   // not real-sized — a filtered slice, a small edit, a brand page whose titles
   // happen to name nothing — where the same "18,000 copies of -1" argument
   // applies in miniature and there is nothing for the Colour filter to offer.

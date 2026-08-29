@@ -393,11 +393,52 @@ describe('classifyColour, a suppressed weak word costs only itself', () => {
   // data/raw-products.json. The corpus cannot express this case, and the case
   // is a TERMINATION property, not a classification one: a naive "retry the
   // same family" loop that does not advance past the suppressed match spins
-  // forever here, and this assertion is what fails (by timing out) if it does.
+  // forever here.
+  //
+  // HOW THIS ONE FAILS, stated because the shape is unusual and a wrong
+  // account of it is the §10.28 family — a hang read as CI flake rather than as
+  // this assertion firing. It does NOT fail by timing out. The loop is
+  // synchronous, so it never yields to the event loop and Vitest cannot
+  // interrupt it: `testTimeout` elapses with the worker still spinning (the
+  // Task 2A re-review measured a worker alive 35 s past a 3 s testTimeout). The
+  // symptom is a suite that never finishes, not a red assertion.
   it('terminates when the suppressed word appears twice and nothing else matches', () => {
     const v = classifyColour('Rose Garden Rose Hijab');
     expect(v.family).toBeNull();
     expect(v.confidence).toBe('none');
+  });
+
+  // The other half of weakWords, and until now the ONLY untested return path in
+  // classifyColour: a NON-null entry, which does not switch the word off but
+  // FORCES a different family for it. Every entry in the real file is currently
+  // null, so the case cannot be built from tracked data — the map is mocked,
+  // the same harness the null-suffix test below uses.
+  //
+  // It matters more than its size: this is a branch Tina reaches by hand-editing
+  // a file, which is the same seam as the compactCatalogue guard in
+  // lib/compactCatalogue.test.ts, and an untested path through a hand-edited
+  // input is where a wrong value gets to look like a working one.
+  //
+  // 'Mystic Rose Hijab' is a literal catalogue title and discriminates: `rose`
+  // is its only colour word, red's rule does not match it, and pink's does. So
+  // pink/'weak' means the override was ignored, null/'none' means it was read as
+  // a suppression, and red/'override' is the branch under test.
+  it('lets a non-null weakWords entry force a different family', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: {}, weakWords: { rose: 'red' } },
+    }));
+    try {
+      const { classifyColour: classify } = await import('./colour');
+      const v = classify('Mystic Rose Hijab');
+      expect(v.family).toBe('red');
+      expect(v.confidence).toBe('override');
+      expect(v.matchedWord).toBe('Rose');
+      expect(v.term).toBeNull();
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
   });
 });
 
@@ -527,9 +568,13 @@ describe('data/colour-overrides.json', () => {
           continue;
         }
         if (!FAMILIES.has(value)) {
+          // The families are comma-joined, not space-joined. A space-joined
+          // list reads as phrases — it offered "navy blue", which is exactly
+          // the invented family the negative control three tests below rejects,
+          // so the only guidance a non-programmer gets named an invalid value.
           found.push(
             `${section}["${key}"]: "${value}" is not a colour family. Use one of ` +
-            `${[...FAMILIES].join(' ')} — or a bare null, not the string "null".`,
+            `${[...FAMILIES].join(', ')} — or a bare null, not the string "null".`,
           );
         }
       }

@@ -8,14 +8,24 @@ import OVERRIDES from '@/data/colour-overrides.json';
  * Tina, 2026-08-28: *"is there a tool of anything so we can colorcode
  * everything so we can select on colors?"*
  *
- * MEASURED BEFORE BUILDING (§10.11). Against the 18,713 published rows, the
- * product TITLE alone yields a family for 70.2% of them — 34.6% from the
- * colour suffix the catalogue already parses for `lib/colorVariants.ts`, and
- * a further 35.6% from a colour word elsewhere in the title. Two richer
- * sources were checked and rejected: product tags add only ~5pp and would
- * need a new field on `Product` plus a pipeline change, and the Shopify feed's
- * own `options: [{name: "Color"}]` is present for only 12.5% of products
- * across a 12-brand sample. Title-only is where the evidence is.
+ * COVERAGE — the single current figure for this feature, and the one every
+ * other file should quote. Measured 2026-08-29 with `npm run colour:coverage`
+ * over the 18,908 published rows in data/products.json: the product TITLE
+ * alone yields a family for 13,632 of them, 72.1%. Of those, 6,968 (36.9% of
+ * the catalogue) come from the colourway suffix `lib/colorVariants.ts` already
+ * parses, 6,646 (35.1%) from a colour word elsewhere in the title, and 18 from
+ * data/colour-overrides.json. Re-run the command rather than trusting this
+ * line: coverage is a property of the CATALOGUE, not of this code, and the
+ * nightly refresh moves the catalogue on its own schedule (§10.35). Every
+ * figure in this file carries the base and the date it was measured against,
+ * for the same reason.
+ *
+ * MEASURED BEFORE BUILDING (§10.11), on that day's smaller base: 70.2% of the
+ * 18,713 rows then published, which is what justified building on titles at
+ * all. Two richer sources were checked and rejected: product tags add only
+ * ~5pp and would need a new field on `Product` plus a pipeline change, and the
+ * Shopify feed's own `options: [{name: "Color"}]` is present for only 12.5% of
+ * products across a 12-brand sample. Title-only is where the evidence is.
  *
  * DERIVED, NEVER STORED. This runs at encode time in lib/compactCatalogue.ts,
  * exactly like lib/hijabTypeFilter.ts, so a change here reaches the site on
@@ -54,23 +64,30 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
 /**
  * Order is load-bearing and is the same principle as GARMENT_RULES in
  * lib/tag.ts (Invariant 6): the first rule that matches wins. It is NOT a
- * specificity ranking — the order is, in three tiers:
- *   1. COMPOUND-NAME FAMILIES FIRST, so a compound reaches its own family
- *      before the family whose word it contains. "Navy Blue" (209 rows) must
- *      reach `navy` before `blue` sees it, and `cream`'s "off-white" must
- *      reach `cream` before `white`. ("Light Brown", 53 rows, reaches `brown`
- *      whatever the order — no family claims "light" — so it is tested as
- *      documentation of the pattern, not because it depends on position.)
- *   2. AN ARBITRARY TIE-BREAK for everything else. Nothing derives the
- *      remaining positions; they are fixed only because moving one
- *      reclassifies rows. `black` sits 14th of 15 for no better reason.
- *   3. `multi` LAST, so a black floral files as black and only a garment
+ * specificity ranking, and it is NOT three contiguous tiers — the compounds
+ * are scattered through the list, `cream` being 9th of 15. What actually holds
+ * is one RELATIVE constraint, one absolute one, and a default:
+ *   1. EACH COMPOUND FAMILY SITS ABOVE THE FAMILY WHOSE WORD IT CONTAINS —
+ *      above that one family, and nothing more is required of it. `navy` is
+ *      above `blue`, so "Navy Blue" (209 rows) reaches navy; `cream` is above
+ *      `white`, so "off-white" reaches cream. Neither has to be near the top,
+ *      and neither is. ("Light Brown", 53 rows, reaches `brown` whatever the
+ *      order — no family claims "light" — so it is tested as documentation of
+ *      the pattern, not because it depends on position.)
+ *   2. `multi` LAST, so a black floral files as black and only a garment
  *      naming no colour at all falls through to the pattern bucket.
- * Known consequence of tier 2, so it is not a surprise later: of the 2,134
- * titles naming black, 123 file under an earlier family — mostly defensible
- * two-tone items ("Miraal - Black & White"), a few plainly wrong ("Black
- * Cotton Maxi Dress with Beige Grosgrain Trim" -> beige). A new family goes at
- * the end of tier 2 unless it is a compound, in which case it goes above the
+ *   3. EVERY OTHER POSITION IS AN ARBITRARY TIE-BREAK. Nothing derives them;
+ *      they are fixed only because moving one reclassifies rows. `black` sits
+ *      14th of 15 for no better reason.
+ * Known consequence of the tie-break, so it is not a surprise later: of the
+ * 2,202 published titles containing a black word, 135 file under a family
+ * whose rule sits earlier — mostly defensible two-tone items ("Classy Liquid
+ * F25 – Black x Red" -> red, "The Wave Scarf In Black / Cream" -> cream), a
+ * few plainly wrong ("Lujain Abaya - Noir Gold" -> yellow, "Black Cotton Maxi
+ * Dress with Beige Grosgrain Trim" -> beige). Measured 2026-08-29 over the
+ * 18,908 rows in data/products.json; the base is stated because the catalogue
+ * moves nightly (§10.35) and both counts move with it. A new family joins the
+ * arbitrary group unless it is a compound, in which case it goes above the
  * family it contains.
  *
  * WHAT IS DELIBERATELY ABSENT, and why — each of these was in the first draft
@@ -80,9 +97,12 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
  *   denim                                      — a fabric on the same footing,
  *     and the ONE deliberate exception to that rule: it is KEPT, in `blue`,
  *     together with the garment word `jeans`, because denim reads as a colour
- *     to someone using a colour filter. 141 rows match `blue` on the body word
- *     alone, and the cost is accepted and known — "The Barrel Denim [Black]"
- *     files as blue.
+ *     to someone using a colour filter. 125 published rows reach `blue` on a
+ *     BODY match of `denim`/`jeans` and nothing else — i.e. they are exactly
+ *     the rows that would go unclassified without this exception (18,908 rows
+ *     in data/products.json, measured 2026-08-29). The cost is accepted and
+ *     known: 5 of those 125 name black in the same title, so "The Barrel Denim
+ *     [Black]" files as blue.
  *   natural, smoked, mink                      — real suffixes in the data,
  *     but they name a finish or a material, and mink is a fur.
  *   nude                                       — kept, but only in `beige`,
@@ -90,13 +110,15 @@ export const COLOUR_FAMILY_SWATCH: Record<ColourFamily, string> = {
  * Spaces are written `[ -]?` so "off white", "off-white" and "offwhite" all
  * match one entry.
  *
- * THE SECOND PASS, 2026-08-28. `scripts/colour-coverage.mjs` prints the colour
+ * THE SECOND PASS, 2026-08-28. `npm run colour:coverage` prints the colour
  * suffixes that no rule matched, ordered by frequency; every one of the 59 words
  * added below came off that list and only after `word()`-matching it against all
  * 18,917 published rows and reading what it hit. The vocabulary alone moved
  * coverage 13,161 -> 13,753 (+592 rows); the HARDWARE_OR_TRIM guard below then
- * withdrew 9, landing at 13,744, 72.7%. Each addition is carried by an assertion
- * in lib/colour.test.ts using a literal catalogue title.
+ * withdrew 9, landing at 13,744 of that day's 18,917 rows. Those are the
+ * numbers of THAT PASS, on THAT base — the current coverage figure is the one
+ * in the header above and nowhere else. Each addition is carried by an
+ * assertion in lib/colour.test.ts using a literal catalogue title.
  *
  * The placements that are not self-evident, and the evidence for each:
  *   mulberry -> purple  it sits beside `plum`, not beside `wine`. One row says
@@ -253,8 +275,15 @@ const RULES: [ColourFamily, RegExp][] = ([
  *               the rest of the title named nothing either — see
  *               classifyColour, where a null override suppresses the suffix
  *               but not the body pass).
- *   'suffix'    matched inside the colourway suffix — 25 characters the brand
- *               set aside to name a colour, so a match there is near-certain.
+ *   'suffix'    matched inside the colourway suffix — the text after the final
+ *               ' - ' or inside the trailing '(...)', which is the slot a brand
+ *               uses to name a colourway, so a match there is near-certain.
+ *               The 25-character limit is OURS and not a fact about brands:
+ *               splitColourSuffix matches `{2,25}` and vetoes size-shaped
+ *               suffixes (lib/colorVariants.ts:74-81), so any longer text at
+ *               the end of a title is simply not a suffix as far as this file
+ *               is concerned — including a longer term hand-written into
+ *               data/colour-overrides.json, which can then never fire.
  *   'weak'      matched in the body of the title, where the same word is as
  *               likely to be a style name ("Mystic Rose Hijab") as a colour.
  *   'none'      no family. Distinct from a null override: 'none' means nobody
@@ -269,8 +298,14 @@ export interface ColourVerdict {
   /** The colourway suffix, lowercased — the key into colour-overrides.terms.
    *  Null when the title has no parseable suffix. */
   term: string | null;
-  /** Every family whose rule matched the suffix, in priority order. More than
-   *  one is the ambiguous case; `family` is the first of them. */
+  /** Every family whose rule matched, in RULES order; `family` is the first of
+   *  them, and more than one is the ambiguous case the review page surfaces.
+   *  WHICH text was matched depends on the verdict, so read this together with
+   *  `confidence` and never alone: a 'suffix' verdict fills it from the SUFFIX
+   *  and can hold several families, a 'weak' verdict fills it with the single
+   *  family that matched in the title BODY, and 'override' and 'none' both
+   *  leave it empty. A one-element array is therefore not evidence of a suffix
+   *  match. */
   candidates: ColourFamily[];
   /** The literal text that matched in the body of the title, for a 'weak'
    *  verdict — the key (lowercased) into colour-overrides.weakWords. */
