@@ -293,7 +293,42 @@ const RULES: [ColourFamily, RegExp][] = ([
 export type ColourConfidence = 'override' | 'suffix' | 'weak' | 'none';
 
 export interface ColourVerdict {
+  /** The FIRST of `families`, or null when there are none.
+   *
+   *  Kept beside `families` rather than replaced by it because most callers
+   *  want one answer and would otherwise all have to write `families[0] ??
+   *  null` themselves — `colourFamily()` below, `npm run colour:coverage`, and
+   *  scripts/colour-from-images.mjs all read it. It is a convenience over
+   *  `families` and can never disagree with it. */
   family: ColourFamily | null;
+  /** EVERY family that applies to this title — the thing the encoder turns into
+   *  a bitmask, so a product can sit on more than one colour chip.
+   *
+   *  Tina, 2026-08-29: *"and i want to able to choose 2 colors or more"*, of a
+   *  name like "black x red" that genuinely names two.
+   *
+   *  MORE THAN ONE ONLY EVER COMES FROM AN OVERRIDE, today. The vocabulary
+   *  yields exactly one: RULES is an ordered list and the first match wins,
+   *  which is deliberate and is what stops "Navy Blue" being filed under blue
+   *  (see the RULES docstring, and Invariant 6's equivalent in lib/tag.ts). So
+   *  this is `[]`, a one-element array, or — for a `terms`/`weakWords` entry in
+   *  data/colour-overrides.json written as a JSON ARRAY — as many as she named.
+   *  The two-tone colourways become expressible. Measured 2026-08-29 on
+   *  19,019 published rows: 31 rows carry a suffix containing " x " or "&"
+   *  across 23 distinct terms, but only about 20 of those rows name two
+   *  COLOURS ("black & white" x3, "black x red" x2, "burgundy & gold" x2,
+   *  "grey & blue", "clay & ash") — the rest name two GARMENTS ("top &
+   *  bottom", "knit & flared skirt") and must stay unclassified. An earlier
+   *  draft of this comment said "20 rows" of `black x red` alone, which was a
+   *  different measurement (any title containing an "A x B" phrase, 23 of
+   *  them, only 5 of which have a parseable suffix at all). Currently filed
+   *  under whichever family's rule sorts first) become EXPRESSIBLE with this
+   *  column and are not yet expressed: teaching RULES to return both is a
+   *  separate change, and a possible follow-up.
+   *
+   *  Distinct from `candidates` below, which is about the SUFFIX only and is
+   *  diagnostic. This is the answer. */
+  families: ColourFamily[];
   confidence: ColourConfidence;
   /** The colourway suffix, lowercased — the key into colour-overrides.terms.
    *  Null when the title has no parseable suffix. */
@@ -312,8 +347,27 @@ export interface ColourVerdict {
   matchedWord: string | null;
 }
 
-const TERM_OVERRIDES = OVERRIDES.terms as Record<string, ColourFamily | null>;
-const WEAK_WORD_OVERRIDES = OVERRIDES.weakWords as Record<string, ColourFamily | null>;
+/** An override value is one family, several, or a recorded "not a colour".
+ *
+ *  The ARRAY is the multi-colour case and is the only way a title reaches more
+ *  than one chip today (see `ColourVerdict.families`). `null` keeps exactly the
+ *  meaning it has always had — it rules out the TERM, never the product. */
+type OverrideValue = ColourFamily | ColourFamily[] | null;
+
+const TERM_OVERRIDES = OVERRIDES.terms as Record<string, OverrideValue>;
+const WEAK_WORD_OVERRIDES = OVERRIDES.weakWords as Record<string, OverrideValue>;
+
+/** One override value as the list it stands for.
+ *
+ *  No validation here, deliberately, and this is the seam where a bad
+ *  hand-edit travels: the cast above lets any JSON string through, so
+ *  `["burgandy"]` arrives as a `ColourFamily[]` that type-checks. It is caught
+ *  in two places that name the file — `encodeCatalogue` throws on an element
+ *  that is not in the `colours` dictionary (lib/compactCatalogue.ts), and the
+ *  validator in lib/colour.test.ts fails CI on the file itself. Both check
+ *  EVERY element, which is the part an array adds. */
+const asFamilies = (v: Exclude<OverrideValue, null>): ColourFamily[] =>
+  Array.isArray(v) ? v : [v];
 
 /**
  * `"Amara Maxi Dress - Sage Green"` -> a verdict of `green`, from the suffix.
@@ -348,7 +402,10 @@ const WEAK_WORD_OVERRIDES = OVERRIDES.weakWords as Record<string, ColourFamily |
  * run, which is the one thing the recorded null exists to prevent.
  *
  * A non-null term override is unchanged and still returns immediately: she has
- * said that suffix means that colour, and nothing here may outrank it.
+ * said that suffix means that colour, and nothing here may outrank it. It may
+ * name SEVERAL colours, as a JSON array — that is the one way a title reaches
+ * more than one family, and every other path here fills `families` with at most
+ * one. See `ColourVerdict.families`.
  */
 export function classifyColour(title: string): ColourVerdict {
   const split = splitColourSuffix(title);
@@ -361,7 +418,8 @@ export function classifyColour(title: string): ColourVerdict {
   if (term !== null && term in TERM_OVERRIDES) {
     const forced = TERM_OVERRIDES[term];
     if (forced !== null) {
-      return { family: forced, confidence: 'override', term, candidates: [], matchedWord: null };
+      const families = asFamilies(forced);
+      return { family: families[0] ?? null, confidence: 'override', term, families, candidates: [], matchedWord: null };
     }
     nulledTerm = true;
   }
@@ -371,7 +429,13 @@ export function classifyColour(title: string): ColourVerdict {
   if (split && !nulledTerm) {
     const candidates = RULES.filter(([, re]) => re.test(split.colour)).map(([f]) => f);
     if (candidates.length > 0) {
-      return { family: candidates[0], confidence: 'suffix', term, candidates, matchedWord: null };
+      // `families` is the FIRST candidate alone, not all of them. RULES is
+      // ordered and the first match wins — "Navy Blue" is navy, not navy AND
+      // blue — so reporting every candidate here would put 209 navy rows on the
+      // Blue chip too and silently change what the vocabulary decides. The
+      // other candidates travel as `candidates`, which the review page reads to
+      // ASK about exactly those rows rather than to answer for them.
+      return { family: candidates[0], confidence: 'suffix', term, families: [candidates[0]], candidates, matchedWord: null };
     }
   }
 
@@ -411,9 +475,10 @@ export function classifyColour(title: string): ColourVerdict {
           rest = rest.slice(m.index + matchedWord.length);   // switched off here; keep looking
           continue;
         }
-        return { family: forced, confidence: 'override', term, candidates: [], matchedWord };
+        const families = asFamilies(forced);
+        return { family: families[0] ?? null, confidence: 'override', term, families, candidates: [], matchedWord };
       }
-      return { family, confidence: 'weak', term, candidates: [family], matchedWord };
+      return { family, confidence: 'weak', term, families: [family], candidates: [family], matchedWord };
     }
   }
 
@@ -421,6 +486,7 @@ export function classifyColour(title: string): ColourVerdict {
   // the review page does not ask her about it again; 'none' when nobody has.
   return {
     family: null,
+    families: [],
     confidence: nulledTerm ? 'override' : 'none',
     term,
     candidates: [],
@@ -439,4 +505,17 @@ export function classifyColour(title: string): ColourVerdict {
  */
 export function colourFamily(title: string): ColourFamily | null {
   return classifyColour(title).family;
+}
+
+/**
+ * `"Amara Maxi Dress - Sage Green"` -> `['green']`, and `[]` for a title that
+ * names nothing.
+ *
+ * What the encoder in lib/compactCatalogue.ts reads, because a row's
+ * `colourMask` can carry more than one bit. `colourFamily` above answers the
+ * narrower question and is what `npm run colour:coverage` counts — coverage is
+ * "does this title reach a chip at all", which a second family does not change.
+ */
+export function colourFamilies(title: string): ColourFamily[] {
+  return classifyColour(title).families;
 }

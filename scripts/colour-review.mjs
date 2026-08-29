@@ -34,6 +34,35 @@ const root = (p) => new URL(`../${p}`, import.meta.url);
 const products = JSON.parse(readFileSync(root('data/products.json'), 'utf8'));
 const overrides = JSON.parse(readFileSync(root('data/colour-overrides.json'), 'utf8'));
 
+/** Colour read off the PHOTOGRAPHS by scripts/colour_from_images_clip.py.
+ *
+ *  Optional — if the file is absent the page behaves exactly as before. When it
+ *  is present, a term with a STRONG reading (>=60% of >=4 photos agreeing)
+ *  arrives pre-answered, because measured against 60 colour names whose answer
+ *  we already knew that slice was right 86% of the time. A weak reading is
+ *  shown as a hint and answers nothing: it measured 58.8%, which is not good
+ *  enough to put in Tina's file on her behalf.
+ *
+ *  Nothing here writes data/colour-overrides.json. A suggestion is a starting
+ *  point she overrides with one click, which is the difference between "I did
+ *  it for you" and "I decided for you". */
+let PROPOSALS = {};
+try {
+  const raw = JSON.parse(readFileSync(root('data/colour-proposals.json'), 'utf8'));
+  for (const r of raw) {
+    if (!r.family) continue;
+    // `multi` is never auto-accepted, however strong the vote.
+    //
+    // Measured on the real run: all three strong `multi` readings were terms
+    // that are not colours at all — "final sale", "luxury chiffon hijab",
+    // "pleated abaya". The reader is asked what colour a garment is, so shown
+    // a dozen assorted printed pieces it answers "patterned", which is true of
+    // the photographs and false of the question. Demoting `multi` to a hint
+    // removed exactly those three and nothing else.
+    PROPOSALS[r.term] = r.family === 'multi' ? { ...r, strong: false } : r;
+  }
+} catch { /* not generated yet — the page is fully usable without it */ }
+
 // Group by term. `examples` is capped at 6 — enough to judge a colour, few
 // enough that an 850-term page still loads.
 const groups = new Map();
@@ -105,7 +134,11 @@ const WHY = {
 };
 
 const card = (g) => `
-  <section class="term" data-key="${esc(g.key)}" data-kind="${g.kind}">
+  <section class="term" data-key="${esc(g.key)}" data-kind="${g.kind}"${
+    PROPOSALS[g.key]
+      ? ` data-suggest="${esc(PROPOSALS[g.key].family)}" data-suggest-strong="${PROPOSALS[g.key].strong ? '1' : '0'}"`
+      : ''
+  }>
     <header>
       <h2>${esc(g.key)}</h2>
       <span class="meta">${g.rows} product${g.rows === 1 ? '' : 's'} · ${WHY[g.kind]}${
@@ -113,6 +146,15 @@ const card = (g) => `
           ? ` · matched ${esc(g.candidates.join(' + '))}, currently filed as ${esc(g.candidates[0])}`
           : ''
       }${g.kind === 'weak' ? ` · currently ${esc(g.proposed)}` : ''}</span>
+      ${
+        PROPOSALS[g.key]
+          ? `<span class="sugg-note ${PROPOSALS[g.key].strong ? 'strong' : 'faint'}">read from the photos: <b>${esc(
+              COLOUR_FAMILY_LABELS[PROPOSALS[g.key].family] || PROPOSALS[g.key].family,
+            )}</b> — ${PROPOSALS[g.key].votes} of ${PROPOSALS[g.key].read} agreed${
+              PROPOSALS[g.key].strong ? '' : ', so it is only a hint'
+            }</span>`
+          : ''
+      }
     </header>
     <div class="shots">${g.examples
       .map(
@@ -120,11 +162,22 @@ const card = (g) => `
           `<figure><img loading="lazy" src="${esc(thumb(e.image))}" alt="${esc(e.title)}"><figcaption>${esc(e.title)}</figcaption></figure>`,
       )
       .join('')}</div>
+    <div class="type">
+      <input class="tin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+             placeholder="type a colour — add as many as fit"
+             aria-label="Type a colour for ${esc(g.key)}. Add as many as fit; press Enter on an empty box to move on.">
+      <ul class="sugg" hidden></ul>
+    </div>
     <div class="picks">
       ${FAMILIES.map((f) => `<button class="pick" data-v="${f.k}"><i style="background:${f.hex}"></i>${esc(f.label)}</button>`).join('')}
       <button class="pick none" data-v="__null">Not a colour</button>
       <button class="pick skip" data-v="__skip">Skip — not sure</button>
     </div>
+    <label class="notewrap">
+      <span>tell me why, in your own words — I read these</span>
+      <textarea class="note-in" rows="1" placeholder="e.g. this is a fabric, not a colour"
+                aria-label="Note about ${esc(g.key)}"></textarea>
+    </label>
   </section>`;
 
 // `</script>` inside a JSON string would close the block early; `<` is escaped
@@ -161,6 +214,25 @@ const html = `<!doctype html><meta charset="utf-8"><title>Colour review — The 
  figure{margin:0;width:118px;flex:0 0 auto}
  img{width:118px;height:148px;object-fit:cover;border-radius:8px;background:#eee;display:block;font-size:9px;color:#8a7d6b}
  figcaption{font-size:10px;color:#8a7d6b;margin-top:4px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+ .notewrap{display:block;margin-top:10px}
+ .notewrap span{display:block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#8a7d6b;margin-bottom:4px}
+ .note-in{width:100%;font:inherit;font-size:14px;line-height:1.45;padding:8px 10px;border:1px solid var(--hairline);border-radius:8px;background:#fff;color:var(--ink);resize:vertical;min-height:38px}
+ .note-in:focus{outline:none;border-color:var(--aubergine);box-shadow:0 0 0 3px rgba(68,25,67,.10)}
+ .term[data-noted="1"] .note-in{border-color:var(--brass);background:#fffdf7}
+ .sugg-note{display:block;font-size:12px;margin-top:4px;color:#8a7d6b}
+ .sugg-note.strong{color:var(--aubergine)}
+ .sugg-note b{font-weight:600}
+ /* A machine answer must never look like one Tina made. Pressed-by-suggestion
+    is outlined; pressed-by-her is solid. */
+ .term[data-mine="0"] .pick[aria-pressed="true"]{background:#fff;color:var(--aubergine);border:1px dashed var(--aubergine)}
+ .type{position:relative;margin:0 0 10px}
+ .tin{width:min(360px,100%);font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--hairline);border-radius:8px;background:#fff;color:var(--ink)}
+ .tin:focus{outline:none;border-color:var(--aubergine);box-shadow:0 0 0 3px rgba(68,25,67,.10)}
+ .sugg{position:absolute;z-index:5;left:0;top:calc(100% + 4px);width:min(360px,100%);margin:0;padding:4px;list-style:none;background:#fff;border:1px solid var(--hairline);border-radius:10px;box-shadow:0 8px 24px rgba(36,27,36,.13);max-height:260px;overflow:auto}
+ .sugg li{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;cursor:pointer;font-size:14px}
+ .sugg li[data-hi="1"]{background:var(--aubergine);color:#fff}
+ .sugg li i{width:11px;height:11px;border-radius:999px;border:1px solid rgba(0,0,0,.15);flex:0 0 auto}
+ .sugg li.no-match{cursor:default;color:#8a7d6b}
  .picks{display:flex;flex-wrap:wrap;gap:6px}
  .pick{display:flex;align-items:center;gap:6px;border:1px solid var(--hairline);background:#fff;border-radius:999px;padding:6px 11px;font:inherit;font-size:13px;cursor:pointer}
  .pick:hover{border-color:var(--aubergine)}
@@ -200,6 +272,10 @@ const html = `<!doctype html><meta charset="utf-8"><title>Colour review — The 
 <h1>Colour review</h1>
 <p class="lede">Each block is one colourway <em>name</em>, not one product — your answer applies to every
 piece any house ever names that way, including ones not scraped yet. Look at the photographs, not the word.
+<strong>Pick as many colours as fit</strong> — a name like <em>black x red</em> is both, and those pieces
+then show under Black <em>and</em> under Red. Click a colour again to unpick it. If you would rather type:
+each word you enter <em>adds</em> a colour, and pressing <kbd>Enter</kbd> in an <em>empty</em> box moves you
+down to the next one.
 <strong>Skip anything you are not sure about</strong>; a skipped term simply stays unclassified, which is
 better than a wrong chip.</p>
 <p class="note" id="persist-ok">Your answers are remembered in this browser, so you can close the page and
@@ -229,6 +305,9 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
 <div id="fallback"><textarea readonly></textarea></div>
 <script>
  const BASE = ${inline(overrides)};
+ // Injected rather than re-listed: the type-ahead and the buttons must offer
+ // exactly the same set, and FAMILIES is a Node-side constant.
+ const FAMILIES = ${inline(FAMILIES)};
  // The probe above already decided this, and it is the only thing that decides
  // it — nothing here re-tests storage or second-guesses the answer. The default
  // if the probe block somehow did not run is "no storage", i.e. the promise is
@@ -237,6 +316,11 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
  const STORE = PROBE.key;
  const decided = { terms: {}, weakWords: {} };
  let skipped = {};
+ // Tina, 2026-08-29: "i want to be able to write to send to you so you will
+ // understand next time." A note is NOT an answer — it never sets a colour and
+ // never counts towards the total. It rides out with the export so the reasoning
+ // reaches whoever fixes the vocabulary next, which a bare null cannot carry.
+ let notes = {};
 
  /** Switch the page over to a warning, permanently, for the rest of the
   *  session. Used when saving worked at load and then stopped. */
@@ -267,6 +351,7 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
        for (const [k, v] of Object.entries(saved.terms)) if (!(k in BASE.terms)) decided.terms[k] = v;
        for (const [k, v] of Object.entries(saved.weakWords || {})) if (!(k in BASE.weakWords)) decided.weakWords[k] = v;
        skipped = saved.skipped || {};
+       notes = saved.notes || {};
      }
    } catch (e) {
      // A corrupt entry is not worth failing the page for — but it is worth
@@ -284,7 +369,7 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
  const save = () => {
    if (!PROBE.ok) return;                              // already said so in the lede
    try {
-     localStorage.setItem(STORE, JSON.stringify({ ...decided, skipped }));
+     localStorage.setItem(STORE, JSON.stringify({ ...decided, skipped, notes }));
    } catch (e) {
      // The probe wrote two bytes and this writes the whole session, so a quota
      // can be reached mid-sitting even though the probe passed.
@@ -295,36 +380,249 @@ affects a proper colourway suffix.</p>${weak.map(card).join('')}`
  const total = document.querySelectorAll('.term').length;
  const recount = () => {
    const n = Object.keys(decided.terms).length + Object.keys(decided.weakWords).length;
-   countEl.textContent = n + ' decided of ' + total;
+   const nn = Object.keys(notes).length;
+   countEl.textContent = n + ' decided of ' + total + (nn ? '  ·  ' + nn + ' note' + (nn === 1 ? '' : 's') : '');
  };
 
- document.querySelectorAll('.term').forEach(sec => {
-   const key = sec.dataset.key, weak = sec.dataset.kind === 'weak';
-   const bucket = weak ? decided.weakWords : decided.terms;
-   const press = (v) => sec.querySelectorAll('.pick').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
-   // Restore whatever this browser already holds for the term.
-   if (key in bucket) { press(bucket[key] === null ? '__null' : bucket[key]); sec.dataset.done = '1'; }
-   else if (skipped[(weak ? 'w:' : 't:') + key]) { press('__skip'); }
-   sec.querySelectorAll('.pick').forEach(btn => btn.addEventListener('click', () => {
-     const v = btn.dataset.v;
-     press(v);
-     const skipKey = (weak ? 'w:' : 't:') + key;
-     if (v === '__skip') { delete bucket[key]; skipped[skipKey] = 1; sec.removeAttribute('data-done'); }
-     else { bucket[key] = v === '__null' ? null : v; delete skipped[skipKey]; sec.dataset.done = '1'; }
-     recount(); save();
-   }));
+ // Every choosable value, for the type-ahead. Built from the same FAMILIES the
+ // buttons render, so the two can never offer different answers.
+ const OPTIONS = FAMILIES.map(function (f) { return { v: f.k, label: f.label, hex: f.hex }; })
+   .concat([{ v: '__null', label: 'Not a colour', hex: null, alt: 'none no' },
+            { v: '__skip', label: 'Skip — not sure', hex: null, alt: 'unsure dunno' }]);
+
+ // Prefix matches first, then substring — so typing "gre" offers Green before
+ // Grey only if Green's label starts with it; both rank above a mid-word hit.
+ function match(q) {
+   var s = q.trim().toLowerCase();
+   if (!s) return [];
+   var pre = [], sub = [];
+   for (var i = 0; i < OPTIONS.length; i++) {
+     var o = OPTIONS[i];
+     var hay = (o.label + ' ' + o.v + ' ' + (o.alt || '')).toLowerCase();
+     var starts = o.label.toLowerCase().indexOf(s) === 0 || o.v.toLowerCase().indexOf(s) === 0;
+     if (starts) pre.push(o); else if (hay.indexOf(s) !== -1) sub.push(o);
+   }
+   return pre.concat(sub);
+ }
+
+ var sections = [].slice.call(document.querySelectorAll('.term'));
+ var suggestedCount = 0;
+
+ sections.forEach(function (sec, idx) {
+   var key = sec.dataset.key, weak = sec.dataset.kind === 'weak';
+   var bucket = weak ? decided.weakWords : decided.terms;
+   var input = sec.querySelector('.tin');
+   var noteEl = sec.querySelector('.note-in');
+   var list = sec.querySelector('.sugg');
+   var hi = 0, shown = [];
+
+   // THE ANSWER FOR THIS TERM, in two halves that can never both be set.
+   //
+   // Tina, 2026-08-29: "and i want to able to choose 2 colors or more". So a
+   // term holds a LIST of families, in the order she picked them, rather than
+   // one value. "Not a colour" and "Skip" are not colours and cannot be part of
+   // a list, so they live in their own slot and each clears the other side.
+   //
+   //   sel = ['black','red'], excl = null   -> both chips
+   //   sel = [],  excl = '__null'           -> a recorded "not a colour"
+   //   sel = [],  excl = '__skip'           -> skipped, still on the review list
+   //   sel = [],  excl = null               -> unanswered, which is what
+   //                                           unpicking the last colour leaves
+   var sel = [], excl = null;
+
+   function paint() {
+     sec.querySelectorAll('.pick').forEach(function (b) {
+       var on = b.dataset.v === excl || sel.indexOf(b.dataset.v) !== -1;
+       b.setAttribute('aria-pressed', String(on));
+     });
+   }
+
+   // Write the current state out. ONE FAMILY EXPORTS AS A PLAIN STRING and only
+   // two or more become a list — data/colour-overrides.json is full of
+   // single-family answers and turning every one of them into a one-element
+   // array would rewrite the whole file for nothing.
+   function commit(mine) {
+     var skipKey = (weak ? 'w:' : 't:') + key;
+     if (excl === '__skip') { delete bucket[key]; skipped[skipKey] = 1; sec.removeAttribute('data-done'); }
+     else if (excl === '__null') { bucket[key] = null; delete skipped[skipKey]; sec.dataset.done = '1'; }
+     else if (sel.length) {
+       bucket[key] = sel.length === 1 ? sel[0] : sel.slice();
+       delete skipped[skipKey];
+       sec.dataset.done = '1';
+     } else { delete bucket[key]; delete skipped[skipKey]; sec.removeAttribute('data-done'); }
+     if (mine) sec.dataset.mine = '1';
+     paint(); recount(); save();
+   }
+   if (noteEl) {
+     var nk = (weak ? 'w:' : 't:') + key;
+     if (notes[nk]) { noteEl.value = notes[nk]; sec.dataset.noted = '1'; }
+     var t = null;
+     noteEl.addEventListener('input', function () {
+       // Debounced: she is typing a sentence, not pressing a button, and this
+       // page can hold 858 of these.
+       if (t) clearTimeout(t);
+       t = setTimeout(function () {
+         var v = noteEl.value.trim();
+         if (v) { notes[nk] = v; sec.dataset.noted = '1'; }
+         else { delete notes[nk]; sec.removeAttribute('data-noted'); }
+         recount(); save();
+       }, 400);
+     });
+     // Enter inside a note must not submit or jump — it is prose.
+     noteEl.addEventListener('keydown', function (e) { if (e.key === 'Escape') noteEl.blur(); });
+   }
+   // Restoring an answer, from data/colour-overrides.json or from an earlier
+   // sitting in this browser. A value is a string, a LIST of strings, or null —
+   // all three shapes are read here, so a file hand-edited to
+   // ["black","red"] comes back with both chips lit.
+   if (key in bucket) {
+     var stored = bucket[key];
+     if (stored === null) excl = '__null';
+     else sel = Array.isArray(stored) ? stored.slice() : [stored];
+     sec.dataset.done = '1'; sec.dataset.mine = '1'; paint();
+   }
+   else if (skipped[(weak ? 'w:' : 't:') + key]) { excl = '__skip'; sec.dataset.mine = '1'; paint(); }
+   else if (sec.dataset.suggest && sec.dataset.suggestStrong === '1') {
+     // A strong photo reading arrives pre-answered and DOES count towards the
+     // export — that is the point of it. It is ONE family, and it is marked
+     // data-mine="0" so the button renders outlined rather than solid; adding a
+     // second colour, or any other touch, makes the block hers.
+     sel = [sec.dataset.suggest];
+     bucket[key] = sec.dataset.suggest;
+     sec.dataset.done = '1';
+     sec.dataset.mine = '0';
+     suggestedCount++;
+     paint();
+   }
+
+   // Jump to the next term that has no answer yet. With 858 of them, this is
+   // the difference between typing and hunting. It is no longer bound to
+   // choosing a colour — choosing one now leaves her where she is, so she can
+   // add a second — and is reached by pressing Enter on an EMPTY box.
+   function advance() {
+     for (var j = idx + 1; j < sections.length; j++) {
+       if (!sections[j].hasAttribute('data-done')) {
+         var nx = sections[j].querySelector('.tin');
+         sections[j].scrollIntoView({ block: 'center', behavior: 'smooth' });
+         if (nx) nx.focus();
+         break;
+       }
+     }
+   }
+
+   // A BUTTON TOGGLES. Clicking a lit colour puts it out; putting the last one
+   // out leaves the term unanswered, which is the same state it started in and
+   // is honest — better than a colour she has just rejected staying recorded.
+   function toggle(v) {
+     if (v === '__null' || v === '__skip') { excl = excl === v ? null : v; sel = []; }
+     else {
+       excl = null;                                  // a colour is not "not a colour"
+       var i = sel.indexOf(v);
+       if (i === -1) sel.push(v); else sel.splice(i, 1);
+     }
+     commit(true);
+   }
+
+   // THE TYPE-AHEAD ADDS, it does not replace. Typing "bl" then Enter used to
+   // answer and jump; it now lights Black, empties the box and stays put, so
+   // "bl<enter>re<enter>" is black and red. A family already lit is left alone
+   // rather than toggled off — typing it twice should not be a way to lose it.
+   function add(v) {
+     if (v === '__null' || v === '__skip') { excl = v; sel = []; }
+     else { excl = null; if (sel.indexOf(v) === -1) sel.push(v); }
+     commit(true);
+     close();
+     if (input) { input.value = ''; input.focus(); }
+   }
+
+   sec.querySelectorAll('.pick').forEach(function (btn) {
+     btn.addEventListener('click', function () { toggle(btn.dataset.v); });
+   });
+
+   function close() { if (list) { list.hidden = true; list.innerHTML = ''; } shown = []; hi = 0; }
+
+   function render() {
+     if (!list) return;
+     shown = match(input.value);
+     if (!shown.length) {
+       if (!input.value.trim()) { close(); return; }
+       list.innerHTML = '<li class="no-match">no colour matches that</li>';
+       list.hidden = false;
+       return;
+     }
+     if (hi >= shown.length) hi = 0;
+     var html = '';
+     for (var i = 0; i < shown.length; i++) {
+       var o = shown[i];
+       html += '<li data-i="' + i + '" data-hi="' + (i === hi ? '1' : '0') + '">'
+             + (o.hex ? '<i style="background:' + o.hex + '"></i>' : '<i style="background:transparent;border-style:dashed"></i>')
+             + o.label + '</li>';
+     }
+     list.innerHTML = html;
+     list.hidden = false;
+   }
+
+   if (input) {
+     input.addEventListener('input', function () { hi = 0; render(); });
+     input.addEventListener('keydown', function (e) {
+       if (e.key === 'Escape') { input.value = ''; close(); return; }
+       // Enter is handled BEFORE the shown.length guard, because the empty box
+       // is exactly the case with nothing shown and is now what moves her on.
+       if (e.key === 'Enter') {
+         e.preventDefault();
+         if (!input.value.trim()) { close(); advance(); return; }
+         if (shown.length) add(shown[hi].v);
+         return;
+       }
+       if (!shown.length) return;
+       if (e.key === 'ArrowDown') { e.preventDefault(); hi = (hi + 1) % shown.length; render(); }
+       else if (e.key === 'ArrowUp') { e.preventDefault(); hi = (hi - 1 + shown.length) % shown.length; render(); }
+     });
+     input.addEventListener('blur', function () { setTimeout(close, 150); });
+   }
+   if (list) {
+     list.addEventListener('mousedown', function (e) {
+       var li = e.target.closest('li[data-i]');
+       if (li) { e.preventDefault(); add(shown[+li.dataset.i].v); }
+     });
+   }
  });
  recount();
+
+ // Say plainly what arrived pre-answered and how much to trust it. A number she
+ // can act on beats a reassurance she cannot check.
+ if (suggestedCount) {
+   var b = document.createElement('p');
+   b.className = 'note';
+   b.style.borderLeft = '3px solid var(--aubergine)';
+   b.style.paddingLeft = '10px';
+   b.innerHTML = '<b>' + suggestedCount + ' of these are already answered</b> — read off the product '
+     + 'photographs, and shown with a dashed outline so you can tell them from your own. Tested against '
+     + '60 colour names whose answer was already known, that reading was right <b>86%</b> of the time, so '
+     + 'roughly one in seven still needs you. Skim them, fix what is wrong, and press Copy.';
+   var lede = document.querySelector('.lede');
+   if (lede && lede.parentNode) lede.parentNode.insertBefore(b, lede.nextSibling);
+ }
 
  // Spread BASE first so that EVERY key it carries survives — including the
  // three "//" documentation keys. Naming them one by one, as an earlier draft
  // did, silently deleted "//terms" and "//weakWords" the first time the export
  // was pasted back.
- const buildJson = () => JSON.stringify({
-   ...BASE,
-   terms: { ...BASE.terms, ...decided.terms },
-   weakWords: { ...BASE.weakWords, ...decided.weakWords },
- }, null, 2) + '\\n';
+ const buildJson = () => {
+   // Notes travel under their own key, keyed the same way the buckets are
+   // ("t:" for a colourway suffix, "w:" for a word found mid-title), so a note
+   // can always be traced back to the exact thing it is about. lib/colour.ts
+   // reads only terms and weakWords, so this key is inert to the site and
+   // exists purely to carry her reasoning back.
+   const out = {
+     ...BASE,
+     terms: { ...BASE.terms, ...decided.terms },
+     weakWords: { ...BASE.weakWords, ...decided.weakWords },
+   };
+   const merged = { ...(BASE.notes || {}), ...notes };
+   if (Object.keys(merged).length) out.notes = merged;
+   return JSON.stringify(out, null, 2) + '\\n';
+ };
 
  document.getElementById('copy').addEventListener('click', async () => {
    const text = buildJson();

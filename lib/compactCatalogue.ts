@@ -8,7 +8,7 @@ import {
   activeSubtype, ACTIVE_SUBTYPE_LABELS, type ActiveSubtype,
 } from '@/lib/specialty';
 import { hijabTypeFilter, HIJAB_TYPE_FILTER_LABELS, type HijabTypeFilter } from '@/lib/hijabTypeFilter';
-import { colourFamily, COLOUR_FAMILY_LABELS, type ColourFamily } from '@/lib/colour';
+import { colourFamilies, COLOUR_FAMILY_LABELS, type ColourFamily } from '@/lib/colour';
 
 /** Reference point for the compact day-index — see rows.firstSeenDay below. */
 export const FIRST_SEEN_EPOCH = Date.parse('2026-01-01T00:00:00.000Z');
@@ -142,15 +142,26 @@ export interface CompactCatalogue {
     /** Same shape as dressSubtypeIdx, for swimSubtypes / activeSubtypes. */
     swimSubtypeIdx?: number[];
     activeSubtypeIdx?: number[];
-    /** Index into `colours`, or -1 for a row whose title names no colour.
-     *  -1 is 5,276 of the 18,908 published rows, 27.9% of them, measured
+    /** Bit i set iff `colours[i]` applies to the row — the same shape as
+     *  occasionMask, and 0 for a row whose title names no colour.
+     *
+     *  0 is 5,276 of the 18,908 published rows, 27.9% of them, measured
      *  2026-08-29 with `npm run colour:coverage` — stated directly rather than
      *  as the complement of the classified count, which is the figure
      *  lib/colour.ts's header owns and the one to re-read when this drifts.
-     *  Not a bitmask like occasionMask: colourFamily() returns exactly one
-     *  family or null, by construction. Absent means every row is -1 — see
-     *  SENTINEL_COLUMNS. */
-    colourIdx?: number[];
+     *
+     *  A MASK RATHER THAN AN INDEX since 2026-08-29, when Tina asked to pick
+     *  two colours at once: a name like "black x red" genuinely names two
+     *  families and an index can only hold one. Today more than one bit is set
+     *  only by an ARRAY entry in data/colour-overrides.json — the vocabulary
+     *  still yields exactly one family (lib/colour.ts, `ColourVerdict.families`)
+     *  — so in practice the column is one-hot, and it is the FORMAT that has
+     *  stopped being the limit.
+     *
+     *  Absent means every row is 0. That is a DIFFERENT sentinel from the
+     *  subtype columns' -1, and the same one-off treatment variantCount gets
+     *  for its own sentinel of 1 — see the block after the encode loop. */
+    colourMask?: number[];
     /** How many colourways each row stands for, including itself. Present only
      *  when at least one row on this surface has siblings; dropped as an
      *  all-sentinel column otherwise (see SENTINEL_COLUMNS). The sentinel here
@@ -295,11 +306,25 @@ export function encodeCatalogue(
   const presentHijabTypeFilters = new Set(products.map((p) => hijabTypeFilter(p)).filter((t): t is HijabTypeFilter => t !== null));
   const hijabTypeFilters = hijabTypeFilterOrder.filter((t) => presentHijabTypeFilters.has(t));
   const hijabTypeFilterIndex = new Map(hijabTypeFilters.map((t, i) => [t, i]));
-  // colourFamily reads the TITLE, not the product — it is derived text, never a
-  // field on Product (Invariant 16), which is why no re-scrape is involved.
+  // colourFamilies reads the TITLE, not the product — it is derived text, never
+  // a field on Product (Invariant 16), which is why no re-scrape is involved.
+  // EVERY family a row carries counts towards the dictionary, not just the
+  // first: a family that only ever appears as the second colour of a two-colour
+  // override would otherwise be missing from `colours`, and the encode loop
+  // below would then throw on the very row that named it.
   const colourOrder = Object.keys(COLOUR_FAMILY_LABELS) as ColourFamily[];
-  const presentColours = new Set(products.map((p) => colourFamily(p.title)).filter((c): c is ColourFamily => c !== null));
+  const presentColours = new Set(products.flatMap((p) => colourFamilies(p.title)));
   const colours = colourOrder.filter((c) => presentColours.has(c));
+  if (colours.length > 31) {
+    // The same guard occasionMask carries, for the same reason: `1 << 31` is
+    // negative and `1 << 32` is 1, so bit 31 upwards does not exist in a
+    // JavaScript number used this way. COLOUR_FAMILY_LABELS holds 15 families,
+    // so this is 16 short of firing and is here so that the 32nd family added
+    // fails the build rather than silently sharing a bit with the first.
+    throw new Error(
+      `compactCatalogue: more than 31 distinct colour families; colourMask can no longer fit in a bitmask`,
+    );
+  }
   const colourIndex = new Map(colours.map((c, i) => [c, i]));
 
   const rows: CompactCatalogue['rows'] = {
@@ -316,7 +341,7 @@ export function encodeCatalogue(
     activeSubtypeIdx: [],
     variantCount: [],
     hijabTypeFilterIdx: [],
-    colourIdx: [],
+    colourMask: [],
     firstSeenDay: [],
   };
   const cards: CardSlice = { rows: {} };
@@ -425,19 +450,26 @@ export function encodeCatalogue(
     // not in it. `colours` is filtered from COLOUR_FAMILY_LABELS, so the
     // classifier's own vocabulary always resolves — but data/colour-overrides.json
     // is hand-edited, and a misspelt family ("burgandy") passes TypeScript, is
-    // returned by colourFamily(), and misses the Map. A `!` would push
+    // returned by colourFamilies(), and misses the Map. A `!` would push
     // `undefined`, which serialises to `null` in a column typed `number[]`,
-    // survives the SENTINEL_COLUMNS check (`null !== -1`), and is swallowed by
-    // the client's `?? -1` — so the edit silently unclassifies exactly the rows
-    // it meant to fix. Throwing turns that into a build failure naming the file.
-    const colour = colourFamily(p.title);
-    const colourIdx = colour === null ? -1 : colourIndex.get(colour);
-    if (colourIdx === undefined) {
-      throw new Error(
-        `compactCatalogue: product ${p.id} has unknown colour family "${colour}" — check data/colour-overrides.json`,
-      );
+    // survives the all-zero check below (`null !== 0`), and is swallowed by the
+    // client's `?? 0` — so the edit silently unclassifies exactly the rows it
+    // meant to fix. Throwing turns that into a build failure naming the file.
+    //
+    // EVERY element is checked, not just the first: an override written as
+    // `["black", "burgandy"]` is half right, and the half that is wrong would
+    // otherwise cost only its own bit and leave the row looking classified.
+    let colourMask = 0;
+    for (const colour of colourFamilies(p.title)) {
+      const idx = colourIndex.get(colour);
+      if (idx === undefined) {
+        throw new Error(
+          `compactCatalogue: product ${p.id} has unknown colour family "${colour}" — check data/colour-overrides.json`,
+        );
+      }
+      colourMask |= 1 << idx;
     }
-    rows.colourIdx!.push(colourIdx);
+    rows.colourMask!.push(colourMask);
     rows.variantCount!.push(p.variantCount ?? 1);
     const hijabType = hijabTypeFilter(p);
     rows.hijabTypeFilterIdx!.push(hijabType === null ? -1 : hijabTypeFilterIndex.get(hijabType)!);
@@ -461,8 +493,8 @@ export function encodeCatalogue(
 
   // Drop any subtype column that carries no information on THIS page.
   //
-  // Five of these six (four until 2026-08-26, when dressSubtypeIdx joined them;
-  // colourIdx is the exception, see below) are per-lane facts:
+  // All seven of these (four until 2026-08-26, when dressSubtypeIdx joined
+  // them) are per-lane facts:
   // layeringSubtypeIdx is -1 for everything that isn't a layering piece, and so
   // on. On a mixed page there is nothing to say — measured on /directory, each
   // of the four was 39,767 bytes of 13,256 entries that were ALL -1, and on the
@@ -475,24 +507,34 @@ export function encodeCatalogue(
   // real. Absent simply means "every row is -1", which is what readers must
   // treat a missing column as. See the ?? -1 fallbacks in FilterableGrid.
   //
-  // colourIdx (2026-08-28) joins them on the same rule but is NOT a per-lane
-  // fact: roughly seven published rows in ten name a colour (the exact,
-  // dated figure lives in lib/colour.ts's header — one place, deliberately),
-  // so on any real surface this column is dense and survives. It is listed here for the surfaces that are
-  // not real-sized — a filtered slice, a small edit, a brand page whose titles
-  // happen to name nothing — where the same "18,000 copies of -1" argument
-  // applies in miniature and there is nothing for the Colour filter to offer.
-  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx', 'swimSubtypeIdx', 'activeSubtypeIdx', 'colourIdx'] as const;
+  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx', 'swimSubtypeIdx', 'activeSubtypeIdx'] as const;
   for (const col of SENTINEL_COLUMNS) {
     const v = rows[col];
     if (v && v.every((x) => x === -1)) delete rows[col];
   }
-  // variantCount is dropped on the same principle but against a DIFFERENT
-  // sentinel: 1, not -1. A surface where no product has colour siblings is the
-  // common case (every /edits/[slug], and any lane after heavy filtering), and
-  // there it is 23,000 copies of the number 1. Readers must treat an absent
-  // column as "every row is 1" — see decodeCard's `?? 1`.
+  // Two more columns are dropped on the same principle but against DIFFERENT
+  // sentinels, which is why neither can join the list above.
+  //
+  // variantCount's sentinel is 1, not -1: a surface where no product has colour
+  // siblings is the common case (every /edits/[slug], and any lane after heavy
+  // filtering), and there it is 23,000 copies of the number 1. Readers must
+  // treat an absent column as "every row is 1" — see decodeCard's `?? 1`.
   if (rows.variantCount && rows.variantCount.every((x) => x === 1)) delete rows.variantCount;
+  // colourMask's sentinel is 0 — an empty bitmask, i.e. no family applies. It
+  // was `colourIdx` with a sentinel of -1 until 2026-08-29 and lived in the
+  // list above; the mask made 0 the honest empty value, exactly as it is for
+  // occasionMask. Readers must treat an absent column as "every row is 0" —
+  // see the `?? 0` in FilterableGrid and DirectoryBrowser.
+  //
+  // Unlike the seven above, this is NOT a per-lane fact: roughly seven
+  // published rows in ten name a colour (the exact, dated figure lives in
+  // lib/colour.ts's header — one place, deliberately), so on any real surface
+  // this column is dense and survives. It is dropped only for surfaces that are
+  // not real-sized — a filtered slice, a small edit, a brand page whose titles
+  // happen to name nothing — where the same "18,000 copies of the sentinel"
+  // argument applies in miniature and there is nothing for the Colour filter to
+  // offer.
+  if (rows.colourMask && rows.colourMask.every((x) => x === 0)) delete rows.colourMask;
 
   return {
     brands: compactBrands, garments, occasions,

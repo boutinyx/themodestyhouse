@@ -540,6 +540,24 @@ describe('data/colour-overrides.json', () => {
   const FAMILIES = new Set<string>(Object.keys(COLOUR_FAMILY_LABELS));
   const OVERRIDES_PATH = path.join(process.cwd(), 'data', 'colour-overrides.json');
 
+  /** One value that must be a colour family, checked. `where` is the path it
+   *  was found at, so an element of a list names its own index rather than
+   *  leaving Tina to count commas. */
+  function familyProblems(where: string, value: unknown): string[] {
+    if (typeof value !== 'string') {
+      return [`${where}: ${JSON.stringify(value)} is neither a colour family nor null`];
+    }
+    if (FAMILIES.has(value)) return [];
+    // The families are comma-joined, not space-joined. A space-joined list
+    // reads as phrases — it offered "navy blue", which is exactly the invented
+    // family the negative control below rejects, so the only guidance a
+    // non-programmer gets named an invalid value.
+    return [
+      `${where}: "${value}" is not a colour family. Use one of ` +
+      `${[...FAMILIES].join(', ')} — or a bare null, not the string "null".`,
+    ];
+  }
+
   /** Every problem found, as a readable line. An empty array means valid. */
   function problems(parsed: unknown): string[] {
     const found: string[] = [];
@@ -563,20 +581,20 @@ describe('data/colour-overrides.json', () => {
           found.push(`${section}["${key}"]: the key is not lowercased, so it can never match`);
         }
         if (value === null) continue;   // a recorded "not a colour" — the point of the file
-        if (typeof value !== 'string') {
-          found.push(`${section}["${key}"]: ${JSON.stringify(value)} is neither a colour family nor null`);
+        // A LIST is the multi-colour case ("black x red" is both). EVERY
+        // element is checked, which is the whole reason this branch exists: a
+        // half-right `["black", "burgandy"]` type-checks, classifies the row as
+        // black, and loses only the bit it got wrong — so the row still looks
+        // answered while one of Tina's two colours is silently absent.
+        if (Array.isArray(value)) {
+          if (value.length === 0) {
+            found.push(`${section}["${key}"]: an empty list decides nothing. Name at least one colour family, or use a bare null.`);
+            continue;
+          }
+          value.forEach((element, i) => found.push(...familyProblems(`${section}["${key}"][${i}]`, element)));
           continue;
         }
-        if (!FAMILIES.has(value)) {
-          // The families are comma-joined, not space-joined. A space-joined
-          // list reads as phrases — it offered "navy blue", which is exactly
-          // the invented family the negative control three tests below rejects,
-          // so the only guidance a non-programmer gets named an invalid value.
-          found.push(
-            `${section}["${key}"]: "${value}" is not a colour family. Use one of ` +
-            `${[...FAMILIES].join(', ')} — or a bare null, not the string "null".`,
-          );
-        }
+        found.push(...familyProblems(`${section}["${key}"]`, value));
       }
     }
     return found;
@@ -615,5 +633,127 @@ describe('data/colour-overrides.json', () => {
   // to carry, and the validator must not creep into rejecting it.
   it('accepts the real shape: a family, and a bare null', () => {
     expect(problems({ terms: { bordeaux: 'red', mink: null }, weakWords: { rose: null } })).toEqual([]);
+  });
+
+  // The multi-colour shape, added 2026-08-29. A list is how a suffix that names
+  // two colours reaches two chips.
+  it('accepts a list of families', () => {
+    expect(problems({ terms: { 'black x red': ['black', 'red'] }, weakWords: { rose: ['pink', 'red'] } })).toEqual([]);
+  });
+
+  // The negative control for the list branch, and the reason it is not enough
+  // to check `Array.isArray`: HALF a valid answer is the realistic hand-edit.
+  // The row still classifies as black, so nothing downstream looks broken —
+  // only this fails, and only because it checks every element.
+  it('rejects a list containing a family that is not one', () => {
+    expect(problems({ terms: { 'black x red': ['black', 'burgandy'] }, weakWords: {} }))
+      .toEqual([expect.stringContaining('terms["black x red"][1]: "burgandy" is not a colour family')]);
+  });
+
+  it('names the index of every bad element, not just the first', () => {
+    expect(problems({ terms: { 'black x red': ['noir', 'burgandy'] }, weakWords: {} })).toEqual([
+      expect.stringContaining('terms["black x red"][0]: "noir"'),
+      expect.stringContaining('terms["black x red"][1]: "burgandy"'),
+    ]);
+  });
+
+  it('rejects a non-string inside a list', () => {
+    expect(problems({ terms: { 'black x red': ['black', null] }, weakWords: {} }))
+      .toEqual([expect.stringContaining('terms["black x red"][1]: null is neither a colour family nor null')]);
+  });
+
+  // An empty list is not a recorded decision — it is a value that says nothing,
+  // and `families[0] ?? null` would read it as "no colour" while looking to a
+  // hand-editor like an answer. `null` is how "not a colour" is written.
+  it('rejects an empty list, which decides nothing', () => {
+    expect(problems({ terms: { 'black x red': [] }, weakWords: {} }))
+      .toEqual([expect.stringContaining('an empty list decides nothing')]);
+  });
+});
+
+// -----------------------------------------------------------------------
+// MORE THAN ONE COLOUR PER PRODUCT.
+//
+// Tina, 2026-08-29: *"and i want to able to choose 2 colors or more"* — a
+// colourway called "black x red" names two families and until now could only
+// be filed under one of them.
+//
+// The vocabulary is NOT what produces two. RULES is ordered and the first match
+// wins, so "Navy Blue" is navy and nothing else — the assertion below is there
+// to hold that, because reporting every `candidate` in `families` is the
+// obvious wrong implementation and would silently put 209 navy rows on the Blue
+// chip. Two families come only from a list in data/colour-overrides.json.
+// -----------------------------------------------------------------------
+describe('classifyColour, families', () => {
+  it('reports one family for an ordinary suffix match', () => {
+    const v = classifyColour('Amara Maxi Dress - Sage Green');
+    expect(v.families).toEqual(['green']);
+    expect(v.family).toBe('green');
+  });
+
+  // `candidates` still reports both — it is what the review page asks about —
+  // but `families` is the answer, and the answer is one.
+  it('does not turn an ambiguous suffix into two families', () => {
+    const v = classifyColour('Hijab - Navy Blue');
+    expect(v.candidates).toEqual(['navy', 'blue']);
+    expect(v.families).toEqual(['navy']);
+  });
+
+  it('reports one family for a body match, and none for an unclassified title', () => {
+    expect(classifyColour('Chocolate Linen Cotton Wrap Top').families).toEqual(['brown']);
+    expect(classifyColour('Bamboo Jersey Hijab - Champagne').families).toEqual([]);
+    expect(classifyColour('Hijab - Mink').families).toEqual([]);        // a recorded null
+  });
+
+  it('keeps family as the first of families for a single-family override', () => {
+    const v = classifyColour('Basic abaya - Bordeaux');
+    expect(v.families).toEqual(['red']);
+    expect(v.family).toBe('red');
+  });
+
+  // The real thing. The override map is mocked rather than a list being put in
+  // tracked data — the same harness the null-suffix test above uses.
+  //
+  // 'Classy Liquid F25 – Black x Red' is a literal catalogue title (`grep -c -F`
+  // over data/products.json returns 1) and is the case that motivated this: it
+  // files under `red` today, because red's rule sits above black's in RULES.
+  it('lets a term override name several families', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: { 'black x red': ['black', 'red'] }, weakWords: {} },
+    }));
+    try {
+      const { classifyColour: classify, colourFamilies } = await import('./colour');
+      const v = classify('Classy Liquid F25 – Black x Red');
+      expect(v.families).toEqual(['black', 'red']);
+      expect(v.family).toBe('black');            // the first of them
+      expect(v.confidence).toBe('override');
+      expect(v.term).toBe('black x red');
+      expect(colourFamilies('Classy Liquid F25 – Black x Red')).toEqual(['black', 'red']);
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
+  });
+
+  // The same for the other half of the file. 'Mystic Rose Hijab' discriminates
+  // exactly as it does in the single-family test above: `rose` is its only
+  // colour word.
+  it('lets a weakWords override name several families', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: {}, weakWords: { rose: ['pink', 'red'] } },
+    }));
+    try {
+      const { classifyColour: classify } = await import('./colour');
+      const v = classify('Mystic Rose Hijab');
+      expect(v.families).toEqual(['pink', 'red']);
+      expect(v.family).toBe('pink');
+      expect(v.confidence).toBe('override');
+      expect(v.matchedWord).toBe('Rose');
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
   });
 });

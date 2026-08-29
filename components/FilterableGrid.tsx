@@ -296,10 +296,14 @@ export function FilterableGrid({
       // link (narrows by sub-category) and also pick "Jersey" here (narrows
       // further by fabric).
       if (fabricTypeIdx !== -1 && (cat.rows.hijabTypeFilterIdx?.[i] ?? -1) !== fabricTypeIdx) continue;
-      // `?? -1` because the column is dropped when every row is -1 — a lane
-      // where nothing is classified must still filter to empty rather than
-      // crash on an absent array. Same contract as the subtype columns.
-      if (colourIdx !== -1 && (cat.rows.colourIdx?.[i] ?? -1) !== colourIdx) continue;
+      // A BIT TEST, not an equality: colourMask carries every family that
+      // applies, so a two-colour product matches on either chip (Tina,
+      // 2026-08-29, wanting to pick two colours at once). `?? 0` because the
+      // column is dropped when every row is 0 — a lane where nothing is
+      // classified must still filter to empty rather than crash on an absent
+      // array. Same contract as the subtype columns, against colourMask's own
+      // sentinel of 0.
+      if (colourIdx !== -1 && ((cat.rows.colourMask?.[i] ?? 0) & (1 << colourIdx)) === 0) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();

@@ -454,7 +454,7 @@ describe('payload: altUrl is sparse (2026-08-19)', () => {
 });
 
 describe('colour column', () => {
-  it('indexes each row into the colours dictionary', () => {
+  it('sets one bit per row into the colours dictionary', () => {
     const cat = encodeCatalogue(
       [
         { ...PRODUCT, id: 'aab:1', title: 'Amara Maxi Dress - Sage Green' },
@@ -463,12 +463,12 @@ describe('colour column', () => {
       [BRAND],
     );
     // Canonical order, not first-appearance: brown is 6th and green 9th in
-    // COLOUR_FAMILY_LABELS, so the espresso row — encoded second — indexes 0.
+    // COLOUR_FAMILY_LABELS, so the espresso row — encoded second — is bit 0.
     expect(cat.colours).toEqual(['brown', 'green']);
-    expect(cat.rows.colourIdx).toEqual([1, 0]);
+    expect(cat.rows.colourMask).toEqual([0b10, 0b01]);
   });
 
-  it('uses -1 for a row with no colour', () => {
+  it('uses 0 for a row with no colour', () => {
     const cat = encodeCatalogue(
       [
         { ...PRODUCT, id: 'aab:1', title: 'Black Abaya' },
@@ -476,19 +476,80 @@ describe('colour column', () => {
       ],
       [BRAND],
     );
-    expect(cat.rows.colourIdx).toEqual([0, -1]);
+    expect(cat.rows.colourMask).toEqual([1, 0]);
   });
 
-  // Same principle as the four subtype columns: a surface where nothing is
-  // classified must not pay for 18,000 copies of -1.
+  // Same principle as the seven subtype columns, against colourMask's own
+  // sentinel of 0: a surface where nothing is classified must not pay for
+  // 18,000 copies of it.
   it('drops the column when no row has a colour', () => {
     const cat = encodeCatalogue(
       [{ ...PRODUCT, id: 'aab:1', title: 'The Culture Starter Set' }],
       [BRAND],
     );
-    expect(cat.rows.colourIdx).toBeUndefined();
-    expect('colourIdx' in cat.rows).toBe(false);   // deleted, not merely empty
+    expect(cat.rows.colourMask).toBeUndefined();
+    expect('colourMask' in cat.rows).toBe(false);   // deleted, not merely empty
     expect(cat.colours).toEqual([]);
+  });
+
+  // WHY THE COLUMN IS A MASK AT ALL. Tina, 2026-08-29: "and i want to able to
+  // choose 2 colors or more". 'Classy Liquid F25 – Black x Red' is a literal
+  // catalogue title (`grep -c -F` over data/products.json returns 1) whose
+  // colourway names two families; with an index it could only ever sit on one
+  // chip, and it sat on Red, because red's rule is above black's in RULES.
+  //
+  // The list is mocked rather than written into tracked data — the same harness
+  // the guard test below uses.
+  it('sets a bit for every family a multi-colour override names', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: { 'black x red': ['black', 'red'] }, weakWords: {} },
+    }));
+    try {
+      const { encodeCatalogue: encode } = await import('./compactCatalogue');
+      const cat = encode(
+        [
+          { ...PRODUCT, id: 'aab:1', title: 'Classy Liquid F25 – Black x Red' },
+          { ...PRODUCT, id: 'aab:2', title: 'Black Abaya' },
+        ],
+        [BRAND],
+      );
+      // Both families reach the dictionary, in canonical order — red is 12th in
+      // COLOUR_FAMILY_LABELS and black 1st, so black is bit 0.
+      expect(cat.colours).toEqual(['black', 'red']);
+      expect(cat.rows.colourMask).toEqual([0b11, 0b01]);
+      // What it is FOR: the two-tone row is on the Red chip as well as Black,
+      // which is the bit test the two grid components run.
+      const onRed = cat.rows.colourMask!.filter((m) => m & (1 << cat.colours.indexOf('red')));
+      expect(onRed).toHaveLength(1);
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
+  });
+
+  // A family that appears ONLY as the second colour of a list must still reach
+  // the `colours` dictionary. It is built by flat-mapping every family rather
+  // than taking the first, and if it took the first this throws on the very row
+  // that named red — an encode failure, not a quiet miss, which is why the
+  // assertion is that it encodes at all.
+  it('puts a family named only as a second colour into the dictionary', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: { 'black x red': ['black', 'red'] }, weakWords: {} },
+    }));
+    try {
+      const { encodeCatalogue: encode } = await import('./compactCatalogue');
+      const cat = encode(
+        [{ ...PRODUCT, id: 'aab:1', title: 'Classy Liquid F25 – Black x Red' }],
+        [BRAND],
+      );
+      expect(cat.colours).toEqual(['black', 'red']);
+      expect(cat.rows.colourMask).toEqual([0b11]);
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
   });
 
   // The one seam this feature was built around: data/colour-overrides.json is
@@ -520,6 +581,30 @@ describe('colour column', () => {
         ),
       // `[\s\S]*` rather than `.*` with the `s` flag: tsconfig targets ES2017,
       // where `s` is a TS1501 compile error.
+      ).toThrow(/unknown colour family "burgandy"[\s\S]*colour-overrides\.json/);
+    } finally {
+      vi.doUnmock('@/data/colour-overrides.json');
+      vi.resetModules();
+    }
+  });
+
+  // The same guard for the LIST shape, which is the one that can be half right.
+  // `["black", "burgandy"]` classifies the row as black and would otherwise
+  // lose only the second bit — a row that still looks answered while one of
+  // Tina's two colours is silently gone. Every element is looked up, so the
+  // build fails naming the file, exactly as it does for a bare bad value.
+  it('throws on a bad family inside a multi-colour override', async () => {
+    vi.resetModules();
+    vi.doMock('@/data/colour-overrides.json', () => ({
+      default: { terms: { pistachio: ['black', 'burgandy'] }, weakWords: {} },
+    }));
+    try {
+      const { encodeCatalogue: encode } = await import('./compactCatalogue');
+      expect(() =>
+        encode(
+          [{ ...PRODUCT, id: 'aab:1', title: 'Gold Accent Half Zip Abaya - Pistachio' }],
+          [BRAND],
+        ),
       ).toThrow(/unknown colour family "burgandy"[\s\S]*colour-overrides\.json/);
     } finally {
       vi.doUnmock('@/data/colour-overrides.json');

@@ -76,10 +76,14 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     for (let i = 0; i < n; i++) {
       if (garmentIdx !== -1 && cat.rows.garmentIdx[i] !== garmentIdx) continue;
       if (brandIdx !== -1 && cat.rows.brandIdx[i] !== brandIdx) continue;
-      // `?? -1` because the column is dropped when every row is -1 — a surface
-      // where nothing is classified must still filter to empty rather than
-      // crash on an absent array. Same contract as the subtype columns.
-      if (colourIdx !== -1 && (cat.rows.colourIdx?.[i] ?? -1) !== colourIdx) continue;
+      // A BIT TEST, not an equality: colourMask carries every family that
+      // applies, so a two-colour product matches on either chip (Tina,
+      // 2026-08-29, wanting to pick two colours at once). `?? 0` because the
+      // column is dropped when every row is 0 — a surface where nothing is
+      // classified must still filter to empty rather than crash on an absent
+      // array. Same contract as the subtype columns, against colourMask's own
+      // sentinel of 0.
+      if (colourIdx !== -1 && ((cat.rows.colourMask?.[i] ?? 0) & (1 << colourIdx)) === 0) continue;
       if (query !== '') {
         const title = cat.rows.title[i].toLowerCase();
         const brandName = cat.brands[cat.rows.brandIdx[i]].name.toLowerCase();
