@@ -717,8 +717,16 @@ describe('data/colour-overrides.json', () => {
     }
     const root = parsed as Record<string, unknown>;
 
-    for (const section of ['terms', 'weakWords'] as const) {
+    // `autoTerms` is machine-written rather than hand-written, which makes it
+    // MORE important to validate here, not less: a bad value in it reaches the
+    // same build-time throw in lib/compactCatalogue.ts, and nobody would be
+    // looking for a typo in a file they did not type.
+    for (const section of ['terms', 'autoTerms', 'weakWords'] as const) {
       const map = root[section];
+      // `autoTerms` is OPTIONAL — the file is valid without it, and every
+      // fixture in this describe block omits it. Only the two hand-written
+      // sections are required.
+      if (map === undefined && section === 'autoTerms') continue;
       if (typeof map !== 'object' || map === null || Array.isArray(map)) {
         found.push(`${section}: missing, or not a JSON object`);
         continue;

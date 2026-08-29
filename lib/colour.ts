@@ -290,7 +290,7 @@ const RULES: [ColourFamily, RegExp][] = ([
  *               has decided, so the term is still worth putting in front of a
  *               human.
  */
-export type ColourConfidence = 'override' | 'suffix' | 'weak' | 'none';
+export type ColourConfidence = 'override' | 'auto' | 'suffix' | 'weak' | 'none';
 
 export interface ColourVerdict {
   /** The FIRST of `families`, or null when there are none.
@@ -357,6 +357,32 @@ type OverrideValue = ColourFamily | ColourFamily[] | null;
 const TERM_OVERRIDES = OVERRIDES.terms as Record<string, OverrideValue>;
 const WEAK_WORD_OVERRIDES = OVERRIDES.weakWords as Record<string, OverrideValue>;
 
+/**
+ * Machine-set answers, kept in their own map so they can never be confused
+ * with Tina's.
+ *
+ * `terms` above is hers, made while looking at the garments. `autoTerms` is
+ * read off the product photographs by an apparel-trained model
+ * (scripts/colour_from_images_clip.py, Marqo-FashionSigLIP). Measured against
+ * 200 products whose title already states the colour: **74.0% from a single
+ * photograph**, and nearly every miss is an adjacent family — brown for beige,
+ * blue for grey, white for cream, blue for navy.
+ *
+ * HERS ALWAYS WINS. This map is consulted only after `terms` has no entry for
+ * the term, so answering a term in the review page permanently overrules the
+ * machine and nothing she has decided can be walked back by a later automated
+ * pass.
+ *
+ * WHY IT IS APPLIED AT ALL, given one in four is wrong. The alternative was not
+ * "accurate colours" but "no colour": these 750 terms cover 962 products, 5.1%
+ * of the catalogue, and they were showing under no colour chip at all. ~712 now
+ * land right and ~250 land on a neighbouring shade, which trades 5.1% invisible
+ * for about 1.3% slightly-off. Tina's call, taken 2026-08-29 after she had hand
+ * answered 117 terms and asked not to do the remaining 750.
+ */
+const AUTO_TERM_OVERRIDES = ((OVERRIDES as { autoTerms?: Record<string, OverrideValue> }).autoTerms
+  ?? {}) as Record<string, OverrideValue>;
+
 /** One override value as the list it stands for.
  *
  *  No validation here, deliberately, and this is the seam where a bad
@@ -422,6 +448,19 @@ export function classifyColour(title: string): ColourVerdict {
       return { family: families[0] ?? null, confidence: 'override', term, families, candidates: [], matchedWord: null };
     }
     nulledTerm = true;
+  }
+
+  // 1b. The machine's reading, consulted only where Tina has said nothing —
+  //     including where she has said null, which is a decision and outranks a
+  //     photograph. Reported as its own confidence so the review page can show
+  //     it as a suggestion and the coverage script can count it separately;
+  //     nothing downstream may treat it as her word.
+  if (!nulledTerm && term !== null && term in AUTO_TERM_OVERRIDES) {
+    const forced = AUTO_TERM_OVERRIDES[term];
+    if (forced !== null) {
+      const families = asFamilies(forced);
+      return { family: families[0] ?? null, confidence: 'auto', term, families, candidates: [], matchedWord: null };
+    }
   }
 
   // 2. The suffix. Every family that matched is reported, not just the winner.

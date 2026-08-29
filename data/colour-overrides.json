@@ -183,6 +183,1213 @@
       "beige"
     ]
   },
+  "//autoTerms": "MACHINE-SET, not Tina's. Read off the product photographs by an apparel-trained model (scripts/colour_from_images_clip.py, Marqo-FashionSigLIP), measured at 74.0% from a single photograph against 200 products whose title already states the colour; nearly every miss is an adjacent family (brown/beige, blue/grey, white/cream, blue/navy). lib/colour.ts consults this ONLY where `terms` above has no entry, so answering a term in the review page permanently overrules it. Applied 2026-08-29 at Tina's instruction, after she hand-answered 117 terms, because the alternative for these 962 products was not a better colour but NO colour. Delete any entry freely; the term simply returns to unclassified. Regenerate with: ./.venv-style/bin/python scripts/colour_from_images_clip.py --propose",
+  "autoTerms": {
+    "cloud": "grey",
+    "spice": "brown",
+    "pebble": "beige",
+    "chai": "brown",
+    "hibiscus": "pink",
+    "rose gold": [
+      "yellow",
+      "pink"
+    ],
+    "port royale": "red",
+    "pine bark": "brown",
+    "stone blue": [
+      "beige",
+      "blue"
+    ],
+    "heather": "grey",
+    "pink taupe": [
+      "pink",
+      "beige"
+    ],
+    "sesame": "beige",
+    "seaweed": "grey",
+    "rain drum": "brown",
+    "vetiver": "beige",
+    "sable": "orange",
+    "harbor mist": "green",
+    "uluru": "red",
+    "black x red": [
+      "red",
+      "black"
+    ],
+    "laurel": "grey",
+    "burgundy & gold": [
+      "red",
+      "yellow"
+    ],
+    "bloom": "purple",
+    "rich auburn": "brown",
+    "fog": "grey",
+    "milo": "brown",
+    "brownstone": "beige",
+    "breeze": "purple",
+    "grove": "beige",
+    "rainforest": "brown",
+    "butterbloom": "cream",
+    "marine": "navy",
+    "oldpink": "pink",
+    "burnt sugar": "brown",
+    "chartreuse": "green",
+    "dark sea": "green",
+    "rasberry": "purple",
+    "lime": "green",
+    "brunette": "brown",
+    "auburn": "orange",
+    "light mink": "beige",
+    "purple floral": [
+      "purple",
+      "multi"
+    ],
+    "black ditsy floral": [
+      "black",
+      "multi"
+    ],
+    "antler": "brown",
+    "seashell": "pink",
+    "black plum": [
+      "purple",
+      "black"
+    ],
+    "velvet": "purple",
+    "wave": "blue",
+    "crushed rock": "beige",
+    "cuba": "black",
+    "acorn": "beige",
+    "boulder": "brown",
+    "marina": "blue",
+    "taupe brown": [
+      "brown",
+      "beige"
+    ],
+    "stone green": [
+      "beige",
+      "green"
+    ],
+    "taupe grey": [
+      "beige",
+      "grey"
+    ],
+    "pear": "yellow",
+    "carribean": "brown",
+    "cactus": "green",
+    "turkish sea": "purple",
+    "snow": "white",
+    "charlotte": "beige",
+    "terracotta rose": [
+      "orange",
+      "pink"
+    ],
+    "blooming dahlia": "brown",
+    "petal": "pink",
+    "desert flower": "pink",
+    "sandshell": "beige",
+    "steel": "grey",
+    "ash brown": [
+      "brown",
+      "grey"
+    ],
+    "coral almond": [
+      "pink",
+      "beige"
+    ],
+    "gown": "black",
+    "willow": "green",
+    "raspberry": "red",
+    "tosca": "grey",
+    "misty mink": "beige",
+    "plumberry": "red",
+    "blushpink": "pink",
+    "custard": "cream",
+    "coconut milk": "cream",
+    "vintage roze": "brown",
+    "sea": "blue",
+    "lavender grey": [
+      "purple",
+      "grey"
+    ],
+    "opal": "cream",
+    "ash rose": [
+      "pink",
+      "grey"
+    ],
+    "persian jewel": "blue",
+    "nude grey": [
+      "beige",
+      "grey"
+    ],
+    "eclipse": "navy",
+    "soft slit": "brown",
+    "sea fog": "purple",
+    "meringue": "beige",
+    "castlerock": "grey",
+    "deep pacific": "grey",
+    "ochre": "yellow",
+    "enchanted": "green",
+    "quarry": "grey",
+    "mahogany rose": [
+      "pink",
+      "brown"
+    ],
+    "ginger snap": "beige",
+    "elderberry": "purple",
+    "flint": "purple",
+    "otter": "beige",
+    "moss gray": [
+      "grey",
+      "green"
+    ],
+    "moonrock": "beige",
+    "seagrass": "green",
+    "cowhide": "orange",
+    "ginger": "beige",
+    "dark berry": "brown",
+    "gardenia": "cream",
+    "tawny": "brown",
+    "sirocco": "beige",
+    "tourmaline": "blue",
+    "reseda": "green",
+    "raindrops": "purple",
+    "spiced apple": "red",
+    "viola": "purple",
+    "sphinx": "pink",
+    "turkish": "green",
+    "muslin": "pink",
+    "desert palm": "brown",
+    "lilas": "pink",
+    "dill": "green",
+    "burro": "beige",
+    "mocha rose": [
+      "pink",
+      "brown"
+    ],
+    "lead": "grey",
+    "cone flower": "pink",
+    "nougat": "brown",
+    "london fog": "grey",
+    "olive taupe": [
+      "beige",
+      "green"
+    ],
+    "rain": "purple",
+    "mediterranea": "blue",
+    "blue stripe": [
+      "blue",
+      "multi"
+    ],
+    "magnolia": "cream",
+    "ballerina": "pink",
+    "limeade": "green",
+    "rumman": "red",
+    "deep lagoon": "blue",
+    "mocha mauve": [
+      "purple",
+      "brown"
+    ],
+    "golden olive": [
+      "yellow",
+      "green"
+    ],
+    "yale": "blue",
+    "teak": "beige",
+    "nectar": "pink",
+    "mellow": "cream",
+    "kambaba": "green",
+    "biscotti": "beige",
+    "blushing girl": "pink",
+    "black/gold": [
+      "yellow",
+      "black"
+    ],
+    "neutral": "beige",
+    "dark pearwood": "beige",
+    "burnt sienna": "brown",
+    "brown taupe": [
+      "brown",
+      "beige"
+    ],
+    "raven": "brown",
+    "spruce": "navy",
+    "golden brown": [
+      "yellow",
+      "brown"
+    ],
+    "peach beige": [
+      "pink",
+      "beige"
+    ],
+    "blue graphite": [
+      "grey",
+      "blue"
+    ],
+    "slate blue": [
+      "grey",
+      "blue"
+    ],
+    "fango": "brown",
+    "black forest": [
+      "green",
+      "black"
+    ],
+    "cafe au lait": "brown",
+    "aquamarin": "green",
+    "türkis": "blue",
+    "non-slip": "black",
+    "ivory blush": [
+      "pink",
+      "white"
+    ],
+    "limited editon": "pink",
+    "purple floral print": [
+      "purple",
+      "multi"
+    ],
+    "sea mist": "grey",
+    "crema": "cream",
+    "mintgroen": "green",
+    "khuzama mist": "purple",
+    "noir gold": [
+      "yellow",
+      "black"
+    ],
+    "buttermilk": "cream",
+    "lavender rose": [
+      "pink",
+      "purple"
+    ],
+    "beige/brown": [
+      "brown",
+      "beige"
+    ],
+    "nasmet el arz": "grey",
+    "zahret el ward": "pink",
+    "roze": "pink",
+    "turquoise & gold": [
+      "yellow",
+      "blue"
+    ],
+    "noor el layl": "cream",
+    "bluebell": "blue",
+    "leaf": "green",
+    "lagoon": "blue",
+    "off-white": [
+      "cream",
+      "white"
+    ],
+    "fushia": "pink",
+    "zenith": "blue",
+    "nude/black": [
+      "beige",
+      "black"
+    ],
+    "cherry brown": [
+      "red",
+      "brown"
+    ],
+    "samaa": "blue",
+    "hearts out": "white",
+    "sandalwood": "brown",
+    "morel": "grey",
+    "raml lubnan": "beige",
+    "ivony": "pink",
+    "grey & blue": [
+      "grey",
+      "blue"
+    ],
+    "cream/blue": [
+      "cream",
+      "blue"
+    ],
+    "salie": "cream",
+    "babypink": "pink",
+    "slim fit": "brown",
+    "celestial night": "green",
+    "caspian": "blue",
+    "morning mist": "grey",
+    "peachy": "orange",
+    "summer snow ™": "white",
+    "muted basel": "green",
+    "dusty": "white",
+    "guava": "green",
+    "grapefruit tart": "orange",
+    "ورق ناعم": "red",
+    "customisable silhouette™": "black",
+    "aegean": "blue",
+    "burnt clay": "brown",
+    "oud santal": "beige",
+    "tube style": "navy",
+    "dusky mink": "purple",
+    "mt019": "blue",
+    "white blue": [
+      "white",
+      "blue"
+    ],
+    "nude blush": [
+      "pink",
+      "beige"
+    ],
+    "dark spice": "red",
+    "lead (j)": "blue",
+    "sugar": "cream",
+    "light lime": "cream",
+    "oasis": "cream",
+    "skyflower": "blue",
+    "henna": "green",
+    "qahwa": "brown",
+    "cream/brown": [
+      "brown",
+      "cream"
+    ],
+    "pillowtalk": "brown",
+    "moss beige": [
+      "beige",
+      "green"
+    ],
+    "mystic wave": "green",
+    "lavender blush": [
+      "pink",
+      "purple"
+    ],
+    "rose beige (j)": [
+      "pink",
+      "beige"
+    ],
+    "bronze mustard": [
+      "orange",
+      "yellow"
+    ],
+    "dusty diva": "purple",
+    "black/brown": [
+      "brown",
+      "black"
+    ],
+    "pink sand": [
+      "pink",
+      "beige"
+    ],
+    "stone moss": [
+      "beige",
+      "green"
+    ],
+    "online exclusive": "black",
+    "pink/brown": [
+      "pink",
+      "brown"
+    ],
+    "bronze chestnut": [
+      "orange",
+      "brown"
+    ],
+    "luna rock": "beige",
+    "karaz": "red",
+    "byzantium": "red",
+    "magnet": "grey",
+    "kastana": "brown",
+    "farasha": "grey",
+    "couture spirit": "black",
+    "darkblue": "navy",
+    "mulberry brown": [
+      "purple",
+      "brown"
+    ],
+    "glossy gown": "blue",
+    "peru": "pink",
+    "lumière": "cream",
+    "taupe pink": [
+      "pink",
+      "beige"
+    ],
+    "lila": "purple",
+    "p24743": "beige",
+    "velvet teddy": "beige",
+    "raffia": "beige",
+    "cappucino": "brown",
+    "knitted zipped collar": "black",
+    "moon": "purple",
+    "blush nude abaya": [
+      "pink",
+      "beige"
+    ],
+    "wisteria black": [
+      "purple",
+      "black"
+    ],
+    "blush brown": [
+      "pink",
+      "brown"
+    ],
+    "black coffee": [
+      "brown",
+      "black"
+    ],
+    "nutmeg latte": [
+      "brown",
+      "beige"
+    ],
+    "cardinal": "red",
+    "greybeige blended": "grey",
+    "deep fig": "cream",
+    "rosé": "pink",
+    "mustard bronze": [
+      "orange",
+      "yellow"
+    ],
+    "citrine": "yellow",
+    "white/ blue": [
+      "white",
+      "blue"
+    ],
+    "cedarwood": "beige",
+    "amberlight": "cream",
+    "sandstone": "beige",
+    "chocolate pistachio": [
+      "brown",
+      "green"
+    ],
+    "seal": "grey",
+    "golden blush": [
+      "yellow",
+      "pink"
+    ],
+    "legergroen": "green",
+    "green charcoal": [
+      "grey",
+      "green"
+    ],
+    "chartreuse shine": "yellow",
+    "salt & pepper": "grey",
+    "arz": "green",
+    "bear": "brown",
+    "carmine": "red",
+    "tulip": "purple",
+    "ash mocha": [
+      "brown",
+      "grey"
+    ],
+    "lavender gray": [
+      "purple",
+      "grey"
+    ],
+    "dusty rosa": "pink",
+    "orangeade": "orange",
+    "olivine": "green",
+    "crocus": "pink",
+    "stone leopard": [
+      "beige",
+      "multi"
+    ],
+    "pine": "green",
+    "olympic": "blue",
+    "limpet shell": "blue",
+    "green floral": [
+      "green",
+      "multi"
+    ],
+    "nude gold": [
+      "yellow",
+      "beige"
+    ],
+    "cobalt violet": [
+      "purple",
+      "blue"
+    ],
+    "plum fudge": [
+      "purple",
+      "brown"
+    ],
+    "kashmir": "green",
+    "mosgroen": "green",
+    "buff": "beige",
+    "golden green": [
+      "yellow",
+      "green"
+    ],
+    "sunbloom": "cream",
+    "gray blue": [
+      "grey",
+      "blue"
+    ],
+    "rosemary": "green",
+    "curry": "yellow",
+    "lime sherbet": "yellow",
+    "muse gown": "green",
+    "black x orchid": [
+      "purple",
+      "black"
+    ],
+    "buttercup": "cream",
+    "petal gown": "pink",
+    "softblue": "blue",
+    "twilight": "blue",
+    "magenta purple": [
+      "pink",
+      "purple"
+    ],
+    "dusty rosewood": "red",
+    "blonde": "beige",
+    "cider": "yellow",
+    "butterscotch": "yellow",
+    "lilac rose": [
+      "pink",
+      "purple"
+    ],
+    "paars": "purple",
+    "buttercream yellow": [
+      "yellow",
+      "cream"
+    ],
+    "cream pink": [
+      "pink",
+      "cream"
+    ],
+    "caviar": "grey",
+    "limon": "yellow",
+    "crownblue": "grey",
+    "blush gold": [
+      "yellow",
+      "pink"
+    ],
+    "rosepatina": "pink",
+    "phantom": "black",
+    "hyacinth": "purple",
+    "nightfall": "black",
+    "sherbert": "yellow",
+    "zachtroze": "pink",
+    "blush lilac": [
+      "pink",
+      "purple"
+    ],
+    "canyon clay": "orange",
+    "zaitoon": "green",
+    "capri": "grey",
+    "pack of 4": "brown",
+    "redwood": "orange",
+    "anchor": "grey",
+    "zalmroze": "beige",
+    "ivory forest": [
+      "white",
+      "green"
+    ],
+    "mulberry red": [
+      "red",
+      "purple"
+    ],
+    "cream & tan": [
+      "brown",
+      "cream"
+    ],
+    "grijs": "grey",
+    "mocha taupe": [
+      "brown",
+      "beige"
+    ],
+    "pistachio creme": [
+      "cream",
+      "green"
+    ],
+    "zilvergrijs": "grey",
+    "anise": "green",
+    "tiramisu": "brown",
+    "espresso plum": [
+      "purple",
+      "brown"
+    ],
+    "shimmer": "green",
+    "dark henna": "brown",
+    "midnight meadow": "blue",
+    "rumaan": "red",
+    "framboos": "orange",
+    "damask": "pink",
+    "burnt ochre": "orange",
+    "blue umber": [
+      "brown",
+      "blue"
+    ],
+    "minted meadow": "grey",
+    "warm": "brown",
+    "sage espresso": [
+      "brown",
+      "green"
+    ],
+    "rustic root": "beige",
+    "cream grey": [
+      "cream",
+      "grey"
+    ],
+    "blush stone": [
+      "pink",
+      "beige"
+    ],
+    "cream beige": [
+      "beige",
+      "cream"
+    ],
+    "warm dune": "cream",
+    "celadon mist": "green",
+    "ivory creme": [
+      "cream",
+      "white"
+    ],
+    "vintagegroen": "green",
+    "white & tan": [
+      "brown",
+      "white"
+    ],
+    "black & orange": [
+      "orange",
+      "black"
+    ],
+    "malak": "pink",
+    "faten": "pink",
+    "beige & orange": [
+      "orange",
+      "beige"
+    ],
+    "niagara": "grey",
+    "white/blue": [
+      "white",
+      "blue"
+    ],
+    "mulberry rose": [
+      "pink",
+      "purple"
+    ],
+    "white & green": [
+      "white",
+      "green"
+    ],
+    "autumn": "brown",
+    "merlot": "red",
+    "rolex": "black",
+    "rose nude": [
+      "pink",
+      "beige"
+    ],
+    "twilight mist": "blue",
+    "java": "brown",
+    "amal": "purple",
+    "moon rock": "beige",
+    "jenan": "red",
+    "muave": "brown",
+    "abeer": "navy",
+    "ocean gray": [
+      "grey",
+      "blue"
+    ],
+    "ghadir": "blue",
+    "lama": "grey",
+    "aisha": "pink",
+    "fayrouz": "white",
+    "maple": "beige",
+    "ruqayah": "pink",
+    "darling": "pink",
+    "safa": "pink",
+    "embrace": "pink",
+    "rola": "red",
+    "imagine": "orange",
+    "lana": "pink",
+    "stormy": "grey",
+    "loubna": "orange",
+    "diana": "blue",
+    "assiyah": "blue",
+    "haila": "cream",
+    "iqra": "white",
+    "narjis": "orange",
+    "bestie": "pink",
+    "ehsan": "beige",
+    "najwa": "beige",
+    "key lime": "green",
+    "rihana": "beige",
+    "medina": "beige",
+    "mecca": "pink",
+    "layah": "orange",
+    "eva": "red",
+    "zaina": "brown",
+    "cornsilk": "beige",
+    "hanin": "brown",
+    "dalia": "grey",
+    "farah": "grey",
+    "zaynab": "red",
+    "sabeen": "pink",
+    "nadeen": "pink",
+    "malika": "blue",
+    "latifa": "purple",
+    "jamila": "pink",
+    "hiba": "beige",
+    "fatimah": "pink",
+    "amaya": "green",
+    "ada çayı": "beige",
+    "misty mauve blush": [
+      "pink",
+      "purple"
+    ],
+    "kashmiri chai": "pink",
+    "lilac ash": [
+      "purple",
+      "grey"
+    ],
+    "scarab": "green",
+    "fairy lights": "brown",
+    "woodsmoke": "brown",
+    "amber bronze": [
+      "orange",
+      "yellow"
+    ],
+    "cocoa rose": [
+      "pink",
+      "brown"
+    ],
+    "sunset horizon": "red",
+    "pastel mink": "pink",
+    "moonlit pearl": "beige",
+    "sun": "yellow",
+    "golden noir": [
+      "yellow",
+      "black"
+    ],
+    "toasted coconut": "pink",
+    "olive gold": [
+      "yellow",
+      "green"
+    ],
+    "cocoa plum": [
+      "purple",
+      "brown"
+    ],
+    "stone gray": [
+      "beige",
+      "grey"
+    ],
+    "goldenrod": "yellow",
+    "cocoa blush": [
+      "pink",
+      "brown"
+    ],
+    "stone grey": [
+      "beige",
+      "grey"
+    ],
+    "embossed dots": "cream",
+    "blush mauve": [
+      "pink",
+      "purple"
+    ],
+    "twilight waves": "blue",
+    "black/print": [
+      "black",
+      "multi"
+    ],
+    "au lait": "white",
+    "earth marble": "brown",
+    "blush taupe": [
+      "pink",
+      "beige"
+    ],
+    "caramel creme": [
+      "brown",
+      "cream"
+    ],
+    "dark lamantin": "green",
+    "golden sand": [
+      "yellow",
+      "beige"
+    ],
+    "almond sage": [
+      "beige",
+      "green"
+    ],
+    "sepia rose": [
+      "pink",
+      "brown"
+    ],
+    "night owl": "grey",
+    "stone sage": [
+      "beige",
+      "green"
+    ],
+    "light carmine": "orange",
+    "midnight shore": "black",
+    "deliciosi": "brown",
+    "zaytoun": "brown",
+    "lipstick": "orange",
+    "citrus": "yellow",
+    "cherry truffle": [
+      "red",
+      "brown"
+    ],
+    "nuthatch": "brown",
+    "sea kelp": "green",
+    "mushroom brown": [
+      "brown",
+      "beige"
+    ],
+    "black / gold": [
+      "yellow",
+      "black"
+    ],
+    "sapphire navy": [
+      "navy",
+      "blue"
+    ],
+    "mocha latte": [
+      "brown",
+      "beige"
+    ],
+    "mahogany plum": [
+      "purple",
+      "brown"
+    ],
+    "obsidian": "black",
+    "thulium": "pink",
+    "poppy seed": "grey",
+    "light marcore": "orange",
+    "black olive": [
+      "green",
+      "black"
+    ],
+    "arona": "green",
+    "dolphin": "grey",
+    "rhino": "beige",
+    "sorbet": "cream",
+    "fern": "green",
+    "abyad": "white",
+    "ash beige": [
+      "beige",
+      "grey"
+    ],
+    "aztec": "brown",
+    "belize": "blue",
+    "wren": "brown",
+    "bright yale": "blue",
+    "watermelon": "orange",
+    "rose tan": [
+      "pink",
+      "brown"
+    ],
+    "aquifer": "green",
+    "grey beige": [
+      "beige",
+      "grey"
+    ],
+    "picante": "orange",
+    "white/gold": [
+      "yellow",
+      "white"
+    ],
+    "beige/gold": [
+      "yellow",
+      "beige"
+    ],
+    "whitecap": "cream",
+    "salsa rosa": "beige",
+    "pink/gold": [
+      "yellow",
+      "pink"
+    ],
+    "spice clay": "orange",
+    "black/silver": [
+      "grey",
+      "black"
+    ],
+    "dark fig": "purple",
+    "arctic ice": "purple",
+    "tree": "green",
+    "poison": "green",
+    "titanium": "grey",
+    "almond peach": [
+      "pink",
+      "beige"
+    ],
+    "light rosewood": "brown",
+    "tiffany": "green",
+    "mystical": "purple",
+    "dark shadow": "grey",
+    "watercolor bloom": "brown",
+    "burlwood": "purple",
+    "fundango": "purple",
+    "chocolate rose": [
+      "pink",
+      "brown"
+    ],
+    "cyaneus": "blue",
+    "driftwood": "grey",
+    "costal fog": "brown",
+    "cilantro": "green",
+    "dried pear": "green",
+    "moss grey": [
+      "grey",
+      "green"
+    ],
+    "cloudburst": "grey",
+    "black leopard bloom": [
+      "black",
+      "multi"
+    ],
+    "dijon": "yellow",
+    "blush sand": [
+      "pink",
+      "beige"
+    ],
+    "doeskin": "beige",
+    "saks": "blue",
+    "red & white": [
+      "red",
+      "white"
+    ],
+    "browni": "brown",
+    "sinopia fresco": "beige",
+    "mocha bisque": [
+      "brown",
+      "beige"
+    ],
+    "dark rosewood": "red",
+    "gray violet": [
+      "purple",
+      "grey"
+    ],
+    "cypress": "green",
+    "rosy mist": "brown",
+    "thistle": "purple",
+    "plum truffle": [
+      "purple",
+      "brown"
+    ],
+    "haze fringe": "grey",
+    "kalamata fringe": "green",
+    "rosaline": "purple",
+    "moonstone": "grey",
+    "pearl dust": "grey",
+    "mystic meadow": "pink",
+    "caramel taupe": [
+      "brown",
+      "beige"
+    ],
+    "light neutral": "brown",
+    "riptide": "blue",
+    "rosy": "pink",
+    "pomegranate noir": [
+      "red",
+      "black"
+    ],
+    "lavendel": "purple",
+    "perfectly pale": "cream",
+    "orange beige": [
+      "orange",
+      "beige"
+    ],
+    "mint cream": [
+      "cream",
+      "green"
+    ],
+    "flower": "pink",
+    "butterfly": "green",
+    "charcoal mauve": [
+      "purple",
+      "grey"
+    ],
+    "ultramarina": "blue",
+    "saffron brown": [
+      "yellow",
+      "brown"
+    ],
+    "lyn": "beige",
+    "jungle": "green",
+    "moondrop grapes": "brown",
+    "tamac": "green",
+    "froth": "grey",
+    "creme grey": [
+      "cream",
+      "grey"
+    ],
+    "trooper": "grey",
+    "shark": "grey",
+    "terra cota": "beige",
+    "black and white": [
+      "white",
+      "black"
+    ],
+    "26 java": "brown",
+    "10 anise": "brown",
+    "moonstruck": "cream",
+    "99 rose taupe": [
+      "pink",
+      "beige"
+    ],
+    "eden": "green",
+    "rosenrote": "beige",
+    "chocolate creme": [
+      "brown",
+      "cream"
+    ],
+    "seaform": "green",
+    "deep olivewood": "brown",
+    "silver/blue": [
+      "grey",
+      "blue"
+    ],
+    "olive ash": [
+      "grey",
+      "green"
+    ],
+    "nude mauve": [
+      "purple",
+      "beige"
+    ],
+    "kohl": "grey",
+    "blueberry": "navy",
+    "samba": "red",
+    "dove taupe": [
+      "beige",
+      "grey"
+    ],
+    "soft lime": "cream",
+    "lilac taupe": [
+      "purple",
+      "beige"
+    ],
+    "dusty mink": "pink",
+    "cacao": "purple",
+    "warm olive gold": [
+      "yellow",
+      "green"
+    ],
+    "royal berry": "red",
+    "eclair": "pink",
+    "92 black cherry": [
+      "red",
+      "black"
+    ],
+    "vintage": "beige",
+    "emerald teal": [
+      "green",
+      "blue"
+    ],
+    "59 sahara": "brown",
+    "75 choc chip": "brown",
+    "14 metal": "grey",
+    "seagreen": "blue",
+    "ash noir": [
+      "grey",
+      "black"
+    ],
+    "pebblestone": "grey",
+    "shitake": "brown",
+    "stillwater": "blue",
+    "light natural": "pink",
+    "black and grey": [
+      "grey",
+      "black"
+    ],
+    "loden frost": "green",
+    "skin": "cream",
+    "iris storm": "black",
+    "dark rosé": "pink",
+    "champagne glow": "cream",
+    "brown peach": [
+      "pink",
+      "brown"
+    ],
+    "brown floral": [
+      "brown",
+      "multi"
+    ],
+    "pink floral": [
+      "pink",
+      "multi"
+    ],
+    "grey brown": [
+      "brown",
+      "grey"
+    ],
+    "banana rose": [
+      "yellow",
+      "pink"
+    ],
+    "pastel green floral": [
+      "green",
+      "multi"
+    ],
+    "grey white": [
+      "white",
+      "grey"
+    ],
+    "red floral ditsy": [
+      "red",
+      "multi"
+    ],
+    "creme white": [
+      "cream",
+      "white"
+    ],
+    "petrol green": [
+      "green",
+      "blue"
+    ],
+    "criss cross": "beige",
+    "purple ash": [
+      "purple",
+      "grey"
+    ],
+    "nude purple": [
+      "purple",
+      "beige"
+    ],
+    "plain": "beige",
+    "nude rose": [
+      "pink",
+      "beige"
+    ],
+    "iceberg": "blue",
+    "light desert": "beige",
+    "winter twig": "beige",
+    "deep mocha and dove grey": [
+      "brown",
+      "grey"
+    ],
+    "melon": "orange",
+    "deep roselle": "brown",
+    "sunkissed dune": "pink",
+    "twilight grey & navy": [
+      "navy",
+      "grey"
+    ],
+    "navy & pearl grey": [
+      "navy",
+      "grey"
+    ],
+    "mahogany rouge": [
+      "red",
+      "brown"
+    ],
+    "desert peony": "pink",
+    "khaki noir": [
+      "beige",
+      "black"
+    ],
+    "moonstone mist": "grey",
+    "mauve rose": [
+      "pink",
+      "purple"
+    ],
+    "blushed mink": "pink",
+    "layl": "blue",
+    "panna cotta": "cream",
+    "royal blue & cream": [
+      "cream",
+      "blue"
+    ],
+    "black & nude": [
+      "beige",
+      "black"
+    ],
+    "creme caramel": [
+      "brown",
+      "cream"
+    ]
+  },
   "//weakWords": "Keyed by a SINGLE lowercased word, and applies only to a match found in the BODY of a title, never in the suffix. It exists so a word like 'rose' can be switched off where it is usually a style name ('Mystic Rose Hijab') while still working as a colourway ('... - Dusty Rose'). null switches the word off in the body; a family name forces that family instead, and a LIST of families - [\"black\", \"red\"] - forces all of them, the same as in terms above. A null costs only that word: 'Rose Pink ...' is still pink, because lib/colour.ts steps over the switched-off 'Rose' and keeps reading the same colour's words in the rest of the title.",
   "weakWords": {
     "rose": null
