@@ -98,6 +98,32 @@ control on exactly these pages; the check is what turns "should still work on to
 **Cards:** ten cards inspected per surface with Green selected. `/modest-dresses` was 10 of 10.
 `/directory` surfaced the two honest classes in "Known imprecisions" below.
 
+**On staging** — `https://themodestyhouse-staging-production.up.railway.app`, deploy `76e63ca`,
+driven with Playwright and looked at:
+
+```
+chromium desktop  /directory        opened on click: 16 rows, 15 dots, first "ALL COLOURS"
+                                    SHOWING 24 OF 9524  ->  24 OF 530   chip "Green"
+                                    back to All:        ->  24 OF 9524  chip "Colour"
+chromium phone    /modest-dresses   opened on TAP:   16 rows, 15 dots
+                                    SHOWING 24 OF 2031  ->  24 OF 110   chip "Green"
+                                    back to All:        ->  24 OF 2031  chip "Colour"
+```
+
+Six cards inspected in the Green grid: five are unmistakably green (Sage polo dress, LB94 Dress
+Dark Green B5, an olive abaya, a sage skirt, an emerald embroidered abaya). The sixth is
+"Olive Chiffon Co-ord Set" — the mis-photographed product described below, reproduced live.
+`x-robots-tag: noindex, nofollow, noarchive` confirmed on staging.
+
+**A note on the marker, because it cost 13 minutes.** The first deploy check polled for the
+string "All colours", found nothing, and read as "not deployed" — while the deploy had in fact
+landed. "All colours" lives inside the Base UI popup, which is portalled and only mounted when
+the menu opens, so it is never in server-rendered HTML. §10.47 rule 3 says to prove a marker is
+a discriminator: it was confirmed ABSENT on production but never confirmed PRESENT where the
+change is, which is the half that matters. The honest markers are `>Colour<` (the chip trigger)
+and `colourIdx`, both server-rendered, both 1 on staging and 0 on production, and `/directory`
+at 893,429 B against production's 869,479 B.
+
 ## Two bugs in the plan, both found by review rather than by its author
 
 1. **A `null` override was ruling out the product, not the suffix.** The plan spec'd an
