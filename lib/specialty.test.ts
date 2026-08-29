@@ -34,7 +34,10 @@ describe('isActivewear', () => {
   // because the behaviour it pins is the one that was wrong and could return.
   it('ignores the feed activity flag completely — the title is the only evidence', () => {
     expect(isActivewear({ ...p('Plain Hijab', 'hijab'), activity: ['gym'] })).toBe(false);
-    expect(isActivewear({ ...p('Plain Leggings', 'trousers'), activity: ['gym'] })).toBe(false);
+    // A garment with no activewear word in its name, however the feed tags it.
+    // (Not "Plain Leggings" — `leggings` became an activewear word later the
+    // same day, see the leggings test above.)
+    expect(isActivewear({ ...p('Wide Leg Trouser - Almond', 'trousers'), activity: ['gym'] })).toBe(false);
     // …and the same garment DOES qualify once its name says so.
     expect(isActivewear({ ...p('Active Leggings - Sage', 'trousers') })).toBe(true);
   });
@@ -494,7 +497,19 @@ describe('isActivewear — title evidence only (2026-08-29)', () => {
     expect(isActivewear(p('Jordan Pants', 'trousers', tagged))).toBe(false);
     expect(isActivewear(p('Rora Jacket', 'top', tagged))).toBe(false);
     expect(isActivewear(p('Dune Splash Blouse Black', 'top', tagged))).toBe(false);
-    expect(isActivewear(p('Aiyla (Leggings) - Cloud', 'trousers', tagged))).toBe(false);
+    // NB "Aiyla (Leggings)" was in this list until leggings joined the
+    // vocabulary later the same day — it is a legging, so it belongs.
+    expect(isActivewear(p('Zara Trouser - Blush', 'trousers', tagged))).toBe(false);
+  });
+
+  it('claims leggings — which the lane intro has always promised', () => {
+    expect(isActivewear(p('Essential Legging | Moss Gray', 'trousers'))).toBe(true);
+    expect(isActivewear(p('Core Leggings - Mauve', 'trousers'))).toBe(true);
+    expect(isActivewear(p('Second Skin Leggings Chocolate', 'trousers'))).toBe(true);
+    expect(isActivewear(p('CityLite Track Jacket - Black', 'top'))).toBe(true);
+    // …but a SWIM legging is swim, because isSwim() is checked first.
+    expect(isActivewear(p('Swim Leggings Black', 'swim'))).toBe(false);
+    expect(isActivewear(p('Capri Swim Tights - Bloom', 'swim'))).toBe(false);
   });
 
   it('still matches genuine activewear, including the words the old rule missed', () => {

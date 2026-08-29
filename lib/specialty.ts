@@ -24,8 +24,21 @@ const SWIM_RE = /burkini|swim|bathing ?suit|beachwear/i;
 // 50 of the lane's 101 and pulls in 47 genuine items that were stranded on
 // other lanes, mostly Dignitii's sports dresses and BreathLite sports hijabs in
 // the colourways the tag happened not to carry.
+// `leggings`/`tights` added 2026-08-29, second pass. The lane's own intro in
+// lib/lanes.ts has always read "Sports dresses, LEGGINGS and covered athleisure
+// for training and everyday movement" — and the word had never been in this
+// vocabulary, so 52 real leggings across 10 houses (Merrachi's Essential
+// Legging, Nour Al Houda's Core Leggings, Aab's Second Skin, Nasiba, Fares,
+// Chador, Dignitii's Cooling High-Rise) sat on /modest-trousers instead. The
+// page promised something it did not show.
+//
+// Measured before shipping: 87 titles match, of which 35 are SWIM leggings and
+// stay on the swim lane (isSwim runs first in isActivewear), 0 are claimed by
+// layering, and 52 join. `track` is broadened from `track pants|suit` to the
+// bare word for the same reason — Fares' "CityLite Track Jacket" is a track
+// jacket by any reading.
 const ACTIVE_RE =
-  /\b(sports?|activewear|active|athleis\w*|athletic|gym|workout|yoga|running|performance|rashguard|track ?(pants|suit)|joggers?|on-the-go)\b/i;
+  /\b(sports?|activewear|active|athleis\w*|athletic|gym|workout|yoga|running|performance|rashguard|leggings?|tights|track|joggers?|on-the-go)\b/i;
 
 // Coverage pieces worn UNDER another garment (base layers, dickeys, standalone
 // neck covers, sleeve extenders) rather than as an outfit on their own — Tina
