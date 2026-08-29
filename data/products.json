@@ -1916,6 +1916,103 @@
     "firstSeen": null
   },
   {
+    "id": "haya-active:15241445114242",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Sports Hijab - Butter Yellow",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/yellow1.jpg?v=1777463839",
+    "url": "https://haya-active.com/products/sports-hijab-butter-yellow",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526323867935",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "PWR Oversized Active Tee",
+    "price": 50.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITHPHOTO2FITH2copy13.jpg?v=1781205973",
+    "url": "https://getfith.co/products/pwr-oversized-active-tee",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8144082206767",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Pixie Dust Curved Hem Activewear Top",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/4E5A5286-scaled.webp?v=1767165153",
+    "url": "https://nemahwear.com/products/pixiedust-curved-hem-activewear-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993148526935",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Lia Overlay Skirt",
+    "price": 34.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_6590_redigeret-2.jpg?v=1785776772",
+    "url": "https://reclaimactive.com/products/lace-overlay-skirt",
+    "inStock": true,
+    "garment": "skirt",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "sukoon-active:9872999041",
+    "brandSlug": "sukoon-active",
+    "brandName": "Sukoon Active",
+    "title": "Athleisure Hijab",
+    "price": 12,
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/1195/0218/products/0L8A5632-desaturated_1_v3_FINAL_anette_cleaned_up.jpg?v=1552760499",
+    "url": "https://www.sukoonactive.com/products/hijab-classic",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [
+      "winter"
+    ],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "emlavish:10703944941907",
     "brandSlug": "emlavish",
     "brandName": "EM Lavish",
@@ -3824,6 +3921,103 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15241442951554",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Sports Hijab - Pink",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/pinkhijab.jpg?v=1777461976",
+    "url": "https://haya-active.com/products/sports-hijab-pink",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526317019423",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "ACTV Abaya - Modest Workout Abaya",
+    "price": 75.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITHPHOTO3FITHPHOTO3copy19.jpg?v=1781204336",
+    "url": "https://getfith.co/products/modest-long-dress",
+    "inStock": true,
+    "garment": "abaya",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8144081453103",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Mocha Curved Hem Activewear Top",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/4E5A5395-scaled.webp?v=1767165136",
+    "url": "https://nemahwear.com/products/mocha-curved-hem-activewear-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993148494167",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Medina Cape Top",
+    "price": 47.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_5227_redigeret.jpg?v=1785787563",
+    "url": "https://reclaimactive.com/products/cape-blouse",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "sukoon-active:1766467043373",
+    "brandSlug": "sukoon-active",
+    "brandName": "Sukoon Active",
+    "title": "HAWA Headband",
+    "price": 14,
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/1195/0218/products/SK10_Hawa_Headband_Berry_Pink_Front.jpg?v=1560816732",
+    "url": "https://www.sukoonactive.com/products/hawa-headband",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [
+      "winter"
+    ],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "touche-prive:10018217427272",
     "brandSlug": "touche-prive",
     "brandName": "Touché Privé",
@@ -5686,6 +5880,101 @@
     "firstSeen": "2026-08-10"
   },
   {
+    "id": "haya-active:15249824547202",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Training Joggers - Burgundy",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/joggerburg.jpg?v=1776708047",
+    "url": "https://haya-active.com/products/training-joggers-burgundy",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526313087263",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "FLX Zipped Jacket - Premium Coverage",
+    "price": 53.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITH_PHOTO_2FITH_2_copy_8.jpg?v=1781200878",
+    "url": "https://getfith.co/products/flex-hoodie-jacket-extended-coverage",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8144081420335",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Matcha Ivy Modest Activewear T-Shirt",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/4E5A5222-scaled.webp?v=1767165118",
+    "url": "https://nemahwear.com/products/matcha-ivy-modest-activewear-t-shirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993148461399",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Maya Skirt",
+    "price": 50.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_5390_redigeret.jpg?v=1785774868",
+    "url": "https://reclaimactive.com/products/pleated-skirt",
+    "inStock": true,
+    "garment": "skirt",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "sukoon-active:1766466453549",
+    "brandSlug": "sukoon-active",
+    "brandName": "Sukoon Active",
+    "title": "HAWA Headwrap",
+    "price": 44,
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/1195/0218/products/SK09_Hawa_Headwrap_Berry_Pink_Front_Right.jpg?v=1560816943",
+    "url": "https://www.sukoonactive.com/products/hawa-headwrap",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [
+      "winter"
+    ],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "modest-timeless:8519054983386",
     "brandSlug": "modest-timeless",
     "brandName": "Modest & Timeless",
@@ -7518,6 +7807,101 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:15249822122370",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Training Joggers - Navy",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/joggernavy.jpg?v=1776707467",
+    "url": "https://haya-active.com/products/training-joggers-navy",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526289527071",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "FLW Modest Workout Top",
+    "price": 51.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITHPHOTO2FITH2copy2.jpg?v=1785140385",
+    "url": "https://getfith.co/products/modest-tunic-rest-day-capsule",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8144081387567",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Women's Long Sleeve Modest Activewear Top - Olive Green",
+    "price": 2099,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/4E5A5326-scaled.webp?v=1767165101",
+    "url": "https://nemahwear.com/products/olivegreen-long-activewear-t-shirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993148395863",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Alma Pants",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/Alma_pants_redigeret-2.jpg?v=1785773541",
+    "url": "https://reclaimactive.com/products/satin-drawstring-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "sukoon-active:1766465077293",
+    "brandSlug": "sukoon-active",
+    "brandName": "Sukoon Active",
+    "title": "HAWA Step Tee",
+    "price": 72,
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/1195/0218/products/SK07_Hawa_Step_Tee_Lavendar_Blue_Front_Right.jpg?v=1560818195",
+    "url": "https://www.sukoonactive.com/products/hawa-step-tee",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [
+      "winter"
+    ],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "almotahajiba:10482911019283",
@@ -9363,6 +9747,101 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15249819304322",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Wide Leg Pant - Charcoal grey",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/widelegcharcoal.jpg?v=1776707491",
+    "url": "https://haya-active.com/products/wide-leg-pant-charcoal-grey",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526277173535",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Everyday Long Sleeve Base Layer",
+    "price": 27.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITHPHOTOFITHcopy18.jpg?v=1781206349",
+    "url": "https://getfith.co/products/pwr-long-sleeve-workout-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043384471599",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Maroon Long Modest Activewear Top",
+    "price": 2099,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Maroon-Long-Activewear-T-Shirt-_nemah-1.webp?v=1755636676",
+    "url": "https://nemahwear.com/products/maroon-long-active-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993148363095",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Sofia Skirt",
+    "price": 47.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_5914.jpg?v=1785770450",
+    "url": "https://reclaimactive.com/products/flowy-satin-skirt",
+    "inStock": true,
+    "garment": "skirt",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "sukoon-active:1766463832109",
+    "brandSlug": "sukoon-active",
+    "brandName": "Sukoon Active",
+    "title": "HAWA Drawstring Tee",
+    "price": 72,
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/1195/0218/products/SK06_Hawa_Drawstring_Tee_Deep_Black_Front.jpg?v=1556274274",
+    "url": "https://www.sukoonactive.com/products/hawa-drawstring-tee",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [
+      "winter"
+    ],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "diversity-modest:15846356746574",
     "brandSlug": "diversity-modest",
     "brandName": "Diversity Modest",
@@ -11196,6 +11675,78 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15249810063746",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Wide Leg Pant - Matcha Green",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/widelegmatcha.jpg?v=1776707540",
+    "url": "https://haya-active.com/products/wide-leg-pant-coffee-brown-copy",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526264623391",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Ease Lightweight Wide-Legged Pants",
+    "price": 50.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITHPHOTOFITHcopy5.jpg?v=1785140246",
+    "url": "https://getfith.co/products/ease-lightweight-jogger-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043384406063",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Black Long Modest Activewear Top",
+    "price": 2099,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Black-Long-modest-Activewear-T-Shirt_nemah-3.webp?v=1755636674",
+    "url": "https://nemahwear.com/products/black-long-active-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993145512279",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Amaya Top",
+    "price": 40.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_5764.jpg?v=1785934918",
+    "url": "https://reclaimactive.com/products/long-sleeve-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "veiled:9366231646313",
     "brandSlug": "veiled",
     "brandName": "Veiled",
@@ -12999,6 +13550,78 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15249802297730",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Wide Leg Pant - Coffee Brown",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/widelegcoffe.jpg?v=1776707600",
+    "url": "https://haya-active.com/products/wide-leg-pant-coffee-brown",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526246011167",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Soft Flare Leggings",
+    "price": 38.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITH_PHOTO_3FITH_PHOTO_3_copy_12.jpg?v=1781208052",
+    "url": "https://getfith.co/products/flare-leggings-extended-coverage-1",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043384307759",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Bottle Green Curved Hem Activewear Top",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Bottle-Green-Curved-Hem-Activewear-Top_nemah-2.webp?v=1755636671",
+    "url": "https://nemahwear.com/products/bottledgreen-curved-hem-modest-activewear-t-shirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993140138327",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Sara Pants",
+    "price": 38.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_5768.jpg?v=1785768084",
+    "url": "https://reclaimactive.com/products/wide-leg-pants-with-dots",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "lafemme:31246",
     "brandSlug": "lafemme",
     "brandName": "La Femme Collectie",
@@ -14800,6 +15423,82 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15191558652290",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Printed Sports Hijab - Midnight",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/midnight1.jpg?v=1764341193",
+    "url": "https://haya-active.com/products/printed-sports-hijab-midnight",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10526242013471",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Flex - Workout Leggings 2.0",
+    "price": 37.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/FITH_PHOTO_2FITH_2_copy_30.jpg?v=1781200874",
+    "url": "https://getfith.co/products/flex-workout-leggings-2-0",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043384111151",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Red Curved Hem Activewear Top",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Red-Curved-Hem-Activewear-Top_nemah-4.webp?v=1755636664",
+    "url": "https://nemahwear.com/products/red-curved-hem-modest-activewear-t-shirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993135845719",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Nora Pants",
+    "price": 54.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_4551.jpg?v=1785235356",
+    "url": "https://reclaimactive.com/products/cargo-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:8361297019178",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -16587,6 +17286,80 @@
     "season": [],
     "activity": [],
     "firstSeen": null
+  },
+  {
+    "id": "haya-active:15191395697026",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Printed Sports Hijab - Ocean",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/ocean3.jpg?v=1764340907",
+    "url": "https://haya-active.com/products/sports-hijab-1",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:8008722317599",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Active Compression Arm-Sleeves",
+    "price": 12.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-0095.jpg?v=1702795222",
+    "url": "https://getfith.co/products/active-compression-arm-sleeves",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043384012847",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Black Curved Hem Activewear Top",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Black-Curved-Hem-Activewear-Top_nemah-4.webp?v=1755636657",
+    "url": "https://nemahwear.com/products/black-curved-hem-modest-activewear-t-shirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10993135812951",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Alicia Skirt",
+    "price": 47.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_6626.jpg?v=1785775162",
+    "url": "https://reclaimactive.com/products/skirt-with-dots",
+    "inStock": true,
+    "garment": "skirt",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10028363186474",
@@ -18391,6 +19164,78 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-10"
+  },
+  {
+    "id": "haya-active:15110208455042",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Wide Leg Pant - Butter Yellow",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/widelegyellowmain.jpg?v=1760112295",
+    "url": "https://haya-active.com/products/wide-leg-pant-cream",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9867357552927",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Relaxed Top - Athleisure",
+    "price": 36.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-0021_de7fa3d8-98f6-413a-8fa6-c5bff7f0b18a.jpg?v=1739480434",
+    "url": "https://getfith.co/products/brown-relaxed-top-rest-day-capsule",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043383947311",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Blue Ivy Modest Activewear T-Shirt",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Blue-Ivy-Modest-Activewear-T-Shirt_nemah-2.webp?v=1755636655",
+    "url": "https://nemahwear.com/products/nemah-blue-ivy-modest-activewear-t-shirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10989791609175",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Aya Blouse",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_3911_167b2738-136a-4c58-a26e-81901f35dcf7.jpg?v=1785155923",
+    "url": "https://reclaimactive.com/products/ruffle-blouse",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10028045959466",
@@ -20209,6 +21054,80 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15110203605378",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Oversized Active Tee - Burgundy",
+    "price": 53.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/oversizedburgundymain.jpg?v=1760112362",
+    "url": "https://haya-active.com/products/oversized-active-tee-burgundy",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9474998010143",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Brown Relaxed Hoodie - Athleisure",
+    "price": 37.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-01961.jpg?v=1725847530",
+    "url": "https://getfith.co/products/brown-relaxed-hoodie-rest-day-capsule",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043383914543",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Purple Ivy Modest Activewear Tshirt",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Purple-Ivy-Modest-Activewear-Tshirt_nemah-3.webp?v=1755636652",
+    "url": "https://nemahwear.com/products/purple-ivy-modest-activewear-tshirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10989791543639",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Luna Pants",
+    "price": 47.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/IMG_4681.jpg?v=1785775443",
+    "url": "https://reclaimactive.com/products/satin-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028360040746",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -22000,6 +22919,84 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:15110202130818",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Oversized Active Tee - Charcoal Grey",
+    "price": 53.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/oversizedcharcoalmain.jpg?v=1760112752",
+    "url": "https://haya-active.com/products/oversized-active-tee-charcoal-grey",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:8008729264415",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Gym Workout Cover-Up",
+    "price": 27.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/Gray_Product_3_e4bf66f3-230a-4157-adba-66b20a44fe7f.jpg?v=1772842324",
+    "url": "https://getfith.co/products/gym-cover-up",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043383554095",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Black Modest Full Coverage Swimwear Top",
+    "price": 2249,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/2-1_2cada542-c453-4437-ad85-2181d925f8a5.webp?v=1770294257",
+    "url": "https://nemahwear.com/products/black-sage-burkini-top",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:10044627222871",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Active Hijab™",
+    "price": 39,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/1.jpg?v=1765554898",
+    "url": "https://reclaimactive.com/products/active-hijab",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10028359844138",
@@ -23795,6 +24792,82 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15110185976194",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Modest Active Top - Butter Yellow",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/modestyellowmain.jpg?v=1760112823",
+    "url": "https://haya-active.com/products/modest-active-top-cream",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10270484922655",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "PWR Hi-Low Loose Workout Top",
+    "price": 28.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/caramel_1.jpg?v=1772502756",
+    "url": "https://getfith.co/products/hi-low-pwr-workout-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043383488559",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Black Orca Modest Swimwear Top",
+    "price": 2149,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/11_6ff996d8-4f8d-4d2e-bda4-296666362893.webp?v=1770294257",
+    "url": "https://nemahwear.com/products/black-orca-burkini-top",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:9978668482903",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Origin Training Pants",
+    "price": 27.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/DSC1267.jpg?v=1747513752",
+    "url": "https://reclaimactive.com/products/origin_001-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028359581994",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -25563,6 +26636,80 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:15110185386370",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Modest Active Top - Pink",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/modestactivepinkmain.jpg?v=1760112840",
+    "url": "https://haya-active.com/products/modest-active-top-pink-1",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10156471615775",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "PWR Active Bottoms",
+    "price": 29.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-0815_1.jpg?v=1747696743",
+    "url": "https://getfith.co/products/pwr-modest-active-yoga-set-bottoms",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043383095343",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Activewear Flare Pants",
+    "price": 2099,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/31.webp?v=1755636626",
+    "url": "https://nemahwear.com/products/activewear-flare-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "reclaim-active:9978663207255",
+    "brandSlug": "reclaim-active",
+    "brandName": "Reclaim Active",
+    "title": "Origin Zip Top",
+    "price": 27.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0563/0594/2595/files/DSC0125-Edit.jpg?v=1747513737",
+    "url": "https://reclaimactive.com/products/origin_001-zip",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10028359188778",
@@ -27334,6 +28481,62 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15072474792322",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Butter Yellow",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/essentialyellowmain.jpg?v=1760112861",
+    "url": "https://haya-active.com/products/essential-training-top-cream",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:10156454773023",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "PWR Active Zip-Top",
+    "price": 33.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-1322_1.jpg?v=1765910445",
+    "url": "https://getfith.co/products/pwr-modest-active-yoga-set-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043382669359",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Wrap-around scarf",
+    "price": 1199,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/23.webp?v=1755636605",
+    "url": "https://nemahwear.com/products/nemah-wrap-around-scarf",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim",
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028360696106",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -29096,6 +30299,63 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15072443924866",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Pink",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/essentialpinkmain.jpg?v=1760112880",
+    "url": "https://haya-active.com/products/essential-training-top-pink",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:8097766474015",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "MODA - Modest Workout Abaya (Slim Fit)",
+    "price": 66.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-1081_2_c0159f6a-2565-4268-bdf6-be6ab96c5e0f.jpg?v=1747724159",
+    "url": "https://getfith.co/products/fith-modest-workout-abaya",
+    "inStock": true,
+    "garment": "abaya",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043382472751",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Athena 2.0 Modest Activewear Tshirt",
+    "price": 1599,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/19.webp?v=1755636606",
+    "url": "https://nemahwear.com/products/athena-modest-activewear-tshirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028361285930",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -30822,6 +32082,61 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15047059177858",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Sports Hijab - Navy",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/navyhijabamin.jpg?v=1760112944",
+    "url": "https://haya-active.com/products/sports-hijab-navy",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:8488738160927",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "MODAL 2.0 - Modest Long Sleeve Top",
+    "price": 33.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-0332.jpg?v=1729924994",
+    "url": "https://getfith.co/products/modal-2-0-high-neck-long-sleeve-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043355668527",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Swimwear Inner for Coverage & Support",
+    "price": 720,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/website-product-images.webp?v=1755635188",
+    "url": "https://nemahwear.com/products/burkini-one-piece-inner-for-modest-swimwear",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10027900141866",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -32511,6 +33826,63 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:15047058784642",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Sports Hijab - Burgundy",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/burgundyhijabmain.jpg?v=1760112969",
+    "url": "https://haya-active.com/products/sports-hijab-black-copy-1",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9475039953183",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Black Hooded Abaya (Zipped) - Athleisure",
+    "price": 62.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-02045.jpg?v=1725848012",
+    "url": "https://getfith.co/products/black-hooded-abaya-zipped-rest-day-capsule",
+    "inStock": true,
+    "garment": "abaya",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043355406383",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Themis Modest Activewear Tshirt",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/themis-website.jpg?v=1755635139",
+    "url": "https://nemahwear.com/products/themis-modest-activewear-tshirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028360204586",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -34174,6 +35546,61 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:14968302502274",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Wide Leg Pant - Burgundy",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/widelegburgundymain.jpg?v=1760113042",
+    "url": "https://haya-active.com/products/wide-leg-pant-burgundy",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9475049292063",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Grey Hooded Abaya (Zipped) - Athleisure",
+    "price": 59.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-01842.jpg?v=1725848012",
+    "url": "https://getfith.co/products/grey-hooded-abaya-zipped-rest-day-capsule-copy",
+    "inStock": true,
+    "garment": "abaya",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043354914863",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Kai Burkini Top",
+    "price": 1600,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/Nb02-scaled.jpg?v=1770294258",
+    "url": "https://nemahwear.com/products/kai-burkini-top",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028356206890",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -35831,6 +37258,61 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:14968302305666",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Wide Leg Pant - Navy",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/widelegnavymain.jpg?v=1760113067",
+    "url": "https://haya-active.com/products/wide-leg-pant-navy",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9475013181727",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Black Relaxed Hoodie - Athleisure",
+    "price": 37.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-02025.jpg?v=1725847530",
+    "url": "https://getfith.co/products/black-relaxed-hoodie-rest-day-capsule",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043354652719",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Olive Green Sage Modest Swimwear Top",
+    "price": 2199,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/6.webp?v=1770294258",
+    "url": "https://nemahwear.com/products/sage-burkini-top",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10027083301162",
@@ -37513,6 +38995,64 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:14968302174594",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Modest Active Top - Navy",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/modest-active-top-211171_b6e5a500-d262-4121-96f3-a3a44091b521.jpg?v=1747145795",
+    "url": "https://haya-active.com/products/modest-active-top-navy",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9393129586975",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Grey Relaxed Hoodie - Athleisure",
+    "price": 37.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-01987.jpg?v=1726390599",
+    "url": "https://getfith.co/products/hooded-abaya-zipped-athleisure-copy",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043354554415",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Swimwear Leggings",
+    "price": 1499,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/DSC06138edited-copy-scaled-1.webp?v=1772960523",
+    "url": "https://nemahwear.com/products/burkini-leggings",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim",
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028359909674",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -39075,6 +40615,63 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:14968301650306",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Modest Active Top - Burgundy",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/modest-active-top-211171.jpg?v=1747145656",
+    "url": "https://haya-active.com/products/modest-active-top-burgundy",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9393119133983",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Brown Hooded Abaya (Zipped) - Athleisure",
+    "price": 62.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-01819.jpg?v=1725848013",
+    "url": "https://getfith.co/products/haya-long-zipped-active-abaya-copy",
+    "inStock": true,
+    "garment": "abaya",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043354456111",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Olive Green Ivy Modest Activewear Tshirt",
+    "price": 1899,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/8.webp?v=1755635025",
+    "url": "https://nemahwear.com/products/ivy-modest-activewear-tshirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028361580842",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -40627,6 +42224,61 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:14968299946370",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Navy",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/essential-training-top-black-767553_3_b06ad82e-b74b-4b26-b6f8-50763dafa74f.jpg?v=1747145769",
+    "url": "https://haya-active.com/products/essential-training-top-navy",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9393141383455",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Cotton Relaxed Bottoms - Athleisure",
+    "price": 36.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-1-2.jpg?v=1729928051",
+    "url": "https://getfith.co/products/chute-oversized-workout-bottoms-copy",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043354357807",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Slip-on Scarf",
+    "price": 560,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/44.webp?v=1755635000",
+    "url": "https://nemahwear.com/products/burkini-scarf-for-modest-swimwear",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028038717738",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -42174,6 +43826,61 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:14968265900418",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Burgundy",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/essential-training-top-black-767553_3.jpg?v=1747145610",
+    "url": "https://haya-active.com/products/essential-training-top-black-copy",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:9371458076959",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "QAMAR - Modest Swim Bottom",
+    "price": 10.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-1627_3cbec6e0-cbc6-46ec-b7a5-20bea7d829f2.jpg?v=1727075588",
+    "url": "https://getfith.co/products/qamar-modest-swim-bottom",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043354292271",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Loose Pants",
+    "price": 1499,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/DSC06141edited-copy-scaled-1.webp?v=1755634985",
+    "url": "https://nemahwear.com/products/burkini-loose-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028356501802",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -43691,6 +45398,59 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:14906162905474",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Wide Leg Pant - Black",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/widelegblackmain.jpg?v=1760113192",
+    "url": "https://haya-active.com/products/wide-leg-pants",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:8488935391519",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "EASE - Oversized Hooded Long Sleeve Top",
+    "price": 33.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-0275.jpg?v=1729925938",
+    "url": "https://getfith.co/products/modal-2-0-oversized-hooded-long-sleeve-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "nemah:8043354259503",
+    "brandSlug": "nemah",
+    "brandName": "Nemah",
+    "title": "Black Marmaris Modest Swimwear Top",
+    "price": 1999,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0703/8710/5839/files/43.webp?v=1770294257",
+    "url": "https://nemahwear.com/products/marmaris-burkini-top",
+    "inStock": true,
+    "garment": "swim",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "swim"
+    ],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10028363546922",
@@ -45219,6 +46979,44 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:8582650003668",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Training Joggers - Matcha Green",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/571A3967-Edit.jpg?v=1731659707",
+    "url": "https://haya-active.com/products/training-joggers-forest-green",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
+    "id": "fith:8080738844959",
+    "brandSlug": "fith",
+    "brandName": "FITH",
+    "title": "Non-Slip Workout Hijab",
+    "price": 15.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0672/2899/1775/files/rahvsid-0862.jpg?v=1748982746",
+    "url": "https://getfith.co/products/non-slip-workout-hijab",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [
+      "work"
+    ],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028032885034",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -46731,6 +48529,23 @@
       "swim"
     ],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:8582649577684",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Training Joggers - Coffee Brown",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/571A4012-Edit.jpg?v=1731659316",
+    "url": "https://haya-active.com/products/training-joggers-charcoal-grey-copy",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10028357484842",
@@ -48247,6 +50062,23 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:8582649020628",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Training Joggers - Charcoal Grey",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/571A4076-Edit.jpg?v=1731659165",
+    "url": "https://haya-active.com/products/training-joggers-charcoal-grey",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028032622890",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -49740,6 +51572,25 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:8582642598100",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Sports Hijab - Matcha Green",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/059A1927greyreducedsize_Pantone_416C.jpg?v=1731661299",
+    "url": "https://haya-active.com/products/sports-hijab-black-copy",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028045173034",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -51198,6 +53049,25 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:8582643318996",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Sports Hijab - Charcoal Grey",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/059A1927greyreducedsize_Pantone_425C.jpg?v=1731661219",
+    "url": "https://haya-active.com/products/sports-hijab-coffee-brown-copy",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10028359811370",
@@ -52674,6 +54544,23 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:8582647120084",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Matcha Green",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/essentialmatchamain.jpg?v=1760113136",
+    "url": "https://haya-active.com/products/essential-training-top-forest-green",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028045500714",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -54119,6 +56006,23 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:8582643876052",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Charcoal Grey",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/essential-training-top-black-767553-Pantone_425C.jpg?v=1731664344",
+    "url": "https://haya-active.com/products/essential-training-top-charcoal-grey",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028353192234",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -55517,6 +57421,23 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:8582644465876",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Coffee Brown",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/essential-training-top-black-767553-Pantone_409C.jpg?v=1731664344",
+    "url": "https://haya-active.com/products/essential-training-top-coffee-brown",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10028354699562",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -56872,6 +58793,23 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:7810129199316",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Grey",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/products/essential-training-top-grey-561132.jpg?v=1679566471",
+    "url": "https://haya-active.com/products/grey-essential-training-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "diversity-modest:10434345533774",
     "brandSlug": "diversity-modest",
     "brandName": "Diversity Modest",
@@ -58217,6 +60155,25 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:7996828745940",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Oversized Active Tee - Black",
+    "price": 53.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/haya4495-Edit-Edit-Edit.jpg?v=1700165481",
+    "url": "https://haya-active.com/products/training-oversized-tee",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "diversity-modest:10434322596174",
     "brandSlug": "diversity-modest",
     "brandName": "Diversity Modest",
@@ -59539,6 +61496,25 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-28"
+  },
+  {
+    "id": "haya-active:8045576552660",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Modest Active Top - Dark Grey",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/croppedmaindrawstring.jpg?v=1700407240",
+    "url": "https://haya-active.com/products/copy-of-modest-active-top-black",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "hijab-boutique:10432671547731",
@@ -60872,6 +62848,23 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:7996795027668",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Training Joggers - Black",
+    "price": 44.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/files/haya4559-Edit-Edit.jpg?v=1700164809",
+    "url": "https://haya-active.com/products/training-joggers",
+    "inStock": true,
+    "garment": "trousers",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10129421173034",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -62149,6 +64142,25 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:7888579690708",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Sports Hijab - Space Grey",
+    "price": 32.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/products/hijabgrey2_534ba848-8115-4350-a03f-8dc894309dba.jpg?v=1680171843",
+    "url": "https://haya-active.com/products/new-space-grey",
+    "inStock": true,
+    "garment": "hijab",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10129385488682",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -63394,6 +65406,23 @@
     "firstSeen": "2026-08-28"
   },
   {
+    "id": "haya-active:7885839925460",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Camel Brown",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/products/browntop2-min.jpg?v=1679565764",
+    "url": "https://haya-active.com/products/copy-of-essential-training-top-brown",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
+  },
+  {
     "id": "niswa:10129452237098",
     "brandSlug": "niswa",
     "brandName": "Niswa Fashion",
@@ -64621,6 +66650,25 @@
     "season": [],
     "activity": [],
     "firstSeen": null
+  },
+  {
+    "id": "haya-active:7672669438164",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Modest Active Top - Black",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/products/modest-active-top-211171.jpg?v=1679566475",
+    "url": "https://haya-active.com/products/drawstring-top",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [
+      "gym"
+    ],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10129437425962",
@@ -65852,6 +67900,23 @@
     "season": [],
     "activity": [],
     "firstSeen": "2026-08-22"
+  },
+  {
+    "id": "haya-active:7534448476372",
+    "brandSlug": "haya-active",
+    "brandName": "Haya Active",
+    "title": "Essential Training Top - Black",
+    "price": 46.95,
+    "currency": "EUR",
+    "image": "https://cdn.shopify.com/s/files/1/0628/4489/5444/products/essential-training-top-black-767553.jpg?v=1679566475",
+    "url": "https://haya-active.com/products/long-sleeve-t-shirt",
+    "inStock": true,
+    "garment": "top",
+    "community": "hijabi",
+    "occasion": [],
+    "season": [],
+    "activity": [],
+    "firstSeen": "2026-08-29"
   },
   {
     "id": "niswa:10129428414762",

@@ -37,6 +37,9 @@ const PLACE: Record<string, [number, number, RegionName, boolean?]> = {
   'Birmingham, United Kingdom': [-1.9, 52.5, 'Europe'],
   'UK': [-2.0, 54.0, 'Europe', true],
   'United Kingdom': [-2.0, 54.0, 'Europe', true],
+  // Added 2026-08-29 with Reclaim Active, a Danish modest-activewear house.
+  // Country-level (the `true` flag) because the shop states no city.
+  'Denmark': [10.0, 56.0, 'Europe', true],
   'Amsterdam': [4.9, 52.4, 'Europe'],
   'Arnhem': [5.9, 52.0, 'Europe'],
   'Nijmegen': [5.9, 51.8, 'Europe'],

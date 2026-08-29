@@ -339,9 +339,38 @@ export function layeringSubtype(p: Product): LayeringSubtype | null {
   return 'base-layer-top'; // base layer / body top / core top / singlet / ria-miranda's Comfy line / etc.
 }
 
+/**
+ * Houses whose ENTIRE range is modest activewear, so a piece qualifies on the
+ * brand rather than on its name.
+ *
+ * WHY THIS IS NOT the `activity`-tag path returning by the back door. That path
+ * trusted a per-PRODUCT flag set by a merchant who tags a whole collection at
+ * once, on brands that sell everything (Niswa's blazers, Aeon Abaya's trousers).
+ * This is a per-HOUSE editorial judgement, made once, about a shop that sells
+ * nothing else: Haya Active, FITH, Nemah, Reclaim Active, Sukoon Active and
+ * Dignitii are activewear labels end to end.
+ *
+ * It exists because the title-only rule cannot see them. Measured 2026-08-29,
+ * the day the five were added: Haya publishes 41 pieces and 5 reached the lane;
+ * Reclaim 14 and 1; Sukoon 5 and 1. They name things "Maya Skirt", "Medina Cape
+ * Top", "Wide Leg Pant" — correct for the garment, silent about the purpose.
+ * With this, 42 more join and every one is a real activewear piece.
+ *
+ * SWIM STILL WINS. `isSwim` is checked before this, so Nemah's burkini tops and
+ * Dignitii's swim leggings stay on the swim lane where they belong.
+ *
+ * ADDING A HOUSE HERE IS AN EDITORIAL ACT, not a classification tweak: it moves
+ * every one of that house's pieces off the everyday lanes, because activewear is
+ * `specialty` (Invariant 5). Only add a shop that genuinely sells nothing else.
+ */
+const ACTIVEWEAR_HOUSES = new Set([
+  'haya-active', 'fith', 'nemah', 'reclaim-active', 'sukoon-active', 'dignitii',
+]);
+
 export function isActivewear(p: Product): boolean {
   if (p.forcedLane) return p.forcedLane === 'modest-activewear';
   if (isSwim(p)) return false; // swimwear belongs to the swim lane, not activewear
+  if (ACTIVEWEAR_HOUSES.has(p.brandSlug)) return true;
   if (isLayering(p)) return false; // e.g. ria-miranda's ri-flex line carries a noisy activity:"gym" tag
   // TITLE ONLY. The feed's own `activity` tag used to qualify an item on its
   // own, and that was the defect Tina reported on 2026-08-29 ("the modest

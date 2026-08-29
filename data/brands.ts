@@ -90,6 +90,24 @@ export const BRANDS: Brand[] = [
   // lists PUBLISHED products and she is reviewing the arrivals herself.
   // → docs/log/2026-08-28-losyana-move-to-shop.md
   { slug: 'losyana', name: 'Losyana', homepage: 'https://losyana.shop', feedUrl: 'https://losyana.shop/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest & hijabs', city: 'Nijmegen', vibe: 'elegant' },                  // 1001 SKUs. EUR confirmed from the storefront's own priceCurrency, 2026-08-28.
+  // — 2026-08-29: modest ACTIVEWEAR houses, added at Tina's request ("we need
+  //   more active wear. modest ones"). Every feed verified live before adding:
+  //   fetched /products.json, parsed as JSON, confirmed a products array with
+  //   plausible titles (§10.3 — a 200 proves nothing). Product counts, in-stock
+  //   counts and median image widths measured the same day and noted per line.
+  //   `currency` here is the EXPECTED value only (Invariant 15) — several of
+  //   these served EUR to a probe run from the Netherlands, which is Shopify
+  //   Markets doing its job, and the real one is detected per fetch at ingest.
+  //   Two more were found and deliberately NOT added: glowco.shop (44 products
+  //   but only 3 titles read as activewear — its range is tie-back inners and
+  //   ninja caps, i.e. layering and hijabs) and veilgarments.com (15 products,
+  //   all multi-item BUNDLE SKUs). kadyluxe.com was rejected outright: 187
+  //   products of US college sports fan apparel.
+  { slug: 'haya-active', name: 'Haya Active', homepage: 'https://haya-active.com', feedUrl: 'https://haya-active.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Activewear', city: 'United Kingdom', vibe: 'streetwear' }, // 58 SKUs, 47 in stock, 3192px — 45/58 titles read as activewear
+  { slug: 'fith', name: 'FITH', homepage: 'https://getfith.co', feedUrl: 'https://getfith.co/products.json', community: 'hijabi', currency: 'USD', category: 'Activewear', city: 'USA', vibe: 'streetwear' }, // 45 SKUs, 44 in stock, 1584px — incl. "ACTV Abaya", a modest workout abaya
+  { slug: 'nemah', name: 'Nemah', homepage: 'https://nemahwear.com', feedUrl: 'https://nemahwear.com/products.json', community: 'hijabi', currency: 'INR', category: 'Activewear & swim', city: 'India', vibe: 'elegant' }, // 29 SKUs, 27 in stock, 1068px. INR already has an fx rate
+  { slug: 'reclaim-active', name: 'Reclaim Active', homepage: 'https://reclaimactive.com', feedUrl: 'https://reclaimactive.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Activewear', city: 'Denmark', vibe: 'elegant' }, // 15 SKUs, 14 in stock, 1536px. Names pieces "Maya Skirt" — see ACTIVEWEAR_HOUSES in lib/specialty.ts
+  { slug: 'sukoon-active', name: 'Sukoon Active', homepage: 'https://www.sukoonactive.com', feedUrl: 'https://www.sukoonactive.com/products.json', community: 'hijabi', currency: 'USD', category: 'Activewear', city: 'USA', vibe: 'elegant' }, // 12 SKUs, 8 in stock, 3000px — thinnest of the five
   { slug: 'mukistore', name: 'Mukistore', homepage: 'https://mukistore.com', feedUrl: 'https://mukistore.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Rotterdam', vibe: 'elegant' },               // 250+, 2075px
   { slug: 'hijab-boutique', name: 'Hijab Boutique', homepage: 'https://hijabboutique.nl', feedUrl: 'https://hijabboutique.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'Arnhem', vibe: 'elegant' }, // 250+, 1600px
   { slug: 'aniqq', name: 'ANIQQ Exclusive', homepage: 'https://aniqq.nl', feedUrl: 'https://aniqq.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Abayas', city: 'Arnhem', vibe: 'elegant' },                          // 26 SKUs, 3024px

@@ -522,6 +522,24 @@ describe('isActivewear — title evidence only (2026-08-29)', () => {
   });
 });
 
+describe('ACTIVEWEAR_HOUSES', () => {
+  it('claims every piece from a house that sells nothing but activewear', () => {
+    expect(isActivewear(p('Maya Skirt', 'skirt', { brandSlug: 'reclaim-active' }))).toBe(true);
+    expect(isActivewear(p('Wide Leg Pant - Charcoal grey', 'trousers', { brandSlug: 'haya-active' }))).toBe(true);
+    expect(isActivewear(p('HAWA Step Tee', 'top', { brandSlug: 'sukoon-active' }))).toBe(true);
+  });
+
+  it('does NOT claim the same title from an ordinary house', () => {
+    expect(isActivewear(p('Maya Skirt', 'skirt', { brandSlug: 'veiled' }))).toBe(false);
+    expect(isActivewear(p('Wide Leg Pant - Charcoal grey', 'trousers', { brandSlug: 'niswa' }))).toBe(false);
+  });
+
+  it('still yields to swim, so a burkini from an activewear house stays on swim', () => {
+    expect(isActivewear(p('Burkini Top - Black', 'swim', { brandSlug: 'nemah' }))).toBe(false);
+    expect(isActivewear(p('Swim Leggings - Grey', 'swim', { brandSlug: 'dignitii' }))).toBe(false);
+  });
+});
+
 describe('swimSubtype', () => {
   it('buckets the real catalogue titles', () => {
     expect(swimSubtype(p('Long Burkini with Wide Pants', 'swim'))).toBe('burkini');

@@ -52509,5 +52509,69 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab clip"
+  },
+  {
+    "id": "haya-active:15110208225666",
+    "brandSlug": "haya-active",
+    "title": "Wide Leg Pant - Pink",
+    "url": "https://haya-active.com/products/wide-leg-pant-pink",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 3XL"
+  },
+  {
+    "id": "haya-active:15110203081090",
+    "brandSlug": "haya-active",
+    "title": "Oversized Active Tee - Navy",
+    "url": "https://haya-active.com/products/oversized-active-tee-navy",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL / UK16, 2XL / UK18, 3XL / UK20, 4XL / UK22"
+  },
+  {
+    "id": "haya-active:15110201278850",
+    "brandSlug": "haya-active",
+    "title": "Oversized Active Tee - Coffee Brown",
+    "url": "https://haya-active.com/products/oversized-active-tee-coffee-brown",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL / UK16, 2XL / UK18, 4XL / UK22"
+  },
+  {
+    "id": "haya-active:15110200951170",
+    "brandSlug": "haya-active",
+    "title": "Oversized Active Tee - Matcha Green",
+    "url": "https://haya-active.com/products/oversized-active-tee-matcha-green",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL / UK16, 2XL / UK18, 3XL / UK20, 4XL / UK22"
+  },
+  {
+    "id": "haya-active:7764066762964",
+    "brandSlug": "haya-active",
+    "title": "HAYA Hijab Magnet",
+    "url": "https://haya-active.com/products/hijab-magnet",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "fith:9475072393503",
+    "brandSlug": "fith",
+    "title": "Cotton Brown High-Rise Relaxed Jogger Pants - Athleisure",
+    "url": "https://getfith.co/products/high-rise-relaxed-jogger-pants-rest-day-capsule-copy",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "nemah:8144081289263",
+    "brandSlug": "nemah",
+    "title": "Women's Long Sleeve Modest Activewear Top - Grey",
+    "url": "https://nemahwear.com/products/grey-long-activewear-t-shirt",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 4XL, XXL, 3XL"
   }
 ]
