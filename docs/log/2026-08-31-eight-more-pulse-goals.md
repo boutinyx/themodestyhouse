@@ -131,6 +131,24 @@ identically on `origin/main` without any of this work and needs a re-pick in
    context now grants `clipboard-write` for Chromium only, since WebKit does not
    know the permission name and allows the write anyway.
 
+## Verified on staging
+
+`2a2a8c5`, deployed ~160 s after the push, confirmed by a discriminator present
+with the change and absent without it — the *Searches that find nothing* bullet
+on `/privacy`.
+
+```
+$ BASE=https://themodestyhouse-staging-production.up.railway.app npm run audit:outbound
+   … 19 checks, both engines …
+ALL PASS
+```
+
+As with the earlier run, this was not inert: staging builds with
+`NODE_ENV=production`, so the real Pulse script loads and the harness chains to
+it. A handful of genuine events for each goal were sent under `data-domain
+themodestyhouse.com` — two products, one sort, one search, one currency switch,
+one FAQ question, per engine.
+
 ## Follow-up for Tina
 
 Four goals still need creating in Pulse (Settings → Goals), exactly:
