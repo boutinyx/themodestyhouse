@@ -1,6 +1,6 @@
 'use client';
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import type { CompactCatalogue, CardSlice } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import type { Garment } from '@/lib/types';
@@ -9,6 +9,7 @@ import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
+import { trackGoal } from '@/lib/pulse';
 import { useZeroResultSearch } from './useZeroResultSearch';
 import { LanguageNote } from './LanguageNote';
 
@@ -31,6 +32,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
   // the columns only a CARD needs are fetched for what is actually on screen.
   const [extraCards, setExtraCards] = useState<CardSlice>({ rows: {} });
   const router = useRouter();
+  const pathname = usePathname();
   /** The rowCount we already know is stale, because a 409 told us so and a
    *  router.refresh() is in flight. While `cat.rowCount` still equals this, the
    *  card fetch below is skipped entirely — otherwise clearing `extraCards`
@@ -251,7 +253,16 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
           )}
           {visible < sortedRows.length && (
             <div className="text-center mt-12">
-              <button onClick={() => setVisible((v) => v + STEP)} className="btn-pill" style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}>
+              <button
+                onClick={() => {
+                  // `depth` is the number of rows AFTER this tap, so the
+                  // distribution answers "is the first screen of 24 enough".
+                  trackGoal('load_more', { lane: pathname, depth: String(visible + STEP) });
+                  setVisible((v) => v + STEP);
+                }}
+                className="btn-pill"
+                style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
+              >
                 Load more
               </button>
             </div>

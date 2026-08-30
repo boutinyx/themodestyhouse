@@ -57,6 +57,21 @@ export const EVENT_PROPS = {
   contact_submit: ['topic'],
   /** An FAQ question was opened. Which questions readers actually have. */
   faq_open: ['question'],
+  /** A step of /about's "how it works" column was opened. */
+  about_step_open: ['question'],
+  /** Quick view's full-resolution image was opened — "I want a better look". */
+  image_zoom: ['brand', 'garment', 'product', 'title'],
+  /** "Load more" on a grid. `depth` is how many rows are now shown, so the
+   *  distribution answers whether the first 24 are enough. */
+  load_more: ['lane', 'depth'],
+  /** A navigation menu was opened: which group, or the phone drawer. */
+  nav_open: ['group'],
+  /** A homepage rail was scrolled by its arrows. */
+  rail_scroll: ['rail', 'direction'],
+  /** A region was opened on the designers map. */
+  region_filter: ['region'],
+  /** A `?type=` sub-category link — the nav flyout and footer chips. */
+  subtype_click: ['lane', 'value'],
 } as const;
 
 export type GoalEvent = keyof typeof EVENT_PROPS;

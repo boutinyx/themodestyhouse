@@ -29,16 +29,23 @@ describe('the event registry', () => {
     // Goals) under the same name, or it is accepted and never displayed. Pinned
     // here so adding one is a deliberate act with a visible diff.
     expect(Object.keys(EVENT_PROPS).sort()).toEqual([
+      'about_step_open',
       'contact_submit',
       'currency_change',
       'faq_open',
       'favourite_add',
       'filter_apply',
+      'image_zoom',
+      'load_more',
+      'nav_open',
       'newsletter_signup',
       'outbound_click',
       'quick_view_open',
+      'rail_scroll',
+      'region_filter',
       'search_zero_results',
       'share_link_copy',
+      'subtype_click',
     ]);
   });
 
@@ -152,12 +159,13 @@ describe('productProps', () => {
     expect(JSON.stringify(props)).not.toMatch(/http|utm_|129|GBP|cdn\./);
   });
 
-  it('gives the three product goals identical shapes, so they compare', () => {
+  it('gives the four product goals identical shapes, so they compare', () => {
     // favourite_add / quick_view_open / share_link_copy are read against each
     // other — looked at, saved, shared — which only works if they carry the
     // same dimensions.
     expect(EVENT_PROPS.quick_view_open).toEqual(EVENT_PROPS.favourite_add);
     expect(EVENT_PROPS.share_link_copy).toEqual(EVENT_PROPS.favourite_add);
+    expect(EVENT_PROPS.image_zoom).toEqual(EVENT_PROPS.favourite_add);
   });
 });
 

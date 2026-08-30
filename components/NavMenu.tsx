@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { trackGoal } from '@/lib/pulse';
 import Link from 'next/link';
 import { NavigationMenu } from '@base-ui-components/react/navigation-menu';
 import { CaretDown } from '@phosphor-icons/react';
@@ -210,6 +211,14 @@ export function NavMenu({
   }, []);
 
   const closeAll = () => setNavValue(null);
+  /** Opens a group and records it. The two things that OPEN a panel — the
+   *  hover-driven onValueChange below and the Trigger's own onClick, which is
+   *  the touch path (§10.50) — both go through here, so neither gesture is
+   *  measured twice and neither is missed. Closing (`null`) is not a goal. */
+  const openNav = (value: string | null) => {
+    if (value !== null && value !== navValue) trackGoal('nav_open', { group: value });
+    setNavValue(value);
+  };
   // Set right before `closeAll()` when closing happens WITHOUT the pointer
   // actually leaving the trigger (a click-to-navigate on the trigger
   // itself) — found live 2026-08-21, the real reason "when you lcick of a
@@ -520,7 +529,7 @@ export function NavMenu({
         if (isTouchGesture()) return;
         if (value === null && pointerRelevant.current) return;
         if (value !== null && suppressReopen.current) return;
-        setNavValue(value);
+        openNav(value);
       }}
       // `flex items-center` rather than a plain block. As a block, the inline-flex
       // children sat in a LINE BOX whose leading pushed the menu items 0.75px
@@ -646,7 +655,7 @@ export function NavMenu({
                     // and it would otherwise swallow the open we are about to
                     // request through the very same `onValueChange` guard.
                     suppressReopen.current = false;
-                    setNavValue(entry.label);
+                    openNav(entry.label);
                     return;
                   }
                   // Already open: this is the second tap. Fall through to the

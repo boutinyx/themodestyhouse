@@ -404,7 +404,7 @@ export default function AboutPage() {
                 Read everything, publish very little
               </h2>
               <div className="mt-8">
-                <HowBlocks blocks={HOW} />
+                <HowBlocks blocks={HOW} goal="about_step_open" />
               </div>
             </div>
           </div>

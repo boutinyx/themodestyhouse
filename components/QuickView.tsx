@@ -210,7 +210,12 @@ function Modal({
             sizes="(max-width: 768px) 100vw, 50vw"
             alt={product.title}
             className="w-full h-64 md:h-full object-cover cursor-zoom-in"
-            onClick={() => setZoomed(true)}
+            onClick={() => {
+              // Opening the full-resolution photograph. Weak on its own; read
+              // next to quick_view_open it says which pieces people study.
+              trackGoal('image_zoom', productProps(product));
+              setZoomed(true);
+            }}
             decoding="async"
           />
           {/* This column scrolls, and `min-h-0` is what lets it.

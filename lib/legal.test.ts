@@ -120,6 +120,13 @@ describe('GDPR disclosures that must not silently regress', () => {
     contact_submit: /sending the contact form/,
     faq_open: /opening an FAQ question/,
     search_zero_results: /- \*\*Searches that find nothing\.\*\*/,
+    about_step_open: /a step of the “how it works” column|how it works/,
+    image_zoom: /opening a product's photograph full size|opening a product’s photograph full size/,
+    load_more: /tapping “Load more”|tapping "Load more"/,
+    nav_open: /opening a navigation menu/,
+    rail_scroll: /scrolling one of the homepage rails/,
+    region_filter: /opening a region\*{0,2} on the designers map/,
+    subtype_click: /following a sub-category link/,
   };
 
   const pulseSource = readFileSync(path.join(process.cwd(), 'lib', 'pulse.ts'), 'utf8');
@@ -129,8 +136,8 @@ describe('GDPR disclosures that must not silently regress', () => {
 
   it('reads every goal out of lib/pulse.ts, so the guards below cannot be vacuous', () => {
     // §10.28 rule 3: a check that silently matches nothing is a check you do
-    // not have. Ten goals as of 2026-08-30.
-    expect(declared.length).toBeGreaterThanOrEqual(10);
+    // not have. Seventeen goals as of 2026-08-31.
+    expect(declared.length).toBeGreaterThanOrEqual(17);
     expect(declared).toContain('outbound_click');
     expect(declared).toContain('search_zero_results');
   });

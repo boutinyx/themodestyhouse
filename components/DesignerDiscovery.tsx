@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackGoal } from '@/lib/pulse';
 import Link from 'next/link';
 import { CaretDown, ArrowRight } from '@phosphor-icons/react';
 import { fourPointStar } from '@/lib/starPath';
@@ -196,7 +197,11 @@ export default function DesignerDiscovery({
             <li key={r.name} style={{ borderTop: '1px solid var(--hairline)' }}>
               <button
                 type="button"
-                onClick={() => setOpen(isOpen ? null : r.name)}
+                onClick={() => {
+                  // Opening only: closing a region says nothing about interest.
+                  if (!isOpen) trackGoal('region_filter', { region: r.name });
+                  setOpen(isOpen ? null : r.name);
+                }}
                 onMouseEnter={() => setHover(r.name)}
                 onMouseLeave={() => setHover(null)}
                 onFocus={() => setHover(r.name)}

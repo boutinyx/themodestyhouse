@@ -1,7 +1,7 @@
 // npm run audit:outbound — end-to-end check of the site's Pulse GOALS.
 //
-// Named for the first one it covered. It now drives EIGHT of the ten goals in
-// lib/pulse.ts: outbound_click, favourite_add, quick_view_open,
+// Named for the first one it covered. It now drives FIFTEEN of the seventeen
+// goals in lib/pulse.ts: outbound_click, favourite_add, quick_view_open,
 // share_link_copy, filter_apply, currency_change, search_zero_results and
 // faq_open. Kept in one script rather than forked because the harness below —
 // engine loop, WebKit header stripping, stylesheet and interactivity
@@ -414,6 +414,118 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
       await check('faq_open', 'faq_open', { question: /\S/ });
     } catch (e) {
       if (!String(e).includes('skip')) report('goals case', engineName, `PROBLEM threw: ${String(e).slice(0, 140)}`);
+    } finally {
+      await page.close();
+    }
+  }
+
+  // ── the engagement goals ─────────────────────────────────────────────────
+  {
+    const page = await ctx.newPage();
+    page.on('popup', (pop) => { pop.close().catch(() => {}); });
+    // A sub-category link NAVIGATES, which would tear the page down before the
+    // queue could be read. lib/pulse.ts records it from a CAPTURE-phase
+    // listener, so a bubble-phase preventDefault here runs strictly after it:
+    // the goal is emitted exactly as it is in production, and only the
+    // navigation is suppressed. The site is untouched.
+    await page.addInitScript(() => {
+      document.addEventListener('click', (e) => {
+        const a = e.target instanceof Element ? e.target.closest('a[href*="?type="]') : null;
+        if (a) e.preventDefault();
+      }, false);
+    });
+    const recorder = () => page.evaluate(() => {
+      window.pulseQueue = [];
+      window.__seen = [];
+      const prior = window.pulse && window.pulse.track;
+      window.pulse = { track: (n, p) => { window.__seen.push(['track', n, p]); if (prior) try { prior(n, p); } catch {} } };
+    });
+    const read = () => page.evaluate(() => [...(window.__seen || []), ...(window.pulseQueue || [])]);
+    const check = async (name, want) => {
+      const evt = (await read()).find((e) => e[0] === 'track' && e[1] === name);
+      if (!evt) return report(name, engineName, `PROBLEM no ${name} emitted`);
+      const props = evt[2] || {};
+      for (const [k, v] of Object.entries(want || {})) {
+        if (v instanceof RegExp ? !v.test(props[k] || '') : props[k] !== v) {
+          return report(name, engineName, `PROBLEM ${name}.${k}=${props[k]} want ${v}`);
+        }
+      }
+      return report(name, engineName, `ok ${JSON.stringify(props)}`);
+    };
+
+    try {
+      await page.goto(`${BASE}/`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      if (!(await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => null))) {
+        report('engagement hydration', engineName, 'PROBLEM /: page not interactive'); throw new Error('skip');
+      }
+
+      // rail_scroll — the homepage carousel's own arrow.
+      await recorder();
+      await page.locator('button[aria-label="Scroll right"]').first().click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      await check('rail_scroll', { direction: 'right', rail: /\S/ });
+
+      // region_filter — the designers map. Opening only; closing is not a goal.
+      await recorder();
+      // /^Europe/, not /^Europe\d*$/: the row's accessible name joins the region
+      // and its count with a space ("Europe 58"), so the anchored form matched
+      // nothing and read as a dead control (§10.26).
+      await page.getByRole('button', { name: /^Europe/ }).first().click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      await check('region_filter', { region: /Europe/ });
+
+      // nav_open — the desktop header group. HOVER, because that is what opens
+      // it on a mouse; the tap path goes through the same openNav().
+      await recorder();
+      await page.getByRole('navigation').getByText('Clothing', { exact: true }).first().hover({ timeout: 15000 });
+      await page.waitForTimeout(600);
+      await check('nav_open', { group: 'Clothing' });
+
+      // subtype_click — a footer/nav ?type= link, with navigation suppressed
+      // by the init script above.
+      // The ?type= links live ONLY in the header's wide nav panels — all four
+      // of which are mounted at once and cross-fade on opacity (NavMenu.tsx),
+      // so every one of them reports a non-empty box to Playwright while three
+      // are unclickable. `.first()` therefore waited 15s on a hidden row, and
+      // `footer a[href*="?type="]` matched nothing at all: they are not in the
+      // footer. Open the panel that owns them, then click one, which is also
+      // the only route a real visitor has.
+      await recorder();
+      await page.getByRole('navigation').getByText('Hijabs', { exact: true }).first().hover({ timeout: 15000 });
+      await page.waitForTimeout(500);
+      await page.locator('a[href="/modest-hijabs?type=undercap"]').first().click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      await check('subtype_click', { lane: /^\//, value: /\S/ });
+
+      // load_more + image_zoom, on the biggest grid.
+      await page.goto(`${BASE}/directory`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => {});
+      await recorder();
+      const more = page.getByRole('button', { name: 'Load more' });
+      await more.scrollIntoViewIfNeeded().catch(() => {});
+      await more.click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      // 48 = STEP * 2, i.e. the count AFTER the first tap. A depth that reported
+      // the count BEFORE would make every "how deep do people go" answer wrong
+      // by one screen.
+      await check('load_more', { lane: '/directory', depth: '48' });
+
+      await recorder();
+      await page.locator('button[aria-label^="Quick view"]').first().click({ timeout: 15000 });
+      await page.waitForSelector('[role="dialog"]', { timeout: 15000 });
+      await page.locator('[role="dialog"] img').first().click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      await check('image_zoom', { product: /^[a-z0-9-]+:/ });
+
+      // about_step_open — the same component as faq_open, opted in separately.
+      await page.goto(`${BASE}/about`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => {});
+      await recorder();
+      await page.locator('h3 button[aria-expanded]').first().hover({ timeout: 15000 });
+      await page.waitForTimeout(1500);
+      await check('about_step_open', { question: /\S/ });
+    } catch (e) {
+      if (!String(e).includes('skip')) report('engagement case', engineName, `PROBLEM threw: ${String(e).slice(0, 140)}`);
     } finally {
       await page.close();
     }

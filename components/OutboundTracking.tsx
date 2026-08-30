@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { OUTBOUND_EVENT, outboundProps, track } from '@/lib/pulse';
+import { OUTBOUND_EVENT, outboundProps, track, trackGoal } from '@/lib/pulse';
 
 /**
  * Records a Pulse `outbound_click` whenever a visitor leaves for a brand.
@@ -25,9 +25,32 @@ import { OUTBOUND_EVENT, outboundProps, track } from '@/lib/pulse';
 export function OutboundTracking() {
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      const el = e.target instanceof Element ? e.target.closest('a[rel~="sponsored"]') : null;
-      if (!el) return;
-      track(OUTBOUND_EVENT, outboundProps(el));
+      const target = e.target instanceof Element ? e.target : null;
+      if (!target) return;
+
+      const el = target.closest('a[rel~="sponsored"]');
+      if (el) {
+        track(OUTBOUND_EVENT, outboundProps(el));
+        return;
+      }
+
+      // subtype_click — the `?type=` sub-category links: the header flyout's
+      // Blazers/Vests/Cardigans, the four hijab types, the six layering types.
+      // Delegated for the same reason as the outbound event above: they are
+      // rendered by SERVER components (the nav data and the footer), and an
+      // onClick would drag those into the RSC payload. The link's own href is
+      // the whole signal, so nothing needs annotating.
+      const sub = target.closest('a[href*="?type="]');
+      const href = sub?.getAttribute('href');
+      if (!href) return;
+      // Parsed as a URL rather than split by hand, so an extra parameter or an
+      // encoded value cannot turn into a wrong dimension.
+      try {
+        const url = new URL(href, window.location.origin);
+        trackGoal('subtype_click', { lane: url.pathname, value: url.searchParams.get('type') ?? '' });
+      } catch {
+        /* a malformed href is not worth reporting */
+      }
     };
     // Pointer-device clicks and keyboard activation both surface as 'click'.
     document.addEventListener('click', onClick, { capture: true });

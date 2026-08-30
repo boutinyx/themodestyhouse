@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { trackGoal } from '@/lib/pulse';
 import { List as ListIcon, X as XIcon, CaretRight, CaretDown } from '@phosphor-icons/react';
 import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
@@ -293,7 +294,15 @@ export function MobileNav() {
   );
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root
+      open={open}
+      onOpenChange={(o) => {
+        // The phone drawer, reported alongside the desktop groups so "how do
+        // people navigate" is one question with one answer.
+        if (o) trackGoal('nav_open', { group: 'phone-drawer' });
+        setOpen(o);
+      }}
+    >
       <Dialog.Trigger
         aria-label="Open navigation"
         className="nav-link inline-flex items-center justify-center leading-none"

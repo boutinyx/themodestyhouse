@@ -1,6 +1,6 @@
 'use client';
 import { useMemo, useState, useEffect, useRef, type ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import type { CompactCatalogue, CardSlice, CardSource } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import { ProductCard } from './ProductCard';
@@ -10,6 +10,7 @@ import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
 import { DRESS_SUBTYPE_LABELS, SWIM_SUBTYPE_LABELS, ACTIVE_SUBTYPE_LABELS } from '@/lib/specialty';
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
+import { trackGoal } from '@/lib/pulse';
 import { LanguageNote } from './LanguageNote';
 
 const STEP = 24;
@@ -141,6 +142,7 @@ export function FilterableGrid({
   // Card data fetched for rows the server did not embed — see the `source` prop.
   const [extraCards, setExtraCards] = useState<CardSlice>({ rows: {} });
   const router = useRouter();
+  const pathname = usePathname();
   /** The rowCount we already know is stale, because a 409 told us so and a
    *  router.refresh() is in flight. While `cat.rowCount` still equals this, the
    *  card fetch below is skipped entirely — otherwise clearing `extraCards`
@@ -532,7 +534,12 @@ export function FilterableGrid({
           {visible < sortedRows.length && (
             <div className="text-center mt-12">
               <button
-                onClick={() => setVisible((v) => v + STEP)}
+                onClick={() => {
+                  // `depth` is the number of rows AFTER this tap, so the
+                  // distribution answers "is the first screen of 24 enough".
+                  trackGoal('load_more', { lane: pathname, depth: String(visible + STEP) });
+                  setVisible((v) => v + STEP);
+                }}
                 className="btn-pill"
                 style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
               >

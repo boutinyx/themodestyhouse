@@ -5,6 +5,7 @@ import type { CardProduct } from '@/lib/compactCatalogue';
 // Phosphor, never a text glyph — CLAUDE.md §6.
 import { CaretLeft, CaretRight, Eye, Heart } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
+import { trackGoal } from '@/lib/pulse';
 import { useQuickView } from './QuickView';
 import { useScrollFade } from './useScrollFade';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
@@ -106,6 +107,9 @@ export default function PopularShowcase({
   }, []);
 
   const scrollBy = (dir: 1 | -1) => {
+    // `surface` already distinguishes the two homepage rails for outbound
+    // clicks, so reuse it rather than inventing a second name for the same rail.
+    trackGoal('rail_scroll', { rail: surface, direction: dir === 1 ? 'right' : 'left' });
     const el = scrollerNode.current;
     if (!el) return;
     el.scrollBy({ left: dir * Math.round(el.clientWidth * 0.85), behavior: 'smooth' });
