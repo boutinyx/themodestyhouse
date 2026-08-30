@@ -108,6 +108,28 @@ place. The `aria-label` flip is also the interactivity assertion for this widget
 is live — and it predates this change, so the check cannot pass by selecting on
 the thing it is meant to prove (§10.32 rule 2).
 
+## Verified on staging
+
+`f30216f`, deployed ~220 s after the push and confirmed by a discriminator that
+is present with the change and absent without it — the *Pieces you save* bullet
+on `/privacy` (§10.47 rule 3). `x-robots-tag: noindex, nofollow, noarchive`
+still served.
+
+```
+$ BASE=https://themodestyhouse-staging-production.up.railway.app npm run audit:outbound
+favourite card        chromium  ok {"brand":"niswa","garment":"dress","product":"niswa:10217348399402","title":"Aurelia Linen Convertible Dress - Blush"}
+negative unfavourite  chromium  ok removing a piece emitted nothing
+favourite quickview   chromium  ok {"brand":"zahraa","garment":"dress","product":"zahraa:7508377337943","title":"Reyana Paisley Long Sleeve Maxi Dress"}
+   … identical for webkit, alongside the six unchanged outbound_click lines …
+ALL PASS
+```
+
+Note this run was not inert: staging builds with `NODE_ENV=production`, so the
+real Pulse script loads and the harness chains to it, which means **4 genuine
+`favourite_add` events (2 per engine) were sent** under `data-domain
+themodestyhouse.com`. Two products, four events, on a goal that does not exist
+in the dashboard yet.
+
 ## Follow-up for Tina
 
 **The goal has to be created in Pulse before anything shows.** Settings → Goals →
