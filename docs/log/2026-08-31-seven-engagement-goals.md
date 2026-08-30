@@ -95,6 +95,17 @@ of them presented as a dead control on the site.
    strictly after the site's own listener has run. The site is untouched and the
    event is exactly the one production sends.
 
+## Verified on staging
+
+`8487126`, deployed ~140 s after the push, confirmed by a discriminator present
+with the change and absent without it — "scrolling one of the homepage rails" in
+`/privacy` §2. `BASE=https://themodestyhouse-staging-production.up.railway.app
+npm run audit:outbound` → **ALL PASS**, 15 goals × 2 engines, identical values to
+the local run.
+
+As before, staging loads the real Pulse script, so the run sent a handful of
+genuine events per goal under `data-domain themodestyhouse.com`.
+
 ## Follow-up for Tina
 
 **`newsletter_signup` is the one goal in the code with no goal in the dashboard.**
