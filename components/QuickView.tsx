@@ -7,7 +7,7 @@ import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import { SITE_URL } from '@/lib/schema';
 import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
 import { withUtm } from '@/lib/outbound';
-import { FAVOURITE_EVENT, favouriteProps, track } from '@/lib/pulse';
+import { productProps, trackGoal } from '@/lib/pulse';
 
 type Ctx = {
   open: (p: CardProduct) => void;
@@ -71,11 +71,16 @@ export function QuickViewProvider({ children }: { children: React.ReactNode }) {
     // removes the whole list one toggle at a time, so a remove event would be
     // dominated by a single tap, and the question this measures is which
     // pieces people want — not which they tidied away. `track` never throws.
-    if (added && !opts?.silent) track(FAVOURITE_EVENT, favouriteProps(p));
+    if (added && !opts?.silent) trackGoal('favourite_add', productProps(p));
   }, []);
 
   const isFav = useCallback((id: string) => !!favs[id], [favs]);
-  const open = useCallback((p: CardProduct) => setActive(p), []);
+  const open = useCallback((p: CardProduct) => {
+    setActive(p);
+    // Interest short of a click-through. Read next to favourite_add and
+    // outbound_click, it says which pieces get looked at and then left.
+    trackGoal('quick_view_open', productProps(p));
+  }, []);
 
   return (
     <QuickViewCtx.Provider value={{ open, favs, toggleFav, isFav }}>
@@ -126,6 +131,8 @@ function Modal({
   async function copyShareLink() {
     try {
       await navigator.clipboard.writeText(shareUrl);
+      // Only on success: a copy that threw is not a share.
+      trackGoal('share_link_copy', productProps(product));
       setCopied(true);
       setCopyError(false);
       setTimeout(() => setCopied(false), 2000);

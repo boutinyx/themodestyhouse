@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { trackGoal } from '@/lib/pulse';
 import { TOPICS } from '@/lib/contactTopics';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
@@ -108,7 +109,15 @@ export function ContactForm({ siteKey, defaultTopic }: { siteKey?: string; defau
         body: JSON.stringify(payload),
       });
       const json = await res.json().catch(() => ({}));
-      if (res.ok && json.ok) { setStatus('sent'); return; }
+      if (res.ok && json.ok) {
+        // The TOPIC and nothing else. Name, email address and message body are
+        // the one genuinely personal payload on this site and are not in this
+        // goal's allowlist, so they cannot travel even if passed here by
+        // mistake. Only a message the API accepted counts.
+        trackGoal('contact_submit', { topic: String(payload.topic ?? '') });
+        setStatus('sent');
+        return;
+      }
       setStatus('error');
       if (json.errors) setErrors(json.errors);
       setFormError(json.error || 'Something went wrong. Please try again.');

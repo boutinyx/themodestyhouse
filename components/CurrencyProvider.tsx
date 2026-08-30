@@ -7,6 +7,7 @@ import {
   type CurrencyPreference,
   type DisplayCurrency,
 } from '@/lib/fx';
+import { trackGoal } from '@/lib/pulse';
 
 const STORAGE_KEY = 'tmh_currency';
 
@@ -55,6 +56,12 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setPreference = useCallback((c: CurrencyPreference) => {
+    // The goal lives HERE, not in the three switchers (header, footer, mobile
+    // nav), because this is the one function all of them call — and because the
+    // effect above, which applies a returning visitor's saved choice, calls
+    // `setPref` directly and so can never be mistaken for a fresh decision.
+    // Re-picking the current currency is a no-op and is not a change.
+    if (c && c !== preference) trackGoal('currency_change', { currency: c, from: preference ?? '' });
     setPref(c);
     try {
       if (c) localStorage.setItem(STORAGE_KEY, c);
@@ -62,7 +69,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
     } catch {
       /* ignore */
     }
-  }, []);
+  }, [preference]);
 
   const price = useCallback(
     (amount: number, nativeCurrency: string) => displayPrice(amount, nativeCurrency, preference),

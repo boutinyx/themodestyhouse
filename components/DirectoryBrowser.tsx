@@ -9,6 +9,7 @@ import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
+import { useZeroResultSearch } from './useZeroResultSearch';
 import { LanguageNote } from './LanguageNote';
 
 const STEP = 24;
@@ -117,6 +118,11 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
   }, [garment, brand, colour, q]);
+
+  // A search that found nothing — the one goal carrying words a visitor typed.
+  // `q`, not the lowercased `query`, because the hook does its own trimming and
+  // dedupe; `sortedRows`, because that is the set the grid will actually show.
+  useZeroResultSearch(q, sortedRows.length);
 
   const shownRows = sortedRows.slice(0, visible);
 

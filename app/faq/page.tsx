@@ -81,6 +81,7 @@ export default function FaqPage() {
       <HowBlocks
         blocks={FAQ.map((f, i) => ({ step: String(i + 1).padStart(2, '0'), title: f.q, body: f.a }))}
         headingLevel="h2"
+        goal="faq_open"
       />
     </main>
   );

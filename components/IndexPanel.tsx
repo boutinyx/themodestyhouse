@@ -1,7 +1,9 @@
 'use client';
 import { Menu } from '@base-ui-components/react/menu';
 import { CaretDown } from '@phosphor-icons/react';
+import { usePathname } from 'next/navigation';
 import { useScrollFade } from './useScrollFade';
+import { trackGoal } from '@/lib/pulse';
 
 /**
  * The index console — the search field and filter row shared by /directory and
@@ -33,6 +35,10 @@ export function FilterDropdown({
   options: { value: string; label: string; swatch?: string }[];
   onSelect: (v: string) => void;
 }) {
+  // Which grid the filter was used on — /directory, /modest-dresses, an edit.
+  // A route, never a query string, so it cannot pick up a search term.
+  const pathname = usePathname();
+
   // Deliberately not `options.find(...)`: when the default is a real, listed
   // option — as 'featured' is for Sort — a plain lookup always matches, so the
   // chip would show "Featured" from first paint and never the word "Sort".
@@ -125,7 +131,24 @@ export function FilterDropdown({
           >
             <Menu.RadioGroup
               value={value}
-              onValueChange={(v) => onSelect(v as string)}
+              onValueChange={(v) => {
+                // filter_apply is emitted HERE, in the shared control, rather
+                // than at each of the ~10 call sites in DirectoryBrowser and
+                // FilterableGrid. Every grid filter and the Sort menu are this
+                // component, so a filter added later is measured because it is
+                // built the normal way — the same self-maintaining reasoning as
+                // the delegated listener behind outbound_click.
+                // `label` is the visible chip word (Brand / Colour / Category /
+                // Type / Sort), lowercased so the dashboard groups cleanly;
+                // clearing a filter back to its default sends the sentinel
+                // ('all'), which is a real answer to "what do people undo".
+                trackGoal('filter_apply', {
+                  filter: label.toLowerCase(),
+                  value: v as string,
+                  lane: pathname,
+                });
+                onSelect(v as string);
+              }}
               /* max-h-72 is 18rem, the cap .menu-scroll-list used to impose —
                  it is this caller's layout decision, not the shared class's.
                  overflow-x-hidden closes an accidental scroller: per CSS

@@ -1,12 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import {
+  EVENT_PROPS,
   OUTBOUND_EVENT,
-  OUTBOUND_PROPS,
-  outboundProps,
   FAVOURITE_EVENT,
-  FAVOURITE_PROPS,
-  favouriteProps,
+  goalProps,
+  outboundProps,
+  productProps,
+  trackGoal,
   track,
+  type GoalEvent,
 } from './pulse';
 
 /** Stands in for an anchor. `outboundProps` reads nothing but getAttribute, so
@@ -15,63 +17,119 @@ const el = (attrs: Record<string, string>) => ({
   getAttribute: (n: string) => (n in attrs ? attrs[n] : null),
 });
 
+/** A window stub that records what would have been sent. */
+const spy = () => {
+  const calls: unknown[][] = [];
+  return { calls, w: { pulse: { track: (...a: unknown[]) => calls.push(a) } } };
+};
+
+describe('the event registry', () => {
+  it('is the exact set of goals that must exist in the Pulse dashboard', () => {
+    // If this list changes, the goal has to be created in Pulse (Settings ->
+    // Goals) under the same name, or it is accepted and never displayed. Pinned
+    // here so adding one is a deliberate act with a visible diff.
+    expect(Object.keys(EVENT_PROPS).sort()).toEqual([
+      'contact_submit',
+      'currency_change',
+      'faq_open',
+      'favourite_add',
+      'filter_apply',
+      'newsletter_signup',
+      'outbound_click',
+      'quick_view_open',
+      'search_zero_results',
+      'share_link_copy',
+    ]);
+  });
+
+  it('declares no property that could carry a person', () => {
+    // Not a substitute for reading a diff — a guard against the obvious slip.
+    const all = Object.values(EVENT_PROPS).flat();
+    for (const key of ['email', 'name', 'message', 'address', 'url', 'href', 'price', 'id']) {
+      expect(all, `"${key}" must not be a tracked property`).not.toContain(key);
+    }
+  });
+});
+
+describe('goalProps', () => {
+  // THE PRIVACY GUARD, and it is now one guard for every goal rather than one
+  // per call site. Pulse's own docs: "Do not include personally identifiable
+  // information in event properties."
+  it('drops every key the event does not declare', () => {
+    const props = goalProps('newsletter_signup', {
+      surface: 'footer',
+      // All of this is deliberately passed and must not survive.
+      email: 'someone@example.com',
+      name: 'A Reader',
+      message: 'hello',
+      url: 'https://themodestyhouse.com/?utm_source=x',
+    });
+    expect(props).toEqual({ surface: 'footer' });
+  });
+
+  it('cannot leak the contact form beyond its topic', () => {
+    const props = goalProps('contact_submit', {
+      topic: 'seal',
+      name: 'A Reader',
+      email: 'someone@example.com',
+      message: 'Please list my brand, my number is 06-12345678',
+    });
+    expect(props).toEqual({ topic: 'seal' });
+    expect(JSON.stringify(props)).not.toMatch(/@|Reader|number/);
+  });
+
+  it('omits an absent or empty value rather than sending "undefined"', () => {
+    // Pulse coerces values to strings, so an undefined would be stored as the
+    // literal dimension value "undefined" and become a real, meaningless row.
+    expect(goalProps('outbound_click', { brand: 'niswa', surface: '' })).toEqual({ brand: 'niswa' });
+    expect(goalProps('currency_change', { currency: 'EUR', from: undefined })).toEqual({ currency: 'EUR' });
+  });
+
+  it('caps a value rather than sending an unbounded string', () => {
+    const long = 'x'.repeat(5000);
+    expect(goalProps('favourite_add', { product: 'x:1', title: long }).title.length).toBe(200);
+  });
+
+  it('caps a search query harder than anything else, because it is typed text', () => {
+    const long = goalProps('search_zero_results', { query: 'a'.repeat(500) });
+    expect(long.query.length).toBe(60);
+  });
+});
+
 describe('outboundProps', () => {
   it('reads the three dimensions off the anchor', () => {
     expect(outboundProps(el({ 'data-brand': 'aab', 'data-garment': 'abaya', 'data-surface': 'quickview' })))
       .toEqual({ brand: 'aab', garment: 'abaya', surface: 'quickview' });
   });
 
-  it('omits a dimension that is absent rather than sending undefined', () => {
-    // A brand link has no garment. `undefined` would be coerced to the STRING
-    // "undefined" by Pulse and become a real, meaningless dimension value.
+  it('omits a dimension that is absent — a brand link has no garment', () => {
     expect(outboundProps(el({ 'data-brand': 'niswa', 'data-surface': 'designers' })))
       .toEqual({ brand: 'niswa', surface: 'designers' });
   });
 
-  it('omits empty strings too', () => {
-    expect(outboundProps(el({ 'data-brand': '', 'data-surface': 'marquee' }))).toEqual({ surface: 'marquee' });
-  });
-
-  it('returns nothing for an unannotated link', () => {
-    expect(outboundProps(el({}))).toEqual({});
-  });
-
-  // THE PRIVACY GUARD. Pulse's own docs: "Do not include personally
-  // identifiable information in event properties." The policy discloses three
-  // low-cardinality dimensions and nothing else, so this asserts the shape of
-  // what leaves the browser rather than trusting each new call site.
-  it('can never emit anything outside the disclosed allowlist', () => {
+  it('never names the product, unlike the product goals', () => {
+    // The deliberate asymmetry the privacy policy also draws: a click-through
+    // records the brand, a save records the piece.
     const props = outboundProps(el({
       'data-brand': 'aab',
       'data-garment': 'dress',
       'data-surface': 'quickview',
-      // Everything below is deliberately present on the element and must be ignored.
       href: 'https://aab.co.uk/products/secret-thing?utm_source=x&email=a@b.com',
       'data-title': 'Some Product Title',
-      'data-url': 'https://aab.co.uk/products/x',
-      'data-id': 'aab:12345',
-      'data-price': '49',
+      'data-product': 'aab:12345',
     }));
     expect(Object.keys(props).sort()).toEqual(['brand', 'garment', 'surface']);
-    expect(OUTBOUND_PROPS).toEqual(['brand', 'garment', 'surface']);
     expect(JSON.stringify(props)).not.toMatch(/http|@|utm_|Product Title/);
-  });
-
-  it('caps a value rather than sending an unbounded string', () => {
-    // Pulse's limit is 2000 chars per value; a mangled attribute should not
-    // become a giant dimension.
-    const long = 'x'.repeat(5000);
-    expect((outboundProps(el({ 'data-brand': long })).brand as string).length).toBeLessThanOrEqual(200);
   });
 });
 
-describe('favouriteProps', () => {
+describe('productProps', () => {
   const card = {
     id: 'aab:12345',
     brandSlug: 'aab',
     garment: 'dress',
     title: 'Amara Pleated Dress',
-    // Everything below is real on a CardProduct and must never be sent.
+    // Real fields on a CardProduct that must never be sent.
     brandName: 'Aab',
     price: 129,
     currency: 'GBP',
@@ -79,8 +137,8 @@ describe('favouriteProps', () => {
     url: 'https://aab.co.uk/products/amara?utm_source=themodestyhouse.com',
   };
 
-  it('names the product, which is the whole point of the event', () => {
-    expect(favouriteProps(card)).toEqual({
+  it('names the product, which is the point of the product goals', () => {
+    expect(goalProps('favourite_add', productProps(card))).toEqual({
       brand: 'aab',
       garment: 'dress',
       product: 'aab:12345',
@@ -88,39 +146,39 @@ describe('favouriteProps', () => {
     });
   });
 
-  // THE PRIVACY GUARD, the sibling of outboundProps' — and it matters MORE
-  // here, because this event does carry a product, so "we send the product"
-  // must not quietly become "we send the product page url and its price".
-  it('can never emit anything outside the disclosed allowlist', () => {
-    const props = favouriteProps(card);
+  it('picks from the product rather than spreading it', () => {
+    const props = goalProps('quick_view_open', productProps(card));
     expect(Object.keys(props).sort()).toEqual(['brand', 'garment', 'product', 'title']);
-    expect(FAVOURITE_PROPS).toEqual(['brand', 'garment', 'product', 'title']);
     expect(JSON.stringify(props)).not.toMatch(/http|utm_|129|GBP|cdn\./);
   });
 
-  it('omits a dimension that is absent rather than sending undefined', () => {
-    expect(favouriteProps({ id: 'aab:1' })).toEqual({ product: 'aab:1' });
+  it('gives the three product goals identical shapes, so they compare', () => {
+    // favourite_add / quick_view_open / share_link_copy are read against each
+    // other — looked at, saved, shared — which only works if they carry the
+    // same dimensions.
+    expect(EVENT_PROPS.quick_view_open).toEqual(EVENT_PROPS.favourite_add);
+    expect(EVENT_PROPS.share_link_copy).toEqual(EVENT_PROPS.favourite_add);
+  });
+});
+
+describe('trackGoal', () => {
+  it('sends the filtered bag under the event name', () => {
+    const { calls, w } = spy();
+    trackGoal('filter_apply', { filter: 'colour', value: 'olive', lane: '/directory', secret: 'no' }, w);
+    expect(calls).toEqual([['filter_apply', { filter: 'colour', value: 'olive', lane: '/directory' }]]);
   });
 
-  it('caps a value rather than sending an unbounded string', () => {
-    // A title is free third-party text, so this is the one property here that
-    // is not a slug and could genuinely be long.
-    const long = favouriteProps({ id: 'x:1', title: 'x'.repeat(5000) });
-    expect(long.title.length).toBeLessThanOrEqual(200);
-  });
-
-  it('is a distinct goal from the outbound click', () => {
-    // They are separate goals in Pulse's dashboard and carry different props;
-    // if these ever collided the two would be indistinguishable in reporting.
-    expect(FAVOURITE_EVENT).toBe('favourite_add');
-    expect(FAVOURITE_EVENT).not.toBe(OUTBOUND_EVENT);
+  it('emits every declared goal without throwing, with nothing to send', () => {
+    const { w } = spy();
+    for (const event of Object.keys(EVENT_PROPS) as GoalEvent[]) {
+      expect(() => trackGoal(event, {}, w)).not.toThrow();
+    }
   });
 });
 
 describe('track', () => {
   it('calls pulse.track when the script has loaded', () => {
-    const calls: unknown[][] = [];
-    const w = { pulse: { track: (...a: unknown[]) => calls.push(a) } };
+    const { calls, w } = spy();
     track(OUTBOUND_EVENT, { brand: 'aab' }, w);
     expect(calls).toEqual([['outbound_click', { brand: 'aab' }]]);
   });
@@ -129,8 +187,8 @@ describe('track', () => {
     // layout.tsx loads Pulse `defer` + afterInteractive, so a fast click on a
     // prerendered page genuinely can beat it. Documented queue shape.
     const w: { pulseQueue?: unknown[] } = {};
-    track(OUTBOUND_EVENT, { brand: 'aab' }, w);
-    expect(w.pulseQueue).toEqual([['track', 'outbound_click', { brand: 'aab' }]]);
+    track(FAVOURITE_EVENT, { brand: 'aab' }, w);
+    expect(w.pulseQueue).toEqual([['track', 'favourite_add', { brand: 'aab' }]]);
   });
 
   it('appends to a queue the script already created', () => {

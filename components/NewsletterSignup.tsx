@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackGoal } from '@/lib/pulse';
 
 type State = 'idle' | 'sending' | 'done' | 'error';
 
@@ -34,6 +35,10 @@ export function NewsletterSignup() {
         setState('error');
         return;
       }
+      // Only once the API has accepted it — a rejected address is not a
+      // sign-up. The address itself is never sent: `surface` is the only
+      // property this goal has, and lib/pulse.ts drops everything else.
+      trackGoal('newsletter_signup', { surface: 'footer' });
       setState('done');
       setEmail('');
     } catch {

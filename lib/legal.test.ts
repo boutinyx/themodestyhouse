@@ -101,43 +101,57 @@ describe('GDPR disclosures that must not silently regress', () => {
     }
   });
 
-  // Same coupling as above, for CUSTOM EVENTS. §2 enumerates exactly what Pulse
-  // collects, so shipping a new event without extending that list makes the
-  // policy quietly false — the §10.19 failure, in the one file where it is a
-  // legal problem rather than a red build.
-  it('discloses outbound-click tracking whenever the event is actually emitted', () => {
-    const pulse = readFileSync(path.join(process.cwd(), 'lib', 'pulse.ts'), 'utf8');
-    if (!pulse.includes("'outbound_click'")) return;
-    expect(privacy).toMatch(/Clicks through to a brand/);
-    // The disclosure names three dimensions; the code must not emit a fourth.
-    const props = pulse.match(/OUTBOUND_PROPS = \[([^\]]*)\]/);
-    expect(props, 'OUTBOUND_PROPS not found in lib/pulse.ts').toBeTruthy();
-    expect(props![1].match(/'/g)!.length / 2).toBe(3);
-    // And must not claim we record the product or the destination url.
-    expect(privacy).toMatch(/do \*\*not\*\* record which specific product/);
+  // CUSTOM EVENTS, coupled to the policy. §2 enumerates exactly what Pulse
+  // collects, so shipping a goal without extending that list makes a published
+  // legal document quietly false — the §10.19 failure, in the one file where it
+  // is a legal problem rather than a red build.
+  //
+  // The table is keyed by EVERY goal lib/pulse.ts declares, and the assertion
+  // below fails if a goal is added without an entry here, so a new event cannot
+  // be shipped by editing only the code.
+  const DISCLOSED: Record<string, RegExp> = {
+    outbound_click: /- \*\*Clicks through to a brand\.\*\*/,
+    favourite_add: /- \*\*Pieces you save\.\*\*/,
+    quick_view_open: /opening a product's quick view|opening a product’s quick view/,
+    share_link_copy: /copying a product's share link|copying a product’s share link/,
+    currency_change: /changing the display currency/,
+    filter_apply: /using a filter or the sort control/,
+    newsletter_signup: /signing up to the newsletter/,
+    contact_submit: /sending the contact form/,
+    faq_open: /opening an FAQ question/,
+    search_zero_results: /- \*\*Searches that find nothing\.\*\*/,
+  };
+
+  const pulseSource = readFileSync(path.join(process.cwd(), 'lib', 'pulse.ts'), 'utf8');
+  /** The goal names as the code declares them — read from the source, not
+   *  imported, so this stays a check on the file the browser ships. */
+  const declared = [...pulseSource.matchAll(/^  (?:\/\*\*[\s\S]*?\*\/\n)?\s*([a-z_]+): \[/gm)].map((m) => m[1]);
+
+  it('reads every goal out of lib/pulse.ts, so the guards below cannot be vacuous', () => {
+    // §10.28 rule 3: a check that silently matches nothing is a check you do
+    // not have. Ten goals as of 2026-08-30.
+    expect(declared.length).toBeGreaterThanOrEqual(10);
+    expect(declared).toContain('outbound_click');
+    expect(declared).toContain('search_zero_results');
   });
 
-  // The saved-piece goal, same coupling — and stricter, because this is the one
-  // event that DOES name a product. Two things can go quietly false here: the
-  // disclosure of the event itself, and the older "favourites never reach our
-  // servers" line, which was true until the save became measurable.
-  it('discloses favourite tracking whenever the event is actually emitted', () => {
-    const pulse = readFileSync(path.join(process.cwd(), 'lib', 'pulse.ts'), 'utf8');
-    if (!pulse.includes("'favourite_add'")) return;
-    // Anchored on the BULLET, not the phrase: the favourites bullet above it
-    // carries a 'see *Pieces you save*, below' cross-reference, so a looser
-    // match passed with the disclosure itself deleted (negative control, §10.28).
-    expect(privacy).toMatch(/- \*\*Pieces you save\.\*\*/);
-    // The disclosure names four dimensions; the code must not emit a fifth.
-    const props = pulse.match(/FAVOURITE_PROPS = \[([^\]]*)\]/);
-    expect(props, 'FAVOURITE_PROPS not found in lib/pulse.ts').toBeTruthy();
-    expect(props![1].match(/'/g)!.length / 2).toBe(4);
-    // §2 must say the product IS recorded for a save — the opposite of what it
-    // says about an outbound click, and the whole reason this needs its own
-    // bullet rather than a sentence added to that one.
+  it('discloses every goal the code can emit', () => {
+    for (const event of declared) {
+      expect(DISCLOSED[event], `no §2 disclosure mapped for the goal "${event}"`).toBeTruthy();
+      expect(privacy, `§2 does not disclose the goal "${event}"`).toMatch(DISCLOSED[event]);
+    }
+  });
+
+  it('keeps the two promises that are easiest to break by accident', () => {
+    // An outbound click must still NOT name the product...
+    expect(privacy).toMatch(/do \*\*not\*\* record which specific product/);
+    // ...while a save must, which is the asymmetry the code implements.
     expect(privacy).toMatch(/we do record \*\*which product\*\*/);
     // The favourites bullet must no longer claim the save is unrecorded.
     expect(privacy).not.toMatch(/`tmh_favs`\)\. It never reaches our servers/);
+    // The contact and newsletter goals must promise what goalProps enforces.
+    expect(privacy).toMatch(/never your name, address or message/);
+    expect(privacy).toMatch(/never your email address/);
   });
 
   it('does not promise a consent banner it never shows', () => {

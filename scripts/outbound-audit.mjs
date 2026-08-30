@@ -1,11 +1,19 @@
 // npm run audit:outbound — end-to-end check of the site's Pulse GOALS.
 //
-// Named for the first one it covered. It now checks both events lib/pulse.ts
-// emits: `outbound_click` (a visitor leaves for a brand) and `favourite_add`
-// (a visitor saves a piece). Kept in one script rather than forked into a
-// second because the harness below — engine loop, WebKit header stripping,
-// stylesheet and interactivity assertions — is the expensive part and is
-// identical for both.
+// Named for the first one it covered. It now drives EIGHT of the ten goals in
+// lib/pulse.ts: outbound_click, favourite_add, quick_view_open,
+// share_link_copy, filter_apply, currency_change, search_zero_results and
+// faq_open. Kept in one script rather than forked because the harness below —
+// engine loop, WebKit header stripping, stylesheet and interactivity
+// assertions — is the expensive part and is identical for all of them.
+//
+// THE TWO IT DOES NOT DRIVE, said out loud so the gap is not silent (§10.28
+// rule 3): `newsletter_signup` and `contact_submit` fire only after their API
+// accepts a submission, so exercising them here would email Tina a fake
+// sign-up and a fake enquiry on every run, and the contact form additionally
+// needs a real Turnstile token. They are covered by lib/pulse.test.ts at the
+// unit level, where the assertion that matters — that neither can carry an
+// address, a name or a message — actually lives.
 //
 // Clicks a REAL outbound link on three surfaces in BOTH engines and asserts the
 // event that would reach Pulse. Nothing static can see this: the listener is a
@@ -36,7 +44,16 @@ const report = (name, engine, msg) => {
 for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]]) {
   const browser = await engine.launch();
   const LOCAL = /^http:\/\/localhost:/.test(BASE);
-  const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, bypassCSP: LOCAL });
+  // clipboard-write so the quick-view "Copy share link" can actually succeed in
+  // Chromium — the component only emits share_link_copy on a SUCCESSFUL copy,
+  // so without this the check reports a permissions prompt as a site defect.
+  // WebKit does not know the permission name (and allows the write anyway), so
+  // it is Chromium-only; passing it there throws.
+  const ctx = await browser.newContext({
+    viewport: { width: 1280, height: 900 },
+    bypassCSP: LOCAL,
+    ...(engineName === 'chromium' ? { permissions: ['clipboard-read', 'clipboard-write'] } : {}),
+  });
   // §10.24: over plain-http localhost WebKit honours HSTS and
   // upgrade-insecure-requests, rewrites every subresource to https, and renders
   // with NO CSS while still looking like a successful run. Chromium exempts
@@ -280,6 +297,123 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
     } catch (e) {
       if (String(e).includes('skip')) { /* already reported */ }
       else report('favourite case', engineName, `PROBLEM threw: ${String(e).slice(0, 140)}`);
+    } finally {
+      await page.close();
+    }
+  }
+
+  // ── the remaining goals ──────────────────────────────────────────────────
+  {
+    const page = await ctx.newPage();
+    page.on('popup', (pop) => { pop.close().catch(() => {}); });
+    const recorder = () => page.evaluate(() => {
+      window.pulseQueue = [];
+      window.__seen = [];
+      const prior = window.pulse && window.pulse.track;
+      window.pulse = { track: (n, p) => { window.__seen.push(['track', n, p]); if (prior) try { prior(n, p); } catch {} } };
+    });
+    const read = () => page.evaluate(() => [...(window.__seen || []), ...(window.pulseQueue || [])]);
+    const find = async (name) => (await read()).find((e) => e[0] === 'track' && e[1] === name);
+    const check = async (name, label, want) => {
+      const evt = await find(name);
+      if (!evt) return report(label, engineName, `PROBLEM no ${name} emitted`);
+      const props = evt[2] || {};
+      for (const [k, v] of Object.entries(want || {})) {
+        if (v instanceof RegExp ? !v.test(props[k] || '') : props[k] !== v) {
+          return report(label, engineName, `PROBLEM ${name}.${k}=${props[k]} want ${v}`);
+        }
+      }
+      return report(label, engineName, `ok ${JSON.stringify(props)}`);
+    };
+
+    try {
+      await page.goto(`${BASE}/modest-hijabs`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      const styled = await page.evaluate(() => getComputedStyle(document.body).backgroundColor !== 'rgba(0, 0, 0, 0)');
+      if (!styled) { report('goals stylesheet', engineName, 'PROBLEM /modest-hijabs: CSS did not load'); throw new Error('skip'); }
+      if (!(await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => null))) {
+        report('goals hydration', engineName, 'PROBLEM /modest-hijabs: page not interactive'); throw new Error('skip');
+      }
+
+      // filter_apply — driven through the Sort chip, which every grid has and
+      // which needs no lane-specific knowledge. The menu is a real Base UI
+      // primitive (§10.25), so this is a tap on the chip then a tap on a row.
+      await recorder();
+      await page.getByRole('button', { name: 'Sort', exact: true }).click({ timeout: 15000 });
+      await page.getByRole('menuitemradio', { name: /Newest/i }).first().click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      await check('filter_apply', 'filter_apply sort', { filter: 'sort', lane: '/modest-hijabs' });
+
+      // search_zero_results — on /directory, which is the ONLY grid with a
+      // search field: every lane passes searchable={false}. Found the hard way
+      // — this check first ran on /modest-hijabs and timed out on a control
+      // that has never existed there (§10.38: the harness, not the site).
+      await page.goto(`${BASE}/directory`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => {});
+      await recorder();
+      const field = page.getByLabel('Search houses and pieces').first();
+      await field.click({ timeout: 15000 });
+      await field.fill('zzzqqxnothinghere');
+      await page.waitForTimeout(2000);
+      await check('search_zero_results', 'search_zero_results', { query: 'zzzqqxnothinghere' });
+
+      // NEGATIVE CONTROL: a search that FINDS something must stay silent. The
+      // policy promises exactly that, and a hook that reported every settled
+      // query would still pass the positive check above.
+      await recorder();
+      await field.fill('hijab');
+      await page.waitForTimeout(2000);
+      const leaked = await find('search_zero_results');
+      report('negative search-hit', engineName,
+        leaked ? `PROBLEM a search WITH results emitted ${JSON.stringify(leaked[2])}` : 'ok a search with results emitted nothing');
+      await field.fill('');
+
+      // currency_change — the header switcher. Its trigger names the current
+      // currency, so this also proves the switch happened.
+      await recorder();
+      await page.getByRole('button', { name: /Change currency/i }).first().click({ timeout: 15000 });
+      await page.getByRole('menuitem', { name: /EUR/i }).first().click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      await check('currency_change', 'currency_change', { currency: 'EUR', from: 'USD' });
+
+      // quick_view_open + share_link_copy, in the modal.
+      await recorder();
+      await page.locator('button[aria-label^="Quick view"]').first().click({ timeout: 15000 });
+      await page.waitForSelector('[role="dialog"]', { timeout: 15000 });
+      await check('quick_view_open', 'quick_view_open', { product: /^[a-z0-9-]+:/ });
+
+      await recorder();
+      await page.locator('[role="dialog"] button:has-text("Copy share link")').click({ timeout: 15000 });
+      await page.waitForTimeout(400);
+      // The clipboard write can be refused by the browser (no permission, no
+      // user-activation heuristics headless). The component only tracks on a
+      // SUCCESSFUL copy, so read the button's own state first and say which
+      // case this is, rather than reporting a permission problem as a defect.
+      const copied = await page.locator('[role="dialog"] button:has-text("Link copied")').count();
+      if (!copied) report('share_link_copy', engineName, 'PROBLEM clipboard write did not succeed, so the goal could not fire (harness, not site)');
+      else await check('share_link_copy', 'share_link_copy', { product: /^[a-z0-9-]+:/ });
+
+      // faq_open — a different page, and the one goal on a timer.
+      await page.goto(`${BASE}/faq`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => {});
+      await recorder();
+      // Scoped to the accordion's own heading. A bare button[aria-expanded]
+      // matched the header's hidden phone-nav trigger first — 19 elements on the
+      // page carry the attribute — and Playwright waited 15s for something that
+      // is display:none above the hdr breakpoint. Structural, and it predates
+      // this change (HowBlocks wraps each trigger in its heading), so the check
+      // cannot pass by selecting on anything the goal introduced (§10.32 r2).
+      const q = page.locator('h2 button[aria-expanded]').first();
+      // HOVER, not click. These blocks open on pointerenter for a mouse, so
+      // Playwright's click sequence opens the block on the way in and then
+      // TOGGLES IT SHUT — which is documented in HowBlocks.tsx and is exactly
+      // why the goal is fired from the open state rather than from onClick.
+      // Clicking here reported "no faq_open emitted" on a component that works;
+      // the harness was performing the one gesture that closes it again.
+      await q.hover({ timeout: 15000 });
+      await page.waitForTimeout(1500);
+      await check('faq_open', 'faq_open', { question: /\S/ });
+    } catch (e) {
+      if (!String(e).includes('skip')) report('goals case', engineName, `PROBLEM threw: ${String(e).slice(0, 140)}`);
     } finally {
       await page.close();
     }

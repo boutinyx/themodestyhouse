@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { trackGoal, type GoalEvent } from '@/lib/pulse';
 import { CaretDown } from '@phosphor-icons/react';
 
 export type HowBlock = { step: string; title: string; body: string };
@@ -52,8 +53,41 @@ export type HowBlock = { step: string; title: string; body: string };
  * `aria-expanded`. The delayed visibility transition lets the close animate
  * before the content is taken away.
  */
-export default function HowBlocks({ blocks, headingLevel = 'h3' }: { blocks: HowBlock[]; headingLevel?: 'h2' | 'h3' }) {
+export default function HowBlocks({
+  blocks,
+  headingLevel = 'h3',
+  goal,
+}: {
+  blocks: HowBlock[];
+  headingLevel?: 'h2' | 'h3';
+  /** Pulse goal to emit when a block is deliberately opened. Opt-in per call
+   *  site: /faq passes `faq_open`, /about passes nothing, because "which
+   *  question did a reader have" is a real signal and "did someone sweep the
+   *  pointer down the how-it-works column" is not. */
+  goal?: GoalEvent;
+}) {
   const [openStep, setOpenStep] = useState<string | null>(null);
+  /** Steps already counted this page view. A hover-driven accordion opens and
+   *  closes as the pointer travels, and the same question re-counted five times
+   *  on the way past would read as interest it never had. */
+  const counted = useRef<Set<string>>(new Set());
+
+  // Deliberately NOT fired from the click handler. On a desktop these open on
+  // hover (see the note above), so counting clicks alone would record only
+  // touch users and silently under-report every mouse. Counting the OPEN STATE
+  // instead covers both — but a bare pointer sweep down the column opens every
+  // block in turn, so a block has to stay open for 700ms before it counts as
+  // someone actually reading it.
+  useEffect(() => {
+    if (!goal || openStep === null || counted.current.has(openStep)) return;
+    const step = openStep;
+    const block = blocks.find((b) => b.step === step);
+    const t = setTimeout(() => {
+      counted.current.add(step);
+      trackGoal(goal, { question: block?.title ?? step });
+    }, 700);
+    return () => clearTimeout(t);
+  }, [openStep, goal, blocks]);
   // The disclosure button's title becomes a real heading (WAI-ARIA Accordion
   // Pattern: heading wraps the trigger button), not a styled <span> — this
   // used to render 10 "questions" on /faq with zero actual <h2>/<h3> tags,
