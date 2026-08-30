@@ -1375,14 +1375,6 @@
     "evidence": "Hijab Magnet"
   },
   {
-    "id": "voile-chic:8876398805245",
-    "brandSlug": "voile-chic",
-    "title": "Black Essentials - Gift Set",
-    "url": "https://voilechic.com/products/bundle-essentials",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "voile-chic:8876398641405",
     "brandSlug": "voile-chic",
     "title": "Cream Essentials - Gift Set",
@@ -1395,22 +1387,6 @@
     "brandSlug": "voile-chic",
     "title": "Blended Elements - Gift Set",
     "url": "https://voilechic.com/products/bundle-elements",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "voile-chic:8876397560061",
-    "brandSlug": "voile-chic",
-    "title": "Neutrals Jersey - Gift Set",
-    "url": "https://voilechic.com/products/neutrals-jersey",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "voile-chic:8876389531901",
-    "brandSlug": "voile-chic",
-    "title": "Classic Jersey - Gift Set",
-    "url": "https://voilechic.com/products/classic-jersey",
     "garmentWas": "set",
     "reason": "title-pattern"
   },
@@ -24521,7 +24497,7 @@
     "url": "https://www.summerevenings.us/products/pink-zip-up-cotton-pleated-dress",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: 1XL, 2XL"
+    "evidence": "in stock: 2XL"
   },
   {
     "id": "zora:9157154472099",
@@ -24540,6 +24516,15 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Enamel Pin"
+  },
+  {
+    "id": "zora:8779986600099",
+    "brandSlug": "zora",
+    "title": "The Vitznau Skirt in Vanilla",
+    "url": "https://zoradesigners.com/products/the-vitznau-skirt-in-vanilla",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "haute-hijab:4528495722592",
@@ -24619,6 +24604,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "veiled:7634723766377",
+    "brandSlug": "veiled",
+    "title": "Suede Wrap Skirt - Pebble",
+    "url": "https://veiled.com/products/suede-wrap-skirt-pebble",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "veiled:7798574940265",
     "brandSlug": "veiled",
     "title": "Cotton Wide Yoke Skirt - Black",
@@ -24628,13 +24622,22 @@
     "evidence": "in stock: XL, XXL"
   },
   {
-    "id": "veiled:7746233401449",
+    "id": "veiled:7746275967081",
     "brandSlug": "veiled",
-    "title": "Wrap Top - Ink",
-    "url": "https://veiled.com/products/wrap-top-rain",
-    "garmentWas": "top",
+    "title": "Cotton Cinch Maxi Dress - Boulder",
+    "url": "https://veiled.com/products/cinch-maxi-dress-boulder",
+    "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
+  },
+  {
+    "id": "veiled:7746275868777",
+    "brandSlug": "veiled",
+    "title": "Cotton Cinch Maxi Dress - Natural",
+    "url": "https://veiled.com/products/cinch-maxi-dress-natural",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XL, XXL, XXL, XXL"
   },
   {
     "id": "veiled:7798570516585",
@@ -24644,15 +24647,6 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
-  },
-  {
-    "id": "veiled:7798570614889",
-    "brandSlug": "veiled",
-    "title": "Tencel Asymmetric Top - Light Sand",
-    "url": "https://veiled.com/products/tencel-asymmetric-top-light-sand",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   },
   {
     "id": "modern-hijabi:8206337245398",
@@ -24672,15 +24666,6 @@
     "reason": "non-apparel:hair",
     "tier": "B",
     "evidence": "Scrunchie"
-  },
-  {
-    "id": "modern-hijabi:9261502005462",
-    "brandSlug": "modern-hijabi",
-    "title": "Mira Crystal Maxi Dress Set - Red",
-    "url": "https://modernhijabi.com/products/mira-crystal-maxi-dress-red",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "modern-hijabi:9038863106262",
@@ -24844,15 +24829,6 @@
     "evidence": "Hijab Clips"
   },
   {
-    "id": "aab:10038140633402",
-    "brandSlug": "aab",
-    "title": "Winter Flared Skirt Mink",
-    "url": "https://us.aabcollection.com/products/winter-flared-skirt-mink",
-    "garmentWas": "skirt",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "aab:9801478570298",
     "brandSlug": "aab",
     "title": "Camo Tiered Maxi - Final Sale",
@@ -24869,6 +24845,15 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "aab:10277923160378",
+    "brandSlug": "aab",
+    "title": "Cream Self Print Maxi Shirt",
+    "url": "https://us.aabcollection.com/products/cream-self-print-maxi-shirt",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
   },
   {
     "id": "aab:10277923193146",
@@ -32416,7 +32401,7 @@
     "url": "https://glowmodesty.com/products/olivia-evening-gown",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "786.95 EUR (~$918)"
+    "evidence": "894 USD (~$894)"
   },
   {
     "id": "glow-modesty:9275503313112",
@@ -32425,7 +32410,7 @@
     "url": "https://glowmodesty.com/products/azura-glimmer-gown",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "782.95 EUR (~$913)"
+    "evidence": "890 USD (~$890)"
   },
   {
     "id": "vela:8460541067420",
@@ -32455,6 +32440,15 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "veiled:7684932665449",
+    "brandSlug": "veiled",
+    "title": "Cotton Eyelet Maxi Dress - Petal",
+    "url": "https://veiled.com/products/cotton-eyelet-maxi-dress-petal",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
     "id": "veiled:7117512147049",
     "brandSlug": "veiled",
     "title": "Lyana Crystal Satin Abaya - White",
@@ -32468,15 +32462,6 @@
     "brandSlug": "veiled",
     "title": "Boat Neck Rouched Maxi Dress - Chocolate Torte",
     "url": "https://veiled.com/products/boat-neck-rouched-maxi-dress-chocolate-torte",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "veiled:7640924913769",
-    "brandSlug": "veiled",
-    "title": "Boat Neck Rouched Maxi Dress - Dusk",
-    "url": "https://veiled.com/products/boat-neck-rouched-maxi-dress-dusk",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
@@ -32559,6 +32544,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "veiled:7650775105641",
+    "brandSlug": "veiled",
+    "title": "Denim Twin Pleat Pants - Light Wash",
+    "url": "https://veiled.com/products/denim-twin-pleat-pants-light-wash",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
     "id": "veiled:7640454037609",
     "brandSlug": "veiled",
     "title": "Contrast Open Abaya - Midnight Forest",
@@ -32593,15 +32587,6 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL, XXL"
-  },
-  {
-    "id": "veiled:7640437424233",
-    "brandSlug": "veiled",
-    "title": "Relaxed Knit Maxi Dress - Iron",
-    "url": "https://veiled.com/products/relaxed-knit-maxi-dress-iron",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7621876187241",
@@ -32691,7 +32676,7 @@
     "url": "https://us.aabcollection.com/products/second-skin-slip-ebony",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "aab:9813718892858",
@@ -32868,7 +32853,16 @@
     "url": "https://us.aabcollection.com/products/cascade-kaftan-vintage-rose-ss25",
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL"
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "aab:10211779445050",
+    "brandSlug": "aab",
+    "title": "Oriental Open Abaya",
+    "url": "https://us.aabcollection.com/products/oriental-open-abaya-ss25",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "aab:10201504022842",
@@ -32877,7 +32871,7 @@
     "url": "https://us.aabcollection.com/products/satin-abaya-green",
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL, XL, XXL, XXL"
+    "evidence": "in stock: XL, XL, XL, XXL"
   },
   {
     "id": "aab:10186310484282",
@@ -34789,12 +34783,22 @@
     "evidence": "Hijab Magnets"
   },
   {
-    "id": "merrachi:15580608725375",
+    "id": "merrachi:15481991758207",
     "brandSlug": "merrachi",
-    "title": "Rose Scarf Gift Box | Multi Color",
-    "url": "https://bymerrachi.com/products/rose-scarf-gift-box-multi-color",
-    "garmentWas": "hijab",
-    "reason": "title-pattern"
+    "title": "Asymmetric Drape Dress Short | Sand",
+    "url": "https://bymerrachi.com/products/asymmetric-drape-dress-short-sand",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "merrachi:15481994740095",
+    "brandSlug": "merrachi",
+    "title": "Flowy Palazzo Pants | Ash Brown",
+    "url": "https://bymerrachi.com/products/flowy-palazzo-pants-ash-brown",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "merrachi:15648489767295",
@@ -34825,14 +34829,6 @@
     "reason": "non-apparel:bags",
     "tier": "B",
     "evidence": "Bag"
-  },
-  {
-    "id": "merrachi:15675922415999",
-    "brandSlug": "merrachi",
-    "title": "Zebra Scarf Gift Box | Multi Color",
-    "url": "https://bymerrachi.com/products/zebra-scarf-gift-box-multi-color",
-    "garmentWas": "hijab",
-    "reason": "title-pattern"
   },
   {
     "id": "merrachi:15639066050943",
@@ -34990,7 +34986,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -34999,7 +34995,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:8267053432970",
@@ -35008,7 +35004,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "499.95 EUR (~$583)"
+    "evidence": "578 USD (~$578)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -35017,7 +35013,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "499.95 EUR (~$583)"
+    "evidence": "578 USD (~$578)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -35026,79 +35022,25 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "499.95 EUR (~$583)"
+    "evidence": "578 USD (~$578)"
   },
   {
-    "id": "fares:8181669167295",
+    "id": "fares:7851058331839",
     "brandSlug": "fares",
-    "title": "Embroidered Floral Dress - White",
-    "url": "https://shopfares.com/products/embroidered-floral-dress-white",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "fares:8071894335679",
-    "brandSlug": "fares",
-    "title": "Pleated Detail Abaya - Crema",
-    "url": "https://shopfares.com/products/pleated-detail-abaya-crema",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL/XXL"
-  },
-  {
-    "id": "fares:8281654755519",
-    "brandSlug": "fares",
-    "title": "Layered Chiffon Blouse - Rose Milk",
-    "url": "https://shopfares.com/products/layered-chiffon-blouse-rose-milk",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL/XXL"
-  },
-  {
-    "id": "fares:8281670582463",
-    "brandSlug": "fares",
-    "title": "Pleated Detail Abaya - Layal",
-    "url": "https://shopfares.com/products/pleated-detail-abaya-layal",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL/XXL"
-  },
-  {
-    "id": "fares:8272726130879",
-    "brandSlug": "fares",
-    "title": "Tailored Elastic Waist Pants - Chalk",
-    "url": "https://shopfares.com/products/tailored-elastic-waist-pants-chalk",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:8223608078527",
-    "brandSlug": "fares",
-    "title": "Straight Leg Knit Pants - Espresso",
-    "url": "https://shopfares.com/products/straight-leg-knit-pants-espresso",
+    "title": "Linen Blend Pants - Royal Blue",
+    "url": "https://shopfares.com/products/us-linen-blend-pants-royal-blue",
     "garmentWas": "trousers",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
   },
   {
-    "id": "fares:8223609192639",
+    "id": "fares:8281648660671",
     "brandSlug": "fares",
-    "title": "Draped Shawl Knit Top - Charcoal",
-    "url": "https://shopfares.com/products/draped-shawl-knit-top-charcoal",
-    "garmentWas": "hijab",
+    "title": "Floral Trim Pleated Abaya - Qahwa",
+    "url": "https://shopfares.com/products/floral-trim-pleated-abaya-qahwa",
+    "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
-  },
-  {
-    "id": "fares:8223589236927",
-    "brandSlug": "fares",
-    "title": "Buttery Side Ruched Tunic - Toffee",
-    "url": "https://shopfares.com/products/buttery-side-ruched-tunic-toﬀee",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   },
   {
     "id": "fares:8223589105855",
@@ -35107,103 +35049,13 @@
     "url": "https://shopfares.com/products/buttery-straight-leg-trousers-bluebell",
     "garmentWas": "trousers",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:8223585632447",
-    "brandSlug": "fares",
-    "title": "Buttery Side Ruched Tunic - Bluebell",
-    "url": "https://shopfares.com/products/buttery-side-ruched-tunic-bluebell",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:8212583383231",
-    "brandSlug": "fares",
-    "title": "Velour Knit Top - Sandstone",
-    "url": "https://shopfares.com/products/velour-knit-top-sandstone",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
   },
   {
-    "id": "fares:8212581548223",
+    "id": "fares:8153691193535",
     "brandSlug": "fares",
-    "title": "Velour Knit Top - Royal Blue",
-    "url": "https://shopfares.com/products/velour-knit-top-royal-blue",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
-  },
-  {
-    "id": "fares:8212580925631",
-    "brandSlug": "fares",
-    "title": "Velour Knit Pants - Black",
-    "url": "https://shopfares.com/products/velour-knit-pants-black",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:8180329742527",
-    "brandSlug": "fares",
-    "title": "Flowy Wide Leg Pants - Navy",
-    "url": "https://shopfares.com/products/flowy-wide-leg-pants-navy",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
-  },
-  {
-    "id": "fares:8153738051775",
-    "brandSlug": "fares",
-    "title": "Scalloped Quick Dry Modest Swim Set - Aloe",
-    "url": "https://shopfares.com/products/scalloped-quick-dry-modest-swim-set-aloe",
-    "garmentWas": "swim",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:8153737035967",
-    "brandSlug": "fares",
-    "title": "Gathered Quick Dry Modest Swim Set - Coastal Blue",
-    "url": "https://shopfares.com/products/gathered-quick-dry-modest-swim-set-coastal-blue",
-    "garmentWas": "swim",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:8117375467711",
-    "brandSlug": "fares",
-    "title": "Bow Detail Cardigan - Icy Green",
-    "url": "https://shopfares.com/products/bow-detail-cardigan-icy-green",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "fares:8119240655039",
-    "brandSlug": "fares",
-    "title": "Ribbed Relaxed Fit Pants - Taro",
-    "url": "https://shopfares.com/products/ribbed-relaxed-fit-pants-taro",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "fares:8072101363903",
-    "brandSlug": "fares",
-    "title": "Flowy Maxi Skirt - Royal Blue",
-    "url": "https://shopfares.com/products/flowy-maxi-skirt-royal-blue",
-    "garmentWas": "skirt",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "fares:8050140545215",
-    "brandSlug": "fares",
-    "title": "Buttery Pressed Crease Pants - Black",
-    "url": "https://shopfares.com/products/buttery-pressed-crease-pants-black",
+    "title": "Relaxed Straight Leg Pants - Butter Yellow",
+    "url": "https://shopfares.com/products/relaxed-straight-leg-pants-butter-yellow",
     "garmentWas": "trousers",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
@@ -35218,67 +35070,24 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "fares:8050139431103",
+    "id": "fares:7648008044735",
     "brandSlug": "fares",
-    "title": "Buttery Cinched Hoodie - Rocky",
-    "url": "https://shopfares.com/products/buttery-cinched-hoodie-rocky",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
+    "title": "Hijab Scrunchie - Ivory",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-ivory",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
   },
   {
-    "id": "fares:8050138218687",
+    "id": "fares:7648007520447",
     "brandSlug": "fares",
-    "title": "Buttery Cinched Hoodie - Mink",
-    "url": "https://shopfares.com/products/buttery-cinched-hoodie-mink",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:8025216352447",
-    "brandSlug": "fares",
-    "title": "Colour Block Buttery Crewneck - Toasted Marshmallo",
-    "url": "https://shopfares.com/products/colour-block-buttery-crewneck-toasted-marshmallo",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:7432677556415",
-    "brandSlug": "fares",
-    "title": "Velour Knit Pants - Oats",
-    "url": "https://shopfares.com/products/velour-knit-pants-oats",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:7558183878847",
-    "brandSlug": "fares",
-    "title": "Sleeveless Layer - Navy",
-    "url": "https://shopfares.com/products/sleeveless-layer-tan",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:7558186893503",
-    "brandSlug": "fares",
-    "title": "Sleeveless Layer - Bronze",
-    "url": "https://shopfares.com/products/sleeveless-layer-bronze",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "fares:7558146457791",
-    "brandSlug": "fares",
-    "title": "Long Sleeve Layer -Buff",
-    "url": "https://shopfares.com/products/long-sleeve-layer-buff",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
+    "title": "Hijab Scrunchie - Brown",
+    "url": "https://shopfares.com/products/us-hijab-scrunchie-brown",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hair",
+    "tier": "B",
+    "evidence": "Scrunchie"
   },
   {
     "id": "fatima-diallo:8836043309292",
@@ -36543,15 +36352,6 @@
     "brandSlug": "chi-ka",
     "title": "Flowy Soft Light Blue Abaya",
     "url": "https://chikacollection.com/products/flowy-soft-light-blue-abaya",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "2200 AED (~$599)"
-  },
-  {
-    "id": "chi-ka:8421251743905",
-    "brandSlug": "chi-ka",
-    "title": "Flowy Soft Caramel Brown Abaya",
-    "url": "https://chikacollection.com/products/flowy-soft-caramel-brown-abaya",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2200 AED (~$599)"
@@ -41548,15 +41348,6 @@
     "evidence": "in stock: XL, XXL"
   },
   {
-    "id": "lanuuk:7131528790074",
-    "brandSlug": "lanuuk",
-    "title": "Active Hoodie - Navy",
-    "url": "https://lanuuk.com/products/active-hoodie-navy",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "lanuuk:6544720363578",
     "brandSlug": "lanuuk",
     "title": "Lanuuk Gift Card",
@@ -41701,7 +41492,7 @@
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -41710,7 +41501,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -41719,7 +41510,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -41728,7 +41519,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -41737,7 +41528,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "476.95 EUR (~$556)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -41746,7 +41537,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -41755,7 +41546,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -41764,7 +41555,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -41773,7 +41564,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -41782,7 +41573,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -41791,7 +41582,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "536.95 EUR (~$626)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "kamin:9333254586585",
@@ -42192,6 +41983,69 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "amariah:9306373947617",
+    "brandSlug": "amariah",
+    "title": "Selena Maxi Dress - Maroon",
+    "url": "https://amariah.co.uk/products/selena-maxi-dress-color-maroon",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:8216081989857",
+    "brandSlug": "amariah",
+    "title": "Lydia Tiered Maxi Dress - Khaki Green",
+    "url": "https://amariah.co.uk/products/lydia-tiered-maxi-dress-color-khaki-green",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:8831100453089",
+    "brandSlug": "amariah",
+    "title": "Analia Top - Plum",
+    "url": "https://amariah.co.uk/products/analia-top-color-plum",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:8035978871009",
+    "brandSlug": "amariah",
+    "title": "Serena Matte Abaya Set - Chocolate Brown",
+    "url": "https://amariah.co.uk/products/serena-matte-abaya-color-chocolate-brown",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:8054182117601",
+    "brandSlug": "amariah",
+    "title": "Lydia Tiered Maxi Dress - Dark Spice",
+    "url": "https://amariah.co.uk/products/lydia-tiered-maxi-dress-color-dark-spice",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:7430856179937",
+    "brandSlug": "amariah",
+    "title": "Arabella Tie Waist Top - Beige",
+    "url": "https://amariah.co.uk/products/arabella-tie-waist-top-color-beige",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:6973545480345",
+    "brandSlug": "amariah",
+    "title": "AMELIA Maxi Dress - Rose",
+    "url": "https://amariah.co.uk/products/amelia-maxi-dress-color-rose",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "almotahajiba:10476228280595",
@@ -42629,6 +42483,24 @@
     "evidence": "39500 TRY (~$822)"
   },
   {
+    "id": "baqa:9132165136635",
+    "brandSlug": "baqa",
+    "title": "Krem Desenli Palazzo Pantolon",
+    "url": "https://baqaofficial.com/products/krem-desenli-palazzo-pantolon",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "baqa:9132165529851",
+    "brandSlug": "baqa",
+    "title": "Haki Asimetrik Kuşaklı Pantolon",
+    "url": "https://baqaofficial.com/products/haki-asimetrik-kusakli-pantolon",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "baqa:9292286525691",
     "brandSlug": "baqa",
     "title": "Manşet Detaylı Oversize Abaya",
@@ -42828,6 +42700,15 @@
     "evidence": "Belt"
   },
   {
+    "id": "daska-fashion:15559798849868",
+    "brandSlug": "daska-fashion",
+    "title": "Asiya Dress – Stone",
+    "url": "https://daskafashion.com/products/asiya-dress-stone",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "jennah-boutique:7800520868016",
     "brandSlug": "jennah-boutique",
     "title": "Box ramadan homme - bleu",
@@ -42844,6 +42725,15 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Pins"
+  },
+  {
+    "id": "yasmin-jay:7758500954288",
+    "brandSlug": "yasmin-jay",
+    "title": "Swim Leggings Olive",
+    "url": "https://www.yasminjay.com.au/products/swim-leggings-olive",
+    "garmentWas": "swim",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 16au / XXL"
   },
   {
     "id": "yasmin-jay:7967968067760",
@@ -42882,6 +42772,24 @@
     "url": "https://eynaaparis.fr/products/epingles-a-hijab",
     "garmentWas": "hijab",
     "reason": "id-pin"
+  },
+  {
+    "id": "malikaat:7289834307746",
+    "brandSlug": "malikaat",
+    "title": "Tan Tunic Dress",
+    "url": "https://malikaat.com/products/tan-tunic-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "modesty-in-style:10653376708918",
+    "brandSlug": "modesty-in-style",
+    "title": "Denim Hooded Jacket",
+    "url": "https://modestyinstyle.com.au/products/denim-hooded-tunic",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "modesty-in-style:10532883202358",
@@ -43709,6 +43617,87 @@
     "evidence": "2100 AED (~$572)"
   },
   {
+    "id": "lameera-moda:9404835561640",
+    "brandSlug": "lameera-moda",
+    "title": "Sila Textured Chiffon Pants Set - Butter Yellow",
+    "url": "https://lameeramoda.com/products/sila-textured-chiffon-tunic-butter-yellow",
+    "garmentWas": "set",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "lameera-moda:9293759873192",
+    "brandSlug": "lameera-moda",
+    "title": "Clara Drop Waist Chiffon Dress - White",
+    "url": "https://lameeramoda.com/products/clara-drop-waist-chiffon-dress-white-1",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL"
+  },
+  {
+    "id": "lameera-moda:9404832612520",
+    "brandSlug": "lameera-moda",
+    "title": "Soleil Embroidery Organza Dress - Blue Gray",
+    "url": "https://lameeramoda.com/products/soleil-embroidery-organza-dress-blue-gray",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "lameera-moda:9404826550440",
+    "brandSlug": "lameera-moda",
+    "title": "Soleil Embroidery Organza Dress - Butter Yellow",
+    "url": "https://lameeramoda.com/products/soleil-embroidery-organza-dress-butter-yellow",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "lameera-moda:9302817865896",
+    "brandSlug": "lameera-moda",
+    "title": "Camelia Linen Embroidery Set - Beige",
+    "url": "https://lameeramoda.com/products/camelia-linen-embroidery-set-beige",
+    "garmentWas": "set",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "lameera-moda:6071062724776",
+    "brandSlug": "lameera-moda",
+    "title": "Luxe Ribbed Maxi Skirt - Heather Gray",
+    "url": "https://lameeramoda.com/products/luxe-ribbed-maxi-skirt-heather-gray",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 2XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:6071058432168",
+    "brandSlug": "lameera-moda",
+    "title": "Luxe Ribbed Maxi Skirt - Black",
+    "url": "https://lameeramoda.com/products/copy-of-luxe-ribbed-maxi-skirt-black",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL, 3XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:5409127628968",
+    "brandSlug": "lameera-moda",
+    "title": "Luxe Ribbed Maxi Skirt - Sand",
+    "url": "https://lameeramoda.com/products/ribbed-maxi-skirt-sand",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:8783938060456",
+    "brandSlug": "lameera-moda",
+    "title": "Reham Bow Pleat Dress- Blue Gray",
+    "url": "https://lameeramoda.com/products/reham-bow-pleat-dress-blue-gray",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "lameera-moda:7460656316584",
     "brandSlug": "lameera-moda",
     "title": "Black Stone Necklace & Ring Set | Premium",
@@ -43717,6 +43706,15 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Ring"
+  },
+  {
+    "id": "lameera-moda:7838632345768",
+    "brandSlug": "lameera-moda",
+    "title": "Ayanna Beaded Wrap Dress- Blush Pink",
+    "url": "https://lameeramoda.com/products/ayanna-beaded-wrap-dress-blush-pink",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "lameera-moda:7460616896680",
@@ -43737,12 +43735,66 @@
     "reason": "title-pattern"
   },
   {
+    "id": "lameera-moda:6137312968872",
+    "brandSlug": "lameera-moda",
+    "title": "Lameera Satin Skirt - Sage Green",
+    "url": "https://lameeramoda.com/products/lameera-satin-skirt-sage-green",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 2XL"
+  },
+  {
+    "id": "lameera-moda:6079414370472",
+    "brandSlug": "lameera-moda",
+    "title": "Luxe Spandex Maxi Skirt - Ash Gray",
+    "url": "https://lameeramoda.com/products/luxe-spandex-maxi-skirt-ash-gray-1",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:5406224220328",
+    "brandSlug": "lameera-moda",
+    "title": "Lameera Satin Skirt - Cherry",
+    "url": "https://lameeramoda.com/products/lameera-satin-skirt-cherry",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXXl"
+  },
+  {
+    "id": "lameera-moda:5406218223784",
+    "brandSlug": "lameera-moda",
+    "title": "Lameera Satin Skirt - Dusty Rose",
+    "url": "https://lameeramoda.com/products/lameera-satin-skirt-dusty-rose",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL, 3XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:5406177624232",
+    "brandSlug": "lameera-moda",
+    "title": "Lameera Satin Skirt - Mint Gray",
+    "url": "https://lameeramoda.com/products/lameera-satin-skirt-mint-gray",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL, 3XL"
+  },
+  {
     "id": "lameera-moda:5409160757416",
     "brandSlug": "lameera-moda",
     "title": "Luxe Silky Spandex Maxi Skirt - Light Pink",
     "url": "https://lameeramoda.com/products/luxe-spandex-maxi-skirt-light-pink",
     "garmentWas": "skirt",
     "reason": "id-pin"
+  },
+  {
+    "id": "lameera-moda:5409099219112",
+    "brandSlug": "lameera-moda",
+    "title": "Ribbed Maxi Skirt - Heather Gray",
+    "url": "https://lameeramoda.com/products/ribbed-maxi-skirt-heather-gray",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL, 3XL, 4XL"
   },
   {
     "id": "meriam-abdulaziz:10302945362198",
@@ -47669,6 +47721,15 @@
     "evidence": "2185 AED (~$595)"
   },
   {
+    "id": "modista:9758663377186",
+    "brandSlug": "modista",
+    "title": "Noor Chiffon Maxi Dress",
+    "url": "https://modistaapparel.com/products/chiffon-dress-blue",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: Extra Large"
+  },
+  {
     "id": "modista:8906489004322",
     "brandSlug": "modista",
     "title": "Heart Magnets",
@@ -48259,6 +48320,33 @@
     "evidence": "Gift Card"
   },
   {
+    "id": "ilovemodesty:9893857493313",
+    "brandSlug": "ilovemodesty",
+    "title": "Taupe Front Pleated Satin Wide Legged Pants",
+    "url": "https://ilovemodesty.com/products/taupe-front-pleated-satin-wide-legged-pants",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 2XL"
+  },
+  {
+    "id": "ilovemodesty:9818280427841",
+    "brandSlug": "ilovemodesty",
+    "title": "White Sleeveless Slip Dress",
+    "url": "https://ilovemodesty.com/products/white-sleeveless-slip-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "ilovemodesty:9845032517953",
+    "brandSlug": "ilovemodesty",
+    "title": "Ivory Long Sleeve Maxi Slip Dress",
+    "url": "https://ilovemodesty.com/products/ivory-slip-long-sleeves-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL"
+  },
+  {
     "id": "ilovemodesty:9804332335425",
     "brandSlug": "ilovemodesty",
     "title": "Black and White Hijab Magnets",
@@ -48349,6 +48437,15 @@
     "evidence": "Hijab Pins"
   },
   {
+    "id": "ilovemodesty:9656973623617",
+    "brandSlug": "ilovemodesty",
+    "title": "Black Long Sleeve Maxi Slip Dress",
+    "url": "https://ilovemodesty.com/products/black-slip-long-sleeves-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 2XL"
+  },
+  {
     "id": "ilovemodesty:9656872501569",
     "brandSlug": "ilovemodesty",
     "title": "Long Hijab Pins - Multi-Colored Oval Head",
@@ -48400,14 +48497,6 @@
     "title": "Zyran Boy Koko",
     "url": "https://riamiranda.com/products/zyran-boy-koko",
     "garmentWas": "top",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "ria-miranda:9069003964674",
-    "brandSlug": "ria-miranda",
-    "title": "Gift Set Box",
-    "url": "https://riamiranda.com/products/gift-set-box",
-    "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
@@ -49553,6 +49642,15 @@
     "evidence": "290 KWD (~$941)"
   },
   {
+    "id": "aeon-abaya:7789177667636",
+    "brandSlug": "aeon-abaya",
+    "title": "Caramel Abaya",
+    "url": "https://aeonabaya.net/products/velvet-corduroy-abaya-beige-caramel-abaya",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL, XXL"
+  },
+  {
     "id": "nour-al-houda:7687564165168",
     "brandSlug": "nour-al-houda",
     "title": "Hijab Magnet - Chocolate",
@@ -49611,6 +49709,15 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Pins"
+  },
+  {
+    "id": "nour-al-houda:7660508971056",
+    "brandSlug": "nour-al-houda",
+    "title": "Saylor Satin Slip Dress - Mahogany",
+    "url": "https://nouralhouda.com.au/products/saylor-satin-slip-dress-mahogany",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "nour-al-houda:7210425253936",
@@ -49801,6 +49908,15 @@
     "reason": "title-pattern"
   },
   {
+    "id": "baqa:9292803211515",
+    "brandSlug": "baqa",
+    "title": "Üç Renk Asimetrik Kesim Bluz",
+    "url": "https://baqaofficial.com/products/uc-renkli-asimetrik-bluz",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "baqa:9292803277051",
     "brandSlug": "baqa",
     "title": "Dantel Detaylı Beyaz Keten Elbise",
@@ -49932,6 +50048,15 @@
     "evidence": "30000 TRY (~$624)"
   },
   {
+    "id": "baqa:9132166873339",
+    "brandSlug": "baqa",
+    "title": "Haki Kontrast Detaylı Bluz",
+    "url": "https://baqaofficial.com/products/haki-kontrast-detayli-bluz",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
     "id": "baqa:9234747588859",
     "brandSlug": "baqa",
     "title": "Jakar Desenli Ceket",
@@ -50057,6 +50182,15 @@
     "reason": "title-pattern"
   },
   {
+    "id": "baqa:9114051346683",
+    "brandSlug": "baqa",
+    "title": "Kahverengi Kuşaklı Bluz",
+    "url": "https://baqaofficial.com/products/kahverengi-kusakli-bluz",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "baqa:9292284723451",
     "brandSlug": "baqa",
     "title": "V Yaka Keten Elbise",
@@ -50136,6 +50270,15 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "28500 TRY (~$593)"
+  },
+  {
+    "id": "alia-anggun:7350773809251",
+    "brandSlug": "alia-anggun",
+    "title": "Daifa Kurung in Black",
+    "url": "https://www.aliaanggun.com/products/daifa-kurung-in-black",
+    "garmentWas": "set",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL"
   },
   {
     "id": "ipekstil:9206763454699",
@@ -51866,6 +52009,15 @@
     "evidence": "27500 TRY (~$572)"
   },
   {
+    "id": "baqa:9145506857211",
+    "brandSlug": "baqa",
+    "title": "Bej Uzun Kaban",
+    "url": "https://baqaofficial.com/products/bej-uzun-kaban",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "baqa:9114048725243",
     "brandSlug": "baqa",
     "title": "Geniş Cepli Kaşmir Kaban",
@@ -51883,21 +52035,21 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "urban-modesty:8057450889291",
+    "brandSlug": "urban-modesty",
+    "title": "Beige Linen Lace Up Maxi Dress",
+    "url": "https://urbanmodesty.com/products/beige-linen-lace-up-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XX-Large"
+  },
+  {
     "id": "mariams:9407277039832",
     "brandSlug": "mariams",
     "title": "Handcrafted A4 Islamic Calligraphy Wall Art | Copper Relief Wood Frame（MAC452）",
     "url": "https://mariam-col.com/products/a4-islamic-calligraphy-wall-art-21-29-7-cm",
     "garmentWas": "set",
     "reason": "brand-blacklist"
-  },
-  {
-    "id": "chic-modesty:10762943070546",
-    "brandSlug": "chic-modesty",
-    "title": "Burkini oversize noir",
-    "url": "https://chicandmodesty.com/products/burkini-oversize-noir-1",
-    "garmentWas": "swim",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL/XXL"
   },
   {
     "id": "nihan:15210884366699",
@@ -52131,15 +52283,6 @@
     "evidence": "Pins"
   },
   {
-    "id": "zahraa:7495344291927",
-    "brandSlug": "zahraa",
-    "title": "Alya Everyday Tunic & Pant Set - Obsidian",
-    "url": "https://zahraathelabel.com/products/alya-everyday-tunic-pant-set",
-    "garmentWas": "set",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: 2XL"
-  },
-  {
     "id": "mariams:9417218064600",
     "brandSlug": "mariams",
     "title": "Impressionist Floral Print Lightweight Hijab Scarf(MH250)",
@@ -52351,7 +52494,7 @@
     "url": "https://glowmodesty.com/products/evelyn",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "877.95 EUR (~$1024)"
+    "evidence": "998 USD (~$998)"
   },
   {
     "id": "veiled:7407586574441",
@@ -52368,15 +52511,6 @@
     "title": "Embellished Butterfly Abaya Dress - Plum",
     "url": "https://veiled.com/products/embellished-butterfly-abaya-dress-plum",
     "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL/XXL"
-  },
-  {
-    "id": "chic-modesty:10751026856274",
-    "brandSlug": "chic-modesty",
-    "title": "Burkini palazzo premium bleu ciel",
-    "url": "https://chicandmodesty.com/products/burkini-palazzo-premium-bleu-ciel",
-    "garmentWas": "swim",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL/XXL"
   },
@@ -52544,7 +52678,7 @@
     "url": "https://haya-active.com/products/oversized-active-tee-matcha-green",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL / UK16, 2XL / UK18, 3XL / UK20, 4XL / UK22"
+    "evidence": "in stock: 2XL / UK18, 3XL / UK20, 4XL / UK22"
   },
   {
     "id": "haya-active:7764066762964",
@@ -52573,5 +52707,50 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: 4XL, XXL, 3XL"
+  },
+  {
+    "id": "lameera-moda:6810800128168",
+    "brandSlug": "lameera-moda",
+    "title": "Aliya Premium Top- Sky Blue",
+    "url": "https://lameeramoda.com/products/aliya-premium-top-sky-blue",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL, 3XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:6810809729192",
+    "brandSlug": "lameera-moda",
+    "title": "Aliya Premium Top- Mink",
+    "url": "https://lameeramoda.com/products/aliya-premium-top-mink",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 2XL, 3XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:6810820640936",
+    "brandSlug": "lameera-moda",
+    "title": "Aliya Premium Top- Navy Blue",
+    "url": "https://lameeramoda.com/products/aliya-premium-top-navy-blue",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 2XL, 3XL"
+  },
+  {
+    "id": "lameera-moda:7855388819624",
+    "brandSlug": "lameera-moda",
+    "title": "Ayanna Beaded Wrap Dress- Stormy Blue",
+    "url": "https://lameeramoda.com/products/ayanna-beaded-wrap-dress-stormy-blue",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "lameera-moda:8777848651944",
+    "brandSlug": "lameera-moda",
+    "title": "Dalia Mesh Floral Dress- Sage",
+    "url": "https://lameeramoda.com/products/dalia-mesh-floral-dress-sage",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   }
 ]
