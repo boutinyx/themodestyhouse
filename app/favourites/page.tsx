@@ -43,14 +43,19 @@ export default function FavouritesPage() {
   const clearAll = useCallback(() => {
     // Each toggle removes one; the watcher above collects them into a single
     // undoable batch, so this needs no undo bookkeeping of its own.
-    Object.values(favs).forEach(toggleFav);
+    // `forEach(toggleFav)` would pass the array INDEX as the options argument.
+    Object.values(favs).forEach((p) => toggleFav(p));
   }, [favs, toggleFav]);
 
   const undo = useCallback(() => {
     restoring.current = true;
     // Guard each one: the shopper may have re-saved a piece by hand in the
     // meantime, and toggling it again would remove it a second time.
-    undoable.forEach((p) => { if (!isFav(p.id)) toggleFav(p); });
+    // `silent`: putting a piece back is not a new save. It was counted as a
+    // Pulse `favourite_add` when it was first hearted, and counting it again
+    // here would turn a measure of what people want into a measure of how
+    // often they undid a Clear all.
+    undoable.forEach((p) => { if (!isFav(p.id)) toggleFav(p, { silent: true }); });
     setUndoable([]);
     if (timer.current) clearTimeout(timer.current);
   }, [undoable, toggleFav, isFav]);

@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import type { CardProduct } from '@/lib/compactCatalogue';
 import { Heart, X, ArrowUpRight, Copy, Check } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
@@ -7,11 +7,16 @@ import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import { SITE_URL } from '@/lib/schema';
 import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
 import { withUtm } from '@/lib/outbound';
+import { FAVOURITE_EVENT, favouriteProps, track } from '@/lib/pulse';
 
 type Ctx = {
   open: (p: CardProduct) => void;
   favs: Record<string, CardProduct>;
-  toggleFav: (p: CardProduct) => void;
+  /** `silent` suppresses the Pulse `favourite_add` goal. For RESTORES only —
+   *  /favourites' Undo puts back pieces that were already counted when they
+   *  were first saved, and counting them twice would make the goal a measure
+   *  of undo taps. Every real save leaves it off. */
+  toggleFav: (p: CardProduct, opts?: { silent?: boolean }) => void;
   isFav: (id: string) => boolean;
 };
 
@@ -29,6 +34,15 @@ export function QuickViewProvider({ children }: { children: React.ReactNode }) {
   // change — a structural superset of CardProduct, so they still satisfy this
   // type and need no migration.
   const [favs, setFavs] = useState<Record<string, CardProduct>>({});
+  // The same map, readable SYNCHRONOUSLY. `toggleFav` has to know whether a tap
+  // added or removed a piece *at the moment of the tap*, so it can emit the
+  // goal for one and not the other — and a `setFavs(prev => …)` updater cannot
+  // tell it that: React runs the updater during the next render, not at
+  // dispatch, and may run it twice in StrictMode. Deciding inside the updater
+  // would make the analytics call a render side effect; deciding from stale
+  // `favs` state would misread a second tap on the same heart. The ref is
+  // written before the state, so both reads and consecutive taps stay correct.
+  const favsRef = useRef<Record<string, CardProduct>>({});
 
   // Hydration-sensitive: favourites live in localStorage, which is not
   // available during SSR. Reading it lazily in useState would make the
@@ -36,21 +50,28 @@ export function QuickViewProvider({ children }: { children: React.ReactNode }) {
   // read must happen after mount. TODO: migrate to useSyncExternalStore.
   useEffect(() => {
     try {
+      const stored = JSON.parse(localStorage.getItem('tmh_favs') || '{}');
+      favsRef.current = stored;
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setFavs(JSON.parse(localStorage.getItem('tmh_favs') || '{}'));
+      setFavs(stored);
     } catch {}
   }, []);
 
-  const toggleFav = useCallback((p: CardProduct) => {
-    setFavs((prev) => {
-      const next = { ...prev };
-      if (next[p.id]) delete next[p.id];
-      else next[p.id] = p;
-      try {
-        localStorage.setItem('tmh_favs', JSON.stringify(next));
-      } catch {}
-      return next;
-    });
+  const toggleFav = useCallback((p: CardProduct, opts?: { silent?: boolean }) => {
+    const next = { ...favsRef.current };
+    const added = !next[p.id];
+    if (added) next[p.id] = p;
+    else delete next[p.id];
+    favsRef.current = next;
+    setFavs(next);
+    try {
+      localStorage.setItem('tmh_favs', JSON.stringify(next));
+    } catch {}
+    // Saves only. A REMOVAL is not tracked at all: /favourites' "Clear all"
+    // removes the whole list one toggle at a time, so a remove event would be
+    // dominated by a single tap, and the question this measures is which
+    // pieces people want — not which they tidied away. `track` never throws.
+    if (added && !opts?.silent) track(FAVOURITE_EVENT, favouriteProps(p));
   }, []);
 
   const isFav = useCallback((id: string) => !!favs[id], [favs]);

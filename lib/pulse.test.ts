@@ -1,5 +1,13 @@
 import { describe, it, expect } from 'vitest';
-import { OUTBOUND_EVENT, OUTBOUND_PROPS, outboundProps, track } from './pulse';
+import {
+  OUTBOUND_EVENT,
+  OUTBOUND_PROPS,
+  outboundProps,
+  FAVOURITE_EVENT,
+  FAVOURITE_PROPS,
+  favouriteProps,
+  track,
+} from './pulse';
 
 /** Stands in for an anchor. `outboundProps` reads nothing but getAttribute, so
  *  it is testable in vitest's node environment without a DOM. */
@@ -54,6 +62,58 @@ describe('outboundProps', () => {
     // become a giant dimension.
     const long = 'x'.repeat(5000);
     expect((outboundProps(el({ 'data-brand': long })).brand as string).length).toBeLessThanOrEqual(200);
+  });
+});
+
+describe('favouriteProps', () => {
+  const card = {
+    id: 'aab:12345',
+    brandSlug: 'aab',
+    garment: 'dress',
+    title: 'Amara Pleated Dress',
+    // Everything below is real on a CardProduct and must never be sent.
+    brandName: 'Aab',
+    price: 129,
+    currency: 'GBP',
+    image: 'https://cdn.shopify.com/s/files/1/x.jpg',
+    url: 'https://aab.co.uk/products/amara?utm_source=themodestyhouse.com',
+  };
+
+  it('names the product, which is the whole point of the event', () => {
+    expect(favouriteProps(card)).toEqual({
+      brand: 'aab',
+      garment: 'dress',
+      product: 'aab:12345',
+      title: 'Amara Pleated Dress',
+    });
+  });
+
+  // THE PRIVACY GUARD, the sibling of outboundProps' — and it matters MORE
+  // here, because this event does carry a product, so "we send the product"
+  // must not quietly become "we send the product page url and its price".
+  it('can never emit anything outside the disclosed allowlist', () => {
+    const props = favouriteProps(card);
+    expect(Object.keys(props).sort()).toEqual(['brand', 'garment', 'product', 'title']);
+    expect(FAVOURITE_PROPS).toEqual(['brand', 'garment', 'product', 'title']);
+    expect(JSON.stringify(props)).not.toMatch(/http|utm_|129|GBP|cdn\./);
+  });
+
+  it('omits a dimension that is absent rather than sending undefined', () => {
+    expect(favouriteProps({ id: 'aab:1' })).toEqual({ product: 'aab:1' });
+  });
+
+  it('caps a value rather than sending an unbounded string', () => {
+    // A title is free third-party text, so this is the one property here that
+    // is not a slug and could genuinely be long.
+    const long = favouriteProps({ id: 'x:1', title: 'x'.repeat(5000) });
+    expect(long.title.length).toBeLessThanOrEqual(200);
+  });
+
+  it('is a distinct goal from the outbound click', () => {
+    // They are separate goals in Pulse's dashboard and carry different props;
+    // if these ever collided the two would be indistinguishable in reporting.
+    expect(FAVOURITE_EVENT).toBe('favourite_add');
+    expect(FAVOURITE_EVENT).not.toBe(OUTBOUND_EVENT);
   });
 });
 

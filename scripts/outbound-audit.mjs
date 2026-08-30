@@ -1,4 +1,11 @@
-// npm run audit:outbound — end-to-end check of outbound-click tracking.
+// npm run audit:outbound — end-to-end check of the site's Pulse GOALS.
+//
+// Named for the first one it covered. It now checks both events lib/pulse.ts
+// emits: `outbound_click` (a visitor leaves for a brand) and `favourite_add`
+// (a visitor saves a piece). Kept in one script rather than forked into a
+// second because the harness below — engine loop, WebKit header stripping,
+// stylesheet and interactivity assertions — is the expensive part and is
+// identical for both.
 //
 // Clicks a REAL outbound link on three surfaces in BOTH engines and asserts the
 // event that would reach Pulse. Nothing static can see this: the listener is a
@@ -179,6 +186,105 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
       await page.close();
     }
   }
+
+  // ── favourite_add ────────────────────────────────────────────────────────
+  // The saved-piece goal. Unlike the outbound event this one is emitted from
+  // React state (QuickViewProvider.toggleFav), not from a delegated listener,
+  // and it must fire on a SAVE and stay silent on a removal — neither of which
+  // any static render or unit test can see.
+  {
+    const page = await ctx.newPage();
+    try {
+      // Favourites persist in localStorage and this context is reused, so a
+      // leftover save would make the first heart a REMOVAL and the check would
+      // read as "no event" on code that works. Cleared before the page's own
+      // scripts run.
+      await page.addInitScript(() => { try { localStorage.removeItem('tmh_favs'); } catch {} });
+      await page.goto(`${BASE}/modest-dresses`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+
+      const styled = await page.evaluate(() =>
+        getComputedStyle(document.body).backgroundColor !== 'rgba(0, 0, 0, 0)');
+      if (!styled) { report('fav stylesheet', engineName, 'PROBLEM /modest-dresses: CSS did not load'); throw new Error('skip'); }
+      const ready = await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => null);
+      if (!ready) { report('fav hydration', engineName, 'PROBLEM /modest-dresses: page not interactive'); throw new Error('skip'); }
+
+      const recorder = () => page.evaluate(() => {
+        window.pulseQueue = [];
+        window.__seen = [];
+        const prior = window.pulse && window.pulse.track;
+        window.pulse = { track: (n, p) => { window.__seen.push(['track', n, p]); if (prior) try { prior(n, p); } catch {} } };
+      });
+      const read = () => page.evaluate(() => [...(window.__seen || []), ...(window.pulseQueue || [])]);
+      const favEvent = (q) => q.find((e) => e[0] === 'track' && e[1] === 'favourite_add');
+      const ALLOWED = ['brand,garment,product,title'];
+
+      // The heart is located by its aria-label and the SAVE is confirmed by
+      // that label flipping — both predate this event, so the check cannot
+      // pass by selecting on the thing it is meant to prove (§10.32 rule 2).
+      // The flip is also the interactivity assertion for this widget
+      // specifically: it is React state, so a label that changes proves the
+      // provider is live (§10.28 rule 2).
+      await recorder();
+      // An elementHandle, NOT a locator. A locator re-resolves on every use, and
+      // the click flips this heart's aria-label — so `.first()` afterwards
+      // pointed at the NEXT card's heart, which read as "the heart did not
+      // become saved" and then made the removal control save a second product
+      // instead. Both looked exactly like product defects (§10.26). React
+      // updates the attribute in place, so the node itself is stable.
+      await page.locator('button[aria-label="Add to favourites"]').first().scrollIntoViewIfNeeded().catch(() => {});
+      const heart = await page.locator('button[aria-label="Add to favourites"]').first().elementHandle();
+      if (!heart) { report('fav heart', engineName, 'PROBLEM /modest-dresses: no unsaved heart found'); throw new Error('skip'); }
+      await heart.click({ timeout: 15000 });
+      const flipped = await heart.getAttribute('aria-label').catch(() => null);
+      if (flipped !== 'Remove from favourites') {
+        report('fav state', engineName, `PROBLEM heart did not become saved (aria-label=${flipped})`);
+      }
+      await page.waitForTimeout(300);
+      const saved = favEvent(await read());
+      if (!saved) {
+        report('favourite card', engineName, `PROBLEM no favourite_add after saving a piece (saw=${JSON.stringify(await read()).slice(0, 200)})`);
+      } else {
+        const props = saved[2] || {};
+        const keys = Object.keys(props).sort().join(',');
+        if (!ALLOWED.includes(keys)) report('favourite props', engineName, `PROBLEM unexpected props ${JSON.stringify(props)}`);
+        // Invariant 1: the id that joins this back to data/products.json.
+        else if (!/^[a-z0-9-]+:[^:]+$/.test(props.product || '')) report('favourite props', engineName, `PROBLEM product is not a catalogue id: ${JSON.stringify(props)}`);
+        else if (JSON.stringify(props).match(/https?:|utm_/)) report('favourite pii', engineName, `PROBLEM url-ish value in ${JSON.stringify(props)}`);
+        else report('favourite card', engineName, `ok ${JSON.stringify(props)}`);
+      }
+
+      // NEGATIVE CONTROL (§10.28 rule 1). Un-saving the same piece must emit
+      // NOTHING. A toggle that tracked both directions would still read as a
+      // clean pass above, and would report "most loved" numbers that were half
+      // people changing their minds.
+      await recorder();
+      await heart.click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      const onRemove = favEvent(await read());
+      report('negative unfavourite', engineName,
+        onRemove ? `PROBLEM removal emitted ${JSON.stringify(onRemove[2])}` : 'ok removing a piece emitted nothing');
+
+      // Second surface: the quick-view modal's own save button, which is a
+      // different call site into the same provider. nth(1) so the product is a
+      // different one from the card above.
+      await recorder();
+      await page.locator('button[aria-label^="Quick view"]').nth(1).click({ timeout: 15000 });
+      const chip = page.locator('[role="dialog"] button:has-text("Add to favourites")');
+      await chip.waitFor({ timeout: 15000 });
+      await chip.click({ timeout: 15000 });
+      await page.waitForTimeout(300);
+      const fromModal = favEvent(await read());
+      if (!fromModal) report('favourite quickview', engineName, 'PROBLEM no favourite_add from the quick-view save button');
+      else if (Object.keys(fromModal[2] || {}).sort().join(',') !== ALLOWED[0]) report('favourite quickview', engineName, `PROBLEM unexpected props ${JSON.stringify(fromModal[2])}`);
+      else report('favourite quickview', engineName, `ok ${JSON.stringify(fromModal[2])}`);
+    } catch (e) {
+      if (String(e).includes('skip')) { /* already reported */ }
+      else report('favourite case', engineName, `PROBLEM threw: ${String(e).slice(0, 140)}`);
+    } finally {
+      await page.close();
+    }
+  }
+
   await browser.close();
 }
 

@@ -117,6 +117,29 @@ describe('GDPR disclosures that must not silently regress', () => {
     expect(privacy).toMatch(/do \*\*not\*\* record which specific product/);
   });
 
+  // The saved-piece goal, same coupling — and stricter, because this is the one
+  // event that DOES name a product. Two things can go quietly false here: the
+  // disclosure of the event itself, and the older "favourites never reach our
+  // servers" line, which was true until the save became measurable.
+  it('discloses favourite tracking whenever the event is actually emitted', () => {
+    const pulse = readFileSync(path.join(process.cwd(), 'lib', 'pulse.ts'), 'utf8');
+    if (!pulse.includes("'favourite_add'")) return;
+    // Anchored on the BULLET, not the phrase: the favourites bullet above it
+    // carries a 'see *Pieces you save*, below' cross-reference, so a looser
+    // match passed with the disclosure itself deleted (negative control, §10.28).
+    expect(privacy).toMatch(/- \*\*Pieces you save\.\*\*/);
+    // The disclosure names four dimensions; the code must not emit a fifth.
+    const props = pulse.match(/FAVOURITE_PROPS = \[([^\]]*)\]/);
+    expect(props, 'FAVOURITE_PROPS not found in lib/pulse.ts').toBeTruthy();
+    expect(props![1].match(/'/g)!.length / 2).toBe(4);
+    // §2 must say the product IS recorded for a save — the opposite of what it
+    // says about an outbound click, and the whole reason this needs its own
+    // bullet rather than a sentence added to that one.
+    expect(privacy).toMatch(/we do record \*\*which product\*\*/);
+    // The favourites bullet must no longer claim the save is unrecorded.
+    expect(privacy).not.toMatch(/`tmh_favs`\)\. It never reaches our servers/);
+  });
+
   it('does not promise a consent banner it never shows', () => {
     // §5 previously promised "ask for your consent through a cookie banner
     // first" for any analytics. Shipping cookieless analytics under legitimate
