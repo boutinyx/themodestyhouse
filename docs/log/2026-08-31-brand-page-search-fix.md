@@ -120,6 +120,47 @@ derived strings are right for different currencies and shapes: MERRACHI
 (£9.95–£52.95, London). The ring was confirmed to differ per page — Jawda's
 neighbours include Merrachi, Niswa's do not.
 
+## Asking Google to recrawl — what is actually possible
+
+Tina: *"okay asking reindexing on google now?"*
+
+**Google's Indexing API refuses these pages.** Their own quickstart: *"The
+Indexing API can only be used to crawl pages with either `JobPosting` or
+`BroadcastEvent` embedded in a `VideoObject`."* For everything else they name
+the sitemap as the mechanism. So there is no API call that requests indexing for
+a brand page, and any script claiming to do it is either being ignored or
+abusing an endpoint.
+
+**Our sitemap was giving Google nothing to act on.** All 91 `/designers/<slug>`
+entries carried `changefreq` and `priority` — both of which Google ignores — and
+**no `<lastmod>` at all**. For most brand pages the sitemap is the only route
+Google has to them, so the one signal that says "this changed, come back" was
+missing precisely where it mattered.
+
+Fixed: `lastModified` now comes from `brandPageLastModified()` and is the later
+of two honest, data-derived dates — the newest `firstSeen` among the house's
+published pieces, and `BRAND_PAGE_CONTENT`, the day the template last changed
+what these pages say. Never a build time or an mtime, which on Railway is the
+checkout instant and wrong on every deploy (§8); both inputs are data, so two
+builds of one commit emit the same sitemap, and `lib/brandPages.test.ts` asserts
+it. Live: 91 of 91 designer URLs now carry `2026-08-31`.
+
+**`sitemaps.submit` then returned 403** — `ACCESS_TOKEN_SCOPE_INSUFFICIENT`. The
+ADC credential holds `webmasters.readonly`, which is enough for Search Analytics
+and URL Inspection and not for anything that writes. Rather than guess (§10.42),
+the error body was read: write access needs a re-login with
+`https://www.googleapis.com/auth/webmasters`.
+
+**It turned out not to matter.** `sitemaps.list` reports the sitemap
+`lastDownloaded 2026-08-31T05:36:08`, 0 errors, 0 warnings — Google is already
+fetching it daily, and will see the new dates on its own. Resubmitting the same
+URL would not have forced anything the `lastmod` does not.
+
+**The only per-URL nudge that exists is manual**: Search Console → URL
+Inspection → Request indexing, roughly ten a day. Worth spending on
+`/designers/merrachi` and the four other high-impression houses; not worth a
+scripted workaround.
+
 ## Follow-up
 
 - **A hand-written `description` for the top houses is the biggest remaining
