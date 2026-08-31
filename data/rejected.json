@@ -24637,16 +24637,7 @@
     "url": "https://veiled.com/products/cinch-maxi-dress-natural",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL, XXL, XXL, XXL"
-  },
-  {
-    "id": "veiled:7798570516585",
-    "brandSlug": "veiled",
-    "title": "Tencel Asymmetric Top - Sky",
-    "url": "https://veiled.com/products/tencel-asymmetric-top-sky",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
+    "evidence": "in stock: XL, XXL, XXL, XXL"
   },
   {
     "id": "modern-hijabi:8206337245398",
@@ -24674,7 +24665,7 @@
     "url": "https://modernhijabi.com/products/salma-maxi-dress-off-white",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, 2XL"
+    "evidence": "in stock: XL"
   },
   {
     "id": "modern-hijabi:9038420705494",
@@ -24836,15 +24827,6 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
-  },
-  {
-    "id": "aab:10059358110010",
-    "brandSlug": "aab",
-    "title": "Pinstripe Maxi Shirt White",
-    "url": "https://us.aabcollection.com/products/pinstripe-maxi-shirt-white",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "aab:10277923160378",
@@ -32422,15 +32404,6 @@
     "evidence": "in stock: 2XL"
   },
   {
-    "id": "veiled:7741465788521",
-    "brandSlug": "veiled",
-    "title": "Cinch Denim Jacket Top - Mid Wash",
-    "url": "https://veiled.com/products/cinch-denim-jacket-top-mid-wash",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
     "id": "veiled:7117512245353",
     "brandSlug": "veiled",
     "title": "Lyana Crystal Satin Abaya - Pink Jasmine",
@@ -32446,7 +32419,7 @@
     "url": "https://veiled.com/products/cotton-eyelet-maxi-dress-petal",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7117512147049",
@@ -32462,6 +32435,15 @@
     "brandSlug": "veiled",
     "title": "Boat Neck Rouched Maxi Dress - Chocolate Torte",
     "url": "https://veiled.com/products/boat-neck-rouched-maxi-dress-chocolate-torte",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "veiled:7640924913769",
+    "brandSlug": "veiled",
+    "title": "Boat Neck Rouched Maxi Dress - Dusk",
+    "url": "https://veiled.com/products/boat-neck-rouched-maxi-dress-dusk",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
@@ -32535,22 +32517,22 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "veiled:7552622035049",
-    "brandSlug": "veiled",
-    "title": "Cinch Denim Jacket Top",
-    "url": "https://veiled.com/products/cinch-denim-jacket",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
     "id": "veiled:7650775105641",
     "brandSlug": "veiled",
     "title": "Denim Twin Pleat Pants - Light Wash",
     "url": "https://veiled.com/products/denim-twin-pleat-pants-light-wash",
     "garmentWas": "trousers",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "veiled:7665650991209",
+    "brandSlug": "veiled",
+    "title": "Lana Cape Maxi Dress - Moonrock",
+    "url": "https://veiled.com/products/lana-cape-maxi-dress-moonrock",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL, XXL"
   },
   {
     "id": "veiled:7640454037609",
@@ -32659,6 +32641,15 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "veiled:7366842581097",
+    "brandSlug": "veiled",
+    "title": "Sofia Open Abaya - Off White",
+    "url": "https://veiled.com/products/sofia-satin-open-abaya-off-white",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
   },
   {
     "id": "aab:10038234906938",
@@ -32835,7 +32826,7 @@
     "url": "https://us.aabcollection.com/products/white-garden-kimono-2",
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL, XXL"
+    "evidence": "in stock: XL, XXL"
   },
   {
     "id": "aab:10211779969338",
@@ -32881,6 +32872,15 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
+  },
+  {
+    "id": "aab:10175406342458",
+    "brandSlug": "aab",
+    "title": "Rayyan Kaftan",
+    "url": "https://us.aabcollection.com/products/rayyan-kaftan",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "aab:10059948261690",
@@ -35004,7 +35004,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 USD (~$578)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -35013,7 +35013,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 USD (~$578)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -35022,7 +35022,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 USD (~$578)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "fares:7851058331839",
@@ -40903,6 +40903,15 @@
     "evidence": "clips"
   },
   {
+    "id": "chic-modesty:10323140673874",
+    "brandSlug": "chic-modesty",
+    "title": "T-shirt Marina gris",
+    "url": "https://chicandmodesty.com/products/t-shirt-marina-gris",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL/XXL"
+  },
+  {
     "id": "chic-modesty:10323132121426",
     "brandSlug": "chic-modesty",
     "title": "Robe Marina blanche",
@@ -41421,16 +41430,6 @@
     "brandSlug": "bemu",
     "title": "Cord Belt-Brown",
     "url": "https://bemutr.com/products/cord-belt-brown",
-    "garmentWas": "dress",
-    "reason": "non-apparel:care",
-    "tier": "B",
-    "evidence": "Belt"
-  },
-  {
-    "id": "bemu:10283682136355",
-    "brandSlug": "bemu",
-    "title": "Starfish Chain Belt",
-    "url": "https://bemutr.com/products/starfish-chain-belt",
     "garmentWas": "dress",
     "reason": "non-apparel:care",
     "tier": "B",
@@ -42715,6 +42714,33 @@
     "url": "https://jennah-boutique.com/products/box-ramadan-homme-bleu",
     "garmentWas": "hijab",
     "reason": "title-pattern"
+  },
+  {
+    "id": "jennah-boutique:7764203897008",
+    "brandSlug": "jennah-boutique",
+    "title": "Pantalon essentiel beige JNA",
+    "url": "https://jennah-boutique.com/products/pantalon-essentiel-beige-jna",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "jennah-boutique:7764211400880",
+    "brandSlug": "jennah-boutique",
+    "title": "Jupe Fold beige",
+    "url": "https://jennah-boutique.com/products/jupe-fold-beige",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "jennah-boutique:7764203798704",
+    "brandSlug": "jennah-boutique",
+    "title": "Pantalon essentiel blanc JNA",
+    "url": "https://jennah-boutique.com/products/pantalon-essentiel-blanc-jna",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "yasmin-jay:8075930108080",
@@ -48500,6 +48526,14 @@
     "reason": "title-pattern"
   },
   {
+    "id": "ria-miranda:9069003964674",
+    "brandSlug": "ria-miranda",
+    "title": "Gift Set Box",
+    "url": "https://riamiranda.com/products/gift-set-box",
+    "garmentWas": "set",
+    "reason": "title-pattern"
+  },
+  {
     "id": "ria-miranda:8772309319938",
     "brandSlug": "ria-miranda",
     "title": "Zalene Bag",
@@ -49804,14 +49838,6 @@
     "reason": "title-pattern"
   },
   {
-    "id": "nihan:15028000751979",
-    "brandSlug": "nihan",
-    "title": "Büyük Beden Gömlek Yaka Viskon Tunik - Zümrüt",
-    "url": "https://nihan.com.tr/products/buyuk-beden-gomlek-yaka-viskon-tunik-zumrut",
-    "garmentWas": "top",
-    "reason": "title-pattern"
-  },
-  {
     "id": "nihan:15027933184363",
     "brandSlug": "nihan",
     "title": "Gömlek Yaka Modal Tunik - Zümrüt",
@@ -50054,7 +50080,7 @@
     "url": "https://baqaofficial.com/products/haki-kontrast-detayli-bluz",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XL"
   },
   {
     "id": "baqa:9234747588859",
@@ -52035,15 +52061,6 @@
     "reason": "brand-blacklist"
   },
   {
-    "id": "urban-modesty:8057450889291",
-    "brandSlug": "urban-modesty",
-    "title": "Beige Linen Lace Up Maxi Dress",
-    "url": "https://urbanmodesty.com/products/beige-linen-lace-up-maxi-dress",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XX-Large"
-  },
-  {
     "id": "mariams:9407277039832",
     "brandSlug": "mariams",
     "title": "Handcrafted A4 Islamic Calligraphy Wall Art | Copper Relief Wood Frame（MAC452）",
@@ -52075,15 +52092,6 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "47500 TRY (~$988)"
-  },
-  {
-    "id": "baqa:9317897863419",
-    "brandSlug": "baqa",
-    "title": "Takma Kol Detaylı Elbise",
-    "url": "https://baqaofficial.com/products/takma-kol-detayli-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "44500 TRY (~$926)"
   },
   {
     "id": "baqa:9392177807611",
@@ -52273,14 +52281,13 @@
     "reason": "brand-blacklist"
   },
   {
-    "id": "nour-al-houda:7116370706480",
-    "brandSlug": "nour-al-houda",
-    "title": "Small Headed Pins - Silver",
-    "url": "https://nouralhouda.com.au/products/small-headed-pins-silver",
+    "id": "veiled:7798569468009",
+    "brandSlug": "veiled",
+    "title": "Tencel Ruffle Top - Light Sand",
+    "url": "https://veiled.com/products/tencel-ruffle-top-light-sand",
     "garmentWas": "top",
-    "reason": "non-apparel:hardware",
-    "tier": "B",
-    "evidence": "Pins"
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
   },
   {
     "id": "mariams:9417218064600",
@@ -52497,6 +52504,33 @@
     "evidence": "998 USD (~$998)"
   },
   {
+    "id": "jennah-boutique:7861397553328",
+    "brandSlug": "jennah-boutique",
+    "title": "Jupe oversize coton rose",
+    "url": "https://jennah-boutique.com/products/jupe-coton-rose",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "jennah-boutique:7778359247024",
+    "brandSlug": "jennah-boutique",
+    "title": "Jupe Fold bordeaux",
+    "url": "https://jennah-boutique.com/products/jupe-fold-bordeaux",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "jennah-boutique:7764211499184",
+    "brandSlug": "jennah-boutique",
+    "title": "Jupe Fold marron",
+    "url": "https://jennah-boutique.com/products/jupe-fold-marron",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "veiled:7407586574441",
     "brandSlug": "veiled",
     "title": "Aura Pleated Maxi Dress - Moonbeam",
@@ -52681,6 +52715,15 @@
     "evidence": "in stock: 2XL / UK18, 3XL / UK20, 4XL / UK22"
   },
   {
+    "id": "haya-active:7996828745940",
+    "brandSlug": "haya-active",
+    "title": "Oversized Active Tee - Black",
+    "url": "https://haya-active.com/products/training-oversized-tee",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: 2XL / UK18, 3XL / UK20"
+  },
+  {
     "id": "haya-active:7764066762964",
     "brandSlug": "haya-active",
     "title": "HAYA Hijab Magnet",
@@ -52736,6 +52779,15 @@
     "evidence": "in stock: XL, 2XL, 3XL"
   },
   {
+    "id": "lameera-moda:7275084644520",
+    "brandSlug": "lameera-moda",
+    "title": "Maya Soft Button Down Dress- Mahogany",
+    "url": "https://lameeramoda.com/products/maya-soft-shirred-dress-mahogany",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "lameera-moda:7855388819624",
     "brandSlug": "lameera-moda",
     "title": "Ayanna Beaded Wrap Dress- Stormy Blue",
@@ -52750,6 +52802,15 @@
     "title": "Dalia Mesh Floral Dress- Sage",
     "url": "https://lameeramoda.com/products/dalia-mesh-floral-dress-sage",
     "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "jennah-boutique:7859503923376",
+    "brandSlug": "jennah-boutique",
+    "title": "Jupe Fold chocolat",
+    "url": "https://jennah-boutique.com/products/jupe-fold-chocolat",
+    "garmentWas": "skirt",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
   }
