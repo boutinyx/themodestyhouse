@@ -221,6 +221,15 @@ export function brandPageSchema(opts: {
       name: opts.name,
       description: opts.description,
       url: opts.homepage,
+      // `sameAs` is what tells Google the entity this page is ABOUT is the same
+      // entity as the storefront it names — the association a brand-name query
+      // is resolved against. `url` alone is a property of our claim; `sameAs`
+      // is an identity statement, and it is the one structured-data field that
+      // speaks to "is this page about MERRACHI, or does it merely mention it".
+      // The homepage is the only identifier we hold that is verifiably theirs
+      // (data/brands.ts, and we fetch their feed from it); no social profile is
+      // asserted, because guessing one would be a claim about a real company.
+      sameAs: [opts.homepage],
       ...(opts.logo ? { logo: opts.logo } : {}),
     },
     mainEntity: {

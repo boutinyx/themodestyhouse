@@ -13,6 +13,7 @@ import { ABAYA_PICK_IDS } from '@/lib/abayaPicks';
 import { HeroCallouts } from '@/components/HeroCallouts';
 import { getProducts } from '@/lib/products';
 import { BRANDS } from '@/data/brands';
+import { hasBrandPage } from '@/lib/brandPages';
 import { regionsWithCounts, brandsInRegion, pins as regionPins, regionSlug, MAP } from '@/lib/brandRegions';
 import { withUtm } from '@/lib/outbound';
 import { getPosts } from '@/lib/posts';
@@ -123,9 +124,14 @@ export default function Home() {
   // field on whatever it receives is serialised into the page — and `Brand`
   // carries `description`, several hundred words each for the sealed houses.
   // Same rule as CardProduct vs Product (CLAUDE.md §8).
-  // The internal/external split matches app/designers/page.tsx exactly: a house
-  // with a description has a page of ours; one without goes to its storefront,
-  // which then needs rel="sponsored" and a withUtm'd href (§6).
+  // The internal/external split matches app/designers/page.tsx — which moved
+  // from `b.description` to `hasBrandPage()` on 2026-08-26 and left this copy
+  // behind, still claiming parity it no longer had. A house has a page of ours
+  // when it has ENOUGH PIECES, not when someone got round to writing about it,
+  // so 84 houses with real pages were being linked past, to their own
+  // storefronts, from the highest-authority page on the site. One without a
+  // page still goes to its storefront, which needs rel="sponsored" and a
+  // withUtm'd href (§6).
   const discoveryRegions = regionsWithCounts().map((r) => ({
     name: r.name,
     count: r.count,
@@ -133,7 +139,7 @@ export default function Home() {
     // component never turns a region NAME into a URL by string-munging.
     href: `/designers?region=${regionSlug(r.name)}`,
     brands: brandsInRegion(r.name).map((b) => {
-      const internal = b.description?.trim() ? `/designers/${b.slug}` : null;
+      const internal = hasBrandPage(b.slug) ? `/designers/${b.slug}` : null;
       return {
         name: b.name,
         city: b.city,

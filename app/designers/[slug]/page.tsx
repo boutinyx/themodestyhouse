@@ -5,6 +5,7 @@ import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import { BRANDS } from '@/data/brands';
 import { productsForBrand } from '@/lib/products';
 import { brandPageSlugs, hasBrandPage } from '@/lib/brandPages';
+import { regionOf, brandsInRegion } from '@/lib/brandRegions';
 import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { FilterableGrid } from '@/components/FilterableGrid';
 import { JsonLd } from '@/components/JsonLd';
@@ -48,14 +49,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const b = BRANDS.find((x) => x.slug === slug);
   if (!b || !hasBrandPage(slug)) return { title: 'Not found', robots: { index: false, follow: false } };
-  const title = `${b.name} — Modest Fashion Brand`;
   // Falls back to MEASURED facts, never to invented prose about a real company
   // (§10.18). `productsForBrand` is fine here: generateMetadata runs once per
   // page, unlike the 113-brand loop that eligibleSlugs() exists to avoid.
-  const n = productsForBrand(b.slug).length;
+  const items = productsForBrand(b.slug);
+  const n = items.length;
+  // WHAT THE SEARCHER ASKED. These pages rank on the house's OWN NAME — 319
+  // impressions for "merrachi" at position 6.5 in three days, with zero clicks
+  // (Search Console, 2026-08-29). At that position the only thing left to fix
+  // is the two lines Google prints, so both now lead with the count and the
+  // price range rather than the phrase "Modest Fashion Brand", which says
+  // nothing a searcher who typed the brand's name does not already know.
+  const title = `${b.name} — ${n.toLocaleString('en-GB')} pieces & prices`;
+  const priced = items.map((p) => p.price).filter((x) => x > 0).sort((a, b2) => a - b2);
+  const range = priced.length
+    ? `, ${formatPrice(priced[0], b.currency)}–${formatPrice(priced[priced.length - 1], b.currency)}.`
+    : '.';
   const description =
     b.description?.trim().slice(0, 158) ??
-    `${b.name}${b.city ? ` (${b.city})` : ''} — ${n.toLocaleString('en-GB')} pieces listed in The Modesty House directory, with prices and links to the house's own store.`;
+    `Every ${b.name} piece we track: ${n.toLocaleString('en-GB')} items${range}` +
+      `${b.city ? ` Based in ${b.city}.` : ''} Prices in your own currency, checked nightly, with links straight to ${new URL(b.homepage).hostname}.`;
   const canonical = `/designers/${b.slug}`;
   return {
     title,
@@ -104,6 +117,33 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   // converted figure would claim a precision the site deliberately does not.
   const lo = prices[0];
   const hi = prices[prices.length - 1];
+  const median = prices.length ? prices[Math.floor(prices.length / 2)] : 0;
+  /** The full garment breakdown, not the top four the summary line uses. */
+  const breakdown = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .filter(([g]) => GARMENT_LABEL[g]);
+  /** Sibling houses, for an internal-link mesh between the 89 brand pages.
+   *  WHY THIS EXISTS: /designers/merrachi had exactly ONE internal link on the
+   *  whole site — from /designers?page=2 — so Google reached it through the
+   *  sitemap and nothing passed to it. Region is the relation the site already
+   *  models (lib/brandRegions.ts), so this borrows it rather than inventing a
+   *  similarity of its own. */
+  const region = brand.city ? regionOf(brand.city) : null;
+  const regionPeers = region
+    ? brandsInRegion(region).filter((b) => b.slug !== brand.slug && hasBrandPage(b.slug))
+    : [];
+  // A RING, not the first eight. `.slice(0, 8)` gave every European house the
+  // same eight alphabetical neighbours — Aab, Abaya Lounge, AbayaButh… — which
+  // is a hub pointing at eight pages, not a mesh. Starting the window at this
+  // house's own position spreads the links evenly: each page links to the eight
+  // after it, so each page is linked FROM about eight others. Deterministic, so
+  // the internal link graph does not churn on every build.
+  const ringStart = region ? brandsInRegion(region).findIndex((b) => b.slug === brand.slug) : 0;
+  const siblings = regionPeers.length
+    ? Array.from({ length: Math.min(8, regionPeers.length) }, (_, i) =>
+        regionPeers[(Math.max(ringStart, 0) + i) % regionPeers.length])
+    : [];
+  const storefront = new URL(brand.homepage).hostname.replace(/^www\./, '');
 
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-12">
@@ -192,6 +232,66 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
             still work underneath — only the controls are gone. */}
         <FilterableGrid catalogue={catalogue} showConsole={false} source={{ brand: brand.slug }} />
       </div>
+
+      {/* MEASURED SECTIONS, 2026-08-31. BELOW THE GRID, which is where this
+          site already puts answer content: lib/laneAnswers.ts renders the same
+          shape under every lane's products, for the same reason — the page is
+          a picture of a catalogue first, and 600px of prose above the first
+          photograph is a worse page for the person who actually arrived.
+          Placement costs nothing in indexing; Google reads the whole document. Everything below is counted from this
+          house's own rows — no sentence here asserts anything the catalogue
+          does not already say (§10.18). They exist because these pages rank on
+          the house's NAME and then say almost nothing about it: before this,
+          the page's own words were an h1, four `dt` labels and a button, which
+          is thin for a query Google has to choose an answer for. The headings
+          also carry the modifiers people actually search alongside the name —
+          Search Console has "merrachi clothing", "merrachi store",
+          "merrachi amsterdam", "merrachi canada" — each of which this page can
+          now answer above the fold. */}
+      <section className="max-w-2xl mt-20 pt-12" style={{ borderTop: '1px solid var(--hairline)' }}>
+        <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>What {brand.name} makes</h2>
+        <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
+          {breakdown.map(([g, c], i) => (
+            <span key={g}>
+              {i > 0 && ' · '}
+              {GARMENT_LABEL[g]} <span style={{ color: 'var(--muted)' }}>{c.toLocaleString('en-GB')}</span>
+            </span>
+          ))}
+        </p>
+      </section>
+
+      {prices.length > 0 && (
+        <section className="max-w-2xl mt-10">
+          <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{brand.name} prices</h2>
+          <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
+            {products.length.toLocaleString('en-GB')} pieces, {formatPrice(lo, brand.currency)} to{' '}
+            {formatPrice(hi, brand.currency)}. Half are under {formatPrice(median, brand.currency)}.
+            Listed in {brand.currency}; the currency switcher converts them.
+          </p>
+        </section>
+      )}
+
+      <section className="max-w-2xl mt-10">
+        <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>Where to buy {brand.name}</h2>
+        <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
+          {brand.city ? `${brand.name} is based in ${brand.city} and sells` : `${brand.name} sells`}{' '}
+          from {storefront}. Every piece here links straight there; we do not sell anything ourselves.
+        </p>
+      </section>
+
+      {siblings.length > 0 && (
+        <section className="max-w-2xl mt-10">
+          <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>More houses in {region}</h2>
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1" style={{ fontSize: 15 }}>
+            {siblings.map((b) => (
+              <Link key={b.slug} href={`/designers/${b.slug}`} style={{ color: 'var(--plum)' }}>
+                {b.name}
+              </Link>
+            ))}
+          </p>
+        </section>
+      )}
+
     </main>
   );
 }
