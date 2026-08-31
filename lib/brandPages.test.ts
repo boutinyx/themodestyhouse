@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { BRANDS } from '../data/brands';
-import { brandPageSlugs, listedBrandSlugs } from './brandPages';
+import { BRAND_PAGE_CONTENT, brandPageLastModified, brandPageSlugs, hasBrandPage, listedBrandSlugs } from './brandPages';
 import { getProducts } from './products';
 
 /**
@@ -88,5 +88,32 @@ describe('listedBrandSlugs', () => {
       // A page can exist on `description` alone, with no products.
       if (!b.description?.trim()) expect(listedBrandSlugs().has(slug), slug).toBe(true);
     }
+  });
+});
+
+
+describe('brandPageLastModified', () => {
+  it('is a real ISO day, because Google only honours a lastmod it can trust', () => {
+    // §8: a fabricated lastmod is worse than none. Both inputs are data, so this
+    // must be a date and never a build timestamp.
+    expect(BRAND_PAGE_CONTENT).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    for (const slug of brandPageSlugs()) {
+      expect(brandPageLastModified(slug), slug).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
+  it('never predates the template change, which really did change all 89 pages', () => {
+    for (const slug of brandPageSlugs()) {
+      expect(brandPageLastModified(slug)! >= BRAND_PAGE_CONTENT, slug).toBe(true);
+    }
+  });
+
+  it('is stable across calls, so two builds of one commit emit the same sitemap', () => {
+    const slug = [...brandPageSlugs()][0];
+    expect(brandPageLastModified(slug)).toBe(brandPageLastModified(slug));
+  });
+
+  it('answers for a house that has no page, without inventing one', () => {
+    expect(hasBrandPage('not-a-house')).toBe(false);
   });
 });

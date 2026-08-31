@@ -38,18 +38,54 @@ export const MIN_PRODUCTS = 24;
  * every call (CLAUDE.md §8), so the obvious version parses it 113 times per
  * build. This parses once.
  */
-let cache: { pages: Set<string>; listed: Set<string> } | null = null;
+let cache: { pages: Set<string>; listed: Set<string>; newest: Map<string, string> } | null = null;
 function computed() {
   if (cache) return cache;
   const counts = new Map<string, number>();
-  for (const p of getProducts()) counts.set(p.brandSlug, (counts.get(p.brandSlug) ?? 0) + 1);
+  /** The newest `firstSeen` per house — the last date this house's page
+   *  demonstrably gained something. Collected in the SAME pass, because
+   *  getProducts() re-reads and re-parses 10.9 MB every call (§8). */
+  const newest = new Map<string, string>();
+  for (const p of getProducts()) {
+    counts.set(p.brandSlug, (counts.get(p.brandSlug) ?? 0) + 1);
+    const seen = p.firstSeen;
+    if (seen && seen > (newest.get(p.brandSlug) ?? '')) newest.set(p.brandSlug, seen);
+  }
   cache = {
     pages: new Set(
       BRANDS.filter((b) => (counts.get(b.slug) ?? 0) >= MIN_PRODUCTS || b.description?.trim()).map((b) => b.slug),
     ),
     listed: new Set(BRANDS.filter((b) => (counts.get(b.slug) ?? 0) > 0).map((b) => b.slug)),
+    newest,
   };
   return cache;
+}
+
+/**
+ * When this house's page last verifiably changed, as `YYYY-MM-DD`, or null.
+ *
+ * TWO HONEST INPUTS, and the later of them wins:
+ *
+ *   1. the newest `firstSeen` among the house's published pieces — the page
+ *      gained a product, so the page changed;
+ *   2. BRAND_PAGE_CONTENT, the date the TEMPLATE last changed what these pages
+ *      say. That is a real content change on all 89 at once and no per-brand
+ *      datum can express it.
+ *
+ * Deliberately NOT the build time or a file mtime: Railway builds from a fresh
+ * clone, so every mtime is the checkout instant — measured 9.6h off, and wrong
+ * again on every deploy including deploys that change nothing (§8). Google uses
+ * `lastmod` only when it is verifiably accurate, so a fabricated one is worse
+ * than none. Both inputs here are data, so two builds of the same commit emit
+ * the same date.
+ */
+export const BRAND_PAGE_CONTENT = '2026-08-31';
+
+export function brandPageLastModified(slug: string): string | null {
+  const newest = computed().newest.get(slug);
+  if (!newest) return BRAND_PAGE_CONTENT;
+  const day = newest.slice(0, 10);
+  return day > BRAND_PAGE_CONTENT ? day : BRAND_PAGE_CONTENT;
 }
 
 export function brandPageSlugs(): Set<string> {

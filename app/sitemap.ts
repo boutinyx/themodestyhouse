@@ -3,7 +3,7 @@ import { LANES } from '@/lib/lanes';
 import { getPosts } from '@/lib/posts';
 import { sitemapSubtypesForLane } from '@/lib/laneSubtypes';
 import { BRANDS } from '@/data/brands';
-import { hasBrandPage } from '@/lib/brandPages';
+import { brandPageLastModified, hasBrandPage } from '@/lib/brandPages';
 import { EDITS } from '@/lib/edits';
 
 const BASE = 'https://themodestyhouse.com';
@@ -92,8 +92,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // lib/brandPages.ts for why these two files are the pair that must not drift.
   // 2026-08-24: this was `b.description?.trim()`, which listed 5 of 113 houses
   // while the route 404'd the other 108. Now 89.
+  // lastModified, added 2026-08-31. These 91 URLs carried `changefreq` and
+  // `priority`, both of which Google ignores, and no date at all — so a sitemap
+  // that is the ONLY route by which Google reaches most brand pages was giving
+  // it no reason to come back after the pages changed. The date comes from
+  // lib/brandPages.ts and is derived from data, never from build time (§8).
   const brands: MetadataRoute.Sitemap = BRANDS.filter((b) => hasBrandPage(b.slug)).map((b) => ({
     url: `${BASE}/designers/${b.slug}`,
+    lastModified: brandPageLastModified(b.slug) ?? undefined,
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }));
