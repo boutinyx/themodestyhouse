@@ -208,15 +208,94 @@ nav-tap-on-hover-capable-tablet ipad-1366                   ok   (both engines)
 Before the fix, the same five read `PANEL DID NOT OPEN ON TAP` in both engines — which is
 the negative control for this repair, run first and by accident (§10.28 rule 1).
 
+## Second round — balance, mixing, and translations
+
+Tina, after seeing the first version on staging: *"try to mix the items instead of putting
+all the brands next to eachother also try to keep a balance between the number of products
+so instead of if a brand has more you put everything in try to keep a balance and also you
+need to translate the nsames of some"*.
+
+### Balance and mixing
+
+`NEW_IN_MAX_PER_HOUSE = 12`, applied to each house's own NEWEST cards, then a round-robin
+across every house ordered by whose piece is newest. The order of those two steps matters:
+capping after interleaving would delete cards from an already-mixed sequence and reopen the
+runs it had just removed.
+
+```
+before   343 cards, 19 houses — la-petite-parisienne 75, jennah 43, whiteicy 36,
+         manzaram 33 … the five biggest held 200 of 343, nine houses shared under ten
+after    163 cards, 19 houses — nine houses at the cap of 12, nothing above it
+         adjacent same-house pairs across the WHOLE page: 0
+         first 24 cards span 19 different houses
+```
+
+This **deliberately gives up strict newest-first**, which the previous within-a-day
+interleave preserved. That version could do nothing about a day when one house published
+40 pieces and nobody else published at all — 16 of the first 24 cards were Jennah Boutique,
+which is what Tina was looking at. "Newest" remains an option in the grid's own Sort
+control, so the strict order is one click away.
+
+`groupColourVariants` now runs BEFORE the cap and the interleave rather than last. The house
+rule ("group last") exists so a filter that removes SIBLINGS cannot leave a card claiming
+"+5 colours" it does not have. Neither step here removes a sibling — both move and drop
+whole cards — so the badge stays truthful, and grouping first is what makes the cap count
+what a visitor actually sees.
+
+**Negative controls, run first (§10.28 rule 1):** `NEW_IN_MAX_PER_HOUSE = Infinity` fails the
+two cap tests; removing `interleaveByBrand` fails the adjacency test. Restored, 15 pass.
+
+**A test was found passing VACUOUSLY.** "never lets an older piece outrank a newer one" used
+a fixture of 20 rows on one day per house — 100% of each house, so de-batching ate all of it
+and the assertion compared `[]` to `[]`. It survived a real behaviour change without going
+red. The `drip()` helper now documents both fixture traps (too few days makes a batch; too
+many rows hits the cap) and every count assertion has a `toBeGreaterThan(0)` guard.
+
+### Translations
+
+The publish had been reporting the gap on every run — `278 in non-English brands NOT in the
+cache` — and nobody had read it. Every Jennah Boutique title on the page was French and
+Parladusa's were German. Both houses were already in `data/translate-brands.json`; only the
+cache was empty.
+
+```
+scripts/translate_titles.py --only <slug> --no-republish   x 10 houses
+cache 10982 -> 11255 (273 new)
+republish: Titles: 4243 translated from cache | 5 NOT in the cache   (was 278)
+```
+
+Republished with `npx tsx scripts/build-data.mjs` rather than `npm run build:data`, to skip
+the `postbuild:data` hook that would also have translated ~3,900 titles for mukistore, nihan
+and zuhre — brands that are not on this page.
+
+**Verified the republish changed titles and nothing else:**
+
+```
+rows before/after: 18945 18945
+id sequence identical (no reorder): true
+titles changed: 269
+rows differing in any NON-title field: 0
+
+jennah-boutique  "Pantalon oversize coton bleu" -> "Blue cotton oversized pants"
+parladusa        "Verona Kleid"                 -> "Verona dress"
+parladusa        "Liya Zweiteiler"              -> "Liya two-piece"
+la-petite-...    "Trench beige Sali (V26099)"   -> "Beige Sali trench coat (V26099)"
+```
+
+**Losyana was checked and deliberately NOT added to `translate-brands.json`.** Its titles
+look non-English but are place names — Ibiza, Tenerife, La Palma, Marbella, Alicante.
+Marking it `de` would send 1,272 English titles to be translated AS German, which is exactly
+the feedback loop that corrupted 40 titles in §10.46.
+
 ## Notes / follow-ups
 
-- **One house can still hold most of the opening.** After within-day interleaving, the
-  first 24 cards read `parladusa ×4, jennah-boutique ×16, losyana ×4` — because on
-  2026-08-31 Jennah Boutique published 40 pieces and almost nobody else published at all.
-  Interleaving inside a day cannot fix a day with one dominant house. The site already has
-  the pattern that would (`demoteGarment`'s running-share cap with a ramp), applied
-  per-house instead of per-garment. Not done: it trades away strict newest-first and is a
-  decision for Tina, not a bug.
+- ~~**One house can still hold most of the opening.**~~ **CLOSED** — see "Second round"
+  above. Tina chose the trade: balance and mixing over strict newest-first.
+- **`NEW_IN_MAX_PER_HOUSE` is a judgement, not a measurement.** 12 gives 163 cards; 20 would
+  give ~221 and let the six biggest houses lead more. One constant, one republish.
+- **~3,900 titles are still untranslated for brands NOT on this page** — mukistore (1,432),
+  nihan (1,230), zuhre (1,214) and six smaller ones. They are published and reachable on the
+  lane pages. Filling them is the same command per slug and needs no code change.
 - **Two labels now point at a page with a different name.** `lib/edits.ts`'s
   `"The whole directory"` and `components/MagnifierHero.tsx`'s `"Explore the directory"`
   both now link to `/new-in`. Both are Tina's words and were left as she wrote them
