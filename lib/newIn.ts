@@ -42,6 +42,21 @@ export const NEW_IN_WINDOW_DAYS = 30;
 export const INGEST_BATCH_SHARE = 0.3;
 
 /**
+ * The most cards any one house may contribute.
+ *
+ * Tina, 2026-09-01: *"try to keep a balance between the number of products so
+ * instead of if a brand has more you put everything in try to keep a balance"*.
+ * Without it the page is proportional to how prolific a house is rather than to
+ * how good it is: measured before the cap, La Petite Parisienne held 75 of 343
+ * cards and the five biggest houses held 200 of them, while nine houses had
+ * fewer than ten between them.
+ *
+ * A house's OWN newest pieces are the ones kept, so the cap costs a house its
+ * long tail, never its latest work.
+ */
+export const NEW_IN_MAX_PER_HOUSE = 12;
+
+/**
  * Losyana is seeded deliberately, because the site is in its referral
  * programme. It also HAS to be: all 826 of its published pieces carry
  * firstSeen 2026-08-28, the .shop domain move that reissued every product id
@@ -173,32 +188,59 @@ export function selectNewIn(all: Product[], opts: { hijabs?: boolean } = {}): Pr
     return !batches.get(p.brandSlug)?.has(d);
   });
 
-  // Newest first ACROSS days, round-robin by house WITHIN a day.
-  //
-  // Strict newest-first alone is honest and looks broken: houses publish in
-  // bursts, so a house that added 40 pieces on the newest day takes the whole
-  // first three screens. Measured on the real catalogue before this was added
-  // — 15 of the first 24 cards were Jennah Boutique.
-  //
-  // Interleaving inside the day rather than across the whole page is what
-  // keeps both properties true at once: nothing older ever outranks something
-  // newer, and no house owns the opening. Same round-robin the published
-  // catalogue itself uses (lib/ordering.ts), for the same stated reason.
-  const byDay = new Map<string, Product[]>();
-  for (const p of arrivals) {
-    const d = day(p) as string; // arrivals are filtered to dated rows above
-    let list = byDay.get(d);
-    if (!list) { list = []; byDay.set(d, list); }
-    list.push(p);
-  }
-  const ordered = [...byDay.keys()]
-    .sort((a, b) => (a < b ? 1 : a > b ? -1 : 0))
-    .flatMap((d) => interleaveByBrand(byDay.get(d) as Product[]));
+  // Newest first, as the INPUT ordering — what each house's own queue is
+  // sorted by, and what decides which of its pieces survive the cap.
+  const newestFirst = arrivals
+    .map((p, i) => ({ p, i }))
+    .sort((a, b) => {
+      const da = day(a.p) ?? '';
+      const db = day(b.p) ?? '';
+      return da === db ? a.i - b.i : da < db ? 1 : -1;
+    })
+    .map((x) => x.p);
 
-  // Colour runs collapse to one card LAST, after every other filter — same
-  // reasoning as productsForLane(): grouping earlier lets a card claim
-  // "+5 colours" when four of them were filtered off this page.
-  return seed(groupColourVariants(ordered), all.filter(eligible));
+  // Colour runs collapse to one card BEFORE the cap and the interleave, not
+  // after, and this is the one place that ordering matters.
+  //
+  // The house rule is "group LAST, after every other filter" (productsForLane),
+  // and its reason is that a filter which removes SIBLINGS would leave a card
+  // claiming "+5 colours" when four of them are not on the page. Neither step
+  // below removes a sibling — the cap and the interleave move and drop whole
+  // CARDS — so the badge stays truthful. Grouping first is what makes the cap
+  // and the round-robin count what a visitor actually sees: a house whose 12
+  // newest rows are four colourways of three garments should read as three
+  // cards against the cap, not twelve.
+  const cards = groupColourVariants(newestFirst);
+
+  // BALANCE, then MIX. Two separate asks, and they need this order: capping
+  // after interleaving would delete cards from the middle of an already-mixed
+  // sequence and reopen the runs it just removed.
+  const perHouse = new Map<string, Product[]>();
+  for (const p of cards) {
+    let q = perHouse.get(p.brandSlug);
+    if (!q) { q = []; perHouse.set(p.brandSlug, q); }
+    if (q.length < NEW_IN_MAX_PER_HOUSE) q.push(p);
+  }
+
+  // Round-robin across ALL houses, houses ordered by their own newest piece,
+  // so the most recently-active house leads and the opening is one card each.
+  //
+  // This DELIBERATELY gives up strict newest-first — Tina, 2026-09-01, having
+  // seen the alternative on staging: "try to mix the items instead of putting
+  // all the brands next to eachother". Previously the interleave ran inside a
+  // single day, which preserved newest-first but could do nothing about a day
+  // when one house published 40 pieces and nobody else published at all: 16 of
+  // the first 24 cards were Jennah Boutique. Anyone who wants the strict order
+  // back has it — "Newest" is an option in the grid's own Sort control
+  // (lib/sortRows.ts), which re-sorts the whole page client-side.
+  const houses = [...perHouse.values()].sort((a, b) => {
+    const da = day(a[0]) ?? '';
+    const db = day(b[0]) ?? '';
+    return da === db ? 0 : da < db ? 1 : -1;
+  });
+  const mixed = interleaveByBrand(houses.flat());
+
+  return seed(mixed, all.filter(eligible));
 }
 
 /**
