@@ -191,7 +191,22 @@ redirect. Leaving `scripts/` out is precisely the §10.29 failure the test exist
 prevent, and it was made while writing the test. The test now covers `scripts/` and `.mjs`,
 and the repo-wide grep is clean.
 
-Audit result after the fix is in the "Verification" evidence above.
+**`npm run audit:interaction` against staging, after the fix** — 5 viewports x 2 engines,
+no `PROBLEM` line anywhere:
+
+```
+filter-dropdown-after-tap  mobile-390    chromium  panel opened (190px @100..290/390)
+filter-dropdown-after-tap  tablet-819    chromium  panel opened (190px @116..306/819)
+filter-dropdown-after-tap  ipad-1024     chromium  panel opened (190px @116..306/1024)
+filter-dropdown-after-tap  ipad-1366     chromium  panel opened (190px @189..379/1366)
+filter-dropdown-after-tap  desktop-1440  chromium  panel opened (190px @226..416/1440)
+   … identical at all five in webkit
+nav-dropdown-open               ipad-1366 / desktop-1440   ok   (both engines)
+nav-tap-on-hover-capable-tablet ipad-1366                   ok   (both engines)
+```
+
+Before the fix, the same five read `PANEL DID NOT OPEN ON TAP` in both engines — which is
+the negative control for this repair, run first and by accident (§10.28 rule 1).
 
 ## Notes / follow-ups
 
