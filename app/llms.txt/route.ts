@@ -79,6 +79,7 @@ ${posts}
 - Product links are outbound affiliate links (\`rel="sponsored"\`) to the listed brand's own storefront — price and availability are the brand's, not ours, and should be attributed to the brand, not to The Modesty House.
 - Editorial coverage (The Edit) is original and independently written.
 - Full machine-readable listings: [sitemap.xml](${BASE}/sitemap.xml).
+- Everything above, with the content inlined instead of linked: [llms-full.txt](${BASE}/llms-full.txt).
 `;
 
   return new Response(body, {
