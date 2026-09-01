@@ -343,11 +343,11 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
       await page.waitForTimeout(300);
       await check('filter_apply', 'filter_apply sort', { filter: 'sort', lane: '/modest-hijabs' });
 
-      // search_zero_results — on /directory, which is the ONLY grid with a
+      // search_zero_results — on /new-in, which is the ONLY grid with a
       // search field: every lane passes searchable={false}. Found the hard way
       // — this check first ran on /modest-hijabs and timed out on a control
       // that has never existed there (§10.38: the harness, not the site).
-      await page.goto(`${BASE}/directory`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.goto(`${BASE}/new-in`, { waitUntil: 'domcontentloaded', timeout: 45000 });
       await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => {});
       await recorder();
       const field = page.getByLabel('Search houses and pieces').first();
@@ -498,7 +498,7 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
       await check('subtype_click', { lane: /^\//, value: /\S/ });
 
       // load_more + image_zoom, on the biggest grid.
-      await page.goto(`${BASE}/directory`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.goto(`${BASE}/new-in`, { waitUntil: 'domcontentloaded', timeout: 45000 });
       await page.waitForSelector('html[data-outbound-ready]', { timeout: 25000 }).catch(() => {});
       await recorder();
       const more = page.getByRole('button', { name: 'Load more' });
@@ -508,7 +508,7 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
       // 48 = STEP * 2, i.e. the count AFTER the first tap. A depth that reported
       // the count BEFORE would make every "how deep do people go" answer wrong
       // by one screen.
-      await check('load_more', { lane: '/directory', depth: '48' });
+      await check('load_more', { lane: '/new-in', depth: '48' });
 
       await recorder();
       await page.locator('button[aria-label^="Quick view"]').first().click({ timeout: 15000 });

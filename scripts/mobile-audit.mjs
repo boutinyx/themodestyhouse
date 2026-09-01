@@ -20,7 +20,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 
 const BASE = process.env.BASE || 'http://localhost:3150';
 const ROUTES = [
-  '/', '/directory', '/designers', '/editorial', '/about',
+  '/', '/new-in', '/designers', '/editorial', '/about',
   '/favourites', '/contact', '/modest-dresses', '/privacy',
 ];
 const ENGINES = { chromium, webkit };

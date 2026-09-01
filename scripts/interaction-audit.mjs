@@ -194,7 +194,7 @@ for (const engineName of engineNames) {
     // caught the panel's rows rendering centred.
     //
     // "Clothing" is a LINK, not a button (the group carries an href to
-    // /directory), which is why it is matched by text; and it opens on hover
+    // /new-in), which is why it is matched by text; and it opens on hover
     // with a mouse, on tap without one.
     //
     // It was "Products" until 2026-08-22 — the trigger was RENAMED to
@@ -206,7 +206,7 @@ for (const engineName of engineNames) {
     // `header Products text count 0`, actual labels
     // ['Clothing','Hijabs','Basics','Designers','Editorial','About'].
     try {
-      await go('/directory');
+      await go('/new-in');
       const products = page.locator('header').getByText('Clothing', { exact: true }).first();
       if (await products.isVisible().catch(() => false)) {
         if (vp.touch) await products.tap(); else await products.hover();
@@ -364,15 +364,23 @@ for (const engineName of engineNames) {
       } finally { if (ctx2) await ctx2.close().catch(() => {}); }
     }
 
-    // ---- 3. filter dropdown on /directory --------------------------------
+    // ---- 3. filter dropdown on /new-in -----------------------------------
     // THE question this exists to answer: the panel is revealed by
     // `group-hover` / `group-focus-within`. Neither is a tap. Safari famously
     // does not focus a <button> on click, and a touch device has no hover — so
     // whether these filters can be opened AT ALL on a phone is not something
     // source-reading can settle. Drive it and look.
     try {
-      await go('/directory');
-      const chip = page.locator('.chip').first();
+      await go('/new-in');
+      // button.chip, NOT .chip. /new-in renders two `<a class="chip">` links
+      // above the filter bar (the hijab toggle, added 2026-09-01), so `.chip`
+      // .first() matched a LINK, clicking it navigated, no panel opened, and
+      // this reported "PANEL DID NOT OPEN ON TAP" at every viewport in both
+      // engines — on filters that work perfectly. Second time this exact check
+      // has died to something in the page changing under its selector (see the
+      // .menu-scroll note below). A filter trigger is a <button>; the toggle is
+      // an <a>. That is structural and cannot be renamed away.
+      const chip = page.locator('button.chip').first();
       await chip.scrollIntoViewIfNeeded();
       await chip.click();
       await page.waitForTimeout(500);
@@ -396,7 +404,7 @@ for (const engineName of engineNames) {
 
     // ---- 4. quick view ----------------------------------------------------
     try {
-      await go('/directory');
+      await go('/new-in');
       const qv = page.locator('button[aria-label^="Quick view"]').first();
       await qv.scrollIntoViewIfNeeded();
       await qv.click();
@@ -453,7 +461,7 @@ for (const engineName of engineNames) {
     // actually opened the menu. Match on the aria-label instead, which exists
     // in both states.
     try {
-      await go('/directory');
+      await go('/new-in');
       const cur = page.locator('header button[aria-label*="currency" i]').first();
       if (await cur.isVisible().catch(() => false)) {
         const open = () => page.evaluate(() => {
@@ -625,7 +633,7 @@ for (const engineName of engineNames) {
     // invisible to any static render. Runs LAST because picking a currency
     // writes a site-wide preference to localStorage.
     try {
-      await go('/directory');
+      await go('/new-in');
       const trg = page.locator('.footer-currency-trigger').first();
       await trg.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);

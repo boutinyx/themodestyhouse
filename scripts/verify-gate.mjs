@@ -126,7 +126,7 @@ const MUST_BLOCK = [
   '/api/raw',
   '/api/admin/anything',
 ];
-const MUST_NOT_BLOCK = ['/', '/directory', '/api/csp-report', '/editorial/x'];
+const MUST_NOT_BLOCK = ['/', '/new-in', '/api/csp-report', '/editorial/x'];
 
 const fcm = path.join(NEXT_DIR, 'server', 'functions-config-manifest.json');
 if (!existsSync(fcm)) {

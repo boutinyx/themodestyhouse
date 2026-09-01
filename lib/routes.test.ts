@@ -14,13 +14,18 @@ import sitemap from '../app/sitemap';
  * compiler covers, and the only thing that notices is a check somebody has to
  * remember to run.
  */
-const SOURCE_ROOTS = ['app', 'components', 'lib'];
+// scripts/ IS included, and was missing from the first version of this test —
+// which is how `npm run audit:interaction` came to drive five checks at a
+// redirected URL and one at the wrong element. §10.29's whole point is that a
+// path used from a directory no compiler covers dies quietly, and scripts/ is
+// that directory.
+const SOURCE_ROOTS = ['app', 'components', 'lib', 'scripts'];
 
 function sourceFiles(dir: string, out: string[] = []): string[] {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     const full = join(dir, e.name);
     if (e.isDirectory()) { sourceFiles(full, out); continue; }
-    if (/\.tsx?$/.test(e.name)) out.push(full);
+    if (/\.(tsx?|mjs)$/.test(e.name)) out.push(full);
   }
   return out;
 }

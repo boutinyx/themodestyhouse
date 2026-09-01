@@ -35,7 +35,7 @@ import { chromium, webkit } from 'playwright';
 const BASE = process.env.BASE || 'http://localhost:3211';
 const PASSWORD = process.env.ADMIN_PASSWORD || '';
 const ONLY = process.env.ENGINE;
-const ROUTE = process.env.ROUTE || '/directory';
+const ROUTE = process.env.ROUTE || '/new-in';
 
 if (!PASSWORD) {
   console.log('staff-grid-audit SKIPPED — ADMIN_PASSWORD is not set.');

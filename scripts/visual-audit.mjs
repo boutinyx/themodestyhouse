@@ -6,7 +6,7 @@
 // caught real defects here but that a viewport-only, phone-only pass cannot see.
 //
 //   node scripts/visual-audit.mjs                     # everything (slow, thorough)
-//   ROUTES=/,/directory node scripts/visual-audit.mjs # a subset
+//   ROUTES=/,/new-in node scripts/visual-audit.mjs # a subset
 //   ENGINE=chromium node scripts/visual-audit.mjs     # one engine
 //   VIEWPORTS=mobile-390,desktop-1440 node scripts/visual-audit.mjs
 //   BASE=https://themodestyhouse.com node scripts/visual-audit.mjs
@@ -34,7 +34,7 @@ const LOCAL = /^http:\/\/localhost:/.test(BASE);
 const OUT = new URL(`../${process.env.OUT || '.audit/visual'}/`, import.meta.url);
 
 const ALL_ROUTES = [
-  '/', '/directory', '/designers', '/editorial', '/about', '/favourites',
+  '/', '/new-in', '/designers', '/editorial', '/about', '/favourites',
   '/contact', '/privacy', '/terms',
   '/editorial/back-to-class-no-fuss', '/editorial/still-boiling-feeling-fall',
   '/modest-dresses', '/modest-abayas', '/modest-hijabs', '/modest-skirts',
