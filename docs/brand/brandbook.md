@@ -110,6 +110,18 @@ places can each have their own is how a stale one ends up shipping (§10.21).
 | Browser tab icon | `app/favicon.ico` | 16 / 32 / 48 | picked up by filename; no config |
 | Web icon | `app/icon.png` | 512×512 | general, and what most scrapers take |
 | iOS home screen | `app/apple-icon.png` | 512×512 | Apple touch icon |
+| ↳ reference copies | `docs/brand/icon.png`, `docs/brand/favicon.ico` | — | so the icons are visible here beside the rest of the brand |
+
+![The current icon](icon.png)
+
+**`app/` is the live source for all three.** The two copies in this folder are
+for looking at, not for deploying: Next.js serves the icons by filename from
+`app/`, so changing a copy here changes nothing. If the icons are ever redrawn,
+replace them in `app/` FIRST and re-copy — a copy that quietly falls behind the
+original is exactly the failure §10.21 is written about. `app/apple-icon.png` is
+the same artwork at 512px, so it is not duplicated here.
+
+Copied 2026-09-01 from files dated 2026-08-06.
 
 **The three icons are off-book, on purpose or not — decide before changing
 them.** All three are the **four-pointed star inside a double ring**, parchment
