@@ -317,6 +317,20 @@ an unresolved source yields an empty list whose length disagrees with everything
 asserting the guard rather than the source. It now also asserts that the matching
 `rowCount` is ACCEPTED, which is what makes it a control.
 
+**Verified on staging by clicking through every card, both views:**
+
+```
+/new-in            clicks: 6 | cards loaded: 163 | Showing 163 of 163
+                   adjacent same-house pairs across ALL 163 cards: 0
+                   max per house: 12 | houses: 19
+/new-in?hijabs=1   clicks: 7 | cards loaded: 175 | Showing 175 of 175
+                   adjacent same-house pairs across ALL 175 cards: 0
+                   max per house: 12 | houses: 20
+```
+
+Both views are exercised, because the hijab toggle is part of the card source and is
+therefore a separate server path — not a filter over one list.
+
 **Housekeeping:** commit `44c268f`'s message lost the word `source` — backticks in a
 double-quoted zsh `-m` string fire as command substitution, which is §10.20's third
 instance, already written down in this repo and still walked into. The commit was already
