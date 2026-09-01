@@ -159,6 +159,40 @@ hijabs on    417 rows   20 houses   seeds ["losyana","losyana","losyana","losyan
 
 These move nightly (§10.35) — re-measure rather than quoting them.
 
+## Found on staging, after the first "done"
+
+Two things the local run could not have shown, both fixed:
+
+**1. The seed-placement comment was wrong.** It claimed a four-column grid and named
+rows 1/3/4/6, columns 3/1/4/2. Measured on the built page instead:
+
+```
+390px   cols=2   r1c1  r4c1  r7c2  r10c2
+768px+  cols=3   r0c3  r2c3  r5c1  r7c1
+```
+
+Two columns on a phone, three at every width from 768 up, never four. The property Tina
+asked for — four different rows, none consecutive — holds in both layouts, but the gaps
+between the positions (6, 7, 6) are what deliver it, not the column count. A false
+explanation in the code is worse than no code (§10.43), so the comment now carries the
+measurement.
+
+**2. `audit:interaction` reported `PANEL DID NOT OPEN ON TAP` at every viewport in both
+engines** — on filter dropdowns that work. This one WAS mine. The check does
+`page.locator('.chip').first()`, and `/new-in` renders two `<a class="chip">` links (the
+hijab toggle) above the filter bar. It clicked the toggle, navigated, and found no panel.
+Now `button.chip`: a filter trigger is a `<button>`, the toggle is an `<a>`, which is
+structural and cannot be renamed away (§10.32 rule 2).
+
+Chasing it surfaced the larger miss: **`lib/routes.test.ts` covered `app/`, `components/`
+and `lib/` but not `scripts/`** — so seven scripts still named `/directory`. They all still
+WORKED, because the 308 resolves, which means five audits were quietly measuring a
+redirect. Leaving `scripts/` out is precisely the §10.29 failure the test exists to
+prevent, and it was made while writing the test. The test now covers `scripts/` and `.mjs`,
+and the repo-wide grep is clean.
+
+Audit result after the fix is in the "Verification" evidence above.
+
 ## Notes / follow-ups
 
 - **One house can still hold most of the opening.** After within-day interleaving, the
