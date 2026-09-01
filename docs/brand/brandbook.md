@@ -1,6 +1,6 @@
 # The Modesty House — Brand Book
 
-**The real one is the PDF: [`docs/brand/The-Modesty-House-Brand-Book.pdf`](brand/The-Modesty-House-Brand-Book.pdf)**
+**The real one is the PDF: [`docs/brand/The-Modesty-House-Brand-Book.pdf`](The-Modesty-House-Brand-Book.pdf)**
 — Tina's, *Brand Book · Volume One*, 8 pages, made 2026-08-03. It is the source
 of truth for the identity. This file is a text transcription so the values are
 greppable, an agent can read them without opening a PDF, and a drift check can
