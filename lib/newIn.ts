@@ -1,5 +1,6 @@
 import { getProducts } from './products';
 import { groupColourVariants } from './colorVariants';
+import { interleaveByBrand } from './ordering';
 import { isSwim, isActivewear, isJilbab, isKhimarAbaya, isUndercap, isPrayer } from './specialty';
 import type { Product } from './types';
 
@@ -163,16 +164,27 @@ export function selectNewIn(all: Product[], opts: { hijabs?: boolean } = {}): Pr
     return !batches.get(p.brandSlug)?.has(d);
   });
 
-  // Newest first. The index tiebreak keeps the catalogue's own Featured order
-  // within a day rather than relying on sort stability.
-  const ordered = arrivals
-    .map((p, i) => ({ p, i }))
-    .sort((a, b) => {
-      const da = day(a.p) ?? '';
-      const db = day(b.p) ?? '';
-      return da === db ? a.i - b.i : da < db ? 1 : -1;
-    })
-    .map((x) => x.p);
+  // Newest first ACROSS days, round-robin by house WITHIN a day.
+  //
+  // Strict newest-first alone is honest and looks broken: houses publish in
+  // bursts, so a house that added 40 pieces on the newest day takes the whole
+  // first three screens. Measured on the real catalogue before this was added
+  // — 15 of the first 24 cards were Jennah Boutique.
+  //
+  // Interleaving inside the day rather than across the whole page is what
+  // keeps both properties true at once: nothing older ever outranks something
+  // newer, and no house owns the opening. Same round-robin the published
+  // catalogue itself uses (lib/ordering.ts), for the same stated reason.
+  const byDay = new Map<string, Product[]>();
+  for (const p of arrivals) {
+    const d = day(p) as string; // arrivals are filtered to dated rows above
+    let list = byDay.get(d);
+    if (!list) { list = []; byDay.set(d, list); }
+    list.push(p);
+  }
+  const ordered = [...byDay.keys()]
+    .sort((a, b) => (a < b ? 1 : a > b ? -1 : 0))
+    .flatMap((d) => interleaveByBrand(byDay.get(d) as Product[]));
 
   // Colour runs collapse to one card LAST, after every other filter — same
   // reasoning as productsForLane(): grouping earlier lets a card claim

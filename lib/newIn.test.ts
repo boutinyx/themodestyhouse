@@ -154,3 +154,35 @@ describe('selectNewIn — scope', () => {
     expect(on).toContain('Jilbab Two Piece');
   });
 });
+
+describe('selectNewIn — ordering', () => {
+  it('never lets an older piece outrank a newer one', () => {
+    const all = [
+      ...rows('veiled', '2026-08-10', 20), ...rows('aab', '2026-08-12', 20),
+      ...rows('fares', '2026-08-14', 20), ...rows('chador', '2026-08-16', 20),
+      ...rows('klay', '2026-08-18', 20),
+    ];
+    const days = selectNewIn(all).map((p) => p.firstSeen as string);
+    expect([...days].sort().reverse()).toEqual(days);
+  });
+
+  it('round-robins houses within a day, so one house cannot own the opening', () => {
+    // Jennah Boutique's real shape: 40 pieces on the newest day, beside a
+    // handful from two other houses on the same day.
+    // Each burst house needs a base of earlier days too, or its burst is 100%
+    // of its own population and de-batching correctly eats it — which is what
+    // the first version of this fixture did.
+    const all = [
+      ...drip('jennah-boutique'),                       // 100 over 5 days
+      ...rows('jennah-boutique', '2026-08-31', 40),     // 40/140 = 29%, not a batch
+      ...drip('parladusa'),
+      ...rows('parladusa', '2026-08-31', 4),
+      ...drip('whiteicy'),
+      ...rows('whiteicy', '2026-08-31', 4),
+    ];
+    const opening = selectNewIn(all).slice(0, 12).map((p) => p.brandSlug);
+    // strict newest-first would give 12 straight jennah-boutique
+    expect(opening.filter((s) => s === 'jennah-boutique').length).toBeLessThan(8);
+    expect(new Set(opening).size).toBeGreaterThan(2);
+  });
+});

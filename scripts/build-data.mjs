@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { isNonApparel } from '../lib/nonApparel.ts';
 import { onlyLargeSizesLeft } from '../lib/sizeAvailability.ts';
 import { isLifecycleLive, stripLifecycle, brandDropViolations, freezeCollapsedBrands } from '../lib/lifecycle.ts';
-import { demoteGarment } from '../lib/ordering.ts';
+import { demoteGarment, interleaveByBrand } from '../lib/ordering.ts';
 import { isSpecialty } from '../lib/specialty.ts';
 import { stripRawSignals } from '../lib/normalize.ts';
 import { publishTitle as resolvePublishTitle } from '../lib/publishTitle.ts';
@@ -238,27 +238,6 @@ const kept = raw.filter((p) => {
   }
   return true;
 });
-
-// Interleave brands (round-robin) so the grid mixes brands instead of showing
-// one full brand at a time.
-function interleaveByBrand(items) {
-  const queues = new Map();
-  for (const p of items) {
-    if (!queues.has(p.brandSlug)) queues.set(p.brandSlug, []);
-    queues.get(p.brandSlug).push(p);
-  }
-  const lists = [...queues.values()];
-  const out = [];
-  let any = true;
-  while (any) {
-    any = false;
-    for (const q of lists) {
-      const item = q.shift();
-      if (item) { out.push(item); any = true; }
-    }
-  }
-  return out;
-}
 
 // ---- GUARD 1: SKU-family contamination -> review queue ---------------------
 // Merchants encode category in the SKU prefix. If most of a family is vetoed,

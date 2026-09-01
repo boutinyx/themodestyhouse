@@ -5,6 +5,42 @@
 // wrong place still renders correctly and nothing errors.
 import type { Garment, Product } from '@/lib/types';
 
+/**
+ * Round-robin by house, so a grid mixes houses instead of showing one house's
+ * whole catalogue at a time.
+ *
+ * Lived in scripts/build-data.mjs until 2026-09-01, when lib/newIn.ts needed
+ * the same behaviour. Moved rather than copied: §8 already records what
+ * happens when one rule exists in two places (the exclusion logic duplicated
+ * between build-data.mjs and lib/exclude.test.ts, where changing one silently
+ * stops the other testing anything real). build-data.mjs imports it from here
+ * now, and this file's own header already described itself as running "after
+ * interleaveByBrand".
+ *
+ * Stable within a house: two pieces from the same house keep their relative
+ * order, which is what lets /new-in interleave INSIDE a day without disturbing
+ * newest-first across days.
+ */
+export function interleaveByBrand<T extends { brandSlug: string }>(items: T[]): T[] {
+  const queues = new Map<string, T[]>();
+  for (const p of items) {
+    let q = queues.get(p.brandSlug);
+    if (!q) { q = []; queues.set(p.brandSlug, q); }
+    q.push(p);
+  }
+  const lists = [...queues.values()];
+  const out: T[] = [];
+  let any = true;
+  while (any) {
+    any = false;
+    for (const q of lists) {
+      const item = q.shift();
+      if (item) { out.push(item); any = true; }
+    }
+  }
+  return out;
+}
+
 /** Share of the demoted garment allowed in the opening of the catalogue. */
 const OPENING_SHARE = 0.15;
 /** Positions over which the cap ramps back to the garment's natural share. */
