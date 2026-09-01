@@ -186,3 +186,21 @@ export const DIRECTORY_ANSWER: LaneAnswer = {
     'A directory works differently from a single shop. Every piece here links out to the house that made it, so the checkout, the size chart and the returns policy are always theirs rather than ours — worth reading on the brand\u2019s own page before you buy, because a size 12 is not the same measurement in every country and these houses ship from a number of different regions. Prices default to an approximate conversion, marked with \u2248, so a Turkish label and a British one can be compared without doing the arithmetic; what you actually pay is whatever the house charges, in its own currency, at its own checkout. A house appears here only after a review for craft and design, which is what the seal stands for. Hijabs, swimwear and activewear are kept on their own pages instead of being mixed into the everyday grids, so this one stays clothing.',
   related: ['modest-dresses', 'modest-abayas'],
 };
+
+/**
+ * Mechanism, not pitch — the same rule this file's header states for
+ * DIRECTORY_ANSWER and that CLAUDE.md §10.18 requires of an agent. Tina
+ * overwrites this in her own voice whenever she wants.
+ *
+ * DIRECTORY_ANSWER is deliberately NOT reused: its closing sentence says
+ * hijabs are kept on their own pages, which stops being true on a page that
+ * has a hijab toggle. Everything asserted here is a fact about the pipeline
+ * (lib/newIn.ts) or an editorial rule already stated in CLAUDE.md §7 —
+ * nothing is invented.
+ */
+export const NEW_IN_ANSWER: LaneAnswer = {
+  h2: 'What “new in” means here',
+  body:
+    'This page shows pieces added in the last thirty days by a selected group of houses, newest first. “Added” means the date this index first saw a piece in a house’s own feed, which is close to but not the same as the day the house launched it — a piece can sit in a feed before it is announced. A whole catalogue arriving on one day is this index reading that house for the first time rather than a drop, so those days are left out and what remains is the ordinary week-to-week flow. Swimwear and activewear stay on their own pages. Hijabs and scarves are off by default here and can be switched on. As everywhere else on the site, the price, the size chart and the checkout belong to the house rather than to us.',
+  related: ['modest-dresses', 'modest-abayas'],
+};
