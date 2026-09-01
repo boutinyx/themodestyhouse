@@ -148,7 +148,7 @@ describe('layer 2 — proxy matcher coverage (proxy.ts)', () => {
     expect(covered(p)).toBe(true);
   });
 
-  it.each(['/', '/directory', '/api/csp-report', '/editorial/x', '/api/other'])(
+  it.each(['/', '/new-in', '/api/csp-report', '/editorial/x', '/api/other'])(
     'does NOT block %s',
     (p) => {
       expect(covered(p)).toBe(false);

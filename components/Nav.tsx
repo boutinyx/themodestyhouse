@@ -41,7 +41,7 @@ export function Nav() {
   // bold "All Clothing" link is directly portable — NavMenu.tsx bolds
   // whichever item sits first in a group's panel.
   const categoryItems: NavItem[] = [
-    { href: '/directory', label: 'All Clothing' },
+    { href: '/new-in', label: 'New In' },
     ...CATEGORY_LANES.filter((l) =>
       l.slug !== 'modest-hijabs' && l.slug !== 'layering-basics' &&
       // Swim and Activewear moved out to their own top-level "Active" trigger
@@ -118,15 +118,15 @@ export function Nav() {
       kind: 'group',
       // Renamed from "Products" 2026-08-21, same request as above.
       label: 'Clothing',
-      href: '/directory',
+      href: '/new-in',
       activeWhen:
-        path === '/directory' ||
+        path === '/new-in' ||
         (path.startsWith('/modest') && !path.startsWith('/modest-hijabs')) ||
         path.startsWith('/blazers-vests') ||
         path.startsWith('/cardigans-sweaters') ||
         path.startsWith('/jackets-coats'),
       items: categoryItems,
-      // Two columns, each read top-to-bottom: 12 items ("All Clothing" + 11
+      // Two columns, each read top-to-bottom: 12 items ("New In" + 11
       // categories, Hijabs and Layering Basics excluded) split 6 + 6. The
       // row count is derived from the item count, so adding a category
       // lengthens the columns rather than breaking the shape.

@@ -90,7 +90,7 @@ export default function FavouritesPage() {
               The label is NOT new copy: "Browse the directory" is the exact
               string already on the button that closes /about. Reused rather than
               written, per CLAUDE.md §10.18. */}
-          <Link href="/directory" className="btn-pill inline-block mt-6">
+          <Link href="/new-in" className="btn-pill inline-block mt-6">
             Browse the directory
           </Link>
         </>

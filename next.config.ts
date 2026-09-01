@@ -197,7 +197,19 @@ export default function nextConfig(phase: string): NextConfig {
      */
     async redirects() {
       return [
-        { source: '/hijabi-outfits', destination: '/directory', permanent: true },
+        /*
+         * /directory ("All Clothing") was replaced by /new-in on 2026-09-01 at
+         * Tina's request. A 308 rather than a 404 because it was the site's
+         * highest-intent indexed URL and one of the entries in sitemap.xml; a
+         * 404 discards whatever ranking it holds instead of passing it on.
+         *
+         * /hijabi-outfits's own 308 below was repointed from /directory to
+         * /new-in in the SAME change, so that URL does not become a chain of
+         * two redirects — a chain loses signal at every hop and is slower for
+         * anyone who still holds the old address.
+         */
+        { source: '/directory', destination: '/new-in', permanent: true },
+        { source: '/hijabi-outfits', destination: '/new-in', permanent: true },
         /*
          * /modest-wedding-guest was retired 2026-08-27 (see lib/lanes.ts). It
          * is sent to /modest-dresses rather than /directory — Tina's choice

@@ -10,9 +10,13 @@ describe('organizationSchema', () => {
 });
 
 describe('websiteSchema', () => {
-  it('points its SearchAction at /directory?q=', () => {
+  // /directory was replaced by /new-in on 2026-09-01. The SearchAction must
+  // track the header magnifier's own destination (components/HeaderSearch.tsx)
+  // — a urlTemplate pointing at a redirect is a working search box that tells
+  // Google the wrong address for it.
+  it('points its SearchAction at /new-in?q=', () => {
     const site = websiteSchema();
-    expect(site.potentialAction.target.urlTemplate).toBe('https://themodestyhouse.com/directory?q={search_term_string}');
+    expect(site.potentialAction.target.urlTemplate).toBe('https://themodestyhouse.com/new-in?q={search_term_string}');
   });
 });
 

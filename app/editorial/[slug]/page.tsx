@@ -82,7 +82,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       </article>
 
       <div className="mt-16 pt-8" style={{ borderTop: '1px solid var(--hairline)' }}>
-        <Link href="/directory" className="btn-pill inline-block">Shop the directory</Link>
+        <Link href="/new-in" className="btn-pill inline-block">Shop the directory</Link>
       </div>
     </main>
   );

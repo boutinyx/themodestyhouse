@@ -82,10 +82,6 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     title: 'New In — The Latest Modest Arrivals',
     description: 'The newest modest clothing added to The Modesty House: recent arrivals from selected independent houses, linking straight to the brand.',
   },
-  '/directory': {
-    title: 'Shop Modest Clothing Online — Dresses, Abayas & Hijabs',
-    description: "Browse modest clothing from every verified house — long-sleeve dresses, abayas, hijabs, skirts and more, linking straight to the brand.",
-  },
   '/modest-dresses': {
     title: 'Modest Dresses Online — Long-Sleeve & Maxi Dresses',
     description: 'Shop modest dresses online: long-sleeve, high-neck and maxi dresses from independent modest fashion brands, styled for every occasion.',

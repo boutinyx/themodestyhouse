@@ -511,9 +511,9 @@ export function MobileNav() {
                 kept Hijabs inline because that day's ask was scoped to the
                 desktop header only — today's ask is explicitly about this
                 panel too. */}
-            <div className="pt-3">{row('/directory', 'Clothing')}</div>
+            <div className="pt-3">{row('/new-in', 'Clothing')}</div>
 
-            {/* "Category" is the label already used on the /directory filter
+            {/* "Category" is the label already used on the /new-in filter
                 bar — reused rather than invented, so the menu and the filters
                 name the same things the same way.
                 It is the ONLY thing carrying the grouping now that the rows are

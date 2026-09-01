@@ -172,8 +172,8 @@ describe('productProps', () => {
 describe('trackGoal', () => {
   it('sends the filtered bag under the event name', () => {
     const { calls, w } = spy();
-    trackGoal('filter_apply', { filter: 'colour', value: 'olive', lane: '/directory', secret: 'no' }, w);
-    expect(calls).toEqual([['filter_apply', { filter: 'colour', value: 'olive', lane: '/directory' }]]);
+    trackGoal('filter_apply', { filter: 'colour', value: 'olive', lane: '/new-in', secret: 'no' }, w);
+    expect(calls).toEqual([['filter_apply', { filter: 'colour', value: 'olive', lane: '/new-in' }]]);
   });
 
   it('emits every declared goal without throwing, with nothing to send', () => {

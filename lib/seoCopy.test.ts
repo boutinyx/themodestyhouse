@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { SEO_COPY } from './seoCopy';
 import { LANES } from './lanes';
 
-const STATIC_PATHS = ['/', '/directory', '/designers', '/editorial', '/faq'];
+const STATIC_PATHS = ['/', '/new-in', '/designers', '/editorial', '/faq'];
 
 describe('SEO_COPY', () => {
   it('has an entry for every lane', () => {

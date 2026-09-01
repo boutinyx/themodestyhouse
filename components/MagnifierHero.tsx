@@ -58,7 +58,10 @@ export default function MagnifierHero() {
             <span className="italic">everything</span> modest.
           </h1>
           <p className="mag-hint">Move your cursor to look inside &mdash; 8,000 pieces, 40 houses.</p>
-          <Link href="/directory" className="btn-pill mag-cta">Explore the directory</Link>
+          {/* href repointed 2026-09-01 when /directory was replaced by /new-in. This
+              component has NO importers and is kept deliberately, like
+              VerifiedSpotlight — the label is Tina's and is left as she wrote it. */}
+          <Link href="/new-in" className="btn-pill mag-cta">Explore the directory</Link>
         </div>
       </div>
 

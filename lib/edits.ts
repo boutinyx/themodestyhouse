@@ -653,7 +653,9 @@ export const EDITS: Edit[] = [
     eyebrow: 'The Edit · Autumn 2026',
     // NOT featured — `featured` only decides which banner comes FIRST on the
     // homepage, and Jersey Hijabs holds it. All three render.
-    more: { href: '/directory', label: 'The whole directory' },
+    // /directory was replaced by /new-in on 2026-09-01; the label is Tina's
+    // and is left as she wrote it.
+    more: { href: '/new-in', label: 'The whole directory' },
 
     // HERO — Tina's own pair, supplied 2026-08-25, replacing the placeholder
     // that reused the lace hero. Done exactly as the placeholder's own

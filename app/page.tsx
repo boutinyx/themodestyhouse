@@ -431,7 +431,8 @@ export default function Home() {
             {/* 2026-08-22 — "Explore Designers" removed, Tina: "i want this
                 one gone in the hero." Shop the Archive (added the same day
                 from her reference crop, see the removed comment in git
-                history) is now the only CTA — no longer a matched pair, so
+                history), relabelled "Shop New In" on 2026-09-01 when
+                /directory was replaced by /new-in, is now the only CTA — no longer a matched pair, so
                 no `gap`/flex-row wrapper needed either. /designers is still
                 reachable from the header nav; this was hero real estate
                 only. */}
@@ -446,7 +447,7 @@ export default function Home() {
                 block centers. Desktop is untouched: still inline, still
                 mt-9 below the subhead. */}
             <Link
-              href="/directory"
+              href="/new-in"
               className="uppercase mt-9 hidden lg:inline-block"
               style={{
                 fontFamily: 'var(--font-label), serif',
@@ -458,12 +459,12 @@ export default function Home() {
                 borderRadius: 'var(--radius-card)',
               }}
             >
-              Shop the Archive
+              Shop New In
             </Link>
           </div>
           <div className="absolute inset-x-0 bottom-16 flex justify-center lg:hidden">
             <Link
-              href="/directory"
+              href="/new-in"
               className="uppercase inline-block"
               style={{
                 fontFamily: 'var(--font-label), serif',
@@ -475,7 +476,7 @@ export default function Home() {
                 borderRadius: 'var(--radius-card)',
               }}
             >
-              Shop the Archive
+              Shop New In
             </Link>
           </div>
         </div>

@@ -38,7 +38,7 @@ function line(label: string, path: string, desc: string) {
 
 export function GET() {
   const sections = [
-    line('Products', '/directory', 'Browse modest pieces from every verified house.'),
+    line('New In', '/new-in', 'The latest pieces added, from a selected group of houses.'),
     // Driven off LANES, so a new lane appears here the moment it is routable —
     // the same source app/sitemap.ts uses, for the same reason.
     ...LANES.map((l) => line(l.title, `/${l.slug}`, l.intro)),

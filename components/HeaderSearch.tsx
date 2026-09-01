@@ -75,7 +75,7 @@ export function HeaderSearchField({ onClose }: { onClose: () => void }) {
     e.preventDefault();
     const query = (inputRef.current?.value ?? '').trim();
     onClose();
-    router.push(query ? `/directory?q=${encodeURIComponent(query)}` : '/directory');
+    router.push(query ? `/new-in?q=${encodeURIComponent(query)}` : '/new-in');
   }
 
   return (
@@ -183,7 +183,7 @@ export function MobileSearchRow({ onClose }: { onClose: () => void }) {
     e.preventDefault();
     const query = (inputRef.current?.value ?? '').trim();
     onClose();
-    router.push(query ? `/directory?q=${encodeURIComponent(query)}` : '/directory');
+    router.push(query ? `/new-in?q=${encodeURIComponent(query)}` : '/new-in');
   }
 
   return (
