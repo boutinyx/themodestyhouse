@@ -49,10 +49,19 @@ export const INGEST_BATCH_SHARE = 0.3;
  * Losyana's organic contribution to this page is zero.
  *
  * Positions are 0-indexed and spliced in ASCENDING order into the growing
- * array, so the final one-indexed positions are 3, 9, 16 and 22 — on a
- * four-column grid, rows 1/3/4/6 and columns 3/1/4/2. Four different rows,
- * four different columns, no two adjacent: Tina asked for four "but not next
- * to eachother that its obvious".
+ * array, so the final one-indexed positions are 3, 9, 16 and 22. Tina asked
+ * for four "but not next to eachother that its obvious", and the gaps between
+ * them (6, 7, 6) are what deliver that.
+ *
+ * MEASURED against the real grid on staging, not assumed — the grid is TWO
+ * columns on a phone and THREE at every width from 768 up, never four:
+ *
+ *   390px   cols=2   r1c1  r4c1  r7c2  r10c2
+ *   768px+  cols=3   r0c3  r2c3  r5c1  r7c1
+ *
+ * Four different rows in both layouts, and no two in consecutive rows. If the
+ * grid's column count ever changes, RE-MEASURE — these four numbers are only
+ * well-spaced by arithmetic that depends on it.
  *
  * The seed is part of the server-rendered Featured order only. When a visitor
  * changes the sort or applies a filter the client re-sorts everything and

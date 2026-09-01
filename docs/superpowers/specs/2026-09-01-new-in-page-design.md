@@ -92,9 +92,12 @@ catalogue's Featured order — 104 pieces at time of writing. Take the first 4 n
 present in the list, then insert at indices 2, 8, 15, 21 **in ascending order into the
 growing array**, so the final one-indexed positions are 3, 9, 16 and 22.
 
-On a 4-column desktop grid that is rows 1, 3, 4 and 6 and columns 3, 1, 4 and 2 — four
-different rows, four different columns, no two adjacent. If the list is shorter than 21
-entries the remaining seeds append at the end.
+CORRECTED 2026-09-01 after measuring the built page on staging: the grid is **two
+columns on a phone and three at every width from 768 up**, never four. The seeds land at
+`r1c1 r4c1 r7c2 r10c2` on a phone and `r0c3 r2c3 r5c1 r7c1` above it — four different
+rows in both, none in consecutive rows, which is the property Tina asked for. The gaps
+between the positions (6, 7, 6) are what deliver it, not the column count. If the list is
+shorter than 21 entries the remaining seeds append at the end.
 
 The seed order is part of the server-rendered Featured order only. When a visitor
 changes the sort or applies a filter, the client re-sorts everything and the Losyana
