@@ -171,7 +171,7 @@ pages") stops being true on a page with a hijab toggle.
 
 ## Removing All Clothing
 
-`app/directory/` is deleted. Fourteen places name it:
+`app/directory/page.tsx` is deleted. Fifteen edits across twelve other files:
 
 | file | change |
 |---|---|
@@ -220,9 +220,13 @@ trusted (§10.28 rule 1).
     `abaya` — the case a garment-only filter would miss.
 
 Plus, in the existing suites: `app/sitemap.ts` must list `/new-in` and must not list
-`/directory`, and no source file under `app/`, `components/` or `lib/` may still
-reference `/directory` outside `next.config.ts` — the §10.29 grep, written as a test so
-it cannot be forgotten.
+`/directory`; and no file under `app/`, `components/` or `lib/` may still contain the
+**quoted string literal** `'/directory'` or `"/directory"` outside `next.config.ts` —
+the §10.29 grep, written as a test so it cannot be forgotten. Scoped to string literals
+deliberately: several files carry the word `/directory` in explanatory comments
+(`ProductCard.tsx`, `IndexPanel.tsx`, `FilterableGrid.tsx`, `useZeroResultSearch.ts`),
+and those are history worth keeping, not live references. They are updated by hand where
+they would now mislead, but they must not fail the test.
 
 ## Verification
 
