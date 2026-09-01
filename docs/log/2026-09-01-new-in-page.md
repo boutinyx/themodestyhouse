@@ -287,6 +287,42 @@ look non-English but are place names — Ibiza, Tenerife, La Palma, Marbella, Al
 Marking it `de` would send 1,272 English titles to be translated AS German, which is exactly
 the feedback loop that corrupted 40 titles in §10.46.
 
+### A real defect the first two verifications could not see
+
+`Load more` did nothing past card 48. The button was clickable, then disappeared, and the
+count stayed at `Showing 48 of 163`.
+
+`DirectoryBrowser` had exactly one caller until now, so its card fetch hardcoded
+`source: 'browse'`. `/new-in` holds row indices into a 163-row list and was asking the
+server for rows of the 9,428-row browse list. The `rowCount` guard in
+`lib/catalogueCards.ts` refused with a 409 — correctly, since that guard exists so a
+mismatch cannot paint the wrong products under the right titles (§10.12) — the client set
+`staleRowCount` and stopped, and nothing surfaced anywhere.
+
+**Why two rounds of verification missed it:** every check read the first screenful. The
+Playwright run asserted the seeds at cards 3/9/16/22 and the houses in the first 24, and
+the curl checks read a 383 KB body. All true, all blind to row 49. It only appeared when
+the harness was changed to *click through the whole page*, which was done to make an
+adjacency claim honest rather than because anything looked wrong.
+
+**Fix:** `CardSource` gains `{ newIn: { hijabs } }`, and `DirectoryBrowser` takes a
+`source` prop defaulting to `'browse'`. The hijab toggle has to be part of the source —
+`?hijabs=1` is a different list with different indices. This is only possible because
+`selectNewIn` is deterministic: its window is anchored to the newest date in the data and
+never to the clock, so the server reproduces the identical array.
+
+Negative controls: with the `newIn` branch removed, both new tests in
+`lib/catalogueCards.test.ts` fail. The second one initially passed *without* the branch —
+an unresolved source yields an empty list whose length disagrees with everything, so it was
+asserting the guard rather than the source. It now also asserts that the matching
+`rowCount` is ACCEPTED, which is what makes it a control.
+
+**Housekeeping:** commit `44c268f`'s message lost the word `source` — backticks in a
+double-quoted zsh `-m` string fire as command substitution, which is §10.20's third
+instance, already written down in this repo and still walked into. The commit was already
+on `staging`, which is never force-pushed, so it stands with the gap. Commit messages go
+through `git commit -F` from here.
+
 ## Notes / follow-ups
 
 - ~~**One house can still hold most of the opening.**~~ **CLOSED** — see "Second round"
