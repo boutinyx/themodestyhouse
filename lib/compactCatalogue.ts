@@ -234,7 +234,16 @@ export interface CardEntry {
  * imports lib/products.ts — a node:fs module that Invariant 10 forbids a
  * 'use client' file from pulling in.
  */
-export type CardSource = 'browse' | { lane: string } | { brand: string };
+/**
+ * Which server-side product list a set of row indices addresses.
+ *
+ * `newIn` carries the hijab toggle because /new-in?hijabs=1 is a DIFFERENT
+ * list with different row indices — asking for rows of the wrong one is the
+ * exact staleness the rowCount guard in lib/catalogueCards.ts refuses.
+ * lib/newIn.ts is deterministic (its window is anchored to the data, never to
+ * the clock), which is what lets the server reproduce the identical array.
+ */
+export type CardSource = 'browse' | { lane: string } | { brand: string } | { newIn: { hijabs: boolean } };
 
 export interface EncodeOptions {
   /** How many LEADING rows get their card data embedded inline. Rows beyond it

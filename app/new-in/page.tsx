@@ -92,7 +92,16 @@ export default async function NewInPage(
           <Link href="/new-in?hijabs=1" className="chip" data-active={hijabs}>Include hijabs</Link>
         </div>
       )}
-      <DirectoryBrowser catalogue={catalogue} initialQuery={q ?? ''} />
+      {/* `source` must describe the SAME list the row indices came from, or the
+          rowCount guard in lib/catalogueCards.ts refuses every fetch past the
+          embedded window and "Load more" silently stops. Under ?q= that list
+          is browseProducts(); otherwise it is this exact New In selection,
+          hijab toggle included. */}
+      <DirectoryBrowser
+        catalogue={catalogue}
+        initialQuery={q ?? ''}
+        source={q ? 'browse' : { newIn: { hijabs } }}
+      />
       {/* Informational block AFTER the grid, mirroring every lane page.
           Server-rendered, so it is real crawlable text. */}
       <section className="max-w-2xl mt-20 pt-12" style={{ borderTop: '1px solid var(--hairline)' }}>

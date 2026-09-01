@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import type { CompactCatalogue, CardSlice } from '@/lib/compactCatalogue';
+import type { CompactCatalogue, CardSlice, CardSource } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
 import type { Garment } from '@/lib/types';
 import { ProductCard } from './ProductCard';
@@ -19,7 +19,16 @@ const GARMENT_LABEL: Record<string, string> = {
   top: 'Tops', trousers: 'Trousers', set: 'Sets', swim: 'Swimwear',
 };
 
-export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalogue: CompactCatalogue; initialQuery?: string }) {
+export function DirectoryBrowser({ catalogue: cat, initialQuery = '', source = 'browse' }: {
+  catalogue: CompactCatalogue;
+  initialQuery?: string;
+  /** Which server-side list `cat`'s row indices address, for fetching the cards
+   *  beyond the embedded window. Defaults to 'browse' — what this component was
+   *  hardcoded to until 2026-09-01, when /new-in became a second caller and
+   *  every "Load more" past card 48 silently 409'd against a list of a
+   *  different length. */
+  source?: CardSource;
+}) {
   const [q, setQ] = useState(initialQuery);
   const [garment, setGarment] = useState('all'); // Garment value, or 'all'
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
@@ -128,6 +137,12 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
 
   const shownRows = sortedRows.slice(0, visible);
 
+  // `source` is an object literal at the /new-in call site, so it is a NEW
+  // object on every render — keying the effect on its identity would refetch
+  // forever, the same trap `missingKey` below exists for. Same fix and the same
+  // shape as components/FilterableGrid.tsx.
+  const sourceKey = JSON.stringify(source);
+
   // Which of the rows about to be painted have no card data yet. Joined into a
   // string for the effect's dependency because `missing` is rebuilt on every
   // render — keying on its identity would refetch forever.
@@ -143,7 +158,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
     fetch('/api/catalogue/cards', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ source: 'browse', rows: missingKey.split(',').map(Number), rowCount: cat.rowCount }),
+      body: JSON.stringify({ source, rows: missingKey.split(',').map(Number), rowCount: cat.rowCount }),
     })
       .then((r) => {
         // 409 means the row indices held here no longer address the same
@@ -193,7 +208,8 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '' }: { catalo
       })
       .catch(() => { if (!cancelled) setCardsError(true); });
     return () => { cancelled = true; };
-  }, [missingKey, cat.rowCount, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- sourceKey IS source, by value
+  }, [missingKey, cat.rowCount, router, sourceKey]);
 
   // decodeCard returns null while a row's card data is still in flight. Render
   // what has arrived rather than holding the whole grid back.

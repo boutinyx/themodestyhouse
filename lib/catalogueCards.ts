@@ -1,5 +1,6 @@
 import { encodeCatalogue, type CardSlice, type CardSource } from '@/lib/compactCatalogue';
 import { browseProducts, productsForLane, productsForBrand } from '@/lib/products';
+import { newInProducts } from '@/lib/newIn';
 import { BRANDS } from '@/data/brands';
 import type { Product } from '@/lib/types';
 
@@ -26,6 +27,7 @@ export type { CardSource };
 function productsFor(source: CardSource): Product[] {
   if (source === 'browse') return browseProducts();
   if ('lane' in source) return productsForLane(source.lane);
+  if ('newIn' in source) return newInProducts({ hijabs: source.newIn.hijabs });
   return productsForBrand(source.brand);
 }
 
