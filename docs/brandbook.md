@@ -96,6 +96,33 @@ aubergine.
 
 ---
 
+# Asset map — where the brand actually lives
+
+Pointers, not copies. Each asset has ONE home; duplicating an image so two
+places can each have their own is how a stale one ends up shipping (§10.21).
+
+| asset | file | size | used for |
+|---|---|---|---|
+| Brand book | `docs/brand/The-Modesty-House-Brand-Book.pdf` | 8pp | the source of truth |
+| Carousel brief | `docs/brand/instagram-carousel-brief.md` | — | hand to an outside AI or designer, with the logo |
+| Logo, full mark | `public/logo.png` | 707×992, transparent | the site header; copied to `docs/brand/logo.png` for handoff |
+| Logo, small | `public/logo-240.webp` | 240×337 | the header's served variant |
+| Browser tab icon | `app/favicon.ico` | 16 / 32 / 48 | picked up by filename; no config |
+| Web icon | `app/icon.png` | 512×512 | general, and what most scrapers take |
+| iOS home screen | `app/apple-icon.png` | 512×512 | Apple touch icon |
+
+**The three icons are off-book, on purpose or not — decide before changing
+them.** All three are the **four-pointed star inside a double ring**, parchment
+on aubergine. The brand book's Logo system page specifies a different small-size
+step-down: full mark above ~40px, the oval at 24–40px, and **the monogram**
+below that, "for favicons, app icons, and listing avatars".
+
+So the tab, the iOS home screen and every avatar Google or Instagram scrapes
+show a decorative element of the mark rather than the mark. There is a real
+argument for it — a bare TH at 16px turns to mush where a star stays legible —
+which is very likely why it was chosen. It is recorded here so the next person
+finds a decision rather than an accident. Not changed on 2026-09-01; Tina's call.
+
 # What ships, measured against it
 
 Checked against `app/globals.css` on 2026-09-01. **The site follows the brand
