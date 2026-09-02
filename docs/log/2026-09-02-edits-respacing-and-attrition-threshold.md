@@ -1,5 +1,5 @@
 # A sold-out pick was collapsing two hijabs together, and a test that could only ever be red
-**Date:** 2026-09-02 · **Status:** done (on `staging`, not merged)
+**Date:** 2026-09-02 · **Status:** done — merged and live
 
 ## Goal
 Fix the two `lib/edits.test.ts` failures that were red on `main`, reported at the end of
@@ -114,8 +114,19 @@ reported `0 vs 0` on a defect that starts at 33; the next matched
 "Asymmetric Closure Wide Leg Modal Trousers" and "Blouse with Scarf Detail on the ..." —
 a pair of trousers and a blouse.
 
+## Merged and live
+
+Tina approved. Fast-forwarded `origin/main` to `8078c67`. Purge ordering per §10.47 — the
+ORIGIN was confirmed to be serving the new build first, by driving a cache-busted request
+past the edge and watching the defect itself disappear (`2 hijab-adjacent` → `0` at
++2.0 min); only then `purge_everything`. Then the canonical URL, no cache-buster, twice:
+
+```
+GET 1  cf-cache-status=MISS  144 cards · 0 hijab-adjacent · 0 same-house
+GET 2  cf-cache-status=HIT   144 cards · 0 hijab-adjacent · 0 same-house
+```
+
 ## Notes / follow-ups
-- **Not merged to `main`** — needs Tina's approval (§1).
 - Picks that are permanently gone and would need a re-pick in `/staff/curate` if she wants
   them replaced: `la-petite-parisienne:12482835284308` (Chemise NORA jaune),
   `ilovemodesty:10284417909057` (Cyra Lilac A-line Cardigan),
