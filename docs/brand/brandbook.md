@@ -123,17 +123,32 @@ the same artwork at 512px, so it is not duplicated here.
 
 Copied 2026-09-01 from files dated 2026-08-06.
 
-**The three icons are off-book, on purpose or not — decide before changing
-them.** All three are the **four-pointed star inside a double ring**, parchment
-on aubergine. The brand book's Logo system page specifies a different small-size
-step-down: full mark above ~40px, the oval at 24–40px, and **the monogram**
-below that, "for favicons, app icons, and listing avatars".
+**The icons are the STAR, not the monogram — decided 2026-09-02.** The brand
+book's logo system steps down to the monogram below 24px, "for favicons, app
+icons, and listing avatars". Tina's call, asked directly, was to keep the star:
+*"i just want the star one the one i already had the circle one"*. The reason
+holds up — the monogram is a fine script and it is illegible at the 16px Google
+actually renders, where the star is one clear shape.
 
-So the tab, the iOS home screen and every avatar Google or Instagram scrapes
-show a decorative element of the mark rather than the mark. There is a real
-argument for it — a bare TH at 16px turns to mush where a star stays legible —
-which is very likely why it was chosen. It is recorded here so the next person
-finds a decision rather than an accident. Not changed on 2026-09-01; Tina's call.
+**They were redrawn the same day, because they were unreadable.** Tina, looking
+at a Google result: *"my favicon when i search up the modestyhouse is so
+fucking low quality"*. Measured rather than guessed — rendered at 16px, the old
+icon was a three-pixel blob inside two grey smears, because the artwork carried
+two thin concentric rings and a small star and none of that survives 16 pixels.
+It was never a resolution problem; exporting it larger would have changed
+nothing.
+
+The fix keeps her exact star — lifted from the old file, not redrawn — scaled
+2.6x on the same aubergine disc, with the inner rings dropped. The `.ico` also
+carries 16 through 256 rather than stopping at 48: Google's favicon
+documentation asks for at least 48 and explicitly recommends larger, and 48 was
+all it previously had to downsample from.
+
+`apple-icon.png` is a full-bleed SQUARE rather than a circle, because iOS masks
+its own corners and a transparent-cornered circle sits on white there.
+
+Google recrawls favicons in "several days to several weeks", so the search
+result will lag the deploy.
 
 # What ships, measured against it
 
