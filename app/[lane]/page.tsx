@@ -10,7 +10,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, faqPageSchema, jsonLdGraph } from '@/lib/schema';
 import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
-import { resolveSubtype, subtypeSeo, domainForLane, subtypeValueOf } from '@/lib/laneSubtypes';
+import { LANE_SUBTYPES, resolveSubtype, subtypeSeo, domainForLane, subtypeValueOf } from '@/lib/laneSubtypes';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -194,8 +194,39 @@ export default async function LanePage({
             {answer.h2}
           </h2>
           <p className="mt-4" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>{answer.body}</p>
-          <div className="mt-6 flex items-center gap-4">
+          {/* SUBTYPE LINKS JOINED THIS ROW 2026-09-02, and it matters WHERE
+              they are. The 16 `?type=` pages shipped that morning went into
+              the sitemap with ZERO internal links — measured on production:
+              every page of the site emits 10 `type=` hrefs and not one of
+              them pointed at a new lane. §8 states the consequence plainly:
+              a sitemap entry gets a page crawled, internal links are what
+              pass ranking signal.
+
+              This is NOT the sub-category chip row Tina removed on
+              2026-08-26 ("i said get rid of this shit"). That was a <nav> of
+              filled `.chip` filter controls ABOVE the grid, duplicating the
+              Type dropdown. This is the existing "Also browse" text row
+              BELOW the grid — the module that already exists for internal
+              linking — carrying more links and no new words: every label
+              here is either a lane title or a subtype label already shipped.
+
+              On a subtype page the parent lane is included, so each of the
+              16 links to its siblings AND back up, rather than being a leaf
+              the crawler reaches once and never leaves. */}
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
             <span className="eyebrow" style={{ color: 'var(--muted)' }}>Also browse</span>
+            {sub && (
+              <Link href={`/${lane.slug}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
+                {lane.title}
+              </Link>
+            )}
+            {LANE_SUBTYPES[lane.slug]?.subtypes
+              .filter((t) => t.type !== sub?.type)
+              .map((t) => (
+                <Link key={t.type} href={`/${lane.slug}?type=${t.type}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
+                  {t.label}
+                </Link>
+              ))}
             {answer.related.map((slug) => {
               const l = LANES.find((x) => x.slug === slug);
               return l ? (

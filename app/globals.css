@@ -1656,3 +1656,45 @@ html[data-input-modality="mouse"] summary:focus-visible {
   .marquee { overflow-y: auto; }
   .marquee-row { animation: none; }
 }
+
+/* Below-the-fold sections on the homepage are skipped until they are needed.
+   Added 2026-09-02, and MEASURED before and after rather than reasoned about
+   (§10.43) — three runs each, real throttling via CDP at 1.6 Mbps / 150 ms RTT
+   / 4x CPU against the live host, not a Lighthouse model:
+
+     production as-is              LCP 15,340 ms · 35 images loaded · 3,192 KB
+     with this rule                LCP  7,796 ms ·  8 images loaded · 1,671 KB
+
+   WHY IT IS NEEDED WHEN EVERY IMAGE ALREADY SAYS loading="lazy". 44 of the
+   homepage's 47 <img> carry it, and 35 of them loaded anyway with no scrolling
+   at all — including the category tiles 4.4 SCREENS DOWN. Chrome's lazy-load
+   distance threshold scales with the effective connection type, so the slower
+   the phone's connection the MORE it fetches eagerly, which is exactly
+   backwards. Twelve of them sit in horizontal rails, where a tile scrolled off
+   to the RIGHT is still vertically inside the viewport margin and so is never
+   treated as far away.
+
+   The effect on the LCP element is indirect and that is the whole point: the
+   hero is discovered at 300 ms and `fetchpriority="high"` is already on it —
+   it was never a discovery problem. It finished at 15,296 ms because 2.8 MB of
+   other images started at 1,607 ms and it got a fair share of a 200 KB/s pipe
+   instead of priority. Fewer bytes racing it is the fix; a preload is not, and
+   §10.43 records what happened the last time one was shipped on a hunch.
+
+   `~ section` rather than `:nth-child(n+3)`: the cut is "every top-level
+   section after the first", which stays true when a section is added or
+   removed. Measured identical (7,800 ms vs 7,796 ms) — the second section is a
+   72px spacer carrying no images.
+
+   `contain-intrinsic-size: auto 600px` — the `auto` keyword makes the browser
+   remember each section's real rendered size after it has been shown once, so
+   the 600px is only ever a first guess. Measured heights at 390px run 453-1219.
+
+   Scoped to the homepage on purpose. Every other page has a <main> too, and
+   whether this helps or hurts a lane page is a separate measurement nobody has
+   made. Safari added support in 18; older engines ignore the property, which
+   costs them nothing they do not already have. */
+.home-sections > section ~ section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

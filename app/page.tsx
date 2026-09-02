@@ -157,7 +157,7 @@ export default function Home() {
     // whole of it was outside any landmark and "skip to content" had nothing to
     // skip to. app/[lane], /about, /designers, /directory, /editorial,
     // /favourites and the legal shell all already do this.
-    <main>
+    <main className="home-sections">
       {/* HERO — editorial modest-fashion image */}
       <section>
         {/* .hero-vh, not an inline height. The height has to be `100svh` with a
