@@ -24579,6 +24579,15 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "veiled:7650776088681",
+    "brandSlug": "veiled",
+    "title": "Cotton Barrel Leg Pants - Chocolate",
+    "url": "https://veiled.com/products/cotton-barrel-leg-pants-chocolate",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "veiled:7634723766377",
     "brandSlug": "veiled",
     "title": "Suede Wrap Skirt - Pebble",
@@ -24588,22 +24597,22 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "veiled:7798574940265",
+    "id": "veiled:7746275770473",
     "brandSlug": "veiled",
-    "title": "Cotton Wide Yoke Skirt - Black",
-    "url": "https://veiled.com/products/cotton-wide-yoke-skirt-black",
-    "garmentWas": "skirt",
+    "title": "Button Up Cinch Top - White",
+    "url": "https://veiled.com/products/split-front-button-up-top-white",
+    "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
+    "evidence": "in stock: XL, XXL"
   },
   {
-    "id": "veiled:7746275868777",
+    "id": "veiled:7639105470569",
     "brandSlug": "veiled",
-    "title": "Cotton Cinch Maxi Dress - Natural",
-    "url": "https://veiled.com/products/cinch-maxi-dress-natural",
+    "title": "Flare Sleeve Maxi Dress - White",
+    "url": "https://veiled.com/products/flare-sleeve-maxi-dress-white",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL, XXL, XXL"
+    "evidence": "in stock: XL"
   },
   {
     "id": "veiled:7798569566313",
@@ -24838,6 +24847,15 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XL, XXL"
+  },
+  {
+    "id": "aab:10277924077882",
+    "brandSlug": "aab",
+    "title": "Textured Navy Maxi Shirt",
+    "url": "https://us.aabcollection.com/products/textured-navy-maxi-shirt",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "nasiba:10176153682229",
@@ -32397,6 +32415,24 @@
     "evidence": "in stock: 2XL"
   },
   {
+    "id": "veiled:7741467033705",
+    "brandSlug": "veiled",
+    "title": "Tencel Asymmetric Top - White",
+    "url": "https://veiled.com/products/tencel-asymmetric-top",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "veiled:7741465788521",
+    "brandSlug": "veiled",
+    "title": "Cinch Denim Jacket Top - Mid Wash",
+    "url": "https://veiled.com/products/cinch-denim-jacket-top-mid-wash",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "veiled:7117512245353",
     "brandSlug": "veiled",
     "title": "Lyana Crystal Satin Abaya - Pink Jasmine",
@@ -32406,11 +32442,11 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "veiled:7684932665449",
+    "id": "veiled:7691891769449",
     "brandSlug": "veiled",
-    "title": "Cotton Eyelet Maxi Dress - Petal",
-    "url": "https://veiled.com/products/cotton-eyelet-maxi-dress-petal",
-    "garmentWas": "dress",
+    "title": "Tencel Ruffle Top - White",
+    "url": "https://veiled.com/products/tencel-ruffle-top-white",
+    "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
   },
@@ -32438,15 +32474,6 @@
     "title": "Boat Neck Rouched Maxi Dress - Dusk",
     "url": "https://veiled.com/products/boat-neck-rouched-maxi-dress-dusk",
     "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "veiled:7556375478377",
-    "brandSlug": "veiled",
-    "title": "Straight Leg Swim Pants - Black",
-    "url": "https://veiled.com/products/straight-leg-swim-pants-black",
-    "garmentWas": "swim",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
   },
@@ -34606,16 +34633,6 @@
     "reason": "id-pin"
   },
   {
-    "id": "nasiba:8673036599605",
-    "brandSlug": "nasiba",
-    "title": "Clear Headless Hijab Pins",
-    "url": "https://nasiba.com/products/clear-headless-hijab-pins",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:hardware",
-    "tier": "A",
-    "evidence": "Hijab Pins"
-  },
-  {
     "id": "nasiba:8673036501301",
     "brandSlug": "nasiba",
     "title": "Hijab Pin Pack - Black",
@@ -34756,6 +34773,15 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Magnets"
+  },
+  {
+    "id": "merrachi:15480847630719",
+    "brandSlug": "merrachi",
+    "title": "Essential Jersey Dress Short | Olive",
+    "url": "https://bymerrachi.com/products/essential-jersey-dress-short-olive",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "merrachi:15481991758207",
@@ -34952,7 +34978,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "552 USD (~$552)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -34961,7 +34987,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "552 USD (~$552)"
   },
   {
     "id": "avyaana:8267053432970",
@@ -34970,7 +34996,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 USD (~$579)"
+    "evidence": "577 USD (~$577)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -34979,7 +35005,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 USD (~$579)"
+    "evidence": "577 USD (~$577)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -34988,16 +35014,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "579 USD (~$579)"
-  },
-  {
-    "id": "fares:8467001475263",
-    "brandSlug": "fares",
-    "title": "Floral Embroidered Blouse - White",
-    "url": "https://shopfares.com/products/floral-embroidered-blouse-white",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
+    "evidence": "577 USD (~$577)"
   },
   {
     "id": "fares:8281648660671",
@@ -41421,6 +41438,15 @@
     "evidence": "Gift Card"
   },
   {
+    "id": "merrachi:15638951919999",
+    "brandSlug": "merrachi",
+    "title": "Short Trench Jacket | Mocha",
+    "url": "https://bymerrachi.com/products/short-trench-jacket-mocha",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "merrachi:15290117915007",
     "brandSlug": "merrachi",
     "title": "The Mini Tote | Brown Rice",
@@ -41457,7 +41483,7 @@
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "552 USD (~$552)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -41466,7 +41492,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -41475,7 +41501,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -41484,7 +41510,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -41493,7 +41519,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "552 USD (~$552)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -41502,7 +41528,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -41511,7 +41537,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -41520,7 +41546,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -41529,7 +41555,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -41538,7 +41564,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -41547,7 +41573,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "621 USD (~$621)"
   },
   {
     "id": "kamin:9333254586585",
@@ -49682,6 +49708,15 @@
     "evidence": "Hijab Magnet"
   },
   {
+    "id": "nour-al-houda:7885487931440",
+    "brandSlug": "nour-al-houda",
+    "title": "Modal Turtleneck Top - Espresso",
+    "url": "https://nouralhouda.com.au/products/modal-turtleneck-top-espresso",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "nour-al-houda:7894194847792",
     "brandSlug": "nour-al-houda",
     "title": "Hijab Magnet - Snow",
@@ -49899,15 +49934,6 @@
     "reason": "title-pattern"
   },
   {
-    "id": "baqa:9292803211515",
-    "brandSlug": "baqa",
-    "title": "Üç Renk Asimetrik Kesim Bluz",
-    "url": "https://baqaofficial.com/products/uc-renkli-asimetrik-bluz",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "baqa:9292803277051",
     "brandSlug": "baqa",
     "title": "Dantel Detaylı Beyaz Keten Elbise",
@@ -50048,15 +50074,6 @@
     "evidence": "30000 TRY (~$624)"
   },
   {
-    "id": "baqa:9132166873339",
-    "brandSlug": "baqa",
-    "title": "Haki Kontrast Detaylı Bluz",
-    "url": "https://baqaofficial.com/products/haki-kontrast-detayli-bluz",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
     "id": "baqa:9234747588859",
     "brandSlug": "baqa",
     "title": "Jakar Desenli Ceket",
@@ -50064,15 +50081,6 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "27650 TRY (~$575)"
-  },
-  {
-    "id": "baqa:9232030335227",
-    "brandSlug": "baqa",
-    "title": "Yakma Desenli Elbise",
-    "url": "https://baqaofficial.com/products/yakma-desenli-elbise",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "32500 TRY (~$676)"
   },
   {
     "id": "baqa:9233447190779",
@@ -50135,7 +50143,7 @@
     "url": "https://baqaofficial.com/products/pelerin-detayli-baskili-elbise",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "34500 TRY (~$718)"
+    "evidence": "29500 TRY (~$614)"
   },
   {
     "id": "baqa:9312200917243",
@@ -52264,13 +52272,22 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "veiled:7798577463401",
+    "brandSlug": "veiled",
+    "title": "Basic Cotton Linen Long Sleeve Top - Black",
+    "url": "https://veiled.com/products/basic-long-sleeve-top-black",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "veiled:7798569468009",
     "brandSlug": "veiled",
     "title": "Tencel Ruffle Top - Light Sand",
     "url": "https://veiled.com/products/tencel-ruffle-top-light-sand",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "mariams:9417218064600",
@@ -52662,15 +52679,6 @@
     "evidence": "in stock: XL, 3XL"
   },
   {
-    "id": "haya-active:15110203081090",
-    "brandSlug": "haya-active",
-    "title": "Oversized Active Tee - Navy",
-    "url": "https://haya-active.com/products/oversized-active-tee-navy",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL / UK16, 2XL / UK18, 3XL / UK20, 4XL / UK22"
-  },
-  {
     "id": "haya-active:15110201278850",
     "brandSlug": "haya-active",
     "title": "Oversized Active Tee - Coffee Brown",
@@ -52687,15 +52695,6 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: 2XL / UK18, 3XL / UK20, 4XL / UK22"
-  },
-  {
-    "id": "haya-active:7996828745940",
-    "brandSlug": "haya-active",
-    "title": "Oversized Active Tee - Black",
-    "url": "https://haya-active.com/products/training-oversized-tee",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: 2XL / UK18, 3XL / UK20"
   },
   {
     "id": "haya-active:7764066762964",
