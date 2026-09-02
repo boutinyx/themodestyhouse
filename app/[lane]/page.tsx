@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { LANES } from '@/lib/lanes';
 import { productsForLane } from '@/lib/products';
 import { FilterableGrid } from '@/components/FilterableGrid';
-import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
+import { encodeCatalogue } from '@/lib/compactCatalogue';
 import { BRANDS } from '@/data/brands';
 import { JsonLd } from '@/components/JsonLd';
-import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
+import { breadcrumbSchema, collectionPageSchema, faqPageSchema, jsonLdGraph } from '@/lib/schema';
 import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
-import { LANE_SUBTYPES, resolveSubtype, subtypeSeo, domainForLane } from '@/lib/laneSubtypes';
+import { resolveSubtype, subtypeSeo, domainForLane, subtypeValueOf } from '@/lib/laneSubtypes';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -70,49 +70,35 @@ export default async function LanePage({
   // embedCards + source belong together: the grid can only fetch the rows this
   // omits if it knows what they are indices INTO. See FilterableGrid's `source`
   // prop. → docs/superpowers/plans/2026-08-26-split-catalogue-payload.md
-  const catalogue = encodeCatalogue(productsForLane(lane.slug), BRANDS, { embedCards: 48 });
+  // ONE call. productsForLane -> getProducts() is uncached and re-reads and
+  // re-parses the whole 10.9 MB products.json every time (CLAUDE.md §8), so
+  // the encoder and the ItemList below share this array rather than each
+  // asking for their own copy.
+  const laneProducts = productsForLane(lane.slug);
+  const catalogue = encodeCatalogue(laneProducts, BRANDS, { embedCards: 48 });
   const sub = resolveSubtype(lane.slug, type);
 
-  // The rows this page actually shows. Previously listedItems was always the
-  // FIRST 24 rows of the unfiltered lane, so /outerwear?type=blazer emitted a
-  // CollectionPage named "Outerwear" whose ItemList opened with "Maren Vest" —
-  // structured data that contradicted both the h1 and the grid. Mirrors
-  // FilterableGrid's own predicate, including the `?? -1` for a column that
-  // encodeCatalogue omitted as all-sentinel.
-  const matchIdx = (i: number): boolean => {
-    if (!sub) return true;
-    const domain = LANE_SUBTYPES[lane.slug]?.domain;
-    const col =
-      domain === 'outerwear'
-        ? catalogue.rows.outerwearSubtypeIdx
-        : domain === 'hijab'
-          ? catalogue.rows.hijabSubtypeIdx
-          : catalogue.rows.layeringSubtypeIdx;
-    const dict =
-      domain === 'outerwear'
-        ? (catalogue.outerwearSubtypes as readonly string[])
-        : domain === 'hijab'
-          ? (catalogue.hijabSubtypes as readonly string[])
-          : (catalogue.layeringSubtypes as readonly string[]);
-    const want = dict.indexOf(sub.type);
-    if (want === -1) return false;
-    return (col?.[i] ?? -1) === want;
-  };
-  const listedRows: number[] = [];
-  for (let i = 0; i < catalogue.rows.title.length && listedRows.length < 24; i++) {
-    if (matchIdx(i)) listedRows.push(i);
-  }
-  // filter(Boolean) rather than `!`: decodeCard returns null for a row whose
-  // card data was not embedded in this payload (lib/compactCatalogue.ts). Every
-  // row here IS embedded — listedRows is capped at the same 24 the grid paints,
-  // inside embedCards — but asserting that with `!` would turn a future
-  // off-by-one into a crash on a server-rendered page. Dropping the row instead
-  // means the JSON-LD lists one item fewer, which is a description of the page
-  // that is merely less complete rather than false.
-  const listedItems = listedRows
-    .map((i) => decodeCard(catalogue, i))
-    .filter((c): c is NonNullable<typeof c> => c !== null)
-    .map((c) => ({ title: c.title, url: c.url, image: c.image }));
+  // The rows this page actually shows, taken from the PRODUCT ARRAY rather
+  // than from the encoded catalogue.
+  //
+  // It used to scan `catalogue.rows` for matching indices and decodeCard each
+  // one — and decodeCard returns null outside the `embedCards: 48` window, so
+  // every match past row 48 was found and then dropped. That is why
+  // /modest-hijabs?type=undercap shipped a CollectionPage whose ItemList was
+  // EMPTY, on production, measured 2026-09-02 before this was touched. The
+  // `filter(Boolean)` below it was written to be defensive and was in fact
+  // load-bearing, which is the tell that nobody had looked at the output.
+  //
+  // `productsForLane` is already in hand (it is what the catalogue is encoded
+  // FROM, in this order), so filtering it directly is both cheaper and exact:
+  // these are the same rows, in the same order, that FilterableGrid paints.
+  const domain = domainForLane(lane.slug);
+  const listedItems = (sub && domain
+    ? laneProducts.filter((p) => subtypeValueOf(domain, p) === sub.type)
+    : laneProducts
+  )
+    .slice(0, 24)
+    .map((p) => ({ title: p.title, url: p.url, image: p.image }));
   const answer = LANE_ANSWERS[lane.slug];
   // Landing via the nav flyout's ?type=blazer should read "Blazers" up top,
   // not the generic lane title — Tina: "i do wnat to see blazer etc etc
@@ -142,6 +128,24 @@ export default async function LanePage({
             path: sub ? `/${lane.slug}?type=${sub.type}` : `/${lane.slug}`,
             items: listedItems,
           }),
+          // The answer block below the grid, in machine-readable form. Added
+          // 2026-09-02: the prose has existed since 2026-08-11 and was the
+          // ONLY substantial writing on these pages, emitted as an <h2> and a
+          // <p> and nothing else.
+          //
+          // NOT FOR A GOOGLE RICH RESULT — Google restricted FAQ rich results
+          // to government and health sites in August 2023, so this will not
+          // draw an accordion in the SERP and it would be dishonest to imply
+          // it might. It is here because the AI answer engines parse it, and
+          // on this site those are not a side channel: Pulse, 30 days to
+          // 2026-09-01, records ~102 visitors from ChatGPT against ~51 from
+          // google.com. → docs/log/2026-09-02-pulse-and-gsc-seo-review.md
+          //
+          // The question and the answer are the SAME strings the page paints,
+          // read from the same object — schema that described text a visitor
+          // cannot see is exactly what the guidelines prohibit, and the way
+          // that happens is two sources drifting, not anyone intending it.
+          ...(answer ? [faqPageSchema([{ question: answer.h2, answer: answer.body }])] : []),
         )}
       />
       <h1 className="section-heading text-3xl md:text-4xl">{pageTitle}</h1>

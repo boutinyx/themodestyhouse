@@ -4,6 +4,7 @@ import {
   outerwearSubtype, OUTERWEAR_SUBTYPE_LABELS, type OuterwearSubtype,
   hijabSubtype, HIJAB_SUBTYPE_LABELS, type HijabSubtype,
   dressSubtype, DRESS_SUBTYPE_LABELS, type DressSubtype,
+  garmentSubtype, GARMENT_SUBTYPE_LABELS, type GarmentSubtype,
   swimSubtype, SWIM_SUBTYPE_LABELS, type SwimSubtype,
   activeSubtype, ACTIVE_SUBTYPE_LABELS, type ActiveSubtype,
 } from '@/lib/specialty';
@@ -96,6 +97,13 @@ export interface CompactCatalogue {
    *  leggings and sports dresses. */
   swimSubtypes: SwimSubtype[];
   activeSubtypes: ActiveSubtype[];
+  /** Same shape again, for the five everyday lanes that had no Type filter at
+   *  all until 2026-09-02 — Abayas, Tops, Skirts, Trousers, Co-ord Sets. One
+   *  column serves all five because `garmentSubtype()` is keyed on
+   *  `p.garment`, and those five garments are disjoint: a row can hold at most
+   *  one value, so a second column would be all-sentinel on every lane.
+   *  PARTIAL by design, like dressSubtypes — see lib/specialty.ts. */
+  garmentSubtypes: GarmentSubtype[];
   /** Colour families actually present in this catalogue, in the canonical
    *  order of COLOUR_FAMILY_LABELS — never first-appearance, so the Colour
    *  dropdown does not reshuffle depending on which brand's rows interleave
@@ -142,6 +150,9 @@ export interface CompactCatalogue {
     /** Same shape as dressSubtypeIdx, for swimSubtypes / activeSubtypes. */
     swimSubtypeIdx?: number[];
     activeSubtypeIdx?: number[];
+    /** Same shape as dressSubtypeIdx, for garmentSubtypes. -1 is the majority
+     *  on every lane it appears on (50-83%, measured 2026-09-02). */
+    garmentSubtypeIdx?: number[];
     /** Bit i set iff `colours[i]` applies to the row — the same shape as
      *  occasionMask, and 0 for a row whose title names no colour.
      *
@@ -311,6 +322,11 @@ export function encodeCatalogue(
   const presentActiveSubtypes = new Set(products.map((p) => activeSubtype(p)).filter((t): t is ActiveSubtype => t !== null));
   const activeSubtypes = activeSubtypeOrder.filter((t) => presentActiveSubtypes.has(t));
   const activeSubtypeIndex = new Map(activeSubtypes.map((t, i) => [t, i]));
+  const garmentSubtypeOrder = Object.keys(GARMENT_SUBTYPE_LABELS) as GarmentSubtype[];
+  const presentGarmentSubtypes = new Set(products.map((p) => garmentSubtype(p)).filter((t): t is GarmentSubtype => t !== null));
+  const garmentSubtypes = garmentSubtypeOrder.filter((t) => presentGarmentSubtypes.has(t));
+  const garmentSubtypeIndex = new Map(garmentSubtypes.map((t, i) => [t, i]));
+
   const hijabTypeFilterOrder = Object.keys(HIJAB_TYPE_FILTER_LABELS) as HijabTypeFilter[];
   const presentHijabTypeFilters = new Set(products.map((p) => hijabTypeFilter(p)).filter((t): t is HijabTypeFilter => t !== null));
   const hijabTypeFilters = hijabTypeFilterOrder.filter((t) => presentHijabTypeFilters.has(t));
@@ -348,6 +364,7 @@ export function encodeCatalogue(
     dressSubtypeIdx: [],
     swimSubtypeIdx: [],
     activeSubtypeIdx: [],
+    garmentSubtypeIdx: [],
     variantCount: [],
     hijabTypeFilterIdx: [],
     colourMask: [],
@@ -450,6 +467,8 @@ export function encodeCatalogue(
     rows.hijabSubtypeIdx!.push(hijabSub === null ? -1 : hijabSubtypeIndex.get(hijabSub)!);
     const dressSub = dressSubtype(p);
     rows.dressSubtypeIdx!.push(dressSub === null ? -1 : dressSubtypeIndex.get(dressSub)!);
+    const garmentSub = garmentSubtype(p);
+    rows.garmentSubtypeIdx!.push(garmentSub === null ? -1 : garmentSubtypeIndex.get(garmentSub)!);
     const swimSub = swimSubtype(p);
     rows.swimSubtypeIdx!.push(swimSub === null ? -1 : swimSubtypeIndex.get(swimSub)!);
     const activeSub = activeSubtype(p);
@@ -516,7 +535,7 @@ export function encodeCatalogue(
   // real. Absent simply means "every row is -1", which is what readers must
   // treat a missing column as. See the ?? -1 fallbacks in FilterableGrid.
   //
-  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx', 'swimSubtypeIdx', 'activeSubtypeIdx'] as const;
+  const SENTINEL_COLUMNS = ['layeringSubtypeIdx', 'outerwearSubtypeIdx', 'hijabSubtypeIdx', 'hijabTypeFilterIdx', 'dressSubtypeIdx', 'swimSubtypeIdx', 'activeSubtypeIdx', 'garmentSubtypeIdx'] as const;
   for (const col of SENTINEL_COLUMNS) {
     const v = rows[col];
     if (v && v.every((x) => x === -1)) delete rows[col];
@@ -547,7 +566,7 @@ export function encodeCatalogue(
 
   return {
     brands: compactBrands, garments, occasions,
-    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, dressSubtypes, swimSubtypes, activeSubtypes, colours,
+    layeringSubtypes, outerwearSubtypes, hijabSubtypes, hijabTypeFilters, dressSubtypes, swimSubtypes, activeSubtypes, garmentSubtypes, colours,
     rows, cards, rowCount: products.length,
   };
 }

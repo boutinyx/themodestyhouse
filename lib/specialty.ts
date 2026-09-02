@@ -733,3 +733,141 @@ export function dressSubtype(p: Product): DressSubtype | null {
   if (OCCASION_BRANDS.has(p.brandSlug)) return 'occasion';
   return null;
 }
+
+/**
+ * Sub-categories WITHIN the five everyday garment lanes that had none —
+ * Abayas, Tops, Skirts, Trousers and Co-ord Sets. Added 2026-09-02.
+ *
+ * WHY. Search Console, 28 days to 2026-08-30: the category head terms this
+ * site wants sit at positions nobody sees — "modest tops" 76.5, "modest
+ * blouses" 71.9, "modest co ords for women" 47.7 — while every `?type=` page
+ * that DOES exist belongs to a specialty lane (hijab, swim, active, layering,
+ * outerwear). The six biggest lanes had no second-level page to rank at all.
+ * → docs/log/2026-09-02-pulse-and-gsc-seo-review.md
+ *
+ * THE VOCABULARY IS NOT MINE. Every label below is taken from the `intro`
+ * Tina already wrote for that lane in lib/lanes.ts — "Open, closed, kimono and
+ * butterfly abayas", "Tunics, blouses, shirts and layering tops", "Maxi,
+ * pleated and A-line skirts", "Wide-leg, tailored and relaxed trousers",
+ * "Matching two-piece sets and co-ords". This implements a taxonomy that was
+ * already written down; it does not invent one (§10.18). The ONE exception is
+ * `tshirt`, which is not in her Tops intro and is here only because `shirt`
+ * matches "T-Shirt" — the boundary before "shirt" in "T-shirt" is a hyphen,
+ * which is not a letter — so without its own bucket a "Shirts" page would be
+ * 22% t-shirts. Remove it and t-shirts fold back into `shirt`.
+ *
+ * SAFE BY CONSTRUCTION, and this is why the regexes here need not carry the
+ * §10.10/§10.31 anxiety that GARMENT_RULES does: an unmatched product returns
+ * null, stays on its lane, and simply matches no chip. Nothing is dropped,
+ * hidden or reclassified. Coverage measured 2026-09-02 against the live
+ * catalogue: abayas 703/3,783 (18.6%), tops 783/1,567 (50.0%), skirts
+ * 160/648 (24.7%), trousers 176/804 (21.9%), sets 130/769 (16.9%).
+ *
+ * ORDER IS THE FILTER ORDER **and** the match order, most-populated first
+ * within each lane except where a narrower rule has to win: `tshirt` precedes
+ * `shirt`, and `butterfly` precedes `open` so that "Open Farasha" — farasha
+ * being the butterfly cut — types as butterfly rather than open.
+ */
+export type GarmentSubtype =
+  // Abayas: open 370 · kimono 141 · butterfly 108 · closed 84
+  | 'butterfly' | 'kimono' | 'closed' | 'open'
+  // Tops: shirt 247 · tunic 245 · blouse 223 · tshirt 68
+  | 'tshirt' | 'tunic' | 'blouse' | 'shirt'
+  // Skirts: maxi 86 · pleated 53 · a-line 21
+  | 'pleated' | 'a-line' | 'maxi'
+  // Trousers: wide-leg 134 · tailored 42
+  | 'wide-leg' | 'tailored'
+  // Co-ord Sets: two-piece 89 · co-ord 41
+  | 'co-ord' | 'two-piece';
+
+export const GARMENT_SUBTYPE_LABELS: Record<GarmentSubtype, string> = {
+  open: 'Open Abayas',
+  kimono: 'Kimono Abayas',
+  butterfly: 'Butterfly Abayas',
+  closed: 'Closed Abayas',
+  shirt: 'Shirts',
+  tunic: 'Tunics',
+  blouse: 'Blouses',
+  tshirt: 'T-Shirts',
+  maxi: 'Maxi Skirts',
+  pleated: 'Pleated Skirts',
+  'a-line': 'A-Line Skirts',
+  'wide-leg': 'Wide-Leg Trousers',
+  tailored: 'Tailored Trousers',
+  'two-piece': 'Two-Piece Sets',
+  'co-ord': 'Co-Ord Sets',
+};
+
+/**
+ * `\b` is an ASCII word boundary and these feeds are not all English (§10.31):
+ * Turkish `ı ş ğ ü ö ç`, French and Dutch titles all appear in this catalogue,
+ * and `\b` finds a boundary in the MIDDLE of a word containing any of them.
+ * This is the Unicode-property form lib/tag.ts::word() already uses.
+ */
+const w = (alts: string) =>
+  new RegExp(`(?<![\\p{L}\\p{M}\\d])(?:${alts})(?![\\p{L}\\p{M}\\d])`, 'iu');
+
+/**
+ * Keyed by `p.garment`, so a rule can never leak across lanes: the `shirt`
+ * rule is unreachable for an abaya no matter what its title says. Each list is
+ * checked in order and the first match wins.
+ */
+const GARMENT_SUBTYPE_RULES: Partial<Record<Product['garment'], [GarmentSubtype, RegExp][]>> = {
+  // `farasha` IS the butterfly cut, so it belongs to butterfly and must be
+  // tested before `open` — "Premium Open Farasha" is a butterfly abaya that
+  // happens to open at the front. Verified against the live lane: of the 108
+  // butterfly matches, 8 do not say abaya/kaftan/farasha in the title
+  // ("Butterfly Bliss", "Embroidery Butterfly") and a few of those may be a
+  // butterfly PRINT rather than a butterfly cut. That is a 7% impurity on one
+  // chip, not a misfiling — the piece is an abaya either way and is on the
+  // right lane.
+  abaya: [
+    ['butterfly', w('butterflys?|farasha')],
+    ['kimono', w('kimonos?')],
+    ['closed', w('closed')],
+    // Checked last of the four and still the largest. Every one of the 26
+    // matches that does NOT contain the word "abaya" was read: bisht, kaftan,
+    // pheran, farasha — all open-front garments. No false positives found.
+    ['open', w('open')],
+  ],
+  top: [
+    ['tshirt', w('t[\\s-]?shirts?|tees?')],
+    ['tunic', w('tunics?|tunik|tuniek')],
+    ['blouse', w('blouses?|bluz|bloes')],
+    ['shirt', w('shirts?|g[oö]mlek')],
+  ],
+  skirt: [
+    ['pleated', w('pleated|plisse|pliss[ée]|pilili')],
+    ['a-line', w('a[\\s-]?line')],
+    ['maxi', w('maxi')],
+  ],
+  trousers: [
+    ['wide-leg', w('wide[\\s-]?legs?|palazzo')],
+    ['tailored', w('tailored|straight[\\s-]?legs?|cigarette')],
+  ],
+  // `three-piece` is DELIBERATELY not a bucket of its own: only 9 published
+  // rows say it, and folding them into "Two-Piece Sets" would make the label
+  // lie. They stay untyped and appear under "All".
+  set: [
+    ['co-ord', w('co[\\s-]?ords?|coords?')],
+    ['two-piece', w('two[\\s-]?piece|2[\\s-]?piece')],
+  ],
+};
+
+/**
+ * Returns null freely — like dressSubtype(), swimSubtype() and activeSubtype(),
+ * and unlike layeringSubtype()/hijabSubtype(), an unclassified row is the
+ * ordinary case here (49-83% of a lane). It still shows under "All".
+ *
+ * The two guards mirror the lane predicates in lib/lanes.ts exactly, for the
+ * reason dressSubtype()'s isSpecialty() guard exists: a row that is not on the
+ * lane must not advertise a subtype belonging to it. `isSpecialty` covers
+ * swim/active/layering; `isOuterwear` is what /modest-tops itself excludes.
+ */
+export function garmentSubtype(p: Product): GarmentSubtype | null {
+  if (isSpecialty(p)) return null;
+  if (p.garment === 'top' && isOuterwear(p)) return null;
+  const rules = GARMENT_SUBTYPE_RULES[p.garment];
+  if (!rules) return null;
+  return rules.find(([, re]) => re.test(p.title))?.[0] ?? null;
+}

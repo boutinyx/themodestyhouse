@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap, hijabSubtype, dressSubtype, swimSubtype, activeSubtype } from './specialty';
+import { isSwim, isActivewear, isLayering, isJilbab, isSpecialty, layeringSubtype, isOuterwear, outerwearSubtype, isKhimarAbaya, isUndercap, hijabSubtype, dressSubtype, swimSubtype, activeSubtype, garmentSubtype, GARMENT_SUBTYPE_LABELS } from './specialty';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -583,5 +583,86 @@ describe('activeSubtype', () => {
     // Real titles from the Turkish houses: "sports" here means sporty styling,
     // not athletic wear. They stay on the lane but under "All Type".
     expect(activeSubtype(p('Oversize Sports Cotton Trench Coat with Epaulette Detail - Brown', 'abaya'))).toBeNull();
+  });
+});
+
+describe('garmentSubtype', () => {
+  // Every title below is a LITERAL row from data/products.json on 2026-09-02,
+  // not an invented example — the same standard lib/nonApparel.test.ts holds
+  // its fixtures to, and for the same reason: a rule tested only against the
+  // string that inspired it has not been tested.
+  it('types abayas by cut, with the narrower rule winning', () => {
+    expect(garmentSubtype(p('Butter Yellow Open Abaya', 'abaya'))).toBe('open');
+    expect(garmentSubtype(p('Plain Closed Abaya - Pistachio', 'abaya'))).toBe('closed');
+    expect(garmentSubtype(p('Tamara Kimono', 'abaya'))).toBe('kimono');
+    expect(garmentSubtype(p('Butterfly Abaya in Cacao Brown', 'abaya'))).toBe('butterfly');
+  });
+  it('reads farasha as the butterfly cut even when the title also says open', () => {
+    // The ordering that makes this true is load-bearing: `open` matches this
+    // title too, and farasha IS the butterfly cut, so butterfly must be tested
+    // first. Swap the two rules and this goes green as 'open'.
+    expect(garmentSubtype(p('Premium Nightfall Mirage Textured Open Farasha - Black', 'abaya'))).toBe('butterfly');
+  });
+  it('does not let `shirt` swallow a t-shirt', () => {
+    // The boundary before "shirt" in "T-shirt" is a hyphen, which is not a
+    // letter, so `shirt` DOES match it. tshirt is tested first for that reason
+    // and for no other.
+    expect(garmentSubtype(p('Rimaya t-shirt', 'top'))).toBe('tshirt');
+    expect(garmentSubtype(p('Long-sleeved T-shirt in Aube polo material', 'top'))).toBe('tshirt');
+    expect(garmentSubtype(p('Oversized Pinstripe Shirt Blue', 'top'))).toBe('shirt');
+  });
+  it('types the rest of the everyday lanes', () => {
+    expect(garmentSubtype(p('Black Asymmetric Slit Tunic', 'top'))).toBe('tunic');
+    expect(garmentSubtype(p('Marble Print Blouse', 'top'))).toBe('blouse');
+    expect(garmentSubtype(p('Pleated Satin Skirt', 'skirt'))).toBe('pleated');
+    expect(garmentSubtype(p('ROUNDED A-LINE SKIRT [Navy]', 'skirt'))).toBe('a-line');
+    expect(garmentSubtype(p('Olive Maxi Skirt', 'skirt'))).toBe('maxi');
+    expect(garmentSubtype(p('Black Wide Leg Trousers', 'trousers'))).toBe('wide-leg');
+    expect(garmentSubtype(p('Three Color Straight Leg Trousers', 'trousers'))).toBe('tailored');
+    expect(garmentSubtype(p('Ciara Two Piece Set', 'set'))).toBe('two-piece');
+    expect(garmentSubtype(p('Diva Beldi Co-Ord', 'set'))).toBe('co-ord');
+  });
+  it('prefers the more specific rule where a skirt is both pleated and maxi', () => {
+    expect(garmentSubtype(p('Mauve Chalk Printed Pleated Maxi Skirt', 'skirt'))).toBe('pleated');
+  });
+  it('cannot leak a rule across lanes — rules are keyed on p.garment', () => {
+    // "Kimono Sleeve Blouse" is a top. If the rules were a flat list rather
+    // than keyed by garment, `kimono` would type it as a Kimono Abaya and it
+    // would appear on /modest-abayas?type=kimono, a lane it is not on.
+    expect(garmentSubtype(p('Kimono Sleeve Blouse', 'top'))).toBe('blouse');
+    // And a dress is handled by dressSubtype(), never here.
+    expect(garmentSubtype(p('Pleated Maxi Dress', 'dress'))).toBe(null);
+  });
+  it('returns null freely — an untyped row stays on its lane under All', () => {
+    expect(garmentSubtype(p('Amara Top', 'top'))).toBe(null);
+    expect(garmentSubtype(p('Nour Abaya', 'abaya'))).toBe(null);
+  });
+  it('refuses a row that is not on the lane the subtype belongs to', () => {
+    // Specialty rows are stripped off every everyday lane by productsForLane,
+    // so a swim or active piece must not advertise a subtype for a grid it is
+    // not in — the same guard dressSubtype() carries.
+    expect(garmentSubtype(p('Wide Leg Swim Trousers', 'trousers'))).toBe(null);
+    expect(garmentSubtype(p('Active Wide Leg Pants', 'trousers'))).toBe(null);
+    // /modest-tops is `garment === 'top' && !isOuterwear(p)`.
+    expect(garmentSubtype(p('Tailored Blazer Shirt', 'top'))).toBe(null);
+  });
+  it('anchors on Unicode letters, not \\b, so a Turkish word is not split (§10.31)', () => {
+    // `\b` is defined against [A-Za-z0-9_], so every Turkish letter outside
+    // ASCII reads as a word BOUNDARY — meaning /\bmaxi\b/ matches inside
+    // "Maxişort", because the `ş` after it looks like the end of a word.
+    // Verified both ways before this was written: the ASCII form matches that
+    // title and the Unicode form does not.
+    expect(garmentSubtype(p('Maxişort Etek', 'skirt'))).toBe(null);
+  });
+  it('does not match a target word inside a longer ASCII word', () => {
+    // Ordinary \b would also stop these; they are here because §10.5 and
+    // §10.10 are both this bug and neither was caught by reading the regex.
+    expect(garmentSubtype(p('Openwork Lace Kaftan', 'abaya'))).toBe(null);
+    expect(garmentSubtype(p('Maximilian Skirt', 'skirt'))).toBe(null);
+  });
+  it('has a label for every value in the union', () => {
+    for (const [k, v] of Object.entries(GARMENT_SUBTYPE_LABELS)) {
+      expect(v, k).toBeTruthy();
+    }
   });
 });

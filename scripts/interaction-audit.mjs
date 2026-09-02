@@ -402,6 +402,64 @@ for (const engineName of engineNames) {
       note({ engine: engineName, viewport: vpName, state: 'filter-dropdown-after-tap', openedPanels: opened, ...(await page.evaluate(PROBE)) });
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'filter-dropdown-after-tap', error: e.message.split('\n')[0] }); }
 
+    // ---- 3b. the Type dropdown must WRITE THE URL (new 2026-09-02) --------
+    // THE question this exists to answer: on the six lanes that gained
+    // `?type=` pages on 2026-09-02, the h1, the <title>, the canonical and the
+    // JSON-LD all come from the URL while the grid comes from client state. If
+    // choosing an option changed only the grid, the page would contradict
+    // itself — heading says one subtype, products are another. That is the
+    // objection the previous code recorded and answered by keeping the control
+    // OFF the URL; the fix went the other way, so this is the check that the
+    // fix holds.
+    //
+    // NEGATIVE CONTROL, run before this was trusted: against PRODUCTION,
+    // where /modest-abayas?type=kimono is not a page, it reports
+    // `H1 DID NOT FOLLOW` — the h1 stays "Abayas" whatever is picked.
+    // Nothing here selects on a class or attribute the fix introduced
+    // (§10.32 rule 2): the h1 is an <h1>, the trigger is found by its LABEL
+    // text, and the cards are found by `data-surface`, all of which predate it.
+    try {
+      await go('/modest-abayas?type=kimono');
+      const h1Before = (await page.locator('h1').first().textContent())?.trim();
+      // Base UI renders these as menuitemradio, not menuitem — the footer
+      // currency note below records what happens when a script guesses a role.
+      const trg = page.locator('button', { hasText: /Kimono Abayas/ }).first();
+      if (!(await trg.count())) {
+        note({ engine: engineName, viewport: vpName, state: 'lane-subtype-url', h1Before,
+               PROBLEM: 'NO TYPE TRIGGER SHOWING THE CURRENT SUBTYPE' });
+      } else {
+        await trg.scrollIntoViewIfNeeded();
+        if (vp.touch) await trg.tap(); else await trg.click();
+        await page.waitForTimeout(500);
+        const opt = page.locator('[role="menuitemradio"]').filter({ hasText: /^Butterfly Abayas/ }).first();
+        if (!(await opt.count())) {
+          note({ engine: engineName, viewport: vpName, state: 'lane-subtype-url', h1Before,
+                 PROBLEM: 'TYPE MENU DID NOT OPEN ON TAP' });
+        } else {
+          await opt.click();
+          await page.waitForTimeout(1500);
+          const url = page.url();
+          const h1After = (await page.locator('h1').first().textContent())?.trim();
+          // The cards carry the piece name in aria-label; the anchor itself is
+          // an empty overlay, so textContent on it is '' and a check reading
+          // that would pass on any page at all.
+          const labels = await page.$$eval('[data-surface="product-card"]',
+            (els) => els.map((e) => e.getAttribute('aria-label') || ''));
+          const stray = labels.filter((t) => !/butterfly|farasha/i.test(t));
+          note({
+            engine: engineName, viewport: vpName, state: 'lane-subtype-url',
+            h1Before, h1After, url: url.replace(/^https?:\/\/[^/]+/, ''), cards: labels.length,
+            ...(!url.includes('type=butterfly') ? { PROBLEM: `URL DID NOT FOLLOW — ${url}` }
+              : !/Butterfly/i.test(h1After || '') ? { PROBLEM: `H1 DID NOT FOLLOW — "${h1After}"` }
+              : !labels.length ? { PROBLEM: 'GRID PAINTED NO CARDS' }
+              : stray.length ? { PROBLEM: `GRID DID NOT FOLLOW — ${stray.length}/${labels.length} are not butterfly, e.g. "${stray[0]}"` }
+              : {}),
+          });
+        }
+      }
+      await shot('lane-subtype-url');
+    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'lane-subtype-url', error: e.message.split('\n')[0] }); }
+
     // ---- 4. quick view ----------------------------------------------------
     try {
       await go('/new-in');

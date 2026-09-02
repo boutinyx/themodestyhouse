@@ -1,9 +1,15 @@
+import type { Product } from '@/lib/types';
 import {
+  layeringSubtype, outerwearSubtype, hijabSubtype, swimSubtype, activeSubtype,
+  dressSubtype, garmentSubtype,
   LAYERING_SUBTYPE_LABELS,
   OUTERWEAR_SUBTYPE_LABELS,
   HIJAB_SUBTYPE_LABELS,
   SWIM_SUBTYPE_LABELS,
   ACTIVE_SUBTYPE_LABELS,
+  DRESS_SUBTYPE_LABELS,
+  GARMENT_SUBTYPE_LABELS,
+  type GarmentSubtype,
 } from '@/lib/specialty';
 
 /**
@@ -26,7 +32,7 @@ import {
  * CollectionPage{name:"Outerwear"} whose ItemList opened with a vest.
  */
 
-export type SubtypeDomain = 'layering' | 'outerwear' | 'hijab' | 'swim' | 'active';
+export type SubtypeDomain = 'layering' | 'outerwear' | 'hijab' | 'swim' | 'active' | 'dress' | 'garment';
 
 export interface LaneSubtype {
   /** the `?type=` value */
@@ -44,7 +50,17 @@ export interface LaneSubtype {
  * already has five lanes in exactly that state (see
  * docs/log/2026-08-19-gsc-api-access-and-index-coverage.md) it is a bad trade.
  */
-const TOO_THIN_FOR_SITEMAP = new Set(['neck-cover', 'sleeve-extender', 'shirt-extender', 'cropped-body-shirt']);
+/**
+ * Measured 2026-08-19: neck-cover 21 products, sleeve-extender 16,
+ * cropped-body-shirt 13, shirt-extender 9.
+ * Extended 2026-09-02 with the two new subtypes below the same bar: slip
+ * dresses 14 (a curated list Tina has barely populated) and A-line skirts 21.
+ * Both stay LINKED and filterable; neither is submitted.
+ */
+const TOO_THIN_FOR_SITEMAP = new Set([
+  'neck-cover', 'sleeve-extender', 'shirt-extender', 'cropped-body-shirt',
+  'slip', 'a-line',
+]);
 
 const toList = (labels: Record<string, string>): LaneSubtype[] =>
   Object.entries(labels).map(([type, label]) => ({ type, label }));
@@ -62,6 +78,20 @@ const OUTERWEAR_TYPES = toList(OUTERWEAR_SUBTYPE_LABELS);
 const blazerVestTypes = OUTERWEAR_TYPES.filter((s) => s.type === 'blazer' || s.type === 'vest');
 const cardiganSweaterTypes = OUTERWEAR_TYPES.filter((s) => s.type === 'cardigan' || s.type === 'sweater');
 
+/**
+ * The five everyday lanes all read the SAME 'garment' domain — one column in
+ * the encoded catalogue, because `garmentSubtype()` keys on `p.garment` and
+ * those garments are disjoint (lib/specialty.ts). Each lane is filtered here
+ * to just the values that lane can produce, for the same reason
+ * blazers-vests is filtered out of the shared 'outerwear' list above: THIS
+ * list feeds generateMetadata and the sitemap, neither of which has an
+ * encoded catalogue to read, and both would otherwise validate
+ * /modest-skirts?type=blouse as a real page.
+ */
+const GARMENT_TYPES = Object.keys(GARMENT_SUBTYPE_LABELS) as GarmentSubtype[];
+const garmentTypes = (...only: GarmentSubtype[]): LaneSubtype[] =>
+  GARMENT_TYPES.filter((t) => only.includes(t)).map((t) => ({ type: t as string, label: GARMENT_SUBTYPE_LABELS[t] }));
+
 export const LANE_SUBTYPES: Record<string, { domain: SubtypeDomain; subtypes: LaneSubtype[] }> = {
   'layering-basics': { domain: 'layering', subtypes: toList(LAYERING_SUBTYPE_LABELS) },
   'blazers-vests': { domain: 'outerwear', subtypes: blazerVestTypes },
@@ -76,6 +106,21 @@ export const LANE_SUBTYPES: Record<string, { domain: SubtypeDomain; subtypes: La
   // catalogue is not evidence of ownership.
   'modest-swimwear': { domain: 'swim', subtypes: toList(SWIM_SUBTYPE_LABELS) },
   'modest-activewear': { domain: 'active', subtypes: toList(ACTIVE_SUBTYPE_LABELS) },
+  // Added 2026-09-02. The classifier and the in-page Type filter for these
+  // three have existed since 2026-08-26 — what did not exist was a PAGE:
+  // /modest-dresses?type=occasion rendered a genuinely different grid and
+  // then canonicalised to the bare lane and carried the lane's <title>,
+  // which is precisely the defect the 2026-08-19 pass fixed for the
+  // specialty lanes and never reached here. Verified live before the change.
+  'modest-dresses': { domain: 'dress', subtypes: toList(DRESS_SUBTYPE_LABELS) },
+  // Added 2026-09-02 with the classifier itself — see lib/specialty.ts for
+  // where the labels come from (Tina's own lane intros) and the measured
+  // coverage of each.
+  'modest-abayas': { domain: 'garment', subtypes: garmentTypes('open', 'kimono', 'butterfly', 'closed') },
+  'modest-tops': { domain: 'garment', subtypes: garmentTypes('shirt', 'tunic', 'blouse', 'tshirt') },
+  'modest-skirts': { domain: 'garment', subtypes: garmentTypes('maxi', 'pleated', 'a-line') },
+  'modest-trousers': { domain: 'garment', subtypes: garmentTypes('wide-leg', 'tailored') },
+  'modest-sets': { domain: 'garment', subtypes: garmentTypes('two-piece', 'co-ord') },
 };
 
 /** Which subtype domain a lane OWNS, or null. Distinct from "which subtype
@@ -122,4 +167,35 @@ export function subtypeSeo(sub: LaneSubtype, laneIntro: string): { title: string
     title: `Modest ${sub.label}`,
     description: `Browse ${sub.label.toLowerCase()} from independent modest fashion brands, curated by The Modesty House. ${laneIntro}`.slice(0, 158),
   };
+}
+
+/**
+ * Which subtype VALUE a product carries within a given domain, or null.
+ *
+ * One dispatch table over the seven classifiers in lib/specialty.ts, so a
+ * caller that knows the lane's domain can ask "is this row this subtype?"
+ * without an encoded catalogue.
+ *
+ * WHAT THIS FIXED, 2026-09-02. app/[lane]/page.tsx built its CollectionPage
+ * ItemList by scanning the ENCODED catalogue for matching row indices and then
+ * calling decodeCard on each. decodeCard returns null for any row outside the
+ * `embedCards: 48` window, and a subtype's matches are spread across the whole
+ * interleaved lane rather than clustered at the front — so the rows were found
+ * and then silently dropped. Measured on PRODUCTION, before any change:
+ * /modest-hijabs?type=undercap emitted an ItemList of **0** items and
+ * ?type=khimar-jilbab emitted **1**, on pages whose entire machine-readable
+ * claim about their own contents is that list. Not a regression introduced by
+ * the six new lanes — it is older than them, and it would have applied to all
+ * sixteen new pages.
+ */
+export function subtypeValueOf(domain: SubtypeDomain, p: Product): string | null {
+  switch (domain) {
+    case 'layering': return layeringSubtype(p);
+    case 'outerwear': return outerwearSubtype(p);
+    case 'hijab': return hijabSubtype(p);
+    case 'swim': return swimSubtype(p);
+    case 'active': return activeSubtype(p);
+    case 'dress': return dressSubtype(p);
+    case 'garment': return garmentSubtype(p);
+  }
 }

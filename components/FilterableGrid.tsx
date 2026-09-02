@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState, useEffect, useRef, type ReactNode } from 'react';
+import { useMemo, useState, useEffect, useRef, useCallback, type ReactNode } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import type { CompactCatalogue, CardSlice, CardSource } from '@/lib/compactCatalogue';
 import { decodeCard } from '@/lib/compactCatalogue';
@@ -7,7 +7,7 @@ import { ProductCard } from './ProductCard';
 import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
-import { DRESS_SUBTYPE_LABELS, SWIM_SUBTYPE_LABELS, ACTIVE_SUBTYPE_LABELS } from '@/lib/specialty';
+import { DRESS_SUBTYPE_LABELS, SWIM_SUBTYPE_LABELS, ACTIVE_SUBTYPE_LABELS, GARMENT_SUBTYPE_LABELS } from '@/lib/specialty';
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
 import { trackGoal } from '@/lib/pulse';
@@ -75,7 +75,7 @@ export function FilterableGrid({
    *  a swim cap is `isSwim` AND appears on /modest-hijabs, so that lane's
    *  encoded catalogue carries a populated swimSubtypes column it does not own.
    *  Undefined on the brand and edit grids, which have no lane. */
-  laneDomain?: 'layering' | 'outerwear' | 'hijab' | 'swim' | 'active' | null;
+  laneDomain?: 'layering' | 'outerwear' | 'hijab' | 'swim' | 'active' | 'dress' | 'garment' | null;
   /** Whether to render the index console AT ALL — the search field and the whole
    *  filter row, not just one control inside it.
    *
@@ -107,11 +107,18 @@ export function FilterableGrid({
     if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
     if ((cat.outerwearSubtypes as string[]).includes(initialType)) return initialType;
     if ((cat.hijabSubtypes as string[]).includes(initialType)) return initialType;
-    // cat.dressSubtypes is DELIBERATELY not accepted here — see the Type
-    // dropdown's comment below. Dress subtypes are in-page state only, never
-    // URL-driven, so /modest-dresses?type=occasion resolves to 'all'.
+    // dressSubtypes and garmentSubtypes JOINED THIS LIST 2026-09-02, and the
+    // note that used to sit here said the opposite: "cat.dressSubtypes is
+    // DELIBERATELY not accepted here ... so /modest-dresses?type=occasion
+    // resolves to 'all'". That was true and it was the bug — the URL, the
+    // <h1>, the <title> and the canonical all said "Occasion Dresses" while
+    // the grid underneath showed every dress on the lane. A `?type=` value
+    // is only ever accepted if it is in THIS catalogue's dictionary, so an
+    // invented one still falls back to 'all'.
+    if ((cat.dressSubtypes as string[]).includes(initialType)) return initialType;
+    if ((cat.garmentSubtypes as string[]).includes(initialType)) return initialType;
     return 'all';
-  }); // layering, outerwear OR hijab subtype, or 'all'
+  }); // any subtype this catalogue actually carries, or 'all'
   // Re-syncs `type` when `initialType` (or the catalogue it's validated
   // against) changes — NOT redundant with the useState initializer above,
   // which only ever runs once, at mount. Clicking a DIFFERENT subtype link
@@ -131,7 +138,9 @@ export function FilterableGrid({
       ? 'all'
       : (cat.layeringSubtypes as string[]).includes(initialType) ||
           (cat.outerwearSubtypes as string[]).includes(initialType) ||
-          (cat.hijabSubtypes as string[]).includes(initialType)
+          (cat.hijabSubtypes as string[]).includes(initialType) ||
+          (cat.dressSubtypes as string[]).includes(initialType) ||
+          (cat.garmentSubtypes as string[]).includes(initialType)
         ? initialType
         : 'all';
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -185,6 +194,33 @@ export function FilterableGrid({
   const activeTypes = useMemo(
     () => (laneDomain === 'active' ? cat.activeSubtypes.map((t) => ({ value: t as string, label: ACTIVE_SUBTYPE_LABELS[t] })) : []),
     [cat.activeSubtypes, laneDomain],
+  );
+  // The Abayas / Tops / Skirts / Trousers / Co-ord Sets "Type" options, added
+  // 2026-09-02. Gated on laneDomain for the same reason swimTypes is: the
+  // column is keyed on p.garment, so /modest-hijabs (which carries no abayas)
+  // is unaffected either way, but ownership is declared rather than inferred.
+  /**
+   * The setter for a Type dropdown whose value IS the URL — garment and dress
+   * subtypes, both of which app/[lane]/page.tsx reads to build the h1, the
+   * <title>, the canonical and the JSON-LD.
+   *
+   * THIS EXISTS TO ANSWER A RECORDED OBJECTION, not as a flourish. The note
+   * that used to sit beside the dress dropdown argued, correctly, that
+   * honouring `?type=` for an in-page control creates a page that contradicts
+   * itself: the heading comes from the URL, the grid comes from local state,
+   * and picking a second option changes one without the other. The fix is not
+   * to keep the control off the URL — it is to make the control WRITE the URL,
+   * so there is only ever one source of truth. `replace`, not `push`: a filter
+   * choice should not fill the back button, and the flyout links that arrive
+   * here still push normally.
+   */
+  const setUrlType = useCallback((value: string) => {
+    setType(value);
+    router.replace(value === 'all' ? pathname : `${pathname}?type=${encodeURIComponent(value)}`, { scroll: false });
+  }, [router, pathname]);
+  const garmentTypes = useMemo(
+    () => (laneDomain === 'garment' ? cat.garmentSubtypes.map((t) => ({ value: t as string, label: GARMENT_SUBTYPE_LABELS[t] })) : []),
+    [cat.garmentSubtypes, laneDomain],
   );
   const fabricTypes = useMemo(
     () => cat.hijabTypeFilters.map((t) => ({ value: t, label: HIJAB_TYPE_FILTER_LABELS[t] })),
@@ -246,11 +282,16 @@ export function FilterableGrid({
   // filter by the wrong column. swimSubtype()/activeSubtype() each return null
   // unless isSwim()/isActivewear() is true, so these two can only ever be
   // non-empty on their own lane — putting them first is safe everywhere else.
-  const typeDomain: 'swim' | 'active' | 'layering' | 'outerwear' | 'hijab' | 'dress' | 'none' =
+  const typeDomain: 'swim' | 'active' | 'garment' | 'layering' | 'outerwear' | 'hijab' | 'dress' | 'none' =
     laneDomain === 'swim' && cat.swimSubtypes.length > 0
       ? 'swim'
       : laneDomain === 'active' && cat.activeSubtypes.length > 0
         ? 'active'
+        // Ahead of the three ungated cases below for the same reason swim and
+        // active are: /modest-tops carries hijabs (a scarf tagged 'top' would),
+        // and an ungated fallthrough would filter Tops by the hijab column.
+        : laneDomain === 'garment' && cat.garmentSubtypes.length > 0
+          ? 'garment'
         : cat.layeringSubtypes.length > 0
           ? 'layering'
           : cat.outerwearSubtypes.length > 0
@@ -267,6 +308,8 @@ export function FilterableGrid({
         ? cat.swimSubtypes.indexOf(type as (typeof cat.swimSubtypes)[number])
         : typeDomain === 'active'
           ? cat.activeSubtypes.indexOf(type as (typeof cat.activeSubtypes)[number])
+          : typeDomain === 'garment'
+            ? cat.garmentSubtypes.indexOf(type as (typeof cat.garmentSubtypes)[number])
           : typeDomain === 'outerwear'
             ? cat.outerwearSubtypes.indexOf(type as (typeof cat.outerwearSubtypes)[number])
             : typeDomain === 'hijab'
@@ -293,6 +336,8 @@ export function FilterableGrid({
             ? (cat.rows.swimSubtypeIdx?.[i] ?? -1)
             : typeDomain === 'active'
               ? (cat.rows.activeSubtypeIdx?.[i] ?? -1)
+              : typeDomain === 'garment'
+                ? (cat.rows.garmentSubtypeIdx?.[i] ?? -1)
               : typeDomain === 'outerwear'
             ? (cat.rows.outerwearSubtypeIdx?.[i] ?? -1)
             : typeDomain === 'hijab'
@@ -433,7 +478,7 @@ export function FilterableGrid({
             never show two "Type" chips — one of which would be about
             headwear. In practice that leaves it on /modest-hijabs only,
             which is where it was always meant to be. */}
-        {showTypeFilter && fabricTypes.length > 0 && swimTypes.length === 0 && activeTypes.length === 0 && (
+        {showTypeFilter && fabricTypes.length > 0 && swimTypes.length === 0 && activeTypes.length === 0 && garmentTypes.length === 0 && (
           <FilterDropdown label="Type" value={fabricType} options={fabricTypes} onSelect={setFabricType} />
         )}
         {/* Modest Dresses' Everyday / Occasion / Slip filter, 2026-08-26 —
@@ -449,19 +494,17 @@ export function FilterableGrid({
             (§10.34/§10.36). Adding one back for Dresses would re-open exactly
             that. A dropdown is also what she literally asked for.
 
-            It shares the `type` state with those flyout lanes but is NOT
-            URL-driven, and that is load-bearing rather than laziness. If
-            `?type=occasion` were honoured here, app/[lane]/page.tsx would set
-            the h1, the <title>, the canonical and the JSON-LD ItemList from
-            it (via lib/laneSubtypes.ts) — and then picking a DIFFERENT option
-            in this dropdown would change the grid while the heading still read
-            "Occasion Dresses", i.e. the exact page-contradicts-itself defect
-            the 2026-08-19 subtype work was done to remove. The three flyout
-            lanes escape it only because they have no in-page control to
-            desync with. So `initialType` explicitly rejects dress subtypes,
-            /modest-dresses stays a single canonical URL, and lib/laneSubtypes
-            has no entry for it. The closest precedent is the hijab fabric
-            dropdown two lines up, which is likewise pure in-page state.
+            It shares the `type` state with those flyout lanes and, since
+            2026-09-02, IS URL-driven — see setUrlType above. The note that
+            stood here until then argued the opposite, and its reasoning was
+            sound: if `?type=occasion` set the h1, the <title>, the canonical
+            and the JSON-LD while this dropdown only set local state, then
+            picking a second option would change the grid and leave the heading
+            reading "Occasion Dresses" — a page contradicting itself. What was
+            wrong was the conclusion, that the control must therefore stay off
+            the URL. Making it WRITE the URL removes the second source of truth
+            instead of hiding it, and turns each option into a real, indexable
+            page, which is the whole point of the 2026-09-02 pass.
 
             `showTypeFilter` gates it alongside the hijab
             fabric filter: /edits/[slug] passes false, and an edit cutting
@@ -474,8 +517,11 @@ export function FilterableGrid({
         {showTypeFilter && activeTypes.length > 0 && (
           <FilterDropdown label="Type" value={type} options={activeTypes} onSelect={setType} />
         )}
+        {showTypeFilter && garmentTypes.length > 0 && (
+          <FilterDropdown label="Type" value={type} options={garmentTypes} onSelect={setUrlType} />
+        )}
         {showTypeFilter && dressTypes.length > 0 && (
-          <FilterDropdown label="Type" value={type} options={dressTypes} onSelect={setType} />
+          <FilterDropdown label="Type" value={type} options={dressTypes} onSelect={setUrlType} />
         )}
         {/* Unlike the two above, this dropdown's "nothing chosen" value is a
             real key: 'featured' IS a sort order, not the absence of one. It is

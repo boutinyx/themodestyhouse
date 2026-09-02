@@ -9,7 +9,7 @@ import { regionOf, brandsInRegion } from '@/lib/brandRegions';
 import { encodeCatalogue, decodeCard } from '@/lib/compactCatalogue';
 import { FilterableGrid } from '@/components/FilterableGrid';
 import { JsonLd } from '@/components/JsonLd';
-import { breadcrumbSchema, brandPageSchema, jsonLdGraph } from '@/lib/schema';
+import { breadcrumbSchema, brandPageSchema, faqPageSchema, jsonLdGraph } from '@/lib/schema';
 import { formatPrice } from '@/lib/price';
 import { withUtm } from '@/lib/outbound';
 
@@ -145,6 +145,48 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
     : [];
   const storefront = new URL(brand.homepage).hostname.replace(/^www\./, '');
 
+  /**
+   * The three measured sections below the grid, built ONCE here and then both
+   * PAINTED and emitted as FAQPage Q&A (2026-09-02).
+   *
+   * One string per answer, not two, and that is the whole point: Google's
+   * structured-data guidelines require the question and the answer to be
+   * visible on the page, and the way that stops being true is never a decision
+   * — it is a rendered version and a schema version drifting apart. There is
+   * nothing here to drift.
+   *
+   * WHY THESE PAGES AND NOT ANOTHER. They rank on the house's own name and
+   * almost nothing else: Search Console, 28 days to 2026-08-30, has "merrachi"
+   * at 380 impressions and position 6.5 with ZERO clicks, plus "jawda modest"
+   * 169, "hawaa clothing" 123, "abaya buth" 113, all the same shape. Beating a
+   * brand's own storefront for its own name is not winnable and should not be
+   * attempted; the winnable query is the modifier — what do they make, what do
+   * they cost, where do you buy them — which is exactly what these three
+   * answer, from counted rows and never from a claim (§10.18).
+   *
+   * The headings became QUESTIONS in the same change. They were statements
+   * ("What MERRACHI makes", "MERRACHI prices", "Where to buy MERRACHI") and the
+   * content is unchanged; a question-form heading is what makes the pair
+   * legible as a Q&A to an answer engine, and it is the shape lib/laneAnswers.ts
+   * already argues for on every lane page.
+   */
+  const makesQ = `What does ${brand.name} make?`;
+  const makesA = breakdown.map(([g, c]) => `${GARMENT_LABEL[g]} ${c.toLocaleString('en-GB')}`).join(' · ');
+  const pricesQ = `How much do ${brand.name} pieces cost?`;
+  const pricesA = prices.length
+    ? `${products.length.toLocaleString('en-GB')} pieces, ${formatPrice(lo, brand.currency)} to ${formatPrice(hi, brand.currency)}. ` +
+      `Half are under ${formatPrice(median, brand.currency)}. Listed in ${brand.currency}; the currency switcher converts them.`
+    : '';
+  const whereQ = `Where can you buy ${brand.name}?`;
+  const whereA =
+    `${brand.city ? `${brand.name} is based in ${brand.city} and sells` : `${brand.name} sells`} from ${storefront}. ` +
+    `Every piece here links straight there; we do not sell anything ourselves.`;
+  const faqs = [
+    ...(makesA ? [{ question: makesQ, answer: makesA }] : []),
+    ...(pricesA ? [{ question: pricesQ, answer: pricesA }] : []),
+    { question: whereQ, answer: whereA },
+  ];
+
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-12">
       <JsonLd
@@ -161,6 +203,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
             homepage: brand.homepage,
             items: listed,
           }),
+          faqPageSchema(faqs),
         )}
       />
 
@@ -249,7 +292,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           "merrachi amsterdam", "merrachi canada" — each of which this page can
           now answer above the fold. */}
       <section className="max-w-2xl mt-20 pt-12" style={{ borderTop: '1px solid var(--hairline)' }}>
-        <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>What {brand.name} makes</h2>
+        <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{makesQ}</h2>
         <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
           {breakdown.map(([g, c], i) => (
             <span key={g}>
@@ -262,21 +305,14 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
 
       {prices.length > 0 && (
         <section className="max-w-2xl mt-10">
-          <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{brand.name} prices</h2>
-          <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
-            {products.length.toLocaleString('en-GB')} pieces, {formatPrice(lo, brand.currency)} to{' '}
-            {formatPrice(hi, brand.currency)}. Half are under {formatPrice(median, brand.currency)}.
-            Listed in {brand.currency}; the currency switcher converts them.
-          </p>
+          <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{pricesQ}</h2>
+          <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>{pricesA}</p>
         </section>
       )}
 
       <section className="max-w-2xl mt-10">
-        <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>Where to buy {brand.name}</h2>
-        <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
-          {brand.city ? `${brand.name} is based in ${brand.city} and sells` : `${brand.name} sells`}{' '}
-          from {storefront}. Every piece here links straight there; we do not sell anything ourselves.
-        </p>
+        <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{whereQ}</h2>
+        <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>{whereA}</p>
       </section>
 
       {/* "Is this your house?" — the claim entry point, 2026-09-02.
