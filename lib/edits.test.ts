@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { EDITS } from './edits';
+import { EDITS, spaceEditPicks } from './edits';
 import { productsForEdit, missingEditPicks } from './products';
 import type { Product } from '@/lib/types';
 
@@ -56,13 +56,44 @@ describe('edits', () => {
   const hasData = existsSync(path.join(process.cwd(), 'data', 'products.json'));
   const inCI = !!process.env.CI;
 
-  it.skipIf(!hasData || inCI)('every hand-picked product id still resolves', () => {
+  // A THRESHOLD, not `toEqual([])` — rewritten 2026-09-02.
+  //
+  // The binary form was red on `main` and would have gone red again within
+  // days whatever anyone did about it, because the thing it asserts is stock
+  // level: brands sell out and delist nightly, and on 2026-09-02
+  // /edits/fall-essentials had lost 10 of 274 picks (3.6%) and /edits/
+  // everyday-lace 1 of 23. Neither is a defect — both edits render fine — and a
+  // suite that is normally red is a suite everybody learns to ignore, which
+  // costs more than the alarm is worth. §10.19 is the same lesson one layer up:
+  // an assertion over MUTABLE third-party data is an authoring aid, not a gate.
+  //
+  // What IS worth failing on is a COLLAPSE: a brand cut or a feed dying takes
+  // a large share of an edit at once and leaves a page that is visibly thin.
+  // The shape and the reasoning are borrowed from `brandDropViolations` in
+  // lib/lifecycle.ts, which already solved exactly this for the publish: a
+  // proportion with a floor, so a small edit does not trip on one loss.
+  //
+  // The list is printed either way — but CHECK HOW BEFORE QUOTING THIS:
+  // vitest's default reporter swallows console output from a PASSING test, so
+  // `npm test` shows nothing and only `npx vitest run lib/edits.test.ts
+  // --reporter=verbose` shows the ids. Measured, after a first version of this
+  // comment claimed it printed unconditionally and it did not. When the
+  // threshold trips, the ids are in the failure message, which always shows.
+  it.skipIf(!hasData || inCI)('no hand-picked edit has lost a large share of its picks', () => {
     for (const e of EDITS) {
+      if (!e.productIds?.length) continue;
+      const missing = missingEditPicks(e);
+      if (!missing.length) continue;
+      const pct = missing.length / e.productIds.length;
+      console.warn(
+        `[edits] ${e.slug}: ${missing.length}/${e.productIds.length} picks (${(pct * 100).toFixed(1)}%) ` +
+          `no longer live — re-pick in /staff/curate if you want them replaced:\n  ${missing.join('\n  ')}`,
+      );
       expect(
-        missingEditPicks(e),
-        `${e.slug}: these picked ids are no longer live. A brand delisted them or ` +
-          'they went out of stock — re-pick in /staff/curate rather than deleting the edit.',
-      ).toEqual([]);
+        { slug: e.slug, lost: missing.length, of: e.productIds.length, remaining: e.productIds.length - missing.length },
+        `${e.slug} has lost a large share of its picks — a brand was probably cut or its feed died. ` +
+          `Re-pick in /staff/curate. Missing: ${missing.join(', ')}`,
+      ).toSatisfy((x: { lost: number; of: number; remaining: number }) => x.lost / x.of <= 0.2 && x.remaining >= 8);
     }
   });
 
@@ -221,5 +252,83 @@ describe('edits', () => {
     it('never takes swimwear', () => {
       expect(fall().match(p('Ribbed Knit Burkini - Olive', 'swim'))).toBe(false); // CONSTRUCTED
     });
+  });
+});
+
+describe('spaceEditPicks', () => {
+  // Minimal Product shapes — this function only ever reads brandSlug and
+  // garment, and building 274 real rows would test the fixture, not the rule.
+  const p = (id: string, brandSlug: string, garment: string) =>
+    ({ id, brandSlug, garment, title: id, brandName: brandSlug } as unknown as Parameters<typeof spaceEditPicks>[0][number]);
+
+  it('is a no-op on a list that already satisfies both rules', () => {
+    const list = [p('a', 'x', 'hijab'), p('b', 'y', 'top'), p('c', 'x', 'hijab'), p('d', 'z', 'dress')];
+    expect(spaceEditPicks(list).map((i) => i.id)).toEqual(['a', 'b', 'c', 'd']);
+  });
+
+  it('separates two hijabs left adjacent by a dropped pick', () => {
+    // The real shape from /edits/fall-essentials on 2026-09-02: a top sat
+    // between two hijabs and went out of stock.
+    const list = [p('h1', 'x', 'hijab'), p('h2', 'y', 'hijab'), p('t1', 'z', 'top')];
+    // NEGATIVE CONTROL: the input genuinely violates the rule.
+    expect(list[0].garment === 'hijab' && list[1].garment === 'hijab').toBe(true);
+    const out = spaceEditPicks(list);
+    expect(out.map((i) => i.id)).toEqual(['h1', 't1', 'h2']);
+    expect(out.some((x, i) => i > 0 && x.garment === 'hijab' && out[i - 1].garment === 'hijab')).toBe(false);
+  });
+
+  it('separates two pieces from the same house', () => {
+    const list = [p('a1', 'aab', 'dress'), p('a2', 'aab', 'top'), p('b1', 'vela', 'skirt')];
+    const out = spaceEditPicks(list);
+    expect(out.map((i) => i.id)).toEqual(['a1', 'b1', 'a2']);
+  });
+
+  it('does not open a new clash where it took the piece from', () => {
+    // `c2` is the nearest candidate that fixes position 1, and taking it would
+    // leave h2 (house y) against y2 (house y). The third guard must reject it
+    // and reach c4 instead. NEGATIVE CONTROL: drop that guard and this returns
+    // [h1, c2, h2, y2, ...], which the no-clash assertion below catches.
+    //
+    // The first version of this test used four hijabs in six pieces and
+    // asserted they could be separated. They cannot — four items needing three
+    // separators, with two available — so it was asserting something
+    // arithmetically impossible and the failure was the fixture, not the rule.
+    const list = [
+      p('h1', 'x', 'hijab'),
+      p('h2', 'y', 'hijab'),
+      p('c2', 'm', 'top'),
+      p('y2', 'y', 'dress'),
+      p('c4', 'n', 'skirt'),
+      p('t5', 'q', 'top'),
+    ];
+    const out = spaceEditPicks(list);
+    expect(out.map((i) => i.id)).toEqual(['h1', 'c4', 'h2', 'c2', 'y2', 't5']);
+    const bad = out.some((x, i) => i > 0 && (x.brandSlug === out[i - 1].brandSlug || (x.garment === 'hijab' && out[i - 1].garment === 'hijab')));
+    expect(bad, out.map((i) => i.id).join(',')).toBe(false);
+  });
+
+  it('leaves a clash that no arrangement could fix', () => {
+    // Four hijabs among six pieces: separating them needs three non-hijabs and
+    // there are two. The function must terminate with a stable result rather
+    // than shuffling forever looking for one that does not exist.
+    const list = [
+      p('h1', 'x', 'hijab'), p('h2', 'y', 'hijab'), p('m1', 'q', 'hijab'),
+      p('z', 'r', 'top'), p('m2', 'p', 'hijab'), p('w', 's', 'dress'),
+    ];
+    const out = spaceEditPicks(list);
+    expect(out).toHaveLength(6);
+    expect(out.map((i) => i.id).sort()).toEqual(['h1', 'h2', 'm1', 'm2', 'w', 'z']);
+  });
+
+  it('leaves an unsatisfiable clash alone rather than thrashing', () => {
+    // Every piece is a hijab — /edits/jersey-hijabs. No move can help, and the
+    // function must terminate with the input order, not loop.
+    const list = [p('a', 'x', 'hijab'), p('b', 'y', 'hijab'), p('c', 'z', 'hijab')];
+    expect(spaceEditPicks(list).map((i) => i.id)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('keeps every piece — it re-spaces, it never drops', () => {
+    const list = [p('a', 'x', 'hijab'), p('b', 'x', 'hijab'), p('c', 'y', 'top'), p('d', 'z', 'dress')];
+    expect(spaceEditPicks(list).map((i) => i.id).sort()).toEqual(['a', 'b', 'c', 'd']);
   });
 });

@@ -1161,3 +1161,56 @@ export function editBySlug(slug: string): Edit | undefined {
  * kind of thing that changes later and fails confusingly. Keeping the edit
  * DEFINITIONS client-safe means no future 'use client' file can break by
  * importing them. */
+
+/**
+ * Restore the two ordering rules Tina gave with her picks — *"mix the hijabs up
+ * dont put them all next ot eachother"* and no two pieces from one house side
+ * by side — after out-of-stock picks have been dropped from the list.
+ *
+ * WHY THIS IS NEEDED AT ALL. `productsForEdit` returns the picks in the order
+ * given and silently drops any that no longer resolve, so **a piece selling out
+ * makes its two neighbours adjacent**. Nobody re-orders anything; the rule
+ * breaks on its own, overnight, and the only sign is a red local test.
+ * Measured on 2026-09-02, which is what prompted this: `fall-essentials` has
+ * 274 picks and **zero** clashes across the full list — her ordering is
+ * correct — but two picks that sat BETWEEN two hijabs went away (a top at
+ * position 34 and a pair of trousers at 132), leaving
+ * "Breathable Jersey Scarf | White Honey" against "Premium Modal Scarf- Sage"
+ * and "Golden Moss Premium Modal" against "Premium Modal Scarf- Tan".
+ *
+ * MINIMAL DISTURBANCE IS THE WHOLE DESIGN. Her order is the point of picking,
+ * so this does not sort, shuffle or re-interleave. It walks the list once and,
+ * only where a clash exists, pulls forward the NEAREST later piece that
+ * resolves it — the smallest edit that satisfies the rule she stated. A list
+ * with no clashes comes back byte-identical.
+ *
+ * It gives up rather than thrashing: where no later piece can resolve a clash
+ * (an all-hijab edit, or a tail of one house), the clash is left. That case is
+ * unsatisfiable, not broken — the same reasoning lib/edits.test.ts already
+ * applies when it skips the hijab rule for /edits/jersey-hijabs.
+ */
+export function spaceEditPicks(items: Product[]): Product[] {
+  const clash = (a: Product | undefined, b: Product | undefined): boolean =>
+    !!a && !!b && (a.brandSlug === b.brandSlug || (a.garment === 'hijab' && b.garment === 'hijab'));
+
+  const out = items.slice();
+  for (let i = 1; i < out.length; i++) {
+    if (!clash(out[i - 1], out[i])) continue;
+    // A candidate at j is only worth moving if it fixes position i AND leaves
+    // the place it came from intact. All three have to hold, and the third is
+    // the one a naive version forgets: removing out[j] makes out[j-1] and
+    // out[j+1] neighbours.
+    let j = -1;
+    for (let k = i + 1; k < out.length; k++) {
+      if (clash(out[i - 1], out[k])) continue;      // would still clash where it lands
+      if (clash(out[k], out[i])) continue;          // would clash with the piece it displaces
+      if (clash(out[k - 1], out[k + 1])) continue;  // would open a new clash where it left
+      j = k;
+      break;
+    }
+    if (j === -1) continue; // unsatisfiable here — leave it rather than thrash
+    const [moved] = out.splice(j, 1);
+    out.splice(i, 0, moved);
+  }
+  return out;
+}

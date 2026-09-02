@@ -1,7 +1,7 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import path from 'node:path';
 import type { Product, Vibe } from '@/lib/types';
-import type { Edit } from '@/lib/edits';
+import { spaceEditPicks, type Edit } from '@/lib/edits';
 import { LANES } from '@/lib/lanes';
 import { groupColourVariants } from '@/lib/colorVariants';
 import { brandVibe } from '@/lib/vibes';
@@ -163,8 +163,16 @@ export function productsForEdit(edit: Edit): Product[] {
     // `includeHijabs` is deliberately NOT applied here. If someone explicitly
     // chose a hijab for this edit, that is the choice; the flag exists to
     // decide what an automatic `match` sweeps in, not to overrule a human.
+    //
+    // spaceEditPicks added 2026-09-02. Dropping a sold-out pick makes its two
+    // NEIGHBOURS adjacent, which silently breaks the two ordering rules Tina
+    // gave with her picks — measured that day on /edits/fall-essentials, whose
+    // 274-pick list has zero clashes and whose SERVED list had two, purely
+    // because a top and a pair of trousers had gone out of stock between two
+    // hijabs. It re-spaces only where a clash exists and is a no-op otherwise,
+    // so her order is still the order. See lib/edits.ts.
     const byId = new Map(live.map((p) => [p.id, p]));
-    return edit.productIds.map((id) => byId.get(id)).filter((p): p is Product => !!p);
+    return spaceEditPicks(edit.productIds.map((id) => byId.get(id)).filter((p): p is Product => !!p));
   }
   return live.filter((p) => edit.match(p) && (edit.includeHijabs ? true : p.garment !== 'hijab'));
 }
