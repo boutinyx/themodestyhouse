@@ -177,3 +177,50 @@ local build reports `ok`. It selects on nothing the fix introduced (§10.32 rule
 - Coverage is partial by design and matches the existing precedent: 50% of Tops carry a
   subtype, 18.6% of Abayas, 24.7% of Skirts. An untyped row shows under "All".
 - `lib/edits.test.ts` is red on `main` and someone should look at it.
+
+## Verified on staging — `https://themodestyhouse-staging-production.up.railway.app`
+
+Pushed to `staging` as `39d39c7` (with `origin/main`'s 04:10 nightly `2ce471a` merged in
+first — §10.53: fetch immediately before you cut the base, and the nightly landed *during*
+this work). `git merge-base --is-ancestor` confirms the push, not the exit code (§10.17).
+
+**Structured data / routing — 63 of 64 assertions, every production control fired:**
+
+```
+sitemap                     143 -> 159 URLs · ?type= pages 21 -> 37
+                            slip and a-line correctly EXCLUDED
+                            khimar-jilbab and burkini still present (control)
+each of 6 subtype pages     h1, <title>, canonical and CollectionPage all agree
+                            ItemList = 24, every entry matches the subtype
+production control          the same URL is still the bare lane there, all 6
+the pre-existing bug        /modest-hijabs?type=undercap       prod  0 -> staging 24
+                            /modest-hijabs?type=khimar-jilbab  prod  1 -> staging 24
+FAQPage                     lane + subtype + designer; question AND answer text
+                            confirmed present in the visible HTML
+production control          neither /modest-tops nor /designers/merrachi has one
+```
+
+The single non-PASS is my own assertion, not the site: I required
+`/blazers-vests?type=vest` to grow, and it was already 24 on production because vests
+happen to cluster early in that lane. It is the control that shows the fix left the page
+that was already correct alone.
+
+**Browser — 40 of 40, chromium AND webkit, desktop-1440 AND iphone-390:** stylesheet
+asserted first (§10.24, and nothing below it is believed otherwise); the kimono page
+paints 24 cards and every one is a kimono; the Type chip shows the current subtype; the
+menu opens on click on desktop and **on tap on the WebKit iPhone** (§10.25/§10.45 is the
+reason that is a separate assertion); choosing Butterfly moves the URL, the h1 and all 24
+cards together. Controls: the bare lane still paints a full grid and an older subtype page
+still works, on every engine/viewport combination.
+
+Looked at, not just measured: `/modest-abayas?type=butterfly` on staging reads
+"Butterfly Abayas", the filter chip is filled aubergine with that label, and the grid says
+"SHOWING 24 OF 107".
+
+One thing worth writing down for the next person: **`grep -o` finds nothing in these
+pages.** The document is a single 506 KB line with no terminator, and BSD grep returns
+empty rather than erroring — which reads exactly like "the canonical tag is missing". It
+cost a wrong conclusion here before python confirmed the tag was there all along. Parse
+these pages in node or python, never in the shell.
+
+**NOT merged to `main`** — that needs Tina's explicit approval, every time (§1).
