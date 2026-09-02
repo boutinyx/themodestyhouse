@@ -97,7 +97,11 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    await sendContactEmail(result.fields, cfg);
+    // ip/at only reach the email for a CLAIM, where they are the acceptance
+    // record for the clickwrap (see lib/contact.ts::buildEmail). Nothing is
+    // stored: the record is the email in Tina's inbox, which is also the only
+    // place any of this is ever read.
+    await sendContactEmail(result.fields, cfg, { ip, at: new Date().toISOString() });
   } catch (e) {
     console.error('contact: send failed', e);
     return NextResponse.json(

@@ -15,6 +15,10 @@ export const TOPICS = [
   // chosen copy. Rename it freely; only `value` is referenced anywhere.
   { value: 'marketing', label: 'Marketing' },
   { value: 'brand', label: 'Submit a brand' },
+  // Added 2026-09-02 for the claim flow. Distinct from 'brand' on purpose:
+  // 'brand' is a stranger proposing a house, 'claim' is a house saying one of
+  // these pages is theirs, and the two need different handling in the inbox.
+  { value: 'claim', label: 'Claim a house' },
   { value: 'press', label: 'Press' },
   { value: 'correction', label: 'Report a correction' },
 ] as const;

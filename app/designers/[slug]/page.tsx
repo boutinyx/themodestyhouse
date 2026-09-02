@@ -279,6 +279,28 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         </p>
       </section>
 
+      {/* "Is this your house?" — the claim entry point, 2026-09-02.
+          It sits HERE, at the bottom of the house's own page, because that is
+          where a brand owner arrives: these pages rank on the house's own name
+          (Search Console: 356 impressions for the Merrachi spellings alone), so
+          the person who Googles themselves lands on this page and no other.
+          Quiet on purpose — it is addressed to one reader in a thousand, and a
+          shopper should never have to read past it.
+          The link carries the slug so the form knows which house is meant; the
+          form re-resolves it server-side rather than trusting the URL. */}
+      <section className="max-w-2xl mt-10">
+        <p className="text-sm" style={{ color: 'var(--muted)' }}>
+          Is this your house?{' '}
+          <Link
+            href={`/contact?topic=claim&brand=${brand.slug}`}
+            style={{ color: 'var(--plum)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+          >
+            Claim this page
+          </Link>
+          .
+        </p>
+      </section>
+
       {siblings.length > 0 && (
         <section className="max-w-2xl mt-10">
           <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>More houses in {region}</h2>

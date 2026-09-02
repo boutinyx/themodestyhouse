@@ -16,6 +16,7 @@
  */
 
 import { TOPICS, type Topic } from '@/lib/contactTopics';
+import { CLAIM_TERMS_VERSION, claimSignal, isClaimableBrand } from '@/lib/brandClaim';
 
 export { TOPICS };
 export type { Topic };
@@ -27,6 +28,10 @@ export interface ContactInput {
   message?: unknown;
   /** Honeypot. Real users never see it, so any value means a bot. */
   website?: unknown;
+  /** Which house is being claimed. Only meaningful when topic === 'claim'. */
+  brand?: unknown;
+  /** The clickwrap. Required for a claim, ignored otherwise. */
+  acceptedTerms?: unknown;
 }
 
 export interface ContactFields {
@@ -34,6 +39,12 @@ export interface ContactFields {
   email: string;
   topic: Topic;
   message: string;
+  /** Present only on a claim. */
+  brand?: string;
+  /** Present only on a claim: the version of /brand-terms that was shown and
+   *  accepted. Recorded rather than assumed, so a claim from today is never
+   *  read as agreement to a text written later. */
+  termsVersion?: string;
 }
 
 export type ValidationResult =
@@ -76,8 +87,29 @@ export function validateContact(input: ContactInput): ValidationResult {
   else if (message.length < MIN_MESSAGE) errors.message = 'Please add a little more detail.';
   else if (message.length > LIMITS.message) errors.message = `Please keep this under ${LIMITS.message} characters.`;
 
+  // Claim-only rules. Both are hard requirements rather than signals: a claim
+  // with no house is unactionable, and an unticked box means nothing was agreed
+  // — which is the entire point of putting a box there.
+  const brand = str(input.brand);
+  if (topic === 'claim') {
+    if (!brand) errors.brand = 'Please claim from the house\u2019s own page, so we know which one you mean.';
+    else if (!isClaimableBrand(brand)) errors.brand = 'We do not have a page for that house.';
+    if (input.acceptedTerms !== true && str(input.acceptedTerms) !== 'on') {
+      errors.acceptedTerms = 'Please confirm you are authorised and accept the brand terms.';
+    }
+  }
+
   if (Object.keys(errors).length) return { ok: false, errors };
-  return { ok: true, fields: { name, email, topic: topic as Topic, message } };
+  return {
+    ok: true,
+    fields: {
+      name,
+      email,
+      topic: topic as Topic,
+      message,
+      ...(topic === 'claim' ? { brand, termsVersion: CLAIM_TERMS_VERSION } : {}),
+    },
+  };
 }
 
 /** Escape before interpolating submitted text into the HTML part of an email. */
@@ -98,21 +130,51 @@ export function sanitizeHeader(s: string): string {
   return s.replace(/[\r\n]+/g, ' ').trim();
 }
 
-export function buildEmail(f: ContactFields) {
+/** Everything about a claim that the inbox needs and the form cannot know —
+ *  who it appears to be, and when and from where the terms were accepted. */
+export interface ClaimMeta {
+  /** From the request, for the acceptance record. `unknown` when unavailable. */
+  ip?: string;
+  /** ISO instant of acceptance. Injectable so tests are not clock-dependent. */
+  at?: string;
+}
+
+export function buildEmail(f: ContactFields, meta: ClaimMeta = {}) {
   const label = TOPICS.find((t) => t.value === f.topic)?.label ?? f.topic;
-  const subject = sanitizeHeader(`[${label}] ${f.name}`);
+  // The house is in the SUBJECT for a claim: these arrive one at a time among
+  // everything else, and the first thing to know is which page it is about.
+  const subject = sanitizeHeader(
+    f.topic === 'claim' && f.brand ? `[${label}] ${f.brand} — ${f.name}` : `[${label}] ${f.name}`,
+  );
+
+  // The verification block. Built here rather than left to be worked out by
+  // hand: the whole value of the domain signal is that it is already done by
+  // the time the email is open.
+  const claimLines: string[] = [];
+  if (f.topic === 'claim' && f.brand) {
+    const sig = claimSignal(f.brand, f.email);
+    claimLines.push(
+      `House:   ${f.brand}`,
+      `Check:   ${sig.note}`,
+      `Terms:   accepted, version ${f.termsVersion ?? 'unrecorded'}` +
+        `${meta.at ? ` at ${meta.at}` : ''}${meta.ip && meta.ip !== 'unknown' ? ` from ${meta.ip}` : ''}`,
+    );
+  }
+
   // The sender's address is repeated in the body on purpose: reply_to is set
   // below, but if the field is ever ignored the address must not be lost.
   const text = [
     `Topic:   ${label}`,
     `From:    ${f.name} <${f.email}>`,
+    ...claimLines,
     '',
     f.message,
   ].join('\n');
   const html =
     `<p><strong>Topic:</strong> ${escapeHtml(label)}<br>` +
-    `<strong>From:</strong> ${escapeHtml(f.name)} &lt;${escapeHtml(f.email)}&gt;</p>` +
-    `<hr><p style="white-space:pre-wrap">${escapeHtml(f.message)}</p>`;
+    `<strong>From:</strong> ${escapeHtml(f.name)} &lt;${escapeHtml(f.email)}&gt;` +
+    claimLines.map((l) => `<br>${escapeHtml(l)}`).join('') +
+    `</p><hr><p style="white-space:pre-wrap">${escapeHtml(f.message)}</p>`;
   return { subject, text, html };
 }
 
@@ -134,8 +196,8 @@ export function emailConfig(env: Record<string, string | undefined> = process.en
   return { apiKey, to, from };
 }
 
-export async function sendContactEmail(f: ContactFields, cfg: EmailConfig): Promise<void> {
-  const { subject, text, html } = buildEmail(f);
+export async function sendContactEmail(f: ContactFields, cfg: EmailConfig, meta: ClaimMeta = {}): Promise<void> {
+  const { subject, text, html } = buildEmail(f, meta);
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${cfg.apiKey}`, 'Content-Type': 'application/json' },

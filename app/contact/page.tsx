@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
 import { TOPICS } from '@/lib/contactTopics';
+import { BRANDS } from '@/data/brands';
 import { buildMetadata } from '@/lib/seoCopy';
 
 // Same OG/twitter fix as every other page — see the comment in
@@ -16,10 +17,14 @@ export const metadata: Metadata = buildMetadata({
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: Promise<{ topic?: string }>;
+  searchParams: Promise<{ topic?: string; brand?: string }>;
 }) {
-  const { topic } = await searchParams;
+  const { topic, brand } = await searchParams;
   const valid = TOPICS.some((t) => t.value === topic) ? topic : undefined;
+  // Resolved against BRANDS here, on the server, so an arbitrary ?brand= can
+  // never be reflected onto the page — and so the checkbox can name the house
+  // rather than saying "this house".
+  const house = brand ? BRANDS.find((b) => b.slug === brand) : undefined;
 
   // Site key is public by design — it identifies the widget, it is not a secret.
   // The matching SECRET key stays server-side and is never NEXT_PUBLIC_*.
@@ -45,7 +50,7 @@ export default async function ContactPage({
           directly.
         </p>
       </div>
-      <ContactForm siteKey={siteKey} defaultTopic={valid} />
+      <ContactForm siteKey={siteKey} defaultTopic={valid} defaultBrand={house?.slug} brandName={house?.name} />
     </main>
   );
 }

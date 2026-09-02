@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { trackGoal } from '@/lib/pulse';
 import { TOPICS } from '@/lib/contactTopics';
@@ -57,7 +58,23 @@ const selectField: React.CSSProperties = {
   backgroundPosition: 'right 14px center',
 };
 
-export function ContactForm({ siteKey, defaultTopic }: { siteKey?: string; defaultTopic?: string }) {
+export function ContactForm({
+  siteKey,
+  defaultTopic,
+  defaultBrand,
+  brandName,
+}: {
+  siteKey?: string;
+  defaultTopic?: string;
+  /** Slug of the house being claimed, from /designers/<slug>'s "Is this your
+   *  house?" link. Validated server-side before it reaches here. */
+  defaultBrand?: string;
+  brandName?: string;
+}) {
+  // The topic becomes controlled state ONLY because the claim clickwrap has to
+  // appear and disappear with it. Everything else on this form is uncontrolled
+  // and stays that way.
+  const [topic, setTopic] = useState(defaultTopic ?? 'general');
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState('');
@@ -93,11 +110,28 @@ export function ContactForm({ siteKey, defaultTopic }: { siteKey?: string; defau
     setFormError('');
 
     const data = new FormData(e.currentTarget);
+
+    // The clickwrap is checked HERE as well as on the server, because this form
+    // carries `noValidate` — it renders its own field errors, which means the
+    // browser never enforces `required` and an unticked box would post a claim
+    // the server can only reject. Found by driving the flow rather than by
+    // reading it: the submit went through, and only the API said no.
+    if (data.get('topic') === 'claim' && data.get('acceptedTerms') !== 'on') {
+      setStatus('idle');
+      setErrors({ acceptedTerms: 'Please confirm you are authorised and accept the brand terms.' });
+      return;
+    }
     const payload = {
       name: data.get('name'),
       email: data.get('email'),
       topic: data.get('topic'),
       message: data.get('message'),
+      // Both are absent unless the claim block above is rendered, and the
+      // server re-checks each rather than trusting the form (an unticked box
+      // simply does not appear in FormData, which is why the server treats
+      // "missing" as "not accepted" rather than as "not required").
+      brand: data.get('brand'),
+      acceptedTerms: data.get('acceptedTerms') === 'on',
       website: data.get('website'), // honeypot
       turnstileToken: tokenRef.current,
     };
@@ -159,7 +193,13 @@ export function ContactForm({ siteKey, defaultTopic }: { siteKey?: string; defau
 
       <div>
         <label htmlFor="topic" className="eyebrow block mb-1">Subject</label>
-        <select id="topic" name="topic" defaultValue={defaultTopic ?? 'general'} style={selectField}>
+        <select
+          id="topic"
+          name="topic"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          style={selectField}
+        >
           {TOPICS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
         </select>
         {err('topic')}
@@ -170,6 +210,32 @@ export function ContactForm({ siteKey, defaultTopic }: { siteKey?: string; defau
         <textarea id="message" name="message" required rows={7} maxLength={5000} style={{ ...field, resize: 'vertical' }} />
         {err('message')}
       </div>
+
+      {topic === 'claim' && (
+        <div>
+          {/* The house travels as a hidden field rather than a visible one: it
+              comes from the page the claim started on, and letting a claimant
+              retype it would only introduce a slug to get wrong. */}
+          <input type="hidden" name="brand" value={defaultBrand ?? ''} />
+          {!defaultBrand && (
+            <p className="text-sm" style={{ color: '#b3261e' }}>
+              Please start a claim from the house&rsquo;s own page, so we know which one you mean.
+            </p>
+          )}
+          <label className="flex items-start gap-3 text-sm" style={{ color: 'var(--ink)', lineHeight: 1.6 }}>
+            <input type="checkbox" name="acceptedTerms" required style={{ marginTop: 3 }} />
+            <span>
+              I am authorised to act for {brandName ?? 'this house'} and I accept the{' '}
+              <Link href="/brand-terms" style={{ color: 'var(--plum)', textDecoration: 'underline', textUnderlineOffset: 2 }}>
+                brand terms
+              </Link>
+              .
+            </span>
+          </label>
+          {err('acceptedTerms')}
+          {err('brand')}
+        </div>
+      )}
 
       {/* Honeypot: hidden from people, irresistible to bots. Not display:none —
           some bots skip those; off-screen with aria-hidden is more effective. */}
