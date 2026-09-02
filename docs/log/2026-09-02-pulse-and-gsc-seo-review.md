@@ -196,3 +196,63 @@ Tina: *"do everything necessary"*. Findings 1, 2 and 3 are built, verified and p
 see `docs/log/2026-09-02-lane-subtype-pages-and-faq-schema.md`. Finding 4 (more editorial)
 is deliberately NOT done: those are articles in her voice, and §10.18 is explicit that
 writing them is not mine to do.
+
+---
+
+## Second pass, same day — what the first pass missed
+
+Tina asked whether GSC and Pulse were now "done". Checking rather than answering from
+memory turned up three things the first pass did not surface, one of which corrects a claim
+made above.
+
+### The category intent is 36% of impressions and 2 clicks
+
+Splitting the 28-day window into brand-name and non-brand queries — the split the first
+pass asserted but never quantified:
+
+```
+307 non-brand queries · 987 impressions (36% of 2,733) · 2 clicks
+  modest activewear   40i  pos 62.5      modest fashion       22i  pos 71.0
+  modest blouses      28i  pos 71.9      online hijab store   21i  pos 55.7
+  modest coords       25i  pos 57.8      hijab store online   18i  pos 58.4
+  modest tops         24i  pos 76.5      modesty clothing     16i  pos 31.3
+  modest co ord set   23i  pos 48.3      modest skirts        15i  pos 54.7
+```
+
+The 16 subtype pages shipped today give Google **more specific targets**; they do not move
+"modest tops" from position 76. That needs links and authority, and neither is a markup
+change. This is the honest ceiling on what today's work can do.
+
+### CORRECTION: the modifier-query thesis is thinly evidenced
+
+Finding 2 above says the winnable version of a brand query is the modifier — *merrachi
+review*, *brands like merrachi*, *merrachi sizing*. Queried directly, joining page to
+query across 28 days: **one** such query exists, `niswa fashion reviews`, 1 impression at
+position 32. The reasoning is sound and the Q&A schema is cheap, but it was stated with
+more confidence than the data supports. It is a bet, not a measured opportunity, and it
+should be judged on whether those queries appear at all over the next few weeks.
+
+### 73% of visitors land on the homepage, and 66% of them leave from it
+
+The largest number in Pulse, and the first pass never pulled it — the entry/exit breakdown
+was fetched and then not read, which is its own lesson.
+
+```
+ENTRY   / 311 visitors · /modest-dresses 16 · /designers 14 · /designers/diversity-modest 12
+EXIT    / 204 visitors · /modest-dresses 37 · /directory 36 · /modest-tops 27
+```
+
+311 of 427 visitors arrive at `/` — Instagram, Direct and ChatGPT all land there — and 204
+leave from it. Every search landing page is in single or low double digits. **This is not
+an SEO problem and nothing shipped today touches it**: it is what the homepage does with
+the traffic that already arrives. Raised, not acted on.
+
+### Still unexamined in both tools
+GSC crawl stats, the Core Web Vitals report, and the structured-data enhancement reports —
+the last of which is how we would learn whether today's FAQPage is being parsed at all.
+Pulse's funnels, journeys and performance sections.
+
+### Nothing shipped today is measured yet
+GSC lags days to weeks. `docs/seo/README.md` asks for a fresh `scripts/seo-snapshot.mjs`
+capture 4–6 weeks after the 2026-08-19 baseline — due ~2026-09-16, and that is the run that
+says whether any of this worked.
