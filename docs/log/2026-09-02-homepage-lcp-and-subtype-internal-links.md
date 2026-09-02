@@ -1,5 +1,5 @@
 # The homepage took 15 seconds on a phone, and the 16 new pages were linked from nowhere
-**Date:** 2026-09-02 · **Status:** done — on `staging`, not merged
+**Date:** 2026-09-02 · **Status:** done — merged and live
 
 ## Goal
 Tina: *"fix everything"*, after I listed what the day's GSC/Pulse work had NOT covered.
@@ -137,6 +137,28 @@ active there — 10 sections with computed `content-visibility: auto`, and the c
 contains the rule — so the null result was the *environment*: against loopback, Chrome's
 lazy-loading behaves correctly and there was nothing left to save. A localhost run cannot
 reproduce this defect, and had it been the only check, the fix would have looked useless.
+
+## Live in production
+
+Merged as `1230b47`. Origin confirmed current before purging (§10.47) — cache-busted reads
+showed `home-sections` on `<main>` appear at +2.0 min — then `purge_everything`, then
+IndexNow (160 URLs, HTTP 200).
+
+Re-measured on production with the **same method and the same conditions** as this
+morning's baseline, on the same host, which is the only comparison that means anything:
+
+```
+                     LCP        bytes     images loaded   CLS
+this morning     15,324 ms   3,192 KB          35          0
+now               7,784 ms   1,668 KB           8          0
+                 ---------------------------------------------
+                  7,540 ms faster · 48% fewer bytes
+```
+
+Runs: 8,164 / 7,752 / 7,784 ms. `sections deferred: 10`, so the rule is live.
+
+Internal links confirmed on `/modest-tops`: 4 — `?type=blouse`, `?type=shirt`,
+`?type=tshirt`, `?type=tunic`. Was 0.
 
 ## Notes / follow-ups
 - **7.9 s is better, not good.** ~2 MB still loads before the hero completes, most of it
