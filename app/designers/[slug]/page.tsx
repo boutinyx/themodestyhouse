@@ -266,6 +266,27 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         </a>
       </p>
 
+      {/* "Is this your house?" — the claim entry point.
+          MOVED HERE 2026-09-02, from the foot of the page. It was placed below
+          the grid and the measured sections on the theory that it is addressed
+          to one reader in a thousand and a shopper should never have to read
+          past it. Measured, that theory was wrong by a mile: 6,008px down a
+          7,329px page on a phone — 82% of the way to the bottom, past all 24
+          cards, seven screens of scrolling. Tina, looking for it: "i dont see
+          it." Quiet is a matter of SIZE and COLOUR, not of distance; it stays
+          small and muted, and now sits where the house's own row already is,
+          under the button that goes to their storefront. */}
+      <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
+        Is this your house?{' '}
+        <Link
+          href={`/contact?topic=claim&brand=${brand.slug}`}
+          style={{ color: 'var(--plum)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+        >
+          Claim this page
+        </Link>
+        .
+      </p>
+
       <div className="mt-14">
         {/* NO INDEX CONSOLE, 2026-08-26 — Tina: "i want the search bar inside each
             of those things to be gone like the whole block the search the filters".
@@ -313,28 +334,6 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       <section className="max-w-2xl mt-10">
         <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{whereQ}</h2>
         <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>{whereA}</p>
-      </section>
-
-      {/* "Is this your house?" — the claim entry point, 2026-09-02.
-          It sits HERE, at the bottom of the house's own page, because that is
-          where a brand owner arrives: these pages rank on the house's own name
-          (Search Console: 356 impressions for the Merrachi spellings alone), so
-          the person who Googles themselves lands on this page and no other.
-          Quiet on purpose — it is addressed to one reader in a thousand, and a
-          shopper should never have to read past it.
-          The link carries the slug so the form knows which house is meant; the
-          form re-resolves it server-side rather than trusting the URL. */}
-      <section className="max-w-2xl mt-10">
-        <p className="text-sm" style={{ color: 'var(--muted)' }}>
-          Is this your house?{' '}
-          <Link
-            href={`/contact?topic=claim&brand=${brand.slug}`}
-            style={{ color: 'var(--plum)', textDecoration: 'underline', textUnderlineOffset: 2 }}
-          >
-            Claim this page
-          </Link>
-          .
-        </p>
       </section>
 
       {siblings.length > 0 && (
