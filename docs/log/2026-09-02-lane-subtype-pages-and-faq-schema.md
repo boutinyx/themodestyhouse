@@ -224,3 +224,43 @@ cost a wrong conclusion here before python confirmed the tag was there all along
 these pages in node or python, never in the shell.
 
 **NOT merged to `main`** — that needs Tina's explicit approval, every time (§1).
+
+## Merged to `main` and live in production
+
+Tina approved the merge and chose to keep the `T-Shirts` page. Fast-forwarded
+`origin/main` to `a813f57` (which also carries another session's `caa7a13`, the brand-claim
+flow — already on staging, complete with its own tests and log entry; named here so it is
+not a surprise in the diff).
+
+**Purge ordering, per §10.47.** The origin was confirmed to be serving the new build FIRST,
+by reading past the edge with a cache-busting query string — `h1` went `"Abayas"` →
+`"Kimono Abayas"` at +1.5 min while `cf-cache-status` was `MISS` throughout. Only then was
+`purge_everything` called. Purging before the deploy lands re-fills the edge with the OLD
+page and pins it for another hour, which is the trap that entry records.
+
+**Production, real GETs on the canonical URLs, twice each (§10.47 rule 4 — a HEAD is not
+the request the cache serves):**
+
+```
+/modest-abayas?type=kimono       MISS -> HIT   h1 "Kimono Abayas"
+/modest-tops?type=blouse         MISS -> HIT   h1 "Blouses"
+/modest-dresses?type=occasion    MISS -> HIT   h1 "Occasion Dresses"
+/modest-sets?type=two-piece      MISS -> HIT   h1 "Two-Piece Sets"
+FAQPage on /modest-tops                        present
+FAQPage on /designers/merrachi                 3 Q&A
+/modest-hijabs?type=undercap     ItemList      0 -> 24
+```
+
+**Sitemap is 160 URLs, not the 159 I predicted, and the prediction was wrong rather than
+the sitemap.** Composition: 92 designers + **37** `?type=` (was 21) + 24 static/lane + 4
+editorial + 3 edits. Every category except subtypes is unchanged, and 21 + 16 = 37 exactly.
+The baseline "143" was itself a miscount from the same one-line-document `grep` problem
+now recorded as §10.56.
+
+**IndexNow: 160 URLs submitted, HTTP 200 accepted**, including all 16 new pages. Run by
+hand because `GITHUB_API_TOKEN` in `.env` returns `401 Bad credentials`, so whether
+`.github/workflows/indexnow.yml` fired on the push could not be confirmed — a second
+submission is harmless. **That token needs replacing.**
+
+Google is not told by IndexNow (it does not participate); the sitemap is the mechanism
+there, and Search Console shows it last downloaded 2026-08-31 and re-fetched daily.
