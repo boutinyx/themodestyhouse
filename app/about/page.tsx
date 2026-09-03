@@ -498,7 +498,7 @@ export default function AboutPage() {
                 className="btn-pill inline-block"
                 style={{ background: '#826430', color: 'var(--parchment)' }}
               >
-                Apply for the seal
+                Sign your brand up
               </Link>
               <Link
                 href="/designers"

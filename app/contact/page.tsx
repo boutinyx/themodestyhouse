@@ -12,7 +12,7 @@ export const metadata: Metadata = buildMetadata({
   canonical: '/contact',
 });
 
-// ?topic=seal deep-links the "Apply for the seal" call to action straight to a
+// ?topic=seal deep-links the "Sign your brand up" call to action straight to a
 // pre-selected subject, so that CTA no longer has to be a mailto: link.
 export default async function ContactPage({
   searchParams,

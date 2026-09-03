@@ -284,8 +284,8 @@ export function Footer() {
 
           {/* col-span-2 on a phone. It no longer HAS to be — the reason was
               the sign-up pill, which moved to the brand column on 2026-08-25 —
-              but it stays: at 390px a half-width column puts "Apply for the
-              seal" on three lines, and the two-column list inside it is what
+              but it stays: at 390px a half-width column puts "Sign your brand
+              up" on three lines, and the two-column list inside it is what
               gives the phone footer its rhythm. */}
           <div className="col-span-2 md:col-span-1">
             <div className="eyebrow" style={{ color: 'var(--brass)' }}>The House</div>
@@ -294,7 +294,7 @@ export function Footer() {
               <FLink href="/about">About</FLink>
               <FLink href="/faq">FAQ</FLink>
               <FLink href="/favourites">Favourites</FLink>
-              <FLink href="/contact?topic=seal">Apply for the seal</FLink>
+              <FLink href="/contact?topic=seal">Sign your brand up</FLink>
               <FLink href="/contact">Contact</FLink>
             </ul>
 

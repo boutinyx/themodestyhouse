@@ -8,7 +8,12 @@
  */
 export const TOPICS = [
   { value: 'general', label: 'General enquiry' },
-  { value: 'seal', label: 'Apply for the seal' },
+  // Relabelled 2026-09-03 — Tina: "i want to change apply for the seal to
+  // soething for sign your brand up". Only `label` moved; `value` is still
+  // 'seal' because it is referenced by ?topic=seal in the footer and on
+  // /about, and is the key the inbox has been filing these under since the
+  // form existed. Renaming the value would break both links silently.
+  { value: 'seal', label: 'Sign your brand up' },
   // Added 2026-08-25 for the homepage band, which became a marketing pitch that
   // was still deep-linking to `seal`. The LABEL IS A PLACEHOLDER — the plainest
   // functional string that makes the dropdown and the email subject work, not

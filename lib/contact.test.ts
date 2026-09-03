@@ -97,7 +97,7 @@ describe('buildEmail', () => {
   const fields = { name: 'Amina', email: 'amina@example.com', topic: 'seal', message: 'Hello there' } as const;
 
   it('puts the topic label in the subject', () => {
-    expect(buildEmail({ ...fields }).subject).toBe('[Apply for the seal] Amina');
+    expect(buildEmail({ ...fields }).subject).toBe('[Sign your brand up] Amina');
   });
 
   it('keeps the sender address in the body, so it survives even if reply_to is ignored', () => {
