@@ -19,7 +19,14 @@ export const TOPICS = [
   // functional string that makes the dropdown and the email subject work, not
   // chosen copy. Rename it freely; only `value` is referenced anywhere.
   { value: 'marketing', label: 'Marketing' },
-  { value: 'brand', label: 'Submit a brand' },
+  // Renamed from "Submit a brand" 2026-09-03, one message after 'seal' became
+  // "Sign your brand up" — which made the two read as the same thing, so a house
+  // wanting the seal could pick either and land in the inbox under two different
+  // subjects. This one is a SHOPPER recommending a house she loves; 'seal' is the
+  // house itself getting in touch. "house" rather than "brand" is the word the
+  // rest of the site uses ("Claim a house", "See the houses").
+  // Label only — `value` stays 'brand', the key the inbox files under.
+  { value: 'brand', label: 'Suggest a house' },
   // Added 2026-09-02 for the claim flow. Distinct from 'brand' on purpose:
   // 'brand' is a stranger proposing a house, 'claim' is a house saying one of
   // these pages is theirs, and the two need different handling in the inbox.

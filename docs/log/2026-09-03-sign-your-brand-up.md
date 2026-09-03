@@ -41,7 +41,7 @@ CSS loaded: rgb(250, 247, 241)
 footer has "Sign your brand up": true
 footer still has "Apply for the seal": false
 subject options: general: General enquiry | seal: Sign your brand up |
-                 marketing: Marketing | brand: Submit a brand |
+                 marketing: Marketing | brand: Suggest a house |
                  claim: Claim a house | press: Press | correction: Report a correction
 preselected on /contact?topic=seal: seal
 ```
@@ -51,10 +51,14 @@ string would pass even if the old one were still rendering somewhere beside it.
 
 ## Notes / follow-ups
 
-- **The Subject dropdown now has three options that read alike**: "Sign your brand up"
-  (a house asking for the seal), "Submit a brand" (a stranger proposing a house) and
-  "Claim a house" (a house saying an existing page is theirs). "Apply for the seal" was
-  clearly distinct from "Submit a brand"; the new label is not, and a house that wants the
-  seal could reasonably pick either — landing in the inbox under two different subjects.
-  Raised with Tina, not acted on: renaming "Submit a brand" (to something like "Suggest a
-  house") or merging the two is an editorial call, not a defect.
+- ~~**The Subject dropdown now has three options that read alike**~~ — **CLOSED the same
+  day.** "Apply for the seal" was clearly distinct from "Submit a brand"; "Sign your brand
+  up" was not, and a house wanting the seal could reasonably have picked either, landing in
+  the inbox under two different subjects. Raised, and Tina chose to rename rather than
+  merge, so **"Submit a brand" is now "Suggest a house"** — a shopper recommending a house
+  she loves, as against `seal`, which is the house itself getting in touch. "house" rather
+  than "brand" is the word the rest of the site already uses ("Claim a house", "See the
+  houses"). Label only; `value` stays `'brand'`.
+
+  The wording is mine, from the option Tina picked — she chose "rename" without naming it.
+  One line in `lib/contactTopics.ts` if she wants different words.
