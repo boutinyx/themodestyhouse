@@ -75,7 +75,22 @@ export function pageMetadata(path: keyof typeof SEO_COPY, canonical: string = pa
 
 export const SEO_COPY: Record<string, SeoCopy> = {
   '/': {
-    title: 'Modest Fashion Online — Shop Curated Modest Brands',
+    // BRAND FIRST, changed 2026-09-03 at Tina's choice. This was
+    // 'Modest Fashion Online — Shop Curated Modest Brands' from 2026-08-11 —
+    // keyword-forward and, uniquely on this site, silent about whose site it
+    // is. Every other page carries "| The Modesty House" from app/layout.tsx's
+    // template; the homepage does not, because a page-level `title` string
+    // replaces the template rather than feeding it. So the ONE page that has to
+    // win the brand's own name was the one page that never stated it — while
+    // modestyhouse.ca, modestyhaus.com, modestyhome.com and modestystyleco.com
+    // all have the name in theirs.
+    //
+    // The trigger: searching `themodestyhouse` on google.nl autocorrects to the
+    // phrase "the modesty house" and returns those four and not us. 41
+    // characters, so nothing is truncated, and "Modest Fashion Online" — the
+    // phrase the old title was written for — is kept.
+    // → docs/log/2026-09-03-brand-name-entity-confusion.md
+    title: 'The Modesty House — Modest Fashion Online',
     description: 'Shop modest dresses, abayas, hijabs and more from independently vetted modest fashion brands — curated, aspirational, all in one place.',
   },
   '/new-in': {
