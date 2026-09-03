@@ -1,5 +1,5 @@
 # "I'm gone" — Google autocorrected the brand name, and four sites share it
-**Date:** 2026-09-03 · **Status:** investigated · one fix blocked on Tina
+**Date:** 2026-09-03 · **Status:** done — merged and live
 
 ## What Tina saw
 A screenshot of `google.nl/search?q=themodestyhouse` in incognito, showing
@@ -192,3 +192,52 @@ The most that can honestly be said: `themodestyhouse` has **zero recorded impres
 ever**, so Google has almost no evidence it is a real word rather than a misspelling of a
 common phrase, and that judgement is not stable. The title fix does not prove a cause; it
 removes a real weakness the question surfaced.
+
+## Live, and what the competitor titles actually say
+
+Asked which title was better, "brutally honest", I checked the competitors instead of
+answering from the file's own (2026-08-11) note:
+
+```
+modestyhouse.ca    "Modestyhouse.ca – Modesty House"      <- name IS the title
+modestyhaus.com    "MODESTY HAUS"                         <- name IS the title
+Aab                "Modest Fashion Online – Aab"          <- keyword first, brand second
+INAYAH             "INAYAH - Crafted With Intention"      <- brand first
+Modanisa           "Modanisa | Tesettür, ..."             <- brand first
+```
+
+The two sites taking this brand query both make their name the whole title. Aab's
+keyword-first shape works because Aab has the authority to rank for "modest fashion
+online"; this site is at **position 55** for that phrase and no title tag closes it.
+Brand-first is right here for that reason, not as a general rule.
+
+Worth recording: the "(Recommended)" label was attached to brand-first BEFORE any
+competitor was checked. The check happened to support it; the label had not been earned
+when it was written.
+
+Merged as `56fe6e7` (carrying another session's `copy: "Submit a brand" becomes "Suggest a
+house"`). Origin confirmed current before purging — the title flipped at +2.0 min on
+cache-busted reads — then `purge_everything`, then the canonical URL twice:
+
+```
+GET 1  cf-cache-status=MISS   The Modesty House — Modest Fashion Online
+GET 2  cf-cache-status=HIT    The Modesty House — Modest Fashion Online
+og:title matches on both. /modest-tops and /about unchanged (controls).
+```
+
+## Proportion, stated plainly
+
+None of this is where her traffic is, and the log should say so rather than imply a fix:
+
+- Last 30 days by source: **Instagram ~130 visitors · ChatGPT ~102 · Google ~51.** The
+  title affects a slice of the smallest one.
+- `"modesty house"` drew **9 impressions in 90 days**; `themodestyhouse` has never drawn
+  one. This is optimisation for a search almost nobody performs.
+- What actually moved: impressions went 38/day → 961/day between 18 and 31 August, from
+  indexing more pages.
+- The single most valuable change of the week is almost certainly the homepage going from
+  **15.3 s to 7.8 s** on mobile — 73% of visitors land there and 75% are on phones.
+
+And the structural point no markup can fix: the brand name is shared with four websites,
+three Instagram accounts and a Rotterdam shop holding the local knowledge panel. That is a
+branding question, not an SEO one. Raised with Tina as her call, not proposed.
