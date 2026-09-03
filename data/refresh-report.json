@@ -1,31 +1,23 @@
 {
-  "date": "2026-09-02",
+  "date": "2026-09-03",
   "totals": {
-    "added": 79,
-    "updated": 27578,
-    "delisted": 91,
+    "added": 41,
+    "updated": 25680,
+    "delisted": 137,
     "filtered": 52,
-    "returned": 8,
-    "incomplete": 7
+    "returned": 16,
+    "incomplete": 11
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
       "complete": true,
-      "fetched": 195,
+      "fetched": 196,
       "added": [
-        "Garden Oasis Hijab",
-        "Just Peachy Hijab",
-        "Sage Reflections Hijab",
-        "September Soul Hijab",
-        "Bordeaux Bloom Hijab",
-        "Crescent Cove Hijab",
-        "Floral Fresco Hijab",
-        "Runway Remix Hijab",
-        "Gilded Coast Hijab"
+        "Catwalk Queen Hijab"
       ],
-      "updated": 186,
-      "delisted": 1,
+      "updated": 195,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -47,8 +39,10 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1101,
-      "added": [],
+      "fetched": 1102,
+      "added": [
+        "Modal Hijab - Jetset"
+      ],
       "updated": 1101,
       "delisted": 0,
       "filtered": [],
@@ -56,10 +50,10 @@
     },
     {
       "brandSlug": "niswa",
-      "complete": true,
-      "fetched": 414,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 414,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -90,17 +84,17 @@
       "fetched": 158,
       "added": [],
       "updated": 158,
-      "delisted": 55,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "jaida",
       "complete": true,
-      "fetched": 63,
+      "fetched": 62,
       "added": [],
-      "updated": 63,
-      "delisted": 0,
+      "updated": 62,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -121,10 +115,10 @@
     },
     {
       "brandSlug": "aab",
-      "complete": true,
-      "fetched": 778,
+      "complete": false,
+      "fetched": 499,
       "added": [],
-      "updated": 778,
+      "updated": 499,
       "delisted": 0,
       "filtered": [
         {
@@ -162,18 +156,15 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 284,
+      "fetched": 288,
       "added": [
-        "Brown Floral Printed Chiffon Hijab",
-        "Black Floral Printed Chiffon Hijab",
-        "Swirl Printed Chiffon Hijab",
-        "White and Silver Stripe Modal",
-        "Silver Shimmer Hijab Head Scarf",
-        "Black Shimmer Hijab Head Scarf",
-        "Coral Shimmer Hijab Head Scarf"
+        "Blue Dress",
+        "Black Abaya",
+        "Sage Green Abaya",
+        "White Abaya"
       ],
-      "updated": 277,
-      "delisted": 2,
+      "updated": 284,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -200,13 +191,12 @@
     {
       "brandSlug": "glow-modesty",
       "complete": true,
-      "fetched": 174,
+      "fetched": 116,
       "added": [
-        "Samira Dress",
-        "Amélie Dress"
+        "Luminary Column Gown"
       ],
-      "updated": 172,
-      "delisted": 0,
+      "updated": 115,
+      "delisted": 59,
       "filtered": [],
       "returned": 0
     },
@@ -272,10 +262,10 @@
     },
     {
       "brandSlug": "diversity-modest",
-      "complete": false,
-      "fetched": 0,
+      "complete": true,
+      "fetched": 93,
       "added": [],
-      "updated": 0,
+      "updated": 93,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -283,12 +273,12 @@
     {
       "brandSlug": "esme-ny",
       "complete": true,
-      "fetched": 64,
+      "fetched": 63,
       "added": [],
-      "updated": 64,
+      "updated": 63,
       "delisted": 1,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "arakai",
@@ -324,10 +314,8 @@
       "brandSlug": "zora",
       "complete": true,
       "fetched": 174,
-      "added": [
-        "The Jannah Orient Ramie Top in Navy Teal"
-      ],
-      "updated": 173,
+      "added": [],
+      "updated": 174,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -348,7 +336,7 @@
       "fetched": 170,
       "added": [],
       "updated": 170,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -375,29 +363,27 @@
     {
       "brandSlug": "merrachi",
       "complete": true,
-      "fetched": 1686,
+      "fetched": 1695,
       "added": [],
-      "updated": 1686,
+      "updated": 1695,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 9
     },
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 98,
+      "fetched": 105,
       "added": [
-        "Gebreide Vest",
-        "Knit trui met capuchon",
-        "Gebreide set met broek",
-        "Gebreide Maxi Jurk",
-        "Tweedelige set met broek",
-        "Gebreide Maxi Jurk met Riem",
-        "Gebreide Set met Ritsvest",
-        "Gebreid Vest met Knopen",
-        "Cropped trenchcoat"
+        "Knit vest met knopen",
+        "Gebreide tweedelige set met broek",
+        "Gebreide vest",
+        "Knit vest",
+        "Gebreide vest",
+        "Knit vest met capuchon",
+        "Mouwloze knit vest"
       ],
-      "updated": 89,
+      "updated": 98,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -490,10 +476,10 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 379,
+      "fetched": 378,
       "added": [],
-      "updated": 379,
-      "delisted": 0,
+      "updated": 378,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Atelier Trolley",
@@ -549,8 +535,10 @@
     {
       "brandSlug": "whiteicy",
       "complete": true,
-      "fetched": 67,
-      "added": [],
+      "fetched": 68,
+      "added": [
+        "Gilet Victoria – Maille à boutons dorés"
+      ],
       "updated": 67,
       "delisted": 0,
       "filtered": [],
@@ -701,8 +689,13 @@
     {
       "brandSlug": "noureen",
       "complete": true,
-      "fetched": 225,
-      "added": [],
+      "fetched": 229,
+      "added": [
+        "Heup Khimaar Lexus Nude",
+        "Abaya Lexus Nude 142/150 cm",
+        "Khimaar Jazz – Black",
+        "Abaya Jazz Black 142/150/156 cm"
+      ],
       "updated": 225,
       "delisted": 0,
       "filtered": [
@@ -738,10 +731,13 @@
     {
       "brandSlug": "chic-modesty",
       "complete": true,
-      "fetched": 456,
-      "added": [],
-      "updated": 456,
-      "delisted": 0,
+      "fetched": 457,
+      "added": [
+        "Hijab Jersey Liquid Plum",
+        "Hijab easy café au lait"
+      ],
+      "updated": 455,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -757,10 +753,10 @@
     },
     {
       "brandSlug": "by-hasanat",
-      "complete": true,
-      "fetched": 88,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 88,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -798,10 +794,10 @@
     {
       "brandSlug": "illi-studio",
       "complete": true,
-      "fetched": 148,
+      "fetched": 147,
       "added": [],
-      "updated": 148,
-      "delisted": 0,
+      "updated": 147,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -828,8 +824,10 @@
     {
       "brandSlug": "ellem-atelier",
       "complete": true,
-      "fetched": 23,
-      "added": [],
+      "fetched": 24,
+      "added": [
+        "Pink open chiffon abaya"
+      ],
       "updated": 23,
       "delisted": 0,
       "filtered": [],
@@ -899,10 +897,13 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 295,
-      "added": [],
+      "fetched": 297,
+      "added": [
+        "Fırfır Detaylı Transparan Bluz",
+        "Dantel Detaylı Uzun Elbise"
+      ],
       "updated": 295,
-      "delisted": 4,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -921,7 +922,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 2
+      "returned": 1
     },
     {
       "brandSlug": "abaya-lounge",
@@ -946,10 +947,10 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 349,
+      "fetched": 352,
       "added": [],
-      "updated": 349,
-      "delisted": 1,
+      "updated": 352,
+      "delisted": 0,
       "filtered": [],
       "returned": 3
     },
@@ -976,8 +977,13 @@
     {
       "brandSlug": "ayaana",
       "complete": true,
-      "fetched": 41,
-      "added": [],
+      "fetched": 45,
+      "added": [
+        "The Fleur Edit - Apricot",
+        "The Fleur Edit - Sapphire",
+        "The Fleur Edit - Mulberry",
+        "The Fleur Edit - Cocoa"
+      ],
       "updated": 41,
       "delisted": 0,
       "filtered": [],
@@ -1009,7 +1015,7 @@
       "fetched": 57,
       "added": [],
       "updated": 57,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1025,14 +1031,10 @@
     },
     {
       "brandSlug": "modesty-in-style",
-      "complete": true,
-      "fetched": 386,
-      "added": [
-        "Amelia Drape Dress",
-        "Nila Batwing Open Abaya",
-        "Nyla Batwing Set"
-      ],
-      "updated": 383,
+      "complete": false,
+      "fetched": 0,
+      "added": [],
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1050,8 +1052,10 @@
     {
       "brandSlug": "vivi-zubedi",
       "complete": true,
-      "fetched": 362,
-      "added": [],
+      "fetched": 363,
+      "added": [
+        "VZ Stellar Dress – Russet Brown"
+      ],
       "updated": 362,
       "delisted": 0,
       "filtered": [],
@@ -1060,12 +1064,24 @@
     {
       "brandSlug": "we-are-elegance",
       "complete": true,
-      "fetched": 94,
-      "added": [],
+      "fetched": 105,
+      "added": [
+        "Split Dress Black",
+        "Split Dress Cream",
+        "Split Dress Oat",
+        "Split Dress Chocolate Brown",
+        "Corduroy 2.0 Olive",
+        "Corduroy 2.0 Forest Green",
+        "Corduroy 2.0 Steel Grey",
+        "Corduroy Truffle Brown Open",
+        "Corduroy 2.0 Truffle Brown",
+        "Corduroy 2.0 Black",
+        "Corduroy Olive Open"
+      ],
       "updated": 94,
-      "delisted": 0,
+      "delisted": 1,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "beyond-label",
@@ -1129,14 +1145,14 @@
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 950,
+      "fetched": 947,
       "added": [
-        "Luxury Georgette Hijab - Nude"
+        "Premium Luxe Umbrella Cut Closed Abaya - Desert Taupe"
       ],
-      "updated": 949,
-      "delisted": 0,
+      "updated": 946,
+      "delisted": 5,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "abadia",
@@ -1215,33 +1231,10 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1044,
-      "added": [
-        "Gizli Düğme Detaylı Tunik Haki Tunik 0767",
-        "Gizli Düğme Detaylı Tunik Gece Mavisi Tunik 0767",
-        "Dar Paça Kumaş Pantolon Vizon Pantolon 0024",
-        "Palermo Trenç 38-48 Siyah Trençkot 12667",
-        "Kapüşonlu Fermuar Detaylı Kapitone Mont 13672 Siyah Yelek 0060",
-        "Palermo Trenç 38-48 Vizon Trençkot 12667",
-        "Palermo Trenç 38-48 Lacivert Trençkot 12667",
-        "Palermo Trenç 38-48 Siyah Trençkot 12615",
-        "Palermo Trenç 38-48 Kahve Trençkot 12667",
-        "Yaka Kürk Detaylı Latte Kaban 12358",
-        "Fular Detaylı Gizli Düğmeli Gömlek Yaka Valea Siyah Tunik 1657",
-        "Yaka Kürk Detaylı Siyah Kaban 12358",
-        "Kruvaze Yaka Cep Detaylı Kaşe Kaban Bej Kaban 13300",
-        "Gizli Düğme Detaylı Buz Mavisi Tunik 0767",
-        "Zühre Gizli Düğme Detaylı Siyah Tunik 0767",
-        "Zühre Gizli Düğme Detaylı Lacivert Tunik 0767",
-        "Cosy Pantolon 38-56 Siyah Pantolon 0102",
-        "Zühre Gizli Düğme Detaylı Ekru Tunik 0767",
-        "Zühre Gizli Düğme Detaylı Bej Tunik 0767",
-        "Geniş Paça Beli Lastik Detaylı Kumaş Gri Pantolon 0102",
-        "Cosy Pantolon 38-56 Lacivert Pantolon 0102",
-        "Geniş Paça Beli Lastik Detaylı Kumaş Leona Gri Pantolon 0102"
-      ],
-      "updated": 1022,
-      "delisted": 4,
+      "fetched": 992,
+      "added": [],
+      "updated": 992,
+      "delisted": 53,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1265,10 +1258,10 @@
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 353,
+      "fetched": 350,
       "added": [],
-      "updated": 353,
-      "delisted": 9,
+      "updated": 350,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -1306,38 +1299,18 @@
       "brandSlug": "aeon-abaya",
       "complete": true,
       "fetched": 742,
-      "added": [
-        "Petal Set",
-        "Foliage Blanc Set",
-        "Emerald Palm",
-        "Azure Palm",
-        "Flora Devoir",
-        "Chloe Set",
-        "Willow",
-        "Aura Rosé",
-        "Aqua Swirl",
-        "Mirabelle",
-        "Delphine",
-        "Marceline",
-        "Rosalinde Set",
-        "Amaranta",
-        "Eudora",
-        "Margaret Set",
-        "Clementine Set",
-        "Cordelia",
-        "Ivory Bloom"
-      ],
-      "updated": 723,
+      "added": [],
+      "updated": 742,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "nour-al-houda",
-      "complete": true,
-      "fetched": 782,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 782,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1356,32 +1329,29 @@
       "brandSlug": "golden-dune",
       "complete": true,
       "fetched": 176,
-      "added": [
-        "Schleife Zweiteiler",
-        "Schleife Zweiteiler"
-      ],
-      "updated": 174,
-      "delisted": 2,
+      "added": [],
+      "updated": 176,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 320,
+      "fetched": 312,
       "added": [],
-      "updated": 320,
-      "delisted": 10,
+      "updated": 312,
+      "delisted": 8,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "hijabipop",
       "complete": true,
-      "fetched": 40,
+      "fetched": 38,
       "added": [],
-      "updated": 40,
-      "delisted": 0,
+      "updated": 38,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -1393,7 +1363,7 @@
       "updated": 120,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "mondo-the-label",
@@ -1439,13 +1409,8 @@
       "brandSlug": "bybdsha",
       "complete": true,
       "fetched": 30,
-      "added": [
-        "Fig & Olive Printed Open Abaya",
-        "The Layali Set - XS/M",
-        "The Zahra Set - XS/M",
-        "Sage Green Cape Set"
-      ],
-      "updated": 26,
+      "added": [],
+      "updated": 30,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1462,6 +1427,12 @@
     }
   ],
   "frozenBrands": [
+    {
+      "brandSlug": "glow-modesty",
+      "prev": 165,
+      "next": 112,
+      "pct": 0.32
+    },
     {
       "brandSlug": "voile-chic",
       "prev": 126,
