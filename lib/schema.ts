@@ -19,12 +19,28 @@ const SITE_NAME = 'The Modesty House';
  * /contact, and `addressCountry` is what content/legal/privacy.md already
  * declares ("The Modesty House, based in the Netherlands").
  *
- * DELIBERATELY ABSENT — `sameAs`. It is the field that actually drives entity
- * resolution, and it cannot be filled honestly: components/Footer.tsx links to
- * bare pinterest.com / instagram.com / tiktok.com because there are no
- * profiles. Pointing sameAs at a platform's homepage claims an identity that
- * does not exist, which is worse than omitting it. Add sameAs the day real
- * accounts exist, and not before.
+ * `sameAs` — ADDED 2026-09-03, on the terms the note that stood here set: the
+ * day a real account exists, and not before. Tina gave the handle directly
+ * (`themodestyhouse.hq`); it is not inferred, and inference would have been
+ * indefensible here because THREE unrelated Instagram accounts use this exact
+ * brand name — `@themodestyhouse` is a Catholic modesty label
+ * (contactmodestyhouse@gmail.com), plus `@the.modesty.house`.
+ *
+ * WHY IT MATTERS MORE HERE THAN ON MOST SITES. `sameAs` is the field that
+ * drives entity resolution, and this brand name is contested by at least four
+ * websites — modestyhouse.ca, modestyhaus.com, modestyhome.com,
+ * modestystyleco.com — plus a Rotterdam shop, "House of Modesty", that owns the
+ * local knowledge panel on google.nl. Searching the phrase "the modesty house"
+ * on 2026-09-03 returned all four and not us; searching the literal string
+ * `themodestyhouse` returned us at #1 with an AI Overview citing the site.
+ * Google has no reason yet to treat these as one entity and us as a distinct
+ * one. → docs/log/2026-09-03-brand-name-entity-confusion.md
+ *
+ * PINTEREST AND TIKTOK ARE STILL ABSENT, and the original reasoning stands for
+ * them unchanged: components/Footer.tsx still links to bare pinterest.com and
+ * tiktok.com because no profile has been named. Pointing `sameAs` at a
+ * platform's homepage claims an identity that does not exist, which is worse
+ * than omitting it. Add each the day its handle is given.
  *
  * ALSO ABSENT — `alternateName` and `founder`. The first would be invented
  * brand copy (§10.18); the second has no public subject, and app/about/page.tsx
@@ -37,6 +53,7 @@ export function organizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
+    sameAs: ['https://www.instagram.com/themodestyhouse.hq/'],
     description: 'The archive for everything modest. A curated index of modest brands and pieces.',
     address: {
       '@type': 'PostalAddress',

@@ -2,6 +2,21 @@ import { describe, it, expect } from 'vitest';
 import { organizationSchema, websiteSchema, breadcrumbSchema, collectionPageSchema, articleSchema, faqPageSchema, jsonLdGraph } from './schema';
 
 describe('organizationSchema', () => {
+
+  it('sameAs names a PROFILE, never a bare platform homepage', () => {
+    // The whole point of the field. A note in lib/schema.ts kept `sameAs` empty
+    // for weeks precisely because components/Footer.tsx linked to
+    // https://instagram.com — the platform's front door — and pointing sameAs
+    // there claims an identity that does not exist. This fails if anyone ever
+    // fills it that way again.
+    const org = organizationSchema() as { sameAs?: string[] };
+    expect(org.sameAs, 'sameAs must exist once a real account is known').toBeTruthy();
+    for (const url of org.sameAs!) {
+      const u = new URL(url);
+      expect(u.pathname.replace(/\/+$/, ''), `${url} is a bare platform homepage, not a profile`).not.toBe('');
+      expect(u.protocol).toBe('https:');
+    }
+  });
   it('carries the site identity', () => {
     const org = organizationSchema();
     expect(org['@type']).toBe('Organization');
