@@ -150,3 +150,45 @@ times, zero bare platform links. `npm test` 1,100 passed.
 **This will not work overnight.** `sameAs` is an entity signal Google has to re-crawl and
 then trust; the thing to watch is whether "the modesty house" as a phrase starts returning
 this site, and that is weeks, not days.
+
+## The homepage never said the brand name — found by her pushing back
+
+The personalisation theory above was **wrong, and she said so**: *"i dont get why it
+suddenly dissapeared when i was able to see it on incognito before"*. She had seen it in
+incognito, which is exactly the case that theory could not explain. Dropping it and looking
+again turned up something structural:
+
+```
+/                    Modest Fashion Online — Shop Curated Modest Brands
+                     h1: "Every modest brand. One place."
+/modest-tops         Modest Tops Online — … | The Modesty House
+/about               About | The Modesty House
+/faq                 FAQ — How The Modesty House Works | The Modesty House
+/designers/merrachi  MERRACHI — 1,028 pieces & prices | The Modesty House
+```
+
+**The homepage is the only page on the site that states neither the brand name in its
+`<title>` nor in its `<h1>`** — and it is the page that has to win the brand query, against
+four competitors whose names *are* their titles.
+
+The mechanism: `app/layout.tsx` sets `default: 'The Modesty House — the archive for
+everything modest'` and `template: '%s | The Modesty House'`. A page-level `title` STRING
+replaces the template rather than feeding it, so `lib/seoCopy.ts`'s `/` entry — set
+2026-08-11 — silently dropped the brand from the one page that needed it.
+
+Changed to **`The Modesty House — Modest Fashion Online`** (41 chars, nothing truncates,
+the "Modest Fashion Online" phrase the old title was written for is kept). Tina chose it
+from four options.
+
+### What is NOT claimed
+
+This is **not** offered as the cause of what she saw yesterday. That cannot be
+reconstructed: Search Console has no data after 2026-08-31, and there is no record of
+yesterday's results page. Nothing shipped on 09-02 touched a brand-name signal — the
+favicon commit changed three image files and nothing else, and the day's other work was
+subtype pages, schema and a CSS deferral rule.
+
+The most that can honestly be said: `themodestyhouse` has **zero recorded impressions
+ever**, so Google has almost no evidence it is a real word rather than a misspelling of a
+common phrase, and that judgement is not stable. The title fix does not prove a cause; it
+removes a real weakness the question surfaced.
