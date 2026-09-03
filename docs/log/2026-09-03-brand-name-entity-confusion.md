@@ -87,3 +87,66 @@ way.
   Overview citing it. The GEO work from 2026-09-02 is visibly being used.
 - In the Netherlands specifically, the site is **position 1.0** for both "modesty house"
   and "the modest house" — on 1 impression each, which is why it feels invisible.
+
+---
+
+## "I was up there until yesterday when we changed the favicon"
+
+**The favicon cannot be the cause, and the timestamps settle it.** Google last crawled the
+homepage at **2026-09-02 11:48 UTC** (URL Inspection, checked live). The favicon changed in
+`727c343` at **17:32** — nearly six hours later. Google has not fetched the page since, so
+whatever it is showing today was built from a crawl that predates the new favicon entirely.
+Favicons are a display asset in the SERP; they are not a ranking input.
+
+Everything structural checks out, live:
+
+```
+verdict           PASS
+coverageState     Submitted and indexed
+robotsTxtState    ALLOWED          indexingState  INDEXING_ALLOWED
+pageFetchState    SUCCESSFUL       lastCrawlTime  2026-09-02T11:48:49Z
+googleCanonical   https://themodestyhouse.com/   (= userCanonical)
+no X-Robots-Tag · no meta robots · /favicon.ico, /icon.png, /apple-icon.png all 200
+```
+
+**A change yesterday cannot be confirmed or denied from Google's own data.** Search Console
+has nothing after **2026-08-31** — it runs two to three days behind. Up to that date the
+trend is straight up, not down:
+
+```
+08-18    0c    38i  avg pos 57.4
+08-27    3c   396i  avg pos 21.5
+08-30   11c   961i  avg pos 14.1
+08-31    8c   899i  avg pos 14.1
+```
+
+`"the modest house"` was **position 1.0 on 08-30** and 4.0 on 08-31, so it was ranking for
+the phrase days ago.
+
+**The likeliest explanation is the browser, not the site.** Her screenshot is taken in
+**Incognito**. Signed in and out of incognito, Google personalises heavily toward sites the
+user visits constantly — and she is on her own site all day. That can put it at the top for
+her and nowhere for anyone else; incognito strips it away, which reads as a sudden
+disappearance. Nothing in the index changed.
+
+## `sameAs` is now filled — the blocker is cleared
+
+Tina supplied the handle directly: **`themodestyhouse.hq`**. `lib/schema.ts` set the terms —
+*"add sameAs the day real accounts exist, and not before"* — and they are met. Inference was
+never an option here: three unrelated accounts use this exact brand name.
+
+- `components/Footer.tsx` — the Instagram icon pointed at `https://instagram.com`, the
+  platform's front door. Now the profile.
+- `lib/schema.ts` — `sameAs: ['https://www.instagram.com/themodestyhouse.hq/']`.
+- **Pinterest and TikTok icons removed**, Tina's call: both linked to the platform
+  homepages and no handle exists. An icon that takes you to TikTok's front page is worse
+  than no icon. Instagram inherits the -12px margin so the row stays flush.
+- New test: `sameAs` must name a PROFILE path, never a bare platform homepage — the exact
+  mistake the old note existed to prevent. Control checked: `https://instagram.com` fails it.
+
+Live and verified on production after purge — `MISS` then `HIT`, `sameAs` present both
+times, zero bare platform links. `npm test` 1,100 passed.
+
+**This will not work overnight.** `sameAs` is an entity signal Google has to re-crawl and
+then trust; the thing to watch is whether "the modesty house" as a phrase starts returning
+this site, and that is weeks, not days.
