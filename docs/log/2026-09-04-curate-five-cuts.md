@@ -115,3 +115,85 @@ decision keys changed: 5
   session; it is the next thing worth an hour.
 - **186 titles in non-English brands are still uncached.** `scripts/translate_titles.py
   --only <slug>` per house, then a republish.
+
+---
+
+## Second half — "btw names keep on being wrong"
+
+Tina, mid-task. She meant the product titles: **186 published rows were still in their
+source language** — Turkish, Dutch, French, German — and a visitor read them raw.
+
+```
+nihan 164 · manzaram 7 · parladusa 4 · noureen 3 · la-petite-parisienne 3
+mukistore 2 · whiteicy 1 · chic-modesty 1 · baqa 1
+
+"Pilikaşeli Kalem Etek - Açık Mavi"   "Comfy Kleid"   "Gilet ASTRID kaki (5645)"
+"Knit vest met knopen"                "Hijab easy café au lait"
+```
+
+**Why it "keeps" happening, and it is structural rather than a bug:** the applier
+(`build-data.mjs`) can only look a title up; the populator (`translate_titles.py`) needs the
+network and the venv, so it never runs in CI. Every nightly refresh adds arrivals whose
+titles have never been seen, and each one publishes untranslated until somebody runs the
+populator on a machine that can. The publish has been printing the exact count every night —
+`186 in non-English brands NOT in the cache` — and nobody was reading it.
+
+```
+./.venv-style/bin/python scripts/translate_titles.py --no-republish
+cache 11,274 -> 11,445
+
+15 titles failed that pass; retried per-brand (manzaram, nihan, parladusa)
+cache 11,445 -> 11,460
+```
+
+Republished with `npx tsx scripts/build-data.mjs` — again NOT `npm run build:data`, because
+the `postbuild:data` hook would re-run the populator against `products.json` and that is the
+feedback loop of §10.46.
+
+```
+Titles: 4404 translated from cache | cache covers every non-English title
+```
+
+**Verified the republish changed titles and nothing else** (§10.44 rule 2 — a conversion
+applied at both ends needs one check that the two agree):
+
+```
+rows 19169 -> 19169
+id sequence identical (no reorder): true
+titles changed: 184
+rows differing in any NON-title field: 0
+PUBLISHED rows still untranslated: 0
+
+parladusa            "Comfy Kleid"                    -> "Comfy dress"
+manzaram             "Knit vest met knopen"           -> "Knit cardigan with buttons"
+whiteicy             "Gilet Victoria – Maille à boutons dorés"
+                                                      -> "Victoria vest – Knit with gold buttons"
+la-petite-parisienne "Gilet ASTRID écrue (5645)"      -> "ASTRID ecru vest (5645)"
+baqa                 "Fırfır Detaylı Transparan Bluz" -> "Ruffle Detailed Transparent Blouse"
+nihan                "A-Line Denim Etek - Füme"       -> "A-Line Denim Skirt - Smoked"
+```
+
+`lib/titleTranslations.test.ts`'s two §10.46 guards — no cache key may be another entry's
+differing output, and `products.json` must equal `publishTitle(rawTitle)` — pass:
+`62 files, 1100 tests`.
+
+## Staging
+
+`ec7d616` deployed to `https://themodestyhouse-staging-production.up.railway.app` and
+verified on the product route, which 404s for an unpublished id:
+
+```
+the 5 cuts        404 404 404 404 404
+nightly controls  200 200 200 200      (vivi-zubedi, parladusa, veiled, merrachi)
+```
+
+The same nine URLs read the exact inverse **before** the deploy landed — cuts `200`, control
+`404` — which is the negative control for this check, obtained for free by measuring too
+early (§10.28 rule 1).
+
+## Notes / follow-ups
+
+- **The translation gap will reopen tomorrow morning.** Every nightly adds untranslated
+  arrivals and CI cannot fill them. Worth automating: the populator could run on a schedule
+  from a machine with the venv, or the publish's `NOT in the cache` count could become a
+  loud failure rather than a line nobody reads.
