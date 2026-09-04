@@ -191,6 +191,49 @@ The same nine URLs read the exact inverse **before** the deploy landed — cuts 
 `404` — which is the negative control for this check, obtained for free by measuring too
 early (§10.28 rule 1).
 
+## Production
+
+Fast-forwarded `main` to `staging` (`22ef748..266a0c7`) and proved it landed:
+`git merge-base --is-ancestor 266a0c7 origin/main` -> yes.
+
+The ff also carried **`1a787fd`, another session's `storefront-health` audit**, which had
+been sitting on `staging` since 2026-09-03. Additive only (a script, a docs log, one
+`package.json` line, no site output), so it is safe, and Tina was told rather than it going
+quietly.
+
+**Origin confirmed serving the new build BEFORE purging** (§10.47 rule 1 — purging early
+just re-fills the edge from a stale origin and pins it for another hour). Read past the edge
+with a cache-buster:
+
+```
+200 product/parladusa/15644355723590  cf=MISS  "Comfy dress" present: YES
+404 product/noureen/58549             cf=MISS
+200 product/vivi-zubedi/89044         cf=MISS
+```
+
+`purge_cache` -> `{"success":true}`. Token read with
+`grep '^CLOUDFLARE_API_TOKEN=' .env | cut -d= -f2-`, never by sourcing `.env` (§10.48).
+
+**Then the canonical URLs, real GETs, twice** (§10.47 rule 4 — a `curl -I` is not the request
+the cache serves):
+
+```
+pass 1   200 MISS  /product/parladusa/15644355723590   "Comfy dress": YES
+         404 MISS  /product/noureen/58549
+         404 MISS  /product/vela/8804158210204
+         200 MISS  /product/vivi-zubedi/89044
+         200 MISS  /new-in
+pass 2   identical, cf=HIT, age 0-1, same bodies
+```
+
+**One reading that looked like a contradiction and was not.** Between the push and the
+deploy, production served the German title (`Comfy Kleid`, old build) while the two cut
+products already 404'd. Both are true of exactly one commit — `ec7d616`, the cuts without
+the translations — so production was mid-rollout between `22ef748` and `266a0c7`, not
+inconsistent. It was settled by finding the build that satisfies BOTH observations rather
+than by re-reading either one, and confirmed by waiting: the same three URLs then read
+`Comfy dress` + 404 + 200 together.
+
 ## Notes / follow-ups
 
 - **The translation gap will reopen tomorrow morning.** Every nightly adds untranslated
