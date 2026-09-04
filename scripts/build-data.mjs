@@ -334,7 +334,16 @@ const finalRows = published.map(stripLifecycle).map(stripRawSignals);
 let rowsToWrite = finalRows;
 let frozenBrands = [];
 if (prevRows && !process.env.ALLOW_LARGE_DIFF) {
-  const drops = brandDropViolations(countByBrand(prevRows), countByBrand(finalRows));
+  // A slug in exclusions.json.brands is a human saying the drop is intended,
+  // which is the one thing brandDropViolations cannot work out for itself.
+  // Without it, cutting a brand needed ALLOW_LARGE_DIFF=1 — all-or-nothing,
+  // and on 2026-09-04 that would have swept two unrelated collapsed brands
+  // (107 rows) through alongside the 14 actually being cut.
+  const drops = brandDropViolations(
+    countByBrand(prevRows),
+    countByBrand(finalRows),
+    new Set(excl.brands ?? []),
+  );
   if (drops.length) {
     frozenBrands = drops;
     rowsToWrite = freezeCollapsedBrands(prevRows, finalRows, drops);

@@ -54,7 +54,6 @@ export const BRANDS: Brand[] = [
   { slug: 'avyaana', name: 'Avyaana', homepage: 'https://avyaana.com', feedUrl: 'https://avyaana.com/products.json', community: 'hijabi', currency: 'GBP', category: 'Modest & abayas', city: 'UK', vibe: 'elegant' },
   { slug: 'fares', name: 'Fares', homepage: 'https://shopfares.com', feedUrl: 'https://shopfares.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest', city: 'USA', vibe: 'elegant' },
   { slug: 'fatima-diallo', name: 'Fatima Diallo', homepage: 'https://shopfatimadiallo.com', feedUrl: 'https://shopfatimadiallo.com/products.json', community: 'hijabi', currency: 'USD', category: 'Modest & abayas', city: 'USA', vibe: 'elegant' },
-  { slug: 'madiha', name: 'Madiha', homepage: 'https://www.madiha.co.uk', feedUrl: 'https://www.madiha.co.uk/products.json', community: 'hijabi', currency: 'GBP', category: 'Abayas & scarves', city: 'UK', vibe: 'elegant' },
   // WooCommerce (not Shopify) — ingested via the Store API, see lib/ingest.ts.
   { slug: 'lafemme', name: 'La Femme Collectie', homepage: 'https://lafemmecollectie.nl', feedUrl: 'https://lafemmecollectie.nl/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },
 
@@ -110,7 +109,6 @@ export const BRANDS: Brand[] = [
   { slug: 'sukoon-active', name: 'Sukoon Active', homepage: 'https://www.sukoonactive.com', feedUrl: 'https://www.sukoonactive.com/products.json', community: 'hijabi', currency: 'USD', category: 'Activewear', city: 'USA', vibe: 'elegant' }, // 12 SKUs, 8 in stock, 3000px — thinnest of the five
   { slug: 'mukistore', name: 'Mukistore', homepage: 'https://mukistore.com', feedUrl: 'https://mukistore.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Rotterdam', vibe: 'elegant' },               // 250+, 2075px
   { slug: 'hijab-boutique', name: 'Hijab Boutique', homepage: 'https://hijabboutique.nl', feedUrl: 'https://hijabboutique.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Hijabs & modest', city: 'Arnhem', vibe: 'elegant' }, // 250+, 1600px
-  { slug: 'aniqq', name: 'ANIQQ Exclusive', homepage: 'https://aniqq.nl', feedUrl: 'https://aniqq.nl/products.json', community: 'hijabi', currency: 'EUR', category: 'Abayas', city: 'Arnhem', vibe: 'elegant' },                          // 26 SKUs, 3024px
   // WooCommerce — ingested via the Store API, see lib/ingest.ts.
   { slug: 'kimodesty', name: 'KIMODESTY', homepage: 'https://kimodesty.com', feedUrl: 'https://kimodesty.com/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                         // 100+, 1920px
   { slug: 'chador', name: 'Chador', homepage: 'https://chador.nl', feedUrl: 'https://chador.nl/wp-json/wc/store/v1/products', platform: 'woo', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Netherlands', vibe: 'elegant' },                                       // 113, 1707px

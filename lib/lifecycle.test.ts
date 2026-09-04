@@ -328,6 +328,24 @@ describe('brandDropViolations', () => {
     expect(brandDropViolations({ inayah: 3 }, { inayah: 2 })).toEqual([]);
   });
 
+  // A slug in exclusions.json.brands is the human statement of intent this
+  // guard is otherwise missing. Before 2026-09-04 the only way to publish a
+  // brand cut was ALLOW_LARGE_DIFF=1, which turns the guard off for EVERY
+  // brand at once — cutting madiha (11) and aniqq (3) that way would also have
+  // accepted glow-modesty 165->112 and voile-chic 126->72, two unrelated feeds
+  // nobody had looked at, for a net -121 when the intended cut was -14.
+  it('does not flag a brand that was deliberately blocklisted', () => {
+    const cut = new Set(['madiha']);
+    expect(brandDropViolations({ madiha: 11 }, { madiha: 0 }, cut)).toEqual([]);
+    // ...and the rest of the catalogue is still guarded in the same publish.
+    const v = brandDropViolations({ madiha: 11, 'glow-modesty': 165 }, { 'glow-modesty': 112 }, cut);
+    expect(v.map((d) => d.brandSlug)).toEqual(['glow-modesty']);
+  });
+
+  it('still flags a collapse for a brand that is NOT blocklisted', () => {
+    expect(brandDropViolations({ inayah: 100 }, { inayah: 0 }, new Set(['madiha']))).toHaveLength(1);
+  });
+
   it('flags a drop that is both >30% and >=5 products', () => {
     expect(brandDropViolations({ inayah: 15 }, { inayah: 9 })).toHaveLength(1);
   });

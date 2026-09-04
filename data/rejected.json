@@ -35046,6 +35046,94 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "madiha:14893697565055",
+    "brandSlug": "madiha",
+    "title": "Bundle: The Wave Scarf In Cream and Black",
+    "url": "https://www.madiha.co.uk/products/the-wave-scarf-bundle",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14893656080767",
+    "brandSlug": "madiha",
+    "title": "The Wave Scarf In Black / Cream",
+    "url": "https://www.madiha.co.uk/products/the-wave-scarf-in-black",
+    "garmentWas": "hijab",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817364607359",
+    "brandSlug": "madiha",
+    "title": "The Wave Abaya In Cream",
+    "url": "https://www.madiha.co.uk/products/the-wave-abaya-in-beige",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817786167679",
+    "brandSlug": "madiha",
+    "title": "The Wrap In Off-White / Black",
+    "url": "https://www.madiha.co.uk/products/the-wrap-in-off-white",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817368047999",
+    "brandSlug": "madiha",
+    "title": "The Trench Abaya In Camel",
+    "url": "https://www.madiha.co.uk/products/the-trench-abaya-in-camel",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817367327103",
+    "brandSlug": "madiha",
+    "title": "The Ribbed Slim Sleeve Abaya In Dark Brown",
+    "url": "https://www.madiha.co.uk/products/the-ribbed-slim-sleeve-abaya-in-dark-brown",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817366278527",
+    "brandSlug": "madiha",
+    "title": "The High Slit Abaya In Tan",
+    "url": "https://www.madiha.co.uk/products/the-high-slit-abaya-in-tan",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817363853695",
+    "brandSlug": "madiha",
+    "title": "The Oversized Blazer Abaya In Sage Green",
+    "url": "https://www.madiha.co.uk/products/the-oversized-blazer-abaya-in-sage-green",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817363034495",
+    "brandSlug": "madiha",
+    "title": "The Wave Abaya In Electric Blue",
+    "url": "https://www.madiha.co.uk/products/the-wave-abaya-in-electric-blue",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14813033202047",
+    "brandSlug": "madiha",
+    "title": "High Slit Abaya In Black",
+    "url": "https://www.madiha.co.uk/products/high-slit-abaya-in-black",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "madiha:14817789018495",
+    "brandSlug": "madiha",
+    "title": "The Slip Dress In Off-White / Black",
+    "url": "https://www.madiha.co.uk/products/the-slip-dress-in-off-white-black",
+    "garmentWas": "dress",
+    "reason": "brand-blacklist"
+  },
+  {
     "id": "kamin:9774594195673",
     "brandSlug": "kamin",
     "title": "GAMRA | Beverage Dispenser with Gahwa & Tea Set",
@@ -40582,6 +40670,30 @@
     "reason": "non-apparel:care",
     "tier": "B",
     "evidence": "hangers"
+  },
+  {
+    "id": "aniqq:15913188360527",
+    "brandSlug": "aniqq",
+    "title": "Abaya Yara",
+    "url": "https://aniqq.nl/products/abaya-yara-2",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "aniqq:15913186197839",
+    "brandSlug": "aniqq",
+    "title": "Abaya Yara",
+    "url": "https://aniqq.nl/products/abaya-yara-1",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
+  },
+  {
+    "id": "aniqq:15913181151567",
+    "brandSlug": "aniqq",
+    "title": "Abaya Yara",
+    "url": "https://aniqq.nl/products/abaya-yara",
+    "garmentWas": "abaya",
+    "reason": "brand-blacklist"
   },
   {
     "id": "abyya:11851246207316",

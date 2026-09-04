@@ -214,14 +214,28 @@ export interface BrandDrop {
  * brand whose feed dies can vanish entirely in the same week others add stock,
  * and the total barely moves. Checking each brand independently cannot be
  * masked that way. The >=5 floor stops a 3-product brand tripping on one loss.
+ *
+ * `intentionallyCut` is the answer to the one thing this function genuinely
+ * cannot see. Its whole premise is that a brand losing most of its rows might
+ * be a dead feed, so it freezes rather than accepts — but when a slug is in
+ * `exclusions.json.brands` a human has already SAID the drop is intended, and
+ * there is nothing left to be uncertain about. Without this the only way to
+ * publish a brand cut was `ALLOW_LARGE_DIFF=1`, which is all-or-nothing: on
+ * 2026-09-04, cutting madiha (11 rows) and aniqq (3) that way would also have
+ * accepted glow-modesty 165->112 and voile-chic 126->72 — 107 rows of two
+ * unrelated brands whose feeds nobody had looked at yet — and the counts said
+ * -121 when the intended cut was -14. A blunt override that silently widens
+ * past the thing you meant to do is worse than the friction it removes.
  */
 export function brandDropViolations(
   prevCounts: Record<string, number>,
   nextCounts: Record<string, number>,
+  intentionallyCut: ReadonlySet<string> = new Set(),
 ): BrandDrop[] {
   const out: BrandDrop[] = [];
   for (const [brandSlug, prev] of Object.entries(prevCounts)) {
     if (prev <= 0) continue;
+    if (intentionallyCut.has(brandSlug)) continue;
     const next = nextCounts[brandSlug] ?? 0;
     const lost = prev - next;
     if (lost <= 0) continue;

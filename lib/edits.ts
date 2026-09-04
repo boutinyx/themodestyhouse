@@ -886,7 +886,6 @@ export const EDITS: Edit[] = [
       'lameera-moda:9064622850216', // LaMeera Moda — Premium Modal Scarf- Sage
       'mondo-the-label:7935813419070', // Mondo The Label — Mona Crochet Knit Cardigan
       'arakai:10944839647578', // Arakai Studio — Farha Belted Poplin Blouse White
-      'madiha:14817368047999', // Madiha — The Trench Abaya In Camel
       'merrachi:15639038361983', // MERRACHI — Liquid Jersey Scarf | Peach Cream
       'whiteicy:15666941493588', // White Icy — Louise denim trench jacket
       'modista:9641747054882', // Modista — Knit Wear Coord Set - Top & Skirt
