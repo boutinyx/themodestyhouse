@@ -113,6 +113,32 @@ from `.next/types/validator.ts` dated **Aug 29** — stale generated route types
 deleted on 2026-09-01, i.e. another session's build output, not this change. `app/directory`
 does not exist.
 
+## Shipped
+
+`staging` verified, then `main` fast-forwarded `25bfa24..023899b` (carrying this cut and the
+CI translation fix), Cloudflare purged, production verified.
+
+Origin confirmed serving the new build with a cache-buster BEFORE the purge (§10.47 rule 1),
+then the canonical URLs GET twice — MISS then HIT, identical bodies:
+
+```
+404  madiha:14817368047999          cut
+404  aniqq:9436069036347            cut
+200  glow-modesty:9334093840600     CONTROL — the frozen brand ALLOW_LARGE_DIFF would have taken
+200  voile-chic:8648687747325       CONTROL — the other one
+200  nour-al-houda:7781509070896    CONTROL — the brand that came back
+200  vivi-zubedi:89044              CONTROL — last night's addition
+200  parladusa:15644355723590       CONTROL — a translated title
+
+200  /  /new-in  /edits/fall-essentials  /modest-abayas
+     no "madiha" or "aniqq" anywhere in any of the four
+```
+
+The two frozen-brand controls are the ones that matter here: they are the rows the blunt
+override would have deleted, and they are the reason the guard fix is in this commit rather
+than a `ALLOW_LARGE_DIFF=1` in the shell history.
+
+
 ## Notes / follow-ups
 
 - **`glow-modesty` and `voile-chic` are still frozen** — 32% and 43% of their rows stopped
