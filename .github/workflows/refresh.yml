@@ -71,6 +71,44 @@ jobs:
       # A tripped collapse guard therefore leaves production untouched and the
       # run red, which is the intended behaviour.
 
+      # THE TRANSLATION GAP, closed 2026-09-04.
+      #
+      # build-data.mjs can only LOOK UP a title in data/title-translations.json;
+      # scripts/translate_titles.py is what POPULATES it, and it needs the
+      # network. Until now the only thing that ran it was the `postrefresh` npm
+      # hook, guarded on `[ -x .venv-style/bin/python ]` — a venv that exists on
+      # Tina's laptop and on no runner. So every night this job added arrivals
+      # whose titles had never been seen and published them in Dutch, French,
+      # German and Turkish, printing the count and waiting for a human. On
+      # 2026-09-04 that human noticed, and it was 186 products.
+      #
+      # deep_translator is the script's ONLY third-party import, so a plain
+      # `pip install` is the whole dependency. Everything else is stdlib.
+      #
+      # continue-on-error because the endpoint is free and unofficial: a bad
+      # night must not red a run whose catalogue is already correct. Failure is
+      # not silent — the script caches only clean results, so anything it could
+      # not translate stays uncached, and `untranslatedTitles` in the step
+      # summary says so in a warning block. A number that stays non-zero across
+      # nights means this step is broken, not lagging.
+      - name: Set up Python
+        if: success()
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Translate new titles
+        if: success()
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          pip install --quiet "deep-translator==1.11.4"
+          # No --no-republish: the script re-runs the publish itself (invoking
+          # node_modules/.bin/tsx directly, NOT `npm run build:data`, whose
+          # postbuild hook calls this script and would recurse), so the new
+          # titles are applied to products.json in this same step.
+          python3 scripts/translate_titles.py
+
       - name: Summarise
         if: success()
         run: npm run refresh:summary >> "$GITHUB_STEP_SUMMARY"
@@ -82,8 +120,13 @@ jobs:
           set -euo pipefail
           git config user.name  "modesty-house-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # title-translations.json is in this list because the translate step
+          # above writes it. Without it the cache would be rebuilt from nothing
+          # every night — the same titles re-sent to a free endpoint for ever,
+          # and no record of the ones it already got right.
           git add data/raw-products.json data/products.json data/decisions.json \
-                  data/rejected.json data/review.json data/refresh-report.json
+                  data/rejected.json data/review.json data/refresh-report.json \
+                  data/title-translations.json
           if git diff --cached --quiet; then
             echo "No catalogue changes — nothing to push."
             echo "pushed=false" >> "$GITHUB_OUTPUT"

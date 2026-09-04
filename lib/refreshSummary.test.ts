@@ -59,6 +59,21 @@ describe('formatSummary', () => {
     expect(formatSummary(report)).not.toMatch(/frozen/i);
   });
 
+  it('says nothing about titles when the cache covers every one', () => {
+    expect(formatSummary(report)).not.toMatch(/source language/i);
+    expect(formatSummary({ ...report, untranslatedTitles: 0 })).not.toMatch(/source language/i);
+  });
+
+  // The count has always been printed by the publish and read by nobody — 186
+  // titles were live in Turkish, Dutch, French and German on 2026-09-04. The
+  // step summary is where someone actually looks.
+  it('flags published titles still in their source language', () => {
+    const out = formatSummary({ ...report, untranslatedTitles: 186 });
+    expect(out).toMatch(/source language/i);
+    expect(out).toContain('186');
+    expect(out).toContain('translate_titles.py');
+  });
+
   it('prominently flags a frozen brand, since the run succeeds despite it', () => {
     const out = formatSummary({
       ...report,

@@ -23,6 +23,22 @@ translation can no longer be fed back into itself. It reads:
   - a persistent cache (data/title-translations.json) so re-runs are instant and
     survive re-scrapes (raw stays original; only the published titles are English).
 
+TWO ENGINES, in order: Google first, MyMemory second. Google is what produced
+every one of the existing cache entries and is kept first for consistency, but
+it is a SCRAPED endpoint with no contract — on 2026-09-04, after ~190 titles in
+one afternoon, it began answering every request on this machine with
+TranslationNotFound, in both the project venv and a clean one, for strings it
+had translated correctly an hour earlier. A GitHub runner's datacenter IP is a
+likelier target for that than a laptop, so a CI step with only Google in it
+would be a fix that does not work. MyMemory is a documented free API rather
+than a scrape, and answered all four probe strings correctly at the moment
+Google was refusing everything — including 'Fırfır Detaylı Transparan Bluz' ->
+'Ruffle Detailed Transparent Blouse', byte-identical to what Google had given
+earlier. It needs LOCALE codes (de-DE, not de), hence MYMEMORY_LOCALE.
+
+Both engines go through the same looks_bad() validation, and a title neither can
+translate is simply left uncached and retried tomorrow — never written wrong.
+
 After caching new entries it re-runs the publish itself, so one command still
 gets a new title onto the site. It invokes node_modules/.bin/tsx DIRECTLY rather
 than `npm run build:data`, because that npm script has a postbuild:data hook that
@@ -56,6 +72,17 @@ BRANDS_FILE = APP / "data" / "translate-brands.json"
 # data/translate-brands.json = {"manzaram": "nl"}
 DEFAULT_BRANDS = {"manzaram": "nl"}
 
+# MyMemory rejects a bare "de" (LanguageNotSupportedException) and wants a
+# locale. Only the languages data/translate-brands.json actually uses are here;
+# a language with no entry simply has no fallback, which is reported, not
+# guessed. Read off MyMemoryTranslator().get_supported_languages() on
+# 2026-09-04 rather than assumed.
+MYMEMORY_LOCALE = {
+    "nl": "nl-NL", "fr": "fr-FR", "de": "de-DE",
+    "tr": "tr-TR", "it": "it-IT", "da": "da-DK",
+}
+MYMEMORY_TARGET = "en-GB"
+
 
 def looks_bad(result: str, original: str) -> bool:
     if not result or not result.strip():
@@ -76,7 +103,7 @@ def main():
                     help="populate the cache but don't re-run the publish")
     args = ap.parse_args()
 
-    from deep_translator import GoogleTranslator
+    from deep_translator import GoogleTranslator, MyMemoryTranslator
 
     conf = json.loads(BRANDS_FILE.read_text()) if BRANDS_FILE.exists() else DEFAULT_BRANDS
     brand_lang = conf if isinstance(conf, dict) else {s: "auto" for s in conf}  # tolerate a plain list
@@ -93,7 +120,20 @@ def main():
     published_rows = published if isinstance(published, list) else published.get("products", [])
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
 
-    translators = {lang: GoogleTranslator(source=lang, target="en") for lang in set(brand_lang.values())}
+    def engines_for(lang: str):
+        """Google first, MyMemory second. Order is deliberate — see the module
+        docstring. A language with no MyMemory locale gets Google only."""
+        chain = [("google", GoogleTranslator(source=lang, target="en"))]
+        locale = MYMEMORY_LOCALE.get(lang)
+        if locale:
+            try:
+                chain.append(("mymemory", MyMemoryTranslator(source=locale, target=MYMEMORY_TARGET)))
+            except Exception:
+                pass  # never let a fallback's construction break the primary
+        return chain
+
+    translators = {lang: engines_for(lang) for lang in set(brand_lang.values())}
+    by_engine = {"google": 0, "mymemory": 0}
     added = attempted = failed = skipped = 0
     samples = []
 
@@ -116,17 +156,21 @@ def main():
         attempted += 1
         new = t
         got_clean = False
-        translator = translators.get(brand_lang.get(slug, "auto"), translators.get("auto"))
-        for attempt in range(3):            # the free endpoint 500s intermittently
-            try:
-                candidate = translator.translate(t)
-                if candidate and not looks_bad(candidate, t):
-                    new = candidate.strip()
-                    got_clean = True
-                    break
-            except Exception:
-                pass
-            time.sleep(0.6 * (attempt + 1))
+        chain = translators.get(brand_lang.get(slug, "auto")) or translators.get("auto") or []
+        for engine_name, translator in chain:
+            for attempt in range(3):        # the free endpoints 500 intermittently
+                try:
+                    candidate = translator.translate(t)
+                    if candidate and not looks_bad(candidate, t):
+                        new = candidate.strip()
+                        got_clean = True
+                        by_engine[engine_name] = by_engine.get(engine_name, 0) + 1
+                        break
+                except Exception:
+                    pass
+                time.sleep(0.6 * (attempt + 1))
+            if got_clean:
+                break
         if got_clean:
             cache[t] = new                  # cache ONLY clean results; failures retry next run
             added += 1
@@ -142,6 +186,11 @@ def main():
         f"attempted: {attempted} | newly cached: {added} | "
         f"failed(retried next run): {failed}"
     )
+    # Which engine did the work is worth printing: if google is 0 and mymemory
+    # carried the whole run, google is being refused again and the fallback is
+    # the only reason this step still works.
+    if attempted:
+        print("engines: " + " | ".join(f"{k} {v}" for k, v in by_engine.items()))
     for o, n in samples:
         print(f"  {o!r}\n   -> {n!r}")
 

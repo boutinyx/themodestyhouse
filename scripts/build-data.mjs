@@ -363,9 +363,18 @@ if (prevRows && !process.env.ALLOW_LARGE_DIFF) {
 // of failing — a silent freeze would be exactly the kind of "brand quietly
 // stops being maintained for weeks" gap CLAUDE.md already warns about for
 // incomplete fetches.
+//
+// `untranslatedTitles` rides along for the same reason. The publish has always
+// PRINTED that count, and on 2026-09-04 Tina found 186 products reading in
+// Turkish, Dutch, French and German — the number had been in the nightly's log
+// every morning and nobody reads a log line. In the step summary it is a
+// warning block next to the frozen brands, which is where someone looks.
 if (existsSync(U('refresh-report.json'))) {
   const report = JSON.parse(readFileSync(U('refresh-report.json'), 'utf8'));
-  writeFileSync(U('refresh-report.json'), JSON.stringify({ ...report, frozenBrands }, null, 2));
+  writeFileSync(
+    U('refresh-report.json'),
+    JSON.stringify({ ...report, frozenBrands, untranslatedTitles: translationStats.uncached }, null, 2),
+  );
 }
 
 writeFileSync(U('products.json'), JSON.stringify(rowsToWrite, null, 2));

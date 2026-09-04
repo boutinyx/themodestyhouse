@@ -34,6 +34,13 @@ export interface ReportLike {
    *  scripts/build-data.mjs, appended onto the same report scripts/refresh.mjs
    *  already wrote. */
   frozenBrands?: FrozenBrandLike[];
+  /** Published rows in a `data/translate-brands.json` brand whose feed title is
+   *  not in `data/title-translations.json`, so they publish in their source
+   *  language. Written by scripts/build-data.mjs, which has always printed this
+   *  number and had it read by nobody: on 2026-09-04 Tina found 186 titles live
+   *  in Turkish, Dutch, French and German. Surfaced here so a translator step
+   *  that silently stops working cannot go unnoticed for weeks. */
+  untranslatedTitles?: number;
 }
 
 const n = (v: number | undefined) => (v ?? 0).toLocaleString('en-GB');
@@ -69,6 +76,21 @@ export function formatSummary(report: ReportLike): string {
     out.push(
       `> Review \`data/rejected.json\` and \`data/refresh-report.json\`. Re-run with ` +
       `\`ALLOW_LARGE_DIFF=1\` to accept the new (collapsed) state instead of freezing.`,
+    );
+    out.push('');
+  }
+
+  // A title that publishes in Dutch or Turkish is visible to every visitor and
+  // to nothing else — no test can assert it, because a foreign title is not
+  // malformed, just wrong for this site. This line is the only alarm there is.
+  const untranslated = report.untranslatedTitles ?? 0;
+  if (untranslated > 0) {
+    out.push(
+      `> ⚠️ **${n(untranslated)} published product title(s) are still in their source ` +
+      `language** — the cache did not cover them, so visitors see Dutch, French, German or ` +
+      `Turkish. Run \`python3 scripts/translate_titles.py\` (it populates ` +
+      `\`data/title-translations.json\` and republishes). If this number is non-zero on ` +
+      `consecutive nights the workflow's translate step is failing, not just lagging.`,
     );
     out.push('');
   }
