@@ -36,7 +36,13 @@ export default function PriceRange({
     (bounds.openTop && atTop ? '+' : '');
 
   return (
-    <div className="flex flex-col gap-1.5 min-w-[190px]">
+    // basis-full below md so the slider gets its OWN row on a phone.
+    // IndexPanel lays its children out with `flex flex-wrap gap-2`, and at
+    // 390px the track and the Colour chip ended up shoulder to shoulder —
+    // the chip read as sitting on the end of the track. Measured on staging
+    // 2026-09-05: thumb right edge at x=478, Colour chip left edge at x=485.
+    // Layout only, so a Tailwind utility is the right tool here (§6).
+    <div className="flex flex-col gap-1.5 basis-full md:basis-auto md:min-w-[190px]">
       <div className="flex items-baseline justify-between gap-3">
         <span className="eyebrow" style={{ color: 'var(--muted)' }}>
           Price
