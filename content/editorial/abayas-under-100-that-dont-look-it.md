@@ -1,6 +1,8 @@
 ---
 title: "Abayas Under $100 That Don't Look Under $100"
 dek: "Nine pieces between $36 and $54, and the construction details that give a cheap abaya away — hidden zips, real pockets, fabric with texture instead of shine."
+seoTitle: "9 Affordable Abayas That Look Expensive"
+seoDescription: "Nine abayas from $36 to $54, and the four construction tells — hidden zips, real pockets, texture over shine — that give a cheap abaya away."
 category: "Guides"
 author: "The Modesty House"
 date: "2026-09-05"

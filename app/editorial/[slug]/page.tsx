@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
-import { getPost, getPosts, formatDate } from '@/lib/posts';
+import { seo, getPost, getPosts, formatDate } from '@/lib/posts';
 import { Markdown } from '@/components/Markdown';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 import { JsonLd } from '@/components/JsonLd';
@@ -16,9 +16,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = getPost(slug);
   if (!p) return { title: 'Not found' };
+  // <title> and meta description take the SEO override when the post has one;
+  // OpenGraph and Twitter deliberately keep the headline, because a shared link
+  // is read by a person rather than ranked. See lib/posts.ts::seo.
+  const s = seo(p);
   return {
-    title: p.title,
-    description: p.dek,
+    title: s.title,
+    description: s.description,
     alternates: { canonical: `/editorial/${p.slug}` },
     openGraph: {
       title: p.title,

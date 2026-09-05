@@ -55,4 +55,4 @@ Here's the one hard number in this piece: sort all 91 houses by median price and
 
 ---
 
-If you're shopping under $200, you're in one enormous, continuous market — price alone won't tell you much about a house's style, and the difference between a $95 abaya and a $190 one is mostly tailoring and finish, not exclusivity. Above $295, you're somewhere else entirely, and the gap in between is real, not a rounding artefact of how I split the data. Browse the full range in the [abaya directory](/modest-abayas).
+If you're shopping under $200, you're in one enormous, continuous market — price alone won't tell you much about a house's style, and the difference between a $95 abaya and a $190 one is mostly tailoring and finish, not exclusivity. Above $295, you're somewhere else entirely, and the gap in between is real, not a rounding artefact of how I split the data. Browse the full range in the [abaya directory](/modest-abayas), or read the pieces I'd pick at the very bottom of that first band in [abayas under $100 that don't look it](/editorial/abayas-under-100-that-dont-look-it).
