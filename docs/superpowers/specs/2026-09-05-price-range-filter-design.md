@@ -94,7 +94,16 @@ raw `<style>` block.
 
 Both already compose predicates over `shownRows`; this adds one more, and renders
 `<PriceRange>` inside `IndexPanel` beside the existing Brand and Colour dropdowns. That covers
-every lane, every `/designers/<slug>`, every `/edits/<slug>` and `/new-in` — "everywhere".
+every lane, every `/edits/<slug>` and `/new-in`.
+
+**NOT `/designers/<slug>`, and that is deliberate.** Those pages pass
+`showConsole={false}` — Tina asked for the whole filter block gone from them on 2026-08-26 —
+and the price control renders inside that block. This spec claimed designer coverage until
+the final review MEASURED it: 0 thumbs and 0 `.index-panel` on `/designers/inayah` and
+`/designers/aab`, against 2 thumbs on a lane. Put to Tina on 2026-09-05 as a genuine
+collision between two of her own instructions ("a slider everywhere" vs "that block gone from
+designer pages"); she chose to leave designer pages without it. A designer page is one
+house's work and reads as a portfolio rather than a search tool.
 
 ### Edge cases, each with a decided answer
 

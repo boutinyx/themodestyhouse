@@ -21,7 +21,7 @@ Plan: `docs/superpowers/plans/2026-09-05-price-range-filter.md`
 | `lib/priceFilter.ts` (new) | `priceBounds`, `withinPrice`, `clampRange` — pure, 14 tests |
 | `components/PriceRange.tsx` (new) | Base UI `Slider` with two indexed thumbs |
 | `app/globals.css` | `.price-thumb` and its `:has(input:focus-visible)` focus ring |
-| `components/FilterableGrid.tsx`, `components/DirectoryBrowser.tsx` | the wiring — every lane, designer, edit and `/new-in` |
+| `components/FilterableGrid.tsx`, `components/DirectoryBrowser.tsx` | the wiring — every lane, every `/edits/<slug>` and `/new-in`. **Not `/designers/<slug>`** — see below |
 | `scripts/interaction-audit.mjs` | `price-slider-drag` and `price-slider-keyboard` |
 
 **The track stops at the 95th percentile and a parked top handle means "and up".** Measured,
@@ -131,9 +131,20 @@ pre-existing `.next/types/validator.ts` errors naming the `/directory` route del
   the Colour chip ended up shoulder to shoulder — thumb right edge at x=478, chip left edge at
   x=485 — so the chip read as sitting on the end of the track. Nothing overflowed, so no audit
   check could see it. The control now takes its own row below `md`.
-- **`/designers/<slug>` and `/edits/<slug>` were not individually click-tested.** They render
-  the same `FilterableGrid` as the lanes, and the two grid components were verified textually
-  identical, but that is an inference rather than a measurement.
+- **`/designers/<slug>` has no price slider, and the first version of this entry claimed it
+  did.** The final review measured it rather than inferring it: 0 thumbs and 0 `.index-panel`
+  on `/designers/inayah` and `/designers/aab`, against 2 thumbs on `/modest-abayas`. Those
+  pages pass `showConsole={false}` — Tina asked for the filter block gone from them on
+  2026-08-26 — and `PriceRange` renders inside that block. Every other surface is genuinely
+  covered.
+  This was a collision between two of Tina's own instructions ("a slider everywhere" and "that
+  block gone from designer pages"), so it went to her rather than being resolved here. She
+  chose to leave designer pages without it. Commit `b9b397a`'s message still claims designer
+  coverage; it is on `staging`, which is never force-pushed, so it stands uncorrected and this
+  note is the correction.
+  **The generalisable bit:** "it renders the same component" is an inference, and this one was
+  false because a PROP three files away decides whether that component draws anything. Two of
+  the three surfaces I claimed had been verified; the third had not been looked at.
 - **Still open, and worth more than this was:** `/modest-abayas` has no crawlable price view.
   Every result Google returns for "abayas under $100" is a filtered grid — Aab's is literally
   called "Shop Under $100" — and this filter is deliberately invisible to search engines.
