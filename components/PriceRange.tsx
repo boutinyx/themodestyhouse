@@ -80,10 +80,11 @@ export default function PriceRange({
       {/* .chip and the caret match FilterDropdown exactly, so this reads as the
           fifth member of the row rather than a control from somewhere else. */}
       <Popover.Trigger
-        // ml-auto pushes it to the far right of IndexPanel's flex row, which
-        // is what Tina asked for. On a phone the row wraps and ml-auto simply
-        // right-aligns it on its own line, which is harmless.
-        className="chip inline-flex items-center gap-1.5 ml-auto"
+        // No ml-auto: Tina moved it back in beside the other chips, 2026-09-05
+        // ("nvm lets put the pill next to the other shit on the left"), having
+        // seen it pushed right. It is still LAST in DOM order, so the tab order
+        // matches the visual order.
+        className="chip inline-flex items-center gap-1.5"
         data-active={touched}
       >
         {label}

@@ -553,8 +553,26 @@ for (const engineName of engineNames) {
       // `width:100%;height:100%`, so `.price-thumb`'s own `boundingBox()` IS
       // the tappable area, sized 24x24 after the §I2 hit-area fix (was 12x12,
       // both engines, before it).
+      // THE SLIDER NOW LIVES INSIDE A POPOVER. Tina asked for the Airbnb shape
+      // on 2026-09-05, so `.price-thumb` is not in the page until the "Price"
+      // chip is clicked. Opening it is not a preamble to the real check — it IS
+      // half of it, and it is the §10.25 question for this control: a panel you
+      // cannot reach by tap is a panel that does not exist on a phone. A failure
+      // to open is reported as its own PROBLEM so it can never be confused with
+      // the thumbs being missing for some other reason.
+      const openPricePanel = async () => {
+        const chip = pagePrice.locator('.chip').filter({ hasText: /Price|\d/ }).last();
+        if ((await chip.count()) === 0) return 'NO PRICE CHIP IN THE FILTER ROW';
+        await chip.click();
+        await pagePrice.waitForTimeout(500);
+        if ((await pagePrice.locator('.price-thumb').count()) < 2) return 'PRICE CHIP DID NOT OPEN THE PANEL ON TAP';
+        return null;
+      };
+
       try {
         await goPrice('/modest-abayas');
+        const openFail = await openPricePanel();
+        if (openFail) { note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: openFail }); throw new Error('__handled__'); }
         const thumbs = pagePrice.locator('.price-thumb');
         if ((await thumbs.count()) < 2) {
           note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'PRICE SLIDER HAS FEWER THAN TWO THUMBS' });
@@ -579,7 +597,7 @@ for (const engineName of engineNames) {
             });
           }
         }
-      } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', error: e.message.split('\n')[0] }); }
+      } catch (e) { if (e.message !== '__handled__') note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', error: e.message.split('\n')[0] }); }
 
       // ---- 3d. price slider keyboard operability + the focus ring ---------
       // THE question this exists to answer: Task 3 shipped a control whose focus
@@ -597,52 +615,63 @@ for (const engineName of engineNames) {
       // the control at all.
       try {
         await goPrice('/modest-abayas');
+        const openFailKb = await openPricePanel();
+        if (openFailKb) { note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: openFailKb }); throw new Error('__handled__'); }
         const priceThumbs = pagePrice.locator('.price-thumb');
         if ((await priceThumbs.count()) < 2) {
           note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'FEWER THAN TWO PRICE THUMBS FOR KEYBOARD TEST' });
         } else {
           const unfocusedBoxShadow = await priceThumbs.first().evaluate((el) => getComputedStyle(el).boxShadow);
-          let found = false;
-          for (let i = 0; i < 120 && !found; i++) {
+
+          // A REAL Tab press, never a programmatic .focus(). Measured on staging
+          // 2026-09-05: element.focus() leaves :focus-visible FALSE in Chromium,
+          // so the ring correctly does not paint and this check reported
+          // "FOCUS RING DID NOT PAINT" at all five viewports on a control whose
+          // ring works. One Tab after the panel opens gives
+          // :focus-visible=true, :has() matching, and
+          // "rgba(43,38,34,.18) 0 2px 6px, rgb(68,25,67) 0 0 0 3px" — aubergine.
+          //
+          // Only a few presses are needed now: Base UI places focus inside the
+          // popup on open, so a thumb is one Tab away. The old 120-press walk
+          // was left over from when the slider sat in the page.
+          let onThumb = null;
+          for (let i = 0; i < 8 && !onThumb; i++) {
             await pagePrice.keyboard.press('Tab');
-            found = await pagePrice.evaluate(() => {
-              const el = document.activeElement;
-              return !!(el && el.tagName === 'INPUT' && el.closest('.price-thumb'));
+            onThumb = await pagePrice.evaluate(() => {
+              const t = document.activeElement?.closest?.('.price-thumb');
+              if (!t) return null;
+              return { label: t.querySelector('input')?.getAttribute('aria-label') || '', shadow: getComputedStyle(t).boxShadow };
             });
           }
-          // SAFARI EXCLUDES <input type="range"> FROM TAB ORDER BY DEFAULT, and
-          // that is a platform setting, not a defect in this control. Measured on
-          // staging 2026-09-05 with a focus-walk probe: in WebKit, 60 Tab presses
-          // reach `a`, `button` and `input[email]` — but never `input[range]`.
-          // The same walk in Chromium reaches the thumb. A Safari user with Full
-          // Keyboard Access on (System Settings > Keyboard) does reach it, and
-          // every range input on the web behaves this way.
-          //
-          // So a hard failure here would assert Safari's default, not our code —
-          // and this file exists to catch OUR regressions. Fall back to focusing
-          // the input directly and go on to assert the two things that ARE ours:
-          // that the ring paints, and that the arrows filter. Both were verified
-          // to hold in WebKit by this route (ring rgb(68,25,67) = --aubergine,
-          // :focus-visible matching, 3781 -> 588 -> 3 across the two handles).
-          if (!found) {
+
+          // SAFARI EXCLUDES <input type="range"> FROM TAB ORDER BY DEFAULT — a
+          // platform setting, not a defect here. Established rather than assumed:
+          // a 60-press focus walk in WebKit reaches `a`, `button` and
+          // `input[email]` but never `input[range]`, while the same walk in
+          // Chromium reaches the thumb. Where Tab cannot get there, focus the
+          // minimum thumb directly and assert only the ARROWS — the ring is not
+          // assertable by that route, because programmatic focus does not set
+          // :focus-visible, and claiming it either way would be a lie.
+          const ringAssertable = !!onThumb;
+          if (!onThumb) {
             await pagePrice.evaluate(() => document.querySelector('.price-thumb input')?.focus());
-            found = await pagePrice.evaluate(() => !!document.activeElement?.closest?.('.price-thumb'));
           }
-          if (!found) {
-            note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'COULD NOT FOCUS A PRICE SLIDER THUMB BY TAB OR DIRECTLY' });
-          } else {
-            const focusedBoxShadow = await pagePrice.evaluate(() => getComputedStyle(document.activeElement.closest('.price-thumb')).boxShadow);
-            const ringPainted = focusedBoxShadow !== unfocusedBoxShadow && focusedBoxShadow !== 'none';
-            // The "Showing N of M" total, same reason as price-slider-drag: the
-            // rendered card count is capped at STEP=24 and does not move until
-            // the filtered total itself drops below 24.
+          const focusedBoxShadow = onThumb ? onThumb.shadow : null;
+          const ringPainted = !ringAssertable || (focusedBoxShadow !== unfocusedBoxShadow && focusedBoxShadow !== 'none');
+
+          // Press the direction that NARROWS whichever handle has focus. The
+          // previous version always pressed ArrowRight, and on this build focus
+          // lands on the MAXIMUM handle — already at bounds.max — so it moved
+          // nothing and reported ARROW KEYS CHANGED NOTHING on a working control.
+          const narrowKey = onThumb && /max/i.test(onThumb.label) ? 'ArrowLeft' : 'ArrowRight';
+          {
             const beforeArrows = await readTotal();
-            for (let i = 0; i < 10; i++) await pagePrice.keyboard.press('ArrowRight');
+            for (let i = 0; i < 10; i++) await pagePrice.keyboard.press(narrowKey);
             await pagePrice.waitForTimeout(400);
             const afterArrows = await readTotal();
             note({
               engine: engineName, viewport: vpName, state: 'price-slider-keyboard',
-              unfocusedBoxShadow, focusedBoxShadow, beforeArrows, afterArrows,
+              unfocusedBoxShadow, focusedBoxShadow, beforeArrows, afterArrows, narrowKey,
               ...(!ringPainted ? { PROBLEM: `FOCUS RING DID NOT PAINT — unfocused "${unfocusedBoxShadow}" focused "${focusedBoxShadow}"` }
                 : beforeArrows == null || afterArrows == null ? { PROBLEM: 'COULD NOT READ "SHOWING N OF M" COUNTER FOR ARROW-KEY TEST' }
                 : afterArrows === beforeArrows ? { PROBLEM: `ARROW KEYS CHANGED NOTHING (${beforeArrows} -> ${afterArrows})` }
@@ -650,7 +679,7 @@ for (const engineName of engineNames) {
             });
           }
         }
-      } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', error: e.message.split('\n')[0] }); }
+      } catch (e) { if (e.message !== '__handled__') note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', error: e.message.split('\n')[0] }); }
     } catch (e) {
       note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', error: e.message.split('\n')[0] });
       note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', error: e.message.split('\n')[0] });
