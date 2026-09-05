@@ -1247,7 +1247,15 @@ html[data-input-modality="mouse"] summary:focus-visible {
    style always beats a stylesheet rule on specificity regardless of
    selector, so a focus-visible class rule could never have overridden an
    inline box-shadow on the same element. */
+/* The hit area (24px, WCAG 2.2 2.5.8 and mobile-audit's smallTargets floor)
+   and the visible dot are now DELIBERATELY different sizes — Tina asked for a
+   smaller dot on 2026-09-05. .price-thumb itself carries no fill any more, so
+   it is invisible; the dot is a separate child, sized in the component and
+   centred here. Shrinking the dot must never shrink this element. */
 .price-thumb {
+  background: transparent;
+}
+.price-thumb-dot {
   background: #fff;
   border: 1px solid var(--hairline);
   box-shadow: 0 2px 6px rgba(43, 38, 34, 0.18);
@@ -1259,7 +1267,7 @@ html[data-input-modality="mouse"] summary:focus-visible {
    outline drawn on it. :has() is the only selector that can reach from the
    styled element to its own focused input. Do not "tidy" this back into the
    component. */
-.price-thumb:has(input:focus-visible) {
+.price-thumb:has(input:focus-visible) .price-thumb-dot {
   box-shadow: 0 2px 6px rgba(43, 38, 34, 0.18), 0 0 0 3px var(--aubergine);
 }
 

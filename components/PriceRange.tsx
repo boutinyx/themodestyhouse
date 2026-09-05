@@ -23,9 +23,10 @@ import type { PriceBounds } from '@/lib/priceFilter';
  * touch, keyboard, Escape, outside-click and collision-aware positioning, which
  * is what CLAUDE.md §10.25 says never to hand-roll again.
  *
- * No `openOnHover`, unlike the sibling chips. A menu you can point at is
- * convenient; a panel with inputs that opens as you reach past it toward Colour
- * is not.
+ * `openOnHover` matches the sibling chips (Tina, 2026-09-05, having seen it
+ * without). The panel still has real inputs, so a pointer travelling from the
+ * chip toward Colour will open it briefly on the way past — `closeDelay={120}`
+ * is the tolerance for that, same value FilterDropdown already uses.
  *
  * The bars are the reason Tina wanted this shape. They are the only part of a
  * price filter that says where the catalogue actually IS before you drag
@@ -80,6 +81,18 @@ export default function PriceRange({
       {/* .chip and the caret match FilterDropdown exactly, so this reads as the
           fifth member of the row rather than a control from somewhere else. */}
       <Popover.Trigger
+        // openOnHover / delay / closeDelay copied verbatim from
+        // FilterDropdown's Menu.Trigger (components/IndexPanel.tsx) — Tina,
+        // 2026-09-05: "can i have the same hover opening like the rest". delay
+        // 0 because the pointer is already still by the time a delay would
+        // fire; closeDelay is the grace period for travelling from the chip
+        // into the panel to reach the pills. This reverses the component's own
+        // earlier reasoning ("A panel with inputs must not open as you reach
+        // past it toward Colour") — Tina's call, made after seeing it built
+        // both ways, and hers is the one that stands.
+        openOnHover
+        delay={0}
+        closeDelay={120}
         // No ml-auto: Tina moved it back in beside the other chips, 2026-09-05
         // ("nvm lets put the pill next to the other shit on the left"), having
         // seen it pushed right. It is still LAST in DOM order, so the tab order
@@ -143,14 +156,21 @@ export default function PriceRange({
               <Slider.Control className="flex items-center h-6 w-full touch-none select-none">
                 <Slider.Track className="h-[3px] w-full rounded-full" style={{ backgroundColor: 'var(--hairline)' }}>
                   <Slider.Indicator className="rounded-full" style={{ backgroundColor: 'var(--aubergine)' }} />
-                  {/* size-6 is 24px — the VISIBLE white circle and the hit area
-                      are now the same element, which is what WCAG 2.2 §2.5.8 and
-                      scripts/mobile-audit.mjs's smallTargets floor both measure.
-                      Its fill, border and shadow live in .price-thumb, because
-                      the focus ring has to be a :has() rule there; see the note
-                      in globals.css. */}
-                  <Slider.Thumb index={0} getAriaLabel={() => 'Minimum price'} className="price-thumb size-6 rounded-full outline-none" />
-                  <Slider.Thumb index={1} getAriaLabel={() => 'Maximum price'} className="price-thumb size-6 rounded-full outline-none" />
+                  {/* size-6 (24px) is the HIT AREA — WCAG 2.2 §2.5.8 and
+                      scripts/mobile-audit.mjs's smallTargets floor, and it must
+                      stay 24px regardless of how the visible dot looks. The dot
+                      itself is a smaller, `pointer-events-none` child (Tina,
+                      2026-09-05: "make the dots on the end and beginnings
+                      smaller"), so shrinking it can never shrink what a finger
+                      actually has to hit. .price-thumb carries no fill —
+                      .price-thumb-dot does, in globals.css, because the focus
+                      ring is a :has() rule that has to reach it from there. */}
+                  <Slider.Thumb index={0} getAriaLabel={() => 'Minimum price'} className="price-thumb size-6 rounded-full outline-none flex items-center justify-center">
+                    <span aria-hidden="true" className="price-thumb-dot size-3 rounded-full pointer-events-none" />
+                  </Slider.Thumb>
+                  <Slider.Thumb index={1} getAriaLabel={() => 'Maximum price'} className="price-thumb size-6 rounded-full outline-none flex items-center justify-center">
+                    <span aria-hidden="true" className="price-thumb-dot size-3 rounded-full pointer-events-none" />
+                  </Slider.Thumb>
                 </Slider.Track>
               </Slider.Control>
             </Slider.Root>
