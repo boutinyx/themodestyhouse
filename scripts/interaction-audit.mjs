@@ -460,6 +460,95 @@ for (const engineName of engineNames) {
       await shot('lane-subtype-url');
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'lane-subtype-url', error: e.message.split('\n')[0] }); }
 
+    // ---- 3c. price slider drag ---------------------------------------------
+    // A price slider is invisible to every static render, and its whole value
+    // is what happens MID-DRAG. §10.50: a Playwright touch context ALWAYS
+    // reports `(hover: none)` true, so the commonest real tablet — touch AND
+    // hover-capable — is unreachable unless it is stubbed, and that is the
+    // configuration that broke this site's nav twice. Stubbed here too, even
+    // though the control itself reads no hover media query, because the
+    // question this file exists to answer is whether the INTERACTION works on
+    // that device, not whether this particular control happens to care.
+    try {
+      await page.addInitScript(() => {
+        const mm = window.matchMedia.bind(window);
+        window.matchMedia = (q) => (q.includes('hover: none') ? { ...mm(q), matches: false } : mm(q));
+      });
+      await go('/modest-abayas');
+      const thumbs = page.locator('[role="slider"]');
+      if ((await thumbs.count()) < 2) {
+        note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'PRICE SLIDER HAS FEWER THAN TWO THUMBS' });
+      } else {
+        const cards = page.locator('[data-surface="product-card"]');
+        const before = await cards.count();
+        const box = await thumbs.last().boundingBox();
+        if (!box) {
+          note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'PRICE SLIDER THUMB HAS NO BOX' });
+        } else {
+          await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+          await page.mouse.down();
+          await page.mouse.move(Math.max(box.x - 200, 8), box.y + box.height / 2, { steps: 12 });
+          await page.mouse.up();
+          await page.waitForTimeout(400);
+          const after = await cards.count();
+          note({
+            engine: engineName, viewport: vpName, state: 'price-slider-drag', before, after,
+            ...(after >= before ? { PROBLEM: `DRAG CHANGED NOTHING (${before} -> ${after})` } : {}),
+          });
+        }
+      }
+    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', error: e.message.split('\n')[0] }); }
+
+    // ---- 3d. price slider keyboard operability + the focus ring -----------
+    // THE question this exists to answer: Task 3 shipped a control whose focus
+    // ring could never render. Base UI puts `tabIndex: -1` on the styled thumb
+    // DIV and clips the real `<input type="range">` with `clip: rect(0 0 0
+    // 0)`, so `focus-visible:ring-2` on the div was dead by two independent
+    // mechanisms — the div is never the focused element, and even if it were,
+    // the input carrying the real focus is visually clipped. The fix is a
+    // `.price-thumb:has(input:focus-visible)` rule in app/globals.css. Nobody
+    // has yet seen it work — it is unprovable without a deployed page, which
+    // is why it landed here rather than in a component test. This TABS from
+    // the top of the document, the same way a real keyboard user would reach
+    // it, rather than calling `.focus()` programmatically — a programmatic
+    // focus proves the CSS selector works, not that a keyboard user can reach
+    // the control at all.
+    try {
+      await go('/modest-abayas');
+      const priceThumbs = page.locator('.price-thumb');
+      if ((await priceThumbs.count()) < 2) {
+        note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'FEWER THAN TWO PRICE THUMBS FOR KEYBOARD TEST' });
+      } else {
+        const unfocusedBoxShadow = await priceThumbs.first().evaluate((el) => getComputedStyle(el).boxShadow);
+        let found = false;
+        for (let i = 0; i < 120 && !found; i++) {
+          await page.keyboard.press('Tab');
+          found = await page.evaluate(() => {
+            const el = document.activeElement;
+            return !!(el && el.tagName === 'INPUT' && el.closest('.price-thumb'));
+          });
+        }
+        if (!found) {
+          note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'COULD NOT TAB TO A PRICE SLIDER THUMB IN 120 PRESSES' });
+        } else {
+          const focusedBoxShadow = await page.evaluate(() => getComputedStyle(document.activeElement.closest('.price-thumb')).boxShadow);
+          const ringPainted = focusedBoxShadow !== unfocusedBoxShadow && focusedBoxShadow !== 'none';
+          const cards = page.locator('[data-surface="product-card"]');
+          const beforeArrows = await cards.count();
+          for (let i = 0; i < 10; i++) await page.keyboard.press('ArrowRight');
+          await page.waitForTimeout(400);
+          const afterArrows = await cards.count();
+          note({
+            engine: engineName, viewport: vpName, state: 'price-slider-keyboard',
+            unfocusedBoxShadow, focusedBoxShadow, beforeArrows, afterArrows,
+            ...(!ringPainted ? { PROBLEM: `FOCUS RING DID NOT PAINT — unfocused "${unfocusedBoxShadow}" focused "${focusedBoxShadow}"` }
+              : afterArrows === beforeArrows ? { PROBLEM: `ARROW KEYS CHANGED NOTHING (${beforeArrows} -> ${afterArrows})` }
+              : {}),
+          });
+        }
+      }
+    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', error: e.message.split('\n')[0] }); }
+
     // ---- 4. quick view ----------------------------------------------------
     try {
       await go('/new-in');
