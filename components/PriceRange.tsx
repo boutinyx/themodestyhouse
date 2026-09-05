@@ -66,14 +66,14 @@ export default function PriceRange({
             <Slider.Thumb
               index={0}
               getAriaLabel={() => 'Minimum price'}
-              className="size-3 rounded-full outline-none focus-visible:ring-2"
-              style={{ backgroundColor: 'var(--aubergine)', boxShadow: '0 0 0 6px var(--parchment)' }}
+              className="price-thumb size-3 rounded-full outline-none"
+              style={{ backgroundColor: 'var(--aubergine)' }}
             />
             <Slider.Thumb
               index={1}
               getAriaLabel={() => 'Maximum price'}
-              className="size-3 rounded-full outline-none focus-visible:ring-2"
-              style={{ backgroundColor: 'var(--aubergine)', boxShadow: '0 0 0 6px var(--parchment)' }}
+              className="price-thumb size-3 rounded-full outline-none"
+              style={{ backgroundColor: 'var(--aubergine)' }}
             />
           </Slider.Track>
         </Slider.Control>

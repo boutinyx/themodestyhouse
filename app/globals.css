@@ -1234,6 +1234,26 @@ html[data-input-modality="mouse"] summary:focus-visible {
   border-radius: var(--radius-button);
 }
 
+/* Price slider thumbs (components/PriceRange.tsx). Base UI's Slider.Thumb
+   renders a `tabIndex: -1` div — it can never receive DOM focus — wrapping a
+   nested <input type="range"> that actually does, kept invisible via
+   `clip: rect(0 0 0 0)`. A Tailwind `focus-visible:ring-2` on the div (or any
+   outline painted on the clipped input) can therefore never be seen, and
+   Base UI's slider exposes no `data-focused`-style attribute to hook into
+   instead. `:has()` is the only way to say "my nested input is
+   focus-visible" from the div's own box, so this has to live here rather
+   than as a Tailwind variant.
+   The base halo lives in this class too, not as an inline style: an inline
+   style always beats a stylesheet rule on specificity regardless of
+   selector, so a focus-visible class rule could never have overridden an
+   inline box-shadow on the same element. */
+.price-thumb {
+  box-shadow: 0 0 0 6px var(--parchment);
+}
+.price-thumb:has(input:focus-visible) {
+  box-shadow: 0 0 0 6px var(--parchment), 0 0 0 8px var(--aubergine);
+}
+
 /* Menu rows carry NO box at all — no ring, no fill.
    Base UI moves DOM focus onto a row as you hover it, which is how it drives
    keyboard navigation. That meant the ordinary focus ring above fired on plain
