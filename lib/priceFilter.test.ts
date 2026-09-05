@@ -29,8 +29,27 @@ describe('priceBounds', () => {
     expect(b.max).toBeLessThan(2000);
   });
 
-  it('does not flag openTop when there is no tail above p95', () => {
+  // Degenerate case only: every row is identical, so `lo === trueMax` returns
+  // UNUSABLE before the real `openTop` computation ever runs. `openTop: false`
+  // here is just the UNUSABLE constant's default, not evidence about the
+  // computed path — see the next test for that.
+  it('reports unusable (not openTop) when every row is the exact same price', () => {
     const b = priceBounds(catWith(Array(100).fill(50)), all(100), 'USD');
+    expect(b.usable).toBe(false);
+    expect(b.openTop).toBe(false);
+  });
+
+  // The genuine computed path: a real spread with no tail above p95. Values
+  // 10, 20, ..., 1000 give cap=950.5 (interpolated p95), step=50, so the
+  // track rounds UP to max=1000 — exactly trueMax — and openTop is false
+  // because there's truly nothing above it, not because an early return
+  // skipped the comparison. A mutant hardcoding `openTop: true` on the
+  // usable path fails only this test.
+  it('does not flag openTop when the track rounds up to cover the true max', () => {
+    const prices = Array.from({ length: 100 }, (_, i) => 10 * (i + 1));
+    const b = priceBounds(catWith(prices), all(100), 'USD');
+    expect(b.usable).toBe(true);
+    expect(b.max).toBe(1000);
     expect(b.openTop).toBe(false);
   });
 
