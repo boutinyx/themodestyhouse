@@ -78,6 +78,16 @@ export default function PriceRange({
           </Slider.Track>
         </Slider.Control>
       </Slider.Root>
+      {(value[0] > bounds.min || value[1] < bounds.max) && (
+        <button
+          type="button"
+          onClick={() => onChange([bounds.min, bounds.max])}
+          className="text-[12px] underline underline-offset-2 self-start"
+          style={{ color: 'var(--muted)' }}
+        >
+          Reset price
+        </button>
+      )}
     </div>
   );
 }

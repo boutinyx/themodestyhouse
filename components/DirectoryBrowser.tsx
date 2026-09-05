@@ -9,6 +9,9 @@ import { IndexPanel, FilterDropdown } from './IndexPanel';
 import { sortRowIndices, SORT_OPTIONS, type SortKey } from '@/lib/sortRows';
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
+import { FX_BASE } from '@/lib/fx';
+import { priceBounds, withinPrice, clampRange } from '@/lib/priceFilter';
+import PriceRange from '@/components/PriceRange';
 import { trackGoal } from '@/lib/pulse';
 import { useZeroResultSearch } from './useZeroResultSearch';
 import { LanguageNote } from './LanguageNote';
@@ -33,6 +36,11 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '', source = '
   const [garment, setGarment] = useState('all'); // Garment value, or 'all'
   const [brand, setBrand] = useState('all'); // brand slug, or 'all'
   const [colour, setColour] = useState('all'); // ColourFamily, or 'all'
+  // null until the visitor touches the slider. Kept separate from `bounds` so
+  // an untouched control filters nothing at all — the alternative, seeding it
+  // to [min, max], makes every currency change or filter change silently
+  // re-clamp a range the visitor never chose.
+  const [price, setPrice] = useState<[number, number] | null>(null);
   const [visible, setVisible] = useState(STEP);
   const [sort, setSort] = useState<SortKey>('featured');
   // Card data for rows beyond the window the server embedded. See the
@@ -91,7 +99,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '', source = '
   const brandIdx = brand === 'all' ? -1 : cat.brands.findIndex((b) => b.slug === brand);
   const colourIdx = colour === 'all' ? -1 : cat.colours.indexOf(colour as (typeof cat.colours)[number]);
 
-  const filteredRows = useMemo(() => {
+  const rowsBeforePrice = useMemo(() => {
     const rows: number[] = [];
     const n = cat.rows.title.length;
     for (let i = 0; i < n; i++) {
@@ -115,6 +123,32 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '', source = '
     return rows;
   }, [cat, garmentIdx, brandIdx, colourIdx, query]);
 
+  const bounds = useMemo(
+    () => priceBounds(cat, rowsBeforePrice, preference),
+    [cat, rowsBeforePrice, preference],
+  );
+
+  // Clamp rather than reset when the bounds move under a chosen range —
+  // switching display currency must not throw away the visitor's choice.
+  const effectivePrice = useMemo<[number, number] | null>(
+    () => (price && bounds.usable ? clampRange(price, bounds) : null),
+    [price, bounds],
+  );
+
+  const filteredRows = useMemo(() => {
+    if (!effectivePrice) return rowsBeforePrice;
+    // `bounds.openTop` is a fact about the whole catalogue (rows exist above
+    // the p95 cap) — it must not be handed to withinPrice unconditionally,
+    // or the top handle would mean "and up" even parked well below the true
+    // max. "And up" only applies once the visitor has actually dragged the
+    // top handle all the way to bounds.max, matching PriceRange's own
+    // `atTop` check for the "+" label.
+    const openTop = bounds.openTop && effectivePrice[1] >= bounds.max;
+    return rowsBeforePrice.filter((i) =>
+      withinPrice(cat, i, preference, effectivePrice, openTop),
+    );
+  }, [cat, rowsBeforePrice, effectivePrice, preference, bounds.openTop, bounds.max]);
+
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
     [cat, filteredRows, sort, preference],
@@ -128,7 +162,7 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '', source = '
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [garment, brand, colour, q]);
+  }, [garment, brand, colour, q, price]);
 
   // A search that found nothing — the one goal carrying words a visitor typed.
   // `q`, not the lowercased `query`, because the hook does its own trimming and
@@ -230,6 +264,14 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '', source = '
             here, not re-deriving anything. See
             docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {bounds.usable && (
+          <PriceRange
+            bounds={bounds}
+            value={effectivePrice ?? [bounds.min, bounds.max]}
+            onChange={setPrice}
+            currency={preference ?? FX_BASE}
+          />
+        )}
         {/* `cat.colours.length > 1`, not `colours.length > 1`: `colours` carries
             the synthesised "All colours" row too, so it is never empty. And
             `> 1` rather than `> 0` because a surface where every classified row

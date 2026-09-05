@@ -10,6 +10,9 @@ import { HIJAB_TYPE_FILTER_LABELS } from '@/lib/hijabTypeFilter';
 import { DRESS_SUBTYPE_LABELS, SWIM_SUBTYPE_LABELS, ACTIVE_SUBTYPE_LABELS, GARMENT_SUBTYPE_LABELS } from '@/lib/specialty';
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
+import { FX_BASE } from '@/lib/fx';
+import { priceBounds, withinPrice, clampRange } from '@/lib/priceFilter';
+import PriceRange from '@/components/PriceRange';
 import { trackGoal } from '@/lib/pulse';
 import { LanguageNote } from './LanguageNote';
 
@@ -102,6 +105,11 @@ export function FilterableGrid({
   const [fabricType, setFabricType] = useState('all');
   // Same shape as `brand` and `fabricType`: plain in-page state, never URL-driven.
   const [colour, setColour] = useState('all');
+  // null until the visitor touches the slider. Kept separate from `bounds` so
+  // an untouched control filters nothing at all — the alternative, seeding it
+  // to [min, max], makes every currency change or filter change silently
+  // re-clamp a range the visitor never chose.
+  const [price, setPrice] = useState<[number, number] | null>(null);
   const [type, setType] = useState(() => {
     if (!initialType) return 'all';
     if ((cat.layeringSubtypes as string[]).includes(initialType)) return initialType;
@@ -321,7 +329,7 @@ export function FilterableGrid({
   const fabricTypeIdx = fabricType === 'all' ? -1 : cat.hijabTypeFilters.indexOf(fabricType as (typeof cat.hijabTypeFilters)[number]);
   const colourIdx = colour === 'all' ? -1 : cat.colours.indexOf(colour as (typeof cat.colours)[number]);
 
-  const filteredRows = useMemo(() => {
+  const rowsBeforePrice = useMemo(() => {
     const rows: number[] = [];
     const n = cat.rows.title.length;
     for (let i = 0; i < n; i++) {
@@ -370,6 +378,32 @@ export function FilterableGrid({
     return rows;
   }, [cat, brandIdx, typeIdx, typeDomain, fabricTypeIdx, colourIdx, query]);
 
+  const bounds = useMemo(
+    () => priceBounds(cat, rowsBeforePrice, preference),
+    [cat, rowsBeforePrice, preference],
+  );
+
+  // Clamp rather than reset when the bounds move under a chosen range —
+  // switching display currency must not throw away the visitor's choice.
+  const effectivePrice = useMemo<[number, number] | null>(
+    () => (price && bounds.usable ? clampRange(price, bounds) : null),
+    [price, bounds],
+  );
+
+  const filteredRows = useMemo(() => {
+    if (!effectivePrice) return rowsBeforePrice;
+    // `bounds.openTop` is a fact about the whole catalogue (rows exist above
+    // the p95 cap) — it must not be handed to withinPrice unconditionally,
+    // or the top handle would mean "and up" even parked well below the true
+    // max. "And up" only applies once the visitor has actually dragged the
+    // top handle all the way to bounds.max, matching PriceRange's own
+    // `atTop` check for the "+" label.
+    const openTop = bounds.openTop && effectivePrice[1] >= bounds.max;
+    return rowsBeforePrice.filter((i) =>
+      withinPrice(cat, i, preference, effectivePrice, openTop),
+    );
+  }, [cat, rowsBeforePrice, effectivePrice, preference, bounds.openTop, bounds.max]);
+
   const sortedRows = useMemo(
     () => sortRowIndices(cat, filteredRows, sort, preference),
     [cat, filteredRows, sort, preference],
@@ -382,7 +416,7 @@ export function FilterableGrid({
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(STEP);
-  }, [brand, type, fabricType, colour, q]);
+  }, [brand, type, fabricType, colour, q, price]);
 
   const shownRows = sortedRows.slice(0, visible);
 
@@ -462,6 +496,14 @@ export function FilterableGrid({
             here, not re-deriving anything. See
             docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
+        {bounds.usable && (
+          <PriceRange
+            bounds={bounds}
+            value={effectivePrice ?? [bounds.min, bounds.max]}
+            onChange={setPrice}
+            currency={preference ?? FX_BASE}
+          />
+        )}
         {/* `cat.colours.length > 1`, not `colours.length > 1`: `colours` carries
             the synthesised "All colours" row too, so it is never empty. And
             `> 1` rather than `> 0` because a lane where every classified row is
