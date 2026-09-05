@@ -77,7 +77,16 @@ export default function PriceRange({
   const tallest = Math.max(1, ...histogram);
 
   return (
-    <Popover.Root>
+    // modal="trap-focus": found by chasing a real bug, not designed in up
+    // front. A no-hover-none Tab walk against staging showed WebKit reaching
+    // the header's FAQ button and the currency switcher WHILE THE PANEL WAS
+    // STILL OPEN (thumbs=2), and on the 8th press landing back on the "Price"
+    // trigger and closing it — Tab was leaking straight through the popup
+    // into background page content instead of cycling Min -> Max -> Reset.
+    // "trap-focus" keeps keyboard focus inside the panel without the
+    // scroll-lock or outside-pointer-block that plain `modal` would add, so a
+    // visitor can still scroll the page or tap a product card while it's open.
+    <Popover.Root modal="trap-focus">
       {/* .chip and the caret match FilterDropdown exactly, so this reads as the
           fifth member of the row rather than a control from somewhere else. */}
       <Popover.Trigger
