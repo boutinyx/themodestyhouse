@@ -673,8 +673,20 @@ for (const engineName of engineNames) {
           {
             const beforeArrows = await readTotal();
             for (let i = 0; i < 10; i++) await pagePrice.keyboard.press(narrowKey);
-            await pagePrice.waitForTimeout(400);
-            const afterArrows = await readTotal();
+            // POLL rather than a flat wait. A fixed 400ms after 10 rapid key
+            // presses raced React's own state update under real network
+            // latency: reproduced as an intermittent failure (moved between
+            // tablet-819 and ipad-1366 across repeated runs, never the same
+            // viewport twice, i.e. timing noise, not a per-size defect) and
+            // confirmed as noise by 4/4 passes at the same width with a fresh
+            // page load. Give it up to 2s, checking every 100ms, since a
+            // one-shot re-read is the same race with a longer fuse.
+            let afterArrows = beforeArrows;
+            for (let i = 0; i < 20; i++) {
+              await pagePrice.waitForTimeout(100);
+              afterArrows = await readTotal();
+              if (afterArrows !== beforeArrows) break;
+            }
             note({
               engine: engineName, viewport: vpName, state: 'price-slider-keyboard',
               unfocusedBoxShadow, focusedBoxShadow, beforeArrows, afterArrows, narrowKey,
