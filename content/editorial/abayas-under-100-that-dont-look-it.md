@@ -7,8 +7,8 @@ category: "Guides"
 author: "The Modesty House"
 date: "2026-09-05"
 slug: "abayas-under-100-that-dont-look-it"
-image: "/editorial/mirror-selfie-abayas-3.jpg"
-imageAlt: "Four women in satin abayas with gold lace trim taking a mirror selfie in a boutique"
+image: "/editorial/courtyard-aubergine-abaya.jpg"
+imageAlt: "A woman in a flowing aubergine abaya and matching hijab walking through a sunlit tiled courtyard"
 ---
 
 Price is not what gives an abaya away. I've seen $200 abayas that look like a costume and $40 ones I've had to ask about. What gives it away is always the same short list of things, and once you know them you can shop the bottom of the market without it showing.
