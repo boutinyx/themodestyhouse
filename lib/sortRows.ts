@@ -15,6 +15,27 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
 ];
 
 /**
+ * A row's price in the visitor's display currency, or null when that row's
+ * native currency has no rate.
+ *
+ * Exported because the price FILTER needs the null and the price SORT must not
+ * have it. A sort has to place every row somewhere, so comparablePrice below
+ * falls back to the raw amount; a filter that did the same would compare a
+ * ZZZ 500 piece against a dollar range as though the numbers were commensurate.
+ * One reader of the price column, two policies on top of it — rather than the
+ * duplicated-logic trap CLAUDE.md §8 records for the exclusion rules.
+ */
+export function convertedRowPrice(
+  cat: CompactCatalogue,
+  row: number,
+  preference: CurrencyPreference,
+): number | null {
+  const price = cat.rows.price[row];
+  const nativeCurrency = cat.brands[cat.rows.brandIdx[row]].currency;
+  return convert(price, nativeCurrency, preference ?? FX_BASE);
+}
+
+/**
  * The value a price comparison uses for one row. ADR-0002 keeps DISPLAY in
  * each brand's native currency by default, but a sort has no such option —
  * an order has to pick one unit. With no display preference, comparing raw
@@ -26,11 +47,7 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
  * that row's currency.
  */
 function comparablePrice(cat: CompactCatalogue, row: number, preference: CurrencyPreference): number {
-  const price = cat.rows.price[row];
-  const nativeCurrency = cat.brands[cat.rows.brandIdx[row]].currency;
-  const target = preference ?? FX_BASE;
-  const converted = convert(price, nativeCurrency, target);
-  return converted ?? price;
+  return convertedRowPrice(cat, row, preference) ?? cat.rows.price[row];
 }
 
 export function sortRowIndices(

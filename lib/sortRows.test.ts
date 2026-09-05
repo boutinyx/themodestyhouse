@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { encodeCatalogue } from './compactCatalogue';
-import { sortRowIndices, SORT_OPTIONS } from './sortRows';
-import { convert } from './fx';
+import { sortRowIndices, SORT_OPTIONS, convertedRowPrice } from './sortRows';
+import { convert, FX_BASE, hasRate } from './fx';
 import type { Product, Brand } from './types';
 
 const GBP_BRAND: Brand = {
@@ -96,5 +96,43 @@ describe('sortRowIndices', () => {
     const input = [0, 1, 2];
     sortRowIndices(cat, input, 'price-asc', null);
     expect(input).toEqual([0, 1, 2]);
+  });
+});
+
+// ZZZ is not a real currency anywhere in data/ — asserted directly rather than
+// assumed, since this whole block depends on it having no rate.
+const NO_RATE_BRAND: Brand = {
+  slug: 'norate', name: 'No Rate House', homepage: 'https://norate.example', feedUrl: 'https://norate.example/products.json',
+  community: 'hijabi', currency: 'ZZZ', category: 'Modest dresses', city: 'Nowhere', vibe: 'elegant',
+};
+
+describe('convertedRowPrice', () => {
+  it('ZZZ genuinely has no rate (fixture premise)', () => {
+    expect(hasRate('ZZZ')).toBe(false);
+  });
+
+  it('converts into the visitor display currency', () => {
+    const usdCat = encodeCatalogue(
+      [{ ...base, id: 'aab:2', brandSlug: 'aab', brandName: 'Aab', currency: 'USD', price: 100, firstSeen: '2026-08-06' }],
+      [USD_BRAND],
+    );
+    expect(convertedRowPrice(usdCat, 0, 'USD')).toBe(100);
+  });
+
+  // The whole reason this function exists separately from comparablePrice.
+  it('returns null rather than a raw amount when the row currency has no rate', () => {
+    const noRateCat = encodeCatalogue(
+      [{ ...base, id: 'norate:1', brandSlug: 'norate', brandName: 'No Rate House', currency: 'ZZZ', price: 500, firstSeen: '2026-08-06' }],
+      [NO_RATE_BRAND],
+    );
+    expect(convertedRowPrice(noRateCat, 0, 'USD')).toBeNull();
+  });
+
+  it('falls back to FX_BASE when the visitor has no preference', () => {
+    const baseCat = encodeCatalogue(
+      [{ ...base, id: 'aab:3', brandSlug: 'aab', brandName: 'Aab', currency: FX_BASE, price: 100, firstSeen: '2026-08-06' }],
+      [USD_BRAND],
+    );
+    expect(convertedRowPrice(baseCat, 0, null)).toBe(100);
   });
 });
