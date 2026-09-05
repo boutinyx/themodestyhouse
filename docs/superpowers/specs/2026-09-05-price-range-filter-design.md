@@ -104,7 +104,7 @@ every lane, every `/designers/<slug>`, every `/edits/<slug>` and `/new-in` — "
 | fewer than ~8 rows | not rendered; a slider over five items is worse than no slider |
 | visitor changes display currency | bounds recompute, handles clamp into the new band proportionally |
 | a row's currency has no FX rate | row is INCLUDED regardless of the range |
-| range excludes everything | existing empty state, plus a reset affordance |
+| range excludes everything | existing empty state, plus a "Reset price" link inside `PriceRange` that hands back the full span — shown only once a handle has moved |
 | `Load more` after filtering | `DirectoryBrowser` fetches extra cards **by row index**, and §10.32's Load-more bug came from exactly that coupling. The filter changes which indices are shown, not what the indices mean, so the existing `source`/`rowCount` guard still holds — but this needs a real click-through-to-the-end test, not an assumption. |
 
 ## Testing
