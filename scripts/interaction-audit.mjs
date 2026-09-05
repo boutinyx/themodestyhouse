@@ -621,7 +621,12 @@ for (const engineName of engineNames) {
         if ((await priceThumbs.count()) < 2) {
           note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'FEWER THAN TWO PRICE THUMBS FOR KEYBOARD TEST' });
         } else {
-          const unfocusedBoxShadow = await priceThumbs.first().evaluate((el) => getComputedStyle(el).boxShadow);
+          // .price-thumb-dot, NOT .price-thumb: Tina asked for a smaller visible
+          // dot on 2026-09-05, split from the 24px hit area, and the fill/ring
+          // moved with it — .price-thumb itself now carries no box-shadow at all
+          // ("none"), so reading IT reported FOCUS RING DID NOT PAINT on a ring
+          // that was painting correctly, just on its child.
+          const unfocusedBoxShadow = await priceThumbs.first().locator('.price-thumb-dot').evaluate((el) => getComputedStyle(el).boxShadow);
 
           // A REAL Tab press, never a programmatic .focus(). Measured on staging
           // 2026-09-05: element.focus() leaves :focus-visible FALSE in Chromium,
@@ -640,7 +645,8 @@ for (const engineName of engineNames) {
             onThumb = await pagePrice.evaluate(() => {
               const t = document.activeElement?.closest?.('.price-thumb');
               if (!t) return null;
-              return { label: t.querySelector('input')?.getAttribute('aria-label') || '', shadow: getComputedStyle(t).boxShadow };
+              const dot = t.querySelector('.price-thumb-dot');
+              return { label: t.querySelector('input')?.getAttribute('aria-label') || '', shadow: dot ? getComputedStyle(dot).boxShadow : 'none' };
             });
           }
 
