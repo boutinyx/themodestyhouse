@@ -1248,10 +1248,19 @@ html[data-input-modality="mouse"] summary:focus-visible {
    selector, so a focus-visible class rule could never have overridden an
    inline box-shadow on the same element. */
 .price-thumb {
-  box-shadow: 0 0 0 6px var(--parchment);
+  background: #fff;
+  border: 1px solid var(--hairline);
+  box-shadow: 0 2px 6px rgba(43, 38, 34, 0.18);
 }
+/* The focus ring lives here, in CSS, and cannot be an inline style or a
+   Tailwind variant. Base UI gives Slider.Thumb's element tabIndex="-1", so it
+   can never receive focus itself, and the element that DOES — a nested
+   <input type="range"> — is clipped by clip: rect(0 0 0 0), which eats any
+   outline drawn on it. :has() is the only selector that can reach from the
+   styled element to its own focused input. Do not "tidy" this back into the
+   component. */
 .price-thumb:has(input:focus-visible) {
-  box-shadow: 0 0 0 6px var(--parchment), 0 0 0 8px var(--aubergine);
+  box-shadow: 0 2px 6px rgba(43, 38, 34, 0.18), 0 0 0 3px var(--aubergine);
 }
 
 /* Menu rows carry NO box at all — no ring, no fill.

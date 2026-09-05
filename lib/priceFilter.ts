@@ -111,6 +111,42 @@ export function withinPrice(
 }
 
 /**
+ * How many pieces sit in each slice of the track — the bars behind the slider.
+ *
+ * Tina asked for the Airbnb treatment (2026-09-05), and the bars are the whole
+ * point of it: they are the only part of a price filter that tells you where
+ * the catalogue actually IS before you drag anything. On /modest-hijabs the
+ * median is $21 against a $243 maximum, and without the bars a visitor has no
+ * way to know that by looking.
+ *
+ * Binned across the SAME [min, max] the track spans, so a bar lines up with the
+ * handle above it. Anything above `max` lands in the last bin rather than being
+ * dropped — the same promise `openTop` makes: the track stops at the 95th
+ * percentile, the catalogue does not.
+ *
+ * A row whose currency has no rate contributes to no bin — it has no comparable
+ * number to place. It is still never FILTERED OUT; see withinPrice.
+ */
+export function priceHistogram(
+  cat: CompactCatalogue,
+  rows: number[],
+  preference: CurrencyPreference,
+  bounds: PriceBounds,
+  binCount = 32,
+): number[] {
+  const bins = new Array<number>(binCount).fill(0);
+  if (!bounds.usable || binCount < 1 || bounds.max <= bounds.min) return bins;
+  const width = (bounds.max - bounds.min) / binCount;
+  for (const row of rows) {
+    const v = convertedRowPrice(cat, row, preference);
+    if (v === null) continue;
+    const i = Math.floor((v - bounds.min) / width);
+    bins[Math.min(binCount - 1, Math.max(0, i))]++;
+  }
+  return bins;
+}
+
+/**
  * Keeps a range inside bounds that moved, e.g. after a currency change.
  *
  * When `oldBounds` is given (and genuinely differs from `bounds`), the range

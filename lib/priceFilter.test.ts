@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { priceBounds, withinPrice, clampRange, MIN_ROWS_FOR_SLIDER } from './priceFilter';
+import { priceBounds, withinPrice, clampRange, priceHistogram, MIN_ROWS_FOR_SLIDER } from './priceFilter';
 import type { CompactCatalogue } from './compactCatalogue';
 
 function catWith(prices: number[], currency = 'USD'): CompactCatalogue {
@@ -141,5 +141,39 @@ describe('clampRange', () => {
   it('falls back to an absolute clamp when no old bounds are given (bounds narrowed by another filter, same currency)', () => {
     const b = { min: 10, max: 100, step: 5, openTop: false, usable: true };
     expect(clampRange([5, 500], b)).toEqual([10, 100]);
+  });
+});
+
+describe('priceHistogram', () => {
+  const bounds = { min: 0, max: 100, step: 5, openTop: false, usable: true };
+
+  it('bins every row across the same span the track covers', () => {
+    const cat = catWith([0, 25, 50, 75, 99]);
+    const bins = priceHistogram(cat, [0, 1, 2, 3, 4], 'USD', bounds, 4);
+    expect(bins).toEqual([1, 1, 1, 2]);
+    expect(bins.reduce((a, b) => a + b, 0)).toBe(5);
+  });
+
+  // The same promise openTop makes: the track stops at p95, the catalogue does
+  // not. A tail row must be counted, not dropped, or the last bar under-reports.
+  it('counts a row above the cap in the last bin rather than dropping it', () => {
+    const cat = catWith([10, 10, 10, 10_000]);
+    const bins = priceHistogram(cat, [0, 1, 2, 3], 'USD', bounds, 4);
+    expect(bins[3]).toBe(1);
+    expect(bins.reduce((a, b) => a + b, 0)).toBe(4);
+  });
+
+  it('returns all zeroes for unusable bounds rather than dividing by zero', () => {
+    const dead = { min: 0, max: 0, step: 1, openTop: false, usable: false };
+    expect(priceHistogram(catWith([1, 2, 3]), [0, 1, 2], 'USD', dead, 4)).toEqual([0, 0, 0, 0]);
+  });
+
+  it('omits a row it cannot price, without shifting the other bins', () => {
+    const cat = {
+      brands: [{ slug: 'a', name: 'A', currency: 'USD' }, { slug: 'z', name: 'Z', currency: 'ZZZ' }],
+      rows: { price: [10, 90, 50], brandIdx: [0, 0, 1], title: ['t', 't', 't'], firstSeenDay: [0, 0, 0] },
+    } as unknown as CompactCatalogue;
+    const bins = priceHistogram(cat, [0, 1, 2], 'USD', bounds, 2);
+    expect(bins).toEqual([1, 1]);
   });
 });

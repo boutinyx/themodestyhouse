@@ -11,7 +11,7 @@ import { DRESS_SUBTYPE_LABELS, SWIM_SUBTYPE_LABELS, ACTIVE_SUBTYPE_LABELS, GARME
 import { COLOUR_FAMILY_LABELS, COLOUR_FAMILY_SWATCH } from '@/lib/colour';
 import { useCurrency } from './CurrencyProvider';
 import { FX_BASE } from '@/lib/fx';
-import { priceBounds, withinPrice, clampRange } from '@/lib/priceFilter';
+import { priceBounds, priceHistogram, withinPrice, clampRange } from '@/lib/priceFilter';
 import PriceRange from '@/components/PriceRange';
 import { trackGoal } from '@/lib/pulse';
 import { LanguageNote } from './LanguageNote';
@@ -383,6 +383,14 @@ export function FilterableGrid({
     [cat, rowsBeforePrice, preference],
   );
 
+  // Derived from the SAME rows the bounds are, so a bar and the handle above it
+  // describe one set. Recomputed with them, which is what keeps the bars honest
+  // when another filter narrows the page.
+  const histogram = useMemo(
+    () => priceHistogram(cat, rowsBeforePrice, preference, bounds),
+    [cat, rowsBeforePrice, preference, bounds],
+  );
+
   // Clamp rather than reset when the bounds move under a chosen range —
   // switching display currency must not throw away the visitor's choice.
   // `boundsHistory` tracks the bounds as of the last render that actually
@@ -511,14 +519,6 @@ export function FilterableGrid({
             here, not re-deriving anything. See
             docs/log/2026-08-12-occasion-filter-removed.md. */}
         <FilterDropdown label="Brand" value={brand} options={brands} onSelect={setBrand} />
-        {bounds.usable && (
-          <PriceRange
-            bounds={bounds}
-            value={effectivePrice ?? [bounds.min, bounds.max]}
-            onChange={setPrice}
-            currency={preference ?? FX_BASE}
-          />
-        )}
         {/* `cat.colours.length > 1`, not `colours.length > 1`: `colours` carries
             the synthesised "All colours" row too, so it is never empty. And
             `> 1` rather than `> 0` because a lane where every classified row is
@@ -592,6 +592,19 @@ export function FilterableGrid({
           options={SORT_OPTIONS}
           onSelect={(v) => setSort(v as SortKey)}
         />
+        {/* LAST in the row and pushed right with ml-auto, at Tina's request
+            2026-09-05: "i want the filter to be on the right side". Last in DOM
+            order as well as visually, so the tab order matches what is on
+            screen — ml-auto alone would have left it tabbing second. */}
+        {bounds.usable && (
+          <PriceRange
+            bounds={bounds}
+            value={effectivePrice ?? [bounds.min, bounds.max]}
+            onChange={setPrice}
+            currency={preference ?? FX_BASE}
+            histogram={histogram}
+          />
+        )}
       </IndexPanel>
       )}
 
