@@ -1,12 +1,12 @@
 {
-  "date": "2026-09-04",
+  "date": "2026-09-05",
   "totals": {
-    "added": 217,
-    "updated": 27042,
-    "delisted": 53,
-    "filtered": 52,
-    "returned": 37,
-    "incomplete": 8
+    "added": 9,
+    "updated": 26369,
+    "delisted": 35,
+    "filtered": 43,
+    "returned": 18,
+    "incomplete": 5
   },
   "brands": [
     {
@@ -23,21 +23,8 @@
       "brandSlug": "vela",
       "complete": true,
       "fetched": 676,
-      "added": [
-        "Dark Sage - SAMPLE",
-        "Storm Gray Opaque-SAMPLE",
-        "Berry Opaque-SAMPLE",
-        "Rouge Opaque SAMPLE",
-        "Truffle Opaque-SAMPLE",
-        "Tangerine Dream-SAMPLE",
-        "Pitaya Pink - SAMPLE",
-        "Pink Chantilly Plaid-SAMPLE",
-        "Ombre Olive- SAMPLE",
-        "Petal Sunfade - SAMPLE",
-        "Polka Dot - SAMPLE",
-        "Brown Kuffiyeh - SAMPLE"
-      ],
-      "updated": 664,
+      "added": [],
+      "updated": 676,
       "delisted": 0,
       "filtered": [
         {
@@ -50,14 +37,12 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1115,
-      "added": [
-        "Pearl Embellished Open Abaya - Chocolate Plum"
-      ],
+      "fetched": 1114,
+      "added": [],
       "updated": 1114,
-      "delisted": 0,
+      "delisted": 1,
       "filtered": [],
-      "returned": 12
+      "returned": 0
     },
     {
       "brandSlug": "niswa",
@@ -65,7 +50,7 @@
       "fetched": 411,
       "added": [],
       "updated": 411,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -83,14 +68,9 @@
       "brandSlug": "modern-hijabi",
       "complete": true,
       "fetched": 317,
-      "added": [
-        "Bamboo Jersey Wrap Set- Grey",
-        "Bamboo Jersey Wrap Set- Burgundy",
-        "Bamboo Jersey Wrap Set- Dusty Pink",
-        "Bamboo Jersey Wrap Set"
-      ],
-      "updated": 313,
-      "delisted": 1,
+      "added": [],
+      "updated": 317,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -173,14 +153,8 @@
       "brandSlug": "urban-modesty",
       "complete": true,
       "fetched": 293,
-      "added": [
-        "Beige Pinstripe Abaya",
-        "Navy stripped abaya",
-        "Hoodie Sweater",
-        "Brown Pinstripe Abaya",
-        "Black Pinstripe Abaya"
-      ],
-      "updated": 288,
+      "added": [],
+      "updated": 293,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -219,14 +193,11 @@
       "brandSlug": "jawda",
       "complete": true,
       "fetched": 125,
-      "added": [
-        "Brown Cotton Striped Kimono Abaya",
-        "Brown Cotton Layered Two-Piece Abaya"
-      ],
-      "updated": 123,
-      "delisted": 2,
+      "added": [],
+      "updated": 125,
+      "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "feradje",
@@ -241,10 +212,10 @@
     {
       "brandSlug": "lanuuk",
       "complete": true,
-      "fetched": 132,
+      "fetched": 131,
       "added": [],
-      "updated": 132,
-      "delisted": 0,
+      "updated": 131,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -311,8 +282,10 @@
     {
       "brandSlug": "emlavish",
       "complete": true,
-      "fetched": 51,
-      "added": [],
+      "fetched": 52,
+      "added": [
+        "Asymmetrical Knitted Cape Poncho"
+      ],
       "updated": 51,
       "delisted": 0,
       "filtered": [],
@@ -364,7 +337,7 @@
       "fetched": 121,
       "added": [],
       "updated": 121,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -382,24 +355,8 @@
       "brandSlug": "merrachi",
       "complete": true,
       "fetched": 1710,
-      "added": [
-        "Scarf Keychain | Brown Zebra",
-        "The Unique Flock Premium | Dark Terra",
-        "The Monogram Flock Scarf Premium | Sand",
-        "The Unique Breathable | Lemon Herb",
-        "The Unique Breathable | Honeydew",
-        "Zebra Bandana | Khaki Zebra",
-        "Zebra Bandana | Brown Zebra",
-        "M Bandana | Aqua Gray",
-        "Signature Bandana | Air",
-        "Signature Bandana | Khaki",
-        "The Unique Flock Bamboo | Buttermilk",
-        "The Unique Flock Bamboo | Morning Blue",
-        "Bamboo Hijab | Brown Rice",
-        "Bamboo Hijab | Dark Terra",
-        "Bamboo Hijab | Marrakech"
-      ],
-      "updated": 1695,
+      "added": [],
+      "updated": 1710,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -407,14 +364,11 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 109,
+      "fetched": 110,
       "added": [
-        "Cropped trenchcoat",
-        "Cropped trenchcoat met lint",
-        "Poncho met knoopsluiting",
-        "Satijnen Maxi Rok"
+        "Oversized Blazer"
       ],
-      "updated": 105,
+      "updated": 109,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -445,16 +399,6 @@
       "fetched": 46,
       "added": [],
       "updated": 46,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 0
-    },
-    {
-      "brandSlug": "madiha",
-      "complete": false,
-      "fetched": 0,
-      "added": [],
-      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -510,7 +454,7 @@
       "fetched": 377,
       "added": [],
       "updated": 377,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Atelier Trolley",
@@ -630,68 +574,21 @@
     },
     {
       "brandSlug": "mukistore",
-      "complete": true,
-      "fetched": 1620,
+      "complete": false,
+      "fetched": 247,
       "added": [],
-      "updated": 1620,
-      "delisted": 0,
-      "filtered": [
-        {
-          "title": "Diamond Net Panty",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Tie Belt Trenchoat Stripe Folded Sleeve Details",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Trending Bomber Orange Detail 7015",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Eau de parfum Black Rose",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Eau de parfum Gris",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Long Plaid Shackett",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Long Plaid Shacket",
-          "reason": "unclassified"
-        },
-        {
-          "title": "GROTE MAAT Anti ladder fleece panty super hit L/XL & XL/XXL",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Anti ladder fleece panty super hit",
-          "reason": "unclassified"
-        }
-      ],
-      "returned": 0
-    },
-    {
-      "brandSlug": "hijab-boutique",
-      "complete": true,
-      "fetched": 235,
-      "added": [],
-      "updated": 235,
+      "updated": 247,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
-      "brandSlug": "aniqq",
-      "complete": false,
-      "fetched": 0,
+      "brandSlug": "hijab-boutique",
+      "complete": true,
+      "fetched": 234,
       "added": [],
-      "updated": 0,
-      "delisted": 0,
+      "updated": 234,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -758,7 +655,7 @@
       "fetched": 455,
       "added": [],
       "updated": 455,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -774,13 +671,15 @@
     },
     {
       "brandSlug": "by-hasanat",
-      "complete": false,
-      "fetched": 0,
-      "added": [],
-      "updated": 0,
-      "delisted": 0,
+      "complete": true,
+      "fetched": 94,
+      "added": [
+        "Winter Dress Two Piece Set Grey"
+      ],
+      "updated": 93,
+      "delisted": 1,
       "filtered": [],
-      "returned": 0
+      "returned": 6
     },
     {
       "brandSlug": "zayda",
@@ -867,173 +766,9 @@
       "complete": false,
       "fetched": 4009,
       "added": [
-        "Aksesuar Detaylı Çizgi Mixli - Kahve",
-        "Fular Detaylı Düşük Kol Gömlek - Kahve",
-        "Aplike Nakış Detaylı Denim Kumaş Spor Takım - İndigo",
-        "Oversize Formlu Modal Gömlek - Kahve",
-        "Pili Detaylı Vintage Gömlek - Bej",
-        "Aller Detaylı Modal Tunik - Mürdüm",
-        "Lyocell Pantolon Tunik Takım - Siyah",
-        "Fular Detaylı Düşük Kol Gömlek - Mürdüm",
-        "Robalı Şık Gömlek - Ekru",
-        "Patlı Deri Kenarlı Basic Trençkot - Kahve",
-        "Beli Spor Lastikli Boru Paça Modal Pantolon - Kahve",
-        "Pili Detaylı Vintage Gömlek - Kahve",
-        "Yakası Bağlamalı Fularlı Gömlek - Ekru",
-        "Beli Büzgülü İnce Kapitone Yelek - Siyah",
-        "Pelerin Detaylı Takım - Siyah",
-        "Pile Detaylı Vintage Gömlek - Kahve",
-        "Aller Detaylı Modal Tunik - Krem",
-        "Asimetrik Pili Detaylı Bol Paça Pantolon - Mürdüm",
-        "Beli Spor Lastikli Boru Paça Modal Pantolon - Vizon",
-        "Oversize Kumaş Rahat Oversize Spor - Vizon",
-        "Oversize Formlu Modal Gömlek - Vizon",
-        "Aplike Nakış Detaylı Denim Kumaş Spor Takım - Füme",
-        "Gabardin Arkası Lastik Detaylı Spor Pantolon - Siyah",
-        "Bol Paça Pantolon - Siyah",
-        "Bol Paça Pantolon - Füme",
-        "Bol Paça Pantolon - Camel",
-        "Erkek Yaka Yelek - Kahve",
-        "Sweatshirt Ve Yarım Çan Etekli Takım - Siyah",
-        "Kol Detaylı Rahat Pantolon Tunik Takım - Lacivert",
-        "Seyyar Kapüşonlu Oversize Spor Yağmurluk - Lacivert",
-        "Beli Büzgülü İnce Kapitone Yelek - Kahve",
-        "Ribana Detaylı Hafızalı Kumaş Mixli Jakar Kumaş Yelek - Siyah",
-        "Ekose Kumaş Mixli Erkek Yaka Yelek - Siyah",
-        "Ekose Kumaş Mixli Erkek Yaka Yelek - Kahve",
-        "Atkı Ve Deri Kemer Detaylı Rahat Kalıp Yelek - Siyah",
-        "Torba Kesit Hafif Dar Blazer Yelek - Siyah",
-        "Şal Yaka Klasik Yelek - Lacivert",
-        "Çizgili Kumaş Örme Kumaş Mixli Oversize Spor Tunik - Mürdüm",
-        "Asimetrik Kapama Huni Yaka Tunik - Ekru",
-        "Dik Yaka Pamuklu Gömlek - Mürdüm",
-        "Dik Yaka Pamuklu Gömlek - Beyaz",
-        "Pile Detaylı Vintage Gömlek - Krem",
-        "Pile Detaylı Vintage Gömlek - Açık Mavi",
-        "Pile Detaylı Vintage Gömlek - Gri",
-        "Çizgi Kumaş Mixli Oversize Spor Tunik - Bej",
-        "Oversize Kumaş Rahat Oversize Spor - Kahve",
-        "Ekose Kumaş Detaylı Oversize Tunik - Kahve",
-        "Örme Mixli Gömlek Tunik - Gri",
-        "Basic Gömlek Etek Takım - Kiremit",
-        "Basic Gömlek Etek Takım - Açık Kahve",
-        "Basic Gömlek Etek Takım - Bordo",
-        "Basic Gömlek Etek Takım - Yeşil",
-        "Basic Gömlek Etek Takım - Siyah",
-        "Basic Gömlek Etek Takım - Kahve",
-        "İkili Takım - Siyah",
-        "Pelerin Detaylı Takım - Kahve",
-        "Çıtçıt Ve Fermuar Detaylı Rahat Spor Takım - Kiremit",
-        "Çıtçıt Ve Fermuar Detaylı Rahat Spor Takım - Bordo",
-        "Çıtçıt Ve Fermuar Detaylı Rahat Spor Takım - Yeşil",
-        "Çıtçıt Ve Fermuar Detaylı Rahat Spor Takım - Siyah",
-        "Çıtçıt Ve Fermuar Detaylı Rahat Spor Takım - Lacivert",
-        "Çıtçıt Ve Fermuar Detaylı Rahat Spor Takım - Kahve",
-        "Kol Ve Yaka Detaylı İkili Takım - İndigo",
-        "Dikiş Detaylı Palazzo Pantolon - Mürdüm",
-        "Dikiş Detaylı Palazzo Pantolon - Siyah",
-        "Dikiş Detaylı Palazzo Pantolon - Lacivert",
-        "Asimetrik Pili Detaylı Bol Paça Pantolon - Vizon",
-        "Asimetrik Pili Detaylı Bol Paça Pantolon - Lacivert",
-        "Asimetrik Pili Detaylı Bol Paça Pantolon - Kahve",
-        "Beli Pensli Pantolon - Siyah",
-        "Beli Pensli Pantolon - Kahve",
-        "Denim Pantolon - İndigo",
-        "Denim Pantolon - Füme",
-        "Lastikli Bel Bol Paça Pantolon - Lacivert",
-        "Beli Lastikli Rahat Formlu Pantolon - Kahve",
-        "Pantolon - Vizon",
-        "Pantolon - Mürdüm",
-        "Pantolon - Lacivert",
-        "Lastikli Baggy Kanvas Pantolon - Krem",
-        "Lastikli Baggy Kanvas Pantolon - Mürdüm",
-        "Lastikli Baggy Kanvas Pantolon - Lacivert",
-        "Lastikli Baggy Kanvas Pantolon - Kahve",
-        "Arka Beli Lastikli Havuç Pantolon - Lacivert",
-        "Çizgili Palazzo Pantolon - Bej",
-        "Bol Paça Ütü İzli Pantolon - Açık Kahve",
-        "Bol Paça Ütü İzli Pantolon - Siyah",
-        "Pantolon - Kahve",
-        "Dik Asimetrik Yaka Kap - Vizon",
-        "Çanta Detaylı Pelerinli Trençkot - Mürdüm",
-        "Önden Fermuarlı Kuplu Jile Elbise - Siyah",
-        "Kare Yaka A-Kesim Jile Elbise - Kahve",
-        "Robalı Şık Gömlek - Siyah",
-        "Dik Yaka Diagonel Gömlek - Siyah",
-        "Önden Kesikli Modal Gömlek - Olive",
-        "Önden Kesikli Modal Gömlek - Vizon",
-        "Önden Kesikli Modal Gömlek - Açık Mavi",
-        "Önden Kesikli Modal Gömlek - Gri",
-        "Robalı Şık Gömlek - Açık Kahve",
-        "Robalı Şık Gömlek - Bej",
-        "Robali Şık Gömlek - Kahve",
-        "Oversize Formlu Modal Gömlek - Açık Mavi",
-        "Asimetrik Büzgü Detaylı Etek - Siyah",
-        "Pilili Geniş Manşetli Gömlek Elbise - Bej",
-        "Taş İşlemeli Kanvas Ceket - Tereyağ Sarısı",
-        "İnce Kapitone Beli Büzgülü Pamuk Karışımlı Ceket - Buz",
-        "Ekoseli Yarım Aura Etek - Siyah",
-        "Çizgili Kısa Ceket - Siyah",
-        "Floral Desenli Crop Kapitone Ceket - Krem",
-        "Beli Büzgülü Etek - Kahve",
-        "Beli Büzgülü Etek - Bej",
-        "Sabit Kapüşonlu Oversize Yağmurluk - Yeşil",
-        "Yakası Bağlamalı Fularlı Gömlek - Mürdüm",
-        "Yakası Bağlamalı Tencel Gömlek - Krem",
-        "Yakası Bağlamalı Tencel Gömlek - Açık Mavi",
-        "Yakası Bağlamalı Tencel Gömlek - Gri",
-        "A-Line Denim Etek - İndigo",
-        "A-Line Denim Etek - Füme",
-        "Asimetrik Büzgü Detaylı Etek - Füme",
-        "Asimetrik Büzgü Detaylı Etek - Kahve",
-        "Pilili Ekose Etek - Lacivert",
-        "Verev Ekose Detaylı Kloş Etek - Kahve",
-        "Yırtmaçlı Derin Eksaltık/Kısıtlı Etek - Antrasit",
-        "Geniş Manşetli Yarım Pat Modal Elbise - Kahve",
-        "Kuşaklı Spor Modal Elbise - Mürdüm",
-        "Kuşaklı Spor Modal Elbise - Lacivert",
-        "Önden Düğmeli Kuşaklı Modal Elbise - Vizon",
-        "Pilili Geniş Manşetli Gömlek Elbise - Kahve",
-        "Kemerli Kruvaze Kapama Deri Ceket - Taba",
-        "Kemerli Kruvaze Kapama Deri Ceket - Kahve",
-        "Çizgili Kısa Ceket - Vizon",
-        "Çizgili Kısa Ceket - Füme",
-        "Çizgili Kısa Ceket - Kahve",
-        "Tüvit Şık Ceket - Kahve",
-        "Cepli Kısa Deri Ceket - Taba",
-        "Cepli Kısa Deri Ceket - Siyah",
-        "Kombin Aksesuar Ve Nakış Detaylı Spor Ceket - Siyah",
-        "Pile Fermuar Detaylı Crop Ceket - Olive",
-        "Pile Fermuar Detaylı Crop Ceket - Vizon",
-        "Pile Fermuar Detaylı Crop Ceket - Mürdüm",
-        "Torba Kesitli Hafif Dar Blazer Ceket - Kahve",
-        "Taş İşlemeli Kanvas Ceket - Ekru",
-        "Floral Desenli Crop Kapitone Ceket - Bordo",
-        "Floral Desenli Crop Kapitone Ceket - Kahve",
-        "Yumuşak Kapitone Gizli Fermuarlı Ceket - İndigo",
-        "Kruvaze Yaka Kuruvaze Ceket - Vizon",
-        "Kruvaze Yaka Kuruvaze Ceket - Lacivert",
-        "Yarım Dik Yaka Kuşaklı Blazer - Mürdüm",
-        "Dik Yaka Basic Bluz - Ekru",
-        "Kazayağı Desenli Crop Ceket - Lacivert",
-        "Sıfır Yaka Fermuarlı Ceket - Bordo",
-        "Sıfır Yaka Fermuarlı Ceket - Siyah",
-        "Sıfır Yaka Fermuarlı Ceket - Kahve",
-        "İnce Kapitone Broşlu Ceket - Antrasit",
-        "İnce Kapitone Broşlu Ceket - Bordo",
-        "İnce Kapitone Broşlu Ceket - Kahve",
-        "Şal Detaylı Bluz - Mürdüm",
-        "Drapeli Bluz - Siyah",
-        "Dik Yaka Basic Bluz - Mürdüm",
-        "Dik Yaka Basic Bluz - Siyah",
-        "Basic Bluz - Haki",
-        "Basic Bluz - Mürdüm",
-        "Basic Bluz - Siyah",
-        "Basic Bluz - İndigo",
-        "Basic Bluz - Kahve",
-        "Ekose Ve Örme Kumaş Mixli Crop Bluz - Kahve"
+        "Paçası Düğmeli Tencel Pantolon - Siyah"
       ],
-      "updated": 3844,
+      "updated": 4008,
       "delisted": 0,
       "filtered": [
         {
@@ -1082,10 +817,10 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 294,
+      "fetched": 296,
       "added": [],
-      "updated": 294,
-      "delisted": 4,
+      "updated": 296,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -1104,7 +839,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 1
+      "returned": 2
     },
     {
       "brandSlug": "abaya-lounge",
@@ -1132,9 +867,9 @@
       "fetched": 352,
       "added": [],
       "updated": 352,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
-      "returned": 2
+      "returned": 0
     },
     {
       "brandSlug": "yasmin-jay",
@@ -1209,12 +944,15 @@
     {
       "brandSlug": "modesty-in-style",
       "complete": true,
-      "fetched": 367,
-      "added": [],
-      "updated": 367,
-      "delisted": 19,
+      "fetched": 372,
+      "added": [
+        "Charlotte Knit Set",
+        "A-line Denim Skirt"
+      ],
+      "updated": 370,
+      "delisted": 2,
       "filtered": [],
-      "returned": 0
+      "returned": 5
     },
     {
       "brandSlug": "labayah",
@@ -1230,24 +968,19 @@
       "brandSlug": "vivi-zubedi",
       "complete": true,
       "fetched": 362,
-      "added": [
-        "VZ Caelune Top-Butter Yellow",
-        "VZ Caelune Top-Black"
-      ],
-      "updated": 360,
-      "delisted": 3,
+      "added": [],
+      "updated": 362,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "we-are-elegance",
       "complete": true,
-      "fetched": 106,
-      "added": [
-        "Palachi Noir Nightfall Blue"
-      ],
-      "updated": 105,
-      "delisted": 0,
+      "fetched": 97,
+      "added": [],
+      "updated": 97,
+      "delisted": 9,
       "filtered": [],
       "returned": 0
     },
@@ -1264,10 +997,10 @@
     {
       "brandSlug": "lameera-moda",
       "complete": true,
-      "fetched": 458,
+      "fetched": 454,
       "added": [],
-      "updated": 458,
-      "delisted": 1,
+      "updated": 454,
+      "delisted": 4,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1303,22 +1036,22 @@
     {
       "brandSlug": "store-wf",
       "complete": true,
-      "fetched": 256,
+      "fetched": 254,
       "added": [],
-      "updated": 256,
-      "delisted": 0,
+      "updated": 254,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 944,
+      "fetched": 945,
       "added": [],
-      "updated": 944,
-      "delisted": 3,
+      "updated": 945,
+      "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "abadia",
@@ -1328,7 +1061,7 @@
       "updated": 90,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "ahlam-collections",
@@ -1388,10 +1121,8 @@
       "brandSlug": "rutba-abaya",
       "complete": true,
       "fetched": 274,
-      "added": [
-        "R 264 Princess Model Abaya – Elegant summer & Special Occasion Wear"
-      ],
-      "updated": 273,
+      "added": [],
+      "updated": 274,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1399,10 +1130,10 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1004,
+      "fetched": 1000,
       "added": [],
-      "updated": 1004,
-      "delisted": 5,
+      "updated": 1000,
+      "delisted": 6,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1421,7 +1152,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 17
+      "returned": 2
     },
     {
       "brandSlug": "ria-miranda",
@@ -1466,10 +1197,10 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 742,
+      "fetched": 741,
       "added": [],
-      "updated": 742,
-      "delisted": 0,
+      "updated": 741,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1477,33 +1208,31 @@
       "brandSlug": "nour-al-houda",
       "complete": true,
       "fetched": 787,
-      "added": [
-        "Modal Batwing Tie Abaya - Washed Olive",
-        "Dania Contrast Open Abaya - Chocolate",
-        "Dania Contrast Skirt - Chocolate"
-      ],
-      "updated": 784,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 2
-    },
-    {
-      "brandSlug": "abayas-boutique",
-      "complete": false,
-      "fetched": 0,
       "added": [],
-      "updated": 0,
+      "updated": 787,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
+      "brandSlug": "abayas-boutique",
+      "complete": true,
+      "fetched": 410,
+      "added": [],
+      "updated": 410,
+      "delisted": 4,
+      "filtered": [],
+      "returned": 1
+    },
+    {
       "brandSlug": "golden-dune",
       "complete": true,
-      "fetched": 176,
-      "added": [],
-      "updated": 176,
-      "delisted": 0,
+      "fetched": 175,
+      "added": [
+        "Comfy Zweiteiler"
+      ],
+      "updated": 174,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -1511,9 +1240,11 @@
       "brandSlug": "la-petite-parisienne",
       "complete": true,
       "fetched": 307,
-      "added": [],
-      "updated": 307,
-      "delisted": 5,
+      "added": [
+        "Trench CAPE long beige WV053"
+      ],
+      "updated": 306,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1590,13 +1321,12 @@
     {
       "brandSlug": "parladusa",
       "complete": true,
-      "fetched": 142,
+      "fetched": 144,
       "added": [
-        "Valeria Oberteil",
-        "Nala Zweiteiler"
+        "Jamila Zweiteiler"
       ],
-      "updated": 140,
-      "delisted": 1,
+      "updated": 143,
+      "delisted": 0,
       "filtered": [],
       "returned": 1
     }
