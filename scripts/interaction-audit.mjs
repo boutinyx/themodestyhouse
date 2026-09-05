@@ -460,153 +460,201 @@ for (const engineName of engineNames) {
       await shot('lane-subtype-url');
     } catch (e) { note({ engine: engineName, viewport: vpName, state: 'lane-subtype-url', error: e.message.split('\n')[0] }); }
 
-    // ---- 3c. price slider drag ---------------------------------------------
-    // A price slider is invisible to every static render, and its whole value
-    // is what happens MID-DRAG. §10.50: a Playwright touch context ALWAYS
-    // reports `(hover: none)` true, so the commonest real tablet — touch AND
-    // hover-capable — is unreachable unless it is stubbed, and that is the
-    // configuration that broke this site's nav twice. Stubbed here too, even
-    // though the control itself reads no hover media query, because the
+    // ---- 3c/3d. price slider: drag, and keyboard operability + focus ring --
+    // Both share ONE dedicated context/page — like 2b above, and for the same
+    // reason. A price slider is invisible to every static render, and its
+    // whole value is what happens MID-DRAG and MID-TAB. §10.50: a Playwright
+    // touch context ALWAYS reports `(hover: none)` true, so the commonest real
+    // tablet — touch AND hover-capable — is unreachable unless it is stubbed,
+    // and that is the configuration that broke this site's nav twice. Stubbed
+    // here too, even though the control itself reads no hover media query
+    // (only components/NavMenu.tsx:187 does, as of 2026-09-05), because the
     // question this file exists to answer is whether the INTERACTION works on
     // that device, not whether this particular control happens to care.
     //
-    // `.price-thumb`, NOT `[role="slider"]` — the latter is a plain CSS
-    // attribute selector and Base UI's Slider carries the "slider" role
-    // IMPLICITLY, via a native `<input type="range">` with no explicit `role`
-    // attribute in the markup. `[role="slider"]` therefore matched ZERO
-    // elements on a real deployed page carrying a real, working slider, and
-    // reported "FEWER THAN TWO THUMBS" — indistinguishable from the true
-    // negative-control failure on production. Caught by probing
-    // `getByRole('slider')` (Playwright's accessibility-aware query, which DID
-    // find both inputs) against the same page before trusting the first
-    // result (§10.26). The visible drag target is the styled DIV anyway —
-    // the input itself is visually clipped (`clip: rect(0 0 0 0)`) and
-    // stretched to `width:100%;height:100%;position:fixed`, so its
-    // boundingBox() is the whole viewport, not the thumb.
+    // It used to be `page.addInitScript(...)` on the SHARED page, which
+    // therefore leaked into every check that ran after it — checks 4 through
+    // 9 (quick view, favourites, the currency switchers, header search, the
+    // contact form, the language note) all ran with `(hover: none)` forced to
+    // false, contradicting 2b's own comment eight lines above it. Its stub
+    // object was also weaker than 2b's: `{ ...mm(q), matches: false }` copies
+    // nothing, because a real `MediaQueryList`'s `matches`/`media` are
+    // PROTOTYPE accessors, invisible to a spread — anything that subscribed
+    // would have thrown. Both fixed by copying 2b's isolated-context pattern
+    // and its full stub object verbatim.
+    let ctxPrice;
     try {
-      await page.addInitScript(() => {
-        const mm = window.matchMedia.bind(window);
-        window.matchMedia = (q) => (q.includes('hover: none') ? { ...mm(q), matches: false } : mm(q));
+      ctxPrice = await browser.newContext({
+        viewport: { width: vp.width, height: vp.height },
+        deviceScaleFactor: 1,
+        hasTouch: vp.touch,
+        isMobile: engineName === 'chromium' ? vp.touch : undefined,
+        bypassCSP: LOCAL,
       });
-      await go('/modest-abayas');
+      await ctxPrice.addInitScript(`(() => {
+        const orig = window.matchMedia.bind(window);
+        window.matchMedia = (q) => /hover:\s*none/.test(q)
+          ? { matches: false, media: q, onchange: null, addEventListener() {}, removeEventListener() {},
+              addListener() {}, removeListener() {}, dispatchEvent() { return false; } }
+          : orig(q);
+      })();`);
+      if (LOCAL && engineName === 'webkit') {
+        await ctxPrice.route('**/*', async (r) => {
+          const url = r.request().url().replace(/^https:\/\/localhost:/, 'http://localhost:');
+          try {
+            const res = await r.fetch({ url });
+            const headers = { ...res.headers() };
+            delete headers['strict-transport-security'];
+            if (headers['content-security-policy']) headers['content-security-policy'] = headers['content-security-policy'].replace('upgrade-insecure-requests', '');
+            await r.fulfill({ response: res, headers });
+          } catch { try { await r.abort(); } catch {} }
+        });
+      }
+      const pagePrice = await ctxPrice.newPage();
+      const goPrice = async (path) => {
+        await pagePrice.goto(`${BASE}${path}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+        await pagePrice.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+        if (!(await pagePrice.evaluate(CSS_OK))) {
+          await pagePrice.reload({ waitUntil: 'domcontentloaded' });
+          await pagePrice.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+          if (!(await pagePrice.evaluate(CSS_OK))) throw new Error(`NO CSS on ${path} — every measurement here would be meaningless`);
+        }
+      };
       // The "Showing N of M" counter (FilterableGrid.tsx / DirectoryBrowser.tsx),
       // not `[data-surface="product-card"]`.count() — the grid only ever
       // RENDERS the first STEP=24 cards regardless of how many rows match, so
       // a filter that thins the catalogue from e.g. 3781 to 588 still shows
       // 24 rendered cards and this would read "CHANGED NOTHING" on a filter
       // that plainly worked. M is the true filtered total.
+      // textContent, NOT innerText — .brand-label sets text-transform:
+      // uppercase, so innerText (the RENDERED text) reads "SHOWING 24 OF
+      // 3781" and a case-sensitive match against "Showing" silently missed
+      // it on the very first run against staging. textContent is the raw
+      // DOM string and is immune to any CSS transform.
       const readTotal = async () => {
-        // textContent, NOT innerText — .brand-label sets text-transform:
-        // uppercase, so innerText (the RENDERED text) reads "SHOWING 24 OF
-        // 3781" and a case-sensitive match against "Showing" silently missed
-        // it on the very first run against staging. textContent is the raw
-        // DOM string and is immune to any CSS transform.
-        const txt = await page.getByText(/Showing \d+ of \d+/i).first().textContent().catch(() => null);
+        const txt = await pagePrice.getByText(/Showing \d+ of \d+/i).first().textContent().catch(() => null);
         const m = txt?.match(/Showing (\d+) of (\d+)/i);
         return m ? Number(m[2]) : null;
       };
-      const thumbs = page.locator('.price-thumb');
-      if ((await thumbs.count()) < 2) {
-        note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'PRICE SLIDER HAS FEWER THAN TWO THUMBS' });
-      } else {
-        const before = await readTotal();
-        const box = await thumbs.last().boundingBox();
-        if (!box) {
-          note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'PRICE SLIDER THUMB HAS NO BOX' });
-        } else if (before == null) {
-          note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'COULD NOT READ "SHOWING N OF M" COUNTER' });
-        } else {
-          await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-          await page.mouse.down();
-          await page.mouse.move(Math.max(box.x - 200, 8), box.y + box.height / 2, { steps: 12 });
-          await page.mouse.up();
-          await page.waitForTimeout(400);
-          const after = await readTotal();
-          note({
-            engine: engineName, viewport: vpName, state: 'price-slider-drag', before, after,
-            ...(after == null ? { PROBLEM: 'COULD NOT READ "SHOWING N OF M" COUNTER AFTER DRAG' }
-              : after >= before ? { PROBLEM: `DRAG CHANGED NOTHING (${before} -> ${after})` } : {}),
-          });
-        }
-      }
-    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', error: e.message.split('\n')[0] }); }
 
-    // ---- 3d. price slider keyboard operability + the focus ring -----------
-    // THE question this exists to answer: Task 3 shipped a control whose focus
-    // ring could never render. Base UI puts `tabIndex: -1` on the styled thumb
-    // DIV and clips the real `<input type="range">` with `clip: rect(0 0 0
-    // 0)`, so `focus-visible:ring-2` on the div was dead by two independent
-    // mechanisms — the div is never the focused element, and even if it were,
-    // the input carrying the real focus is visually clipped. The fix is a
-    // `.price-thumb:has(input:focus-visible)` rule in app/globals.css. Nobody
-    // has yet seen it work — it is unprovable without a deployed page, which
-    // is why it landed here rather than in a component test. This TABS from
-    // the top of the document, the same way a real keyboard user would reach
-    // it, rather than calling `.focus()` programmatically — a programmatic
-    // focus proves the CSS selector works, not that a keyboard user can reach
-    // the control at all.
-    try {
-      await go('/modest-abayas');
-      const priceThumbs = page.locator('.price-thumb');
-      if ((await priceThumbs.count()) < 2) {
-        note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'FEWER THAN TWO PRICE THUMBS FOR KEYBOARD TEST' });
-      } else {
-        const unfocusedBoxShadow = await priceThumbs.first().evaluate((el) => getComputedStyle(el).boxShadow);
-        let found = false;
-        for (let i = 0; i < 120 && !found; i++) {
-          await page.keyboard.press('Tab');
-          found = await page.evaluate(() => {
-            const el = document.activeElement;
-            return !!(el && el.tagName === 'INPUT' && el.closest('.price-thumb'));
-          });
-        }
-        // SAFARI EXCLUDES <input type="range"> FROM TAB ORDER BY DEFAULT, and
-        // that is a platform setting, not a defect in this control. Measured on
-        // staging 2026-09-05 with a focus-walk probe: in WebKit, 60 Tab presses
-        // reach `a`, `button` and `input[email]` — but never `input[range]`.
-        // The same walk in Chromium reaches the thumb. A Safari user with Full
-        // Keyboard Access on (System Settings > Keyboard) does reach it, and
-        // every range input on the web behaves this way.
-        //
-        // So a hard failure here would assert Safari's default, not our code —
-        // and this file exists to catch OUR regressions. Fall back to focusing
-        // the input directly and go on to assert the two things that ARE ours:
-        // that the ring paints, and that the arrows filter. Both were verified
-        // to hold in WebKit by this route (ring rgb(68,25,67) = --aubergine,
-        // :focus-visible matching, 3781 -> 588 -> 3 across the two handles).
-        if (!found) {
-          await page.evaluate(() => document.querySelector('.price-thumb input')?.focus());
-          found = await page.evaluate(() => !!document.activeElement?.closest?.('.price-thumb'));
-        }
-        if (!found) {
-          note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'COULD NOT FOCUS A PRICE SLIDER THUMB BY TAB OR DIRECTLY' });
+      // ---- 3c. price slider drag -------------------------------------------
+      // `.price-thumb`, NOT `[role="slider"]` — the latter is a plain CSS
+      // attribute selector and Base UI's Slider carries the "slider" role
+      // IMPLICITLY, via a native `<input type="range">` with no explicit
+      // `role` attribute in the markup. `[role="slider"]` therefore matched
+      // ZERO elements on a real deployed page carrying a real, working
+      // slider, and reported "FEWER THAN TWO THUMBS" — indistinguishable from
+      // the true negative-control failure on production. Caught by probing
+      // `getByRole('slider')` (Playwright's accessibility-aware query, which
+      // DID find both inputs) against the same page before trusting the
+      // first result (§10.26). The visible drag target is `.price-thumb`
+      // itself — Base UI's real `<input type="range">` is visually clipped
+      // (`clip: rect(0 0 0 0)`) and stretched to fill it via
+      // `width:100%;height:100%`, so `.price-thumb`'s own `boundingBox()` IS
+      // the tappable area, sized 24x24 after the §I2 hit-area fix (was 12x12,
+      // both engines, before it).
+      try {
+        await goPrice('/modest-abayas');
+        const thumbs = pagePrice.locator('.price-thumb');
+        if ((await thumbs.count()) < 2) {
+          note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'PRICE SLIDER HAS FEWER THAN TWO THUMBS' });
         } else {
-          const focusedBoxShadow = await page.evaluate(() => getComputedStyle(document.activeElement.closest('.price-thumb')).boxShadow);
-          const ringPainted = focusedBoxShadow !== unfocusedBoxShadow && focusedBoxShadow !== 'none';
-          // The "Showing N of M" total, same reason as price-slider-drag: the
-          // rendered card count is capped at STEP=24 and does not move until
-          // the filtered total itself drops below 24.
-          // Same textContent-not-innerText fix as price-slider-drag above.
-          const readTotal = async () => {
-            const txt = await page.getByText(/Showing \d+ of \d+/i).first().textContent().catch(() => null);
-            const m = txt?.match(/Showing (\d+) of (\d+)/i);
-            return m ? Number(m[2]) : null;
-          };
-          const beforeArrows = await readTotal();
-          for (let i = 0; i < 10; i++) await page.keyboard.press('ArrowRight');
-          await page.waitForTimeout(400);
-          const afterArrows = await readTotal();
-          note({
-            engine: engineName, viewport: vpName, state: 'price-slider-keyboard',
-            unfocusedBoxShadow, focusedBoxShadow, beforeArrows, afterArrows,
-            ...(!ringPainted ? { PROBLEM: `FOCUS RING DID NOT PAINT — unfocused "${unfocusedBoxShadow}" focused "${focusedBoxShadow}"` }
-              : beforeArrows == null || afterArrows == null ? { PROBLEM: 'COULD NOT READ "SHOWING N OF M" COUNTER FOR ARROW-KEY TEST' }
-              : afterArrows === beforeArrows ? { PROBLEM: `ARROW KEYS CHANGED NOTHING (${beforeArrows} -> ${afterArrows})` }
-              : {}),
-          });
+          const before = await readTotal();
+          const box = await thumbs.last().boundingBox();
+          if (!box) {
+            note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'PRICE SLIDER THUMB HAS NO BOX' });
+          } else if (before == null) {
+            note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', PROBLEM: 'COULD NOT READ "SHOWING N OF M" COUNTER' });
+          } else {
+            await pagePrice.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+            await pagePrice.mouse.down();
+            await pagePrice.mouse.move(Math.max(box.x - 200, 8), box.y + box.height / 2, { steps: 12 });
+            await pagePrice.mouse.up();
+            await pagePrice.waitForTimeout(400);
+            const after = await readTotal();
+            note({
+              engine: engineName, viewport: vpName, state: 'price-slider-drag', before, after,
+              ...(after == null ? { PROBLEM: 'COULD NOT READ "SHOWING N OF M" COUNTER AFTER DRAG' }
+                : after >= before ? { PROBLEM: `DRAG CHANGED NOTHING (${before} -> ${after})` } : {}),
+            });
+          }
         }
-      }
-    } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', error: e.message.split('\n')[0] }); }
+      } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', error: e.message.split('\n')[0] }); }
+
+      // ---- 3d. price slider keyboard operability + the focus ring ---------
+      // THE question this exists to answer: Task 3 shipped a control whose focus
+      // ring could never render. Base UI puts `tabIndex: -1` on the styled thumb
+      // DIV and clips the real `<input type="range">` with `clip: rect(0 0 0
+      // 0)`, so `focus-visible:ring-2` on the div was dead by two independent
+      // mechanisms — the div is never the focused element, and even if it were,
+      // the input carrying the real focus is visually clipped. The fix is a
+      // `.price-thumb:has(input:focus-visible)` rule in app/globals.css. Nobody
+      // has yet seen it work — it is unprovable without a deployed page, which
+      // is why it landed here rather than in a component test. This TABS from
+      // the top of the document, the same way a real keyboard user would reach
+      // it, rather than calling `.focus()` programmatically — a programmatic
+      // focus proves the CSS selector works, not that a keyboard user can reach
+      // the control at all.
+      try {
+        await goPrice('/modest-abayas');
+        const priceThumbs = pagePrice.locator('.price-thumb');
+        if ((await priceThumbs.count()) < 2) {
+          note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'FEWER THAN TWO PRICE THUMBS FOR KEYBOARD TEST' });
+        } else {
+          const unfocusedBoxShadow = await priceThumbs.first().evaluate((el) => getComputedStyle(el).boxShadow);
+          let found = false;
+          for (let i = 0; i < 120 && !found; i++) {
+            await pagePrice.keyboard.press('Tab');
+            found = await pagePrice.evaluate(() => {
+              const el = document.activeElement;
+              return !!(el && el.tagName === 'INPUT' && el.closest('.price-thumb'));
+            });
+          }
+          // SAFARI EXCLUDES <input type="range"> FROM TAB ORDER BY DEFAULT, and
+          // that is a platform setting, not a defect in this control. Measured on
+          // staging 2026-09-05 with a focus-walk probe: in WebKit, 60 Tab presses
+          // reach `a`, `button` and `input[email]` — but never `input[range]`.
+          // The same walk in Chromium reaches the thumb. A Safari user with Full
+          // Keyboard Access on (System Settings > Keyboard) does reach it, and
+          // every range input on the web behaves this way.
+          //
+          // So a hard failure here would assert Safari's default, not our code —
+          // and this file exists to catch OUR regressions. Fall back to focusing
+          // the input directly and go on to assert the two things that ARE ours:
+          // that the ring paints, and that the arrows filter. Both were verified
+          // to hold in WebKit by this route (ring rgb(68,25,67) = --aubergine,
+          // :focus-visible matching, 3781 -> 588 -> 3 across the two handles).
+          if (!found) {
+            await pagePrice.evaluate(() => document.querySelector('.price-thumb input')?.focus());
+            found = await pagePrice.evaluate(() => !!document.activeElement?.closest?.('.price-thumb'));
+          }
+          if (!found) {
+            note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', PROBLEM: 'COULD NOT FOCUS A PRICE SLIDER THUMB BY TAB OR DIRECTLY' });
+          } else {
+            const focusedBoxShadow = await pagePrice.evaluate(() => getComputedStyle(document.activeElement.closest('.price-thumb')).boxShadow);
+            const ringPainted = focusedBoxShadow !== unfocusedBoxShadow && focusedBoxShadow !== 'none';
+            // The "Showing N of M" total, same reason as price-slider-drag: the
+            // rendered card count is capped at STEP=24 and does not move until
+            // the filtered total itself drops below 24.
+            const beforeArrows = await readTotal();
+            for (let i = 0; i < 10; i++) await pagePrice.keyboard.press('ArrowRight');
+            await pagePrice.waitForTimeout(400);
+            const afterArrows = await readTotal();
+            note({
+              engine: engineName, viewport: vpName, state: 'price-slider-keyboard',
+              unfocusedBoxShadow, focusedBoxShadow, beforeArrows, afterArrows,
+              ...(!ringPainted ? { PROBLEM: `FOCUS RING DID NOT PAINT — unfocused "${unfocusedBoxShadow}" focused "${focusedBoxShadow}"` }
+                : beforeArrows == null || afterArrows == null ? { PROBLEM: 'COULD NOT READ "SHOWING N OF M" COUNTER FOR ARROW-KEY TEST' }
+                : afterArrows === beforeArrows ? { PROBLEM: `ARROW KEYS CHANGED NOTHING (${beforeArrows} -> ${afterArrows})` }
+                : {}),
+            });
+          }
+        }
+      } catch (e) { note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', error: e.message.split('\n')[0] }); }
+    } catch (e) {
+      note({ engine: engineName, viewport: vpName, state: 'price-slider-drag', error: e.message.split('\n')[0] });
+      note({ engine: engineName, viewport: vpName, state: 'price-slider-keyboard', error: e.message.split('\n')[0] });
+    } finally { if (ctxPrice) await ctxPrice.close().catch(() => {}); }
 
     // ---- 4. quick view ----------------------------------------------------
     try {

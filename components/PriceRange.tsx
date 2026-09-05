@@ -67,20 +67,37 @@ export default function PriceRange({
             style={{ backgroundColor: 'var(--hairline)' }}
           >
             <Slider.Indicator className="rounded-full" style={{ backgroundColor: 'var(--plum)' }} />
-            {/* 20px targets: below the 24px the mobile audit checks for, so the
-                visual dot is 12px and the hit area is padded around it. */}
+            {/* The visible dot is 12px (a deliberate design choice), but the
+                HIT AREA must be at least 24px (WCAG 2.2 §2.5.8, and
+                scripts/mobile-audit.mjs's smallTargets floor). Slider.Thumb's
+                own element — the one this `.price-thumb` className lands on —
+                is what the audit measures and what the browser hit-tests: its
+                nested `<input type="range">` is stretched to 100% of it via
+                Base UI's visuallyHidden, so enlarging THIS element enlarges
+                the tappable area, not just its padding. The visible dot is a
+                separate, `pointer-events-none` child, centered inside it. */}
             <Slider.Thumb
               index={0}
               getAriaLabel={() => 'Minimum price'}
-              className="price-thumb size-3 rounded-full outline-none"
-              style={{ backgroundColor: 'var(--aubergine)' }}
-            />
+              className="price-thumb size-6 rounded-full outline-none flex items-center justify-center"
+            >
+              <span
+                aria-hidden="true"
+                className="size-3 rounded-full pointer-events-none"
+                style={{ backgroundColor: 'var(--aubergine)' }}
+              />
+            </Slider.Thumb>
             <Slider.Thumb
               index={1}
               getAriaLabel={() => 'Maximum price'}
-              className="price-thumb size-3 rounded-full outline-none"
-              style={{ backgroundColor: 'var(--aubergine)' }}
-            />
+              className="price-thumb size-6 rounded-full outline-none flex items-center justify-center"
+            >
+              <span
+                aria-hidden="true"
+                className="size-3 rounded-full pointer-events-none"
+                style={{ backgroundColor: 'var(--aubergine)' }}
+              />
+            </Slider.Thumb>
           </Slider.Track>
         </Slider.Control>
       </Slider.Root>
@@ -88,7 +105,9 @@ export default function PriceRange({
         <button
           type="button"
           onClick={() => onChange([bounds.min, bounds.max])}
-          className="text-[12px] underline underline-offset-2 self-start"
+          // py-1.5 brings the tap target to 24px tall without changing the
+          // 12px text — measured 56x18 with no padding (§I2).
+          className="text-[12px] underline underline-offset-2 self-start py-1.5 -my-1.5"
           style={{ color: 'var(--muted)' }}
         >
           Reset price

@@ -15,7 +15,10 @@ describe('priceBounds', () => {
     const cat = catWith([12, 37, 44, 61, 88, 91, 103, 118, 129, 140]);
     const b = priceBounds(cat, all(10), 'USD');
     expect(b.min).toBeLessThanOrEqual(12);
-    expect(b.max).toBeGreaterThanOrEqual(129); // p95 of this set
+    // Interpolated p95 (this module's `percentile`, not nearest-rank) is
+    // 135.05 — between index 8 (129) and index 9 (140) — which then rounds
+    // outward to a step-10 track: b.max = 140.
+    expect(b.max).toBeGreaterThanOrEqual(129);
     expect(b.min % b.step).toBe(0);
     expect(b.max % b.step).toBe(0);
   });
@@ -115,5 +118,28 @@ describe('clampRange', () => {
     const b = { min: 10, max: 100, step: 5, openTop: false, usable: true };
     const [lo, hi] = clampRange([90, 20], b);
     expect(lo).toBeLessThanOrEqual(hi);
+  });
+
+  // The I1 regression: a USD range handed straight to TRY bounds used to
+  // collapse to a single point at the new floor, because [300, 500] carries
+  // no meaning once the currency underneath it changes. Real bounds from a
+  // real rate (TRY ~48.08 per USD, data/fx-rates.json) — a USD track of
+  // $0-$500 and its TRY equivalent, ~0-24,040.
+  it('repositions a range proportionally across a currency change, instead of collapsing it', () => {
+    const usdBounds = { min: 0, max: 500, step: 25, openTop: false, usable: true };
+    const tryBounds = { min: 0, max: 24000, step: 500, openTop: false, usable: true };
+    // Visitor narrowed to the top 40% of the USD track: [300, 500].
+    const [lo, hi] = clampRange([300, 500], tryBounds, usdBounds);
+    expect(lo).toBeGreaterThan(tryBounds.min); // not collapsed to the floor
+    expect(hi).toBeLessThanOrEqual(tryBounds.max);
+    expect(lo).toBeLessThan(hi); // a real, non-empty range — not a point
+    // Proportional position survives: still ~60%-100% of the new track.
+    expect(lo / tryBounds.max).toBeCloseTo(300 / usdBounds.max, 1);
+    expect(hi / tryBounds.max).toBeCloseTo(500 / usdBounds.max, 1);
+  });
+
+  it('falls back to an absolute clamp when no old bounds are given (bounds narrowed by another filter, same currency)', () => {
+    const b = { min: 10, max: 100, step: 5, openTop: false, usable: true };
+    expect(clampRange([5, 500], b)).toEqual([10, 100]);
   });
 });

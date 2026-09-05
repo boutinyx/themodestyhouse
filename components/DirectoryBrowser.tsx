@@ -130,9 +130,24 @@ export function DirectoryBrowser({ catalogue: cat, initialQuery = '', source = '
 
   // Clamp rather than reset when the bounds move under a chosen range —
   // switching display currency must not throw away the visitor's choice.
+  // `boundsHistory` tracks the bounds as of the last render that actually
+  // changed them, so clampRange can reposition the range PROPORTIONALLY into
+  // the new band instead of pushing both handles to the same absolute (and,
+  // across a currency change, meaningless) numbers. A ref would be simpler,
+  // but reading/writing one during render is a `react-hooks/refs` lint error
+  // — and rightly so here, since an effect would run one paint too late,
+  // flashing the collapsed range. This is React's own documented pattern for
+  // adjusting state during render ("Adjusting some state when a prop
+  // changes"): the conditional setState below re-renders synchronously,
+  // before anything commits, so `boundsHistory.prev` is never stale by the
+  // time `effectivePrice` reads it.
+  const [boundsHistory, setBoundsHistory] = useState(() => ({ prev: bounds, curr: bounds }));
+  if (boundsHistory.curr !== bounds) {
+    setBoundsHistory({ prev: boundsHistory.curr, curr: bounds });
+  }
   const effectivePrice = useMemo<[number, number] | null>(
-    () => (price && bounds.usable ? clampRange(price, bounds) : null),
-    [price, bounds],
+    () => (price && bounds.usable ? clampRange(price, bounds, boundsHistory.prev) : null),
+    [price, bounds, boundsHistory.prev],
   );
 
   const filteredRows = useMemo(() => {

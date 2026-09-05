@@ -110,9 +110,42 @@ export function withinPrice(
   return v <= hi || openTop;
 }
 
-/** Keeps a range inside bounds that moved, e.g. after a currency change. */
-export function clampRange(range: [number, number], bounds: PriceBounds): [number, number] {
-  const lo = Math.min(Math.max(range[0], bounds.min), bounds.max);
-  const hi = Math.min(Math.max(range[1], bounds.min), bounds.max);
+/**
+ * Keeps a range inside bounds that moved, e.g. after a currency change.
+ *
+ * When `oldBounds` is given (and genuinely differs from `bounds`), the range
+ * is repositioned PROPORTIONALLY: a handle at 60% of the old track lands at
+ * 60% of the new one, not at the same raw number. That number carries no
+ * meaning across a currency change — `[300, 500]` USD has nothing to say
+ * about a TRY track running 650-23,400 — and clamping it absolutely just
+ * pushes both handles to the new floor, collapsing the range to a point and
+ * emptying the grid. Without `oldBounds` (or when it equals `bounds`), this
+ * degrades to a plain absolute clamp, which is what a same-currency bounds
+ * change (e.g. another filter narrowing the row set) should do: the chosen
+ * numbers still mean the same thing, so only out-of-band values move.
+ */
+export function clampRange(
+  range: [number, number],
+  bounds: PriceBounds,
+  oldBounds?: PriceBounds,
+): [number, number] {
+  let lo = range[0];
+  let hi = range[1];
+
+  if (
+    oldBounds &&
+    oldBounds.max > oldBounds.min &&
+    (oldBounds.min !== bounds.min || oldBounds.max !== bounds.max)
+  ) {
+    const oldSpan = oldBounds.max - oldBounds.min;
+    const newSpan = bounds.max - bounds.min;
+    const fracLo = (range[0] - oldBounds.min) / oldSpan;
+    const fracHi = (range[1] - oldBounds.min) / oldSpan;
+    lo = bounds.min + fracLo * newSpan;
+    hi = bounds.min + fracHi * newSpan;
+  }
+
+  lo = Math.min(Math.max(lo, bounds.min), bounds.max);
+  hi = Math.min(Math.max(hi, bounds.min), bounds.max);
   return lo <= hi ? [lo, hi] : [hi, lo];
 }
