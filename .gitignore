@@ -120,3 +120,10 @@ data/.live-dress-types.json
 # The DECISIONS they produce live in data/colour-overrides.json, which IS tracked.
 /.colour-sheets/
 /.colour-probe/
+
+# Throwaway per-task working directories. Seven of these already existed
+# untracked AND unignored (§8 names that as a hazard: `git add -A` would try to
+# stage them). .scratch-tve/ alone is 152 MB of downloaded Instagram and product
+# photographs. Nothing outside a scratch dir references one — checked before
+# adding this. Anything worth keeping from one belongs in docs/log/ or data/.
+/.scratch-*/

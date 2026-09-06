@@ -98,3 +98,46 @@ default exit 0, `--strict` exit 1 while brands are broken, `--json` well-formed.
 `audit:storefronts` is standalone. Wiring it into `.github/workflows/refresh.yml` so the
 nightly says this out loud is the obvious next step and was not done here — that workflow
 belongs to another thread of work and this needed no change to it.
+
+---
+
+## Correction, 2026-09-05: the 718 is now zero
+
+Found while picking products for the @thevirtualedits outfit recreations
+(`docs/log/2026-09-05-thevirtualedits-outfit-recreations.md`) — three of my picks were
+Nour Al Houda items, which this entry says link to a domain that does not resolve.
+Checked rather than assumed, and the finding above is **stale**:
+
+```
+dig +short nouralhouda.com.au        -> 23.227.38.65        (Shopify)
+GET /products/lara-palazzo-pants-espresso  -> 200, <title>Lara Palazzo Pants - Espresso</title>
+GET /products/luma-longline-shirt-periwinkle-1 -> 200, matching title, InStock
+GET /products/the-ayah-shirt-navy-pinstripe    -> 200, matching title, InStock
+GET /products.json?limit=250         -> 250 products, 1003 available variants
+```
+
+Per §10.3, a 200 is not proof, so the bodies were parsed (in python, not grepped — §10.56)
+and each carries the product's own title, an `InStock` availability and a price. The
+storefront is genuinely back.
+
+The other two brands were cut on 2026-09-04
+(`docs/log/2026-09-04-cut-madiha-and-aniqq.md`) and now publish 0 products each. So:
+
+```
+2026-09-03   704 nour-al-houda + 11 madiha + 3 aniqq = 718 dead-linked products
+2026-09-05     0 nour-al-houda (domain restored) + 0 + 0 (both cut) = 0
+```
+
+**Worth keeping:** a dead storefront is not a permanent state, and nothing in the pipeline
+re-checks one. The guard shipped on 2026-09-03 catches a brand going down; nothing notices
+it coming back up, so a brand pulled from the catalogue on a reachability signal would stay
+pulled. Nour Al Houda was never pulled — Tina had not yet made the call — which is the only
+reason its 717 products are still here to link to.
+
+**Also noted, and NOT a defect:** the catalogue stores `USD 122` for the Lara Palazzo Pants
+while the live page shows `AUD 149.99`, and the same ~0.814 ratio holds across all three
+products. That is Shopify Markets doing market-specific pricing, not a repeat of §10.44 —
+`data/brands.ts` states the EXPECTED currency as AUD, the nightly refresh runs on a US
+runner and is served the US market's price, and Invariant 15 says the response wins. The
+ratio being constant across three products is consistent with a market price rule, and
+149.99 AUD is ~98 USD at spot, so this is not an FX conversion either way. No action.
