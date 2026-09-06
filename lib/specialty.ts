@@ -122,7 +122,38 @@ const RUCHED_BODY_TOP_RE = /\bruched\b.{0,20}\bbody top\b/i;
 // Inner Dress" — mariams/lumos/bazar-al-haya). Those are complete abaya
 // outfits, not accessories, and moving the whole SET LISTING into an
 // accessories page would be a real mistake — deliberately left in Abayas.
-const UNDER_DRESS_RE = /\bunder.?dress\b|\binner dress\b/i;
+// EXTENDED 2026-09-06 — Tina: "you need to check if there are underdresses in
+// modest dresses with playwirght if there are move them to underdresses".
+// There were: 53 CARDS on the live /modest-dresses, and AbayaButh's entire
+// presence on that lane — 41 of 41 filtered cards — was inner slip dresses.
+// The three houses naming the garment "Inner Slip"/"Full Slip" rather than
+// "Under Dress" were invisible to the original two alternatives.
+//
+// Each alternative is a two-word noun phrase, never a bare `\binner\b` or
+// `\bslip\b`: "slip" alone would take every satin slip DRESS in the
+// catalogue (a standalone fashion piece, not an underlayer — nour-al-houda's
+// "Saylor Satin Slip Dress" is photographed as a complete look), and "inner"
+// alone would take esme-ny's "Cinched Maxi Shirt Dress in White | inner
+// included", which is a dress sold WITH one. Both are pinned as negatives in
+// lib/specialty.test.ts.
+//
+// `\bfull slip\b` was measured and deliberately NOT added, though it would
+// have taken 25 more rows. It collides with a decision already recorded here
+// (18e6aaf, 2026-08-12: "second skin top" narrowed to the top variant because
+// "its Leggings/Slip are complete standalone garments"), and Aab's own site
+// disagrees with itself about which it is:
+//     Full Slip Natural               -> "Modest Slip Dresses | Aab"
+//     Second Skin Full Slip Chocolate -> "Modest Slips | Aab",
+//                                        "reduce transparency"
+// One is filed as a dress, the other as an underlayer. That is Tina's call,
+// not a regex's — raised with her rather than settled here.
+//
+// Measured across the whole published catalogue before shipping (§10.31 rule
+// 2 — tightening a classifier is destructive until you know what stops
+// matching): 92 rows move, every one of them garment:'dress', across
+// abayabuth 70 / veiled 11 / abaya-lounge 9 / by-hasanat 2. Zero abaya set
+// listings, zero prayer titles, zero "sold with an inner".
+const UNDER_DRESS_RE = /\bunder.?dress\b|\binner dress\b|\binner slip\b|\binner maxi dress\b/i;
 
 // "Maxi Dress with Floral Print and Fixed Inner Dress" (mukistore, €46,
 // garment:'dress') — Tina flagged this 2026-08-12: it's one complete maxi

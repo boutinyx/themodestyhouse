@@ -63,6 +63,64 @@ describe('isActivewear', () => {
 // brand the regex was built from; negatives are the near-miss cases that
 // motivated the exclusions (hijab/underscarf/bonnet, and a full-length
 // "base layer dress" that is still a complete standalone garment).
+/*
+ * Under-dresses named "Inner Slip" / "Inner Maxi Dress" rather than "Under
+ * Dress".
+ *
+ * Added 2026-09-06 after Tina asked whether any were sitting on
+ * /modest-dresses. 53 CARDS were, on the live site — AbayaButh's ENTIRE
+ * presence on that lane, 41 of 41 filtered cards, was inner slip dresses.
+ * Every title below is a literal catalogue title.
+ *
+ * The negatives are the point of this block. Each one is a title that a
+ * looser rule would have swept up, and the looser rule was the obvious one to
+ * write: a bare \binner\b or \bslip\b.
+ */
+describe('isLayering — under-dresses by their other names', () => {
+  it('takes a piece the house itself calls an inner', () => {
+    expect(isLayering(p('Premium Nidha Inner Slip Dress - Moonstone Grey', 'dress'))).toBe(true); // abayabuth
+    expect(isLayering(p('Black Inner Slip Dress - Soft Crush Crepe', 'dress'))).toBe(true);       // abaya-lounge
+    expect(isLayering(p('Black Inner Slip', 'dress'))).toBe(true);                                 // by-hasanat
+    expect(isLayering(p('Signature Inner Maxi Dress - Dusty Olive', 'dress'))).toBe(true);         // veiled
+  });
+
+  it(`types them as under-dresses, so they land under the lane own Type filter`, () => {
+    expect(layeringSubtype(p('Premium Nidha Inner Slip Dress - Moonstone Grey', 'dress'))).toBe('under-dress');
+    expect(layeringSubtype(p('Black Inner Slip Dress - Soft Crush Crepe', 'dress'))).toBe('under-dress');
+  });
+
+  it('leaves a standalone satin slip DRESS alone — it is a look, not an underlayer', () => {
+    // The reason the rule is the two-word "inner slip", never a bare \bslip\b.
+    expect(isLayering(p('Saylor Satin Slip Dress - Navy', 'dress'))).toBe(false);   // nour-al-houda
+    expect(isLayering(p('Raya Slip Dress - Cocoa', 'dress'))).toBe(false);          // nour-al-houda
+    expect(isLayering(p('Slip Dress - Nougat', 'dress'))).toBe(false);              // veiled
+    expect(isLayering(p('Long-sleeved viscose slip dress', 'dress'))).toBe(false);  // glamberry
+  });
+
+  it('leaves a dress sold WITH an inner alone — the inner is a component, not the product', () => {
+    // The reason the rule is never a bare \binner\b.
+    expect(isLayering(p('Cinched Maxi Shirt Dress in White | inner included', 'dress'))).toBe(false); // esme-ny
+    expect(isLayering(p('Maxi Dress with Floral Print and Fixed Inner Dress', 'dress'))).toBe(false); // mukistore, FIXED_INNER_RE
+    expect(isLayering(p('Lined Chiffon Maxi Dress', 'dress'))).toBe(false);                           // touche-prive
+  });
+
+  // Aab's "Full Slip" family is deliberately still OUT, pending Tina. 18e6aaf
+  // (2026-08-12) recorded it as a standalone garment; Aab's own site files
+  // "Full Slip Natural" under "Modest Slip Dresses" and "Second Skin Full Slip"
+  // under "Modest Slips — reduce transparency". Pinning the current behaviour
+  // so that whichever way she rules, the change is visible here.
+  it('leaves Aab\'s Full Slip where 18e6aaf put it, until Tina rules on it', () => {
+    expect(isLayering(p('Second Skin Full Slip Ebony', 'dress'))).toBe(false);
+    expect(isLayering(p('Full Slip Natural', 'dress'))).toBe(false);
+  });
+
+  it('leaves a bundled abaya SET listing on Abayas, as the 2026-08-12 guard requires', () => {
+    expect(isLayering(p('The Shamsa Abaya & Underdress', 'abaya'))).toBe(false);       // kamin
+    expect(isLayering(p('2pcs Set Kimono + Underdress', 'abaya'))).toBe(false);        // mukistore
+    expect(isLayering(p('Black Satin Abaya with Inner Slip', 'abaya'))).toBe(false);
+  });
+});
+
 describe('isLayering', () => {
   it('matches real layering-piece titles', () => {
     expect(isLayering(p('Black Neck Cover', 'dress'))).toBe(true); // ilovemodesty, misfiled as dress
