@@ -1,12 +1,12 @@
 {
-  "date": "2026-09-05",
+  "date": "2026-09-06",
   "totals": {
-    "added": 9,
-    "updated": 26369,
-    "delisted": 35,
-    "filtered": 43,
-    "returned": 18,
-    "incomplete": 5
+    "added": 100,
+    "updated": 27726,
+    "delisted": 28,
+    "filtered": 52,
+    "returned": 3,
+    "incomplete": 4
   },
   "brands": [
     {
@@ -37,12 +37,101 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1114,
-      "added": [],
-      "updated": 1114,
-      "delisted": 1,
+      "fetched": 1203,
+      "added": [
+        "Velour Open Abaya - Coffee Quartz",
+        "Velour Open Abaya - Black",
+        "Velour Open Abaya - Midnight Forest",
+        "Cotton Blend Lounge Skirt - Light Heather",
+        "Cotton Hoodie Dress - Black",
+        "Cotton Blend Lounge Skirt - Black",
+        "Pleated Maxi Skirt - Cherry",
+        "Asymmetric Cotton Blend Top - Coffee Quartz",
+        "Argyle Check Crop Cardigan - Navy Sky",
+        "Suede Tie Back Top - Dark Cherry",
+        "Smocked Cotton Hoodie - Sky",
+        "Stripe Pleat Wide Leg Pant - Charcoal",
+        "Asymmetric Ruched Top - Pink Frost",
+        "Asymmetric Cotton Blend Top - Pink Frost",
+        "Lace Detail Midi Tunic Top - White",
+        "Smocked Cotton Hoodie - Chocolate",
+        "Cotton Pleated Lounge Set - Violet Ice",
+        "Suede Tie Back Top - Cognac",
+        "Viscose Asymmetric Knit Top - Green Glow",
+        "Viscose Knit Tank Dress - Black",
+        "Cotton Blend Lounge Skirt - Chocolate",
+        "Viscose Rib Knit Tie Back Top - Marina",
+        "Viscose Rib Knit Tie Back Top - Rosette",
+        "Asymmetric Cotton Blend Top - Charcoal",
+        "Asymmetric Ruched Top - Cherry",
+        "Tencel Longline Top - Smokey Lilac",
+        "Viscose Asymmetric Knit Top - Berry",
+        "Viscose Knit Tank Dress - Taupe",
+        "Smocked Cotton Hoodie - Black",
+        "Viscose Rib Knit Tie Back Top - Deep Denim",
+        "Cotton Blend Lounge Skirt - Sky",
+        "Viscose Asymmetric Knit Top - Taupe",
+        "Pleated Maxi Skirt - Taupe",
+        "Argyle Check Crop Cardigan - Emerald Navy",
+        "Stripe Pleat Wide Leg Pant - Denim",
+        "Viscose Ribbed Knit Maxi Dress - Lilac",
+        "Asymmetric Ruched Top - Forest",
+        "Cotton Wide Leg Pant - Butter",
+        "Lace Detail Midi Tunic Top - Espresso",
+        "Asymmetric Cotton Blend Top - Sand",
+        "Tencel Longline Top - Pine",
+        "Brushed Cotton Blend Crew Neck Top - Taupe",
+        "Asymmetric Ruched Top - Espresso",
+        "Smocked Cotton Hoodie - Light Heather",
+        "Viscose Rib Knit Tie Back Top - Black",
+        "Cotton Hoodie Dress - Sage",
+        "Brushed Cotton Blend Crew Neck Top - Heathered Brown",
+        "Stripe Pleat Wide Leg Pant - Black",
+        "Cotton Wide Leg Pant - Stone",
+        "Viscose Knit Tank - White",
+        "Tencel Longline Top - Black",
+        "Cotton Pleated Lounge Set - Pine",
+        "Viscose Knit Tank Dress - Chocolate",
+        "Viscose Knit Tank - Black",
+        "Viscose Asymmetric Knit Top - White",
+        "Viscose Knit Tank - Emerald",
+        "Asymmetric Ruched Top - Lilac",
+        "Asymmetric Ruched Top - Taupe",
+        "Viscose Asymmetric Knit Top - Denim",
+        "Cotton Pleated Lounge Set - Heather Grey",
+        "Asymmetric Knit Top & Pants Set - Chocolate Truffle",
+        "Asymmetric Knit Top & Pants Set - Heather Taupe",
+        "Asymmetric Ruched Top - Black",
+        "Asymmetric Ruched Top - Plum",
+        "Cotton Blend Wide Leg Pants - Charcoal",
+        "Cotton Blend Wide Leg Pants - Sand",
+        "Cotton Blend Wide Leg Pants - Coffee Quartz",
+        "Cotton Blend Wide Leg Pants - Pink Frost",
+        "Asymmetric Ruffle Hem Knit Top - Black",
+        "Asymmetric Ruffle Hem Knit Top - Taupe",
+        "Asymmetric Ruffle Hem Knit Top - Pink Frost",
+        "Asymmetric Knit Top - Marina",
+        "Lace Detail Midi Tunic Top - Black",
+        "Brushed Cotton Blend Crew Neck Top - Black",
+        "Lace Detail Midi Tunic Top - Dark Cherry",
+        "Brushed Cotton Blend Crew Neck Top - Heather Grey",
+        "Asymmetric Ruched Top - Chocolate Truffle",
+        "Lace Detail Midi Tunic Top - Stone",
+        "Cotton Wide Leg Pant - Slate",
+        "Denim Wash Maxi Skirt - Black",
+        "Smocked Cotton Button-Up Top - Slate",
+        "Cotton Wide Leg Pant - Blue",
+        "Cinch Waist Denim Jacket - Black",
+        "Smocked Cotton Button-Up Top - Blue",
+        "Viscose Ribbed Knit Maxi Dress - Rosette",
+        "Viscose Ribbed Knit Maxi Dress - Black",
+        "Cotton Hoodie Dress - Chocolate Plum",
+        "Cotton Hoodie Dress - Sky"
+      ],
+      "updated": 1115,
+      "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "niswa",
@@ -152,10 +241,10 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 293,
+      "fetched": 292,
       "added": [],
-      "updated": 293,
-      "delisted": 0,
+      "updated": 292,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -215,7 +304,7 @@
       "fetched": 131,
       "added": [],
       "updated": 131,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -262,10 +351,10 @@
     {
       "brandSlug": "esme-ny",
       "complete": true,
-      "fetched": 63,
+      "fetched": 62,
       "added": [],
-      "updated": 63,
-      "delisted": 0,
+      "updated": 62,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -283,10 +372,8 @@
       "brandSlug": "emlavish",
       "complete": true,
       "fetched": 52,
-      "added": [
-        "Asymmetrical Knitted Cape Poncho"
-      ],
-      "updated": 51,
+      "added": [],
+      "updated": 52,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -364,12 +451,13 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 110,
+      "fetched": 105,
       "added": [
-        "Oversized Blazer"
+        "Lange Gebreide Vest",
+        "Tweedelige gebreide set"
       ],
-      "updated": 109,
-      "delisted": 0,
+      "updated": 103,
+      "delisted": 7,
       "filtered": [],
       "returned": 0
     },
@@ -510,10 +598,10 @@
     {
       "brandSlug": "whiteicy",
       "complete": true,
-      "fetched": 68,
+      "fetched": 65,
       "added": [],
-      "updated": 68,
-      "delisted": 0,
+      "updated": 65,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -574,12 +662,49 @@
     },
     {
       "brandSlug": "mukistore",
-      "complete": false,
-      "fetched": 247,
+      "complete": true,
+      "fetched": 1620,
       "added": [],
-      "updated": 247,
+      "updated": 1620,
       "delisted": 0,
-      "filtered": [],
+      "filtered": [
+        {
+          "title": "Diamond Net Panty",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Tie Belt Trenchoat Stripe Folded Sleeve Details",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Trending Bomber Orange Detail 7015",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Eau de parfum Black Rose",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Eau de parfum Gris",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Long Plaid Shackett",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Long Plaid Shacket",
+          "reason": "unclassified"
+        },
+        {
+          "title": "GROTE MAAT Anti ladder fleece panty super hit L/XL & XL/XXL",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Anti ladder fleece panty super hit",
+          "reason": "unclassified"
+        }
+      ],
       "returned": 0
     },
     {
@@ -588,7 +713,7 @@
       "fetched": 234,
       "added": [],
       "updated": 234,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -673,13 +798,11 @@
       "brandSlug": "by-hasanat",
       "complete": true,
       "fetched": 94,
-      "added": [
-        "Winter Dress Two Piece Set Grey"
-      ],
-      "updated": 93,
-      "delisted": 1,
+      "added": [],
+      "updated": 94,
+      "delisted": 0,
       "filtered": [],
-      "returned": 6
+      "returned": 0
     },
     {
       "brandSlug": "zayda",
@@ -765,10 +888,8 @@
       "brandSlug": "nihan",
       "complete": false,
       "fetched": 4009,
-      "added": [
-        "Paçası Düğmeli Tencel Pantolon - Siyah"
-      ],
-      "updated": 4008,
+      "added": [],
+      "updated": 4009,
       "delisted": 0,
       "filtered": [
         {
@@ -817,10 +938,10 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 296,
+      "fetched": 294,
       "added": [],
-      "updated": 296,
-      "delisted": 0,
+      "updated": 294,
+      "delisted": 2,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -839,7 +960,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 2
+      "returned": 0
     },
     {
       "brandSlug": "abaya-lounge",
@@ -904,10 +1025,10 @@
     {
       "brandSlug": "bait-hanayen",
       "complete": true,
-      "fetched": 147,
+      "fetched": 146,
       "added": [],
-      "updated": 147,
-      "delisted": 0,
+      "updated": 146,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -944,15 +1065,14 @@
     {
       "brandSlug": "modesty-in-style",
       "complete": true,
-      "fetched": 372,
+      "fetched": 373,
       "added": [
-        "Charlotte Knit Set",
-        "A-line Denim Skirt"
+        "Rana Tie Top"
       ],
-      "updated": 370,
-      "delisted": 2,
+      "updated": 372,
+      "delisted": 0,
       "filtered": [],
-      "returned": 5
+      "returned": 0
     },
     {
       "brandSlug": "labayah",
@@ -977,10 +1097,10 @@
     {
       "brandSlug": "we-are-elegance",
       "complete": true,
-      "fetched": 97,
+      "fetched": 96,
       "added": [],
-      "updated": 97,
-      "delisted": 9,
+      "updated": 96,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -997,10 +1117,10 @@
     {
       "brandSlug": "lameera-moda",
       "complete": true,
-      "fetched": 454,
+      "fetched": 452,
       "added": [],
-      "updated": 454,
-      "delisted": 4,
+      "updated": 452,
+      "delisted": 2,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1026,12 +1146,12 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 225,
+      "fetched": 226,
       "added": [],
-      "updated": 225,
+      "updated": 226,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "store-wf",
@@ -1039,7 +1159,7 @@
       "fetched": 254,
       "added": [],
       "updated": 254,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1051,7 +1171,7 @@
       "updated": 945,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "abadia",
@@ -1130,10 +1250,12 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1000,
-      "added": [],
-      "updated": 1000,
-      "delisted": 6,
+      "fetched": 996,
+      "added": [
+        "Desenli Düğmeli Rahat Taş Gömlek 0120"
+      ],
+      "updated": 995,
+      "delisted": 5,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1152,7 +1274,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 2
+      "returned": 0
     },
     {
       "brandSlug": "ria-miranda",
@@ -1198,8 +1320,10 @@
       "brandSlug": "aeon-abaya",
       "complete": true,
       "fetched": 741,
-      "added": [],
-      "updated": 741,
+      "added": [
+        "Sleek"
+      ],
+      "updated": 740,
       "delisted": 1,
       "filtered": [],
       "returned": 0
@@ -1217,9 +1341,17 @@
     {
       "brandSlug": "abayas-boutique",
       "complete": true,
-      "fetched": 410,
-      "added": [],
-      "updated": 410,
+      "fetched": 414,
+      "added": [
+        "Zip Front Slip",
+        "Nida Slip in Navy",
+        "Satin Dress in Gold",
+        "Satin Dress in Butter Yellow",
+        "Satin Dress in Yellow",
+        "Satin Slip in Rose Gold",
+        "Long Sleeve Dress in Emerald"
+      ],
+      "updated": 407,
       "delisted": 4,
       "filtered": [],
       "returned": 1
@@ -1228,11 +1360,9 @@
       "brandSlug": "golden-dune",
       "complete": true,
       "fetched": 175,
-      "added": [
-        "Comfy Zweiteiler"
-      ],
-      "updated": 174,
-      "delisted": 2,
+      "added": [],
+      "updated": 175,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1240,11 +1370,9 @@
       "brandSlug": "la-petite-parisienne",
       "complete": true,
       "fetched": 307,
-      "added": [
-        "Trench CAPE long beige WV053"
-      ],
-      "updated": 306,
-      "delisted": 1,
+      "added": [],
+      "updated": 307,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1322,13 +1450,11 @@
       "brandSlug": "parladusa",
       "complete": true,
       "fetched": 144,
-      "added": [
-        "Jamila Zweiteiler"
-      ],
-      "updated": 143,
+      "added": [],
+      "updated": 144,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     }
   ],
   "frozenBrands": [
