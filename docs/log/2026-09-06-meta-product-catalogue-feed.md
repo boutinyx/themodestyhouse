@@ -1,6 +1,6 @@
 # A Meta product feed, so products can be tagged on Instagram
 
-**Date:** 2026-09-06 · **Status:** on staging, awaiting Tina's approval to merge
+**Date:** 2026-09-06 · **Status:** shipped to production; catalogue created and ingesting
 
 ## Goal
 
@@ -110,3 +110,48 @@ Meta's call, not ours.
 - If review rejects us on `size`, the sidecar is the fix and is a contained change.
 - Nothing links the feed. If it should be discoverable by other tools later, that is a
   deliberate decision to take then, not a default.
+
+
+---
+
+## The catalogue was created (2026-09-06, later the same day)
+
+Tina asked me to do the Meta-side setup as well. Done, in her own logged-in browser, with
+two limits held to throughout: **no logging in** (she did that) and **no accepting the
+merchant agreement**, which binds her business and is hers to accept.
+
+```
+catalogue      "The Modesty House"  id 2065648288161757
+portfolio      themodestyhouse.hq · type Online products · no partner platform
+data source    https://themodestyhouse.com/meta-catalogue.xml  (id 1567608597592609)
+schedule       DAILY at 10:35 GMT+2 = 08:35 UTC · next fetch Sep 7
+upload result  updated or added 19.2K · removed 0 · upload failed 0 · issues 0
+```
+
+**One default was wrong and was changed:** Meta proposes an **hourly** fetch. The catalogue
+only moves once a night (the 04:10 UTC refresh) and the feed route revalidates hourly, so
+hourly would have pulled a 15 MB document 24 times a day to observe nothing. Daily, timed
+after the refresh, means Meta always reads a settled catalogue rather than a half-updated
+one.
+
+**What I could NOT resolve, and did not paper over.** The data source header reads
+`Products: 1K` while its own upload summary reads `Updated or added: 19.2K, failed 0,
+issues 0`. The two disagree. The Products grid renders blank in this browser across six
+attempts and three URLs, so there is no third number to break the tie. The likely
+explanation is that the header counter lags a first ingest — but it had not moved after
+~25 minutes, so that is a hypothesis, not a finding, and it is recorded as one.
+**Next step is to read the count from the Graph API** (`/{catalog-id}/products?summary=true`),
+which needs a system-user token with `catalog_management` — offered to Tina, not yet given.
+
+**A browser note worth keeping.** Meta Business Suite intermittently makes the extension's
+script injection time out (45 s) — screenshots, `read_page` and clicks all fail together, so
+a flow can look broken when it is the tab that is broken. The first catalogue attempt died
+that way and created nothing. **A brand-new tab fixed it immediately.** Before concluding a
+Meta flow is broken, retry it in a fresh tab.
+
+## Still outstanding, both requiring Tina's account
+
+1. **Domain verification** for `themodestyhouse.com` (Business Settings → Brand safety →
+   Domains). Meta issues the token; the DNS record can then be added at Cloudflare from here.
+2. **The shop application**, which is where the merchant agreement is accepted — and where
+   the eligibility question flagged above gets answered by Meta rather than by us.
