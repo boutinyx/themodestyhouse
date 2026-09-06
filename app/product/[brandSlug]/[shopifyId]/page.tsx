@@ -136,6 +136,30 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
 
   return (
     <main className="max-w-3xl mx-auto px-8 pt-12 md:pt-16 pb-16">
+      {/* Meta's Open Graph product tags. Meta CRAWLS the landing page of every
+          item in a Commerce catalogue and compares the price and availability
+          it finds here against the feed; a mismatch can get the product
+          rejected or the shop deactivated, so these have to agree with
+          app/meta-catalogue.xml by construction — both read the same Product.
+
+          Rendered here rather than in generateMetadata because Next's
+          `openGraph.type` union has no 'product', and its `other` field emits
+          `name=` where the OG protocol specifies `property=`. React 19 hoists
+          these into <head>.
+
+          Deliberately NOT schema.org Product JSON-LD: lib/schema.ts records a
+          standing decision to hold that back until price freshness is solved,
+          because stale prices in structured data risk a Google MANUAL ACTION.
+          That reasoning is entirely about Google, these tags are read by Meta
+          and ignored by Google rich results, and this page is noindex to
+          googlebot anyway — so the feed gets what it needs and the decision
+          stands untouched. */}
+      <meta property="product:price:amount" content={p.price.toFixed(2)} />
+      <meta property="product:price:currency" content={p.currency} />
+      <meta property="product:availability" content="in stock" />
+      <meta property="product:condition" content="new" />
+      <meta property="product:retailer_item_id" content={p.id} />
+      <meta property="product:brand" content={p.brandName} />
       <Link href="/new-in" className="nav-link inline-flex items-center gap-1 mb-8" style={{ color: 'var(--muted)' }}>
         <ArrowLeft size={16} />
         Back to the directory
