@@ -24508,15 +24508,6 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "vela:8592060121244",
-    "brandSlug": "vela",
-    "title": "Sculpted Button Up Charcoal",
-    "url": "https://velascarves.com/products/sculpted-button-up-charcoal",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "veiled:7634723766377",
     "brandSlug": "veiled",
     "title": "Suede Wrap Skirt - Pebble",
@@ -24540,33 +24531,6 @@
     "title": "Flare Sleeve Maxi Dress - White",
     "url": "https://veiled.com/products/flare-sleeve-maxi-dress-white",
     "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "veiled:7798569566313",
-    "brandSlug": "veiled",
-    "title": "Tencel Ruffle Top - Denim",
-    "url": "https://veiled.com/products/tencel-ruffle-top-denim",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "veiled:7798570614889",
-    "brandSlug": "veiled",
-    "title": "Tencel Asymmetric Top - Light Sand",
-    "url": "https://veiled.com/products/tencel-asymmetric-top-light-sand",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "veiled:7746281111657",
-    "brandSlug": "veiled",
-    "title": "Tencel Asymmetric Top - Black",
-    "url": "https://veiled.com/products/tencel-asymmetric-top-black",
-    "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
   },
@@ -24747,6 +24711,24 @@
     "title": "Camo Tiered Maxi - Final Sale",
     "url": "https://us.aabcollection.com/products/camo-tiered-maxi",
     "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "aab:10059358798138",
+    "brandSlug": "aab",
+    "title": "Denim Stitch Set",
+    "url": "https://us.aabcollection.com/products/denim-stitch-set",
+    "garmentWas": "set",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "aab:10059358863674",
+    "brandSlug": "aab",
+    "title": "Pinstripe Maxi Shirt Navy",
+    "url": "https://us.aabcollection.com/products/pinstripe-maxi-shirt-navy",
+    "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
   },
@@ -32323,7 +32305,7 @@
     "url": "https://velascarves.com/products/high-low-top",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL"
+    "evidence": "in stock: XL"
   },
   {
     "id": "veiled:7117512245353",
@@ -32430,6 +32412,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "veiled:7640428478569",
+    "brandSlug": "veiled",
+    "title": "Signature Inner Maxi Dress - Mink",
+    "url": "https://veiled.com/products/signature-inner-maxi-dress-mink",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "veiled:7650775105641",
     "brandSlug": "veiled",
     "title": "Denim Twin Pleat Pants - Light Wash",
@@ -32466,6 +32457,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "veiled:7640429690985",
+    "brandSlug": "veiled",
+    "title": "Embellished Butterfly Abaya Dress - Black",
+    "url": "https://veiled.com/products/embellished-butterfly-abaya-dress-black",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL/XXL, XL/XXL, XL/XXL"
+  },
+  {
     "id": "veiled:7544777310313",
     "brandSlug": "veiled",
     "title": "Wrap Tie Cardigan Top - Blue Sky",
@@ -32475,6 +32475,24 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "veiled:7510542516329",
+    "brandSlug": "veiled",
+    "title": "Dalal Embroidered Open Abaya - Peach",
+    "url": "https://veiled.com/products/dalal-embroidered-open-abaya-summer-peach",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "veiled:7640432771177",
+    "brandSlug": "veiled",
+    "title": "Nada Embellished Open Abaya - Black",
+    "url": "https://veiled.com/products/nada-embellished-open-abaya-black",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
     "id": "veiled:7640432803945",
     "brandSlug": "veiled",
     "title": "Nada Embellished Open Abaya - Taupe",
@@ -32482,15 +32500,6 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL, XXL"
-  },
-  {
-    "id": "veiled:7639102029929",
-    "brandSlug": "veiled",
-    "title": "Asymmetric Top & Pants Set - Chestnut",
-    "url": "https://veiled.com/products/asymmetric-top-pants-set-chestnut",
-    "garmentWas": "set",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "veiled:7640432967785",
@@ -32805,6 +32814,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "aab:10038235398458",
+    "brandSlug": "aab",
+    "title": "Second Skin Leggings Ebony",
+    "url": "https://us.aabcollection.com/products/second-skin-leggings-ebony",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
     "id": "aab:10038235201850",
     "brandSlug": "aab",
     "title": "Second Skin Leggings Ivory",
@@ -32830,6 +32848,15 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
+  },
+  {
+    "id": "aab:10032071803194",
+    "brandSlug": "aab",
+    "title": "Skirted Abaya Dark Green",
+    "url": "https://us.aabcollection.com/products/skirted-abaya-dark-green-2",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "aab:10019077685562",
@@ -34841,15 +34868,6 @@
     "brandSlug": "merrachi",
     "title": "Woven Abaya Short | Moss Gray",
     "url": "https://bymerrachi.com/products/woven-abaya-short-moss-gray",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "merrachi:15073378206079",
-    "brandSlug": "merrachi",
-    "title": "Woven Abaya Short | Lake",
-    "url": "https://bymerrachi.com/products/woven-abaya-short-lake",
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
@@ -41478,15 +41496,6 @@
     "evidence": "Gift Card"
   },
   {
-    "id": "merrachi:15638951919999",
-    "brandSlug": "merrachi",
-    "title": "Short Trench Jacket | Mocha",
-    "url": "https://bymerrachi.com/products/short-trench-jacket-mocha",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "merrachi:15290117915007",
     "brandSlug": "merrachi",
     "title": "The Mini Tote | Brown Rice",
@@ -42158,16 +42167,6 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2400 QAR (~$659)"
-  },
-  {
-    "id": "almotahajiba:10361719193875",
-    "brandSlug": "almotahajiba",
-    "title": "Frame Veil",
-    "url": "https://www.almotahajiba.com/products/5012a5266sb1",
-    "garmentWas": "abaya",
-    "reason": "non-apparel:home",
-    "tier": "B",
-    "evidence": "Frame"
   },
   {
     "id": "almotahajiba:10345614246163",
@@ -52553,15 +52552,6 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "veiled:7640429854825",
-    "brandSlug": "veiled",
-    "title": "Embellished Butterfly Abaya Dress - Plum",
-    "url": "https://veiled.com/products/embellished-butterfly-abaya-dress-plum",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL/XXL"
-  },
-  {
     "id": "losyana:16074454761797",
     "brandSlug": "losyana",
     "title": "Hijab clip - Lune black",
@@ -52745,6 +52735,15 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: 4XL, XL, XXL, 3XL"
+  },
+  {
+    "id": "nemah:8043384012847",
+    "brandSlug": "nemah",
+    "title": "Black Curved Hem Activewear Top",
+    "url": "https://nemahwear.com/products/black-curved-hem-modest-activewear-t-shirt",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 3XL, 4XL"
   },
   {
     "id": "lameera-moda:6810800128168",
