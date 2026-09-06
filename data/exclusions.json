@@ -165,6 +165,10 @@
   ],
   "_nonApparelAllowIds": "Escape hatch: product ids the non-apparel veto wrongly rejects. Reviewed keeps.",
   "nonApparelAllowIds": [],
+  "_sizeFloorAllowIds": "Editorial pins. Product ids exempt from the size floor (lib/sizeAvailability.ts / Tina's 2026-08-28 rule). For products Tina has put in her own content — a flat-lay on Instagram outlives the brand's stock, and a link in a published post must not 404 because the last S sold. Everything else about the product still applies: a pin does NOT survive the brand delisting it, going out of stock entirely, an exclusion, or a 'cut' decision. Added 2026-09-06.",
+  "sizeFloorAllowIds": [
+    "aab:10059358863674"
+  ],
   "_brandNonApparelExpected": "Brands legitimately >25% accessories, verified by hand. Stops Guard 3 in build-data.mjs from failing the build on them.",
   "brandNonApparelExpected": [
     "klay",

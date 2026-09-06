@@ -68,3 +68,53 @@ export function shopifySrcSet(url: string | undefined, widths: readonly number[]
   if (!url || !isShopifyCdn(url)) return undefined;
   return widths.map((w) => `${shopifyImage(url, w)} ${w}w`).join(', ');
 }
+
+/** The exact box a social card image is rendered into. Square rather than
+ *  Facebook's 1.91:1 because these are full-length garment photographs: a
+ *  1200x630 centre crop of a 2:3 product shot is a horizontal band of fabric
+ *  with no garment shape left, and a top crop is the model's face with the
+ *  product out of frame. Both were generated and looked at before choosing
+ *  (2026-09-06). Square keeps the whole garment; the platforms crop it
+ *  further themselves, from something that still reads as the product. */
+export const SOCIAL_CARD_SIZE = 1200;
+
+export interface SocialCardImage {
+  url: string;
+  /** Present only when the size is GUARANTEED — i.e. we asked the CDN for an
+   *  exact box. Undeclared beats wrongly declared: a wrong og:image:height is
+   *  worse than none, because the crawler trusts it and lays out to it. */
+  width?: number;
+  height?: number;
+}
+
+/**
+ * The image to put in `og:image`, with its dimensions when we can guarantee
+ * them.
+ *
+ * Declaring `og:image:width`/`height` is the point of this helper. Without
+ * them a crawler has to download and measure the image before it can lay the
+ * card out, and Facebook/Instagram commonly render the first share with no
+ * image at all while that happens — which is exactly what Tina reported on
+ * 2026-09-06 ("i wnt to be able to grab the link and put the product in my
+ * instagram which doesnnt work rn"). The page's own OG tags were otherwise
+ * correct and fetchable, verified as `facebookexternalhit`.
+ *
+ * Non-Shopify images (the WooCommerce brands) cannot be resized by URL, so
+ * they come back with no dimensions rather than guessed ones.
+ */
+export function socialCardImage(url: string | undefined): SocialCardImage | undefined {
+  if (!url) return undefined;
+  if (!isShopifyCdn(url)) return { url };
+  try {
+    const u = new URL(url);
+    u.searchParams.set('width', String(SOCIAL_CARD_SIZE));
+    u.searchParams.set('height', String(SOCIAL_CARD_SIZE));
+    // Shopify only honours `height` alongside a crop mode; without it the
+    // parameter is ignored and the response is the natural aspect again,
+    // which would make the dimensions we declare below a lie.
+    u.searchParams.set('crop', 'center');
+    return { url: u.toString(), width: SOCIAL_CARD_SIZE, height: SOCIAL_CARD_SIZE };
+  } catch {
+    return { url };
+  }
+}

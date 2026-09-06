@@ -18,6 +18,11 @@ const eslintConfig = defineConfig([
     ".venv-style/**",
     ".cache/**",
     "conversations/**",
+    // Throwaway per-task working dirs, matching /.scratch-*/ in .gitignore.
+    // Nothing here ships; linting it only surfaces warnings in code that is
+    // deleted after the task, and lint is a CI job, so a warning there reads
+    // as a regression in the site.
+    ".scratch-*/**",
     "higgsfield-library/**",
     "public/hero-gen/**",
     "data/.backups/**",

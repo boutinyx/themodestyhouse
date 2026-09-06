@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import { getProducts } from '@/lib/products';
 import { formatPrice } from '@/lib/price';
-import { shopifyImage, shopifySrcSet, DETAIL_WIDTHS } from '@/lib/shopifyImage';
+import { shopifyImage, shopifySrcSet, socialCardImage, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import { SITE_URL } from '@/lib/schema';
 import type { Product } from '@/lib/types';
 import EditorsRail from '@/components/EditorsRail';
@@ -46,7 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!p) return { title: 'Not found', robots: { index: false, follow: false } };
   const title = `${p.title} by ${p.brandName}`;
   const description = `${p.title} from ${p.brandName} — curated on The Modesty House.`;
-  const image = shopifyImage(p.image, 900);
+  // Social cards get their own square, dimension-declared variant — see
+  // socialCardImage(). The page itself still renders the natural portrait.
+  const card = socialCardImage(p.image);
   const url = `${SITE_URL}/product/${p.brandSlug}/${shopifyId}`;
   return {
     title,
@@ -83,13 +85,25 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       url,
       siteName: 'The Modesty House',
       type: 'website',
-      ...(image ? { images: [{ url: image }] } : {}),
+      ...(card
+        ? {
+            images: [{
+              url: card.url,
+              ...(card.width ? { width: card.width } : {}),
+              ...(card.height ? { height: card.height } : {}),
+              alt: `${p.title} by ${p.brandName}`,
+            }],
+          }
+        : {}),
     },
     twitter: {
-      card: 'summary_large_image',
+      // `summary` not `summary_large_image`: the card is square, and the
+      // large-image card is specified as 2:1 — handing it a 1:1 image is how
+      // you get the middle band cropped out of a full-length garment shot.
+      card: 'summary',
       title,
       description,
-      ...(image ? { images: [image] } : {}),
+      ...(card ? { images: [card.url] } : {}),
     },
   };
 }

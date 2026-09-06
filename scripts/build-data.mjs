@@ -119,6 +119,10 @@ const excludedIds = new Set(excl.ids || []);
 const excludedBrands = new Set(excl.brands || []);
 // Escape hatch: a reviewed keep that the non-apparel veto gets wrong.
 const allowIds = new Set(excl.nonApparelAllowIds || []);
+// Editorial pins — see exclusions.json's `_sizeFloorAllowIds`. Exempt from the
+// size floor ONLY; every other reason a product can leave the catalogue still
+// applies to a pinned id.
+const sizeFloorPins = new Set(excl.sizeFloorAllowIds || []);
 // Brands that are legitimately accessory-heavy, so Guard 3 shouldn't fail on them.
 const expectedHot = new Set(excl.brandNonApparelExpected || []);
 
@@ -155,7 +159,13 @@ function verdict(p) {
   // would be wrong within a week. Rows with no size data (WooCommerce brands,
   // one-size hijabs, 52-60 abaya sizing, and every row ingested before this
   // rule existed) are untouched by construction — see lib/sizeAvailability.ts.
-  if (onlyLargeSizesLeft(p.raw?.sizes)) {
+  // A pinned product keeps its page even when only XL+ is left, because Tina
+  // has published a link to it — see exclusions.json's `_sizeFloorAllowIds`.
+  // Checked BEFORE the rule rather than after, so the pin actually overrides
+  // it; placed here rather than at the top of verdict() so a pin can never
+  // resurrect something a brand blacklist, an exclusion or the price ceiling
+  // has already rejected.
+  if (!sizeFloorPins.has(p.id) && onlyLargeSizesLeft(p.raw?.sizes)) {
     const left = p.raw.sizes.filter((s) => s.available).map((s) => s.label).join(', ');
     return { reason: 'only-large-sizes', evidence: `in stock: ${left}` };
   }

@@ -33,3 +33,43 @@ describe('published catalogue excludes men\'s + non-apparel', () => {
     ).toEqual([]);
   });
 });
+
+// Editorial pins (`sizeFloorAllowIds`) exempt a product from the size floor so
+// a link Tina has published cannot 404 when the last small sells. A pin is a
+// bare string in a JSON file with no compiler behind it — §10.54's shape, where
+// twenty hand-written ids silently stopped resolving after a brand moved
+// domain and nothing anywhere said so. These assert the pin is well-formed and
+// still points at something, so a typo or a renumbered brand fails loudly.
+describe('editorial size-floor pins', () => {
+  const root = process.cwd();
+  const excl = JSON.parse(
+    readFileSync(path.join(root, 'data', 'exclusions.json'), 'utf8'),
+  ) as { sizeFloorAllowIds?: string[]; brands?: string[]; ids?: string[] };
+  const pins = excl.sizeFloorAllowIds || [];
+  const products = JSON.parse(
+    readFileSync(path.join(root, 'data', 'products.json'), 'utf8'),
+  ) as Product[];
+  const published = new Set(products.map((p) => p.id));
+
+  it('every pin is a well-formed `brandSlug:shopifyId` (Invariant 1)', () => {
+    for (const id of pins) expect(id, `malformed pin: ${id}`).toMatch(/^[a-z0-9-]+:\d+$/);
+  });
+
+  it('no pin contradicts an exclusion — a pin must not resurrect a cut product', () => {
+    const blockedBrands = new Set(excl.brands || []);
+    const blockedIds = new Set(excl.ids || []);
+    for (const id of pins) {
+      expect(blockedIds.has(id), `${id} is pinned AND explicitly excluded`).toBe(false);
+      expect(blockedBrands.has(id.split(':')[0]), `${id} is pinned but its brand is blocklisted`).toBe(false);
+    }
+  });
+
+  // A pin exists to keep a product published; if it is not published the pin is
+  // doing nothing and the link it protects is already broken. Skipped in CI for
+  // the §10.19 reason: products.json is rewritten nightly by a bot, and a brand
+  // genuinely delisting a pinned product is news for Tina, not a red build.
+  it.skipIf(process.env.CI)('every pin is actually published', () => {
+    const dead = pins.filter((id) => !published.has(id));
+    expect(dead, `pinned but not published — the size floor is not why: ${dead.join(', ')}`).toEqual([]);
+  });
+});

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isShopifyCdn, shopifyImage, shopifySrcSet, CARD_WIDTHS } from './shopifyImage';
+import { isShopifyCdn, shopifyImage, shopifySrcSet, socialCardImage, CARD_WIDTHS } from './shopifyImage';
 
 // A literal URL from data/products.json, not an invented one — the query string
 // already carries `?v=`, which is exactly the case a naive `url + '?width='`
@@ -72,5 +72,50 @@ describe('shopifySrcSet', () => {
 
   it('is undefined off-CDN, so React omits the attribute entirely', () => {
     expect(shopifySrcSet('/logo.png')).toBeUndefined();
+  });
+});
+
+describe('socialCardImage', () => {
+  const SHOPIFY = 'https://cdn.shopify.com/s/files/1/0038/4584/9152/files/0O5A5706.jpg?v=1776816422';
+
+  it('asks the CDN for an exact square and declares those dimensions', () => {
+    const c = socialCardImage(SHOPIFY)!;
+    const u = new URL(c.url);
+    expect(u.searchParams.get('width')).toBe('1200');
+    expect(u.searchParams.get('height')).toBe('1200');
+    // Shopify ignores `height` without a crop mode, which would make the
+    // declared dimensions a lie — the whole point of the helper.
+    expect(u.searchParams.get('crop')).toBe('center');
+    expect(c.width).toBe(1200);
+    expect(c.height).toBe(1200);
+  });
+
+  it('keeps the original query string it was given', () => {
+    expect(new URL(socialCardImage(SHOPIFY)!.url).searchParams.get('v')).toBe('1776816422');
+  });
+
+  it('is idempotent — a second pass cannot double up the parameters', () => {
+    const once = socialCardImage(SHOPIFY)!.url;
+    const twice = socialCardImage(once)!.url;
+    expect(twice).toBe(once);
+  });
+
+  it('replaces a width already applied by shopifyImage rather than appending', () => {
+    const c = socialCardImage(shopifyImage(SHOPIFY, 400))!;
+    expect(c.url.match(/width=/g)).toHaveLength(1);
+    expect(new URL(c.url).searchParams.get('width')).toBe('1200');
+  });
+
+  it('declares NO dimensions for a non-Shopify image, rather than guessing', () => {
+    // The WooCommerce brands — nothing about their URLs can be resized, so a
+    // declared size would be a wrong one, which is worse than none.
+    const c = socialCardImage('https://noureenmodestfashion.com/wp-content/uploads/x.jpeg')!;
+    expect(c.url).toBe('https://noureenmodestfashion.com/wp-content/uploads/x.jpeg');
+    expect(c.width).toBeUndefined();
+    expect(c.height).toBeUndefined();
+  });
+
+  it('passes undefined through', () => {
+    expect(socialCardImage(undefined)).toBeUndefined();
   });
 });
