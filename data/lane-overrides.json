@@ -1419,5 +1419,9 @@
   "aeon-abaya:8905258500148": {
     "lane": "outerwear",
     "subtype": "blazer"
+  },
+  "losyana:8573922246981": {
+    "lane": "layering-basics",
+    "subtype": "prayer-set"
   }
 }
