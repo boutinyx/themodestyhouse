@@ -1,6 +1,6 @@
 # A Meta product feed, so products can be tagged on Instagram
 
-**Date:** 2026-09-06 · **Status:** shipped to production; catalogue created and ingesting
+**Date:** 2026-09-06 · **Status:** done — shop live on Instagram 2026-09-07
 
 ## Goal
 
@@ -155,3 +155,79 @@ Meta flow is broken, retry it in a fresh tab.
    Domains). Meta issues the token; the DNS record can then be added at Cloudflare from here.
 2. **The shop application**, which is where the merchant agreement is accepted — and where
    the eligibility question flagged above gets answered by Meta rather than by us.
+
+
+---
+
+## The shop is live (2026-09-07)
+
+```
+commerce account   Themodestyhouse.hq        1056051937347349
+sales channel      @themodestyhouse.hq       ACTIVE  (Instagram; no Facebook Page)
+catalogue          The Modesty House         2065648288161757 · 19,172 items synced
+domain             themodestyhouse.com       Verified (DNS TXT at Cloudflare)
+feed               daily 10:35 GMT+2         last fetch Sep 7 10:37 · "All good"
+```
+
+**The Facebook-account fear was wrong.** Tina has no Facebook account, and the shop flow kept
+bouncing to `www.facebook.com` asking for a personal login, which looked like a hard wall.
+It was not: at "Where do you want to sell from?", **Show all accounts** reveals the Instagram
+profile as a selectable sales channel, and Meta's Instagram-only path needs no Page. Do not
+conclude from the `www.facebook.com` redirect that a Facebook account is required.
+
+**Two operational things learned, both worth keeping:**
+
+1. **The primary-market selector changes what you are signing up for, and does not persist.**
+   Defaulted to United States; a fresh tab resets it. Set to Netherlands the card changes
+   from checkout-routing language to *"Product tagging — product tags on posts, stories and
+   reels"*, which is the actual feature wanted. Set the market BEFORE clicking through.
+2. **The feed schedule defaults to HOURLY.** Changed to daily at 08:35 UTC — the catalogue
+   only moves on the 04:10 UTC refresh, so hourly is 24 pulls of a 15 MB file to observe
+   nothing, with a real chance of catching a half-updated publish.
+
+**A false alarm I caused and then resolved.** Adding the Instagram account to the business
+portfolio put Business Suite → **Settings** into `blocked_ig_user_in_mbs` for that identity
+("You don't have access to Settings"). Commerce Manager kept working and the domain stayed
+Verified, so nothing was lost — but it looked like breakage. Separately, "This sales channel
+already has another shop" read as an error and was in fact Meta reporting that Tina had
+**already completed the flow in a different browser** (Helium) while this session was driving
+Chrome. Two browsers on one account: check whether the thing exists before concluding it
+failed.
+
+**Product-count reconciliation, closed.** The data source read `Products: 1K` against an
+upload summary of `19.2K` for ~25 minutes, recorded at the time as an unresolved
+discrepancy rather than smoothed over. It was lag: it now reads **19,172 items synced**,
+matching the feed exactly.
+
+## Catalogue quality, measured from Meta's own report
+
+Meta flagged **6 of 19,172** products as "image fetch failed". Checked from here rather than
+taken at face value:
+
+```
+6 flagged by Meta
+  4  load fine as facebookexternalhit AND as a browser -> transient at Meta's end
+  2  HTTP 404, hard   losyana:15870511743301 "Fuerteventura"
+                      losyana:15852687917381 "Costa Blanca Burkini"
+```
+
+Swept the whole brand: **826 Losyana products, 6 non-200 — of which 4 were `ERR` from my own
+concurrency and cleared on a serial retry.** §10.44 for the third time in two days; the
+retry pass is now reflex.
+
+So the true figure is **2 dead product images in the entire published catalogue**, both
+Losyana, and both render a broken card on the site as well as in the shop. Losyana is the
+brand that moved storefront domain (§10.54), which is the likely cause — old CDN assets
+dropped.
+
+**Not fixed, deliberately.** The blunt fix is two ids in `exclusions.json`; the correct one
+is `npm run refresh -- losyana`, which re-derives images from the live feed and will pick up
+replacements if the brand re-uploaded. That is a data operation with the §10.35 / §10.53
+cautions attached, so it is Tina's call rather than something to slip in.
+
+## Still open
+
+- **Shipping profiles are incomplete** and Meta is asking for them. This one needs a real
+  answer rather than a filled field: the site ships nothing — the 112 brands do — so stating
+  delivery times or free-shipping thresholds would be asserting something we do not control.
+  Raised with Tina rather than guessed.
