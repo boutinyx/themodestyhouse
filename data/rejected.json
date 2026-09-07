@@ -24508,15 +24508,6 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "veiled:7634723766377",
-    "brandSlug": "veiled",
-    "title": "Suede Wrap Skirt - Pebble",
-    "url": "https://veiled.com/products/suede-wrap-skirt-pebble",
-    "garmentWas": "skirt",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
     "id": "veiled:7746275967081",
     "brandSlug": "veiled",
     "title": "Cotton Cinch Maxi Dress - Boulder",
@@ -24697,15 +24688,6 @@
     "evidence": "Hijab Clips"
   },
   {
-    "id": "aab:10032071999802",
-    "brandSlug": "aab",
-    "title": "Active Co-Ord Set Pewter",
-    "url": "https://us.aabcollection.com/products/active-co-ord-set-pewter",
-    "garmentWas": "set",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "aab:9801478570298",
     "brandSlug": "aab",
     "title": "Camo Tiered Maxi - Final Sale",
@@ -24731,6 +24713,15 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "aab:10277923684666",
+    "brandSlug": "aab",
+    "title": "Emerald Green Maxi Shirt",
+    "url": "https://us.aabcollection.com/products/emerald-green-maxi-shirt",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "nasiba:10176153682229",
@@ -32281,13 +32272,22 @@
     "evidence": "890 USD (~$890)"
   },
   {
+    "id": "jawda:16038520717692",
+    "brandSlug": "jawda",
+    "title": "Ivory Brown Cotton Blend Pleated Tie Dress",
+    "url": "https://jawda.co.uk/products/ivory-brown-cotton-blend-pleated-tie-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "vela:8316288172188",
     "brandSlug": "vela",
     "title": "Knit Cardigan Dress",
     "url": "https://velascarves.com/products/knit-cardigan-dress",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: 3XL, 3XL"
+    "evidence": "in stock: 3XL"
   },
   {
     "id": "vela:8316254159004",
@@ -32297,6 +32297,15 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "veiled:7741467033705",
+    "brandSlug": "veiled",
+    "title": "Tencel Asymmetric Top - White",
+    "url": "https://veiled.com/products/tencel-asymmetric-top",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7117512245353",
@@ -32508,7 +32517,7 @@
     "url": "https://veiled.com/products/asymmetrical-waist-rouched-maxi-dress-chocolate",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, XXL, XXL"
+    "evidence": "in stock: XXL, XXL"
   },
   {
     "id": "veiled:7621880807529",
@@ -34703,6 +34712,15 @@
     "evidence": "Hijab Magnets"
   },
   {
+    "id": "merrachi:15480847630719",
+    "brandSlug": "merrachi",
+    "title": "Essential Jersey Dress Short | Olive",
+    "url": "https://bymerrachi.com/products/essential-jersey-dress-short-olive",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "merrachi:15481994740095",
     "brandSlug": "merrachi",
     "title": "Flowy Palazzo Pants | Ash Brown",
@@ -34800,15 +34818,6 @@
     "evidence": "Bag"
   },
   {
-    "id": "merrachi:15290121290111",
-    "brandSlug": "merrachi",
-    "title": "Knitted Collar Cardigan | Black",
-    "url": "https://bymerrachi.com/products/knitted-collar-cardigan-black",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "merrachi:15073370964351",
     "brandSlug": "merrachi",
     "title": "Summer Jersey Kaftan Dress | Moss Gray",
@@ -34897,7 +34906,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "552 USD (~$552)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -34906,7 +34915,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "552 USD (~$552)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:8267053432970",
@@ -34934,24 +34943,6 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "578 USD (~$578)"
-  },
-  {
-    "id": "fares:7517083959487",
-    "brandSlug": "fares",
-    "title": "Linen Blend Pants - Vanilla",
-    "url": "https://shopfares.com/products/linen-blend-pants-vanilla",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "fares:7517082714303",
-    "brandSlug": "fares",
-    "title": "Oversized Linen Blend Top - Vanilla",
-    "url": "https://shopfares.com/products/linen-blend-top-vanilla",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "fares:8281648660671",
@@ -41532,7 +41523,7 @@
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "552 USD (~$552)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -41541,7 +41532,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -41550,7 +41541,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -41559,7 +41550,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -41568,7 +41559,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "552 USD (~$552)"
+    "evidence": "553 USD (~$553)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -41577,7 +41568,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -41586,7 +41577,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -41595,7 +41586,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -41604,7 +41595,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -41613,7 +41604,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -41622,7 +41613,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "621 USD (~$621)"
+    "evidence": "622 USD (~$622)"
   },
   {
     "id": "kamin:9333254586585",
@@ -47211,6 +47202,15 @@
     "evidence": "4000 AED (~$1089)"
   },
   {
+    "id": "abadia:8819723763866",
+    "brandSlug": "abadia",
+    "title": "Gwen Off Shoulder Drape Dress in Brown",
+    "url": "https://shop.abadia.me/products/gwen-off-shoulder-drape-dress-in-brown",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
     "id": "abadia:8959376359578",
     "brandSlug": "abadia",
     "title": "Double Pleat Wide Leg Pants in Black",
@@ -47301,6 +47301,15 @@
     "evidence": "2020 AED (~$550)"
   },
   {
+    "id": "abadia:8959376425114",
+    "brandSlug": "abadia",
+    "title": "Layered Volume Shirt Dress",
+    "url": "https://shop.abadia.me/products/layered-volume-shirt-dress-berry",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3485 AED (~$949)"
+  },
+  {
     "id": "abadia:8959376195738",
     "brandSlug": "abadia",
     "title": "Double Pleat Wide Leg Pants in Cotton",
@@ -47362,24 +47371,6 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "6800 AED (~$1852)"
-  },
-  {
-    "id": "abadia:7722264297626",
-    "brandSlug": "abadia",
-    "title": "Cleo in Brown",
-    "url": "https://shop.abadia.me/products/cleo-brown",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "2450 AED (~$667)"
-  },
-  {
-    "id": "abadia:8040193425562",
-    "brandSlug": "abadia",
-    "title": "Ora Draped Dress in Cream",
-    "url": "https://shop.abadia.me/products/ora-draped-dress-in-cream",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "2920 AED (~$795)"
   },
   {
     "id": "abadia:8643456598170",
@@ -47639,15 +47630,6 @@
     "title": "Cropped Sara",
     "url": "https://shop.abadia.me/products/cropped-sara-black",
     "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "2850 AED (~$776)"
-  },
-  {
-    "id": "abadia:8701262758042",
-    "brandSlug": "abadia",
-    "title": "Draped Skirt with Slit",
-    "url": "https://shop.abadia.me/products/draped-skirt-with-slit-taupe",
-    "garmentWas": "skirt",
     "reason": "price-ceiling",
     "evidence": "2850 AED (~$776)"
   },
@@ -49699,15 +49681,6 @@
     "evidence": "290 KWD (~$941)"
   },
   {
-    "id": "aeon-abaya:7789177667636",
-    "brandSlug": "aeon-abaya",
-    "title": "Caramel Abaya",
-    "url": "https://aeonabaya.net/products/velvet-corduroy-abaya-beige-caramel-abaya",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, XXL"
-  },
-  {
     "id": "nour-al-houda:7687564165168",
     "brandSlug": "nour-al-houda",
     "title": "Hijab Magnet - Chocolate",
@@ -49997,15 +49970,6 @@
     "title": "Nakış ve Dantel Detaylı Keten Ceket",
     "url": "https://baqaofficial.com/products/nakis-dantel-detayli-keten-ceket",
     "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "32500 TRY (~$676)"
-  },
-  {
-    "id": "baqa:9232048750843",
-    "brandSlug": "baqa",
-    "title": "Drapeli Dik Yaka İpek Elbise",
-    "url": "https://baqaofficial.com/products/drapeli-dik-yaka-ipek-elbise",
-    "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$676)"
   },
@@ -52276,15 +52240,6 @@
     "evidence": "49500 TRY (~$1030)"
   },
   {
-    "id": "veiled:7640432640105",
-    "brandSlug": "veiled",
-    "title": "Nada Embellished Open Abaya - Emerald",
-    "url": "https://veiled.com/products/nada-embellished-open-abaya-emerald",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "mariams:9415956791512",
     "brandSlug": "mariams",
     "title": "Summer Contrast Woven Top-Handle Bag（MAC467）",
@@ -52737,33 +52692,6 @@
     "evidence": "in stock: XL, 3XL, 4XL"
   },
   {
-    "id": "lameera-moda:6810800128168",
-    "brandSlug": "lameera-moda",
-    "title": "Aliya Premium Top- Sky Blue",
-    "url": "https://lameeramoda.com/products/aliya-premium-top-sky-blue",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: 2XL, 3XL, 4XL"
-  },
-  {
-    "id": "lameera-moda:6810809729192",
-    "brandSlug": "lameera-moda",
-    "title": "Aliya Premium Top- Mink",
-    "url": "https://lameeramoda.com/products/aliya-premium-top-mink",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL, 2XL, 3XL, 4XL"
-  },
-  {
-    "id": "lameera-moda:6810820640936",
-    "brandSlug": "lameera-moda",
-    "title": "Aliya Premium Top- Navy Blue",
-    "url": "https://lameeramoda.com/products/aliya-premium-top-navy-blue",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL, 2XL, 3XL"
-  },
-  {
     "id": "lameera-moda:7855388819624",
     "brandSlug": "lameera-moda",
     "title": "Ayanna Beaded Wrap Dress- Stormy Blue",
@@ -52823,5 +52751,14 @@
     "url": "https://nihan.com.tr/products/ekose-kumas-mixli-erkek-yaka-yelek-kahve",
     "garmentWas": "top",
     "reason": "title-pattern"
+  },
+  {
+    "id": "veiled:7779353526377",
+    "brandSlug": "veiled",
+    "title": "Cinch Waist Denim Jacket - Black",
+    "url": "https://veiled.com/products/cinch-waist-denim-jacket-black",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
   }
 ]
