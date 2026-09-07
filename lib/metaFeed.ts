@@ -75,6 +75,23 @@ const CATEGORY_FALLBACK = 'Apparel & Accessories > Clothing';
  *
  * This is the INBOUND direction and has nothing to do with lib/outbound.ts,
  * which tags links LEAVING for a brand so the brand's analytics can see us.
+ *
+ * TWO UTM HELPERS POINTING OPPOSITE WAYS, and the obvious worry about them was
+ * raised by Tina and then MEASURED rather than argued: *"but wont people see
+ * instagram next time so the businesses? and not the modestyhouse"* — i.e. does
+ * an inbound `utm_source=instagram` follow the visitor out and rob us of credit
+ * with the brand? It does not. `withUtm()` builds its tag from the BRAND's own
+ * product URL out of the catalogue and never reads the current page's query
+ * string, so there is no path for one to reach the other. Verified on
+ * production by loading the same product page with and without the Instagram
+ * tag and diffing the outbound anchors:
+ *
+ *   without -> ...?utm_source=themodestyhouse.com&utm_medium=referral&...
+ *   with    -> ...?utm_source=themodestyhouse.com&utm_medium=referral&...
+ *   identical: true
+ *
+ * If either helper ever starts reading `window.location`, that guarantee is
+ * gone — re-run that diff before believing otherwise.
  */
 export const FEED_UTM = {
   utm_source: 'instagram',
