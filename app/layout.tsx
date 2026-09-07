@@ -18,10 +18,33 @@ const display = Bodoni_Moda({ subsets: ['latin'], variable: '--font-display', di
 const label = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-label', display: 'swap' });
 const ui = Jost({ subsets: ['latin'], variable: '--font-ui', display: 'swap' });
 
-// OG/Twitter image is the existing hero photograph, reused rather than a
-// new asset invented for this — no brand-new art without Tina's say (§10.18
-// is about copy, but the same principle applies to imagery).
-const DEFAULT_OG_IMAGE = '/hero-poster.jpg';
+/*
+ * The share card. 1200x630, the size every platform expects.
+ *
+ * Was /hero-poster.jpg until 2026-09-07 — a video poster frame from 3 August,
+ * a cropped street photo of one person on a bridge, with nothing on it saying
+ * whose link it was. Tina, sending a screenshot of a WhatsApp share: "we need
+ * to change the og image becuase its not good right now when i send my oage to
+ * someone a old picture comes this one ... and that isnt the right one."
+ *
+ * A NEW FILENAME, never a replacement of the old path. public/ is served with
+ * `cache-control: max-age=14400` and Next does not fingerprint these paths
+ * (§6, §10.21) — and every social platform caches an og:image by URL and is
+ * far more stubborn than a browser. New bytes at /hero-poster.jpg would have
+ * left the bridge photo in circulation indefinitely. /hero-poster.jpg is now
+ * referenced by nothing and is left on disk rather than deleted.
+ *
+ * Built from assets that are already hers: the live homepage hero
+ * (hero-home-10.jpg), public/logo.png, Bodoni Moda + Marcellus, the brass
+ * rule, and the tagline the layout's own description already carried. Nothing
+ * commissioned or invented. She chose this over three alternatives.
+ *
+ * WIDTH AND HEIGHT ARE DECLARED. Without them WhatsApp and LinkedIn fetch the
+ * file before deciding whether it earns a large card, and often fall back to
+ * the small thumbnail on the first share of a new URL.
+ */
+const DEFAULT_OG_IMAGE = '/og-card-1.jpg';
+const OG_ALT = 'The Modesty House — the archive for everything modest';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://themodestyhouse.com'),
@@ -35,7 +58,7 @@ export const metadata: Metadata = {
     description: 'The archive for everything modest.',
     type: 'website',
     siteName: 'The Modesty House',
-    images: [{ url: DEFAULT_OG_IMAGE }],
+    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: OG_ALT }],
   },
   twitter: {
     card: 'summary_large_image',

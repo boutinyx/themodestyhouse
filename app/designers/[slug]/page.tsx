@@ -74,8 +74,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     description,
     alternates: { canonical },
-    openGraph: { title, description, type: 'website', url: canonical, images: [{ url: '/hero-poster.jpg' }] },
-    twitter: { card: 'summary_large_image', title, description, images: ['/hero-poster.jpg'] },
+    // Same card as everywhere else — see the DEFAULT_OG_IMAGE comment in app/layout.tsx.
+    openGraph: { title, description, type: 'website', url: canonical, images: [{ url: '/og-card-1.jpg', width: 1200, height: 630, alt: 'The Modesty House — the archive for everything modest' }] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/og-card-1.jpg'] },
   };
 }
 

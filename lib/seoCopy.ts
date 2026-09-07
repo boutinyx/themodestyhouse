@@ -25,9 +25,10 @@ export interface SeoCopy {
 
 // Same image app/layout.tsx falls back to for the root OG/Twitter card — kept
 // as a literal here (not imported) since app/ and lib/ don't share a runtime
-// boundary for this. Reused deliberately rather than commissioning new art;
-// see the DEFAULT_OG_IMAGE comment in app/layout.tsx.
-const OG_IMAGE = '/hero-poster.jpg';
+// boundary for this. See the DEFAULT_OG_IMAGE comment there for why this is a
+// NEW filename rather than new bytes at the old one.
+const OG_IMAGE = '/og-card-1.jpg';
+const OG_ALT = 'The Modesty House — the archive for everything modest';
 
 /**
  * Builds a full per-page Metadata object, including openGraph/twitter.
@@ -56,7 +57,7 @@ export function buildMetadata({
       description,
       type: 'website',
       url: canonical,
-      images: [{ url: OG_IMAGE }],
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: OG_ALT }],
     },
     twitter: {
       card: 'summary_large_image',
