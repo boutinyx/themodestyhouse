@@ -58,9 +58,38 @@ const CATEGORY: Record<string, string> = {
 };
 const CATEGORY_FALLBACK = 'Apparel & Accessories > Clothing';
 
-export function feedLink(p: Pick<Product, 'id' | 'brandSlug'>): string {
+/**
+ * Campaign tag on every link Meta hands out.
+ *
+ * Tina, 2026-09-07: *"i want to add it like a campaign with the utm shit so
+ * then when people click on instagram i see"*. A product tag sends the shopper
+ * to the `link` in this feed, so tagging it here is what makes the visit
+ * attributable — and Pulse reports Source / Medium / Campaign natively
+ * (verified in the dashboard before this was written, rather than assumed).
+ *
+ * Instagram ALREADY shows up in Pulse's referrer list, so this is not about
+ * seeing Instagram at all — it is about telling the three Instagram surfaces
+ * apart. A tap on a product tag, a tap on the link in bio and a story sticker
+ * are one undifferentiated "Instagram" row today; only the medium distinguishes
+ * them, and only if we set it.
+ *
+ * This is the INBOUND direction and has nothing to do with lib/outbound.ts,
+ * which tags links LEAVING for a brand so the brand's analytics can see us.
+ */
+export const FEED_UTM = {
+  utm_source: 'instagram',
+  utm_medium: 'product_tag',
+  utm_campaign: 'meta_shop',
+} as const;
+
+export function feedLink(
+  p: Pick<Product, 'id' | 'brandSlug'>,
+  utm: Record<string, string> | null = FEED_UTM,
+): string {
   // Invariant 1: the id is `${brandSlug}:${shopifyId}`.
-  return `${SITE_URL}/product/${p.brandSlug}/${p.id.slice(p.brandSlug.length + 1)}`;
+  const url = new URL(`${SITE_URL}/product/${p.brandSlug}/${p.id.slice(p.brandSlug.length + 1)}`);
+  for (const [k, v] of Object.entries(utm ?? {})) url.searchParams.set(k, v);
+  return url.toString();
 }
 
 /**

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { metaFeedXml, feedItem, feedLink, feedDescription, xmlEscape } from './metaFeed';
+import { metaFeedXml, feedItem, feedLink, feedDescription, xmlEscape, FEED_UTM } from './metaFeed';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -24,12 +24,34 @@ const base: Product = {
 
 describe('feedLink', () => {
   it('points at OUR product page, not the brand, and rebuilds the id per Invariant 1', () => {
-    expect(feedLink(base)).toBe('https://themodestyhouse.com/product/aab/10059358863674');
+    expect(new URL(feedLink(base)).pathname).toBe('/product/aab/10059358863674');
+    expect(new URL(feedLink(base)).origin).toBe('https://themodestyhouse.com');
   });
 
   it('survives a brand slug containing a hyphen', () => {
-    expect(feedLink({ id: 'nour-al-houda:7860816379952', brandSlug: 'nour-al-houda' }))
-      .toBe('https://themodestyhouse.com/product/nour-al-houda/7860816379952');
+    expect(new URL(feedLink({ id: 'nour-al-houda:7860816379952', brandSlug: 'nour-al-houda' })).pathname)
+      .toBe('/product/nour-al-houda/7860816379952');
+  });
+
+  it('carries the campaign tag, so a product-tag tap is attributable in Pulse', () => {
+    const q = new URL(feedLink(base)).searchParams;
+    expect(q.get('utm_source')).toBe('instagram');
+    expect(q.get('utm_medium')).toBe('product_tag');
+    expect(q.get('utm_campaign')).toBe('meta_shop');
+  });
+
+  it('sets the medium, which is the whole point — Instagram is already a known referrer', () => {
+    // Without utm_medium every Instagram surface collapses into one row.
+    expect(FEED_UTM.utm_medium).toBeTruthy();
+    expect(FEED_UTM.utm_medium).not.toBe(FEED_UTM.utm_source);
+  });
+
+  it('can be built untagged, so a future Google/Pinterest feed is not forced to say instagram', () => {
+    expect(feedLink(base, null)).toBe('https://themodestyhouse.com/product/aab/10059358863674');
+  });
+
+  it('changes only the query string — the path a shopper lands on is unchanged', () => {
+    expect(new URL(feedLink(base)).pathname).toBe(new URL(feedLink(base, null)).pathname);
   });
 });
 
