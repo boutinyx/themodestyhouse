@@ -67,11 +67,10 @@ Three things about this are hard to explain for a women's modest-fashion account
    India, Brazil, Nigeria) with generic large-city clustering is the shape a bought or
    incentivised follower base takes, not one a niche editorial account grows.
 
-**Stated as carefully as the evidence allows:** the demographics, the 0.12% reach, and
-zero comments across nine posts are all consistent with a follower base that is largely
-not a real modest-fashion audience. I cannot prove that from outside, and there are
-innocent explanations — an account bought or repurposed, a viral giveaway, a long dormancy.
-But it changes what to do next, so it should be settled rather than assumed.
+**CONFIRMED by Tina, 2026-09-07: the account was bought.** The demographics above are
+exactly what that produces, and the inference in the first draft of this document was
+unnecessary — she had said so before. Recorded in memory as
+`instagram-account-was-bought` so no future session re-derives it as a suspicion.
 
 **Why it matters more than the content:** at 0.12% reach, better posts cannot rescue this.
 Instagram ranks by early engagement; an audience that never engages caps every post before
@@ -130,16 +129,33 @@ two are related.
 
 ## Next steps, in the order they should happen
 
-### Step 1 — settle the follower question before anything else *(this week)*
-Nothing else is worth optimising until this is known, because every other number depends
-on it.
-- Check **Insights → Audience → Trends** for when the 139K arrived. A near-vertical line
-  on a few dates is decisive; steady growth over three years is the opposite.
-- Decide honestly what the account is. If the followers are not real, the choice is to keep
-  a 139K vanity number that suppresses every post, or to start from a real audience.
-- **My recommendation, if they are not real: start clean.** 139K followers producing 2
-  likes actively harms reach — Instagram reads the ratio. A 500-follower account with 5%
-  engagement out-distributes this one.
+### Step 1 — decide what the bought account is FOR *(settled; the question is now strategy)*
+
+The followers are bought, so the 0.12% is structural and permanent. Instagram tests a post
+on a slice of followers and expands on their engagement; that slice will never engage, so
+no caption fixes it. **Follower count is not a metric for this account and never will be.**
+
+Three honest options, with the trade-off that now matters:
+
+**A. Keep it and lean entirely on Reels.** Reels distribution is driven substantially by
+NON-followers, which is why the four reels reached 131–589 while carousels sat at 27–425.
+This is the only route where the dead audience matters less. Slow, but it costs nothing and
+keeps the shop.
+
+**B. Start a clean account.** A 500-follower account at 5% engagement out-distributes this
+one, and Instagram reads the follower:engagement ratio against you. **But the cost is now
+concrete and was not, a week ago:** the Instagram Shop, the Meta catalogue (19,102 items),
+the verified domain and the product tagging are all attached to `@themodestyhouse.hq`. A
+new account means redoing that setup, and re-earning shop approval.
+
+**C. Both — this one as a billboard, a new one as the real thing.** 139K is still useful
+social proof when approaching brands to join the directory, which is a real business use
+that does not depend on engagement at all.
+
+**Recommendation: A now, C later.** Do not throw away the shop that was just built to chase
+a number that was never real. Run reels-first here for 4–6 weeks and judge it on Pulse
+campaign traffic, not on likes. If reach stays under ~500 with genuinely good reels, start
+the clean account then — with the shop playbook already written down and repeatable.
 
 ### Step 2 — fix the hashtag *(ten minutes)*
 Edit the seven captions. `#modestfashıon` → `#modestfashion`. Check your keyboard's
