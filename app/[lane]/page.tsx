@@ -10,6 +10,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, faqPageSchema, jsonLdGraph } from '@/lib/schema';
 import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
+import { formatPrice } from '@/lib/price';
 import { LANE_SUBTYPES, resolveSubtype, subtypeSeo, domainForLane, subtypeValueOf } from '@/lib/laneSubtypes';
 
 export function generateStaticParams() {
@@ -100,6 +101,54 @@ export default async function LanePage({
     .slice(0, 24)
     .map((p) => ({ title: p.title, url: p.url, image: p.image }));
   const answer = LANE_ANSWERS[lane.slug];
+
+  /**
+   * MEASURED FACTS ABOUT THIS SUBTYPE, added 2026-09-08.
+   *
+   * WHY. Google crawled four of the sixteen `?type=` pages shipped on
+   * 2026-09-02 and REFUSED to index them — "Crawled - currently not indexed"
+   * on every /modest-tops?type=*. The reason was measurable and is not
+   * arguable: each subtype page repeated the parent lane's intro AND its
+   * ~350-word laneAnswers block, so the only genuinely new text on it was the
+   * <h1>.
+   *
+   *     /modest-tops              1,160 words
+   *       ?type=shirt   987 words · 86.3% word overlap with the parent
+   *       ?type=tunic   975 words · 81.8%
+   *       ?type=blouse  1,009 words · 84.5%
+   *       ?type=tshirt  978 words · 85.4%
+   *     for contrast, /modest-tops vs /modest-abayas — 49.6%
+   *
+   * lib/laneAnswers.ts's own header already warned about exactly this: "12
+   * near-identical category-page templates with only the garment name swapped
+   * is the textbook thin/scaled content pattern Google's policy targets." I
+   * built sixteen more of it.
+   *
+   * COUNTED, NEVER CLAIMED (§10.18). Every number here is derived from this
+   * subtype's own rows — how many pieces, how many houses, the price span and
+   * the median. It is the same shape app/designers/[slug] already uses, and it
+   * is different on every one of the sixteen pages by construction, which is
+   * the property the pages were missing.
+   *
+   * Prices stay in whatever currency the row carries and are NOT converted
+   * (ADR-0002); the span is only shown when the subtype's rows agree on one
+   * currency, because "€18–£180" would be a nonsense range.
+   */
+  const subRows = sub && domain ? laneProducts.filter((p) => subtypeValueOf(domain, p) === sub.type) : [];
+  const subFacts = (() => {
+    if (!sub || subRows.length === 0) return null;
+    const houses = new Set(subRows.map((p) => p.brandSlug)).size;
+    const currencies = new Set(subRows.map((p) => p.currency));
+    const priced = subRows.filter((p) => p.price > 0).map((p) => p.price).sort((a, b) => a - b);
+    const one = currencies.size === 1 && priced.length > 0 ? [...currencies][0] : null;
+    return {
+      count: subRows.length,
+      houses,
+      lo: one ? formatPrice(priced[0], one) : null,
+      hi: one ? formatPrice(priced[priced.length - 1], one) : null,
+      median: one ? formatPrice(priced[Math.floor(priced.length / 2)], one) : null,
+    };
+  })();
   // Landing via the nav flyout's ?type=blazer should read "Blazers" up top,
   // not the generic lane title — Tina: "i do wnat to see blazer etc etc
   // instead of outerwear in the title when i click on it". Now resolved once,
@@ -145,11 +194,23 @@ export default async function LanePage({
           // read from the same object — schema that described text a visitor
           // cannot see is exactly what the guidelines prohibit, and the way
           // that happens is two sources drifting, not anyone intending it.
-          ...(answer ? [faqPageSchema([{ question: answer.h2, answer: answer.body }])] : []),
+          ...(answer && !sub ? [faqPageSchema([{ question: answer.h2, answer: answer.body }])] : []),
         )}
       />
       <h1 className="section-heading text-3xl md:text-4xl">{pageTitle}</h1>
-      <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>
+      {/* The lane intro is the LANE's sentence and repeating it on sixteen
+          child pages is most of what made them duplicates. A subtype page
+          states its own counted facts instead. */}
+      {subFacts ? (
+        <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>
+          {subFacts.count.toLocaleString('en-GB')} {sub!.label.toLowerCase()} from{' '}
+          {subFacts.houses} independent {subFacts.houses === 1 ? 'house' : 'houses'}
+          {subFacts.lo ? `, ${subFacts.lo}–${subFacts.hi}. Half are under ${subFacts.median}.` : '.'}{' '}
+          Every piece links straight to the house that made it.
+        </p>
+      ) : (
+        <p className="mt-3 mb-8 max-w-xl text-sm" style={{ color: 'var(--muted)' }}>{lane.intro}</p>
+      )}
       {/* NO SUB-CATEGORY CHIP ROW, 2026-08-26 — Tina, with a screenshot of it:
           "i said get rid of this shit". It was a wrapping <nav> of `.chip` links,
           one per subtype, with the current one filled aubergine.
@@ -185,7 +246,19 @@ export default async function LanePage({
           which is the same argument `searchable={false}` was added for on
           /edits/[slug]. */}
       <FilterableGrid catalogue={catalogue} initialType={type} searchable={false} source={{ lane: lane.slug }} laneDomain={domainForLane(lane.slug)} />
-      {answer && (
+      {/* PROSE ONLY ON THE BARE LANE, LINKS ON BOTH — restructured 2026-09-08.
+          The ~350-word answer block is about the LANE, and repeating it on
+          sixteen child pages is most of what made them 82-86% duplicates of
+          their parent (see the subFacts note above). It now renders only on
+          the lane itself; a subtype page states its own counted facts up top
+          and links here instead.
+
+          The link row stays on BOTH. It was added 2026-09-02 because the
+          sixteen subtype pages had zero internal links, and gating the whole
+          section on `!sub` would have silently taken them away again — which
+          is what the first version of this change did, and tsc caught it by
+          narrowing `sub` to `never`. */}
+      {answer && !sub && (
         // Informational copy AFTER the grid, not before it — a shopper wants
         // the products first. Still real, crawlable content: server-rendered,
         // not client-injected. See lib/laneAnswers.ts for why this exists.
@@ -194,50 +267,37 @@ export default async function LanePage({
             {answer.h2}
           </h2>
           <p className="mt-4" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>{answer.body}</p>
-          {/* SUBTYPE LINKS JOINED THIS ROW 2026-09-02, and it matters WHERE
-              they are. The 16 `?type=` pages shipped that morning went into
-              the sitemap with ZERO internal links — measured on production:
-              every page of the site emits 10 `type=` hrefs and not one of
-              them pointed at a new lane. §8 states the consequence plainly:
-              a sitemap entry gets a page crawled, internal links are what
-              pass ranking signal.
-
-              This is NOT the sub-category chip row Tina removed on
-              2026-08-26 ("i said get rid of this shit"). That was a <nav> of
-              filled `.chip` filter controls ABOVE the grid, duplicating the
-              Type dropdown. This is the existing "Also browse" text row
-              BELOW the grid — the module that already exists for internal
-              linking — carrying more links and no new words: every label
-              here is either a lane title or a subtype label already shipped.
-
-              On a subtype page the parent lane is included, so each of the
-              16 links to its siblings AND back up, rather than being a leaf
-              the crawler reaches once and never leaves. */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="eyebrow" style={{ color: 'var(--muted)' }}>Also browse</span>
-            {sub && (
-              <Link href={`/${lane.slug}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
-                {lane.title}
-              </Link>
-            )}
-            {LANE_SUBTYPES[lane.slug]?.subtypes
-              .filter((t) => t.type !== sub?.type)
-              .map((t) => (
-                <Link key={t.type} href={`/${lane.slug}?type=${t.type}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
-                  {t.label}
-                </Link>
-              ))}
-            {answer.related.map((slug) => {
-              const l = LANES.find((x) => x.slug === slug);
-              return l ? (
-                <Link key={slug} href={`/${slug}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
-                  {l.title}
-                </Link>
-              ) : null;
-            })}
-          </div>
         </section>
       )}
+
+      <section
+        className={answer && !sub ? 'max-w-2xl mt-6' : 'max-w-2xl mt-20 pt-12'}
+        style={answer && !sub ? undefined : { borderTop: '1px solid var(--hairline)' }}
+      >
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span className="eyebrow" style={{ color: 'var(--muted)' }}>Also browse</span>
+          {sub && (
+            <Link href={`/${lane.slug}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
+              {lane.title}
+            </Link>
+          )}
+          {LANE_SUBTYPES[lane.slug]?.subtypes
+            .filter((t) => t.type !== sub?.type)
+            .map((t) => (
+              <Link key={t.type} href={`/${lane.slug}?type=${t.type}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
+                {t.label}
+              </Link>
+            ))}
+          {answer?.related.map((slug) => {
+            const l = LANES.find((x) => x.slug === slug);
+            return l ? (
+              <Link key={slug} href={`/${slug}`} style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}>
+                {l.title}
+              </Link>
+            ) : null;
+          })}
+        </div>
+      </section>
     </main>
   );
 }
