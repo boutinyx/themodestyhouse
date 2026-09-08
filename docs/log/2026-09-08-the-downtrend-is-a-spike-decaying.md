@@ -1,5 +1,5 @@
 # The downtrend is a spike decaying, and 12 pages Google looked at and refused
-**Date:** 2026-09-08 · **Status:** analysis — nothing shipped, two decisions open
+**Date:** 2026-09-08 · **Status:** done — both fixed and live
 
 ## Goal
 Tina: *"we are in a downtrend while we were growing the past couple of weeks after we
@@ -106,7 +106,54 @@ The other eight have simply never been crawled. Six days old, in the sitemap, on
 link each from the "Also browse" row added 2026-09-02. That is a crawl-budget wait, not a
 defect.
 
-## Two decisions, both Tina's
+## What shipped instead — Tina: *"just fix it i dont care how"*
+
+**Each subtype page now states its own counted facts** and the lane's answer block renders
+only on the lane. *"225 blouses from 26 independent houses. Every piece links straight to
+the house that made it."* Every number is derived from that subtype's own rows and is
+different on all sixteen pages by construction — counted, never claimed (§10.18), the same
+shape `app/designers/[slug]` already uses. Prices stay unconverted and the span appears only
+where the rows agree on one currency, so no page prints a nonsense "EUR 18–GBP 180" range
+(ADR-0002).
+
+Measured on production after the purge, `MISS` then `HIT`:
+
+```
+?type=shirt   65.3%   ?type=tunic   61.0%
+?type=blouse  64.3%   ?type=tshirt  64.3%      (all were 82-86%)
+reference floor, two genuinely different lanes: 49.6% — mostly shared header and footer
+```
+
+Two things the change had to get right and nearly didn't:
+- **The FAQ schema is gated on the SAME condition as the rendered block.** Gating them
+  separately is exactly how you end up describing text a visitor cannot see.
+- **The sibling/parent link row stays on subtype pages.** The first version gated the whole
+  section on `!sub` and silently removed the internal links added on 2026-09-02; `tsc`
+  caught it by narrowing `sub` to `never`.
+
+Whether Google now indexes them is unknown and will take weeks. The overlap is materially
+lower; that is the only claim being made.
+
+## Also fixed: staging and main were unmergeable
+
+`products.json` and `rejected.json` conflicted — both sides had regenerated them. A
+generated file is never hand-merged (§10.53): `raw-products.json` was taken from main
+wholesale and asserted byte-identical (`02797b6329ec792c` both sides), staging's two curated
+edits were kept, and the published files were REGENERATED. Controls: 39/40 sampled nightly
+additions present, and the 40th is the Elaa PREORDER row staging deliberately cut — absent
+for the right reason. Both branches are now in sync.
+
+## And a real bug the merge exposed
+
+`lib/edits.test.ts` went red: the nightly delisted a pick from `/edits/jersey-hijabs` and
+collapsed two Hawaa Clothing pieces together. The re-spacing shipped on 2026-09-05 should
+have repaired it and did not — `clash()` ORed "same house" and "two hijabs" into one
+boolean, so on an all-hijab edit where the hijab rule is *unsatisfiable* the function gave
+up on the list and left a separable house clash alone. The two rules are now scored
+separately and a move is accepted only when it strictly lowers the total. Regression test
+added; the old predicate returns `hawaa,hawaa,vela,aab` and fails it.
+
+## Superseded — the two decisions this file originally left open
 
 1. **Per-subtype copy.** ~16 short factual blocks — what a tunic is versus a blouse — so
    each page says something the parent does not. It is the only thing that makes these
