@@ -307,6 +307,30 @@ describe('spaceEditPicks', () => {
     expect(bad, out.map((i) => i.id).join(',')).toBe(false);
   });
 
+  it('repairs a SATISFIABLE house clash even when the hijab rule is unsatisfiable', () => {
+    // The 2026-09-08 bug, as a fixture. /edits/jersey-hijabs is every-piece-a-
+    // hijab, so the hijab rule can never be satisfied — and the old code ORed
+    // the two rules into one boolean, decided the list was hopeless, and left a
+    // same-house pair sitting at position 1 that could trivially have been
+    // separated. Caught for real when the nightly refresh delisted a pick and
+    // collapsed two Hawaa Clothing pieces together.
+    //
+    // NEGATIVE CONTROL: under the old OR-ed predicate this returns the input
+    // unchanged, so `out[0].brandSlug === out[1].brandSlug` and the assertion
+    // below fires.
+    const list = [
+      p('h1', 'hawaa', 'hijab'),
+      p('h2', 'hawaa', 'hijab'),
+      p('h3', 'vela', 'hijab'),
+      p('h4', 'aab', 'hijab'),
+    ];
+    const out = spaceEditPicks(list);
+    const houseClashes = out.filter((x, i) => i > 0 && x.brandSlug === out[i - 1].brandSlug);
+    expect(houseClashes, out.map((x) => x.brandSlug).join(',')).toEqual([]);
+    expect(out).toHaveLength(4);
+    expect(out.map((x) => x.id).sort()).toEqual(['h1', 'h2', 'h3', 'h4']);
+  });
+
   it('leaves a clash that no arrangement could fix', () => {
     // Four hijabs among six pieces: separating them needs three non-hijabs and
     // there are two. The function must terminate with a stable result rather

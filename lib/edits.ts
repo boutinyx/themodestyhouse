@@ -1189,27 +1189,47 @@ export function editBySlug(slug: string): Edit | undefined {
  * applies when it skips the hijab rule for /edits/jersey-hijabs.
  */
 export function spaceEditPicks(items: Product[]): Product[] {
-  const clash = (a: Product | undefined, b: Product | undefined): boolean =>
-    !!a && !!b && (a.brandSlug === b.brandSlug || (a.garment === 'hijab' && b.garment === 'hijab'));
+  // The two rules are scored SEPARATELY and summed, which is the whole fix for
+  // the bug this had until 2026-09-08: `clash()` used to OR them together, so
+  // on /edits/jersey-hijabs — every piece a hijab, therefore every adjacent
+  // pair clashing on the hijab rule and NOTHING able to resolve it — the
+  // function gave up on the list entirely and never repaired the same-house
+  // clash sitting next to it, which WAS resolvable. The nightly refresh
+  // delisted a pick, collapsed two Hawaa Clothing pieces together, and
+  // lib/edits.test.ts caught it.
+  //
+  // Cost, not a boolean, also makes termination obvious: a move is only ever
+  // accepted when it STRICTLY lowers the total, and the total is a
+  // non-negative integer, so the loop cannot cycle.
+  const pairCost = (a: Product | undefined, b: Product | undefined): number => {
+    if (!a || !b) return 0;
+    return (a.brandSlug === b.brandSlug ? 1 : 0) + (a.garment === 'hijab' && b.garment === 'hijab' ? 1 : 0);
+  };
+  const total = (list: Product[]): number => {
+    let n = 0;
+    for (let i = 1; i < list.length; i++) n += pairCost(list[i - 1], list[i]);
+    return n;
+  };
 
   const out = items.slice();
-  for (let i = 1; i < out.length; i++) {
-    if (!clash(out[i - 1], out[i])) continue;
-    // A candidate at j is only worth moving if it fixes position i AND leaves
-    // the place it came from intact. All three have to hold, and the third is
-    // the one a naive version forgets: removing out[j] makes out[j-1] and
-    // out[j+1] neighbours.
-    let j = -1;
+  let cost = total(out);
+  for (let i = 1; i < out.length && cost > 0; i++) {
+    if (pairCost(out[i - 1], out[i]) === 0) continue;
+    // Pull forward the nearest later piece that STRICTLY improves the whole
+    // list. Scoring the candidate arrangement rather than checking three
+    // hand-written conditions is what lets an unsatisfiable rule (all hijabs)
+    // coexist with a satisfiable one (two pieces from one house).
     for (let k = i + 1; k < out.length; k++) {
-      if (clash(out[i - 1], out[k])) continue;      // would still clash where it lands
-      if (clash(out[k], out[i])) continue;          // would clash with the piece it displaces
-      if (clash(out[k - 1], out[k + 1])) continue;  // would open a new clash where it left
-      j = k;
-      break;
+      const trial = out.slice();
+      const [moved] = trial.splice(k, 1);
+      trial.splice(i, 0, moved);
+      const next = total(trial);
+      if (next < cost) {
+        out.splice(0, out.length, ...trial);
+        cost = next;
+        break;
+      }
     }
-    if (j === -1) continue; // unsatisfiable here — leave it rather than thrash
-    const [moved] = out.splice(j, 1);
-    out.splice(i, 0, moved);
   }
   return out;
 }
