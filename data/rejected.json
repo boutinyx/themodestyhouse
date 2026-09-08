@@ -24332,6 +24332,15 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "summer-evenings:9254146769146",
+    "brandSlug": "summer-evenings",
+    "title": "White Bell Sleeve Lace Dress",
+    "url": "https://www.summerevenings.us/products/white-bell-sleeve-lace-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 1XL"
+  },
+  {
     "id": "summer-evenings:9019197751546",
     "brandSlug": "summer-evenings",
     "title": "All Spice Ruched Maxi Skirt",
@@ -24499,13 +24508,13 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "vela:8592060350620",
-    "brandSlug": "vela",
-    "title": "Sculpted Button Up Beige",
-    "url": "https://velascarves.com/products/sculpted-button-up-beige",
-    "garmentWas": "top",
+    "id": "veiled:7798574940265",
+    "brandSlug": "veiled",
+    "title": "Cotton Wide Yoke Skirt - Black",
+    "url": "https://veiled.com/products/cotton-wide-yoke-skirt-black",
+    "garmentWas": "skirt",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7746275967081",
@@ -24515,15 +24524,6 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
-  },
-  {
-    "id": "veiled:7639105470569",
-    "brandSlug": "veiled",
-    "title": "Flare Sleeve Maxi Dress - White",
-    "url": "https://veiled.com/products/flare-sleeve-maxi-dress-white",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "modern-hijabi:8206337245398",
@@ -24697,6 +24697,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "aab:10289493016890",
+    "brandSlug": "aab",
+    "title": "Cascade Kaftan Olive",
+    "url": "https://us.aabcollection.com/products/cascade-kaftan-olive",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "aab:10059358798138",
     "brandSlug": "aab",
     "title": "Denim Stitch Set",
@@ -24715,10 +24724,10 @@
     "evidence": "in stock: XL, XXL"
   },
   {
-    "id": "aab:10277923684666",
+    "id": "aab:10277924077882",
     "brandSlug": "aab",
-    "title": "Emerald Green Maxi Shirt",
-    "url": "https://us.aabcollection.com/products/emerald-green-maxi-shirt",
+    "title": "Textured Navy Maxi Shirt",
+    "url": "https://us.aabcollection.com/products/textured-navy-maxi-shirt",
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
@@ -32272,15 +32281,6 @@
     "evidence": "890 USD (~$890)"
   },
   {
-    "id": "jawda:16038520717692",
-    "brandSlug": "jawda",
-    "title": "Ivory Brown Cotton Blend Pleated Tie Dress",
-    "url": "https://jawda.co.uk/products/ivory-brown-cotton-blend-pleated-tie-dress",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "vela:8316288172188",
     "brandSlug": "vela",
     "title": "Knit Cardigan Dress",
@@ -32436,7 +32436,7 @@
     "url": "https://veiled.com/products/lana-cape-maxi-dress-moonrock",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, XXL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7640454037609",
@@ -32805,6 +32805,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "aab:10175406342458",
+    "brandSlug": "aab",
+    "title": "Rayyan Kaftan",
+    "url": "https://us.aabcollection.com/products/rayyan-kaftan",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "aab:10059948261690",
     "brandSlug": "aab",
     "title": "Knitted Wrap Maxi - Final Sale",
@@ -32911,15 +32920,6 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
-  },
-  {
-    "id": "aab:9028382851386",
-    "brandSlug": "aab",
-    "title": "Mulberry Abaya Black",
-    "url": "https://us.aabcollection.com/products/mulberry-abaya-black",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL"
   },
   {
     "id": "aab:9028425384250",
@@ -34721,11 +34721,11 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "merrachi:15481994740095",
+    "id": "merrachi:15481991758207",
     "brandSlug": "merrachi",
-    "title": "Flowy Palazzo Pants | Ash Brown",
-    "url": "https://bymerrachi.com/products/flowy-palazzo-pants-ash-brown",
-    "garmentWas": "trousers",
+    "title": "Asymmetric Drape Dress Short | Sand",
+    "url": "https://bymerrachi.com/products/asymmetric-drape-dress-short-sand",
+    "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
   },
@@ -34758,16 +34758,6 @@
     "reason": "non-apparel:bags",
     "tier": "B",
     "evidence": "Bag"
-  },
-  {
-    "id": "merrachi:15639066050943",
-    "brandSlug": "merrachi",
-    "title": "Scarf Keychain | Khaki",
-    "url": "https://bymerrachi.com/products/scarf-keychain-khaki",
-    "garmentWas": "hijab",
-    "reason": "non-apparel:bags",
-    "tier": "A",
-    "evidence": "Keychain"
   },
   {
     "id": "merrachi:15639065985407",
@@ -34832,6 +34822,15 @@
     "title": "Sleeveless Hijab Top | Black",
     "url": "https://bymerrachi.com/products/sleeveless-hijab-top-black",
     "garmentWas": "hijab",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "merrachi:14931796361599",
+    "brandSlug": "merrachi",
+    "title": "Double Sleeve Dress | Dark Pearl",
+    "url": "https://bymerrachi.com/products/double-sleeve-dress-dark-pearl",
+    "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
   },
@@ -40977,14 +40976,6 @@
     "garmentWas": "skirt",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
-  },
-  {
-    "id": "chic-modesty:10322908512594",
-    "brandSlug": "chic-modesty",
-    "title": "Aiguille pic pour hijab noir",
-    "url": "https://chicandmodesty.com/products/aiguille-pic-pour-hijab-noir",
-    "garmentWas": "hijab",
-    "reason": "id-pin"
   },
   {
     "id": "chic-modesty:10322766397778",
@@ -47341,15 +47332,6 @@
     "evidence": "2020 AED (~$550)"
   },
   {
-    "id": "abadia:8959376425114",
-    "brandSlug": "abadia",
-    "title": "Layered Volume Shirt Dress",
-    "url": "https://shop.abadia.me/products/layered-volume-shirt-dress-berry",
-    "garmentWas": "dress",
-    "reason": "price-ceiling",
-    "evidence": "3485 AED (~$949)"
-  },
-  {
     "id": "abadia:8959376195738",
     "brandSlug": "abadia",
     "title": "Double Pleat Wide Leg Pants in Cotton",
@@ -47564,24 +47546,6 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "3500 AED (~$953)"
-  },
-  {
-    "id": "abadia:8819724812442",
-    "brandSlug": "abadia",
-    "title": "Relax Fit Tailored Pants",
-    "url": "https://shop.abadia.me/products/relax-fit-tailored-pants-pink",
-    "garmentWas": "trousers",
-    "reason": "price-ceiling",
-    "evidence": "2550 AED (~$694)"
-  },
-  {
-    "id": "abadia:8819724583066",
-    "brandSlug": "abadia",
-    "title": "Oversized Blazer",
-    "url": "https://shop.abadia.me/products/oversized-blazer-pink",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "3000 AED (~$817)"
   },
   {
     "id": "abadia:8819723665562",
@@ -50014,6 +49978,15 @@
     "evidence": "32500 TRY (~$676)"
   },
   {
+    "id": "baqa:9232048750843",
+    "brandSlug": "baqa",
+    "title": "Drapeli Dik Yaka İpek Elbise",
+    "url": "https://baqaofficial.com/products/drapeli-dik-yaka-ipek-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$676)"
+  },
+  {
     "id": "baqa:9315157475579",
     "brandSlug": "baqa",
     "title": "Bağcık Detaylı Bikini Takımı",
@@ -52076,14 +52049,6 @@
     "reason": "brand-blacklist"
   },
   {
-    "id": "nihan:15210884366699",
-    "brandSlug": "nihan",
-    "title": "Bilek Boy Bol Paça Pantolon - Ekru",
-    "url": "https://nihan.com.tr/products/bilek-boy-bol-paca-pantolon-ekru-1",
-    "garmentWas": "trousers",
-    "reason": "title-pattern"
-  },
-  {
     "id": "nihan:15210883711339",
     "brandSlug": "nihan",
     "title": "Bilek Boy Bol Paça Pantolon - Siyah",
@@ -52677,15 +52642,6 @@
     "evidence": "in stock: XL, 3XL"
   },
   {
-    "id": "haya-active:15110203081090",
-    "brandSlug": "haya-active",
-    "title": "Oversized Active Tee - Navy",
-    "url": "https://haya-active.com/products/oversized-active-tee-navy",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL / UK16, 2XL / UK18, 3XL / UK20, 4XL / UK22"
-  },
-  {
     "id": "haya-active:15110201278850",
     "brandSlug": "haya-active",
     "title": "Oversized Active Tee - Coffee Brown",
@@ -52723,13 +52679,22 @@
     "evidence": "in stock: 4XL, XL, XXL, 3XL"
   },
   {
+    "id": "nemah:8043384307759",
+    "brandSlug": "nemah",
+    "title": "Bottle Green Curved Hem Activewear Top",
+    "url": "https://nemahwear.com/products/bottledgreen-curved-hem-modest-activewear-t-shirt",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL, 3XL, 4XL"
+  },
+  {
     "id": "nemah:8043384012847",
     "brandSlug": "nemah",
     "title": "Black Curved Hem Activewear Top",
     "url": "https://nemahwear.com/products/black-curved-hem-modest-activewear-t-shirt",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, 3XL, 4XL"
+    "evidence": "in stock: 3XL, 4XL"
   },
   {
     "id": "lameera-moda:7855388819624",
@@ -52791,14 +52756,5 @@
     "url": "https://nihan.com.tr/products/ekose-kumas-mixli-erkek-yaka-yelek-kahve",
     "garmentWas": "top",
     "reason": "title-pattern"
-  },
-  {
-    "id": "veiled:7779353526377",
-    "brandSlug": "veiled",
-    "title": "Cinch Waist Denim Jacket - Black",
-    "url": "https://veiled.com/products/cinch-waist-denim-jacket-black",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   }
 ]
