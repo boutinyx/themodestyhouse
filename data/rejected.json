@@ -24323,15 +24323,6 @@
     "evidence": "in stock: XL, 1XL, 2XL"
   },
   {
-    "id": "summer-evenings:9231833628922",
-    "brandSlug": "summer-evenings",
-    "title": "Ocean Blue Low Waisted Skirt Set",
-    "url": "https://www.summerevenings.us/products/ocean-blue-chiffon-low-waisted-set",
-    "garmentWas": "skirt",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "summer-evenings:9254146769146",
     "brandSlug": "summer-evenings",
     "title": "White Bell Sleeve Lace Dress",
@@ -24430,6 +24421,15 @@
     "reason": "id-pin"
   },
   {
+    "id": "zora:9126831292579",
+    "brandSlug": "zora",
+    "title": "The Darlene Dress in Victorian Rose",
+    "url": "https://zoradesigners.com/products/the-darlene-dress-in-victorian-rose",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "zora:9126893879459",
     "brandSlug": "zora",
     "title": "The Jannah Blouse to Martha’s Closet Enamel Pin",
@@ -24508,13 +24508,13 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "veiled:7798574940265",
-    "brandSlug": "veiled",
-    "title": "Cotton Wide Yoke Skirt - Black",
-    "url": "https://veiled.com/products/cotton-wide-yoke-skirt-black",
-    "garmentWas": "skirt",
+    "id": "vela:8592059728028",
+    "brandSlug": "vela",
+    "title": "Herringbone Palazzo Pant Brown",
+    "url": "https://velascarves.com/products/tweed-palazzo-pant-brown",
+    "garmentWas": "trousers",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
+    "evidence": "in stock: XL"
   },
   {
     "id": "veiled:7746275967081",
@@ -32481,7 +32481,7 @@
     "url": "https://veiled.com/products/dalal-embroidered-open-abaya-summer-peach",
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XL, XL, XXL"
   },
   {
     "id": "veiled:7640432771177",
@@ -34905,7 +34905,7 @@
     "url": "https://avyaana.com/products/shahzadi-noor-1",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:15633454727542",
@@ -34914,7 +34914,7 @@
     "url": "https://avyaana.com/products/amirat-al-bahar",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:8267053432970",
@@ -34923,7 +34923,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 USD (~$578)"
+    "evidence": "580 USD (~$580)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -34932,7 +34932,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 USD (~$578)"
+    "evidence": "580 USD (~$580)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -34941,7 +34941,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "578 USD (~$578)"
+    "evidence": "580 USD (~$580)"
   },
   {
     "id": "fares:8281648660671",
@@ -35417,15 +35417,6 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2300 AED (~$626)"
-  },
-  {
-    "id": "chi-ka:8514017788065",
-    "brandSlug": "chi-ka",
-    "title": "Straight Cut Abaya in Dark Plum with Satin Lapel",
-    "url": "https://chikacollection.com/products/straight-cut-abaya-in-dark-plum-with-satin-lapel",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "2310 AED (~$629)"
   },
   {
     "id": "chi-ka:8552843215009",
@@ -41514,7 +41505,7 @@
     "url": "https://avyaana.com/products/mustard-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:15064073503094",
@@ -41523,7 +41514,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -41532,7 +41523,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -41541,7 +41532,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -41550,7 +41541,7 @@
     "url": "https://avyaana.com/products/ocean-dye",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "553 USD (~$553)"
+    "evidence": "554 USD (~$554)"
   },
   {
     "id": "avyaana:8267056283786",
@@ -41559,7 +41550,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -41568,7 +41559,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -41577,7 +41568,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -41586,7 +41577,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -41595,7 +41586,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -41604,7 +41595,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "622 USD (~$622)"
+    "evidence": "623 USD (~$623)"
   },
   {
     "id": "kamin:9333254586585",
@@ -43729,7 +43720,7 @@
     "url": "https://lameeramoda.com/products/soleil-embroidery-organza-dress-blue-gray",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XL"
   },
   {
     "id": "lameera-moda:9404826550440",
@@ -47404,6 +47395,15 @@
     "evidence": "6425 AED (~$1749)"
   },
   {
+    "id": "abadia:8844428017818",
+    "brandSlug": "abadia",
+    "title": "Suri Maxi Dress",
+    "url": "https://shop.abadia.me/products/suri-maxi-dress-charcoal",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
+  },
+  {
     "id": "abadia:8819724648602",
     "brandSlug": "abadia",
     "title": "Satin Trouser in Blue",
@@ -49597,14 +49597,6 @@
     "reason": "id-pin"
   },
   {
-    "id": "hidayah:7406693318827",
-    "brandSlug": "hidayah",
-    "title": "8 stk Hijab Sikkerhedsnåle (Sort)",
-    "url": "https://hidayah.dk/products/hijab-sikkerhedsnale-8-stk-black",
-    "garmentWas": "hijab",
-    "reason": "id-pin"
-  },
-  {
     "id": "hidayah:7401361539243",
     "brandSlug": "hidayah",
     "title": "50 stk Små hijabnåle (løse - ikke i æske)",
@@ -49964,6 +49956,15 @@
     "brandSlug": "baqa",
     "title": "Kahverengi Fular Detaylı Bluz",
     "url": "https://baqaofficial.com/products/kahverengi-fular-detayli-bluz",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "baqa:9313786200315",
+    "brandSlug": "baqa",
+    "title": "Püskül ve Tüy Detay Dantel Bluz",
+    "url": "https://baqaofficial.com/products/puskul-tuy-detayli-dantel-bluz",
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
@@ -52041,6 +52042,15 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "urban-modesty:8057450889291",
+    "brandSlug": "urban-modesty",
+    "title": "Beige Linen Lace Up Maxi Dress",
+    "url": "https://urbanmodesty.com/products/beige-linen-lace-up-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: X-Large, XX-Large"
+  },
+  {
     "id": "mariams:9407277039832",
     "brandSlug": "mariams",
     "title": "Handcrafted A4 Islamic Calligraphy Wall Art | Copper Relief Wood Frame（MAC452）",
@@ -52392,15 +52402,6 @@
     "reason": "brand-blacklist"
   },
   {
-    "id": "summer-evenings:8742576816378",
-    "brandSlug": "summer-evenings",
-    "title": "Black Kaftan Tunic",
-    "url": "https://www.summerevenings.us/products/black-kaftan-tunic",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: 1XL/2XL"
-  },
-  {
     "id": "baqa:9394650710267",
     "brandSlug": "baqa",
     "title": "Piliseli Petrol Renk Elbise",
@@ -52642,6 +52643,15 @@
     "evidence": "in stock: XL, 3XL"
   },
   {
+    "id": "haya-active:15110203081090",
+    "brandSlug": "haya-active",
+    "title": "Oversized Active Tee - Navy",
+    "url": "https://haya-active.com/products/oversized-active-tee-navy",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL / UK16, 2XL / UK18, 3XL / UK20, 4XL / UK22"
+  },
+  {
     "id": "haya-active:15110201278850",
     "brandSlug": "haya-active",
     "title": "Oversized Active Tee - Coffee Brown",
@@ -52685,7 +52695,7 @@
     "url": "https://nemahwear.com/products/bottledgreen-curved-hem-modest-activewear-t-shirt",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, 3XL, 4XL"
+    "evidence": "in stock: 3XL, 4XL"
   },
   {
     "id": "nemah:8043384012847",
@@ -52764,5 +52774,130 @@
     "url": "https://elaathelabel.com/products/preorder-mini-lila-muted-floral",
     "garmentWas": "dress",
     "reason": "id-pin"
+  },
+  {
+    "id": "nihan:15235761537387",
+    "brandSlug": "nihan",
+    "title": "Erkek Yaka Yelek - Siyah",
+    "url": "https://nihan.com.tr/products/erkek-yaka-yelek-siyah",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
+    "id": "baqa:9392177316091",
+    "brandSlug": "baqa",
+    "title": "Reglan Kol Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/reglan-kol-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$780)"
+  },
+  {
+    "id": "baqa:9392177283323",
+    "brandSlug": "baqa",
+    "title": "Cep Detaylı Düşük Kol Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/cep-detayli-dusuk-kol-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$780)"
+  },
+  {
+    "id": "baqa:9392177250555",
+    "brandSlug": "baqa",
+    "title": "Dik Yaka Fermuarlı Kısa Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/dik-yaka-fermuarli-kisa-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$780)"
+  },
+  {
+    "id": "baqa:9392176955643",
+    "brandSlug": "baqa",
+    "title": "Kruvaze Uzun Süet Trençkot",
+    "url": "https://baqaofficial.com/products/kruvaze-uzun-suet-trenckot",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "47500 TRY (~$988)"
+  },
+  {
+    "id": "baqa:9392176824571",
+    "brandSlug": "baqa",
+    "title": "Sıfır Yaka Deri Ceket",
+    "url": "https://baqaofficial.com/products/sifir-yaka-deri-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "54500 TRY (~$1134)"
+  },
+  {
+    "id": "baqa:9392176791803",
+    "brandSlug": "baqa",
+    "title": "Yan Cep Detaylı Uzun Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/yan-cep-detayli-uzun-kase-kaban-1",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$676)"
+  },
+  {
+    "id": "baqa:9392176726267",
+    "brandSlug": "baqa",
+    "title": "Şal Yaka Kaşe Ceket",
+    "url": "https://baqaofficial.com/products/sal-yaka-kase-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$614)"
+  },
+  {
+    "id": "baqa:9392176595195",
+    "brandSlug": "baqa",
+    "title": "Geniş Cepli Uzun Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/genis-cepli-uzun-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$676)"
+  },
+  {
+    "id": "baqa:9392176562427",
+    "brandSlug": "baqa",
+    "title": "Reglan Kol Dik Yaka Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/reglan-kol-dik-yaka-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$676)"
+  },
+  {
+    "id": "baqa:9392176529659",
+    "brandSlug": "baqa",
+    "title": "Yan Cep Detaylı Uzun Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/yan-cep-detayli-uzun-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "34500 TRY (~$718)"
+  },
+  {
+    "id": "baqa:9392176496891",
+    "brandSlug": "baqa",
+    "title": "Geniş Yaka Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/genis-yaka-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$676)"
+  },
+  {
+    "id": "baqa:9392176398587",
+    "brandSlug": "baqa",
+    "title": "Geniş Cepli Kısa Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/genis-cepli-kisa-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "26500 TRY (~$551)"
+  },
+  {
+    "id": "baqa:9392176300283",
+    "brandSlug": "baqa",
+    "title": "Kruvaze Yaka Uzun Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/kruvaze-yaka-uzun-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$676)"
   }
 ]
