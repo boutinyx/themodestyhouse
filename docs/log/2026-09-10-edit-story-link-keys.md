@@ -1,5 +1,5 @@
 # Edit-story link keys no longer look like URLs to Googlebot
-**Date:** 2026-09-10 · **Status:** partial — verified on a local production build; staging next
+**Date:** 2026-09-10 · **Status:** partial — live and verified on staging; main needs Tina's approval
 
 ## Goal
 Search Console's 404 group held `/modest-skirts-135`, an address no page ever linked to
@@ -59,7 +59,24 @@ command as the positive control:
 The rendered `<a href>` set is identical on both, and the pages are 39 B and 13 B smaller —
 the keys are the only thing that changed.
 
+**Staging** — pushed as `47d7128`, which also carries last night's catalogue refresh
+(`4d1422e`) from main. Polled `/edits/fall-essentials` until the old key was gone and the new
+one present: live after ~102 s.
+
+| page | production (control) | staging |
+|---|---|---|
+| `/edits/fall-essentials` | 3 path-shaped keys | **0** — `a-118` `/blazers-vests`, `a-123` `/modest-skirts`, `a-225` `/jackets-coats` |
+| `/edits/everyday-lace` | 1 | **0** — `a-135` `/modest-skirts` |
+| `/edits/jersey-hijabs` | 0 | 0 |
+
+In a real browser on staging (Playwright, Chromium 1440x900, stylesheet confirmed by the body
+font resolving to Jost): every story link renders and is visible — Everyday Lace "skirt" →
+`/modest-skirts`; Fall Essentials "gilet" → `/blazers-vests`, "corduroy" → `/jackets-coats`,
+"skirt" → `/modest-skirts`. Clicking "skirt" on Everyday Lace lands on `/modest-skirts`, h1
+"Skirts". Screenshots of both story sections looked as before.
+
 ## Notes / follow-ups
 - `/modest-skirts-135` stays in the 404 report until Google recrawls it and drops it; this stops
   new ones, it does not remove the old one.
-- Staging and production verification to be appended.
+- Production: needs Tina's approval to merge. After it: confirm the origin serves the new build,
+  purge Cloudflare, then check the four keys are gone on themodestyhouse.com (§10.47).
