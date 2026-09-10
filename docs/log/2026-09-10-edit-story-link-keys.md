@@ -1,5 +1,5 @@
 # Edit-story link keys no longer look like URLs to Googlebot
-**Date:** 2026-09-10 · **Status:** partial — live and verified on staging; main needs Tina's approval
+**Date:** 2026-09-10 · **Status:** done — live on production (`b78b298`), verified after the purge
 
 ## Goal
 Search Console's 404 group held `/modest-skirts-135`, an address no page ever linked to
@@ -75,8 +75,19 @@ font resolving to Jost): every story link renders and is visible — Everyday La
 "skirt" → `/modest-skirts`. Clicking "skirt" on Everyday Lace lands on `/modest-skirts`, h1
 "Skirts". Screenshots of both story sections looked as before.
 
+**Production** — Tina: *"push to main"*. `origin/staging` was checked to still be `b78b298`,
+then fast-forwarded: `4d1422e..b78b298  origin/staging -> main`. The origin was confirmed to
+serve the new build BEFORE purging (§10.47) — a cache-busted `/edits/fall-essentials` showed
+`a-118` and no `/blazers-vests-118` at 108 s. Purged at 12:46:42 UTC. Canonical URLs, GET twice:
+
+```
+/edits/fall-essentials        MISS -> HIT   path-shaped keys: none   a-118 /blazers-vests, a-123 /modest-skirts, a-225 /jackets-coats
+/edits/everyday-lace          MISS -> HIT   path-shaped keys: none   a-135 /modest-skirts
+/edits/jersey-hijabs          MISS -> HIT   path-shaped keys: none
+/                             MISS -> HIT
+/edit-lace-hero-v2-3200.webp  MISS -> HIT   (this morning's photo caching still holds)
+```
+
 ## Notes / follow-ups
 - `/modest-skirts-135` stays in the 404 report until Google recrawls it and drops it; this stops
   new ones, it does not remove the old one.
-- Production: needs Tina's approval to merge. After it: confirm the origin serves the new build,
-  purge Cloudflare, then check the four keys are gone on themodestyhouse.com (§10.47).
