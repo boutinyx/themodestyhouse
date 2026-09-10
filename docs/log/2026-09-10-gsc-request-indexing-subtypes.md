@@ -129,12 +129,41 @@ checked against the API and production:
 Six of eight are indexed. The two left are the site icon at cache-busting query strings — an
 icon file, never a page — and they are why this group's validation cannot pass.
 
+## Addendum 2 — the 404 group, read the same afternoon
+
+Retried at Tina's request (*"you can do that yourself gsc is open"*). Waiting ~16 s for the
+report to render and reading it with `javascript_tool` worked where screenshots had timed out.
+The tool redacts JS output containing query strings, so paths came back with `?`/`=` masked.
+
+**Validatie mislukt — started 2026-08-19, failed 2026-08-22.** The four URLs, checked live
+and against the API:
+
+| URL | production today | Google | impressions, 2026-06-01..09-09 |
+|---|---|---|---|
+| `/style/maximalist` | 404 | Not found (404), crawled 2026-09-10 09:36, found via `/` | 10, 0 clicks |
+| `/style/elegant` | 404 | Not found (404), crawled 2026-09-01, via `/` | 3, 0 clicks |
+| `/style/streetwear` | 404 | Not found (404), crawled 2026-08-30, via `/` and `/privacy` | 8, 0 clicks |
+| `/modest-skirts-135` | 404 | Not found (404), crawled 2026-09-03, via `/edits/everyday-lace` | none |
+
+- The three `/style/*` pages were removed on 2026-08-09
+  (`docs/log/2026-08-09-remove-style-vibe-feature.md`), and `next.config.ts` records that they
+  **deliberately get no redirect** because no page replaced them. A 404 is the right answer, so
+  this validation can never pass and does not need to.
+- **`/modest-skirts-135` was never a link.** In the live Everyday Lace page's RSC payload the
+  inline link reads `["$","$L104","/modest-skirts-135",{"href":"/modest-skirts",…}]`. React's
+  flight format is `[marker, type, KEY, props]`: `/modest-skirts-135` is the element's React
+  key, and its real `href` is `/modest-skirts`. Googlebot lifted a path-shaped string out of the
+  page's script data and tried it. Matched in python against the live HTML, with a positive
+  control (`/edits/everyday-lace` found 10 times by the same read).
+
+Nothing on the site is broken. All four stay 404s and Google drops them on its own. The only
+optional change is a React key that does not look like a path, which would stop Google
+guessing that one address.
+
 ## Follow-ups
 - **2026-09-11:** request `/modest-sets?type=co-ord`, the only one of the 12 still unknown to
   Google. The t-shirt re-request is no longer needed.
-- **The 404 group (4 pages, validation failed) is still unread.** The Search Console UI stopped
-  responding to the browser tool on that report — three screenshot timeouts and a click
-  timeout — so its URLs and dates were not captured. Stopped rather than retried.
+- The 404 group is read — see Addendum 2. No action needed on the site.
 - Do not restart validation on *Gecrawld – momenteel niet geïndexeerd* expecting it to pass:
   the two favicon URLs will fail it again. The six real pages in it are indexed.
 - Practical notes for the next session are in memory `google-search-console-access`.
