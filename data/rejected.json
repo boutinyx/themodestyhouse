@@ -24323,6 +24323,15 @@
     "evidence": "in stock: XL, 1XL, 2XL"
   },
   {
+    "id": "summer-evenings:9231833628922",
+    "brandSlug": "summer-evenings",
+    "title": "Ocean Blue Low Waisted Skirt Set",
+    "url": "https://www.summerevenings.us/products/ocean-blue-chiffon-low-waisted-set",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "summer-evenings:9254146769146",
     "brandSlug": "summer-evenings",
     "title": "White Bell Sleeve Lace Dress",
@@ -24508,15 +24517,6 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "vela:8592059728028",
-    "brandSlug": "vela",
-    "title": "Herringbone Palazzo Pant Brown",
-    "url": "https://velascarves.com/products/tweed-palazzo-pant-brown",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "veiled:7746275967081",
     "brandSlug": "veiled",
     "title": "Cotton Cinch Maxi Dress - Boulder",
@@ -24524,6 +24524,33 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
+  },
+  {
+    "id": "veiled:7798569566313",
+    "brandSlug": "veiled",
+    "title": "Tencel Ruffle Top - Denim",
+    "url": "https://veiled.com/products/tencel-ruffle-top-denim",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "veiled:7798570614889",
+    "brandSlug": "veiled",
+    "title": "Tencel Asymmetric Top - Light Sand",
+    "url": "https://veiled.com/products/tencel-asymmetric-top-light-sand",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "veiled:7746281111657",
+    "brandSlug": "veiled",
+    "title": "Tencel Asymmetric Top - Black",
+    "url": "https://veiled.com/products/tencel-asymmetric-top-black",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "modern-hijabi:8206337245398",
@@ -32317,6 +32344,33 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "veiled:7684932665449",
+    "brandSlug": "veiled",
+    "title": "Cotton Eyelet Maxi Dress - Petal",
+    "url": "https://veiled.com/products/cotton-eyelet-maxi-dress-petal",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XL, XXL"
+  },
+  {
+    "id": "veiled:7691893801065",
+    "brandSlug": "veiled",
+    "title": "Tencel Ruffle Top - Black",
+    "url": "https://veiled.com/products/tencel-ruffle-top-black",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "veiled:7691891769449",
+    "brandSlug": "veiled",
+    "title": "Tencel Ruffle Top - White",
+    "url": "https://veiled.com/products/tencel-ruffle-top-white",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "veiled:7117512147049",
     "brandSlug": "veiled",
     "title": "Lyana Crystal Satin Abaya - White",
@@ -32330,15 +32384,6 @@
     "brandSlug": "veiled",
     "title": "Cotton Eyelet Maxi Dress - Black",
     "url": "https://veiled.com/products/cotton-eyelet-maxi-dress-black",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "veiled:7640925634665",
-    "brandSlug": "veiled",
-    "title": "Boat Neck Rouched Maxi Dress - Chocolate Torte",
-    "url": "https://veiled.com/products/boat-neck-rouched-maxi-dress-chocolate-torte",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
@@ -32430,15 +32475,6 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "veiled:7665650991209",
-    "brandSlug": "veiled",
-    "title": "Lana Cape Maxi Dress - Moonrock",
-    "url": "https://veiled.com/products/lana-cape-maxi-dress-moonrock",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
     "id": "veiled:7640454037609",
     "brandSlug": "veiled",
     "title": "Contrast Open Abaya - Midnight Forest",
@@ -32511,13 +32547,13 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "veiled:7621876187241",
+    "id": "veiled:7631430811753",
     "brandSlug": "veiled",
-    "title": "Asymmetrical Waist Rouched Maxi Dress - Chocolate",
-    "url": "https://veiled.com/products/asymmetrical-waist-rouched-maxi-dress-chocolate",
-    "garmentWas": "dress",
+    "title": "Mink Tunic Sweater - Off White",
+    "url": "https://veiled.com/products/mink-tunic-sweater-off-white",
+    "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, XXL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7621880807529",
@@ -32527,15 +32563,6 @@
     "garmentWas": "trousers",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
-  },
-  {
-    "id": "veiled:7634723668073",
-    "brandSlug": "veiled",
-    "title": "Cinch Top & Pants Set - Vetiver",
-    "url": "https://veiled.com/products/cinch-top-pants-set-vetiver",
-    "garmentWas": "set",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7552616726633",
@@ -32793,7 +32820,7 @@
     "url": "https://us.aabcollection.com/products/satin-abaya-green",
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL, XL"
+    "evidence": "in stock: XL, XL"
   },
   {
     "id": "aab:10186310484282",
@@ -34844,6 +34871,15 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "merrachi:15283448742271",
+    "brandSlug": "merrachi",
+    "title": "Essential Abaya Short | Dark Brown",
+    "url": "https://bymerrachi.com/products/essential-abaya-short-dark-brown",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "merrachi:9257109553461",
     "brandSlug": "merrachi",
     "title": "Plain Linen Dress | Light Khaki",
@@ -34923,7 +34959,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "580 USD (~$580)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -34932,7 +34968,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "580 USD (~$580)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -34941,7 +34977,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "580 USD (~$580)"
+    "evidence": "579 USD (~$579)"
   },
   {
     "id": "fares:8281648660671",
@@ -42468,6 +42504,15 @@
     "reason": "title-pattern"
   },
   {
+    "id": "baqa:9181678698747",
+    "brandSlug": "baqa",
+    "title": "Kahverengi Desenli Palazzo Pantolon",
+    "url": "https://baqaofficial.com/products/bordo-desenli-palazzo-pantolon",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XXL"
+  },
+  {
     "id": "baqa:9305455231227",
     "brandSlug": "baqa",
     "title": "Kontrast Bant Detaylı Oversize Abaya",
@@ -43694,15 +43739,6 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2100 AED (~$572)"
-  },
-  {
-    "id": "lameera-moda:9404835561640",
-    "brandSlug": "lameera-moda",
-    "title": "Sila Textured Chiffon Pants Set - Butter Yellow",
-    "url": "https://lameeramoda.com/products/sila-textured-chiffon-tunic-butter-yellow",
-    "garmentWas": "set",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "lameera-moda:9293759873192",
@@ -47386,6 +47422,15 @@
     "evidence": "6800 AED (~$1852)"
   },
   {
+    "id": "abadia:8040193425562",
+    "brandSlug": "abadia",
+    "title": "Ora Draped Dress in Cream",
+    "url": "https://shop.abadia.me/products/ora-draped-dress-in-cream",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "2920 AED (~$795)"
+  },
+  {
     "id": "abadia:8643456598170",
     "brandSlug": "abadia",
     "title": "Scarf Farwa in Wool",
@@ -47546,6 +47591,24 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "abadia:8819724812442",
+    "brandSlug": "abadia",
+    "title": "Relax Fit Tailored Pants",
+    "url": "https://shop.abadia.me/products/relax-fit-tailored-pants-pink",
+    "garmentWas": "trousers",
+    "reason": "price-ceiling",
+    "evidence": "2550 AED (~$694)"
+  },
+  {
+    "id": "abadia:8819724583066",
+    "brandSlug": "abadia",
+    "title": "Oversized Blazer",
+    "url": "https://shop.abadia.me/products/oversized-blazer-pink",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3000 AED (~$817)"
   },
   {
     "id": "abadia:8819723665562",
@@ -47737,15 +47800,6 @@
     "evidence": "3285 AED (~$894)"
   },
   {
-    "id": "abadia:8429904167066",
-    "brandSlug": "abadia",
-    "title": "Abadia Bisht in Blue",
-    "url": "https://shop.abadia.me/products/abadia-bisht-in-blue",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "2450 AED (~$667)"
-  },
-  {
     "id": "abadia:8391058030746",
     "brandSlug": "abadia",
     "title": "Abadia Kaftan in Beige",
@@ -47771,6 +47825,16 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: Extra Large"
+  },
+  {
+    "id": "modista:8906382770466",
+    "brandSlug": "modista",
+    "title": "Circle Magnets",
+    "url": "https://modistaapparel.com/products/magnets-circle",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Magnets"
   },
   {
     "id": "modista:8906489004322",
@@ -48540,14 +48604,6 @@
     "title": "Zyran Boy Koko",
     "url": "https://riamiranda.com/products/zyran-boy-koko",
     "garmentWas": "top",
-    "reason": "title-pattern"
-  },
-  {
-    "id": "ria-miranda:9069003964674",
-    "brandSlug": "ria-miranda",
-    "title": "Gift Set Box",
-    "url": "https://riamiranda.com/products/gift-set-box",
-    "garmentWas": "set",
     "reason": "title-pattern"
   },
   {
@@ -49735,15 +49791,6 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "Pins"
-  },
-  {
-    "id": "nour-al-houda:7660508971056",
-    "brandSlug": "nour-al-houda",
-    "title": "Saylor Satin Slip Dress - Mahogany",
-    "url": "https://nouralhouda.com.au/products/saylor-satin-slip-dress-mahogany",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "nour-al-houda:7210425253936",
@@ -52059,14 +52106,6 @@
     "reason": "brand-blacklist"
   },
   {
-    "id": "nihan:15210883711339",
-    "brandSlug": "nihan",
-    "title": "Bilek Boy Bol Paça Pantolon - Siyah",
-    "url": "https://nihan.com.tr/products/bilek-boy-bol-paca-pantolon-siyah-1",
-    "garmentWas": "trousers",
-    "reason": "title-pattern"
-  },
-  {
     "id": "baqa:9392177873147",
     "brandSlug": "baqa",
     "title": "Cep Detaylı Kemerli Ceket",
@@ -52352,6 +52391,15 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "fares:8514042691775",
+    "brandSlug": "fares",
+    "title": "Scalloped Detail Linen Blend Top - Fudge",
+    "url": "https://shopfares.com/products/scalloped-detail-linen-blend-top-fudge",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "fares:8514014347455",
     "brandSlug": "fares",
     "title": "Printed Wrap Belt Button Up - Mocha",
@@ -52481,15 +52529,6 @@
     "brandSlug": "jennah-boutique",
     "title": "Jupe Fold bordeaux",
     "url": "https://jennah-boutique.com/products/jupe-fold-bordeaux",
-    "garmentWas": "skirt",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "jennah-boutique:7764211499184",
-    "brandSlug": "jennah-boutique",
-    "title": "Jupe Fold marron",
-    "url": "https://jennah-boutique.com/products/jupe-fold-marron",
     "garmentWas": "skirt",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
@@ -52786,7 +52825,7 @@
   {
     "id": "baqa:9392177316091",
     "brandSlug": "baqa",
-    "title": "Reglan Kol Kaşe Kaban",
+    "title": "Reglan Kollu Kaşe Kaban",
     "url": "https://baqaofficial.com/products/reglan-kol-kase-kaban",
     "garmentWas": "top",
     "reason": "price-ceiling",
@@ -52795,7 +52834,7 @@
   {
     "id": "baqa:9392177283323",
     "brandSlug": "baqa",
-    "title": "Cep Detaylı Düşük Kol Kaşe Kaban",
+    "title": "Cep Detaylı Kaşe Kaban",
     "url": "https://baqaofficial.com/products/cep-detayli-dusuk-kol-kase-kaban",
     "garmentWas": "top",
     "reason": "price-ceiling",
@@ -52831,7 +52870,7 @@
   {
     "id": "baqa:9392176791803",
     "brandSlug": "baqa",
-    "title": "Yan Cep Detaylı Uzun Kaşe Kaban",
+    "title": "Cep Detaylı Uzun Kaşe Kaban",
     "url": "https://baqaofficial.com/products/yan-cep-detayli-uzun-kase-kaban-1",
     "garmentWas": "top",
     "reason": "price-ceiling",
@@ -52840,7 +52879,7 @@
   {
     "id": "baqa:9392176726267",
     "brandSlug": "baqa",
-    "title": "Şal Yaka Kaşe Ceket",
+    "title": "Şal Yaka Kısa Kaşe Kaban",
     "url": "https://baqaofficial.com/products/sal-yaka-kase-ceket",
     "garmentWas": "top",
     "reason": "price-ceiling",
@@ -52858,7 +52897,7 @@
   {
     "id": "baqa:9392176562427",
     "brandSlug": "baqa",
-    "title": "Reglan Kol Dik Yaka Kaşe Kaban",
+    "title": "Reglan Kol Dik Yakalı Kaşe Kaban",
     "url": "https://baqaofficial.com/products/reglan-kol-dik-yaka-kase-kaban",
     "garmentWas": "top",
     "reason": "price-ceiling",
@@ -52867,7 +52906,7 @@
   {
     "id": "baqa:9392176529659",
     "brandSlug": "baqa",
-    "title": "Yan Cep Detaylı Uzun Kaşe Kaban",
+    "title": "Cep Detaylı Uzun Kaşe Kaban",
     "url": "https://baqaofficial.com/products/yan-cep-detayli-uzun-kase-kaban",
     "garmentWas": "top",
     "reason": "price-ceiling",
@@ -52899,5 +52938,95 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$676)"
+  },
+  {
+    "id": "baqa:9411870261499",
+    "brandSlug": "baqa",
+    "title": "Dantel ve Yırtmaç Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/ust-dantel-ve-yirtmac-detayli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "47500 TRY (~$988)"
+  },
+  {
+    "id": "baqa:9402210681083",
+    "brandSlug": "baqa",
+    "title": "Pilise ve Dantel Detaylı Etek",
+    "url": "https://baqaofficial.com/products/piliseli-asimetrik-kesim-dantel-etek",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$572)"
+  },
+  {
+    "id": "baqa:9402210648315",
+    "brandSlug": "baqa",
+    "title": "Dantel Detaylı Desenli Kimono Elbise",
+    "url": "https://baqaofficial.com/products/dantel-detayli-baskili-uzun-elbise",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "47500 TRY (~$988)"
+  },
+  {
+    "id": "baqa:9404211560699",
+    "brandSlug": "baqa",
+    "title": "Dantel Detaylı Desenli Elbise",
+    "url": "https://baqaofficial.com/products/dantel-detayli-desenli",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "42000 TRY (~$874)"
+  },
+  {
+    "id": "baqa:9402210812155",
+    "brandSlug": "baqa",
+    "title": "Dantel Detaylı Ekose Blazer Ceket",
+    "url": "https://baqaofficial.com/products/yakada-dantel-detay-kareli-ceket",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$780)"
+  },
+  {
+    "id": "baqa:9411868655867",
+    "brandSlug": "baqa",
+    "title": "Püskül Detaylı Askılı Elbise",
+    "url": "https://baqaofficial.com/products/puskul-detayli-askili-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "49500 TRY (~$1030)"
+  },
+  {
+    "id": "baqa:9411868360955",
+    "brandSlug": "baqa",
+    "title": "V Yaka Püsküllü Şal Detaylı Bluz",
+    "url": "https://baqaofficial.com/products/v-yaka-puskullu-sal-detay-ekru-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "29500 TRY (~$614)"
+  },
+  {
+    "id": "baqa:9411868066043",
+    "brandSlug": "baqa",
+    "title": "Fırfır Detaylı İpek Bluz",
+    "url": "https://baqaofficial.com/products/yaka-firfir-detayli-kolsuz-i̇pek-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "32500 TRY (~$676)"
+  },
+  {
+    "id": "baqa:9407857328379",
+    "brandSlug": "baqa",
+    "title": "Dantel ve Deri Detaylı Kadife Uzun Etek",
+    "url": "https://baqaofficial.com/products/dantel-ve-deri-detayli-kadife-uzun-etek",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "27500 TRY (~$572)"
+  },
+  {
+    "id": "baqa:9407857262843",
+    "brandSlug": "baqa",
+    "title": "Drapeli Kahverengi Uzun Elbise",
+    "url": "https://baqaofficial.com/products/tuy-detayli-drapeli-siyah-uzun-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "37500 TRY (~$780)"
   }
 ]
