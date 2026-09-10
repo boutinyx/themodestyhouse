@@ -15,7 +15,7 @@ import { EditStoryRail } from './EditStoryRail';
  * not hidden in a text parser.
  */
 const TOKEN = /\[([^\]]+)\]\((\/[^)]*)\)|\*\*([^*]+)\*\*/g;
-function withLinks(text: string) {
+export function withLinks(text: string) {
   const out: React.ReactNode[] = [];
   let last = 0;
   for (const m of text.matchAll(TOKEN)) {
@@ -30,7 +30,10 @@ function withLinks(text: string) {
     } else {
       out.push(
         <Link
-          key={`${m[2]}-${m.index}`}
+          // `a-`, never the href: keys are written into the RSC payload as plain
+          // strings, and a path-shaped one ("/modest-skirts-135") is crawled by
+          // Googlebot as a URL and reported as a 404 no page links to.
+          key={`a-${m.index}`}
           href={m[2]}
           style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 3 }}
         >
