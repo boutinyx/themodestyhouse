@@ -1,5 +1,5 @@
 # Photographs were never served from Cloudflare's cache — fixed at the origin
-**Date:** 2026-09-10 · **Status:** partial — live and verified on staging; main needs Tina's approval
+**Date:** 2026-09-10 · **Status:** done — live on production (`4eb708c`), edge `HIT` verified
 
 ## Goal
 Tina: *"the caching is still going on we need to fix that. yesterday i went on my own
@@ -149,6 +149,62 @@ Staging has no Cloudflare in front of it, so it can prove the ORIGIN header only
 behaviour (`HIT` instead of `REVALIDATED`) can only be measured on production, after the merge
 and a purge — in that order (§10.47).
 
+**Production** — Tina approved the merge. `origin/staging` was checked to still be `4eb708c`
+(so nothing unapproved had landed since she saw it), then fast-forwarded:
+`f138673..4eb708c  origin/staging -> main`. It carried `2be47ac`, another session's Museum
+reel script (`scripts/museum_reel.py` + its log, no site code), which she was told before
+approving.
+
+Origin confirmed BEFORE purging (§10.47) — a fresh cache-busting query each round, GET twice:
+```
+1s    #1 MISS [public, max-age=14400]                                 #2 REVALIDATED  <- old build
+…
+94s   #1 MISS [public, max-age=14400]                                 #2 REVALIDATED
+109s  #1 MISS [public, max-age=14400, stale-while-revalidate=604800]  #2 HIT age=0    <- new build
+PRODUCTION ORIGIN IS SERVING THE NEW BUILD
+PURGE success: True     purged at 07:51:35 UTC
+```
+The old build's header read `public, max-age=14400` through Cloudflare even though the origin
+sent `max-age=0` — the zone rewrite from Finding 2, caught in the act. The new header passes
+through intact.
+
+Canonical URLs after the purge, GET twice each:
+```
+PHOTO   /edit-jersey-hero-1672.webp          #1 MISS 208ms | #2 HIT 45ms
+PHOTO   /edit-lace-hero-v2-3200.webp         #1 MISS 186ms | #2 HIT 21ms
+PHOTO   /edit-fall-hero-8-1920.webp          #1 MISS 185ms | #2 HIT 32ms
+PHOTO   /edit-jersey-hero-mobile-1170.webp   #1 MISS 179ms | #2 HIT 17ms
+PHOTO   /edit-lace-hero-mobile-v2-1170.webp  #1 MISS 177ms | #2 HIT 16ms
+PHOTO   /edit-fall-hero-mobile-7-1170.webp   #1 MISS 187ms | #2 HIT 16ms
+PHOTO   /hero-home-mobile-1290.webp          #1 MISS 185ms | #2 HIT 20ms
+PHOTO   /editorial/street-jewelry-400.webp   #1 MISS 220ms | #2 HIT 20ms
+PHOTO   /icon.png                            #1 MISS 180ms | #2 HIT 19ms
+CONTROL /                                    #1 HIT  28ms  | #2 HIT 31ms      page rule intact
+CONTROL /modest-abayas                       #1 MISS 275ms | #2 HIT 29ms
+CONTROL /sitemap.xml                         DYNAMIC, DYNAMIC                 never held
+CONTROL /llms.txt                            DYNAMIC, DYNAMIC                 never held
+CONTROL /meta-catalogue.xml                  DYNAMIC                          never held
+CONTROL /_next/static/…css                   #1 MISS | #2 HIT (immutable)
+RSC     /faq?_rsc=… (RSC: 1)                 DYNAMIC, DYNAMIC                 never cached
+STAFF   / (staff_session cookie)             DYNAMIC, DYNAMIC                 never cached
+document starts: "<!DOCTYPE html><html lang=\"en-GB\" …
+```
+
+Real browsers on production, same two scripts as Finding 1, edge warm:
+
+| | before | after |
+|---|---|---|
+| laptop, unthrottled — edit photo TTFB | 170-181 ms, `REVALIDATED` | **22-26 ms, `HIT`** |
+| iPhone 13 WebKit, unthrottled — TTFB | 173-179 ms, `REVALIDATED` | **17-26 ms** (one 105 ms), `HIT` |
+| iPhone 13 WebKit, unthrottled — blank after scrolling into view | 205 / 205 / 205 ms | **0 / 0 / 0 ms** |
+| phone, 9 Mbps / 60 ms — blank (jersey / lace / fall) | 302 / 609 / 0 ms | 301 / 604 / 0 ms |
+
+**The throttled row did not move, and that is the honest limit of this fix.** At 9 Mbps with
+~30 other images downloading at the same time, the lace request takes ~1.9 s start to finish
+either way (476 → 2342 ms before, 555 → 2455 ms after); the ~150 ms the edge saves disappears
+inside that. On a slow phone connection what remains is the photographs' weight — the quality
+trade-off below, which Tina chose to keep.
+
 ## Notes / follow-ups
 - **The photographs are also heavy, and that is Tina's call, not a cache setting.** The edit
   heroes are WebP quality 95 (lace, jersey) and 100 (fall), from her "highest quality"
@@ -164,7 +220,7 @@ and a purge — in that order (§10.47).
   | fall, iPhone | 1170 | 259 | 145 | 90 | 67 |
   | jersey, iPhone | 1170 | 206 | 109 | 75 | 60 |
 
-  Not changed. Asked.
+  Not changed. Asked on 2026-09-10 with these numbers; Tina chose **Keep top quality**.
 - `/icon.png` and `/apple-icon.png` match the `.png` rule, so they now cache 4h + SWR too.
   Both are static brand marks built from `app/icon.png` / `app/apple-icon.png`; a purge after
   a merge to main replaces them at the edge like everything else.
