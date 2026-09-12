@@ -67,6 +67,7 @@ describe('Agent Skill', () => {
 describe('/.well-known/ard.json', () => {
   it('lists only the skill, with the fields ARD requires', async () => {
     const ard = JSON.parse(await (await GET_ARD()).text());
+    expect(ard.specVersion).toBe('0.91');
     expect(ard.entries).toHaveLength(1);
     const [e] = ard.entries;
     expect(e.identifier).toMatch(/^urn:air:themodestyhouse\.com:[a-z-]+:[a-z0-9-]+$/);

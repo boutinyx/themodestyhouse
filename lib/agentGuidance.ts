@@ -170,9 +170,16 @@ export function skillIndex() {
  * skills; we have no MCP server or A2A agent, and an entry for one would
  * advertise something that does not exist (§1). No `trustManifest` either —
  * that needs a cryptographic identity the site does not have.
+ *
+ * `specVersion`: the spec text defines only `entries` and calls other top-level
+ * members transport-defined, but orank rejected the catalog on staging as
+ * "invalid: missing specVersion". 0.91 is the current revision (published
+ * 2026-08-26, per turva.dev's ARD guide; the spec repo was not reachable to
+ * confirm the string format).
  */
 export function ardCatalog() {
   return {
+    specVersion: '0.91',
     entries: [
       {
         identifier: `urn:air:themodestyhouse.com:skill:${SKILL_NAME}`,

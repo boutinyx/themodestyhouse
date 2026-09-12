@@ -75,3 +75,26 @@ orank's 404 check shows it matters.
 
 ## Staging
 (see addendum)
+
+## Addendum: orank against staging (`9dd9fd6`)
+Same ten checks as the production control, plus `webmcp` and `agent-instruction`:
+```
+                          production (before)   staging
+agent-friendly-404        warning 1/2           warning 1/2
+markdown-url-fallback     fail 0/2              pass 2/2   "Homepage markdown fallback works (/index.md)"
+markdown-link-alternate   fail 0/1              warning 0/1 "target https://themodestyhouse.com/index.md returns text/html"
+markdown-negotiation      fail 0/1              pass 1/1
+link-headers-discovery    fail 0/1              pass 1/1   "sitemap, describedby, alternate(markdown)"
+agent-discovery-file      fail 0/2              pass 2/2
+agent-skills-index-v2     na                    pass 2/2   "verified SHA-256 of find-modest-clothing"
+ard-catalog               fail 0/1              warning 0/1 "present but invalid: missing specVersion"
+ard-entries-valid         na                    pass 2/2
+ard-trust-manifest        na                    fail 0/2   "No entry carries a trustManifest"
+```
+- `markdown-link-alternate` on staging reads the ABSOLUTE alternate (`metadataBase` is production),
+  and production has no `/index.md` until merge. Expected to pass once production serves it.
+- `ard-trust-manifest` becomes applicable and fails. That is the cost of publishing the catalog.
+  It stays failing because a trust manifest needs a cryptographic principal the site does not have.
+- `ard-catalog`: added `specVersion: "0.91"`, then re-checked on staging (below).
+- `agent-friendly-404` unchanged. orank's probe evidently hits the single-segment `__next_error__`
+  case described above.
