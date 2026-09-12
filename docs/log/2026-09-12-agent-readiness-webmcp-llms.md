@@ -91,7 +91,7 @@ NO FLAG: document.modelContext = undefined, console = []
   `lib/colourLeads.test.ts` "every listed id is one this catalogue has actually seen", expected
   `['lameera-moda:8791781867688']` to equal `[]`. It fails identically in a clean detached worktree
   at HEAD `0230c8d` without any of these files. Left for a separate fix.
-- Staging: see the addendum below.
+- Staging: see the addendum at the end.
 
 ## Notes / follow-ups
 - **Origin-trial token (Tina).** Register `https://themodestyhouse.com` for the WebMCP trial at
@@ -102,3 +102,19 @@ NO FLAG: document.modelContext = undefined, console = []
 - **MCP server + MCP Apps**: deferred by Tina ("Not now"). Revisit after the §11 blockers.
 - Rescan: `POST https://ora.ai/api/scan {"url":"themodestyhouse.com"}`. Only meaningful after the
   merge to main, since orank scans production.
+
+## Addendum: verified on staging
+`0ddca2c` deployed to `https://themodestyhouse-staging-production.up.railway.app` at 22:43 (found by
+polling `/llms.txt` for "## When to use this site", a string production does not have). The same
+harness was run against that URL:
+```
+flag on:  toolsOnHome = [get_visible_products, list_sections, open_section, search_catalogue]
+          badSearch = {"error": "search_catalogue needs a non-empty \"query\" string."}  url stays "/"
+          "Kimono Abaya" -> 18 cards, 0 not matching | "linen dress" -> 24 cards, 0 not matching
+          open_section modest-hijabs -> 24 cards, UTM-tagged brand URLs
+          tools after soft navs + reload = same 4 | console = []
+flag off: document.modelContext = undefined | console = []
+header search twice: after = 24 cards, first "Ayah Linen Dress by Modista" (production: 18 kimono abayas)
+/llms.txt: both new sections present; x-robots-tag: noindex, nofollow, noarchive
+```
+Not merged to main. That needs Tina's approval (§1).
