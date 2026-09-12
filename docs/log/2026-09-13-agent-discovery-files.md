@@ -116,3 +116,9 @@ moment: 18 / 24. So it was a one-off on the first request after a deploy, not a 
 from these files. It is still a real gap in the tool: an agent reading `shownOnPage: 0` would
 conclude "no results". `get_visible_products` now adds a `note` saying the page may still be
 loading and to call again. There is no note when cards exist, and a test covers both cases.
+
+**Final staging state (`069218f`):** the empty-read note is in the served bundle. The harness ran
+twice: 4 tools, 18 / 24 / 24 cards with 0 mismatches, console `[]`. WebMCP is still detected, in
+chunk #8 of 13 with the literal `document.modelContext`. orank on staging: `webmcp 5/5`,
+`agent-instruction 3/3`, `markdown-url-fallback 2/2`, `agent-discovery-file 2/2`, `ard-catalog 1/1`.
+Awaiting Tina's approval to merge.
