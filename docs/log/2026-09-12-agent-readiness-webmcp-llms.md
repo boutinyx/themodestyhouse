@@ -1,5 +1,5 @@
 # Agent readiness: WebMCP tools, llms.txt guidance, and a stale-search-grid fix
-**Date:** 2026-09-12 · **Status:** partial (on staging, awaiting Tina's approval to merge; origin-trial token not yet registered)
+**Date:** 2026-09-12 · **Status:** done on production (origin-trial token not yet registered)
 
 ## Goal
 Tina pasted an orank scan of themodestyhouse.com: 63/100, grade C, five gaps. Fix the ones that can
@@ -156,3 +156,22 @@ single check against the staging URL: `webmcp pass 5/5, "Imperative WebMCP API d
 (production at the same moment: `fail 0/5`). The browser harness re-passed on staging: 4 tools,
 searches 18 and 24 cards with 0 mismatches, console `[]`, and nothing registers without the flag.
 Awaiting Tina's approval to merge.
+
+## Addendum 3: fix merged, production rescanned
+Tina: "yes fix anfd the webmcp too". Fast-forward `26d2655..67b0369` (the fix plus its log). The
+origin was confirmed first (cache-busted homepage → chunk with literal `document.modelContext`),
+then Cloudflare was purged: `/` went `MISS` then `HIT` (age 4). The canonical `/` references it
+as script #8 of 13 (`3vlyzkisb-1cx.js`). The browser harness passed on production: 4 tools,
+18 / 24 cards with 0 mismatches, console `[]`, and nothing without the flag.
+
+Forced orank scan, 21:51 UTC:
+```
+score 76, grade B        (63 C this morning -> 66 C after the first merge -> 76 B)
+Access    33/40          Agent instruction / when-to-use  pass 3/3
+Usability 16/21          WebMCP support  pass 5/5  "Imperative WebMCP API detected (document.modelContext.registerTool …)"
+```
+orank's prose `agenticSummary` still says "lacks WebMCP support". It did not update with the
+check result, so trust the check, not the summary.
+
+Still open: the Chrome origin-trial token, which only Tina can register (see Notes). Until it
+exists, the tools are real for orank and for flagged browsers only.
