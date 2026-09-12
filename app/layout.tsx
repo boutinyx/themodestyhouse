@@ -66,6 +66,15 @@ export const metadata: Metadata = {
     description: 'The archive for everything modest.',
     images: [DEFAULT_OG_IMAGE],
   },
+  // Pinterest domain claim for @thetinaesthetic. Claiming is what gives every
+  // pin of this site's content the brand's name and unlocks per-domain
+  // analytics — without it Pinterest reports nothing about outbound clicks,
+  // which is why the 105k monthly impressions were unattributable
+  // (docs/log/2026-09-12-instagram-strategy-review.md, second addendum).
+  // This is a verification token only: it sets no cookie and loads no script.
+  verification: {
+    other: { 'p:domain_verify': '17d9fbb4074bf07f4b68b59603ff2475' },
+  },
 };
 
 // Same-origin prefetch for the header/footer's own links (nav, footer
