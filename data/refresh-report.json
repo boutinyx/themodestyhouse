@@ -1,38 +1,38 @@
 {
-  "date": "2026-09-10",
+  "date": "2026-09-11",
   "totals": {
-    "added": 84,
-    "updated": 27229,
-    "delisted": 205,
-    "filtered": 51,
-    "returned": 27,
-    "incomplete": 5
+    "added": 60,
+    "updated": 21820,
+    "delisted": 108,
+    "filtered": 34,
+    "returned": 19,
+    "incomplete": 19
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
       "complete": true,
-      "fetched": 195,
+      "fetched": 194,
       "added": [],
-      "updated": 195,
-      "delisted": 0,
+      "updated": 194,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "vela",
       "complete": true,
-      "fetched": 627,
+      "fetched": 638,
       "added": [],
-      "updated": 627,
-      "delisted": 49,
+      "updated": 638,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Pom Charm",
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 11
     },
     {
       "brandSlug": "veiled",
@@ -50,7 +50,7 @@
       "fetched": 410,
       "added": [],
       "updated": 410,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -112,8 +112,27 @@
     {
       "brandSlug": "aab",
       "complete": true,
-      "fetched": 784,
-      "added": [],
+      "fetched": 802,
+      "added": [
+        "Mandarin Co-Ord Set Black",
+        "Premium Triangle Hijab Ivory",
+        "Cropped Jacket Co-Ord Set Black",
+        "Layla Abaya Grey",
+        "Premium Jersey Ivory",
+        "Skirt & Top Co-Ord Dark Denim",
+        "Premium Jersey White",
+        "Premium Jersey Navy",
+        "Skirt & Top Co-Ord Light Denim",
+        "Premium Triangle Hijab Navy",
+        "Layla Abaya Natural",
+        "Sofia Active Set Khaki",
+        "Premium Jersey Black",
+        "Layla Abaya Black",
+        "Sofia Active Set Black",
+        "Premium Triangle Hijab Black",
+        "Layla Abaya Blue",
+        "Sofia Active Set Natural"
+      ],
       "updated": 784,
       "delisted": 0,
       "filtered": [
@@ -153,17 +172,8 @@
       "brandSlug": "urban-modesty",
       "complete": true,
       "fetched": 285,
-      "added": [
-        "Buttoned Cardigan Top (More Color Options)",
-        "Denim Maxi Skirt",
-        "Plaid Tiered Maxi Skirt",
-        "Maroon Satin Asymmetrical Shirt Top",
-        "Brown Satin Asymmetrical Shirt Top",
-        "Pink Long Sleeve Gown",
-        "Golden Satin Asymmetrical Shirt Top",
-        "Denim Button Down Top"
-      ],
-      "updated": 277,
+      "added": [],
+      "updated": 285,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -271,14 +281,12 @@
     {
       "brandSlug": "esme-ny",
       "complete": true,
-      "fetched": 63,
-      "added": [
-        "Silk Organza Dress in Watermelon Pink"
-      ],
-      "updated": 62,
+      "fetched": 64,
+      "added": [],
+      "updated": 64,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "arakai",
@@ -293,8 +301,13 @@
     {
       "brandSlug": "emlavish",
       "complete": true,
-      "fetched": 54,
-      "added": [],
+      "fetched": 58,
+      "added": [
+        "Diamond Hem Knitted Two Piece",
+        "Double Breasted Aviator Jacket",
+        "Foldover Ribbed Knit Top",
+        "Wool Blend Zip Jacket"
+      ],
       "updated": 54,
       "delisted": 0,
       "filtered": [],
@@ -413,25 +426,11 @@
     {
       "brandSlug": "lafemme",
       "complete": true,
-      "fetched": 26,
-      "added": [
-        "Checkered Wrap Dress"
-      ],
+      "fetched": 25,
+      "added": [],
       "updated": 25,
-      "delisted": 0,
+      "delisted": 4,
       "filtered": [
-        {
-          "title": "Two-Piece Wrap Set",
-          "reason": "no-image"
-        },
-        {
-          "title": "Belted Trenchcoat",
-          "reason": "no-image"
-        },
-        {
-          "title": "Black Leather Blazer",
-          "reason": "no-image"
-        },
         {
           "title": "Emirati || Jersey Fall – Two Piece #01",
           "reason": "no-image"
@@ -456,10 +455,10 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 371,
+      "fetched": 372,
       "added": [],
-      "updated": 371,
-      "delisted": 2,
+      "updated": 372,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Atelier Trolley",
@@ -490,7 +489,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "chi-ka",
@@ -580,8 +579,15 @@
     {
       "brandSlug": "mukistore",
       "complete": true,
-      "fetched": 1620,
-      "added": [],
+      "fetched": 1626,
+      "added": [
+        "Rib Two Piece Set H90",
+        "Two Piece Set met Sierknopen",
+        "Maxi Jurk met Knoopdetails",
+        "Lange Trenchcoat met Ceintuur",
+        "2-delig setje met getailleerde top en wijde broek",
+        "Oversized Gestreept T-Shirt"
+      ],
       "updated": 1620,
       "delisted": 0,
       "filtered": [
@@ -627,8 +633,13 @@
     {
       "brandSlug": "hijab-boutique",
       "complete": true,
-      "fetched": 234,
-      "added": [],
+      "fetched": 238,
+      "added": [
+        "Jas",
+        "Plissé rok",
+        "Plissé rok Zwart",
+        "Spijker jurk"
+      ],
       "updated": 234,
       "delisted": 0,
       "filtered": [],
@@ -637,10 +648,24 @@
     {
       "brandSlug": "kimodesty",
       "complete": true,
-      "fetched": 131,
-      "added": [],
-      "updated": 131,
-      "delisted": 0,
+      "fetched": 60,
+      "added": [
+        "Oversized Vest – Dark Taupe",
+        "Oversized Vest – Lime",
+        "Sweater Vest – Leaf",
+        "Sweater Vest – Brown",
+        "Sweater Vest – Taupe",
+        "Knitted Gilet – Beige",
+        "Collar Viscose Twinset – Taupe",
+        "Sweater Dress – Dark Brown",
+        "Sweater Dress – Creme",
+        "Rayon Comfy Twinset – Taupe",
+        "Knitted Viscose Twinset – Taupe",
+        "Knitted Viscose Twinset – Brown",
+        "Knitted Viscose Twinset – Black"
+      ],
+      "updated": 47,
+      "delisted": 84,
       "filtered": [],
       "returned": 0
     },
@@ -657,10 +682,14 @@
     {
       "brandSlug": "noureen",
       "complete": true,
-      "fetched": 229,
-      "added": [],
-      "updated": 229,
-      "delisted": 0,
+      "fetched": 231,
+      "added": [
+        "Classy Breathable S26 – Sage",
+        "Classy Breathable S26 – Skin",
+        "Classy Breathable F26 – Classic Blue"
+      ],
+      "updated": 228,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Classy Dress F25 – Ivory",
@@ -694,10 +723,10 @@
     {
       "brandSlug": "chic-modesty",
       "complete": true,
-      "fetched": 455,
+      "fetched": 454,
       "added": [],
-      "updated": 455,
-      "delisted": 0,
+      "updated": 454,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -763,20 +792,15 @@
     },
     {
       "brandSlug": "headed-somewear",
-      "complete": true,
-      "fetched": 42,
-      "added": [],
-      "updated": 42,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 0
+      "error": "headed-somewear: could not determine the feed's currency from the storefront. Skipped — its existing rows are untouched. Declared in data/brands.ts is USD.",
+      "complete": false
     },
     {
       "brandSlug": "amariah",
-      "complete": true,
-      "fetched": 105,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 105,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -793,10 +817,10 @@
     },
     {
       "brandSlug": "almotahajiba",
-      "complete": true,
-      "fetched": 225,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 225,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -804,101 +828,29 @@
     {
       "brandSlug": "nihan",
       "complete": false,
-      "fetched": 4063,
-      "added": [],
-      "updated": 4063,
-      "delisted": 0,
-      "filtered": [
-        {
-          "title": "%100 Pamuk Fresh Eşarp - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Çift Saplı Charm Detaylı Shopper Çanta - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Kapaklı Asimetrik Omuz Çantası - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Toka Detayı Fermuarlı Çanta - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Mini City Çanta - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Kilit Aksesuarlı Çapraz Askılı Çanta - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Yanları Toka Detaylı Charm Aksesuarlı Çanta - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Kapaklı Çapraz Askılı Charm Aksesuarlı Çanta - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Çift Saplı Charm Detaylı Shopper Çanta - Toprak",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Modal Şal - Toprak",
-          "reason": "unclassified"
-        }
+      "fetched": 873,
+      "added": [
+        "Pilise Etek - Su Yeşili",
+        "Büzgü Detaylı Desenli Lyocell Elbise - Oranj",
+        "Büzgü Detaylı Desenli Lyocell Elbise - Açık Mavi",
+        "Büzgü Detaylı Desenli Lyocell Elbise - Kahve",
+        "Büzgü Detaylı Desenli Lyocell Elbise - Bordo",
+        "Büzgü Detaylı Desenli Lyocell Elbise - Füme"
       ],
+      "updated": 867,
+      "delisted": 0,
+      "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "baqa",
-      "complete": true,
-      "fetched": 324,
-      "added": [
-        "Dantel ve Yırtmaç Detaylı Elbise",
-        "Bağcık Detaylı Siyah Pantolon",
-        "Pilise ve Dantel Detaylı Etek",
-        "Dantel Detaylı Desenli Kimono Elbise",
-        "Asimetrik Kesimli Kareli Etek",
-        "Dantel Detaylı Desenli Elbise",
-        "Fırfır Detaylı Piliseli Mavi Bluz",
-        "Dantel Detaylı Ekose Blazer Ceket",
-        "Nakış Detaylı ve Sırt Dekolteli Bluz",
-        "Büzgü Detaylı Kahverengi Etek",
-        "Püskül Detaylı Askılı Elbise",
-        "V Yaka Püsküllü Şal Detaylı Bluz",
-        "Düşük Kol Piliseli Ekru Bluz",
-        "Fırfır Detaylı İpek Bluz",
-        "Dantel ve Deri Detaylı Kadife Uzun Etek",
-        "Drapeli Kahverengi Uzun Elbise",
-        "Deri Detaylı Lastikli Pantolon",
-        "Kontrast Bant Detaylı Piliseli Etek",
-        "Püsküllü Saten Kuşak Detaylı Siyah Pantolon",
-        "Pileli Gül Kurusu Bol Paça Pantolon"
-      ],
-      "updated": 304,
-      "delisted": 1,
-      "filtered": [
-        {
-          "title": "Mini Topuklu Deri Ayakkabı",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Deri Topuklu Sandalet",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Mini Topuklu Deri Ayakkabı",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Deri Topuklu Sandalet",
-          "reason": "unclassified"
-        }
-      ],
-      "returned": 1
+      "complete": false,
+      "fetched": 0,
+      "added": [],
+      "updated": 0,
+      "delisted": 0,
+      "filtered": [],
+      "returned": 0
     },
     {
       "brandSlug": "abaya-lounge",
@@ -922,20 +874,20 @@
     },
     {
       "brandSlug": "jennah-boutique",
-      "complete": true,
-      "fetched": 348,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 348,
-      "delisted": 2,
+      "updated": 0,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "yasmin-jay",
-      "complete": true,
-      "fetched": 142,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 142,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -952,58 +904,50 @@
     },
     {
       "brandSlug": "ayaana",
-      "complete": true,
-      "fetched": 45,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 45,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "bait-hanayen",
-      "complete": true,
-      "fetched": 135,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 135,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "elaa-the-label",
-      "complete": true,
-      "fetched": 64,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 64,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "eynaa-paris",
-      "complete": true,
-      "fetched": 55,
-      "added": [
-        "Veste Bombers Oversize [Bordeaux]",
-        "Veste Bombers Oversize [Brown]",
-        "Veste Bombers Oversize [Noir]",
-        "Pantalon Barrel Coton [Kaki]",
-        "Pantalon Barrel Coton [Taupe]",
-        "Pantalon Barrel Coton [Bordeaux]",
-        "Pantalon Barrel Coton [Brown]"
-      ],
-      "updated": 48,
+      "complete": false,
+      "fetched": 0,
+      "added": [],
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "malikaat",
-      "complete": true,
-      "fetched": 118,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 118,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1011,30 +955,19 @@
     {
       "brandSlug": "modesty-in-style",
       "complete": false,
-      "fetched": 235,
-      "added": [
-        "Lilith Shirt Dress",
-        "Sira Linen Set",
-        "Lauren Linen Set",
-        "Bella Button Set",
-        "Chloe Printed Dress",
-        "Chantel Lace Formal Dress",
-        "Molly Dress",
-        "Tuba Linen Set",
-        "Alice Formal Dress",
-        "Athena Wrap Top"
-      ],
-      "updated": 225,
+      "fetched": 0,
+      "added": [],
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "labayah",
-      "complete": true,
-      "fetched": 33,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 33,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1052,23 +985,19 @@
     {
       "brandSlug": "we-are-elegance",
       "complete": true,
-      "fetched": 95,
-      "added": [
-        "Kaftan Velvet Cocoa",
-        "Kaftan 2.0 Black Medina",
-        "Kaftan 2.0 Palm Olive"
-      ],
-      "updated": 92,
-      "delisted": 3,
+      "fetched": 94,
+      "added": [],
+      "updated": 94,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "beyond-label",
-      "complete": true,
-      "fetched": 66,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 66,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1076,10 +1005,10 @@
     {
       "brandSlug": "lameera-moda",
       "complete": true,
-      "fetched": 438,
+      "fetched": 433,
       "added": [],
-      "updated": 438,
-      "delisted": 2,
+      "updated": 433,
+      "delisted": 5,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1105,12 +1034,12 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 224,
+      "fetched": 225,
       "added": [],
-      "updated": 224,
+      "updated": 225,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "store-wf",
@@ -1118,17 +1047,17 @@
       "fetched": 252,
       "added": [],
       "updated": 252,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 989,
+      "fetched": 985,
       "added": [],
-      "updated": 989,
-      "delisted": 0,
+      "updated": 985,
+      "delisted": 4,
       "filtered": [],
       "returned": 0
     },
@@ -1198,10 +1127,10 @@
     },
     {
       "brandSlug": "rutba-abaya",
-      "complete": true,
-      "fetched": 274,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 274,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1209,18 +1138,15 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 1038,
+      "fetched": 1041,
       "added": [
-        "Gizli Düğme Detaylı Tunik Siyah Tunik 1615",
-        "Hakim Yaka Kemerli Haki Kaban 13918",
-        "Hakim Yaka Kemerli Siyah Kaban 13918",
-        "Kürk Yaka Fermuar Detaylı Deri Taş Trençkot 13527",
-        "Kol Ve Omuz Kürk Detaylı Taş Trençkot 13521",
-        "Kürk Yaka Deri Camel Trençkot 13822",
-        "Kruvaze Yaka Apolet Detaylı Kemerli Siyah Trençkot 13758"
+        "Kapaklı Yaka Tokalı Kemerli Kareli Kahve Takım 2062",
+        "Kapaklı Yaka Tokalı Kemerli Kareli Camel Takım 2062",
+        "Çıtçıt Kapamalı Fermuar Detaylı Desenli Kahve Takım 2009",
+        "Kürk Yakalı Tokalı Baklava Desenli Lacivert Yelek 0098"
       ],
-      "updated": 1031,
-      "delisted": 10,
+      "updated": 1037,
+      "delisted": 6,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1239,15 +1165,18 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 23
+      "returned": 5
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 353,
-      "added": [],
-      "updated": 353,
-      "delisted": 0,
+      "fetched": 354,
+      "added": [
+        "Danna Top",
+        "Merlot Shirt"
+      ],
+      "updated": 352,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1287,19 +1216,17 @@
       "fetched": 711,
       "added": [],
       "updated": 711,
-      "delisted": 4,
+      "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "nour-al-houda",
       "complete": true,
       "fetched": 675,
-      "added": [
-        "Saylor Satin Slip Dress - Dark Taupe"
-      ],
-      "updated": 674,
-      "delisted": 115,
+      "added": [],
+      "updated": 675,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1319,7 +1246,7 @@
       "fetched": 148,
       "added": [],
       "updated": 148,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1329,7 +1256,7 @@
       "fetched": 301,
       "added": [],
       "updated": 301,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1347,14 +1274,11 @@
       "brandSlug": "bayt-el-hayat",
       "complete": true,
       "fetched": 120,
-      "added": [
-        "Layali",
-        "Maroon/Plum Satin Wrap Abaya"
-      ],
-      "updated": 118,
+      "added": [],
+      "updated": 120,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "mondo-the-label",
@@ -1390,22 +1314,8 @@
       "brandSlug": "so-classy",
       "complete": true,
       "fetched": 43,
-      "added": [
-        "Gandoura Yaqout♥️",
-        "Gandoura Tīn🪾",
-        "Gandoura Ghāba 🌳",
-        "Cagoule ANAB 🍇",
-        "Cagoule LAKHDAR 🫒",
-        "Cagoule RIMAL 🤎",
-        "Cagoule TĪN 🪾",
-        "Cagoule MORJANIA 🪸",
-        "Cagoule BUNAFSAJI💜",
-        "Cagoule QAHWA ☕️",
-        "Cagoule LAYL 🖤",
-        "Cagoule Ward 💗",
-        "Cagoule Wahā 🍋‍🟩"
-      ],
-      "updated": 30,
+      "added": [],
+      "updated": 43,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1424,21 +1334,9 @@
       "brandSlug": "parladusa",
       "complete": true,
       "fetched": 139,
-      "added": [
-        "BAMBOO BREATHABLE SCARF - Coffee",
-        "BAMBOO BREATHABLE SCARF - Burgundy",
-        "BAMBOO BREATHABLE SCARF -Dusty Rose",
-        "BAMBOO BREATHABLE SCARF - Khaki",
-        "BAMBOO BREATHABLE SCARF - Bordeaux",
-        "BAMBOO BREATHABLE SCARF - Taupe",
-        "Bamboo Breathable Scarf - Yellow",
-        "BAMBOO BREATHABLE SCARF - Black",
-        "Breathable Jersey Scarf - Black",
-        "Melissa Pulloverkleid",
-        "Strickoberteil mit Cape"
-      ],
-      "updated": 128,
-      "delisted": 10,
+      "added": [],
+      "updated": 139,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     }
