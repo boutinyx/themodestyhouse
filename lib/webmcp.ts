@@ -209,19 +209,19 @@ export interface ModelContextLike {
   registerTool: (tool: WebMcpTool, options?: { signal?: AbortSignal }) => unknown;
 }
 
+/** For reading `document.modelContext` / `navigator.modelContext`, which lib.dom does not type yet. */
+export interface WithModelContext {
+  modelContext?: unknown;
+}
+
 /**
- * `document.modelContext` first; `navigator.modelContext` only as a trailing
- * fallback. Chrome 150 deprecated the navigator alias — 151 logs a console
- * warning when it is read (measured), and Chrome 153 Dev reportedly removed it
- * — so reading it first would warn on every page view in the browsers that
- * have the new one.
+ * A usable ModelContext, or null. Deliberately takes the VALUE, not the object
+ * that holds it: components/WebMcpTools.tsx must spell out
+ * `document.modelContext` and `navigator.modelContext` literally. See the note
+ * there for why a generic `obj.modelContext` helper cost the orank check.
  */
-export function modelContextOf(doc: unknown, nav: unknown): ModelContextLike | null {
-  const pick = (o: unknown) => {
-    const mc = (o as { modelContext?: ModelContextLike } | null | undefined)?.modelContext;
-    return mc && typeof mc.registerTool === 'function' ? mc : null;
-  };
-  return pick(doc) ?? pick(nav);
+export function asModelContext(mc: unknown): ModelContextLike | null {
+  return mc && typeof (mc as ModelContextLike).registerTool === 'function' ? (mc as ModelContextLike) : null;
 }
 
 export interface RegistrationResult {

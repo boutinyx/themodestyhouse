@@ -118,3 +118,35 @@ header search twice: after = 24 cards, first "Ayah Linen Dress by Modista" (prod
 /llms.txt: both new sections present; x-robots-tag: noindex, nofollow, noarchive
 ```
 Not merged to main. That needs Tina's approval (§1).
+
+## Addendum 2: merged to main, rescanned, and why orank still missed WebMCP
+**Merged** at Tina's instruction ("merge to main"): `git push origin origin/staging:main`, a
+fast-forward `0230c8d..26d2655` carrying only this change's two commits. The origin was confirmed
+new via cache-busted `/llms.txt` before purging Cloudflare (§10.47). After the purge, `/` and
+`/new-in` went `MISS` then `HIT` (age 6, age 1). The full harness then passed on
+`https://themodestyhouse.com`, with the same results as staging, including the header search twice
+(24 cards, "Ayah Linen Dress by Modista").
+
+**orank.** A plain `POST /api/scan` returned 63 with `servedFromCache: true, resultAgeSeconds: 4318`,
+a stored result from before the deploy. The API takes `"force": true`. The forced scan gave:
+```
+score 66 (was 63)   Access 33/40 (was 30)
+Agent instruction / when-to-use   pass 3/3   "When-to-use guidance found in llms.txt"
+WebMCP support                    fail 0/5   "no document.modelContext / navigator.modelContext usage found
+                                              (scanned 8 of 13 same-origin script bundle(s))"
+```
+**Why WebMCP was missed.** Production's 13 `<script src>` chunks, in document order: the
+registration is in #8, `2crbwysm4i717.js` (modelContext ×1, registerTool ×2), so it was probably
+inside the 8 scanned. But the minifier had inlined `modelContextOf(document, navigator)` to
+`(e=document,t=navigator,(o=e=>{let t=e?.modelContext;…})(e)??o(t))`. The bundle contained
+**neither `document.modelContext` nor `navigator.modelContext` as text** (both counts 0), which
+matches what orank's finding says it searches for. The tools worked; the scanner could not see them.
+
+**Fix (`components/WebMcpTools.tsx`, `lib/webmcp.ts`):** both reads are written literally,
+`asModelContext((document as …).modelContext) ?? asModelContext((navigator as …).modelContext)`.
+The casts are erased, `??` still skips the navigator read when the document one exists, and
+`modelContextOf` is replaced by `asModelContext`, which takes the value. A new test asserts the
+source spells both literally with document first. **Negative control:** with the two lines swapped
+it fails; restored, 25/25. `tsc` exit 0, `eslint` exit 0.
+**Control for the orank recheck:** `POST /api/scan/checks {"checkIds":["webmcp"]}` against
+production before this fix: `fail 0/5`.

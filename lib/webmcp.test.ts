@@ -1,7 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import {
   buildWebMcpTools,
-  modelContextOf,
+  asModelContext,
   registerWebMcpTools,
   WEBMCP_TOOL_NAMES,
   MAX_QUERY_LENGTH,
@@ -130,13 +132,23 @@ describe('get_visible_products', () => {
 });
 
 describe('registration', () => {
-  it('prefers document.modelContext and only falls back to navigator', () => {
+  it('accepts only an object that can register a tool', () => {
     const a: ModelContextLike = { registerTool: () => {} };
-    const b: ModelContextLike = { registerTool: () => {} };
-    expect(modelContextOf({ modelContext: a }, { modelContext: b })).toBe(a);
-    expect(modelContextOf({}, { modelContext: b })).toBe(b);
-    expect(modelContextOf({}, {})).toBeNull();
-    expect(modelContextOf({ modelContext: {} }, {})).toBeNull();
+    expect(asModelContext(a)).toBe(a);
+    for (const bad of [undefined, null, {}, { registerTool: 'no' }]) expect(asModelContext(bad)).toBeNull();
+  });
+
+  // The precedence (document first, navigator only as fallback) lives in
+  // components/WebMcpTools.tsx, spelled literally so the minified bundle still
+  // says `document.modelContext`. This asserts the source says so; the built
+  // bundle was checked separately (docs/log/2026-09-12-agent-readiness-webmcp-llms.md).
+  it('names document.modelContext and navigator.modelContext literally, document first', () => {
+    const src = readFileSync(fileURLToPath(new URL('../components/WebMcpTools.tsx', import.meta.url)), 'utf8');
+    const code = src.replace(/\/\/.*$/gm, '');
+    const doc = code.search(/\(document as [^)]*\)\.modelContext/);
+    const nav = code.search(/\(navigator as [^)]*\)\.modelContext/);
+    expect(doc, 'document.modelContext').toBeGreaterThan(-1);
+    expect(nav, 'navigator.modelContext').toBeGreaterThan(doc);
   });
 
   it('reports a rejected tool and still registers the rest', async () => {

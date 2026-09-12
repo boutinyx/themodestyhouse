@@ -1,7 +1,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { buildWebMcpTools, modelContextOf, readProductCards, registerWebMcpTools } from '@/lib/webmcp';
+import {
+  asModelContext,
+  buildWebMcpTools,
+  readProductCards,
+  registerWebMcpTools,
+  type WithModelContext,
+} from '@/lib/webmcp';
 
 // How long a tool waits for a soft navigation to finish before handing control
 // back to the agent anyway. get_visible_products reports the path it read, so
@@ -51,7 +57,21 @@ export function WebMcpTools() {
   }, [router]);
 
   useEffect(() => {
-    const ctx = modelContextOf(document, navigator);
+    // `document.modelContext` first; `navigator.modelContext` only as a trailing
+    // fallback, and `??` means it is not even READ when the first exists. Chrome
+    // 150 deprecated the navigator alias and 151 logs a console warning on every
+    // read of it (measured).
+    //
+    // Both are written out LITERALLY, on purpose. The first version passed
+    // `document` and `navigator` into a helper that read `obj.modelContext`, and
+    // the minifier inlined it to `e?.modelContext`. The production bundle then
+    // contained neither `document.modelContext` nor `navigator.modelContext`,
+    // and orank's scanner reported "no document.modelContext /
+    // navigator.modelContext usage found" while the tools were registering fine
+    // in Chromium. A cast is erased at build time, so this survives minification.
+    const ctx =
+      asModelContext((document as Document & WithModelContext).modelContext) ??
+      asModelContext((navigator as Navigator & WithModelContext).modelContext);
     if (!ctx) return;
 
     const controller = new AbortController();
