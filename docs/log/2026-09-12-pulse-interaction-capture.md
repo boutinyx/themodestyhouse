@@ -101,3 +101,32 @@ Two things the payload shows that the dashboard copy does not:
 - Consent is untouched and remains as §11/P0-D describes it: this adds no cookie and no
   identifier, and honours Do Not Track and Global Privacy Control like the rest of Pulse, so it
   does not by itself create the consent-banner obligation that switching Skimlinks on would.
+
+---
+
+## Merged to production, 2026-09-12
+
+Tina: *"push to main"*. `origin/main` fast-forwarded `f45caa9 → 09acb14` (pushed as
+`origin/staging:main`, so the shared working tree was never checked out — another session is
+active). Confirmed with `git merge-base --is-ancestor 09acb14 origin/main`.
+
+It also carried `61e2d17`, a different session's log entry, because `staging` is the shared
+integration branch. Flagged to Tina rather than left as a surprise.
+
+**Deploy and purge, in the order §10.47 requires.**
+
+```
+before deploy, cache-busted   cf-cache-status: MISS · interactions present: False
+                              ^ establishes the marker as a real DISCRIMINATOR
+origin polled, cache-busted   NEW BUILD after ~120s
+Cloudflare purge_everything   success: true          ^ purge AFTER the origin is current
+canonical GET #1              MISS · 444,407 B · interactions: True
+canonical GET #2              HIT · age: 0 · 444,407 B · interactions: True
+```
+
+Both verification requests are real `GET`s of the canonical URL, not `HEAD` and not
+cache-busted — §10.47 rule 4. The zone id was read via `/zones?name=`, and the token by
+grepping the single key out of `.env` rather than sourcing it (§10.48).
+
+**Live on `https://themodestyhouse.com`.** From here the events are real; nothing further is
+needed for collection to start.
