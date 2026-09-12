@@ -203,3 +203,41 @@ route.
   site is a different use from a personal board — same open rights question as the brand
   product photos in `docs/tiktok/HANDOFF.md`.
 - Nothing was changed. The domain was not claimed, no tag was installed, no pin was edited.
+
+---
+
+# Third addendum — the domain is claimed
+**Date:** 2026-09-12 · **Status:** done
+
+## What changed
+- `app/layout.tsx` — added `verification.other['p:domain_verify']` to the root metadata.
+  A meta tag only: no cookie, no script, no third-party request.
+- Commit `4284418`, staging → `main` by fast-forward (staging was exactly one commit ahead,
+  and it was this one).
+
+## The Pinterest conversion TAG was deliberately not installed
+It sets third-party cookies. There is no consent banner, and `docs/launch-readiness.md` P0-D
+is explicit that the absence of one is defensible only while nothing tracks. Attribution will
+come from UTM parameters on pin links instead, which needs no consent and lands in Pulse's
+campaign report. Pinterest offered "Tag installeren" on the success screen; it was declined.
+
+## Verification
+```
+next dev :3191      <meta name="p:domain_verify" content="17d9fbb…ff2475"/>   present
+staging             present (4 polls)
+production origin   present, read with a cache-busting query string           §10.47
+Cloudflare purge    success: True                          — run AFTER the origin was current
+canonical GET #1    cf-cache-status: MISS  · tag present
+canonical GET #2    cf-cache-status: HIT · age 3 · tag present
+Pinterest           "Gekoppeld — Helemaal klaar! themodestyhouse.com"
+settings page       themodestyhouse.com now listed with "Claimen ongedaan maken"
+```
+`npx tsc --noEmit` shows only the pre-existing `.next/dev/types/validator.ts` error, confirmed
+identical with the change stashed.
+
+## Still open
+- **The fourteen existing pins were not touched.** They are other people's outfit photographs;
+  pointing them at a commercial site is a rights question that is Tina's to decide, not a
+  technical one.
+- **Pinning the catalogue** — 19k products, each with a real destination and a licensed
+  photograph — is the recommended next build and has not been started.
