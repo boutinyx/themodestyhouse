@@ -150,3 +150,9 @@ source spells both literally with document first. **Negative control:** with the
 it fails; restored, 25/25. `tsc` exit 0, `eslint` exit 0.
 **Control for the orank recheck:** `POST /api/scan/checks {"checkIds":["webmcp"]}` against
 production before this fix: `fail 0/5`.
+**On staging (`70295bd`):** the bundle now contains literal `document.modelContext`. orank's
+single check against the staging URL: `webmcp pass 5/5, "Imperative WebMCP API detected
+(document.modelContext.registerTool in script bundle /_next/static/chunks/3vlyzkisb-1cx.js)"`
+(production at the same moment: `fail 0/5`). The browser harness re-passed on staging: 4 tools,
+searches 18 and 24 cards with 0 mismatches, console `[]`, and nothing registers without the flag.
+Awaiting Tina's approval to merge.
