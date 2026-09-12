@@ -70,10 +70,34 @@ refresh moving stock nightly, any out-of-stock lead will trip it again. `lib/dre
 was rewritten for exactly this reason (§10.54) to assert *known to raw and not cut* rather than
 *published today*; the same change applies here.
 
+### Verified on staging, end to end
+
+`https://themodestyhouse-staging-production.up.railway.app/`, in Chrome, 2026-09-12,
+~120 s after the push.
+
+```
+scripts in DOM   js.ciphera.net/script.js
+                 js.ciphera.net/script.interactions.js     <- new, present
+window.pulse     object · window.pulse.track  function     <- dependency satisfied
+click on the header currency button
+  -> pulse_click {text:"Prices in USD. Change currency", tag:"button",
+                  page_path:"/", id:"base-ui-_R_1pcilb_"}
+```
+
+**Nothing reached Tina's analytics.** `window.pulse.track` was monkey-patched to record the
+call and deliberately NOT forward it before anything was clicked — staging sends
+`data-domain="themodestyhouse.com"`, so an un-intercepted test click would have landed in the
+production figures as a real visitor action.
+
+Two things the payload shows that the dashboard copy does not:
+- **The label is the `aria-label`, not the visible text** — "Prices in USD. Change currency"
+  rather than "$ USD". More useful, and it means an aria-label is what ends up in reports.
+- **It carries a React-generated `id`** (`base-ui-_R_1pcilb_`). Not a privacy problem, but it
+  changes per render, so it is noise in any grouping. Worth knowing before reading the reports.
+
 ## Notes / follow-ups
-- Nothing is verified on staging yet — no event can be observed until this deploys, because the
-  script block is `NODE_ENV === 'production'` only. After merge: click something on the live site
-  and confirm `pulse_click` appears in Pulse.
+- After the merge to `main`, confirm a real `pulse_click` lands in the Pulse dashboard on
+  production — staging proves the wiring, not the ingest.
 - Consent is untouched and remains as §11/P0-D describes it: this adds no cookie and no
   identifier, and honours Do Not Track and Global Privacy Control like the rest of Pulse, so it
   does not by itself create the consent-banner obligation that switching Skimlinks on would.
