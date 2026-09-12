@@ -98,3 +98,21 @@ ard-trust-manifest        na                    fail 0/2   "No entry carries a t
 - `ard-catalog`: added `specVersion: "0.91"`, then re-checked on staging (below).
 - `agent-friendly-404` unchanged. orank's probe evidently hits the single-segment `__next_error__`
   case described above.
+
+**After `decee54` (specVersion), on staging:**
+```
+ard-catalog            pass 1/1  "ARD catalog valid at /.well-known/ard.json (spec 0.91) - 1/1 entries"
+ard-entries-valid      pass 2/2
+ard-trust-manifest     fail 0/2  "No entry carries a trustManifest"   (expected, see above)
+agent-skills-index-v2  pass 2/2
+```
+Regression pass on staging after both commits: lanes, `?type=`, /designers, /editorial, /about,
+/llms-full.txt, /sitemap.xml and /robots.txt all return 200. The WebMCP harness reported 4 tools
+and console `[]`, **but the first search read 0 cards** ("Kimono Abaya", which has 18); the
+second read 24. An earlier draft of this line said "18 and 24". It was written before the output
+was read and has been corrected (§1).
+Three immediate reruns on staging: 18 / 24 each time (1333–1539 ms). Production at the same
+moment: 18 / 24. So it was a one-off on the first request after a deploy, not a regression
+from these files. It is still a real gap in the tool: an agent reading `shownOnPage: 0` would
+conclude "no results". `get_visible_products` now adds a `note` saying the page may still be
+loading and to call again. There is no note when cards exist, and a test covers both cases.

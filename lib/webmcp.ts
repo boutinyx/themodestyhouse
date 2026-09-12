@@ -177,7 +177,15 @@ export function buildWebMcpTools(deps: WebMcpDeps): WebMcpTool[] {
           n = limit;
         }
         const all = deps.visibleProducts();
-        return { page: deps.currentPath(), shownOnPage: all.length, products: all.slice(0, n) };
+        const out = { page: deps.currentPath(), shownOnPage: all.length, products: all.slice(0, n) };
+        // Zero cards is ambiguous, and an agent will read it as "no results".
+        // Measured on staging 2026-09-13: the first search after a deploy read
+        // 0 cards on a query that has 18. The server was cold and the grid had
+        // not rendered inside navigate()'s wait; three immediate reruns read 18.
+        // So say which ambiguity it is rather than let silence stand for "none".
+        return all.length > 0
+          ? out
+          : { ...out, note: 'No product cards are rendered on this page right now. If it should list products, it may still be loading: call get_visible_products again.' };
       },
     },
   ];

@@ -123,6 +123,13 @@ describe('get_visible_products', () => {
     expect(out.products).toHaveLength(24);
   });
 
+  it('flags an empty read as possibly still loading, and adds no note when cards exist', async () => {
+    const empty = await tool(buildWebMcpTools(deps({ visibleProducts: () => [] }).d), 'get_visible_products').execute({});
+    expect(empty).toMatchObject({ shownOnPage: 0, products: [], note: expect.stringMatching(/again/) });
+    const full = await tool(buildWebMcpTools(deps({ visibleProducts: () => cards }).d), 'get_visible_products').execute({});
+    expect(full).not.toHaveProperty('note');
+  });
+
   it('honours a valid limit and rejects an invalid one', async () => {
     const { d } = deps({ visibleProducts: () => cards });
     const t = tool(buildWebMcpTools(d), 'get_visible_products');
