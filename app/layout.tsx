@@ -10,6 +10,7 @@ import { StaffSessionProvider } from '@/components/StaffSessionProvider';
 import { hasStaffSession } from '@/lib/staffSession';
 import { OutboundTracking } from '@/components/OutboundTracking';
 import { InputModality } from '@/components/InputModality';
+import { WebMcpTools } from '@/components/WebMcpTools';
 import { JsonLd } from '@/components/JsonLd';
 import { organizationSchema, websiteSchema, jsonLdGraph } from '@/lib/schema';
 import './globals.css';
@@ -139,6 +140,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Script src={`https://s.skimresources.com/js/${skim}.skimlinks.js`} strategy="afterInteractive" />
         )}
         <InputModality />
+        {/* WebMCP tools for browser agents (lib/webmcp.ts). Renders nothing, and
+            registers nothing in a browser without document.modelContext. */}
+        <WebMcpTools />
         {/* Records a Pulse `outbound_click` when a visitor leaves for a brand —
             one delegated listener, so the server components that render outbound
             links stay server components. Inert until the script below loads. */}

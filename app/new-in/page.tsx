@@ -96,8 +96,18 @@ export default async function NewInPage(
           rowCount guard in lib/catalogueCards.ts refuses every fetch past the
           embedded window and "Load more" silently stops. Under ?q= that list
           is browseProducts(); otherwise it is this exact New In selection,
-          hijab toggle included. */}
+          hijab toggle included.
+
+          `key` is the search term, so a NEW search remounts the grid. Without
+          it, a second search from a results page kept the first one's grid
+          forever: Next keeps this client component mounted across a soft
+          navigation to the same route, and `initialQuery` only seeds useState
+          on mount. Measured on production 2026-09-12 — header search "Kimono
+          Abaya", then "linen dress": h1 read "linen dress", the grid still
+          held the 18 kimono abayas. Found by the WebMCP search tool, which hit
+          the same wall (docs/log/2026-09-12-agent-readiness-webmcp-llms.md). */}
       <DirectoryBrowser
+        key={q ?? ''}
         catalogue={catalogue}
         initialQuery={q ?? ''}
         source={q ? 'browse' : { newIn: { hijabs } }}

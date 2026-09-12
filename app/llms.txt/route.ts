@@ -1,5 +1,6 @@
-import { LANES } from '@/lib/lanes';
 import { getPosts } from '@/lib/posts';
+import { SITE_SECTIONS } from '@/lib/siteSections';
+import { WEBMCP_TOOL_NAMES } from '@/lib/webmcp';
 
 /**
  * /llms.txt — generated, not hand-maintained.
@@ -37,18 +38,9 @@ function line(label: string, path: string, desc: string) {
 }
 
 export function GET() {
-  const sections = [
-    line('New In', '/new-in', 'The latest pieces added, from a selected group of houses.'),
-    // Driven off LANES, so a new lane appears here the moment it is routable —
-    // the same source app/sitemap.ts uses, for the same reason.
-    ...LANES.map((l) => line(l.title, `/${l.slug}`, l.intro)),
-    line('Designers', '/designers', 'A curated index of modest brands, vetted for craft and taste.'),
-    line('The Edit', '/editorial', 'Stories, edits and styling from The Modesty House.'),
-    // /about is deliberately absent from SEO_COPY (lib/seoCopy.test.ts's
-    // STATIC_PATHS excludes it), so its description is the same literal
-    // app/about/page.tsx sets — kept in step by hand, not invented here.
-    line('About', '/about', 'What The Modesty House does, the problem it solves, how it solves it, and who is behind it.'),
-  ].join('\n');
+  // lib/siteSections.ts: New In, every lane (driven off LANES), and the three
+  // index pages — the same list the WebMCP tools hand to a browser agent.
+  const sections = SITE_SECTIONS.map((s) => line(s.title, `/${s.slug}`, s.description)).join('\n');
 
   // Editorial posts, newest first — getPosts() is already sorted, and this is
   // the one part of the site that is original long-form writing, so it is the
@@ -65,6 +57,28 @@ The Modesty House is a curated women's modest-fashion directory: independent
 Shopify storefronts, filtered to an aspirational, well-designed edit. It is
 not a shop — there is no cart or checkout. Every product links out to the
 brand's own site to complete a purchase.
+
+## When to use this site
+
+Use The Modesty House when someone wants to:
+
+- Find women's modest clothing (dresses, abayas, hijabs, skirts, tops, trousers, co-ord sets, outerwear, swimwear, activewear) across many independent brands in one place.
+- Compare what different modest brands offer in one category, and at what price.
+- Find modest-fashion brands: the Designers index lists each house that has a page.
+- Get a link to a specific piece on the brand's own site, to buy it there.
+
+Do not use it for:
+
+- Buying, checkout, order status, shipping, sizing or returns. There is no cart; each brand handles these on its own site.
+- Menswear, perfume, bakhoor, candles or gift sets. These are excluded.
+- A guaranteed live price or stock level. The catalogue is re-read nightly, so the brand's own product page is authoritative.
+
+## How to use it
+
+- Search: \`${BASE}/new-in?q=<words>\` matches product titles and brand names as one phrase. It covers everyday clothing; hijabs, swimwear and activewear have their own sections below.
+- Browse a category: open its section URL below.
+- One brand: \`${BASE}/designers/<brand-slug>\`. Every brand with a page, and its slug, is listed in [llms-full.txt](${BASE}/llms-full.txt).
+- In a browser that supports WebMCP, every page registers these tools: ${WEBMCP_TOOL_NAMES.map((n) => `\`${n}\``).join(', ')}.
 
 ## Sections
 
