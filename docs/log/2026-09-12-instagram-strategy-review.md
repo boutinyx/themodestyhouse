@@ -241,3 +241,39 @@ identical with the change stashed.
   technical one.
 - **Pinning the catalogue** — 19k products, each with a real destination and a licensed
   photograph — is the recommended next build and has not been started.
+
+---
+
+# Fourth addendum — 14 Pinterest boards created
+**Date:** 2026-09-12 · **Status:** done · account `@thetinaesthetic`
+
+Created through the browser, one per site lane, named as people search rather than as the
+site labels them. All 14 read back off the boards grid by name, 0 pins each, no duplicates:
+
+```
+Modest Dresses            Modest Trousers & Wide-Leg   Modest Coats & Jackets
+Abayas & Open Abayas      Modest Co-ord Sets           Modest Swimwear & Burkinis
+Hijab Styles & Scarves    Hijabi Layering Basics       Modest Activewear
+Modest Tops & Blouses     Modest Blazers & Vests       Modest Summer Outfits
+Modest Skirts             Modest Knitwear
+```
+
+All public. Her six pre-existing boards (Clothing, •casual•, Corporate colorful, Crypto
+investment, Coats, Archery) were left untouched.
+
+## Two things that went wrong, worth knowing before automating this again
+1. **Coordinates drift as boards are added.** Two creations were lost because the "Maken"
+   button moved down the page between the screenshot and the click — one click landed on a
+   board tile and navigated away instead. Both were caught by reading the board list back
+   rather than trusting the submit.
+2. **Typing into Pinterest's fields drops characters on long strings.** The app-registration
+   textarea came out as "links back o that product's page" and "use of oards" on two
+   attempts. Fixed by typing in short chunks with waits and zooming to verify each field
+   before submitting. Every board name here was verified the same way.
+
+Both are arguments for doing this over the API once trial access clears, not in the DOM.
+
+## Still open
+- Board **descriptions** are empty. Pinterest ranks on them; they want writing.
+- **No pins yet.** Pins need either the API (trial access pending, App-ID 1611152, write
+  scopes blocked) or manual work.
