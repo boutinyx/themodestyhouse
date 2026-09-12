@@ -3,6 +3,7 @@ import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 import { onManagedPlatform } from './lib/devOnly';
 import { PRODUCTION_HOSTS } from './lib/deployEnv';
 import { PUBLIC_ASSET_CACHE_CONTROL, PUBLIC_ASSET_SOURCE } from './lib/publicAssetCache';
+import { HOMEPAGE_AGENT_LINKS } from './lib/agentPaths';
 
 /* ------------------------------------------------------------------ *
  * LAYER 1 — build-time exclusion of the local-only curation tooling.
@@ -319,6 +320,16 @@ export default function nextConfig(phase: string): NextConfig {
          * reasoning, and the directives that must never be added, live in
          * lib/publicAssetCache.ts.
          */
+        /*
+         * Agent discovery on the homepage only (RFC 8288): where the sitemap,
+         * the llms.txt description and the markdown twin live, so an agent
+         * gets all three from the response headers of one request.
+         * docs/log/2026-09-13-agent-discovery-files.md
+         */
+        {
+          source: '/',
+          headers: [{ key: 'Link', value: HOMEPAGE_AGENT_LINKS }],
+        },
         {
           source: PUBLIC_ASSET_SOURCE,
           headers: [{ key: 'Cache-Control', value: PUBLIC_ASSET_CACHE_CONTROL }],

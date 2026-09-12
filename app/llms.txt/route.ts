@@ -1,6 +1,4 @@
-import { getPosts } from '@/lib/posts';
-import { SITE_SECTIONS } from '@/lib/siteSections';
-import { WEBMCP_TOOL_NAMES } from '@/lib/webmcp';
+import { llmsTxtBody } from '@/lib/agentGuidance';
 
 /**
  * /llms.txt — generated, not hand-maintained.
@@ -29,72 +27,12 @@ import { WEBMCP_TOOL_NAMES } from '@/lib/webmcp';
  * simply never serves.
  */
 
-const BASE = 'https://themodestyhouse.com';
-
 export const dynamic = 'force-static';
 
-function line(label: string, path: string, desc: string) {
-  return `- [${label}](${BASE}${path}): ${desc}`;
-}
-
 export function GET() {
-  // lib/siteSections.ts: New In, every lane (driven off LANES), and the three
-  // index pages — the same list the WebMCP tools hand to a browser agent.
-  const sections = SITE_SECTIONS.map((s) => line(s.title, `/${s.slug}`, s.description)).join('\n');
-
-  // Editorial posts, newest first — getPosts() is already sorted, and this is
-  // the one part of the site that is original long-form writing, so it is the
-  // part most worth pointing an answer engine at.
-  const posts = getPosts()
-    .map((p) => line(p.title, `/editorial/${p.slug}`, p.dek || 'Editorial from The Modesty House.'))
-    .join('\n');
-
-  const body = `# The Modesty House
-
-> The archive for everything modest. A curated index of modest brands and pieces.
-
-The Modesty House is a curated women's modest-fashion directory: independent
-Shopify storefronts, filtered to an aspirational, well-designed edit. It is
-not a shop — there is no cart or checkout. Every product links out to the
-brand's own site to complete a purchase.
-
-## When to use this site
-
-Use The Modesty House when someone wants to:
-
-- Find women's modest clothing (dresses, abayas, hijabs, skirts, tops, trousers, co-ord sets, outerwear, swimwear, activewear) across many independent brands in one place.
-- Compare what different modest brands offer in one category, and at what price.
-- Find modest-fashion brands: the Designers index lists each house that has a page.
-- Get a link to a specific piece on the brand's own site, to buy it there.
-
-Do not use it for:
-
-- Buying, checkout, order status, shipping, sizing or returns. There is no cart; each brand handles these on its own site.
-- Menswear, perfume, bakhoor, candles or gift sets. These are excluded.
-- A guaranteed live price or stock level. The catalogue is re-read nightly, so the brand's own product page is authoritative.
-
-## How to use it
-
-- Search: \`${BASE}/new-in?q=<words>\` matches product titles and brand names as one phrase. It covers everyday clothing; hijabs, swimwear and activewear have their own sections below.
-- Browse a category: open its section URL below.
-- One brand: \`${BASE}/designers/<brand-slug>\`. Every brand with a page, and its slug, is listed in [llms-full.txt](${BASE}/llms-full.txt).
-- In a browser that supports WebMCP, every page registers these tools: ${WEBMCP_TOOL_NAMES.map((n) => `\`${n}\``).join(', ')}.
-
-## Sections
-
-${sections}
-
-## Editorial
-
-${posts}
-
-## Notes
-
-- Product links are outbound affiliate links (\`rel="sponsored"\`) to the listed brand's own storefront — price and availability are the brand's, not ours, and should be attributed to the brand, not to The Modesty House.
-- Editorial coverage (The Edit) is original and independently written.
-- Full machine-readable listings: [sitemap.xml](${BASE}/sitemap.xml).
-- Everything above, with the content inlined instead of linked: [llms-full.txt](${BASE}/llms-full.txt).
-`;
+  // The body lives in lib/agentGuidance.ts, shared with /index.md and the
+  // Agent Skill, so the three cannot drift apart.
+  const body = llmsTxtBody();
 
   return new Response(body, {
     headers: {

@@ -19,6 +19,7 @@ import { withUtm } from '@/lib/outbound';
 import { getPosts } from '@/lib/posts';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 import { pageMetadata } from '@/lib/seoCopy';
+import { MARKDOWN_HOME_PATH } from '@/lib/agentPaths';
 import type { Product } from '@/lib/types';
 import type { CardProduct } from '@/lib/compactCatalogue';
 
@@ -26,7 +27,14 @@ import type { CardProduct } from '@/lib/compactCatalogue';
 // — deliberately separate from the hero's own h1, which stays untouched.
 // pageMetadata also fills in openGraph/twitter, so a share of "/" gets its
 // own card instead of falling through to app/layout.tsx's generic one.
-export const metadata: Metadata = pageMetadata('/');
+const homeMetadata = pageMetadata('/');
+// `types` advertises the markdown twin of the site root to agents
+// (<link rel="alternate" type="text/markdown" href="/index.md">). Spread, so
+// the canonical pageMetadata() sets is kept. docs/log/2026-09-13-agent-discovery-files.md
+export const metadata: Metadata = {
+  ...homeMetadata,
+  alternates: { ...homeMetadata.alternates, types: { 'text/markdown': MARKDOWN_HOME_PATH } },
+};
 
 // Curated "By category" showcase, 2026-08-23 — Tina sent a reference mosaic
 // (photo + a white label card bottom-left, category name + piece count) and
