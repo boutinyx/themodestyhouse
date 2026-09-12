@@ -159,6 +159,42 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             strategy="afterInteractive"
           />
         )}
+        {/* Pulse interaction capture — the SECOND tag the dashboard's snippet
+            emits once "Interaction capture" is on. That toggle has been on in
+            the Pulse settings while this tag was absent, so `pulse_click`,
+            `pulse_copy` and `pulse_form_submit` were enabled server-side and
+            never sent. The setting alone does nothing; it is this file that
+            collects.
+
+            Emits three events and nothing else, with the redaction done in the
+            BROWSER before anything is sent (read out of script.interactions.js,
+            not from the marketing copy): a click sends the element's aria-label
+            or text, trimmed to 60 chars with emails rewritten to `[email]` and
+            digit runs to `[number]`; a copy sends how much was copied, never
+            what; a form submit sends the form's name and its field COUNT, never
+            a value or a field name. `data-pulse-ignore` on any element opts its
+            subtree out — the escape hatch for anything that might carry a
+            person's own text.
+
+            Loads after the main tag because it calls `window.pulse.track`. It
+            reads that at EVENT time rather than load time, so the two tags do
+            not have to win a race — but an event fired before the main script
+            arrives is silently dropped, which is the one failure mode to know
+            about.
+
+            No CSP change: js.ciphera.net is already in script-src and the
+            events leave through the main script's existing pulse-api.ciphera.net
+            connection (next.config.ts).
+
+            Disclosed in content/legal/privacy.md §2/§4 alongside the main
+            script — keep those in sync, same as the tag above. */}
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            defer
+            src="https://js.ciphera.net/script.interactions.js"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
