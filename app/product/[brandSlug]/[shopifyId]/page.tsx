@@ -53,6 +53,13 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return {
     title,
     description,
+    // Self-canonical. Not an indexing request — the bot-scoped noindex below
+    // still holds — but a product is reachable at one URL only and a crawler
+    // that finds it should be told so rather than left to guess. Inoma
+    // Digital's 2026-09-11 audit counted these as the site's only pages
+    // without a canonical tag (6% of its crawl); the tag costs nothing and
+    // removes the finding without touching the noindex decision.
+    alternates: { canonical: url },
     // The whole point of this page: reachable and shareable, but never
     // indexed by a SEARCH engine — see the file-level comment above for why.
     // Bot-scoped, not the generic `<meta name="robots">` (which `{ index:

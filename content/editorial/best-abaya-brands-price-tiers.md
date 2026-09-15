@@ -15,7 +15,7 @@ Every "best abaya brands" list I've read treats abayas like one market with a fe
 
 Most houses cluster here, and it's genuinely crowded — dozens of brands between $30 and roughly $230, with no clean break anywhere inside it. Four worth knowing:
 
-**[Losyana](https://losyana.nl/products/emirate-abaya-black-1)** (Nijmegen, Netherlands) — 71 pieces, median $35. The [Emirate Abaya in black](https://losyana.nl/products/emirate-abaya-black-1) is the house at its plainest: closed-front, no embellishment, the kind of thing you buy three of.
+**[Losyana](https://losyana.shop)** (Nijmegen, Netherlands) — 71 pieces, median $35. The [Emirate Abaya in black](https://losyana.shop) is the house at its plainest: closed-front, no embellishment, the kind of thing you buy three of.
 
 **[Bayt El Hayat](https://baytelhayat.co.uk)** (UK) — 76 pieces, median $50. The [Beige Ribbed Abaya](https://baytelhayat.co.uk/products/beige-ribbed-abaya) is a plainer, more considered version of the same everyday brief.
 

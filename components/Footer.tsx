@@ -268,6 +268,14 @@ export function Footer() {
             listClassName="grid grid-cols-2 gap-y-1 md:block md:space-y-2"
           >
             <FLink href="/editorial">The Edit</FLink>
+            {/* The /edits INDEX, added 2026-09-15. Every individual edit below
+                was linked from here and the page listing them was not, so
+                `/edits` sat in the sitemap with zero inbound links anywhere on
+                the site — measured across all 160 sitemap pages, and the same
+                thing Inoma Digital's audit counted as "pages with only one
+                internal link". Label is the page's own h1 (app/edits/page.tsx),
+                not a composed one (§10.18). */}
+            <FLink href="/edits">The Edits</FLink>
             {/* Every live /edits/[slug], from lib/edits.ts — so a new edit is
                 linked the moment it exists. A page can be in the sitemap and
                 still be reachable from nowhere (§8), and internal links are what

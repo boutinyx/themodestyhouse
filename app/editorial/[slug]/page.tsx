@@ -46,6 +46,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const p = getPost(slug);
   if (!p) notFound();
 
+  // getPosts() is already date-sorted (lib/posts.ts), so this is the three
+  // most recent OTHER posts, and it needs no ordering decision of its own.
+  const others = getPosts().filter((o) => o.slug !== p.slug).slice(0, 3);
+
   return (
     <main className="max-w-[720px] mx-auto px-8 pt-12 md:pt-16 pb-24">
       <JsonLd
@@ -84,6 +88,28 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <article>
         <Markdown body={p.body} />
       </article>
+
+      {/* The other posts, added 2026-09-15. Two measurements, one fix: a post
+          reached only from /editorial has a single inbound internal link
+          (counted across all 160 sitemap pages — `still-boiling-feeling-fall`
+          had exactly one), and Inoma Digital's 2026-09-11 audit flags the same
+          thing as "pages with only one internal link". No composed copy: the
+          eyebrow reuses "The Edit", the site's own name for this section, and
+          every other string on screen is the post's own title. */}
+      {others.length > 0 && (
+        <div className="mt-16 pt-8" style={{ borderTop: '1px solid var(--hairline)' }}>
+          <div className="eyebrow" style={{ color: 'var(--muted)' }}>The Edit</div>
+          <ul className="mt-4 space-y-3">
+            {others.map((o) => (
+              <li key={o.slug}>
+                <Link href={`/editorial/${o.slug}`} className="serif" style={{ fontSize: 20, lineHeight: 1.2, color: 'var(--ink)' }}>
+                  {o.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="mt-16 pt-8" style={{ borderTop: '1px solid var(--hairline)' }}>
         <Link href="/new-in" className="btn-pill inline-block">Shop the directory</Link>

@@ -43,7 +43,7 @@ This is the crowded middle, and it's crowded for a reason: it's where a hijab st
 
 **[ByHasanat](/designers/by-hasanat)** (UK) — 40 hijabs, median **$16.27**, mostly jersey: the [Jersey Hijab in Turquoise](https://byhasanat.co.uk/products/jersey-hijab-in-turquoise).
 
-**[Hidayah](/designers/hidayah)** (Holbæk, Denmark) — 111 hijabs, median **$18.72**, and the only Danish house in the index. The [Premium Plain Jersey](https://hidayah.dk/products/premium-plain-jersey-sjal-stretchy-laurel) is the whole proposition.
+**[Hidayah](/designers/hidayah)** (Holbæk, Denmark) — 111 hijabs, median **$18.72**, and the only Danish house in the index. The [Premium Plain Jersey](https://hidayah.dk/products/premium-plain-jersey-teal) is the whole proposition.
 
 **[KlayTheLabel](/designers/klay)** and **[Hawaa Clothing](/designers/hawaa)** (both UK) — 38 and 40 hijabs, both at a **$19.77** median, both sitting right on the line into the next band. Klay's [Amber Premium Modal](https://klaythelabel.com/products/amber-premium-modal) is $17.44; Hawaa's [Black Polka Modal Lace](https://hawaaclothing.com/products/black-polka-modal-lace-hijab) is $19.77.
 
@@ -55,9 +55,9 @@ Nothing structural separates this band from the one above it. What changes is th
 
 **[AbayaButh](/designers/abayabuth)** (United Kingdom) — 192 hijabs, median **$20.44**, and the broadest fabric range in this band by some distance: eleven different fabrics appear in its titles against five to eight for its neighbours, organza and georgette among them.
 
-**[Nour Al Houda](/designers/nour-al-houda)** (Sydney) — 248 hijabs, median **$20.94**, and the house most committed to selling the scarf and its cap together: 110 of its pieces are sets, more than any other house in the index. The [Single Stitched Modal Set](https://nouralhouda.com.au/products/single-stitched-modal-hijab-set-teal) is the standard one.
+**[Nour Al Houda](/designers/nour-al-houda)** (Sydney) — 248 hijabs, median **$20.94**, and the house most committed to selling the scarf and its cap together: 110 of its pieces are sets, more than any other house in the index. The [Single Stitched Modal Set](https://nouralhouda.com.au/products/single-stitched-modal-hijab-set-oyster) is the standard one.
 
-**[Losyana](/designers/losyana)** (Nijmegen, Netherlands) — 394 hijabs, median **$20.99**, the second-largest hijab catalogue here by a single piece, and one of the fifteen houses stocking a proper [instant style](https://losyana.nl/products/instant-hijab-mink).
+**[Losyana](/designers/losyana)** (Nijmegen, Netherlands) — 394 hijabs, median **$20.99**, the second-largest hijab catalogue here by a single piece, and one of the fifteen houses stocking a proper [instant style](https://losyana.shop/products/instant-hijab-black).
 
 **[Vela Scarves](/designers/vela)** (USA) — 339 hijabs, median **$21.99**, third-largest. The [Ruching Lite](https://velascarves.com/products/espresso-ruching-lite) line is the volume seller.
 

@@ -12,6 +12,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, brandPageSchema, faqPageSchema, jsonLdGraph } from '@/lib/schema';
 import { formatPrice } from '@/lib/price';
 import { withUtm } from '@/lib/outbound';
+import { clampText, fitSentences } from '@/lib/metaDescription';
 
 /**
  * /designers/[slug] — one page per house.
@@ -65,10 +66,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const range = priced.length
     ? `, ${formatPrice(priced[0], b.currency)}–${formatPrice(priced[priced.length - 1], b.currency)}.`
     : '.';
+  // Length is decided by lib/metaDescription.ts: whole trailing clauses are
+  // dropped rather than characters, so Google never prints a half word. 47 of
+  // the 91 brand pages ran 161-168 characters before this (measured on the
+  // live sitemap, 2026-09-15) because the fallback below is composed from data
+  // and a long house name or city pushes it over.
   const description =
-    b.description?.trim().slice(0, 158) ??
-    `Every ${b.name} piece we track: ${n.toLocaleString('en-GB')} items${range}` +
-      `${b.city ? ` Based in ${b.city}.` : ''} Prices in your own currency, checked nightly, with links straight to ${new URL(b.homepage).hostname}.`;
+    b.description?.trim()
+      ? clampText(b.description.trim())
+      : fitSentences([
+          `Every ${b.name} piece we track: ${n.toLocaleString('en-GB')} items${range}`,
+          b.city ? `Based in ${b.city}.` : '',
+          `Prices in your own currency, checked nightly, with links straight to ${new URL(b.homepage).hostname}.`,
+        ]);
   const canonical = `/designers/${b.slug}`;
   return {
     title,
