@@ -33,7 +33,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   sweep:
@@ -55,10 +55,30 @@ jobs:
         run: |
           set -o pipefail
           if [ -n "${{ inputs.brands }}" ]; then
-            npm run --silent audit:dead-links -- --brands ${{ inputs.brands }} | tee /tmp/dead-links.txt
+            npm run --silent audit:dead-links -- --write --brands ${{ inputs.brands }} | tee /tmp/dead-links.txt
           else
-            npm run --silent audit:dead-links -- --all | tee /tmp/dead-links.txt
+            npm run --silent audit:dead-links -- --write --all | tee /tmp/dead-links.txt
           fi
+
+      # The ledger is what makes this automatic: the nightly refresh republishes
+      # a few hours later and scripts/build-data.mjs withholds whatever it lists.
+      # Nothing here edits decisions.json or exclusions.json — a withheld product
+      # returns by itself once its link works again.
+      - name: Commit the ledger
+        run: |
+          set -e
+          git config user.name  "modesty-house-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/dead-links.json; then
+            echo "no change to data/dead-links.json"
+            exit 0
+          fi
+          git add data/dead-links.json
+          git commit -m "data: dead outbound links, weekly sweep" \
+                     -m "Automated run of scripts/dead-links.mjs --write --all. Products listed here are withheld by the next publish and return automatically when their link works again."
+          # Rebase rather than force: a human push during the run must win.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Report
         if: always()

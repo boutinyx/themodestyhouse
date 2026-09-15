@@ -13,6 +13,7 @@ import { publishTitle as resolvePublishTitle } from '../lib/publishTitle.ts';
 import { resolveGarment } from '../lib/garmentReview.ts';
 import { qualityFlagTag } from '../lib/qualityFlags.ts';
 import { convert } from '../lib/fx.ts';
+import { withheldIds } from '../lib/deadLinkLedger.ts';
 
 const U = (f) => new URL(`../data/${f}`, import.meta.url);
 
@@ -123,6 +124,17 @@ const allowIds = new Set(excl.nonApparelAllowIds || []);
 // size floor ONLY; every other reason a product can leave the catalogue still
 // applies to a pinned id.
 const sizeFloorPins = new Set(excl.sizeFloorAllowIds || []);
+// Products whose outbound link is dead, from data/dead-links.json — written by
+// the weekly sweep (.github/workflows/dead-links.yml, scripts/dead-links.mjs)
+// and never by hand. Tina, 2026-09-15: "id rather not touch anything and
+// everything will be automatic". Same shape as the size floor: evaluated at
+// PUBLISH time, never written into decisions.json, so a product returns on the
+// first publish after its link works again. lib/deadLinkLedger.ts holds the
+// rules about what counts (a 404 once, a redirect twice, a brand-wide failure
+// never).
+const deadLinked = existsSync(U('dead-links.json'))
+  ? withheldIds(JSON.parse(readFileSync(U('dead-links.json'), 'utf8')))
+  : new Set();
 // Brands that are legitimately accessory-heavy, so Guard 3 shouldn't fail on them.
 const expectedHot = new Set(excl.brandNonApparelExpected || []);
 
@@ -169,6 +181,11 @@ function verdict(p) {
     const left = p.raw.sizes.filter((s) => s.available).map((s) => s.label).join(', ');
     return { reason: 'only-large-sizes', evidence: `in stock: ${left}` };
   }
+  // Checked after the size floor and before the non-apparel veto for the same
+  // reason the size floor sits where it does: a pin must not resurrect a row
+  // something earlier already rejected, and a dead link is a fact about the
+  // destination rather than about the garment.
+  if (deadLinked.has(p.id)) return { reason: 'dead-link', evidence: p.url };
   if (allowIds.has(p.id)) return null;
   const v = isNonApparel({ title: p.title, url: p.url, ...(p.raw || {}) });
   return v.rejected ? { reason: `non-apparel:${v.reason}`, tier: v.tier, evidence: v.evidence } : null;

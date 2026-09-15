@@ -41,8 +41,9 @@
  *
  * Runs under tsx — it imports lib/deadLink.ts (Invariant 7).
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { linkVerdict, isBroken } from '../lib/deadLink.ts';
+import { mergeSweep, withheldIds, EMPTY_LEDGER } from '../lib/deadLinkLedger.ts';
 
 const argv = process.argv.slice(2);
 const has = (f) => argv.includes(f);
@@ -54,6 +55,8 @@ const valueOf = (f, d) => {
 const ALL = has('--all');
 const AS_JSON = has('--json');
 const STRICT = has('--strict');
+/** Fold this run into data/dead-links.json, which the publish reads. */
+const WRITE = has('--write');
 const LIMIT = Number(valueOf('--limit', '0')) || 0;
 const BRANDS = (() => {
   const i = argv.indexOf('--brands');
@@ -132,6 +135,31 @@ for (let i = 0; i < hosts.length; i += HOST_CONCURRENCY) {
 const broken = results.filter((r) => isBroken(r.verdict));
 const unknown = results.filter((r) => r.verdict === 'unknown');
 
+// --write folds this sweep into data/dead-links.json, which scripts/build-data.mjs
+// reads at publish time. The ledger decides what is acted on (lib/deadLinkLedger.ts):
+// a hard 404 once, a redirect twice, a brand-wide failure never. The file is
+// committed by .github/workflows/dead-links.yml so the next publish sees it.
+const LEDGER_PATH = new URL('../data/dead-links.json', import.meta.url);
+let ledgerSummary = null;
+if (WRITE) {
+  const before = existsSync(LEDGER_PATH)
+    ? JSON.parse(readFileSync(LEDGER_PATH, 'utf8'))
+    : EMPTY_LEDGER;
+  const after = mergeSweep(
+    before,
+    results.map(({ id, brandSlug, url, verdict }) => ({ id, brandSlug, url, verdict })),
+    new Date().toISOString(),
+  );
+  writeFileSync(LEDGER_PATH, `${JSON.stringify(after, null, 2)}\n`);
+  const held = withheldIds(after);
+  ledgerSummary = {
+    tracked: Object.keys(after.entries).length,
+    willBeWithheld: held.size,
+    brandWideHeldBack: Object.values(after.entries).filter((e) => e.brandWide).length,
+    wasTracked: Object.keys(before.entries ?? {}).length,
+  };
+}
+
 if (AS_JSON) {
   console.log(JSON.stringify({
     checked: results.length,
@@ -170,7 +198,16 @@ if (AS_JSON) {
     const hostsUnknown = [...new Set(unknown.map((u) => { try { return new URL(u.url).hostname; } catch { return '?'; } }))];
     console.log(`  unknown covers ${hostsUnknown.length} shops: ${hostsUnknown.slice(0, 8).join(', ')}${hostsUnknown.length > 8 ? ' …' : ''}`);
   }
-  console.log('\n  Nothing was changed. Removing a product is data/exclusions.json or a cut decision — human, by design.\n');
+  if (ledgerSummary) {
+    console.log(`\n  data/dead-links.json: ${ledgerSummary.wasTracked} tracked -> ${ledgerSummary.tracked}`);
+    console.log(`  the next publish will withhold ${ledgerSummary.willBeWithheld} products`);
+    if (ledgerSummary.brandWideHeldBack) {
+      console.log(`  ${ledgerSummary.brandWideHeldBack} rows are flagged brand-wide and are deliberately NOT withheld — a storefront-level failure is a human decision`);
+    }
+    console.log('\n  Withholding is reversible and automatic: the row returns on the first publish after its link works again.\n');
+  } else {
+    console.log('\n  Nothing was changed. Re-run with --write to fold this into data/dead-links.json.\n');
+  }
 }
 
 process.exit(STRICT && broken.length ? 1 : 0);

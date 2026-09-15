@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-09-15T13:50:44.793Z",
+  "entries": {
+    "manzaram:15819248107845": {
+      "url": "https://manzaram.nl/products/tweedelige-set-met-blouse-1",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-15T13:50:44.793Z",
+      "lastSeen": "2026-09-15T13:50:44.793Z"
+    },
+    "manzaram:15819470438725": {
+      "url": "https://manzaram.nl/products/maxi-jurk-met-knopen-2",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-15T13:50:44.793Z",
+      "lastSeen": "2026-09-15T13:50:44.793Z"
+    }
+  }
+}
