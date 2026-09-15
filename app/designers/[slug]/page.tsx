@@ -13,6 +13,7 @@ import { breadcrumbSchema, brandPageSchema, faqPageSchema, jsonLdGraph } from '@
 import { formatPrice } from '@/lib/price';
 import { withUtm } from '@/lib/outbound';
 import { clampText, fitSentences } from '@/lib/metaDescription';
+import { pageTitle } from '@/lib/metaTitle';
 
 /**
  * /designers/[slug] — one page per house.
@@ -61,6 +62,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // is the two lines Google prints, so both now lead with the count and the
   // price range rather than the phrase "Modest Fashion Brand", which says
   // nothing a searcher who typed the brand's name does not already know.
+  // pageTitle(): four brand pages (noureen, nour-al-houda, la-petite-parisienne,
+  // rutba-abaya) render past 60 characters once the layout appends the house
+  // name, purely because the brand's own name is long.
   const title = `${b.name} — ${n.toLocaleString('en-GB')} pieces & prices`;
   const priced = items.map((p) => p.price).filter((x) => x > 0).sort((a, b2) => a - b2);
   const range = priced.length
@@ -86,7 +90,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         ]);
   const canonical = `/designers/${b.slug}`;
   return {
-    title,
+    title: pageTitle(title),
     description,
     alternates: { canonical },
     // Same card as everywhere else — see the DEFAULT_OG_IMAGE comment in app/layout.tsx.

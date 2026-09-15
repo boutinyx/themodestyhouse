@@ -771,7 +771,7 @@ export const EDITS: Edit[] = [
 
     seoTitle: 'Fall Essentials — Gilets, Knits, Blouses and Fall Skirts',
     seoDescription:
-      'The fall layers from independent modest houses worldwide — gilets, knits, trench coats, striped blouses and satin skirts, in burgundy, chocolate, olive, camel, cream and rust.',
+      'The fall layers from independent modest houses worldwide — gilets, knits, trench coats, striped blouses and satin skirts, in burgundy, chocolate and olive.',
 
     styling: {
       h2: 'How to build a fall outfit',

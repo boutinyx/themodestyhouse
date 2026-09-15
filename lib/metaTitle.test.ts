@@ -7,10 +7,20 @@ describe('pageTitle', () => {
   });
 
   it('drops the suffix once the rendered title would exceed the limit', () => {
-    // 79 characters rendered — the longest on the site, /modest-swimwear.
+    // 79 characters rendered with the suffix — the longest on the site,
+    // /modest-swimwear. 59 without it.
     const long = 'Modest Swimwear Online — Burkinis & Full-Coverage Swimsuits';
     expect(long.length + TITLE_SUFFIX.length).toBeGreaterThan(TITLE_MAX);
     expect(pageTitle(long)).toEqual({ absolute: long });
+  });
+
+
+  it('drops the suffix for a lane title in the 61-75 band too', () => {
+    // /modest-skirts: 53 characters, 73 with the suffix. Under the first
+    // threshold of 75 it kept the tail and stayed over what Google prints.
+    const lane = 'Modest Skirts Online — Maxi & A-Line Skirts for Women';
+    expect(pageTitle(lane)).toEqual({ absolute: lane });
+    expect(lane.length).toBeLessThanOrEqual(60);
   });
 
   it('keeps the template at exactly the limit', () => {

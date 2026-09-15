@@ -7,6 +7,7 @@ date: "2026-08-26"
 image: "/editorial/lookbook.jpg"
 imageAlt: "A stack of folded plum satin scarves on a warm terracotta background, one length draped over the side"
 slug: "where-to-buy-hijabs-online"
+seoDescription: "Seventy-four houses in the directory sell hijabs — 4,980 of them, with house medians from $6 to $80. The four bands the market really splits into."
 ---
 
 Search for somewhere to buy a hijab and every result is a shop telling you about its own hijabs. Nobody shows you the market at once. So I went through all 4,980 hijabs in the [directory](/modest-hijabs) — 74 houses — and priced each house by its median, converted to US dollars.

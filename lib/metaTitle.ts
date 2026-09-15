@@ -15,15 +15,26 @@ import type { Metadata } from 'next';
  * §10.18). This is that rule, expressed once so it keeps working as titles
  * change rather than being five hard-coded slugs.
  *
- * Threshold is deliberately 75, not 60. Twenty-five titles exceed 60 characters
- * today and stripping the house name from all of them was not what she chose;
- * the rest go to whoever writes the shorter headlines.
+ * The threshold started at 75 and is now 60 — see TITLE_MAX below for why.
  */
 
 export const TITLE_SUFFIX = ' | The Modesty House';
 
-/** Longest a rendered <title> may be before the suffix is dropped. */
-export const TITLE_MAX = 75;
+/**
+ * Longest a rendered <title> may be before the suffix is dropped.
+ *
+ * Started at 75 on 2026-09-15, which cleared the five titles the audit flagged.
+ * Lowered to 60 the same day at Tina's request ("you do 2 too pls") because 20
+ * more sat between 61 and 75 — over what Google prints, which is about 60
+ * characters. Dropping the house name is what fixes those WITHOUT rewriting a
+ * single headline: measured, every one of the 25 is 41-59 characters on its
+ * own, so all of them fit once the 20-character tail comes off.
+ *
+ * The house name is not lost from the result: Google renders a site name above
+ * the title from the WebSite/Organization data this site already publishes, and
+ * OpenGraph/Twitter keep the untouched title for shared links.
+ */
+export const TITLE_MAX = 60;
 
 /**
  * What to hand Next's `metadata.title`.
