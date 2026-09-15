@@ -77,7 +77,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       : fitSentences([
           `Every ${b.name} piece we track: ${n.toLocaleString('en-GB')} items${range}`,
           b.city ? `Based in ${b.city}.` : '',
-          `Prices in your own currency, checked nightly, with links straight to ${new URL(b.homepage).hostname}.`,
+          // Split from the hostname clause deliberately: as one 81-character
+          // sentence it never fit beside the two above, so the whole thing was
+          // dropped and the descriptions came out at 74-80 characters. Split,
+          // the pricing half survives and only the link half falls off.
+          'Prices in your own currency, checked nightly.',
+          `Links straight to ${new URL(b.homepage).hostname}.`,
         ]);
   const canonical = `/designers/${b.slug}`;
   return {
