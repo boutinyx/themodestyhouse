@@ -124,6 +124,16 @@ staging, after deploy:
    left to whoever writes shorter headlines.
 4. **Merged to `main`** — everything on staging, including another session's 13 Sep
    agent-discovery work, which she approved shipping in the same breath.
+5. **The dead Voile Chic hijab in `/edits/jersey-hijabs` stays as it is.** Asked and answered:
+   *"the voile chic; keep it like that"*. The `Ribbed Jersey Hijab - Charcoal Grey` pick in
+   `lib/edits.ts` points at a product Voile Chic has discontinued; it is left in place
+   deliberately, not overlooked.
+6. **The dead-link sweep is merged to `main`** (`7dadc07`): `npm run audit:dead-links` plus
+   `.github/workflows/dead-links.yml`, weekly at 03:20 UTC on Sundays over the whole
+   catalogue. Reports only — it never unpublishes anything.
+7. **The Losyana links stay on `losyana.shop`** — *"put it i dont mind"*, so the deciding
+   factor is that `.shop` is the storefront the catalogue points at and the only one where her
+   GoAffPro code pays.
 
 ## Live on production, verified after the Cloudflare purge (§10.47 order)
 ```
