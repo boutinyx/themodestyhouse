@@ -40,6 +40,57 @@ Every item was re-measured against the LIVE site before anything was changed. Fi
 - **CLAUDE.md §8 corrected**: `/hijabi-outfits` redirects to `/new-in`, not `/directory`, and
   `/directory` itself now redirects to `/new-in`. Re-measured on production.
 
+## Correction — `losyana.nl` is NOT dead, and this session said it was
+
+`curl https://losyana.nl/...` returned `http=000` on this machine, which was read as a dead
+domain and written into commit `9db0b25`'s message ("losyana.nl is a closed storefront") and
+into the table above. **Both are wrong.** Re-checked 2026-09-15 with DNS-over-HTTPS and an
+explicit `--resolve`:
+
+```
+cloudflare-dns.com A losyana.nl        -> 23.227.38.65 (Shopify)
+local getaddrinfo('losyana.nl')        -> FAIL, "nodename nor servname provided"
+curl --resolve losyana.nl:443:<ip>     -> 200, title "Emirate abaya - black - Losyana.nl"
+```
+
+**This machine's own resolver fails on that host while the site is live.** `http=000` from
+`curl` is a connection failure, which is not the same finding as a 404 — §10.26's rule, missed
+here: the harness was the thing that was broken. A peer session caught it.
+
+Consequences, stated plainly:
+- The two `losyana.nl` links in the editorial posts **were working**. Repointing them at
+  `losyana.shop` is defensible as curation — `.shop` is the storefront `data/brands.ts` and the
+  whole catalogue now point at, and the GoAffPro code only pays there — but it was **not** a
+  broken-link repair, and the abaya link now lands on the storefront root rather than the exact
+  product the sentence names, which `.nl` still sells in black. Tina's call, raised with her.
+- The other two repairs are confirmed genuinely dead, each against a same-host control that
+  had to read 200: `hidayah.dk/…-laurel` 404 (sibling `…-teal` 200) and
+  `nouralhouda.com.au/…-teal` 404 (sibling `…-oyster` 200).
+- **Any link checking from this machine must use DoH + `--resolve`** (`/tmp/dohcheck.sh`), or a
+  resolver failure will keep reading as a dead brand.
+
+## Outbound link sweep — 2,524 external URLs, 50 dead products
+
+Run across 114 of our pages (all 91 designer pages, all 5 posts, all 3 edits, the static pages).
+0 rate-limited. 50 distinct dead products, of which:
+
+- **5 are a hard 404 everywhere**: `jawda.co.uk` ×2, `manzaram.nl` ×2, `hidayah.dk/…-laurel`.
+- **44 silently redirect to the brand's homepage**, so a visitor lands on a front page with no
+  sign the piece is gone. Worst: `getfith.co` 12, `int.toucheprive.com` 8, `glowmodesty.com` 7,
+  `voilechic.com` 4, `nouralhouda.com.au` 3, `kamin.ae` 3.
+- **1 redirects to a collection page** (`jennah-boutique.com`).
+
+Two things this exposes that are bigger than the audit:
+1. **"Broken" is header-dependent.** With an `Accept:` header these Shopify stores 302 a dead
+   product to the homepage; without one they 404. Reproduced 3/3 each way. A link checker that
+   follows redirects scores all 45 redirect cases as healthy — which is probably why the audit
+   tool reported 10 rather than 50.
+2. **The catalogue is carrying dead rows.** All four `Ribbed Jersey Hijab` URLs from Voile Chic
+   404 while a chiffon sibling returns 200, so that line is discontinued at the brand and still
+   published here — including the charcoal-grey piece hand-picked into `/edits/jersey-hijabs`.
+   `docs/log/2026-09-03-weak-site-hypothesis-failed-and-718-dead-links.md` is the same failure
+   recurring. **A scheduled dead-link sweep is the real fix and does not exist.**
+
 ## Phase 3 — growth
 Content, keywords and link building. Not technical; reviewed separately in
 `2026-09-15-inoma-content-plan-review.md`.
