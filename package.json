@@ -31,6 +31,7 @@
     "audit:sheets": "node scripts/contact-sheet.mjs",
     "audit:outbound": "node scripts/outbound-audit.mjs",
     "audit:storefronts": "node scripts/storefront-health.mjs",
+    "audit:dead-links": "tsx scripts/dead-links.mjs",
     "seo:indexnow": "node scripts/indexnow-notify.mjs",
     "audit:staff-grid": "node scripts/staff-grid-audit.mjs"
   },

@@ -1,0 +1,74 @@
+name: Dead outbound links
+
+# Checks published product links against the houses' own storefronts and REPORTS
+# what no longer exists. It changes nothing: unpublishing a product is
+# data/exclusions.json or a cut decision, both human by design (Invariant 3),
+# and a shop having a bad minute must never be able to delete inventory
+# (Invariant 12).
+#
+# Why it exists: scripts/storefront-health.mjs catches a whole HOUSE going down
+# — it found 718 products behind three dead storefronts on 2026-09-03. It cannot
+# see a single product dying on a shop that is otherwise fine, and a sweep on
+# 2026-09-15 found 50 of those across 13 healthy houses, 44 of which silently
+# redirect a shopper to the brand's front page.
+#
+# Cadence: weekly, over the WHOLE catalogue. The script's default is a 1/7
+# rotating slice for local use; here --all is affordable because it runs once a
+# week, off-peak, serialised per host with a pause between requests.
+
+on:
+  schedule:
+    # 03:20 UTC on Sundays — before the 04:10 catalogue refresh, so the two never
+    # hammer the same storefronts at once.
+    - cron: "20 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      brands:
+        description: "Space-separated brand slugs (blank = every published product)"
+        required: false
+        default: ""
+
+concurrency:
+  group: dead-links
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sweep:
+    name: sweep outbound product links
+    runs-on: ubuntu-latest
+    # ~19k requests, serialised per host with a 700ms pause and six hosts at a
+    # time. Generous ceiling so a slow storefront cannot fail the job.
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Sweep
+        id: sweep
+        run: |
+          set -o pipefail
+          if [ -n "${{ inputs.brands }}" ]; then
+            npm run --silent audit:dead-links -- --brands ${{ inputs.brands }} | tee /tmp/dead-links.txt
+          else
+            npm run --silent audit:dead-links -- --all | tee /tmp/dead-links.txt
+          fi
+
+      - name: Report
+        if: always()
+        run: |
+          {
+            echo '## Dead outbound links'
+            echo
+            echo '```'
+            tail -n 200 /tmp/dead-links.txt
+            echo '```'
+            echo
+            echo 'Nothing was changed. Removing a product is a human decision — data/exclusions.json or a cut in /staff/curate.'
+          } >> "$GITHUB_STEP_SUMMARY"
