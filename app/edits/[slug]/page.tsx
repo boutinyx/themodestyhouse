@@ -9,6 +9,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { EditStory } from '@/components/EditStory';
 import { EditMoreTile } from '@/components/EditMoreTile';
 import { breadcrumbSchema, collectionPageSchema, jsonLdGraph } from '@/lib/schema';
+import { pageTitle } from '@/lib/metaTitle';
 
 /**
  * /edits/[slug] — the campaign hero + grid page. See lib/edits.ts for what an
@@ -33,7 +34,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!edit) return { title: 'Not found', robots: { index: false, follow: false } };
   const canonical = `/edits/${edit.slug}`;
   return {
-    title: edit.seoTitle,
+    // pageTitle(): /edits/fall-essentials renders at 76 characters with the
+    // layout's ' | The Modesty House' on the end. The card titles below keep
+    // the plain string.
+    title: pageTitle(edit.seoTitle),
     description: edit.seoDescription,
     alternates: { canonical },
     openGraph: {

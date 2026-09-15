@@ -7,6 +7,7 @@ import { Markdown } from '@/components/Markdown';
 import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
 import { JsonLd } from '@/components/JsonLd';
 import { articleSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/schema';
+import { pageTitle } from '@/lib/metaTitle';
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -21,7 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // is read by a person rather than ranked. See lib/posts.ts::seo.
   const s = seo(p);
   return {
-    title: s.title,
+    // pageTitle(): three of the five over-long titles on the site are editorial
+    // headlines, and the ' | The Modesty House' the layout appends is what puts
+    // them over. openGraph/twitter below keep p.title untouched.
+    title: pageTitle(s.title),
     description: s.description,
     alternates: { canonical: `/editorial/${p.slug}` },
     openGraph: {

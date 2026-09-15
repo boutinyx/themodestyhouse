@@ -17,6 +17,7 @@
  * bounds (title <= 60 chars, description 50-160).
  */
 import type { Metadata } from 'next';
+import { pageTitle } from './metaTitle';
 
 export interface SeoCopy {
   title: string;
@@ -49,7 +50,12 @@ export function buildMetadata({
   canonical: string;
 }): Metadata {
   return {
-    title,
+    // pageTitle(), not the bare string: the layout appends ' | The Modesty
+    // House' to every title, and on a long one that tail is what pushes the
+    // rendered <title> past what Google prints. OpenGraph and Twitter below
+    // deliberately keep the plain title — a shared card is read by a person,
+    // not truncated in a SERP.
+    title: pageTitle(title),
     description,
     alternates: { canonical },
     openGraph: {
