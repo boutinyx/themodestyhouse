@@ -59,8 +59,26 @@ staging, after deploy:
   footer                            href="/edits" present
 ```
 
-## Still open, all needing Tina
-1. Cloudflare email obfuscation on or off (items 1.1 + 1.2).
-2. Shorter page titles — 25 are over 60 characters (item 1.3). Copy, so hers or the agency's.
-3. "The Emirate Abaya in black" no longer exists in black (item 1.4).
-4. Merge `staging` → `main`.
+## Tina's decisions, 2026-09-15
+1. **Cloudflare email obfuscation stays ON.** The 4xx and the "5 broken internal links" are
+   therefore expected and permanent; they are Cloudflare's endpoint, not a page of ours.
+2. **The "Emirate Abaya in black" sentence stays as written.** Its link now points at the live
+   storefront rather than a dead product page.
+3. **The site-name suffix is dropped on titles that run over.** `lib/metaTitle.ts`, threshold 75
+   rendered characters, applied in `lib/seoCopy.ts` and the editorial/edits slug pages. The five
+   flagged titles now render at 56-59 characters; the other 20 over 60 keep the suffix and are
+   left to whoever writes shorter headlines.
+4. **Merged to `main`** — everything on staging, including another session's 13 Sep
+   agent-discovery work, which she approved shipping in the same breath.
+
+## Live on production, verified after the Cloudflare purge (§10.47 order)
+```
+origin polled with a cache-buster until the new build appeared, THEN purge_everything: True
+GET #1 /modest-swimwear   cf-cache-status MISS · title 59 chars (was 79)
+GET #2 /modest-swimwear   cf-cache-status HIT · age 0 · title 59 chars
+/product/nihan/…          canonical present · googlebot noindex, nofollow intact
+/favourites               canonical present
+/editorial/best-abaya-…   3 related-post links · losyana.nl absent
+/                         footer links /edits
+/designers/noureen        meta description 134 chars (was 183, the longest on the site)
+```
