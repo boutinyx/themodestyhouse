@@ -146,3 +146,31 @@ GET #2 /modest-swimwear   cf-cache-status HIT · age 0 · title 59 chars
 /                         footer links /edits
 /designers/noureen        meta description 134 chars (was 183, the longest on the site)
 ```
+
+---
+
+# HSTS on `www` — closed 2026-09-15
+
+Tina: *"you have api acess i think you can fix it"*. Enabled at the Cloudflare edge via the
+API rather than in the app, because the `www` → apex redirect is served by Cloudflare and
+never reaches Railway, so `next.config.ts` can never attach the header to it.
+
+**Checked first, because HSTS is hard to walk back:** the zone has exactly two hostnames,
+`themodestyhouse.com` and `www`, both proxied — no http-only subdomain to strand. And the
+origin was already sending `max-age=63072000; includeSubDomains`, so every browser that has
+visited the site is already committed to https on subdomains. Matching those values at the
+edge therefore adds coverage, not a new commitment.
+
+```
+PATCH /zones/<id>/settings/security_header
+  enabled true · max_age 63072000 · include_subdomains true · preload FALSE · nosniff false
+
+www.themodestyhouse.com/                 301 · strict-transport-security: max-age=63072000; includeSubDomains
+www.themodestyhouse.com/modest-dresses   301 · same
+themodestyhouse.com/                     200 · same
+```
+
+`preload` is deliberately off. Submitting to the browser preload list is the part that is
+genuinely difficult to reverse, and nothing in the audit asks for it.
+
+**This closes item 1.6 — the last technical item on the audit.**
