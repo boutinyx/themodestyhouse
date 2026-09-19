@@ -10,7 +10,8 @@ export type Post = {
   date: string; // ISO yyyy-mm-dd
   image?: string; // cover image, e.g. /editorial/outfit-crop.jpg
   imageAlt?: string;
-  body: string; // markdown
+  html: string; // sanitised at render time by components/GhostHtml.tsx
+  plaintext: string; // for /llms-full.txt
   /**
    * The <title> and meta description, when they should differ from the headline
    * on the page. Optional — `seo()` falls back to `title`/`dek`, so a post that
