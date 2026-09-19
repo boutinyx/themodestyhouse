@@ -1,0 +1,53 @@
+name: Ghost backup
+
+# Nightly copy of the PUBLISHED posts and their tags into data/ghost-export.json.
+#
+# The repo is PUBLIC, so this is filtered to what the site already serves (see
+# scripts/lib/ghostExport.mjs): no drafts, staff, members or settings. Members and drafts are
+# NOT backed up by this — that is an open item in
+# docs/superpowers/specs/2026-09-07-ghost-headless-cms-design.md.
+#
+# Runs an hour after the catalogue refresh (04:10 UTC) so the two never push at once.
+on:
+  schedule:
+    - cron: "10 5 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ghost-backup
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    name: export published posts
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+
+      - name: Export
+        env:
+          GHOST_URL: ${{ vars.GHOST_URL }}
+          GHOST_ADMIN_KEY: ${{ secrets.GHOST_ADMIN_KEY }}
+        run: node scripts/ghost-export.mjs
+
+      - name: Commit if changed
+        run: |
+          # `git diff` cannot see an untracked file, which is what the first night's export is.
+          if [ -z "$(git status --porcelain -- data/ghost-export.json)" ]; then
+            echo "no change"
+            exit 0
+          fi
+          git config user.name  "modesty-house-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ghost-export.json
+          git commit -m "data: nightly Ghost export of published posts"
+          git push origin HEAD:main
