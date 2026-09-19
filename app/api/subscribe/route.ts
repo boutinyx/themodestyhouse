@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { validateSubscribe, subscribeViaGhost } from '@/lib/subscribe';
+import { validateSubscribe, sendSubscribeEmail, emailConfig } from '@/lib/subscribe';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,9 +60,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: result.error }, { status: 400 });
   }
 
-  const outcome = await subscribeViaGhost(result.email, clientIp(req));
-  if (!outcome.ok) {
-    return NextResponse.json({ ok: false, error: outcome.error }, { status: outcome.status });
+  const cfg = emailConfig();
+  if (!cfg) {
+    // Fail loudly rather than pretending. A silent success here would lose the
+    // address AND tell the visitor they had signed up.
+    console.error('subscribe: email is not configured (RESEND_API_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL)');
+    return NextResponse.json({ ok: false, error: 'Sign-up is unavailable right now.' }, { status: 503 });
+  }
+
+  try {
+    await sendSubscribeEmail(result.email, cfg);
+  } catch (err) {
+    console.error('subscribe: send failed', err);
+    return NextResponse.json({ ok: false, error: 'Sign-up is unavailable right now.' }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });
