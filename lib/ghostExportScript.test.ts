@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-// @ts-expect-error -- plain .mjs script helper, no types
 import { publicExport } from '../scripts/lib/ghostExport.mjs';
 
 const db = (data: Record<string, unknown[]>) => ({ db: [{ meta: { exported_on: 1 }, data }] });

@@ -1,6 +1,5 @@
 import { createHmac } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-// @ts-expect-error -- plain .mjs script helper, no types
 import { adminToken } from '../scripts/lib/ghostAdmin.mjs';
 
 const SECRET_HEX = '00112233445566778899aabbccddeeff';

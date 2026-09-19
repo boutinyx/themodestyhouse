@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-// @ts-expect-error -- plain .mjs script helper, no types
 import { markdownToHtml, parseFrontmatter } from '../scripts/lib/markdownToHtml.mjs';
 
 describe('markdownToHtml', () => {
@@ -40,8 +39,8 @@ describe('markdownToHtml', () => {
 describe('parseFrontmatter', () => {
   it('reads flat quoted keys and the body', () => {
     const { fm, body } = parseFrontmatter('---\ntitle: "A: B"\ndate: "2026-09-05"\n---\nHello');
-    expect(fm.title).toBe('A: B');
-    expect(fm.date).toBe('2026-09-05');
+    expect((fm as Record<string, string>).title).toBe('A: B');
+    expect((fm as Record<string, string>).date).toBe('2026-09-05');
     expect(body).toBe('Hello');
   });
 });
