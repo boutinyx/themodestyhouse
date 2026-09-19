@@ -30,7 +30,7 @@ function sign(payload: string): string {
  * buffers and throws otherwise — which is a length leak — so both inputs are
  * first hashed to a fixed-length digest and only the digests are compared.
  */
-function safeEqual(a: string, b: string): boolean {
+export function safeEqual(a: string, b: string): boolean {
   const hashA = createHmac('sha256', 'len-normalize').update(a).digest();
   const hashB = createHmac('sha256', 'len-normalize').update(b).digest();
   return timingSafeEqual(hashA, hashB);
