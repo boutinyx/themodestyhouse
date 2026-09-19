@@ -53,7 +53,8 @@ export type OutboundSurface =
   | 'popular-showcase'
   | 'abaya-picks'
   | 'editors-rail'
-  | 'designer-discovery';
+  | 'designer-discovery'
+  | 'editorial';
 
 export function withUtm(url: string, surface?: OutboundSurface): string {
   let u: URL;
