@@ -1,17 +1,18 @@
-import { emailConfig, escapeHtml, sanitizeHeader, type EmailConfig } from '@/lib/contact';
-
 /**
- * Newsletter sign-up.
+ * Newsletter sign-up, through Ghost's members API.
  *
- * SCOPE, deliberately small: this notifies the site owner of an address. It is
- * NOT a mailing-list platform. There is no subscriber database — per ADR-0001
- * the catalogue is flat files and the host's filesystem is ephemeral, so a list
- * written at runtime would be lost on the next deploy (docs/email-service-plan.md §4).
+ * Ghost owns the subscriber record and the double opt-in: `send-magic-link` creates NO
+ * member until the emailed link is clicked, and Ghost mails the confirmation itself
+ * (via Mailgun). This file only validates the address and relays it.
  *
- * The addresses therefore collect in the owner's inbox until a real ESP is
- * wired up, at which point THAT system owns double opt-in, consent records and
- * one-click unsubscribe. Until then the form copy must not promise a newsletter
- * is already running, and the privacy policy must say where the address goes.
+ * Ghost rate-limits that endpoint PER IP (nine requests, then a 10-minute lockout that
+ * escalates). Every reader would otherwise share this server's IP, so the visitor's own
+ * address is forwarded in `X-Forwarded-For` (Ghost trusts the proxy header by default).
+ * Two staging checks in the plan confirm that survives Railway's edge; the fallback if it
+ * does not is a browser-direct POST, which needs `connect-src` widened.
+ *
+ * Replaces the Resend "notify the owner" path (ADR-0001's "no subscriber database" no
+ * longer holds for this list). `emailConfig` stays in lib/contact for /api/contact.
  */
 
 // Same permissive rule as the contact form: strict regexes reject valid addresses,
@@ -36,33 +37,45 @@ export function validateSubscribe(input: { email?: unknown; website?: unknown })
   return { ok: true, email };
 }
 
-export function buildSubscribeEmail(email: string) {
-  const safe = escapeHtml(email);
-  return {
-    subject: `Newsletter sign-up: ${sanitizeHeader(email)}`,
-    text: `New newsletter sign-up.\n\nEmail: ${email}\n\nAdd them to the list when the ESP is set up.`,
-    html: `<p>New newsletter sign-up.</p><p><strong>${safe}</strong></p><p>Add them to the list when the ESP is set up.</p>`,
-  };
-}
+export type GhostSubscribeResult = { ok: true } | { ok: false; status: number; error: string };
 
-export async function sendSubscribeEmail(email: string, cfg: EmailConfig): Promise<void> {
-  const { subject, text, html } = buildSubscribeEmail(email);
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${cfg.apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: cfg.from,
-      to: [cfg.to],
-      reply_to: sanitizeHeader(email),
-      subject,
-      text,
-      html,
-    }),
-  });
-  if (!res.ok) {
+const GENERIC = 'Something went wrong. Please try again.';
+
+export async function subscribeViaGhost(email: string, visitorIp: string): Promise<GhostSubscribeResult> {
+  const base = process.env.GHOST_INTERNAL_URL || process.env.GHOST_URL;
+  if (!base) {
+    console.error('subscribe: neither GHOST_INTERNAL_URL nor GHOST_URL is set');
+    return { ok: false, status: 503, error: 'Sign-up is unavailable right now.' };
+  }
+  try {
+    // 1. A short-lived (5 min) token Ghost requires on the sign-up request.
+    const tokenRes = await fetch(`${base}/members/api/integrity-token/`);
+    if (!tokenRes.ok) {
+      console.error(`subscribe: integrity-token returned ${tokenRes.status}`);
+      return { ok: false, status: 502, error: GENERIC };
+    }
+    const integrityToken = await tokenRes.text();
+
+    // 2. No `redirect` (Ghost discards it) and no `newsletters` (Ghost subscribes to every
+    //    `subscribe_on_signup` newsletter, which is the default one).
+    const res = await fetch(`${base}/members/api/send-magic-link/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Forwarded-For': visitorIp,
+        'X-Forwarded-Proto': 'https',
+      },
+      body: JSON.stringify({ email, emailType: 'subscribe', integrityToken, honeypot: '' }),
+    });
+    if (res.status === 201) return { ok: true };
+    if (res.status === 429) return { ok: false, status: 429, error: 'Too many attempts. Try again shortly.' };
+    // 400 covers a blocked domain, sign-ups closed, and a mail failure. The body says which;
+    // the reader gets one generic line and the log gets the reason.
     const body = await res.text().catch(() => '');
-    throw new Error(`Resend send failed: ${res.status} ${body.slice(0, 500)}`);
+    console.error(`subscribe: Ghost send-magic-link returned ${res.status}: ${body.slice(0, 500)}`);
+    return { ok: false, status: 502, error: GENERIC };
+  } catch (err) {
+    console.error('subscribe: Ghost request failed', err);
+    return { ok: false, status: 502, error: GENERIC };
   }
 }
-
-export { emailConfig };
