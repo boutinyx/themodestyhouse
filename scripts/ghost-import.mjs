@@ -61,8 +61,11 @@ if (!contentKey) throw new Error('GHOST_CONTENT_KEY is not set (needed for the r
 
 async function uploadCover(path) {
   const file = join('public', path.replace(/^\//, ''));
+  // A Blob with no `type` reaches Ghost with no content type and is refused as "not a valid image".
+  const type = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp' }[file.split('.').pop().toLowerCase()];
+  if (!type) throw new Error(`unsupported cover image type: ${file}`);
   const form = new FormData();
-  form.append('file', new Blob([readFileSync(file)]), basename(file));
+  form.append('file', new Blob([readFileSync(file)], { type }), basename(file));
   form.append('purpose', 'image');
   const res = await admin('POST', 'images/upload/', { form });
   return res.images[0].url;

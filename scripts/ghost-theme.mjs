@@ -1,25 +1,27 @@
 #!/usr/bin/env node
 /**
- * Upload, activate and VERIFY the redirect-only Ghost theme (ghost-theme/).
+ * VERIFY the redirect-only Ghost theme (ghost-theme/) on the live Ghost origin.
  *
  *   GHOST_URL=https://cms.themodestyhouse.com GHOST_ADMIN_KEY=<id>:<secret> \
  *     node scripts/ghost-theme.mjs
  *
  * Ghost is headless here: no visitor should ever see a Ghost-rendered page, and none of its
- * pages may be indexed (the site would compete with itself for every post). So after upload
- * this fetches the Ghost origin and ASSERTS the noindex and the redirect, rather than trusting
- * that the upload worked. Any failure exits non-zero.
+ * pages may be indexed (the site would compete with itself for every post). This ASSERTS the
+ * noindex and the redirect on the Ghost origin, rather than trusting that an upload worked.
+ * Any failure exits non-zero.
+ *
+ * IT DOES NOT UPLOAD. The design assumed the Admin API could (`POST /themes/upload/`), and it
+ * cannot: an integration's Admin key is refused with 403 "API tokens do not have permission to
+ * access this endpoint" for themes, settings, routes, users and invites (measured 2026-09-19).
+ * Those need a STAFF session, i.e. the logged-in Ghost admin. To (re)install the theme, zip
+ * ghost-theme/ WITHOUT routes.yaml, upload it under Settings -> Theme, activate it, and upload
+ * routes.yaml under Settings -> Labs. docs/log/2026-09-19-ghost-cms.md records what was done.
  *
  * NOTE: robots.txt in the theme is cached for a YEAR by Ghost's static theme handler. It is
- * verified live here once and should not be edited casually.
+ * verified live here and should not be edited casually.
  */
-import { execFileSync } from 'node:child_process';
-import { readFileSync, mkdtempSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import { admin, ghostEnv } from './lib/ghostAdmin.mjs';
 
-const THEME = 'modesty-house-headless';
 const SITE = 'https://themodestyhouse.com';
 const failures = [];
 const check = (name, ok, detail = '') => {
@@ -28,21 +30,6 @@ const check = (name, ok, detail = '') => {
 };
 
 const { url } = ghostEnv();
-const dir = mkdtempSync(join(tmpdir(), 'ghost-theme-'));
-const zipPath = join(dir, `${THEME}.zip`);
-execFileSync('zip', ['-r', '-q', zipPath, '.'], { cwd: 'ghost-theme' });
-
-const themeForm = new FormData();
-themeForm.append('file', new Blob([readFileSync(zipPath)], { type: 'application/zip' }), `${THEME}.zip`);
-await admin('POST', 'themes/upload/', { form: themeForm });
-console.log('uploaded theme');
-await admin('PUT', `themes/${THEME}/activate/`);
-console.log('activated theme');
-
-const routesForm = new FormData();
-routesForm.append('routes', new Blob([readFileSync('ghost-theme/routes.yaml')], { type: 'text/yaml' }), 'routes.yaml');
-await admin('POST', 'settings/routes/yaml', { form: routesForm });
-console.log('uploaded routes.yaml');
 
 // --- verify on the live origin ---
 const get = async (path) => {
