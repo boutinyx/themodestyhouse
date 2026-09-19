@@ -28,13 +28,15 @@ import { formatPrice } from '@/lib/price';
  * EVERY WORD IS DERIVED OR QUOTED, NOTHING IS COMPOSED (§10.18):
  *   - the lane intros and answer blocks are lib/lanes.ts and lib/laneAnswers.ts
  *   - the questions are lib/faq.ts, Tina's words, verbatim
- *   - the editorial posts are the published markdown, in full
+ *   - the editorial posts are Ghost's own plaintext rendering, in full
  *   - the house lines are counted from data/products.json at build time
  * If this file ever needs a sentence that exists nowhere else on the site, that
  * sentence is being invented for a robot, and it should not be written.
  *
- * `force-static`, so the single pass over the 10.9 MB catalogue below happens
- * once per build and never per request (§8: getProducts() is uncached).
+ * `revalidate = 3600` rather than `force-static`, because the editorial section comes
+ * from Ghost and a publish must reach this file. The single pass over the 10.9 MB
+ * catalogue below therefore runs at most once an hour and never per request (§8:
+ * getProducts() is uncached).
  *
  * ROUTE, not a file in public/, for the reason llms.txt gives: public/ is
  * served with `cache-control: max-age=14400` and is not fingerprinted, and this
@@ -44,9 +46,9 @@ import { formatPrice } from '@/lib/price';
 
 const BASE = 'https://themodestyhouse.com';
 
-export const dynamic = 'force-static';
+export const revalidate = 3600;
 
-export function GET() {
+export async function GET() {
   // ONE pass over the catalogue for every number in this file. Deliberately not
   // productsForBrand() per house, which would re-read and re-parse the whole
   // catalogue 91 times.
@@ -91,22 +93,17 @@ export function GET() {
 
   const questions = FAQ.map((f) => `### ${f.q}\n\n${f.a}`).join('\n\n');
 
-  const editorial = getPosts()
+  // Ghost's `plaintext` has no markdown headings, so there is nothing to collide with
+  // this file's own `##` sections and nothing to demote.
+  const editorial = (await getPosts())
     .map((p) => {
-      // A post's own headings are `##`, the level this file uses for its own
-      // top-level sections — inlined as-is, "The fabric is most of the price"
-      // reads as a sibling of "Houses" and "Questions". Demoted by TWO, not
-      // one: the post's title is rendered here as `###`, so its sections have
-      // to land at `####` to sit under it. Demoting by one merely moved the
-      // collision from the file's sections to the post's own title.
-      const demoted = p.body.replace(/^(#{1,4}) /gm, '##$1 ');
       return [
         `### ${p.title}`,
         `${BASE}/editorial/${p.slug} · published ${p.date}`,
         '',
         p.dek,
         '',
-        demoted,
+        p.plaintext,
       ].join('\n');
     })
     .join('\n\n---\n\n');

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import { createHash } from 'node:crypto';
 import { GET as GET_LLMS } from '../app/llms.txt/route';
 import { GET as GET_INDEX_MD } from '../app/index.md/route';
@@ -8,6 +8,12 @@ import { GET as GET_ARD } from '../app/.well-known/ard.json/route';
 import { SKILL_NAME, SKILL_PATH, HOMEPAGE_AGENT_LINKS, MARKDOWN_HOME_PATH } from './agentPaths';
 import { SITE_SECTIONS } from './siteSections';
 import { WEBMCP_TOOL_NAMES } from './webmcp';
+
+vi.mock('./posts', async (importOriginal) => {
+  const { FIXTURE_POSTS } = await import('./postsFixture');
+  return { ...(await importOriginal<typeof import('./posts')>()), getPosts: async () => FIXTURE_POSTS };
+});
+
 
 /**
  * The agent-facing files (lib/agentGuidance.ts). The failures these guard

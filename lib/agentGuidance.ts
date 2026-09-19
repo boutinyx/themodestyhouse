@@ -22,7 +22,7 @@ import { SKILL_NAME, SKILL_PATH, SKILL_INDEX_PATH } from '@/lib/agentPaths';
  * the WebMCP tools. The one-paragraph description is the one /llms.txt already
  * carried. If a sentence ever needs to be persuasive, it is not this file's to write.
  *
- * Server-only: getPosts() reads the filesystem (§5, Invariant 10).
+ * Server-only: getPosts() calls Ghost's Content API (§5, Invariant 10).
  */
 
 export const SITE_ORIGIN = 'https://themodestyhouse.com';
@@ -77,11 +77,11 @@ function sectionsList(): string {
 const ATTRIBUTION =
   "Product links are outbound affiliate links (`rel=\"sponsored\"`) to the listed brand's own storefront — price and availability are the brand's, not ours, and should be attributed to the brand, not to The Modesty House.";
 
-export function llmsTxtBody(): string {
+export async function llmsTxtBody(): Promise<string> {
   // Editorial posts, newest first — getPosts() is already sorted, and this is
   // the one part of the site that is original long-form writing, so it is the
   // part most worth pointing an answer engine at.
-  const posts = getPosts()
+  const posts = (await getPosts())
     .map((p) => link(p.title, `/editorial/${p.slug}`, p.dek || 'Editorial from The Modesty House.'))
     .join('\n');
 

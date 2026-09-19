@@ -74,7 +74,7 @@ export function EditStory({ edit }: { edit: Edit }) {
         </h2>
         <div className="mt-6 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl edit-story-text">
           {edit.styling.paragraphs.map((p) => (
-            <p key={p.slice(0, 40)} style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
+            <p key={p.slice(0, 40)} style={{ color: 'var(--prose)', fontSize: 16, lineHeight: 1.7 }}>
               {withLinks(p)}
             </p>
           ))}
@@ -122,7 +122,7 @@ export function EditStory({ edit }: { edit: Edit }) {
         {edit.styling.paragraphsBelow && edit.styling.paragraphsBelow.length > 0 && (
           <div className="mt-10 grid gap-x-12 gap-y-4 md:grid-cols-2 max-w-4xl edit-story-text">
             {edit.styling.paragraphsBelow.map((p) => (
-              <p key={p.slice(0, 40)} style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
+              <p key={p.slice(0, 40)} style={{ color: 'var(--prose)', fontSize: 16, lineHeight: 1.7 }}>
                 {withLinks(p)}
               </p>
             ))}

@@ -235,7 +235,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       {/* Only when a human has actually written one (§10.18). The measured
           facts below stand on their own for the other 84 houses. */}
       {brand.description?.trim() && (
-        <p className="mt-4 max-w-2xl" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>
+        <p className="mt-4 max-w-2xl" style={{ color: 'var(--prose)', fontSize: 17, lineHeight: 1.72 }}>
           {brand.description}
         </p>
       )}
@@ -334,7 +334,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           now answer above the fold. */}
       <section className="max-w-2xl mt-20 pt-12" style={{ borderTop: '1px solid var(--hairline)' }}>
         <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{makesQ}</h2>
-        <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>
+        <p className="mt-3" style={{ color: 'var(--prose)', fontSize: 16, lineHeight: 1.7 }}>
           {breakdown.map(([g, c], i) => (
             <span key={g}>
               {i > 0 && ' · '}
@@ -347,13 +347,13 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       {prices.length > 0 && (
         <section className="max-w-2xl mt-10">
           <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{pricesQ}</h2>
-          <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>{pricesA}</p>
+          <p className="mt-3" style={{ color: 'var(--prose)', fontSize: 16, lineHeight: 1.7 }}>{pricesA}</p>
         </section>
       )}
 
       <section className="max-w-2xl mt-10">
         <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{whereQ}</h2>
-        <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.7 }}>{whereA}</p>
+        <p className="mt-3" style={{ color: 'var(--prose)', fontSize: 16, lineHeight: 1.7 }}>{whereA}</p>
       </section>
 
       {siblings.length > 0 && (

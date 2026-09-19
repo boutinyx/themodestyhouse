@@ -266,7 +266,7 @@ export default async function LanePage({
           <h2 className="serif" style={{ fontSize: 'clamp(22px,2.6vw,30px)', color: 'var(--ink)', lineHeight: 1.15 }}>
             {answer.h2}
           </h2>
-          <p className="mt-4" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>{answer.body}</p>
+          <p className="mt-4" style={{ color: 'var(--prose)', fontSize: 17, lineHeight: 1.72 }}>{answer.body}</p>
         </section>
       )}
 

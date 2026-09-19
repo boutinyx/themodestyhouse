@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import { GET } from '../app/llms-full.txt/route';
 import { GET as GET_SHORT } from '../app/llms.txt/route';
 import { LANES } from './lanes';
@@ -7,6 +7,12 @@ import { FAQ } from './faq';
 import { getPosts } from './posts';
 import { BRANDS } from './../data/brands';
 import { hasBrandPage } from './brandPages';
+
+vi.mock('./posts', async (importOriginal) => {
+  const { FIXTURE_POSTS } = await import('./postsFixture');
+  return { ...(await importOriginal<typeof import('./posts')>()), getPosts: async () => FIXTURE_POSTS };
+});
+
 
 /**
  * The failure this guards against is the one /llms.txt already had once as a
@@ -50,24 +56,14 @@ describe('/llms-full.txt', () => {
 
   it('inlines the editorial posts in full, which is what "full" means', async () => {
     const body = await text();
-    const posts = getPosts();
+    const posts = await getPosts();
     expect(posts.length).toBeGreaterThan(0);
     for (const p of posts) {
       expect(body, p.slug).toContain(p.title);
-      // Compared with the post's headings demoted one level — the route does
-      // that so a post's `##` sections stop reading as siblings of this file's
-      // own `## Houses`. Everything else must match character for character.
-      expect(body, `${p.slug} body`).toContain(p.body.replace(/^(#{1,4}) /gm, '##$1 '));
-      // And the demotion must be REAL, not a no-op that the assertion above
-      // would also pass with. `## Foo` in the post must appear as `### Foo` in
-      // the file and must not still appear at its original level — checked on
-      // the post's own first heading, so this cannot be satisfied by some other
-      // post's text (§10.28 rule 1: the check has to be able to fail).
-      const firstHeading = p.body.match(/^## (.+)$/m)?.[1];
-      if (firstHeading) {
-        expect(body, `${p.slug} demoted`).toContain(`#### ${firstHeading}`);
-        expect(body, `${p.slug} not still ##`).not.toContain(`\n## ${firstHeading}`);
-      }
+      // Ghost's `plaintext` has no markdown headings, so nothing is demoted: the text
+      // must appear character for character. The fixture's plaintext contains a
+      // `## …` line to prove it is inlined verbatim and not transformed (§10.28 rule 1).
+      expect(body, `${p.slug} plaintext`).toContain(p.plaintext);
     }
   });
 

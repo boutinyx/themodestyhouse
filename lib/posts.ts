@@ -1,5 +1,4 @@
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import path from 'node:path';
+import { fetchAllPosts, fetchPostBySlug, ghostPostToPost } from './ghost';
 
 export type Post = {
   slug: string;
@@ -35,45 +34,19 @@ export type Post = {
   seoDescription?: string;
 };
 
-const DIR = path.join(process.cwd(), 'content', 'editorial');
-
-function parse(file: string): Post {
-  const raw = readFileSync(path.join(DIR, file), 'utf8');
-  const m = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  const fm: Record<string, string> = {};
-  let body = raw;
-  if (m) {
-    body = m[2].trim();
-    for (const line of m[1].split('\n')) {
-      const i = line.indexOf(':');
-      if (i > 0) {
-        const k = line.slice(0, i).trim();
-        const v = line.slice(i + 1).trim().replace(/^["']|["']$/g, '');
-        fm[k] = v;
-      }
-    }
-  }
-  return {
-    slug: fm.slug || file.replace(/\.md$/, ''),
-    title: fm.title || '',
-    dek: fm.dek || '',
-    category: fm.category || 'Story',
-    author: fm.author || 'The Modesty House',
-    date: fm.date || '',
-    image: fm.image || undefined,
-    imageAlt: fm.imageAlt || undefined,
-    body,
-    seoTitle: fm.seoTitle || undefined,
-    seoDescription: fm.seoDescription || undefined,
-  };
-}
-
-export function getPosts(): Post[] {
-  if (!existsSync(DIR)) return [];
-  return readdirSync(DIR)
-    .filter((f) => f.endsWith('.md'))
-    .map(parse)
-    .sort((a, b) => b.date.localeCompare(a.date));
+/**
+ * All published posts, newest first. Backed by Ghost's Content API (lib/ghost.ts).
+ *
+ * Sorted on the full ISO `published_at` BEFORE mapping to `yyyy-mm-dd`, so two
+ * posts published on one day keep their real order. Throws rather than returning
+ * `[]` when Ghost is unreachable or short: an empty blog must never ship silently.
+ */
+export async function getPosts(): Promise<Post[]> {
+  const rows = await fetchAllPosts();
+  return rows
+    .slice()
+    .sort((a, b) => b.published_at.localeCompare(a.published_at))
+    .map(ghostPostToPost);
 }
 
 /**
@@ -85,12 +58,15 @@ export function seo(p: Post): { title: string; description: string } {
   return { title: p.seoTitle || p.title, description: p.seoDescription || p.dek };
 }
 
-export function getPost(slug: string): Post | undefined {
-  return getPosts().find((p) => p.slug === slug);
+export async function getPost(slug: string): Promise<Post | undefined> {
+  const raw = await fetchPostBySlug(slug);
+  return raw ? ghostPostToPost(raw) : undefined;
 }
 
 export function formatDate(iso: string): string {
   if (!iso) return '';
-  const d = new Date(iso + 'T00:00:00');
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  // Accepts a bare `yyyy-mm-dd` or a full ISO timestamp; either way the calendar
+  // date is the UTC one, matching how ghostPostToPost() cuts it.
+  const d = new Date(iso.length === 10 ? iso + 'T00:00:00Z' : iso);
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }

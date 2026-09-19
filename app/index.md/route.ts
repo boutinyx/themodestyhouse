@@ -15,8 +15,10 @@ import { llmsTxtBody, MARKDOWN_HEADERS } from '@/lib/agentGuidance';
  * A separate URL has no such failure. The dot in the path also keeps it out of
  * the page-cache rule, same as /llms.txt.
  */
-export const dynamic = 'force-static';
+// Not force-static: the editorial list comes from Ghost, and a publish must reach this
+// file. The webhook revalidates it; the hour is the floor if a webhook is lost.
+export const revalidate = 3600;
 
-export function GET() {
-  return new Response(llmsTxtBody(), { headers: MARKDOWN_HEADERS });
+export async function GET() {
+  return new Response(await llmsTxtBody(), { headers: MARKDOWN_HEADERS });
 }

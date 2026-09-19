@@ -2,13 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { getPosts, formatDate } from '@/lib/posts';
-import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
+import { ghostImageVariant, ghostImageSrcSet } from '@/lib/ghostImage';
 import { pageMetadata } from '@/lib/seoCopy';
 
 export const metadata: Metadata = pageMetadata('/editorial');
 
-export default function EditorialPage() {
-  const posts = getPosts();
+export const revalidate = 3600;
+
+export default async function EditorialPage() {
+  const posts = await getPosts();
   return (
     <main className="max-w-[900px] mx-auto px-8 pt-12 md:pt-16 pb-24">
       <div className="text-center mb-14">
@@ -37,8 +39,8 @@ export default function EditorialPage() {
               <div className="overflow-hidden rounded-xl mb-4 md:mb-0" style={{ aspectRatio: '16 / 10', background: 'var(--bone)' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={editorialVariant(p.image, 900) ?? p.image}
-                  srcSet={editorialSrcSet(p.image)}
+                  src={ghostImageVariant(p.image, 900) ?? p.image}
+                  srcSet={ghostImageSrcSet(p.image)}
                   sizes="(max-width: 768px) 100vw, 40vw"
                   alt={p.imageAlt || ''}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

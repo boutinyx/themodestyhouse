@@ -17,7 +17,7 @@ import { hasBrandPage } from '@/lib/brandPages';
 import { regionsWithCounts, brandsInRegion, pins as regionPins, regionSlug, MAP } from '@/lib/brandRegions';
 import { withUtm } from '@/lib/outbound';
 import { getPosts } from '@/lib/posts';
-import { editorialVariant, editorialSrcSet } from '@/lib/staticImage';
+import { ghostImageVariant, ghostImageSrcSet } from '@/lib/ghostImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import { MARKDOWN_HOME_PATH } from '@/lib/agentPaths';
 import type { Product } from '@/lib/types';
@@ -91,10 +91,14 @@ const CATEGORY_SHOWCASE: { slug: string; label: string; image: string; zoom?: nu
  */
 const EDIT_BELOW_CATEGORIES = 'fall-essentials';
 
-export default function Home() {
+// The feature card and the rail read Ghost. The webhook revalidates `/` on a publish; the
+// hour is the floor when a webhook is lost, and equals the Cloudflare edge TTL.
+export const revalidate = 3600;
+
+export default async function Home() {
   const cats = categoryCards();
   const catCountBySlug = new Map(cats.map((c) => [c.slug, c.count]));
-  const posts = getPosts();
+  const posts = await getPosts();
   const feature = posts[0];
   const moreStories = posts.slice(1, 4);
   // Looked up from the live catalogue, not duplicated — see
@@ -817,8 +821,8 @@ export default function Home() {
                 // priority against the hero.
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={editorialVariant(feature.image, 900) ?? feature.image}
-                  srcSet={editorialSrcSet(feature.image)}
+                  src={ghostImageVariant(feature.image, 900) ?? feature.image}
+                  srcSet={ghostImageSrcSet(feature.image)}
                   sizes="(max-width: 768px) 100vw, 60vw"
                   alt={feature.imageAlt || ''}
                   className="absolute inset-0 w-full h-full object-cover"
@@ -857,7 +861,7 @@ export default function Home() {
                         // An 84px square that was being served the 1696px original.
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
-                          src={editorialVariant(s.image, 400) ?? s.image}
+                          src={ghostImageVariant(s.image, 400) ?? s.image}
                           alt={s.imageAlt || ''}
                           className="w-full h-full object-cover"
                           width={84}

@@ -27,12 +27,13 @@ import { llmsTxtBody } from '@/lib/agentGuidance';
  * simply never serves.
  */
 
-export const dynamic = 'force-static';
+// Not force-static: the editorial list comes from Ghost (see app/index.md/route.ts).
+export const revalidate = 3600;
 
-export function GET() {
+export async function GET() {
   // The body lives in lib/agentGuidance.ts, shared with /index.md and the
   // Agent Skill, so the three cannot drift apart.
-  const body = llmsTxtBody();
+  const body = await llmsTxtBody();
 
   return new Response(body, {
     headers: {

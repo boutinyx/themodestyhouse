@@ -90,7 +90,7 @@ export default function BrandTermsPage() {
       {CLAUSES.map((c) => (
         <section key={c.h} className="mt-10">
           <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>{c.h}</h2>
-          <p className="mt-3" style={{ color: '#4c4048', fontSize: 16, lineHeight: 1.72 }}>{c.p}</p>
+          <p className="mt-3" style={{ color: 'var(--prose)', fontSize: 16, lineHeight: 1.72 }}>{c.p}</p>
         </section>
       ))}
 

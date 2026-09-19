@@ -15,6 +15,12 @@ import { SITE_SECTIONS } from './siteSections';
 import { LANES } from './lanes';
 import { GET as GET_LLMS } from '../app/llms.txt/route';
 
+vi.mock('./posts', async (importOriginal) => {
+  const { FIXTURE_POSTS } = await import('./postsFixture');
+  return { ...(await importOriginal<typeof import('./posts')>()), getPosts: async () => FIXTURE_POSTS };
+});
+
+
 /**
  * These cover the tools' own logic. They do NOT prove the tools register in a
  * browser — a stubbed modelContext passes whether or not Chrome's does. That was

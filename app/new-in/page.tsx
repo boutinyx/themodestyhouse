@@ -118,7 +118,7 @@ export default async function NewInPage(
         <h2 className="serif" style={{ fontSize: 'clamp(22px,2.6vw,30px)', color: 'var(--ink)', lineHeight: 1.15 }}>
           {NEW_IN_ANSWER.h2}
         </h2>
-        <p className="mt-4" style={{ color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>{NEW_IN_ANSWER.body}</p>
+        <p className="mt-4" style={{ color: 'var(--prose)', fontSize: 17, lineHeight: 1.72 }}>{NEW_IN_ANSWER.body}</p>
         <div className="mt-6 flex items-center gap-4">
           <span className="eyebrow" style={{ color: 'var(--muted)' }}>Also browse</span>
           {NEW_IN_ANSWER.related.map((slug) => {

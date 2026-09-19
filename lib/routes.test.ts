@@ -1,7 +1,13 @@
-import { describe, it, expect } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sitemap from '../app/sitemap';
+
+vi.mock('./posts', async (importOriginal) => {
+  const { FIXTURE_POSTS } = await import('./postsFixture');
+  return { ...(await importOriginal<typeof import('./posts')>()), getPosts: async () => FIXTURE_POSTS };
+});
+
 
 /*
  * /directory ("All Clothing") was replaced by /new-in on 2026-09-01. A stale
@@ -48,8 +54,8 @@ describe('/directory is retired', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('is absent from sitemap.xml, and /new-in is in it', () => {
-    const urls = sitemap().map((e) => e.url);
+  it('is absent from sitemap.xml, and /new-in is in it', async () => {
+    const urls = (await sitemap()).map((e) => e.url);
     expect(urls).toContain('https://themodestyhouse.com/new-in');
     expect(urls.filter((u) => u.endsWith('/directory'))).toEqual([]);
   });

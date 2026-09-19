@@ -77,7 +77,7 @@ const csp = [
   // WooCommerce brands (e.g. La Femme) serve images from their own domain, not a
   // shared CDN — each such host is allowlisted explicitly (kept in sync with
   // ALLOWED_IMAGE_HOSTS in lib/catalogue.test.ts).
-  "img-src 'self' data: blob: https://cdn.shopify.com https://lafemmecollectie.nl https://kimodesty.com https://chador.nl https://i0.wp.com https://www.aneesaitaly.com https://vivizubedi.com https://abayasboutique.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com",
+  "img-src 'self' data: blob: https://cdn.shopify.com https://cms.themodestyhouse.com https://lafemmecollectie.nl https://kimodesty.com https://chador.nl https://i0.wp.com https://www.aneesaitaly.com https://vivizubedi.com https://abayasboutique.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com",
   // next/font self-hosts every woff2 under /_next/static/media (verified).
   "font-src 'self'",
   // localhost ws:// is for the Turbopack HMR socket. headers() applies to

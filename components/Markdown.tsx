@@ -94,7 +94,7 @@ export function Markdown({ body }: { body: string }) {
           return (
             <ul key={i} style={{ margin: '0 0 20px', paddingLeft: 22, listStyle: 'disc' }}>
               {lines.map((l, j) => (
-                <li key={j} style={{ margin: '0 0 8px', color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>
+                <li key={j} style={{ margin: '0 0 8px', color: 'var(--prose)', fontSize: 17, lineHeight: 1.72 }}>
                   {inline(l.trim().slice(2))}
                 </li>
               ))}
@@ -102,7 +102,7 @@ export function Markdown({ body }: { body: string }) {
           );
         }
         return (
-          <p key={i} style={{ margin: '0 0 20px', color: '#4c4048', fontSize: 17, lineHeight: 1.72 }}>
+          <p key={i} style={{ margin: '0 0 20px', color: 'var(--prose)', fontSize: 17, lineHeight: 1.72 }}>
             {inline(t)}
           </p>
         );

@@ -51,7 +51,11 @@ const BASE = 'https://themodestyhouse.com';
  * changeFrequency/priority are kept on the non-post entries: Google ignores
  * them but other crawlers still read them, and they cost nothing.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+// Not build-time only: the post list comes from Ghost, so a publish must reach the sitemap.
+// The webhook revalidates it; the hour is the floor if a webhook is lost.
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPaths = ['', '/new-in', '/editorial', '/edits', '/about', '/designers', '/faq', '/contact', '/privacy', '/terms'];
   const lanePaths = LANES.map((l) => `/${l.slug}`);
 
@@ -114,7 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const posts: MetadataRoute.Sitemap = getPosts().map((p) => ({
+  const posts: MetadataRoute.Sitemap = (await getPosts()).map((p) => ({
     url: `${BASE}/editorial/${p.slug}`,
     lastModified: p.date, // ISO yyyy-mm-dd, from content/editorial/*.md frontmatter
     changeFrequency: 'yearly',
