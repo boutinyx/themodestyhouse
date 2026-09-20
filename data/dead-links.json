@@ -1,19 +1,4740 @@
 {
-  "generatedAt": "2026-09-15T13:50:44.793Z",
+  "generatedAt": "2026-09-20T12:42:05.980Z",
   "entries": {
     "manzaram:15819248107845": {
       "url": "https://manzaram.nl/products/tweedelige-set-met-blouse-1",
-      "verdict": "dead",
-      "strikes": 1,
+      "verdict": "moved",
+      "strikes": 2,
       "firstSeen": "2026-09-15T13:50:44.793Z",
-      "lastSeen": "2026-09-15T13:50:44.793Z"
+      "lastSeen": "2026-09-20T12:42:05.980Z"
     },
     "manzaram:15819470438725": {
       "url": "https://manzaram.nl/products/maxi-jurk-met-knopen-2",
+      "verdict": "moved",
+      "strikes": 2,
+      "firstSeen": "2026-09-15T13:50:44.793Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "niswa:10028360696106": {
+      "url": "https://niswafashion.com/products/solid-modal-pink-bubble-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "niswa:10027900141866": {
+      "url": "https://niswafashion.com/products/solid-modal-soft-gauva-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "niswa:10129454858538": {
+      "url": "https://niswafashion.com/products/printed-modal-ember-of-eden",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "niswa:10041063866666": {
+      "url": "https://niswafashion.com/products/hawa-chiffon-cardigan-cocoa",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "niswa:6627658760246": {
+      "url": "https://niswafashion.com/products/lotus-petal-georgette-chiffon-scarf",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "niswa:8013870956842": {
+      "url": "https://niswafashion.com/products/mila-wrap-tunic-ruby",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "niswa:8907989877034": {
+      "url": "https://niswafashion.com/products/hafsa-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16069867078012": {
+      "url": "https://jawda.co.uk/products/stone-beige-linen-cotton-button-sleeve-abaya",
       "verdict": "dead",
       "strikes": 1,
-      "firstSeen": "2026-09-15T13:50:44.793Z",
-      "lastSeen": "2026-09-15T13:50:44.793Z"
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16054288449916": {
+      "url": "https://jawda.co.uk/products/stone-beige-linen-cotton-elasticated-skirt",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16054288351612": {
+      "url": "https://jawda.co.uk/products/black-linen-cotton-elasticated-skirt",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16054288187772": {
+      "url": "https://jawda.co.uk/products/pale-blue-cotton-blend-front-slit-dress",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16054287925628": {
+      "url": "https://jawda.co.uk/products/rose-pink-etched-crepe-lace-top",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16054287827324": {
+      "url": "https://jawda.co.uk/products/sea-green-etched-crepe-lace-skirt",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16054286582140": {
+      "url": "https://jawda.co.uk/products/black-etched-crepe-lace-abaya",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:15972469604732": {
+      "url": "https://jawda.co.uk/products/bottle-green-cotton-blend-striped-kimono-abaya",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16038522225020": {
+      "url": "https://jawda.co.uk/products/sage-green-cotton-blend-tassel-abaya",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:15972619223420": {
+      "url": "https://jawda.co.uk/products/black-linen-cotton-long-skirt",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:15627469980028": {
+      "url": "https://jawda.co.uk/products/nude-high-waisted-trousers",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:15627449336188": {
+      "url": "https://jawda.co.uk/products/burgundy-v-neck-top",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16005064032636": {
+      "url": "https://jawda.co.uk/products/sage-cotton-piping-abaya",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jawda:16005055021436": {
+      "url": "https://jawda.co.uk/products/pale-blue-linen-cotton-kaftan",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "esme-ny:7939709927517": {
+      "url": "https://www.esmenewyork.com/products/pure-silk-dress-in-amethyst-preorder",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "haute-hijab:7761949196384": {
+      "url": "https://www.hautehijab.com/products/sunset-tide-hijab",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "haute-hijab:6588989931616": {
+      "url": "https://www.hautehijab.com/products/refined-rosettes-hijab",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "haute-hijab:7761938022496": {
+      "url": "https://www.hautehijab.com/products/gilded-coast-hijab",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "vela:8592057008284": {
+      "url": "https://velascarves.com/products/pleated-self-contrast-pant-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "vela:8441385975964": {
+      "url": "https://velascarves.com/products/aqua-cobra",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "vela:8316287582364": {
+      "url": "https://velascarves.com/products/mixed-rib-skirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "vela:8316287025308": {
+      "url": "https://velascarves.com/products/mixed-rib-pullover",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "vela:8329555345564": {
+      "url": "https://velascarves.com/products/pleated-cardigan",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "emlavish:10844299821395": {
+      "url": "https://www.emlavish.com/products/diamond-hem-knitted-two-piece",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "merrachi:15282620072319": {
+      "url": "https://bymerrachi.com/products/premium-jersey-scarf-dark-cherry",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "merrachi:8759434838325": {
+      "url": "https://bymerrachi.com/products/breathable-merrachi-jersey-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "merrachi:15647947325823": {
+      "url": "https://bymerrachi.com/products/the-unique-flock-premium-dark-terra",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:8267050516618": {
+      "url": "https://avyaana.com/products/manar-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:8267050844298": {
+      "url": "https://avyaana.com/products/nyla-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:8267050713226": {
+      "url": "https://avyaana.com/products/roha-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:8267050614922": {
+      "url": "https://avyaana.com/products/ghazal-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633339056502": {
+      "url": "https://avyaana.com/products/elenora-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633338204534": {
+      "url": "https://avyaana.com/products/pastel-blue-tulip-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633337057654": {
+      "url": "https://avyaana.com/products/pink-foam-tulip-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15848127693174": {
+      "url": "https://avyaana.com/products/petals-from-the-sky-print",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633336566134": {
+      "url": "https://avyaana.com/products/burgundy-print-tulip",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633334862198": {
+      "url": "https://avyaana.com/products/bahira-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633334665590": {
+      "url": "https://avyaana.com/products/khayal-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633334468982": {
+      "url": "https://avyaana.com/products/sereen-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633334042998": {
+      "url": "https://avyaana.com/products/haneefa-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633333715318": {
+      "url": "https://avyaana.com/products/rania-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15633332535670": {
+      "url": "https://avyaana.com/products/dariya-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:8264802402442": {
+      "url": "https://avyaana.com/products/mocha-tulip",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:8264803287178": {
+      "url": "https://avyaana.com/products/lilac-tulip",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:8264802566282": {
+      "url": "https://avyaana.com/products/black-tulip-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15848139751798": {
+      "url": "https://avyaana.com/products/shila",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15848138473846": {
+      "url": "https://avyaana.com/products/carmine",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15848129364342": {
+      "url": "https://avyaana.com/products/bambi-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "avyaana:15848118190454": {
+      "url": "https://avyaana.com/products/black-print-tulip",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "manzaram:15814594494789": {
+      "url": "https://manzaram.nl/products/maxi-jurk-met-kraag-1",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "manzaram:15820102598981": {
+      "url": "https://manzaram.nl/products/maxi-jurk-met-splitmouwen",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "manzaram:15668585234757": {
+      "url": "https://manzaram.nl/products/maxi-jurk",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "manzaram:15574103032133": {
+      "url": "https://manzaram.nl/products/tweedelige-denim-set-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "lafemme:32066": {
+      "url": "https://lafemmecollectie.nl/product/essence-set/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "lafemme:31685": {
+      "url": "https://lafemmecollectie.nl/product/terra-dress/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "lafemme:30415": {
+      "url": "https://lafemmecollectie.nl/product/balloon-sleeve-blouse/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "lafemme:30093": {
+      "url": "https://lafemmecollectie.nl/product/basic-oversized-shirt/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "lafemme:32630": {
+      "url": "https://lafemmecollectie.nl/product/gingham-dress/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "lafemme:32718": {
+      "url": "https://lafemmecollectie.nl/product/blokjes-twinset/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "whiteicy:15666941264212": {
+      "url": "https://whiteicy.com/products/jupe-evasee-claire",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "whiteicy:15508264812884": {
+      "url": "https://whiteicy.com/products/chemise-vichy-a-carreaux-elise",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "whiteicy:15692490342740": {
+      "url": "https://whiteicy.com/products/ensemble-selene-maille-signature",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8098812428505": {
+      "url": "https://kamin.ae/products/the-naya-creme-half-sleeve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8098802106585": {
+      "url": "https://kamin.ae/products/the-naya-creme-cut-sleeve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8098773532889": {
+      "url": "https://kamin.ae/products/the-naya-creme-long-sleeve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9276918137049": {
+      "url": "https://kamin.ae/products/the-carmel-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8177345495257": {
+      "url": "https://kamin.ae/products/the-layal-navy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8177338024153": {
+      "url": "https://kamin.ae/products/the-layal-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8177421418713": {
+      "url": "https://kamin.ae/products/the-shaikha-olive",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9433035505881": {
+      "url": "https://kamin.ae/products/the-joudy-purple",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9433031180505": {
+      "url": "https://kamin.ae/products/the-reena-purple",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8517963153625": {
+      "url": "https://kamin.ae/products/the-joud-purple",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9180632842457": {
+      "url": "https://kamin.ae/products/the-shamma-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9824240763097": {
+      "url": "https://kamin.ae/products/the-renad-yellow",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9824240468185": {
+      "url": "https://kamin.ae/products/the-renad-off-white",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9824231555289": {
+      "url": "https://kamin.ae/products/the-renad-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:8939147624665": {
+      "url": "https://kamin.ae/products/the-ruwaya-sage-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9276925378777": {
+      "url": "https://kamin.ae/products/the-flair-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "kamin:9180567371993": {
+      "url": "https://kamin.ae/products/the-latifa-olive",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "noureen:55472": {
+      "url": "https://noureenmodestfashion.com/product/abaya-jazz-berry/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "noureen:49706": {
+      "url": "https://noureenmodestfashion.com/product/luxury-jersey-khimaar-off-white/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "chic-modesty:10323057475922": {
+      "url": "https://chicandmodesty.com/products/hijab-jersey-premium-cafe-au-lait",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:15059702350187": {
+      "url": "https://nihan.com.tr/products/buyuk-beden-gomlek-yaka-modal-tunik-i̇ndigo",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14919202668907": {
+      "url": "https://nihan.com.tr/products/acilimli-saten-etek-bordo",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14919200440683": {
+      "url": "https://nihan.com.tr/products/acilimli-saten-etek-kahve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14919201849707": {
+      "url": "https://nihan.com.tr/products/acilimli-saten-etek-siyah",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14919201030507": {
+      "url": "https://nihan.com.tr/products/acilimli-saten-etek-lacivert",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14919200833899": {
+      "url": "https://nihan.com.tr/products/acilimli-saten-etek-gri",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14919198736747": {
+      "url": "https://nihan.com.tr/products/acilimli-saten-etek-bej",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14916492001643": {
+      "url": "https://nihan.com.tr/products/buyuk-beden-elbiseli-abaya-takim-siyah-3",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14916633133419": {
+      "url": "https://nihan.com.tr/products/buyuk-beden-yakasi-parlak-tasli-elbise-siyah",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14914081325419": {
+      "url": "https://nihan.com.tr/products/buyuk-beden-jakar-kumasli-elbiseli-abaya-takim-siyah",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14914306736491": {
+      "url": "https://nihan.com.tr/products/buyuk-beden-parlak-tas-detayli-abiye-bej",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14914073985387": {
+      "url": "https://nihan.com.tr/products/buyuk-beden-omuzlari-tuy-detayli-elbise-siyah",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nihan:14916447928683": {
+      "url": "https://nihan.com.tr/products/tas-detayli-pantolon-ceket-takim-siyah-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "chi-ka:8524344885409": {
+      "url": "https://chikacollection.com/products/two-layer-flow-abaya-in-black-dotted-chocolate-brown-rtw",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "chi-ka:8519973175457": {
+      "url": "https://chikacollection.com/products/shawl-lapel-abaya-in-black-rtw",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "chi-ka:8519946535073": {
+      "url": "https://chikacollection.com/products/flow-abaya-in-grey-black-with-grey-piping-rtw",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "chi-ka:8493233045665": {
+      "url": "https://chikacollection.com/products/tencel-twill-abaya-in-brown-rtw",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "chi-ka:8434363990177": {
+      "url": "https://chikacollection.com/products/straight-cut-kaftan-with-blue-pink-print-rtw",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "baqa:8994416984315": {
+      "url": "https://baqaofficial.com/products/bol-paca-cupro-pantolon",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "baqa:9114046136571": {
+      "url": "https://baqaofficial.com/products/lacivert-lastikli-bol-pantolon",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "baqa:9313790099707": {
+      "url": "https://baqaofficial.com/products/keten-pili-detayli-pantolon",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "baqa:8922331939067": {
+      "url": "https://baqaofficial.com/products/sal-detay-payetli-pantolon",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "baqa:9133043220731": {
+      "url": "https://baqaofficial.com/products/kruvaze-yaka-kasmir-kaban",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "baqa:9132372066555": {
+      "url": "https://baqaofficial.com/products/minimalist-bluz-bej",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "baqa:9313785872635": {
+      "url": "https://baqaofficial.com/products/puskul-tuy-detayli-dantel-etek",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:8726780870984": {
+      "url": "https://int.toucheprive.com/products/floral-patterned-chiffon-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9372746219848": {
+      "url": "https://int.toucheprive.com/products/pleated-satin-skirt-35",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10018217427272": {
+      "url": "https://int.toucheprive.com/products/kemerli̇-cepli̇-kupra-elbi̇se-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:8903920157000": {
+      "url": "https://int.toucheprive.com/products/wide-leg-crepe-trousers-7",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10020014588232": {
+      "url": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-kupra-elbi̇se-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10091653857608": {
+      "url": "https://int.toucheprive.com/products/ci̇zgi̇li̇-keten-gomlek",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10130619138376": {
+      "url": "https://int.toucheprive.com/products/kemerli̇-popli̇n-runi̇k-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:8770182349128": {
+      "url": "https://int.toucheprive.com/products/floral-lace-bomber-jacket-4",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9332151386440": {
+      "url": "https://int.toucheprive.com/products/pi̇le-detayli-krep-ji̇le",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:8689669439816": {
+      "url": "https://int.toucheprive.com/products/embroidered-shirt-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10085341233480": {
+      "url": "https://int.toucheprive.com/products/maxi-dress-with-gold-accessories-3",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9874911330632": {
+      "url": "https://int.toucheprive.com/products/kemerli̇-oversize-elbi̇se",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9857450246472": {
+      "url": "https://int.toucheprive.com/products/glitter-crinkle-shirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9999897493832": {
+      "url": "https://int.toucheprive.com/products/ethnic-embroidered-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10085164581192": {
+      "url": "https://int.toucheprive.com/products/color-block-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9893529878856": {
+      "url": "https://int.toucheprive.com/products/desenli̇-keten-gomlek-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9893530304840": {
+      "url": "https://int.toucheprive.com/products/abstract-desenli̇-etek",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9999897723208": {
+      "url": "https://int.toucheprive.com/products/kimono-and-trouser-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9889804484936": {
+      "url": "https://int.toucheprive.com/products/knit-tunic-trousers-set-9",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:8687764504904": {
+      "url": "https://int.toucheprive.com/products/crepe-vest-with-chiffon-detail",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10054186107208": {
+      "url": "https://int.toucheprive.com/products/linen-dress-with-lemon",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9660172796232": {
+      "url": "https://int.toucheprive.com/products/knit-sweater-winit-zipper-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9878960996680": {
+      "url": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-tasli-kupra-gomlek",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9264670671176": {
+      "url": "https://int.toucheprive.com/products/fermuarli-uzun-mont",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10095427977544": {
+      "url": "https://int.toucheprive.com/products/pleated-short-blouse-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10025026781512": {
+      "url": "https://int.toucheprive.com/products/patterned-satin-skirt-7",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9827054354760": {
+      "url": "https://int.toucheprive.com/products/gomlek-yaka-tuni̇k-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10038178578760": {
+      "url": "https://int.toucheprive.com/products/asymmetric-belt-detail-jacket-pants-set-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10091653792072": {
+      "url": "https://int.toucheprive.com/products/ci̇zgi̇li̇-geni̇s-mansetli̇-gomlek-3",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10095428337992": {
+      "url": "https://int.toucheprive.com/products/pleated-chiffon-skirt-9",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10099163791688": {
+      "url": "https://int.toucheprive.com/products/saten-gomlek-pantolon-takim",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10099163562312": {
+      "url": "https://int.toucheprive.com/products/saten-gomlek-8",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10059092001096": {
+      "url": "https://int.toucheprive.com/products/patterned-dress-4",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9690102989128": {
+      "url": "https://int.toucheprive.com/products/shirt-with-ethnic-patterned-detailed-3",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10018217165128": {
+      "url": "https://int.toucheprive.com/products/deri̇-kemerli̇-desenli̇-elbi̇se-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10017545650504": {
+      "url": "https://int.toucheprive.com/products/gold-buttoned-cupra-skirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10034741313864": {
+      "url": "https://int.toucheprive.com/products/kontrast-ci̇cek-desenli̇-elbi̇se",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10017545519432": {
+      "url": "https://int.toucheprive.com/products/belted-cupra-shirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10019284910408": {
+      "url": "https://int.toucheprive.com/products/i̇nce-jakarli-bomber-ceket",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10020013703496": {
+      "url": "https://int.toucheprive.com/products/sunray-pleated-skirt-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9922640609608": {
+      "url": "https://int.toucheprive.com/products/shirt-and-skirt-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9757996876104": {
+      "url": "https://int.toucheprive.com/products/beli̇-lastkli̇-orme-pantolon",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:8433308270920": {
+      "url": "https://int.toucheprive.com/products/elastic-waisted-crepe-trousers-6",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10025463218504": {
+      "url": "https://int.toucheprive.com/products/desenli̇-saten-tuni̇k",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9893268816200": {
+      "url": "https://int.toucheprive.com/products/jacquard-ethnical-patterned-shirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9893268554056": {
+      "url": "https://int.toucheprive.com/products/front-tie-jacket-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10018861908296": {
+      "url": "https://int.toucheprive.com/products/shirt-with-gathered-sleeves-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10018861973832": {
+      "url": "https://int.toucheprive.com/products/chinese-buttoned-jacket-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10015695667528": {
+      "url": "https://int.toucheprive.com/products/patterned-basic-shirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10019285696840": {
+      "url": "https://int.toucheprive.com/products/elastic-waist-skirt-12",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9879994368328": {
+      "url": "https://int.toucheprive.com/products/beli̇-kusakli-gomlek-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9886499504456": {
+      "url": "https://int.toucheprive.com/products/faux-pearl-detailed-poplin-shirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9998231699784": {
+      "url": "https://int.toucheprive.com/products/striped-shirt-with-elastic-waistband-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9979030012232": {
+      "url": "https://int.toucheprive.com/products/elasticated-cupra-trousers",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9871417966920": {
+      "url": "https://int.toucheprive.com/products/gold-buttoned-cupra-shirt-3",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9878961324360": {
+      "url": "https://int.toucheprive.com/products/yaka-detayli-kupra-gomlek-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9865946562888": {
+      "url": "https://int.toucheprive.com/products/beli̇-lasti̇kli̇-saten-etek-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9496902041928": {
+      "url": "https://int.toucheprive.com/products/bros-detayli-buzgulu-elbi̇se",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:6851901653126": {
+      "url": "https://int.toucheprive.com/products/yelek-etek-kupra-takim-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9998231798088": {
+      "url": "https://int.toucheprive.com/products/pleated-waisted-shirt-with-stones-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:8556789367112": {
+      "url": "https://int.toucheprive.com/products/poplin-shirt-with-widee-cuff-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10053112430920": {
+      "url": "https://int.toucheprive.com/products/pi̇li̇seli̇-pantolon-etek-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9538855174472": {
+      "url": "https://int.toucheprive.com/products/striped-tunic-with-metal-buttons-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10023662059848": {
+      "url": "https://int.toucheprive.com/products/oversize-keten-gomlek-4",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:10025025536328": {
+      "url": "https://int.toucheprive.com/products/openwork-blouse-with-elastic-clothes",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9985246593352": {
+      "url": "https://int.toucheprive.com/products/fi̇yonk-detayli-2-li̇-takim-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9470476648776": {
+      "url": "https://int.toucheprive.com/products/embroidered-denim-jacket",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9650666963272": {
+      "url": "https://int.toucheprive.com/products/denim-jacket-4",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "touche-prive:9650659164488": {
+      "url": "https://int.toucheprive.com/products/denim-jacket-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jennah-boutique:7897361907888": {
+      "url": "https://jennah-boutique.com/products/robe-polo-sauge",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jennah-boutique:7764198686896": {
+      "url": "https://jennah-boutique.com/products/khimar-soie-de-medine",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "jennah-boutique:7871081021616": {
+      "url": "https://jennah-boutique.com/products/robe-polo-mist",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "elaa-the-label:7326905303173": {
+      "url": "https://elaathelabel.com/products/preorder-lila-muted-floral",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "modesty-in-style:10758602129718": {
+      "url": "https://modestyinstyle.com.au/products/anna-knit-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "modesty-in-style:10742492823862": {
+      "url": "https://modestyinstyle.com.au/products/basic-cardigan",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "modesty-in-style:10811326300470": {
+      "url": "https://modestyinstyle.com.au/products/jade-slit-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "vivi-zubedi:68618": {
+      "url": "https://vivizubedi.com/product/vz-monogram-long-shawl-loden-green-200x65/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:16075626905980": {
+      "url": "https://storewf.com/products/100-washed-linen-white-kimono-trouser-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15905788363132": {
+      "url": "https://storewf.com/products/royal-blue-wrap-style-modest-evening-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15898164429180": {
+      "url": "https://storewf.com/products/laser-cut-scuba-jacket-pant-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15897249120636": {
+      "url": "https://storewf.com/products/black-smocked-pleated-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15897243910524": {
+      "url": "https://storewf.com/products/mustard-smocked-pleated-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15551627592060": {
+      "url": "https://storewf.com/products/fuchsia-maxi-dress-with-bow-jewel-detail",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15554307096956": {
+      "url": "https://storewf.com/products/purple-embellished-tunic-wide-leg-trouser-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15554372698492": {
+      "url": "https://storewf.com/products/purple-embellished-maxi-dress-with-draped-overlay",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15551352930684": {
+      "url": "https://storewf.com/products/pastel-floral-button-down-dress-with-belt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15554360246652": {
+      "url": "https://storewf.com/products/black-feather-trim-maxi-dress-with-embellished-scarf-detail",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15551710232956": {
+      "url": "https://storewf.com/products/multi-colour-printed-kaftan-with-scarf-set-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:15273006006652": {
+      "url": "https://storewf.com/products/cotton-stripe-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "store-wf:14652207464828": {
+      "url": "https://storewf.com/products/green-jaquarde-belted-jacket",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abadia:8819724419226": {
+      "url": "https://shop.abadia.me/products/panelled-dress-blue",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abadia:8447136170138": {
+      "url": "https://shop.abadia.me/products/mid-rise-bermuda-shorts-in-cream",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "lameera-moda:9064622850216": {
+      "url": "https://lameeramoda.com/products/premium-modal-scarf-sage",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "illi-studio:9097043345560": {
+      "url": "https://illistudio.com/products/zia-in-mint",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "illi-studio:9097334849688": {
+      "url": "https://illistudio.com/products/lisa-in-burgundy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "illi-studio:9129308389528": {
+      "url": "https://illistudio.com/products/bella-co-ord-set-in-brown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "illi-studio:9100973408408": {
+      "url": "https://illistudio.com/products/rumi-in-cream",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "illi-studio:8847509291160": {
+      "url": "https://illistudio.com/products/eleanor-in-pink",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "illi-studio:8603914862744": {
+      "url": "https://illistudio.com/products/aisha-in-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "illi-studio:8996049617048": {
+      "url": "https://illistudio.com/products/mihi-in-green",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10964972568919": {
+      "url": "https://thegoldendune.com/products/aquarelle-kleid",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10944634421591": {
+      "url": "https://thegoldendune.com/products/karierte-maxikleid",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10944607846743": {
+      "url": "https://thegoldendune.com/products/blumiges-maxi-kleid-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10944589365591": {
+      "url": "https://thegoldendune.com/products/blumiges-kleid",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10927974252887": {
+      "url": "https://thegoldendune.com/products/aquarelle-kleid-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10903883055447": {
+      "url": "https://thegoldendune.com/products/floral-kleid",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10540004049239": {
+      "url": "https://thegoldendune.com/products/eternelle-abaya-olive-green",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10537787818327": {
+      "url": "https://thegoldendune.com/products/eternelle-abaya-bordo",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "golden-dune:10536041939287": {
+      "url": "https://thegoldendune.com/products/eternelle-abaya-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:15622192300372": {
+      "url": "https://lapetiteparisienne.co/products/ensemble-aurora-marron",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:15603289817428": {
+      "url": "https://lapetiteparisienne.co/products/ensemble-myni-100-lin",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:8822904521044": {
+      "url": "https://lapetiteparisienne.co/products/ensemble-rayures-bleu-jumelle",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:15051544330580": {
+      "url": "https://lapetiteparisienne.co/products/blouse-2-poches-marron-l2096-lucee",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:15051544133972": {
+      "url": "https://lapetiteparisienne.co/products/pantalon-fluide-marron-l2081-lucee",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:15041873903956": {
+      "url": "https://lapetiteparisienne.co/products/robe-froufrou-beige-kj-06",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:12482374730068": {
+      "url": "https://lapetiteparisienne.co/products/blazer-marron-4-boutons-w25262",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:12371248742740": {
+      "url": "https://lapetiteparisienne.co/products/blazer-carreaux-v12369",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:15619132031316": {
+      "url": "https://lapetiteparisienne.co/products/ensemble-rosa-ecru",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "la-petite-parisienne:15488423199060": {
+      "url": "https://lapetiteparisienne.co/products/robe-longue-blanche-manche-bouffante-sc208-copie",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bybdsha:16007585988989": {
+      "url": "https://bybdsha.com/products/brown-japanese-jacquard-silk-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "parladusa:15657122496838": {
+      "url": "https://parladusa.com/products/kleid-84",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "parladusa:15568706732358": {
+      "url": "https://parladusa.com/products/oberteil-20",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "parladusa:15365755273542": {
+      "url": "https://parladusa.com/products/maria-spitzen-oberteil",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "parladusa:15120681042246": {
+      "url": "https://parladusa.com/products/oversize-blazer",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "parladusa:14981513314630": {
+      "url": "https://parladusa.com/products/milan-kleid",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "parladusa:15317908980038": {
+      "url": "https://parladusa.com/products/oberteil-7",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "parladusa:15208751464774": {
+      "url": "https://parladusa.com/products/pulloverkleid-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "ria-miranda:9107805044994": {
+      "url": "https://riamiranda.com/products/marina-neckerchief",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "ria-miranda:9596510208258": {
+      "url": "https://riamiranda.com/products/hinata-shirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "ria-miranda:9620468990210": {
+      "url": "https://riamiranda.com/products/dana-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "ria-miranda:9085449502978": {
+      "url": "https://riamiranda.com/products/merlot-shirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "hidayah:7603902415019": {
+      "url": "https://hidayah.dk/products/premium-plain-jersey-sjal-stretchy-laurel",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "hidayah:9933574898011": {
+      "url": "https://hidayah.dk/products/premium-jersey-instant-khimar-lyse-bla",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "hidayah:7603888029867": {
+      "url": "https://hidayah.dk/products/premium-plain-jersey-sjal-stretchy-gold",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8883876134964": {
+      "url": "https://aeonabaya.net/products/taylor",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8883862994996": {
+      "url": "https://aeonabaya.net/products/lauren",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8868459544628": {
+      "url": "https://aeonabaya.net/products/umber-skirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8868459020340": {
+      "url": "https://aeonabaya.net/products/umber-vest",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8868456726580": {
+      "url": "https://aeonabaya.net/products/umber-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8821395783732": {
+      "url": "https://aeonabaya.net/products/1121",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8655468560436": {
+      "url": "https://aeonabaya.net/products/177",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8821394997300": {
+      "url": "https://aeonabaya.net/products/1119",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768710610996": {
+      "url": "https://aeonabaya.net/products/abaya-kaki-trenchcoat",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8541758324788": {
+      "url": "https://aeonabaya.net/products/brooke-pants",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8541023600692": {
+      "url": "https://aeonabaya.net/products/704-madeleine-pant",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8540939681844": {
+      "url": "https://aeonabaya.net/products/702-ube-pant",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7789181141044": {
+      "url": "https://aeonabaya.net/products/cobra-silk-abaya-oily",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8656865493044": {
+      "url": "https://aeonabaya.net/products/843",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8746700079156": {
+      "url": "https://aeonabaya.net/products/996",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8746698506292": {
+      "url": "https://aeonabaya.net/products/983",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8746698014772": {
+      "url": "https://aeonabaya.net/products/979",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8542385504308": {
+      "url": "https://aeonabaya.net/products/brooke-vest",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8540838789172": {
+      "url": "https://aeonabaya.net/products/701-madeleine-vest",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8540674228276": {
+      "url": "https://aeonabaya.net/products/678-ube-vest",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768704942132": {
+      "url": "https://aeonabaya.net/products/set-beige-with-letters",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8742209159220": {
+      "url": "https://aeonabaya.net/products/962",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8699233271860": {
+      "url": "https://aeonabaya.net/products/905",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8683324833844": {
+      "url": "https://aeonabaya.net/products/black-and-blue-velvet-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768699338804": {
+      "url": "https://aeonabaya.net/products/blazer-abaya-green-and-black-color-blocked-crepe-blazer",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8672652722228": {
+      "url": "https://aeonabaya.net/products/868",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8673555710004": {
+      "url": "https://aeonabaya.net/products/877",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8676415930420": {
+      "url": "https://aeonabaya.net/products/886",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768711331892": {
+      "url": "https://aeonabaya.net/products/maroon-velvet-vest",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8672646463540": {
+      "url": "https://aeonabaya.net/products/872",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8672644104244": {
+      "url": "https://aeonabaya.net/products/867",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8656867393588": {
+      "url": "https://aeonabaya.net/products/852",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8656866508852": {
+      "url": "https://aeonabaya.net/products/848",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8656996270132": {
+      "url": "https://aeonabaya.net/products/855",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8636244525108": {
+      "url": "https://aeonabaya.net/products/797",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8632093540404": {
+      "url": "https://aeonabaya.net/products/the-modern-everyday-crepe-abaya-778-modern-everyday-beige-trenchcoat",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8540812116020": {
+      "url": "https://aeonabaya.net/products/700-blazer-style-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8540617146420": {
+      "url": "https://aeonabaya.net/products/677-tailored-blazer-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8541559291956": {
+      "url": "https://aeonabaya.net/products/709-dark-green-linen-blazer",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8541501390900": {
+      "url": "https://aeonabaya.net/products/708-elegant-jacquard-silk-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8541476421684": {
+      "url": "https://aeonabaya.net/products/707-blazer-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8540971171892": {
+      "url": "https://aeonabaya.net/products/brooke",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8412066807860": {
+      "url": "https://aeonabaya.net/products/682-black-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8412065792052": {
+      "url": "https://aeonabaya.net/products/681-classic-straight-cut-black-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8412064153652": {
+      "url": "https://aeonabaya.net/products/680-flowing-black-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8412060844084": {
+      "url": "https://aeonabaya.net/products/azurite-673-lightweight-linen",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8412054192180": {
+      "url": "https://aeonabaya.net/products/jasper-669-full-length-cotton-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:8405924806708": {
+      "url": "https://aeonabaya.net/products/lapis-breathable-lightweight-linen",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7996127674420": {
+      "url": "https://aeonabaya.net/products/black-hakaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7794720636980": {
+      "url": "https://aeonabaya.net/products/620-abaya-crafted-from-premium-black-linen",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7794720505908": {
+      "url": "https://aeonabaya.net/products/617-elegant-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7794720014388": {
+      "url": "https://aeonabaya.net/products/600-silk-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7794719752244": {
+      "url": "https://aeonabaya.net/products/588-dark-chocolate",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7794719522868": {
+      "url": "https://aeonabaya.net/products/580-lightweight-jacquard-silk-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7794719490100": {
+      "url": "https://aeonabaya.net/products/579-jacquard-silk-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7794131075124": {
+      "url": "https://aeonabaya.net/products/elegant-black-crepe-and-velvet-abaya-1-velvet-bloom",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7789183729716": {
+      "url": "https://aeonabaya.net/products/abaya-linen-pilise-camel-orange-blazer-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7785452830772": {
+      "url": "https://aeonabaya.net/products/black-crepe-abaya-with-red-embroidery-black-ruby",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7785452765236": {
+      "url": "https://aeonabaya.net/products/beige-and-black-velvet-abayaayla",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7785450995764": {
+      "url": "https://aeonabaya.net/products/black-velvet-abaya-with-embroidery-luxurious-black-velvet-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7785450733620": {
+      "url": "https://aeonabaya.net/products/himmering-silk-purple-freesize-purple-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7781361745972": {
+      "url": "https://aeonabaya.net/products/bisht-navy-blue-with-green-hand-embroidery-luxurious-navy-blue-bisht",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7781217337396": {
+      "url": "https://aeonabaya.net/products/abaya-linen-black-with-beige-in-half-black-linen-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769624870964": {
+      "url": "https://aeonabaya.net/products/linen-white-with-embroidery-bisht-style-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769622872116": {
+      "url": "https://aeonabaya.net/products/linen-light-blue-with-hand-embroidery-lightweight-linen-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769620971572": {
+      "url": "https://aeonabaya.net/products/bisht-linen-camel-brown-with-hand-embroidery",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769617006644": {
+      "url": "https://aeonabaya.net/products/blazer-freesize-mixed-navy-blue-freesize-blazer",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769606520884": {
+      "url": "https://aeonabaya.net/products/black-bisht-with-silver-embroidery",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769601540148": {
+      "url": "https://aeonabaya.net/products/camel-freesize-blazer-auburn-blazer-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769600524340": {
+      "url": "https://aeonabaya.net/products/luxurious-black-velvet-bisht-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769594658868": {
+      "url": "https://aeonabaya.net/products/bisht-velvet-black-with-gold-hand-embroidery-luxurious-black-velvet",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769594069044": {
+      "url": "https://aeonabaya.net/products/blazer-navy-blue-velvet-and-crepe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7769559007284": {
+      "url": "https://aeonabaya.net/products/linen-light-green-with-hand-embroidery",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768737447988": {
+      "url": "https://aeonabaya.net/products/crepe-abaya-black-black-crepe-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768737218612": {
+      "url": "https://aeonabaya.net/products/black-crepe-abaya-2-hannah",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768732532788": {
+      "url": "https://aeonabaya.net/products/beige-gray-and-beige-jacquard-crepe-abaya-ashira-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768704221236": {
+      "url": "https://aeonabaya.net/products/abaya-linen-green-with-navy-design",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768704155700": {
+      "url": "https://aeonabaya.net/products/abaya-linen-navy-embroidery-caspia-navy-blue-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768704057396": {
+      "url": "https://aeonabaya.net/products/abaya-white-linen-bronze-embroided-white-linen-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768703959092": {
+      "url": "https://aeonabaya.net/products/abaya-camel-linen-with-pearl",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768698748980": {
+      "url": "https://aeonabaya.net/products/black-abaya-velvet-black-with-crepe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768698454068": {
+      "url": "https://aeonabaya.net/products/black-crepe-blazer-style-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "aeon-abaya:7768697569332": {
+      "url": "https://aeonabaya.net/products/black-velvet-abaya-with-red-embroidery",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7954928205872": {
+      "url": "https://nouralhouda.com.au/products/textured-knit-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7854542159920": {
+      "url": "https://nouralhouda.com.au/products/batul-boucle-cardigan-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7885859979312": {
+      "url": "https://nouralhouda.com.au/products/modal-ruched-top-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7854541930544": {
+      "url": "https://nouralhouda.com.au/products/batul-boucle-cardigan-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7902205018160": {
+      "url": "https://nouralhouda.com.au/products/chiffon-skirt-fudge",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7935669829680": {
+      "url": "https://nouralhouda.com.au/products/jersey-batwing-abaya-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7901490610224": {
+      "url": "https://nouralhouda.com.au/products/sabrina-lace-detail-top-espresso",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7759662383152": {
+      "url": "https://nouralhouda.com.au/products/single-stitched-modal-hijab-set-teal",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7898709458992": {
+      "url": "https://nouralhouda.com.au/products/lameesa-lyocell-trench-coat-cedar",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7935722848304": {
+      "url": "https://nouralhouda.com.au/products/mariam-mikado-dress-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7764038615088": {
+      "url": "https://nouralhouda.com.au/products/tencel-slip-dress-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7908110106672": {
+      "url": "https://nouralhouda.com.au/products/sarah-knit-cardigan-charcoal",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7854221852720": {
+      "url": "https://nouralhouda.com.au/products/sarah-knit-cardigan-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7844228562992": {
+      "url": "https://nouralhouda.com.au/products/the-ayah-shirt-navy-blue",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7844227907632": {
+      "url": "https://nouralhouda.com.au/products/the-ayah-shirt-charcoal-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7838031839280": {
+      "url": "https://nouralhouda.com.au/products/tencel-tank-top-linseed",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7785763405872": {
+      "url": "https://nouralhouda.com.au/products/rayhana-slip-dress-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7703337992240": {
+      "url": "https://nouralhouda.com.au/products/taliyah-contrast-panel-dress-seafoam",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7786497114160": {
+      "url": "https://nouralhouda.com.au/products/lara-palazzo-pants-blue",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7786497179696": {
+      "url": "https://nouralhouda.com.au/products/lara-palazzo-pants-espresso",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7759186755632": {
+      "url": "https://nouralhouda.com.au/products/jersey-twist-knot-skirt-truffle",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7703356932144": {
+      "url": "https://nouralhouda.com.au/products/taliyah-contrast-panel-dress-linen",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7771824128048": {
+      "url": "https://nouralhouda.com.au/products/anaya-wide-leg-pants-teal",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7669527019568": {
+      "url": "https://nouralhouda.com.au/products/yasmina-crinkle-split-tunic-oat-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7665140432944": {
+      "url": "https://nouralhouda.com.au/products/cupro-maxi-dress-oak",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7669118894128": {
+      "url": "https://nouralhouda.com.au/products/costal-wide-leg-pants-boysenberry",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7732931723312": {
+      "url": "https://nouralhouda.com.au/products/dinara-wrap-dress-deep-brown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7732970061872": {
+      "url": "https://nouralhouda.com.au/products/alessia-button-dress-cedar",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7767493115952": {
+      "url": "https://nouralhouda.com.au/products/naila-open-abaya-mahogany",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7721171353648": {
+      "url": "https://nouralhouda.com.au/products/textured-hijab-silver",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7721171255344": {
+      "url": "https://nouralhouda.com.au/products/textured-hijab-mauve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7710297817136": {
+      "url": "https://nouralhouda.com.au/products/anaya-asymmetric-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7721170108464": {
+      "url": "https://nouralhouda.com.au/products/textured-hijab-olive",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7767448453168": {
+      "url": "https://nouralhouda.com.au/products/nova-denim-pants-dark-wash",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7712582565936": {
+      "url": "https://nouralhouda.com.au/products/asymmetric-wrap-dress-lilac",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7786961272880": {
+      "url": "https://nouralhouda.com.au/products/tailored-open-abaya-blue",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7676730572848": {
+      "url": "https://nouralhouda.com.au/products/anaya-wide-leg-pants-slate",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7710288543792": {
+      "url": "https://nouralhouda.com.au/products/azrina-drawstring-skirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7710681038896": {
+      "url": "https://nouralhouda.com.au/products/azrina-drawstring-skirt-white",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7573843705904": {
+      "url": "https://nouralhouda.com.au/products/nadira-co-ord-linen-pant-muted-orange",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7669526954032": {
+      "url": "https://nouralhouda.com.au/products/yasmina-crinkle-split-tunic-oat",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7777453572144": {
+      "url": "https://nouralhouda.com.au/products/feryal-abaya-navy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7628625641520": {
+      "url": "https://nouralhouda.com.au/products/cotton-contour-top-sage",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7571786858544": {
+      "url": "https://nouralhouda.com.au/products/nadira-linen-tie-up-top-oat-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7637049802800": {
+      "url": "https://nouralhouda.com.au/products/comfort-top-dove",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7569080844336": {
+      "url": "https://nouralhouda.com.au/products/bnah00663-v-neck-wrap-belt-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7676730441776": {
+      "url": "https://nouralhouda.com.au/products/anaya-wide-leg-pants-clay",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7536070098992": {
+      "url": "https://nouralhouda.com.au/products/bnah00583-a-co-ord-pant",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7665439277104": {
+      "url": "https://nouralhouda.com.au/products/single-stitched-modal-hijab-set-eucalyptus",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7647105417264": {
+      "url": "https://nouralhouda.com.au/products/saylor-satin-pants-mustard",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7651783573552": {
+      "url": "https://nouralhouda.com.au/products/pleated-maxi-skirt-mulberry",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7661722009648": {
+      "url": "https://nouralhouda.com.au/products/marea-knit-wide-leg-pants-burgundy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7628627574832": {
+      "url": "https://nouralhouda.com.au/products/cotton-contour-top-light-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7721721692208": {
+      "url": "https://nouralhouda.com.au/products/bamboo-jersey-hijab-peach",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7721186328624": {
+      "url": "https://nouralhouda.com.au/products/instant-bamboo-jersey-wrap-pistachio",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7571860422704": {
+      "url": "https://nouralhouda.com.au/products/nadira-tencel-pants-navy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7756631375920": {
+      "url": "https://nouralhouda.com.au/products/farah-open-abaya-muted-sage",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6582010806320": {
+      "url": "https://nouralhouda.com.au/products/luxe-long-sleeve-slip-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7665435607088": {
+      "url": "https://nouralhouda.com.au/products/double-stitched-modal-hijab-set-blue-jay",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7665440292912": {
+      "url": "https://nouralhouda.com.au/products/single-stitched-modal-hijab-set-blue-jay",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7665438523440": {
+      "url": "https://nouralhouda.com.au/products/single-stitched-modal-hijab-set-pecan",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7785781559344": {
+      "url": "https://nouralhouda.com.au/products/chiffon-cape-crimson",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7785766420528": {
+      "url": "https://nouralhouda.com.au/products/chiffon-cape-navy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7785764749360": {
+      "url": "https://nouralhouda.com.au/products/chiffon-cape-petal-pink",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7785774481456": {
+      "url": "https://nouralhouda.com.au/products/chiffon-cape-lilac",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312718233648": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-1049-blue-book-69",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7644823322672": {
+      "url": "https://nouralhouda.com.au/products/celeste-maxi-trench-coat-classic-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7661723844656": {
+      "url": "https://nouralhouda.com.au/products/marea-knit-longline-cardigan",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7581870260272": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-white",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7345739038768": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-khaki",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7575707844656": {
+      "url": "https://nouralhouda.com.au/products/instant-jersey-wrap-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7375942254640": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-gl121-16-3802-tcx-ash",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7375959851056": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-gl121-19-0307-tcx-climbing-ivy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7375942615088": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-17-0909-tcx-fossil",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7375942025264": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-gl121",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7375928033328": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-gl121-18-4215-tcx-blue-mirage",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7375927771184": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-gl121-17-0808-tcx-taupe-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7375927738416": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-gl121-17-0808-tcx-taupe-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312718364720": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-1049-blue-book-90",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312718102576": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-1049-blue-book-26",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312718299184": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-1049-blue-book-10",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312718266416": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-1049-blue-book-72",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7267605610544": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-53-bisque",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7267614916656": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-75-vintage-green",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6822696321072": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324860121136": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-gull-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859957296": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-mauve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859826224": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-beige-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859760688": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-rosewood",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859596848": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-clove",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859531312": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-navy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859400240": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-charcoal-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859334704": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-old-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324859039792": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-greij",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858908720": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858843184": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-old-pink",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858646576": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-slate-blue",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858548272": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-iron",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858417200": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-mocca",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858351664": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-purple-dove",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858220592": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-fango",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7324858023984": {
+      "url": "https://nouralhouda.com.au/products/lycra-open-cap-lavender",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7178517250096": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbabs-13-mauve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6822696026160": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-fango",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6651107573808": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-clove",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7253135491120": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-greij",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7253135360048": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-beige",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7253135556656": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-greij",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7253135130672": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-rosewood",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7006900518960": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-beige-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6822696517680": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-mauve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6822696190000": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-old-pink",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6651107049520": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-old-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722902138928": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-lavender",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722881626160": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-purple-dove",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722878382128": {
+      "url": "https://nouralhouda.com.au/products/womens-xl-sleeved-jilbab-gull-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722871500848": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-old-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722863308848": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-clove",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722862194736": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-beige-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722858328112": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-purple-dove",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4722854559792": {
+      "url": "https://nouralhouda.com.au/products/womens-jilbab-gull-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4445762584624": {
+      "url": "https://nouralhouda.com.au/products/msb002-luxe-basic-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:2934729375808": {
+      "url": "https://nouralhouda.com.au/products/wojb-1_black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7713647460400": {
+      "url": "https://nouralhouda.com.au/products/ice-cotton-open-cap-blue-jay",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7713646411824": {
+      "url": "https://nouralhouda.com.au/products/ice-cotton-open-cap-uluru",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7713646215216": {
+      "url": "https://nouralhouda.com.au/products/ice-cotton-open-cap-warda",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7279422963760": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-80-137-zt1104",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312720789552": {
+      "url": "https://nouralhouda.com.au/products/cotton-open-cap-4371-yellow-book-179",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312720527408": {
+      "url": "https://nouralhouda.com.au/products/cotton-open-cap-4371-yellow-book-116",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7312720724016": {
+      "url": "https://nouralhouda.com.au/products/cotton-open-cap-4371-yellow-book-169",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4762954432560": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-21-mauve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578644676656": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-black-cherry",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578664894512": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-charcoal-84",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578665975856": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-dark-ocean-64",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578666336304": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-dusty-mauve-68",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578666631216": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-grey-86",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578666827824": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-khaki-75",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578667155504": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-moss-57",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578667319344": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-mulberry-34",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578667778096": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-sage-63",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578667941936": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-sahara-59",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578668105776": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-sky-85",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578668269616": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-steel-blue-67",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7578668597296": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-stone-53",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7279427256368": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-77-aa0d",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7279422799920": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-14-137-zt1104",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7513176571952": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-3-black-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7279422832688": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-33-137-zt1104",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4631102259248": {
+      "url": "https://nouralhouda.com.au/products/bnah007-jersey-open-cap-78-mocha",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7279422996528": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-36-137-zt1104",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7222484860976": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-50-tan",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7211808292912": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-38-bronze",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7222706307120": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-82-sand",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7222706438192": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-50-copper",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:7222484828208": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-48-brown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6567023444016": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-40-charcoal",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6543867674672": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-41-emerald-green",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4631103569968": {
+      "url": "https://nouralhouda.com.au/products/bnah007-jersey-open-cap-31-moss",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4383505350704": {
+      "url": "https://nouralhouda.com.au/products/bnah007-jersey-open-cap-80_skin",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:4087403479104": {
+      "url": "https://nouralhouda.com.au/products/bnah007-jersey-open-cap-light-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:3694342176832": {
+      "url": "https://nouralhouda.com.au/products/bnah007-jersey-open-cap-salmon",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "nour-al-houda:6847562154032": {
+      "url": "https://nouralhouda.com.au/products/jersey-open-cap-18r-khaki",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bayt-el-hayat:15116244615542": {
+      "url": "https://baytelhayat.co.uk/products/brown-ribbed-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "fith:10526323867935": {
+      "url": "https://getfith.co/products/pwr-oversized-active-tee",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10526317019423": {
+      "url": "https://getfith.co/products/modest-long-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10526313087263": {
+      "url": "https://getfith.co/products/flex-hoodie-jacket-extended-coverage",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10526289527071": {
+      "url": "https://getfith.co/products/modest-tunic-rest-day-capsule",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10526277173535": {
+      "url": "https://getfith.co/products/pwr-long-sleeve-workout-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10526264623391": {
+      "url": "https://getfith.co/products/ease-lightweight-jogger-pants",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10526246011167": {
+      "url": "https://getfith.co/products/flare-leggings-extended-coverage-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10526242013471": {
+      "url": "https://getfith.co/products/flex-workout-leggings-2-0",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:9867357552927": {
+      "url": "https://getfith.co/products/brown-relaxed-top-rest-day-capsule",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:8008729264415": {
+      "url": "https://getfith.co/products/gym-cover-up",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10270484922655": {
+      "url": "https://getfith.co/products/hi-low-pwr-workout-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10156471615775": {
+      "url": "https://getfith.co/products/pwr-modest-active-yoga-set-bottoms",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:10156454773023": {
+      "url": "https://getfith.co/products/pwr-modest-active-yoga-set-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:8097766474015": {
+      "url": "https://getfith.co/products/fith-modest-workout-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:8488738160927": {
+      "url": "https://getfith.co/products/modal-2-0-high-neck-long-sleeve-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:9393141383455": {
+      "url": "https://getfith.co/products/chute-oversized-workout-bottoms-copy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:9371458076959": {
+      "url": "https://getfith.co/products/qamar-modest-swim-bottom",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:8488935391519": {
+      "url": "https://getfith.co/products/modal-2-0-oversized-hooded-long-sleeve-top",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "fith:8080738844959": {
+      "url": "https://getfith.co/products/non-slip-workout-hijab",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "bait-hanayen:15425353220207": {
+      "url": "https://bait-hanayen.com/products/bh11260126035",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:15425182498927": {
+      "url": "https://bait-hanayen.com/products/bh11260126030",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:7966121099375": {
+      "url": "https://bait-hanayen.com/products/bh11250218010",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:7877489950831": {
+      "url": "https://bait-hanayen.com/products/bh11250207041",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:7877478514799": {
+      "url": "https://bait-hanayen.com/products/bbh11240218656",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:7877478449263": {
+      "url": "https://bait-hanayen.com/products/bbh11240218655",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:7834712047727": {
+      "url": "https://bait-hanayen.com/products/black-blazer-cut-lenin-salona-colsed-abaya-copy-copy-2",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:7834709000303": {
+      "url": "https://bait-hanayen.com/products/bh11220207001",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:15471599288431": {
+      "url": "https://bait-hanayen.com/products/bh11260207076",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "bait-hanayen:15471271870575": {
+      "url": "https://bait-hanayen.com/products/bh11260207071",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "we-are-elegance:15921298571646": {
+      "url": "https://weareelegance.co.uk/products/lujain-4-0-rose-pink",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "we-are-elegance:15921131291006": {
+      "url": "https://weareelegance.co.uk/products/blue-3pcs",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "we-are-elegance:14964367098238": {
+      "url": "https://weareelegance.co.uk/products/warda-2-0-rose-gold",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "we-are-elegance:14964366082430": {
+      "url": "https://weareelegance.co.uk/products/warda-2-0-bronze",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:15647194874234": {
+      "url": "https://abayabuth.com/products/luxury-pearl-bloom-embellished-cape-limited-edition",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:15602910822778": {
+      "url": "https://abayabuth.com/products/premium-echoes-of-persia-embroidered-panel-open-abaya-soft-sage-limited-edition",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:8123942240472": {
+      "url": "https://abayabuth.com/products/premium-modal-matt-hijab-taupe-grey-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:8150179938520": {
+      "url": "https://abayabuth.com/products/one-piece-full-length-jilbab-prayer-abaya-frill-cuff-timeless-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:15362030240122": {
+      "url": "https://abayabuth.com/products/premium-semi-closed-textured-abaya-with-zip-and-pockets-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:15162300072314": {
+      "url": "https://abayabuth.com/products/premium-textured-linen-blend-closed-abaya-with-pockets-deep-forest-green",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:14922557030778": {
+      "url": "https://abayabuth.com/products/luxury-velvet-closed-abaya-with-floral-motif-embellishments-navy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:14908895101306": {
+      "url": "https://abayabuth.com/products/premium-textured-floral-cascading-embellished-open-abaya-white",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:14833299390842": {
+      "url": "https://abayabuth.com/products/plain-double-chiffon-open-abaya-navy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayabuth:7901592158424": {
+      "url": "https://abayabuth.com/products/plain-closed-abaya-with-pockets-dusky-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "hijabipop:8188865740853": {
+      "url": "https://hijabipop.com/products/3-piece-lounge-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayas-boutique:24972": {
+      "url": "https://abayasboutique.com/product/cos-seafoam-green/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayas-boutique:24205": {
+      "url": "https://abayasboutique.com/product/lace-abaya-set-quartz/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "abayas-boutique:24171": {
+      "url": "https://abayasboutique.com/product/lace-abaya-set-topaz/",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "losyana:8719802990917": {
+      "url": "https://losyana.shop/products/jersey-velvet",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "losyana:15005911253317": {
+      "url": "https://losyana.shop/products/jersey-night-grey-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "losyana:8762723926341": {
+      "url": "https://losyana.shop/products/diamond-jersey-3-dark-beige-1",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9243353809112": {
+      "url": "https://glowmodesty.com/products/solene-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9243339489496": {
+      "url": "https://glowmodesty.com/products/rowan-denim-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9236035535064": {
+      "url": "https://glowmodesty.com/products/saroyan-floral-midi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9227597643992": {
+      "url": "https://glowmodesty.com/products/isola-skirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9225092923608": {
+      "url": "https://glowmodesty.com/products/sequin-cape-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9225067036888": {
+      "url": "https://glowmodesty.com/products/catharine-floral-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9221903712472": {
+      "url": "https://glowmodesty.com/products/rhinestone-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9221889392856": {
+      "url": "https://glowmodesty.com/products/fallon-silky-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9220395794648": {
+      "url": "https://glowmodesty.com/products/twisted-column-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9221382799576": {
+      "url": "https://glowmodesty.com/products/turkish-cape-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9216988250328": {
+      "url": "https://glowmodesty.com/products/dylan-backless-mesh-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9221376704728": {
+      "url": "https://glowmodesty.com/products/majestic-glimmer-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9140778369240": {
+      "url": "https://glowmodesty.com/products/gossamer-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9212058894552": {
+      "url": "https://glowmodesty.com/products/petal-cuff-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9211533820120": {
+      "url": "https://glowmodesty.com/products/liluri-flower-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9211527561432": {
+      "url": "https://glowmodesty.com/products/bonnie-lace-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9211522744536": {
+      "url": "https://glowmodesty.com/products/rosella-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:8814926102744": {
+      "url": "https://glowmodesty.com/products/sophia-blossom-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9181955064024": {
+      "url": "https://glowmodesty.com/products/zenith-draped-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9181942808792": {
+      "url": "https://glowmodesty.com/products/galetea-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9178249920728": {
+      "url": "https://glowmodesty.com/products/chevron-cascade-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9162795155672": {
+      "url": "https://glowmodesty.com/products/jeweled-trim-trapeze-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9152909902040": {
+      "url": "https://glowmodesty.com/products/gossamer-mock-neck-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9151403294936": {
+      "url": "https://glowmodesty.com/products/chrysalis-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9150793842904": {
+      "url": "https://glowmodesty.com/products/regency-modiste-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9150284071128": {
+      "url": "https://glowmodesty.com/products/medina-evening-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9146761347288": {
+      "url": "https://glowmodesty.com/products/dune-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9145154011352": {
+      "url": "https://glowmodesty.com/products/bavolet-dream-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9140784333016": {
+      "url": "https://glowmodesty.com/products/solene-wrap-effect-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9139887898840": {
+      "url": "https://glowmodesty.com/products/zenith-ribbed-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:8814914306264": {
+      "url": "https://glowmodesty.com/products/modest-barbie-corset-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9134704263384": {
+      "url": "https://glowmodesty.com/products/rosalie-empire-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9133848363224": {
+      "url": "https://glowmodesty.com/products/xxx-5",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9131250417880": {
+      "url": "https://glowmodesty.com/products/eliana-classy-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9132448219352": {
+      "url": "https://glowmodesty.com/products/xxx-4",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9131929370840": {
+      "url": "https://glowmodesty.com/products/tacha-denim-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9133078937816": {
+      "url": "https://glowmodesty.com/products/empress-silhouette-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9130371678424": {
+      "url": "https://glowmodesty.com/products/gilded-maxi-skirt",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9130368794840": {
+      "url": "https://glowmodesty.com/products/meridian-wrap-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9130340614360": {
+      "url": "https://glowmodesty.com/products/elowen-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9129802203352": {
+      "url": "https://glowmodesty.com/products/lunar-halo-midi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9129738174680": {
+      "url": "https://glowmodesty.com/products/vestal-drape-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9129725329624": {
+      "url": "https://glowmodesty.com/products/lumiere-slumber-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9129087598808": {
+      "url": "https://glowmodesty.com/products/lysandra-muse-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9128968093912": {
+      "url": "https://glowmodesty.com/products/florentine-bell-sleeve-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9126449578200": {
+      "url": "https://glowmodesty.com/products/rosalind-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9120227852504": {
+      "url": "https://glowmodesty.com/products/mariposa-ethereal-maxi",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9121222557912": {
+      "url": "https://glowmodesty.com/products/elara-cascading-ruffle-gown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9144979816664": {
+      "url": "https://glowmodesty.com/products/lusta-abaya-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9113998229720": {
+      "url": "https://glowmodesty.com/products/basque-waist-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9077748629720": {
+      "url": "https://glowmodesty.com/products/marisol-knitted-maxi-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9083911635160": {
+      "url": "https://glowmodesty.com/products/twin-muse-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9083902689496": {
+      "url": "https://glowmodesty.com/products/lilly-set",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:8861520101592": {
+      "url": "https://glowmodesty.com/products/velvet-floral-dress",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9432839028952": {
+      "url": "https://glowmodesty.com/products/222",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:9432834670808": {
+      "url": "https://glowmodesty.com/products/111",
+      "verdict": "dead",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:8267152490712": {
+      "url": "https://glowmodesty.com/products/maryka-coquette-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "glow-modesty:8494958477528": {
+      "url": "https://glowmodesty.com/products/daliyah-ombre-feathered-abaya",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z"
+    },
+    "voile-chic:2398506483794": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-mocha-brown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398073651282": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-burgundy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398047633490": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-navy-blue",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398514872402": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-earth-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398514085970": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-ivory",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398511890514": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-light-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398509662290": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-dusty-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398516576338": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-forest-green",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398525784146": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-soft-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398522409042": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-pink-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398517395538": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-eggplant",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398527815762": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-rainforest",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398527455314": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-deep-burgundy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398526996562": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-charcoal-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398526373970": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-cream",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398530011218": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398529716306": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-rain-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398529192018": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-dove-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:2398528077906": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-mink",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695714136146": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-aegean",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695713742930": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-coffee-brown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:3966136909906": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-light-gray",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:3966136647762": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-white",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695715315794": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-nude",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695714988114": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-desert",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695714693202": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-denim",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695714431058": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-lavender-blush",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695717347410": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-bronze-mustard",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695717085266": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-chestnut",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695716692050": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-caramel",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695715774546": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-auburn",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695718068306": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-byzantium",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695717970002": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-gunmetal",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695717675090": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-mauve",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:4695717544018": {
+      "url": "https://voilechic.com/products/premium-chiffon-hijab-mustard",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878419345661": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-mustard-bronze",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878419280125": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-burgundy",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878419149053": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-rose-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878418985213": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-tan",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878418886909": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-charcoal-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878418559229": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-blush",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878417772797": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-pine-green",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129717666045": {
+      "url": "https://voilechic.com/products/ribbed-jersey-warm-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129717469437": {
+      "url": "https://voilechic.com/products/ribbed-jersey-mocha-brown",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129717010685": {
+      "url": "https://voilechic.com/products/ribbed-jersey-desert",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129716814077": {
+      "url": "https://voilechic.com/products/ribbed-jersey-vanilla",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129716486397": {
+      "url": "https://voilechic.com/products/ribbed-jersey-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129715994877": {
+      "url": "https://voilechic.com/products/ribbed-jersey-navy-blue",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129714979069": {
+      "url": "https://voilechic.com/products/bamboo-ribbed-jersey-black",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8129717272829": {
+      "url": "https://voilechic.com/products/ribbed-jersey-cream",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878419214589": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-soft-stone",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878417674493": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-soft-denim",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878417412349": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-dark-olive",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878418755837": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-olivine",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8275669811453": {
+      "url": "https://voilechic.com/products/satin-lined-tie-back-underscarf-bamboo-dusty-rose",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8275670434045": {
+      "url": "https://voilechic.com/products/satin-lined-tie-back-underscarf-bamboo-pink-taupe",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8275670630653": {
+      "url": "https://voilechic.com/products/satin-lined-tie-back-underscarf-bamboo-earth-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8275671384317": {
+      "url": "https://voilechic.com/products/satin-lined-tie-back-underscarf-bamboo-light-grey",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8275671875837": {
+      "url": "https://voilechic.com/products/satin-lined-tie-back-underscarf-bamboo-ivory",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8878417510653": {
+      "url": "https://voilechic.com/products/ribbed-jersey-hijab-ivory",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
+    },
+    "voile-chic:8275691634941": {
+      "url": "https://voilechic.com/products/tube-underscarf-bamboo-ivory",
+      "verdict": "moved",
+      "strikes": 1,
+      "firstSeen": "2026-09-20T12:42:05.980Z",
+      "lastSeen": "2026-09-20T12:42:05.980Z",
+      "brandWide": true
     }
   }
 }
