@@ -72,6 +72,10 @@ describe('POST /api/ghost/revalidate', () => {
     const purge = urls.findIndex((u) => u.includes('api.cloudflare.com'));
     expect(firstLocal).toBeGreaterThanOrEqual(0);
     expect(purge).toBeGreaterThan(firstLocal);
+    // A purge by URL returns success and does nothing on this zone (measured 2026-09-20), so the
+    // body must ask for the whole zone. This assertion is what stops a "tidy-up" back to `files`.
+    const call = (fetch as unknown as ReturnType<typeof vi.fn>).mock.calls[purge];
+    expect(JSON.parse(call[1].body)).toEqual({ purge_everything: true });
   });
 
   it('returns the identical 401 for a wrong secret, a missing header, a stale timestamp and an unset env', async () => {

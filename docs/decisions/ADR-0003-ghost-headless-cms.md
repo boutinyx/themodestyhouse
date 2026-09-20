@@ -25,7 +25,8 @@ staff may be **Author** (publish their own posts).
 - HTML is rendered as React elements through an **allowlist** (`components/GhostHtml.tsx`); the
   allowlist is the sanitiser. `dangerouslySetInnerHTML` is never used.
 - A publish reaches the site through a **signed webhook** (`/api/ghost/revalidate`), not a rebuild:
-  it revalidates the `ghost-posts` tag and affected paths, regenerates them, then purges Cloudflare.
+  it revalidates the `ghost-posts` tag and affected paths, regenerates them, then purges the **whole** Cloudflare
+  zone cache (a purge by URL is silently ignored on this zone; measured 2026-09-20).
 - Ghost's own front end is a six-file redirect theme that serves `noindex` and forwards to the site.
 
 ## Consequences

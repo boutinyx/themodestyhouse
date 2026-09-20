@@ -16,8 +16,6 @@ export const dynamic = 'force-dynamic';
  *  - Every rejection is the SAME 401 with the same body (the app/api/staff/login pattern),
  *    so a caller cannot tell a wrong secret from a missing header from a stale timestamp.
  */
-const ORIGIN = 'https://themodestyhouse.com';
-
 async function regenerateLocally(paths: string[]): Promise<void> {
   const base = `http://127.0.0.1:${process.env.PORT ?? 3000}`;
   for (const p of paths) {
@@ -34,8 +32,16 @@ async function regenerateLocally(paths: string[]): Promise<void> {
  * Production only: staging has no CLOUDFLARE_ZONE_ID. Runs AFTER the local regeneration,
  * never before — a purge that runs while the origin is still stale makes the edge re-cache
  * the OLD page for another hour (CLAUDE.md §10.47).
+ *
+ * PURGES THE WHOLE ZONE, not the changed URLs. Measured on production 2026-09-20: a purge by
+ * URL returns `{"success":true}` and does NOTHING on this zone — the cached page kept ageing
+ * for 75+ seconds, for `files` given as strings, as `{url}` objects, with `http://`, with a
+ * trailing slash, and with an Accept-Encoding header (six payload forms tried). Only a purge
+ * by host, or purge_everything, drops it. purge_everything is the documented, plan-independent
+ * one. A publish is rare, so an empty edge cache afterwards is cheap; a post that does not
+ * appear for an hour is not.
  */
-async function purgeCloudflare(paths: string[]): Promise<void> {
+async function purgeCloudflare(): Promise<void> {
   const zone = process.env.CLOUDFLARE_ZONE_ID;
   const token = process.env.CLOUDFLARE_API_TOKEN;
   if (!zone) return;
@@ -47,10 +53,10 @@ async function purgeCloudflare(paths: string[]): Promise<void> {
     const res = await fetch(`https://api.cloudflare.com/client/v4/zones/${zone}/purge_cache`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ files: paths.map((p) => ORIGIN + p) }),
+      body: JSON.stringify({ purge_everything: true }),
     });
     const body = await res.text();
-    if (res.ok) console.log(`[ghost-webhook] purged ${paths.length} URLs at Cloudflare`);
+    if (res.ok) console.log('[ghost-webhook] purged the Cloudflare zone cache');
     else console.error(`[ghost-webhook] Cloudflare purge failed ${res.status}: ${body}`);
   } catch (err) {
     console.error('[ghost-webhook] Cloudflare purge threw:', err);
@@ -63,7 +69,7 @@ async function refresh(slugs: string[]): Promise<void> {
   for (const p of paths) revalidatePath(p);
   console.log(`[ghost-webhook] revalidated ${paths.join(' ')}`);
   await regenerateLocally(paths);
-  await purgeCloudflare(paths);
+  await purgeCloudflare();
 }
 
 export async function POST(req: NextRequest) {
