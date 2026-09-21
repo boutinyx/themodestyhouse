@@ -1,5 +1,5 @@
 # Brand pages: a search result worth clicking, and photos sooner on a phone
-**Date:** 2026-09-21 · **Status:** partial — on `staging`, not verified there yet, not on `main`
+**Date:** 2026-09-21 · **Status:** done on `staging` (`46aeead`), verified there; NOT on `main` — awaiting Tina's approval
 
 ## Goal
 Tina: pages get thousands of impressions and almost no clicks because the result is not appetising,
@@ -35,7 +35,23 @@ vitest                          1311 passed, 1 failed — lib/colourLeads.test.t
                                 with my change stashed (pre-existing, CI-skipped)
 generateMetadata over all 91    title max 60, 0 over 60 · description 125-160, 0 over 160
 ```
-Not yet done: staging render, mobile first-photo position after the change.
+Staging (`themodestyhouse-staging-production.up.railway.app`), after deploy:
+```
+/designers/diversity-modest   title  "Diversity Modest — 61 pieces from €39 | The Modesty House"
+                              first product card top, iPhone-width 390x844, chromium AND webkit:
+                              554px (production) -> 490px (staging)   = 64px sooner, modest
+```
+
+## Who arrives from search (Search Console, 2026-08-24..09-20, by page type)
+```
+brand pages     90 pages   8,968 impr (61%)   32 clicks  0.36% CTR  avg pos  7.5
+category pages  68 pages   4,119 impr (28%)   27 clicks  0.66% CTR  avg pos 30.7
+editorial/edits 10 pages     876 impr ( 6%)   21 clicks  2.40% CTR  avg pos 13.4
+homepage         1 page      839 impr ( 6%)   22 clicks  2.62% CTR  avg pos 38.6
+total                     14,802 impr        102 clicks
+```
+Tina's suspicion that clothing searchers are few is right: category pages earn 27 clicks at position ~31.
+Editorial converts best. Pulse could not be read by API (see below), so on-site behaviour by entry page is unmeasured.
 
 ## Not established / follow-ups
 - Whether a new title lifts CTR is only knowable from Search Console after Google re-crawls (days).
