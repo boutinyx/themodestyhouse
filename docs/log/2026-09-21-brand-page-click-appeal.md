@@ -57,6 +57,22 @@ Editorial converts best. Pulse could not be read by API (see below), so on-site 
 - Whether a new title lifts CTR is only knowable from Search Console after Google re-crawls (days).
   Compare CTR on the same pages before/after, not impressions.
 - Homepage is 59% of entries and its first screen has not been looked at.
-- Pulse: `PULSE_API_KEY` (`puls…`, 47 chars, rewritten 2026-09-21) returns `Invalid token` under
-  Bearer, ApiKey and bare Authorization, and `Authentication required` under X-API-Key. It looks like
-  an ingest key, not a read key. Dashboard reading via the logged-in browser still works.
+- **Pulse API works — I had the route wrong.** Keys use `/api/public/v1/`, not `/api/v1/`; the earlier
+  "ingest-only key" conclusion (and the 2026-09-09 note) was mine and false. Bearer, server-side only.
+
+## Pulse, 2026-09-04..09-21 (public API; filtered cells with <5 visitors are withheld)
+```
+ALL                338 visitors  bounce 56.4%  85s   scroll 59%
+by channel         Organic Search 96 (bounce 65.7%) · AI 144 (50.0%) · Direct 64 (59.5%) · Organic Social 37 (51.4%)
+page                    visitors  bounce   avg time  scroll | Organic Search only
+/                         168     86.0%     26s      45%   |  24 visitors, 96% bounce, 25s
+/modest-dresses            50     88.2%     68s      68%   |  11, 81.8%
+/new-in                    48     86.5%     42s      63%   |   9, 100%
+/modest-sets               36     71.1%     90s      74%   |  15, 68.8%
+/modest-abayas             26     88.9%    158s      78%   |   8, 87.5%
+/designers/merrachi         9     88.9%     52s      51%   |   7, 85.7%
+/designers/diversity-modest 5    100%       13s      66%   |  withheld
+```
+Reading: the homepage is the leak — 168 visitors, 26s, 45% scroll. Lane pages bounce 70-89% but with
+68-158s and 68-78% scroll: people browse, then leave (probably via an outbound click, which Pulse counts
+as a bounce). Brand pages get almost no visitors from any source.
