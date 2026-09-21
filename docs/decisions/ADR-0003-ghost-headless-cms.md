@@ -14,11 +14,13 @@ an address; there was no list, no double opt-in and no unsubscribe.
 
 Self-host **Ghost 6.62.0** (pinned) on Railway beside the site, **headless**: writers use Ghost's
 editor, the site renders every page in the house design from the Content API, and no visitor ever
-sees a Ghost-rendered page. MySQL 8.4 (pinned) holds it. Ghost sends **no mail**: Tina does not plan to send
-newsletters, Railway blocks outbound SMTP on Hobby, and Ghost has no Resend transport, so mail would need
-Mailgun for nothing. Staff-device email codes are turned off (`security__staffDeviceVerification=false`),
-because a login from a new device would otherwise need an email Ghost cannot send. Writers are invited by
-copied invite link. Outside-agency writers join as **Contributor** (drafts only, Tina publishes); trusted
+sees a Ghost-rendered page. MySQL 8.4 (pinned) holds it. Ghost sends **staff mail only** (invites, password
+resets, device codes) through Tina's existing **Resend** account over SMTP on **port 2465** (`smtp.resend.com`,
+from `noreply@send.themodestyhouse.com`); there is no newsletter and no Mailgun. Railway Hobby blocks the usual SMTP
+ports (25/465/587) but not 2465, measured 2026-09-21: an invite sent and Resend reported it `delivered`. Writers
+are invited from Ghost's admin (Settings -> Staff); the invite link exists only in the email and in Ghost's
+database, never in the API. Staff-device email codes were turned off (`security__staffDeviceVerification=false`)
+while mail did not work; with mail working that reason is gone (see the log). Outside-agency writers join as **Contributor** (drafts only, Tina publishes); trusted
 staff may be **Author** (publish their own posts).
 
 - The site reads through `lib/ghost.ts` behind an unchanged `Post` type (`body` → `html`).
