@@ -19,3 +19,18 @@ export function sitemapImages(products: { image: string }[], limit = SITEMAP_IMA
   }
   return [...seen];
 }
+
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/**
+ * The body of /sitemap-images.xml: one <url> per page, each listing that page's photographs.
+ * Kept apart from sitemap.xml on purpose (2026-09-21, Tina): the page list stays small and readable,
+ * and the image list can be dropped or judged on its own. Entries with no images are skipped.
+ */
+export function imageSitemapXml(entries: { url: string; images: string[] }[]): string {
+  const body = entries
+    .filter((e) => e.images.length > 0)
+    .map((e) => `<url><loc>${esc(e.url)}</loc>${e.images.map((i) => `<image:image><image:loc>${esc(i)}</image:loc></image:image>`).join('')}</url>`)
+    .join('');
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${body}</urlset>\n`;
+}

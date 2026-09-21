@@ -18,3 +18,16 @@ describe('sitemapImages', () => {
     expect(sitemapImages(rows)).toHaveLength(48);
   });
 });
+
+import { imageSitemapXml } from './sitemapImages';
+describe('imageSitemapXml', () => {
+  it('escapes ampersands, declares the image namespace and skips pages with no images', () => {
+    const xml = imageSitemapXml([
+      { url: 'https://x.test/a', images: ['https://cdn.test/i.jpg?v=1&width=2'] },
+      { url: 'https://x.test/empty', images: [] },
+    ]);
+    expect(xml).toContain('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"');
+    expect(xml).toContain('v=1&amp;width=2');
+    expect(xml).not.toContain('/empty');
+  });
+});

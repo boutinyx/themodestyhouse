@@ -5,8 +5,6 @@ import { sitemapSubtypesForLane } from '@/lib/laneSubtypes';
 import { BRANDS } from '@/data/brands';
 import { brandPageLastModified, hasBrandPage } from '@/lib/brandPages';
 import { EDITS } from '@/lib/edits';
-import { productsForBrand } from '@/lib/products';
-import { sitemapImages } from '@/lib/sitemapImages';
 
 const BASE = 'https://themodestyhouse.com';
 
@@ -106,8 +104,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const brands: MetadataRoute.Sitemap = BRANDS.filter((b) => hasBrandPage(b.slug)).map((b) => ({
     url: `${BASE}/designers/${b.slug}`,
     lastModified: brandPageLastModified(b.slug) ?? undefined,
-    // 2026-09-21: photographs, so Google Images learns about the cards behind "Load more".
-    images: sitemapImages(productsForBrand(b.slug)),
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }));

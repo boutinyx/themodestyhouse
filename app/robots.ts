@@ -46,7 +46,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
       { userAgent: '*', allow: '/', disallow: ['/admin/', '/api/'] },
       ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: '/', disallow: ['/admin/', '/api/'] })),
     ],
-    sitemap: `${PRODUCTION_ORIGIN}/sitemap.xml`,
+    sitemap: [`${PRODUCTION_ORIGIN}/sitemap.xml`, `${PRODUCTION_ORIGIN}/sitemap-images.xml`],
     host: PRODUCTION_ORIGIN,
   };
 }
