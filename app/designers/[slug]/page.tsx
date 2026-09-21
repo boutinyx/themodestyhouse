@@ -65,11 +65,38 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // pageTitle(): four brand pages (noureen, nour-al-houda, la-petite-parisienne,
   // rutba-abaya) render past 60 characters once the layout appends the house
   // name, purely because the brand's own name is long.
-  const title = `${b.name} — ${n.toLocaleString('en-GB')} pieces & prices`;
   const priced = items.map((p) => p.price).filter((x) => x > 0).sort((a, b2) => a - b2);
+  // CLICK APPEAL, 2026-09-21. Tina, on the results page: "it doesn't look that
+  // appetizing… why would people even click on that themselves". "N pieces &
+  // prices" states a count and promises nothing. The price floor is the one
+  // concrete reason a shopper has to choose this result over the house's own
+  // storefront, so the title now leads with it. Still measured, never claimed.
+  // "From £6" is true and misleading when the £6 is a cotton undercap: on 43 of
+  // 113 houses the cheapest piece is under 40% of the median. Those lead with
+  // the median instead, the same figure the page's own price answer states.
+  const med = priced.length ? priced[Math.floor(priced.length / 2)] : 0;
+  const hook = !priced.length
+    ? ''
+    : priced[0] >= med * 0.4
+      ? ` from ${formatPrice(priced[0], b.currency)}`
+      : `, half under ${formatPrice(med, b.currency)}`;
+  const title = `${b.name} — ${n.toLocaleString('en-GB')} pieces${hook}`;
   const range = priced.length
     ? `, ${formatPrice(priced[0], b.currency)}–${formatPrice(priced[priced.length - 1], b.currency)}.`
     : '.';
+  // What is actually in the catalogue, in words a shopper uses. Top three by
+  // count, from this house's own rows.
+  const topGarments = Object.entries(
+    items.reduce<Record<string, number>>((a, p) => { a[p.garment] = (a[p.garment] ?? 0) + 1; return a; }, {}),
+  )
+    .filter(([g]) => GARMENT_LABEL[g])
+    .sort((a, b2) => b2[1] - a[1])
+    .slice(0, 3)
+    .map(([g]) => GARMENT_LABEL[g]);
+  const contents =
+    topGarments.length > 1
+      ? `${topGarments.slice(0, -1).join(', ')} and ${topGarments[topGarments.length - 1]}`
+      : topGarments[0] ?? '';
   // Length is decided by lib/metaDescription.ts: whole trailing clauses are
   // dropped rather than characters, so Google never prints a half word. 47 of
   // the 91 brand pages ran 161-168 characters before this (measured on the
@@ -79,13 +106,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     b.description?.trim()
       ? clampText(b.description.trim())
       : fitSentences([
-          `Every ${b.name} piece we track: ${n.toLocaleString('en-GB')} items${range}`,
-          b.city ? `Based in ${b.city}.` : '',
+          contents
+            ? `Browse ${n.toLocaleString('en-GB')} ${b.name} pieces: ${contents}${range}`
+            : `Browse ${n.toLocaleString('en-GB')} ${b.name} pieces${range}`,
           // Split from the hostname clause deliberately: as one 81-character
           // sentence it never fit beside the two above, so the whole thing was
           // dropped and the descriptions came out at 74-80 characters. Split,
           // the pricing half survives and only the link half falls off.
           'Prices in your own currency, checked nightly.',
+          b.city ? `Based in ${b.city}.` : '',
           `Links straight to ${new URL(b.homepage).hostname}.`,
         ]);
   const canonical = `/designers/${b.slug}`;
@@ -208,7 +237,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   ];
 
   return (
-    <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-12">
+    <main className="max-w-[1220px] mx-auto px-8 pt-8 md:pt-16 pb-12">
       <JsonLd
         data={jsonLdGraph(
           breadcrumbSchema([
@@ -241,7 +270,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       )}
 
       {/* Measured facts, not claims. */}
-      <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 text-sm" style={{ color: 'var(--muted)' }}>
+      <dl className="mt-5 md:mt-8 flex flex-wrap gap-x-10 gap-y-3 md:gap-y-4 text-sm" style={{ color: 'var(--muted)' }}>
         <div>
           <dt className="eyebrow" style={{ color: 'var(--brass)' }}>Pieces</dt>
           <dd className="mt-1" style={{ color: 'var(--ink)' }}>{products.length.toLocaleString('en-GB')}</dd>
@@ -273,7 +302,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       {/* The only outbound link on the page, and the only one that needs
           rel="sponsored" (CLAUDE.md §6 — FTC, not decoration). The tiles in the
           grid below carry their own. */}
-      <p className="mt-8">
+      <p className="mt-6 md:mt-8">
         <a
           href={withUtm(brand.homepage, 'brand-page')}
           target="_blank"
@@ -307,7 +336,12 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         .
       </p>
 
-      <div className="mt-14">
+      {/* FIRST SCREEN, 2026-09-21. Tina: people arrive, see nothing that rewards
+          them and leave — "instant gratification is what we're missing". At
+          iPhone width the first photograph started 554px down an 844px screen,
+          under four stacked text blocks. Spacing only, on mobile only: same
+          elements, same order, the model photos simply start sooner. */}
+      <div className="mt-8 md:mt-14">
         {/* NO INDEX CONSOLE, 2026-08-26 — Tina: "i want the search bar inside each
             of those things to be gone like the whole block the search the filters".
             The console is not just unhelpful on a brand page, it is meaningless: the
