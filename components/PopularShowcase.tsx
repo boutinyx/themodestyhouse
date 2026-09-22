@@ -10,6 +10,7 @@ import { useQuickView } from './QuickView';
 import { useScrollFade } from './useScrollFade';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { withUtm, type OutboundSurface } from '@/lib/outbound';
+import { productAltText } from '@/lib/altText';
 
 /**
  * Homepage "Popular items" rail — replaces the StyleIt mix-and-match picker
@@ -200,7 +201,7 @@ export default function PopularShowcase({
                   src={shopifyImage(p.image, 600)}
                   srcSet={shopifySrcSet(p.image)}
                   sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 20vw"
-                  alt={p.title}
+                  alt={productAltText(p)}
                   // draggable=false — an <img> (and a <link>/<a>, set above
                   // too) is natively draggable in every browser with no
                   // attribute needed at all: click-and-drag anywhere on this

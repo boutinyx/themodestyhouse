@@ -7,6 +7,7 @@ import { formatPrice } from '@/lib/price';
 import { shopifyImage, shopifySrcSet, socialCardImage, DETAIL_WIDTHS } from '@/lib/shopifyImage';
 import { SITE_URL } from '@/lib/schema';
 import type { Product } from '@/lib/types';
+import { productAltText } from '@/lib/altText';
 import EditorsRail from '@/components/EditorsRail';
 import { withUtm } from '@/lib/outbound';
 
@@ -177,7 +178,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           src={shopifyImage(p.image, 600)}
           srcSet={shopifySrcSet(p.image, DETAIL_WIDTHS)}
           sizes="(max-width: 768px) 100vw, 50vw"
-          alt={p.title}
+          alt={productAltText(p)}
           /* 3/4 -> 2/3 and the radius dropped, 2026-08-25: one card shape
              across the site, matching ProductCard and the homepage rails. */
           className="w-full aspect-[2/3] object-cover"

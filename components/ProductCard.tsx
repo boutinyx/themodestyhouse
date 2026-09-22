@@ -9,6 +9,7 @@ import { useIsStaff } from './StaffSessionProvider';
 import { StaffEditControl, type StaffEditResult, laneLabel, garmentMoveLabel, subtypeLabel } from './StaffEditControl';
 import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
 import { withUtm } from '@/lib/outbound';
+import { productAltText } from '@/lib/altText';
 
 /**
  * `priority` marks a card as above the fold. Measured over CDP (iPhone 13,
@@ -99,7 +100,7 @@ export function ProductCard({ p, priority = false }: { p: CardProduct; priority?
           src={shopifyImage(p.image, 400)}
           srcSet={shopifySrcSet(p.image)}
           sizes="(max-width: 767px) 50vw, (max-width: 1284px) 31vw, 389px"
-          alt={p.title}
+          alt={productAltText(p)}
           className="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : undefined}

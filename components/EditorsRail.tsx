@@ -8,11 +8,13 @@ import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react';
 import { useCurrency } from './CurrencyProvider';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
 import { withUtm, type OutboundSurface } from '@/lib/outbound';
+import { productAltText } from '@/lib/altText';
+import type { Garment } from '@/lib/types';
 
 type Pick = {
   id: string;
   brandSlug: string;
-  garment: string;
+  garment: Garment;
   url: string;
   image: string;
   title: string;
@@ -99,7 +101,7 @@ export default function EditorsRail({
                 /* The card is a fixed 230px at every width (see the wrapper),
                    so `sizes` is a constant rather than a viewport expression. */
                 sizes="230px"
-                alt={p.title}
+                alt={productAltText(p)}
                 className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 /* 230 wide / 345 tall = 2:3, matching ProductCard. */
                 style={{ height: 345 }}

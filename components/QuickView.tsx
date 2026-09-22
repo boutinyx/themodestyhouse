@@ -8,6 +8,7 @@ import { SITE_URL } from '@/lib/schema';
 import { pickRegionalUrl, readTimeZone } from '@/lib/regionalLink';
 import { withUtm } from '@/lib/outbound';
 import { productProps, trackGoal } from '@/lib/pulse';
+import { productAltText } from '@/lib/altText';
 
 type Ctx = {
   open: (p: CardProduct) => void;
@@ -171,7 +172,7 @@ function Modal({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.image}
-            alt={product.title}
+            alt={productAltText(product)}
             className="max-w-full max-h-full object-contain cursor-zoom-out"
           />
         </div>
@@ -208,7 +209,7 @@ function Modal({
             /* Full width of the modal on a phone, half of it once the panel
                goes side-by-side at md. */
             sizes="(max-width: 768px) 100vw, 50vw"
-            alt={product.title}
+            alt={productAltText(product)}
             className="w-full h-64 md:h-full object-cover cursor-zoom-in"
             onClick={() => {
               // Opening the full-resolution photograph. Weak on its own; read
