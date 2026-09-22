@@ -260,12 +260,323 @@ CONCEPTS_13 = [
 # above each batch for why). Add a new tuple here — (concepts_list, filename_start_index)
 # — for every new batch rather than overwriting an old one, so `--batch N` always
 # reproduces exactly what shipped that day.
+# Batch 14 (2026-09-22): cover for the "What Is Maison Merrachi?" editorial post.
+# The article's own idea — a loyalty programme structured as a house with four rooms
+# (Foyer, Living Room, Walk-In Closet, Atelier) — not Merrachi's own product photography
+# or storefront, which we don't have rights to and shouldn't fabricate a likeness of.
+# One concept: a doorway/threshold reads as "invited into the house" without depicting
+# any specific real store. No text/logos — this brand's own name is added by the site,
+# never baked into the image (STYLE already excludes it).
+CONCEPTS_14 = [
+    ("house-threshold", "A hijabi woman in an elegant deep-aubergine silk coat dress with a draped plum hijab, "
+                         "standing just inside an open doorway of a warm, softly lit townhouse interior — pale "
+                         "stone archway, brass door hardware, a glimpse of a parchment-toned room beyond with "
+                         "soft daylight. She is captured mid-step, one hand resting on the doorframe, looking "
+                         "past the camera into the room ahead rather than at it. Warm, inviting, editorial, "
+                         "shot on film. " + COVERAGE + ", " + STYLE_13),
+]
+
+# Batch 15 (2026-09-22): re-run of batch 14 — the render put a lace panel directly
+# against bare-looking leg skin at the hem, breaking COVERAGE's own "never against
+# skin" line (Soul doesn't reliably obey that clause). Fix: dropped the lace/hem
+# detail from the garment entirely rather than re-ask for the same risky detail.
+CONCEPTS_15 = [
+    ("house-threshold-v2", "A hijabi woman in an elegant deep-aubergine silk coat dress, floor-length and "
+                            "fully opaque with no slits or sheer panels, with a draped plum hijab, standing "
+                            "just inside an open doorway of a warm, softly lit townhouse interior — pale stone "
+                            "archway, brass door hardware, a glimpse of a parchment-toned room beyond with soft "
+                            "daylight. She is captured mid-step, one hand resting on the doorframe, looking past "
+                            "the camera into the room ahead rather than at it. Warm, inviting, editorial, shot "
+                            "on film. " + COVERAGE + ", " + STYLE_13),
+]
+
+# Batch 16 (2026-09-22): batches 14/15 invented a palette (aubergine silk, brass,
+# marble townhouse) that doesn't match Merrachi's own look at all. Checked their real
+# site: campaign photography is soft French-countryside — worn wood, linen, florals,
+# natural window light, script serif type — and the actual Maison Merrachi loyalty
+# page uses flat illustrated room panels in muted mustard/dusty-pink/taupe/burgundy,
+# not photography. This concept follows the campaign-photography half of that, in a
+# rustic doorway rather than a polished marble one, since the article still needs a
+# photographic cover for the site's existing editorial template.
+CONCEPTS_16 = [
+    ("house-threshold-cottage", "A hijabi woman in a flowing cream linen dress, fully opaque with no slits, "
+                                 "with a soft dusty-pink hijab, standing in the doorway of a rustic countryside "
+                                 "house — weathered wooden door frame, peeling pale paint, linen curtains "
+                                 "stirring in the breeze, warm golden-hour sunlight streaming in low and side-on. "
+                                 "A small vase of wildflowers rests on a windowsill beside her. She is captured "
+                                 "mid-step over the threshold, looking softly toward the light ahead rather than "
+                                 "at the camera. Warm, candid, editorial, shot on film, muted cream and dusty-pink "
+                                 "tones. " + COVERAGE + ", " + STYLE_13),
+]
+
+# Batch 17 (2026-09-22): batch 16 still showed leg through the dress hem — same
+# failure mode as batches 14/15, third time. Tina, looking at the render: "i see her
+# leg and i want a jersey hijab tucked inside of her whatever shes wearing." Two
+# changes: (1) the hem is now stated as pooling ON the floor, ankle-length with no
+# leg visible at any point, dropped "linen" as a material word since it may read as
+# sheer/light-catching — jersey/cotton for the dress too, matte and opaque; (2) hijab
+# is now a jersey hijab, tucked into the neckline rather than draped loose over the
+# shoulders (a real, common styling — not the loose drape of batches 14-16).
+CONCEPTS_17 = [
+    ("house-threshold-jersey", "A hijabi woman in a flowing ankle-length cream jersey dress with long sleeves, "
+                                "fully opaque matte cotton-jersey fabric with no slits, the hem pooling fully at "
+                                "her feet so no leg or ankle is ever visible, wearing a soft dusty-pink jersey "
+                                "hijab tucked neatly into the neckline of the dress rather than draped loose over "
+                                "the shoulders, standing in the doorway of a rustic countryside house — weathered "
+                                "wooden door frame, peeling pale paint, linen curtains stirring in the breeze, "
+                                "warm golden-hour sunlight streaming in low and side-on. A small vase of "
+                                "wildflowers rests on a windowsill beside her. She is captured mid-step over the "
+                                "threshold, looking softly toward the light ahead rather than at the camera. "
+                                "Warm, candid, editorial, shot on film, muted cream and dusty-pink tones. "
+                                + COVERAGE + ", " + STYLE_13),
+]
+
+# Batch 18 (2026-09-22): Tina — "not jersey dress jersey hijab." Batch 17 put jersey on
+# both; only the hijab should be jersey. Dress reverts to a plain opaque cotton (not
+# "linen", which reads sheer) while keeping 17's other fix — ankle-length hem pooling
+# at the feet, no leg visible, hijab tucked into the neckline rather than draped.
+# Second round, same batch before either was run — Tina, looking at batch 14's still:
+# "she looks at us." Every prior concept said "looking ... rather than at the camera",
+# which Soul has now ignored twice (batch 14 too). Rewritten as a positive instruction
+# only — WHERE she looks, not what to avoid — plus her face turned enough in profile
+# that meeting the lens is physically awkward for the pose, not just discouraged.
+CONCEPTS_18 = [
+    ("house-threshold-jersey-hijab", "A hijabi woman in a flowing ankle-length cream cotton dress with long "
+                                      "sleeves, fully opaque matte fabric with no slits, the hem pooling fully at "
+                                      "her feet so no leg or ankle is ever visible, wearing a soft dusty-pink "
+                                      "JERSEY hijab (matte, stretch cotton-jersey fabric, not silky or shiny) "
+                                      "tucked neatly into the neckline of the dress rather than draped loose over "
+                                      "the shoulders, standing in the doorway of a rustic countryside house, her "
+                                      "body and face turned three-quarters AWAY from the camera in profile, her "
+                                      "eyes fixed on the sunlit room ahead of her, the side of her face and the "
+                                      "back of her shoulder toward the viewer — weathered wooden door frame, "
+                                      "peeling pale paint, linen curtains stirring in the breeze, warm "
+                                      "golden-hour sunlight streaming in low and side-on. A small vase of "
+                                      "wildflowers rests on a windowsill beside her. She is captured mid-step "
+                                      "over the threshold. Warm, candid, editorial, shot on film, muted cream and "
+                                      "dusty-pink tones. " + COVERAGE + ", " + STYLE_13),
+]
+
+# Batch 19 (2026-09-22): Tina — "make her look at the camera and the jersey hijab
+# needs to be like this [screenshot of our own /modest-hijabs 'Jersey Hijabs' hero:
+# wrapped snugly around the neck, tail tucked in, turtleneck-style, not a loose drape]
+# an i want the place to be the smae as the older picture the first one you amde"
+# — i.e. batch 14's setting (pale-stone archway, brass door hardware, aubergine silk),
+# not batches 16-18's countryside doorway. Reverts location and garment to batch 14,
+# drops the sheer lace panel that broke coverage there (batch 15's fix), swaps the
+# loose-drape hijab for the wrapped/tucked jersey style from the reference, and now
+# asks for direct eye contact instead of turning away (the opposite of batch 18).
+CONCEPTS_19 = [
+    ("house-threshold-jersey-wrap", "A hijabi woman in an elegant deep-aubergine silk coat dress, floor-length "
+                                     "and fully opaque with no slits or sheer panels, wearing a plum JERSEY hijab "
+                                     "(matte, stretch cotton-jersey fabric, not silky or shiny) wrapped snugly "
+                                     "around her neck and head with the tail tucked in at the neck like a "
+                                     "turtleneck wrap, not draped loosely over the shoulders, standing just "
+                                     "inside an open doorway of a warm, softly lit townhouse interior — pale "
+                                     "stone archway, brass door hardware, a glimpse of a parchment-toned room "
+                                     "beyond with soft daylight. She is captured mid-step, one hand resting on "
+                                     "the doorframe, looking directly at the camera with a warm, engaging "
+                                     "expression. Warm, inviting, editorial, shot on film. " + COVERAGE + ", "
+                                     + STYLE_13),
+]
+
+# Batch 20 (2026-09-22): Tina — "still bear legs." Third time this exact failure has
+# shown up (batches 14, 16, 19), each time with the words "no slits" / "no bare legs"
+# already in the prompt. Repeating the same instruction louder hasn't worked, so this
+# changes what's actually driving it rather than the wording: every prior concept in
+# this doorway posed her "mid-step" in a WRAP-front coat dress — a walking leg pushes
+# a wrap-front open at the hem regardless of what the text says, which is a garment-
+# and-pose interaction no amount of "no slits" fixes. Two structural changes: (1) she
+# stands still, weight on both feet, rather than mid-step; (2) the dress is a straight
+# column silhouette with a full front closure (buttons/zip, not a wrap-and-belt), which
+# has no seam that a raised leg or forward step can open.
+CONCEPTS_20 = [
+    ("house-threshold-standing", "A hijabi woman in an elegant deep-aubergine silk column dress with a full "
+                                  "front button closure from neck to floor — not a wrap or belted coat-style "
+                                  "front — floor-length and fully opaque with no slit at any point, wearing a "
+                                  "plum JERSEY hijab (matte, stretch cotton-jersey fabric, not silky or shiny) "
+                                  "wrapped snugly around her neck and head with the tail tucked in at the neck "
+                                  "like a turtleneck wrap, not draped loosely over the shoulders, standing still "
+                                  "with her weight evenly on both feet just inside an open doorway of a warm, "
+                                  "softly lit townhouse interior — pale stone archway, brass door hardware, a "
+                                  "glimpse of a parchment-toned room beyond with soft daylight. One hand rests on "
+                                  "the doorframe; she is looking directly at the camera with a warm, engaging "
+                                  "expression. Warm, inviting, editorial, shot on film. " + COVERAGE + ", "
+                                  + STYLE_13),
+]
+
+# Batch 21 (2026-09-22): Tina — "use the higgsfield prompts we always use that dont
+# make our carchetyers naked." Four straight attempts (14, 16, 19, 20) put her in a
+# FLOOR-LENGTH dress or coat, wrap-front or button-front, standing or mid-step, and
+# all four showed leg at the hem regardless. The two batches that actually shipped
+# (12, 13 — "Everyday Lace") never once put a model in a dress: every concept there is
+# a TOP over TROUSERS, which has no hem that can gap open no matter the pose. That
+# structural choice, not any wording, is what "the ones that don't make our characters
+# naked" actually means. Same doorway setting and jersey-wrap hijab as 19, garment
+# changed to match 12/13's proven pattern.
+CONCEPTS_21 = [
+    ("house-threshold-trousers", "A hijabi woman in a deep-aubergine silk blouse tucked into wide-leg matching "
+                                  "aubergine silk trousers that reach fully to the floor, both fully opaque, "
+                                  "wearing a plum JERSEY hijab (matte, stretch cotton-jersey fabric, not silky "
+                                  "or shiny) wrapped snugly around her neck and head with the tail tucked in at "
+                                  "the neck like a turtleneck wrap, not draped loosely over the shoulders, "
+                                  "standing just inside an open doorway of a warm, softly lit townhouse interior "
+                                  "— pale stone archway, brass door hardware, a glimpse of a parchment-toned room "
+                                  "beyond with soft daylight. One hand rests on the doorframe; she is looking "
+                                  "directly at the camera with a warm, engaging expression. Warm, inviting, "
+                                  "editorial, shot on film. " + COVERAGE + ", " + STYLE_13),
+]
+
+# Batch 22 (2026-09-22): Tina — "i mean the prompts of how we used to do it." Batch 21
+# still wrote a fresh sentence; this instead copies CONCEPTS_13's "lace-steps" almost
+# word for word — same skeleton, same clause order, same "reads sharply against"
+# construction — swapping only the doorway setting and Merrachi's colours in place of
+# the stone-steps scene. Nothing about the sentence structure is new.
+CONCEPTS_22 = [
+    ("house-threshold-oldformula", "A hijabi woman standing relaxed just inside an open doorway in bright "
+                                    "daylight, wearing a deep-aubergine top over an opaque aubergine underlayer "
+                                    "with crisp cream wide-leg trousers, one hand resting on the doorframe, warm "
+                                    "smile looking directly at the camera. A plum JERSEY hijab (matte, stretch "
+                                    "cotton-jersey fabric, not silky) is wrapped snugly around her neck and head "
+                                    "with the tail tucked in at the neck like a turtleneck wrap. The aubergine "
+                                    "top reads richly against the pale stone archway and cream trousers. She "
+                                    "stands to the RIGHT of the frame; the left half is a plain sunlit stone wall "
+                                    "with brass door hardware. " + COVERAGE + ", " + STYLE_13),
+]
+
+# Batch 23 (2026-09-22): Tina — "this is for higgsfield it gives priorities" — i.e.
+# earlier words in the prompt carry more weight, and COVERAGE has been sitting at the
+# very END of every concept so far (after the full scene/garment description used up
+# the model's attention). Every batch above is COVERAGE LAST; this is the same batch 22
+# concept with COVERAGE moved FIRST, so the modesty constraints are read before the
+# model has already committed to a pose or garment interpretation.
+CONCEPTS_23 = [
+    ("house-threshold-priority", COVERAGE + ". " +
+     "A hijabi woman standing relaxed just inside an open doorway in bright daylight, wearing a "
+     "deep-aubergine top over an opaque aubergine underlayer with crisp cream wide-leg trousers, one hand "
+     "resting on the doorframe, warm smile looking directly at the camera. A plum JERSEY hijab (matte, "
+     "stretch cotton-jersey fabric, not silky) is wrapped snugly around her neck and head with the tail "
+     "tucked in at the neck like a turtleneck wrap. The aubergine top reads richly against the pale stone "
+     "archway and cream trousers. She stands to the RIGHT of the frame; the left half is a plain sunlit "
+     "stone wall with brass door hardware. " + STYLE_13),
+]
+
+# Batch 24 (2026-09-22): Tina — "maybe we should do it like how wee write the videos."
+# scripts/ootd_generate.py already has the answer, in its own comment: "Positive
+# assertions only. Negations do not work — this model family has no negative-prompt
+# channel, so a negation just adds the token." Eleven earlier scripts (that file's
+# words) already burned through the exact mistake batches 14-23 just repeated here —
+# every one of COVERAGE's clauses is a negation ("no bare legs", "never against
+# skin"), and moving it earlier (batch 23) couldn't fix a wording problem. Rewritten
+# as positive-only physical facts, in ootd's own style (compare hijab_block() above).
+POSITIVE_COVERAGE = (
+    "Her sleeves reach fully to her wrist bone. Her top has a high round neckline "
+    "resting at the base of her throat. Her trousers are floor-length and made of a "
+    "single solid opaque fabric from waist to ankle, the same opaque fabric touching "
+    "her shoes at the hem. Her hijab fabric covers her hair completely from hairline "
+    "to nape and wraps under her chin, one continuous piece of fabric."
+)
+
+CONCEPTS_24 = [
+    ("house-threshold-positive", POSITIVE_COVERAGE + " " +
+     "A hijabi woman standing relaxed just inside an open doorway in bright daylight, wearing a "
+     "deep-aubergine top over an opaque aubergine underlayer with crisp cream wide-leg trousers, one hand "
+     "resting on the doorframe, warm smile looking directly at the camera. A plum jersey hijab, matte "
+     "stretch cotton-jersey fabric, is wrapped snugly around her neck and head with the tail tucked in at "
+     "the neck like a turtleneck wrap. The aubergine top reads richly against the pale stone archway and "
+     "cream trousers. She stands to the RIGHT of the frame; the left half is a plain sunlit stone wall "
+     "with brass door hardware. " + STYLE_13),
+]
+
+# Batch 25 (2026-09-22): Tina, on batch 24 — "its good but i wanted dress and the area
+# the same as the ones before." Two changes from 24, keeping its (working) positive-
+# only phrasing: (1) trousers -> a dress, using ootd_generate.py's own proven sentence
+# for exactly this — "The garment is closed at the front, hem to the floor, sleeves
+# ending at the base of the thumb" — rather than a hand-written equivalent; (2) restores
+# the "glimpse of a parchment-toned room beyond with soft daylight" detail that batches
+# 14/19/20 had and 21-24 dropped when the garment changed.
+DRESS_COVERAGE = (
+    "Her sleeves reach fully to her wrist bone. Her dress has a high round neckline resting at the base of "
+    "her throat. Her hijab fabric covers her hair completely from hairline to nape and wraps under her chin, "
+    "one continuous piece of fabric."
+)
+
+CONCEPTS_25 = [
+    ("house-threshold-dress-positive", DRESS_COVERAGE + " " +
+     "A hijabi woman in a deep-aubergine silk dress. The dress is closed at the front, hem to the floor, "
+     "sleeves ending at the base of the thumb. A plum jersey hijab, matte stretch cotton-jersey fabric, is "
+     "wrapped snugly around her neck and head with the tail tucked in at the neck like a turtleneck wrap. "
+     "She stands relaxed just inside an open doorway of a warm, softly lit townhouse interior — pale stone "
+     "archway, brass door hardware, a glimpse of a parchment-toned room beyond with soft daylight. One hand "
+     "rests on the doorframe; she is looking directly at the camera with a warm, engaging expression. Warm, "
+     "inviting, editorial, shot on film. " + STYLE_13),
+]
+
+# Batch 26 (2026-09-22): Tina ran an EARLIER prompt (batch 22/23's negation-based
+# COVERAGE, screenshotted from higgsfield.ai directly) and got a thin, clinging,
+# sheer-lace-panelled top with visible chest shape — the exact failure mode this whole
+# session has been chasing, now at its worst. Two root causes, both fixed here:
+#   1. COVERAGE's own line — "lace always layered over an opaque underlayer and never
+#      against skin" — puts the word "lace" into the prompt AT ALL. Same mechanism as
+#      "no bare legs" adding "legs" (ootd_generate.py's own finding): naming lace as
+#      something to constrain still means the model was told to render lace. This
+#      concept never uses the word "lace" anywhere, since lace is not wanted on it.
+#   2. Tina: "MAKE THE PROMPT LONGER AND MORE DETAILED." Every clause below is a
+#      concrete, positive, physically specific fact about the fabric and construction
+#      — weight, opacity, drape, seams — rather than a short adjective, on the theory
+#      that an underspecified garment leaves the model free to default to whatever is
+#      most common in its training data, which for "top" skews thin and fitted.
+CONCEPTS_26 = [
+    ("house-threshold-thick-fabric", (
+        "A hijabi woman standing relaxed just inside an open doorway of a warm, softly lit townhouse "
+        "interior, one hand resting on the doorframe, looking directly at the camera with a warm, engaging "
+        "expression, weight even on both feet. "
+        "She wears a deep-aubergine dress made of a heavy, thick, structured silk-crepe fabric with real "
+        "visible weight to it — the kind of fabric that holds its own shape, falls in broad soft folds, and "
+        "drapes several centimetres away from her body at the chest, waist and hips rather than following "
+        "her silhouette. The fabric surface is smooth, matte and completely uniform in colour and texture "
+        "from the collar to the floor-length hem — one single unbroken fabric the entire length of the "
+        "dress, with the same thickness and opacity across the chest as everywhere else on the garment. The "
+        "neckline is a high, structured round collar that sits at the base of her throat, cut from the same "
+        "heavy fabric, fully closed all the way up with no gap. The dress closes edge-to-edge down the "
+        "centre front from collar to hem with a hidden seam, so the front lies completely flat and even. "
+        "Her sleeves are cut from the same heavy fabric, long and slightly loose through the forearm, ending "
+        "in a buttoned cuff exactly at her wrist bone. The hem is a straight, floor-length line that reaches "
+        "and touches the ground evenly all the way around her, brushing the tops of her shoes. "
+        "Around her neck and head she wears a plum jersey hijab, a soft matte cotton-jersey knit fabric with "
+        "a slight stretch and a soft brushed surface, the same uniform plum colour throughout with no sheen. "
+        "It is wrapped snugly around her neck and head in a fitted wrap style, with the loose tail of fabric "
+        "tucked neatly in at the side of her neck, sitting close to her skin like a turtleneck collar rather "
+        "than hanging loose or draping over her shoulders. The jersey fabric covers her hair completely from "
+        "her hairline at the front to the nape of her neck at the back, in one continuous piece with no gap "
+        "or parting anywhere. "
+        "The doorway itself has a pale stone archway and brass door hardware, with a glimpse of a "
+        "parchment-toned room beyond her, lit by soft daylight. Warm, inviting, editorial photography, shot "
+        "on 50mm film, natural warm sunlight, candid and joyful mood, real place rather than a studio, warm "
+        "parchment cream and soft aubergine tones throughout the frame, real fabric texture visible in the "
+        "weave, no text, no writing, no signage, no logos, no watermark anywhere in the image."
+    )),
+]
+
 BATCHES = {
     9: (CONCEPTS, 38),
     10: (CONCEPTS_10, 43),
     11: (CONCEPTS_11, 53),
     12: (CONCEPTS_12, 63),
     13: (CONCEPTS_13, 66),
+    14: (CONCEPTS_14, 68),
+    15: (CONCEPTS_15, 69),
+    16: (CONCEPTS_16, 70),
+    17: (CONCEPTS_17, 71),
+    18: (CONCEPTS_18, 72),
+    19: (CONCEPTS_19, 73),
+    20: (CONCEPTS_20, 74),
+    21: (CONCEPTS_21, 75),
+    22: (CONCEPTS_22, 76),
+    23: (CONCEPTS_23, 77),
+    24: (CONCEPTS_24, 78),
+    25: (CONCEPTS_25, 79),
+    26: (CONCEPTS_26, 80),
 }
 
 
