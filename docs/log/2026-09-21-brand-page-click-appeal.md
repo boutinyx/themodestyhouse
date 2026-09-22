@@ -76,3 +76,13 @@ page                    visitors  bounce   avg time  scroll | Organic Search onl
 Reading: the homepage is the leak — 168 visitors, 26s, 45% scroll. Lane pages bounce 70-89% but with
 68-158s and 68-78% scroll: people browse, then leave (probably via an outbound click, which Pulse counts
 as a bounce). Brand pages get almost no visitors from any source.
+
+## Merged to `main`, 2026-09-22
+```
+git merge --ff-only staging   9fd349a..a6d0840, fast-forward
+origin verified new           "Diversity Modest — 61 pieces from €39 | The Modesty House"
+                               2 min after push
+cf-cache-status: DYNAMIC       (this route is not edge-cached at all, per §10.23 — no purge needed,
+                               ran one anyway, harmless)
+```
+Live on production for all 91 brand pages. Tina's approval: "btw you can merge the things", 2026-09-22.
