@@ -299,6 +299,51 @@ export function faqPageSchema(items: FaqItem[]) {
   };
 }
 
+/**
+ * Product + single Offer, for the ONE page it is legitimate on:
+ * `/product/[brandSlug]/[shopifyId]`. Two prior decisions in this file
+ * constrain this and neither one blocks it:
+ *
+ * 1. The file-level "hold off on Product JSON-LD" note is about Google
+ *    showing a stale price in a rich result. This page carries
+ *    `robots: { googleBot: { index: false } }` (see that file's header) —
+ *    Google will not build a rich result from a page it will not index. The
+ *    same carve-out already governs the `product:price:*` OG meta tags
+ *    rendered directly in that page for Meta's Commerce catalogue; this is
+ *    the schema.org form of the identical, already-accepted exception.
+ * 2. `collectionPageSchema`'s comment above records a REAL past failure:
+ *    typing ItemList entries as `Product` got 24 items flagged invalid in a
+ *    live GSC inspection, because a lane page's items link to the BRAND's
+ *    domain, which Google's carousel/ItemList spec requires to be the SAME
+ *    domain as the page. That constraint is specific to ItemList/carousel
+ *    markup. A standalone Product node describing the one product an
+ *    indexed-elsewhere page is ABOUT has no such same-domain rule — `offers.url`
+ *    pointing at the brand is exactly Google's documented pattern for an
+ *    aggregator/reseller page (a Product you don't sell yourself).
+ *
+ * `availability` is hardcoded InStock, not read from a field, because
+ * `scripts/build-data.mjs` only ever publishes `inStock` rows (Invariant 4)
+ * — an out-of-stock product cannot reach this function to begin with, so a
+ * conditional here would be dead code asserting a state that can't occur.
+ */
+export function productSchema(p: { id: string; title: string; brandName: string; price: number; currency: string; url: string; image: string }) {
+  return {
+    '@type': 'Product',
+    name: p.title,
+    image: p.image,
+    brand: { '@type': 'Brand', name: p.brandName },
+    sku: p.id,
+    offers: {
+      '@type': 'Offer',
+      url: p.url,
+      priceCurrency: p.currency,
+      price: p.price,
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+    },
+  };
+}
+
 /** Wraps one or more schema nodes in a @context envelope ready to serialize. */
 export function jsonLdGraph(...nodes: object[]) {
   return { '@context': 'https://schema.org', '@graph': nodes };

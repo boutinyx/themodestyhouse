@@ -5,11 +5,12 @@ import { ArrowLeft, ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import { getProducts } from '@/lib/products';
 import { formatPrice } from '@/lib/price';
 import { shopifyImage, shopifySrcSet, socialCardImage, DETAIL_WIDTHS } from '@/lib/shopifyImage';
-import { SITE_URL } from '@/lib/schema';
+import { SITE_URL, productSchema, jsonLdGraph } from '@/lib/schema';
 import type { Product } from '@/lib/types';
 import { productAltText } from '@/lib/altText';
 import EditorsRail from '@/components/EditorsRail';
 import { withUtm } from '@/lib/outbound';
+import { JsonLd } from '@/components/JsonLd';
 
 /**
  * A page of OURS for a single product, so there is something on
@@ -168,6 +169,10 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       <meta property="product:condition" content="new" />
       <meta property="product:retailer_item_id" content={p.id} />
       <meta property="product:brand" content={p.brandName} />
+      {/* Schema.org form of the same already-accepted exception — see
+          lib/schema.ts::productSchema's header for why this doesn't reopen
+          the standing "hold off on Product JSON-LD" decision. */}
+      <JsonLd data={jsonLdGraph(productSchema(p))} />
       <Link href="/new-in" className="nav-link inline-flex items-center gap-1 mb-8" style={{ color: 'var(--muted)' }}>
         <ArrowLeft size={16} />
         Back to the directory
