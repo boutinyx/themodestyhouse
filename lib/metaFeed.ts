@@ -99,6 +99,16 @@ export const FEED_UTM = {
   utm_campaign: 'meta_shop',
 } as const;
 
+/** Same feed, same products, a different destination (Pinterest Catalogs).
+ *  A distinct utm_source/medium so a Pinterest-driven visit is never counted
+ *  as an Instagram one in Pulse — see FEED_UTM's own comment on why this
+ *  matters: the two feeds share every field except this one. */
+export const PINTEREST_FEED_UTM = {
+  utm_source: 'pinterest',
+  utm_medium: 'product_pin',
+  utm_campaign: 'pinterest_shop',
+} as const;
+
 export function feedLink(
   p: Pick<Product, 'id' | 'brandSlug'>,
   utm: Record<string, string> | null = FEED_UTM,
@@ -138,12 +148,12 @@ export function xmlEscape(s: string): string {
 const truncate = (s: string, max: number) =>
   s.length > max ? `${s.slice(0, max - 1).trimEnd()}…` : s;
 
-export function feedItem(p: Product): string {
+export function feedItem(p: Product, utm: Record<string, string> | null = FEED_UTM): string {
   const fields: [string, string][] = [
     ['g:id', p.id],
     ['g:title', truncate(p.title, MAX_TITLE)],
     ['g:description', feedDescription(p)],
-    ['g:link', feedLink(p)],
+    ['g:link', feedLink(p, utm)],
     ['g:image_link', shopifyImage(p.image, FEED_IMAGE_WIDTH)],
     ['g:brand', truncate(p.brandName, 100)],
     // products.json only ever contains in-stock rows - build-data filters on
@@ -157,14 +167,14 @@ export function feedItem(p: Product): string {
   return `<item>${fields.map(([k, v]) => `<${k}>${xmlEscape(String(v))}</${k}>`).join('')}</item>`;
 }
 
-export function metaFeedXml(products: Product[]): string {
+export function metaFeedXml(products: Product[], utm: Record<string, string> | null = FEED_UTM): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
 <channel>
 <title>The Modesty House</title>
 <link>${SITE_URL}</link>
 <description>Curated modest fashion from independent houses.</description>
-${products.map(feedItem).join('\n')}
+${products.map((p) => feedItem(p, utm)).join('\n')}
 </channel>
 </rss>
 `;

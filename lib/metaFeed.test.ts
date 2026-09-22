@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { metaFeedXml, feedItem, feedLink, feedDescription, xmlEscape, FEED_UTM } from './metaFeed';
+import { metaFeedXml, feedItem, feedLink, feedDescription, xmlEscape, FEED_UTM, PINTEREST_FEED_UTM } from './metaFeed';
 import type { Product } from '@/lib/types';
 
 const base: Product = {
@@ -52,6 +52,24 @@ describe('feedLink', () => {
 
   it('changes only the query string — the path a shopper lands on is unchanged', () => {
     expect(new URL(feedLink(base)).pathname).toBe(new URL(feedLink(base, null)).pathname);
+  });
+
+  it('the Pinterest tag is a real, distinct value — never falls back to the Meta one', () => {
+    // A Pinterest-driven visit must never be counted as Instagram in Pulse.
+    expect(PINTEREST_FEED_UTM.utm_source).toBe('pinterest');
+    expect(PINTEREST_FEED_UTM.utm_source).not.toBe(FEED_UTM.utm_source);
+    expect(PINTEREST_FEED_UTM.utm_medium).not.toBe(FEED_UTM.utm_medium);
+    expect(PINTEREST_FEED_UTM.utm_campaign).not.toBe(FEED_UTM.utm_campaign);
+  });
+
+  it('feedItem and metaFeedXml thread a utm override through to feedLink', () => {
+    const q = (xml: string) => new URL(xml.match(/<g:link>(.*?)<\/g:link>/)![1].replace(/&amp;/g, '&')).searchParams;
+    expect(q(feedItem(base, PINTEREST_FEED_UTM)).get('utm_source')).toBe('pinterest');
+    expect(q(metaFeedXml([base], PINTEREST_FEED_UTM)).get('utm_source')).toBe('pinterest');
+    // The default (no override passed) is unchanged — the Meta route's own
+    // call sites never learned about Pinterest and must keep working as is.
+    expect(q(feedItem(base)).get('utm_source')).toBe('instagram');
+    expect(q(metaFeedXml([base])).get('utm_source')).toBe('instagram');
   });
 });
 
