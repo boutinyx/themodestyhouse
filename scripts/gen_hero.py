@@ -558,6 +558,31 @@ CONCEPTS_26 = [
     )),
 ]
 
+# Batch 27 (2026-09-22): Tina wants an illustrated cover in the spirit of Merrachi's
+# own room artwork on their loyalty page, without copying it — that artwork is their
+# commissioned illustration and reproducing it is a copyright problem regardless of
+# credit (asked and declined). The general STYLE (loose ink linework, soft chalky
+# crayon shading, warm cream ground) is not protected, only their specific composition
+# is, so this concept deliberately differs in framing and subject from their "Atelier"
+# panel: a different room entirely (an arched window seat, not a sewing corner), no
+# mannequins, no flower vase in the same arrangement, no sewing machine.
+CONCEPTS_27 = [
+    ("illustrated-room", (
+        "A loose hand-drawn ink and soft pastel crayon illustration, in the style of a quick editorial "
+        "fashion sketch, of a warm, sunlit reading nook inside an elegant townhouse. A tall arched window "
+        "with visible glazing bars fills the back wall, warm cream curtains pulled to one side. Beneath the "
+        "window sits a deep-aubergine upholstered window seat with two soft plum cushions. A low wooden side "
+        "table stands beside the seat, holding a single glass of iced tea and a small stack of books. A "
+        "brass floor lamp stands in the corner, its shade a warm parchment colour. The floor is a warm wood "
+        "in loose visible plank lines. The wall colour is a soft warm cream throughout. Rendered entirely as "
+        "flat blocks of colour with visible loose ink outlines, imperfect hand-drawn linework, soft crayon "
+        "texture and shading, in the style of a fashion designer's quick concept sketch — not photographic, "
+        "not 3D rendered, no gradients other than soft crayon shading. Colour palette limited to deep "
+        "aubergine, dusty plum, warm brass, parchment cream and soft wood brown. No text, no writing, no "
+        "signage, no logos, no watermark, no human figures anywhere in the image."
+    )),
+]
+
 BATCHES = {
     9: (CONCEPTS, 38),
     10: (CONCEPTS_10, 43),
@@ -577,6 +602,7 @@ BATCHES = {
     24: (CONCEPTS_24, 78),
     25: (CONCEPTS_25, 79),
     26: (CONCEPTS_26, 80),
+    27: (CONCEPTS_27, 81),
 }
 
 
