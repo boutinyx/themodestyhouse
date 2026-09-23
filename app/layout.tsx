@@ -208,6 +208,28 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             strategy="afterInteractive"
           />
         )}
+        {/* Plausible CE — self-hosted on Railway (Postgres + ClickHouse + the
+            app, same project as the main site), deployed 2026-09-23 solely so
+            Tina can compare its numbers against Pulse. Pageviews only: no
+            custom goals, no outbound-click/file-download variants. Cookieless
+            by design (Plausible never sets a cookie or persistent id), and,
+            unlike Pulse, its script self-excludes localhost — no NODE_ENV
+            check would be strictly required — but gated the same way as Pulse
+            anyway, for one consistent rule about when analytics scripts run.
+
+            Script and event endpoint are the SAME host here (unlike Pulse's
+            split js.ciphera.net / pulse-api.ciphera.net), so only one CSP
+            entry was needed, in both script-src and connect-src
+            (next.config.ts). Disclosed in content/legal/privacy.md §2/§4/§5
+            alongside Pulse — keep those in sync. */}
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            defer
+            data-domain="themodestyhouse.com"
+            src="https://plausible-production-09f2.up.railway.app/js/script.js"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
