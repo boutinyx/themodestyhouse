@@ -69,7 +69,11 @@ const csp = [
   // js.ciphera.net -> app/layout.tsx, the Pulse analytics script (production
   // only). Served from BunnyCDN AMS1. Note its event endpoint is a DIFFERENT
   // host and belongs in connect-src, not here.
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://challenges.cloudflare.com https://js.ciphera.net`,
+  // plausible-production-09f2.up.railway.app -> app/layout.tsx, a second,
+  // self-hosted analytics script run alongside Pulse purely to compare the
+  // two (Tina, 2026-09-23). Unlike Pulse, script and event endpoint are the
+  // SAME host, so this one entry covers both script-src and connect-src.
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://s.skimresources.com https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://challenges.cloudflare.com https://js.ciphera.net https://plausible-production-09f2.up.railway.app`,
   // 118 style={{...}} props -> 146 inline style attributes, plus real inline
   // <style> elements in VerifiedSpotlight.tsx:66, EditMagazine.tsx:50,
   // MagnifierHero.tsx:66.
@@ -87,7 +91,7 @@ const csp = [
   // (/api/v1/events). Verified by reading the script, not assumed: the CDN host
   // that serves the script is NOT the host that receives the beacons, so
   // omitting this would let the script load and then drop every event silently.
-  `connect-src 'self' https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://pulse-api.ciphera.net${isDev ? ' ws://localhost:* http://localhost:*' : ''}`,
+  `connect-src 'self' https://skimresources.com https://*.skimresources.com https://skimlinks.com https://*.skimlinks.com https://pulse-api.ciphera.net https://plausible-production-09f2.up.railway.app${isDev ? ' ws://localhost:* http://localhost:*' : ''}`,
   // Turnstile renders its widget in an iframe on challenges.cloudflare.com;
   // with frame-src 'none' the challenge silently fails to appear and every
   // submission is then rejected server-side.
