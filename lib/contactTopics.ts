@@ -31,6 +31,11 @@ export const TOPICS = [
   // 'brand' is a stranger proposing a house, 'claim' is a house saying one of
   // these pages is theirs, and the two need different handling in the inbox.
   { value: 'claim', label: 'Claim a house' },
+  // Added 2026-09-26 for /partner-with-us — the paid onboarding path a house
+  // reaches from a link Tina sends directly, not from the free 'seal' flow
+  // that /contact and the footer use. Kept distinct so the inbox can tell
+  // "wants the free listing" from "wants the paid onboarding" apart on sight.
+  { value: 'partner', label: 'Partner application' },
   { value: 'press', label: 'Press' },
   { value: 'correction', label: 'Report a correction' },
 ] as const;

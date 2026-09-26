@@ -63,6 +63,7 @@ export function ContactForm({
   defaultTopic,
   defaultBrand,
   brandName,
+  defaultMessage,
 }: {
   siteKey?: string;
   defaultTopic?: string;
@@ -70,6 +71,9 @@ export function ContactForm({
    *  house?" link. Validated server-side before it reaches here. */
   defaultBrand?: string;
   brandName?: string;
+  /** Prefills the message textarea, e.g. /partner-with-us's question
+   *  template. `defaultValue`, not `value` — the field stays uncontrolled. */
+  defaultMessage?: string;
 }) {
   // The topic becomes controlled state ONLY because the claim clickwrap has to
   // appear and disappear with it. Everything else on this form is uncontrolled
@@ -207,7 +211,7 @@ export function ContactForm({
 
       <div>
         <label htmlFor="message" className="eyebrow block mb-1">Message</label>
-        <textarea id="message" name="message" required rows={7} maxLength={5000} style={{ ...field, resize: 'vertical' }} />
+        <textarea id="message" name="message" required rows={7} maxLength={5000} defaultValue={defaultMessage} style={{ ...field, resize: 'vertical' }} />
         {err('message')}
       </div>
 
