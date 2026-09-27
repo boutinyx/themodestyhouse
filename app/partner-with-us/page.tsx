@@ -114,23 +114,41 @@ export default function PartnerWithUsPage() {
               <h2 className="section-heading text-2xl md:text-3xl">{f.h}</h2>
               <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>{f.p}</p>
             </div>
-            {f.images && (
-              <div className={f.images.length > 1 ? 'mt-6 grid gap-4 md:grid-cols-2' : 'mt-6'}>
-                {f.images.map((image) => (
-                  // eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshots, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only)
-                  <img
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.w}
-                    height={image.h}
-                    loading="lazy"
-                    className="w-full rounded-xl"
-                    style={{ border: '1px solid var(--hairline)' }}
-                  />
-                ))}
-              </div>
-            )}
+            {f.images && (() => {
+              // Tina: "make the New In box and the other one the same size".
+              // The two real pages don't have the same amount of UI chrome
+              // (New In also has a search bar), so their screenshots are
+              // genuinely different heights — cropping either to force a
+              // match would cut into product photos again (the exact thing
+              // just fixed). Instead every image in the pair shares a box
+              // sized to the TALLEST one; a shorter image sits top-aligned
+              // inside it with `object-fit: contain`, and the leftover space
+              // is painted the page's own parchment — which is already each
+              // screenshot's real background, so the padding is invisible.
+              const maxH = Math.max(...f.images.map((image) => image.h));
+              return (
+                <div className={f.images.length > 1 ? 'mt-6 grid gap-4 md:grid-cols-2' : 'mt-6'}>
+                  {f.images.map((image) => (
+                    <div
+                      key={image.src}
+                      className="rounded-xl overflow-hidden"
+                      style={{ border: '1px solid var(--hairline)', background: 'var(--parchment)', aspectRatio: `${image.w} / ${maxH}` }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshots, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.w}
+                        height={image.h}
+                        loading="lazy"
+                        className="w-full h-full"
+                        style={{ objectFit: 'contain', objectPosition: 'top' }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
           </section>
         ))}
       </div>
