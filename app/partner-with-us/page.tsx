@@ -40,6 +40,12 @@ export const metadata: Metadata = {
  * Aab and Inayah are both real, currently-listed, verified houses
  * (data/brands.ts) — named because they are true today, not as placeholder
  * copy. If either is ever cut, update the names here too.
+ *
+ * partner-preview-category-2.jpg / -newin-2.jpg carry a "-2" because the
+ * first crop (Tina: "you cut them like in half") cut mid-product-photo —
+ * these replace it with a full uncut row. New filename, not a same-path
+ * overwrite (§6): this page had already been sent/viewed once, so bytes at
+ * the old path could sit in a cache for hours (§10.21, §10.57).
  */
 const FEATURES: { h: string; p: string; images?: { src: string; alt: string; w: number; h: number }[] }[] = [
   {
@@ -51,8 +57,8 @@ const FEATURES: { h: string; p: string; images?: { src: string; alt: string; w: 
     h: 'You show up where shoppers are already browsing',
     p: 'Not just your own page — your pieces sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
     images: [
-      { src: '/partner-preview-category.jpg', alt: 'The Modesty House Abayas category page, showing filters and a grid of products from multiple houses', w: 1280, h: 520 },
-      { src: '/partner-preview-newin.jpg', alt: 'The Modesty House New In page, showing the latest pieces added across houses', w: 1280, h: 560 },
+      { src: '/partner-preview-category-2.jpg', alt: 'The Modesty House Abayas category page, showing filters and a full row of complete product photos from multiple houses', w: 1280, h: 920 },
+      { src: '/partner-preview-newin-2.jpg', alt: 'The Modesty House New In page, showing a full row of the latest complete pieces added across houses', w: 1280, h: 1040 },
     ],
   },
   {
