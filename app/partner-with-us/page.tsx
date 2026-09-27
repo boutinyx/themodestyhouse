@@ -34,12 +34,37 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const INCLUDED = [
-  'Your products added to the directory and matched to the right categories',
-  'A designers page built around your brand',
-  'A dedicated blog post telling your story',
-  'An Instagram feature',
-  'We join your affiliate program — commission on top of all of the above, on any sales we send you',
+/**
+ * The two screenshots below are REAL, live pages — /designers/aab and
+ * /designers, captured from production (§10.18: never invent what a
+ * partner would see; show the real thing instead). Aab and Inayah are both
+ * real, currently-listed, verified houses (data/brands.ts) — named because
+ * they are true today, not as placeholder copy. If either is ever cut,
+ * update the names here too.
+ */
+const FEATURES: { h: string; p: string; image?: { src: string; alt: string; w: number; h: number } }[] = [
+  {
+    h: 'You won’t be listed alone',
+    p: 'Aab, Inayah, AbayaButh and 100+ other houses are already in the directory — verified, browsed, and selling. Your products sit in the same grids shoppers already trust.',
+    image: { src: '/partner-preview-grid.jpg', alt: 'The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified', w: 1280, h: 560 },
+  },
+  {
+    h: 'A real page, not a listing',
+    p: 'A designers page built around your brand — your story, your price range, your pieces. Here’s what a real one looks like today.',
+    image: { src: '/partner-preview-designers.jpg', alt: 'Aab’s live designers page on The Modesty House, showing its description, piece count, price range and a Visit Aab button', w: 1280, h: 460 },
+  },
+  {
+    h: 'A backlink that helps you rank',
+    p: 'When we feature your site, it’s a real link back to you — the kind Google counts toward your own ranking, not just traffic from ours.',
+  },
+  {
+    h: 'An Instagram post people actually engage with',
+    p: 'Not a passing mention — a post built so people understand who you are and trust you before they ever click through to buy.',
+  },
+  {
+    h: 'Commission on everything above',
+    p: 'We join your affiliate program — you only pay out on sales we actually send you. No program yet? Most Shopify stores can set one up in an afternoon with an app like UpPromote or Refersion, and we’re happy to point you to one.',
+  },
 ];
 
 const DEFAULT_MESSAGE = `Brand name & website:
@@ -63,53 +88,74 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
-      {/* Side by side on laptop/desktop (md:), stacked on phone — Tina:
-          "on laptop i want the blocks to be next to eachoter". items-stretch
-          so the aubergine block matches the price card's height rather than
-          hugging its own shorter content. */}
-      <div className="mt-14 grid gap-8 md:grid-cols-2 md:items-stretch">
-        <section
-          className="rounded-2xl p-8 md:p-10 text-center"
-          style={{ background: '#fff', border: '1px solid var(--hairline)' }}
-        >
-          <div className="eyebrow" style={{ color: 'var(--brass)' }}>What&rsquo;s included</div>
-          <div className="mt-2 section-heading text-5xl md:text-6xl" style={{ color: 'var(--aubergine)' }}>
-            $99
-          </div>
-          <div className="eyebrow mt-1" style={{ color: 'var(--muted)' }}>one-time</div>
-          <ul className="mt-8 space-y-4 text-left max-w-md mx-auto">
-            {INCLUDED.map((line) => (
-              <li key={line} className="flex gap-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
-                <span aria-hidden="true" style={{ color: 'var(--brass)' }}>&mdash;</span>
-                <span>{line}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-8 text-sm max-w-md mx-auto" style={{ color: 'var(--muted)' }}>
-            Note: we only bring in women&rsquo;s clothing, hijabs, and layering pieces —
-            other categories on your site won&rsquo;t be listed.
-          </p>
-        </section>
-
-        <section
-          className="rounded-2xl p-8 md:p-10"
-          style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
-        >
-          <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
-          <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
-            Answer these four things in the message box below — that&rsquo;s all we need to get started.
-          </p>
-          <ol className="mt-6 space-y-3 text-base md:text-lg" style={{ listStyle: 'decimal', paddingLeft: 22 }}>
-            <li>Your brand name &amp; website</li>
-            <li>What you sell (women&rsquo;s clothing, hijabs, layering pieces only)</li>
-            <li>Where you&rsquo;re based, and how long you&rsquo;ve been running</li>
-            <li>Your Instagram handle</li>
-          </ol>
-          <p className="mt-6 text-base md:text-lg font-semibold">
-            We&rsquo;ll follow up within a few days of hearing from you.
-          </p>
-        </section>
+      {/* VALUE FIRST, price further down — SaaS pricing-page research is
+          consistent on this: buyers want "is this worth it" answered before
+          they see a number, and a bare price up top is what makes people
+          bounce. Two of the five features carry a REAL screenshot rather
+          than a description, because "give them a feeling of what it's
+          like" is best done by showing the actual thing. */}
+      <div className="mt-16 space-y-14">
+        {FEATURES.map((f) => (
+          <section key={f.h} className="max-w-2xl mx-auto text-center">
+            <h2 className="section-heading text-2xl md:text-3xl">{f.h}</h2>
+            <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>{f.p}</p>
+            {f.image && (
+              // eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only)
+              <img
+                src={f.image.src}
+                alt={f.image.alt}
+                width={f.image.w}
+                height={f.image.h}
+                loading="lazy"
+                className="mt-6 w-full rounded-xl"
+                style={{ border: '1px solid var(--hairline)' }}
+              />
+            )}
+          </section>
+        ))}
       </div>
+
+      {/* Price, de-emphasized relative to the v1 of this page — smaller
+          numeral, framed with what it covers and an explicit "not a
+          subscription" reassurance, which is the other half of what the
+          research above recommends: once value is established, state the
+          number plainly and concretely rather than hiding it. */}
+      <section
+        className="mt-16 max-w-md mx-auto rounded-2xl p-8 text-center"
+        style={{ background: '#fff', border: '1px solid var(--hairline)' }}
+      >
+        <div className="eyebrow" style={{ color: 'var(--brass)' }}>To get all of the above</div>
+        <div className="mt-2 section-heading text-4xl" style={{ color: 'var(--aubergine)' }}>
+          $99 <span className="text-lg" style={{ color: 'var(--muted)' }}>one-time</span>
+        </div>
+        <p className="mt-3 text-sm" style={{ color: 'var(--muted)' }}>
+          No subscription, nothing recurring — one payment covers getting your products in,
+          building your page, and the blog + Instagram feature above.
+        </p>
+        <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
+          We only bring in women&rsquo;s clothing, hijabs, and layering pieces — other
+          categories on your site won&rsquo;t be listed.
+        </p>
+      </section>
+
+      <section
+        className="mt-14 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto"
+        style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
+      >
+        <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
+        <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
+          Answer these four things in the message box below — that&rsquo;s all we need to get started.
+        </p>
+        <ol className="mt-6 space-y-3 text-base md:text-lg" style={{ listStyle: 'decimal', paddingLeft: 22 }}>
+          <li>Your brand name &amp; website</li>
+          <li>What you sell (women&rsquo;s clothing, hijabs, layering pieces only)</li>
+          <li>Where you&rsquo;re based, and how long you&rsquo;ve been running</li>
+          <li>Your Instagram handle</li>
+        </ol>
+        <p className="mt-6 text-base md:text-lg font-semibold">
+          We&rsquo;ll follow up within a few days of hearing from you.
+        </p>
+      </section>
 
       <div className="mt-14 max-w-2xl mx-auto">
         <ContactForm
