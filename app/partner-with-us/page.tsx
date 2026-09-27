@@ -55,8 +55,8 @@ export default function PartnerWithUsPage() {
     <main className="max-w-2xl mx-auto px-8 pt-12 md:pt-20 pb-24">
       <div className="text-center">
         <div className="eyebrow" style={{ color: 'var(--brass)' }}>By invitation</div>
-        <h1 className="section-heading text-3xl md:text-4xl mt-3">Partner with The Modesty House</h1>
-        <p className="mt-4 text-base leading-relaxed" style={{ color: 'var(--prose)' }}>
+        <h1 className="section-heading text-4xl md:text-5xl mt-4">Partner with The Modesty House</h1>
+        <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
           A curated directory for aspirational, well-designed modest fashion. If you&rsquo;re
           here, it&rsquo;s because we&rsquo;ve already been through your catalogue and think it
           belongs in the directory.
@@ -64,29 +64,48 @@ export default function PartnerWithUsPage() {
       </div>
 
       <section
-        className="mt-12 rounded-2xl p-8"
+        className="mt-14 rounded-2xl p-8 md:p-10 text-center"
         style={{ background: '#fff', border: '1px solid var(--hairline)' }}
       >
-        <div className="eyebrow" style={{ color: 'var(--brass)' }}>What&rsquo;s included — $99 one-time</div>
-        <ul className="mt-4 space-y-3">
+        <div className="eyebrow" style={{ color: 'var(--brass)' }}>What&rsquo;s included</div>
+        <div className="mt-2 section-heading text-5xl md:text-6xl" style={{ color: 'var(--aubergine)' }}>
+          $99
+        </div>
+        <div className="eyebrow mt-1" style={{ color: 'var(--muted)' }}>one-time</div>
+        <ul className="mt-8 space-y-4 text-left max-w-md mx-auto">
           {INCLUDED.map((line) => (
-            <li key={line} className="flex gap-3 text-[15px] leading-relaxed" style={{ color: 'var(--prose)' }}>
+            <li key={line} className="flex gap-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
               <span aria-hidden="true" style={{ color: 'var(--brass)' }}>&mdash;</span>
               <span>{line}</span>
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-sm" style={{ color: 'var(--muted)' }}>
+        <p className="mt-8 text-sm max-w-md mx-auto" style={{ color: 'var(--muted)' }}>
           Note: we only bring in women&rsquo;s clothing, hijabs, and layering pieces —
           other categories on your site won&rsquo;t be listed.
         </p>
       </section>
 
-      <div className="mt-12">
-        <h2 className="eyebrow" style={{ color: 'var(--brass)' }}>Get started</h2>
-        <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
-          Fill in the message below and we&rsquo;ll follow up within a few days.
+      <section
+        className="mt-14 rounded-2xl p-8 md:p-10"
+        style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
+      >
+        <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
+        <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
+          Answer these four things in the message box below — that&rsquo;s all we need to get started.
         </p>
+        <ol className="mt-6 space-y-3 text-base md:text-lg" style={{ listStyle: 'decimal', paddingLeft: 22 }}>
+          <li>Your brand name &amp; website</li>
+          <li>What you sell (women&rsquo;s clothing, hijabs, layering pieces only)</li>
+          <li>Where you&rsquo;re based, and how long you&rsquo;ve been running</li>
+          <li>Your Instagram handle</li>
+        </ol>
+        <p className="mt-6 text-base md:text-lg font-semibold">
+          We&rsquo;ll follow up within a few days of hearing from you.
+        </p>
+      </section>
+
+      <div className="mt-14">
         <ContactForm
           siteKey={siteKey}
           defaultTopic="partner"
