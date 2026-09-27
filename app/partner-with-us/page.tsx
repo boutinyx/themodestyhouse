@@ -52,8 +52,8 @@ export default function PartnerWithUsPage() {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
-    <main className="max-w-2xl mx-auto px-8 pt-12 md:pt-20 pb-24">
-      <div className="text-center">
+    <main className="max-w-4xl mx-auto px-8 pt-12 md:pt-20 pb-24">
+      <div className="text-center max-w-2xl mx-auto">
         <div className="eyebrow" style={{ color: 'var(--brass)' }}>By invitation</div>
         <h1 className="section-heading text-4xl md:text-5xl mt-4">Partner with The Modesty House</h1>
         <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
@@ -63,49 +63,55 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
-      <section
-        className="mt-14 rounded-2xl p-8 md:p-10 text-center"
-        style={{ background: '#fff', border: '1px solid var(--hairline)' }}
-      >
-        <div className="eyebrow" style={{ color: 'var(--brass)' }}>What&rsquo;s included</div>
-        <div className="mt-2 section-heading text-5xl md:text-6xl" style={{ color: 'var(--aubergine)' }}>
-          $99
-        </div>
-        <div className="eyebrow mt-1" style={{ color: 'var(--muted)' }}>one-time</div>
-        <ul className="mt-8 space-y-4 text-left max-w-md mx-auto">
-          {INCLUDED.map((line) => (
-            <li key={line} className="flex gap-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
-              <span aria-hidden="true" style={{ color: 'var(--brass)' }}>&mdash;</span>
-              <span>{line}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-8 text-sm max-w-md mx-auto" style={{ color: 'var(--muted)' }}>
-          Note: we only bring in women&rsquo;s clothing, hijabs, and layering pieces —
-          other categories on your site won&rsquo;t be listed.
-        </p>
-      </section>
+      {/* Side by side on laptop/desktop (md:), stacked on phone — Tina:
+          "on laptop i want the blocks to be next to eachoter". items-stretch
+          so the aubergine block matches the price card's height rather than
+          hugging its own shorter content. */}
+      <div className="mt-14 grid gap-8 md:grid-cols-2 md:items-stretch">
+        <section
+          className="rounded-2xl p-8 md:p-10 text-center"
+          style={{ background: '#fff', border: '1px solid var(--hairline)' }}
+        >
+          <div className="eyebrow" style={{ color: 'var(--brass)' }}>What&rsquo;s included</div>
+          <div className="mt-2 section-heading text-5xl md:text-6xl" style={{ color: 'var(--aubergine)' }}>
+            $99
+          </div>
+          <div className="eyebrow mt-1" style={{ color: 'var(--muted)' }}>one-time</div>
+          <ul className="mt-8 space-y-4 text-left max-w-md mx-auto">
+            {INCLUDED.map((line) => (
+              <li key={line} className="flex gap-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
+                <span aria-hidden="true" style={{ color: 'var(--brass)' }}>&mdash;</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-sm max-w-md mx-auto" style={{ color: 'var(--muted)' }}>
+            Note: we only bring in women&rsquo;s clothing, hijabs, and layering pieces —
+            other categories on your site won&rsquo;t be listed.
+          </p>
+        </section>
 
-      <section
-        className="mt-14 rounded-2xl p-8 md:p-10"
-        style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
-      >
-        <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
-        <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
-          Answer these four things in the message box below — that&rsquo;s all we need to get started.
-        </p>
-        <ol className="mt-6 space-y-3 text-base md:text-lg" style={{ listStyle: 'decimal', paddingLeft: 22 }}>
-          <li>Your brand name &amp; website</li>
-          <li>What you sell (women&rsquo;s clothing, hijabs, layering pieces only)</li>
-          <li>Where you&rsquo;re based, and how long you&rsquo;ve been running</li>
-          <li>Your Instagram handle</li>
-        </ol>
-        <p className="mt-6 text-base md:text-lg font-semibold">
-          We&rsquo;ll follow up within a few days of hearing from you.
-        </p>
-      </section>
+        <section
+          className="rounded-2xl p-8 md:p-10"
+          style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
+        >
+          <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
+          <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
+            Answer these four things in the message box below — that&rsquo;s all we need to get started.
+          </p>
+          <ol className="mt-6 space-y-3 text-base md:text-lg" style={{ listStyle: 'decimal', paddingLeft: 22 }}>
+            <li>Your brand name &amp; website</li>
+            <li>What you sell (women&rsquo;s clothing, hijabs, layering pieces only)</li>
+            <li>Where you&rsquo;re based, and how long you&rsquo;ve been running</li>
+            <li>Your Instagram handle</li>
+          </ol>
+          <p className="mt-6 text-base md:text-lg font-semibold">
+            We&rsquo;ll follow up within a few days of hearing from you.
+          </p>
+        </section>
+      </div>
 
-      <div className="mt-14">
+      <div className="mt-14 max-w-2xl mx-auto">
         <ContactForm
           siteKey={siteKey}
           defaultTopic="partner"
