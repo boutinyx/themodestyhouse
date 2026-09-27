@@ -35,23 +35,30 @@ export const metadata: Metadata = {
 };
 
 /**
- * The two screenshots below are REAL, live pages — /designers/aab and
- * /designers, captured from production (§10.18: never invent what a
- * partner would see; show the real thing instead). Aab and Inayah are both
- * real, currently-listed, verified houses (data/brands.ts) — named because
- * they are true today, not as placeholder copy. If either is ever cut,
- * update the names here too.
+ * Every screenshot below is REAL, captured live from production (§10.18:
+ * never invent what a partner would see; show the real thing instead).
+ * Aab and Inayah are both real, currently-listed, verified houses
+ * (data/brands.ts) — named because they are true today, not as placeholder
+ * copy. If either is ever cut, update the names here too.
  */
-const FEATURES: { h: string; p: string; image?: { src: string; alt: string; w: number; h: number } }[] = [
+const FEATURES: { h: string; p: string; images?: { src: string; alt: string; w: number; h: number }[] }[] = [
   {
     h: 'You won’t be listed alone',
     p: 'Aab, Inayah, AbayaButh and 100+ other houses are already in the directory — verified, browsed, and selling. Your products sit in the same grids shoppers already trust.',
-    image: { src: '/partner-preview-grid.jpg', alt: 'The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified', w: 1280, h: 560 },
+    images: [{ src: '/partner-preview-grid.jpg', alt: 'The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified', w: 1280, h: 560 }],
+  },
+  {
+    h: 'You show up where shoppers are already browsing',
+    p: 'Not just your own page — your pieces sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
+    images: [
+      { src: '/partner-preview-category.jpg', alt: 'The Modesty House Abayas category page, showing filters and a grid of products from multiple houses', w: 1280, h: 520 },
+      { src: '/partner-preview-newin.jpg', alt: 'The Modesty House New In page, showing the latest pieces added across houses', w: 1280, h: 560 },
+    ],
   },
   {
     h: 'A real page, not a listing',
     p: 'A designers page built around your brand — your story, your price range, your pieces. Here’s what a real one looks like today.',
-    image: { src: '/partner-preview-designers.jpg', alt: 'Aab’s live designers page on The Modesty House, showing its description, piece count, price range and a Visit Aab button', w: 1280, h: 460 },
+    images: [{ src: '/partner-preview-designers.jpg', alt: 'Aab’s live designers page on The Modesty House, showing its description, piece count, price range and a Visit Aab button', w: 1280, h: 460 }],
   },
   {
     h: 'A backlink that helps you rank',
@@ -96,20 +103,27 @@ export default function PartnerWithUsPage() {
           like" is best done by showing the actual thing. */}
       <div className="mt-16 space-y-14">
         {FEATURES.map((f) => (
-          <section key={f.h} className="max-w-2xl mx-auto text-center">
-            <h2 className="section-heading text-2xl md:text-3xl">{f.h}</h2>
-            <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>{f.p}</p>
-            {f.image && (
-              // eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only)
-              <img
-                src={f.image.src}
-                alt={f.image.alt}
-                width={f.image.w}
-                height={f.image.h}
-                loading="lazy"
-                className="mt-6 w-full rounded-xl"
-                style={{ border: '1px solid var(--hairline)' }}
-              />
+          <section key={f.h} className={f.images && f.images.length > 1 ? 'text-center' : 'max-w-2xl mx-auto text-center'}>
+            <div className="max-w-2xl mx-auto">
+              <h2 className="section-heading text-2xl md:text-3xl">{f.h}</h2>
+              <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>{f.p}</p>
+            </div>
+            {f.images && (
+              <div className={f.images.length > 1 ? 'mt-6 grid gap-4 md:grid-cols-2' : 'mt-6'}>
+                {f.images.map((image) => (
+                  // eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshots, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only)
+                  <img
+                    key={image.src}
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.w}
+                    height={image.h}
+                    loading="lazy"
+                    className="w-full rounded-xl"
+                    style={{ border: '1px solid var(--hairline)' }}
+                  />
+                ))}
+              </div>
             )}
           </section>
         ))}
