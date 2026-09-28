@@ -50,11 +50,6 @@ export const metadata: Metadata = {
  */
 const FEATURES: PartnerFeature[] = [
   {
-    h: 'You won’t be listed alone',
-    p: 'Aab, Inayah, AbayaButh and 100+ other houses are already in the directory — verified, browsed, and selling. Your products sit in the same grids shoppers already trust.',
-    images: [{ src: '/partner-preview-grid.jpg', alt: 'The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified', w: 1280, h: 560 }],
-  },
-  {
     h: 'You show up where shoppers are already browsing',
     p: 'Not just your own page — your pieces sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
     images: [
@@ -102,16 +97,59 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
+      {/* "YOU WON'T BE LISTED ALONE" — pulled out of the accordion and given
+          /about's own shape: Tina pointed at /about's MISSION-text-then-
+          full-bleed-photo band and said do this one the same way. Text runs
+          the full width (like /about's MISSION drops its narrow MEASURE),
+          then a full-bleed image below it, breaking out of the page's own
+          max-w-4xl via the standard `left-1/2 -translate-x-1/2 w-screen`
+          technique (verified with Playwright at 390/1280/1920 — no
+          horizontal scrollbar introduced).
+
+          NOT `object-fit: cover` like /about's mashrabiya photo — that photo
+          was composed to survive an arbitrary crop (its own comment: "the
+          composition puts the lattice hard left... which is why it survives
+          being cropped"). A screenshot of a product grid has no such
+          slack — Tina already flagged once this session that a cropped
+          screenshot reads as "cut in half". `object-fit: contain` at the
+          image's own aspect ratio shows it whole; the aubergine sits behind
+          it as letterboxing rather than as a crop that eats content. */}
+      <section className="mt-14">
+        <div className="max-w-4xl mx-auto px-8 text-center">
+          <h2 className="section-heading text-2xl md:text-3xl">You won’t be listed alone</h2>
+          <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
+            Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
+            verified, browsed, and selling. Your products sit in the same grids shoppers
+            already trust.
+          </p>
+        </div>
+        <div
+          className="mt-8 w-screen relative left-1/2 -translate-x-1/2"
+          style={{ background: 'var(--aubergine)' }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
+          <img
+            src="/partner-preview-grid.jpg"
+            alt="The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified"
+            width={1280}
+            height={560}
+            loading="lazy"
+            className="w-full mx-auto"
+            style={{ maxWidth: 1280, aspectRatio: '1280 / 560', objectFit: 'contain' }}
+          />
+        </div>
+      </section>
+
       {/* VALUE FIRST, price further down — SaaS pricing-page research is
           consistent on this: buyers want "is this worth it" answered before
           they see a number, and a bare price up top is what makes people
-          bounce. Two of the six features carry a REAL screenshot rather
+          bounce. Two of the five remaining features carry a REAL screenshot rather
           than a description, because "give them a feeling of what it's
           like" is best done by showing the actual thing.
 
           COLLAPSED BY DEFAULT — Tina: "i think its too long not only on
           laptop but also on phone... keep what we have but implement it in
-          a different way". Same six features, same copy, same screenshots;
+          a different way". Same five features, same copy, same screenshots;
           nothing cut, just not all open on the page at once. See
           components/PartnerFeatureAccordion.tsx for why this isn't just
           HowBlocks reused. */}
