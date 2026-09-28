@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
+import { PartnerFeatureAccordion, type PartnerFeature } from '@/components/PartnerFeatureAccordion';
 import { buildMetadata } from '@/lib/seoCopy';
 
 /**
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
  * overwrite (§6): this page had already been sent/viewed once, so bytes at
  * the old path could sit in a cache for hours (§10.21, §10.57).
  */
-const FEATURES: { h: string; p: string; images?: { src: string; alt: string; w: number; h: number }[] }[] = [
+const FEATURES: PartnerFeature[] = [
   {
     h: 'You won’t be listed alone',
     p: 'Aab, Inayah, AbayaButh and 100+ other houses are already in the directory — verified, browsed, and selling. Your products sit in the same grids shoppers already trust.',
@@ -104,53 +105,18 @@ export default function PartnerWithUsPage() {
       {/* VALUE FIRST, price further down — SaaS pricing-page research is
           consistent on this: buyers want "is this worth it" answered before
           they see a number, and a bare price up top is what makes people
-          bounce. Two of the five features carry a REAL screenshot rather
+          bounce. Two of the six features carry a REAL screenshot rather
           than a description, because "give them a feeling of what it's
-          like" is best done by showing the actual thing. */}
-      <div className="mt-16 space-y-14">
-        {FEATURES.map((f) => (
-          <section key={f.h} className={f.images && f.images.length > 1 ? 'text-center' : 'max-w-2xl mx-auto text-center'}>
-            <div className="max-w-2xl mx-auto">
-              <h2 className="section-heading text-2xl md:text-3xl">{f.h}</h2>
-              <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>{f.p}</p>
-            </div>
-            {f.images && (() => {
-              // Tina: "make the New In box and the other one the same size".
-              // The two real pages don't have the same amount of UI chrome
-              // (New In also has a search bar), so their screenshots are
-              // genuinely different heights — cropping either to force a
-              // match would cut into product photos again (the exact thing
-              // just fixed). Instead every image in the pair shares a box
-              // sized to the TALLEST one; a shorter image sits top-aligned
-              // inside it with `object-fit: contain`, and the leftover space
-              // is painted the page's own parchment — which is already each
-              // screenshot's real background, so the padding is invisible.
-              const maxH = Math.max(...f.images.map((image) => image.h));
-              return (
-                <div className={f.images.length > 1 ? 'mt-6 grid gap-4 md:grid-cols-2' : 'mt-6'}>
-                  {f.images.map((image) => (
-                    <div
-                      key={image.src}
-                      className="rounded-xl overflow-hidden"
-                      style={{ border: '1px solid var(--hairline)', background: 'var(--parchment)', aspectRatio: `${image.w} / ${maxH}` }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshots, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.w}
-                        height={image.h}
-                        loading="lazy"
-                        className="w-full h-full"
-                        style={{ objectFit: 'contain', objectPosition: 'top' }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              );
-            })()}
-          </section>
-        ))}
+          like" is best done by showing the actual thing.
+
+          COLLAPSED BY DEFAULT — Tina: "i think its too long not only on
+          laptop but also on phone... keep what we have but implement it in
+          a different way". Same six features, same copy, same screenshots;
+          nothing cut, just not all open on the page at once. See
+          components/PartnerFeatureAccordion.tsx for why this isn't just
+          HowBlocks reused. */}
+      <div className="mt-12 max-w-2xl mx-auto">
+        <PartnerFeatureAccordion features={FEATURES} />
       </div>
 
       {/* Price, de-emphasized relative to the v1 of this page — smaller
@@ -159,7 +125,7 @@ export default function PartnerWithUsPage() {
           research above recommends: once value is established, state the
           number plainly and concretely rather than hiding it. */}
       <section
-        className="mt-16 max-w-md mx-auto rounded-2xl p-8 text-center"
+        className="mt-12 max-w-md mx-auto rounded-2xl p-8 text-center"
         style={{ background: '#fff', border: '1px solid var(--hairline)' }}
       >
         <div className="eyebrow" style={{ color: 'var(--brass)' }}>To get all of the above</div>
@@ -177,7 +143,7 @@ export default function PartnerWithUsPage() {
       </section>
 
       <section
-        className="mt-14 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto"
+        className="mt-10 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto"
         style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
       >
         <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
@@ -195,7 +161,7 @@ export default function PartnerWithUsPage() {
         </p>
       </section>
 
-      <div className="mt-14 max-w-2xl mx-auto">
+      <div className="mt-10 max-w-2xl mx-auto">
         <ContactForm
           siteKey={siteKey}
           defaultTopic="partner"
