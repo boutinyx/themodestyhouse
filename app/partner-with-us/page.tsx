@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
 import { PartnerFeatureAccordion, type PartnerFeature } from '@/components/PartnerFeatureAccordion';
+import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { buildMetadata } from '@/lib/seoCopy';
 
 /**
@@ -84,6 +85,7 @@ Instagram handle:
 
 export default function PartnerWithUsPage() {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const stats = aboutStats();
 
   return (
     <main className="max-w-4xl mx-auto px-8 pt-12 md:pt-20 pb-24">
@@ -137,6 +139,32 @@ export default function PartnerWithUsPage() {
             className="w-full mx-auto"
             style={{ maxWidth: 1280, aspectRatio: '1280 / 560', objectFit: 'contain' }}
           />
+        </div>
+
+        {/* THE RECEIPTS — Tina: "i wanted the purple background with the 115
+            houses indexed etc". Same figures /about prints, computed the same
+            way (lib/aboutStats.ts), not retyped: CLAUDE.md's whole point about
+            this file is that a number typed into a page rots the moment the
+            nightly refresh moves it. No new stat invented for this page — all
+            four are what /about already asserts, reused. */}
+        <div
+          className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 py-12 md:py-16"
+        >
+          <div className="max-w-4xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
+            {[
+              { value: String(stats.houses), label: 'houses indexed' },
+              { value: roundedPieces(stats.pieces), label: 'pieces catalogued' },
+              { value: String(stats.currencies), label: 'currencies' },
+              { value: String(stats.sealed), label: 'carrying the seal' },
+            ].map((f) => (
+              <div key={f.label}>
+                <div className="serif" style={{ fontSize: 'clamp(30px,5vw,48px)', lineHeight: 1, color: 'var(--parchment)' }}>
+                  {f.value}
+                </div>
+                <div className="eyebrow mt-3" style={{ color: '#e7d3b6' }}>{f.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
