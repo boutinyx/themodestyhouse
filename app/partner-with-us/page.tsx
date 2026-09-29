@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { PartnerFeatureAccordion, type PartnerFeature } from '@/components/PartnerFeatureAccordion';
+import { PartnerFAQTabs, type PartnerFAQ } from '@/components/PartnerFAQTabs';
 import { PartnerInterestDialog } from '@/components/PartnerInterestDialog';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { buildMetadata } from '@/lib/seoCopy';
@@ -50,38 +50,42 @@ export const metadata: Metadata = {
  * the old path could sit in a cache for hours (§10.21, §10.57).
  */
 /**
- * Rewritten as literal FAQ questions — Tina: "I want those literally to be
- * questions that they could ask. Like, where will I show up? Or is the
- * designer's page the only place that I will show up. Or, how will my
- * listing look like on the designers page." Same five features, same
- * copy, same screenshots underneath each — only the heading changed, from
- * a statement to the question it's actually answering.
+ * Literal FAQ questions — Tina: "I want those literally to be questions
+ * that they could ask." `label` is new: the tabs layout (below) needs a
+ * short name per question since the full question doesn't fit as a tab —
+ * same five questions, same answers, same screenshots as every layout
+ * before this one; only the container changed.
  */
-const FEATURES: PartnerFeature[] = [
+const FAQS: PartnerFAQ[] = [
   {
-    h: 'Is the designers page the only place I’ll show up?',
-    p: 'No — your pieces also sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
+    label: 'Where I show up',
+    q: 'Is the designers page the only place I’ll show up?',
+    a: 'No — your pieces also sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
     images: [
       { src: '/partner-preview-category-2.jpg', alt: 'The Modesty House Abayas category page, showing filters and a full row of complete product photos from multiple houses', w: 1280, h: 920 },
       { src: '/partner-preview-newin-2.jpg', alt: 'The Modesty House New In page, showing a full row of the latest complete pieces added across houses', w: 1280, h: 1040 },
     ],
   },
   {
-    h: 'How will my listing look on the designers page?',
-    p: 'A real page built around your brand — your story, your price range, your pieces. Here’s what a real one looks like today.',
+    label: 'My listing',
+    q: 'How will my listing look on the designers page?',
+    a: 'A real page built around your brand — your story, your price range, your pieces. Here’s what a real one looks like today.',
     images: [{ src: '/partner-preview-designers.jpg', alt: 'Aab’s live designers page on The Modesty House, showing its description, piece count, price range and a Visit Aab button', w: 1280, h: 460 }],
   },
   {
-    h: 'Will this actually help my SEO?',
-    p: 'When we feature your site, it’s a real link back to you — the kind Google counts toward your own ranking, not just traffic from ours.',
+    label: 'SEO',
+    q: 'Will this actually help my SEO?',
+    a: 'When we feature your site, it’s a real link back to you — the kind Google counts toward your own ranking, not just traffic from ours.',
   },
   {
-    h: 'What does the Instagram feature actually look like?',
-    p: 'Not a passing mention — a post built so people understand who you are and trust you before they ever click through to buy.',
+    label: 'Instagram',
+    q: 'What does the Instagram feature actually look like?',
+    a: 'Not a passing mention — a post built so people understand who you are and trust you before they ever click through to buy.',
   },
   {
-    h: 'What if I don’t have an affiliate program set up?',
-    p: 'We join your affiliate program — you only pay out on sales we actually send you. No program yet? Most Shopify stores can set one up in an afternoon with an app like UpPromote or Refersion, and we’re happy to point you to one.',
+    label: 'Affiliate',
+    q: 'What if I don’t have an affiliate program set up?',
+    a: 'We join your affiliate program — you only pay out on sales we actually send you. No program yet? Most Shopify stores can set one up in an afternoon with an app like UpPromote or Refersion, and we’re happy to point you to one.',
   },
 ];
 
@@ -96,11 +100,24 @@ export default function PartnerWithUsPage() {
   const stats = aboutStats();
 
   return (
-    <main className="max-w-4xl mx-auto px-8 pt-12 md:pt-20 pb-24">
+    // DARK THEME — Tina, pointing at faq-layouts.html's own outer chrome:
+    // "i want the dark purple theme from here for the whole page[,] only
+    // the partner page". #1b1119 is that mockup's exact page background.
+    // Only this page's <main> goes dark — Header/Footer are shared site
+    // chrome and stay as they render everywhere else. Every section below
+    // that was already a light or aubergine "island" (the screenshot card,
+    // the stats band, the price card, the FAQ panel, "what we need from
+    // you") KEEPS that surface; only the page background and the running
+    // text around those islands changed. --brass-on-dark and
+    // --muted-on-dark are existing tokens (app/globals.css), already tuned
+    // for AA contrast on a dark surface — not new colours invented for
+    // this page.
+    <main style={{ background: '#1b1119' }}>
+      <div className="max-w-4xl mx-auto px-8 pt-12 md:pt-20 pb-24">
       <div className="text-center max-w-2xl mx-auto">
-        <div className="eyebrow" style={{ color: 'var(--brass)' }}>By invitation</div>
-        <h1 className="section-heading text-4xl md:text-5xl mt-4">Partner with The Modesty House</h1>
-        <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
+        <div className="eyebrow" style={{ color: 'var(--brass-on-dark)' }}>By invitation</div>
+        <h1 className="section-heading text-4xl md:text-5xl mt-4" style={{ color: '#fff' }}>Partner with The Modesty House</h1>
+        <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--muted-on-dark)' }}>
           A curated directory for aspirational, well-designed modest fashion. If you&rsquo;re
           here, it&rsquo;s because we&rsquo;ve already been through your catalogue and think it
           belongs in the directory.
@@ -150,7 +167,7 @@ export default function PartnerWithUsPage() {
         </div>
 
         <div className="mt-6 max-w-4xl mx-auto px-8 text-center">
-          <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--muted-on-dark)' }}>
             Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
             verified, browsed, and selling. Your products sit in the same grids shoppers
             already trust.
@@ -180,24 +197,18 @@ export default function PartnerWithUsPage() {
         </div>
       </section>
 
-      {/* VALUE FIRST, price further down — SaaS pricing-page research is
-          consistent on this: buyers want "is this worth it" answered before
-          they see a number, and a bare price up top is what makes people
-          bounce. Two of the five remaining features carry a REAL screenshot rather
-          than a description, because "give them a feeling of what it's
-          like" is best done by showing the actual thing.
-
-          FAQ-PHRASED HEADINGS — Tina: "I want those literally to be
-          questions that they could ask." See FEATURES above.
-
-          COLLAPSED BY DEFAULT — Tina: "i think its too long not only on
-          laptop but also on phone... keep what we have but implement it in
-          a different way". Same five features, same copy, same screenshots;
-          nothing cut, just not all open on the page at once. See
-          components/PartnerFeatureAccordion.tsx for why this isn't just
-          HowBlocks reused. */}
-      <div className="mt-12 max-w-2xl mx-auto">
-        <PartnerFeatureAccordion features={FEATURES} />
+      {/* FAQ — TABS, not the accordion this page used before. Tina compared
+          all eight layouts in faq-layouts.html and picked 05 ("Tabs"): pill
+          tabs floating on the page's own background, one answer panel below
+          that swaps. Same five questions, same answers, same real
+          screenshots underneath the first two — only the container changed.
+          See components/PartnerFAQTabs.tsx for why this is its own
+          component rather than PartnerFeatureAccordion re-skinned: the two
+          are different information architectures (a list of open/closable
+          rows vs. one visible question at a time), not the same component
+          in a different colour. */}
+      <div className="mt-14 max-w-2xl mx-auto">
+        <PartnerFAQTabs items={FAQS} />
       </div>
 
       {/* Price, de-emphasized relative to the v1 of this page — smaller
@@ -223,9 +234,13 @@ export default function PartnerWithUsPage() {
         </p>
       </section>
 
+      {/* Border added here only — on the old parchment page background,
+          aubergine-on-parchment was contrast enough on its own; on the new
+          near-black page (#1b1119) the two are both dark and would blur
+          into each other without an edge. */}
       <section
         className="mt-10 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto"
-        style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
+        style={{ background: 'var(--aubergine)', color: 'var(--parchment)', border: '1px solid rgba(255,255,255,0.1)' }}
       >
         <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
         <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
@@ -252,6 +267,7 @@ export default function PartnerWithUsPage() {
           defaultTopic="partner"
           defaultMessage={DEFAULT_MESSAGE}
         />
+      </div>
       </div>
     </main>
   );
