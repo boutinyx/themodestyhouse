@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { ContactForm } from '@/components/ContactForm';
 import { PartnerFeatureAccordion, type PartnerFeature } from '@/components/PartnerFeatureAccordion';
+import { PartnerInterestDialog } from '@/components/PartnerInterestDialog';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { buildMetadata } from '@/lib/seoCopy';
 
@@ -49,30 +49,38 @@ export const metadata: Metadata = {
  * overwrite (§6): this page had already been sent/viewed once, so bytes at
  * the old path could sit in a cache for hours (§10.21, §10.57).
  */
+/**
+ * Rewritten as literal FAQ questions — Tina: "I want those literally to be
+ * questions that they could ask. Like, where will I show up? Or is the
+ * designer's page the only place that I will show up. Or, how will my
+ * listing look like on the designers page." Same five features, same
+ * copy, same screenshots underneath each — only the heading changed, from
+ * a statement to the question it's actually answering.
+ */
 const FEATURES: PartnerFeature[] = [
   {
-    h: 'You show up where shoppers are already browsing',
-    p: 'Not just your own page — your pieces sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
+    h: 'Is the designers page the only place I’ll show up?',
+    p: 'No — your pieces also sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
     images: [
       { src: '/partner-preview-category-2.jpg', alt: 'The Modesty House Abayas category page, showing filters and a full row of complete product photos from multiple houses', w: 1280, h: 920 },
       { src: '/partner-preview-newin-2.jpg', alt: 'The Modesty House New In page, showing a full row of the latest complete pieces added across houses', w: 1280, h: 1040 },
     ],
   },
   {
-    h: 'A real page, not a listing',
-    p: 'A designers page built around your brand — your story, your price range, your pieces. Here’s what a real one looks like today.',
+    h: 'How will my listing look on the designers page?',
+    p: 'A real page built around your brand — your story, your price range, your pieces. Here’s what a real one looks like today.',
     images: [{ src: '/partner-preview-designers.jpg', alt: 'Aab’s live designers page on The Modesty House, showing its description, piece count, price range and a Visit Aab button', w: 1280, h: 460 }],
   },
   {
-    h: 'A backlink that helps you rank',
+    h: 'Will this actually help my SEO?',
     p: 'When we feature your site, it’s a real link back to you — the kind Google counts toward your own ranking, not just traffic from ours.',
   },
   {
-    h: 'An Instagram post people actually engage with',
+    h: 'What does the Instagram feature actually look like?',
     p: 'Not a passing mention — a post built so people understand who you are and trust you before they ever click through to buy.',
   },
   {
-    h: 'Commission on everything above',
+    h: 'What if I don’t have an affiliate program set up?',
     p: 'We join your affiliate program — you only pay out on sales we actually send you. No program yet? Most Shopify stores can set one up in an afternoon with an app like UpPromote or Refersion, and we’re happy to point you to one.',
   },
 ];
@@ -99,25 +107,20 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
-      {/* "YOU WON'T BE LISTED ALONE" — pulled out of the accordion and given
-          /about's own shape: Tina pointed at /about's MISSION-text-then-
-          full-bleed-photo band and said do this one the same way. Text runs
-          the full width (like /about's MISSION drops its narrow MEASURE),
-          then a full-bleed image below it, breaking out of the page's own
-          max-w-4xl via the standard `left-1/2 -translate-x-1/2 w-screen`
-          technique (verified with Playwright at 390/1280/1920 — no
-          horizontal scrollbar introduced).
+      {/* "YOU WON'T BE LISTED ALONE" — /about's shape (text, then photo, then
+          the aubergine receipts band), SIZED DOWN. First pass ran the photo
+          and stats full-bleed edge to edge like /about does; Tina then asked
+          for both at the SAME width as the accordion below, with a gap
+          between the picture and the band rather than them running flush,
+          and rounded corners — i.e. a card, not a break-out band. So both
+          are their own rounded elements at max-w-2xl now, not w-screen.
 
-          NOT `object-fit: cover` like /about's mashrabiya photo — that photo
-          was composed to survive an arbitrary crop (its own comment: "the
-          composition puts the lattice hard left... which is why it survives
-          being cropped"). A screenshot of a product grid has no such
-          slack — Tina already flagged once this session that a cropped
-          screenshot reads as "cut in half". `object-fit: contain` at the
-          image's own aspect ratio shows it whole; the aubergine sits behind
-          it as letterboxing rather than as a crop that eats content. */}
-      <section className="mt-14">
-        <div className="max-w-4xl mx-auto px-8 text-center">
+          Still `object-fit: contain`, not `cover` like /about's mashrabiya
+          photo: that photo was composed to survive an arbitrary crop, a
+          screenshot of a product grid is not, and Tina already flagged once
+          this session that a cropped screenshot reads as "cut in half". */}
+      <section className="mt-14 max-w-2xl mx-auto">
+        <div className="px-8 text-center">
           <h2 className="section-heading text-2xl md:text-3xl">You won’t be listed alone</h2>
           <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
             Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
@@ -125,45 +128,41 @@ export default function PartnerWithUsPage() {
             already trust.
           </p>
         </div>
-        <div
-          className="mt-8 w-screen relative left-1/2 -translate-x-1/2"
-          style={{ background: 'var(--aubergine)' }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
-          <img
-            src="/partner-preview-grid.jpg"
-            alt="The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified"
-            width={1280}
-            height={560}
-            loading="lazy"
-            className="w-full mx-auto"
-            style={{ maxWidth: 1280, aspectRatio: '1280 / 560', objectFit: 'contain' }}
-          />
-        </div>
 
-        {/* THE RECEIPTS — Tina: "i wanted the purple background with the 115
-            houses indexed etc". Same figures /about prints, computed the same
-            way (lib/aboutStats.ts), not retyped: CLAUDE.md's whole point about
-            this file is that a number typed into a page rots the moment the
-            nightly refresh moves it. No new stat invented for this page — all
-            four are what /about already asserts, reused. */}
-        <div
-          className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 py-12 md:py-16"
-        >
-          <div className="max-w-4xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
-            {[
-              { value: String(stats.houses), label: 'houses indexed' },
-              { value: roundedPieces(stats.pieces), label: 'pieces catalogued' },
-              { value: String(stats.currencies), label: 'currencies' },
-              { value: String(stats.sealed), label: 'carrying the seal' },
-            ].map((f) => (
-              <div key={f.label}>
-                <div className="serif" style={{ fontSize: 'clamp(30px,5vw,48px)', lineHeight: 1, color: 'var(--parchment)' }}>
-                  {f.value}
+        <div className="mt-6 px-8">
+          <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--hairline)' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
+            <img
+              src="/partner-preview-grid.jpg"
+              alt="The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified"
+              width={1280}
+              height={560}
+              loading="lazy"
+              className="w-full"
+              style={{ background: 'var(--aubergine)', aspectRatio: '1280 / 560', objectFit: 'contain' }}
+            />
+          </div>
+
+          {/* THE RECEIPTS — Tina: "i wanted the purple background with the
+              115 houses indexed etc". Same figures /about prints, computed
+              the same way (lib/aboutStats.ts), not retyped: a number typed
+              into a page rots the moment the nightly refresh moves it. */}
+          <div className="aubergine-band rounded-2xl mt-3 py-10 md:py-12">
+            <div className="grid grid-cols-2 gap-8 text-center px-6">
+              {[
+                { value: String(stats.houses), label: 'houses indexed' },
+                { value: roundedPieces(stats.pieces), label: 'pieces catalogued' },
+                { value: String(stats.currencies), label: 'currencies' },
+                { value: String(stats.sealed), label: 'carrying the seal' },
+              ].map((f) => (
+                <div key={f.label}>
+                  <div className="serif" style={{ fontSize: 'clamp(26px,6vw,40px)', lineHeight: 1, color: 'var(--parchment)' }}>
+                    {f.value}
+                  </div>
+                  <div className="eyebrow mt-2" style={{ color: '#e7d3b6' }}>{f.label}</div>
                 </div>
-                <div className="eyebrow mt-3" style={{ color: '#e7d3b6' }}>{f.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -174,6 +173,9 @@ export default function PartnerWithUsPage() {
           bounce. Two of the five remaining features carry a REAL screenshot rather
           than a description, because "give them a feeling of what it's
           like" is best done by showing the actual thing.
+
+          FAQ-PHRASED HEADINGS — Tina: "I want those literally to be
+          questions that they could ask." See FEATURES above.
 
           COLLAPSED BY DEFAULT — Tina: "i think its too long not only on
           laptop but also on phone... keep what we have but implement it in
@@ -214,7 +216,7 @@ export default function PartnerWithUsPage() {
       >
         <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
         <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
-          Answer these four things in the message box below — that&rsquo;s all we need to get started.
+          Answer these four things when you get in touch — that&rsquo;s all we need to get started.
         </p>
         <ol className="mt-6 space-y-3 text-base md:text-lg" style={{ listStyle: 'decimal', paddingLeft: 22 }}>
           <li>Your brand name &amp; website</li>
@@ -227,8 +229,12 @@ export default function PartnerWithUsPage() {
         </p>
       </section>
 
-      <div className="mt-10 max-w-2xl mx-auto">
-        <ContactForm
+      {/* Button + popup, not an inline form — Tina: "I wanna I'm interested
+          button and when they click on it then they get a pop-up with the
+          contact form in like a gradient background." See
+          components/PartnerInterestDialog.tsx. */}
+      <div className="mt-10 text-center">
+        <PartnerInterestDialog
           siteKey={siteKey}
           defaultTopic="partner"
           defaultMessage={DEFAULT_MESSAGE}
