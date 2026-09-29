@@ -100,24 +100,15 @@ export default function PartnerWithUsPage() {
   const stats = aboutStats();
 
   return (
-    // DARK THEME — Tina, pointing at faq-layouts.html's own outer chrome:
-    // "i want the dark purple theme from here for the whole page[,] only
-    // the partner page". #1b1119 is that mockup's exact page background.
-    // Only this page's <main> goes dark — Header/Footer are shared site
-    // chrome and stay as they render everywhere else. Every section below
-    // that was already a light or aubergine "island" (the screenshot card,
-    // the stats band, the price card, the FAQ panel, "what we need from
-    // you") KEEPS that surface; only the page background and the running
-    // text around those islands changed. --brass-on-dark and
-    // --muted-on-dark are existing tokens (app/globals.css), already tuned
-    // for AA contrast on a dark surface — not new colours invented for
-    // this page.
-    <main style={{ background: '#1b1119' }}>
-      <div className="max-w-4xl mx-auto px-8 pt-12 md:pt-20 pb-24">
+    // Dark background reverted — Tina asked for it back to the original
+    // (light/parchment) after trying #1b1119 from faq-layouts.html. The
+    // tabs FAQ layout she picked separately stays; only the background and
+    // the text colours tuned for it are undone.
+    <main className="max-w-4xl mx-auto px-8 pt-12 md:pt-20 pb-24">
       <div className="text-center max-w-2xl mx-auto">
-        <div className="eyebrow" style={{ color: 'var(--brass-on-dark)' }}>By invitation</div>
-        <h1 className="section-heading text-4xl md:text-5xl mt-4" style={{ color: '#fff' }}>Partner with The Modesty House</h1>
-        <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--muted-on-dark)' }}>
+        <div className="eyebrow" style={{ color: 'var(--brass)' }}>By invitation</div>
+        <h1 className="section-heading text-4xl md:text-5xl mt-4">Partner with The Modesty House</h1>
+        <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
           A curated directory for aspirational, well-designed modest fashion. If you&rsquo;re
           here, it&rsquo;s because we&rsquo;ve already been through your catalogue and think it
           belongs in the directory.
@@ -167,7 +158,7 @@ export default function PartnerWithUsPage() {
         </div>
 
         <div className="mt-6 max-w-4xl mx-auto px-8 text-center">
-          <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--muted-on-dark)' }}>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
             Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
             verified, browsed, and selling. Your products sit in the same grids shoppers
             already trust.
@@ -234,13 +225,9 @@ export default function PartnerWithUsPage() {
         </p>
       </section>
 
-      {/* Border added here only — on the old parchment page background,
-          aubergine-on-parchment was contrast enough on its own; on the new
-          near-black page (#1b1119) the two are both dark and would blur
-          into each other without an edge. */}
       <section
         className="mt-10 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto"
-        style={{ background: 'var(--aubergine)', color: 'var(--parchment)', border: '1px solid rgba(255,255,255,0.1)' }}
+        style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
       >
         <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
         <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
@@ -267,7 +254,6 @@ export default function PartnerWithUsPage() {
           defaultTopic="partner"
           defaultMessage={DEFAULT_MESSAGE}
         />
-      </div>
       </div>
     </main>
   );
