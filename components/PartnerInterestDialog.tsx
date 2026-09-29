@@ -5,12 +5,16 @@ import { X } from '@phosphor-icons/react';
 import { ContactForm } from './ContactForm';
 
 /**
- * The "I'm interested" button on /partner-with-us and the popup it opens.
+ * The CTA button on /partner-with-us and the popup it opens.
  *
- * Tina: "I want an I'm interested button and when they click on it then
- * they get a pop-up with the contact form in like a gradient background."
- * Replaces the form that used to sit inline at the foot of the page — one
- * clear action instead of a form nobody asked to see yet.
+ * Tina: "the pill with I'm interested is not that exciting... why are they
+ * coming there in the first place." "I'm interested" describes a feeling;
+ * "Get me listed" names the thing they actually came to this page to do —
+ * see their brand in the directory next to Aab and Inayah.
+ *
+ * Opens a popup with the contact form, replacing the form that used to sit
+ * inline at the foot of the page — one clear action instead of a form
+ * nobody asked to see yet.
  *
  * The gradient lives on the popup's HEADER, not behind the form fields:
  * `ContactForm`'s labels default to `.eyebrow` (`var(--muted)`, a
@@ -34,7 +38,7 @@ export function PartnerInterestDialog({
   return (
     <Dialog.Root>
       <Dialog.Trigger className="btn-pill" style={{ fontSize: 14, padding: '14px 32px' }}>
-        I&rsquo;m interested
+        Get me listed
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Backdrop

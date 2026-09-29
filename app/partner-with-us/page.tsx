@@ -107,20 +107,24 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
-      {/* "YOU WON'T BE LISTED ALONE" — /about's shape (text, then photo, then
-          the aubergine receipts band), SIZED DOWN. First pass ran the photo
-          and stats full-bleed edge to edge like /about does; Tina then asked
-          for both at the SAME width as the accordion below, with a gap
-          between the picture and the band rather than them running flush,
-          and rounded corners — i.e. a card, not a break-out band. So both
-          are their own rounded elements at max-w-2xl now, not w-screen.
+      {/* "YOU WON'T BE LISTED ALONE" — /about's shape: text, then a
+          full-bleed photo, then the aubergine receipts band. Sized down to
+          max-w-2xl once, then Tina asked for it back: "I wanted the band to
+          be as big as the page... do it as wide as the page again." Both
+          the screenshot and the stats band break out of the page's own
+          max-w-4xl via `left-1/2 -translate-x-1/2 w-screen` (verified with
+          Playwright at 390/1280/1920 — no horizontal scrollbar). The one
+          thing that DOES stay from the size-down pass is the gap between
+          them — she asked for that separately and never asked it removed —
+          so they're two full-bleed bands with a small margin between,
+          not one continuous block.
 
           Still `object-fit: contain`, not `cover` like /about's mashrabiya
           photo: that photo was composed to survive an arbitrary crop, a
           screenshot of a product grid is not, and Tina already flagged once
           this session that a cropped screenshot reads as "cut in half". */}
-      <section className="mt-14 max-w-2xl mx-auto">
-        <div className="px-8 text-center">
+      <section className="mt-14">
+        <div className="max-w-4xl mx-auto px-8 text-center">
           <h2 className="section-heading text-2xl md:text-3xl">You won’t be listed alone</h2>
           <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
             Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
@@ -129,40 +133,42 @@ export default function PartnerWithUsPage() {
           </p>
         </div>
 
-        <div className="mt-6 px-8">
-          <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--hairline)' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
-            <img
-              src="/partner-preview-grid.jpg"
-              alt="The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified"
-              width={1280}
-              height={560}
-              loading="lazy"
-              className="w-full"
-              style={{ background: 'var(--aubergine)', aspectRatio: '1280 / 560', objectFit: 'contain' }}
-            />
-          </div>
+        <div
+          className="mt-8 w-screen relative left-1/2 -translate-x-1/2"
+          style={{ background: 'var(--aubergine)' }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
+          <img
+            src="/partner-preview-grid.jpg"
+            alt="The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified"
+            width={1280}
+            height={560}
+            loading="lazy"
+            className="w-full mx-auto"
+            style={{ maxWidth: 1280, aspectRatio: '1280 / 560', objectFit: 'contain' }}
+          />
+        </div>
 
-          {/* THE RECEIPTS — Tina: "i wanted the purple background with the
-              115 houses indexed etc". Same figures /about prints, computed
-              the same way (lib/aboutStats.ts), not retyped: a number typed
-              into a page rots the moment the nightly refresh moves it. */}
-          <div className="aubergine-band rounded-2xl mt-3 py-10 md:py-12">
-            <div className="grid grid-cols-2 gap-8 text-center px-6">
-              {[
-                { value: String(stats.houses), label: 'houses indexed' },
-                { value: roundedPieces(stats.pieces), label: 'pieces catalogued' },
-                { value: String(stats.currencies), label: 'currencies' },
-                { value: String(stats.sealed), label: 'carrying the seal' },
-              ].map((f) => (
-                <div key={f.label}>
-                  <div className="serif" style={{ fontSize: 'clamp(26px,6vw,40px)', lineHeight: 1, color: 'var(--parchment)' }}>
-                    {f.value}
-                  </div>
-                  <div className="eyebrow mt-2" style={{ color: '#e7d3b6' }}>{f.label}</div>
+        {/* THE RECEIPTS — Tina: "i wanted the purple background with the 115
+            houses indexed etc". Same figures /about prints, computed the same
+            way (lib/aboutStats.ts), not retyped: a number typed into a page
+            rots the moment the nightly refresh moves it. `mt-2` is the "little
+            bit of space between the band and the picture" she asked for. */}
+        <div className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 mt-2 py-12 md:py-16">
+          <div className="max-w-4xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
+            {[
+              { value: String(stats.houses), label: 'houses indexed' },
+              { value: roundedPieces(stats.pieces), label: 'pieces catalogued' },
+              { value: String(stats.currencies), label: 'currencies' },
+              { value: String(stats.sealed), label: 'carrying the seal' },
+            ].map((f) => (
+              <div key={f.label}>
+                <div className="serif" style={{ fontSize: 'clamp(30px,5vw,48px)', lineHeight: 1, color: 'var(--parchment)' }}>
+                  {f.value}
                 </div>
-              ))}
-            </div>
+                <div className="eyebrow mt-3" style={{ color: '#e7d3b6' }}>{f.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
