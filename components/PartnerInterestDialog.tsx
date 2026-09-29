@@ -1,7 +1,7 @@
 'use client';
 
 import { Dialog } from '@base-ui-components/react/dialog';
-import { X } from '@phosphor-icons/react';
+import { Sparkle, X } from '@phosphor-icons/react';
 import { ContactForm } from './ContactForm';
 
 /**
@@ -37,7 +37,11 @@ export function PartnerInterestDialog({
 }) {
   return (
     <Dialog.Root>
-      <Dialog.Trigger className="btn-pill" style={{ fontSize: 14, padding: '14px 32px' }}>
+      <Dialog.Trigger
+        className="btn-pill inline-flex items-center gap-2"
+        style={{ fontSize: 14, padding: '14px 32px' }}
+      >
+        <Sparkle size={14} weight="fill" aria-hidden />
         Get me listed
       </Dialog.Trigger>
       <Dialog.Portal>

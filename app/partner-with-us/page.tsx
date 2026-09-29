@@ -107,17 +107,24 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
-      {/* "YOU WON'T BE LISTED ALONE" — /about's shape: text, then a
-          full-bleed photo, then the aubergine receipts band. Sized down to
-          max-w-2xl once, then Tina asked for it back: "I wanted the band to
-          be as big as the page... do it as wide as the page again." Both
-          the screenshot and the stats band break out of the page's own
-          max-w-4xl via `left-1/2 -translate-x-1/2 w-screen` (verified with
-          Playwright at 390/1280/1920 — no horizontal scrollbar). The one
-          thing that DOES stay from the size-down pass is the gap between
-          them — she asked for that separately and never asked it removed —
-          so they're two full-bleed bands with a small margin between,
-          not one continuous block.
+      {/* "YOU WON'T BE LISTED ALONE" — /about's shape: text, then the
+          screenshot, then the aubergine receipts band. The two elements
+          below got sized independently, in two rounds, and land on
+          different widths on purpose:
+
+          - The SCREENSHOT stays at the smaller, rounded max-w-2xl treatment
+            — Tina: "keep the picture the same way it was before" — after a
+            round where I'd widened it to full-bleed along with the band, she
+            wanted only the band taken back to full width, not the picture.
+          - The STATS BAND is full-bleed — Tina: "I wanted the band to be as
+            big as the page... do it as wide as the page again" — breaking
+            out of the page's own max-w-4xl via `left-1/2 -translate-x-1/2
+            w-screen` (verified with Playwright at 390/1280/1920 — no
+            horizontal scrollbar).
+
+          The gap between them is `mt-3` on the picture's wrapper — she asked
+          for that separately, before either width change, and never asked
+          it removed.
 
           Still `object-fit: contain`, not `cover` like /about's mashrabiya
           photo: that photo was composed to survive an arbitrary crop, a
@@ -133,28 +140,26 @@ export default function PartnerWithUsPage() {
           </p>
         </div>
 
-        <div
-          className="mt-8 w-screen relative left-1/2 -translate-x-1/2"
-          style={{ background: 'var(--aubergine)' }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
-          <img
-            src="/partner-preview-grid.jpg"
-            alt="The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified"
-            width={1280}
-            height={560}
-            loading="lazy"
-            className="w-full mx-auto"
-            style={{ maxWidth: 1280, aspectRatio: '1280 / 560', objectFit: 'contain' }}
-          />
+        <div className="mt-6 max-w-2xl mx-auto px-8">
+          <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--hairline)' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
+            <img
+              src="/partner-preview-grid.jpg"
+              alt="The Modesty House designers grid, showing Veiled, Aab, Summer Evenings, Inayah and Glow Modesty side by side, each verified"
+              width={1280}
+              height={560}
+              loading="lazy"
+              className="w-full"
+              style={{ background: 'var(--aubergine)', aspectRatio: '1280 / 560', objectFit: 'contain' }}
+            />
+          </div>
         </div>
 
         {/* THE RECEIPTS — Tina: "i wanted the purple background with the 115
             houses indexed etc". Same figures /about prints, computed the same
             way (lib/aboutStats.ts), not retyped: a number typed into a page
-            rots the moment the nightly refresh moves it. `mt-2` is the "little
-            bit of space between the band and the picture" she asked for. */}
-        <div className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 mt-2 py-12 md:py-16">
+            rots the moment the nightly refresh moves it. */}
+        <div className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 mt-3 py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
             {[
               { value: String(stats.houses), label: 'houses indexed' },
