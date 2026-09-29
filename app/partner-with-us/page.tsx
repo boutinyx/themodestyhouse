@@ -107,12 +107,13 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
-      {/* "YOU WON'T BE LISTED ALONE" — /about's shape, but with the text
-          and screenshot swapped from /about's own order: Tina wanted the
-          heading+paragraph BELOW the photo, not above it. Photo, then text,
-          then the aubergine receipts band. The photo and the stats band
-          got sized independently, in two rounds, and land on different
-          widths on purpose:
+      {/* "YOU WON'T BE LISTED ALONE" section — no heading now, on Tina's
+          word ("remove this one and only keep [the paragraph]"); it exists
+          in code comments only, to name what this section is for. Text and
+          screenshot are swapped from /about's own order: photo first, then
+          the paragraph, then the aubergine receipts band. The photo and the
+          stats band got sized independently, in two rounds, and land on
+          different widths on purpose:
 
           - The SCREENSHOT stays at the smaller, rounded max-w-2xl treatment
             — Tina: "keep the picture the same way it was before" — after a
@@ -149,8 +150,7 @@ export default function PartnerWithUsPage() {
         </div>
 
         <div className="mt-6 max-w-4xl mx-auto px-8 text-center">
-          <h2 className="section-heading text-2xl md:text-3xl">You won’t be listed alone</h2>
-          <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
             Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
             verified, browsed, and selling. Your products sit in the same grids shoppers
             already trust.
