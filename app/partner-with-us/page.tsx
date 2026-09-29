@@ -107,10 +107,12 @@ export default function PartnerWithUsPage() {
         </p>
       </div>
 
-      {/* "YOU WON'T BE LISTED ALONE" — /about's shape: text, then the
-          screenshot, then the aubergine receipts band. The two elements
-          below got sized independently, in two rounds, and land on
-          different widths on purpose:
+      {/* "YOU WON'T BE LISTED ALONE" — /about's shape, but with the text
+          and screenshot swapped from /about's own order: Tina wanted the
+          heading+paragraph BELOW the photo, not above it. Photo, then text,
+          then the aubergine receipts band. The photo and the stats band
+          got sized independently, in two rounds, and land on different
+          widths on purpose:
 
           - The SCREENSHOT stays at the smaller, rounded max-w-2xl treatment
             — Tina: "keep the picture the same way it was before" — after a
@@ -131,16 +133,7 @@ export default function PartnerWithUsPage() {
           screenshot of a product grid is not, and Tina already flagged once
           this session that a cropped screenshot reads as "cut in half". */}
       <section className="mt-14">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <h2 className="section-heading text-2xl md:text-3xl">You won’t be listed alone</h2>
-          <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
-            Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
-            verified, browsed, and selling. Your products sit in the same grids shoppers
-            already trust.
-          </p>
-        </div>
-
-        <div className="mt-6 max-w-2xl mx-auto px-8">
+        <div className="max-w-2xl mx-auto px-8">
           <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--hairline)' }}>
             {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
             <img
@@ -155,11 +148,20 @@ export default function PartnerWithUsPage() {
           </div>
         </div>
 
+        <div className="mt-6 max-w-4xl mx-auto px-8 text-center">
+          <h2 className="section-heading text-2xl md:text-3xl">You won’t be listed alone</h2>
+          <p className="mt-3 text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
+            Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
+            verified, browsed, and selling. Your products sit in the same grids shoppers
+            already trust.
+          </p>
+        </div>
+
         {/* THE RECEIPTS — Tina: "i wanted the purple background with the 115
             houses indexed etc". Same figures /about prints, computed the same
             way (lib/aboutStats.ts), not retyped: a number typed into a page
             rots the moment the nightly refresh moves it. */}
-        <div className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 mt-3 py-12 md:py-16">
+        <div className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 mt-8 py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
             {[
               { value: String(stats.houses), label: 'houses indexed' },
