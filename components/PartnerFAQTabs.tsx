@@ -14,8 +14,10 @@ export type PartnerFAQ = {
 /**
  * Layout 05 from faq-layouts.html ("Tabs") — Tina picked this one after
  * comparing all eight. Pill tabs float on the page's own background; the
- * answer panel is its own light "island" card, same pattern as every other
- * section on this page (screenshot card, price card).
+ * answer panel used to be its own white bordered "card" underneath them
+ * (same pattern as the screenshot/price cards elsewhere on the page) —
+ * Tina: "remove the white border" — so it now sits directly on the page
+ * background instead, same as the tabs above it.
  *
  * Inactive-pill border/text were `rgba(233,226,220,0.28)` / `--muted-on-dark`
  * — right for the dark page background this was first built against, all
@@ -61,7 +63,7 @@ export function PartnerFAQTabs({ items }: { items: PartnerFAQ[] }) {
         ))}
       </div>
 
-      <div className="mt-6 rounded-2xl p-7 md:p-8" style={{ background: '#fff', border: '1px solid var(--hairline)' }}>
+      <div className="mt-6">
         <h3 className="section-heading text-xl md:text-2xl" style={{ color: 'var(--ink)' }}>
           {current.q}
         </h3>
