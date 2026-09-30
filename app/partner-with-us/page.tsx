@@ -139,8 +139,15 @@ export default function PartnerWithUsPage() {
           Still `object-fit: contain`, not `cover` like /about's mashrabiya
           photo: that photo was composed to survive an arbitrary crop, a
           screenshot of a product grid is not, and Tina already flagged once
-          this session that a cropped screenshot reads as "cut in half". */}
-      <section className="mt-14">
+          this session that a cropped screenshot reads as "cut in half".
+
+          SCREENSHOT VERTICALLY CENTRED BETWEEN THE TWO TEXT BLOCKS — Tina:
+          "put the image more in the middle between the 2 texts". Was
+          mt-14 above (from the intro paragraph) and mt-6 below (to the
+          "Aab, Inayah..." paragraph) — an uneven 56px/24px split that read
+          as the image sitting closer to the paragraph under it than to the
+          intro above it. Both mt-10 now. */}
+      <section className="mt-10">
         <div className="max-w-2xl mx-auto px-8">
           <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--hairline)' }}>
             {/* eslint-disable-next-line @next/next/no-img-element -- one-off internal screenshot, not editorial photography (lib/staticImage.ts's convention is /editorial and /about only) */}
@@ -156,7 +163,7 @@ export default function PartnerWithUsPage() {
           </div>
         </div>
 
-        <div className="mt-6 max-w-4xl mx-auto px-8 text-center">
+        <div className="mt-10 max-w-4xl mx-auto px-8 text-center">
           <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
             Aab, Inayah, AbayaButh and 100+ other houses are already in the directory —
             verified, browsed, and selling. Your products sit in the same grids shoppers
