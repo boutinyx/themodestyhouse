@@ -104,7 +104,7 @@ export default function PartnerWithUsPage() {
     // (light/parchment) after trying #1b1119 from faq-layouts.html. The
     // tabs FAQ layout she picked separately stays; only the background and
     // the text colours tuned for it are undone.
-    <main className="max-w-4xl mx-auto px-8 pt-6 md:pt-10 pb-24">
+    <main className="max-w-4xl mx-auto px-8 pt-4 md:pt-7 pb-24">
       <div className="text-center max-w-2xl mx-auto">
         <h1 className="section-heading text-4xl md:text-5xl">Partner with The Modesty House</h1>
         <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
