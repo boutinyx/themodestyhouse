@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { PartnerFAQNumbered } from '@/components/PartnerFAQNumbered';
-import type { PartnerFAQ } from '@/components/PartnerFAQTabs';
+import { PartnerFAQTabs, type PartnerFAQ } from '@/components/PartnerFAQTabs';
 import { PartnerInterestDialog } from '@/components/PartnerInterestDialog';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
 import { buildMetadata } from '@/lib/seoCopy';
@@ -188,20 +187,18 @@ export default function PartnerWithUsPage() {
         </div>
       </section>
 
-      {/* FAQ — NUMBERED, ALTERNATING LEFT/RIGHT. Tina: "cna i have instead
-          of this one the numbers 1 and text 2 and text if i remember it
-          was big number in gold. and then i want to have it om en om left
-          and right" — layout 04 from faq-layouts.html (big brass numerals,
-          same shape as /about's HowBlocks steps), replacing the tabs layout
-          (05, the previous pick), plus a new zigzag: odd rows pinned left,
-          even rows pinned right, number swapping sides with them. See
-          components/PartnerFAQNumbered.tsx.
-          Wider container than the tabs version needed (max-w-3xl, not
-          max-w-2xl) — each row is its own max-w-xl block that has to have
-          room to shift left AND right for "om en om" to actually read as
-          alternating rather than as everything still pinned to one edge. */}
-      <div className="mt-14 max-w-3xl mx-auto">
-        <PartnerFAQNumbered items={FAQS} />
+      {/* FAQ — TABS, not the accordion this page used before. Tina compared
+          all eight layouts in faq-layouts.html and picked 05 ("Tabs"): pill
+          tabs floating on the page's own background, one answer panel below
+          that swaps. Same five questions, same answers, same real
+          screenshots underneath the first two — only the container changed.
+          See components/PartnerFAQTabs.tsx for why this is its own
+          component rather than PartnerFeatureAccordion re-skinned: the two
+          are different information architectures (a list of open/closable
+          rows vs. one visible question at a time), not the same component
+          in a different colour. */}
+      <div className="mt-14 max-w-2xl mx-auto">
+        <PartnerFAQTabs items={FAQS} />
       </div>
 
       {/* Price, de-emphasized relative to the v1 of this page — smaller
