@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Check } from '@phosphor-icons/react/dist/ssr';
 import { PartnerFAQTabs, type PartnerFAQ } from '@/components/PartnerFAQTabs';
 import { PartnerInterestDialog } from '@/components/PartnerInterestDialog';
 import { aboutStats, roundedPieces } from '@/lib/aboutStats';
@@ -213,27 +214,49 @@ export default function PartnerWithUsPage() {
         <PartnerFAQTabs items={FAQS} />
       </div>
 
-      {/* Price, de-emphasized relative to the v1 of this page — smaller
-          numeral, framed with what it covers and an explicit "not a
-          subscription" reassurance, which is the other half of what the
-          research above recommends: once value is established, state the
-          number plainly and concretely rather than hiding it. */}
+      {/* Price, de-emphasized relative to the v1 of this page — split into
+          a price half and a line-item half, on Tina's word ("were going
+          for this one" against the horizontal-split mockup in
+          price-card-layouts.html option 04) — so the number and the five
+          things it actually buys sit side by side, instead of the number
+          alone with everything it covers folded into one paragraph under
+          it (the single-card version this replaces). */}
       <section
-        className="mt-12 max-w-md mx-auto rounded-2xl p-8 text-center"
+        className="mt-12 max-w-2xl mx-auto rounded-2xl overflow-hidden grid sm:grid-cols-2"
         style={{ background: '#fff', border: '1px solid var(--hairline)' }}
       >
-        <div className="eyebrow" style={{ color: 'var(--brass)' }}>To get all of the above</div>
-        <div className="mt-2 section-heading text-4xl" style={{ color: 'var(--aubergine)' }}>
-          $99 <span className="text-lg" style={{ color: 'var(--muted)' }}>one-time</span>
+        <div
+          className="p-8 flex flex-col items-center justify-center text-center"
+          style={{ background: 'var(--bone)', borderRight: '1px solid var(--hairline)' }}
+        >
+          <div className="eyebrow" style={{ color: 'var(--brass)' }}>One-time</div>
+          <div className="mt-2 section-heading text-4xl" style={{ color: 'var(--aubergine)' }}>
+            $99
+          </div>
         </div>
-        <p className="mt-3 text-sm" style={{ color: 'var(--muted)' }}>
-          No subscription, nothing recurring — one payment covers getting your products in,
-          building your page, and the blog + Instagram feature above.
-        </p>
-        <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
-          We only bring in women&rsquo;s clothing, hijabs, and layering pieces — other
-          categories on your site won&rsquo;t be listed.
-        </p>
+        <div className="p-8">
+          <ul className="grid gap-3">
+            {[
+              'Products imported & listed',
+              'Your designers page',
+              'Dedicated blog feature',
+              'Instagram introduction post',
+              'Affiliate program joined',
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2 text-sm" style={{ color: 'var(--ink)' }}>
+                <Check size={16} weight="bold" style={{ color: 'var(--brass)', flexShrink: 0, marginTop: 2 }} />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p
+            className="mt-4 pt-4 text-xs leading-relaxed"
+            style={{ color: 'var(--muted)', borderTop: '1px solid var(--hairline)' }}
+          >
+            No subscription, nothing recurring. We only bring in women&rsquo;s clothing, hijabs,
+            and layering pieces — other categories on your site won&rsquo;t be listed.
+          </p>
+        </div>
       </section>
 
       {/* "What we need from you" used to be its own aubergine section here.
