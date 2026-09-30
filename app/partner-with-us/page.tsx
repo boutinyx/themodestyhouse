@@ -108,9 +108,9 @@ export default function PartnerWithUsPage() {
       <div className="text-center max-w-2xl mx-auto">
         <h1 className="section-heading text-4xl md:text-5xl">Partner with The Modesty House</h1>
         <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
-          A curated directory for aspirational, well-designed modest fashion. If you&rsquo;re
-          here, it&rsquo;s because we&rsquo;ve already been through your catalogue and think it
-          belongs in the directory.
+          The Modesty House is a curated directory for aspirational, well-designed modest
+          fashion. Shoppers are already here looking for exactly what you make. This is how
+          you show up in front of them.
         </p>
       </div>
 
