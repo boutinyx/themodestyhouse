@@ -95,12 +95,6 @@ const FAQS: PartnerFAQ[] = [
   },
 ];
 
-const DEFAULT_MESSAGE = `Brand name & website:
-What do you sell? (we only list women's clothing, hijabs, and layering pieces — other categories won't be included):
-Based, and how long have you been running?:
-Instagram handle:
-`;
-
 export default function PartnerWithUsPage() {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const stats = aboutStats();
@@ -265,11 +259,7 @@ export default function PartnerWithUsPage() {
           right above the form it's telling you how to fill in, rather than
           sitting on the page disconnected from the form it's about. */}
       <div className="mt-12 text-center">
-        <PartnerInterestDialog
-          siteKey={siteKey}
-          defaultTopic="partner"
-          defaultMessage={DEFAULT_MESSAGE}
-        />
+        <PartnerInterestDialog siteKey={siteKey} defaultTopic="partner" />
       </div>
     </main>
   );
