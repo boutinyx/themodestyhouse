@@ -69,7 +69,17 @@ export function PartnerInterestDialog({
             </Dialog.Title>
           </div>
           <div className="p-6 md:p-8 overflow-y-auto" style={{ background: '#fff' }}>
-            <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} />
+            <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
+            <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
+              Answer these four things below — that&rsquo;s all we need to get started.
+            </p>
+            <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--ink)' }}>
+              We&rsquo;ll follow up within a few days of hearing from you.
+            </p>
+            <div className="mt-6" style={{ borderTop: '1px solid var(--hairline)' }} />
+            <div className="mt-6">
+              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} />
+            </div>
           </div>
         </Dialog.Popup>
       </Dialog.Portal>
