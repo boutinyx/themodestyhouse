@@ -13,10 +13,15 @@ export type PartnerFAQ = {
 
 /**
  * Layout 05 from faq-layouts.html ("Tabs") — Tina picked this one after
- * comparing all eight. Pill tabs float on the page's own (dark) background;
- * the answer panel is its own light "island" card, same pattern as every
- * other section on this page (screenshot card, price card) now that the
- * page itself is dark.
+ * comparing all eight. Pill tabs float on the page's own background; the
+ * answer panel is its own light "island" card, same pattern as every other
+ * section on this page (screenshot card, price card).
+ *
+ * Inactive-pill border/text were `rgba(233,226,220,0.28)` / `--muted-on-dark`
+ * — right for the dark page background this was first built against, all
+ * but invisible after the page reverted to parchment (Tina: "the pills are
+ * really transparent"). `--hairline` / `--muted` are the tokens every other
+ * light-surface border and label on this page already uses.
  *
  * Not components/PartnerFeatureAccordion.tsx with a new skin — that
  * component's whole point is a click-to-open LIST (every question visible
@@ -44,9 +49,9 @@ export function PartnerFAQTabs({ items }: { items: PartnerFAQ[] }) {
             style={{
               padding: '10px 16px',
               borderRadius: 999,
-              border: `1px solid ${i === active ? 'var(--aubergine)' : 'rgba(233,226,220,0.28)'}`,
-              background: i === active ? 'var(--aubergine)' : 'transparent',
-              color: i === active ? 'var(--parchment)' : 'var(--muted-on-dark)',
+              border: `1px solid ${i === active ? 'var(--aubergine)' : 'var(--hairline)'}`,
+              background: i === active ? 'var(--aubergine)' : '#fff',
+              color: i === active ? 'var(--parchment)' : 'var(--muted)',
               cursor: 'pointer',
               fontSize: 11,
             }}

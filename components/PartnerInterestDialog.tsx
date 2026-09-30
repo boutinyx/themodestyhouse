@@ -67,12 +67,31 @@ export function PartnerInterestDialog({
             <Dialog.Title className="section-heading text-2xl" style={{ color: 'var(--parchment)', paddingRight: 32 }}>
               Let&rsquo;s talk
             </Dialog.Title>
-            <Dialog.Description className="mt-2 text-sm" style={{ color: 'var(--parchment)', opacity: 0.85 }}>
-              Tell us about your brand and we&rsquo;ll follow up within a few days.
-            </Dialog.Description>
           </div>
           <div className="p-6 md:p-8 overflow-y-auto" style={{ background: '#fff' }}>
-            <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} />
+            {/* "What we need from you" — used to be its own aubergine
+                section on the page itself; Tina asked for it "implemented
+                in the get me listed stuff" instead. Living right above the
+                form it describes is also more useful than living on the
+                page, disconnected from the fields it's telling you how to
+                fill in. */}
+            <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
+            <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
+              Answer these four things below — that&rsquo;s all we need to get started.
+            </p>
+            <ol className="mt-4 space-y-2 text-sm" style={{ color: 'var(--ink)', listStyle: 'decimal', paddingLeft: 20 }}>
+              <li>Your brand name &amp; website</li>
+              <li>What you sell (women&rsquo;s clothing, hijabs, layering pieces only)</li>
+              <li>Where you&rsquo;re based, and how long you&rsquo;ve been running</li>
+              <li>Your Instagram handle</li>
+            </ol>
+            <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--ink)' }}>
+              We&rsquo;ll follow up within a few days of hearing from you.
+            </p>
+            <div className="mt-6" style={{ borderTop: '1px solid var(--hairline)' }} />
+            <div className="mt-6">
+              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} />
+            </div>
           </div>
         </Dialog.Popup>
       </Dialog.Portal>

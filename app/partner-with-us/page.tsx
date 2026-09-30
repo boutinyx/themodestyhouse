@@ -106,8 +106,7 @@ export default function PartnerWithUsPage() {
     // the text colours tuned for it are undone.
     <main className="max-w-4xl mx-auto px-8 pt-12 md:pt-20 pb-24">
       <div className="text-center max-w-2xl mx-auto">
-        <div className="eyebrow" style={{ color: 'var(--brass)' }}>By invitation</div>
-        <h1 className="section-heading text-4xl md:text-5xl mt-4">Partner with The Modesty House</h1>
+        <h1 className="section-heading text-4xl md:text-5xl">Partner with The Modesty House</h1>
         <p className="mt-5 text-lg leading-relaxed" style={{ color: 'var(--prose)' }}>
           A curated directory for aspirational, well-designed modest fashion. If you&rsquo;re
           here, it&rsquo;s because we&rsquo;ve already been through your catalogue and think it
@@ -225,30 +224,12 @@ export default function PartnerWithUsPage() {
         </p>
       </section>
 
-      <section
-        className="mt-10 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto"
-        style={{ background: 'var(--aubergine)', color: 'var(--parchment)' }}
-      >
-        <h2 className="section-heading text-2xl md:text-3xl">What we need from you</h2>
-        <p className="mt-2 text-base md:text-lg" style={{ opacity: 0.85 }}>
-          Answer these four things when you get in touch — that&rsquo;s all we need to get started.
-        </p>
-        <ol className="mt-6 space-y-3 text-base md:text-lg" style={{ listStyle: 'decimal', paddingLeft: 22 }}>
-          <li>Your brand name &amp; website</li>
-          <li>What you sell (women&rsquo;s clothing, hijabs, layering pieces only)</li>
-          <li>Where you&rsquo;re based, and how long you&rsquo;ve been running</li>
-          <li>Your Instagram handle</li>
-        </ol>
-        <p className="mt-6 text-base md:text-lg font-semibold">
-          We&rsquo;ll follow up within a few days of hearing from you.
-        </p>
-      </section>
-
-      {/* Button + popup, not an inline form — Tina: "I wanna I'm interested
-          button and when they click on it then they get a pop-up with the
-          contact form in like a gradient background." See
-          components/PartnerInterestDialog.tsx. */}
-      <div className="mt-10 text-center">
+      {/* "What we need from you" used to be its own aubergine section here.
+          Tina: move that copy into "the get me listed stuff" instead — it
+          now lives inside the popup itself (components/PartnerInterestDialog.tsx),
+          right above the form it's telling you how to fill in, rather than
+          sitting on the page disconnected from the form it's about. */}
+      <div className="mt-12 text-center">
         <PartnerInterestDialog
           siteKey={siteKey}
           defaultTopic="partner"
