@@ -75,8 +75,7 @@ const FAQS: PartnerFAQ[] = [
   {
     label: 'Blog post',
     q: 'What does the blog post actually look like?',
-    a: 'A real, dedicated piece about your brand — written by us, with a link straight to your site. Here’s a real one we wrote about Maison Merrachi.',
-    images: [{ src: '/partner-preview-blog.jpg', alt: 'The Modesty House editorial post "What Is Maison Merrachi? Inside the House’s New Loyalty Program"', w: 1280, h: 700 }],
+    a: 'A real, dedicated piece about your brand — written by us, with a link straight to your site. Not a name in a list — its own post.',
   },
   {
     label: 'SEO',
