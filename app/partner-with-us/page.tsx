@@ -73,9 +73,15 @@ const FAQS: PartnerFAQ[] = [
     images: [{ src: '/partner-preview-designers.jpg', alt: 'Aab’s live designers page on The Modesty House, showing its description, piece count, price range and a Visit Aab button', w: 1280, h: 460 }],
   },
   {
+    label: 'Blog post',
+    q: 'What does the blog post actually look like?',
+    a: 'A real, dedicated piece about your brand — written by us, with a link straight to your site. Here’s a real one we wrote about Maison Merrachi.',
+    images: [{ src: '/partner-preview-blog.jpg', alt: 'The Modesty House editorial post "What Is Maison Merrachi? Inside the House’s New Loyalty Program"', w: 1280, h: 700 }],
+  },
+  {
     label: 'SEO',
     q: 'Will this actually help my SEO?',
-    a: 'Yes — a real link back to your site, the kind Google factors into how high YOUR site ranks when people search for you. So on top of the traffic we send you directly, it also helps you rank higher in Google on your own.',
+    a: 'Yes — a real link back to your site, the kind Google factors into how high your own site ranks when people search for you. So on top of the traffic we send you directly, it also helps you rank higher in Google on your own.',
   },
   {
     label: 'Instagram',
