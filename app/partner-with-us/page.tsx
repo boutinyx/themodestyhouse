@@ -169,7 +169,7 @@ export default function PartnerWithUsPage() {
             houses indexed etc". Same figures /about prints, computed the same
             way (lib/aboutStats.ts), not retyped: a number typed into a page
             rots the moment the nightly refresh moves it. */}
-        <div className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 mt-8 py-12 md:py-16">
+        <div className="aubergine-band w-screen relative left-1/2 -translate-x-1/2 mt-16 py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
             {[
               { value: String(stats.houses), label: 'houses indexed' },
