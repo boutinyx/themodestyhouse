@@ -60,7 +60,7 @@ const FAQS: PartnerFAQ[] = [
   {
     label: 'Where I show up',
     q: 'Is the designers page the only place I’ll show up?',
-    a: 'No — your pieces also sit in the real category grids people filter and scroll every day, and land in New In when they’re first added, seen by everyone browsing that day, not only people who already know your name.',
+    a: 'No — your pieces live permanently in the real category grids people filter and scroll every day, not just once. On top of that, they also get an extra boost in New In the day they’re first added — so you get an ongoing presence plus a launch moment, not one or the other.',
     images: [
       { src: '/partner-preview-category-2.jpg', alt: 'The Modesty House Abayas category page, showing filters and a full row of complete product photos from multiple houses', w: 1280, h: 920 },
       { src: '/partner-preview-newin-2.jpg', alt: 'The Modesty House New In page, showing a full row of the latest complete pieces added across houses', w: 1280, h: 1040 },
@@ -75,12 +75,12 @@ const FAQS: PartnerFAQ[] = [
   {
     label: 'SEO',
     q: 'Will this actually help my SEO?',
-    a: 'When we feature your site, it’s a real link back to you — the kind Google counts toward your own ranking, not just traffic from ours.',
+    a: 'Yes — a real link back to your site, the kind Google factors into how high YOUR site ranks when people search for you. So on top of the traffic we send you directly, it also helps you rank higher in Google on your own.',
   },
   {
     label: 'Instagram',
     q: 'What does the Instagram feature actually look like?',
-    a: 'Not a passing mention — a post built so people understand who you are and trust you before they ever click through to buy.',
+    a: 'A real introduction post about you and your brand — your own story and photos, not a generic shoutout. And you’re welcome to repost it on your own page too.',
   },
   {
     label: 'Affiliate',
