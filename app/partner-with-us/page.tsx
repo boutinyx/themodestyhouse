@@ -76,7 +76,7 @@ const FAQS: PartnerFAQ[] = [
   {
     label: 'Blog post',
     q: 'What does the blog post actually look like?',
-    a: 'A real, dedicated piece about your brand — written by us, with a link straight to your site. Not a name in a list — its own post.',
+    a: 'A real, dedicated piece about your brand — written by us, with a link straight to your site. Not a name in a list — its own post, and that link helps your SEO too.',
   },
   {
     label: 'SEO',
