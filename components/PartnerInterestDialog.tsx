@@ -16,17 +16,14 @@ import { ContactForm } from './ContactForm';
  * inline at the foot of the page — one clear action instead of a form
  * nobody asked to see yet.
  *
- * The gradient now covers the WHOLE popup, header and form alike — Tina
- * wanted "more gradients of the whole thing" rather than the gradient
- * stopping at the header with a flat white form below it. `ContactForm`'s
- * `dark` prop re-themes its labels/copy to `--muted-on-dark` /
- * `--brass-on-dark` (already-defined, contrast-checked tokens — see
- * globals.css) for exactly this reason: a shared form can't assume its own
- * colours once the surface behind it is dark. The input/textarea fields
- * themselves stay white (their own `background: '#fff'` in `field`), so
- * they read as light cards sitting on the gradient rather than becoming
- * unreadable. Tried `var(--ink)` solid instead of the gradient — Tina:
- * "nvm its too dark" — gradient it is, just stretched further.
+ * The header BAR is solid `var(--aubergine)` — Tina pointed at the "Send
+ * message" button's exact purple and asked for that, on just the bar "it is
+ * on top", not the whole form. The gradient she wanted is on the BACKDROP
+ * instead — the dimmed overlay behind the popup — not inside the popup at
+ * all; corrected after a first pass wrongly stretched the gradient over the
+ * form fields themselves ("i didnt mean that... not the whole form").
+ * `ContactForm`'s labels stay in their default light-page colours here,
+ * since the form itself is white again.
  */
 export function PartnerInterestDialog({
   siteKey,
@@ -49,13 +46,13 @@ export function PartnerInterestDialog({
       <Dialog.Portal>
         <Dialog.Backdrop
           className="fixed inset-0"
-          style={{ background: 'rgba(36,27,36,0.55)', zIndex: 60 }}
+          style={{ background: 'linear-gradient(160deg, rgba(68,25,67,0.7), rgba(36,27,36,0.7))', zIndex: 60 }}
         />
         <Dialog.Popup
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden flex flex-col w-[calc(100vw-32px)] max-w-md max-h-[90vh]"
-          style={{ zIndex: 61, background: 'linear-gradient(180deg, var(--aubergine), var(--plum))' }}
+          style={{ zIndex: 61 }}
         >
-          <div className="p-6 md:p-8 relative shrink-0">
+          <div className="p-6 md:p-8 relative shrink-0" style={{ background: 'var(--aubergine)' }}>
             <Dialog.Close
               aria-label="Close"
               className="absolute top-4 right-4 flex items-center justify-center"
@@ -67,17 +64,17 @@ export function PartnerInterestDialog({
               Let&rsquo;s talk
             </Dialog.Title>
           </div>
-          <div className="px-6 md:px-8 pb-6 md:pb-8 overflow-y-auto">
-            <h3 className="section-heading text-xl" style={{ color: 'var(--parchment)' }}>What we need from you</h3>
-            <p className="mt-2 text-sm" style={{ color: 'var(--muted-on-dark)' }}>
+          <div className="p-6 md:p-8 overflow-y-auto" style={{ background: '#fff' }}>
+            <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
+            <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
               Answer these four things below — that&rsquo;s all we need to get started.
             </p>
-            <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--parchment)' }}>
+            <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--ink)' }}>
               We&rsquo;ll follow up within a few days of hearing from you.
             </p>
-            <div className="mt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.18)' }} />
+            <div className="mt-6" style={{ borderTop: '1px solid var(--hairline)' }} />
             <div className="mt-6">
-              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic dark />
+              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic />
             </div>
           </div>
         </Dialog.Popup>
