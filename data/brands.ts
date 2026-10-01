@@ -258,4 +258,10 @@ export const BRANDS: Brand[] = [
   // product_type or tags on any sampled row, so classification relies on title alone
   // (already-supported German vocabulary: kleid/oberteil/zweiteiler/abaya/kimono).
   { slug: 'parladusa', name: 'Parladusa', homepage: 'https://parladusa.com', feedUrl: 'https://parladusa.com/products.json', community: 'hijabi', currency: 'EUR', category: 'Modest', city: 'Germany', vibe: 'elegant' },
+  // UK store (Farheen, founder) serving mostly US customers; live feed shows
+  // Shopify.currency.active: USD. Partner-onboarding brand (docs/log/2026-10-01-try-modest-founder-draft.md) —
+  // prior research (docs/log/2026-09-23-farheen-fajr-noor-outreach-research.md) found
+  // baby/boys'/men's items and ~5 dropship rows mixed into the raw feed; the
+  // non-apparel veto and gender exclusions handle those at publish time, not here.
+  { slug: 'try-modest', name: 'Try Modest', homepage: 'https://trymodest.com', feedUrl: 'https://trymodest.com/products.json', community: 'hijabi', currency: 'USD', category: 'Hijabs & modest', city: 'United Kingdom', vibe: 'elegant' },
 ];

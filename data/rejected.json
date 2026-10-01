@@ -1,5 +1,41 @@
 [
   {
+    "id": "niswa:10028360696106",
+    "brandSlug": "niswa",
+    "title": "Solid Modal - Emerald Night",
+    "url": "https://niswafashion.com/products/solid-modal-pink-bubble-copy",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://niswafashion.com/products/solid-modal-pink-bubble-copy"
+  },
+  {
+    "id": "niswa:10027900141866",
+    "brandSlug": "niswa",
+    "title": "Solid Modal - Morning Mist",
+    "url": "https://niswafashion.com/products/solid-modal-soft-gauva-copy",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://niswafashion.com/products/solid-modal-soft-gauva-copy"
+  },
+  {
+    "id": "niswa:10129454858538",
+    "brandSlug": "niswa",
+    "title": "Printed Modal - Ember Of Eden",
+    "url": "https://niswafashion.com/products/printed-modal-ember-of-eden",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://niswafashion.com/products/printed-modal-ember-of-eden"
+  },
+  {
+    "id": "niswa:10041063866666",
+    "brandSlug": "niswa",
+    "title": "Hawa Chiffon Cardigan - Cocoa",
+    "url": "https://niswafashion.com/products/hawa-chiffon-cardigan-cocoa",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://niswafashion.com/products/hawa-chiffon-cardigan-cocoa"
+  },
+  {
     "id": "niswa:8013480591658",
     "brandSlug": "niswa",
     "title": "Magnet Pins - DUSTY ROSE",
@@ -100,6 +136,15 @@
     "evidence": "Magnet"
   },
   {
+    "id": "niswa:6627658760246",
+    "brandSlug": "niswa",
+    "title": "LOTUS PETAL Georgette Chiffon Scarf",
+    "url": "https://niswafashion.com/products/lotus-petal-georgette-chiffon-scarf",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://niswafashion.com/products/lotus-petal-georgette-chiffon-scarf"
+  },
+  {
     "id": "niswa:8361351086378",
     "brandSlug": "niswa",
     "title": "Hana Swimwear Set - Mauve",
@@ -144,6 +189,24 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "niswa:8013870956842",
+    "brandSlug": "niswa",
+    "title": "Mila Wrap Tunic - Ruby",
+    "url": "https://niswafashion.com/products/mila-wrap-tunic-ruby",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://niswafashion.com/products/mila-wrap-tunic-ruby"
+  },
+  {
+    "id": "niswa:8907989877034",
+    "brandSlug": "niswa",
+    "title": "Hafsa Maxi Dress",
+    "url": "https://niswafashion.com/products/hafsa-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://niswafashion.com/products/hafsa-maxi-dress"
   },
   {
     "id": "niswa:6637655425078",
@@ -24458,6 +24521,24 @@
     "evidence": "Enamel Pin"
   },
   {
+    "id": "haute-hijab:7761949196384",
+    "brandSlug": "haute-hijab",
+    "title": "Sunset Tide Hijab",
+    "url": "https://www.hautehijab.com/products/sunset-tide-hijab",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://www.hautehijab.com/products/sunset-tide-hijab"
+  },
+  {
+    "id": "haute-hijab:6588989931616",
+    "brandSlug": "haute-hijab",
+    "title": "Refined Rosettes Hijab",
+    "url": "https://www.hautehijab.com/products/refined-rosettes-hijab",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://www.hautehijab.com/products/refined-rosettes-hijab"
+  },
+  {
     "id": "haute-hijab:4528495722592",
     "brandSlug": "haute-hijab",
     "title": "No–Snag Hijab Magnets - Silver",
@@ -32326,6 +32407,177 @@
     "evidence": "890 USD (~$890)"
   },
   {
+    "id": "glow-modesty:9211527561432",
+    "brandSlug": "glow-modesty",
+    "title": "Bonnie Lace Set",
+    "url": "https://glowmodesty.com/products/bonnie-lace-set",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://glowmodesty.com/products/bonnie-lace-set"
+  },
+  {
+    "id": "glow-modesty:9120227852504",
+    "brandSlug": "glow-modesty",
+    "title": "Mariposa - Dress",
+    "url": "https://glowmodesty.com/products/mariposa-ethereal-maxi",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://glowmodesty.com/products/mariposa-ethereal-maxi"
+  },
+  {
+    "id": "jawda:16069867078012",
+    "brandSlug": "jawda",
+    "title": "Stone Beige Linen Cotton Button Sleeve Abaya",
+    "url": "https://jawda.co.uk/products/stone-beige-linen-cotton-button-sleeve-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/stone-beige-linen-cotton-button-sleeve-abaya"
+  },
+  {
+    "id": "jawda:16054288449916",
+    "brandSlug": "jawda",
+    "title": "Stone Beige Linen Cotton Elasticated Skirt",
+    "url": "https://jawda.co.uk/products/stone-beige-linen-cotton-elasticated-skirt",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/stone-beige-linen-cotton-elasticated-skirt"
+  },
+  {
+    "id": "jawda:16054288351612",
+    "brandSlug": "jawda",
+    "title": "Black Linen Cotton Elasticated Skirt",
+    "url": "https://jawda.co.uk/products/black-linen-cotton-elasticated-skirt",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/black-linen-cotton-elasticated-skirt"
+  },
+  {
+    "id": "jawda:16054288187772",
+    "brandSlug": "jawda",
+    "title": "Pale Blue Cotton Blend Front Slit Dress",
+    "url": "https://jawda.co.uk/products/pale-blue-cotton-blend-front-slit-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/pale-blue-cotton-blend-front-slit-dress"
+  },
+  {
+    "id": "jawda:16054287925628",
+    "brandSlug": "jawda",
+    "title": "Rose Pink Etched Crepe Lace Top",
+    "url": "https://jawda.co.uk/products/rose-pink-etched-crepe-lace-top",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/rose-pink-etched-crepe-lace-top"
+  },
+  {
+    "id": "jawda:16054287827324",
+    "brandSlug": "jawda",
+    "title": "Sea Green Etched Crepe Lace Skirt",
+    "url": "https://jawda.co.uk/products/sea-green-etched-crepe-lace-skirt",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/sea-green-etched-crepe-lace-skirt"
+  },
+  {
+    "id": "jawda:16054286582140",
+    "brandSlug": "jawda",
+    "title": "Black Etched Crepe Lace Abaya",
+    "url": "https://jawda.co.uk/products/black-etched-crepe-lace-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/black-etched-crepe-lace-abaya"
+  },
+  {
+    "id": "jawda:15972469604732",
+    "brandSlug": "jawda",
+    "title": "Bottle Green Cotton Blend Striped Kimono Abaya",
+    "url": "https://jawda.co.uk/products/bottle-green-cotton-blend-striped-kimono-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/bottle-green-cotton-blend-striped-kimono-abaya"
+  },
+  {
+    "id": "jawda:16038522225020",
+    "brandSlug": "jawda",
+    "title": "Sage Green Cotton Blend Tassel Abaya",
+    "url": "https://jawda.co.uk/products/sage-green-cotton-blend-tassel-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/sage-green-cotton-blend-tassel-abaya"
+  },
+  {
+    "id": "jawda:15972619223420",
+    "brandSlug": "jawda",
+    "title": "Black Linen Cotton Long Skirt",
+    "url": "https://jawda.co.uk/products/black-linen-cotton-long-skirt",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/black-linen-cotton-long-skirt"
+  },
+  {
+    "id": "jawda:16005064032636",
+    "brandSlug": "jawda",
+    "title": "Sage Cotton Piping Abaya",
+    "url": "https://jawda.co.uk/products/sage-cotton-piping-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/sage-cotton-piping-abaya"
+  },
+  {
+    "id": "jawda:16005055021436",
+    "brandSlug": "jawda",
+    "title": "Pale Blue Linen Cotton Kaftan",
+    "url": "https://jawda.co.uk/products/pale-blue-linen-cotton-kaftan",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/pale-blue-linen-cotton-kaftan"
+  },
+  {
+    "id": "jawda:15627469980028",
+    "brandSlug": "jawda",
+    "title": "Nude High-Waisted Trousers",
+    "url": "https://jawda.co.uk/products/nude-high-waisted-trousers",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/nude-high-waisted-trousers"
+  },
+  {
+    "id": "jawda:15627449336188",
+    "brandSlug": "jawda",
+    "title": "Burgundy V-Neck Top",
+    "url": "https://jawda.co.uk/products/burgundy-v-neck-top",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/burgundy-v-neck-top"
+  },
+  {
+    "id": "vela:8441385975964",
+    "brandSlug": "vela",
+    "title": "Aqua Cobra",
+    "url": "https://velascarves.com/products/aqua-cobra",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://velascarves.com/products/aqua-cobra"
+  },
+  {
+    "id": "vela:8329555345564",
+    "brandSlug": "vela",
+    "title": "Pleated Cardigan",
+    "url": "https://velascarves.com/products/pleated-cardigan",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://velascarves.com/products/pleated-cardigan"
+  },
+  {
+    "id": "vela:8316287582364",
+    "brandSlug": "vela",
+    "title": "Mixed Rib Skirt",
+    "url": "https://velascarves.com/products/mixed-rib-skirt",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://velascarves.com/products/mixed-rib-skirt"
+  },
+  {
     "id": "vela:8316288172188",
     "brandSlug": "vela",
     "title": "Knit Cardigan Dress",
@@ -34952,6 +35204,69 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "manzaram:15814594494789",
+    "brandSlug": "manzaram",
+    "title": "Maxi jurk met kraag",
+    "url": "https://manzaram.nl/products/maxi-jurk-met-kraag-1",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://manzaram.nl/products/maxi-jurk-met-kraag-1"
+  },
+  {
+    "id": "manzaram:15820102598981",
+    "brandSlug": "manzaram",
+    "title": "Maxi jurk met splitmouwen",
+    "url": "https://manzaram.nl/products/maxi-jurk-met-splitmouwen",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://manzaram.nl/products/maxi-jurk-met-splitmouwen"
+  },
+  {
+    "id": "manzaram:15819248107845",
+    "brandSlug": "manzaram",
+    "title": "Tweedelige set met blouse",
+    "url": "https://manzaram.nl/products/tweedelige-set-met-blouse-1",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://manzaram.nl/products/tweedelige-set-met-blouse-1"
+  },
+  {
+    "id": "manzaram:15819470438725",
+    "brandSlug": "manzaram",
+    "title": "Maxi jurk met knopen",
+    "url": "https://manzaram.nl/products/maxi-jurk-met-knopen-2",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://manzaram.nl/products/maxi-jurk-met-knopen-2"
+  },
+  {
+    "id": "manzaram:15668585234757",
+    "brandSlug": "manzaram",
+    "title": "Maxi Jurk",
+    "url": "https://manzaram.nl/products/maxi-jurk",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://manzaram.nl/products/maxi-jurk"
+  },
+  {
+    "id": "manzaram:15574103032133",
+    "brandSlug": "manzaram",
+    "title": "Tweedelige denim set",
+    "url": "https://manzaram.nl/products/tweedelige-denim-set-1",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://manzaram.nl/products/tweedelige-denim-set-1"
+  },
+  {
+    "id": "manzaram:15407061107013",
+    "brandSlug": "manzaram",
+    "title": "Comfy twinset",
+    "url": "https://manzaram.nl/products/comfy-twinset-1",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://manzaram.nl/products/comfy-twinset-1"
+  },
+  {
     "id": "avyaana:15633453056374",
     "brandSlug": "avyaana",
     "title": "Shahzadi Noor",
@@ -34968,6 +35283,15 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "552 USD (~$552)"
+  },
+  {
+    "id": "avyaana:8267050516618",
+    "brandSlug": "avyaana",
+    "title": "MANAR",
+    "url": "https://avyaana.com/products/manar-copy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/manar-copy"
   },
   {
     "id": "avyaana:8267053432970",
@@ -34995,6 +35319,33 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "578 USD (~$578)"
+  },
+  {
+    "id": "avyaana:8267050844298",
+    "brandSlug": "avyaana",
+    "title": "Nyla",
+    "url": "https://avyaana.com/products/nyla-copy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/nyla-copy"
+  },
+  {
+    "id": "avyaana:8267050713226",
+    "brandSlug": "avyaana",
+    "title": "ROHA",
+    "url": "https://avyaana.com/products/roha-copy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/roha-copy"
+  },
+  {
+    "id": "avyaana:8267050614922",
+    "brandSlug": "avyaana",
+    "title": "Ghazal",
+    "url": "https://avyaana.com/products/ghazal-copy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/ghazal-copy"
   },
   {
     "id": "fares:8281648660671",
@@ -35148,6 +35499,33 @@
     "url": "https://www.madiha.co.uk/products/the-slip-dress-in-off-white-black",
     "garmentWas": "dress",
     "reason": "brand-blacklist"
+  },
+  {
+    "id": "kamin:8098812428505",
+    "brandSlug": "kamin",
+    "title": "The Naya | Creme Half Sleeve",
+    "url": "https://kamin.ae/products/the-naya-creme-half-sleeve",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-naya-creme-half-sleeve"
+  },
+  {
+    "id": "kamin:8098802106585",
+    "brandSlug": "kamin",
+    "title": "The Naya | Creme Cut Sleeve",
+    "url": "https://kamin.ae/products/the-naya-creme-cut-sleeve",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-naya-creme-cut-sleeve"
+  },
+  {
+    "id": "kamin:8098773532889",
+    "brandSlug": "kamin",
+    "title": "The Naya | Creme Long Sleeve",
+    "url": "https://kamin.ae/products/the-naya-creme-long-sleeve",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-naya-creme-long-sleeve"
   },
   {
     "id": "kamin:9774594195673",
@@ -35309,6 +35687,15 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8524344885409",
+    "brandSlug": "chi-ka",
+    "title": "Two Layer Flow Abaya in Black Dotted Chocolate Brown RTW",
+    "url": "https://chikacollection.com/products/two-layer-flow-abaya-in-black-dotted-chocolate-brown-rtw",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://chikacollection.com/products/two-layer-flow-abaya-in-black-dotted-chocolate-brown-rtw"
   },
   {
     "id": "chi-ka:8604353855649",
@@ -35500,6 +35887,15 @@
     "evidence": "2250 AED (~$613)"
   },
   {
+    "id": "chi-ka:8519973175457",
+    "brandSlug": "chi-ka",
+    "title": "Shawl Lapel Abaya in Black RTW",
+    "url": "https://chikacollection.com/products/shawl-lapel-abaya-in-black-rtw",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://chikacollection.com/products/shawl-lapel-abaya-in-black-rtw"
+  },
+  {
     "id": "chi-ka:8519972880545",
     "brandSlug": "chi-ka",
     "title": "Structured Abaya in Black and Navy with Wave-line Neck RTW",
@@ -35588,6 +35984,15 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8519946535073",
+    "brandSlug": "chi-ka",
+    "title": "Flow Abaya in Grey Black with Grey Piping RTW",
+    "url": "https://chikacollection.com/products/flow-abaya-in-grey-black-with-grey-piping-rtw",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://chikacollection.com/products/flow-abaya-in-grey-black-with-grey-piping-rtw"
   },
   {
     "id": "chi-ka:8519946207393",
@@ -36004,6 +36409,15 @@
     "evidence": "2300 AED (~$626)"
   },
   {
+    "id": "chi-ka:8493233045665",
+    "brandSlug": "chi-ka",
+    "title": "Tencel Twill Abaya in Brown RTW",
+    "url": "https://chikacollection.com/products/tencel-twill-abaya-in-brown-rtw",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://chikacollection.com/products/tencel-twill-abaya-in-brown-rtw"
+  },
+  {
     "id": "chi-ka:8489296986273",
     "brandSlug": "chi-ka",
     "title": "Navy Color Origami Abaya",
@@ -36344,6 +36758,15 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2300 AED (~$626)"
+  },
+  {
+    "id": "chi-ka:8434363990177",
+    "brandSlug": "chi-ka",
+    "title": "Straight Cut Kaftan with Blue Pink Print RTW",
+    "url": "https://chikacollection.com/products/straight-cut-kaftan-with-blue-pink-print-rtw",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://chikacollection.com/products/straight-cut-kaftan-with-blue-pink-print-rtw"
   },
   {
     "id": "chi-ka:8434362548385",
@@ -40581,6 +41004,33 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "whiteicy:15666941264212",
+    "brandSlug": "whiteicy",
+    "title": "Jupe evasee Claire",
+    "url": "https://whiteicy.com/products/jupe-evasee-claire",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://whiteicy.com/products/jupe-evasee-claire"
+  },
+  {
+    "id": "whiteicy:15508264812884",
+    "brandSlug": "whiteicy",
+    "title": "Chemise Vichy à carreaux Elise",
+    "url": "https://whiteicy.com/products/chemise-vichy-a-carreaux-elise",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://whiteicy.com/products/chemise-vichy-a-carreaux-elise"
+  },
+  {
+    "id": "whiteicy:15474463572308",
+    "brandSlug": "whiteicy",
+    "title": "Trench long MAEVA",
+    "url": "https://whiteicy.com/products/trench-long-maeva",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://whiteicy.com/products/trench-long-maeva"
+  },
+  {
     "id": "mukistore:9491509641481",
     "brandSlug": "mukistore",
     "title": "Premium Gebedskleed Koepel Design Anti Slip",
@@ -40661,6 +41111,15 @@
     "reason": "title-pattern"
   },
   {
+    "id": "hijab-boutique:8705133314387",
+    "brandSlug": "hijab-boutique",
+    "title": "Sweater dress - Army green",
+    "url": "https://hijabboutique.nl/products/kopie-van-maxi-jurk-green",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://hijabboutique.nl/products/kopie-van-maxi-jurk-green"
+  },
+  {
     "id": "hijab-boutique:8006645285168",
     "brandSlug": "hijab-boutique",
     "title": "Hijab hangers",
@@ -40709,6 +41168,15 @@
     "url": "https://abyya.be/products/open-abaya-butterfly",
     "garmentWas": "abaya",
     "reason": "brand-blacklist"
+  },
+  {
+    "id": "kimodesty:14647",
+    "brandSlug": "kimodesty",
+    "title": "Cotton Twinset – Pastel Pink",
+    "url": "https://kimodesty.com/shop/twinsets/cotton-twinset-pastel-pink/",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://kimodesty.com/shop/twinsets/cotton-twinset-pastel-pink/"
   },
   {
     "id": "chador:194302",
@@ -40857,6 +41325,24 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "noureen:55472",
+    "brandSlug": "noureen",
+    "title": "Abaya Jazz Berry",
+    "url": "https://noureenmodestfashion.com/product/abaya-jazz-berry/",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://noureenmodestfashion.com/product/abaya-jazz-berry/"
+  },
+  {
+    "id": "noureen:49706",
+    "brandSlug": "noureen",
+    "title": "Luxury Jersey Khimaar Off White",
+    "url": "https://noureenmodestfashion.com/product/luxury-jersey-khimaar-off-white/",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://noureenmodestfashion.com/product/luxury-jersey-khimaar-off-white/"
+  },
+  {
     "id": "hum:9028000219348",
     "brandSlug": "hum",
     "title": "Coffee Brown Button Down Maxi Dress",
@@ -40874,6 +41360,15 @@
     "reason": "non-apparel:hardware",
     "tier": "B",
     "evidence": "clips"
+  },
+  {
+    "id": "chic-modesty:10323057475922",
+    "brandSlug": "chic-modesty",
+    "title": "Hijab Jersey premium café au lait",
+    "url": "https://chicandmodesty.com/products/hijab-jersey-premium-cafe-au-lait",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://chicandmodesty.com/products/hijab-jersey-premium-cafe-au-lait"
   },
   {
     "id": "chic-modesty:10474535223634",
@@ -41525,6 +42020,96 @@
     "evidence": "Bag"
   },
   {
+    "id": "avyaana:15633339056502",
+    "brandSlug": "avyaana",
+    "title": "Elenora",
+    "url": "https://avyaana.com/products/elenora-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/elenora-1"
+  },
+  {
+    "id": "avyaana:15633338204534",
+    "brandSlug": "avyaana",
+    "title": "Pastel Blue Tulip",
+    "url": "https://avyaana.com/products/pastel-blue-tulip-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/pastel-blue-tulip-1"
+  },
+  {
+    "id": "avyaana:15633337057654",
+    "brandSlug": "avyaana",
+    "title": "Pink Foam Tulip",
+    "url": "https://avyaana.com/products/pink-foam-tulip-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/pink-foam-tulip-1"
+  },
+  {
+    "id": "avyaana:15633336566134",
+    "brandSlug": "avyaana",
+    "title": "Burgundy Print Tulip",
+    "url": "https://avyaana.com/products/burgundy-print-tulip",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/burgundy-print-tulip"
+  },
+  {
+    "id": "avyaana:15633334862198",
+    "brandSlug": "avyaana",
+    "title": "BAHIRA",
+    "url": "https://avyaana.com/products/bahira-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/bahira-1"
+  },
+  {
+    "id": "avyaana:15633334665590",
+    "brandSlug": "avyaana",
+    "title": "KHAYAL",
+    "url": "https://avyaana.com/products/khayal-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/khayal-1"
+  },
+  {
+    "id": "avyaana:15633334468982",
+    "brandSlug": "avyaana",
+    "title": "SEREEN",
+    "url": "https://avyaana.com/products/sereen-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/sereen-1"
+  },
+  {
+    "id": "avyaana:15633334042998",
+    "brandSlug": "avyaana",
+    "title": "Haneefa",
+    "url": "https://avyaana.com/products/haneefa-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/haneefa-1"
+  },
+  {
+    "id": "avyaana:15633333715318",
+    "brandSlug": "avyaana",
+    "title": "RANIA",
+    "url": "https://avyaana.com/products/rania-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/rania-1"
+  },
+  {
+    "id": "avyaana:15633332535670",
+    "brandSlug": "avyaana",
+    "title": "DARIYA",
+    "url": "https://avyaana.com/products/dariya-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/dariya-1"
+  },
+  {
     "id": "avyaana:15449996034422",
     "brandSlug": "avyaana",
     "title": "Golden Earth Ombre",
@@ -41622,6 +42207,96 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "621 USD (~$621)"
+  },
+  {
+    "id": "avyaana:8264802402442",
+    "brandSlug": "avyaana",
+    "title": "Mocha Tulip",
+    "url": "https://avyaana.com/products/mocha-tulip",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/mocha-tulip"
+  },
+  {
+    "id": "avyaana:8264803287178",
+    "brandSlug": "avyaana",
+    "title": "Lilac Tulip",
+    "url": "https://avyaana.com/products/lilac-tulip",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/lilac-tulip"
+  },
+  {
+    "id": "avyaana:8264802566282",
+    "brandSlug": "avyaana",
+    "title": "Black Tulip",
+    "url": "https://avyaana.com/products/black-tulip-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/black-tulip-1"
+  },
+  {
+    "id": "kamin:9276918137049",
+    "brandSlug": "kamin",
+    "title": "The Carmel | Beige",
+    "url": "https://kamin.ae/products/the-carmel-beige",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-carmel-beige"
+  },
+  {
+    "id": "kamin:8177345495257",
+    "brandSlug": "kamin",
+    "title": "The Layal | Navy",
+    "url": "https://kamin.ae/products/the-layal-navy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-layal-navy"
+  },
+  {
+    "id": "kamin:8177338024153",
+    "brandSlug": "kamin",
+    "title": "The Layal | Silver",
+    "url": "https://kamin.ae/products/the-layal-taupe",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-layal-taupe"
+  },
+  {
+    "id": "kamin:8177421418713",
+    "brandSlug": "kamin",
+    "title": "The Shaikha | Olive",
+    "url": "https://kamin.ae/products/the-shaikha-olive",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-shaikha-olive"
+  },
+  {
+    "id": "kamin:9433035505881",
+    "brandSlug": "kamin",
+    "title": "The Joudy | Purple",
+    "url": "https://kamin.ae/products/the-joudy-purple",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-joudy-purple"
+  },
+  {
+    "id": "kamin:9433031180505",
+    "brandSlug": "kamin",
+    "title": "The Rena | Purple",
+    "url": "https://kamin.ae/products/the-reena-purple",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-reena-purple"
+  },
+  {
+    "id": "kamin:8517963153625",
+    "brandSlug": "kamin",
+    "title": "The Joud | Purple",
+    "url": "https://kamin.ae/products/the-joud-purple",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-joud-purple"
   },
   {
     "id": "kamin:9333254586585",
@@ -41992,6 +42667,123 @@
     "url": "https://byhasanat.co.uk/products/milk-and-honey-3d-sticker-set",
     "garmentWas": "set",
     "reason": "id-pin"
+  },
+  {
+    "id": "by-hasanat:15614011703669",
+    "brandSlug": "by-hasanat",
+    "title": "Two-Piece Cape Dress Off-White",
+    "url": "https://byhasanat.co.uk/products/two-piece-cape-dress-off-white",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://byhasanat.co.uk/products/two-piece-cape-dress-off-white"
+  },
+  {
+    "id": "by-hasanat:14865853972853",
+    "brandSlug": "by-hasanat",
+    "title": "Two-Piece Cape Dress Navy",
+    "url": "https://byhasanat.co.uk/products/two-piece-cape-dress-navy",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://byhasanat.co.uk/products/two-piece-cape-dress-navy"
+  },
+  {
+    "id": "by-hasanat:14865853088117",
+    "brandSlug": "by-hasanat",
+    "title": "Two-Piece Cape Dress Burgundy",
+    "url": "https://byhasanat.co.uk/products/two-piece-cape-dress-burgundy",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://byhasanat.co.uk/products/two-piece-cape-dress-burgundy"
+  },
+  {
+    "id": "by-hasanat:15543963713909",
+    "brandSlug": "by-hasanat",
+    "title": "Almond Suede Dress",
+    "url": "https://byhasanat.co.uk/products/almond-suede-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://byhasanat.co.uk/products/almond-suede-dress"
+  },
+  {
+    "id": "by-hasanat:15543962730869",
+    "brandSlug": "by-hasanat",
+    "title": "Mocha Brown Suede Dress",
+    "url": "https://byhasanat.co.uk/products/mocha-brown-suede-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://byhasanat.co.uk/products/mocha-brown-suede-dress"
+  },
+  {
+    "id": "by-hasanat:15543958569333",
+    "brandSlug": "by-hasanat",
+    "title": "Olive Suede Dress",
+    "url": "https://byhasanat.co.uk/products/olive-suede-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://byhasanat.co.uk/products/olive-suede-dress"
+  },
+  {
+    "id": "kamin:9180632842457",
+    "brandSlug": "kamin",
+    "title": "The Shamma | Beige",
+    "url": "https://kamin.ae/products/the-shamma-beige",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-shamma-beige"
+  },
+  {
+    "id": "illi-studio:9097043345560",
+    "brandSlug": "illi-studio",
+    "title": "Zia in Mint",
+    "url": "https://illistudio.com/products/zia-in-mint",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://illistudio.com/products/zia-in-mint"
+  },
+  {
+    "id": "illi-studio:9097334849688",
+    "brandSlug": "illi-studio",
+    "title": "Lisa in Burgundy",
+    "url": "https://illistudio.com/products/lisa-in-burgundy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://illistudio.com/products/lisa-in-burgundy"
+  },
+  {
+    "id": "illi-studio:9100973408408",
+    "brandSlug": "illi-studio",
+    "title": "Rumi in Cream",
+    "url": "https://illistudio.com/products/rumi-in-cream",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://illistudio.com/products/rumi-in-cream"
+  },
+  {
+    "id": "illi-studio:9129308389528",
+    "brandSlug": "illi-studio",
+    "title": "Bella Co-ord Set in Brown",
+    "url": "https://illistudio.com/products/bella-co-ord-set-in-brown",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://illistudio.com/products/bella-co-ord-set-in-brown"
+  },
+  {
+    "id": "illi-studio:8847509291160",
+    "brandSlug": "illi-studio",
+    "title": "Eleanor in Pink",
+    "url": "https://illistudio.com/products/eleanor-in-pink",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://illistudio.com/products/eleanor-in-pink"
+  },
+  {
+    "id": "illi-studio:8603914862744",
+    "brandSlug": "illi-studio",
+    "title": "AISHA in black",
+    "url": "https://illistudio.com/products/aisha-in-black",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://illistudio.com/products/aisha-in-black"
   },
   {
     "id": "headed-somewear:7709230825630",
@@ -42494,6 +43286,24 @@
     "reason": "title-pattern"
   },
   {
+    "id": "nihan:14916492001643",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Elbiseli Abaya Takım - Siyah",
+    "url": "https://nihan.com.tr/products/buyuk-beden-elbiseli-abaya-takim-siyah-3",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/buyuk-beden-elbiseli-abaya-takim-siyah-3"
+  },
+  {
+    "id": "nihan:14914081325419",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Jakar Kumaşlı Elbiseli Abaya Takım - Siyah",
+    "url": "https://nihan.com.tr/products/buyuk-beden-jakar-kumasli-elbiseli-abaya-takim-siyah",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/buyuk-beden-jakar-kumasli-elbiseli-abaya-takim-siyah"
+  },
+  {
     "id": "baqa:9181678698747",
     "brandSlug": "baqa",
     "title": "Kahverengi Desenli Palazzo Pantolon",
@@ -42501,6 +43311,24 @@
     "garmentWas": "trousers",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "baqa:8994416984315",
+    "brandSlug": "baqa",
+    "title": "Bol Paça Cupro Pantolon",
+    "url": "https://baqaofficial.com/products/bol-paca-cupro-pantolon",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://baqaofficial.com/products/bol-paca-cupro-pantolon"
+  },
+  {
+    "id": "baqa:9114046136571",
+    "brandSlug": "baqa",
+    "title": "Lacivert Lastikli Bol Pantolon",
+    "url": "https://baqaofficial.com/products/lacivert-lastikli-bol-pantolon",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://baqaofficial.com/products/lacivert-lastikli-bol-pantolon"
   },
   {
     "id": "baqa:9305455231227",
@@ -42519,6 +43347,15 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "39500 TRY (~$822)"
+  },
+  {
+    "id": "baqa:9313790099707",
+    "brandSlug": "baqa",
+    "title": "Pili Detaylı Keten Pantolon",
+    "url": "https://baqaofficial.com/products/keten-pili-detayli-pantolon",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://baqaofficial.com/products/keten-pili-detayli-pantolon"
   },
   {
     "id": "baqa:9132165136635",
@@ -42546,6 +43383,15 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "29500 TRY (~$614)"
+  },
+  {
+    "id": "baqa:8922331939067",
+    "brandSlug": "baqa",
+    "title": "Payetli Pantolon",
+    "url": "https://baqaofficial.com/products/sal-detay-payetli-pantolon",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://baqaofficial.com/products/sal-detay-payetli-pantolon"
   },
   {
     "id": "baqa:9292803309819",
@@ -42747,6 +43593,465 @@
     "evidence": "Belt"
   },
   {
+    "id": "touche-prive:8726780870984",
+    "brandSlug": "touche-prive",
+    "title": "Floral Patterned Chiffon Dress",
+    "url": "https://int.toucheprive.com/products/floral-patterned-chiffon-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/floral-patterned-chiffon-dress"
+  },
+  {
+    "id": "touche-prive:9372746219848",
+    "brandSlug": "touche-prive",
+    "title": "Pleated Satin Skirt",
+    "url": "https://int.toucheprive.com/products/pleated-satin-skirt-35",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/pleated-satin-skirt-35"
+  },
+  {
+    "id": "touche-prive:10018217427272",
+    "brandSlug": "touche-prive",
+    "title": "Belted Pocketed Cupra Dress",
+    "url": "https://int.toucheprive.com/products/kemerli̇-cepli̇-kupra-elbi̇se-1",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/kemerli̇-cepli̇-kupra-elbi̇se-1"
+  },
+  {
+    "id": "touche-prive:8903920157000",
+    "brandSlug": "touche-prive",
+    "title": "Wide Leg Crepe Trousers",
+    "url": "https://int.toucheprive.com/products/wide-leg-crepe-trousers-7",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/wide-leg-crepe-trousers-7"
+  },
+  {
+    "id": "touche-prive:10020014588232",
+    "brandSlug": "touche-prive",
+    "title": "Wide Neck Detail Maxi Dress",
+    "url": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-kupra-elbi̇se-2",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-kupra-elbi̇se-2"
+  },
+  {
+    "id": "touche-prive:10091653857608",
+    "brandSlug": "touche-prive",
+    "title": "Striped Linen Shirt",
+    "url": "https://int.toucheprive.com/products/ci̇zgi̇li̇-keten-gomlek",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/ci̇zgi̇li̇-keten-gomlek"
+  },
+  {
+    "id": "touche-prive:10130619138376",
+    "brandSlug": "touche-prive",
+    "title": "Belted Poplin Runic",
+    "url": "https://int.toucheprive.com/products/kemerli̇-popli̇n-runi̇k-2",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/kemerli̇-popli̇n-runi̇k-2"
+  },
+  {
+    "id": "touche-prive:8770182349128",
+    "brandSlug": "touche-prive",
+    "title": "Floral Lace Bomber Jacket",
+    "url": "https://int.toucheprive.com/products/floral-lace-bomber-jacket-4",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/floral-lace-bomber-jacket-4"
+  },
+  {
+    "id": "touche-prive:8689669439816",
+    "brandSlug": "touche-prive",
+    "title": "Embroidered Shirt",
+    "url": "https://int.toucheprive.com/products/embroidered-shirt-2",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/embroidered-shirt-2"
+  },
+  {
+    "id": "touche-prive:9874911330632",
+    "brandSlug": "touche-prive",
+    "title": "Belted Oversize Dress",
+    "url": "https://int.toucheprive.com/products/kemerli̇-oversize-elbi̇se",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/kemerli̇-oversize-elbi̇se"
+  },
+  {
+    "id": "touche-prive:9999897723208",
+    "brandSlug": "touche-prive",
+    "title": "Kimono And Trouser Set",
+    "url": "https://int.toucheprive.com/products/kimono-and-trouser-set",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/kimono-and-trouser-set"
+  },
+  {
+    "id": "touche-prive:9857450246472",
+    "brandSlug": "touche-prive",
+    "title": "Glitter Crinkle Shirt",
+    "url": "https://int.toucheprive.com/products/glitter-crinkle-shirt",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/glitter-crinkle-shirt"
+  },
+  {
+    "id": "touche-prive:9999897493832",
+    "brandSlug": "touche-prive",
+    "title": "Ethnic Embroidered Dress",
+    "url": "https://int.toucheprive.com/products/ethnic-embroidered-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/ethnic-embroidered-dress"
+  },
+  {
+    "id": "touche-prive:10085164581192",
+    "brandSlug": "touche-prive",
+    "title": "Color Block Dress",
+    "url": "https://int.toucheprive.com/products/color-block-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/color-block-dress"
+  },
+  {
+    "id": "touche-prive:9893529878856",
+    "brandSlug": "touche-prive",
+    "title": "Patterned Linen Shirt",
+    "url": "https://int.toucheprive.com/products/desenli̇-keten-gomlek-2",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/desenli̇-keten-gomlek-2"
+  },
+  {
+    "id": "touche-prive:9893530304840",
+    "brandSlug": "touche-prive",
+    "title": "Abstract Patterned Skirt",
+    "url": "https://int.toucheprive.com/products/abstract-desenli̇-etek",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/abstract-desenli̇-etek"
+  },
+  {
+    "id": "touche-prive:8687764504904",
+    "brandSlug": "touche-prive",
+    "title": "Crepe Vest With Chiffon Detail",
+    "url": "https://int.toucheprive.com/products/crepe-vest-with-chiffon-detail",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/crepe-vest-with-chiffon-detail"
+  },
+  {
+    "id": "touche-prive:9264670671176",
+    "brandSlug": "touche-prive",
+    "title": "Zippered Thin Coat",
+    "url": "https://int.toucheprive.com/products/fermuarli-uzun-mont",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/fermuarli-uzun-mont"
+  },
+  {
+    "id": "touche-prive:10054186107208",
+    "brandSlug": "touche-prive",
+    "title": "Linen Dress With Lemon",
+    "url": "https://int.toucheprive.com/products/linen-dress-with-lemon",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/linen-dress-with-lemon"
+  },
+  {
+    "id": "touche-prive:9878960996680",
+    "brandSlug": "touche-prive",
+    "title": "Asymmetrical Collar Embellished Cupra Shirt",
+    "url": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-tasli-kupra-gomlek",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-tasli-kupra-gomlek"
+  },
+  {
+    "id": "touche-prive:10025026781512",
+    "brandSlug": "touche-prive",
+    "title": "Patterned Satin Skirt",
+    "url": "https://int.toucheprive.com/products/patterned-satin-skirt-7",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/patterned-satin-skirt-7"
+  },
+  {
+    "id": "touche-prive:10091653792072",
+    "brandSlug": "touche-prive",
+    "title": "Striped Shirt with Wide Collar",
+    "url": "https://int.toucheprive.com/products/ci̇zgi̇li̇-geni̇s-mansetli̇-gomlek-3",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/ci̇zgi̇li̇-geni̇s-mansetli̇-gomlek-3"
+  },
+  {
+    "id": "touche-prive:10095428337992",
+    "brandSlug": "touche-prive",
+    "title": "Chiffon Pleated Lined Skirt",
+    "url": "https://int.toucheprive.com/products/pleated-chiffon-skirt-9",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/pleated-chiffon-skirt-9"
+  },
+  {
+    "id": "touche-prive:10099163791688",
+    "brandSlug": "touche-prive",
+    "title": "Satin Shirt And Pants Set",
+    "url": "https://int.toucheprive.com/products/saten-gomlek-pantolon-takim",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/saten-gomlek-pantolon-takim"
+  },
+  {
+    "id": "touche-prive:10099163562312",
+    "brandSlug": "touche-prive",
+    "title": "Satin Shirt",
+    "url": "https://int.toucheprive.com/products/saten-gomlek-8",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/saten-gomlek-8"
+  },
+  {
+    "id": "touche-prive:9690102989128",
+    "brandSlug": "touche-prive",
+    "title": "Shirt With Ethnic Patterned Detailed",
+    "url": "https://int.toucheprive.com/products/shirt-with-ethnic-patterned-detailed-3",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/shirt-with-ethnic-patterned-detailed-3"
+  },
+  {
+    "id": "touche-prive:10018217165128",
+    "brandSlug": "touche-prive",
+    "title": "Patterned Dress With Faut Leather Belt",
+    "url": "https://int.toucheprive.com/products/deri̇-kemerli̇-desenli̇-elbi̇se-2",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/deri̇-kemerli̇-desenli̇-elbi̇se-2"
+  },
+  {
+    "id": "touche-prive:10017545650504",
+    "brandSlug": "touche-prive",
+    "title": "Gold Buttoned Cupra Skirt",
+    "url": "https://int.toucheprive.com/products/gold-buttoned-cupra-skirt",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/gold-buttoned-cupra-skirt"
+  },
+  {
+    "id": "touche-prive:10034741313864",
+    "brandSlug": "touche-prive",
+    "title": "Contrast Floral Print Dress",
+    "url": "https://int.toucheprive.com/products/kontrast-ci̇cek-desenli̇-elbi̇se",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/kontrast-ci̇cek-desenli̇-elbi̇se"
+  },
+  {
+    "id": "touche-prive:10017545519432",
+    "brandSlug": "touche-prive",
+    "title": "Belted Cupra Shirt",
+    "url": "https://int.toucheprive.com/products/belted-cupra-shirt",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/belted-cupra-shirt"
+  },
+  {
+    "id": "touche-prive:10019284910408",
+    "brandSlug": "touche-prive",
+    "title": "Thin Jacquard Bomber Jacket",
+    "url": "https://int.toucheprive.com/products/i̇nce-jakarli-bomber-ceket",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/i̇nce-jakarli-bomber-ceket"
+  },
+  {
+    "id": "touche-prive:10020013703496",
+    "brandSlug": "touche-prive",
+    "title": "Pleat Detail Midi Skirt",
+    "url": "https://int.toucheprive.com/products/sunray-pleated-skirt-1",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/sunray-pleated-skirt-1"
+  },
+  {
+    "id": "touche-prive:9922640609608",
+    "brandSlug": "touche-prive",
+    "title": "Satin Shirt And Skirt Set",
+    "url": "https://int.toucheprive.com/products/shirt-and-skirt-set",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/shirt-and-skirt-set"
+  },
+  {
+    "id": "touche-prive:9757996876104",
+    "brandSlug": "touche-prive",
+    "title": "Knitted Trousers With Elastic Waist",
+    "url": "https://int.toucheprive.com/products/beli̇-lastkli̇-orme-pantolon",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/beli̇-lastkli̇-orme-pantolon"
+  },
+  {
+    "id": "touche-prive:8433308270920",
+    "brandSlug": "touche-prive",
+    "title": "Elastic Waisted Crepe Trousers",
+    "url": "https://int.toucheprive.com/products/elastic-waisted-crepe-trousers-6",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/elastic-waisted-crepe-trousers-6"
+  },
+  {
+    "id": "touche-prive:10025463218504",
+    "brandSlug": "touche-prive",
+    "title": "Patterned Satin Tunic",
+    "url": "https://int.toucheprive.com/products/desenli̇-saten-tuni̇k",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/desenli̇-saten-tuni̇k"
+  },
+  {
+    "id": "touche-prive:9893268816200",
+    "brandSlug": "touche-prive",
+    "title": "Jacquard Ethnical Patterned Shirt",
+    "url": "https://int.toucheprive.com/products/jacquard-ethnical-patterned-shirt",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/jacquard-ethnical-patterned-shirt"
+  },
+  {
+    "id": "touche-prive:9893268554056",
+    "brandSlug": "touche-prive",
+    "title": "Front-Tie Jacket",
+    "url": "https://int.toucheprive.com/products/front-tie-jacket-1",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/front-tie-jacket-1"
+  },
+  {
+    "id": "touche-prive:10018861908296",
+    "brandSlug": "touche-prive",
+    "title": "Ruched Sleeve High-Neck Poplin Shirt",
+    "url": "https://int.toucheprive.com/products/shirt-with-gathered-sleeves-2",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/shirt-with-gathered-sleeves-2"
+  },
+  {
+    "id": "touche-prive:10018861973832",
+    "brandSlug": "touche-prive",
+    "title": "Chinese Buttoned Jacket",
+    "url": "https://int.toucheprive.com/products/chinese-buttoned-jacket-1",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/chinese-buttoned-jacket-1"
+  },
+  {
+    "id": "touche-prive:10019285696840",
+    "brandSlug": "touche-prive",
+    "title": "Elastic Waist Long Skirt With Pockets",
+    "url": "https://int.toucheprive.com/products/elastic-waist-skirt-12",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/elastic-waist-skirt-12"
+  },
+  {
+    "id": "touche-prive:9879994368328",
+    "brandSlug": "touche-prive",
+    "title": "Belted Shirt",
+    "url": "https://int.toucheprive.com/products/beli̇-kusakli-gomlek-1",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/beli̇-kusakli-gomlek-1"
+  },
+  {
+    "id": "touche-prive:9886499504456",
+    "brandSlug": "touche-prive",
+    "title": "Faux Pearl Detailed Poplin Shirt",
+    "url": "https://int.toucheprive.com/products/faux-pearl-detailed-poplin-shirt",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/faux-pearl-detailed-poplin-shirt"
+  },
+  {
+    "id": "touche-prive:9998231699784",
+    "brandSlug": "touche-prive",
+    "title": "Elasticated Detail Poplin Shirt",
+    "url": "https://int.toucheprive.com/products/striped-shirt-with-elastic-waistband-2",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/striped-shirt-with-elastic-waistband-2"
+  },
+  {
+    "id": "touche-prive:9979030012232",
+    "brandSlug": "touche-prive",
+    "title": "Cupro Harem Pants",
+    "url": "https://int.toucheprive.com/products/elasticated-cupra-trousers",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/elasticated-cupra-trousers"
+  },
+  {
+    "id": "touche-prive:9871417966920",
+    "brandSlug": "touche-prive",
+    "title": "Gold Buttoned Cupra Shirt",
+    "url": "https://int.toucheprive.com/products/gold-buttoned-cupra-shirt-3",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/gold-buttoned-cupra-shirt-3"
+  },
+  {
+    "id": "touche-prive:9878961324360",
+    "brandSlug": "touche-prive",
+    "title": "Collar Detailed Cupra Shirt",
+    "url": "https://int.toucheprive.com/products/yaka-detayli-kupra-gomlek-1",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/yaka-detayli-kupra-gomlek-1"
+  },
+  {
+    "id": "touche-prive:9865946562888",
+    "brandSlug": "touche-prive",
+    "title": "Elasticated Waist Satin Skirt",
+    "url": "https://int.toucheprive.com/products/beli̇-lasti̇kli̇-saten-etek-1",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/beli̇-lasti̇kli̇-saten-etek-1"
+  },
+  {
+    "id": "touche-prive:9496902041928",
+    "brandSlug": "touche-prive",
+    "title": "Brooch Detailed Dress",
+    "url": "https://int.toucheprive.com/products/bros-detayli-buzgulu-elbi̇se",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/bros-detayli-buzgulu-elbi̇se"
+  },
+  {
+    "id": "touche-prive:9470476648776",
+    "brandSlug": "touche-prive",
+    "title": "Embroidered Denim Jacket",
+    "url": "https://int.toucheprive.com/products/embroidered-denim-jacket",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/embroidered-denim-jacket"
+  },
+  {
+    "id": "touche-prive:9650666963272",
+    "brandSlug": "touche-prive",
+    "title": "Denim Jacket",
+    "url": "https://int.toucheprive.com/products/denim-jacket-4",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/denim-jacket-4"
+  },
+  {
     "id": "daska-fashion:15559798849868",
     "brandSlug": "daska-fashion",
     "title": "Asiya Dress – Stone",
@@ -42754,6 +44059,33 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "jennah-boutique:7897361907888",
+    "brandSlug": "jennah-boutique",
+    "title": "Robe polo sauge",
+    "url": "https://jennah-boutique.com/products/robe-polo-sauge",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://jennah-boutique.com/products/robe-polo-sauge"
+  },
+  {
+    "id": "jennah-boutique:7764198686896",
+    "brandSlug": "jennah-boutique",
+    "title": "Khimar Soie de médine",
+    "url": "https://jennah-boutique.com/products/khimar-soie-de-medine",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://jennah-boutique.com/products/khimar-soie-de-medine"
+  },
+  {
+    "id": "jennah-boutique:7871081021616",
+    "brandSlug": "jennah-boutique",
+    "title": "Robe polo mist",
+    "url": "https://jennah-boutique.com/products/robe-polo-mist",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://jennah-boutique.com/products/robe-polo-mist"
   },
   {
     "id": "jennah-boutique:7800520868016",
@@ -42840,6 +44172,78 @@
     "evidence": "Scarf Rings"
   },
   {
+    "id": "bait-hanayen:15425353220207",
+    "brandSlug": "bait-hanayen",
+    "title": "Shaghaf Abaya (Linen)",
+    "url": "https://bait-hanayen.com/products/bh11260126035",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bh11260126035"
+  },
+  {
+    "id": "bait-hanayen:15425182498927",
+    "brandSlug": "bait-hanayen",
+    "title": "Roaya Abaya (Trench Coat)",
+    "url": "https://bait-hanayen.com/products/bh11260126030",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bh11260126030"
+  },
+  {
+    "id": "bait-hanayen:7966121099375",
+    "brandSlug": "bait-hanayen",
+    "title": "Embroidery Velvet Black Open Abaya",
+    "url": "https://bait-hanayen.com/products/bh11250218010",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bh11250218010"
+  },
+  {
+    "id": "bait-hanayen:7877489950831",
+    "brandSlug": "bait-hanayen",
+    "title": "Rolex Blazer Abaya",
+    "url": "https://bait-hanayen.com/products/bh11250207041",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bh11250207041"
+  },
+  {
+    "id": "bait-hanayen:7877478514799",
+    "brandSlug": "bait-hanayen",
+    "title": "Blazer Crepe Close Abaya",
+    "url": "https://bait-hanayen.com/products/bbh11240218656",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bbh11240218656"
+  },
+  {
+    "id": "bait-hanayen:7877478449263",
+    "brandSlug": "bait-hanayen",
+    "title": "Crepe Close Abaya",
+    "url": "https://bait-hanayen.com/products/bbh11240218655",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bbh11240218655"
+  },
+  {
+    "id": "bait-hanayen:7834712047727",
+    "brandSlug": "bait-hanayen",
+    "title": "abaya trench coat closed",
+    "url": "https://bait-hanayen.com/products/black-blazer-cut-lenin-salona-colsed-abaya-copy-copy-2",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/black-blazer-cut-lenin-salona-colsed-abaya-copy-copy-2"
+  },
+  {
+    "id": "bait-hanayen:7834709000303",
+    "brandSlug": "bait-hanayen",
+    "title": "Plain Crepe Close Abaya",
+    "url": "https://bait-hanayen.com/products/bh11220207001",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bh11220207001"
+  },
+  {
     "id": "eynaa-paris:10422240117079",
     "brandSlug": "eynaa-paris",
     "title": "Épingles À Hijab",
@@ -42855,6 +44259,24 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "modesty-in-style:10758602129718",
+    "brandSlug": "modesty-in-style",
+    "title": "Anna Knit Dress",
+    "url": "https://modestyinstyle.com.au/products/anna-knit-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://modestyinstyle.com.au/products/anna-knit-dress"
+  },
+  {
+    "id": "modesty-in-style:10742492823862",
+    "brandSlug": "modesty-in-style",
+    "title": "Basic Cardigan",
+    "url": "https://modestyinstyle.com.au/products/basic-cardigan",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://modestyinstyle.com.au/products/basic-cardigan"
   },
   {
     "id": "modesty-in-style:10653376708918",
@@ -43444,12 +44866,57 @@
     "reason": "id-pin"
   },
   {
+    "id": "vivi-zubedi:68618",
+    "brandSlug": "vivi-zubedi",
+    "title": "VZ Monogram Long Shawl – Loden Green",
+    "url": "https://vivizubedi.com/product/vz-monogram-long-shawl-loden-green-200x65/",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://vivizubedi.com/product/vz-monogram-long-shawl-loden-green-200x65/"
+  },
+  {
     "id": "vivi-zubedi:63761",
     "brandSlug": "vivi-zubedi",
     "title": "Monogram Lineage Long Shirt – Red",
     "url": "https://vivizubedi.com/product/monogram-lineage-long-shirt-red-0325/",
     "garmentWas": "top",
     "reason": "id-pin"
+  },
+  {
+    "id": "we-are-elegance:15921298571646",
+    "brandSlug": "we-are-elegance",
+    "title": "Lujain 4.0 Rose Pink",
+    "url": "https://weareelegance.co.uk/products/lujain-4-0-rose-pink",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://weareelegance.co.uk/products/lujain-4-0-rose-pink"
+  },
+  {
+    "id": "we-are-elegance:15921131291006",
+    "brandSlug": "we-are-elegance",
+    "title": "Mehrusina Blue",
+    "url": "https://weareelegance.co.uk/products/blue-3pcs",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://weareelegance.co.uk/products/blue-3pcs"
+  },
+  {
+    "id": "we-are-elegance:14964367098238",
+    "brandSlug": "we-are-elegance",
+    "title": "Warda 2.0 Rose Gold",
+    "url": "https://weareelegance.co.uk/products/warda-2-0-rose-gold",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://weareelegance.co.uk/products/warda-2-0-rose-gold"
+  },
+  {
+    "id": "we-are-elegance:14964366082430",
+    "brandSlug": "we-are-elegance",
+    "title": "Warda 2.0 Bronze",
+    "url": "https://weareelegance.co.uk/products/warda-2-0-bronze",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://weareelegance.co.uk/products/warda-2-0-bronze"
   },
   {
     "id": "beyond-label:7651063693503",
@@ -43731,6 +45198,15 @@
     "evidence": "2100 AED (~$572)"
   },
   {
+    "id": "lameera-moda:9064622850216",
+    "brandSlug": "lameera-moda",
+    "title": "Premium Modal Scarf- Sage",
+    "url": "https://lameeramoda.com/products/premium-modal-scarf-sage",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://lameeramoda.com/products/premium-modal-scarf-sage"
+  },
+  {
     "id": "lameera-moda:9293759873192",
     "brandSlug": "lameera-moda",
     "title": "Clara Drop Waist Chiffon Dress - White",
@@ -43909,6 +45385,123 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "2200 AED (~$599)"
+  },
+  {
+    "id": "store-wf:16075626905980",
+    "brandSlug": "store-wf",
+    "title": "100% Washed Linen White Kimono & Trouser Set",
+    "url": "https://storewf.com/products/100-washed-linen-white-kimono-trouser-set",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/100-washed-linen-white-kimono-trouser-set"
+  },
+  {
+    "id": "store-wf:15905788363132",
+    "brandSlug": "store-wf",
+    "title": "Royal Blue Wrap Style Modest Evening Dress",
+    "url": "https://storewf.com/products/royal-blue-wrap-style-modest-evening-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/royal-blue-wrap-style-modest-evening-dress"
+  },
+  {
+    "id": "store-wf:15898164429180",
+    "brandSlug": "store-wf",
+    "title": "Laser Cut Scuba Jacket & Pant Set",
+    "url": "https://storewf.com/products/laser-cut-scuba-jacket-pant-set",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/laser-cut-scuba-jacket-pant-set"
+  },
+  {
+    "id": "store-wf:15897249120636",
+    "brandSlug": "store-wf",
+    "title": "Black Smocked & Pleated Maxi Dress",
+    "url": "https://storewf.com/products/black-smocked-pleated-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/black-smocked-pleated-maxi-dress"
+  },
+  {
+    "id": "store-wf:15897243910524",
+    "brandSlug": "store-wf",
+    "title": "Mustard Smocked & Pleated Maxi Dress",
+    "url": "https://storewf.com/products/mustard-smocked-pleated-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/mustard-smocked-pleated-maxi-dress"
+  },
+  {
+    "id": "store-wf:15551627592060",
+    "brandSlug": "store-wf",
+    "title": "Fuchsia Maxi Dress with Bow & Jewel Detail",
+    "url": "https://storewf.com/products/fuchsia-maxi-dress-with-bow-jewel-detail",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/fuchsia-maxi-dress-with-bow-jewel-detail"
+  },
+  {
+    "id": "store-wf:15554307096956",
+    "brandSlug": "store-wf",
+    "title": "Purple Embellished Tunic & Wide-Leg Trouser Set",
+    "url": "https://storewf.com/products/purple-embellished-tunic-wide-leg-trouser-set",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/purple-embellished-tunic-wide-leg-trouser-set"
+  },
+  {
+    "id": "store-wf:15554372698492",
+    "brandSlug": "store-wf",
+    "title": "Purple Embellished Maxi Dress with Draped Overlay",
+    "url": "https://storewf.com/products/purple-embellished-maxi-dress-with-draped-overlay",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/purple-embellished-maxi-dress-with-draped-overlay"
+  },
+  {
+    "id": "store-wf:15551352930684",
+    "brandSlug": "store-wf",
+    "title": "Pastel Floral Button-Down Dress with Belt",
+    "url": "https://storewf.com/products/pastel-floral-button-down-dress-with-belt",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/pastel-floral-button-down-dress-with-belt"
+  },
+  {
+    "id": "store-wf:15551710232956",
+    "brandSlug": "store-wf",
+    "title": "Multi Colour Printed Kaftan with Scarf Set",
+    "url": "https://storewf.com/products/multi-colour-printed-kaftan-with-scarf-set-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/multi-colour-printed-kaftan-with-scarf-set-1"
+  },
+  {
+    "id": "store-wf:15554360246652",
+    "brandSlug": "store-wf",
+    "title": "Black Feather-Trim Maxi Dress with Embellished Scarf Detail",
+    "url": "https://storewf.com/products/black-feather-trim-maxi-dress-with-embellished-scarf-detail",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/black-feather-trim-maxi-dress-with-embellished-scarf-detail"
+  },
+  {
+    "id": "store-wf:15273006006652",
+    "brandSlug": "store-wf",
+    "title": "Cotton Stripe Abaya",
+    "url": "https://storewf.com/products/cotton-stripe-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/cotton-stripe-abaya"
+  },
+  {
+    "id": "store-wf:14652207464828",
+    "brandSlug": "store-wf",
+    "title": "Green Jacquard Belted Kimono Jacket - WF Atelier",
+    "url": "https://storewf.com/products/green-jaquarde-belted-jacket",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://storewf.com/products/green-jaquarde-belted-jacket"
   },
   {
     "id": "serrb:7860104331325",
@@ -46927,6 +48520,15 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "abayabuth:15647194874234",
+    "brandSlug": "abayabuth",
+    "title": "Luxury Pearl Bloom Embellished Cape - Limited Edition",
+    "url": "https://abayabuth.com/products/luxury-pearl-bloom-embellished-cape-limited-edition",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/luxury-pearl-bloom-embellished-cape-limited-edition"
+  },
+  {
     "id": "abayabuth:16110935572858",
     "brandSlug": "abayabuth",
     "title": "Luxurious AbayaButh Keepsake Gift Box - Umrah Mubarak",
@@ -47001,6 +48603,33 @@
     "reason": "title-pattern"
   },
   {
+    "id": "abayabuth:15602910822778",
+    "brandSlug": "abayabuth",
+    "title": "Premium Echoes of Persia Embroidered Panel Open Abaya – Soft Sage - LIMITED EDITION",
+    "url": "https://abayabuth.com/products/premium-echoes-of-persia-embroidered-panel-open-abaya-soft-sage-limited-edition",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/premium-echoes-of-persia-embroidered-panel-open-abaya-soft-sage-limited-edition"
+  },
+  {
+    "id": "abayabuth:15362030240122",
+    "brandSlug": "abayabuth",
+    "title": "Premium Semi Closed Textured Abaya with Zip and Pockets - Black",
+    "url": "https://abayabuth.com/products/premium-semi-closed-textured-abaya-with-zip-and-pockets-black",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/premium-semi-closed-textured-abaya-with-zip-and-pockets-black"
+  },
+  {
+    "id": "abayabuth:15162300072314",
+    "brandSlug": "abayabuth",
+    "title": "Premium Textured Linen Blend Closed Abaya with Pockets - Deep Forest Green",
+    "url": "https://abayabuth.com/products/premium-textured-linen-blend-closed-abaya-with-pockets-deep-forest-green",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/premium-textured-linen-blend-closed-abaya-with-pockets-deep-forest-green"
+  },
+  {
     "id": "abayabuth:15078565937530",
     "brandSlug": "abayabuth",
     "title": "Two Pack Premium Hijab Magnet - Matte Black",
@@ -47011,6 +48640,33 @@
     "evidence": "Hijab Magnet"
   },
   {
+    "id": "abayabuth:14922557030778",
+    "brandSlug": "abayabuth",
+    "title": "Luxury Velvet Closed Abaya with Floral Motif Embellishments - Navy",
+    "url": "https://abayabuth.com/products/luxury-velvet-closed-abaya-with-floral-motif-embellishments-navy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/luxury-velvet-closed-abaya-with-floral-motif-embellishments-navy"
+  },
+  {
+    "id": "abayabuth:14908895101306",
+    "brandSlug": "abayabuth",
+    "title": "Premium Textured Floral Cascading Embellished Open Abaya - White",
+    "url": "https://abayabuth.com/products/premium-textured-floral-cascading-embellished-open-abaya-white",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/premium-textured-floral-cascading-embellished-open-abaya-white"
+  },
+  {
+    "id": "abayabuth:14833299390842",
+    "brandSlug": "abayabuth",
+    "title": "Plain Double Chiffon Open Abaya - Navy",
+    "url": "https://abayabuth.com/products/plain-double-chiffon-open-abaya-navy",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/plain-double-chiffon-open-abaya-navy"
+  },
+  {
     "id": "abayabuth:8442148454616",
     "brandSlug": "abayabuth",
     "title": "Three Pack Premium Hijab Magnet - Caviar, Matt Black and Nude",
@@ -47019,6 +48675,15 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "abayabuth:8123942240472",
+    "brandSlug": "abayabuth",
+    "title": "Premium Modal Matt Hijab - Taupe",
+    "url": "https://abayabuth.com/products/premium-modal-matt-hijab-taupe-grey-1",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/premium-modal-matt-hijab-taupe-grey-1"
   },
   {
     "id": "abayabuth:7940213080280",
@@ -47131,6 +48796,15 @@
     "evidence": "Belt"
   },
   {
+    "id": "abayabuth:7901592158424",
+    "brandSlug": "abayabuth",
+    "title": "Plain Closed Abaya with Pockets - Dusky Taupe",
+    "url": "https://abayabuth.com/products/plain-closed-abaya-with-pockets-dusky-taupe",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/plain-closed-abaya-with-pockets-dusky-taupe"
+  },
+  {
     "id": "abayabuth:7840942981336",
     "brandSlug": "abayabuth",
     "title": "Chocolate Brown Slim Plaited Rope Tassel Belt",
@@ -47239,6 +48913,15 @@
     "reason": "non-apparel:care",
     "tier": "B",
     "evidence": "Belt"
+  },
+  {
+    "id": "abadia:8819724419226",
+    "brandSlug": "abadia",
+    "title": "Panelled Dress in Blue",
+    "url": "https://shop.abadia.me/products/panelled-dress-blue",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://shop.abadia.me/products/panelled-dress-blue"
   },
   {
     "id": "abadia:8819723632794",
@@ -48597,6 +50280,15 @@
     "reason": "title-pattern"
   },
   {
+    "id": "ria-miranda:9107805044994",
+    "brandSlug": "ria-miranda",
+    "title": "Marina Neckerchief",
+    "url": "https://riamiranda.com/products/marina-neckerchief",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://riamiranda.com/products/marina-neckerchief"
+  },
+  {
     "id": "ria-miranda:8772309319938",
     "brandSlug": "ria-miranda",
     "title": "Zalene Bag",
@@ -49561,6 +51253,24 @@
     "reason": "id-pin"
   },
   {
+    "id": "hidayah:7603902415019",
+    "brandSlug": "hidayah",
+    "title": "Premium Plain Jersey (Laurel)",
+    "url": "https://hidayah.dk/products/premium-plain-jersey-sjal-stretchy-laurel",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://hidayah.dk/products/premium-plain-jersey-sjal-stretchy-laurel"
+  },
+  {
+    "id": "hidayah:9933574898011",
+    "brandSlug": "hidayah",
+    "title": "Premium Jersey Instant Khimar (Dusty Blue)",
+    "url": "https://hidayah.dk/products/premium-jersey-instant-khimar-lyse-bla",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://hidayah.dk/products/premium-jersey-instant-khimar-lyse-bla"
+  },
+  {
     "id": "hidayah:9154191524187",
     "brandSlug": "hidayah",
     "title": "Tilfældig Farve - Satin Velvet Scrunchie (Medium)",
@@ -49627,6 +51337,15 @@
     "reason": "id-pin"
   },
   {
+    "id": "hidayah:7603888029867",
+    "brandSlug": "hidayah",
+    "title": "Premium Plain Jersey (Gold)",
+    "url": "https://hidayah.dk/products/premium-plain-jersey-sjal-stretchy-gold",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://hidayah.dk/products/premium-plain-jersey-sjal-stretchy-gold"
+  },
+  {
     "id": "hidayah:7442435604651",
     "brandSlug": "hidayah",
     "title": "8 stk Hijab Sikkerhedsnåle (Hvid)",
@@ -49641,6 +51360,87 @@
     "url": "https://hidayah.dk/products/sma-hijabnale-50stk",
     "garmentWas": "hijab",
     "reason": "id-pin"
+  },
+  {
+    "id": "aeon-abaya:8883876134964",
+    "brandSlug": "aeon-abaya",
+    "title": "Taylor",
+    "url": "https://aeonabaya.net/products/taylor",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/taylor"
+  },
+  {
+    "id": "aeon-abaya:8883862994996",
+    "brandSlug": "aeon-abaya",
+    "title": "Lauren",
+    "url": "https://aeonabaya.net/products/lauren",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/lauren"
+  },
+  {
+    "id": "aeon-abaya:8868459544628",
+    "brandSlug": "aeon-abaya",
+    "title": "Umber Skirt",
+    "url": "https://aeonabaya.net/products/umber-skirt",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/umber-skirt"
+  },
+  {
+    "id": "aeon-abaya:8868459020340",
+    "brandSlug": "aeon-abaya",
+    "title": "Umber Vest",
+    "url": "https://aeonabaya.net/products/umber-vest",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/umber-vest"
+  },
+  {
+    "id": "aeon-abaya:8868456726580",
+    "brandSlug": "aeon-abaya",
+    "title": "Umber",
+    "url": "https://aeonabaya.net/products/umber-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/umber-1"
+  },
+  {
+    "id": "aeon-abaya:8655468560436",
+    "brandSlug": "aeon-abaya",
+    "title": "Rome",
+    "url": "https://aeonabaya.net/products/177",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/177"
+  },
+  {
+    "id": "aeon-abaya:8821395783732",
+    "brandSlug": "aeon-abaya",
+    "title": "Lavender Skirt",
+    "url": "https://aeonabaya.net/products/1121",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/1121"
+  },
+  {
+    "id": "aeon-abaya:8821394997300",
+    "brandSlug": "aeon-abaya",
+    "title": "Lavender Veil",
+    "url": "https://aeonabaya.net/products/1119",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/1119"
+  },
+  {
+    "id": "aeon-abaya:7789181141044",
+    "brandSlug": "aeon-abaya",
+    "title": "Cobra Silk",
+    "url": "https://aeonabaya.net/products/cobra-silk-abaya-oily",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/cobra-silk-abaya-oily"
   },
   {
     "id": "aeon-abaya:8785714741300",
@@ -49713,6 +51513,645 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "290 KWD (~$941)"
+  },
+  {
+    "id": "aeon-abaya:8746700079156",
+    "brandSlug": "aeon-abaya",
+    "title": "Angelina",
+    "url": "https://aeonabaya.net/products/996",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/996"
+  },
+  {
+    "id": "aeon-abaya:8746698506292",
+    "brandSlug": "aeon-abaya",
+    "title": "Ayla",
+    "url": "https://aeonabaya.net/products/983",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/983"
+  },
+  {
+    "id": "aeon-abaya:8746698014772",
+    "brandSlug": "aeon-abaya",
+    "title": "Indira",
+    "url": "https://aeonabaya.net/products/979",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/979"
+  },
+  {
+    "id": "aeon-abaya:8742209159220",
+    "brandSlug": "aeon-abaya",
+    "title": "Aera",
+    "url": "https://aeonabaya.net/products/962",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/962"
+  },
+  {
+    "id": "aeon-abaya:8699233271860",
+    "brandSlug": "aeon-abaya",
+    "title": "Plum",
+    "url": "https://aeonabaya.net/products/905",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/905"
+  },
+  {
+    "id": "aeon-abaya:8683324833844",
+    "brandSlug": "aeon-abaya",
+    "title": "Indigo",
+    "url": "https://aeonabaya.net/products/black-and-blue-velvet-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-and-blue-velvet-abaya"
+  },
+  {
+    "id": "aeon-abaya:7768699338804",
+    "brandSlug": "aeon-abaya",
+    "title": "Pine",
+    "url": "https://aeonabaya.net/products/blazer-abaya-green-and-black-color-blocked-crepe-blazer",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/blazer-abaya-green-and-black-color-blocked-crepe-blazer"
+  },
+  {
+    "id": "aeon-abaya:8672652722228",
+    "brandSlug": "aeon-abaya",
+    "title": "Crystal",
+    "url": "https://aeonabaya.net/products/868",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/868"
+  },
+  {
+    "id": "aeon-abaya:8673555710004",
+    "brandSlug": "aeon-abaya",
+    "title": "Blend",
+    "url": "https://aeonabaya.net/products/877",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/877"
+  },
+  {
+    "id": "aeon-abaya:8676415930420",
+    "brandSlug": "aeon-abaya",
+    "title": "Charm",
+    "url": "https://aeonabaya.net/products/886",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/886"
+  },
+  {
+    "id": "aeon-abaya:8672646463540",
+    "brandSlug": "aeon-abaya",
+    "title": "Elure",
+    "url": "https://aeonabaya.net/products/872",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/872"
+  },
+  {
+    "id": "aeon-abaya:8672644104244",
+    "brandSlug": "aeon-abaya",
+    "title": "Frost",
+    "url": "https://aeonabaya.net/products/867",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/867"
+  },
+  {
+    "id": "aeon-abaya:8656867393588",
+    "brandSlug": "aeon-abaya",
+    "title": "Shade",
+    "url": "https://aeonabaya.net/products/852",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/852"
+  },
+  {
+    "id": "aeon-abaya:8656866508852",
+    "brandSlug": "aeon-abaya",
+    "title": "Jacquard Wave",
+    "url": "https://aeonabaya.net/products/848",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/848"
+  },
+  {
+    "id": "aeon-abaya:8636244525108",
+    "brandSlug": "aeon-abaya",
+    "title": "Emerald",
+    "url": "https://aeonabaya.net/products/797",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/797"
+  },
+  {
+    "id": "aeon-abaya:8632093540404",
+    "brandSlug": "aeon-abaya",
+    "title": "Modern",
+    "url": "https://aeonabaya.net/products/the-modern-everyday-crepe-abaya-778-modern-everyday-beige-trenchcoat",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/the-modern-everyday-crepe-abaya-778-modern-everyday-beige-trenchcoat"
+  },
+  {
+    "id": "aeon-abaya:7768710610996",
+    "brandSlug": "aeon-abaya",
+    "title": "Ivory",
+    "url": "https://aeonabaya.net/products/abaya-kaki-trenchcoat",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/abaya-kaki-trenchcoat"
+  },
+  {
+    "id": "aeon-abaya:8540812116020",
+    "brandSlug": "aeon-abaya",
+    "title": "Madeleine",
+    "url": "https://aeonabaya.net/products/700-blazer-style-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/700-blazer-style-abaya"
+  },
+  {
+    "id": "aeon-abaya:8540617146420",
+    "brandSlug": "aeon-abaya",
+    "title": "Ube",
+    "url": "https://aeonabaya.net/products/677-tailored-blazer-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/677-tailored-blazer-abaya"
+  },
+  {
+    "id": "aeon-abaya:8542385504308",
+    "brandSlug": "aeon-abaya",
+    "title": "Brooke Vest",
+    "url": "https://aeonabaya.net/products/brooke-vest",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/brooke-vest"
+  },
+  {
+    "id": "aeon-abaya:8541758324788",
+    "brandSlug": "aeon-abaya",
+    "title": "Brooke Pants",
+    "url": "https://aeonabaya.net/products/brooke-pants",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/brooke-pants"
+  },
+  {
+    "id": "aeon-abaya:8541501390900",
+    "brandSlug": "aeon-abaya",
+    "title": "Date",
+    "url": "https://aeonabaya.net/products/708-elegant-jacquard-silk-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/708-elegant-jacquard-silk-abaya"
+  },
+  {
+    "id": "aeon-abaya:8541476421684",
+    "brandSlug": "aeon-abaya",
+    "title": "Mint Fudge",
+    "url": "https://aeonabaya.net/products/707-blazer-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/707-blazer-abaya"
+  },
+  {
+    "id": "aeon-abaya:8541023600692",
+    "brandSlug": "aeon-abaya",
+    "title": "Madeleine Pants",
+    "url": "https://aeonabaya.net/products/704-madeleine-pant",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/704-madeleine-pant"
+  },
+  {
+    "id": "aeon-abaya:8540971171892",
+    "brandSlug": "aeon-abaya",
+    "title": "Brooke",
+    "url": "https://aeonabaya.net/products/brooke",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/brooke"
+  },
+  {
+    "id": "aeon-abaya:8540939681844",
+    "brandSlug": "aeon-abaya",
+    "title": "Ube Pants",
+    "url": "https://aeonabaya.net/products/702-ube-pant",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/702-ube-pant"
+  },
+  {
+    "id": "aeon-abaya:8540838789172",
+    "brandSlug": "aeon-abaya",
+    "title": "Madeleine Vest",
+    "url": "https://aeonabaya.net/products/701-madeleine-vest",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/701-madeleine-vest"
+  },
+  {
+    "id": "aeon-abaya:8540674228276",
+    "brandSlug": "aeon-abaya",
+    "title": "Ube Vest",
+    "url": "https://aeonabaya.net/products/678-ube-vest",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/678-ube-vest"
+  },
+  {
+    "id": "aeon-abaya:8412066807860",
+    "brandSlug": "aeon-abaya",
+    "title": "Echo",
+    "url": "https://aeonabaya.net/products/682-black-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/682-black-abaya"
+  },
+  {
+    "id": "aeon-abaya:8412065792052",
+    "brandSlug": "aeon-abaya",
+    "title": "Mus",
+    "url": "https://aeonabaya.net/products/681-classic-straight-cut-black-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/681-classic-straight-cut-black-abaya"
+  },
+  {
+    "id": "aeon-abaya:8412064153652",
+    "brandSlug": "aeon-abaya",
+    "title": "Dune",
+    "url": "https://aeonabaya.net/products/680-flowing-black-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/680-flowing-black-abaya"
+  },
+  {
+    "id": "aeon-abaya:8412060844084",
+    "brandSlug": "aeon-abaya",
+    "title": "Azurite",
+    "url": "https://aeonabaya.net/products/azurite-673-lightweight-linen",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/azurite-673-lightweight-linen"
+  },
+  {
+    "id": "aeon-abaya:8412054192180",
+    "brandSlug": "aeon-abaya",
+    "title": "Jasper",
+    "url": "https://aeonabaya.net/products/jasper-669-full-length-cotton-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/jasper-669-full-length-cotton-abaya"
+  },
+  {
+    "id": "aeon-abaya:8405924806708",
+    "brandSlug": "aeon-abaya",
+    "title": "Lapis",
+    "url": "https://aeonabaya.net/products/lapis-breathable-lightweight-linen",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/lapis-breathable-lightweight-linen"
+  },
+  {
+    "id": "aeon-abaya:7996127674420",
+    "brandSlug": "aeon-abaya",
+    "title": "Black Hakaya",
+    "url": "https://aeonabaya.net/products/black-hakaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-hakaya"
+  },
+  {
+    "id": "aeon-abaya:7794720636980",
+    "brandSlug": "aeon-abaya",
+    "title": "Toffee",
+    "url": "https://aeonabaya.net/products/620-abaya-crafted-from-premium-black-linen",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/620-abaya-crafted-from-premium-black-linen"
+  },
+  {
+    "id": "aeon-abaya:7794720505908",
+    "brandSlug": "aeon-abaya",
+    "title": "Milk Date",
+    "url": "https://aeonabaya.net/products/617-elegant-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/617-elegant-abaya"
+  },
+  {
+    "id": "aeon-abaya:7794720014388",
+    "brandSlug": "aeon-abaya",
+    "title": "Selva",
+    "url": "https://aeonabaya.net/products/600-silk-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/600-silk-abaya"
+  },
+  {
+    "id": "aeon-abaya:7794719752244",
+    "brandSlug": "aeon-abaya",
+    "title": "Dark Chocolate",
+    "url": "https://aeonabaya.net/products/588-dark-chocolate",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/588-dark-chocolate"
+  },
+  {
+    "id": "aeon-abaya:7794719522868",
+    "brandSlug": "aeon-abaya",
+    "title": "Mars",
+    "url": "https://aeonabaya.net/products/580-lightweight-jacquard-silk-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/580-lightweight-jacquard-silk-abaya"
+  },
+  {
+    "id": "aeon-abaya:7794719490100",
+    "brandSlug": "aeon-abaya",
+    "title": "Mercury",
+    "url": "https://aeonabaya.net/products/579-jacquard-silk-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/579-jacquard-silk-abaya"
+  },
+  {
+    "id": "aeon-abaya:7794131075124",
+    "brandSlug": "aeon-abaya",
+    "title": "Velvet Bloom",
+    "url": "https://aeonabaya.net/products/elegant-black-crepe-and-velvet-abaya-1-velvet-bloom",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/elegant-black-crepe-and-velvet-abaya-1-velvet-bloom"
+  },
+  {
+    "id": "aeon-abaya:7789183729716",
+    "brandSlug": "aeon-abaya",
+    "title": "Ray",
+    "url": "https://aeonabaya.net/products/abaya-linen-pilise-camel-orange-blazer-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/abaya-linen-pilise-camel-orange-blazer-abaya"
+  },
+  {
+    "id": "aeon-abaya:7785452830772",
+    "brandSlug": "aeon-abaya",
+    "title": "Black Ruby",
+    "url": "https://aeonabaya.net/products/black-crepe-abaya-with-red-embroidery-black-ruby",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-crepe-abaya-with-red-embroidery-black-ruby"
+  },
+  {
+    "id": "aeon-abaya:7785452765236",
+    "brandSlug": "aeon-abaya",
+    "title": "Ayla",
+    "url": "https://aeonabaya.net/products/beige-and-black-velvet-abayaayla",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/beige-and-black-velvet-abayaayla"
+  },
+  {
+    "id": "aeon-abaya:7785450995764",
+    "brandSlug": "aeon-abaya",
+    "title": "Saffron Noir",
+    "url": "https://aeonabaya.net/products/black-velvet-abaya-with-embroidery-luxurious-black-velvet-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-velvet-abaya-with-embroidery-luxurious-black-velvet-abaya"
+  },
+  {
+    "id": "aeon-abaya:7785450733620",
+    "brandSlug": "aeon-abaya",
+    "title": "Laventina",
+    "url": "https://aeonabaya.net/products/himmering-silk-purple-freesize-purple-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/himmering-silk-purple-freesize-purple-abaya"
+  },
+  {
+    "id": "aeon-abaya:7781361745972",
+    "brandSlug": "aeon-abaya",
+    "title": "Elara",
+    "url": "https://aeonabaya.net/products/bisht-navy-blue-with-green-hand-embroidery-luxurious-navy-blue-bisht",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/bisht-navy-blue-with-green-hand-embroidery-luxurious-navy-blue-bisht"
+  },
+  {
+    "id": "aeon-abaya:7781217337396",
+    "brandSlug": "aeon-abaya",
+    "title": "Zenith",
+    "url": "https://aeonabaya.net/products/abaya-linen-black-with-beige-in-half-black-linen-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/abaya-linen-black-with-beige-in-half-black-linen-abaya"
+  },
+  {
+    "id": "aeon-abaya:7769624870964",
+    "brandSlug": "aeon-abaya",
+    "title": "Yasmeen",
+    "url": "https://aeonabaya.net/products/linen-white-with-embroidery-bisht-style-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/linen-white-with-embroidery-bisht-style-abaya"
+  },
+  {
+    "id": "aeon-abaya:7769622872116",
+    "brandSlug": "aeon-abaya",
+    "title": "Sky Blue",
+    "url": "https://aeonabaya.net/products/linen-light-blue-with-hand-embroidery-lightweight-linen-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/linen-light-blue-with-hand-embroidery-lightweight-linen-abaya"
+  },
+  {
+    "id": "aeon-abaya:7769620971572",
+    "brandSlug": "aeon-abaya",
+    "title": "Flan",
+    "url": "https://aeonabaya.net/products/bisht-linen-camel-brown-with-hand-embroidery",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/bisht-linen-camel-brown-with-hand-embroidery"
+  },
+  {
+    "id": "aeon-abaya:7769617006644",
+    "brandSlug": "aeon-abaya",
+    "title": "Navira",
+    "url": "https://aeonabaya.net/products/blazer-freesize-mixed-navy-blue-freesize-blazer",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/blazer-freesize-mixed-navy-blue-freesize-blazer"
+  },
+  {
+    "id": "aeon-abaya:7769606520884",
+    "brandSlug": "aeon-abaya",
+    "title": "Noorah",
+    "url": "https://aeonabaya.net/products/black-bisht-with-silver-embroidery",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-bisht-with-silver-embroidery"
+  },
+  {
+    "id": "aeon-abaya:7769601540148",
+    "brandSlug": "aeon-abaya",
+    "title": "Auburn",
+    "url": "https://aeonabaya.net/products/camel-freesize-blazer-auburn-blazer-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/camel-freesize-blazer-auburn-blazer-abaya"
+  },
+  {
+    "id": "aeon-abaya:7769600524340",
+    "brandSlug": "aeon-abaya",
+    "title": "Sterla",
+    "url": "https://aeonabaya.net/products/luxurious-black-velvet-bisht-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/luxurious-black-velvet-bisht-abaya"
+  },
+  {
+    "id": "aeon-abaya:7769594658868",
+    "brandSlug": "aeon-abaya",
+    "title": "Kohl",
+    "url": "https://aeonabaya.net/products/bisht-velvet-black-with-gold-hand-embroidery-luxurious-black-velvet",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/bisht-velvet-black-with-gold-hand-embroidery-luxurious-black-velvet"
+  },
+  {
+    "id": "aeon-abaya:7769594069044",
+    "brandSlug": "aeon-abaya",
+    "title": "Velano",
+    "url": "https://aeonabaya.net/products/blazer-navy-blue-velvet-and-crepe",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/blazer-navy-blue-velvet-and-crepe"
+  },
+  {
+    "id": "aeon-abaya:7769559007284",
+    "brandSlug": "aeon-abaya",
+    "title": "Limegold",
+    "url": "https://aeonabaya.net/products/linen-light-green-with-hand-embroidery",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/linen-light-green-with-hand-embroidery"
+  },
+  {
+    "id": "aeon-abaya:7768737447988",
+    "brandSlug": "aeon-abaya",
+    "title": "Zinah",
+    "url": "https://aeonabaya.net/products/crepe-abaya-black-black-crepe-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/crepe-abaya-black-black-crepe-abaya"
+  },
+  {
+    "id": "aeon-abaya:7768737218612",
+    "brandSlug": "aeon-abaya",
+    "title": "Hannah",
+    "url": "https://aeonabaya.net/products/black-crepe-abaya-2-hannah",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-crepe-abaya-2-hannah"
+  },
+  {
+    "id": "aeon-abaya:7768732532788",
+    "brandSlug": "aeon-abaya",
+    "title": "Ashira Abaya",
+    "url": "https://aeonabaya.net/products/beige-gray-and-beige-jacquard-crepe-abaya-ashira-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/beige-gray-and-beige-jacquard-crepe-abaya-ashira-abaya"
+  },
+  {
+    "id": "aeon-abaya:7768711331892",
+    "brandSlug": "aeon-abaya",
+    "title": "Maroon Velvet Vest",
+    "url": "https://aeonabaya.net/products/maroon-velvet-vest",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/maroon-velvet-vest"
+  },
+  {
+    "id": "aeon-abaya:7768704942132",
+    "brandSlug": "aeon-abaya",
+    "title": "Savanna",
+    "url": "https://aeonabaya.net/products/set-beige-with-letters",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/set-beige-with-letters"
+  },
+  {
+    "id": "aeon-abaya:7768704221236",
+    "brandSlug": "aeon-abaya",
+    "title": "Evernavy",
+    "url": "https://aeonabaya.net/products/abaya-linen-green-with-navy-design",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/abaya-linen-green-with-navy-design"
+  },
+  {
+    "id": "aeon-abaya:7768704155700",
+    "brandSlug": "aeon-abaya",
+    "title": "Caspia",
+    "url": "https://aeonabaya.net/products/abaya-linen-navy-embroidery-caspia-navy-blue-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/abaya-linen-navy-embroidery-caspia-navy-blue-abaya"
+  },
+  {
+    "id": "aeon-abaya:7768704057396",
+    "brandSlug": "aeon-abaya",
+    "title": "Luma",
+    "url": "https://aeonabaya.net/products/abaya-white-linen-bronze-embroided-white-linen-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/abaya-white-linen-bronze-embroided-white-linen-abaya"
+  },
+  {
+    "id": "aeon-abaya:7768703959092",
+    "brandSlug": "aeon-abaya",
+    "title": "Caramella",
+    "url": "https://aeonabaya.net/products/abaya-camel-linen-with-pearl",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/abaya-camel-linen-with-pearl"
+  },
+  {
+    "id": "aeon-abaya:7768698748980",
+    "brandSlug": "aeon-abaya",
+    "title": "Nocta",
+    "url": "https://aeonabaya.net/products/black-abaya-velvet-black-with-crepe",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-abaya-velvet-black-with-crepe"
+  },
+  {
+    "id": "aeon-abaya:7768698454068",
+    "brandSlug": "aeon-abaya",
+    "title": "Reesha",
+    "url": "https://aeonabaya.net/products/black-crepe-blazer-style-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-crepe-blazer-style-abaya"
+  },
+  {
+    "id": "aeon-abaya:7768697569332",
+    "brandSlug": "aeon-abaya",
+    "title": "Crimson Petal",
+    "url": "https://aeonabaya.net/products/black-velvet-abaya-with-red-embroidery",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://aeonabaya.net/products/black-velvet-abaya-with-red-embroidery"
   },
   {
     "id": "nour-al-houda:7687564165168",
@@ -49795,6 +52234,33 @@
     "evidence": "Parfum"
   },
   {
+    "id": "abayas-boutique:24972",
+    "brandSlug": "abayas-boutique",
+    "title": "Cos in Seafoam Green",
+    "url": "https://abayasboutique.com/product/cos-seafoam-green/",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayasboutique.com/product/cos-seafoam-green/"
+  },
+  {
+    "id": "abayas-boutique:24205",
+    "brandSlug": "abayas-boutique",
+    "title": "Lace Set",
+    "url": "https://abayasboutique.com/product/lace-abaya-set-quartz/",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://abayasboutique.com/product/lace-abaya-set-quartz/"
+  },
+  {
+    "id": "abayas-boutique:24171",
+    "brandSlug": "abayas-boutique",
+    "title": "Lace Set",
+    "url": "https://abayasboutique.com/product/lace-abaya-set-topaz/",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://abayasboutique.com/product/lace-abaya-set-topaz/"
+  },
+  {
     "id": "nihan:15086406402411",
     "brandSlug": "nihan",
     "title": "Modal Kumaş Etek Bluz Takım - Zümrüt",
@@ -49849,6 +52315,15 @@
     "url": "https://nihan.com.tr/products/volan-ve-buzgu-detayli-romantik-lyocell-bluz-zumrut",
     "garmentWas": "top",
     "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:15059702350187",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Gömlek Yaka Modal Tunik - İndigo",
+    "url": "https://nihan.com.tr/products/buyuk-beden-gomlek-yaka-modal-tunik-i̇ndigo",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/buyuk-beden-gomlek-yaka-modal-tunik-i̇ndigo"
   },
   {
     "id": "nihan:15028455342443",
@@ -49915,6 +52390,24 @@
     "reason": "title-pattern"
   },
   {
+    "id": "nihan:14919202668907",
+    "brandSlug": "nihan",
+    "title": "Açılımlı Saten Etek - Bordo",
+    "url": "https://nihan.com.tr/products/acilimli-saten-etek-bordo",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/acilimli-saten-etek-bordo"
+  },
+  {
+    "id": "nihan:14919200440683",
+    "brandSlug": "nihan",
+    "title": "Açılımlı Saten Etek - Kahve",
+    "url": "https://nihan.com.tr/products/acilimli-saten-etek-kahve",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/acilimli-saten-etek-kahve"
+  },
+  {
     "id": "nihan:14919416971627",
     "brandSlug": "nihan",
     "title": "%100 Keten Oversize Gömlek Yaka Tunik - Zümrüt",
@@ -49953,6 +52446,69 @@
     "url": "https://nihan.com.tr/products/yelegi-baglamali-etekli-lyocell-takim-zumrut",
     "garmentWas": "set",
     "reason": "title-pattern"
+  },
+  {
+    "id": "nihan:14919201849707",
+    "brandSlug": "nihan",
+    "title": "Açılımlı Saten Etek - Siyah",
+    "url": "https://nihan.com.tr/products/acilimli-saten-etek-siyah",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/acilimli-saten-etek-siyah"
+  },
+  {
+    "id": "nihan:14919201030507",
+    "brandSlug": "nihan",
+    "title": "Açılımlı Saten Etek - Lacivert",
+    "url": "https://nihan.com.tr/products/acilimli-saten-etek-lacivert",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/acilimli-saten-etek-lacivert"
+  },
+  {
+    "id": "nihan:14919200833899",
+    "brandSlug": "nihan",
+    "title": "Açılımlı Saten Etek - Gri",
+    "url": "https://nihan.com.tr/products/acilimli-saten-etek-gri",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/acilimli-saten-etek-gri"
+  },
+  {
+    "id": "nihan:14919198736747",
+    "brandSlug": "nihan",
+    "title": "Açılımlı Saten Etek - Bej",
+    "url": "https://nihan.com.tr/products/acilimli-saten-etek-bej",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/acilimli-saten-etek-bej"
+  },
+  {
+    "id": "nihan:14916633133419",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Yakası Parlak Taşlı Elbise - Siyah",
+    "url": "https://nihan.com.tr/products/buyuk-beden-yakasi-parlak-tasli-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/buyuk-beden-yakasi-parlak-tasli-elbise-siyah"
+  },
+  {
+    "id": "nihan:14914306736491",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Parlak Taş Detaylı Abiye - Bej",
+    "url": "https://nihan.com.tr/products/buyuk-beden-parlak-tas-detayli-abiye-bej",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/buyuk-beden-parlak-tas-detayli-abiye-bej"
+  },
+  {
+    "id": "nihan:14914073985387",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Omuzları Tüy Detaylı Elbise - Siyah",
+    "url": "https://nihan.com.tr/products/buyuk-beden-omuzlari-tuy-detayli-elbise-siyah",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/buyuk-beden-omuzlari-tuy-detayli-elbise-siyah"
   },
   {
     "id": "baqa:9315159343355",
@@ -50084,6 +52640,15 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "29500 TRY (~$614)"
+  },
+  {
+    "id": "baqa:9133043220731",
+    "brandSlug": "baqa",
+    "title": "Kruvaze Yaka Kaşmir Kaban",
+    "url": "https://baqaofficial.com/products/kruvaze-yaka-kasmir-kaban",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://baqaofficial.com/products/kruvaze-yaka-kasmir-kaban"
   },
   {
     "id": "baqa:9315156328699",
@@ -51775,6 +54340,15 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "touche-prive:9998231798088",
+    "brandSlug": "touche-prive",
+    "title": "Pleated Waisted Shirt With Stones",
+    "url": "https://int.toucheprive.com/products/pleated-waisted-shirt-with-stones-1",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/pleated-waisted-shirt-with-stones-1"
+  },
+  {
     "id": "mariams:8496628170968",
     "brandSlug": "mariams",
     "title": "Free Palestine Hoodie | Palestine Lives Matter Hoodie (MT016)",
@@ -51871,12 +54445,174 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "touche-prive:8556789367112",
+    "brandSlug": "touche-prive",
+    "title": "Poplin Shirt With Wide Cuff",
+    "url": "https://int.toucheprive.com/products/poplin-shirt-with-widee-cuff-1",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/poplin-shirt-with-widee-cuff-1"
+  },
+  {
     "id": "ipekstil:9206765289707",
     "brandSlug": "ipekstil",
     "title": "Çift Pileli A Kesim Etek LACİVERT",
     "url": "https://ipekstil.com/products/cift-pileli-a-kesim-etek-lacivert",
     "garmentWas": "skirt",
     "reason": "brand-blacklist"
+  },
+  {
+    "id": "golden-dune:10964972568919",
+    "brandSlug": "golden-dune",
+    "title": "Aquarelle Kleid",
+    "url": "https://thegoldendune.com/products/aquarelle-kleid",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/aquarelle-kleid"
+  },
+  {
+    "id": "golden-dune:10944634421591",
+    "brandSlug": "golden-dune",
+    "title": "Karierte Maxikleid",
+    "url": "https://thegoldendune.com/products/karierte-maxikleid",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/karierte-maxikleid"
+  },
+  {
+    "id": "golden-dune:10944607846743",
+    "brandSlug": "golden-dune",
+    "title": "Blumiges Maxi-Kleid",
+    "url": "https://thegoldendune.com/products/blumiges-maxi-kleid-copy",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/blumiges-maxi-kleid-copy"
+  },
+  {
+    "id": "golden-dune:10944589365591",
+    "brandSlug": "golden-dune",
+    "title": "Blumiges Maxi-Kleid",
+    "url": "https://thegoldendune.com/products/blumiges-kleid",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/blumiges-kleid"
+  },
+  {
+    "id": "golden-dune:10927974252887",
+    "brandSlug": "golden-dune",
+    "title": "Aquarelle Kleid",
+    "url": "https://thegoldendune.com/products/aquarelle-kleid-1",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/aquarelle-kleid-1"
+  },
+  {
+    "id": "golden-dune:10903883055447",
+    "brandSlug": "golden-dune",
+    "title": "Floral Kleid",
+    "url": "https://thegoldendune.com/products/floral-kleid",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/floral-kleid"
+  },
+  {
+    "id": "golden-dune:10540004049239",
+    "brandSlug": "golden-dune",
+    "title": "Éternelle Abaya - OLIVE GREEN",
+    "url": "https://thegoldendune.com/products/eternelle-abaya-olive-green",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/eternelle-abaya-olive-green"
+  },
+  {
+    "id": "golden-dune:10537787818327",
+    "brandSlug": "golden-dune",
+    "title": "Éternelle Abaya",
+    "url": "https://thegoldendune.com/products/eternelle-abaya-bordo",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/eternelle-abaya-bordo"
+  },
+  {
+    "id": "golden-dune:10536041939287",
+    "brandSlug": "golden-dune",
+    "title": "Éternelle Abaya - BLACK",
+    "url": "https://thegoldendune.com/products/eternelle-abaya-black",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://thegoldendune.com/products/eternelle-abaya-black"
+  },
+  {
+    "id": "la-petite-parisienne:15622192300372",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Ensemble AURORA marron",
+    "url": "https://lapetiteparisienne.co/products/ensemble-aurora-marron",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/ensemble-aurora-marron"
+  },
+  {
+    "id": "la-petite-parisienne:15603289817428",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Ensemble MYNI 100% Lin blanc",
+    "url": "https://lapetiteparisienne.co/products/ensemble-myni-100-lin",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/ensemble-myni-100-lin"
+  },
+  {
+    "id": "la-petite-parisienne:8822904521044",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Ensemble JUMS rayures bleu",
+    "url": "https://lapetiteparisienne.co/products/ensemble-rayures-bleu-jumelle",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/ensemble-rayures-bleu-jumelle"
+  },
+  {
+    "id": "la-petite-parisienne:15051544330580",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Blouse 2 poches marron (L2096)",
+    "url": "https://lapetiteparisienne.co/products/blouse-2-poches-marron-l2096-lucee",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/blouse-2-poches-marron-l2096-lucee"
+  },
+  {
+    "id": "la-petite-parisienne:15051544133972",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Pantalon ECE fluide marron (L2081)",
+    "url": "https://lapetiteparisienne.co/products/pantalon-fluide-marron-l2081-lucee",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/pantalon-fluide-marron-l2081-lucee"
+  },
+  {
+    "id": "la-petite-parisienne:12482374730068",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Blazer JUS marron (W25262)",
+    "url": "https://lapetiteparisienne.co/products/blazer-marron-4-boutons-w25262",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/blazer-marron-4-boutons-w25262"
+  },
+  {
+    "id": "la-petite-parisienne:12371248742740",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Blazer OVER carreaux (V12369)",
+    "url": "https://lapetiteparisienne.co/products/blazer-carreaux-v12369",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/blazer-carreaux-v12369"
+  },
+  {
+    "id": "hijabipop:8188865740853",
+    "brandSlug": "hijabipop",
+    "title": "3 Piece Lounge Set",
+    "url": "https://hijabipop.com/products/3-piece-lounge-set",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://hijabipop.com/products/3-piece-lounge-set"
   },
   {
     "id": "hijabipop:8029162176565",
@@ -51887,6 +54623,15 @@
     "reason": "non-apparel:non-product",
     "tier": "0",
     "evidence": "Gift Card"
+  },
+  {
+    "id": "bayt-el-hayat:15116244615542",
+    "brandSlug": "bayt-el-hayat",
+    "title": "Brown Ribbed Abaya",
+    "url": "https://baytelhayat.co.uk/products/brown-ribbed-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://baytelhayat.co.uk/products/brown-ribbed-abaya"
   },
   {
     "id": "bayt-el-hayat:15192017600886",
@@ -51987,6 +54732,60 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "abadia:8447136170138",
+    "brandSlug": "abadia",
+    "title": "Mid Rise Bermuda Shorts in Cream",
+    "url": "https://shop.abadia.me/products/mid-rise-bermuda-shorts-in-cream",
+    "garmentWas": "trousers",
+    "reason": "dead-link",
+    "evidence": "https://shop.abadia.me/products/mid-rise-bermuda-shorts-in-cream"
+  },
+  {
+    "id": "parladusa:15657122496838",
+    "brandSlug": "parladusa",
+    "title": "Noor Abaya",
+    "url": "https://parladusa.com/products/kleid-84",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://parladusa.com/products/kleid-84"
+  },
+  {
+    "id": "parladusa:15568706732358",
+    "brandSlug": "parladusa",
+    "title": "Dalia Oberteil",
+    "url": "https://parladusa.com/products/oberteil-20",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://parladusa.com/products/oberteil-20"
+  },
+  {
+    "id": "parladusa:15365755273542",
+    "brandSlug": "parladusa",
+    "title": "Maria Spitzen Oberteil",
+    "url": "https://parladusa.com/products/maria-spitzen-oberteil",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://parladusa.com/products/maria-spitzen-oberteil"
+  },
+  {
+    "id": "parladusa:15120681042246",
+    "brandSlug": "parladusa",
+    "title": "Oversized Blazer",
+    "url": "https://parladusa.com/products/oversize-blazer",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://parladusa.com/products/oversize-blazer"
+  },
+  {
+    "id": "parladusa:14981513314630",
+    "brandSlug": "parladusa",
+    "title": "Kleid Milan",
+    "url": "https://parladusa.com/products/milan-kleid",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://parladusa.com/products/milan-kleid"
+  },
+  {
     "id": "mariams:9407553044696",
     "brandSlug": "mariams",
     "title": "Archive Piece Satin Open Abaya Three-Piece Set - MP066 (Size L Only)",
@@ -52063,12 +54862,84 @@
     "evidence": "32500 TRY (~$676)"
   },
   {
+    "id": "touche-prive:10053112430920",
+    "brandSlug": "touche-prive",
+    "title": "Pleated Pants Skirt",
+    "url": "https://int.toucheprive.com/products/pi̇li̇seli̇-pantolon-etek-1",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/pi̇li̇seli̇-pantolon-etek-1"
+  },
+  {
+    "id": "touche-prive:9538855174472",
+    "brandSlug": "touche-prive",
+    "title": "Striped Tunic With Metal Buttons",
+    "url": "https://int.toucheprive.com/products/striped-tunic-with-metal-buttons-1",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/striped-tunic-with-metal-buttons-1"
+  },
+  {
+    "id": "touche-prive:10023662059848",
+    "brandSlug": "touche-prive",
+    "title": "100% Linen Oversized Shirt",
+    "url": "https://int.toucheprive.com/products/oversize-keten-gomlek-4",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/oversize-keten-gomlek-4"
+  },
+  {
+    "id": "touche-prive:10025025536328",
+    "brandSlug": "touche-prive",
+    "title": "Blouse With Guipure Trim And Ruffle Details",
+    "url": "https://int.toucheprive.com/products/openwork-blouse-with-elastic-clothes",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/openwork-blouse-with-elastic-clothes"
+  },
+  {
+    "id": "la-petite-parisienne:15619132031316",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Ensemble ROSA écru",
+    "url": "https://lapetiteparisienne.co/products/ensemble-rosa-ecru",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/ensemble-rosa-ecru"
+  },
+  {
+    "id": "touche-prive:9985246593352",
+    "brandSlug": "touche-prive",
+    "title": "Skirt And Jacket 2-Piece Set",
+    "url": "https://int.toucheprive.com/products/fi̇yonk-detayli-2-li̇-takim-1",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/fi̇yonk-detayli-2-li̇-takim-1"
+  },
+  {
+    "id": "touche-prive:9650659164488",
+    "brandSlug": "touche-prive",
+    "title": "Denim Jacket",
+    "url": "https://int.toucheprive.com/products/denim-jacket-2",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/denim-jacket-2"
+  },
+  {
     "id": "mariams:9408991232216",
     "brandSlug": "mariams",
     "title": "Magnetic Scarf Pin & Hijab Clip（MAC457）",
     "url": "https://mariam-col.com/products/magnetic-scarf-pin-hijab-clip-mac457",
     "garmentWas": "hijab",
     "reason": "brand-blacklist"
+  },
+  {
+    "id": "modesty-in-style:10811326300470",
+    "brandSlug": "modesty-in-style",
+    "title": "Jade Slit Top",
+    "url": "https://modestyinstyle.com.au/products/jade-slit-top",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://modestyinstyle.com.au/products/jade-slit-top"
   },
   {
     "id": "urban-modesty:8057450889291",
@@ -52130,6 +55001,42 @@
     "url": "https://mariam-col.com/products/luxury-hand-beaded-sequin-embroidered-open-abaya-for-eid-wedding-occasions-moa304",
     "garmentWas": "abaya",
     "reason": "brand-blacklist"
+  },
+  {
+    "id": "kamin:9824240763097",
+    "brandSlug": "kamin",
+    "title": "The Renad | Yellow",
+    "url": "https://kamin.ae/products/the-renad-yellow",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-renad-yellow"
+  },
+  {
+    "id": "kamin:9824240468185",
+    "brandSlug": "kamin",
+    "title": "The Renad | Off-White",
+    "url": "https://kamin.ae/products/the-renad-off-white",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-renad-off-white"
+  },
+  {
+    "id": "kamin:9824231555289",
+    "brandSlug": "kamin",
+    "title": "The Renad | Black",
+    "url": "https://kamin.ae/products/the-renad-black",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-renad-black"
+  },
+  {
+    "id": "kamin:8939147624665",
+    "brandSlug": "kamin",
+    "title": "The Ruwaya | Sage",
+    "url": "https://kamin.ae/products/the-ruwaya-sage-gray",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-ruwaya-sage-gray"
   },
   {
     "id": "baqa:9392178856187",
@@ -52284,6 +55191,51 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "avyaana:15848139751798",
+    "brandSlug": "avyaana",
+    "title": "HESSA",
+    "url": "https://avyaana.com/products/shila",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/shila"
+  },
+  {
+    "id": "avyaana:15848138473846",
+    "brandSlug": "avyaana",
+    "title": "Carmine",
+    "url": "https://avyaana.com/products/carmine",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/carmine"
+  },
+  {
+    "id": "avyaana:15848129364342",
+    "brandSlug": "avyaana",
+    "title": "Bambi In Copper",
+    "url": "https://avyaana.com/products/bambi-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/bambi-1"
+  },
+  {
+    "id": "avyaana:15848127693174",
+    "brandSlug": "avyaana",
+    "title": "Wild Ember Print",
+    "url": "https://avyaana.com/products/petals-from-the-sky-print",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/petals-from-the-sky-print"
+  },
+  {
+    "id": "avyaana:15848118190454",
+    "brandSlug": "avyaana",
+    "title": "Black Print Tulip",
+    "url": "https://avyaana.com/products/black-print-tulip",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/black-print-tulip"
+  },
+  {
     "id": "veiled:7798569468009",
     "brandSlug": "veiled",
     "title": "Tencel Ruffle Top - Light Sand",
@@ -52357,6 +55309,24 @@
     "reason": "brand-blacklist"
   },
   {
+    "id": "whiteicy:15679869124948",
+    "brandSlug": "whiteicy",
+    "title": "Ensemble Nayla",
+    "url": "https://whiteicy.com/products/ensemble-nayla",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://whiteicy.com/products/ensemble-nayla"
+  },
+  {
+    "id": "whiteicy:15692490342740",
+    "brandSlug": "whiteicy",
+    "title": "Ensemble Sélène – Maille Signature",
+    "url": "https://whiteicy.com/products/ensemble-selene-maille-signature",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://whiteicy.com/products/ensemble-selene-maille-signature"
+  },
+  {
     "id": "mariams:9418278174936",
     "brandSlug": "mariams",
     "title": "Shimmer Bubble Crinkle Hijab Scarf with Matching Underscarf Cap Set(MH251)",
@@ -52372,6 +55342,24 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "32500 TRY (~$676)"
+  },
+  {
+    "id": "bait-hanayen:15471599288431",
+    "brandSlug": "bait-hanayen",
+    "title": "Ishraq Abaya (Rolex with Floral Crepe)",
+    "url": "https://bait-hanayen.com/products/bh11260207076",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bh11260207076"
+  },
+  {
+    "id": "bait-hanayen:15471271870575",
+    "brandSlug": "bait-hanayen",
+    "title": "Riyada Abaya (Soalon)",
+    "url": "https://bait-hanayen.com/products/bh11260207071",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bait-hanayen.com/products/bh11260207071"
   },
   {
     "id": "mariams:9420168462552",
@@ -52450,6 +55438,15 @@
     "evidence": "54500 TRY (~$1134)"
   },
   {
+    "id": "ria-miranda:9596510208258",
+    "brandSlug": "ria-miranda",
+    "title": "Hinata Shirt",
+    "url": "https://riamiranda.com/products/hinata-shirt",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://riamiranda.com/products/hinata-shirt"
+  },
+  {
     "id": "mariams:9423678079192",
     "brandSlug": "mariams",
     "title": "Ice Silk Crinkle Gathered Waist Maxi Dress(MS521)",
@@ -52507,6 +55504,15 @@
     "evidence": "998 USD (~$998)"
   },
   {
+    "id": "kamin:9276925378777",
+    "brandSlug": "kamin",
+    "title": "The Flair | Black",
+    "url": "https://kamin.ae/products/the-flair-black",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-flair-black"
+  },
+  {
     "id": "jennah-boutique:7861397553328",
     "brandSlug": "jennah-boutique",
     "title": "Jupe oversize coton rose",
@@ -52532,6 +55538,42 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "kamin:9180567371993",
+    "brandSlug": "kamin",
+    "title": "The Latifa | Olive",
+    "url": "https://kamin.ae/products/the-latifa-olive",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://kamin.ae/products/the-latifa-olive"
+  },
+  {
+    "id": "illi-studio:8996049617048",
+    "brandSlug": "illi-studio",
+    "title": "MIHI in Green",
+    "url": "https://illistudio.com/products/mihi-in-green",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://illistudio.com/products/mihi-in-green"
+  },
+  {
+    "id": "nihan:14916447928683",
+    "brandSlug": "nihan",
+    "title": "Taş Detaylı Pantolon Ceket Takım - Siyah",
+    "url": "https://nihan.com.tr/products/tas-detayli-pantolon-ceket-takim-siyah-2",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://nihan.com.tr/products/tas-detayli-pantolon-ceket-takim-siyah-2"
+  },
+  {
+    "id": "la-petite-parisienne:15488423199060",
+    "brandSlug": "la-petite-parisienne",
+    "title": "Robe longue blanche manche bouffante (SC208)",
+    "url": "https://lapetiteparisienne.co/products/robe-longue-blanche-manche-bouffante-sc208-copie",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://lapetiteparisienne.co/products/robe-longue-blanche-manche-bouffante-sc208-copie"
   },
   {
     "id": "losyana:16074454761797",
@@ -52614,6 +55656,15 @@
     "evidence": "Hijab clip"
   },
   {
+    "id": "losyana:8719802990917",
+    "brandSlug": "losyana",
+    "title": "Jersey - velvet",
+    "url": "https://losyana.shop/products/jersey-velvet",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://losyana.shop/products/jersey-velvet"
+  },
+  {
     "id": "losyana:15664784212293",
     "brandSlug": "losyana",
     "title": "prayer mat - black",
@@ -52652,6 +55703,24 @@
     "reason": "non-apparel:prayer-goods",
     "tier": "0",
     "evidence": "prayer mat"
+  },
+  {
+    "id": "losyana:15005911253317",
+    "brandSlug": "losyana",
+    "title": "Jersey - night grey",
+    "url": "https://losyana.shop/products/jersey-night-grey-1",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://losyana.shop/products/jersey-night-grey-1"
+  },
+  {
+    "id": "losyana:8762723926341",
+    "brandSlug": "losyana",
+    "title": "Diamond Jersey 3 - dark beige",
+    "url": "https://losyana.shop/products/diamond-jersey-3-dark-beige-1",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://losyana.shop/products/diamond-jersey-3-dark-beige-1"
   },
   {
     "id": "losyana:8708423745861",
@@ -52746,6 +55815,15 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "bybdsha:16007585988989",
+    "brandSlug": "bybdsha",
+    "title": "Brown Japanese Jacquard Silk Abaya",
+    "url": "https://bybdsha.com/products/brown-japanese-jacquard-silk-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://bybdsha.com/products/brown-japanese-jacquard-silk-abaya"
+  },
+  {
     "id": "jennah-boutique:7859503923376",
     "brandSlug": "jennah-boutique",
     "title": "Jupe Fold chocolat",
@@ -52753,6 +55831,33 @@
     "garmentWas": "skirt",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "haute-hijab:7761938022496",
+    "brandSlug": "haute-hijab",
+    "title": "Gilded Coast Hijab",
+    "url": "https://www.hautehijab.com/products/gilded-coast-hijab",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://www.hautehijab.com/products/gilded-coast-hijab"
+  },
+  {
+    "id": "glow-modesty:9432839028952",
+    "brandSlug": "glow-modesty",
+    "title": "Athena - Dress",
+    "url": "https://glowmodesty.com/products/222",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://glowmodesty.com/products/222"
+  },
+  {
+    "id": "glow-modesty:9432834670808",
+    "brandSlug": "glow-modesty",
+    "title": "Amélie Dress",
+    "url": "https://glowmodesty.com/products/111",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://glowmodesty.com/products/111"
   },
   {
     "id": "baqa:9407857295611",
@@ -52772,6 +55877,15 @@
     "reason": "non-apparel:bags",
     "tier": "A",
     "evidence": "Keychain"
+  },
+  {
+    "id": "merrachi:15647947325823",
+    "brandSlug": "merrachi",
+    "title": "The Unique Flock Premium | Dark Terra",
+    "url": "https://bymerrachi.com/products/the-unique-flock-premium-dark-terra",
+    "garmentWas": "hijab",
+    "reason": "dead-link",
+    "evidence": "https://bymerrachi.com/products/the-unique-flock-premium-dark-terra"
   },
   {
     "id": "nihan:15229651779947",
@@ -52798,12 +55912,39 @@
     "reason": "title-pattern"
   },
   {
+    "id": "parladusa:15317908980038",
+    "brandSlug": "parladusa",
+    "title": "Valeria Oberteil",
+    "url": "https://parladusa.com/products/oberteil-7",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://parladusa.com/products/oberteil-7"
+  },
+  {
+    "id": "elaa-the-label:7326905303173",
+    "brandSlug": "elaa-the-label",
+    "title": "PREORDER Lila (Muted Floral)",
+    "url": "https://elaathelabel.com/products/preorder-lila-muted-floral",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://elaathelabel.com/products/preorder-lila-muted-floral"
+  },
+  {
     "id": "elaa-the-label:7326907990149",
     "brandSlug": "elaa-the-label",
     "title": "PREORDER Mini Lila (Muted Floral)",
     "url": "https://elaathelabel.com/products/preorder-mini-lila-muted-floral",
     "garmentWas": "dress",
     "reason": "id-pin"
+  },
+  {
+    "id": "abayabuth:8150179938520",
+    "brandSlug": "abayabuth",
+    "title": "One Piece Full Length Jilbab/ Prayer Abaya - Frill Cuff - Timeless Grey",
+    "url": "https://abayabuth.com/products/one-piece-full-length-jilbab-prayer-abaya-frill-cuff-timeless-grey",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://abayabuth.com/products/one-piece-full-length-jilbab-prayer-abaya-frill-cuff-timeless-grey"
   },
   {
     "id": "nihan:15235761537387",
@@ -53019,5 +56160,173 @@
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "37500 TRY (~$780)"
+  },
+  {
+    "id": "parladusa:15208751464774",
+    "brandSlug": "parladusa",
+    "title": "Melissa Pulloverkleid",
+    "url": "https://parladusa.com/products/pulloverkleid-1",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://parladusa.com/products/pulloverkleid-1"
+  },
+  {
+    "id": "emlavish:10844299821395",
+    "brandSlug": "emlavish",
+    "title": "Diamond Hem Knitted Two Piece",
+    "url": "https://www.emlavish.com/products/diamond-hem-knitted-two-piece",
+    "garmentWas": "set",
+    "reason": "dead-link",
+    "evidence": "https://www.emlavish.com/products/diamond-hem-knitted-two-piece"
+  },
+  {
+    "id": "ria-miranda:9620468990210",
+    "brandSlug": "ria-miranda",
+    "title": "Danna Top",
+    "url": "https://riamiranda.com/products/dana-top",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://riamiranda.com/products/dana-top"
+  },
+  {
+    "id": "ria-miranda:9085449502978",
+    "brandSlug": "ria-miranda",
+    "title": "Merlot Shirt",
+    "url": "https://riamiranda.com/products/merlot-shirt",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://riamiranda.com/products/merlot-shirt"
+  },
+  {
+    "id": "try-modest:10063946711264",
+    "brandSlug": "try-modest",
+    "title": "Alina Blue Denim Lace-Up Modest Maxi Dress",
+    "url": "https://trymodest.com/products/alina-blue-denim-lace-up-modest-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL, XXL"
+  },
+  {
+    "id": "try-modest:8830828445920",
+    "brandSlug": "try-modest",
+    "title": "Sandra Dual-Tie Maxi Dress",
+    "url": "https://trymodest.com/products/sandra-dual-tie-maxi-dress",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "try-modest:8808267612384",
+    "brandSlug": "try-modest",
+    "title": "Nadira Maxi Dress with Matching Hijab",
+    "url": "https://trymodest.com/products/nadira-maxi-dress-with-matching-hijab",
+    "garmentWas": "hijab",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "try-modest:8751444590816",
+    "brandSlug": "try-modest",
+    "title": "Effortless Everyday Sweatshirt Abaya Dress",
+    "url": "https://trymodest.com/products/effortless-everyday-sweatshirt-abaya-dress",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XL, XL, XL"
+  },
+  {
+    "id": "try-modest:8588489294048",
+    "brandSlug": "try-modest",
+    "title": "Hijab magnet pins",
+    "url": "https://trymodest.com/products/hijab-magnet-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab magnet"
+  },
+  {
+    "id": "try-modest:8502213378272",
+    "brandSlug": "try-modest",
+    "title": "Metal Round Ladies Outdoor Sunglasses Set Mirror",
+    "url": "https://trymodest.com/products/metal-round-ladies-outdoor-sunglasses-set-mirror",
+    "garmentWas": "set",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Mirror"
+  },
+  {
+    "id": "try-modest:8236379734240",
+    "brandSlug": "try-modest",
+    "title": "Palestine Arab Scarf: Traditional Keffiyeh Headwear for All",
+    "url": "https://trymodest.com/products/arab-square-scarf-turban-outdoor-thick-scarf-men-and-women-casual-scarf",
+    "garmentWas": "hijab",
+    "reason": "url-pattern"
+  },
+  {
+    "id": "try-modest:8230894960864",
+    "brandSlug": "try-modest",
+    "title": "Glossy Hijab Magnet Pins",
+    "url": "https://trymodest.com/products/support-wholesale-strong-magnetic-buckle-muslim-magnetic-buckle-womens-scarf-buckle-shawl-dual-use-brooch-collar-clip-headwear-accessories",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "try-modest:8170943578336",
+    "brandSlug": "try-modest",
+    "title": "Warm winter Cashmere like scarf",
+    "url": "https://trymodest.com/products/long-scarf-winter-cashmere-warm-all-matching-solid-color-scarf-men-and-women-fashion-tassel-scarf-new",
+    "garmentWas": "hijab",
+    "reason": "url-pattern"
+  },
+  {
+    "id": "try-modest:8117395357920",
+    "brandSlug": "try-modest",
+    "title": "Algerian Style Embroidered Kaftan Plus Inner Vest and Belt",
+    "url": "https://trymodest.com/products/algerian-style-embroidered-kaftan-plus-inner-vest-and-belt",
+    "garmentWas": "abaya",
+    "reason": "non-apparel:care",
+    "tier": "B",
+    "evidence": "Belt"
+  },
+  {
+    "id": "try-modest:8117282046176",
+    "brandSlug": "try-modest",
+    "title": "12 PC set Hijab Magnetic Pins",
+    "url": "https://trymodest.com/products/12-pc-set-hijab-magnetic-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Magnetic Pins"
+  },
+  {
+    "id": "try-modest:8117279359200",
+    "brandSlug": "try-modest",
+    "title": "3 PC Hijab Magnetic Pins",
+    "url": "https://trymodest.com/products/copy-of-hijab-magnetic-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Magnetic Pins"
+  },
+  {
+    "id": "try-modest:8112001056992",
+    "brandSlug": "try-modest",
+    "title": "2 PC set Hijab Magnetic Pins",
+    "url": "https://trymodest.com/products/hijab-magnetic-pins",
+    "garmentWas": "hijab",
+    "reason": "non-apparel:hardware",
+    "tier": "A",
+    "evidence": "Magnetic Pins"
+  },
+  {
+    "id": "try-modest:7889025433824",
+    "brandSlug": "try-modest",
+    "title": "Leather Shoulder Bag 2PCs set",
+    "url": "https://trymodest.com/products/leather-shoulder-bag-2pcs-set",
+    "garmentWas": "set",
+    "reason": "non-apparel:bags",
+    "tier": "A",
+    "evidence": "Shoulder Bag"
   }
 ]
