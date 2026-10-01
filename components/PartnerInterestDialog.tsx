@@ -23,10 +23,11 @@ import { ContactForm } from './ContactForm';
  * all; corrected after a first pass wrongly stretched the gradient over the
  * form fields themselves ("i didnt mean that... not the whole form").
  * `ContactForm`'s labels stay in their default light-page colours here,
- * since the form itself is white again. The backdrop gradient is anchored
- * on `--ink` (the footer's dark) rather than `--aubergine` — Tina: "i want
- * dark purple like the footer color" — fading into aubergine, not the
- * reverse.
+ * since the form itself is white again. The backdrop gradient went
+ * `--ink`-to-`--aubergine` first, then darker still — Tina: "black make it
+ * black and a tiny bit purple" — so it's near-black (`rgba(0,0,0,0.9)`)
+ * fading into a barely-purple near-black, not a recognisably aubergine tone
+ * at either end.
  */
 export function PartnerInterestDialog({
   siteKey,
@@ -49,7 +50,7 @@ export function PartnerInterestDialog({
       <Dialog.Portal>
         <Dialog.Backdrop
           className="fixed inset-0"
-          style={{ background: 'linear-gradient(160deg, rgba(36,27,36,0.85), rgba(68,25,67,0.85))', zIndex: 60 }}
+          style={{ background: 'linear-gradient(160deg, rgba(0,0,0,0.9), rgba(30,15,29,0.9))', zIndex: 60 }}
         />
         <Dialog.Popup
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden flex flex-col w-[calc(100vw-32px)] max-w-md max-h-[90vh]"
