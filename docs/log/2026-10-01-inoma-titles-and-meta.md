@@ -50,3 +50,9 @@ staging only: Inoma's week-1 work (1-7 Oct) produces a keyword map, and the cate
 rather than be changed twice. Tina is asking them for the target keywords for /modest-abayas, /modest-sets and
 /modest-hijabs. Only `app/designers/[slug]/page.tsx` was applied to main, from a fresh `origin/main` worktree,
 because staging also carries unreleased partner-with-us and Plausible work that was not part of this approval.
+
+## Correction, same day
+"Breadcrumbs on editorial pages" was reported to Tina as already in place. It is only half true: articles
+carry a `BreadcrumbList` in JSON-LD, but no visible trail (a live screenshot shows only the "← THE EDIT" link).
+A visible trail is still open alongside the related-posts block (both due 21 Oct). Logged as CLAUDE.md §10.61.
+Visual report of what is live: `.audit/inoma-report/live.html` (gitignored).
