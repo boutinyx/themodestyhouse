@@ -70,13 +70,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <main className="max-w-[720px] mx-auto px-8 pt-12 md:pt-16 pb-24">
       <JsonLd
         data={jsonLdGraph(
-          breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'The Edit', path: '/editorial' }, { name: p.title, path: `/editorial/${p.slug}` }]),
+          breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/editorial' }, { name: p.title, path: `/editorial/${p.slug}` }]),
           articleSchema({ title: p.title, description: p.dek, path: `/editorial/${p.slug}`, datePublished: p.date, authorName: p.author, image: p.image }),
         )}
       />
       {/* Phosphor, not the ← character (CLAUDE.md §6). */}
       <Link href="/editorial" className="nav-link inline-flex items-center gap-1.5">
-        <ArrowLeft size={12} weight="bold" /> The Edit
+        <ArrowLeft size={12} weight="bold" /> Blog
       </Link>
 
       {p.image && (
@@ -110,11 +110,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           (counted across all 160 sitemap pages — `still-boiling-feeling-fall`
           had exactly one), and Inoma Digital's 2026-09-11 audit flags the same
           thing as "pages with only one internal link". No composed copy: the
-          eyebrow reuses "The Edit", the site's own name for this section, and
+          eyebrow reuses "Blog", the site's own name for this section (renamed from
+          "The Edit" 2026-10-01 at Tina's request), and
           every other string on screen is the post's own title. */}
       {others.length > 0 && (
         <div className="mt-16 pt-8" style={{ borderTop: '1px solid var(--hairline)' }}>
-          <div className="eyebrow" style={{ color: 'var(--muted)' }}>The Edit</div>
+          <div className="eyebrow" style={{ color: 'var(--muted)' }}>Blog</div>
           <ul className="mt-4 space-y-3">
             {others.map((o) => (
               <li key={o.slug}>

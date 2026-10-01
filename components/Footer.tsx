@@ -267,7 +267,7 @@ export function Footer() {
             className="col-span-2 md:col-span-1"
             listClassName="grid grid-cols-2 gap-y-1 md:block md:space-y-2"
           >
-            <FLink href="/editorial">The Edit</FLink>
+            <FLink href="/editorial">Blog</FLink>
             {/* The /edits INDEX, added 2026-09-15. Every individual edit below
                 was linked from here and the page listing them was not, so
                 `/edits` sat in the sitemap with zero inbound links anywhere on

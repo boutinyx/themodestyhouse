@@ -27,7 +27,7 @@ export const SITE_SECTIONS: SiteSection[] = [
   // the same source app/sitemap.ts uses, for the same reason.
   ...LANES.map((l) => ({ slug: l.slug, title: l.title, description: l.intro })),
   { slug: 'designers', title: 'Designers', description: 'A curated index of modest brands, vetted for craft and taste.' },
-  { slug: 'editorial', title: 'The Edit', description: 'Stories, edits and styling from The Modesty House.' },
+  { slug: 'editorial', title: 'Blog', description: 'Stories, edits and styling from The Modesty House.' },
   // /about is deliberately absent from SEO_COPY (lib/seoCopy.test.ts's
   // STATIC_PATHS excludes it), so its description is the same literal
   // app/about/page.tsx sets — kept in step by hand, not invented here.

@@ -106,7 +106,7 @@ ${posts}
 ## Notes
 
 - ${ATTRIBUTION}
-- Editorial coverage (The Edit) is original and independently written.
+- Editorial coverage (the Blog) is original and independently written.
 - Full machine-readable listings: [sitemap.xml](${SITE_ORIGIN}/sitemap.xml).
 - Everything above, with the content inlined instead of linked: [llms-full.txt](${SITE_ORIGIN}/llms-full.txt).
 `;
