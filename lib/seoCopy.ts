@@ -175,7 +175,7 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     description: 'A curated index of modest fashion brands, vetted for craft and taste — browse every designer in The Modesty House directory.',
   },
   '/editorial': {
-    title: 'The Edit — Modest Fashion Stories & Styling Guides',
+    title: 'Blog — Modest Fashion Stories & Styling Guides',
     description: 'Stories, edits and styling guides on modest fashion from The Modesty House.',
   },
   /* Added 2026-08-26 with the /edits index route. Both strings are FUNCTIONAL —
