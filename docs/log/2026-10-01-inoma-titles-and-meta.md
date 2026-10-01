@@ -1,5 +1,5 @@
 # Brand and category titles and meta descriptions, per Inoma Digital's October plan
-**Date:** 2026-10-01 · **Status:** done on staging, awaiting Tina's approval for main
+**Date:** 2026-10-01 · **Status:** brand titles live on main (Tina approved 2026-10-01); category titles held on staging
 
 ## Goal
 Inoma Digital's "SEO and Content Plan: October 2026" (28 Sep) asked, by 14 Oct, for:
@@ -43,3 +43,10 @@ Inoma Digital's "SEO and Content Plan: October 2026" (28 Sep) asked, by 14 Oct, 
   Pulse; it cannot be done from the code.
 - Their canonical-tag request for `?type=` is already handled (valid subtypes self-canonicalise on purpose,
   everything else canonicalises to the lane). Tina is replying to them about it.
+
+## Release decision, same day
+Tina approved the **brand page** titles for production. The **category** titles (`lib/seoCopy.ts`) stay on
+staging only: Inoma's week-1 work (1-7 Oct) produces a keyword map, and the category titles should follow it
+rather than be changed twice. Tina is asking them for the target keywords for /modest-abayas, /modest-sets and
+/modest-hijabs. Only `app/designers/[slug]/page.tsx` was applied to main, from a fresh `origin/main` worktree,
+because staging also carries unreleased partner-with-us and Plausible work that was not part of this approval.
