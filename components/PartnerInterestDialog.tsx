@@ -81,7 +81,7 @@ export function PartnerInterestDialog({
               <div className="md:flex md:h-full md:flex-col md:justify-center">
                 <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
                 <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
-                  Answer these four things below — that&rsquo;s all we need to get started.
+                  Answer these four things — that&rsquo;s all we need to get started.
                 </p>
                 <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--ink)' }}>
                   We&rsquo;ll follow up within a few days of hearing from you.
