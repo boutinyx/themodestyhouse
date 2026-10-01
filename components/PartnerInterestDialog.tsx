@@ -16,16 +16,17 @@ import { ContactForm } from './ContactForm';
  * inline at the foot of the page — one clear action instead of a form
  * nobody asked to see yet.
  *
- * The gradient lives on the popup's HEADER, not behind the form fields:
- * `ContactForm`'s labels default to `.eyebrow` (`var(--muted)`, a
- * brown-grey) for a parchment/white page — on a dark aubergine-to-plum
- * gradient directly behind them those would be close to unreadable, and
- * re-theming a shared form for one dark popup was more risk than benefit.
- * The gradient band carries the title instead (its own text, so its own
- * colour is free to set), and the form sits on white underneath — a real,
- * clearly visible gradient background for the popup, without touching the
- * form's legibility. Tried `var(--ink)` (the footer's dark) instead — Tina:
- * "nvm its too dark" — back to the gradient.
+ * The gradient now covers the WHOLE popup, header and form alike — Tina
+ * wanted "more gradients of the whole thing" rather than the gradient
+ * stopping at the header with a flat white form below it. `ContactForm`'s
+ * `dark` prop re-themes its labels/copy to `--muted-on-dark` /
+ * `--brass-on-dark` (already-defined, contrast-checked tokens — see
+ * globals.css) for exactly this reason: a shared form can't assume its own
+ * colours once the surface behind it is dark. The input/textarea fields
+ * themselves stay white (their own `background: '#fff'` in `field`), so
+ * they read as light cards sitting on the gradient rather than becoming
+ * unreadable. Tried `var(--ink)` solid instead of the gradient — Tina:
+ * "nvm its too dark" — gradient it is, just stretched further.
  */
 export function PartnerInterestDialog({
   siteKey,
@@ -52,12 +53,9 @@ export function PartnerInterestDialog({
         />
         <Dialog.Popup
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden flex flex-col w-[calc(100vw-32px)] max-w-md max-h-[90vh]"
-          style={{ zIndex: 61 }}
+          style={{ zIndex: 61, background: 'linear-gradient(180deg, var(--aubergine), var(--plum))' }}
         >
-          <div
-            className="p-6 md:p-8 relative shrink-0"
-            style={{ background: 'linear-gradient(135deg, var(--aubergine), var(--plum))' }}
-          >
+          <div className="p-6 md:p-8 relative shrink-0">
             <Dialog.Close
               aria-label="Close"
               className="absolute top-4 right-4 flex items-center justify-center"
@@ -69,17 +67,17 @@ export function PartnerInterestDialog({
               Let&rsquo;s talk
             </Dialog.Title>
           </div>
-          <div className="p-6 md:p-8 overflow-y-auto" style={{ background: '#fff' }}>
-            <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
-            <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
+          <div className="px-6 md:px-8 pb-6 md:pb-8 overflow-y-auto">
+            <h3 className="section-heading text-xl" style={{ color: 'var(--parchment)' }}>What we need from you</h3>
+            <p className="mt-2 text-sm" style={{ color: 'var(--muted-on-dark)' }}>
               Answer these four things below — that&rsquo;s all we need to get started.
             </p>
-            <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--ink)' }}>
+            <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--parchment)' }}>
               We&rsquo;ll follow up within a few days of hearing from you.
             </p>
-            <div className="mt-6" style={{ borderTop: '1px solid var(--hairline)' }} />
+            <div className="mt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.18)' }} />
             <div className="mt-6">
-              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic />
+              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic dark />
             </div>
           </div>
         </Dialog.Popup>

@@ -65,6 +65,7 @@ export function ContactForm({
   brandName,
   defaultMessage,
   lockTopic,
+  dark,
 }: {
   siteKey?: string;
   defaultTopic?: string;
@@ -81,6 +82,12 @@ export function ContactForm({
    *  choice just raises a question nobody needs to answer. `/contact`'s
    *  own form leaves this unset: there, the visitor picks the topic. */
   lockTopic?: boolean;
+  /** Re-themes labels/copy for a dark surface behind the form (the partner
+   *  dialog's full-gradient background) using the already contrast-checked
+   *  `--muted-on-dark` / `--brass-on-dark` tokens, instead of the `.eyebrow`
+   *  default (`--muted`, tuned for a light page). The input/textarea fields
+   *  themselves are unaffected — they keep their own white `background`. */
+  dark?: boolean;
 }) {
   // The topic becomes controlled state ONLY because the claim clickwrap has to
   // appear and disappear with it. Everything else on this form is uncontrolled
@@ -174,8 +181,20 @@ export function ContactForm({
     }
   }
 
+  // Only the label colour differs between the two surfaces — the input/
+  // textarea `field` style already carries its own white background either
+  // way, so it never needs a dark variant.
+  const labelStyle: React.CSSProperties = dark ? { color: 'var(--muted-on-dark)' } : {};
+
   if (status === 'sent') {
-    return (
+    return dark ? (
+      <div className="mt-8 rounded-xl p-6 text-center" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)' }}>
+        <div className="eyebrow" style={{ color: 'var(--brass-on-dark)' }}>Message sent</div>
+        <p className="mt-2 text-sm" style={{ color: 'var(--muted-on-dark)' }}>
+          Thank you — we&rsquo;ve got it and will reply to the address you gave us.
+        </p>
+      </div>
+    ) : (
       <div className="mt-8 rounded-xl p-6 text-center" style={{ background: '#fff', border: '1px solid var(--hairline)' }}>
         <div className="eyebrow" style={{ color: 'var(--brass)' }}>Message sent</div>
         <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
@@ -186,18 +205,18 @@ export function ContactForm({
   }
 
   const err = (k: string) =>
-    errors[k] ? <p className="mt-1 text-xs" style={{ color: '#a3342f' }}>{errors[k]}</p> : null;
+    errors[k] ? <p className="mt-1 text-xs" style={{ color: dark ? '#e8a39d' : '#a3342f' }}>{errors[k]}</p> : null;
 
   return (
     <form onSubmit={onSubmit} className="mt-8 text-left space-y-4" noValidate>
       <div>
-        <label htmlFor="name" className="eyebrow block mb-1">Name</label>
+        <label htmlFor="name" className="eyebrow block mb-1" style={labelStyle}>Name</label>
         <input id="name" name="name" required maxLength={100} style={field} autoComplete="name" />
         {err('name')}
       </div>
 
       <div>
-        <label htmlFor="email" className="eyebrow block mb-1">Email</label>
+        <label htmlFor="email" className="eyebrow block mb-1" style={labelStyle}>Email</label>
         <input id="email" name="email" type="email" required maxLength={254} style={field} autoComplete="email" />
         {err('email')}
       </div>
@@ -206,7 +225,7 @@ export function ContactForm({
         <input type="hidden" name="topic" value={topic} />
       ) : (
         <div>
-          <label htmlFor="topic" className="eyebrow block mb-1">Subject</label>
+          <label htmlFor="topic" className="eyebrow block mb-1" style={labelStyle}>Subject</label>
           <select
             id="topic"
             name="topic"
@@ -221,7 +240,7 @@ export function ContactForm({
       )}
 
       <div>
-        <label htmlFor="message" className="eyebrow block mb-1">Message</label>
+        <label htmlFor="message" className="eyebrow block mb-1" style={labelStyle}>Message</label>
         <textarea id="message" name="message" required rows={7} maxLength={5000} defaultValue={defaultMessage} style={{ ...field, resize: 'vertical' }} />
         {err('message')}
       </div>
@@ -262,14 +281,18 @@ export function ContactForm({
       {siteKey ? <div ref={widgetRef} className="pt-1" /> : null}
 
       {formError ? (
-        <p className="text-sm" style={{ color: '#a3342f' }} role="alert">{formError}</p>
+        <p className="text-sm" style={{ color: dark ? '#e8a39d' : '#a3342f' }} role="alert">{formError}</p>
       ) : null}
 
       <button
         type="submit"
         disabled={status === 'sending'}
         className="btn-pill"
-        style={{ background: 'var(--aubergine)', color: 'var(--parchment)', opacity: status === 'sending' ? 0.6 : 1 }}
+        style={
+          dark
+            ? { background: 'var(--parchment)', color: 'var(--aubergine)', opacity: status === 'sending' ? 0.6 : 1 }
+            : { background: 'var(--aubergine)', color: 'var(--parchment)', opacity: status === 'sending' ? 0.6 : 1 }
+        }
       >
         {status === 'sending' ? 'Sending…' : 'Send message'}
       </button>
