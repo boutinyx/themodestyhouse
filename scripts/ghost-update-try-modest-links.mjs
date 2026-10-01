@@ -1,20 +1,16 @@
 #!/usr/bin/env node
 /**
- * One-off: create "Meet Farheen, the Founder Behind Try Modest" in Ghost as a
- * DRAFT — not published. Tina reviews and publishes herself in Ghost's editor.
+ * One-off: re-push the try-modest founder post's HTML after swapping its
+ * brand-name links from trymodest.com to /designers/try-modest (now that the
+ * catalogue is curated and the page clears MIN_PRODUCTS). Ghost's Admin API
+ * needs the post's current `updated_at` for the PUT (optimistic lock), so
+ * this fetches the post first rather than guessing it.
  *
- * Brand-name links point at /designers/try-modest, not trymodest.com —
- * updated once Try Modest's catalogue was curated and the page cleared
- * MIN_PRODUCTS (lib/brandPages.ts). Still no cover image: Farheen offered
- * photos in her reply but hasn't sent any yet. Add a real photo before
- * publishing.
- *
- *   GHOST_URL=… GHOST_ADMIN_KEY=<id>:<secret> node scripts/ghost-draft-try-modest-founder.mjs
+ *   GHOST_URL=… GHOST_ADMIN_KEY=<id>:<secret> node scripts/ghost-update-try-modest-links.mjs
  */
 import { admin } from './lib/ghostAdmin.mjs';
 import { markdownToHtml } from './lib/markdownToHtml.mjs';
 
-const TITLE = 'Meet Farheen, the Founder Behind Try Modest';
 const SLUG = 'meet-farheen-try-modest-founder';
 
 const BODY = `[Try Modest](/designers/try-modest) started with a prayer, not a business plan. Farheen had an engineering degree, then a master's in IT — a technical path that left something unanswered. "I asked Allah to guide me towards work that I would genuinely enjoy and love, and to open that path for me," she says. The pull toward fashion had been there since childhood; it took her sister's suggestion — modest fashion, specifically — to put a name to it. Try Modest launched in 2022.
@@ -32,34 +28,15 @@ Her parents' support — and their duas — come up when she talks about what ca
 Outside the business, she's learning Turkish for a country she hasn't visited yet, and calls herself "very much a tea person" — homemade blends, mostly. [See what Try Modest is making right now](/designers/try-modest).`;
 
 const html = markdownToHtml(BODY);
-console.log(`HTML: ${html.length} chars\n`);
 
-let exists = true;
-try {
-  await admin('GET', `posts/slug/${encodeURIComponent(SLUG)}/`);
-} catch (e) {
-  if (!String(e.message).includes('-> 404')) throw e;
-  exists = false;
-}
-if (exists) {
-  console.log(`already exists: ${SLUG} (not re-created; delete it in Ghost first if you want a clean re-run)`);
-  process.exit(0);
-}
+const current = await admin('GET', `posts/slug/${encodeURIComponent(SLUG)}/`);
+const post = current.posts[0];
+console.log('found post, status:', post.status, '| id:', post.id);
 
-const res = await admin('POST', 'posts/?source=html', {
-  json: {
-    posts: [
-      {
-        slug: SLUG,
-        title: TITLE,
-        html,
-        custom_excerpt: 'An engineer turned entrepreneur on the prayer that became a brand, the co-ord set she can’t stop recommending, and the customer who ordered an abaya for her Shahadah.',
-        status: 'draft',
-      },
-    ],
-  },
+const res = await admin('PUT', `posts/${post.id}/?source=html`, {
+  json: { posts: [{ html, updated_at: post.updated_at }] },
 });
 
-const post = res.posts[0];
-console.log(`\ncreated DRAFT: ${post.slug}`);
-console.log(`Ghost admin: ${process.env.GHOST_URL}/ghost/#/editor/post/${post.id}`);
+const updated = res.posts[0];
+console.log('updated:', updated.slug, '| status:', updated.status);
+console.log(`Ghost admin: ${process.env.GHOST_URL}/ghost/#/editor/post/${updated.id}`);
