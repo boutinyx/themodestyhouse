@@ -186,7 +186,7 @@ export default function PartnerWithUsPage() {
             {[
               { value: String(stats.houses), label: 'houses indexed' },
               { value: roundedPieces(stats.pieces), label: 'pieces catalogued' },
-              { value: String(stats.currencies), label: 'currencies' },
+              { value: String(stats.countries), label: 'countries' },
               { value: String(stats.sealed), label: 'carrying the seal' },
             ].map((f) => (
               <div key={f.label}>

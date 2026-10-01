@@ -9,6 +9,62 @@
 import { BRANDS } from '@/data/brands';
 import { getProducts } from './products';
 
+/**
+ * `city` mixes granularity — 'USA', 'London', 'Arnhem' — so a country count
+ * needs this hand-written map rather than `new Set(BRANDS.map(b => b.city))`.
+ * A wrong entry here is a factual claim about a real company, so every key is
+ * a real, unambiguous `city` value from data/brands.ts (verified 2026-10-01
+ * against all 115 brands), and three brands whose `city` is literally
+ * 'Europe' (diversity-modest, maison-hijab, ay-collection) are deliberately
+ * left OUT of this map — there is no honest single country to credit them
+ * to, so they're excluded from the count rather than guessed. Tina: "i want
+ * countries" instead of the currencies figure on the partner/about receipts
+ * band. **Add new brands' `city` here too** — an unmapped city silently
+ * undercounts (never overstates), but drifts stale the same way the figures
+ * in the file's own header comment once did.
+ */
+const CITY_TO_COUNTRY: Record<string, string> = {
+  Amsterdam: 'Netherlands',
+  Antwerp: 'Belgium',
+  Arnhem: 'Netherlands',
+  Australia: 'Australia',
+  Belgium: 'Belgium',
+  'Birmingham, United Kingdom': 'United Kingdom',
+  Bochum: 'Germany',
+  Canada: 'Canada',
+  Clichy: 'France',
+  'Dearborn, Michigan': 'United States',
+  Denmark: 'Denmark',
+  Doha: 'Qatar',
+  Dubai: 'United Arab Emirates',
+  France: 'France',
+  Germany: 'Germany',
+  'Holbæk': 'Denmark',
+  India: 'India',
+  Istanbul: 'Turkey',
+  Jakarta: 'Indonesia',
+  'Kuwait City': 'Kuwait',
+  London: 'United Kingdom',
+  'Los Angeles': 'United States',
+  Malaysia: 'Malaysia',
+  'Mississauga, Ontario': 'Canada',
+  Netherlands: 'Netherlands',
+  'New York': 'United States',
+  Nijmegen: 'Netherlands',
+  Norway: 'Norway',
+  Paris: 'France',
+  Riyadh: 'Saudi Arabia',
+  Rotterdam: 'Netherlands',
+  Singapore: 'Singapore',
+  Sweden: 'Sweden',
+  Sydney: 'Australia',
+  Turkey: 'Turkey',
+  UK: 'United Kingdom',
+  USA: 'United States',
+  'United Kingdom': 'United Kingdom',
+  'United States': 'United States',
+};
+
 export type AboutStats = {
   /** Brands in the catalogue. */
   houses: number;
@@ -17,15 +73,14 @@ export type AboutStats = {
   /** Brands carrying the verified seal. */
   sealed: number;
   /**
-   * Distinct currencies the houses trade in — the honest measure of reach.
-   *
-   * Deliberately not a country count: `city` on a Brand mixes granularity
-   * ('USA', 'London', 'Arnhem'), so deriving countries needs a hand-written
-   * map, and a wrong entry would be a factual claim about a real company.
-   * Currency is already a required, unambiguous field. Ties to ADR-0002: the
-   * price on screen is what the shopper pays on the brand's own site.
+   * Distinct currencies the houses trade in. Ties to ADR-0002: the price on
+   * screen is what the shopper pays on the brand's own site. Still used by
+   * the about page's own prose ("trading in N currencies"); the receipts
+   * band itself now prints `countries` instead — see below.
    */
   currencies: number;
+  /** Distinct countries, derived via `CITY_TO_COUNTRY` — see its comment. */
+  countries: number;
 };
 
 export function aboutStats(): AboutStats {
@@ -34,6 +89,9 @@ export function aboutStats(): AboutStats {
     pieces: getProducts().length,
     sealed: BRANDS.filter((b) => b.badge === 'verified').length,
     currencies: new Set(BRANDS.map((b) => b.currency)).size,
+    countries: new Set(
+      BRANDS.map((b) => CITY_TO_COUNTRY[b.city ?? '']).filter((c): c is string => Boolean(c)),
+    ).size,
   };
 }
 

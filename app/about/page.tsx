@@ -129,12 +129,12 @@ const HOW = [
 ];
 
 export default function AboutPage() {
-  const { houses, pieces, sealed, currencies } = aboutStats();
+  const { houses, pieces, sealed, currencies, countries } = aboutStats();
 
   const figures = [
     { value: String(houses), label: 'houses indexed' },
     { value: roundedPieces(pieces), label: 'pieces catalogued' },
-    { value: String(currencies), label: 'currencies' },
+    { value: String(countries), label: 'countries' },
     { value: String(sealed), label: 'carrying the seal' },
   ];
 

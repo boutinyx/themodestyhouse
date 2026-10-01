@@ -31,8 +31,12 @@ describe('aboutStats', () => {
     expect(s.currencies).toBeLessThanOrEqual(s.houses);
   });
 
+  it('never claims more countries than houses', () => {
+    expect(s.countries).toBeLessThanOrEqual(s.houses);
+  });
+
   it('returns whole positive numbers the page can print', () => {
-    for (const n of [s.houses, s.pieces, s.sealed, s.currencies]) {
+    for (const n of [s.houses, s.pieces, s.sealed, s.currencies, s.countries]) {
       expect(Number.isInteger(n)).toBe(true);
       expect(n).toBeGreaterThan(0);
     }
