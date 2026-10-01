@@ -24,10 +24,10 @@ import { ContactForm } from './ContactForm';
  * form fields themselves ("i didnt mean that... not the whole form").
  * `ContactForm`'s labels stay in their default light-page colours here,
  * since the form itself is white again. The backdrop gradient went
- * `--ink`-to-`--aubergine` first, then darker still, then a touch more
- * see-through — Tina: "black make it black and a tiny bit purple", then "a
- * lil more transparent" — so it's black/barely-purple at 0.7 opacity, not
- * 0.9, letting more of the page show through behind the dim.
+ * `--ink`-to-`--aubergine` first, then darker still, then progressively
+ * more see-through — Tina: "black make it black and a tiny bit purple",
+ * then "a lil more transparent" twice — 0.9 -> 0.7 -> 0.5 opacity, letting
+ * more of the page show through behind the dim each time.
  */
 export function PartnerInterestDialog({
   siteKey,
@@ -50,7 +50,7 @@ export function PartnerInterestDialog({
       <Dialog.Portal>
         <Dialog.Backdrop
           className="fixed inset-0"
-          style={{ background: 'linear-gradient(160deg, rgba(0,0,0,0.7), rgba(30,15,29,0.7))', zIndex: 60 }}
+          style={{ background: 'linear-gradient(160deg, rgba(0,0,0,0.5), rgba(30,15,29,0.5))', zIndex: 60 }}
         />
         <Dialog.Popup
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden flex flex-col w-[calc(100vw-32px)] max-w-md max-h-[90vh]"
