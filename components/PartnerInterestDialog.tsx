@@ -53,7 +53,7 @@ export function PartnerInterestDialog({
           style={{ background: 'linear-gradient(160deg, rgba(0,0,0,0.5), rgba(30,15,29,0.5))', zIndex: 60 }}
         />
         <Dialog.Popup
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden flex flex-col w-[calc(100vw-32px)] max-w-md max-h-[90vh]"
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden flex flex-col w-[calc(100vw-32px)] max-w-md md:max-w-2xl max-h-[90vh]"
           style={{ zIndex: 61 }}
         >
           <div className="p-6 md:p-8 relative shrink-0" style={{ background: 'var(--aubergine)' }}>
@@ -68,17 +68,27 @@ export function PartnerInterestDialog({
               Let&rsquo;s talk
             </Dialog.Title>
           </div>
+          {/* Two columns on laptop and up — Tina: "on laptop i want it to be
+              more wide the form so the [checklist copy] is on the left and
+              on the right the form". Below md it stays the original
+              single-column stack (text, hairline, form). */}
           <div className="p-6 md:p-8 overflow-y-auto" style={{ background: '#fff' }}>
-            <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
-            <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
-              Answer these four things below — that&rsquo;s all we need to get started.
-            </p>
-            <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--ink)' }}>
-              We&rsquo;ll follow up within a few days of hearing from you.
-            </p>
-            <div className="mt-6" style={{ borderTop: '1px solid var(--hairline)' }} />
-            <div className="mt-6">
-              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic />
+            <div className="md:grid md:grid-cols-2 md:gap-10">
+              <div>
+                <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
+                <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
+                  Answer these four things below — that&rsquo;s all we need to get started.
+                </p>
+                <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--ink)' }}>
+                  We&rsquo;ll follow up within a few days of hearing from you.
+                </p>
+              </div>
+              <div>
+                <div className="mt-6 md:hidden" style={{ borderTop: '1px solid var(--hairline)' }} />
+                <div className="mt-6 md:mt-0">
+                  <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic />
+                </div>
+              </div>
             </div>
           </div>
         </Dialog.Popup>
