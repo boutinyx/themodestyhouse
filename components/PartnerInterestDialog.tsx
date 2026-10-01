@@ -74,7 +74,11 @@ export function PartnerInterestDialog({
               single-column stack (text, hairline, form). */}
           <div className="p-6 md:p-8 overflow-y-auto" style={{ background: '#fff' }}>
             <div className="md:grid md:grid-cols-2 md:gap-10">
-              <div>
+              {/* Centered vertically against the form column, which is
+                  taller — Tina: "this text in the middle on the laying
+                  form". Below md, `md:flex` doesn't apply and it reads top
+                  to bottom as before. */}
+              <div className="md:flex md:h-full md:flex-col md:justify-center">
                 <h3 className="section-heading text-xl" style={{ color: 'var(--ink)' }}>What we need from you</h3>
                 <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>
                   Answer these four things below — that&rsquo;s all we need to get started.
@@ -85,7 +89,14 @@ export function PartnerInterestDialog({
               </div>
               <div>
                 <div className="mt-6 md:hidden" style={{ borderTop: '1px solid var(--hairline)' }} />
-                <div className="mt-6 md:mt-0">
+                {/* `ContactForm`'s own <form> carries a fixed `mt-8`, sized
+                    for sitting below the divider in the single-column
+                    layout. At md+ there's no divider above it, so that
+                    margin just pushes Name/Email/Message down for no
+                    reason — Tina: "scoot this one up". Cancelled with a
+                    matching negative margin rather than touching the
+                    shared component's own spacing. */}
+                <div className="mt-6 md:-mt-8">
                   <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic />
                 </div>
               </div>
