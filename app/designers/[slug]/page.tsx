@@ -13,7 +13,7 @@ import { breadcrumbSchema, brandPageSchema, faqPageSchema, jsonLdGraph } from '@
 import { formatPrice } from '@/lib/price';
 import { withUtm } from '@/lib/outbound';
 import { clampText, fitSentences } from '@/lib/metaDescription';
-import { pageTitle } from '@/lib/metaTitle';
+import { pageTitle, TITLE_MAX } from '@/lib/metaTitle';
 
 /**
  * /designers/[slug] — one page per house.
@@ -78,9 +78,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const hook = !priced.length
     ? ''
     : priced[0] >= med * 0.4
-      ? ` from ${formatPrice(priced[0], b.currency)}`
-      : `, half under ${formatPrice(med, b.currency)}`;
-  const title = `${b.name} — ${n.toLocaleString('en-GB')} pieces${hook}`;
+      ? `: Prices from ${formatPrice(priced[0], b.currency)}`
+      : `: Half Under ${formatPrice(med, b.currency)}`;
   const range = priced.length
     ? `, ${formatPrice(priced[0], b.currency)}–${formatPrice(priced[priced.length - 1], b.currency)}.`
     : '.';
@@ -93,6 +92,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     .sort((a, b2) => b2[1] - a[1])
     .slice(0, 3)
     .map(([g]) => GARMENT_LABEL[g]);
+  // INOMA DIGITAL'S FORMAT, 2026-10-01. Their October plan asked for
+  // "[Brand] Abayas: Prices, Sizing and Similar Brands", because these pages
+  // earn 57% of the site's impressions and few clicks. Kept as close as the
+  // page allows: the garment is the house's OWN top category (a hijab house is
+  // not "Abayas"), the price stays a measured figure (Tina's 2026-09-21 call,
+  // above), "Similar Brands" appears only when the page really links to some,
+  // and "Sizing" is left out because the page carries no sizing information.
+  const region = b.city ? regionOf(b.city) : null;
+  const hasPeers = !!region && brandsInRegion(region).some((x) => x.slug !== b.slug && hasBrandPage(x.slug));
+  // "Rutba Fashion Abaya Abayas": skip the garment when the name already says it.
+  const garment = topGarments[0] && !b.name.toLowerCase().includes(topGarments[0].replace(/s$/, ''))
+    ? ` ${titleCase(topGarments[0])}` : '';
+  const base = `${b.name}${garment}${hook}`;
+  // Similar Brands is the first thing to go when the title would run past the
+  // ~60 characters Google prints (lib/metaTitle.ts) — the price is the hook.
+  const title = hasPeers && base.length + ' & Similar Brands'.length <= TITLE_MAX
+    ? `${base} & Similar Brands` : base;
   const contents =
     topGarments.length > 1
       ? `${topGarments.slice(0, -1).join(', ')} and ${topGarments[topGarments.length - 1]}`
@@ -113,6 +129,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           // sentence it never fit beside the two above, so the whole thing was
           // dropped and the descriptions came out at 74-80 characters. Split,
           // the pricing half survives and only the link half falls off.
+          hasPeers ? `Compare similar brands from ${region}.` : '',
           'Prices in your own currency, checked nightly.',
           b.city ? `Based in ${b.city}.` : '',
           `Links straight to ${new URL(b.homepage).hostname}.`,
@@ -127,6 +144,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     twitter: { card: 'summary_large_image', title, description, images: ['/og-card-1.jpg'] },
   };
 }
+
+/** "co-ord sets" -> "Co-ord Sets", for a <title>. */
+const titleCase = (s: string) => s.replace(/(^|\s)\S/g, (c) => c.toUpperCase());
 
 /** Plain-language label for what a house mostly makes, from its own catalogue. */
 const GARMENT_LABEL: Record<string, string> = {
