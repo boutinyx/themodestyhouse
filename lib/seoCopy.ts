@@ -109,12 +109,18 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     description: 'Shop modest dresses online: long-sleeve, high-neck and maxi dresses from independent modest fashion brands, styled for every occasion.',
   },
   '/modest-abayas': {
-    title: 'Abayas Online — Shop Modest Abaya Dresses for Women',
-    description: 'Shop abayas online: open, closed, kimono and butterfly styles, from plain-sharp to embellished-flowing, from independent modest houses.',
+    // Inoma Digital's October plan (2026-09-28) asked for category titles led by
+    // the target keyword. Search Console, Jul-Sep 2026, says what this page is
+    // already shown for: "abaya", "abayas for women", "abaya online".
+    title: 'Abayas for Women Online — Open, Closed & Kimono Abayas',
+    description: 'Shop abayas for women online: open, closed, kimono and butterfly abayas, plain or embellished, from independent modest fashion houses.',
   },
   '/modest-hijabs': {
-    title: "Hijabs & Scarves Online — Shop Women's Hijab Fashion",
-    description: 'Shop hijabs and scarves online: chiffon, jersey, satin and crinkle hijabs, shawls and underscarves from independent modest brands.',
+    // Same plan. Shown for "best hijab store online" (57 impressions at ~70)
+    // and "buy hijabs (online)" in Jul-Sep 2026, and "cotton hijab" is the
+    // October article it will be linked from.
+    title: 'Buy Hijabs Online — Chiffon, Jersey & Cotton Hijabs',
+    description: 'Buy hijabs online from independent hijab stores: chiffon, jersey, cotton, satin and crinkle hijabs, shawls and underscarves, in one place.',
   },
   '/modest-skirts': {
     title: 'Modest Skirts Online — Maxi & A-Line Skirts for Women',
@@ -129,8 +135,10 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     description: 'Shop modest trousers online: wide-leg, tailored and relaxed trousers from independent modest fashion brands.',
   },
   '/modest-sets': {
-    title: 'Modest Co-ord Sets Online — Matching Two-Piece Sets',
-    description: 'Shop modest co-ord sets online: matching two-piece sets and co-ords, styled to go, from independent modest fashion brands.',
+    // Same plan. Shown for "modest co ord sets" (50 impressions at ~48) and
+    // "modest 2 piece set" in Jul-Sep 2026.
+    title: 'Modest Co-ord Sets — Matching 2-Piece Sets for Women',
+    description: 'Shop modest co-ord sets for women: matching 2-piece sets and co-ords, styled to go, from independent modest fashion brands.',
   },
   '/modest-swimwear': {
     title: 'Modest Swimwear Online — Burkinis & Full-Coverage Swimsuits',
