@@ -61,10 +61,9 @@ const FAQS: PartnerFAQ[] = [
   {
     label: 'Where I show up',
     q: 'Is the designers page the only place I’ll show up?',
-    a: 'No — your pieces live permanently in the real category grids people filter and scroll every day, not just once. On top of that, they also get an extra boost in New In the day they’re first added — so you get an ongoing presence plus a launch moment, not one or the other.',
+    a: 'No — your pieces live permanently in the real category grids people filter and scroll every day. It’s a standing spot in the directory, not a one-off placement that fades after launch.',
     images: [
       { src: '/partner-preview-category-2.jpg', alt: 'The Modesty House Abayas category page, showing filters and a full row of complete product photos from multiple houses', w: 1280, h: 920 },
-      { src: '/partner-preview-newin-2.jpg', alt: 'The Modesty House New In page, showing a full row of the latest complete pieces added across houses', w: 1280, h: 1040 },
     ],
   },
   {
