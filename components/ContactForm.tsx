@@ -64,6 +64,7 @@ export function ContactForm({
   defaultBrand,
   brandName,
   defaultMessage,
+  lockTopic,
 }: {
   siteKey?: string;
   defaultTopic?: string;
@@ -74,6 +75,12 @@ export function ContactForm({
   /** Prefills the message textarea, e.g. /partner-with-us's question
    *  template. `defaultValue`, not `value` — the field stays uncontrolled. */
   defaultMessage?: string;
+  /** Hides the Subject select and posts `defaultTopic` as a hidden field
+   *  instead — for a form that only ever has one topic (e.g. the partner
+   *  dialog, always 'partner'), where showing a dropdown with one real
+   *  choice just raises a question nobody needs to answer. `/contact`'s
+   *  own form leaves this unset: there, the visitor picks the topic. */
+  lockTopic?: boolean;
 }) {
   // The topic becomes controlled state ONLY because the claim clickwrap has to
   // appear and disappear with it. Everything else on this form is uncontrolled
@@ -195,19 +202,23 @@ export function ContactForm({
         {err('email')}
       </div>
 
-      <div>
-        <label htmlFor="topic" className="eyebrow block mb-1">Subject</label>
-        <select
-          id="topic"
-          name="topic"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-          style={selectField}
-        >
-          {TOPICS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
-        </select>
-        {err('topic')}
-      </div>
+      {lockTopic ? (
+        <input type="hidden" name="topic" value={topic} />
+      ) : (
+        <div>
+          <label htmlFor="topic" className="eyebrow block mb-1">Subject</label>
+          <select
+            id="topic"
+            name="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            style={selectField}
+          >
+            {TOPICS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
+          </select>
+          {err('topic')}
+        </div>
+      )}
 
       <div>
         <label htmlFor="message" className="eyebrow block mb-1">Message</label>

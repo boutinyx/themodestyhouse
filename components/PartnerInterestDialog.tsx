@@ -79,7 +79,7 @@ export function PartnerInterestDialog({
             </p>
             <div className="mt-6" style={{ borderTop: '1px solid var(--hairline)' }} />
             <div className="mt-6">
-              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} />
+              <ContactForm siteKey={siteKey} defaultTopic={defaultTopic} defaultMessage={defaultMessage} lockTopic />
             </div>
           </div>
         </Dialog.Popup>
