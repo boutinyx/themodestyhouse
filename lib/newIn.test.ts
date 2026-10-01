@@ -1,5 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
-import { selectNewIn, SEED_POSITIONS, NEW_IN_HOUSES, NEW_IN_MAX_PER_HOUSE } from './newIn';
+import {
+  selectNewIn, SEED_POSITIONS, NEW_IN_HOUSES, NEW_IN_MAX_PER_HOUSE,
+  TRY_MODEST_SEED_IDS, TRY_MODEST_SEED_POSITIONS,
+} from './newIn';
 import type { Product } from './types';
 
 const base: Omit<Product, 'id' | 'brandSlug' | 'brandName' | 'firstSeen' | 'title'> = {
@@ -144,6 +147,51 @@ describe('selectNewIn — the Losyana seed', () => {
     const out = selectNewIn(all);
     expect(out).toHaveLength(9);
     expect(out.filter((p) => p.brandSlug === 'losyana')).toHaveLength(4);
+  });
+});
+
+describe('selectNewIn — the Try Modest seed', () => {
+  /** Same one-date shape as Losyana's real fixture — the first `n` rows carry
+   *  the real pinned ids (TRY_MODEST_SEED_IDS) so the exact-id lookup in
+   *  seed() can find them; the rest are filler so the house clears
+   *  NEW_IN_MAX_PER_HOUSE's irrelevance to a fully-batched house. */
+  function tryModestRows(day: string, n: number): Product[] {
+    return Array.from({ length: n }, (_, i) => ({
+      ...base,
+      id: i < TRY_MODEST_SEED_IDS.length ? TRY_MODEST_SEED_IDS[i] : `try-modest:${day}-${i}`,
+      brandSlug: 'try-modest',
+      brandName: 'try-modest',
+      title: `try-modest ${day} piece ${i}`,
+      firstSeen: day,
+    }));
+  }
+
+  it('lands the four pinned pieces at their positions, alongside Losyana', () => {
+    const all = [
+      ...drip('veiled'), ...drip('aab'), ...drip('fares'),
+      ...rows('losyana', '2026-08-28', 60),
+      ...tryModestRows('2026-08-28', 60),
+    ];
+    const out = selectNewIn(all);
+    // Losyana's own positions still land correctly with a second seed group
+    // in play — this is the invariant the combined ascending splice exists
+    // to protect.
+    for (const i of SEED_POSITIONS) expect(out[i].brandSlug).toBe('losyana');
+    for (const i of TRY_MODEST_SEED_POSITIONS) expect(out[i].brandSlug).toBe('try-modest');
+    const landedIds = TRY_MODEST_SEED_POSITIONS.map((i) => out[i].id);
+    expect(landedIds).toEqual(TRY_MODEST_SEED_IDS);
+  });
+
+  it('gives nothing beyond the four pins to a house whose whole dated population is one date', () => {
+    const all = [...drip('veiled'), ...tryModestRows('2026-08-28', 60)];
+    const out = selectNewIn(all);
+    expect(out.filter((p) => p.brandSlug === 'try-modest')).toHaveLength(TRY_MODEST_SEED_POSITIONS.length);
+  });
+
+  it('keeps the pin positions non-consecutive', () => {
+    for (let i = 1; i < TRY_MODEST_SEED_POSITIONS.length; i++) {
+      expect(TRY_MODEST_SEED_POSITIONS[i] - TRY_MODEST_SEED_POSITIONS[i - 1]).toBeGreaterThan(1);
+    }
   });
 });
 

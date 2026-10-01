@@ -18,7 +18,7 @@ export const NEW_IN_HOUSES: readonly string[] = [
   'noureen', 'khair-archives', 'amariah', 'touche-prive', 'touche-prive-eu',
   'jennah-boutique', 'ayaana', 'eynaa-paris', 'elaa-the-label', 'modesty-in-style',
   'labayah', 'aurora-abaya', 'nour-al-houda', 'mondo-the-label',
-  'la-petite-parisienne', 'glamberry', 'parladusa',
+  'la-petite-parisienne', 'glamberry', 'parladusa', 'try-modest',
 ];
 
 export const NEW_IN_WINDOW_DAYS = 30;
@@ -85,6 +85,32 @@ export const NEW_IN_MAX_PER_HOUSE = 12;
 export const SEED_HOUSE = 'losyana';
 export const SEED_POSITIONS: readonly number[] = [2, 8, 15, 21];
 
+/**
+ * Try Modest's first ingest (2026-10-01) is the same shape as Losyana's: all
+ * 273 published rows carry one `firstSeen` day, so de-batching removes every
+ * one of them. Tina asked for these four EXACT pieces on New In — not
+ * "whatever's newest", which `seed()`'s house-based picking (above) would
+ * otherwise give — so they're pinned by id rather than picked from the pool.
+ *
+ * Positions chosen the same way as Losyana's, and checked against the same
+ * measured grid (2 cols on a phone, 3 from 768px up):
+ *
+ *   390px   cols=2   r2c2  r5c2  r8c2  r11c2
+ *   768px+  cols=3   r1c3  r3c3  r5c3  r7c3
+ *
+ * Four different rows in both layouts, none consecutive, and distinct from
+ * SEED_POSITIONS so the two seeds never target the same slot — see `seed()`
+ * for why the combined splice order still has to be ascending across BOTH
+ * lists for either one's positions to land where requested.
+ */
+export const TRY_MODEST_SEED_IDS: readonly string[] = [
+  'try-modest:10166519890144', // Isla Button-Front Nida Abaya
+  'try-modest:9635980771552',  // Yasmera Minimal Nida Abaya & Hijab Set
+  'try-modest:9962098393312',  // Lucienna Floral Lace Open Abaya Set
+  'try-modest:9910390423776',  // Laleh Floral Lace Open Abaya Set with Sleeveless Inner Dress
+];
+export const TRY_MODEST_SEED_POSITIONS: readonly number[] = [5, 11, 17, 23];
+
 const HOUSES = new Set(NEW_IN_HOUSES);
 
 const day = (p: Product): string | null => (p.firstSeen ? p.firstSeen.slice(0, 10) : null);
@@ -149,15 +175,42 @@ function ingestBatchDays(all: Product[]): Map<string, Set<string>> {
   return out;
 }
 
-/** Splice the seed house's pieces in at SEED_POSITIONS, skipping any already shown. */
+/**
+ * Splices BOTH seed groups in, skipping any already shown. Losyana's picks
+ * are "whatever's newest" from its pool (unchanged); Try Modest's are pinned
+ * by id, since Tina asked for these four exact pieces, not whichever happened
+ * to ingest first.
+ *
+ * The two groups MUST be merged into one ascending-by-position splice pass,
+ * not applied one after the other — splicing Losyana's four fully before Try
+ * Modest's would shift every Try Modest position below Losyana's highest one
+ * by four slots, which is exactly backwards from the invariant the existing
+ * Losyana test pins (`out[i].brandSlug === 'losyana'` for each `i` in
+ * `SEED_POSITIONS`): splicing in strictly ascending position order is what
+ * guarantees an entry lands at the index it asked for, because nothing
+ * inserted after it ever moves it.
+ */
 function seed(list: Product[], pool: Product[]): Product[] {
   const present = new Set(list.map((p) => p.id));
-  const picks = groupColourVariants(pool.filter((p) => p.brandSlug === SEED_HOUSE))
+
+  const losyanaPicks = groupColourVariants(pool.filter((p) => p.brandSlug === SEED_HOUSE))
     .filter((p) => !present.has(p.id))
     .slice(0, SEED_POSITIONS.length);
+  for (const p of losyanaPicks) present.add(p.id);
+
+  const byId = new Map(pool.map((p) => [p.id, p]));
+  const tryModestPicks = TRY_MODEST_SEED_IDS
+    .map((id) => byId.get(id))
+    .filter((p): p is Product => p !== undefined && !present.has(p.id));
+
+  const entries = [
+    ...losyanaPicks.map((p, i) => ({ p, pos: SEED_POSITIONS[i] })),
+    ...tryModestPicks.map((p, i) => ({ p, pos: TRY_MODEST_SEED_POSITIONS[i] })),
+  ].sort((a, b) => a.pos - b.pos);
+
   const out = [...list];
-  for (let i = 0; i < picks.length; i++) {
-    out.splice(Math.min(SEED_POSITIONS[i], out.length), 0, picks[i]);
+  for (const { p, pos } of entries) {
+    out.splice(Math.min(pos, out.length), 0, p);
   }
   return out;
 }

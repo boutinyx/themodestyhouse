@@ -35,6 +35,12 @@ const BY_HOST: Record<string, Readonly<Record<string, string>>> = {
   // `goaffpro_identifiers: "gfp_ref,ref,aff,wpam_id,click_id"`, last-touch,
   // 24h cookie. `ref` is the one the portal itself hands out.
   'losyana.shop': { ref: 'dsgnnfgp' },
+  // "Secomus" (Shopify app) — the `sca_ref` link Tina was issued. Verified
+  // live in a real browser (not curl: the tracking cookies are set by the
+  // app's own JS, not a Set-Cookie header) — `?sca_ref=12424822.QpnqoWAVS7`
+  // sets `scaaf_aid=12424822`, `scaaf_hc=QpnqoWAVS7`, and `scaaf_afn`/`scaaf_affn`
+  // both resolve to "Tina Aouled" / "Tina", confirming the id is actually hers.
+  'trymodest.com': { sca_ref: '12424822.QpnqoWAVS7' },
 };
 
 /**
