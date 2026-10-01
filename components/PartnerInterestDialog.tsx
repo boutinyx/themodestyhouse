@@ -16,15 +16,15 @@ import { ContactForm } from './ContactForm';
  * inline at the foot of the page — one clear action instead of a form
  * nobody asked to see yet.
  *
- * The gradient lives on the popup's HEADER, not behind the form fields:
+ * The dark header lives on the popup's HEADER, not behind the form fields:
  * `ContactForm`'s labels default to `.eyebrow` (`var(--muted)`, a
- * brown-grey) for a parchment/white page — on a dark aubergine-to-plum
- * gradient directly behind them those would be close to unreadable, and
- * re-theming a shared form for one dark popup was more risk than benefit.
- * The gradient band carries the title instead (its own text, so its own
- * colour is free to set), and the form sits on white underneath — a real,
- * clearly visible gradient background for the popup, without touching the
- * form's legibility.
+ * brown-grey) for a parchment/white page — directly on a dark background
+ * those would be close to unreadable, and re-theming a shared form for one
+ * dark popup was more risk than benefit. The header band carries the title
+ * instead (its own text, so its own colour is free to set), and the form
+ * sits on white underneath. Header is `var(--ink)`, the same dark the
+ * footer uses — Tina: "i want the same purple as the footer for this one" —
+ * not the aubergine-to-plum gradient this used to be.
  */
 export function PartnerInterestDialog({
   siteKey,
@@ -54,8 +54,8 @@ export function PartnerInterestDialog({
           style={{ zIndex: 61 }}
         >
           <div
-            className="p-6 md:p-8 relative shrink-0"
-            style={{ background: 'linear-gradient(135deg, var(--aubergine), var(--plum))' }}
+            className="pt-5 pb-6 px-6 md:pt-6 md:pb-8 md:px-8 relative shrink-0"
+            style={{ background: 'var(--ink)' }}
           >
             <Dialog.Close
               aria-label="Close"
