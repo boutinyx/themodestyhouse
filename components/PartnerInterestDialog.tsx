@@ -55,7 +55,7 @@ export function PartnerInterestDialog({
           style={{ zIndex: 61 }}
         >
           <div
-            className="pt-5 pb-6 px-6 md:pt-6 md:pb-8 md:px-8 relative shrink-0"
+            className="p-6 md:p-8 relative shrink-0"
             style={{ background: 'linear-gradient(135deg, var(--aubergine), var(--plum))' }}
           >
             <Dialog.Close
