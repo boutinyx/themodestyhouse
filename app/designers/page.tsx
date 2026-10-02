@@ -191,10 +191,20 @@ export default async function DesignersPage({
   const listed = listedBrandSlugs();
   const all = houses(1).filter((h) => listed.has(h.slug));
 
-  // The vetted houses lead, and there are exactly five, so they fill the first
-  // row on their own. Everyone else follows in catalogue order. No house is
-  // listed twice: the pick and the vetted set are now the same five.
+  // The vetted houses lead; everyone else follows in catalogue order. No
+  // house is listed twice.
+  //
+  // CORRECTED 2026-10-02: this used to read "there are exactly five, so they
+  // fill the first row on their own" and `seal` below checked `i < PER_ROW`
+  // as a stand-in for "is vetted" — true only because `vetted.length` and
+  // `PER_ROW` both happened to be 5. Adding Try Modest as a sixth verified
+  // house (data/brands.ts) made that assumption false: it landed at index 5,
+  // `i < PER_ROW` (5) was false, and it rendered with no seal despite
+  // `b.badge` being set. Tina: "im missing the vified here too." `seal` now
+  // checks membership directly, so it stays correct regardless of how many
+  // houses are vetted.
   const vetted = all.filter((h) => h.badge).sort((a, b) => rank(a.slug) - rank(b.slug));
+  const vettedSlugs = new Set(vetted.map((h) => h.slug));
   const ordered = [...vetted, ...all.filter((h) => !h.badge)];
   // Filtered AFTER the vetted-first ordering, so a region page keeps the same
   // reading order as the index rather than reverting to catalogue order.
@@ -258,11 +268,12 @@ export default async function DesignersPage({
             key={b.slug}
             b={b}
             eager={i < PER_ROW}
-            // Only the first row of page one is the vetted row.
-            // Only the first row of page one of the UNFILTERED index is the
-            // vetted row; inside a region the first five are just the first
-            // five, and badging them would claim a seal they may not hold.
-            seal={!region && page === 1 && i < PER_ROW}
+            // Checks actual membership in `vetted`, not a position — see the
+            // comment on `vetted` above for why. Still gated to page one of
+            // the UNFILTERED index: inside a region, a vetted house may not
+            // be among the region's first few, and a house that merely LANDS
+            // early on a region page hasn't earned a seal by being there.
+            seal={!region && page === 1 && vettedSlugs.has(b.slug)}
           />
         ))}
       </div>
