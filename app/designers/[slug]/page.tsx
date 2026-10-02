@@ -343,13 +343,15 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         </a>
       </p>
 
-      {/* A badged house doesn't need to be asked to claim its own page — it
-          already went through the verification that badge represents
-          (CLAUDE.md §7 / the $99 onboarding flow). Tina, 2026-10-02: "remove
-          the claim your page and give them a verified button." Same mark as
-          the /designers vetted row: Phosphor Sparkle, never the ✦ character
-          (CLAUDE.md §6). */}
-      {brand.badge ? (
+      {/* Scoped to Try Modest specifically, NOT every badged house — Tina,
+          2026-10-02: "remove the claim your page and give them a verified
+          button" was about Try Modest's own page (the screenshot was of
+          it); a first pass applied this to every badge, which swapped out
+          Veiled/Aab/Summer Evenings/Inayah/Glow Modesty's claim links too.
+          Tina: "but you removed claim your house everywhere" — corrected
+          back to a per-house check. Same mark as the /designers vetted row:
+          Phosphor Sparkle, never the ✦ character (CLAUDE.md §6). */}
+      {brand.slug === 'try-modest' && brand.badge ? (
         <p className="mt-4">
           <span className="badge">
             <Sparkle size={10} weight="fill" />
