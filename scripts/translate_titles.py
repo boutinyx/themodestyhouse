@@ -52,6 +52,7 @@ Usage:
 """
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -101,7 +102,18 @@ def main():
     ap.add_argument("--only", default="", help="limit to a brandSlug (testing)")
     ap.add_argument("--no-republish", action="store_true",
                     help="populate the cache but don't re-run the publish")
+    # A TIME BUDGET, added 2026-10-02 after this step silently froze the whole
+    # catalogue for three weeks (CLAUDE.md §10.62). In CI the refresh already
+    # uses ~25 of the job's minutes; when the free endpoints throttled, this
+    # loop ran until the JOB timeout killed it, which cancelled the commit step
+    # too, every night from 2026-09-12. With a budget the loop stops on time,
+    # saves what it got, republishes, and the rest is retried tomorrow.
+    ap.add_argument("--budget-seconds", type=float,
+                    default=float(os.environ.get("TRANSLATE_BUDGET_SECONDS") or 0),
+                    help="stop translating after this many seconds (0 = no limit)")
     args = ap.parse_args()
+    started = time.monotonic()
+    out_of_time = False
 
     from deep_translator import GoogleTranslator, MyMemoryTranslator
 
@@ -143,6 +155,9 @@ def main():
     # across colourways is one translation, not twenty.
     seen = set()
     for p in published_rows:
+        if args.budget_seconds and time.monotonic() - started > args.budget_seconds:
+            out_of_time = True
+            break
         slug = p.get("brandSlug") or (p.get("id") or "").split(":")[0]
         if slug not in only:
             continue
@@ -174,6 +189,10 @@ def main():
         if got_clean:
             cache[t] = new                  # cache ONLY clean results; failures retry next run
             added += 1
+            # Checkpoint, so a run killed from outside still keeps its progress
+            # instead of re-sending the same backlog every night for ever.
+            if not args.dry and added % 25 == 0:
+                CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=0))
             if new != t and len(samples) < 12:
                 samples.append((t, new))
         else:
@@ -186,6 +205,9 @@ def main():
         f"attempted: {attempted} | newly cached: {added} | "
         f"failed(retried next run): {failed}"
     )
+    if out_of_time:
+        print(f"TIME BUDGET of {args.budget_seconds:.0f}s reached — stopped early; "
+              f"the remaining titles are retried next run.")
     # Which engine did the work is worth printing: if google is 0 and mymemory
     # carried the whole run, google is being refused again and the fallback is
     # the only reason this step still works.

@@ -1,0 +1,73 @@
+name: Catalogue watchdog
+
+# Fails LOUDLY when the nightly refresh has not published for too long.
+#
+# Why this exists (CLAUDE.md §10.62): from 2026-09-12 to 2026-10-02 every
+# nightly refresh run was CANCELLED by its job timeout, so nothing was ever
+# committed. A cancelled run is grey, not red, and nobody looked. For three
+# weeks the site kept showing products brands had deleted (404s) and missed
+# every new arrival. This job checks the RESULT — when refresh last committed
+# data/refresh-report.json, the file only refresh.yml writes — rather than any
+# run's status, so it catches every way the refresh can stop publishing,
+# including ways nobody has thought of yet.
+#
+# When stale it opens a GitHub issue (GitHub emails the repo owner) or comments
+# on the open one, and the run goes red.
+
+on:
+  schedule:
+    # 16:20 UTC — scheduled refresh runs have been starting 08:30–11:00 UTC
+    # despite their 04:10 cron, so this leaves a full run's worth of slack.
+    - cron: "20 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check when the catalogue last published
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          MAX_AGE_HOURS: "36"
+        run: |
+          set -euo pipefail
+          # Filtered to the BOT's commits: a human publish (e.g. adding a brand
+          # locally) also rewrites refresh-report.json and would otherwise reset
+          # the clock while the nightly stays broken — it did on 2026-10-01.
+          BOT='41898282%2Bgithub-actions%5Bbot%5D%40users.noreply.github.com'
+          last=$(gh api "repos/$REPO/commits?path=data/refresh-report.json&sha=main&author=$BOT&per_page=1" \
+                   --jq '.[0].commit.committer.date')
+          if [ -z "$last" ] || [ "$last" = "null" ]; then
+            echo "::error::Could not read the last refresh commit — treating as stale."
+            age=9999
+          else
+            age=$(( ( $(date -u +%s) - $(date -u -d "$last" +%s) ) / 3600 ))
+          fi
+          echo "Last nightly refresh commit: ${last:-unknown} (${age}h ago, limit ${MAX_AGE_HOURS}h)"
+          if [ "$age" -le "$MAX_AGE_HOURS" ]; then
+            echo "Catalogue is fresh."
+            exit 0
+          fi
+
+          title="Catalogue refresh has not published for ${age}h"
+          body=$(printf '%s\n\n%s\n%s\n\n%s' \
+            "The nightly refresh last committed data at **${last:-unknown}** — ${age} hours ago (limit ${MAX_AGE_HOURS}h)." \
+            "Until it publishes again, products brands have removed stay on the site (404 links) and new arrivals are missing." \
+            "Check the recent runs of the Catalogue refresh workflow: https://github.com/$REPO/actions/workflows/refresh.yml" \
+            "Opened automatically by catalogue-watchdog.yml (CLAUDE.md §10.62).")
+          existing=$(gh issue list -R "$REPO" --state open --label catalogue-stale --json number --jq '.[0].number' || true)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" -R "$REPO" --body "Still stale: ${age}h since ${last:-unknown}."
+          else
+            gh label create catalogue-stale -R "$REPO" --color B60205 \
+              --description "Nightly catalogue refresh is not publishing" 2>/dev/null || true
+            gh issue create -R "$REPO" --title "$title" --body "$body" --label catalogue-stale
+          fi
+          echo "::error::$title"
+          exit 1

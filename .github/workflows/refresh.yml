@@ -40,8 +40,12 @@ jobs:
   refresh:
     name: fetch feeds, publish, push
     runs-on: ubuntu-latest
-    # A full run is ~6 min, but 429 backoff can add several more per brand.
-    timeout-minutes: 45
+    # The refresh step alone takes ~25 min as of 2026-09 (it was ~6 min when this
+    # was first written). 60 leaves room for translate (capped at 10 below),
+    # summary and push. If this job is ever cancelled by its timeout, NOTHING is
+    # committed — that froze the catalogue from 2026-09-12 to 2026-10-02
+    # (CLAUDE.md §10.62). catalogue-watchdog.yml exists to make that loud.
+    timeout-minutes: 60
     outputs:
       # Whether this run actually committed anything. A refresh that finds no
       # catalogue changes must not announce a change to four search engines.
@@ -97,9 +101,18 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Three caps, because continue-on-error only helps if the STEP ends: a step
+      # that runs until the JOB timeout takes the commit step down with it.
+      # TRANSLATE_BUDGET_SECONDS makes the script stop itself, save its cache and
+      # republish; `timeout` and timeout-minutes are the backstops if a single
+      # request hangs. Either way the step ends, continue-on-error applies, and
+      # the catalogue still gets pushed.
       - name: Translate new titles
         if: success()
         continue-on-error: true
+        timeout-minutes: 10
+        env:
+          TRANSLATE_BUDGET_SECONDS: "360"
         run: |
           set -euo pipefail
           pip install --quiet "deep-translator==1.11.4"
@@ -107,7 +120,7 @@ jobs:
           # node_modules/.bin/tsx directly, NOT `npm run build:data`, whose
           # postbuild hook calls this script and would recurse), so the new
           # titles are applied to products.json in this same step.
-          python3 scripts/translate_titles.py
+          timeout 9m python3 scripts/translate_titles.py
 
       - name: Summarise
         if: success()
