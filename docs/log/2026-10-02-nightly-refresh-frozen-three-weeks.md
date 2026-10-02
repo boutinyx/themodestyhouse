@@ -1,5 +1,5 @@
 # The nightly refresh published nothing for three weeks — fixed, plus a watchdog
-**Date:** 2026-10-02 · **Status:** partial (on `staging`; merge to `main` awaits Tina's approval — the scheduled workflows only run from `main`)
+**Date:** 2026-10-02 · **Status:** done
 
 ## Goal
 Tina found a La Femme Collectie product on the site whose link returns 404
@@ -75,3 +75,17 @@ exactly what a refresh would fix.
   again. Not done here — the docstring explains why Google is first, and that is a separate call.
 - The refresh step itself grew from ~6 min to ~25 min. Not urgent with a 60-minute budget, but it
   is the next thing that will hit a limit.
+
+## Result (same day)
+- Tina approved; `staging` fast-forwarded to `main` as `b142342` (with two Designers fixes that were
+  already on staging). Refresh dispatched by API on `main` (run 37000057821).
+- Run: Refresh catalogue 22.8 min ✓ · Translate **6.2 min ✓ (stopped on its budget)** · Summarise ✓ ·
+  **Commit and push ✓** — the first successful run since 2026-09-11.
+- Commit `8dcd4fe`: `+1427 new, 1361 delisted, 27256 updated, 42 filtered`. 20,579 rows published.
+- La Femme: 47 published (was 19); `premium-instant-hijab` no longer published; `jersey-dress`,
+  `classy-flow-set`, `woven-vest` (new in their feed) are.
+- Production, `https://themodestyhouse.com/designers/lafemme`, canonical and cache-busted both
+  `cf-cache-status: MISS`, both contain `classy-flow-set` (the positive control) and not
+  `premium-instant-hijab`.
+- Titles the translator did not reach within its budget publish untranslated tonight and are retried
+  on the next runs; the step summary reports the count.
