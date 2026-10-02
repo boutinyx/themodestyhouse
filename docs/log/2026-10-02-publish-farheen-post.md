@@ -18,3 +18,14 @@ Tina: "post frahens blog post" — publish the Try Modest founder interview, a d
   listed on `/editorial` and in `sitemap.xml`.
 - Playwright on the live article at 390x844: cover, "STORY" label, title, excerpt, byline and date
   "2 October 2026" render; full-page capture shows the whole body ending in the Try Modest link.
+
+## Follow-up: product links (same day)
+Tina: "all the links in her blog should point to her stuff". The two named pieces were unlinked; now:
+- "Afraa Co-Ord Set" -> `trymodest.com/products/afraa-everyday-elegance-abaya-pant-co-ord`
+- "Lila abaya sets" -> `trymodest.com/products/lila-scalloped-floral-abaya-set`
+both with the site's outbound UTM (`utm_content=editorial`) and `rel="noopener noreferrer sponsored"`.
+Ghost's html->lexical conversion dropped `target="_blank"`; `rel` survived. The two existing links
+(first "Try Modest", closing line) already go to `/designers/try-modest` and were left.
+Live check: the rendered page carries all four links, and the site's render path also appended the
+Try Modest affiliate `sca_ref`. **Afraa is sold out** on trymodest.com (`/products/…​.js` →
+`available: false`); Lila is available.
