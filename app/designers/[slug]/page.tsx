@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
+import { ArrowUpRight, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { BRANDS } from '@/data/brands';
 import { productsForBrand } from '@/lib/products';
 import { brandPageSlugs, hasBrandPage } from '@/lib/brandPages';
@@ -46,6 +46,14 @@ export function generateStaticParams() {
 }
 
 export const revalidate = 60;
+
+// Same label map and Sparkle mark as /designers' vetted row (app/designers/page.tsx) —
+// kept local rather than shared, matching that file's own small-duplicated-map
+// convention (e.g. GARMENT_LABEL below).
+const BADGE: Record<string, string> = {
+  verified: 'Verified',
+  'editors-pick': "Editor's Pick",
+};
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -335,26 +343,41 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         </a>
       </p>
 
-      {/* "Is this your house?" — the claim entry point.
-          MOVED HERE 2026-09-02, from the foot of the page. It was placed below
-          the grid and the measured sections on the theory that it is addressed
-          to one reader in a thousand and a shopper should never have to read
-          past it. Measured, that theory was wrong by a mile: 6,008px down a
-          7,329px page on a phone — 82% of the way to the bottom, past all 24
-          cards, seven screens of scrolling. Tina, looking for it: "i dont see
-          it." Quiet is a matter of SIZE and COLOUR, not of distance; it stays
-          small and muted, and now sits where the house's own row already is,
-          under the button that goes to their storefront. */}
-      <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
-        Is this your house?{' '}
-        <Link
-          href={`/contact?topic=claim&brand=${brand.slug}`}
-          style={{ color: 'var(--plum)', textDecoration: 'underline', textUnderlineOffset: 2 }}
-        >
-          Claim this page
-        </Link>
-        .
-      </p>
+      {/* A badged house doesn't need to be asked to claim its own page — it
+          already went through the verification that badge represents
+          (CLAUDE.md §7 / the $99 onboarding flow). Tina, 2026-10-02: "remove
+          the claim your page and give them a verified button." Same mark as
+          the /designers vetted row: Phosphor Sparkle, never the ✦ character
+          (CLAUDE.md §6). */}
+      {brand.badge ? (
+        <p className="mt-4">
+          <span className="badge">
+            <Sparkle size={10} weight="fill" />
+            {BADGE[brand.badge]}
+          </span>
+        </p>
+      ) : (
+        /* "Is this your house?" — the claim entry point.
+            MOVED HERE 2026-09-02, from the foot of the page. It was placed below
+            the grid and the measured sections on the theory that it is addressed
+            to one reader in a thousand and a shopper should never have to read
+            past it. Measured, that theory was wrong by a mile: 6,008px down a
+            7,329px page on a phone — 82% of the way to the bottom, past all 24
+            cards, seven screens of scrolling. Tina, looking for it: "i dont see
+            it." Quiet is a matter of SIZE and COLOUR, not of distance; it stays
+            small and muted, and now sits where the house's own row already is,
+            under the button that goes to their storefront. */
+        <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>
+          Is this your house?{' '}
+          <Link
+            href={`/contact?topic=claim&brand=${brand.slug}`}
+            style={{ color: 'var(--plum)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+          >
+            Claim this page
+          </Link>
+          .
+        </p>
+      )}
 
       {/* FIRST SCREEN, 2026-09-21. Tina: people arrive, see nothing that rewards
           them and leave — "instant gratification is what we're missing". At

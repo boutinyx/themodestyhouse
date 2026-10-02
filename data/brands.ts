@@ -263,5 +263,10 @@ export const BRANDS: Brand[] = [
   // prior research (docs/log/2026-09-23-farheen-fajr-noor-outreach-research.md) found
   // baby/boys'/men's items and ~5 dropship rows mixed into the raw feed; the
   // non-apparel veto and gender exclusions handle those at publish time, not here.
-  { slug: 'try-modest', name: 'Try Modest', homepage: 'https://trymodest.com', feedUrl: 'https://trymodest.com/products.json', community: 'hijabi', currency: 'USD', category: 'Hijabs & modest', city: 'United Kingdom', vibe: 'elegant' },
+  // `badge: 'verified'` set 2026-10-02 — Tina, after the $99 onboarding and the
+  // 51-cut curation pass: "remove the claim your page and give them a verified
+  // button". Description drawn from Farheen's own questionnaire reply
+  // (docs/log/2026-10-01-try-modest-founder-draft.md), same source as the Ghost
+  // founder post — never invented (CLAUDE.md §10.18).
+  { slug: 'try-modest', name: 'Try Modest', homepage: 'https://trymodest.com', feedUrl: 'https://trymodest.com/products.json', community: 'hijabi', currency: 'USD', category: 'Hijabs & modest', city: 'United Kingdom', vibe: 'elegant', badge: 'verified', description: 'A UK house built on abayas — 116 of its 273 pieces, with a full run of hijabs and dresses alongside. Median price $71, most of the range between $12 and $158. Sealed for an accessibility policy that’s rare at this price point: free shipping with no minimum to more than 20 countries, customs duties absorbed for shoppers in the US, Canada and much of Europe.' },
 ];
