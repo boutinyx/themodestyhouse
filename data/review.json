@@ -1,13 +1,5 @@
 [
   {
-    "id": "zahraa:7508377337943",
-    "title": "Reyana Paisley Long Sleeve Maxi Dress",
-    "url": "https://zahraathelabel.com/products/reyana-paisley-long-sleeve-maxi-dress",
-    "image": "https://cdn.shopify.com/s/files/1/0276/6313/8903/files/1_dcf67f3c-3480-497d-b538-78ad23741c67.png?v=1762368217",
-    "why": "brand-flagged-photo-issue",
-    "tag": "Draft-26"
-  },
-  {
     "id": "aab:10032072163642",
     "title": "Stripey Maxi Shirt",
     "url": "https://us.aabcollection.com/products/stripey-maxi-shirt",
@@ -36,14 +28,6 @@
     "title": "Pinstripe Maxi Shirt Coffee",
     "url": "https://us.aabcollection.com/products/pinstripe-maxi-shirt-coffee",
     "image": "https://cdn.shopify.com/s/files/1/0865/2220/0378/files/aab_ecom_2026.03.281402.jpg?v=1777383288",
-    "why": "brand-flagged-photo-issue",
-    "tag": "reshoot_spring_26"
-  },
-  {
-    "id": "aab:10059486921018",
-    "title": "Pinstripe Co-Ord Set",
-    "url": "https://us.aabcollection.com/products/pinstripe-co-ord-set",
-    "image": "https://cdn.shopify.com/s/files/1/0865/2220/0378/files/aab_ecom_2026.03.281428.jpg?v=1777383217",
     "why": "brand-flagged-photo-issue",
     "tag": "reshoot_spring_26"
   },
@@ -162,12 +146,6 @@
     "why": "filtered:no-image"
   },
   {
-    "id": "noureen:52832",
-    "title": "Classy Dress F25 – Ivory",
-    "url": "https://noureenmodestfashion.com/product/classy-dress-f25-ivory/",
-    "why": "filtered:no-image"
-  },
-  {
     "id": "noureen:49704",
     "title": "Luxury Jersey Khimaar Beige",
     "url": "https://noureenmodestfashion.com/product/luxury-jersey-khimaar-beige/",
@@ -264,39 +242,9 @@
     "why": "filtered:unclassified"
   },
   {
-    "id": "nihan:14983298908523",
-    "title": "Kapaklı Asimetrik Omuz Çantası - Toprak",
-    "url": "https://nihan.com.tr/products/kapakli-asimetrik-omuz-cantasi-toprak",
-    "why": "filtered:unclassified"
-  },
-  {
-    "id": "nihan:14983250116971",
-    "title": "Toka Detayı Fermuarlı Çanta - Toprak",
-    "url": "https://nihan.com.tr/products/toka-detayi-fermuarli-canta-toprak",
-    "why": "filtered:unclassified"
-  },
-  {
     "id": "nihan:14983237697899",
     "title": "Mini City Çanta - Toprak",
     "url": "https://nihan.com.tr/products/mini-city-canta-toprak",
-    "why": "filtered:unclassified"
-  },
-  {
-    "id": "nihan:14983211745643",
-    "title": "Kilit Aksesuarlı Çapraz Askılı Çanta - Toprak",
-    "url": "https://nihan.com.tr/products/kilit-aksesuarli-capraz-askili-canta-toprak",
-    "why": "filtered:unclassified"
-  },
-  {
-    "id": "nihan:14983327514987",
-    "title": "Yanları Toka Detaylı Charm Aksesuarlı Çanta - Toprak",
-    "url": "https://nihan.com.tr/products/yanlari-toka-detayli-charm-aksesuarli-canta-toprak",
-    "why": "filtered:unclassified"
-  },
-  {
-    "id": "nihan:14983261127019",
-    "title": "Kapaklı Çapraz Askılı Charm Aksesuarlı Çanta - Toprak",
-    "url": "https://nihan.com.tr/products/kapakli-capraz-askili-charm-aksesuarli-canta-toprak",
     "why": "filtered:unclassified"
   },
   {
@@ -4434,6 +4382,46 @@
     "title": "AYA Silver Square Crystal & Pearl Stud Earrings",
     "url": "https://ilovemodesty.com/products/aya-silver-square-crystal-pearl-stud-earrings",
     "why": "filtered:unclassified"
+  },
+  {
+    "id": "abayas-boutique:28684",
+    "title": "Nisrin – Lush Emerald",
+    "url": "https://abayasboutique.com/product/nisrin-emerald/",
+    "why": "signal-conflict",
+    "titleGuess": "abaya",
+    "typeGuess": "top"
+  },
+  {
+    "id": "abayas-boutique:28672",
+    "title": "Kamari",
+    "url": "https://abayasboutique.com/product/kamari/",
+    "why": "signal-conflict",
+    "titleGuess": "abaya",
+    "typeGuess": "top"
+  },
+  {
+    "id": "abayas-boutique:28877",
+    "title": "Nisrin – Hyacinth",
+    "url": "https://abayasboutique.com/product/nisrin-hyacinth/",
+    "why": "signal-conflict",
+    "titleGuess": "abaya",
+    "typeGuess": "top"
+  },
+  {
+    "id": "abayas-boutique:28860",
+    "title": "Nisrin- Petal Pink",
+    "url": "https://abayasboutique.com/product/nisrin-petal-pink/",
+    "why": "signal-conflict",
+    "titleGuess": "abaya",
+    "typeGuess": "top"
+  },
+  {
+    "id": "abayas-boutique:28848",
+    "title": "Nisrin-Dark Purple",
+    "url": "https://abayasboutique.com/product/nisrin-dark-purple/",
+    "why": "signal-conflict",
+    "titleGuess": "abaya",
+    "typeGuess": "top"
   },
   {
     "id": "ipekstil:9390733263083",
