@@ -11,3 +11,8 @@ Tina asked for the GitHub repo and README to be updated. The README dated from 2
 ## Verification
 - `git merge-base --is-ancestor origin/main origin/staging` → true.
 - Every script named in the README exists in `package.json`; workflow schedules read from `.github/workflows/`.
+
+## Merged to main (Tina approved)
+- `main` fast-forwarded to `362e899` (README + sold-out product pages `a8caabc`).
+- Waited until a cache-busted request to `/product/chic-modesty/10323092668754` returned 200 from the origin (`MISS`), then ran Cloudflare `purge_everything` (§10.47 order).
+- After the purge, production: skirt page 200 `MISS` then 200 `HIT`, title "Chocolate flared satin skirt by Chic & Modesty". Controls: `/product/veiled/7653917589609` 200, `/product/chic-modesty/1` 404.
