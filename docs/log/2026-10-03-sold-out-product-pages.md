@@ -36,3 +36,7 @@ its link turns that link into a 404. The size floor already had a narrow version
   (`colourLeads` "every listed id…", `edits` "no hand-picked edit has lost…") fail identically on untouched
   origin/staging (checked with the change stashed). They are pre-existing data drift and not addressed here.
 - Staging check: see below.
+- **On staging** (`themodestyhouse-staging-production.up.railway.app`, commit a8caabc): the skirt's URL returns 200
+  with h1 "Chocolate flared satin skirt", "Sold out right now.", the restock link (utm-tagged) and an "In stock and
+  similar" rail. Checked in Playwright at iPhone 13, full page. Controls: `/product/veiled/7653917589609` (live) still
+  200 with its normal page; `/product/chic-modesty/1` (unknown) still 404.
