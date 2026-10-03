@@ -404,6 +404,39 @@ if (existsSync(U('refresh-report.json'))) {
   );
 }
 
+// ── Sold-out sidecar ──────────────────────────────────────────────────────────
+// Every product page of ours is a link someone may already have shared, and
+// Tina posts them on Instagram. A product drops out of products.json the moment
+// it sells out (or only XL+ is left), and its page used to 404 — found
+// 2026-10-03 on chic-modesty:10323092668754, linked in a post the day before.
+// This file lets app/product/... show a "sold out right now" page instead.
+// What goes in: products we WOULD publish except for stock — out of stock, or
+// stopped by the size floor. What never goes in: anything cut editorially
+// (decisions, exclusions, brand blacklist, price ceiling, non-apparel, held
+// garments), anything the brand delisted or that dead-links (there is nothing
+// to send a shopper to), and anything already published. Compact rows
+// ([title, image, url, garment, price, currency]) keyed by id, one per line so
+// the nightly diff stays readable; read only by the product page, never by a
+// grid (Invariant 16).
+{
+  const publishedIds = new Set(rowsToWrite.map((p) => p.id));
+  const STOCK_ONLY = new Set(['only-large-sizes']);
+  const lines = [];
+  for (const p of raw) {
+    if (publishedIds.has(p.id) || decisions[p.id] !== 'keep') continue;
+    if (!(p.price > 0) || !p.image || p.delistedAt || p.filteredAt) continue;
+    const v = verdict(p);
+    if (v && !STOCK_ONLY.has(v.reason)) continue;
+    if (p.inStock && !v) continue;               // not a stock reason: leave it out
+    const g = resolveGarment({ id: p.id, garment: p.garment, title: p.title, raw: p.raw }, garmentOverrides);
+    if (g.status === 'held') continue;
+    lines.push(`${JSON.stringify(p.id)}:${JSON.stringify([publishTitle(p), p.image, p.url, g.garment, p.price, p.currency])}`);
+  }
+  lines.sort();
+  writeFileSync(U('unavailable-products.json'), `{\n${lines.join(',\n')}\n}\n`);
+  console.log(`Sold-out pages: ${lines.length} products kept reachable in unavailable-products.json`);
+}
+
 writeFileSync(U('products.json'), JSON.stringify(rowsToWrite, null, 2));
 
 const byReason = rejected.reduce((a, r) => ((a[r.reason] = (a[r.reason] || 0) + 1), a), {});

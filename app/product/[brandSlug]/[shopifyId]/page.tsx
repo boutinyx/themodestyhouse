@@ -11,6 +11,7 @@ import { productAltText } from '@/lib/altText';
 import EditorsRail from '@/components/EditorsRail';
 import { withUtm } from '@/lib/outbound';
 import { JsonLd } from '@/components/JsonLd';
+import { getUnavailableProduct, type UnavailableProduct } from '@/lib/unavailableProducts';
 
 /**
  * A page of OURS for a single product, so there is something on
@@ -45,7 +46,11 @@ type Params = { brandSlug: string; shopifyId: string };
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { brandSlug, shopifyId } = await params;
   const p = findProduct(brandSlug, shopifyId);
-  if (!p) return { title: 'Not found', robots: { index: false, follow: false } };
+  if (!p) {
+    const u = getUnavailableProduct(`${brandSlug}:${shopifyId}`);
+    if (!u) return { title: 'Not found', robots: { index: false, follow: false } };
+    return soldOutMetadata(u, shopifyId);
+  }
   const title = `${p.title} by ${p.brandName}`;
   const description = `${p.title} from ${p.brandName} — curated on The Modesty House.`;
   // Social cards get their own square, dimension-declared variant — see
@@ -125,7 +130,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 // page only ever draws from other hijabs, an abaya page from other abayas,
 // so hijabs/specialty items never get mixed into an unrelated grid — they
 // just recommend within their own community.
-function relatedPicks(p: Product): Product[] {
+function relatedPicks(p: Pick<Product, 'garment' | 'brandSlug' | 'id'>): Product[] {
   const seenBrand = new Set<string>([p.brandSlug]);
   return getProducts()
     .filter((item) => item.garment === p.garment && item.id !== p.id && item.inStock && item.image)
@@ -140,7 +145,13 @@ function relatedPicks(p: Product): Product[] {
 export default async function ProductPage({ params }: { params: Promise<Params> }) {
   const { brandSlug, shopifyId } = await params;
   const p = findProduct(brandSlug, shopifyId);
-  if (!p) notFound();
+  if (!p) {
+    // Not in the catalogue right now. If it's only sold out, the link someone
+    // shared still deserves a page: say so, and show what IS in stock.
+    const u = getUnavailableProduct(`${brandSlug}:${shopifyId}`);
+    if (!u) notFound();
+    return <SoldOutPage u={u} />;
+  }
   const related = relatedPicks(p);
 
   return (
@@ -219,6 +230,80 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         <section className="mt-16 md:mt-20">
           <h2 className="card-title card-title-lg mb-6">You might also love</h2>
           <EditorsRail picks={related} surface="product-page-related" badgeLabel={null} />
+        </section>
+      )}
+    </main>
+  );
+}
+
+// ── Sold out ────────────────────────────────────────────────────────────────
+// A shared link to a piece that has since sold out (lib/unavailableProducts.ts).
+// Same noindex as the live page; the OG card still works so a re-shared link
+// previews properly. No price, no product JSON-LD and no "in stock" OG tags:
+// Meta's crawler compares those against the catalogue feed, and this product
+// is not in it.
+function soldOutMetadata(u: UnavailableProduct, shopifyId: string): Metadata {
+  const title = `${u.title} by ${u.brandName}`;
+  const description = `${u.title} from ${u.brandName} is sold out right now. Find similar pieces on The Modesty House.`;
+  const card = socialCardImage(u.image);
+  const url = `${SITE_URL}/product/${u.brandSlug}/${shopifyId}`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    robots: { googleBot: { index: false, follow: false } },
+    other: { bingbot: 'noindex, nofollow' },
+    openGraph: {
+      title, description, url, siteName: 'The Modesty House', type: 'website',
+      ...(card ? { images: [{ url: card.url, ...(card.width ? { width: card.width } : {}), ...(card.height ? { height: card.height } : {}), alt: title }] } : {}),
+    },
+    twitter: { card: 'summary', title, description, ...(card ? { images: [card.url] } : {}) },
+  };
+}
+
+function SoldOutPage({ u }: { u: UnavailableProduct }) {
+  const related = relatedPicks(u);
+  return (
+    <main className="max-w-3xl mx-auto px-8 pt-12 md:pt-16 pb-16">
+      <Link href="/new-in" className="nav-link inline-flex items-center gap-1 mb-8" style={{ color: 'var(--muted)' }}>
+        <ArrowLeft size={16} />
+        Back to the directory
+      </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={shopifyImage(u.image, 600)}
+            srcSet={shopifySrcSet(u.image, DETAIL_WIDTHS)}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            alt={`${u.title} by ${u.brandName}`}
+            className="w-full aspect-[2/3] object-cover"
+            style={{ background: '#fff', opacity: 0.72 }}
+          />
+          <span className="badge absolute top-4 left-4" data-testid="sold-out-badge">Sold out</span>
+        </div>
+        <div>
+          <div className="brand-label">{u.brandName}</div>
+          <h1 className="card-title card-title-xl mt-2">{u.title}</h1>
+          <p className="mt-4" style={{ color: 'var(--muted)' }}>Sold out right now.</p>
+          <a
+            href={withUtm(u.url, 'product-page-sold-out')}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            data-brand={u.brandSlug}
+            data-garment={u.garment}
+            data-surface="product-page-sold-out"
+            className="btn-pill text-center inline-flex items-center justify-center gap-2 mt-8"
+          >
+            Check {u.brandName} for a restock
+            <ArrowUpRight size={15} weight="bold" />
+          </a>
+        </div>
+      </div>
+      {related.length >= 2 && (
+        <section className="mt-16 md:mt-20">
+          <h2 className="card-title card-title-lg mb-6">In stock and similar</h2>
+          <EditorsRail picks={related} surface="product-page-sold-out-related" badgeLabel={null} />
         </section>
       )}
     </main>

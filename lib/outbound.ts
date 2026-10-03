@@ -47,6 +47,8 @@ export type OutboundSurface =
   | 'quickview'
   | 'product-page'
   | 'product-page-related'
+  | 'product-page-sold-out'          // the sold-out page for a shared link (lib/unavailableProducts.ts)
+  | 'product-page-sold-out-related'
   | 'brand-page'
   | 'designers'
   | 'marquee'

@@ -139,7 +139,7 @@ jobs:
           # and no record of the ones it already got right.
           git add data/raw-products.json data/products.json data/decisions.json \
                   data/rejected.json data/review.json data/refresh-report.json \
-                  data/title-translations.json
+                  data/title-translations.json data/unavailable-products.json
           if git diff --cached --quiet; then
             echo "No catalogue changes — nothing to push."
             echo "pushed=false" >> "$GITHUB_OUTPUT"
