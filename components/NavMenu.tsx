@@ -548,7 +548,17 @@ export function NavMenu({
         // makes the row fit at 1152 without compressing the wordmark. Above
         // 1280 there is room to spare, so the original spacing stands.
         // See `--breakpoint-hdr` in app/globals.css for the measurements.
-        className="flex items-center gap-5 md:gap-4 xl:gap-7 list-none m-0 p-0"
+        //
+        // EIGHT items (the staging-only "Creators" link, lib/creators.ts) do
+        // not fit that way: measured 2026-10-04, the row overflowed by 7px at
+        // 1152 and 51px at 1280. So with more than seven items the tight gap
+        // holds up to 1440, which fits at every width with room left. The
+        // seven-item production header is unchanged by this branch. Below
+        // 1280 the gap alone was not enough — '$ USD' wrapped onto two lines
+        // at 1152 — so `.nav-dense` also tightens letter-spacing there.
+        className={`flex items-center list-none m-0 p-0 ${
+          items.length > 7 ? 'nav-dense gap-5 md:gap-3 min-[1440px]:gap-7' : 'gap-5 md:gap-4 xl:gap-7'
+        }`}
       >
         {items.map((entry) =>
           entry.kind === 'link' ? (

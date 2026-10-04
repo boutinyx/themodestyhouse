@@ -1789,3 +1789,11 @@ html[data-input-modality="mouse"] summary:focus-visible {
 }
 .editorial-prose pre { overflow-x: auto; margin: 0 0 20px; }
 .editorial-prose pre code { border: 0; padding: 0; background: none; }
+
+/* Eight top-level header items (staging-only "Creators" link — see
+   NavMenu.tsx) only fit between the hdr breakpoint and 1280 with tighter
+   tracking. Scoped to .nav-dense so the seven-item production header is
+   untouched. */
+@media (min-width: 1152px) and (max-width: 1279.98px) {
+  .nav-dense .nav-link { letter-spacing: 0.1em; }
+}

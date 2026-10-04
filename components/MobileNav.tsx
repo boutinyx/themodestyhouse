@@ -8,6 +8,7 @@ import { Dialog } from '@base-ui-components/react/dialog';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import { DISPLAY_CURRENCIES, CURRENCY_LABEL } from '@/lib/fx';
 import { CurrencyFlag } from './CurrencyFlag';
+import { useCreatorsEnabled } from './creators/useCreatorsEnabled';
 import {
   OUTERWEAR_SUBTYPE_LABELS, LAYERING_SUBTYPE_LABELS, HIJAB_SUBTYPE_LABELS,
   type OuterwearSubtype, type LayeringSubtype, type HijabSubtype,
@@ -50,6 +51,7 @@ const HIJAB_SUBTYPE_ORDER = Object.keys(HIJAB_SUBTYPE_LABELS) as HijabSubtype[];
  */
 export function MobileNav() {
   const path = usePathname();
+  const creatorsOn = useCreatorsEnabled();
   const [open, setOpen] = useState(false);
   // Blazers & Vests / Cardigans & Sweaters each expand inline to their own
   // subtypes — mirrors the desktop header's hover flyout (components/
@@ -555,6 +557,7 @@ export function MobileNav() {
 
             <div className="mt-5 pt-2" style={{ borderTop: '1px solid var(--hairline)' }}>
               {row('/designers', 'Designers')}
+              {creatorsOn && row('/creators', 'Creators')}
               {row('/editorial', 'Editorial')}
               {row('/about', 'About')}
               {row('/favourites', 'Favourites')}

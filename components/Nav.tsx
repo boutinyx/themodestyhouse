@@ -1,5 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
+import { useCreatorsEnabled } from './creators/useCreatorsEnabled';
 import { CATEGORY_LANES } from '@/lib/lanes';
 import {
   LAYERING_SUBTYPE_LABELS, HIJAB_SUBTYPE_LABELS,
@@ -113,6 +114,7 @@ export function Nav() {
   // Order: Clothing, Hijabs, Basics, Designers, Editorial, About — Hijabs
   // and Basics both moved up next to Clothing 2026-08-21 (previously Hijabs
   // sat after Designers; Basics didn't exist as a top-level item at all).
+  const creatorsOn = useCreatorsEnabled();
   const navItems: (NavGroup | NavLink)[] = [
     {
       kind: 'group',
@@ -181,6 +183,8 @@ export function Nav() {
       wide: true,
     },
     { kind: 'link', href: '/designers', label: 'Designers', activeWhen: path.startsWith('/designers') },
+    // Staging-only until real creators replace the fictional ones (lib/creators.ts).
+    ...(creatorsOn ? [{ kind: 'link' as const, href: '/creators', label: 'Creators', activeWhen: path.startsWith('/creators') }] : []),
     { kind: 'link', href: '/editorial', label: 'Editorial', activeWhen: path.startsWith('/editorial') },
     { kind: 'link', href: '/about', label: 'About', activeWhen: path.startsWith('/about') },
   ];

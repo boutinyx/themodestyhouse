@@ -44,3 +44,19 @@ the site's header, menu, footer, product cards and favourites, not a standalone 
   sitemap and decide where it lives in the nav.
 - Mistake caught in my own verification: a zsh loop variable named `path` overwrote PATH and every
   curl "failed". Renamed; same family as §10.48.
+
+## Follow-up: header link (same day)
+Tina: "put it in the header". "Creators" sits after Designers in the desktop header and the phone menu,
+on non-production hosts only.
+- `components/creators/useCreatorsEnabled.ts` — `useSyncExternalStore`, server snapshot `false`, so the
+  link never renders or flashes on production. Imports `lib/deployEnv` only: importing `lib/creators`
+  would have shipped the fictional creator records in every page's JavaScript, production included
+  (caught before commit).
+- Fitting it: eight items overflowed the row by 7px at 1152 and 51px at 1280. Fixed only for the
+  eight-item header: gap-3 up to 1440 (was gap-4 → gap-7 at 1280), and `.nav-dense` tightens nav-link
+  letter-spacing 0.18em → 0.1em between 1152 and 1279. The first attempt (gap only) read 0 overflow but
+  wrapped "$ USD" onto two lines at 1152 — §10.51's compression-is-not-fitting, caught by screenshot.
+  The seven-item production header takes the unchanged code path.
+- Verified on a production build: 0 overflow at 1152/1200/1279/1280/1440/1920, "$ USD" one line (24px),
+  nav-to-search ≥ 29px; `npm run audit:interaction` against it: 0 problems (nav dropdowns ok at
+  ipad-1366 and desktop-1440 in both engines); phone drawer shows the link.
