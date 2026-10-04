@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Creators — The Modesty House (mockup)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/mockups/creator-shops/">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="phosphor/regular/style.css">
+<link rel="stylesheet" href="phosphor/fill/style.css">
+<style>
+@font-face{font-family:Bodoni;src:url(fonts/bodoni-normal.woff2)}
+@font-face{font-family:Bodoni;font-style:italic;src:url(fonts/bodoni-italic.woff2)}
+@font-face{font-family:Marcellus;src:url(fonts/marcellus.woff2)}
+@font-face{font-family:Jost;src:url(fonts/jost.woff2)}
+@font-face{font-family:Caveat;src:url(fonts/caveat-700.woff2)}
+:root{--aub:#441943;--plum:#6e4a6b;--parch:#faf7f1;--brass:#a98a5b;--ink:#241b24;--bone:#fbfaf6;--muted:#796e5e;--hair:#e4ddcf}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#e9e2d6}
+body{font-family:Jost,sans-serif;color:var(--ink)}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.ph{font-size:18px;vertical-align:-3px}
+
+/* mockup chrome */
+.mockbar{position:sticky;top:0;z-index:50;background:#1d161d;color:#e9e2d6;display:flex;gap:10px;align-items:center;padding:10px 18px;font-size:13px}
+.mockbar b{font-family:Marcellus;letter-spacing:.12em;text-transform:uppercase;font-weight:400;margin-right:auto}
+.mockbar button{border:1px solid #5a4a5a;border-radius:99px;padding:6px 14px;color:#e9e2d6}
+.mockbar button.on{background:#e9e2d6;color:#1d161d}
+.stage{margin:0 auto;background:var(--parch);min-height:100vh;transition:max-width .3s}
+body.phone .stage{max-width:390px;box-shadow:0 0 0 10px #1d161d,0 30px 80px rgba(0,0,0,.3);margin:30px auto;border-radius:30px;overflow:hidden;min-height:800px}
+
+/* site header */
+.hdr{display:flex;align-items:center;justify-content:center;height:64px;border-bottom:1px solid var(--hair);background:var(--parch);position:sticky;top:44px;z-index:20}
+body.phone .hdr{top:0}
+.hdr img{height:34px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+body.phone .wrap{padding:0 18px}
+.eyebrow{font-family:Marcellus;letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:var(--muted)}
+.serif{font-family:Bodoni;font-weight:400}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:11px 20px;font-size:13px;letter-spacing:.05em}
+.btn.solid{background:var(--aub);color:#fff}
+.btn.line{border:1px solid var(--aub);color:var(--aub)}
+.crumb{padding:22px 0 0;font-size:13px;color:var(--muted)}
+.crumb button{color:var(--plum);text-decoration:underline;text-underline-offset:3px}
+
+/* HERO (overview) */
+.hero{position:relative;height:min(88vh,860px);overflow:hidden;background:#1d161d}
+body.phone .hero{height:620px}
+.hero .imgs{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr}
+body.phone .hero .imgs{grid-template-columns:1fr}
+.hero .imgs img{width:100%;height:100%;object-fit:cover;display:block}
+.hero .imgs img:first-child{object-position:58% 25%}
+.hero .imgs img.outfit{object-position:50% 40%}
+body.phone .hero .imgs img:last-child{display:none}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,22,29,.05) 40%,rgba(29,22,29,.62))}
+.hero .t{position:absolute;left:0;right:0;bottom:64px;text-align:center;color:#fff;z-index:2}
+body.phone .hero .t{bottom:40px}
+.hero .eyebrow{color:#efe4d3;letter-spacing:.22em}
+.hero h1{font-family:Bodoni;font-weight:400;font-size:clamp(64px,10vw,150px);line-height:.9;letter-spacing:-.01em;margin:16px 0 18px}
+body.phone .hero h1{font-size:64px}
+.hero .ph-note{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;opacity:.75}
+
+/* directory */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:56px 0 30px;margin:0 auto}
+body.phone .cgrid{grid-template-columns:1fr;padding-top:30px}
+.ccard{display:block;width:100%;background:#fff;border:1px solid var(--hair);border-radius:24px;overflow:hidden;text-align:left;transition:transform .2s,box-shadow .2s}
+.ccard:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(36,27,36,.12)}
+.ccard .cov{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:3px;height:380px}
+body.phone .ccard .cov{height:260px}
+.ccard .cov img{width:100%;height:100%;min-height:0;object-fit:cover;display:block}
+.ccard .cov img:first-child{grid-row:span 2;object-position:60% 20%}
+.ccard .meta{padding:16px 18px 18px;display:flex;align-items:center;gap:12px}
+.ccard .av{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:60% 15%;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--brass)}
+.ccard h3{font-family:Bodoni;font-weight:400;font-size:21px}
+.ccard .h{font-size:13px;color:var(--plum)}
+.ccard .n{margin-left:auto;font-size:12px;color:var(--muted);text-align:right}
+.seen{text-align:center;padding:10px 0 70px;font-size:13px;color:var(--muted)}
+.seen a{color:var(--aub);text-decoration:underline;text-underline-offset:3px;margin-left:6px}
+
+/* profile */
+.prof{display:grid;grid-template-columns:220px 1fr auto;gap:36px;align-items:center;padding:44px 0 34px;border-bottom:1px solid var(--hair)}
+body.phone .prof{grid-template-columns:1fr;text-align:center;gap:16px;padding:28px 0}
+.prof .av{width:220px;height:220px;border-radius:50%;object-fit:cover;object-position:60% 15%;box-shadow:0 0 0 6px var(--parch),0 0 0 7px var(--brass)}
+body.phone .prof .av{width:130px;height:130px;margin:0 auto}
+.prof h1{font-size:50px;line-height:1;color:var(--ink)}
+body.phone .prof h1{font-size:36px}
+.prof .h{color:var(--plum);margin:6px 0 14px;display:flex;gap:14px;align-items:center}
+body.phone .prof .h{justify-content:center}
+.prof .bio{color:#4a3f4a;line-height:1.6;max-width:520px}
+body.phone .prof .bio{margin:0 auto}
+.prof .stats{display:flex;gap:30px;margin-top:18px}
+body.phone .prof .stats{justify-content:center}
+.prof .stats b{display:block;font-family:Bodoni;font-weight:400;font-size:26px;color:var(--aub)}
+.prof .stats span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.prof .acts{display:flex;flex-direction:column;gap:10px}
+body.phone .prof .acts{flex-direction:row;justify-content:center}
+
+.sec{padding:34px 0 8px;display:flex;align-items:baseline;justify-content:space-between}
+.sec h2{font-size:30px;color:var(--aub)}
+body.phone .sec{flex-direction:column;gap:4px}
+body.phone .sec h2{font-size:26px}
+.rail{display:flex;gap:16px;overflow-x:auto;padding:6px 0 18px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail .tile{flex:0 0 200px}
+body.phone .rail .tile{flex-basis:160px}
+
+.colls{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:8px 0 60px}
+body.phone .colls{grid-template-columns:1fr 1fr;gap:12px}
+.coll{text-align:left;display:block;width:100%}
+.coll .cv{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:3px;border-radius:18px;overflow:hidden;aspect-ratio:1;background:#eee;transition:transform .2s}
+.coll:hover .cv{transform:scale(1.02)}
+.coll .cv img{width:100%;height:100%;min-height:0;object-fit:cover;display:block}
+.coll h3{font-family:Bodoni;font-weight:400;font-size:19px;margin-top:10px}
+.coll .c{font-size:12px;color:var(--muted)}
+
+/* product tile */
+.tile{position:relative;text-align:left}
+.tile .im{position:relative;border-radius:16px;overflow:hidden;background:#eee}
+.tile .im img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.tile .fav{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;color:var(--aub)}
+.tile .bubble{position:absolute;left:10px;bottom:10px;right:10px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-radius:12px;padding:8px 10px;font-family:Bodoni;font-style:italic;font-size:14px;color:var(--plum);line-height:1.3;opacity:0;transform:translateY(6px);transition:.2s}
+.tile:hover .bubble,.tile.show .bubble{opacity:1;transform:none}
+.tile .brand{font-family:Marcellus;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:var(--muted);margin-top:10px}
+.tile .t{font-size:13px;line-height:1.3;margin:2px 0}
+.tile .row{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.tile .pr{font-size:13px}
+.tile .shop{font-size:12px;color:var(--aub);display:inline-flex;gap:4px;align-items:center}
+
+/* collection page */
+.chead{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:30px 0 30px}
+body.phone .chead{grid-template-columns:1fr;gap:18px}
+.chead .cv{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:22px;overflow:hidden}
+.chead .cv img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.chead h1{font-size:46px;line-height:1.02;color:var(--aub);margin:10px 0 14px}
+body.phone .chead h1{font-size:34px}
+.chead .by{display:flex;gap:10px;align-items:center;margin-bottom:16px;font-size:14px}
+.chead .by img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:60% 15%}
+.chead .note{font-family:Caveat;font-size:26px;color:var(--plum);line-height:1.2;border-left:3px solid var(--brass);padding-left:14px}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 18px;padding:10px 0 70px}
+body.phone .pgrid{grid-template-columns:1fr 1fr;gap:20px 12px}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:99px;font-size:13px;opacity:0;transition:.25s;z-index:99}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.blk{padding:72px 0 0}
+body.phone .blk{padding:44px 0 0}
+.blk-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px}
+.blk-h h2{font-family:Bodoni;font-weight:400;font-size:36px;color:var(--aub);line-height:1}
+body.phone .blk-h{flex-direction:column;gap:6px}
+body.phone .blk-h h2{font-size:28px}
+
+/* loved by creators */
+.lv .tile .who{position:absolute;left:10px;top:10px;display:flex}
+.lv .tile .who img{width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:60% 15%;box-shadow:0 0 0 2px #fff;margin-right:-8px}
+.lv .tile .picked{font-size:11px;color:var(--plum);margin-top:4px}
+/* moments */
+.moments{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+body.phone .moments{grid-template-columns:1fr 1fr;gap:10px}
+.moment{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/4;display:block;width:100%}
+.moment img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.moment:hover img{transform:scale(1.04)}
+.moment:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,22,29,0) 45%,rgba(29,22,29,.65))}
+.moment .lb{position:absolute;left:18px;right:18px;bottom:16px;color:#fff;z-index:2;text-align:left}
+.moment .lb b{display:block;font-family:Bodoni;font-weight:400;font-size:26px;line-height:1.05}
+.moment .lb span{font-size:12px;opacity:.85}
+.moments.big{grid-template-columns:repeat(2,1fr)}
+.moments.big .moment{aspect-ratio:4/3}
+.moments.big .moment .lb b{font-size:38px}
+/* latest collections */
+.latest{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+body.phone .latest{grid-template-columns:1fr}
+.lc{background:#fff;border:1px solid var(--hair);border-radius:22px;overflow:hidden;text-align:left;display:block;width:100%}
+.lc .cv{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.lc .cv img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.lc .m{padding:14px 16px 16px;display:flex;gap:10px;align-items:center}
+.lc .m img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:60% 15%}
+.lc h4{font-family:Bodoni;font-weight:400;font-size:20px}
+.lc .s{font-size:12px;color:var(--muted)}
+.lc .new{margin-left:auto;font-family:Marcellus;letter-spacing:.14em;font-size:10px;color:var(--brass);text-transform:uppercase}
+.hero .imgs.one{grid-template-columns:1fr}
+.hero .imgs.one img{object-position:50% 35%}
+body.phone .hero .imgs.one img{display:block;object-position:42% 30%}
+.ccard .cov img:first-child{object-position:50% 18%}
+.ccard .av,.prof .av,.chead .by img,.lv .tile .who img,.lc .m img{object-position:50% 25%}
+.mockfic{display:inline-block;margin-left:8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
+.cgrid.swipe{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
+.cgrid.swipe::-webkit-scrollbar{display:none}
+.cgrid.swipe .ccard{flex:0 0 41%;scroll-snap-align:start}
+body.phone .cgrid.swipe .ccard{flex-basis:82%}
+.navarrows{display:flex;gap:8px}
+.navarrows button{width:42px;height:42px;border-radius:50%;border:1px solid var(--hair);background:#fff;display:grid;place-items:center;color:var(--aub)}
+.navarrows button:hover{border-color:var(--aub)}
+body.phone .navarrows{display:none}
+.lv button.tile{display:block;text-align:left}
+</style>
+</head>
+<body>
+<div class="mockbar"><b>Mockup · Creator shops</b>
+  <button data-v="desktop" class="on">Desktop</button><button data-v="phone">Phone</button></div>
+<div class="stage">
+  <div class="hdr"><img src="logo.png" alt="The Modesty House"></div>
+  <main id="app"></main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="shelves.js"></script>
+<script>
+const S = window.SHELVES;
+const CREATORS = [
+  { id:'a', name:'Layla', handle:'laylaelamrani', photo:'layla.jpg',  city:'London',
+    bio:'Neutral tones, good tailoring, one statement piece. Uni by day, dinners by night.',
+    collections:['outer','tailoring','knits'] },
+  { id:'b', name:'Amira', handle:'ammiri', photo:'amira.jpg',  city:'Rotterdam',
+    bio:'If there’s a nikah, a walima or an Eid dinner, I’ve already planned the outfit.',
+    collections:['wedding','abayas','satin'] },
+  { id:'c', name:'Yasmin', handle:'yaszzmi_x', photo:'yasmin.jpg',  city:'Brussels',
+    bio:'Easy outfits for real days: uni, errands, coffee. One bright piece, the rest simple.',
+    collections:['everyday','sets','hijabs'] },
+];
+const COLL = {
+  tailoring:{ title:'Tailoring I live in', note:'sharp but never stiff', notes:['the perfect wide leg','office to dinner','fits like it was made for me','my interview outfit','looks expensive, isn’t','goes with every hijab','the cut is everything','my most-worn trousers'] },
+  knits:{ title:'Neutral knits', note:'soft, warm, goes with everything', notes:['cosiest thing I own','layers over everything','the perfect oatmeal','wore it all winter','soft, not itchy','so easy to style','my sunday uniform','instant cosy'] },
+  satin:{ title:'Satin for Eid', note:'Eid, sorted — every year', notes:['the sheen in photos','Eid morning outfit','dressy without trying','the colour is unreal','flows beautifully','compliments all day','wore it to three dinners','my favourite this year'] },
+  sets:{ title:'Co-ords on repeat', note:'one outfit, zero thinking', notes:['wear together or apart','my lazy-day hero','looks put together','travel essential','so comfortable','uni approved','three ways to wear it','bought it in two colours'] },
+  everyday:{ title:'My everyday uniform', note:'what I actually wear 5 days a week', notes:['lives in my suitcase','the colour sold me','my uni uniform, honestly','softest thing I own','pairs with everything','wore it three days in a row','everyone asks where it\'s from','weekend favourite'] },
+  wedding:{ title:'Wedding guest season', note:'for every nikah, walima and engagement this year', notes:['wore it to my cousin\'s nikah','photographs SO well','the cut is everything','dance-floor approved','elegant without trying','got three compliments','the fabric moves beautifully','dressy but comfy'] },
+  abayas:{ title:'Abayas I\'d buy again', note:'the ones that earned their place', notes:['the drape!!','my everyday abaya','looks way more expensive','perfect for Jummah','travel-proof','classic forever','statement sleeves','fits like a dream'] },
+  hijabs:{ title:'Hijabs I swear by', note:'no slipping, no fuss, all day', notes:['stays put all day','my go-to jersey','the perfect nude','so breathable','doesn\'t need pins','pretty for occasions','soft on the skin','every colour, please'] },
+  outer:{ title:'Layers for fall', note:'coats and blazers that go over everything', notes:['the trench of my dreams','smart but easy','warm without bulk','instant outfit','the perfect camel','office to dinner','oversized in the best way','my rainy-day pick'] },
+};
+const $app = document.getElementById('app');
+const toast = m => { const t=document.getElementById('toast'); t.textContent=m; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),1600); };
+const favs = new Set();
+
+function tile(p, note, i, key){
+  const id = key+'-'+i;
+  return `<div class="tile" onclick="this.classList.toggle('show')">
+    <div class="im"><img src="${p.image}" alt="">
+      <button class="fav" onclick="event.stopPropagation();fav('${id}',this)"><i class="ph${favs.has(id)?'-fill':''} ph-heart"></i></button>
+      ${note?`<div class="bubble">“${note}”</div>`:''}
+    </div>
+    <div class="brand">${p.brand}</div><div class="t">${p.title}</div>
+    <div class="row"><span class="pr">${p.price}</span><a class="shop" href="${p.url}" target="_blank" rel="noopener noreferrer sponsored" onclick="event.stopPropagation()">Shop <i class="ph ph-arrow-up-right"></i></a></div>
+  </div>`;
+}
+window.fav = (id, el) => { favs.has(id)?favs.delete(id):favs.add(id); el.innerHTML = `<i class="ph${favs.has(id)?'-fill':''} ph-heart"></i>`; toast(favs.has(id)?'Saved to your favourites':'Removed'); };
+window.share = () => { navigator.clipboard?.writeText(location.href); toast('Link copied'); };
+
+const A = CREATORS[0], B = CREATORS[1], C = CREATORS[2];
+const loved = () => { const items=CREATORS.flatMap(c=>c.collections.flatMap(k=>S[k].slice(2,3).map(p=>[p,k,c])));
+  return `<div class="blk lv"><div class="blk-h"><h2>Loved by creators</h2><span class="eyebrow">Picked most this month</span></div>
+  <div class="rail">${items.map(([p,k,c])=>`<button class="tile" onclick="go('c/${c.id}/${k}')"><div class="im"><img src="${p.image}" alt=""><div class="who"><img src="${c.photo}" alt=""></div></div>
+    <div class="brand">${p.brand}</div><div class="t">${p.title}</div><div class="pr">${p.price}</div><div class="picked">Picked by ${c.name}</div></button>`).join('')}</div></div>`; };
+const MOMENTS=[
+  { id:'wedding', name:'Wedding guest', img:['wedding',5], keys:['wedding','satin'] },
+  { id:'everyday', name:'Everyday', img:['everyday',0], keys:['everyday','sets','knits'] },
+  { id:'abayas', name:'Abayas', img:['abayas',2], keys:['abayas'] },
+  { id:'fall', name:'Fall layers', img:['outer',1], keys:['outer','tailoring','knits'] },
+];
+const collsFor = m => CREATORS.flatMap(c=>c.collections.filter(k=>m.keys.includes(k)).map(k=>[c,k]));
+const moments = () => `<div class="blk"><div class="blk-h"><h2>Shop by moment</h2><span class="eyebrow">Collections from every creator</span></div>
+  <div class="moments">${MOMENTS.map(m=>{const n=collsFor(m);return `<button class="moment" onclick="go('m/${m.id}')"><img src="${S[m.img[0]][m.img[1]].image}" alt=""><div class="lb"><b>${m.name}</b><span>${n.length} collection${n.length===1?'':'s'} · ${n.length*8} pieces</span></div></button>`}).join('')}</div></div>`;
+function moment(m){
+  const list = collsFor(m);
+  $app.innerHTML = `<div class="wrap">
+    <div class="crumb"><button onclick="go('')">Creators</button> / ${m.name}</div>
+    <div class="blk" style="padding-top:26px"><div class="blk-h"><h2 style="font-size:48px">${m.name}</h2><span class="eyebrow">${list.length} collection${list.length===1?'':'s'} from our creators</span></div>
+    <div class="latest">${list.map(([c,k])=>`<button class="lc" onclick="go('c/${c.id}/${k}')"><div class="cv">${S[k].slice(0,3).map(p=>`<img src="${p.image}" alt="">`).join('')}</div>
+      <div class="m"><img src="${c.photo}" alt=""><div><h4>${COLL[k].title}</h4><div class="s">by ${c.name} · ${S[k].length} pieces</div></div></div></button>`).join('')}</div></div>
+    <div class="blk"><div class="blk-h"><h2>Every piece</h2><span class="eyebrow">${list.length*8} pieces</span></div>
+    <div class="pgrid">${list.flatMap(([c,k])=>S[k].map((p,i)=>tile(p,COLL[k].notes[i],i,k))).join('')}</div></div>
+  </div>`;
+}
+const latest = () => { const list=[[C,'sets'],[B,'satin'],[A,'tailoring'],[B,'wedding'],[C,'everyday'],[A,'knits']];
+  return `<div class="blk"><div class="blk-h"><h2>Latest collections</h2><span class="eyebrow">Just added</span></div>
+  <div class="latest">${list.map(([c,k],i)=>`<button class="lc" onclick="go('c/${c.id}/${k}')"><div class="cv">${S[k].slice(i%2,i%2+3).map(p=>`<img src="${p.image}" alt="">`).join('')}</div>
+    <div class="m"><img src="${c.face||c.photo}" alt=""><div><h4>${COLL[k].title}</h4><div class="s">by ${c.name} · ${S[k].length} pieces</div></div>${i<2?'<span class="new">New</span>':''}</div></button>`).join('')}</div></div>`; };
+
+function directory(){
+  $app.innerHTML = `
+    <section class="hero"><div class="imgs one"><img src="hero.png" alt=""></div>
+      <div class="t"><div class="eyebrow">The Modesty House</div><h1>Creators</h1><div class="ph-note">Photos are placeholders</div></div></section>
+    <div class="wrap">
+    ${loved()}
+    ${moments()}
+    <div class="blk"><div class="blk-h"><h2>All creators</h2><span class="navarrows"><button onclick="slide(-1)" aria-label="Previous"><i class="ph ph-caret-left"></i></button><button onclick="slide(1)" aria-label="Next"><i class="ph ph-caret-right"></i></button></span></div>
+    <div class="cgrid swipe" id="crow" style="padding-top:0">
+      ${CREATORS.map(c=>{const imgs=c.collections.slice(0,2).map(k=>S[k][0].image);return `<button class="ccard" onclick="go('c/${c.id}')">
+        <div class="cov"><img src="${c.photo}" alt=""><img src="${imgs[0]}" alt=""><img src="${imgs[1]}" alt=""></div>
+        <div class="meta"><img class="av" src="${c.face||c.photo}" alt=""><div><h3>${c.name}</h3><div class="h">@${c.handle}</div></div>
+        <div class="n">${c.collections.length} collections<br>${c.collections.length*8} picks</div></div></button>`}).join('')}
+    </div></div>
+    ${latest()}
+    <div class="seen" style="padding-top:40px">Are you a creator?<a href="#">Be seen by brands</a></div>
+    </div>`;
+}
+
+function profile(c){
+  const top = c.collections.flatMap(k=>S[k].slice(0,2).map((p,i)=>tile(p,COLL[k].notes[i],i,k)));
+  $app.innerHTML = `<div class="wrap">
+    <div class="crumb"><button onclick="go('')">Creators</button> / ${c.name}</div>
+    <div class="prof"><img class="av" src="${c.face||c.photo}" alt="">
+      <div><div class="eyebrow">Creator shop · ${c.city}</div><h1 class="serif">${c.name}</h1>
+        <div class="h"><span><i class="ph ph-instagram-logo"></i> @${c.handle}</span><span><i class="ph ph-tiktok-logo"></i> @${c.handle}</span></div>
+        <div class="bio">${c.bio}</div>
+        <div class="stats"><div><b>${c.collections.length}</b><span>Collections</span></div><div><b>${c.collections.length*8}</b><span>Picks</span></div><div><b>${new Set(c.collections.flatMap(k=>S[k].map(p=>p.brand))).size}</b><span>Brands</span></div></div></div>
+      <div class="acts"><span class="btn solid"><i class="ph ph-instagram-logo"></i> Follow</span><button class="btn line" onclick="share()"><i class="ph ph-link"></i> Share shop</button></div>
+    </div>
+    <div class="sec"><h2 class="serif">Her top picks</h2><span class="eyebrow">Tap a piece for her note</span></div>
+    <div class="rail">${top.join('')}</div>
+    <div class="sec"><h2 class="serif">Collections</h2></div>
+    <div class="colls">${c.collections.map(k=>`<button class="coll" onclick="go('c/${c.id}/${k}')">
+      <div class="cv">${S[k].slice(0,4).map(p=>`<img src="${p.image}" alt="">`).join('')}</div>
+      <h3>${COLL[k].title}</h3><div class="c">${S[k].length} pieces</div></button>`).join('')}</div>
+  </div>`;
+}
+
+function collection(c,k){
+  const co = COLL[k];
+  $app.innerHTML = `<div class="wrap">
+    <div class="crumb"><button onclick="go('')">Creators</button> / <button onclick="go('c/${c.id}')">${c.name}</button> / ${co.title}</div>
+    <div class="chead"><div class="cv">${S[k].slice(0,3).map(p=>`<img src="${p.image}" alt="">`).join('')}</div>
+      <div><div class="eyebrow">Collection</div><h1 class="serif">${co.title}</h1>
+        <div class="by"><img src="${c.face||c.photo}" alt=""> by <b style="font-weight:500">${c.name}</b> · ${S[k].length} pieces</div>
+        <div class="note">“${co.note}”</div>
+        <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn line" onclick="share()"><i class="ph ph-link"></i> Copy link</button></div></div></div>
+    <div class="pgrid">${S[k].map((p,i)=>tile(p,co.notes[i],i,k)).join('')}</div>
+  </div>`;
+}
+
+function route(){
+  const h = location.hash.replace(/^#\/?/,'').split('/');
+  const c = CREATORS.find(x=>x.id===h[1]);
+  const m = MOMENTS.find(x=>x.id===h[1]);
+  if (h[0]==='m' && m) moment(m);
+  else if (h[0]==='c' && c && h[2] && COLL[h[2]]) collection(c,h[2]);
+  else if (h[0]==='c' && c) profile(c);
+  else directory();
+  window.scrollTo(0,0);
+}
+window.slide = d => { const r=document.getElementById('crow'); if(r) r.scrollBy({left:d*r.clientWidth*0.43,behavior:'smooth'}); };
+window.go = p => { location.hash = '/'+p; };
+addEventListener('hashchange', route); route();
+document.querySelectorAll('.mockbar button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.mockbar button').forEach(x=>x.classList.toggle('on',x===b));
+  document.body.classList.toggle('phone', b.dataset.v==='phone');
+});
+</script>
+</body>
+</html>
