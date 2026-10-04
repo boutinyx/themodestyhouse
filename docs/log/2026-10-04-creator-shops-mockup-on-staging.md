@@ -31,7 +31,7 @@ next merge.
   fail identically on a clean worktree of `staging` HEAD without these files, so they pre-date this
   change: catalogue-data assertions that went stale when the refresh unfroze on 2026-10-02
   (+1427/-1361). Not fixed here.
-- Staging check after deploy: see below.
+- Staging, after deploy (`aa4c661`): `/mockups/creator-shops` 200, `x-robots-tag: noindex, nofollow, noarchive`, hero/persona/shelves/icon-font assets all 200. Playwright on the staging URL at 1440 and 390: 0 broken images, Phosphor font loaded, 0 console errors, creator card click → `#/c/a`. **Production `themodestyhouse.com/mockups/creator-shops` → 404.**
 
 ## Notes / follow-ups
 - When the real feature is built, delete `mockups/` and this route together.
