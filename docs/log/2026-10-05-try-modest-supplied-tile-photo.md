@@ -1,5 +1,5 @@
 # Try Modest: founder-supplied photograph on the /designers tile
-**Date:** 2026-10-05 · **Status:** done on staging, awaiting Tina's approval for main
+**Date:** 2026-10-05 · **Status:** done, live on production
 
 ## Goal
 Farheen (Try Modest) sent a photograph for the directory listing. Tina: "add this for her
@@ -34,6 +34,22 @@ Both women sit fully inside the arch, heads clear of the curve, Verified seal be
 `npm test`: 1345 passed, 2 failed. Both failures are data tests that this change does not
 touch (it changes no file under `data/`): `lib/colourLeads.test.ts` (1 id not seen) and
 `lib/unavailableProducts.test.ts` (108 ids both unavailable and published). Not investigated here.
+
+### Production
+Tina approved ("merge to main"). `staging` also held four unapproved creators commits
+(`aa4c661`..`40065a3`), so only the two photo commits were cherry-picked onto `origin/main`
+(`66882ff`, `c99536e`) from a separate worktree, not a merge of `staging`.
+
+Origin confirmed current through a cache-busted request before purging (§10.47), then
+`purge_everything`, then `https://themodestyhouse.com/designers` opened with Playwright:
+
+```
+chromium-1440  200  currentSrc https://themodestyhouse.com/designers/try-modest-1-800.webp
+webkit-390     200  currentSrc https://themodestyhouse.com/designers/try-modest-1-400.webp
+header links to /creators: 0   (the staging-only work did not ship)
+```
+
+`origin/main` was then merged into `staging`.
 
 ## Notes / follow-ups
 - A second supplied photo for the same house must be a NEW filename (`try-modest-2.jpg`), §6.
