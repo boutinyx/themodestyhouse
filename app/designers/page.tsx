@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CaretLeft, CaretRight, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { houses, type House } from '@/lib/houses';
 import { shopifyImage, shopifySrcSet } from '@/lib/shopifyImage';
+import { designerVariant, designerSrcSet } from '@/lib/staticImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import { designerPageCount, clampDesignerPage } from '@/lib/designerPaging';
 import { JsonLd } from '@/components/JsonLd';
@@ -120,8 +121,11 @@ function Tile({ b, eager, seal }: { b: House; eager: boolean; seal: boolean }) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={shopifyImage(b.image, 600)}
-          srcSet={shopifySrcSet(b.image)}
+          /* A house-supplied tile (lib/houses.ts, HOUSE_PHOTO) is a local file
+             with pre-generated WebP variants; everything else is a product
+             photograph resized by Shopify's CDN. */
+          src={designerVariant(b.image, 800) ?? shopifyImage(b.image, 600)}
+          srcSet={designerSrcSet(b.image) ?? shopifySrcSet(b.image)}
           /* The three regimes this grid actually has (see `grid` below):
              two-up under sm, three-up from sm, five-up from lg — inside a
              1220px container with 32px gutters and a 20px gap, so a tile stops

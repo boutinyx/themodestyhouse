@@ -195,7 +195,9 @@ export function brandListSchema(opts: { name: string; description: string; path:
           '@type': 'Brand',
           name: b.name,
           url: b.url,
-          ...(b.image ? { logo: b.image } : {}),
+          // A house-supplied tile is a site-relative path; a relative URL in
+          // JSON-LD resolves against nothing a crawler can rely on.
+          ...(b.image ? { logo: b.image.startsWith('http') ? b.image : `${SITE_URL}${b.image}` } : {}),
         },
       })),
     },

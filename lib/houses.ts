@@ -86,6 +86,21 @@ function score(garment: string, image: string, title: string): number {
   );
 }
 
+/**
+ * A photograph the HOUSE supplied for its own tile, as a path in
+ * `public/designers/`. Outranks both the scored pick and HERO_OVERRIDE: those
+ * choose among product shots, and this is the brand telling us which picture
+ * represents it.
+ *
+ * Add the original as a NEW filename (never replace one in place, CLAUDE.md §6)
+ * and run `node scripts/optimise-images.mjs` — lib/staticImage.test.ts fails if
+ * the WebP variants are missing.
+ */
+const HOUSE_PHOTO: Record<string, string> = {
+  // Sent by Farheen, the founder, 2026-10-05, for the directory listing.
+  'try-modest': '/designers/try-modest-1.jpg',
+};
+
 function imagesByBrand(): { pool: Record<string, string[]>; override: Record<string, string> } {
   const scored: Record<string, { image: string; score: number }[]> = {};
   const override: Record<string, string> = {};
@@ -132,7 +147,7 @@ export function houses(variant = 0): House[] {
     const picked = list.length ? list[hash(`${b.slug}:${variant}`) % list.length] : undefined;
     // The hand-picked hero is an explicit editorial choice, so it outranks the
     // variant everywhere.
-    return { ...b, image: override[b.slug] ?? picked };
+    return { ...b, image: HOUSE_PHOTO[b.slug] ?? override[b.slug] ?? picked };
   });
 }
 

@@ -8,6 +8,9 @@ import {
   aboutVariant,
   aboutSrcSet,
   ABOUT_WIDTHS,
+  designerVariant,
+  designerSrcSet,
+  DESIGNER_WIDTHS,
 } from './staticImage';
 
 describe('editorialVariant', () => {
@@ -112,6 +115,43 @@ describe('generated about variants exist on disk', () => {
     for (const w of ABOUT_WIDTHS) {
       it(`${file} has a ${w}px variant`, () => {
         const variant = aboutVariant(`/about/${file}`, w)!;
+        expect(
+          existsSync(path.join(process.cwd(), 'public', variant.replace(/^\//, ''))),
+          `${variant} is missing — run: node scripts/optimise-images.mjs`
+        ).toBe(true);
+      });
+    }
+  }
+});
+
+describe('designerVariant', () => {
+  it('maps a house-supplied original to its width-suffixed webp', () => {
+    expect(designerVariant('/designers/try-modest-1.jpg', 400)).toBe('/designers/try-modest-1-400.webp');
+    expect(designerSrcSet('/designers/try-modest-1.jpg')!.split(', ')).toHaveLength(DESIGNER_WIDTHS.length);
+  });
+
+  it('leaves a hotlinked product photograph alone', () => {
+    // Every other tile on /designers is a Shopify URL; those must fall through
+    // to shopifyImage, so this has to be undefined for them.
+    expect(designerVariant('https://cdn.shopify.com/s/files/a.jpg', 400)).toBeUndefined();
+    expect(designerSrcSet('https://cdn.shopify.com/s/files/a.jpg')).toBeUndefined();
+    expect(designerVariant('/editorial/lookbook.jpg', 400)).toBeUndefined();
+  });
+});
+
+/** Same contract, for the tiles houses supplied themselves. */
+describe('generated designer variants exist on disk', () => {
+  const dir = path.join(process.cwd(), 'public', 'designers');
+  const originals = readdirSync(dir).filter((f) => /\.jpe?g$/i.test(f));
+
+  it('finds the originals it is meant to guard', () => {
+    expect(originals.length).toBeGreaterThan(0);
+  });
+
+  for (const file of originals) {
+    for (const w of DESIGNER_WIDTHS) {
+      it(`${file} has a ${w}px variant`, () => {
+        const variant = designerVariant(`/designers/${file}`, w)!;
         expect(
           existsSync(path.join(process.cwd(), 'public', variant.replace(/^\//, ''))),
           `${variant} is missing — run: node scripts/optimise-images.mjs`

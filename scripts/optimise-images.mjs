@@ -521,6 +521,17 @@ const JOBS = [
     opts: { quality: 86, effort: 5 },
   },
   {
+    // Photographs a house SUPPLIED for its tile on /designers (lib/houses.ts,
+    // HOUSE_PHOTO). The tile stops growing at 228 CSS px, so 800 covers a 3x
+    // phone and a 2x desktop; the first original here is only 941px wide, and
+    // this script never upscales, so do not add a width above the narrowest one.
+    dir: 'designers',
+    match: /\.jpe?g$/i,
+    widths: [400, 800],
+    suffixWidth: true,
+    opts: { quality: 88, effort: 5 },
+  },
+  {
     // Full-bleed band on /about. Same job as the hero — it spans the viewport,
     // so the 900px editorial ceiling is visibly soft on a desktop display.
     dir: 'about',
