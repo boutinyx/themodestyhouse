@@ -37,7 +37,14 @@ export const EDITORIAL_WIDTHS = [400, 900, 1440] as const;
  */
 export const ABOUT_WIDTHS = [640, 1024, 1440, 1920] as const;
 
-type LocalDir = 'editorial' | 'about';
+/**
+ * Widths for the `designers` job: a photograph a house supplied for its own
+ * tile on /designers. The tile is at most 228 CSS px wide, so 800 is a 3x phone
+ * with headroom.
+ */
+export const DESIGNER_WIDTHS = [400, 800] as const;
+
+type LocalDir = 'editorial' | 'about' | 'designers';
 
 /**
  * The `-<width>.webp` variant for an original in `dir`, or undefined if `src`
@@ -87,4 +94,17 @@ export function aboutSrcSet(
   widths: readonly number[] = ABOUT_WIDTHS
 ): string | undefined {
   return srcSetIn('about', src, widths);
+}
+
+/** As `editorialVariant`, for the house-supplied tiles in `public/designers/`. */
+export function designerVariant(src: string | undefined, width: number): string | undefined {
+  return variantIn('designers', src, width);
+}
+
+/** As `editorialSrcSet`, for the house-supplied tiles in `public/designers/`. */
+export function designerSrcSet(
+  src: string | undefined,
+  widths: readonly number[] = DESIGNER_WIDTHS
+): string | undefined {
+  return srcSetIn('designers', src, widths);
 }
