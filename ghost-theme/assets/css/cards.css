@@ -1,0 +1,26 @@
+/*
+ * Editor-card styles Ghost's theme checker (gscan) requires every theme to declare.
+ *
+ * This theme renders nothing a visitor reads: every template redirects to
+ * themodestyhouse.com, which draws its own pages. These rules exist so Ghost Admin stops
+ * reporting "Your theme has errors" (15 gscan errors, one per class below, 2026-10-06).
+ * No template links this file, so it changes no rendered page.
+ */
+.kg-width-wide { width: 85vw; max-width: 1200px; }
+.kg-width-full { width: 100vw; max-width: 100vw; }
+
+.kg-gallery-container { display: flex; flex-direction: column; }
+.kg-gallery-row { display: flex; flex-direction: row; justify-content: center; }
+.kg-gallery-image img { display: block; width: 100%; height: 100%; margin: 0; }
+
+.kg-bookmark-card { width: 100%; }
+.kg-bookmark-container { display: flex; text-decoration: none; }
+.kg-bookmark-content { flex-grow: 1; padding: 20px; }
+.kg-bookmark-title { font-weight: 600; }
+.kg-bookmark-description { overflow: hidden; }
+.kg-bookmark-metadata { display: flex; align-items: center; }
+.kg-bookmark-icon { width: 22px; height: 22px; }
+.kg-bookmark-author { font-weight: 500; }
+.kg-bookmark-publisher { font-weight: 400; }
+.kg-bookmark-thumbnail { position: relative; min-width: 33%; }
+.kg-bookmark-thumbnail img { position: absolute; width: 100%; height: 100%; object-fit: cover; }

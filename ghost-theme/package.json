@@ -1,7 +1,7 @@
 {
   "name": "modesty-house-headless",
   "description": "Redirect-only theme. The Modesty House renders its own pages; Ghost is the writing tool.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "UNLICENSED",
   "author": {
     "name": "The Modesty House",
