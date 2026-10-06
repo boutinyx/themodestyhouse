@@ -1,5 +1,5 @@
 # Ghost Admin "Your theme has errors": 15 missing card classes
-**Date:** 2026-10-06 · **Status:** partial (fix built and committed; upload to Ghost still owed)
+**Date:** 2026-10-06 · **Status:** done
 
 ## Goal
 Inoma Digital reported Ghost Admin showing "Your theme has errors — some functionality on your site may be
@@ -37,10 +37,23 @@ $ npx gscan -z /tmp/tmh-theme/modesty-house-headless.zip
 Your theme has 92 warnings!          # the upload artefact itself, built without routes.yaml
 ```
 
-NOT yet verified: the banner in Ghost Admin. It clears only once the zip is uploaded and activated, which
-needs a logged-in staff session (integration keys get 403 on themes, see 2026-09-19). The Chrome extension
-was not connected this session, so the upload was not done. After upload, run `node scripts/ghost-theme.mjs`
-to re-assert noindex + redirects on the Ghost host.
+Uploaded through Tina's logged-in Ghost session (Chrome extension, `POST /ghost/api/admin/themes/upload/`;
+the bytes were checked against the built zip's sha256 before sending). Read back from Ghost afterwards:
+
+```
+before:  modesty-house-headless v1.0.0, active, 15 errors, banner "Your theme has errors" shown
+after:   modesty-house-headless v1.0.1, active,  0 errors, banner gone (dashboard reloaded)
+```
+
+Unchanged after the upload: Content API 200, a `size/w900` post image 200,
+`themodestyhouse.com/editorial/meet-farheen-try-modest-founder` 200 (cache-busted).
+
+**`scripts/ghost-theme.mjs` now fails 5 of 6 checks, and not because of this change.** The Ghost host is in
+private mode ("Private" badge in Admin, `is_private: true`), so every path except `robots.txt` 302s to
+`/private/` before the theme renders. Ghost's settings history shows the last settings edits on 2026-09-19 to
+2026-09-21, so this predates today. The host is still closed to search engines (password wall plus
+`Disallow: /`), but the script asserts the theme's own noindex and redirect, which a logged-out request can no
+longer reach. The script needs updating to assert the private wall instead; not done here.
 
 ## Notes / follow-ups
 - The 92 warnings are left on purpose. 89 are optional card classes; the other three are `{{ghost_head}}`,
