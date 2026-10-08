@@ -77,3 +77,8 @@ event handlers are still dropped. Pasted HTML gets the site's own styling, not i
 - **Not verified with a real HTML card.** Ghost is one shared CMS behind staging and production,
   and no published post uses an HTML card, so the only evidence is the unit test. Staging's
   abaya page still renders correctly (200, body intact).
+- **Production:** Tina approved ("I want her to be able to use html card if she wants next time").
+  Cherry-picked alone onto main as `d592ac3`. Five minutes after the push the live abaya page
+  returned 200 with its body intact, both cache-busted and on the canonical URL after
+  `purge_everything`. No live post uses an HTML card, so nothing on the page shows that the new
+  build is the one serving. The first real HTML card the agency publishes is the verification.
