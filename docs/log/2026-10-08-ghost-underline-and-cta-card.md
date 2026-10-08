@@ -62,3 +62,18 @@ article's "open abaya" / "closed abaya" links render on production.
   the full post before the edit: `data/.backups/ghost-abaya-guide-2026-10-08-before-link-removal.json`
   (local, not committed). On the live canonical URL the link text is gone (`MISS`, first
   try), while "Each listing takes you…" and the `?type=open` link are still present.
+
+## Follow-up: the HTML card (`b9a8c8a`, staging)
+Tina asked for all of the agency's requests to be done, which includes "render the HTML card".
+Koenig's `html-renderer.ts` gives that card NO wrapper element. The pasted HTML just sits
+between `<!--kg-card-begin: html-->` and `<!--kg-card-end: html-->`. `GhostHtml` now turns those
+comments into a marker element and renders the content through the **same allowlist**: layout
+containers (`div`, `section`…) become attribute-less `div`s, and a link whose class contains
+`btn`/`button` gets `.btn-pill`. `script`, `style`, `iframe`, `form`, inline styles, classes and
+event handlers are still dropped. Pasted HTML gets the site's own styling, not its own.
+- Test built from Koenig's real output shape, with a pasted `<style>`, `<script>`, `<iframe>` and
+  `onclick`. It failed before the change and passes after (15/15). tsc and eslint are clean. The
+  full suite has the same two unrelated data failures as before.
+- **Not verified with a real HTML card.** Ghost is one shared CMS behind staging and production,
+  and no published post uses an HTML card, so the only evidence is the unit test. Staging's
+  abaya page still renders correctly (200, body intact).
