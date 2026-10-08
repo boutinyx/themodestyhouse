@@ -113,12 +113,38 @@ function classify(href: string | undefined): { kind: 'internal'; to: string } | 
   return { kind: 'external', url: withUtm(u.toString(), 'editorial') };
 }
 
+/**
+ * Ghost's HTML card has no wrapper element: Koenig's html-renderer emits the pasted HTML between
+ * these two comments. They are turned into a marker element so the card's content can be rendered,
+ * through the SAME allowlist, with its layout containers (div, section…) kept as bare wrappers.
+ */
+const HTML_CARD_BEGIN = /<!--kg-card-begin: html-->/g;
+const HTML_CARD_END = /<!--kg-card-end: html-->/g;
+const HTML_CARD_TAG = 'tmh-html-card';
+/** Containers pasted HTML uses for layout. Inside an HTML card they keep their children, lose every attribute. */
+const HTML_CARD_CONTAINERS = new Set(['div', 'section', 'article', 'header', 'footer', 'aside', 'center', 'main', 'nav']);
+const looksLikeButton = (el: Element) => classes(el).some((c) => /btn|button/i.test(c));
+
 export default function GhostHtml({ html }: { html: string }): ReactNode {
+  const marked = html
+    .replace(HTML_CARD_BEGIN, `<${HTML_CARD_TAG}>`)
+    .replace(HTML_CARD_END, `</${HTML_CARD_TAG}>`);
+  const options = makeOptions(false);
+  return <>{parse(marked, options)}</>;
+}
+
+function makeOptions(inHtmlCard: boolean): HTMLReactParserOptions {
   const options: HTMLReactParserOptions = {
     replace(node) {
       if (!(node instanceof Element)) return undefined; // text is safe as-is; comments are skipped
       const tag = node.name;
       const kids = () => domToReact(node.children as DOMNode[], options);
+
+      if (tag === HTML_CARD_TAG) {
+        if (inHtmlCard) return <>{kids()}</>;
+        return <div>{domToReact(node.children as DOMNode[], makeOptions(true))}</div>;
+      }
+      if (inHtmlCard && HTML_CARD_CONTAINERS.has(tag)) return <div>{kids()}</div>;
 
       if (DROP_IF_EMPTY.has(tag) && !hasContent(node.children as DOMNode[])) return <></>;
       if (tag === 'h1') return createElement('h2', null, kids()); // the page already has its h1
@@ -128,7 +154,8 @@ export default function GhostHtml({ html }: { html: string }): ReactNode {
       if (tag === 'a') {
         const link = classify(node.attribs.href);
         if (!link) return <>{kids()}</>; // unsafe or unparseable: keep the words, lose the link
-        const className = hasClass(node, 'kg-btn') || hasClass(node, 'kg-cta-button') ? 'btn-pill' : undefined;
+        const button = hasClass(node, 'kg-btn') || hasClass(node, 'kg-cta-button') || (inHtmlCard && looksLikeButton(node));
+        const className = button ? 'btn-pill' : undefined;
         if (link.kind === 'internal') {
           return <Link href={link.to} className={className}>{kids()}</Link>;
         }
@@ -190,6 +217,5 @@ export default function GhostHtml({ html }: { html: string }): ReactNode {
       return <></>;
     },
   };
-
-  return <>{parse(html, options)}</>;
+  return options;
 }

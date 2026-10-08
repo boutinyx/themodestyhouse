@@ -155,4 +155,28 @@ describe('GhostHtml', () => {
     const out = renderToStaticMarkup(<GhostHtml html={'<p>Kept</p><p></p><p>  </p><h2 id=""></h2>'} />);
     expect(out).toBe('<p>Kept</p>');
   });
+
+  // Ghost's HTML card has no wrapper: Koenig's html-renderer emits the pasted HTML between two
+  // comments. Its CONTENT renders through the same allowlist, so a pasted closing link works and a
+  // pasted script does not.
+  it('renders an HTML card\'s content through the allowlist', () => {
+    const out = renderToStaticMarkup(
+      <GhostHtml
+        html={`<p>Before</p>
+<!--kg-card-begin: html-->
+<style>.x{color:red}</style>
+<div class="cta" style="text-align:center"><p>Ready to shop?</p><a class="button" href="https://themodestyhouse.com/modest-abayas" onclick="alert(1)">Shop all abayas</a></div>
+<script>alert(1)</script><iframe src="https://evil.example"></iframe>
+<!--kg-card-end: html-->
+<div class="not-a-card">STILL DROPPED</div>`}
+      />,
+    );
+    expect(out).toContain('<p>Ready to shop?</p>');
+    expect(out).toMatch(/<a (href="\/modest-abayas" class="btn-pill"|class="btn-pill" href="\/modest-abayas")>Shop all abayas<\/a>/);
+    for (const bad of ['<script', '<style', '<iframe', 'onclick', 'color:red', 'text-align', 'class="cta"']) {
+      expect(out).not.toContain(bad);
+    }
+    expect(out).not.toContain('STILL DROPPED'); // outside the card, unknown divs are still dropped
+    expect(out).toContain('<p>Before</p>');
+  });
 });
