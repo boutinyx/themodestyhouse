@@ -55,3 +55,10 @@ article's "open abaya" / "closed abaya" links render on production.
   text. In Playwright the link is visible and clicking it lands on
   `https://themodestyhouse.com/modest-abayas`.
 - The link was the agency's own, already in Ghost. Nothing was edited in Ghost.
+- **Later the same day, at Tina's request, I removed the closing link from the Ghost post** so the
+  agency can add it again herself and see it render. Only that lexical node (index 85, the
+  `/modest-abayas` link paragraph) was removed via the Admin API, guarded on the backup's
+  `updated_at`. The empty paragraphs and heading after it were left as she wrote them. Backup of
+  the full post before the edit: `data/.backups/ghost-abaya-guide-2026-10-08-before-link-removal.json`
+  (local, not committed). On the live canonical URL the link text is gone (`MISS`, first
+  try), while "Each listing takes you…" and the `?type=open` link are still present.
