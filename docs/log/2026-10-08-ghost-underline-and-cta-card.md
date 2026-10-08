@@ -1,5 +1,5 @@
 # Editorial: underlined text, Ghost's other formats and the CTA card now render
-**Date:** 2026-10-08 · **Status:** partial (on staging, awaiting Tina's approval for main)
+**Date:** 2026-10-08 · **Status:** done (live on production)
 
 ## Goal
 The agency reported that the closing "Shop all abayas" link of
@@ -48,4 +48,10 @@ article's "open abaya" / "closed abaya" links render on production.
 ## Notes / follow-ups
 - Tell the agency not to use the Custom HTML card. Plain links, formatted links, the button
   card and the CTA card all work.
-- Merge to main needs Tina's approval (§1).
+- Production: Tina approved. ONLY this fix was cherry-picked onto `origin/main` (`93ebbbf`, log
+  `087bab5`). Staging also holds unapproved work (Creators pages, the Ghost theme), so it was not
+  fast-forwarded. The origin served the new HTML on a cache-busted GET (`MISS`). Then I ran
+  `purge_everything`, and the canonical URL gave GET 1 `MISS` and GET 2 `HIT`, both with the link
+  text. In Playwright the link is visible and clicking it lands on
+  `https://themodestyhouse.com/modest-abayas`.
+- The link was the agency's own, already in Ghost. Nothing was edited in Ghost.
