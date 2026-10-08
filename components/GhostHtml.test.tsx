@@ -179,4 +179,18 @@ describe('GhostHtml', () => {
     expect(out).not.toContain('STILL DROPPED'); // outside the card, unknown divs are still dropped
     expect(out).toContain('<p>Before</p>');
   });
+
+  // The agency's request, 2026-10-08: an unsupported tag INSIDE a link must not take the link's
+  // words with it. Unwrap it; only tags that can run or embed something are still dropped whole.
+  it('unwraps an unsupported tag inside a link instead of dropping its words', () => {
+    const out = renderToStaticMarkup(
+      <GhostHtml
+        html={'<p><a href="https://themodestyhouse.com/modest-abayas"><strong><font color="red"><ins>Shop all abayas</ins></font></strong></a></p><p><a href="/modest-hijabs"><script>alert(1)</script><svg><title>x</title></svg>Hijabs</a></p>'}
+      />,
+    );
+    expect(out).toContain('<a href="/modest-abayas"><strong>Shop all abayas</strong></a>');
+    expect(out).toContain('<a href="/modest-hijabs">Hijabs</a>');
+    expect(out).not.toContain('font');
+    expect(out).not.toContain('alert');
+  });
 });
