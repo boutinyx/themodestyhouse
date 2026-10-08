@@ -82,3 +82,17 @@ event handlers are still dropped. Pasted HTML gets the site's own styling, not i
   returned 200 with its body intact, both cache-busted and on the canonical URL after
   `purge_everything`. No live post uses an HTML card, so nothing on the page shows that the new
   build is the one serving. The first real HTML card the agency publishes is the verification.
+
+## Follow-up 2: unsupported tags inside a link are unwrapped (`f54e0db`)
+The agency's second message asked that links and bold be allowed. Both always were (`a` and
+`strong`/`b` have been on the allowlist since the Ghost integration). They also asked that an
+unsupported tag inside a link be dropped while the link is kept. `GhostHtml` now renders a link's
+children with an `inLink` flag. Inside a link, an unknown tag is unwrapped and its words are kept,
+unless it is in `NEVER_UNWRAP` (script, style, iframe, svg, form, media…), which is still dropped
+whole. Non-card `div`s keep their old behaviour so bookmark cards are unchanged.
+- Test: `<a><strong><font><ins>Shop all abayas</ins></font></strong></a>` renders as
+  `<a href="/modest-abayas"><strong>Shop all abayas</strong></a>`, and `<script>`/`<svg>` inside a
+  link are dropped. It failed before the change and passes after (16/16). tsc and eslint are
+  clean. The full suite has the same two unrelated data failures.
+- Staging: the abaya page returns 200, and all four mid-sentence links render inside their `<a>`.
+- Production: Tina approved ("okay do it"). Cherry-picked alone onto main.
