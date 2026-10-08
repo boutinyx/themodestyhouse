@@ -111,4 +111,48 @@ describe('GhostHtml', () => {
     expect(html).toContain('<hr/>');
     expect(html).toContain('<li>One</li>');
   });
+
+  // The abaya guide's closing link, verbatim from Ghost on 2026-10-08. `<u>` was not on the
+  // allowlist, so it was dropped WITH its words and the live page showed an empty link.
+  it('keeps every inline format the Ghost editor offers, with its words', () => {
+    const out = renderToStaticMarkup(
+      <GhostHtml
+        html={`<p><a href="https://themodestyhouse.com/modest-abayas"><strong><u>Shop all abayas on The Modesty House</u></strong></a></p>
+<p><s>struck</s> <mark>highlit</mark> H<sub>2</sub>O x<sup>2</sup> <del>deleted</del></p>`}
+      />,
+    );
+    expect(out).toContain('<a href="/modest-abayas"><strong><u>Shop all abayas on The Modesty House</u></strong></a>');
+    for (const t of ['<s>struck</s>', '<mark>highlit</mark>', '<sub>2</sub>', '<sup>2</sup>', '<del>deleted</del>']) {
+      expect(out).toContain(t);
+    }
+  });
+
+  // Ghost's web CTA card markup, from Koenig's calltoaction-renderer (TryGhost/Koenig, main).
+  it('renders the CTA card: label, text and a pill button, with Ghost\'s inline style dropped', () => {
+    const out = renderToStaticMarkup(
+      <GhostHtml
+        html={`<div class="kg-card kg-cta-card kg-cta-bg-grey kg-cta-immersive kg-cta-centered" data-layout="immersive">
+  <div class="kg-cta-sponsor-label-wrapper"><div class="kg-cta-sponsor-label">Shop the edit</div></div>
+  <div class="kg-cta-content">
+    <div class="kg-cta-image-container"><a href="https://themodestyhouse.com/modest-abayas"><img src="${GHOST}/content/images/2026/10/c.jpg" alt="CTA Image"></a></div>
+    <div class="kg-cta-content-inner">
+      <div class="kg-cta-text"><p>Find your abaya</p></div>
+      <a href="https://themodestyhouse.com/modest-abayas" class="kg-cta-button kg-style-accent" style="color: #ffffff;">Shop all abayas</a>
+    </div>
+  </div>
+</div>`}
+      />,
+    );
+    expect(out).toContain('Shop the edit');
+    expect(out).toContain('<p>Find your abaya</p>');
+    expect(out).toMatch(/<a class="btn-pill" href="\/modest-abayas">\s*Shop all abayas\s*<\/a>|<a href="\/modest-abayas" class="btn-pill">\s*Shop all abayas\s*<\/a>/);
+    expect(out).toContain(`src="${GHOST}/content/images/2026/10/c.jpg"`);
+    expect(out).not.toContain('#ffffff');
+    expect(out).not.toContain('data-layout');
+  });
+
+  it('drops headings and paragraphs with nothing in them', () => {
+    const out = renderToStaticMarkup(<GhostHtml html={'<p>Kept</p><p></p><p>  </p><h2 id=""></h2>'} />);
+    expect(out).toBe('<p>Kept</p>');
+  });
 });
