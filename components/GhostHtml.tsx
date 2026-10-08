@@ -25,7 +25,12 @@ const SITE_ORIGIN = 'https://themodestyhouse.com';
 const PLAIN = new Set([
   'p', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'blockquote', 'strong', 'em', 'b', 'i',
   'code', 'pre', 'figcaption', 'span',
+  // Every remaining inline format the Ghost editor offers. `u` was missing until 2026-10-08,
+  // and a dropped tag takes its words with it: an underlined link rendered as an empty <a>.
+  'u', 's', 'del', 'mark', 'sub', 'sup',
 ]);
+/** Blocks that are dropped when they hold no text and no image: Ghost leaves empty ones behind. */
+const DROP_IF_EMPTY = new Set(['p', 'h1', 'h2', 'h3', 'h4']);
 const VOID = new Set(['hr', 'br']);
 
 /**
@@ -37,6 +42,8 @@ const CARD_CLASSES = new Set([
   'kg-button-card',
   'kg-bookmark-card', 'kg-bookmark-container', 'kg-bookmark-content',
   'kg-bookmark-title', 'kg-bookmark-description',
+  'kg-cta-card', 'kg-cta-sponsor-label-wrapper', 'kg-cta-sponsor-label', 'kg-cta-content',
+  'kg-cta-image-container', 'kg-cta-content-inner', 'kg-cta-text',
 ]);
 
 const CALLOUT: React.CSSProperties = {
@@ -44,6 +51,13 @@ const CALLOUT: React.CSSProperties = {
   gap: 12,
   margin: '28px 0',
   padding: '16px 18px',
+  background: 'var(--bone)',
+  border: '1px solid var(--hairline)',
+  borderRadius: 8,
+};
+const CTA: React.CSSProperties = {
+  margin: '32px 0',
+  padding: '24px 22px',
   background: 'var(--bone)',
   border: '1px solid var(--hairline)',
   borderRadius: 8,
@@ -63,6 +77,14 @@ function classes(el: Element): string[] {
 }
 const hasClass = (el: Element, c: string) => classes(el).includes(c);
 const hasAnyCardClass = (el: Element) => classes(el).some((c) => CARD_CLASSES.has(c));
+
+function hasContent(nodes: DOMNode[]): boolean {
+  return nodes.some((n) =>
+    n instanceof Element
+      ? n.name === 'img' || hasContent(n.children as DOMNode[])
+      : n.type === 'text' && (n as unknown as { data: string }).data.trim() !== '',
+  );
+}
 
 function ghostHost(): string | undefined {
   try {
@@ -98,6 +120,7 @@ export default function GhostHtml({ html }: { html: string }): ReactNode {
       const tag = node.name;
       const kids = () => domToReact(node.children as DOMNode[], options);
 
+      if (DROP_IF_EMPTY.has(tag) && !hasContent(node.children as DOMNode[])) return <></>;
       if (tag === 'h1') return createElement('h2', null, kids()); // the page already has its h1
       if (PLAIN.has(tag)) return createElement(tag, null, kids());
       if (VOID.has(tag)) return createElement(tag);
@@ -105,7 +128,7 @@ export default function GhostHtml({ html }: { html: string }): ReactNode {
       if (tag === 'a') {
         const link = classify(node.attribs.href);
         if (!link) return <>{kids()}</>; // unsafe or unparseable: keep the words, lose the link
-        const className = hasClass(node, 'kg-btn') ? 'btn-pill' : undefined;
+        const className = hasClass(node, 'kg-btn') || hasClass(node, 'kg-cta-button') ? 'btn-pill' : undefined;
         if (link.kind === 'internal') {
           return <Link href={link.to} className={className}>{kids()}</Link>;
         }
@@ -154,6 +177,10 @@ export default function GhostHtml({ html }: { html: string }): ReactNode {
       if (tag === 'div') {
         if (!hasAnyCardClass(node)) return <></>; // unsupported card: drop with its children
         if (hasClass(node, 'kg-callout-card')) return <div style={CALLOUT}>{kids()}</div>;
+        if (hasClass(node, 'kg-cta-card')) {
+          return <div style={{ ...CTA, textAlign: hasClass(node, 'kg-cta-centered') ? 'center' : undefined }}>{kids()}</div>;
+        }
+        if (hasClass(node, 'kg-cta-sponsor-label')) return <p className="eyebrow">{kids()}</p>;
         if (hasClass(node, 'kg-bookmark-container')) return <div style={BOOKMARK}>{kids()}</div>;
         if (hasClass(node, 'kg-bookmark-title')) return <strong style={{ display: 'block' }}>{kids()}</strong>;
         return <div>{kids()}</div>;
