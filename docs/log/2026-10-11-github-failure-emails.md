@@ -27,3 +27,8 @@ Tina gets "Run failed" emails every day and after every code push. Find every ca
 
 ## Notes / follow-ups
 - Until `GHOST_CONTENT_KEY` exists as a secret, CI's build stays red.
+
+## Update: Ghost backup removed
+Tina, same day: "we dont need a backup for ghost". Deleted `.github/workflows/ghost-backup.yml`,
+`scripts/ghost-export.mjs`, `scripts/lib/ghostExport.mjs` and `lib/ghostExportScript.test.ts`; nothing else
+referenced them (`git grep` outside docs/), and `data/ghost-export.json` never existed because no run succeeded.
