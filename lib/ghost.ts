@@ -32,6 +32,12 @@ const REVALIDATE_SECONDS = 3600;
 const INCLUDE = 'tags,authors';
 const FORMATS = 'html,plaintext';
 
+// GitHub's CI build has no Ghost credentials (the repo holds no secrets), so ci.yml sets
+// GHOST_OFFLINE=1 and the build runs with no articles instead of failing on every push.
+// Explicit opt-in only: production never sets it, so a missing GHOST_URL there still throws.
+export const GHOST_OFFLINE = process.env.GHOST_OFFLINE === '1';
+const OFFLINE = GHOST_OFFLINE;
+
 function config(): { url: string; key: string } {
   const url = process.env.GHOST_URL;
   const key = process.env.GHOST_CONTENT_KEY;
@@ -55,6 +61,7 @@ function fail(path: string, res: { status: number }): never {
 }
 
 export async function fetchAllPosts(): Promise<GhostRaw[]> {
+  if (OFFLINE) return [];
   const rows: GhostRaw[] = [];
   let page: number | null = 1;
   let total = 0;
@@ -80,6 +87,7 @@ export async function fetchAllPosts(): Promise<GhostRaw[]> {
 }
 
 export async function fetchPostBySlug(slug: string): Promise<GhostRaw | undefined> {
+  if (OFFLINE) return undefined;
   const path = `posts/slug/${encodeURIComponent(slug)}/`;
   const res = await ghostFetch(path, { include: INCLUDE, formats: FORMATS }, [
     'ghost-posts',

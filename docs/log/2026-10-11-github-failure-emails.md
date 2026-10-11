@@ -32,3 +32,15 @@ Tina gets "Run failed" emails every day and after every code push. Find every ca
 Tina, same day: "we dont need a backup for ghost". Deleted `.github/workflows/ghost-backup.yml`,
 `scripts/ghost-export.mjs`, `scripts/lib/ghostExport.mjs` and `lib/ghostExportScript.test.ts`; nothing else
 referenced them (`git grep` outside docs/), and `data/ghost-export.json` never existed because no run succeeded.
+
+## Update: CI builds without Ghost
+GitHub's Settings show **no repository secrets and no variables** (checked in Tina's browser), so the
+`vars.GHOST_URL` / `secrets.GHOST_CONTENT_KEY` approach still failed (`GHOST_URL is not set`, run 38134777529).
+Tina asked for the emails to stop without more setup, so CI no longer needs Ghost at all:
+- `lib/ghost.ts`: `GHOST_OFFLINE=1` makes `fetchAllPosts()` return `[]` and `fetchPostBySlug()` `undefined`.
+- `app/editorial/[slug]/page.tsx`: the "refusing to build an empty /editorial" guard is skipped only under that flag.
+- `ci.yml` Build step sets `GHOST_OFFLINE: "1"` instead of the two missing secrets.
+Production (Railway) never sets the flag, so a missing Ghost there still fails the build loudly.
+
+Verification: no Ghost env + flag -> 139/139 pages built; real Ghost env, no flag -> 147/147 (8 posts);
+no env, no flag -> `GHOST_URL is not set` (unchanged). tsc 0, lint 0.
