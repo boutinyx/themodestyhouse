@@ -1,5 +1,5 @@
 # The daily GitHub failure emails: three workflows red, and why
-**Date:** 2026-10-11 · **Status:** partial (on staging; needs one GitHub secret + Tina's approval for main)
+**Date:** 2026-10-11 · **Status:** done on main (CI build still needs the GHOST_CONTENT_KEY secret)
 
 ## Goal
 Tina gets "Run failed" emails every day and after every code push. Find every cause.
@@ -32,3 +32,6 @@ Tina gets "Run failed" emails every day and after every code push. Find every ca
 Tina, same day: "we dont need a backup for ghost". Deleted `.github/workflows/ghost-backup.yml`,
 `scripts/ghost-export.mjs`, `scripts/lib/ghostExport.mjs` and `lib/ghostExportScript.test.ts`; nothing else
 referenced them (`git grep` outside docs/), and `data/ghost-export.json` never existed because no run succeeded.
+
+## Shipped
+Tina approved 2026-10-11. Cherry-picked onto main as `1dd07ad` + `3f5e33c`. On main: lint 0, tsc 0, 84 files / 1325 tests passed.
