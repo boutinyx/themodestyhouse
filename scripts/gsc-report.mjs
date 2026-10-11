@@ -28,7 +28,7 @@ function fail(msg) { console.error('GSC REPORT FAILED:', msg); notify('GSC repor
 
 let token;
 try { token = execFileSync('gcloud', ['auth', 'application-default', 'print-access-token'], { encoding: 'utf8' }).trim(); }
-catch (e) { fail('no gcloud token — run: gcloud auth application-default login'); }
+catch { fail('no gcloud token — run: gcloud auth application-default login'); }
 
 async function query(body) {
   const r = await fetch(`https://searchconsole.googleapis.com/webmasters/v3/sites/${SITE}/searchAnalytics/query`, {

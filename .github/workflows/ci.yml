@@ -47,7 +47,13 @@ jobs:
       # is now committed too (2026-08-05), so the pipeline CAN run in Actions —
       # but only from .github/workflows/refresh.yml, never here. CI must stay
       # read-only with respect to the catalogue.
+      # /editorial/* is prerendered from Ghost's Content API, so the build needs Ghost's
+      # address and Content key. Without them every CI build since the Ghost move
+      # (2026-09-19) failed with "GHOST_URL is not set".
       - name: Build
+        env:
+          GHOST_URL: ${{ vars.GHOST_URL }}
+          GHOST_CONTENT_KEY: ${{ secrets.GHOST_CONTENT_KEY }}
         run: npm run build
 
       # The build gate (next.config.ts pageExtensions) is the only layer that
