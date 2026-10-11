@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { seo, getPost, getPosts, formatDate } from '@/lib/posts';
 import GhostHtml from '@/components/GhostHtml';
-import { fetchAllPosts } from '@/lib/ghost';
+import { fetchAllPosts, GHOST_OFFLINE } from '@/lib/ghost';
 import { ghostImageVariant, ghostImageSrcSet } from '@/lib/ghostImage';
 import { JsonLd } from '@/components/JsonLd';
 import { articleSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/schema';
@@ -18,6 +18,8 @@ export const revalidate = 3600;
 export async function generateStaticParams() {
   // Throws (never returns []) when Ghost is down: an empty blog must not ship silently.
   // fetchAllPosts() has already reconciled the row count against Ghost's own total.
+  // The one exception is CI's GHOST_OFFLINE build (lib/ghost.ts), which has no Ghost to ask.
+  if (GHOST_OFFLINE) return [];
   const rows = await fetchAllPosts();
   if (rows.length < 1) throw new Error('Ghost has no published posts; refusing to build an empty /editorial');
   const noDek = rows.filter((r) => !r.custom_excerpt).map((r) => r.slug);

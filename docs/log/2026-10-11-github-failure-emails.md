@@ -35,3 +35,16 @@ referenced them (`git grep` outside docs/), and `data/ghost-export.json` never e
 
 ## Shipped
 Tina approved 2026-10-11. Cherry-picked onto main as `1dd07ad` + `3f5e33c`. On main: lint 0, tsc 0, 84 files / 1325 tests passed.
+## Update: CI builds without Ghost
+GitHub's Settings show **no repository secrets and no variables** (checked in Tina's browser), so the
+`vars.GHOST_URL` / `secrets.GHOST_CONTENT_KEY` approach still failed (`GHOST_URL is not set`, run 38134777529).
+Tina asked for the emails to stop without more setup, so CI no longer needs Ghost at all:
+- `lib/ghost.ts`: `GHOST_OFFLINE=1` makes `fetchAllPosts()` return `[]` and `fetchPostBySlug()` `undefined`.
+- `app/editorial/[slug]/page.tsx`: the "refusing to build an empty /editorial" guard is skipped only under that flag.
+- `ci.yml` Build step sets `GHOST_OFFLINE: "1"` instead of the two missing secrets.
+Production (Railway) never sets the flag, so a missing Ghost there still fails the build loudly.
+
+Verification: no Ghost env + flag -> 139/139 pages built; real Ghost env, no flag -> 147/147 (8 posts);
+no env, no flag -> `GHOST_URL is not set` (unchanged). tsc 0, lint 0.
+
+Cherry-picked onto main 2026-10-11 with Tina's approval.
