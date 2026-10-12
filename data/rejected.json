@@ -276,16 +276,6 @@
     "evidence": "Magnet"
   },
   {
-    "id": "zahraa:6557773725783",
-    "brandSlug": "zahraa",
-    "title": "4-Piece Matte Magnet Pins Set",
-    "url": "https://zahraathelabel.com/products/4-piece-hijab-magnet-pins-set",
-    "garmentWas": "set",
-    "reason": "non-apparel:hardware",
-    "tier": "B",
-    "evidence": "Magnet"
-  },
-  {
     "id": "zahraa:6557773365335",
     "brandSlug": "zahraa",
     "title": "Hijab Magnet Pins - Matte White",
@@ -24532,7 +24522,7 @@
     "url": "https://veiled.com/products/cotton-wide-yoke-skirt-black",
     "garmentWas": "skirt",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XL"
   },
   {
     "id": "veiled:7631423701097",
@@ -24562,22 +24552,13 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "veiled:7798569566313",
+    "id": "veiled:7798570516585",
     "brandSlug": "veiled",
-    "title": "Tencel Ruffle Top - Denim",
-    "url": "https://veiled.com/products/tencel-ruffle-top-denim",
+    "title": "Tencel Asymmetric Top - Sky",
+    "url": "https://veiled.com/products/tencel-asymmetric-top-sky",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "veiled:7798570549353",
-    "brandSlug": "veiled",
-    "title": "Tencel Asymmetric Top - Green",
-    "url": "https://veiled.com/products/tencel-asymmetric-top-green",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
+    "evidence": "in stock: XL, XXL"
   },
   {
     "id": "veiled:7798570614889",
@@ -24586,7 +24567,7 @@
     "url": "https://veiled.com/products/tencel-asymmetric-top-light-sand",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XXL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "modern-hijabi:9265923817686",
@@ -24728,6 +24709,15 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "aab:10277927059770",
+    "brandSlug": "aab",
+    "title": "Oxford Blue Maxi Shirt",
+    "url": "https://us.aabcollection.com/products/oxford-blue-maxi-shirt",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
   },
   {
     "id": "nasiba:10176153682229",
@@ -32324,15 +32314,6 @@
     "evidence": "https://jawda.co.uk/products/bottle-green-cotton-blend-striped-kimono-abaya"
   },
   {
-    "id": "jawda:16038522225020",
-    "brandSlug": "jawda",
-    "title": "Sage Green Cotton Blend Tassel Abaya",
-    "url": "https://jawda.co.uk/products/sage-green-cotton-blend-tassel-abaya",
-    "garmentWas": "abaya",
-    "reason": "dead-link",
-    "evidence": "https://jawda.co.uk/products/sage-green-cotton-blend-tassel-abaya"
-  },
-  {
     "id": "vela:8316254159004",
     "brandSlug": "vela",
     "title": "High Low Top",
@@ -32366,7 +32347,7 @@
     "url": "https://veiled.com/products/lace-up-back-maxi-dress-chocolate-truffle",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, XXL"
+    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7639107469417",
@@ -32542,15 +32523,6 @@
     "title": "Suede Wrap Skirt - Fig",
     "url": "https://veiled.com/products/suede-wrap-skirt-fig",
     "garmentWas": "skirt",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "veiled:7552616726633",
-    "brandSlug": "veiled",
-    "title": "Cinch Top & Pants Set - Heather Grey",
-    "url": "https://veiled.com/products/cinch-top-pants-set-heather-grey",
-    "garmentWas": "set",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
   },
@@ -34719,6 +34691,15 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "merrachi:15482031702399",
+    "brandSlug": "merrachi",
+    "title": "Kaftan Dress Short | Soft Bordeaux",
+    "url": "https://bymerrachi.com/products/kaftan-dress-short-soft-bordeaux",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "merrachi:15648489767295",
     "brandSlug": "merrachi",
     "title": "Zebra Gathered Pouch | Brown Zebra",
@@ -34849,6 +34830,24 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
+  },
+  {
+    "id": "avyaana:15633453056374",
+    "brandSlug": "avyaana",
+    "title": "Shahzadi Noor",
+    "url": "https://avyaana.com/products/shahzadi-noor-1",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/shahzadi-noor-1"
+  },
+  {
+    "id": "avyaana:15633454727542",
+    "brandSlug": "avyaana",
+    "title": "Amirat Al-Bahar",
+    "url": "https://avyaana.com/products/amirat-al-bahar",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/amirat-al-bahar"
   },
   {
     "id": "avyaana:8267050516618",
@@ -41235,6 +41234,15 @@
     "evidence": "https://avyaana.com/products/dariya-1"
   },
   {
+    "id": "avyaana:15449996034422",
+    "brandSlug": "avyaana",
+    "title": "Golden Earth Ombre",
+    "url": "https://avyaana.com/products/mustard-dye",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/mustard-dye"
+  },
+  {
     "id": "avyaana:15064073503094",
     "brandSlug": "avyaana",
     "title": "Zenab",
@@ -41260,6 +41268,15 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "608 USD (~$608)"
+  },
+  {
+    "id": "avyaana:14999788552566",
+    "brandSlug": "avyaana",
+    "title": "Ocean Dye",
+    "url": "https://avyaana.com/products/ocean-dye",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/ocean-dye"
   },
   {
     "id": "avyaana:8267056283786",
@@ -41767,6 +41784,15 @@
     "brandSlug": "amariah",
     "title": "Lydia Tiered Maxi Dress - Cream",
     "url": "https://amariah.co.uk/products/lydia-tiered-maxi-dress-color-cream",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:8054182117601",
+    "brandSlug": "amariah",
+    "title": "Lydia Tiered Maxi Dress - Dark Spice",
+    "url": "https://amariah.co.uk/products/lydia-tiered-maxi-dress-color-dark-spice",
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
@@ -42348,6 +42374,15 @@
     "evidence": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-kupra-elbi̇se-2"
   },
   {
+    "id": "touche-prive:10008979571016",
+    "brandSlug": "touche-prive",
+    "title": "Button Detailed Belted Dress",
+    "url": "https://int.toucheprive.com/products/dugme-detayli-kemerli̇-elbi̇se",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/dugme-detayli-kemerli̇-elbi̇se"
+  },
+  {
     "id": "touche-prive:10091653857608",
     "brandSlug": "touche-prive",
     "title": "Striped Linen Shirt",
@@ -42528,6 +42563,24 @@
     "evidence": "https://int.toucheprive.com/products/asi̇metri̇k-yaka-tasli-kupra-gomlek"
   },
   {
+    "id": "touche-prive:10095427977544",
+    "brandSlug": "touche-prive",
+    "title": "Peplum Blouse With Pleated Skirt Detail",
+    "url": "https://int.toucheprive.com/products/pleated-short-blouse-2",
+    "garmentWas": "skirt",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/pleated-short-blouse-2"
+  },
+  {
+    "id": "touche-prive:9408022872392",
+    "brandSlug": "touche-prive",
+    "title": "Belted Short Poplin Shirt",
+    "url": "https://int.toucheprive.com/products/kusakli-kisa-popli̇n-gomlek",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/kusakli-kisa-popli̇n-gomlek"
+  },
+  {
     "id": "touche-prive:10025026781512",
     "brandSlug": "touche-prive",
     "title": "Patterned Satin Skirt",
@@ -42535,6 +42588,15 @@
     "garmentWas": "skirt",
     "reason": "dead-link",
     "evidence": "https://int.toucheprive.com/products/patterned-satin-skirt-7"
+  },
+  {
+    "id": "touche-prive:10099787104584",
+    "brandSlug": "touche-prive",
+    "title": "Visco Relax Shirt",
+    "url": "https://int.toucheprive.com/products/visco-relax-shirt-6",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/visco-relax-shirt-6"
   },
   {
     "id": "touche-prive:10059092197704",
@@ -42591,6 +42653,24 @@
     "evidence": "https://int.toucheprive.com/products/saten-gomlek-8"
   },
   {
+    "id": "touche-prive:10059092001096",
+    "brandSlug": "touche-prive",
+    "title": "Patterned Dress",
+    "url": "https://int.toucheprive.com/products/patterned-dress-4",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/patterned-dress-4"
+  },
+  {
+    "id": "touche-prive:10049073938760",
+    "brandSlug": "touche-prive",
+    "title": "Jacquard Sequined Jacket",
+    "url": "https://int.toucheprive.com/products/jakarli-payetli̇-ceket",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/jakarli-payetli̇-ceket"
+  },
+  {
     "id": "touche-prive:8757503754568",
     "brandSlug": "touche-prive",
     "title": "Striped Cotton Blend Oversize Shirt",
@@ -42636,6 +42716,15 @@
     "evidence": "https://int.toucheprive.com/products/kontrast-ci̇cek-desenli̇-elbi̇se"
   },
   {
+    "id": "touche-prive:10019285270856",
+    "brandSlug": "touche-prive",
+    "title": "Multicolor Patterned Bomber Jacket",
+    "url": "https://int.toucheprive.com/products/cok-renkli̇-desenli̇-bomber-ceket",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/cok-renkli̇-desenli̇-bomber-ceket"
+  },
+  {
     "id": "touche-prive:10017545519432",
     "brandSlug": "touche-prive",
     "title": "Belted Cupra Shirt",
@@ -42661,6 +42750,15 @@
     "garmentWas": "skirt",
     "reason": "dead-link",
     "evidence": "https://int.toucheprive.com/products/sunray-pleated-skirt-1"
+  },
+  {
+    "id": "touche-prive:10020013769032",
+    "brandSlug": "touche-prive",
+    "title": "Relax Long Dress",
+    "url": "https://int.toucheprive.com/products/relax-uzun-elbi̇se-1",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/relax-uzun-elbi̇se-1"
   },
   {
     "id": "touche-prive:9895013744968",
@@ -42708,6 +42806,15 @@
     "evidence": "https://int.toucheprive.com/products/desenli̇-saten-tuni̇k"
   },
   {
+    "id": "touche-prive:9857450410312",
+    "brandSlug": "touche-prive",
+    "title": "Abstract Patterned Dress",
+    "url": "https://int.toucheprive.com/products/abstract-patterned-dress-1",
+    "garmentWas": "dress",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/abstract-patterned-dress-1"
+  },
+  {
     "id": "touche-prive:9893268816200",
     "brandSlug": "touche-prive",
     "title": "Jacquard Ethnical Patterned Shirt",
@@ -42742,6 +42849,15 @@
     "garmentWas": "top",
     "reason": "dead-link",
     "evidence": "https://int.toucheprive.com/products/chinese-buttoned-jacket-1"
+  },
+  {
+    "id": "touche-prive:10015695667528",
+    "brandSlug": "touche-prive",
+    "title": "Patterned Basic Shirt",
+    "url": "https://int.toucheprive.com/products/patterned-basic-shirt",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://int.toucheprive.com/products/patterned-basic-shirt"
   },
   {
     "id": "touche-prive:10019285696840",
@@ -43987,6 +44103,15 @@
     "garmentWas": "skirt",
     "reason": "only-large-sizes",
     "evidence": "in stock: 2XL, 4XL"
+  },
+  {
+    "id": "lameera-moda:8941906362536",
+    "brandSlug": "lameera-moda",
+    "title": "Leila Organza Embroidery Dress - Khaki",
+    "url": "https://lameeramoda.com/products/leila-organza-embroidery-dress-khaki",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
   },
   {
     "id": "lameera-moda:8783938060456",
@@ -47236,30 +47361,10 @@
     "evidence": "Belt"
   },
   {
-    "id": "abayabuth:7931229438168",
-    "brandSlug": "abayabuth",
-    "title": "Powder Pink Slim Plaited Rope Tassel Belt",
-    "url": "https://abayabuth.com/products/powder-pink-slim-plaited-rope-tassel-belt",
-    "garmentWas": "abaya",
-    "reason": "non-apparel:care",
-    "tier": "B",
-    "evidence": "Belt"
-  },
-  {
     "id": "abayabuth:7931227275480",
     "brandSlug": "abayabuth",
     "title": "Sweet Blush Slim Plaited Rope Tassel Belt",
     "url": "https://abayabuth.com/products/sweet-blush-slim-plaited-rope-tassel-belt",
-    "garmentWas": "abaya",
-    "reason": "non-apparel:care",
-    "tier": "B",
-    "evidence": "Belt"
-  },
-  {
-    "id": "abayabuth:7931226718424",
-    "brandSlug": "abayabuth",
-    "title": "Mint Slim Plaited Rope Tassel Belt",
-    "url": "https://abayabuth.com/products/mint-slim-plaited-rope-tassel-belt",
     "garmentWas": "abaya",
     "reason": "non-apparel:care",
     "tier": "B",
@@ -49722,6 +49827,16 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Hijab Magnet"
+  },
+  {
+    "id": "nour-al-houda:2934840721472",
+    "brandSlug": "nour-al-houda",
+    "title": "Small Headed Pins - Black",
+    "url": "https://nouralhouda.com.au/products/a152",
+    "garmentWas": "top",
+    "reason": "non-apparel:hardware",
+    "tier": "B",
+    "evidence": "Pins"
   },
   {
     "id": "nihan:15086406402411",
@@ -53133,15 +53248,6 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "try-modest:8751444590816",
-    "brandSlug": "try-modest",
-    "title": "Effortless Everyday Sweatshirt Abaya Dress",
-    "url": "https://trymodest.com/products/effortless-everyday-sweatshirt-abaya-dress",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL, XL, XL, XL"
-  },
-  {
     "id": "try-modest:8588489294048",
     "brandSlug": "try-modest",
     "title": "Hijab magnet pins",
@@ -53247,15 +53353,6 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "veiled:7779354443881",
-    "brandSlug": "veiled",
-    "title": "Denim Maxi Skirt - Medium Wash",
-    "url": "https://veiled.com/products/denim-wash-midi-skirt-medium-wash",
-    "garmentWas": "skirt",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "aab:10038132179258",
     "brandSlug": "aab",
     "title": "Tote Jacket Black",
@@ -53263,6 +53360,24 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "avyaana:8305394712714",
+    "brandSlug": "avyaana",
+    "title": "RUBY",
+    "url": "https://avyaana.com/products/ruby-1",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/ruby-1"
+  },
+  {
+    "id": "avyaana:14999756865910",
+    "brandSlug": "avyaana",
+    "title": "Muted Moss",
+    "url": "https://avyaana.com/products/muted-moss",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://avyaana.com/products/muted-moss"
   },
   {
     "id": "kamin:9865363587289",
