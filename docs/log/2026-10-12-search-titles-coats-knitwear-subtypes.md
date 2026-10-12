@@ -38,3 +38,22 @@ photos, so that is her call. Every page already links all lanes through the head
 - Negative control: with `CONSOLIDATED_INTO_LANE` emptied, the co-ord test fails (1 failed / 4 passed); restored,
   it passes 5/5.
 - Staging checks: see below.
+
+### On staging (`themodestyhouse-staging-production.up.railway.app`, commit b619c42)
+`/tmp/gscplan/verify.py` parses the HTML in python (§10.56) and checks status, `<title>` and canonical. Two rows
+are controls that must NOT change: `/modest-abayas?type=open` still has its template title, and `/modest-sets`
+keeps its title.
+```
+OK  /jackets-coats            Modest Coats for Women — Trench Coats & Jackets
+OK  /cardigans-sweaters       Modest Knitwear — Cardigans & Sweaters for Women
+OK  /blazers-vests            Modest Blazers & Vests for Women | The Modesty House
+OK  /modest-tops?type=blouse  Modest Blouses for Women — Shop Blouses Online
+OK  /modest-hijabs?type=hijab Modest Hijabs — Everyday Hijab Scarves Online
+OK  /modest-sets?type=co-ord  canonical -> https://themodestyhouse.com/modest-sets
+OK  /modest-sets?type=two-piece  Modest Two-Piece Sets for Women | The Modesty House
+OK  /modest-abayas?type=open  Modest Open Abayas | The Modesty House        (control)
+OK  /modest-sets              Modest Co-ord Sets — Matching 2-Piece Sets…   (control)
+/pages/contact -> 308 /contact
+sitemap 164 URLs (165 on production): co-ord gone, two-piece present
+```
+Only `<head>` tags changed, so nothing visible on the page differs.
