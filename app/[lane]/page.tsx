@@ -11,7 +11,7 @@ import { breadcrumbSchema, collectionPageSchema, faqPageSchema, jsonLdGraph } fr
 import { SEO_COPY, buildMetadata } from '@/lib/seoCopy';
 import { LANE_ANSWERS } from '@/lib/laneAnswers';
 import { formatPrice } from '@/lib/price';
-import { LANE_SUBTYPES, resolveSubtype, subtypeSeo, domainForLane, subtypeValueOf } from '@/lib/laneSubtypes';
+import { LANE_SUBTYPES, resolveSubtype, subtypeSeo, subtypeCanonical, domainForLane, subtypeValueOf } from '@/lib/laneSubtypes';
 
 export function generateStaticParams() {
   return LANES.map((l) => ({ lane: l.slug }));
@@ -45,8 +45,8 @@ export async function generateMetadata({
   // uncached on every metadata call (CLAUDE.md §8).
   const sub = resolveSubtype(lane.slug, (await searchParams).type);
   if (sub) {
-    const seo = subtypeSeo(sub, lane.intro);
-    return buildMetadata({ ...seo, canonical: `/${lane.slug}?type=${sub.type}` });
+    const seo = subtypeSeo(lane.slug, sub, lane.intro);
+    return buildMetadata({ ...seo, canonical: subtypeCanonical(lane.slug, sub) });
   }
 
   const seo = SEO_COPY[`/${lane.slug}`];
@@ -173,7 +173,7 @@ export default async function LanePage({
           ),
           collectionPageSchema({
             name: pageTitle,
-            description: sub ? subtypeSeo(sub, lane.intro).description : lane.intro,
+            description: sub ? subtypeSeo(lane.slug, sub, lane.intro).description : lane.intro,
             path: sub ? `/${lane.slug}?type=${sub.type}` : `/${lane.slug}`,
             items: listedItems,
           }),
