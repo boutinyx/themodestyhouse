@@ -217,6 +217,12 @@ export default function nextConfig(phase: string): NextConfig {
         { source: '/directory', destination: '/new-in', permanent: true },
         { source: '/hijabi-outfits', destination: '/new-in', permanent: true },
         /*
+         * A Shopify-style contact path. Pulse recorded 5 visitors landing on it
+         * (30 days to 2026-10-12), all on a 404. Old links from when brands or
+         * directories assumed a Shopify store; /contact is the real page.
+         */
+        { source: '/pages/contact', destination: '/contact', permanent: true },
+        /*
          * /modest-wedding-guest was retired 2026-08-27 (see lib/lanes.ts). It
          * is sent to /modest-dresses rather than /directory — Tina's choice
          * between the two — because that is the closest thing the site still

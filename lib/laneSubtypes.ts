@@ -1,3 +1,4 @@
+import { SEO_COPY } from './seoCopy';
 import type { Product } from '@/lib/types';
 import {
   layeringSubtype, outerwearSubtype, hijabSubtype, swimSubtype, activeSubtype,
@@ -144,9 +145,31 @@ export function resolveSubtype(laneSlug: string, type: string | undefined): Lane
   return subtypesForLane(laneSlug).find((s) => s.type === type) ?? null;
 }
 
-/** The subset worth submitting to Google. See TOO_THIN_FOR_SITEMAP. */
+/**
+ * Subtypes whose search intent IS the parent lane's, keyed `lane:type`. Their
+ * page still works and stays linked from the chip row, but it canonicalises to
+ * the lane and is not submitted, so the two URLs stop competing for one query.
+ *
+ * modest-sets:co-ord, 2026-10-12. The lane is titled "Modest Co-ord Sets" and
+ * Google ranks /modest-sets for every co-ord query (positions 35-47, ~140
+ * impressions in 28 days). /modest-sets?type=co-ord had 0 impressions in the
+ * same window. One page for the intent instead of two.
+ * -> docs/log/2026-10-12-gsc-pulse-opportunities-plan.md
+ */
+const CONSOLIDATED_INTO_LANE = new Set(['modest-sets:co-ord']);
+
+/** The canonical path for a subtype page: its own URL, or the lane's if consolidated. */
+export function subtypeCanonical(laneSlug: string, sub: LaneSubtype): string {
+  return CONSOLIDATED_INTO_LANE.has(`${laneSlug}:${sub.type}`)
+    ? `/${laneSlug}`
+    : `/${laneSlug}?type=${sub.type}`;
+}
+
+/** The subset worth submitting to Google. See TOO_THIN_FOR_SITEMAP and CONSOLIDATED_INTO_LANE. */
 export function sitemapSubtypesForLane(laneSlug: string): LaneSubtype[] {
-  return subtypesForLane(laneSlug).filter((s) => !TOO_THIN_FOR_SITEMAP.has(s.type));
+  return subtypesForLane(laneSlug).filter(
+    (s) => !TOO_THIN_FOR_SITEMAP.has(s.type) && !CONSOLIDATED_INTO_LANE.has(`${laneSlug}:${s.type}`),
+  );
 }
 
 /**
@@ -159,7 +182,11 @@ export function sitemapSubtypesForLane(laneSlug: string): LaneSubtype[] {
  * the big ones (hijab 4,644 products, coat 321, undercap 311), it belongs in
  * lib/seoCopy.ts keyed by `/${lane}?type=${type}` and should override this.
  */
-export function subtypeSeo(sub: LaneSubtype, laneIntro: string): { title: string; description: string } {
+export function subtypeSeo(laneSlug: string, sub: LaneSubtype, laneIntro: string): { title: string; description: string } {
+  // Written copy wins where it exists (2026-10-12: the subtypes with search
+  // demand in Search Console, plus the seasonal knitwear/blazer pages).
+  const written = SEO_COPY[`/${laneSlug}?type=${sub.type}`];
+  if (written) return written;
   return {
     // No "| The Modesty House" suffix here — app/layout.tsx already applies
     // `template: '%s | The Modesty House'`, and including it produced

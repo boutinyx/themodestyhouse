@@ -159,16 +159,77 @@ export const SEO_COPY: Record<string, SeoCopy> = {
   // The single '/outerwear' entry above split into these three paths
   // 2026-08-21, matching the lib/lanes.ts split of the same day.
   '/blazers-vests': {
-    title: 'Modest Blazers & Vests Online',
+    // 2026-10-12: "modest blazer" at position 9.6, up from 1 to 11 impressions
+    // in a month. "for Women" is how the category searches are phrased.
+    title: 'Modest Blazers & Vests for Women',
     description: 'Shop modest blazers and vests online: tailored layers to wear over dresses, tops and abayas, from independent modest fashion brands.',
   },
   '/cardigans-sweaters': {
-    title: 'Modest Cardigans & Sweaters Online',
-    description: 'Shop modest cardigans and sweaters online: soft-knit layers for everyday wear over dresses, tops and abayas, from independent modest fashion brands.',
+    // 2026-10-12: "modest knitwear" had 61 impressions at position 32.7 while
+    // "modest cardigan/sweater" sat at 6-10 — the word was in the page body but
+    // not in the title or description.
+    title: 'Modest Knitwear — Cardigans & Sweaters for Women',
+    description: 'Shop modest knitwear online: cardigans, sweaters and knit layers to wear over dresses, tops and abayas, from independent modest fashion brands.',
   },
   '/jackets-coats': {
-    title: 'Modest Jackets & Coats Online',
-    description: 'Shop modest jackets and coats online: outerwear layers for cooler weather, from independent modest fashion brands.',
+    // 2026-10-12: "modest coats/coat/jackets" all at positions 6-8 and rising
+    // with the season (page impressions 76 -> 174 in a month). Coats lead
+    // because coat is the bigger query; trench because 92 of the lane's 232
+    // pieces are trench coats (counted that day).
+    title: 'Modest Coats for Women — Trench Coats & Jackets',
+    description: 'Shop modest coats and jackets for women: trench coats and jackets to wear over abayas and dresses, from independent modest fashion brands.',
+  },
+
+  // SUBTYPE PAGES (`/lane?type=x`), read by subtypeSeo() in lib/laneSubtypes.ts,
+  // which falls back to a template for any subtype not listed here. Written
+  // 2026-10-12 for the subtypes with demand in Search Console (blouses 87
+  // impressions, hijabs 21 at 13.8, wide-leg 25 at 14.6, knitwear) and their
+  // siblings, so one lane's chips don't mix written and templated titles.
+  // Functional SEO strings, not brand voice (§10.18): no claims beyond what
+  // the grid holds.
+  '/modest-tops?type=blouse': {
+    title: 'Modest Blouses for Women — Shop Blouses Online',
+    description: 'Shop modest blouses for women online, from independent modest fashion brands. Compare prices across houses in your own currency, checked nightly.',
+  },
+  '/modest-tops?type=tunic': {
+    title: 'Modest Tunics for Women — Tunic Tops Online',
+    description: 'Shop modest tunics and tunic tops for women, from independent modest fashion brands. Compare prices across houses in your own currency, checked nightly.',
+  },
+  '/modest-tops?type=shirt': {
+    title: 'Modest Shirts for Women — Shop Shirts Online',
+    description: 'Shop modest shirts for women, from independent modest fashion brands. Compare prices across houses in your own currency, checked nightly.',
+  },
+  '/modest-tops?type=tshirt': {
+    title: 'Modest T-Shirts for Women — Shop Tees Online',
+    description: 'Shop modest t-shirts and tees for women, from independent modest fashion brands. Compare prices across houses in your own currency, checked nightly.',
+  },
+  '/cardigans-sweaters?type=cardigan': {
+    title: 'Modest Cardigans for Women — Knit Cardigans Online',
+    description: 'Shop modest cardigans for women: knit layers to wear over dresses, tops and abayas, from independent modest fashion brands. Prices checked nightly.',
+  },
+  '/cardigans-sweaters?type=sweater': {
+    title: 'Modest Sweaters for Women — Knitwear Online',
+    description: 'Shop modest sweaters and knitwear for women, from independent modest fashion brands. Compare prices across houses in your own currency, checked nightly.',
+  },
+  '/blazers-vests?type=blazer': {
+    title: 'Modest Blazers for Women — Shop Blazers Online',
+    description: 'Shop modest blazers for women: tailored layers to wear over dresses and abayas, from independent modest fashion brands. Prices checked nightly.',
+  },
+  '/blazers-vests?type=vest': {
+    title: 'Modest Vests & Waistcoats for Women',
+    description: 'Shop modest vests and waistcoats for women, to layer over shirts, dresses and abayas, from independent modest fashion brands. Prices checked nightly.',
+  },
+  '/modest-sets?type=two-piece': {
+    title: 'Modest Two-Piece Sets for Women',
+    description: 'Shop modest two-piece sets for women: matching tops and bottoms, from independent modest fashion brands. Prices checked nightly.',
+  },
+  '/modest-hijabs?type=hijab': {
+    title: 'Modest Hijabs — Everyday Hijab Scarves Online',
+    description: 'Shop modest hijabs online: everyday hijab scarves in jersey, chiffon, modal and more, from independent hijab stores. Prices checked nightly.',
+  },
+  '/modest-trousers?type=wide-leg': {
+    title: 'Wide-Leg Trousers for Women — Modest Wide-Leg Pants',
+    description: 'Shop modest wide-leg trousers and pants for women, from independent modest fashion brands. Compare prices across houses in your own currency.',
   },
   '/designers': {
     title: 'Modest Fashion Brands & Designers — Curated Directory',
