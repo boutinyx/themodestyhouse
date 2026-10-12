@@ -1,5 +1,5 @@
 # The daily GitHub failure emails: three workflows red, and why
-**Date:** 2026-10-11 · **Status:** partial (on staging; needs one GitHub secret + Tina's approval for main)
+**Date:** 2026-10-11 · **Status:** done on main (CI build still needs the GHOST_CONTENT_KEY secret)
 
 ## Goal
 Tina gets "Run failed" emails every day and after every code push. Find every cause.
@@ -33,6 +33,8 @@ Tina, same day: "we dont need a backup for ghost". Deleted `.github/workflows/gh
 `scripts/ghost-export.mjs`, `scripts/lib/ghostExport.mjs` and `lib/ghostExportScript.test.ts`; nothing else
 referenced them (`git grep` outside docs/), and `data/ghost-export.json` never existed because no run succeeded.
 
+## Shipped
+Tina approved 2026-10-11. Cherry-picked onto main as `1dd07ad` + `3f5e33c`. On main: lint 0, tsc 0, 84 files / 1325 tests passed.
 ## Update: CI builds without Ghost
 GitHub's Settings show **no repository secrets and no variables** (checked in Tina's browser), so the
 `vars.GHOST_URL` / `secrets.GHOST_CONTENT_KEY` approach still failed (`GHOST_URL is not set`, run 38134777529).
@@ -44,3 +46,5 @@ Production (Railway) never sets the flag, so a missing Ghost there still fails t
 
 Verification: no Ghost env + flag -> 139/139 pages built; real Ghost env, no flag -> 147/147 (8 posts);
 no env, no flag -> `GHOST_URL is not set` (unchanged). tsc 0, lint 0.
+
+Cherry-picked onto main 2026-10-11 with Tina's approval.

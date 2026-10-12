@@ -1,20 +1,20 @@
 {
-  "date": "2026-10-03",
+  "date": "2026-10-12",
   "totals": {
-    "added": 33,
-    "updated": 28177,
-    "delisted": 24,
-    "filtered": 42,
-    "returned": 17,
-    "incomplete": 4
+    "added": 6,
+    "updated": 28164,
+    "delisted": 42,
+    "filtered": 39,
+    "returned": 39,
+    "incomplete": 5
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
       "complete": true,
-      "fetched": 191,
+      "fetched": 200,
       "added": [],
-      "updated": 191,
+      "updated": 200,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -22,10 +22,10 @@
     {
       "brandSlug": "vela",
       "complete": true,
-      "fetched": 619,
+      "fetched": 648,
       "added": [],
-      "updated": 619,
-      "delisted": 0,
+      "updated": 648,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Pom Charm",
@@ -37,26 +37,19 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1329,
-      "added": [
-        "Modal Hijab - Mellow Yellow",
-        "Modal Hijab - Dusty Olive",
-        "Ameena Open Abaya - White",
-        "Essential Chiffon Hijab - Olive",
-        "Essential Chiffon Hijab - Mauve",
-        "Essential Chiffon Hijab - Marsala"
-      ],
-      "updated": 1323,
+      "fetched": 1171,
+      "added": [],
+      "updated": 1171,
       "delisted": 0,
       "filtered": [],
-      "returned": 12
+      "returned": 4
     },
     {
       "brandSlug": "niswa",
       "complete": true,
-      "fetched": 398,
+      "fetched": 392,
       "added": [],
-      "updated": 398,
+      "updated": 392,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -119,9 +112,9 @@
     {
       "brandSlug": "aab",
       "complete": true,
-      "fetched": 830,
+      "fetched": 884,
       "added": [],
-      "updated": 830,
+      "updated": 884,
       "delisted": 0,
       "filtered": [
         {
@@ -159,27 +152,19 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 387,
-      "added": [
-        "Blue Sweater Pant Set",
-        "Beige Ribbed Jersey Hijab with Undercap",
-        "Green Ribbed Jersey Hijab with Undercap",
-        "Taupe Sweater Pant Set",
-        "Hunter Green Sweater Pant Set",
-        "Turtleneck Sweater and Pant Set",
-        "Navy and White trim Sweater and Pant Set"
-      ],
-      "updated": 380,
-      "delisted": 1,
+      "fetched": 398,
+      "added": [],
+      "updated": 398,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "hawaa",
       "complete": true,
-      "fetched": 95,
+      "fetched": 104,
       "added": [],
-      "updated": 95,
+      "updated": 104,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -197,12 +182,11 @@
     {
       "brandSlug": "glow-modesty",
       "complete": true,
-      "fetched": 123,
+      "fetched": 125,
       "added": [
-        "Liora - Lace High-Low Top",
-        "Florence - Watercolor Maxi Dress"
+        "Ilaria Cape Gown"
       ],
-      "updated": 121,
+      "updated": 124,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -210,10 +194,10 @@
     {
       "brandSlug": "jawda",
       "complete": true,
-      "fetched": 143,
+      "fetched": 119,
       "added": [],
-      "updated": 143,
-      "delisted": 0,
+      "updated": 119,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -230,10 +214,10 @@
     {
       "brandSlug": "lanuuk",
       "complete": true,
-      "fetched": 129,
+      "fetched": 128,
       "added": [],
-      "updated": 129,
-      "delisted": 1,
+      "updated": 128,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -300,9 +284,9 @@
     {
       "brandSlug": "emlavish",
       "complete": true,
-      "fetched": 62,
+      "fetched": 55,
       "added": [],
-      "updated": 62,
+      "updated": 55,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -320,11 +304,9 @@
     {
       "brandSlug": "zora",
       "complete": true,
-      "fetched": 180,
-      "added": [
-        "The Sonya Top In Space Blue"
-      ],
-      "updated": 179,
+      "fetched": 131,
+      "added": [],
+      "updated": 131,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -342,9 +324,9 @@
     {
       "brandSlug": "summer-evenings",
       "complete": true,
-      "fetched": 170,
+      "fetched": 168,
       "added": [],
-      "updated": 170,
+      "updated": 168,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -382,9 +364,13 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 132,
-      "added": [],
-      "updated": 132,
+      "fetched": 152,
+      "added": [
+        "Lange Gebreide Vest",
+        "Comfy hoodie",
+        "Capuchon vest"
+      ],
+      "updated": 149,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -422,15 +408,11 @@
     {
       "brandSlug": "lafemme",
       "complete": true,
-      "fetched": 55,
+      "fetched": 60,
       "added": [],
-      "updated": 55,
+      "updated": 60,
       "delisted": 0,
       "filtered": [
-        {
-          "title": "Emirati || Jersey Fall – Two Piece #01",
-          "reason": "no-image"
-        },
         {
           "title": "Jersey Abaya Fall",
           "reason": "no-image"
@@ -451,9 +433,11 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 377,
-      "added": [],
-      "updated": 377,
+      "fetched": 419,
+      "added": [
+        "The Asha | Cream Yellow"
+      ],
+      "updated": 418,
       "delisted": 0,
       "filtered": [
         {
@@ -490,12 +474,12 @@
     {
       "brandSlug": "chi-ka",
       "complete": false,
-      "fetched": 249,
+      "fetched": 0,
       "added": [],
-      "updated": 249,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "latifi",
@@ -511,24 +495,21 @@
       "brandSlug": "whiteicy",
       "complete": true,
       "fetched": 87,
-      "added": [
-        "Chemise Vichy à carreaux Elise",
-        "Chemise Élina – Popeline à nœuds dos",
-        "Robe Sofia – Maille ceinturée",
-        "Ensemble Élégance Céleste",
-        "Ensemble Alba",
-        "Ensemble imprimé leopoard Léonie",
-        "Ensemble officier Maelys"
-      ],
-      "updated": 80,
+      "added": [],
+      "updated": 87,
       "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "losyana",
-      "error": "losyana: could not determine the feed's currency from the storefront. Skipped — its existing rows are untouched. Declared in data/brands.ts is EUR.",
-      "complete": false
+      "complete": true,
+      "fetched": 895,
+      "added": [],
+      "updated": 895,
+      "delisted": 3,
+      "filtered": [],
+      "returned": 0
     },
     {
       "brandSlug": "haya-active",
@@ -583,9 +564,9 @@
     {
       "brandSlug": "mukistore",
       "complete": true,
-      "fetched": 1645,
+      "fetched": 1656,
       "added": [],
-      "updated": 1645,
+      "updated": 1656,
       "delisted": 0,
       "filtered": [
         {
@@ -640,9 +621,9 @@
     {
       "brandSlug": "kimodesty",
       "complete": true,
-      "fetched": 64,
+      "fetched": 65,
       "added": [],
-      "updated": 64,
+      "updated": 65,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -650,9 +631,9 @@
     {
       "brandSlug": "chador",
       "complete": true,
-      "fetched": 81,
+      "fetched": 79,
       "added": [],
-      "updated": 81,
+      "updated": 79,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -714,14 +695,11 @@
       "brandSlug": "by-hasanat",
       "complete": true,
       "fetched": 92,
-      "added": [
-        "The Florence Lace Dress",
-        "The Maple Dress"
-      ],
-      "updated": 90,
+      "added": [],
+      "updated": 92,
       "delisted": 0,
       "filtered": [],
-      "returned": 2
+      "returned": 0
     },
     {
       "brandSlug": "zayda",
@@ -756,10 +734,10 @@
     {
       "brandSlug": "illi-studio",
       "complete": true,
-      "fetched": 182,
+      "fetched": 178,
       "added": [],
-      "updated": 182,
-      "delisted": 2,
+      "updated": 178,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -806,9 +784,9 @@
     {
       "brandSlug": "nihan",
       "complete": false,
-      "fetched": 4195,
+      "fetched": 4144,
       "added": [],
-      "updated": 4195,
+      "updated": 4144,
       "delisted": 0,
       "filtered": [
         {
@@ -836,29 +814,12 @@
     },
     {
       "brandSlug": "baqa",
-      "complete": true,
-      "fetched": 332,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 332,
+      "updated": 0,
       "delisted": 0,
-      "filtered": [
-        {
-          "title": "Mini Topuklu Deri Ayakkabı",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Deri Topuklu Sandalet",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Mini Topuklu Deri Ayakkabı",
-          "reason": "unclassified"
-        },
-        {
-          "title": "Deri Topuklu Sandalet",
-          "reason": "unclassified"
-        }
-      ],
+      "filtered": [],
       "returned": 0
     },
     {
@@ -884,19 +845,19 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 350,
+      "fetched": 344,
       "added": [],
-      "updated": 350,
-      "delisted": 0,
+      "updated": 344,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "yasmin-jay",
       "complete": true,
-      "fetched": 142,
+      "fetched": 138,
       "added": [],
-      "updated": 142,
+      "updated": 138,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -944,9 +905,9 @@
     {
       "brandSlug": "eynaa-paris",
       "complete": true,
-      "fetched": 52,
+      "fetched": 59,
       "added": [],
-      "updated": 52,
+      "updated": 59,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -964,11 +925,9 @@
     {
       "brandSlug": "modesty-in-style",
       "complete": true,
-      "fetched": 382,
-      "added": [
-        "Belinda Pants"
-      ],
-      "updated": 381,
+      "fetched": 390,
+      "added": [],
+      "updated": 390,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -986,9 +945,9 @@
     {
       "brandSlug": "vivi-zubedi",
       "complete": true,
-      "fetched": 387,
+      "fetched": 402,
       "added": [],
-      "updated": 387,
+      "updated": 402,
       "delisted": 0,
       "filtered": [
         {
@@ -1001,10 +960,10 @@
     {
       "brandSlug": "we-are-elegance",
       "complete": true,
-      "fetched": 98,
+      "fetched": 102,
       "added": [],
-      "updated": 98,
-      "delisted": 0,
+      "updated": 102,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1021,10 +980,10 @@
     {
       "brandSlug": "lameera-moda",
       "complete": true,
-      "fetched": 430,
+      "fetched": 428,
       "added": [],
-      "updated": 430,
-      "delisted": 0,
+      "updated": 428,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1050,38 +1009,30 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 226,
+      "fetched": 232,
       "added": [],
-      "updated": 226,
+      "updated": 232,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 3
     },
     {
       "brandSlug": "store-wf",
       "complete": true,
-      "fetched": 255,
-      "added": [
-        "Black & White Checkered Hooded Abaya",
-        "Black Yellow Print Abaya",
-        "Black Flower Print Abaya",
-        "Modern Print Abaya",
-        "Houndstooth Print Cotton Abaya",
-        "Black & White Jacquard Abaya",
-        "Red Polka Dot Elegance Abaya"
-      ],
-      "updated": 248,
-      "delisted": 1,
+      "fetched": 260,
+      "added": [],
+      "updated": 260,
+      "delisted": 5,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 967,
+      "fetched": 964,
       "added": [],
-      "updated": 967,
-      "delisted": 0,
+      "updated": 964,
+      "delisted": 13,
       "filtered": [],
       "returned": 0
     },
@@ -1133,9 +1084,9 @@
     {
       "brandSlug": "ilovemodesty",
       "complete": true,
-      "fetched": 606,
+      "fetched": 603,
       "added": [],
-      "updated": 606,
+      "updated": 603,
       "delisted": 0,
       "filtered": [
         {
@@ -1152,9 +1103,9 @@
     {
       "brandSlug": "rutba-abaya",
       "complete": true,
-      "fetched": 274,
+      "fetched": 293,
       "added": [],
-      "updated": 274,
+      "updated": 293,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1162,10 +1113,10 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 978,
+      "fetched": 969,
       "added": [],
-      "updated": 978,
-      "delisted": 18,
+      "updated": 969,
+      "delisted": 11,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1178,16 +1129,24 @@
         {
           "title": "Yaprak Desenli Toprak Şal 0054",
           "reason": "unclassified"
+        },
+        {
+          "title": "Kürk Detaylı Fermuarlı Siyah Kaban 13899",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Kürk Yaka Cep Detaylı Kemerli Mont Siyah Kaban 13868",
+          "reason": "unclassified"
         }
       ],
-      "returned": 1
+      "returned": 3
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 352,
+      "fetched": 353,
       "added": [],
-      "updated": 352,
+      "updated": 353,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1225,9 +1184,9 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 637,
+      "fetched": 640,
       "added": [],
-      "updated": 637,
+      "updated": 640,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1235,19 +1194,21 @@
     {
       "brandSlug": "nour-al-houda",
       "complete": true,
-      "fetched": 323,
+      "fetched": 361,
       "added": [],
-      "updated": 323,
-      "delisted": 0,
+      "updated": 361,
+      "delisted": 1,
       "filtered": [],
-      "returned": 0
+      "returned": 29
     },
     {
       "brandSlug": "abayas-boutique",
-      "complete": true,
-      "fetched": 419,
-      "added": [],
-      "updated": 419,
+      "complete": false,
+      "fetched": 99,
+      "added": [
+        "the Smocked in Tickled Pink"
+      ],
+      "updated": 98,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1255,9 +1216,9 @@
     {
       "brandSlug": "golden-dune",
       "complete": true,
-      "fetched": 144,
+      "fetched": 146,
       "added": [],
-      "updated": 144,
+      "updated": 146,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1265,9 +1226,9 @@
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 294,
+      "fetched": 286,
       "added": [],
-      "updated": 294,
+      "updated": 286,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1305,9 +1266,9 @@
     {
       "brandSlug": "glamberry",
       "complete": true,
-      "fetched": 132,
+      "fetched": 130,
       "added": [],
-      "updated": 132,
+      "updated": 130,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1335,9 +1296,9 @@
     {
       "brandSlug": "bybdsha",
       "complete": true,
-      "fetched": 26,
+      "fetched": 28,
       "added": [],
-      "updated": 26,
+      "updated": 28,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1345,9 +1306,9 @@
     {
       "brandSlug": "parladusa",
       "complete": true,
-      "fetched": 130,
+      "fetched": 127,
       "added": [],
-      "updated": 130,
+      "updated": 127,
       "delisted": 1,
       "filtered": [],
       "returned": 0
@@ -1355,9 +1316,9 @@
     {
       "brandSlug": "try-modest",
       "complete": true,
-      "fetched": 371,
+      "fetched": 378,
       "added": [],
-      "updated": 371,
+      "updated": 378,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1365,29 +1326,35 @@
   ],
   "frozenBrands": [
     {
+      "brandSlug": "zora",
+      "prev": 114,
+      "next": 77,
+      "pct": 0.32
+    },
+    {
       "brandSlug": "amariah",
       "prev": 35,
-      "next": 6,
-      "pct": 0.83
+      "next": 5,
+      "pct": 0.86
     },
     {
       "brandSlug": "nour-al-houda",
       "prev": 633,
-      "next": 277,
-      "pct": 0.56
+      "next": 326,
+      "pct": 0.48
     },
     {
       "brandSlug": "nemah",
       "prev": 22,
-      "next": 13,
-      "pct": 0.41
+      "next": 11,
+      "pct": 0.5
     },
     {
       "brandSlug": "voile-chic",
       "prev": 126,
-      "next": 65,
-      "pct": 0.48
+      "next": 64,
+      "pct": 0.49
     }
   ],
-  "untranslatedTitles": 1281
+  "untranslatedTitles": 1358
 }

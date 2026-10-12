@@ -1,5 +1,5 @@
 # Nightly refresh failing every day since 2026-10-04: a sold-out test blocked it
-**Date:** 2026-10-11 · **Status:** partial (on staging; main needs Tina's approval)
+**Date:** 2026-10-11 · **Status:** done (on main)
 
 ## Goal
 Tina kept getting GitHub's "Run failed: Catalogue refresh" email. Find why and unblock it.
@@ -44,3 +44,6 @@ edit applies to both.
   pre-refresh test step. Not changed here.
 - The watchdog (`catalogue-watchdog.yml`) should have opened an issue after 36 h; check why only the failure
   emails were seen.
+
+## Shipped
+Tina approved 2026-10-11. Cherry-picked onto main as `717f711` (staging and main have diverged by cherry-picks, so no ff). Full suite on main: 85 files passed, 1329 tests. The next scheduled refresh (or a manual "Run workflow" on Catalogue refresh) is the real proof.
