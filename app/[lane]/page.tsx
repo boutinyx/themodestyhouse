@@ -154,7 +154,8 @@ export default async function LanePage({
   // instead of outerwear in the title when i click on it". Now resolved once,
   // by lib/laneSubtypes, so the h1, the <title>, the canonical, the JSON-LD
   // and the sitemap cannot disagree about what this page is.
-  const pageTitle = sub?.label ?? lane.title;
+  // lane.heading, not lane.title, for the bare lane: see the field in lib/lanes.ts.
+  const pageTitle = sub?.label ?? lane.heading ?? lane.title;
   return (
     <main className="max-w-[1220px] mx-auto px-8 pt-12 md:pt-16 pb-12">
       {/* Breadcrumb gains a third crumb on a subtype page, and the
