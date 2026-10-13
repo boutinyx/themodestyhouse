@@ -231,6 +231,166 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     title: 'Wide-Leg Trousers for Women — Modest Wide-Leg Pants',
     description: 'Shop modest wide-leg trousers and pants for women, from independent modest fashion brands. Compare prices across houses in your own currency.',
   },
+
+  // THE REMAINING SUBTYPES, written 2026-10-13 so none falls back to the
+  // template (lib/laneSubtypes.test.ts now asserts it). Same method as the 11
+  // above: every material, style or garment named in a description was counted
+  // in that subtype's published rows first (counts in brackets, 2026-10-13
+  // catalogue). Where a word the searches use is NOT in the grid it is left out:
+  // Search Console shows "eid dresses" and "wedding guest dress" around the
+  // occasion page, and no occasion row is titled either.
+  // -> docs/log/2026-10-13-subtype-titles-and-lane-h1s.md
+  '/modest-abayas?type=open': {
+    // 376 rows / 24 houses: 59 embellished, 37 chiffon, 20 lace, 15 satin.
+    title: 'Open Abayas for Women — Embellished & Chiffon Open Abayas',
+    description: 'Shop open abayas for women: front-open abayas in chiffon, satin and lace, plain or embellished, from independent modest fashion houses.',
+  },
+  '/modest-abayas?type=kimono': {
+    // 138 / 28: 27 kimono sets, 14 linen, 6 satin.
+    title: 'Kimono Abayas for Women — Kimono Abayas & Sets',
+    description: 'Shop kimono abayas for women: kimono-cut abayas and matching kimono sets in linen, satin and more, from independent modest fashion houses.',
+  },
+  '/modest-abayas?type=butterfly': {
+    // 108 / 24: 8 titled kaftan.
+    title: 'Butterfly Abayas for Women — Shop Butterfly Abayas',
+    description: 'Shop butterfly abayas for women: wide-winged abayas and kaftans that fall loose from the shoulders, from independent modest fashion houses.',
+  },
+  '/modest-abayas?type=closed': {
+    // 76 / 11: 9 plain, 8 embellished, 7 with a zip.
+    title: 'Closed Abayas for Women — Shop Closed Abayas Online',
+    description: 'Shop closed abayas for women: abayas with no front opening, plain or embellished, from independent modest fashion houses.',
+  },
+  '/modest-hijabs?type=khimar-jilbab': {
+    // 48 / 12: ~30 khimars, 18 jilbabs, 7 abaya-and-khimar sets.
+    title: 'Khimars & Jilbabs for Women — Shop Online',
+    description: 'Shop khimars and jilbabs for women: jersey khimars, full-length jilbabs and abaya-and-khimar sets, from independent modest fashion brands.',
+  },
+  '/modest-hijabs?type=undercap': {
+    // 82 / 13: tube, tie-back and satin-lined undercaps all present by title.
+    title: 'Hijab Undercaps — Tube, Tie-Back & Satin Undercaps',
+    description: 'Shop hijab undercaps: tube, tie-back and satin-lined undercaps to wear under a hijab, from independent hijab stores.',
+  },
+  '/modest-hijabs?type=prayer-set': {
+    // 122 / 17: 53 titled jilbab, 43 set, 33 prayer abaya, 26 prayer skirt,
+    // 21 "prayer dress". Search Console: prayer sets 33.8 -> 7.4, autocomplete
+    // "prayer dress". This page used to inherit the HIJABS lane's intro
+    // ("Chiffon, jersey, satin and crinkle hijabs…") as its description.
+    title: 'Prayer Dresses & Prayer Sets for Women',
+    description: 'Shop prayer dresses and prayer sets for women: one-piece and two-piece jilbabs, prayer abayas and prayer skirts, from independent modest brands.',
+  },
+  '/modest-dresses?type=everyday': {
+    // 240 / 49: 62 maxi, 23 cotton, 11 linen, 10 jersey.
+    title: 'Everyday Modest Dresses — Casual Maxi Dresses',
+    description: 'Shop everyday modest dresses: maxi dresses in cotton, linen and jersey for daily wear, from independent modest fashion brands.',
+  },
+  '/modest-dresses?type=occasion': {
+    // 94 / 13: ~20 gowns, ~15 cape dresses, 6 lace, 3 embellished. No row says
+    // eid or wedding, so neither word is used.
+    title: 'Modest Occasion & Evening Dresses — Gowns & Cape Dresses',
+    description: 'Shop modest occasion and evening dresses: gowns, cape dresses and lace or embellished maxi dresses, from independent modest fashion brands.',
+  },
+  '/modest-dresses?type=slip': {
+    title: 'Modest Slip Dresses for Women',
+    description: 'Shop slip dresses for women from independent modest fashion brands, in one place. Compare prices across houses, checked nightly.',
+  },
+  '/modest-skirts?type=maxi': {
+    // 92 / 29: 12 linen, 7 jersey, 3 satin.
+    title: 'Modest Maxi Skirts for Women — Long Skirts Online',
+    description: 'Shop modest maxi skirts for women: full-length skirts in linen, jersey, satin and more, from independent modest fashion brands.',
+  },
+  '/modest-skirts?type=pleated': {
+    // 46 / 19: 9 maxi, 5 chiffon, 4 knit.
+    title: 'Modest Pleated Skirts for Women',
+    description: 'Shop modest pleated skirts for women: pleated maxi skirts in chiffon, knit and more, from independent modest fashion brands.',
+  },
+  '/modest-skirts?type=a-line': {
+    title: 'Modest A-Line Skirts for Women',
+    description: 'Shop modest A-line skirts for women, from independent modest fashion brands. Compare prices across houses, checked nightly.',
+  },
+  '/modest-trousers?type=tailored': {
+    title: 'Modest Tailored Trousers for Women — Tailored Pants',
+    description: 'Shop modest tailored trousers and pants for women, from independent modest fashion brands. Compare prices across houses, checked nightly.',
+  },
+  '/modest-sets?type=co-ord': {
+    // Canonicalises to /modest-sets (CONSOLIDATED_INTO_LANE), so this is never
+    // the indexed title; written only so it does not fall back to the template.
+    title: 'Modest Co-ords for Women',
+    description: 'Shop modest co-ords for women: matching pieces from independent modest fashion brands, in one place. Prices checked nightly.',
+  },
+  '/modest-swimwear?type=burkini': {
+    // 55 / 11: 12 sets.
+    title: 'Burkinis for Women — Full-Coverage Burkini Swimsuits',
+    description: 'Shop burkinis for women: full-coverage burkini swimsuits and burkini sets, from independent modest swimwear brands.',
+  },
+  '/modest-swimwear?type=swim-legging': {
+    title: 'Swim Leggings & Swim Pants for Women',
+    description: 'Shop swim leggings and swim pants for women, to wear with a swim top or swim dress, from independent modest swimwear brands.',
+  },
+  '/modest-swimwear?type=swim-dress': {
+    // 30 / 6: 20 swim dresses, 5 swim skirts.
+    title: 'Modest Swim Dresses & Swim Skirts',
+    description: 'Shop modest swim dresses and swim skirts for women, from independent modest swimwear brands. Prices checked nightly.',
+  },
+  '/modest-swimwear?type=swim-hijab': {
+    title: 'Swim Hijabs & Swim Caps for Women',
+    description: 'Shop swim hijabs and swim caps for women, made to be worn in the water, from independent modest swimwear brands.',
+  },
+  '/modest-swimwear?type=swim-top': {
+    // 26 / 7: 16 titled swimsuit.
+    title: 'Modest Swim Tops & Swimsuits for Women',
+    description: 'Shop modest swim tops and swimsuits for women, from independent modest swimwear brands. Compare prices across houses, checked nightly.',
+  },
+  '/modest-swimwear?type=cover-up': {
+    title: 'Modest Swim Cover-Ups for Women',
+    description: 'Shop modest swim cover-ups for women, to wear over swimwear at the beach and pool, from independent modest fashion brands.',
+  },
+  '/modest-activewear?type=sports-hijab': {
+    title: 'Sports Hijabs for Women — Hijabs for Training',
+    description: 'Shop sports hijabs for women, made for training and everyday movement, from independent modest activewear brands.',
+  },
+  '/modest-activewear?type=active-set': {
+    title: 'Modest Activewear Sets & Co-ords',
+    description: 'Shop modest activewear sets and co-ords for women: matching sports pieces from independent modest activewear brands.',
+  },
+  '/modest-activewear?type=active-top': {
+    // 39 / 8: 18 tops, 7 jackets, 5 hoodies.
+    title: 'Modest Sports Tops & Jackets for Women',
+    description: 'Shop modest sports tops, hoodies and jackets for women, for training and everyday wear, from independent modest activewear brands.',
+  },
+  '/modest-activewear?type=active-legging': {
+    title: 'Modest Leggings & Sports Bottoms for Women',
+    description: 'Shop modest leggings and sports bottoms for women, from independent modest activewear brands. Prices checked nightly.',
+  },
+  '/modest-activewear?type=sports-dress': {
+    title: 'Modest Sports Dresses for Women',
+    description: 'Shop modest sports dresses for women, made for training and movement, from independent modest activewear brands.',
+  },
+  '/layering-basics?type=neck-cover': {
+    title: 'Neck Covers & Dickeys — Modest Layering',
+    description: 'Shop neck covers and dickeys to wear under a lower neckline for extra coverage, from independent modest fashion brands.',
+  },
+  '/layering-basics?type=sleeve-extender': {
+    title: 'Sleeve Extenders & Arm Covers',
+    description: 'Shop sleeve extenders and arm covers to lengthen a short sleeve for full coverage, from independent modest fashion brands.',
+  },
+  '/layering-basics?type=shirt-extender': {
+    title: 'Shirt Extenders — Modest Layering',
+    description: 'Shop shirt extenders to lengthen a top worn over trousers or a skirt, from independent modest fashion brands.',
+  },
+  '/layering-basics?type=base-layer-top': {
+    title: 'Base-Layer Tops — Modest Layering Tops',
+    description: 'Shop base-layer tops to wear under dresses, abayas and sleeveless pieces, from independent modest fashion brands.',
+  },
+  '/layering-basics?type=cropped-body-shirt': {
+    // 13 rows from ONE house, so the description does not say "brands".
+    title: 'Cropped Body Shirts — Modest Layering',
+    description: 'Shop cropped body shirts to wear under tops and dresses for sleeve and neck coverage. Prices checked nightly.',
+  },
+  '/layering-basics?type=under-dress': {
+    // 121 / 23: mostly inner slip dresses and sleeveless underdresses.
+    title: 'Under-Dresses & Inner Slip Dresses',
+    description: 'Shop under-dresses and inner slip dresses to wear beneath abayas and sheer pieces, from independent modest fashion brands.',
+  },
   '/designers': {
     title: 'Modest Fashion Brands & Designers — Curated Directory',
     description: 'A curated index of modest fashion brands, vetted for craft and taste — browse every designer in The Modesty House directory.',

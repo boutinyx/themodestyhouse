@@ -23,9 +23,19 @@ describe('subtype SEO copy', () => {
     expect(subtypeSeo('modest-tops', blouse, 'intro')).toEqual(SEO_COPY['/modest-tops?type=blouse']);
   });
 
+  // Every real subtype has written copy since 2026-10-13, so the template is
+  // exercised with a subtype that has none.
   it('falls back to the template for a subtype with no written copy', () => {
-    const open = resolveSubtype('modest-abayas', 'open')!;
-    expect(subtypeSeo('modest-abayas', open, 'intro').title).toBe('Modest Open Abayas');
+    const fake = { type: 'no-such-subtype', label: 'Test Pieces' };
+    expect(subtypeSeo('modest-abayas', fake, 'intro').title).toBe('Modest Test Pieces');
+  });
+
+  // The template copies the PARENT lane's intro into the description, which is
+  // how /modest-hijabs?type=prayer-set ended up describing chiffon hijabs.
+  it('has written copy for every subtype, so none falls back to the template', () => {
+    const missing = LANES.flatMap((l) => subtypesForLane(l.slug).map((s) => `/${l.slug}?type=${s.type}`))
+      .filter((k) => !SEO_COPY[k]);
+    expect(missing).toEqual([]);
   });
 
   // A `/lane?type=x` key that matches no real subtype is copy nobody will ever see.
