@@ -20,6 +20,9 @@ import { getPosts } from '@/lib/posts';
 import { ghostImageVariant, ghostImageSrcSet } from '@/lib/ghostImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import { MARKDOWN_HOME_PATH } from '@/lib/agentPaths';
+import { JsonLd } from '@/components/JsonLd';
+import { categoryListSchema, jsonLdGraph } from '@/lib/schema';
+import { CATEGORY_LANES } from '@/lib/lanes';
 import type { Product } from '@/lib/types';
 import type { CardProduct } from '@/lib/compactCatalogue';
 
@@ -170,6 +173,9 @@ export default async function Home() {
     // skip to. app/[lane], /about, /designers, /directory, /editorial,
     // /favourites and the legal shell all already do this.
     <main className="home-sections">
+      {/* The category lanes as an ItemList (lib/schema.ts categoryListSchema).
+          Organization + WebSite are already emitted site-wide by app/layout.tsx. */}
+      <JsonLd data={jsonLdGraph(categoryListSchema(CATEGORY_LANES))} />
       {/* HERO — editorial modest-fashion image */}
       <section>
         {/* .hero-vh, not an inline height. The height has to be `100svh` with a

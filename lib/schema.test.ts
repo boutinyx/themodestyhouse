@@ -1,5 +1,37 @@
 import { describe, it, expect } from 'vitest';
-import { organizationSchema, websiteSchema, breadcrumbSchema, collectionPageSchema, articleSchema, faqPageSchema, jsonLdGraph } from './schema';
+import { organizationSchema, websiteSchema, breadcrumbSchema, collectionPageSchema, articleSchema, faqPageSchema, jsonLdGraph, categoryListSchema, SITE_ALTERNATE_NAMES } from './schema';
+import { CATEGORY_LANES, LANES } from './lanes';
+
+describe('brand identity (2026-10-13)', () => {
+  it('Organization and WebSite carry the same alternateName list, never the rival "House of Modesty"', () => {
+    const org = organizationSchema();
+    const site = websiteSchema();
+    expect(org.alternateName).toEqual(['Modesty House', 'TMH']);
+    expect(site.alternateName).toEqual(org.alternateName);
+    expect(SITE_ALTERNATE_NAMES.map((n) => n.toLowerCase())).not.toContain('house of modesty');
+  });
+  it('sameAs lists exactly the verified profiles, one per platform', () => {
+    const org = organizationSchema();
+    expect(org.sameAs.map((u) => new URL(u).hostname)).toEqual(['www.instagram.com', 'www.pinterest.com', 'www.tiktok.com']);
+    // @themodestyhousehq on TikTok belongs to someone else.
+    expect(org.sameAs).toContain('https://www.tiktok.com/@themodestyhouse.hq');
+  });
+});
+
+describe('categoryListSchema', () => {
+  it('lists every category lane, in LANES order, as absolute same-domain URLs', () => {
+    const list = categoryListSchema(CATEGORY_LANES);
+    expect(list['@type']).toBe('ItemList');
+    expect(list.numberOfItems).toBe(CATEGORY_LANES.length);
+    expect(list.itemListElement.map((e) => e.url)).toEqual(CATEGORY_LANES.map((l) => `https://themodestyhouse.com/${l.slug}`));
+    expect(list.itemListElement.map((e) => e.position)).toEqual(CATEGORY_LANES.map((_, i) => i + 1));
+    for (const e of list.itemListElement) expect(Object.keys(e).sort()).toEqual(['@type', 'name', 'position', 'url']);
+  });
+  it('excludes non-category lanes', () => {
+    const urls = categoryListSchema(CATEGORY_LANES).itemListElement.map((e) => e.url);
+    for (const l of LANES.filter((x) => x.kind !== 'category')) expect(urls).not.toContain(`https://themodestyhouse.com/${l.slug}`);
+  });
+});
 
 describe('organizationSchema', () => {
 
