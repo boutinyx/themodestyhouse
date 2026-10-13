@@ -26,3 +26,15 @@ Pinterest Standard-access upgrade: dropped by Tina 2026-10-13 ("we dont need it"
 - Bing coverage could NOT be measured: Bing search inside the automation browser returns unrelated results even for
   a control (`site:merrachi.com abaya` → Notepad++ pages), and DuckDuckGo blocks scripted queries. Bing Webmaster
   Tools needs Tina signed in. That is the next step: index coverage, sitemap submission and URL inspection there.
+
+## Bing Webmaster Tools (Tina signed in, same evening)
+- Site was already registered. Sitemap `sitemap.xml`: Success, 165 URLs discovered, last crawl 2026-10-11.
+- Site Explorer: 114 indexed, 0 errors, 1 warning, 2 excluded. **Backlinks: 1.** Search, last 6 months:
+  556 impressions, 16 clicks.
+- AI Performance (Copilot + partners), Aug 25–Oct 11: 164 citations, **rising** (October days run 1-28, versus 0-7 in
+  August). Cited pages: `/` 80, `/designers` 40, `/designers/merrachi` 28, `/modest-dresses` 10. Grounding queries:
+  "modest clothing brands" (12.7% citation share), "modest clothing brands for women" (17.7%).
+- Conclusion: Bing indexes and cites us more than before, so the ChatGPT drop isn't a Bing coverage problem.
+  ChatGPT changed what it cites. The clearest gap is authority: 1 backlink (Bing's top recommendation too).
+- Bing's "meta descriptions too short" recommendation: measured all 164 sitemap URLs; only 5 are under 100 characters
+  (terms, privacy, editorial index, contact, about). Low value, left alone.
