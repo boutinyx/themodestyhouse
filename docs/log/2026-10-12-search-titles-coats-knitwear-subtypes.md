@@ -1,5 +1,5 @@
 # Search titles for coats, knitwear and subtype pages; co-ord consolidation; /pages/contact redirect
-**Date:** 2026-10-12 · **Status:** on staging, awaiting Tina's approval for main
+**Date:** 2026-10-12 · **Status:** done — live on production 2026-10-13
 
 ## Goal
 Part A of `2026-10-12-gsc-pulse-opportunities-plan.md` (that file is in the main checkout). Tina: "do what you need
@@ -57,3 +57,18 @@ OK  /modest-sets              Modest Co-ord Sets — Matching 2-Piece Sets…   
 sitemap 164 URLs (165 on production): co-ord gone, two-piece present
 ```
 Only `<head>` tags changed, so nothing visible on the page differs.
+
+### On production (2026-10-13)
+Tina approved ("yes"). Only `b619c42` + `fc81453` were cherry-picked onto `origin/main` (as `ed382c5`). Staging also
+holds the unapproved Creators pages, the Try Modest tile and the creator-shops mockup, so it was NOT merged wholesale.
+tsc clean, `lib/laneSubtypes.test.ts` 10/10 on the cherry-picked tree. Waited for the origin (cache-busted URL showed the
+new blouse title), then `purge_everything`, then checked the canonical URLs:
+```
+/modest-tops?type=blouse   Modest Blouses for Women — Shop Blouses Online
+/modest-sets?type=co-ord   canonical -> https://themodestyhouse.com/modest-sets
+/jackets-coats             Modest Coats for Women — Trench Coats & Jackets
+/modest-sets               Modest Co-ord Sets — Matching 2-Piece Sets for Women   (control, unchanged)
+/modest-abayas?type=open   Modest Open Abayas | The Modesty House                (control, unchanged)
+/pages/contact             308 -> /contact
+sitemap 164 URLs, co-ord gone, two-piece present
+```
