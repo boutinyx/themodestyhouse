@@ -70,15 +70,7 @@ const ITEMS = [
 
 export default function CategoryQuickLinks() {
   return (
-    // h-[var(--quicklinks-height)] below lg: a FIXED height, read from the
-    // same token .hero-vh subtracts (globals.css), so the strip is exactly the
-    // slice of the first screen the hero gives up — 2026-10-13, to put a way
-    // into the catalogue above the fold on a phone. lg:h-auto restores the
-    // padding-derived desktop size, where the token is 0 and the hero is full.
-    <section
-      className="h-[var(--quicklinks-height)] lg:h-auto"
-      style={{ background: 'var(--parchment)', borderBottom: '1px solid var(--hairline)' }}
-    >
+    <section style={{ background: 'var(--parchment)', borderBottom: '1px solid var(--hairline)' }}>
       {/* ONE ROW AT EVERY WIDTH, sized down to fit a phone.
           Tina, 2026-08-25, on the 2x2 version: "i want this to be next to one
           another make it smaller to fit phones".
@@ -101,7 +93,7 @@ export default function CategoryQuickLinks() {
           inline per §6. Tailwind's w/h beat the SVG's own width/height
           attributes, so the icon's `size` prop is the desktop value and the
           classes override it below lg. */}
-      <div className="flex h-full">
+      <div className="flex">
         {ITEMS.map(({ lane, label, Icon }, i) => {
           // One row at every width, so the divider rule is the simple one again:
           // a right border on all but the last tile.
