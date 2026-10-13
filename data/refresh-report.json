@@ -1,20 +1,20 @@
 {
-  "date": "2026-10-12",
+  "date": "2026-10-13",
   "totals": {
-    "added": 6,
-    "updated": 28164,
-    "delisted": 42,
-    "filtered": 39,
-    "returned": 39,
-    "incomplete": 5
+    "added": 42,
+    "updated": 28569,
+    "delisted": 72,
+    "filtered": 49,
+    "returned": 30,
+    "incomplete": 6
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
-      "complete": true,
-      "fetched": 200,
+      "complete": false,
+      "fetched": 139,
       "added": [],
-      "updated": 200,
+      "updated": 139,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -22,34 +22,42 @@
     {
       "brandSlug": "vela",
       "complete": true,
-      "fetched": 648,
+      "fetched": 649,
       "added": [],
-      "updated": 648,
-      "delisted": 1,
+      "updated": 649,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Pom Charm",
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1171,
-      "added": [],
-      "updated": 1171,
+      "fetched": 1183,
+      "added": [
+        "Floral Maxi Dress - Ink",
+        "Floral Maxi Dress - Blue",
+        "Floral Maxi Dress - Pink",
+        "Ruffle Prayer Set - Chocolate",
+        "Cotton Linen Lace Up Back Maxi Dress - Oatmeal",
+        "Nayla Silk Butterfly Inner Tie Abaya Dress - Twilight",
+        "Printed Chiffon Hijab - Cloudburst"
+      ],
+      "updated": 1176,
       "delisted": 0,
       "filtered": [],
-      "returned": 4
+      "returned": 5
     },
     {
       "brandSlug": "niswa",
-      "complete": true,
-      "fetched": 392,
+      "complete": false,
+      "fetched": 241,
       "added": [],
-      "updated": 392,
+      "updated": 241,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -152,10 +160,10 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 398,
+      "fetched": 395,
       "added": [],
-      "updated": 398,
-      "delisted": 0,
+      "updated": 395,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -183,10 +191,8 @@
       "brandSlug": "glow-modesty",
       "complete": true,
       "fetched": 125,
-      "added": [
-        "Ilaria Cape Gown"
-      ],
-      "updated": 124,
+      "added": [],
+      "updated": 125,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -197,7 +203,7 @@
       "fetched": 119,
       "added": [],
       "updated": 119,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -285,9 +291,11 @@
       "brandSlug": "emlavish",
       "complete": true,
       "fetched": 55,
-      "added": [],
-      "updated": 55,
-      "delisted": 0,
+      "added": [
+        "Belted Trench Coat"
+      ],
+      "updated": 54,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -304,10 +312,10 @@
     {
       "brandSlug": "zora",
       "complete": true,
-      "fetched": 131,
+      "fetched": 116,
       "added": [],
-      "updated": 131,
-      "delisted": 0,
+      "updated": 116,
+      "delisted": 15,
       "filtered": [],
       "returned": 0
     },
@@ -364,13 +372,11 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 152,
+      "fetched": 153,
       "added": [
-        "Lange Gebreide Vest",
-        "Comfy hoodie",
-        "Capuchon vest"
+        "Blouse"
       ],
-      "updated": 149,
+      "updated": 152,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -433,13 +439,35 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 419,
-      "added": [
-        "The Asha | Cream Yellow"
-      ],
-      "updated": 418,
-      "delisted": 0,
+      "fetched": 412,
+      "added": [],
+      "updated": 412,
+      "delisted": 1,
       "filtered": [
+        {
+          "title": "The Solace | Blue",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Solace | White",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Solace| Black",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Solace | Peach",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Solace | Sage Green",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Solace | Maroon",
+          "reason": "unclassified"
+        },
         {
           "title": "Atelier Trolley",
           "reason": "unclassified"
@@ -474,9 +502,9 @@
     {
       "brandSlug": "chi-ka",
       "complete": false,
-      "fetched": 0,
+      "fetched": 249,
       "added": [],
-      "updated": 0,
+      "updated": 249,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -507,7 +535,7 @@
       "fetched": 895,
       "added": [],
       "updated": 895,
-      "delisted": 3,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -610,10 +638,10 @@
     },
     {
       "brandSlug": "hijab-boutique",
-      "complete": true,
-      "fetched": 240,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 240,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -814,21 +842,47 @@
     },
     {
       "brandSlug": "baqa",
-      "complete": false,
-      "fetched": 0,
-      "added": [],
-      "updated": 0,
-      "delisted": 0,
-      "filtered": [],
-      "returned": 0
+      "complete": true,
+      "fetched": 332,
+      "added": [
+        "Kloş Kesim Süet Etek",
+        "Düz Paça Siyah Pantolon",
+        "Dantel Kemer Detaylı Etek",
+        "Çizgi Detaylı Jakar Bluz",
+        "Dantel ve Nakış Detaylı Elbise",
+        "Çizgi Detaylı Jakar Pantolon",
+        "Asimetrik Kesimli Etek",
+        "İşleme Dantel Detaylı Oversize Abaya"
+      ],
+      "updated": 324,
+      "delisted": 2,
+      "filtered": [
+        {
+          "title": "Mini Topuklu Deri Ayakkabı",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Deri Topuklu Sandalet",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Mini Topuklu Deri Ayakkabı",
+          "reason": "unclassified"
+        },
+        {
+          "title": "Deri Topuklu Sandalet",
+          "reason": "unclassified"
+        }
+      ],
+      "returned": 3
     },
     {
       "brandSlug": "abaya-lounge",
       "complete": true,
-      "fetched": 241,
+      "fetched": 232,
       "added": [],
-      "updated": 241,
-      "delisted": 0,
+      "updated": 232,
+      "delisted": 9,
       "filtered": [],
       "returned": 0
     },
@@ -845,20 +899,20 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 344,
+      "fetched": 345,
       "added": [],
-      "updated": 344,
-      "delisted": 2,
+      "updated": 345,
+      "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "yasmin-jay",
       "complete": true,
-      "fetched": 138,
+      "fetched": 133,
       "added": [],
-      "updated": 138,
-      "delisted": 0,
+      "updated": 133,
+      "delisted": 5,
       "filtered": [],
       "returned": 0
     },
@@ -960,10 +1014,12 @@
     {
       "brandSlug": "we-are-elegance",
       "complete": true,
-      "fetched": 102,
-      "added": [],
+      "fetched": 103,
+      "added": [
+        "Kaftan Top Cocoa"
+      ],
       "updated": 102,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -983,7 +1039,7 @@
       "fetched": 428,
       "added": [],
       "updated": 428,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1014,7 +1070,7 @@
       "updated": 232,
       "delisted": 0,
       "filtered": [],
-      "returned": 3
+      "returned": 0
     },
     {
       "brandSlug": "store-wf",
@@ -1022,7 +1078,7 @@
       "fetched": 260,
       "added": [],
       "updated": 260,
-      "delisted": 5,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1032,19 +1088,29 @@
       "fetched": 964,
       "added": [],
       "updated": 964,
-      "delisted": 13,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "abadia",
       "complete": true,
-      "fetched": 74,
-      "added": [],
-      "updated": 74,
-      "delisted": 0,
+      "fetched": 81,
+      "added": [
+        "Abadia Bisht in Silver",
+        "Suri Maxi Dress in Beige",
+        "Gwen Off Shoulder Drape Dress in Yellow",
+        "Pleated Bodice Maxi Dress in Black",
+        "Ula with Stacking",
+        "Diana in Velvet",
+        "Laila Maxi Dress",
+        "Tailored Collared Jacket",
+        "Velvet Mini Skirt"
+      ],
+      "updated": 72,
+      "delisted": 5,
       "filtered": [],
-      "returned": 0
+      "returned": 3
     },
     {
       "brandSlug": "ahlam-collections",
@@ -1113,10 +1179,10 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 969,
+      "fetched": 976,
       "added": [],
-      "updated": 969,
-      "delisted": 11,
+      "updated": 976,
+      "delisted": 6,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1139,15 +1205,27 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 3
+      "returned": 13
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 353,
-      "added": [],
-      "updated": 353,
-      "delisted": 0,
+      "fetched": 361,
+      "added": [
+        "Monogram Audy Skirt",
+        "Audy Skirt",
+        "Dirra Pants",
+        "Ilo Pants",
+        "Prana Vest",
+        "Enka Jacket",
+        "Dienne Jacket",
+        "Calme Top",
+        "Ryne Top",
+        "Lora Top",
+        "Noelle Top"
+      ],
+      "updated": 350,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -1197,18 +1275,19 @@
       "fetched": 361,
       "added": [],
       "updated": 361,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
-      "returned": 29
+      "returned": 0
     },
     {
       "brandSlug": "abayas-boutique",
-      "complete": false,
-      "fetched": 99,
+      "complete": true,
+      "fetched": 428,
       "added": [
-        "the Smocked in Tickled Pink"
+        "Ona in Green",
+        "Ona in Khaki"
       ],
-      "updated": 98,
+      "updated": 426,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1216,8 +1295,11 @@
     {
       "brandSlug": "golden-dune",
       "complete": true,
-      "fetched": 146,
-      "added": [],
+      "fetched": 148,
+      "added": [
+        "Dima Mantel",
+        "Langer Oversize-Mantel"
+      ],
       "updated": 146,
       "delisted": 0,
       "filtered": [],
@@ -1226,12 +1308,12 @@
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 286,
+      "fetched": 289,
       "added": [],
-      "updated": 286,
+      "updated": 289,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 3
     },
     {
       "brandSlug": "hijabipop",
@@ -1266,10 +1348,10 @@
     {
       "brandSlug": "glamberry",
       "complete": true,
-      "fetched": 130,
+      "fetched": 109,
       "added": [],
-      "updated": 130,
-      "delisted": 0,
+      "updated": 109,
+      "delisted": 21,
       "filtered": [],
       "returned": 0
     },
@@ -1296,19 +1378,19 @@
     {
       "brandSlug": "bybdsha",
       "complete": true,
-      "fetched": 28,
+      "fetched": 29,
       "added": [],
-      "updated": 28,
+      "updated": 29,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "parladusa",
       "complete": true,
-      "fetched": 127,
+      "fetched": 126,
       "added": [],
-      "updated": 127,
+      "updated": 126,
       "delisted": 1,
       "filtered": [],
       "returned": 0
@@ -1328,14 +1410,14 @@
     {
       "brandSlug": "zora",
       "prev": 114,
-      "next": 77,
-      "pct": 0.32
+      "next": 64,
+      "pct": 0.44
     },
     {
       "brandSlug": "amariah",
       "prev": 35,
-      "next": 5,
-      "pct": 0.86
+      "next": 2,
+      "pct": 0.94
     },
     {
       "brandSlug": "nour-al-houda",
@@ -1356,5 +1438,5 @@
       "pct": 0.49
     }
   ],
-  "untranslatedTitles": 1358
+  "untranslatedTitles": 1304
 }

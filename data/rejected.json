@@ -24534,19 +24534,19 @@
     "evidence": "in stock: XXL"
   },
   {
-    "id": "veiled:7746275967081",
-    "brandSlug": "veiled",
-    "title": "Cotton Cinch Maxi Dress - Boulder",
-    "url": "https://veiled.com/products/cinch-maxi-dress-boulder",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL, XXL"
-  },
-  {
     "id": "veiled:7798569500777",
     "brandSlug": "veiled",
     "title": "Tencel Ruffle Top - Olive",
     "url": "https://veiled.com/products/tencel-ruffle-top-olive",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "veiled:7798569566313",
+    "brandSlug": "veiled",
+    "title": "Tencel Ruffle Top - Denim",
+    "url": "https://veiled.com/products/tencel-ruffle-top-denim",
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
@@ -32314,6 +32314,15 @@
     "evidence": "https://jawda.co.uk/products/bottle-green-cotton-blend-striped-kimono-abaya"
   },
   {
+    "id": "jawda:16038522225020",
+    "brandSlug": "jawda",
+    "title": "Sage Green Cotton Blend Tassel Abaya",
+    "url": "https://jawda.co.uk/products/sage-green-cotton-blend-tassel-abaya",
+    "garmentWas": "abaya",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/sage-green-cotton-blend-tassel-abaya"
+  },
+  {
     "id": "vela:8316254159004",
     "brandSlug": "vela",
     "title": "High Low Top",
@@ -32507,6 +32516,24 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "veiled:7640437424233",
+    "brandSlug": "veiled",
+    "title": "Relaxed Knit Maxi Dress - Iron",
+    "url": "https://veiled.com/products/relaxed-knit-maxi-dress-iron",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
+    "id": "veiled:7621881626729",
+    "brandSlug": "veiled",
+    "title": "Unisex Mock Neck Sweatshirt - Heather Grey",
+    "url": "https://veiled.com/products/unisex-mock-neck-sweatshirt-heather-grey",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
   },
   {
     "id": "veiled:7621880807529",
@@ -34976,15 +35003,6 @@
     "evidence": "in stock: XL, XXL"
   },
   {
-    "id": "fares:8180329742527",
-    "brandSlug": "fares",
-    "title": "Flowy Wide Leg Pants - Navy",
-    "url": "https://shopfares.com/products/flowy-wide-leg-pants-navy",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
     "id": "fares:8153691193535",
     "brandSlug": "fares",
     "title": "Relaxed Straight Leg Pants - Butter Yellow",
@@ -35119,6 +35137,14 @@
     "brandSlug": "kamin",
     "title": "Gamra Gahwa & Tea set",
     "url": "https://kamin.ae/products/g-a-m-r-a-gahwa-tea-set",
+    "garmentWas": "set",
+    "reason": "id-pin"
+  },
+  {
+    "id": "kamin:9749760803033",
+    "brandSlug": "kamin",
+    "title": "Remal Gahwa & Tea Set",
+    "url": "https://kamin.ae/products/remal-tea-set",
     "garmentWas": "set",
     "reason": "id-pin"
   },
@@ -35380,7 +35406,7 @@
   {
     "id": "chi-ka:8585513173153",
     "brandSlug": "chi-ka",
-    "title": "Navy Color Origami Abaya RTW",
+    "title": "Origami Abaya in Navy with Magnetic Closing RTW",
     "url": "https://chikacollection.com/products/navy-color-origami-abaya-rtw",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
@@ -35756,15 +35782,6 @@
     "evidence": "2205 AED (~$600)"
   },
   {
-    "id": "chi-ka:8514021982369",
-    "brandSlug": "chi-ka",
-    "title": "Textured Jacquard Abaya in Antique Grey",
-    "url": "https://chikacollection.com/products/textured-jacquard-abaya-in-antique-grey",
-    "garmentWas": "abaya",
-    "reason": "price-ceiling",
-    "evidence": "2100 AED (~$572)"
-  },
-  {
     "id": "chi-ka:8514019492001",
     "brandSlug": "chi-ka",
     "title": "Straight Cut Abaya in Black with Satin Lapel",
@@ -35857,7 +35874,7 @@
   {
     "id": "chi-ka:8489296986273",
     "brandSlug": "chi-ka",
-    "title": "Navy Color Origami Abaya",
+    "title": "Origami Abaya in Navy with Magnetic Closing",
     "url": "https://chikacollection.com/products/navy-color-origami-abaya",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
@@ -35983,7 +36000,7 @@
   {
     "id": "chi-ka:8476917104801",
     "brandSlug": "chi-ka",
-    "title": "Double Button Textured Tensil Abaya in Navy",
+    "title": "Double Button Textured Tencel Abaya in Navy",
     "url": "https://chikacollection.com/products/double-button-textured-tensil-abaya-in-navy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
@@ -41771,24 +41788,6 @@
     "evidence": "Hijab Magnets"
   },
   {
-    "id": "amariah:7990079062241",
-    "brandSlug": "amariah",
-    "title": "Maya Maxi Dress - Pecan",
-    "url": "https://amariah.co.uk/products/maya-maxi-dress-color-pecan",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
-    "id": "amariah:8590978777313",
-    "brandSlug": "amariah",
-    "title": "Lydia Tiered Maxi Dress - Cream",
-    "url": "https://amariah.co.uk/products/lydia-tiered-maxi-dress-color-cream",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "amariah:8054182117601",
     "brandSlug": "amariah",
     "title": "Lydia Tiered Maxi Dress - Dark Spice",
@@ -43140,15 +43139,6 @@
     "garmentWas": "abaya",
     "reason": "dead-link",
     "evidence": "https://bait-hanayen.com/products/bh282102180071"
-  },
-  {
-    "id": "elaa-the-label:7254937534597",
-    "brandSlug": "elaa-the-label",
-    "title": "Garden of Noor | Dusty Blue",
-    "url": "https://elaathelabel.com/products/garden-of-noor-dusty-blue-ships-4-27",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "elaa-the-label:7242164273285",
@@ -47575,15 +47565,6 @@
     "evidence": "2550 AED (~$694)"
   },
   {
-    "id": "abadia:8643428417690",
-    "brandSlug": "abadia",
-    "title": "Naia Trousers in Black",
-    "url": "https://shop.abadia.me/products/naia-trousers-in-black",
-    "garmentWas": "trousers",
-    "reason": "price-ceiling",
-    "evidence": "3375 AED (~$919)"
-  },
-  {
     "id": "abadia:8966488522906",
     "brandSlug": "abadia",
     "title": "Scarf Drape Pant",
@@ -47692,15 +47673,6 @@
     "evidence": "2100 AED (~$572)"
   },
   {
-    "id": "abadia:8819739951258",
-    "brandSlug": "abadia",
-    "title": "Silk Shirt Bodysuit",
-    "url": "https://shop.abadia.me/products/silk-shirt-bodysuit-mushrooom",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "2185 AED (~$595)"
-  },
-  {
     "id": "abadia:8819725009050",
     "brandSlug": "abadia",
     "title": "Tailored Collared Blazer in Black",
@@ -47744,15 +47716,6 @@
     "garmentWas": "trousers",
     "reason": "price-ceiling",
     "evidence": "2835 AED (~$772)"
-  },
-  {
-    "id": "abadia:8819723370650",
-    "brandSlug": "abadia",
-    "title": "Suri Volume Skirt",
-    "url": "https://shop.abadia.me/products/suri-volume-skirt-white",
-    "garmentWas": "skirt",
-    "reason": "price-ceiling",
-    "evidence": "2925 AED (~$796)"
   },
   {
     "id": "abadia:8819723206810",
@@ -47827,10 +47790,28 @@
     "evidence": "3500 AED (~$953)"
   },
   {
+    "id": "abadia:8524653494426",
+    "brandSlug": "abadia",
+    "title": "Yara Dress in Butter Yellow",
+    "url": "https://shop.abadia.me/products/yara-long-scarf-dress-butter-yellow",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4220 AED (~$1149)"
+  },
+  {
     "id": "abadia:7937429962906",
     "brandSlug": "abadia",
     "title": "Yara Dress in White",
     "url": "https://shop.abadia.me/products/yara-long-scarf-dress-white",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4220 AED (~$1149)"
+  },
+  {
+    "id": "abadia:7937351090330",
+    "brandSlug": "abadia",
+    "title": "Yara Dress in Silver",
+    "url": "https://shop.abadia.me/products/yara-long-scarf-dress-silver",
     "garmentWas": "dress",
     "reason": "price-ceiling",
     "evidence": "4220 AED (~$1149)"
@@ -47854,6 +47835,15 @@
     "evidence": "3285 AED (~$894)"
   },
   {
+    "id": "abadia:8429904167066",
+    "brandSlug": "abadia",
+    "title": "Abadia Bisht in Blue",
+    "url": "https://shop.abadia.me/products/abadia-bisht-in-blue",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
     "id": "abadia:8391058030746",
     "brandSlug": "abadia",
     "title": "Abadia Kaftan in Beige",
@@ -47861,6 +47851,15 @@
     "garmentWas": "abaya",
     "reason": "price-ceiling",
     "evidence": "3285 AED (~$894)"
+  },
+  {
+    "id": "abadia:8374709059738",
+    "brandSlug": "abadia",
+    "title": "Suri Maxi Dress in Blue",
+    "url": "https://shop.abadia.me/products/suri-maxi-dress-in-blue",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
   },
   {
     "id": "abadia:7931141456026",
@@ -52190,15 +52189,6 @@
     "reason": "brand-blacklist"
   },
   {
-    "id": "urban-modesty:8057450889291",
-    "brandSlug": "urban-modesty",
-    "title": "Beige Linen Lace Up Maxi Dress",
-    "url": "https://urbanmodesty.com/products/beige-linen-lace-up-maxi-dress",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: X-Large"
-  },
-  {
     "id": "mariams:9407277039832",
     "brandSlug": "mariams",
     "title": "Handcrafted A4 Islamic Calligraphy Wall Art | Copper Relief Wood Frame（MAC452）",
@@ -52266,6 +52256,15 @@
     "garmentWas": "top",
     "reason": "price-ceiling",
     "evidence": "33500 TRY (~$697)"
+  },
+  {
+    "id": "baqa:9392176627963",
+    "brandSlug": "baqa",
+    "title": "Şal Yaka Kaşe Kaban",
+    "url": "https://baqaofficial.com/products/sal-yaka-kase-kaban",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "39500 TRY (~$822)"
   },
   {
     "id": "baqa:9392179151099",
@@ -53015,6 +53014,15 @@
     "evidence": "in stock: XXL"
   },
   {
+    "id": "veiled:7779354378345",
+    "brandSlug": "veiled",
+    "title": "Denim Maxi Skirt - Black Wash",
+    "url": "https://veiled.com/products/denim-wash-midi-skirt-black",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XXL"
+  },
+  {
     "id": "nihan:15235761537387",
     "brandSlug": "nihan",
     "title": "Erkek Yaka Yelek - Siyah",
@@ -53342,15 +53350,6 @@
     "reason": "non-apparel:bags",
     "tier": "A",
     "evidence": "Shoulder Bag"
-  },
-  {
-    "id": "veiled:7634722488425",
-    "brandSlug": "veiled",
-    "title": "Ribbed Top & Pants Matching Set - Lilac",
-    "url": "https://veiled.com/products/ribbed-top-pants-matching-set-lilac",
-    "garmentWas": "set",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   },
   {
     "id": "aab:10038132179258",
@@ -53890,24 +53889,6 @@
     "evidence": "5000 AED (~$1361)"
   },
   {
-    "id": "abadia:8496994418842",
-    "brandSlug": "abadia",
-    "title": "Naia Sadu Trousers",
-    "url": "https://shop.abadia.me/products/naia-sadu-trousers-cream",
-    "garmentWas": "trousers",
-    "reason": "price-ceiling",
-    "evidence": "3380 AED (~$920)"
-  },
-  {
-    "id": "abadia:8496995795098",
-    "brandSlug": "abadia",
-    "title": "Naia Asymmetric Top",
-    "url": "https://shop.abadia.me/products/naia-asymmetric-top-cream",
-    "garmentWas": "top",
-    "reason": "price-ceiling",
-    "evidence": "2550 AED (~$694)"
-  },
-  {
     "id": "abadia:9151356141722",
     "brandSlug": "abadia",
     "title": "Mila Drape Dress",
@@ -54109,5 +54090,113 @@
     "reason": "non-apparel:hardware",
     "tier": "0",
     "evidence": "No snag"
+  },
+  {
+    "id": "baqa:15411155468539",
+    "brandSlug": "baqa",
+    "title": "Çizgi Detaylı Jakar Bluz",
+    "url": "https://baqaofficial.com/products/cizgi-detayli-jakar-bluz",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "26500 TRY (~$551)"
+  },
+  {
+    "id": "baqa:15411156320507",
+    "brandSlug": "baqa",
+    "title": "Dantel ve Nakış Detaylı Elbise",
+    "url": "https://baqaofficial.com/products/dantel-ve-nakis-detayli-elbise",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "49500 TRY (~$1030)"
+  },
+  {
+    "id": "baqa:15413899559163",
+    "brandSlug": "baqa",
+    "title": "İşleme Dantel Detaylı Oversize Abaya",
+    "url": "https://baqaofficial.com/products/i̇sleme-dantel-detayli-oversize-abaya",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "99500 TRY (~$2069)"
+  },
+  {
+    "id": "abadia:8052076576922",
+    "brandSlug": "abadia",
+    "title": "Abadia Bisht in Silver",
+    "url": "https://shop.abadia.me/products/abadia-bisht-in-silver",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "2450 AED (~$667)"
+  },
+  {
+    "id": "abadia:8051881902234",
+    "brandSlug": "abadia",
+    "title": "Suri Maxi Dress in Beige",
+    "url": "https://shop.abadia.me/products/suri-maxi-dress-in-beige",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3650 AED (~$994)"
+  },
+  {
+    "id": "abadia:8496984195226",
+    "brandSlug": "abadia",
+    "title": "Gwen Off Shoulder Drape Dress in Yellow",
+    "url": "https://shop.abadia.me/products/gwen-off-shoulder-drape-dress-in-yellow",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "3500 AED (~$953)"
+  },
+  {
+    "id": "abadia:9170932072602",
+    "brandSlug": "abadia",
+    "title": "Pleated Bodice Maxi Dress in Black",
+    "url": "https://shop.abadia.me/products/pleated-bodice-maxi-dress-black",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "7160 AED (~$1950)"
+  },
+  {
+    "id": "abadia:9170932039834",
+    "brandSlug": "abadia",
+    "title": "Ula with Stacking",
+    "url": "https://shop.abadia.me/products/ula-with-stacking-black",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "5320 AED (~$1449)"
+  },
+  {
+    "id": "abadia:9170932007066",
+    "brandSlug": "abadia",
+    "title": "Diana in Velvet",
+    "url": "https://shop.abadia.me/products/diana-in-velvet-beige",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4590 AED (~$1250)"
+  },
+  {
+    "id": "abadia:9170931941530",
+    "brandSlug": "abadia",
+    "title": "Laila Maxi Dress",
+    "url": "https://shop.abadia.me/products/laila-maxi-dress-black",
+    "garmentWas": "dress",
+    "reason": "price-ceiling",
+    "evidence": "4590 AED (~$1250)"
+  },
+  {
+    "id": "abadia:9161136341146",
+    "brandSlug": "abadia",
+    "title": "Tailored Collared Jacket",
+    "url": "https://shop.abadia.me/products/tailored-collared-jacket-beige",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "3850 AED (~$1048)"
+  },
+  {
+    "id": "abadia:9161136308378",
+    "brandSlug": "abadia",
+    "title": "Velvet Mini Skirt",
+    "url": "https://shop.abadia.me/products/velvet-mini-skirt-black",
+    "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2295 AED (~$625)"
   }
 ]
