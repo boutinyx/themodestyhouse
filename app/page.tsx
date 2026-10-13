@@ -17,6 +17,7 @@ import { hasBrandPage } from '@/lib/brandPages';
 import { regionsWithCounts, brandsInRegion, pins as regionPins, regionSlug, MAP } from '@/lib/brandRegions';
 import { withUtm } from '@/lib/outbound';
 import { getPosts } from '@/lib/posts';
+import { subtypesForLane } from '@/lib/laneSubtypes';
 import { ghostImageVariant, ghostImageSrcSet } from '@/lib/ghostImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import { MARKDOWN_HOME_PATH } from '@/lib/agentPaths';
@@ -607,6 +608,26 @@ export default async function Home() {
         </h2>
         <div className="mt-8 md:mt-10">
           <PopularShowcase items={abayaPicks} surface="abaya-picks" />
+        </div>
+        {/* ABAYA SUBTYPE LINKS, 2026-10-13. The rail above linked only the bare
+            /modest-abayas lane, never the four subtype pages, and abaya searches
+            roughly double in Ramadan. Labels and hrefs come straight from
+            lib/laneSubtypes.ts, so this cannot list a subtype the lane does not
+            serve. Plain underlined text links in the style of the lane pages'
+            own "Also browse" row — NOT `.chip`s: Tina removed a chip row of
+            exactly these links from the lane pages on 2026-08-26. */}
+        <div className="mt-6 md:mt-8 max-w-[1220px] mx-auto px-8 flex flex-wrap justify-center gap-x-5">
+          {subtypesForLane('modest-abayas').map((t) => (
+            <Link
+              key={t.type}
+              href={`/modest-abayas?type=${t.type}`}
+              // py-2: a 21px-tall text link fails the audits' tap-target check.
+              className="inline-block py-2"
+              style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}
+            >
+              {t.label}
+            </Link>
+          ))}
         </div>
       </section>
 
