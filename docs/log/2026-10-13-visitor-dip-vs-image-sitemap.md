@@ -15,3 +15,14 @@ Tina noticed fewer visitors "since the image sitemap" and asked for a check in S
 
 ## Notes
 Pinterest Standard-access upgrade: dropped by Tina 2026-10-13 ("we dont need it"). Demo app at ~/pinterest-demo not used; the localhost redirect URI added to the app is harmless.
+
+## Follow-up: why ChatGPT sends fewer people (same evening)
+- ChatGPT entry pages, Sep 1-21 vs Sep 22-Oct 13: `/` 64 → 26, `/designers` 18 → **0**, `/modest-dresses` 15 → 5,
+  where-to-buy-hijabs 12 → 3, `/modest-sets` 12 → 6. Referrers are all ChatGPT/chatgpt.com (229), Perplexity 1.
+- Crawl access is fine: `/`, `/designers` and `/modest-dresses` return 200 with full HTML to the OAI-SearchBot,
+  ChatGPT-User, GPTBot and bingbot user agents; robots.txt allows all of them; Cloudflare bot_management has every
+  AI/crawler protection disabled. Firewall-event analytics isn't available on this plan, so blocks by real bot IPs
+  remain unverified.
+- Bing coverage could NOT be measured: Bing search inside the automation browser returns unrelated results even for
+  a control (`site:merrachi.com abaya` → Notepad++ pages), and DuckDuckGo blocks scripted queries. Bing Webmaster
+  Tools needs Tina signed in. That is the next step: index coverage, sitemap submission and URL inspection there.
