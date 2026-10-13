@@ -18,6 +18,16 @@ export interface Lane {
   slug: string;
   title: string;
   nav: string; // short label
+  /**
+   * The lane page's <h1>, where it differs from `title`. Added 2026-10-13: the
+   * bare-noun titles ("Tops", "Skirts") stay as they are in the nav, footer,
+   * breadcrumbs and "Also browse" links, but the h1 carries "Modest" where the
+   * queries Search Console measures for the lane include it (modest tops,
+   * modest blouses, modest skirts, modest knitwear, modest coats, modest
+   * blazer, modest co ord sets). Abayas and Hijabs are left alone: their
+   * measured queries are "abaya(s) for women", "buy hijabs online".
+   */
+  heading?: string;
   intro: string;
   kind: LaneKind;
   match: (p: Product) => boolean;
@@ -81,6 +91,7 @@ export const LANES: Lane[] = [
     slug: 'modest-skirts',
     title: 'Skirts',
     nav: 'Skirts',
+    heading: 'Modest Skirts',
     intro: 'Maxi, pleated and A-line skirts with full coverage.',
     kind: 'category',
     match: (p) => p.garment === 'skirt',
@@ -89,6 +100,7 @@ export const LANES: Lane[] = [
     slug: 'modest-tops',
     title: 'Tops',
     nav: 'Tops',
+    heading: 'Modest Tops',
     intro: 'Tunics, blouses, shirts and layering tops.',
     kind: 'category',
     // isOuterwear() items (blazers/vests/cardigans/sweaters/coats) moved out
@@ -101,6 +113,7 @@ export const LANES: Lane[] = [
     slug: 'modest-trousers',
     title: 'Trousers',
     nav: 'Trousers',
+    heading: 'Modest Trousers',
     intro: 'Wide-leg, tailored and relaxed trousers.',
     kind: 'category',
     match: (p) => p.garment === 'trousers',
@@ -109,6 +122,7 @@ export const LANES: Lane[] = [
     slug: 'modest-sets',
     title: 'Co-ord Sets',
     nav: 'Sets',
+    heading: 'Modest Co-ord Sets',
     intro: 'Matching two-piece sets and co-ords, styled to go.',
     kind: 'category',
     match: (p) => p.garment === 'set',
@@ -155,6 +169,7 @@ export const LANES: Lane[] = [
     slug: 'blazers-vests',
     title: 'Blazers & Vests',
     nav: 'Blazers & Vests',
+    heading: 'Modest Blazers & Vests',
     intro: 'Tailored blazers and vests to layer over everything else.',
     kind: 'category',
     match: (p) => isOuterwear(p) && (outerwearSubtype(p) === 'blazer' || outerwearSubtype(p) === 'vest'),
@@ -164,6 +179,7 @@ export const LANES: Lane[] = [
     slug: 'cardigans-sweaters',
     title: 'Cardigans & Sweaters',
     nav: 'Cardigans & Sweaters',
+    heading: 'Modest Cardigans & Sweaters',
     intro: 'Cardigans and sweaters for easy, everyday layering.',
     kind: 'category',
     match: (p) => isOuterwear(p) && (outerwearSubtype(p) === 'cardigan' || outerwearSubtype(p) === 'sweater'),
@@ -173,6 +189,7 @@ export const LANES: Lane[] = [
     slug: 'jackets-coats',
     title: 'Jackets & Coats',
     nav: 'Jackets & Coats',
+    heading: 'Modest Jackets & Coats',
     intro: 'Coats and jackets for cooler days.',
     kind: 'category',
     match: (p) => isOuterwear(p) && outerwearSubtype(p) === 'coat',

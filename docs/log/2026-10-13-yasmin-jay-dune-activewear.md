@@ -1,5 +1,5 @@
 # Yasmin Jay Dune pieces moved to Modest Activewear
-**Date:** 2026-10-13 · **Status:** on staging, awaiting Tina's approval for main
+**Date:** 2026-10-13 · **Status:** done — live on production 2026-10-13 (Tina: "go do everything")
 
 ## Goal
 Tina sent a screenshot of "Dune Splash Blouse Black / Fawn Beige" on the blouses page: "this is active wear."
