@@ -17,6 +17,7 @@ import { hasBrandPage } from '@/lib/brandPages';
 import { regionsWithCounts, brandsInRegion, pins as regionPins, regionSlug, MAP } from '@/lib/brandRegions';
 import { withUtm } from '@/lib/outbound';
 import { getPosts } from '@/lib/posts';
+import { subtypesForLane } from '@/lib/laneSubtypes';
 import { ghostImageVariant, ghostImageSrcSet } from '@/lib/ghostImage';
 import { pageMetadata } from '@/lib/seoCopy';
 import { MARKDOWN_HOME_PATH } from '@/lib/agentPaths';
@@ -91,6 +92,18 @@ const CATEGORY_SHOWCASE: { slug: string; label: string; image: string; zoom?: nu
  */
 const EDIT_BELOW_CATEGORIES = 'fall-essentials';
 
+/**
+ * Posts that always sit in the homepage's story column, ahead of the newest.
+ * 2026-10-13: these are the two best-performing articles in Search Console
+ * (best-abaya-brands-price-tiers 592 impressions / 19 clicks at position 6.6;
+ * where-to-buy-hijabs-online 554 impressions at 12.6) and, being older than
+ * the four newest, neither was linked from the homepage at all. Slugs, not
+ * Ghost's `featured` flag, for the same reason EDIT_BELOW_CATEGORIES is a slug:
+ * the placement is a fact about this page, and editing Ghost content is a
+ * separate decision. Remove a slug here to let the column go back to newest.
+ */
+const HOME_PINNED_POSTS = ['best-abaya-brands-price-tiers', 'where-to-buy-hijabs-online'];
+
 // The feature card and the rail read Ghost. The webhook revalidates `/` on a publish; the
 // hour is the floor when a webhook is lost, and equals the Cloudflare edge TTL.
 export const revalidate = 3600;
@@ -100,7 +113,17 @@ export default async function Home() {
   const catCountBySlug = new Map(cats.map((c) => [c.slug, c.count]));
   const posts = await getPosts();
   const feature = posts[0];
-  const moreStories = posts.slice(1, 4);
+  // The side column holds three stories. HOME_PINNED_POSTS go first, then the
+  // newest of the rest — so the feature is still always the newest post and
+  // the column still fills itself as posts are published. A pinned slug that
+  // no longer exists in Ghost is simply skipped, never a dead card.
+  const pinned = HOME_PINNED_POSTS
+    .map((slug) => posts.find((p) => p.slug === slug))
+    .filter((p): p is (typeof posts)[number] => Boolean(p) && p !== feature);
+  const moreStories = [
+    ...pinned,
+    ...posts.slice(1).filter((p) => !pinned.includes(p)),
+  ].slice(0, 3);
   // Looked up from the live catalogue, not duplicated — see
   // lib/popularItems.ts's own comment for why. filter(Boolean) drops any id
   // that's been cut or delisted since the list was written, rather than
@@ -608,6 +631,26 @@ export default async function Home() {
         <div className="mt-8 md:mt-10">
           <PopularShowcase items={abayaPicks} surface="abaya-picks" />
         </div>
+        {/* ABAYA SUBTYPE LINKS, 2026-10-13. The rail above linked only the bare
+            /modest-abayas lane, never the four subtype pages, and abaya searches
+            roughly double in Ramadan. Labels and hrefs come straight from
+            lib/laneSubtypes.ts, so this cannot list a subtype the lane does not
+            serve. Plain underlined text links in the style of the lane pages'
+            own "Also browse" row — NOT `.chip`s: Tina removed a chip row of
+            exactly these links from the lane pages on 2026-08-26. */}
+        <div className="mt-6 md:mt-8 max-w-[1220px] mx-auto px-8 flex flex-wrap justify-center gap-x-5">
+          {subtypesForLane('modest-abayas').map((t) => (
+            <Link
+              key={t.type}
+              href={`/modest-abayas?type=${t.type}`}
+              // py-2: a 21px-tall text link fails the audits' tap-target check.
+              className="inline-block py-2"
+              style={{ color: 'var(--aubergine)', textDecoration: 'underline', textUnderlineOffset: 2, fontSize: 14 }}
+            >
+              {t.label}
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* The "Chosen by hand" editor's-picks rail stood here until 2026-08-24,
@@ -792,7 +835,8 @@ export default async function Home() {
           <Link href="/editorial" className="nav-link !hidden md:!inline-flex items-center gap-1.5">All stories <ArrowRight size={13} weight="bold" /></Link>
         </div>
         {/* KNOWN AND ACCEPTED, so please do not "fix" it again.
-            `moreStories` is posts.slice(1, 4) — this layout wants three stories
+            `moreStories` is three posts after the feature (HOME_PINNED_POSTS first,
+            since 2026-10-13) — this layout wants three stories
             in the right column and content/editorial holds two posts, so it gets
             one. At 1440 that is a 110px card beside a 460px feature and about
             350px of empty parchment under it.

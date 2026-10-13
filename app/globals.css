@@ -392,6 +392,21 @@
      the hero measured 816 = 844 - 28 in both engines, with nothing else
      touched. */
   --band-height: 40px;
+
+  /* The category strip directly under the hero (components/CategoryQuickLinks.tsx),
+     2026-10-13. FIXED for the same reason as the two tokens above: .hero-vh
+     subtracts it, so on a phone or tablet the strip sits INSIDE the first
+     screen instead of directly below it. Measured in Pulse, Sep 4-Oct 12: the
+     homepage takes 41% of entries, 67% of them on mobile, and holds them worst
+     of any page — and the first screen had exactly one way into the catalogue
+     (Shop New In). The strip already existed; this only moves the fold to show
+     it. The component reads this same token for its own height below lg, so
+     the two cannot drift apart. Zeroed from lg up, where the strip changes to
+     its larger desktop size and the desktop hero is left untouched. */
+  --quicklinks-height: 72px;
+}
+@media (min-width: 1024px) {
+  :root { --quicklinks-height: 0px; }
 }
 /* 1152px, NOT 1024: this is the width where components/Header.tsx swaps to its
    desktop row, and that moved off `lg` on 2026-08-27 (see --breakpoint-hdr in
@@ -475,8 +490,8 @@
   /* Minus --band-height: the brand band above the header (2026-08-23) is real
      flow above this, so a flat 100svh would push the photograph's bottom edge
      exactly that far past the fold. */
-  height: calc(100vh - var(--band-height));
-  height: calc(100svh - var(--band-height));
+  height: calc(100vh - var(--band-height) - var(--quicklinks-height));
+  height: calc(100svh - var(--band-height) - var(--quicklinks-height));
   min-height: 560px;
   /* 2026-08-22, Tina: "make sure the hero image spans behind the header." The
      header is still `sticky`, so it still takes its own height out of the flow
