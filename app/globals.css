@@ -489,6 +489,25 @@
   margin-top: calc(-1 * var(--header-height));
 }
 
+/* The homepage hero's placeholder, 2026-10-13. Tina: "the photos are loading in
+   real time because i see the purple background when it loads." The phone hero is
+   the 1290w variant on a 3x screen (376 KB) and the background under it was flat
+   aubergine, so every slow load showed a purple box first. These are 32px-wide
+   copies of the SAME two crops (hero-home-10 / hero-home-mobile), inlined so they
+   paint with the HTML, with no request of their own; scaled to cover they read
+   as a soft blur of the photograph, which the real <img> then covers. The quality
+   of the photograph itself is untouched. Regenerate both if either hero changes:
+   sharp(<640 variant>).resize(32).blur(1).webp({quality:50}). 767px matches the
+   <source media> in app/page.tsx that swaps in the phone crop. */
+.hero-placeholder {
+  background: var(--aubergine) url("data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBACdASogAA4APtFapEwoJSOiMAgBABoJYgCdMoACsSikFnQeLfwt2AD+7PVS7cF+Wf+fTxxQAXrgfG/GYz5vSKcQmWYBmd8u55Qcp2FSckaexS8oQ8R8P+Tdt2cyp64CCdlM4QoJxLaZ7oIUT9qnPuY0ccC4Mi26dgjGRhX4VoaAAAA=") center / cover no-repeat;
+}
+@media (max-width: 767px) {
+  .hero-placeholder {
+    background-image: url("data:image/webp;base64,UklGRmoBAABXRUJQVlA4WAoAAAAQAAAAHwAAOAAAQUxQSC0AAAABNyAkSP7fNdm4ERGBBaYhWUnhKTyFMoghhedvcQD9RPR/AixopoL6H9NwczAAVlA4IBYBAAAQCACdASogADkAPtFgpk4oJaOiKAqpABoJQBkaN/AsVm0YcVCnZjegiW9Jajh5oPVa33yJnj7rDKU4C+UzGgP2Pw2AFoicsGQAAP70o2tNQ+oEwRBnL5hPCB3qHwi3yC2rqRxKRJy5UrVgmiz+WR5qjcFtFlTtCYf9AYFDaoO+xTZE3CRKfQjw3TKC4glDUqlPrKY0doENUvuoHdfZfPqXjyWhum5C03KqSmU/WOBTocVmCoU2IgSFJxrNwIVjFrXBX+8eX/LIYmFNVomZKWDyHb55JqDbRTEzC0HemmXg7yFAlRR8Txjcx77cEPdnM1Cr6cUm1JesgtxSJ8Ln7CDf9QdO69pOB6fDz5/V7k0I5vNhQzbAAA==");
+  }
+}
+
 /* The homepage's feature editorial card. 460px tall from md up — its original
    inline `minHeight` — and a true 16:9 picture below that.
    Tina, 2026-08-25: "i wanted the editorials on the end of the homepage to be

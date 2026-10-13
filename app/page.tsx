@@ -185,7 +185,7 @@ export default async function Home() {
             past the bottom of the header. An attribute rather than an id or a
             class so it cannot be mistaken for a styling hook and quietly
             renamed — CLAUDE.md §10.29's rename trap. */}
-        <div data-hero className="relative overflow-hidden hero-vh" style={{ background: 'var(--aubergine)' }}>
+        <div data-hero className="relative overflow-hidden hero-vh hero-placeholder">
           {/* The LCP element on a phone. It was one 1920px JPEG (227KB) served
               to every width; a 390px viewport now takes the 640 variant at 19KB.
               fetchPriority=high because it is above the fold and must not queue
