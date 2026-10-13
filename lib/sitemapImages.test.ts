@@ -31,3 +31,38 @@ describe('imageSitemapXml', () => {
     expect(xml).not.toContain('/empty');
   });
 });
+
+import { editSitemapImages, SITEMAP_IMAGES_PER_LANE } from './sitemapImages';
+import { EDITS } from './edits';
+describe('editSitemapImages', () => {
+  const edit = {
+    image: '/edit-hero.jpg',
+    imageMobile: '/edit-hero-mobile.jpg',
+    storyImages: [
+      { src: '/edits/ours.jpg', credit: null },
+      { src: '/edits/theirs.jpg', credit: 'someone' },
+    ],
+  };
+  const picks = Array.from({ length: 40 }, (_, i) => ({ image: `https://cdn.shopify.com/${i}.jpg` }));
+  it('leads with the hero crops and our own story images, absolute on the production origin', () => {
+    expect(editSitemapImages(edit, picks).slice(0, 3)).toEqual([
+      'https://themodestyhouse.com/edit-hero.jpg',
+      'https://themodestyhouse.com/edit-hero-mobile.jpg',
+      'https://themodestyhouse.com/edits/ours.jpg',
+    ]);
+  });
+  it('never lists a credited third-party photograph', () => {
+    expect(editSitemapImages(edit, picks).some((u) => u.includes('theirs'))).toBe(false);
+  });
+  it('caps the picks at the lane limit, in grid order', () => {
+    expect(editSitemapImages(edit, picks).slice(3)).toEqual(picks.slice(0, SITEMAP_IMAGES_PER_LANE).map((p) => p.image));
+  });
+  it('works on every real edit: absolute https, no duplicates, under the 1,000-per-URL limit', () => {
+    for (const e of EDITS) {
+      const imgs = editSitemapImages(e, picks);
+      expect(imgs.every((u) => u.startsWith('https://'))).toBe(true);
+      expect(new Set(imgs).size).toBe(imgs.length);
+      expect(imgs.length).toBeLessThanOrEqual(1000);
+    }
+  });
+});

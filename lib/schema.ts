@@ -9,6 +9,8 @@
 
 export const SITE_URL = 'https://themodestyhouse.com';
 const SITE_NAME = 'The Modesty House';
+/** Shared by Organization and WebSite — see organizationSchema's note. */
+export const SITE_ALTERNATE_NAMES = ['Modesty House', 'TMH'];
 
 /**
  * The site as an entity.
@@ -36,14 +38,27 @@ const SITE_NAME = 'The Modesty House';
  * Google has no reason yet to treat these as one entity and us as a distinct
  * one. → docs/log/2026-09-03-brand-name-entity-confusion.md
  *
- * PINTEREST AND TIKTOK ARE STILL ABSENT, and the original reasoning stands for
- * them unchanged: components/Footer.tsx still links to bare pinterest.com and
- * tiktok.com because no profile has been named. Pointing `sameAs` at a
- * platform's homepage claims an identity that does not exist, which is worse
- * than omitting it. Add each the day its handle is given.
+ * PINTEREST AND TIKTOK — ADDED 2026-10-13, each verified against the live
+ * profile rather than inferred from the handle (the rule above still holds:
+ * never a platform homepage, never a guess):
+ *   - pinterest.com/themodestyhousehq — profile "The Modesty House", whose
+ *     website_url is themodestyhouse.com with domain_verified: true. The
+ *     account was renamed from @thetinaesthetic on 2026-09-12
+ *     (docs/log/2026-09-12-pinterest-pin-repair-blocked.md).
+ *   - tiktok.com/@themodestyhouse.hq — nickname "The Modesty House", bio ends
+ *     "themodestyhouse.com". (@themodestyhousehq on TikTok is NOT ours.)
+ * Re-verify both if either handle changes.
  *
- * ALSO ABSENT — `alternateName` and `founder`. The first would be invented
- * brand copy (§10.18); the second has no public subject, and app/about/page.tsx
+ * `alternateName` — ADDED 2026-10-13. These are not taglines (§10.18) but the
+ * two forms the name is actually used in: "Modesty House" is the name without
+ * its article, and "TMH" is the monogram on the logo and on the Instagram
+ * "Found by TMH" posts. Measured reason: on 2026-10-13 the homepage averaged
+ * position 5.1 for "modest house" — Google is not yet resolving short forms
+ * of the name to this entity. "House of Modesty" is deliberately NOT listed:
+ * it is a different, real Rotterdam shop (docs/log/2026-09-03-brand-name-
+ * entity-confusion.md), and claiming its name would be false.
+ *
+ * STILL ABSENT — `founder`. It has no public subject, and app/about/page.tsx
  * documents that as a deliberate privacy choice rather than an oversight.
  */
 export function organizationSchema() {
@@ -52,8 +67,13 @@ export function organizationSchema() {
     '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
+    alternateName: SITE_ALTERNATE_NAMES,
     logo: `${SITE_URL}/logo.png`,
-    sameAs: ['https://www.instagram.com/themodestyhouse.hq/'],
+    sameAs: [
+      'https://www.instagram.com/themodestyhouse.hq/',
+      'https://www.pinterest.com/themodestyhousehq/',
+      'https://www.tiktok.com/@themodestyhouse.hq',
+    ],
     description: 'The archive for everything modest. A curated index of modest brands and pieces.',
     address: {
       '@type': 'PostalAddress',
@@ -73,6 +93,8 @@ export function websiteSchema() {
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
+    // Google's site-name system reads WebSite.alternateName specifically.
+    alternateName: SITE_ALTERNATE_NAMES,
     url: SITE_URL,
     publisher: { '@id': `${SITE_URL}/#organization` },
     potentialAction: {
@@ -80,6 +102,32 @@ export function websiteSchema() {
       target: { '@type': 'EntryPoint', urlTemplate: `${SITE_URL}/new-in?q={search_term_string}` },
       'query-input': 'required name=search_term_string',
     },
+  };
+}
+
+/**
+ * The homepage's list of category lanes, as an ItemList.
+ *
+ * Built from the lanes passed in (the caller hands it CATEGORY_LANES), never a
+ * hand-typed list, so a new lane appears here the day it is routable — the same
+ * property app/sitemap.ts and lib/siteSections.ts rely on. Every URL is one of
+ * ours, which is what Google's summary-list spec asks of an ItemList; each
+ * entry is a bare ListItem (position/name/url), for the reasons on
+ * collectionPageSchema below. `name` is the homepage's own visible heading for
+ * its category section ("By category."), not new copy.
+ */
+export function categoryListSchema(lanes: { slug: string; title: string }[]) {
+  return {
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/#categories`,
+    name: 'By category',
+    numberOfItems: lanes.length,
+    itemListElement: lanes.map((l, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: l.title,
+      url: `${SITE_URL}/${l.slug}`,
+    })),
   };
 }
 
