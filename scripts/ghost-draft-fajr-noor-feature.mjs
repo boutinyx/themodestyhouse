@@ -26,7 +26,7 @@ const BODY = `*Fajr Noor* means "the light of dawn", the hour of the first praye
 
 **What's been hardest:** staying who they are while they grow. "It's easy to chase trends or shout about discounts." They chose *Ihsaan*, excellence, instead: in the fabrics, the packaging, the systems no customer ever sees, and how every customer is treated. "Building that kind of trust takes longer, but there is barakah in it."
 
-**The piece they're proudest of:** the [Khatijah Abaya](https://fajrnoor.com/collections/khatijah-abayas), their best seller. It's comfortable enough for every day, modest, and elegant enough that sisters reach for it again and again. It comes in twelve colours, and many customers own more than one. Still working out which cut suits you? Our [abaya guide](/editorial/abaya-guide-how-to-choose-the-right-fit-and-fabric) covers fit and fabric, and [open vs closed abayas](/editorial/open-abaya-vs-closed-abaya) explains the difference. Like the Maryam, Amina and Nourah, it carries the name of a woman from Islamic history. Khadijah, may Allah be pleased with her, ran a trading business in Mecca and was the first to believe: a fitting namesake for a brand that began by asking why so few businesses are built around faith.
+**The piece they're proudest of:** the [Khatijah Abaya](https://fajrnoor.com/collections/khatijah-abayas), their best seller. It's comfortable enough for every day, modest, and elegant enough that sisters reach for it again and again. It comes in twelve colours, and many customers own more than one. Like the Maryam, Amina and Nourah, it carries the name of a woman from Islamic history. Khadijah, may Allah be pleased with her, ran a trading business in Mecca and was the first to believe: a fitting namesake for a brand that began by asking why so few businesses are built around faith.
 
 **The messages that stay with them:** reviews are, in the team's words, "the dessert", and the ones they remember are about how a piece made someone feel. One customer wrote that she "felt like a princess" in her abaya. Another kept it simple: "Effortless shopping experience and quick delivery. Jazak Allahu Khairan." Knowing their pieces are part of someone's salah, Eid or everyday life "is why we do this".
 
@@ -34,7 +34,7 @@ const BODY = `*Fajr Noor* means "the light of dawn", the hour of the first praye
 
 Today the team still writes to its community, with regular reminders on marriage, patience and people-pleasing, and for many sisters those emails are the best part of being a customer. It's what the name promised: something that meets you at the start of the day and turns you toward something better.
 
-"We hope that when someone shops with us, they feel they've found a home, not just a store." Fajr Noor ships worldwide. Start with the [abayas](https://fajrnoor.com/collections/abayas) or the [hijabs](https://fajrnoor.com/collections/hijabs), or see how they sit alongside every [modest abaya](/modest-abayas) and [hijab](/modest-hijabs) in our directory.`;
+"We hope that when someone shops with us, they feel they've found a home, not just a store." Fajr Noor ships worldwide. Start with the [abayas](https://fajrnoor.com/collections/abayas) or the [hijabs](https://fajrnoor.com/collections/hijabs).`;
 
 const html = markdownToHtml(BODY);
 console.log(`HTML: ${html.length} chars, ${BODY.split(/\s+/).length} words\n`);
