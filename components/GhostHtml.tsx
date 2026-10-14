@@ -28,7 +28,18 @@ const PLAIN = new Set([
   // Every remaining inline format the Ghost editor offers. `u` was missing until 2026-10-08,
   // and a dropped tag takes its words with it: an underlined link rendered as an empty <a>.
   'u', 's', 'del', 'mark', 'sub', 'sup',
+  // Tables and native disclosure, added 2026-10-14: the agency's comparison table and FAQ
+  // (open-abaya-vs-closed-abaya) vanished whole because none of these were here. Their inline
+  // styles are dropped like everywhere else; .editorial-prose styles them in house tokens.
+  'caption', 'details', 'summary',
 ]);
+const TABLE_PARTS = new Set(['table', 'thead', 'tbody', 'tfoot', 'tr']);
+/** Table cells keep only their span, as a small integer. Nothing else survives. */
+const CELLS = new Set(['th', 'td']);
+function span(v: string | undefined): number | undefined {
+  const n = Number(v);
+  return Number.isInteger(n) && n > 1 && n <= 20 ? n : undefined;
+}
 /** Blocks that are dropped when they hold no text and no image: Ghost leaves empty ones behind. */
 const DROP_IF_EMPTY = new Set(['p', 'h1', 'h2', 'h3', 'h4']);
 const VOID = new Set(['hr', 'br']);
@@ -133,6 +144,28 @@ const NEVER_UNWRAP = new Set([
 ]);
 const looksLikeButton = (el: Element) => classes(el).some((c) => /btn|button/i.test(c));
 
+/** `kg-toggle-card` → <details><summary>heading</summary>content</details>. The icon button is dropped. */
+function toggle(node: Element, options: HTMLReactParserOptions): React.JSX.Element {
+  const find = (el: Element, c: string): Element | undefined => {
+    for (const k of el.children as DOMNode[]) {
+      if (!(k instanceof Element)) continue;
+      if (hasClass(k, c)) return k;
+      const deep = find(k, c);
+      if (deep) return deep;
+    }
+    return undefined;
+  };
+  const heading = find(node, 'kg-toggle-heading-text');
+  const content = find(node, 'kg-toggle-content');
+  if (!heading || !content) return <></>;
+  return (
+    <details>
+      <summary>{domToReact(heading.children as DOMNode[], options)}</summary>
+      {domToReact(content.children as DOMNode[], options)}
+    </details>
+  );
+}
+
 export default function GhostHtml({ html }: { html: string }): ReactNode {
   const marked = html
     .replace(HTML_CARD_BEGIN, `<${HTML_CARD_TAG}>`)
@@ -158,6 +191,17 @@ function makeOptions(inHtmlCard: boolean, inLink: boolean): HTMLReactParserOptio
       if (tag === 'h1') return createElement('h2', null, kids()); // the page already has its h1
       if (PLAIN.has(tag)) return createElement(tag, null, kids());
       if (VOID.has(tag)) return createElement(tag);
+      // A wide table scrolls inside its own box instead of pushing the page sideways on a phone.
+      // Table structure keeps only element children: the newlines between <tr>s are not valid there.
+      if (TABLE_PARTS.has(tag)) {
+        const rows = domToReact((node.children as DOMNode[]).filter((n) => n instanceof Element), options);
+        return tag === 'table'
+          ? <div className="table-scroll"><table>{rows}</table></div>
+          : createElement(tag, null, rows);
+      }
+      if (CELLS.has(tag)) {
+        return createElement(tag, { colSpan: span(node.attribs.colspan), rowSpan: span(node.attribs.rowspan) }, kids());
+      }
 
       if (tag === 'a') {
         const link = classify(node.attribs.href);
@@ -211,6 +255,11 @@ function makeOptions(inHtmlCard: boolean, inLink: boolean): HTMLReactParserOptio
       }
 
       if (tag === 'div') {
+        // Ghost's toggle card is its own FAQ block: render it as a native <details>.
+        if (hasClass(node, 'kg-toggle-card')) return toggle(node, options);
+        // A div with no Ghost card class is pasted layout (a Markdown card emits its HTML with no
+        // wrapper or marker): keep it as a bare wrapper; its children still go through the allowlist.
+        if (!classes(node).some((c) => c.startsWith('kg-'))) return <div>{kids()}</div>;
         if (!hasAnyCardClass(node)) return <></>; // unsupported card: drop with its children
         if (hasClass(node, 'kg-callout-card')) return <div style={CALLOUT}>{kids()}</div>;
         if (hasClass(node, 'kg-cta-card')) {
