@@ -1,20 +1,20 @@
 {
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "totals": {
-    "added": 42,
-    "updated": 28569,
-    "delisted": 72,
-    "filtered": 49,
-    "returned": 30,
-    "incomplete": 6
+    "added": 24,
+    "updated": 28543,
+    "delisted": 44,
+    "filtered": 53,
+    "returned": 17,
+    "incomplete": 4
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
-      "complete": false,
-      "fetched": 139,
+      "complete": true,
+      "fetched": 200,
       "added": [],
-      "updated": 139,
+      "updated": 200,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -32,32 +32,24 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "veiled",
       "complete": true,
       "fetched": 1183,
-      "added": [
-        "Floral Maxi Dress - Ink",
-        "Floral Maxi Dress - Blue",
-        "Floral Maxi Dress - Pink",
-        "Ruffle Prayer Set - Chocolate",
-        "Cotton Linen Lace Up Back Maxi Dress - Oatmeal",
-        "Nayla Silk Butterfly Inner Tie Abaya Dress - Twilight",
-        "Printed Chiffon Hijab - Cloudburst"
-      ],
-      "updated": 1176,
+      "added": [],
+      "updated": 1183,
       "delisted": 0,
       "filtered": [],
-      "returned": 5
+      "returned": 0
     },
     {
       "brandSlug": "niswa",
-      "complete": false,
-      "fetched": 241,
+      "complete": true,
+      "fetched": 392,
       "added": [],
-      "updated": 241,
+      "updated": 392,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -160,10 +152,10 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 395,
+      "fetched": 394,
       "added": [],
-      "updated": 395,
-      "delisted": 3,
+      "updated": 394,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -200,12 +192,12 @@
     {
       "brandSlug": "jawda",
       "complete": true,
-      "fetched": 119,
+      "fetched": 122,
       "added": [],
-      "updated": 119,
+      "updated": 122,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 3
     },
     {
       "brandSlug": "feradje",
@@ -291,11 +283,9 @@
       "brandSlug": "emlavish",
       "complete": true,
       "fetched": 55,
-      "added": [
-        "Belted Trench Coat"
-      ],
-      "updated": 54,
-      "delisted": 1,
+      "added": [],
+      "updated": 55,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -312,10 +302,12 @@
     {
       "brandSlug": "zora",
       "complete": true,
-      "fetched": 116,
-      "added": [],
+      "fetched": 117,
+      "added": [
+        "The Lorna Dress in Possy Floral"
+      ],
       "updated": 116,
-      "delisted": 15,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -342,10 +334,10 @@
     {
       "brandSlug": "les-atelier",
       "complete": true,
-      "fetched": 121,
+      "fetched": 119,
       "added": [],
-      "updated": 121,
-      "delisted": 0,
+      "updated": 119,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -373,10 +365,8 @@
       "brandSlug": "manzaram",
       "complete": true,
       "fetched": 153,
-      "added": [
-        "Blouse"
-      ],
-      "updated": 152,
+      "added": [],
+      "updated": 153,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -439,10 +429,10 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 412,
+      "fetched": 408,
       "added": [],
-      "updated": 412,
-      "delisted": 1,
+      "updated": 408,
+      "delisted": 0,
       "filtered": [
         {
           "title": "The Solace | Blue",
@@ -466,6 +456,22 @@
         },
         {
           "title": "The Solace | Maroon",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Riverie | Black",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Riverie | Jade",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Riverie | Gray",
+          "reason": "unclassified"
+        },
+        {
+          "title": "The Riverie | Sage Green",
           "reason": "unclassified"
         },
         {
@@ -502,9 +508,9 @@
     {
       "brandSlug": "chi-ka",
       "complete": false,
-      "fetched": 249,
+      "fetched": 0,
       "added": [],
-      "updated": 249,
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -732,8 +738,10 @@
     {
       "brandSlug": "zayda",
       "complete": true,
-      "fetched": 2,
-      "added": [],
+      "fetched": 3,
+      "added": [
+        "Heska Top"
+      ],
       "updated": 2,
       "delisted": 0,
       "filtered": [],
@@ -843,19 +851,10 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 332,
-      "added": [
-        "Kloş Kesim Süet Etek",
-        "Düz Paça Siyah Pantolon",
-        "Dantel Kemer Detaylı Etek",
-        "Çizgi Detaylı Jakar Bluz",
-        "Dantel ve Nakış Detaylı Elbise",
-        "Çizgi Detaylı Jakar Pantolon",
-        "Asimetrik Kesimli Etek",
-        "İşleme Dantel Detaylı Oversize Abaya"
-      ],
-      "updated": 324,
-      "delisted": 2,
+      "fetched": 331,
+      "added": [],
+      "updated": 331,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -874,15 +873,15 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 3
+      "returned": 0
     },
     {
       "brandSlug": "abaya-lounge",
       "complete": true,
-      "fetched": 232,
+      "fetched": 230,
       "added": [],
-      "updated": 232,
-      "delisted": 9,
+      "updated": 230,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -904,15 +903,15 @@
       "updated": 345,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "yasmin-jay",
       "complete": true,
-      "fetched": 133,
+      "fetched": 126,
       "added": [],
-      "updated": 133,
-      "delisted": 5,
+      "updated": 126,
+      "delisted": 7,
       "filtered": [],
       "returned": 0
     },
@@ -979,8 +978,16 @@
     {
       "brandSlug": "modesty-in-style",
       "complete": true,
-      "fetched": 390,
-      "added": [],
+      "fetched": 397,
+      "added": [
+        "Alia Dress",
+        "Lilly Patterned Kimono",
+        "Luna Lace Dress",
+        "Inaya Set",
+        "Emma Set",
+        "Mary Slit Top",
+        "Eva Top"
+      ],
       "updated": 390,
       "delisted": 0,
       "filtered": [],
@@ -999,8 +1006,17 @@
     {
       "brandSlug": "vivi-zubedi",
       "complete": true,
-      "fetched": 402,
-      "added": [],
+      "fetched": 410,
+      "added": [
+        "VZ Phoebee Scarf – Taupe",
+        "VZ Phoebee Scarf – Tangerine",
+        "VZ Phoebee Scarf – Moolight Blue",
+        "VZ Phoebee Scarf – Maple Sugar",
+        "VZ Phoebee Scarf – Black",
+        "VZ Signaire Abaya – Charcoal",
+        "VZ Signaire Abaya – Dark Blue",
+        "VZ Signaire Abaya – Light Blue"
+      ],
       "updated": 402,
       "delisted": 0,
       "filtered": [
@@ -1014,12 +1030,10 @@
     {
       "brandSlug": "we-are-elegance",
       "complete": true,
-      "fetched": 103,
-      "added": [
-        "Kaftan Top Cocoa"
-      ],
+      "fetched": 102,
+      "added": [],
       "updated": 102,
-      "delisted": 0,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1085,32 +1099,25 @@
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 964,
+      "fetched": 963,
       "added": [],
-      "updated": 964,
-      "delisted": 0,
+      "updated": 963,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "abadia",
       "complete": true,
-      "fetched": 81,
+      "fetched": 83,
       "added": [
-        "Abadia Bisht in Silver",
-        "Suri Maxi Dress in Beige",
-        "Gwen Off Shoulder Drape Dress in Yellow",
-        "Pleated Bodice Maxi Dress in Black",
-        "Ula with Stacking",
-        "Diana in Velvet",
-        "Laila Maxi Dress",
-        "Tailored Collared Jacket",
-        "Velvet Mini Skirt"
+        "Lee Jacket",
+        "Barrel Pants"
       ],
-      "updated": 72,
-      "delisted": 5,
+      "updated": 81,
+      "delisted": 0,
       "filtered": [],
-      "returned": 3
+      "returned": 0
     },
     {
       "brandSlug": "ahlam-collections",
@@ -1179,10 +1186,12 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 976,
-      "added": [],
-      "updated": 976,
-      "delisted": 6,
+      "fetched": 971,
+      "added": [
+        "Kapüşonlu Dik Yaka Spor Giy çık Siyah Giy Çık 0131"
+      ],
+      "updated": 970,
+      "delisted": 9,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1205,27 +1214,18 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 13
+      "returned": 3
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 361,
+      "fetched": 363,
       "added": [
-        "Monogram Audy Skirt",
-        "Audy Skirt",
-        "Dirra Pants",
-        "Ilo Pants",
-        "Prana Vest",
-        "Enka Jacket",
-        "Dienne Jacket",
-        "Calme Top",
-        "Ryne Top",
-        "Lora Top",
-        "Noelle Top"
+        "Haruka Pants",
+        "Yuri Jacket"
       ],
-      "updated": 350,
-      "delisted": 3,
+      "updated": 361,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1242,10 +1242,10 @@
     {
       "brandSlug": "hidayah",
       "complete": true,
-      "fetched": 154,
+      "fetched": 140,
       "added": [],
-      "updated": 154,
-      "delisted": 0,
+      "updated": 140,
+      "delisted": 14,
       "filtered": [],
       "returned": 0
     },
@@ -1262,8 +1262,10 @@
     {
       "brandSlug": "aeon-abaya",
       "complete": true,
-      "fetched": 640,
-      "added": [],
+      "fetched": 641,
+      "added": [
+        "Luxury Dress"
+      ],
       "updated": 640,
       "delisted": 0,
       "filtered": [],
@@ -1272,22 +1274,19 @@
     {
       "brandSlug": "nour-al-houda",
       "complete": true,
-      "fetched": 361,
+      "fetched": 364,
       "added": [],
-      "updated": 361,
-      "delisted": 0,
+      "updated": 364,
+      "delisted": 6,
       "filtered": [],
-      "returned": 0
+      "returned": 9
     },
     {
       "brandSlug": "abayas-boutique",
       "complete": true,
       "fetched": 428,
-      "added": [
-        "Ona in Green",
-        "Ona in Khaki"
-      ],
-      "updated": 426,
+      "added": [],
+      "updated": 428,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1295,12 +1294,11 @@
     {
       "brandSlug": "golden-dune",
       "complete": true,
-      "fetched": 148,
+      "fetched": 149,
       "added": [
-        "Dima Mantel",
-        "Langer Oversize-Mantel"
+        "Oberteil Mit Asymmetrischem Spitzensaum"
       ],
-      "updated": 146,
+      "updated": 148,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1308,12 +1306,12 @@
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 289,
+      "fetched": 291,
       "added": [],
-      "updated": 289,
+      "updated": 291,
       "delisted": 0,
       "filtered": [],
-      "returned": 3
+      "returned": 2
     },
     {
       "brandSlug": "hijabipop",
@@ -1351,7 +1349,7 @@
       "fetched": 109,
       "added": [],
       "updated": 109,
-      "delisted": 21,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1383,7 +1381,7 @@
       "updated": 29,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "parladusa",
@@ -1391,7 +1389,7 @@
       "fetched": 126,
       "added": [],
       "updated": 126,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1410,8 +1408,8 @@
     {
       "brandSlug": "zora",
       "prev": 114,
-      "next": 64,
-      "pct": 0.44
+      "next": 67,
+      "pct": 0.41
     },
     {
       "brandSlug": "amariah",
@@ -1422,14 +1420,14 @@
     {
       "brandSlug": "nour-al-houda",
       "prev": 633,
-      "next": 326,
-      "pct": 0.48
+      "next": 333,
+      "pct": 0.47
     },
     {
       "brandSlug": "nemah",
       "prev": 22,
-      "next": 11,
-      "pct": 0.5
+      "next": 12,
+      "pct": 0.45
     },
     {
       "brandSlug": "voile-chic",
@@ -1438,5 +1436,5 @@
       "pct": 0.49
     }
   ],
-  "untranslatedTitles": 1304
+  "untranslatedTitles": 1241
 }

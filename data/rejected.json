@@ -24525,13 +24525,13 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "veiled:7631423701097",
+    "id": "veiled:7746275967081",
     "brandSlug": "veiled",
-    "title": "Asymmetric Ruffle Hem Knit Top - Ivory",
-    "url": "https://veiled.com/products/asymmetric-ruffle-hem-knit-top-ivory",
-    "garmentWas": "top",
+    "title": "Cotton Cinch Maxi Dress - Boulder",
+    "url": "https://veiled.com/products/cinch-maxi-dress-boulder",
+    "garmentWas": "dress",
     "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
+    "evidence": "in stock: XXL, XXL"
   },
   {
     "id": "veiled:7798569500777",
@@ -24691,15 +24691,6 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
-  },
-  {
-    "id": "aab:10059358798138",
-    "brandSlug": "aab",
-    "title": "Denim Stitch Set",
-    "url": "https://us.aabcollection.com/products/denim-stitch-set",
-    "garmentWas": "set",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   },
   {
     "id": "aab:10277923389754",
@@ -32296,6 +32287,15 @@
     "evidence": "https://jawda.co.uk/products/pale-blue-cotton-blend-front-slit-dress"
   },
   {
+    "id": "jawda:16054287925628",
+    "brandSlug": "jawda",
+    "title": "Rose Pink Etched Crepe Lace Top",
+    "url": "https://jawda.co.uk/products/rose-pink-etched-crepe-lace-top",
+    "garmentWas": "top",
+    "reason": "dead-link",
+    "evidence": "https://jawda.co.uk/products/rose-pink-etched-crepe-lace-top"
+  },
+  {
     "id": "jawda:16054287827324",
     "brandSlug": "jawda",
     "title": "Sea Green Etched Crepe Lace Skirt",
@@ -34757,6 +34757,14 @@
     "evidence": "Bag"
   },
   {
+    "id": "merrachi:15675922415999",
+    "brandSlug": "merrachi",
+    "title": "Zebra Scarf Gift Box | Multi Color",
+    "url": "https://bymerrachi.com/products/zebra-scarf-gift-box-multi-color",
+    "garmentWas": "hijab",
+    "reason": "title-pattern"
+  },
+  {
     "id": "merrachi:15639066116479",
     "brandSlug": "merrachi",
     "title": "Scarf Keychain | Pink Bouquet",
@@ -34892,7 +34900,7 @@
     "url": "https://avyaana.com/products/israh-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "566 USD (~$566)"
+    "evidence": "567 USD (~$567)"
   },
   {
     "id": "avyaana:8267053236362",
@@ -34901,7 +34909,7 @@
     "url": "https://avyaana.com/products/dorra-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "566 USD (~$566)"
+    "evidence": "567 USD (~$567)"
   },
   {
     "id": "avyaana:8267053138058",
@@ -34910,7 +34918,7 @@
     "url": "https://avyaana.com/products/pari-cape-dress-copy",
     "garmentWas": "dress",
     "reason": "price-ceiling",
-    "evidence": "566 USD (~$566)"
+    "evidence": "567 USD (~$567)"
   },
   {
     "id": "avyaana:8267050844298",
@@ -41266,7 +41274,7 @@
     "url": "https://avyaana.com/products/zenab-1",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:15064067375478",
@@ -41275,7 +41283,7 @@
     "url": "https://avyaana.com/products/amiliyah",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:15064063213942",
@@ -41284,7 +41292,7 @@
     "url": "https://avyaana.com/products/joori",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:14999788552566",
@@ -41302,7 +41310,7 @@
     "url": "https://avyaana.com/products/heyam-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:8267056218250",
@@ -41311,7 +41319,7 @@
     "url": "https://avyaana.com/products/dana-copy",
     "garmentWas": "set",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:8267056152714",
@@ -41320,7 +41328,7 @@
     "url": "https://avyaana.com/products/lemeis-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:8267056021642",
@@ -41329,7 +41337,7 @@
     "url": "https://avyaana.com/products/lara-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:8267055628426",
@@ -41338,7 +41346,7 @@
     "url": "https://avyaana.com/products/maya-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:8267055431818",
@@ -41347,7 +41355,7 @@
     "url": "https://avyaana.com/products/surayah-copy",
     "garmentWas": "abaya",
     "reason": "price-ceiling",
-    "evidence": "608 USD (~$608)"
+    "evidence": "609 USD (~$609)"
   },
   {
     "id": "avyaana:8264802402442",
@@ -49943,6 +49951,14 @@
     "reason": "title-pattern"
   },
   {
+    "id": "nihan:15002775519595",
+    "brandSlug": "nihan",
+    "title": "Taş Kemerli Keten Karışımlı Elbise - Zümrüt",
+    "url": "https://nihan.com.tr/products/tas-kemerli-keten-karisimli-elbise-zumrut",
+    "garmentWas": "dress",
+    "reason": "title-pattern"
+  },
+  {
     "id": "nihan:14919202668907",
     "brandSlug": "nihan",
     "title": "Açılımlı Saten Etek - Bordo",
@@ -52668,15 +52684,6 @@
     "evidence": "998 USD (~$998)"
   },
   {
-    "id": "kamin:9276925378777",
-    "brandSlug": "kamin",
-    "title": "The Flair | Black",
-    "url": "https://kamin.ae/products/the-flair-black",
-    "garmentWas": "abaya",
-    "reason": "dead-link",
-    "evidence": "https://kamin.ae/products/the-flair-black"
-  },
-  {
     "id": "jennah-boutique:7861397553328",
     "brandSlug": "jennah-boutique",
     "title": "Jupe oversize coton rose",
@@ -53018,15 +53025,6 @@
     "title": "Asymmetric Ruched Top - Taupe",
     "url": "https://veiled.com/products/ruched-tunnel-top-taupe",
     "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
-  },
-  {
-    "id": "veiled:7779354378345",
-    "brandSlug": "veiled",
-    "title": "Denim Maxi Skirt - Black Wash",
-    "url": "https://veiled.com/products/denim-wash-midi-skirt-black",
-    "garmentWas": "skirt",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
   },
@@ -54204,6 +54202,24 @@
     "title": "Velvet Mini Skirt",
     "url": "https://shop.abadia.me/products/velvet-mini-skirt-black",
     "garmentWas": "skirt",
+    "reason": "price-ceiling",
+    "evidence": "2295 AED (~$625)"
+  },
+  {
+    "id": "abadia:9161647980698",
+    "brandSlug": "abadia",
+    "title": "Lee Jacket",
+    "url": "https://shop.abadia.me/products/lee-jacket-cream",
+    "garmentWas": "top",
+    "reason": "price-ceiling",
+    "evidence": "7155 AED (~$1948)"
+  },
+  {
+    "id": "abadia:9170932105370",
+    "brandSlug": "abadia",
+    "title": "Barrel Pants",
+    "url": "https://shop.abadia.me/products/barrel-pants-cream",
+    "garmentWas": "trousers",
     "reason": "price-ceiling",
     "evidence": "2295 AED (~$625)"
   }
