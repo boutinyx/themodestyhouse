@@ -303,4 +303,17 @@ describe('GhostHtml — every Ghost card', () => {
   it('keeps the words of a tag it has never heard of', () => {
     expect(renderToStaticMarkup(<GhostHtml html={'<p><blink>Still here</blink> <foo-bar>and here</foo-bar></p>'} />)).toBe('<p>Still here and here</p>');
   });
+
+  // From the 2026-10-14 security review of this rewrite.
+  it('cannot be turned against the page', () => {
+    process.env.GHOST_URL = 'https://cms.example';
+    const one = (h: string) => renderToStaticMarkup(<GhostHtml html={h} />);
+    for (const href of ['https://themodestyhouse.com//evil.example/x', 'https://themodestyhouse.com/\\evil.example', '//themodestyhouse.com//evil.example']) {
+      expect(one(`<p><a href="${href}">a</a></p>`)).not.toMatch(/href="\/\//);
+    }
+    expect(one('<h2 id="newsletter">x</h2><li id="newsletter-email">y</li>')).toBe('<h2>x</h2><li>y</li>');
+    expect(one('<img src="https://cms.example/a.jpg" srcset="https://evil.example/p.gif 1w, https://cms.example/b.jpg 2w">')).not.toContain('evil');
+    expect(one('<img src="https://cms.example/a.jpg" srcset="https://cms.example/a.jpg 600w, https://cms.example/b.jpg 1200w">'))
+      .toContain('srcSet="https://cms.example/a.jpg 600w, https://cms.example/b.jpg 1200w"');
+  });
 });
