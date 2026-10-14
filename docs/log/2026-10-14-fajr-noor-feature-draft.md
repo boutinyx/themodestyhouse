@@ -44,3 +44,6 @@ a single story with no bold Q&A labels:
 and was the first to believe. That is historical fact, but the team didn't say it, so Tina should
 approve it.
 Read-back after the update: still `draft`, and the same 4 hrefs.
+
+## Second rewrite (same day)
+Tina: "more like try modest so also with the kopjes". The bold lead-in labels are back, in the Try Modest order (idea / hardest / proudest piece / messages), and the dawn opening and closing are kept. Read-back after the update: still `draft`.
