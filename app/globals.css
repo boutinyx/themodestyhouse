@@ -1789,3 +1789,30 @@ html[data-input-modality="mouse"] summary:focus-visible {
 }
 .editorial-prose pre { overflow-x: auto; margin: 0 0 20px; }
 .editorial-prose pre code { border: 0; padding: 0; background: none; }
+
+
+/* Tables and FAQ dropdowns from Ghost (GhostHtml drops the agency's inline styles). */
+.editorial-prose .table-scroll { overflow-x: auto; margin: 24px 0 28px; }
+.editorial-prose table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+.editorial-prose th,
+.editorial-prose td {
+  border: 1px solid var(--hairline);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  color: var(--prose);
+}
+.editorial-prose th { background: var(--bone); color: var(--ink); font-weight: 600; }
+.editorial-prose caption { caption-side: bottom; margin-top: 8px; color: var(--muted); font-size: 14px; text-align: left; }
+.editorial-prose details {
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 0 0 10px;
+}
+.editorial-prose summary { cursor: pointer; color: var(--ink); font-weight: 500; }
+.editorial-prose summary h2,
+.editorial-prose summary h3,
+.editorial-prose summary h4 { display: inline; margin: 0; font-size: 18px; }
+.editorial-prose details[open] summary { margin-bottom: 10px; }
+.editorial-prose details > :last-child { margin-bottom: 0; }
