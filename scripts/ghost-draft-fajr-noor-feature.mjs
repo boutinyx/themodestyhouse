@@ -17,7 +17,7 @@
 import { admin } from './lib/ghostAdmin.mjs';
 import { markdownToHtml } from './lib/markdownToHtml.mjs';
 
-const TITLE = 'Meet Fajr Noor, the Brand That Puts Faith First';
+const TITLE = 'Meet Fajr Noor, the Muslim-Led Brand Asking a Bigger Question';
 const SLUG = 'inside-fajr-noor';
 
 const BODY = `*Fajr Noor* means "the light of dawn", the hour of the first prayer, before the day has asked anything of you. The team behind [Fajr Noor](https://fajrnoor.com) started with a question that wouldn't leave them alone: why are so few of the businesses that shape everyday life led by Muslims, and built around our values? Their answer was to build one.
