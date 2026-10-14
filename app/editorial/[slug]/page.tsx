@@ -104,7 +104,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <hr style={{ border: 0, borderTop: '1px solid var(--hairline)', margin: '32px 0' }} />
 
       <article className="editorial-prose">
-        <GhostHtml html={p.html} />
+        <GhostHtml html={p.html} trusted={p.trustedHtml} />
       </article>
 
       {/* The other posts, added 2026-09-15. Two measurements, one fix: a post

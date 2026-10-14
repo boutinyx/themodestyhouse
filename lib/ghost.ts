@@ -1,4 +1,5 @@
 import type { Post } from './posts';
+import { isTrustedPost } from './ghostTrust';
 
 /**
  * Ghost Content API client. Server-only.
@@ -24,6 +25,7 @@ export type GhostRaw = {
   meta_description: string | null;
   primary_tag: { name: string } | null;
   primary_author: { name: string } | null;
+  authors?: { id: string }[];
 };
 
 const API_VERSION = 'v6.62';
@@ -114,5 +116,6 @@ export function ghostPostToPost(raw: GhostRaw): Post {
     plaintext: raw.plaintext,
     seoTitle: raw.meta_title || undefined,
     seoDescription: raw.meta_description || undefined,
+    trustedHtml: isTrustedPost(raw.authors),
   };
 }

@@ -32,6 +32,8 @@ export type Post = {
    */
   seoTitle?: string;
   seoDescription?: string;
+  /** Every author is in lib/ghostTrust.ts: GhostHtml renders the HTML as written, minus code. */
+  trustedHtml?: boolean;
 };
 
 /**
