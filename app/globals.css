@@ -1787,7 +1787,7 @@ html[data-input-modality="mouse"] summary:focus-visible {
 .editorial-prose h4 { color: var(--ink); font-size: 17px; margin: 24px 0 8px; }
 .editorial-prose hr { border: 0; border-top: 1px solid var(--hairline); margin: 34px 0; }
 .editorial-prose a { color: var(--aubergine); text-decoration: underline; text-underline-offset: 2px; }
-.editorial-prose a.btn-pill { color: inherit; text-decoration: none; }
+.editorial-prose a.btn-pill { color: var(--parchment); text-decoration: none; display: inline-block; }
 .editorial-prose blockquote {
   margin: 0 0 20px;
   padding-left: 18px;
