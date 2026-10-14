@@ -137,7 +137,8 @@ export function Footer() {
                 targets around 20px glyphs, so their box already extends ~12px
                 below the last visible pixel of the logos. Matching the numbers
                 would look tighter than matching the numbers. */}
-            <div className="mt-6 max-w-xs">
+            {/* id="newsletter": Ghost's signup card in an article links here (GhostHtml.tsx). */}
+            <div id="newsletter" className="mt-6 max-w-xs">
               <div className="eyebrow" style={{ color: 'var(--brass)' }}>The Edit, in your inbox</div>
               <NewsletterSignup />
             </div>

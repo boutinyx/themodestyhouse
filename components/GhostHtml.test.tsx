@@ -1,5 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
 import GhostHtml from './GhostHtml';
 
 const GHOST = 'https://cms.themodestyhouse.com';
@@ -47,7 +49,8 @@ describe('GhostHtml', () => {
     expect(html).not.toMatch(/onerror/i);
     expect(html).not.toContain('style="color:red"');
     expect(html).not.toContain('white-space');
-    expect(html).not.toContain('id="anchor"');
+    expect(html).toContain('<h2 id="anchor">'); // a heading slug is kept so jump links work…
+    expect(renderToStaticMarkup(<GhostHtml html={'<h2 id="x&quot; onclick=&quot;y">H</h2><p id="anchor">P</p>'} />)).toBe('<h2>H</h2><p>P</p>'); // …nothing else
     expect(html).not.toContain('javascript:');
     expect(html).toContain('js link'); // the text survives, the link does not
   });
@@ -106,7 +109,7 @@ describe('GhostHtml', () => {
   });
 
   it('keeps ordinary structure', () => {
-    expect(html).toContain('<h2>Heading</h2>');
+    expect(html).toContain('<h2 id="anchor">Heading</h2>');
     expect(html).toContain('<strong>bold</strong>');
     expect(html).toContain('<hr/>');
     expect(html).toContain('<li>One</li>');
@@ -188,7 +191,7 @@ describe('GhostHtml', () => {
         html={'<p><a href="https://themodestyhouse.com/modest-abayas"><strong><font color="red"><ins>Shop all abayas</ins></font></strong></a></p><p><a href="/modest-hijabs"><script>alert(1)</script><svg><title>x</title></svg>Hijabs</a></p>'}
       />,
     );
-    expect(out).toContain('<a href="/modest-abayas"><strong>Shop all abayas</strong></a>');
+    expect(out).toContain('<a href="/modest-abayas"><strong><ins>Shop all abayas</ins></strong></a>');
     expect(out).toContain('<a href="/modest-hijabs">Hijabs</a>');
     expect(out).not.toContain('font');
     expect(out).not.toContain('alert');
@@ -224,5 +227,80 @@ describe('GhostHtml', () => {
       />,
     );
     expect(out).toBe('<details><summary><span>Is it lined?</span></summary><p><span>Yes, fully.</span></p></details>');
+  });
+});
+
+// 2026-10-14. Every card the Ghost editor offers, as OUR Ghost actually renders it: a throwaway draft
+// holding one of each was created through the Admin API, its `html` saved below, and the draft
+// deleted. Each CAPITALISED marker is text the author typed. All of it must reach the page, except
+// the two drops the agency was told about. This is the test that stops the "my content vanished"
+// emails: if Ghost adds or changes a card, re-capture it here and this fails until it is handled.
+describe('GhostHtml — every Ghost card', () => {
+  const src = fs.readFileSync(path.join(__dirname, 'GhostHtml.every-card.html'), 'utf8');
+  const render = () => {
+    process.env.GHOST_URL = 'https://cms.example';
+    return renderToStaticMarkup(<GhostHtml html={src} />);
+  };
+  const DELIBERATELY_DROPPED = new Set([
+    'DISCLAIMER', // Ghost's member-signup small print; our own newsletter form replaces that card
+    'BUTTON TEXT', // a raw <button> pasted into an HTML card: it can do nothing on our page
+  ]);
+
+  it('keeps every word an author typed, in every card', () => {
+    const out = render();
+    const markers = [...new Set(src.replace(/<[^>]+>/g, ' ').match(/\b[A-Z][A-Z0-9]+(?: [A-Z0-9]+)*\b/g) ?? [])]
+      .filter((m) => m.length >= 3);
+    expect(markers.length).toBeGreaterThan(40);
+    const lost = markers.filter((m) => !out.includes(m) && !DELIBERATELY_DROPPED.has(m));
+    expect(lost).toEqual([]);
+    for (const m of DELIBERATELY_DROPPED) expect(out).not.toContain(m);
+  });
+
+  it('plays YouTube through the privacy-enhanced host, and video and audio from our Ghost', () => {
+    const out = render();
+    expect(out.match(/<iframe [^>]*src="https:\/\/www\.youtube-nocookie\.com\/embed\/dQw4w9WgXcQ"/g)).toHaveLength(2);
+    expect(out).toMatch(/<video [^>]*src="https:\/\/cms\.example\/content\/media\/[^"]+\.mp4"[^>]*controls/);
+    expect(out).toMatch(/<audio [^>]*src="https:\/\/cms\.example\/content\/media\/[^"]+\.mp3"[^>]*controls/);
+    expect(out).toMatch(/<a href="https:\/\/cms\.example\/content\/files\/[^"]+\.pdf" target="_blank" rel="noopener"/);
+  });
+
+  it('carries none of the card chrome, scripts, forms or Ghost colours', () => {
+    const out = render();
+    // The only svgs are our own Phosphor stars on the product card (viewBox 0 0 256 256); Ghost's icons go.
+    expect(out.match(/<svg/g)).toHaveLength(5);
+    expect(out.match(/<svg [^>]*viewBox="0 0 256 256"/g)).toHaveLength(5);
+    expect(out).toContain('<a href="#newsletter" class="btn-pill">Subscribe</a>');
+    expect(out).toContain('src="https://cdn.shopify.com/x.jpg"'); // pasted Shopify product shots are allowed
+    for (const bad of ['<script', '<form', '<input', '<button', '0:00', '1×', 'jamie@example', 'class="kg-', 'data-kg', '#F0F0F0', 'instagram.com/embed.js']) {
+      expect(out).not.toContain(bad);
+    }
+  });
+
+  it('turns a markdown footnote into a working in-page link', () => {
+    const out = render();
+    expect(out).toContain('<a href="#fn1" id="fnref1">[1]</a>');
+    expect(out).toMatch(/<li id="fn1">/);
+    expect(out).toContain('<a href="#fnref1">');
+  });
+
+  it('only frames YouTube and Vimeo, rebuilt from the id', () => {
+    const one = (h: string) => renderToStaticMarkup(<GhostHtml html={h} />);
+    expect(one('<iframe src="https://evil.example/embed/dQw4w9WgXcQ"></iframe>')).toBe('');
+    expect(one('<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&amp;x=javascript:1"></iframe>'))
+      .toContain('src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"');
+    expect(one('<iframe src="https://player.vimeo.com/video/123456789"></iframe>')).toContain('src="https://player.vimeo.com/video/123456789"');
+    expect(one('<iframe src="javascript:alert(1)//www.youtube.com/embed/dQw4w9WgXcQ"></iframe>')).toBe('');
+  });
+
+  it('refuses video, audio and files from anywhere but our Ghost', () => {
+    process.env.GHOST_URL = 'https://cms.example';
+    const one = (h: string) => renderToStaticMarkup(<GhostHtml html={h} />);
+    expect(one('<figure class="kg-card kg-video-card"><video src="https://evil.example/v.mp4"></video></figure>')).toBe('');
+    expect(one('<div class="kg-card kg-audio-card"><audio src="https://evil.example/a.mp3"></audio></div>')).toBe('');
+    expect(one('<div class="kg-card kg-file-card"><a class="kg-file-card-container" href="https://evil.example/f.exe">x</a></div>')).toBe('');
+  });
+
+  it('keeps the words of a tag it has never heard of', () => {
+    expect(renderToStaticMarkup(<GhostHtml html={'<p><blink>Still here</blink> <foo-bar>and here</foo-bar></p>'} />)).toBe('<p>Still here and here</p>');
   });
 });
