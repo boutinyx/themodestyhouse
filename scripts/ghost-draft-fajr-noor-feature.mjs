@@ -22,7 +22,7 @@ const SLUG = 'inside-fajr-noor';
 
 const BODY = `*Fajr Noor* means "the light of dawn", the hour of the first prayer, before the day has asked anything of you. The team behind [Fajr Noor](https://fajrnoor.com) started with a question that wouldn't leave them alone: why are so few of the businesses that shape everyday life led by Muslims, and built around our values? Their answer was to build one.
 
-**The idea they built it on:** a brand where faith decides things first. Modest pieces made with intention, knowledge that brings you closer to your Deen, and a business that gives back. A portion of every order goes to Sadaqah, and the team donates to charity every month.
+**The idea they built it on:** a brand where faith decides things first. Modest pieces made with intention, knowledge that brings you closer to your Deen, and a business that gives back. A portion of every order goes to Sadaqah, and the team donates to charity every month. Or, as Fajr Noor puts it in its own tagline: *a lifestyle leading to Jannah*.
 
 **What's been hardest:** staying who they are while they grow. "It's easy to chase trends or shout about discounts." They chose *Ihsaan*, excellence, instead: in the fabrics, the packaging, the systems no customer ever sees, and how every customer is treated. "Building that kind of trust takes longer, but there is barakah in it."
 
