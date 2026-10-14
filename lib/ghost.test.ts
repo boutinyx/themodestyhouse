@@ -36,6 +36,7 @@ describe('ghostPostToPost', () => {
       plaintext: 'Hello',
       seoTitle: 'SEO title',
       seoDescription: 'SEO description',
+      trustedHtml: false,
     });
   });
 

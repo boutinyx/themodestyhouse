@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
 import { createElement } from 'react';
 import parse, { domToReact, Element, type DOMNode, type HTMLReactParserOptions } from 'html-react-parser';
+import DOMPurify from 'isomorphic-dompurify';
 import { Star } from '@phosphor-icons/react/dist/ssr';
 import { withUtm } from '@/lib/outbound';
 
@@ -458,7 +459,78 @@ const HTML_CARD_BEGIN = /<!--kg-card-begin: html-->/g;
 const HTML_CARD_END = /<!--kg-card-end: html-->/g;
 const HTML_CARD_TAG = 'tmh-html-card';
 
-export default function GhostHtml({ html }: { html: string }): ReactNode {
+/**
+ * TRUSTED MODE (lib/ghostTrust.ts — posts whose every author Tina has listed). The allowlist is
+ * off: tags, classes, inline styles, <style> blocks, svg and data-* render as written. What is
+ * still removed is anything that can RUN or SUBMIT, by DOMPurify (scripts, on* handlers,
+ * javascript:/data: URLs) plus FORBID_TAGS below (forms, base, meta, object…), so a stolen agency
+ * login can restyle an article but cannot run code on the site or phish from it.
+ * Kept on top of that, because they are site rules and not taste:
+ * - Ghost's own cards still go through CARD (their raw markup needs Ghost's JS and CSS);
+ * - outbound links get target/_blank, rel="… sponsored" and the UTM (CLAUDE.md §6);
+ * - iframes are rebuilt by embedSrc, the only thing the CSP's frame-src would load anyway;
+ * - <style> is wrapped in @scope (.ghost-raw) so it cannot restyle the header or footer;
+ * - the page's own ids (RESERVED_IDS) cannot be taken.
+ */
+const PURIFY = {
+  ADD_TAGS: ['iframe'],
+  ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'target', 'loading'],
+  FORBID_TAGS: ['form', 'input', 'textarea', 'select', 'option', 'base', 'meta', 'link', 'object', 'embed', 'frame', 'frameset', 'noscript', 'template'],
+  FORBID_ATTR: ['srcdoc', 'action', 'formaction', 'ping'],
+  FORCE_BODY: true, // otherwise a <style> at the very start is hoisted into <head> and lost
+};
+let hooked = false;
+function purify(html: string): string {
+  if (!hooked) {
+    DOMPurify.addHook('uponSanitizeAttribute', (_node, data) => {
+      if ((data.attrName === 'id' || data.attrName === 'name') && RESERVED_IDS.has(data.attrValue)) data.keepAttr = false;
+    });
+    hooked = true;
+  }
+  return DOMPurify.sanitize(html, PURIFY);
+}
+
+function makeTrustedOptions(): HTMLReactParserOptions {
+  const options: HTMLReactParserOptions = {
+    replace(node) {
+      if (!(node instanceof Element)) return undefined;
+      const tag = node.name;
+      const kids: Kids = (el) => domToReact(el.children as DOMNode[], options);
+
+      if (hasClass(node, 'kg-card')) {
+        const key = kgClasses(node).find((c) => c in CARD);
+        if (key) return <>{CARD[key](node, kids)}</>;
+        return undefined; // an unknown card: render its markup as written
+      }
+      if (tag === 'style') {
+        return <style>{`@scope (.ghost-raw) {
+${textOf(node)}
+}`}</style>;
+      }
+      if (tag === 'iframe') return embedSrc(node.attribs.src) ? <figure>{embedFrame(node)}</figure> : <></>;
+      if (tag === 'a') {
+        const link = node.attribs.href === undefined ? null : classify(node.attribs.href);
+        if (!link) {
+          delete node.attribs.href;
+        } else if (link.kind === 'external') {
+          node.attribs.href = link.url;
+          node.attribs.target = '_blank';
+          node.attribs.rel = 'noopener noreferrer sponsored';
+          node.attribs['data-surface'] = 'editorial';
+        } else {
+          node.attribs.href = link.to;
+          delete node.attribs.target;
+        }
+        return undefined; // the parser builds it, with their class and style, and recurses
+      }
+      return undefined;
+    },
+  };
+  return options;
+}
+
+export default function GhostHtml({ html, trusted = false }: { html: string; trusted?: boolean }): ReactNode {
+  if (trusted) return <div className="ghost-raw">{parse(purify(html), makeTrustedOptions())}</div>;
   const marked = html
     .replace(HTML_CARD_BEGIN, `<${HTML_CARD_TAG}>`)
     .replace(HTML_CARD_END, `</${HTML_CARD_TAG}>`);
