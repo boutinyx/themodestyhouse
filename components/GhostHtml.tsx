@@ -495,13 +495,18 @@ function makeTrustedOptions(): HTMLReactParserOptions {
     replace(node) {
       if (!(node instanceof Element)) return undefined;
       const tag = node.name;
-      const kids: Kids = (el) => domToReact(el.children as DOMNode[], options);
 
       if (hasClass(node, 'kg-card')) {
+        // Ghost's own card markup is never the agency's styling: it needs Ghost's theme CSS and JS,
+        // and raw it renders, e.g., a white-on-nothing CTA button. Cards always render the house way.
         const key = kgClasses(node).find((c) => c in CARD);
-        if (key) return <>{CARD[key](node, kids)}</>;
+        if (key) {
+          const strict = makeOptions(false);
+          return <>{CARD[key](node, (el) => domToReact(el.children as DOMNode[], strict))}</>;
+        }
         return undefined; // an unknown card: render its markup as written
       }
+      if (DROP_IF_EMPTY.has(tag) && !hasContent(node.children as DOMNode[])) return <></>;
       if (tag === 'style') {
         return <style>{`@scope (.ghost-raw) {
 ${textOf(node)}
