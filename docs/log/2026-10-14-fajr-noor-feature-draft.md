@@ -30,3 +30,17 @@ post. Ran once and created `inside-fajr-noor` in Ghost with `status: draft`.
   `sponsored`, so leaving it is the safe default. Tina decides.
 - Fajr Noor is not in `data/brands.ts` yet. Once it is onboarded, add a
   `/designers/fajr-noor` link.
+
+## Rewrite (same day)
+Tina said the first version didn't pull her in the way the Try Modest feature does. Rewritten as
+a single story with no bold Q&A labels:
+- It opens on the name ("the light of dawn") and the question the team started from.
+- It closes back on the dawn.
+- New title: "Meet Fajr Noor, the Brand That Puts Faith First".
+- About 450 words.
+- The script now updates the draft in place and refuses to touch a post that isn't a draft.
+
+**Framing of ours, not theirs:** the Khatijah paragraph says Khadijah (RA) ran a trading business
+and was the first to believe. That is historical fact, but the team didn't say it, so Tina should
+approve it.
+Read-back after the update: still `draft`, and the same 4 hrefs.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * One-off: create "Inside Fajr Noor" in Ghost as a DRAFT — not published.
+ * One-off: create (or rewrite) the Fajr Noor feature in Ghost as a DRAFT — not published.
  * Tina reviews and publishes herself in Ghost's editor.
  *
  * Source: the Fajr Noor team's written reply (Osman, manager), 2026-10-14.
@@ -17,35 +17,40 @@
 import { admin } from './lib/ghostAdmin.mjs';
 import { markdownToHtml } from './lib/markdownToHtml.mjs';
 
-const TITLE = 'Inside Fajr Noor: A Lifestyle Leading to Jannah';
+const TITLE = 'Meet Fajr Noor, the Brand That Puts Faith First';
 const SLUG = 'inside-fajr-noor';
 
-const BODY = `[Fajr Noor](https://fajrnoor.com) began with a question, not a product: why are so few businesses that shape everyday life led by Muslims, and built around our values? The team's answer was a brand where faith comes first. The name means "the light of dawn", and the tagline sums up the rest: *a lifestyle leading to Jannah*.
+const BODY = `*Fajr Noor* means "the light of dawn", the hour of the first prayer, before the day has asked anything of you. The team behind [Fajr Noor](https://fajrnoor.com) started with a question that wouldn't leave them alone: why are so few of the businesses that shape everyday life led by Muslims, and built around our values?
 
-**What it's built on:** modest pieces made with intention, Islamic knowledge shared alongside them, and a business that gives back. A portion of every order goes to Sadaqah, and the team donates to charity every month. "We hope that when someone shops with us, they feel they've found a home, not just a store."
+Their answer was to build one. Not a label with an Islamic word in its name, but a brand where faith decides things first: modest pieces made with intention, knowledge that brings you closer to your Deen, and a business that gives back. A portion of every order goes to Sadaqah, and the team donates to charity every month. The tagline says it plainly: *a lifestyle leading to Jannah*.
 
-**What's been hardest:** staying true to those values while growing. "It's easy to chase trends or shout about discounts," the team says. Instead they've tried to grow with *Ihsaan*, excellence, in the fabrics, the packaging, the systems behind the scenes and how every customer is treated. "Building that kind of trust takes longer, but there is barakah in it."
+The hardest part, they say, hasn't been growing. It's been staying who they are while they grow. "It's easy to chase trends or shout about discounts." They chose *Ihsaan*, excellence, instead: in the fabrics, the packaging, the systems no customer ever sees, and how every customer is treated. "Building that kind of trust takes longer, but there is barakah in it."
 
-**The piece they're proudest of:** the [Khatijah Abaya](https://fajrnoor.com/collections/khatijah-abayas), their best seller. It's comfortable enough for every day, modest, and elegant enough that sisters reach for it again and again. It comes in twelve colours, and many customers own more than one. Like the Maryam, Amina and Nourah, it's named after a woman from Islamic history, so every piece carries a story.
+You can see it in the piece that sells best. The [Khatijah Abaya](https://fajrnoor.com/collections/khatijah-abayas) is comfortable enough for every day, modest, and elegant enough that sisters reach for it again and again. It comes in twelve colours, and many customers own more than one. Like the Maryam, Amina and Nourah, it carries the name of a woman from Islamic history. Khadijah, may Allah be pleased with her, ran a trading business in Mecca and was the first to believe: a fitting namesake for a brand that began by asking why so few businesses are built around faith.
 
-**The messages that stay with them:** reviews are, in the team's words, "the dessert", and the ones they remember are about how a piece made someone feel. One customer wrote that she "felt like a princess" in her abaya. Another: "Effortless shopping experience and quick delivery. Jazak Allahu Khairan." Knowing their pieces are part of someone's salah, Eid or everyday life "is why we do this".
+Then there are the reviews, which the team calls "the dessert". The ones that stay with them are about how a piece made someone feel. One customer wrote that she "felt like a princess" in her abaya. Another kept it simple: "Effortless shopping experience and quick delivery. Jazak Allahu Khairan." Knowing their pieces are part of someone's salah, Eid or everyday life, they say, "is why we do this".
 
-**Who carried it:** community, from the start. Family and friends were Fajr Noor's first customers, first models and first critics.
+None of it was built alone. Family and friends were Fajr Noor's first customers, first models and first critics. Today the team still writes to its community, with regular reminders on marriage, patience and people-pleasing, and for many sisters those emails are the best part of being a customer. It's what the name promised: something that meets you at the start of the day and turns you toward something better.
 
-Beyond clothing, the team sends regular Islamic reminder emails on marriage, patience, people-pleasing and more. For many sisters, that's their favourite part of being a Fajr Noor customer. They ship worldwide. Browse the [abayas](https://fajrnoor.com/collections/abayas) and [hijabs](https://fajrnoor.com/collections/hijabs).`;
+"We hope that when someone shops with us, they feel they've found a home, not just a store." Fajr Noor ships worldwide. Start with the [abayas](https://fajrnoor.com/collections/abayas) or the [hijabs](https://fajrnoor.com/collections/hijabs).`;
 
 const html = markdownToHtml(BODY);
 console.log(`HTML: ${html.length} chars, ${BODY.split(/\s+/).length} words\n`);
 
-let exists = true;
+const EXCERPT = 'Named for the light of dawn, built around one question: why are so few businesses led by Muslims and shaped by our values? Inside the brand behind the Khatijah Abaya.';
+
+let existing = null;
 try {
-  await admin('GET', `posts/slug/${encodeURIComponent(SLUG)}/`);
+  existing = (await admin('GET', `posts/slug/${encodeURIComponent(SLUG)}/`)).posts[0];
 } catch (e) {
   if (!String(e.message).includes('-> 404')) throw e;
-  exists = false;
 }
-if (exists) {
-  console.log(`already exists: ${SLUG} (not re-created; delete it in Ghost first if you want a clean re-run)`);
+if (existing) {
+  if (existing.status !== 'draft') throw new Error(`${SLUG} is ${existing.status}; refusing to overwrite a non-draft`);
+  const up = await admin('PUT', `posts/${existing.id}/?source=html`, {
+    json: { posts: [{ title: TITLE, html, custom_excerpt: EXCERPT, updated_at: existing.updated_at }] },
+  });
+  console.log(`updated DRAFT: ${up.posts[0].slug} (${up.posts[0].status})`);
   process.exit(0);
 }
 
@@ -56,7 +61,7 @@ const res = await admin('POST', 'posts/?source=html', {
         slug: SLUG,
         title: TITLE,
         html,
-        custom_excerpt: 'The faith-first brand behind the Khatijah Abaya, on growing with Ihsaan, giving with every order, and the reviews that stay with them.',
+        custom_excerpt: EXCERPT,
         status: 'draft',
       },
     ],
