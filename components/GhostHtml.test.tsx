@@ -168,7 +168,7 @@ describe('GhostHtml', () => {
 <div class="cta" style="text-align:center"><p>Ready to shop?</p><a class="button" href="https://themodestyhouse.com/modest-abayas" onclick="alert(1)">Shop all abayas</a></div>
 <script>alert(1)</script><iframe src="https://evil.example"></iframe>
 <!--kg-card-end: html-->
-<div class="not-a-card">STILL DROPPED</div>`}
+<div class="kg-card kg-gallery-card">STILL DROPPED</div>`}
       />,
     );
     expect(out).toContain('<p>Ready to shop?</p>');
@@ -176,7 +176,7 @@ describe('GhostHtml', () => {
     for (const bad of ['<script', '<style', '<iframe', 'onclick', 'color:red', 'text-align', 'class="cta"']) {
       expect(out).not.toContain(bad);
     }
-    expect(out).not.toContain('STILL DROPPED'); // outside the card, unknown divs are still dropped
+    expect(out).not.toContain('STILL DROPPED'); // an unsupported Ghost card is still dropped
     expect(out).toContain('<p>Before</p>');
   });
 
@@ -192,5 +192,37 @@ describe('GhostHtml', () => {
     expect(out).toContain('<a href="/modest-hijabs">Hijabs</a>');
     expect(out).not.toContain('font');
     expect(out).not.toContain('alert');
+  });
+
+  // 2026-10-14, the agency again: the comparison table and FAQ on open-abaya-vs-closed-abaya
+  // vanished in both the HTML card and the Markdown card. Tables and <details> were not allowed,
+  // and a Markdown card's HTML arrives as a bare <div> with no card class, which was dropped whole.
+  it('renders a pasted table and FAQ from a Markdown card, without their inline styles', () => {
+    const out = renderToStaticMarkup(
+      <GhostHtml
+        html={`<div style="overflow-x:auto">
+<table style="width:100%"><thead>
+<tr><th style="background:#f5f5f5">Feature</th><th>Open</th></tr>
+</thead><tbody>
+<tr><td colspan="2" onclick="x()"><strong>Coverage</strong></td></tr>
+<tr><td rowspan="javascript:1">Warm</td><td>Light</td></tr>
+</tbody></table></div>
+<div><details style="border:1px solid"><summary style="cursor:pointer"><h3 style="display:inline">Which is better?</h3></summary><p>Either.</p></details></div>`}
+      />,
+    );
+    expect(out).toContain('<div class="table-scroll"><table><thead><tr><th>Feature</th><th>Open</th></tr></thead>');
+    expect(out).toMatch(/<td colspan="2"><strong>Coverage<\/strong><\/td>/i);
+    expect(out).toContain('<td>Warm</td>'); // a junk span is dropped, the cell is kept
+    expect(out).toContain('<details><summary><h3>Which is better?</h3></summary><p>Either.</p></details>');
+    for (const bad of ['style=', 'onclick', 'javascript']) expect(out).not.toContain(bad);
+  });
+
+  it('renders Ghost\'s toggle card as a native details block', () => {
+    const out = renderToStaticMarkup(
+      <GhostHtml
+        html={'<div class="kg-card kg-toggle-card" data-kg-toggle-state="close"><div class="kg-toggle-heading"><h4 class="kg-toggle-heading-text"><span style="white-space: pre-wrap;">Is it lined?</span></h4><button class="kg-toggle-card-icon" aria-label="Expand toggle to read content"><svg><path d="M1"/></svg></button></div><div class="kg-toggle-content"><p><span>Yes, fully.</span></p></div></div>'}
+      />,
+    );
+    expect(out).toBe('<details><summary><span>Is it lined?</span></summary><p><span>Yes, fully.</span></p></details>');
   });
 });
