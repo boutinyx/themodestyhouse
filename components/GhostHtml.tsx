@@ -142,10 +142,17 @@ const isGhostAsset = (src: string | undefined) => !!src && !!ghostHost() && host
 /** Images may also come from Shopify, which the CSP's img-src already allows: agencies paste product shots. */
 const isAllowedImage = (src: string | undefined) => isGhostAsset(src) || hostOf(src) === 'cdn.shopify.com';
 
+/** Ids the rest of the page already uses. An article must not take them: it comes first in the
+ *  document, so `#newsletter` or `<label for="newsletter-email">` would land on the article's copy. */
+const RESERVED_IDS = new Set([
+  'newsletter', 'newsletter-email', 'email', 'name', 'message', 'topic', 'website', 'quickview-title',
+  'main', 'main-content', 'content', 'top',
+]);
 /** An `id` survives only when it is a heading slug or a footnote anchor, so in-page links work. */
 function safeId(el: Element): string | undefined {
   const id = el.attribs.id;
-  return id && /^[a-z0-9][a-z0-9-]{0,99}$|^fn(ref)?\d{1,3}(:\d{1,3})?$/.test(id) ? id : undefined;
+  if (!id || RESERVED_IDS.has(id)) return undefined;
+  return /^[a-z0-9][a-z0-9-]{0,99}$|^fn(ref)?\d{1,3}(:\d{1,3})?$/.test(id) ? id : undefined;
 }
 
 type Href = { kind: 'internal'; to: string } | { kind: 'external'; url: string } | { kind: 'hash'; to: string };
@@ -161,7 +168,9 @@ function classify(href: string | undefined): Href | null {
   }
   if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
   // Compared as origins, never `startsWith('/')`: Ghost emits protocol-relative `//host/…`.
-  if (u.origin === SITE_ORIGIN) return { kind: 'internal', to: u.pathname + u.search + u.hash };
+  // Collapse leading slashes: `https://themodestyhouse.com//evil.example` has the pathname
+  // `//evil.example`, which a browser would follow to another host.
+  if (u.origin === SITE_ORIGIN) return { kind: 'internal', to: u.pathname.replace(/^\/+/, '/') + u.search + u.hash };
   // Ghost tags outbound links `?ref=<its own host>` by default, and `ref` is losyana.shop's
   // affiliate key. withUtm never overwrites an existing key, so Ghost's would win over ours.
   const ours = new Set([ghostHost(), new URL(SITE_ORIGIN).host].filter(Boolean));
@@ -193,6 +202,17 @@ function renderLink(
   );
 }
 
+/** Ghost's own responsive set, or nothing: every candidate URL must be on our Ghost. */
+function safeSrcset(srcset: string | undefined): string | undefined {
+  if (!srcset) return undefined;
+  const parts = srcset.split(',').map((c) => c.trim()).filter(Boolean);
+  const ok = parts.every((c) => {
+    const [url, size, ...rest] = c.split(/\s+/);
+    return rest.length === 0 && isGhostAsset(url) && (!size || /^\d{1,5}[wx]$/.test(size));
+  });
+  return ok ? parts.join(', ') : undefined;
+}
+
 function renderImg(node: Element): React.JSX.Element {
   const { src, srcset, sizes, alt, width, height } = node.attribs;
   if (!isAllowedImage(src)) return <></>; // anything else would be blocked by the CSP anyway
@@ -200,7 +220,7 @@ function renderImg(node: Element): React.JSX.Element {
     // eslint-disable-next-line @next/next/no-img-element -- Ghost sizes it; see lib/ghostImage.ts
     <img
       src={src}
-      srcSet={isGhostAsset(src) ? srcset : undefined}
+      srcSet={isGhostAsset(src) ? safeSrcset(srcset) : undefined}
       sizes={isGhostAsset(src) ? sizes : undefined}
       alt={alt ?? ''}
       width={width ? Number(width) || undefined : undefined}
