@@ -95,11 +95,13 @@ const csp = [
   // Turnstile renders its widget in an iframe on challenges.cloudflare.com;
   // with frame-src 'none' the challenge silently fails to appear and every
   // submission is then rejected server-side.
-  "frame-src https://challenges.cloudflare.com",
-  // No <video>/<audio>/<source> exists today. Declared explicitly so that
-  // adding a CDN-hosted one fails loudly against a real directive rather than
-  // silently against the default-src fallback.
-  "media-src 'self'",
+  // YouTube (privacy-enhanced host) and Vimeo players come from Ghost's embed card. GhostHtml
+  // rebuilds the iframe src from the video id, so nothing else can be framed. Keep in step with
+  // EMBED_HOSTS in components/GhostHtml.tsx.
+  "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com https://player.vimeo.com",
+  // Ghost's video and audio cards play files uploaded to our own Ghost (GhostHtml refuses any
+  // other host). Declared explicitly so that adding another media host fails loudly.
+  "media-src 'self' https://cms.themodestyhouse.com",
   "object-src 'none'",
   "base-uri 'self'",
   // Tightened from "'self' mailto:" once /api/contact replaced the broken
