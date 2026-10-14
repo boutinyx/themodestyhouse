@@ -97,3 +97,48 @@ have been vanishing on production.
 ## Notes / follow-ups
 - If Ghost adds a card, re-capture it into the fixture. An unknown `kg-card` is dropped and
   logged as `[GhostHtml] dropped an unknown Ghost card` in Railway's logs.
+
+## Addendum: trusted authors skip the allowlist (same day)
+Tina: remove the allowlist for specific users, with nothing for them to set up.
+Research is in `2026-10-14-ghost-trusted-authors-research.md`.
+
+- **`lib/ghostTrust.ts`:** the trusted list, keyed by Ghost user **id**. It holds only
+  Inoma Digital's existing account, `6ab11a96…`. A post counts as trusted only if **every**
+  author on it is listed. The agency changes nothing: the authors come with each post already
+  (`include=authors`).
+- **`GhostHtml` trusted mode:**
+  - The post's HTML and CSS render as written: tags, classes, inline styles, `<style>` blocks,
+    svg, `data-*`.
+  - `isomorphic-dompurify` (new dependency) strips scripts, `on*` handlers, `javascript:` and
+    `data:` URLs.
+  - `FORBID_TAGS` additionally removes form, input, base, meta, link, object, embed and template.
+  - Still enforced, because they are site rules rather than styling:
+    - Ghost cards always render the house way (`CARD`, strict children).
+    - Outbound links get UTM and `rel="noopener noreferrer sponsored"`.
+    - iframes are rebuilt to YouTube-nocookie or Vimeo.
+    - `<style>` is wrapped in `@scope (.ghost-raw)`.
+    - Reserved page ids are stripped.
+    - Empty headings are dropped.
+
+### Verification
+- Tests: 35 in `GhostHtml`, including a hostile-input test (script, handlers, `javascript:`,
+  `data:`, form, base, meta refresh, `srcdoc`, svg/math `xlink:href`, the noscript mXSS
+  pattern). With DOMPurify bypassed that test **fails**; restored, it passes. Plus 2 in
+  `ghostTrust`.
+- `npm run build` passes, so DOMPurify/jsdom bundle on the server. tsc and eslint are clean.
+  Full suite: only the 3 pre-existing catalogue-drift failures.
+- The published `abaya-guide-how-to-choose-the-right-fit-and-fabric` is the agency's post, so
+  it is now trusted. On staging, Chromium at 1280 and 390:
+  - 194 of the agency's inline styles render; 0 scripts.
+  - No page errors, and scrollWidth equals the viewport.
+  - The header is unchanged.
+- **Caught on staging and fixed (`2d6fc3d`):** the guide's CTA came out as raw Ghost markup,
+  white text with no background, because the card's children went through trusted mode. Cards
+  now always render strictly. "Learn more" is back to parchment on aubergine.
+- Visible change to that guide: its tables use the agency's own styling (black borders, their
+  font, justified cells) instead of house style. That is what trusted mode means.
+
+### To add or remove a trusted person
+Edit `TRUSTED_GHOST_AUTHOR_IDS` in `lib/ghostTrust.ts`. Get the ids with the Admin API:
+`GET users/?fields=id,slug`. Only Editors and Administrators can put someone else's name on a
+post, so those are the only roles that can borrow trust.
