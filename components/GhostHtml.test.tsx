@@ -370,6 +370,14 @@ describe('GhostHtml — trusted authors', () => {
     expect(out).toContain('<details><summary>Q</summary><p>A</p></details>');
   });
 
+  it('renders a CTA card the house way, not with Ghost\'s raw button styling', () => {
+    const out = one('<div class="kg-card kg-cta-card kg-cta-bg-grey"><div class="kg-cta-content"><div class="kg-cta-text"><p>Find it</p></div><a href="https://themodestyhouse.com/modest-abayas" class="kg-cta-button kg-style-accent" style="color: #FFFFFF;">Learn more</a></div></div><h2 id=""></h2><p></p>');
+    expect(out).toMatch(/<a class="btn-pill" href="\/modest-abayas">\s*Learn more\s*<\/a>/);
+    expect(out).not.toContain('#FFFFFF');
+    expect(out).not.toContain('kg-');
+    expect(out).not.toContain('<h2');
+  });
+
   it('plays YouTube through the privacy-enhanced host', () => {
     expect(one('<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" width="560"></iframe>')).toContain('src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"');
   });
