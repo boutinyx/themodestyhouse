@@ -1,11 +1,11 @@
 {
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "totals": {
-    "added": 24,
-    "updated": 28543,
-    "delisted": 44,
+    "added": 87,
+    "updated": 28321,
+    "delisted": 360,
     "filtered": 53,
-    "returned": 17,
+    "returned": 7,
     "incomplete": 4
   },
   "brands": [
@@ -153,8 +153,10 @@
       "brandSlug": "urban-modesty",
       "complete": true,
       "fetched": 394,
-      "added": [],
-      "updated": 394,
+      "added": [
+        "Brown Ribbed Skirt Set"
+      ],
+      "updated": 393,
       "delisted": 1,
       "filtered": [],
       "returned": 0
@@ -192,12 +194,12 @@
     {
       "brandSlug": "jawda",
       "complete": true,
-      "fetched": 122,
+      "fetched": 123,
       "added": [],
-      "updated": 122,
+      "updated": 123,
       "delisted": 0,
       "filtered": [],
-      "returned": 3
+      "returned": 1
     },
     {
       "brandSlug": "feradje",
@@ -262,8 +264,15 @@
     {
       "brandSlug": "esme-ny",
       "complete": true,
-      "fetched": 63,
-      "added": [],
+      "fetched": 69,
+      "added": [
+        "LULA Misprint Letter Lace Long Top in Pink | Limited Run",
+        "LULA Misprint Letter Lace Long Top in Blue | Limited Run",
+        "MAIA Drop Waist Sequin Black Dress",
+        "FREYA v-neck Cinched-Waist Top",
+        "CALLIE Misprint Letter Lace in Pink | Limited Run",
+        "CALLIE Misprint Letter Lace in Blue | Limited Run"
+      ],
       "updated": 63,
       "delisted": 0,
       "filtered": [],
@@ -303,10 +312,8 @@
       "brandSlug": "zora",
       "complete": true,
       "fetched": 117,
-      "added": [
-        "The Lorna Dress in Possy Floral"
-      ],
-      "updated": 116,
+      "added": [],
+      "updated": 117,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -337,7 +344,7 @@
       "fetched": 119,
       "added": [],
       "updated": 119,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -429,10 +436,10 @@
     {
       "brandSlug": "kamin",
       "complete": true,
-      "fetched": 408,
+      "fetched": 404,
       "added": [],
-      "updated": 408,
-      "delisted": 0,
+      "updated": 404,
+      "delisted": 4,
       "filtered": [
         {
           "title": "The Solace | Blue",
@@ -507,11 +514,11 @@
     },
     {
       "brandSlug": "chi-ka",
-      "complete": false,
-      "fetched": 0,
+      "complete": true,
+      "fetched": 423,
       "added": [],
-      "updated": 0,
-      "delisted": 0,
+      "updated": 423,
+      "delisted": 325,
       "filtered": [],
       "returned": 0
     },
@@ -538,8 +545,13 @@
     {
       "brandSlug": "losyana",
       "complete": true,
-      "fetched": 895,
-      "added": [],
+      "fetched": 899,
+      "added": [
+        "Balaclava - schwarz",
+        "Balaclava - espresso",
+        "Balaclava - cream",
+        "Weicher Blazer - schwarz"
+      ],
       "updated": 895,
       "delisted": 0,
       "filtered": [],
@@ -665,12 +677,27 @@
     {
       "brandSlug": "chador",
       "complete": true,
-      "fetched": 79,
-      "added": [],
-      "updated": 79,
+      "fetched": 94,
+      "added": [
+        "Tailored Jacket Set",
+        "Collar Gilet",
+        "Essential Basic Top",
+        "Draped Top",
+        "A-Line Skirt",
+        "Wide Pants",
+        "Wrap Kimono Top",
+        "Zip Collar Set",
+        "Essential Club Shirt",
+        "A Line Skirt Set",
+        "Long Cardigan",
+        "Trenchcoat",
+        "Relaxed Stripe Shirt",
+        "Boxy Trench Coat"
+      ],
+      "updated": 80,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "noureen",
@@ -739,10 +766,8 @@
       "brandSlug": "zayda",
       "complete": true,
       "fetched": 3,
-      "added": [
-        "Heska Top"
-      ],
-      "updated": 2,
+      "added": [],
+      "updated": 3,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -851,10 +876,10 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 331,
+      "fetched": 328,
       "added": [],
-      "updated": 331,
-      "delisted": 1,
+      "updated": 328,
+      "delisted": 3,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -881,7 +906,7 @@
       "fetched": 230,
       "added": [],
       "updated": 230,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -898,10 +923,10 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 345,
+      "fetched": 342,
       "added": [],
-      "updated": 345,
-      "delisted": 0,
+      "updated": 342,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -911,7 +936,7 @@
       "fetched": 126,
       "added": [],
       "updated": 126,
-      "delisted": 7,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -979,16 +1004,8 @@
       "brandSlug": "modesty-in-style",
       "complete": true,
       "fetched": 397,
-      "added": [
-        "Alia Dress",
-        "Lilly Patterned Kimono",
-        "Luna Lace Dress",
-        "Inaya Set",
-        "Emma Set",
-        "Mary Slit Top",
-        "Eva Top"
-      ],
-      "updated": 390,
+      "added": [],
+      "updated": 397,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1007,17 +1024,8 @@
       "brandSlug": "vivi-zubedi",
       "complete": true,
       "fetched": 410,
-      "added": [
-        "VZ Phoebee Scarf – Taupe",
-        "VZ Phoebee Scarf – Tangerine",
-        "VZ Phoebee Scarf – Moolight Blue",
-        "VZ Phoebee Scarf – Maple Sugar",
-        "VZ Phoebee Scarf – Black",
-        "VZ Signaire Abaya – Charcoal",
-        "VZ Signaire Abaya – Dark Blue",
-        "VZ Signaire Abaya – Light Blue"
-      ],
-      "updated": 402,
+      "added": [],
+      "updated": 410,
       "delisted": 0,
       "filtered": [
         {
@@ -1033,7 +1041,7 @@
       "fetched": 102,
       "added": [],
       "updated": 102,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1050,10 +1058,10 @@
     {
       "brandSlug": "lameera-moda",
       "complete": true,
-      "fetched": 428,
+      "fetched": 427,
       "added": [],
-      "updated": 428,
-      "delisted": 0,
+      "updated": 427,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1089,8 +1097,10 @@
     {
       "brandSlug": "store-wf",
       "complete": true,
-      "fetched": 260,
-      "added": [],
+      "fetched": 261,
+      "added": [
+        "Navy Stripe Convertible Dress"
+      ],
       "updated": 260,
       "delisted": 0,
       "filtered": [],
@@ -1099,22 +1109,64 @@
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 963,
-      "added": [],
-      "updated": 963,
-      "delisted": 1,
+      "fetched": 1008,
+      "added": [
+        "Premium Parisian Lace Polka Dot Open Abaya – Ivory",
+        "Premium Parisian Lace Polka Dot Open Abaya – Black",
+        "Floral Cascade Embroidered Double Chiffon Open Abaya – Black",
+        "Premium Golden Garden Embroidered Open Abaya – Black",
+        "Premium Garden Bloom Floral Jacquard Open Abaya – Ivory - LIMITED EDITION",
+        "Premium Ivory Blossom Embroidered Open Abaya – Black",
+        "Premium Blue Eden Open Bisht Abaya – Ivory - LIMITED EDITION",
+        "Premium Desert Botanica Open Bisht Abaya - LIMITED EDITION",
+        "Premium Mahogany Piping Velvet Open Abaya – Black",
+        "Premium Golden Aura Printed Open Abaya – Ivory - LIMITED EDITION",
+        "Premium Heritage Floral Embroidered Open Abaya – Black",
+        "Premium Jacquard Eclipse Open Abaya with Pockets - Black",
+        "Luxury Floral Embellished Lace Satin Closed Abaya – Mocha - LIMITED EDITION",
+        "Luxury Floral Embellished Lace Satin Closed Abaya – Sage - LIMITED EDITION",
+        "Luxury Floral Embellished Lace Satin Closed Abaya – Emerald - LIMITED EDITION",
+        "Premium Signature Velvet Open Abaya - Olive Bronze",
+        "Premium Signature Velvet Open Abaya - Midnight Teal",
+        "Premium Signature Velvet Open Abaya - Mahogany",
+        "Premium Botanical Closed Abaya with Attached Hijab – Forest Green - LIMITED EDITION",
+        "Premium Signature Velvet Open Abaya - Black",
+        "Premium Signature Velvet Open Abaya - Emerald",
+        "Keffiyeh Scarf - Cappuccino",
+        "Keffiyeh Scarf - Warm Beige",
+        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Blush Taupe",
+        "Keffiyeh Scarf - Earth Taupe",
+        "Keffiyeh Scarf - Charcoal",
+        "Premium Textured Open Abaya with Pockets – Earth Taupe",
+        "Premium Maison Floral Jacquard Open Abaya - Bronzed Taupe",
+        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Cafe Mocha",
+        "Premium Four Piece Heirloom Lace Detailed Open Abaya Set - Caramel Nude",
+        "Keffiyeh Scarf - Bronze Black",
+        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Cocoa Bronze",
+        "Keffiyeh Scarf - Olivewood",
+        "Premium Textured Open Abaya with Pockets – Deep Olivewood",
+        "Premium Textured Open Abaya with Pockets – Cocoa Mauve",
+        "Keffiyeh Scarf - Dusty Lilac",
+        "Black Embellished Cuff Closed Abaya",
+        "Keffiyeh Scarf - Black and White",
+        "Keffiyeh Scarf - Plum Burgundy",
+        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Burgundy Plum",
+        "Premium Floral Satin Closed Abaya - Dusty Rose - LIMITED EDITION",
+        "Premium Botanical Butterfly Cut Closed Abaya – Mauve - LIMITED EDITION",
+        "Premium Blush Blossom Chiffon Open Abaya",
+        "Premium Meadow Bloom Textured Embellished Open Abaya - Black"
+      ],
+      "updated": 964,
+      "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "abadia",
       "complete": true,
       "fetched": 83,
-      "added": [
-        "Lee Jacket",
-        "Barrel Pants"
-      ],
-      "updated": 81,
+      "added": [],
+      "updated": 83,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1186,12 +1238,16 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 971,
+      "fetched": 965,
       "added": [
-        "Kapüşonlu Dik Yaka Spor Giy çık Siyah Giy Çık 0131"
+        "Kuşaklı Şal Yaka Kahve Takım 1897",
+        "Fermuar Detaylı Kemerli Vanilya Takım 1700",
+        "Çizgili Garnili Aplikeli Lacivert Gömlek 0145",
+        "Kuşaklı Şal Yaka Siyah Takım 1897",
+        "Fermuar Detaylı Kemerli Siyah Takım 1700"
       ],
-      "updated": 970,
-      "delisted": 9,
+      "updated": 960,
+      "delisted": 12,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1214,20 +1270,24 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 3
+      "returned": 1
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 363,
+      "fetched": 370,
       "added": [
-        "Haruka Pants",
-        "Yuri Jacket"
+        "Regent Top",
+        "Guilin Top",
+        "Delphi Pashmina",
+        "Magnolia Kaftan",
+        "Iris Blouse",
+        "Amaranth Scarf"
       ],
-      "updated": 361,
+      "updated": 364,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "nurmire",
@@ -1245,7 +1305,7 @@
       "fetched": 140,
       "added": [],
       "updated": 140,
-      "delisted": 14,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1261,12 +1321,10 @@
     },
     {
       "brandSlug": "aeon-abaya",
-      "complete": true,
-      "fetched": 641,
-      "added": [
-        "Luxury Dress"
-      ],
-      "updated": 640,
+      "complete": false,
+      "fetched": 0,
+      "added": [],
+      "updated": 0,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1277,9 +1335,9 @@
       "fetched": 364,
       "added": [],
       "updated": 364,
-      "delisted": 6,
+      "delisted": 0,
       "filtered": [],
-      "returned": 9
+      "returned": 0
     },
     {
       "brandSlug": "abayas-boutique",
@@ -1295,10 +1353,8 @@
       "brandSlug": "golden-dune",
       "complete": true,
       "fetched": 149,
-      "added": [
-        "Oberteil Mit Asymmetrischem Spitzensaum"
-      ],
-      "updated": 148,
+      "added": [],
+      "updated": 149,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1306,10 +1362,17 @@
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 291,
-      "added": [],
-      "updated": 291,
-      "delisted": 0,
+      "fetched": 293,
+      "added": [
+        "Trench simili marron (JZM004)",
+        "Trench simili bordeaux (JZM004)",
+        "Manteau MANON noir (JZ010)",
+        "Manteau MANON taupe (JZ010)",
+        "Veste HYPE simili cuir bordeaux (PU8020-1)",
+        "Veste HYPE simili cuir noire (PU8020-1)"
+      ],
+      "updated": 287,
+      "delisted": 6,
       "filtered": [],
       "returned": 2
     },
@@ -1326,10 +1389,10 @@
     {
       "brandSlug": "bayt-el-hayat",
       "complete": true,
-      "fetched": 123,
+      "fetched": 118,
       "added": [],
-      "updated": 123,
-      "delisted": 0,
+      "updated": 118,
+      "delisted": 5,
       "filtered": [],
       "returned": 0
     },
@@ -1406,6 +1469,12 @@
   ],
   "frozenBrands": [
     {
+      "brandSlug": "chi-ka",
+      "prev": 210,
+      "next": 144,
+      "pct": 0.31
+    },
+    {
       "brandSlug": "zora",
       "prev": 114,
       "next": 67,
@@ -1414,8 +1483,8 @@
     {
       "brandSlug": "amariah",
       "prev": 35,
-      "next": 2,
-      "pct": 0.94
+      "next": 3,
+      "pct": 0.91
     },
     {
       "brandSlug": "nour-al-houda",
@@ -1426,8 +1495,8 @@
     {
       "brandSlug": "nemah",
       "prev": 22,
-      "next": 12,
-      "pct": 0.45
+      "next": 13,
+      "pct": 0.41
     },
     {
       "brandSlug": "voile-chic",
@@ -1436,5 +1505,5 @@
       "pct": 0.49
     }
   ],
-  "untranslatedTitles": 1241
+  "untranslatedTitles": 1191
 }
