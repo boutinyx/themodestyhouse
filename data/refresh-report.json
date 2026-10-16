@@ -1,21 +1,21 @@
 {
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "totals": {
-    "added": 87,
-    "updated": 28321,
-    "delisted": 360,
+    "added": 19,
+    "updated": 28801,
+    "delisted": 269,
     "filtered": 53,
-    "returned": 7,
-    "incomplete": 4
+    "returned": 21,
+    "incomplete": 3
   },
   "brands": [
     {
       "brandSlug": "haute-hijab",
       "complete": true,
-      "fetched": 200,
+      "fetched": 198,
       "added": [],
-      "updated": 200,
-      "delisted": 0,
+      "updated": 198,
+      "delisted": 2,
       "filtered": [],
       "returned": 0
     },
@@ -37,22 +37,24 @@
     {
       "brandSlug": "veiled",
       "complete": true,
-      "fetched": 1183,
+      "fetched": 1005,
       "added": [],
-      "updated": 1183,
-      "delisted": 0,
+      "updated": 1005,
+      "delisted": 178,
       "filtered": [],
       "returned": 0
     },
     {
       "brandSlug": "niswa",
       "complete": true,
-      "fetched": 392,
-      "added": [],
-      "updated": 392,
+      "fetched": 395,
+      "added": [
+        "Printed Modal - Cosmic Dahlia"
+      ],
+      "updated": 394,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 2
     },
     {
       "brandSlug": "zahraa",
@@ -152,14 +154,12 @@
     {
       "brandSlug": "urban-modesty",
       "complete": true,
-      "fetched": 394,
-      "added": [
-        "Brown Ribbed Skirt Set"
-      ],
-      "updated": 393,
-      "delisted": 1,
+      "fetched": 395,
+      "added": [],
+      "updated": 395,
+      "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "hawaa",
@@ -184,8 +184,11 @@
     {
       "brandSlug": "glow-modesty",
       "complete": true,
-      "fetched": 125,
-      "added": [],
+      "fetched": 127,
+      "added": [
+        "Molly Modest Trench Coat",
+        "Amanda - Belted Coat"
+      ],
       "updated": 125,
       "delisted": 0,
       "filtered": [],
@@ -199,7 +202,7 @@
       "updated": 123,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "feradje",
@@ -265,15 +268,8 @@
       "brandSlug": "esme-ny",
       "complete": true,
       "fetched": 69,
-      "added": [
-        "LULA Misprint Letter Lace Long Top in Pink | Limited Run",
-        "LULA Misprint Letter Lace Long Top in Blue | Limited Run",
-        "MAIA Drop Waist Sequin Black Dress",
-        "FREYA v-neck Cinched-Waist Top",
-        "CALLIE Misprint Letter Lace in Pink | Limited Run",
-        "CALLIE Misprint Letter Lace in Blue | Limited Run"
-      ],
-      "updated": 63,
+      "added": [],
+      "updated": 69,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -291,8 +287,10 @@
     {
       "brandSlug": "emlavish",
       "complete": true,
-      "fetched": 55,
-      "added": [],
+      "fetched": 56,
+      "added": [
+        "Striped Lace Cuff Jersey Top"
+      ],
       "updated": 55,
       "delisted": 0,
       "filtered": [],
@@ -371,10 +369,10 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 153,
+      "fetched": 152,
       "added": [],
-      "updated": 153,
-      "delisted": 0,
+      "updated": 152,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -391,10 +389,10 @@
     {
       "brandSlug": "fares",
       "complete": true,
-      "fetched": 256,
+      "fetched": 249,
       "added": [],
-      "updated": 256,
-      "delisted": 0,
+      "updated": 249,
+      "delisted": 7,
       "filtered": [],
       "returned": 0
     },
@@ -439,7 +437,7 @@
       "fetched": 404,
       "added": [],
       "updated": 404,
-      "delisted": 4,
+      "delisted": 0,
       "filtered": [
         {
           "title": "The Solace | Blue",
@@ -515,10 +513,10 @@
     {
       "brandSlug": "chi-ka",
       "complete": true,
-      "fetched": 423,
+      "fetched": 377,
       "added": [],
-      "updated": 423,
-      "delisted": 325,
+      "updated": 377,
+      "delisted": 46,
       "filtered": [],
       "returned": 0
     },
@@ -546,13 +544,8 @@
       "brandSlug": "losyana",
       "complete": true,
       "fetched": 899,
-      "added": [
-        "Balaclava - schwarz",
-        "Balaclava - espresso",
-        "Balaclava - cream",
-        "Weicher Blazer - schwarz"
-      ],
-      "updated": 895,
+      "added": [],
+      "updated": 899,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -610,8 +603,14 @@
     {
       "brandSlug": "mukistore",
       "complete": true,
-      "fetched": 1656,
-      "added": [],
+      "fetched": 1661,
+      "added": [
+        "Tweedelige Set met Kanten Details en Wijde Broek",
+        "Leatherlook Tuniek met Ronde Hals en Pofmouwen",
+        "Geruite Blouse met Kraag en Wijde Mouwen",
+        "Gebreide Maxi Rok met Kanten Zoom",
+        "Maxi Jurk met V-hals en Knoopdetails"
+      ],
       "updated": 1656,
       "delisted": 0,
       "filtered": [
@@ -679,25 +678,12 @@
       "complete": true,
       "fetched": 94,
       "added": [
-        "Tailored Jacket Set",
-        "Collar Gilet",
-        "Essential Basic Top",
-        "Draped Top",
-        "A-Line Skirt",
-        "Wide Pants",
-        "Wrap Kimono Top",
-        "Zip Collar Set",
-        "Essential Club Shirt",
-        "A Line Skirt Set",
-        "Long Cardigan",
-        "Trenchcoat",
-        "Relaxed Stripe Shirt",
-        "Boxy Trench Coat"
+        "Signature Pocket Dress"
       ],
-      "updated": 80,
-      "delisted": 0,
+      "updated": 93,
+      "delisted": 3,
       "filtered": [],
-      "returned": 1
+      "returned": 2
     },
     {
       "brandSlug": "noureen",
@@ -876,10 +862,10 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 328,
+      "fetched": 327,
       "added": [],
-      "updated": 328,
-      "delisted": 3,
+      "updated": 327,
+      "delisted": 2,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -898,7 +884,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "abaya-lounge",
@@ -923,12 +909,12 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 342,
+      "fetched": 343,
       "added": [],
-      "updated": 342,
-      "delisted": 3,
+      "updated": 343,
+      "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "yasmin-jay",
@@ -1004,9 +990,11 @@
       "brandSlug": "modesty-in-style",
       "complete": true,
       "fetched": 397,
-      "added": [],
-      "updated": 397,
-      "delisted": 0,
+      "added": [
+        "Sara Dress"
+      ],
+      "updated": 396,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1058,9 +1046,9 @@
     {
       "brandSlug": "lameera-moda",
       "complete": true,
-      "fetched": 427,
+      "fetched": 426,
       "added": [],
-      "updated": 427,
+      "updated": 426,
       "delisted": 1,
       "filtered": [
         {
@@ -1097,11 +1085,11 @@
     {
       "brandSlug": "store-wf",
       "complete": true,
-      "fetched": 261,
+      "fetched": 262,
       "added": [
-        "Navy Stripe Convertible Dress"
+        "Camel Oversized Double-Breasted Wool Long Coat"
       ],
-      "updated": 260,
+      "updated": 261,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1109,57 +1097,12 @@
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 1008,
-      "added": [
-        "Premium Parisian Lace Polka Dot Open Abaya – Ivory",
-        "Premium Parisian Lace Polka Dot Open Abaya – Black",
-        "Floral Cascade Embroidered Double Chiffon Open Abaya – Black",
-        "Premium Golden Garden Embroidered Open Abaya – Black",
-        "Premium Garden Bloom Floral Jacquard Open Abaya – Ivory - LIMITED EDITION",
-        "Premium Ivory Blossom Embroidered Open Abaya – Black",
-        "Premium Blue Eden Open Bisht Abaya – Ivory - LIMITED EDITION",
-        "Premium Desert Botanica Open Bisht Abaya - LIMITED EDITION",
-        "Premium Mahogany Piping Velvet Open Abaya – Black",
-        "Premium Golden Aura Printed Open Abaya – Ivory - LIMITED EDITION",
-        "Premium Heritage Floral Embroidered Open Abaya – Black",
-        "Premium Jacquard Eclipse Open Abaya with Pockets - Black",
-        "Luxury Floral Embellished Lace Satin Closed Abaya – Mocha - LIMITED EDITION",
-        "Luxury Floral Embellished Lace Satin Closed Abaya – Sage - LIMITED EDITION",
-        "Luxury Floral Embellished Lace Satin Closed Abaya – Emerald - LIMITED EDITION",
-        "Premium Signature Velvet Open Abaya - Olive Bronze",
-        "Premium Signature Velvet Open Abaya - Midnight Teal",
-        "Premium Signature Velvet Open Abaya - Mahogany",
-        "Premium Botanical Closed Abaya with Attached Hijab – Forest Green - LIMITED EDITION",
-        "Premium Signature Velvet Open Abaya - Black",
-        "Premium Signature Velvet Open Abaya - Emerald",
-        "Keffiyeh Scarf - Cappuccino",
-        "Keffiyeh Scarf - Warm Beige",
-        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Blush Taupe",
-        "Keffiyeh Scarf - Earth Taupe",
-        "Keffiyeh Scarf - Charcoal",
-        "Premium Textured Open Abaya with Pockets – Earth Taupe",
-        "Premium Maison Floral Jacquard Open Abaya - Bronzed Taupe",
-        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Cafe Mocha",
-        "Premium Four Piece Heirloom Lace Detailed Open Abaya Set - Caramel Nude",
-        "Keffiyeh Scarf - Bronze Black",
-        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Cocoa Bronze",
-        "Keffiyeh Scarf - Olivewood",
-        "Premium Textured Open Abaya with Pockets – Deep Olivewood",
-        "Premium Textured Open Abaya with Pockets – Cocoa Mauve",
-        "Keffiyeh Scarf - Dusty Lilac",
-        "Black Embellished Cuff Closed Abaya",
-        "Keffiyeh Scarf - Black and White",
-        "Keffiyeh Scarf - Plum Burgundy",
-        "Premium Luxe Umbrella Cut Closed Abaya with Inner Belt - Burgundy Plum",
-        "Premium Floral Satin Closed Abaya - Dusty Rose - LIMITED EDITION",
-        "Premium Botanical Butterfly Cut Closed Abaya – Mauve - LIMITED EDITION",
-        "Premium Blush Blossom Chiffon Open Abaya",
-        "Premium Meadow Bloom Textured Embellished Open Abaya - Black"
-      ],
-      "updated": 964,
-      "delisted": 0,
+      "fetched": 1006,
+      "added": [],
+      "updated": 1006,
+      "delisted": 2,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "abadia",
@@ -1238,15 +1181,9 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 965,
-      "added": [
-        "Kuşaklı Şal Yaka Kahve Takım 1897",
-        "Fermuar Detaylı Kemerli Vanilya Takım 1700",
-        "Çizgili Garnili Aplikeli Lacivert Gömlek 0145",
-        "Kuşaklı Şal Yaka Siyah Takım 1897",
-        "Fermuar Detaylı Kemerli Siyah Takım 1700"
-      ],
-      "updated": 960,
+      "fetched": 964,
+      "added": [],
+      "updated": 964,
       "delisted": 12,
       "filtered": [
         {
@@ -1270,24 +1207,17 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 1
+      "returned": 11
     },
     {
       "brandSlug": "ria-miranda",
       "complete": true,
-      "fetched": 370,
-      "added": [
-        "Regent Top",
-        "Guilin Top",
-        "Delphi Pashmina",
-        "Magnolia Kaftan",
-        "Iris Blouse",
-        "Amaranth Scarf"
-      ],
-      "updated": 364,
-      "delisted": 0,
+      "fetched": 365,
+      "added": [],
+      "updated": 365,
+      "delisted": 5,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "nurmire",
@@ -1321,10 +1251,10 @@
     },
     {
       "brandSlug": "aeon-abaya",
-      "complete": false,
-      "fetched": 0,
+      "complete": true,
+      "fetched": 641,
       "added": [],
-      "updated": 0,
+      "updated": 641,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1332,18 +1262,20 @@
     {
       "brandSlug": "nour-al-houda",
       "complete": true,
-      "fetched": 364,
+      "fetched": 357,
       "added": [],
-      "updated": 364,
-      "delisted": 0,
+      "updated": 357,
+      "delisted": 8,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "abayas-boutique",
       "complete": true,
-      "fetched": 428,
-      "added": [],
+      "fetched": 429,
+      "added": [
+        "Hanaa in Green"
+      ],
       "updated": 428,
       "delisted": 0,
       "filtered": [],
@@ -1352,8 +1284,13 @@
     {
       "brandSlug": "golden-dune",
       "complete": true,
-      "fetched": 149,
-      "added": [],
+      "fetched": 153,
+      "added": [
+        "Ruffle Trim Sweater",
+        "Ruffle Trim Sweater",
+        "Oversize-Polo-Sweatshirt",
+        "Oversize-Polo-Sweatshirt"
+      ],
       "updated": 149,
       "delisted": 0,
       "filtered": [],
@@ -1362,17 +1299,13 @@
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 293,
+      "fetched": 297,
       "added": [
-        "Trench simili marron (JZM004)",
-        "Trench simili bordeaux (JZM004)",
-        "Manteau MANON noir (JZ010)",
-        "Manteau MANON taupe (JZ010)",
-        "Veste HYPE simili cuir bordeaux (PU8020-1)",
-        "Veste HYPE simili cuir noire (PU8020-1)"
+        "Blazer ERNE camel (WV057)",
+        "Ensemble DEAN choco"
       ],
-      "updated": 287,
-      "delisted": 6,
+      "updated": 295,
+      "delisted": 0,
       "filtered": [],
       "returned": 2
     },
@@ -1392,7 +1325,7 @@
       "fetched": 118,
       "added": [],
       "updated": 118,
-      "delisted": 5,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1439,10 +1372,10 @@
     {
       "brandSlug": "bybdsha",
       "complete": true,
-      "fetched": 29,
+      "fetched": 28,
       "added": [],
-      "updated": 29,
-      "delisted": 0,
+      "updated": 28,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1471,26 +1404,26 @@
     {
       "brandSlug": "chi-ka",
       "prev": 210,
-      "next": 144,
-      "pct": 0.31
+      "next": 143,
+      "pct": 0.32
     },
     {
       "brandSlug": "zora",
       "prev": 114,
-      "next": 67,
-      "pct": 0.41
+      "next": 68,
+      "pct": 0.4
     },
     {
       "brandSlug": "amariah",
       "prev": 35,
-      "next": 3,
-      "pct": 0.91
+      "next": 4,
+      "pct": 0.89
     },
     {
       "brandSlug": "nour-al-houda",
       "prev": 633,
-      "next": 333,
-      "pct": 0.47
+      "next": 326,
+      "pct": 0.48
     },
     {
       "brandSlug": "nemah",
@@ -1505,5 +1438,5 @@
       "pct": 0.49
     }
   ],
-  "untranslatedTitles": 1191
+  "untranslatedTitles": 1145
 }
