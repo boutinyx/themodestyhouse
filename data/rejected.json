@@ -24278,14 +24278,6 @@
     "evidence": "in stock: XXL, 3XL"
   },
   {
-    "id": "culture-hijab:10189267206442",
-    "brandSlug": "culture-hijab",
-    "title": "Chiffon Breeze Gift Set",
-    "url": "https://culturehijab.com/products/chiffon-breeze-set",
-    "garmentWas": "set",
-    "reason": "title-pattern"
-  },
-  {
     "id": "summer-evenings:9310886068474",
     "brandSlug": "summer-evenings",
     "title": "Vanilla Gold Embellished Satin Peplum Set",
@@ -24299,6 +24291,24 @@
     "brandSlug": "summer-evenings",
     "title": "Ocean Blue Low Waisted Skirt Set",
     "url": "https://www.summerevenings.us/products/ocean-blue-chiffon-low-waisted-set",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "summer-evenings:9228898533626",
+    "brandSlug": "summer-evenings",
+    "title": "Brown & Pink Polkadot Low Waisted Skirt Set",
+    "url": "https://www.summerevenings.us/products/brown-pink-polkadot-chiffon-top-skirt-set-copy",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 1XL, 2XL"
+  },
+  {
+    "id": "summer-evenings:9207022977274",
+    "brandSlug": "summer-evenings",
+    "title": "Butter Yellow Polkadot Low Waisted Skirt Set",
+    "url": "https://www.summerevenings.us/products/butter-yellow-polkadot-top-skirt-set",
     "garmentWas": "skirt",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
@@ -24392,6 +24402,15 @@
     "reason": "non-apparel:hardware",
     "tier": "A",
     "evidence": "Enamel Pin"
+  },
+  {
+    "id": "zora:8806756122787",
+    "brandSlug": "zora",
+    "title": "The Vitznau Skirt in Russet",
+    "url": "https://zoradesigners.com/products/the-vitznau-skirt-in-pink-copy",
+    "garmentWas": "skirt",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, 2XL"
   },
   {
     "id": "haute-hijab:4528495722592",
@@ -24637,6 +24656,15 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XXL"
+  },
+  {
+    "id": "aab:10277924536634",
+    "brandSlug": "aab",
+    "title": "Open Abaya Grey",
+    "url": "https://us.aabcollection.com/products/open-abaya-grey",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL, XL, XL"
   },
   {
     "id": "aab:10277927059770",
@@ -32220,8 +32248,8 @@
     "title": "Pale Blue Cotton Blend Front Slit Dress",
     "url": "https://jawda.co.uk/products/pale-blue-cotton-blend-front-slit-dress",
     "garmentWas": "dress",
-    "reason": "dead-link",
-    "evidence": "https://jawda.co.uk/products/pale-blue-cotton-blend-front-slit-dress"
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "jawda:16054287925628",
@@ -32729,15 +32757,6 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL, XL"
-  },
-  {
-    "id": "aab:10201504153914",
-    "brandSlug": "aab",
-    "title": "Chiffon Two Piece Abaya Burgundy",
-    "url": "https://us.aabcollection.com/products/chiffon-two-piece-abaya-burgundy",
-    "garmentWas": "abaya",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
   },
   {
     "id": "aab:10201504645434",
@@ -34709,15 +34728,6 @@
     "evidence": "in stock: XL"
   },
   {
-    "id": "merrachi:15481991790975",
-    "brandSlug": "merrachi",
-    "title": "Asymmetric Drape Dress Short | Dark Brown",
-    "url": "https://bymerrachi.com/products/asymmetric-drape-dress-short-dark-brown",
-    "garmentWas": "dress",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XL"
-  },
-  {
     "id": "merrachi:15482031702399",
     "brandSlug": "merrachi",
     "title": "Kaftan Dress Short | Soft Bordeaux",
@@ -35001,15 +35011,6 @@
     "garmentWas": "abaya",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL/XXL"
-  },
-  {
-    "id": "fares:8281653018815",
-    "brandSlug": "fares",
-    "title": "Straight Leg Trousers - Kastana",
-    "url": "https://shopfares.com/products/straight-leg-trousers-kastana",
-    "garmentWas": "trousers",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: XXL"
   },
   {
     "id": "fares:8281654067391",
@@ -38963,6 +38964,15 @@
     "evidence": "in stock: XL"
   },
   {
+    "id": "chic-modesty:10830711259474",
+    "brandSlug": "chic-modesty",
+    "title": "T-shirt ample coton bleu ciel",
+    "url": "https://chicandmodesty.com/products/t-shirt-ample-coton-bleu-ciel",
+    "garmentWas": "top",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL/XXL"
+  },
+  {
     "id": "chic-modesty:10474535223634",
     "brandSlug": "chic-modesty",
     "title": "Pinces anti trou basic noir",
@@ -40187,6 +40197,24 @@
     "evidence": "Hijab Magnets"
   },
   {
+    "id": "amariah:8216081989857",
+    "brandSlug": "amariah",
+    "title": "Lydia Tiered Maxi Dress - Khaki Green",
+    "url": "https://amariah.co.uk/products/lydia-tiered-maxi-dress-color-khaki-green",
+    "garmentWas": "dress",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
+    "id": "amariah:8035978871009",
+    "brandSlug": "amariah",
+    "title": "Serena Matte Abaya Set - Chocolate Brown",
+    "url": "https://amariah.co.uk/products/serena-matte-abaya-color-chocolate-brown",
+    "garmentWas": "abaya",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
+  },
+  {
     "id": "amariah:8054182117601",
     "brandSlug": "amariah",
     "title": "Lydia Tiered Maxi Dress - Dark Spice",
@@ -41382,14 +41410,6 @@
     "garmentWas": "dress",
     "reason": "only-large-sizes",
     "evidence": "in stock: XL"
-  },
-  {
-    "id": "jennah-boutique:7800520868016",
-    "brandSlug": "jennah-boutique",
-    "title": "Box ramadan homme - bleu",
-    "url": "https://jennah-boutique.com/products/box-ramadan-homme-bleu",
-    "garmentWas": "hijab",
-    "reason": "title-pattern"
   },
   {
     "id": "jennah-boutique:7764203897008",
@@ -48301,6 +48321,14 @@
     "reason": "title-pattern"
   },
   {
+    "id": "nihan:15028000751979",
+    "brandSlug": "nihan",
+    "title": "Büyük Beden Gömlek Yaka Viskon Tunik - Zümrüt",
+    "url": "https://nihan.com.tr/products/buyuk-beden-gomlek-yaka-viskon-tunik-zumrut",
+    "garmentWas": "top",
+    "reason": "title-pattern"
+  },
+  {
     "id": "nihan:15027933184363",
     "brandSlug": "nihan",
     "title": "Gömlek Yaka Modal Tunik - Zümrüt",
@@ -51053,7 +51081,7 @@
     "id": "losyana:16074454761797",
     "brandSlug": "losyana",
     "title": "Hijab clip - Lune black",
-    "url": "https://losyana.shop/products/hijab-clip-gold-kopie",
+    "url": "https://losyana.shop/products/hijab-clip-lune-black",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -51073,7 +51101,7 @@
     "id": "losyana:8708447895877",
     "brandSlug": "losyana",
     "title": "Hijab clip - Gold diamond",
-    "url": "https://losyana.shop/products/hijab-clip-white-pearl",
+    "url": "https://losyana.shop/products/hijab-clip-gold-diamond",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -51083,7 +51111,7 @@
     "id": "losyana:8708447338821",
     "brandSlug": "losyana",
     "title": "Hijab clip - Oval taupe",
-    "url": "https://losyana.shop/products/hijab-clip-brown-butterfly",
+    "url": "https://losyana.shop/products/hijab-clip-oval-taupe",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -51093,7 +51121,7 @@
     "id": "losyana:8708445569349",
     "brandSlug": "losyana",
     "title": "Hijab clip - Tulip diamond",
-    "url": "https://losyana.shop/products/hijab-clip-black-heart",
+    "url": "https://losyana.shop/products/hijab-clip-tulip-diamond",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -51103,7 +51131,7 @@
     "id": "losyana:8708444356933",
     "brandSlug": "losyana",
     "title": "Hijab clip - Black butterfly",
-    "url": "https://losyana.shop/products/hijab-clip-black-oval",
+    "url": "https://losyana.shop/products/hijab-clip-black-butterfly",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -51113,7 +51141,7 @@
     "id": "losyana:8708422730053",
     "brandSlug": "losyana",
     "title": "Hijab clip - Wood white",
-    "url": "https://losyana.shop/products/hijab-clip-black",
+    "url": "https://losyana.shop/products/hijab-clip-wood-white",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -51123,7 +51151,7 @@
     "id": "losyana:8708420600133",
     "brandSlug": "losyana",
     "title": "Hijab clip - Taupe",
-    "url": "https://losyana.shop/products/hijab-clip-white",
+    "url": "https://losyana.shop/products/hijab-clip-taupe",
     "garmentWas": "hijab",
     "reason": "non-apparel:hardware",
     "tier": "A",
@@ -51241,7 +51269,7 @@
     "url": "https://nemahwear.com/products/grey-long-activewear-t-shirt",
     "garmentWas": "top",
     "reason": "only-large-sizes",
-    "evidence": "in stock: 4XL, XL, XXL, 3XL"
+    "evidence": "in stock: 4XL, XXL, 3XL"
   },
   {
     "id": "nemah:8043384307759",
@@ -51275,15 +51303,6 @@
     "brandSlug": "nemah",
     "title": "Themis Modest Activewear Tshirt",
     "url": "https://nemahwear.com/products/themis-modest-activewear-tshirt",
-    "garmentWas": "top",
-    "reason": "only-large-sizes",
-    "evidence": "in stock: 4XL"
-  },
-  {
-    "id": "nemah:8043354456111",
-    "brandSlug": "nemah",
-    "title": "Olive Green Ivy Modest Activewear Tshirt",
-    "url": "https://nemahwear.com/products/ivy-modest-activewear-tshirt",
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: 4XL"
@@ -51914,6 +51933,15 @@
     "garmentWas": "top",
     "reason": "only-large-sizes",
     "evidence": "in stock: XXL"
+  },
+  {
+    "id": "fith:10609061593375",
+    "brandSlug": "fith",
+    "title": "Ease Lightweight Wide-Legged Pants (Black)",
+    "url": "https://getfith.co/products/ease-lightweight-wide-legged-pants-black",
+    "garmentWas": "trousers",
+    "reason": "only-large-sizes",
+    "evidence": "in stock: XL"
   },
   {
     "id": "fith:10606113718559",
@@ -52606,5 +52634,203 @@
     "garmentWas": "trousers",
     "reason": "price-ceiling",
     "evidence": "2295 AED (~$625)"
+  },
+  {
+    "id": "chi-ka:8782142242977",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya in Summer Black",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-in-summer-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2415 AED (~$658)"
+  },
+  {
+    "id": "chi-ka:8782143520929",
+    "brandSlug": "chi-ka",
+    "title": "Top Jacket Abaya in Navy Jacquard",
+    "url": "https://chikacollection.com/products/top-jacket-abaya-in-navy-jacquard",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8782141489313",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Butterfly Abaya with Quilted Details in Brown",
+    "url": "https://chikacollection.com/products/velvet-butterfly-abaya-with-quilted-details-in-brown",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8782141456545",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Butterfly Abaya with Quilted Details in Black",
+    "url": "https://chikacollection.com/products/velvet-butterfly-abaya-with-quilted-details-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8782143389857",
+    "brandSlug": "chi-ka",
+    "title": "Winter Coat Lace Abaya in White",
+    "url": "https://chikacollection.com/products/winter-coat-lace-abaya-in-white",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8782141620385",
+    "brandSlug": "chi-ka",
+    "title": "Front Closing Jacquard Abaya in Navy Blue",
+    "url": "https://chikacollection.com/products/front-closing-jacquard-abaya-in-navy-blue",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8782141816993",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya with Lace Belt in Black",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-with-lace-belt-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2520 AED (~$686)"
+  },
+  {
+    "id": "chi-ka:8782141751457",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya in Velvet Flower Jacquard in Grey Green",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-in-velvet-flower-jacquard-in-grey-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8782141391009",
+    "brandSlug": "chi-ka",
+    "title": "Velvet Butterfly Abaya in Printed Grey Black",
+    "url": "https://chikacollection.com/products/velvet-butterfly-abaya-in-printed-grey-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8782140211361",
+    "brandSlug": "chi-ka",
+    "title": "Double Flow Abaya with Beige Collar in Ivory",
+    "url": "https://chikacollection.com/products/double-flow-abaya-with-beige-collar-in-ivory",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8782142177441",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya with Sash in Black",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-with-sash-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2415 AED (~$658)"
+  },
+  {
+    "id": "chi-ka:8782142079137",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya with Sash in Brown",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-with-sash-in-brown",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2415 AED (~$658)"
+  },
+  {
+    "id": "chi-ka:8782141980833",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya with Sash in Blue",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-with-sash-in-blue",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2415 AED (~$658)"
+  },
+  {
+    "id": "chi-ka:8782141948065",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya with Sash in Dark Purple",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-with-sash-in-dark-purple",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2415 AED (~$658)"
+  },
+  {
+    "id": "chi-ka:8782141882529",
+    "brandSlug": "chi-ka",
+    "title": "Tuxedo Abaya with Flower Button in Pastel Green",
+    "url": "https://chikacollection.com/products/tuxedo-abaya-with-flower-button-in-pastel-green",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2415 AED (~$658)"
+  },
+  {
+    "id": "chi-ka:8796699295905",
+    "brandSlug": "chi-ka",
+    "title": "Embellished Front Abaya in Beige",
+    "url": "https://chikacollection.com/products/embellished-front-abaya-in-beige",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2730 AED (~$743)"
+  },
+  {
+    "id": "chi-ka:8796698869921",
+    "brandSlug": "chi-ka",
+    "title": "Fluid Shawl Lapel Abaya with Beads Work in Black",
+    "url": "https://chikacollection.com/products/fluid-shawl-lapel-abaya-with-beads-work-in-black",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8776390344865",
+    "brandSlug": "chi-ka",
+    "title": "Fluid Shawl Lapel Abaya in Ivory and Red",
+    "url": "https://chikacollection.com/products/fluid-shawl-lapel-abaya-in-ivory-tencel-twill-with-printed-red",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2205 AED (~$600)"
+  },
+  {
+    "id": "chi-ka:8782140801185",
+    "brandSlug": "chi-ka",
+    "title": "Double Flow Abaya in Matte Taupe",
+    "url": "https://chikacollection.com/products/double-flow-abaya-in-matte-taupe",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8782140244129",
+    "brandSlug": "chi-ka",
+    "title": "Double Flow Abaya with Printed Lining in Navy",
+    "url": "https://chikacollection.com/products/double-flow-abaya-with-printed-lining-in-navy",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2100 AED (~$572)"
+  },
+  {
+    "id": "chi-ka:8782141161633",
+    "brandSlug": "chi-ka",
+    "title": "Double Flow Abaya with Printed Lining in Dark Purple",
+    "url": "https://chikacollection.com/products/double-flow-abaya-with-printed-lining-in-dark-purple",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
+  },
+  {
+    "id": "chi-ka:8782140407969",
+    "brandSlug": "chi-ka",
+    "title": "Double Flow Abaya with Printed Lining in Chocolate Brown",
+    "url": "https://chikacollection.com/products/double-flow-abaya-with-printed-lining-in-chocolate-brown",
+    "garmentWas": "abaya",
+    "reason": "price-ceiling",
+    "evidence": "2310 AED (~$629)"
   }
 ]

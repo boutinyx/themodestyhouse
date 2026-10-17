@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-17",
   "totals": {
-    "added": 19,
-    "updated": 28801,
-    "delisted": 269,
-    "filtered": 53,
-    "returned": 21,
-    "incomplete": 3
+    "added": 78,
+    "updated": 27860,
+    "delisted": 29,
+    "filtered": 54,
+    "returned": 75,
+    "incomplete": 4
   },
   "brands": [
     {
@@ -15,7 +15,7 @@
       "fetched": 198,
       "added": [],
       "updated": 198,
-      "delisted": 2,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -36,11 +36,11 @@
     },
     {
       "brandSlug": "veiled",
-      "complete": true,
-      "fetched": 1005,
+      "complete": false,
+      "fetched": 0,
       "added": [],
-      "updated": 1005,
-      "delisted": 178,
+      "updated": 0,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -48,13 +48,11 @@
       "brandSlug": "niswa",
       "complete": true,
       "fetched": 395,
-      "added": [
-        "Printed Modal - Cosmic Dahlia"
-      ],
-      "updated": 394,
+      "added": [],
+      "updated": 395,
       "delisted": 0,
       "filtered": [],
-      "returned": 2
+      "returned": 0
     },
     {
       "brandSlug": "zahraa",
@@ -159,7 +157,7 @@
       "updated": 395,
       "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "hawaa",
@@ -185,11 +183,8 @@
       "brandSlug": "glow-modesty",
       "complete": true,
       "fetched": 127,
-      "added": [
-        "Molly Modest Trench Coat",
-        "Amanda - Belted Coat"
-      ],
-      "updated": 125,
+      "added": [],
+      "updated": 127,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -197,10 +192,17 @@
     {
       "brandSlug": "jawda",
       "complete": true,
-      "fetched": 123,
-      "added": [],
-      "updated": 123,
-      "delisted": 0,
+      "fetched": 126,
+      "added": [
+        "Coffee Cotton Frog Button Open Abaya",
+        "Olive Cotton Frog Button Open Abaya",
+        "Black Cotton Frog Button Open Abaya",
+        "Black Denim Frog Button Open Abaya",
+        "Lilac Cotton Blend Tassel Abaya",
+        "Grey Blue Cotton Blend Tassel Abaya"
+      ],
+      "updated": 120,
+      "delisted": 3,
       "filtered": [],
       "returned": 0
     },
@@ -288,10 +290,8 @@
       "brandSlug": "emlavish",
       "complete": true,
       "fetched": 56,
-      "added": [
-        "Striped Lace Cuff Jersey Top"
-      ],
-      "updated": 55,
+      "added": [],
+      "updated": 56,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -309,12 +309,15 @@
     {
       "brandSlug": "zora",
       "complete": true,
-      "fetched": 117,
-      "added": [],
-      "updated": 117,
+      "fetched": 183,
+      "added": [
+        "Eden Kurung in Cream Lilac Floral",
+        "The Celestine Top"
+      ],
+      "updated": 181,
       "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 64
     },
     {
       "brandSlug": "bemu",
@@ -369,10 +372,12 @@
     {
       "brandSlug": "manzaram",
       "complete": true,
-      "fetched": 152,
-      "added": [],
+      "fetched": 153,
+      "added": [
+        "Maxi jurk met lint"
+      ],
       "updated": 152,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -392,7 +397,7 @@
       "fetched": 249,
       "added": [],
       "updated": 249,
-      "delisted": 7,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -513,10 +518,40 @@
     {
       "brandSlug": "chi-ka",
       "complete": true,
-      "fetched": 377,
-      "added": [],
+      "fetched": 406,
+      "added": [
+        "Fluid Shawl Lapel Abaya in Teal Blue",
+        "Tuxedo Abaya in Summer Black",
+        "Top Jacket Abaya in Navy Jacquard",
+        "Velvet Butterfly Abaya with Quilted Details in Brown",
+        "Velvet Butterfly Abaya with Quilted Details in Black",
+        "Winter Coat Lace Abaya in White",
+        "Winter Coat Abaya with Satin Collar in Navy Blue",
+        "Front Closing Jacquard Abaya in Navy Blue",
+        "Tuxedo Abaya with Lace Belt in Black",
+        "Tuxedo Abaya in Velvet Flower Jacquard in Grey Green",
+        "Velvet Butterfly Abaya in Printed Grey Black",
+        "Double Flow Abaya with Beige Collar in Ivory",
+        "Fluid Shawl Lapel Abaya in Polka Dot Brown",
+        "Fluid Shawl Lapel Abaya in Printed Dark Blue",
+        "Fluid Shawl Lapel Abaya in Printed Dark Green",
+        "Flow Abaya in Tencel Twill with Piping Detailing in Blue",
+        "Flow Abaya in Tencel Twill with Piping Detailing in Ivory",
+        "Tuxedo Abaya with Sash in Black",
+        "Tuxedo Abaya with Sash in Brown",
+        "Tuxedo Abaya with Sash in Blue",
+        "Tuxedo Abaya with Sash in Dark Purple",
+        "Tuxedo Abaya with Flower Button in Pastel Green",
+        "Embellished Front Abaya in Beige",
+        "Fluid Shawl Lapel Abaya with Beads Work in Black",
+        "Fluid Shawl Lapel Abaya in Ivory and Red",
+        "Double Flow Abaya in Matte Taupe",
+        "Double Flow Abaya with Printed Lining in Navy",
+        "Double Flow Abaya with Printed Lining in Dark Purple",
+        "Double Flow Abaya with Printed Lining in Chocolate Brown"
+      ],
       "updated": 377,
-      "delisted": 46,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -543,8 +578,18 @@
     {
       "brandSlug": "losyana",
       "complete": true,
-      "fetched": 899,
-      "added": [],
+      "fetched": 908,
+      "added": [
+        "Wollpullover - rot",
+        "Wollpullover - grau",
+        "Wollpullover - cream",
+        "Wollpullover - schwarz",
+        "Wollrock - red",
+        "Wollrock - black",
+        "Wollrock - cream",
+        "Wollrock - grau",
+        "LSY Magazin - Paris 1996"
+      ],
       "updated": 899,
       "delisted": 0,
       "filtered": [],
@@ -604,14 +649,8 @@
       "brandSlug": "mukistore",
       "complete": true,
       "fetched": 1661,
-      "added": [
-        "Tweedelige Set met Kanten Details en Wijde Broek",
-        "Leatherlook Tuniek met Ronde Hals en Pofmouwen",
-        "Geruite Blouse met Kraag en Wijde Mouwen",
-        "Gebreide Maxi Rok met Kanten Zoom",
-        "Maxi Jurk met V-hals en Knoopdetails"
-      ],
-      "updated": 1656,
+      "added": [],
+      "updated": 1661,
       "delisted": 0,
       "filtered": [
         {
@@ -677,22 +716,24 @@
       "brandSlug": "chador",
       "complete": true,
       "fetched": 94,
-      "added": [
-        "Signature Pocket Dress"
-      ],
-      "updated": 93,
-      "delisted": 3,
+      "added": [],
+      "updated": 94,
+      "delisted": 0,
       "filtered": [],
-      "returned": 2
+      "returned": 0
     },
     {
       "brandSlug": "noureen",
       "complete": true,
-      "fetched": 233,
+      "fetched": 230,
       "added": [],
-      "updated": 233,
-      "delisted": 0,
+      "updated": 230,
+      "delisted": 2,
       "filtered": [
+        {
+          "title": "Mastour Abaya Split Sleeves Chocolate 142/150/155 cm",
+          "reason": "no-image"
+        },
         {
           "title": "Luxury Jersey Khimaar Beige",
           "reason": "unclassified"
@@ -721,12 +762,12 @@
     {
       "brandSlug": "chic-modesty",
       "complete": true,
-      "fetched": 446,
+      "fetched": 445,
       "added": [],
-      "updated": 446,
-      "delisted": 0,
+      "updated": 445,
+      "delisted": 4,
       "filtered": [],
-      "returned": 0
+      "returned": 3
     },
     {
       "brandSlug": "oomah",
@@ -862,10 +903,10 @@
     {
       "brandSlug": "baqa",
       "complete": true,
-      "fetched": 327,
+      "fetched": 326,
       "added": [],
-      "updated": 327,
-      "delisted": 2,
+      "updated": 326,
+      "delisted": 1,
       "filtered": [
         {
           "title": "Mini Topuklu Deri Ayakkabı",
@@ -884,7 +925,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "abaya-lounge",
@@ -909,12 +950,12 @@
     {
       "brandSlug": "jennah-boutique",
       "complete": true,
-      "fetched": 343,
+      "fetched": 335,
       "added": [],
-      "updated": 343,
-      "delisted": 0,
+      "updated": 335,
+      "delisted": 8,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "yasmin-jay",
@@ -990,11 +1031,9 @@
       "brandSlug": "modesty-in-style",
       "complete": true,
       "fetched": 397,
-      "added": [
-        "Sara Dress"
-      ],
-      "updated": 396,
-      "delisted": 1,
+      "added": [],
+      "updated": 397,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1011,8 +1050,18 @@
     {
       "brandSlug": "vivi-zubedi",
       "complete": true,
-      "fetched": 410,
-      "added": [],
+      "fetched": 419,
+      "added": [
+        "VZ Signaire Jacket – Charcoal",
+        "VZ Signaire Jacket – Dark Blue",
+        "VZ Signaire Jacket – Light Blue",
+        "VZ Stellar Dress – Red Barn",
+        "VZ Signature Top – Teracotta",
+        "VZ Signature Top – Steel Blue",
+        "VZ Signature Top – Foggy Green",
+        "VZ Signature Top – Emerald",
+        "VZ Signature Top – Ash Purple"
+      ],
       "updated": 410,
       "delisted": 0,
       "filtered": [
@@ -1049,7 +1098,7 @@
       "fetched": 426,
       "added": [],
       "updated": 426,
-      "delisted": 1,
+      "delisted": 0,
       "filtered": [
         {
           "title": "Kaaba Coordinates Ring | Premium",
@@ -1075,10 +1124,10 @@
     {
       "brandSlug": "beyza",
       "complete": true,
-      "fetched": 232,
+      "fetched": 231,
       "added": [],
-      "updated": 232,
-      "delisted": 0,
+      "updated": 231,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1086,10 +1135,8 @@
       "brandSlug": "store-wf",
       "complete": true,
       "fetched": 262,
-      "added": [
-        "Camel Oversized Double-Breasted Wool Long Coat"
-      ],
-      "updated": 261,
+      "added": [],
+      "updated": 262,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1097,10 +1144,10 @@
     {
       "brandSlug": "abayabuth",
       "complete": true,
-      "fetched": 1006,
+      "fetched": 1005,
       "added": [],
-      "updated": 1006,
-      "delisted": 2,
+      "updated": 1005,
+      "delisted": 1,
       "filtered": [],
       "returned": 0
     },
@@ -1152,9 +1199,9 @@
     {
       "brandSlug": "ilovemodesty",
       "complete": true,
-      "fetched": 603,
+      "fetched": 604,
       "added": [],
-      "updated": 603,
+      "updated": 604,
       "delisted": 0,
       "filtered": [
         {
@@ -1166,7 +1213,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "rutba-abaya",
@@ -1181,10 +1228,26 @@
     {
       "brandSlug": "zuhre",
       "complete": true,
-      "fetched": 964,
-      "added": [],
-      "updated": 964,
-      "delisted": 12,
+      "fetched": 975,
+      "added": [
+        "Kapüşonlu Belden Ayarlamalı Süet Bitter Ceket 0200",
+        "Kapüşonlu Belden Ayarlamalı Süet Taba Ceket 0200",
+        "Kapüşonlu Belden Ayarlamalı Süet Taş Ceket 0200",
+        "Kapüşonlu Belden Ayarlamalı Süet Siyah Ceket 0200",
+        "Tokalı Kemerli Kruvaze Kahve Trençkot 14140",
+        "Tokalı Kemerli Kruvaze Siyah Trençkot 14140",
+        "Kolları Kürk Detaylı Dik Yaka Kiremit Elbise 0541",
+        "Kolları Kürk Detaylı Dik Yaka Antrasit Elbise 0541",
+        "Payet Detaylı Antrasit Gömlek 0101",
+        "Kuşaklı Kürk Camel Kaban 13894",
+        "Kuşaklı Kürk Bej Kaban 13894",
+        "Kuşaklı Yaka Detaylı Lacivert Hırka 0221",
+        "Baklava Desen Detaylı Deri Dokulu Siyah Tunik 1262",
+        "Kruvaze Yaka Cep Detaylı Kaşe Kaban Mocha Kaban 13300",
+        "Kruvaze Yaka Cep Detaylı Kaşe Kaban Kahve Kaban 13300"
+      ],
+      "updated": 960,
+      "delisted": 7,
       "filtered": [
         {
           "title": "Dalga Desenli Toprak Şal 0056",
@@ -1207,7 +1270,7 @@
           "reason": "unclassified"
         }
       ],
-      "returned": 11
+      "returned": 3
     },
     {
       "brandSlug": "ria-miranda",
@@ -1215,7 +1278,7 @@
       "fetched": 365,
       "added": [],
       "updated": 365,
-      "delisted": 5,
+      "delisted": 0,
       "filtered": [],
       "returned": 0
     },
@@ -1265,18 +1328,18 @@
       "fetched": 357,
       "added": [],
       "updated": 357,
-      "delisted": 8,
+      "delisted": 0,
       "filtered": [],
-      "returned": 1
+      "returned": 0
     },
     {
       "brandSlug": "abayas-boutique",
       "complete": true,
-      "fetched": 429,
+      "fetched": 430,
       "added": [
-        "Hanaa in Green"
+        "Hanaa in Burnt Rose"
       ],
-      "updated": 428,
+      "updated": 429,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1285,13 +1348,8 @@
       "brandSlug": "golden-dune",
       "complete": true,
       "fetched": 153,
-      "added": [
-        "Ruffle Trim Sweater",
-        "Ruffle Trim Sweater",
-        "Oversize-Polo-Sweatshirt",
-        "Oversize-Polo-Sweatshirt"
-      ],
-      "updated": 149,
+      "added": [],
+      "updated": 153,
       "delisted": 0,
       "filtered": [],
       "returned": 0
@@ -1299,12 +1357,15 @@
     {
       "brandSlug": "la-petite-parisienne",
       "complete": true,
-      "fetched": 297,
+      "fetched": 304,
       "added": [
-        "Blazer ERNE camel (WV057)",
-        "Ensemble DEAN choco"
+        "Veste COCO camel (W25226)",
+        "Veste COCO marron (W25226)",
+        "Manteau fourrure LISANA kaki (JZM008)",
+        "Manteau fourrure LISANA noir (JZM008)",
+        "Blazer GANCIA noir (WV056)"
       ],
-      "updated": 295,
+      "updated": 299,
       "delisted": 0,
       "filtered": [],
       "returned": 2
@@ -1312,8 +1373,10 @@
     {
       "brandSlug": "hijabipop",
       "complete": true,
-      "fetched": 36,
-      "added": [],
+      "fetched": 37,
+      "added": [
+        "Printed Jersey Jilbabs"
+      ],
       "updated": 36,
       "delisted": 0,
       "filtered": [],
@@ -1372,22 +1435,22 @@
     {
       "brandSlug": "bybdsha",
       "complete": true,
-      "fetched": 28,
+      "fetched": 29,
       "added": [],
-      "updated": 28,
-      "delisted": 1,
+      "updated": 29,
+      "delisted": 0,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "parladusa",
       "complete": true,
-      "fetched": 126,
+      "fetched": 125,
       "added": [],
-      "updated": 126,
-      "delisted": 0,
+      "updated": 125,
+      "delisted": 2,
       "filtered": [],
-      "returned": 0
+      "returned": 1
     },
     {
       "brandSlug": "try-modest",
@@ -1401,24 +1464,6 @@
     }
   ],
   "frozenBrands": [
-    {
-      "brandSlug": "chi-ka",
-      "prev": 210,
-      "next": 143,
-      "pct": 0.32
-    },
-    {
-      "brandSlug": "zora",
-      "prev": 114,
-      "next": 68,
-      "pct": 0.4
-    },
-    {
-      "brandSlug": "amariah",
-      "prev": 35,
-      "next": 4,
-      "pct": 0.89
-    },
     {
       "brandSlug": "nour-al-houda",
       "prev": 633,
@@ -1438,5 +1483,5 @@
       "pct": 0.49
     }
   ],
-  "untranslatedTitles": 1145
+  "untranslatedTitles": 1132
 }
